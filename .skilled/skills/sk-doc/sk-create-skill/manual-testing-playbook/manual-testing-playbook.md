@@ -297,7 +297,7 @@ Verify that the Stage-Two leaf-route replay calls no model and that its verdict 
 
 Prompt: `Replay the Stage-Two leaf routes and tell me whether the keyword arm is worth keeping.`
 
-The operator runs `leaf-route-replay.cjs` with a stub `jev` binary first on `PATH` and `--report` set, reads the per-hub replay lines and the report, then checks the stub log. The replay prints `hub=sk-code gold=1 unscored=1 surface slice not replayed`, `hub=cli-classifier stage1-only`, `router reads: not measured` and `replay verdict: stop (prose arm covers 0 of 55 rows) N=55 P=0 keyword_f1=n/a prose_f1=n/a`. No stub call is logged.
+The operator runs `leaf-route-replay.cjs` with `--report` set and reads the per-hub replay lines and the report. The replay prints `hub=sk-code gold=1 unscored=1 surface slice not replayed`, `hub=cli-classifier stage1-only`, `router reads: not measured` and `replay verdict: stop (prose arm covers 0 of 58 rows) N=58 P=0 keyword_f1=n/a prose_f1=n/a`.
 
 Desired user-visible outcome: the per-hub replay counts and a plain statement that the keyword arm is not kept or dropped until the prose arm covers enough rows.
 
@@ -317,7 +317,7 @@ Desired user-visible outcome: the per-hub replay counts and a plain statement th
 | `ci-skill-root-metadata.cjs` | Root class, authored and generated metadata, forbidden files and freshness | SKL-002 and SKL-006 |
 | `parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |
 | `score-clarify-default.test.cjs` | Census counts, the checklist split, the label gate, the keep rule and the backend gate on stub binaries | SKL-007 |
-| `leaf-route-replay.test.cjs` | Router parsing, keyword scoring, gold loading and row scoring, the read recount, the replay verdict and the backend gate on stub binaries | SKL-008 |
+| `leaf-route-replay.test.cjs` | Router parsing, keyword scoring, gold loading and row scoring, the read recount, the replay verdict and the baseline and verdict math | SKL-008 |
 
 The gates prove file and schema state. They do not by themselves prove that a new mode is reachable from every routing surface or that a ready manifest serves compiled traffic.
 

@@ -3,26 +3,23 @@
 # COMPONENT: HVR READER-NEEDED LENS — samples the tells a machine cannot settle
 # ───────────────────────────────────────────────────────────────
 
-"""Measure how well a classifier spots the Human Voice Rules tells a reader has to settle.
+"""Measure the reader-needed Human Voice Rules tells over committed skill docs.
 
 The scanner settles what a machine can settle. Synonym cycling, false ranges,
 significance inflation and the rest need a reader, and no count of them can come
 from the text alone. This lens draws a fixed sample of tracked skill sections,
-prints the census the sample rests on, and then measures a backend against the
-operator's labels when a switch names one.
+prints the census the sample rests on, and reports its no-call comparators
+against the operator's labels.
 
 Usage:
   python3 hvr_reader_lens.py                     # census, questions, baselines
   python3 hvr_reader_lens.py --draw --seed <n>   # write the labels file
-  python3 hvr_reader_lens.py --jev --out <dir>   # measure the Jev backend
   python3 hvr_reader_lens.py --labels <path>     # point at another labels file
 
 The default run makes no model call, writes no file and holds no credential.
-Jev needs --out <dir> so every call can be recorded, and a run refuses that
-switch without it before any call is made.
 
 Exit status: 0 when the run printed its lines, 2 on a bad invocation, an
-unreadable input or a thin parse, refused before any call.
+unreadable input or a thin parse.
 """
 
 from __future__ import annotations
@@ -30,14 +27,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import os
 import random
 import re
 import subprocess
 import sys
 import tempfile
-import time
 from pathlib import Path
 
 # ───────────────────────────────────────────────────────────────
@@ -280,7 +275,7 @@ DEFAULT_REPO_ROOT = SCRIPT_DIR.parents[4]
 SCANNER = SCRIPT_DIR / "hvr_scan.py"
 
 # The reader-needed categories this lens measures, in report order. Every row
-# carries one of them, so the census, the draw and the verdict lines agree.
+# carries one of them, so the census, the draw and the report lines agree.
 CATEGORIES = ("synonym-cycling", "significance-inflation", "false-ranges")
 
 # One scanner spawn covers many files: the standard parse costs more than the
@@ -569,7 +564,7 @@ def false_range_hit(text: str) -> bool:
 
 # The sample is fixed before any label exists: a flat row budget per category,
 # half of it drawn from a lexical comparator's own candidates where the category
-# has one, so the label gate and the verdict counts stay comparable.
+# has one, so the label gate and the baseline counts stay comparable.
 TOTAL_ROWS = 150
 ROWS_PER_CATEGORY = 50
 CANDIDATE_ROWS_PER_CATEGORY = 25
@@ -765,7 +760,7 @@ def draw_rows(census: dict, seed: int) -> dict:
 GATE_STOP_LINE = "stop: fewer than 150 labeled rows"
 
 # Two categories passing is the keep rule's floor, so one passable category
-# leaves nothing to beat and the line says so before either backend is asked.
+# leaves nothing to beat and the line says so before any measurement.
 STOP_CATEGORIES_LINE = "stop: fewer than 2 categories can pass"
 
 
@@ -990,14 +985,14 @@ def headroom_lines(s: dict) -> list[str]:
 
 
 def stop_categories(s: dict) -> bool:
-    """Report whether too few categories still have room for a verdict.
+    """Report whether too few categories still have room to pass the keep rule.
 
     Args:
         s: A summary from ``summarize_baseline``.
 
     Returns:
         True when fewer than two categories can pass, which stops the run
-        before either backend is asked to beat the baseline.
+        before any measurement against the baseline.
     """
     passable = 0
     for category in CATEGORIES:
@@ -1010,407 +1005,11 @@ def stop_categories(s: dict) -> bool:
 
 
 # ───────────────────────────────────────────────────────────────
-# 7. CALLS AND RECORDS
-# ───────────────────────────────────────────────────────────────
-
-# A child gets a hard cap, so an unresponsive backend cannot hold a run open,
-# and a retry after a refused answer waits before it asks again.
-JEV_TIMEOUT_MS = 90000
-JEV_BACKOFF_MS = 2000
-
-
-def which(name: str, env: dict) -> str | None:
-    """Return the first executable file of this name on the environment's PATH.
-
-    Args:
-        name: Executable file name to look for.
-        env: Environment whose ``PATH`` is searched.
-
-    Returns:
-        The first match, or None when no entry holds an executable file of
-        this name. An empty entry, a directory and a file without an execute
-        bit are all misses.
-    """
-    for entry in env.get("PATH", "").split(os.pathsep):
-        if not entry:
-            continue
-        candidate = Path(entry) / name
-        if candidate.is_file() and os.access(candidate, os.X_OK):
-            return str(candidate)
-    return None
-
-
-def spawn_call(
-    file: str | Path,
-    args: list[str],
-    stdin_text: str,
-    env: dict,
-    timeout_ms: int,
-) -> dict:
-    """Run one bounded child and return its exit, output and wall time.
-
-    The timeout kills the child and returns at the deadline, never waiting for
-    a pipe a grandchild could hold open past the kill. Stdin is written and
-    then closed, because the CLI reads stdin to EOF and would otherwise wait
-    on an inherited terminal. A spawn error reads as exit code 127 with the
-    message as stderr.
-
-    Args:
-        file: Executable to spawn.
-        args: Arguments after the executable.
-        stdin_text: Text written to stdin, then closed.
-        env: Child environment.
-        timeout_ms: Kill and return after this many milliseconds.
-
-    Returns:
-        ``{"code": int | None, "stdout": str, "stderr": str, "wall_ms": int,
-        "timed_out": bool}``. ``code`` is None and ``timed_out`` True when the
-        cap fired.
-    """
-    start = time.monotonic()
-
-    def elapsed_ms() -> int:
-        return int((time.monotonic() - start) * 1000)
-
-    try:
-        child = subprocess.Popen(
-            [str(file), *[str(argument) for argument in args]],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            env=env,
-            encoding="utf-8",
-            errors="replace",
-        )
-    except OSError as error:
-        return {
-            "code": 127,
-            "stdout": "",
-            "stderr": str(error),
-            "wall_ms": elapsed_ms(),
-            "timed_out": False,
-        }
-
-    try:
-        stdout, stderr = child.communicate(
-            input=stdin_text, timeout=timeout_ms / 1000
-        )
-        return {
-            "code": child.returncode,
-            "stdout": stdout,
-            "stderr": stderr,
-            "wall_ms": elapsed_ms(),
-            "timed_out": False,
-        }
-    except subprocess.TimeoutExpired as timeout:
-        child.kill()
-        child.wait()
-        stdout = timeout.output or ""
-        stderr = timeout.stderr or ""
-        if isinstance(stdout, bytes):
-            stdout = stdout.decode("utf-8", "replace")
-        if isinstance(stderr, bytes):
-            stderr = stderr.decode("utf-8", "replace")
-        return {
-            "code": None,
-            "stdout": stdout,
-            "stderr": stderr,
-            "wall_ms": elapsed_ms(),
-            "timed_out": True,
-        }
-
-
-def create_call_log(out_dir: str | Path | None) -> dict:
-    """Return an append-only writer for one run's call records.
-
-    The file is created empty on the first append, so a killed arm's earlier
-    lines stay readable. A run that records no call creates nothing.
-
-    Args:
-        out_dir: Directory that holds ``calls.jsonl``, or None.
-
-    Returns:
-        A dict whose ``append`` callable writes one compact JSON object per
-        record to ``<out_dir>/calls.jsonl``.
-    """
-    state = {"created": False}
-
-    def append(record: dict) -> None:
-        if out_dir is None or str(out_dir) == "":
-            return
-        directory = Path(out_dir)
-        path = directory / "calls.jsonl"
-        if not state["created"]:
-            directory.mkdir(parents=True, exist_ok=True)
-            path.write_text("", encoding="utf-8")
-            state["created"] = True
-        with path.open("a", encoding="utf-8") as handle:
-            handle.write(json.dumps(record, separators=(",", ":")) + "\n")
-
-    return {"append": append}
-
-
-def read_stored_report(out_dir: str | Path | None) -> dict | None:
-    """Return the report an earlier run wrote into this directory.
-
-    Args:
-        out_dir: Directory that may hold ``report.json``, or None.
-
-    Returns:
-        The parsed body, or None when no directory is named, the file is
-        missing, or its text does not parse; a requalify comparison treats all
-        of those as "nothing stored".
-    """
-    if out_dir is None or str(out_dir) == "":
-        return None
-    try:
-        return json.loads((Path(out_dir) / "report.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-
-
-# ───────────────────────────────────────────────────────────────
-# 8. JEV ARM
-# ───────────────────────────────────────────────────────────────
-
-# A ``noul`` probability at or above this counts as a flag.
-FLAG_AT = 0.5
-# The gate pins one version: the answer shape, the exit classes and the
-# provider flag are read from that build, so any other build is unmeasured
-# until its contract is read again rather than trusted to behave the same.
-JEV_VERSION = "jev 0.6.2"
-# Three fresh calls per row, each a measurement of its own: the CLI keeps no
-# cache, so a flaky answer shows up in the flip count instead of hiding under
-# a rerun.
-JEV_RERUNS = 3
-
-
-def jev_gate(ctx: dict) -> dict:
-    """Print the identity line, then check the pinned version and a credential.
-
-    The provider comes from ``JEV_PROVIDER`` and falls back to ``official``.
-    The identity line is printed before any check, so a skip still says which
-    path and provider were tried. The script reads and passes no key: the CLI
-    resolves its own credential, and a refused check is a skip, not a prompt.
-
-    Args:
-        ctx: ``{"out": <line writer>, "env": <environment>}``; an optional
-            ``timeoutMs`` caps each check.
-
-    Returns:
-        ``{"passed": True, "path", "provider"}`` when both checks pass; else
-        ``{"passed": False, "path", "provider", "reason"}`` with the skip line
-        already printed. A wrong version adds a line naming what was found.
-    """
-    provider = ctx["env"].get("JEV_PROVIDER") or "official"
-    path = which("jev", ctx["env"])
-    ctx["out"](f"jev: path={path if path is not None else 'none'} provider={provider}")
-    if path is None:
-        reason = "jev arm skipped: jev not on PATH"
-        ctx["out"](reason)
-        return {"passed": False, "path": None, "provider": provider, "reason": reason}
-
-    timeout_ms = ctx.get("timeoutMs") or JEV_TIMEOUT_MS
-    version = spawn_call(path, ["--version"], "", ctx["env"], timeout_ms)
-    trimmed = version["stdout"].strip()
-    found = trimmed.splitlines()[0] if trimmed else ""
-    if found != JEV_VERSION:
-        reason = "jev arm skipped: version"
-        ctx["out"](reason)
-        ctx["out"](f"jev: found={json.dumps(found)} path={path}")
-        return {"passed": False, "path": path, "provider": provider, "reason": reason}
-
-    auth = spawn_call(
-        path, ["auth", "status", "--provider", provider], "", ctx["env"], timeout_ms
-    )
-    if auth["code"] != 0:
-        reason = "jev arm skipped: no credential"
-        ctx["out"](reason)
-        return {"passed": False, "path": path, "provider": provider, "reason": reason}
-
-    return {"passed": True, "path": path, "provider": provider}
-
-
-def run_jev_arm(plan: dict, gate: dict, ctx: dict) -> dict:
-    """Ask the Jev CLI for one column over the drawn rows and print it.
-
-    One ``auth test`` names the model, then every row gets ``JEV_RERUNS``
-    fresh ``noul`` calls, each carrying the provider so the identity cannot
-    drift mid-run. The calls share no cache, so a row's probability is the
-    mean of its reruns and a flaky answer shows up in the flip count. Exit 4
-    gets one retry behind a backoff, because a dropped connection is not a
-    judgment; any other refusing exit stops the arm with the rows that
-    finished and prints no column. Every spawn gets one ``calls.jsonl``
-    record.
-
-    Args:
-        plan: ``{"rows": [...], "baseline": ..., "phrases": ...}``; each row
-            carries ``id``, ``category``, ``label``, ``text`` and ``question``.
-        gate: A passing ``jev_gate`` result.
-        ctx: ``{"out", "env", "timeoutMs", "backoffMs", "callLog", "stored"}``;
-            ``stored`` is an earlier run's report, read only to compare the
-            identity.
-
-    Returns:
-        ``{"stopped": <line>, "partialRows": <n>}`` on a stop, else the
-        column summary and the requalify line when a stored identity differs.
-    """
-    rows = plan["rows"]
-    chars = sum(
-        len(row["text"]) + len(row.get("question", "")) for row in rows
-    ) * JEV_RERUNS
-    ctx["out"](
-        f"jev: payload: sections of tracked committed skill docs; planned calls: "
-        f"{JEV_RERUNS * len(rows) + 1}; estimated input tokens: {(chars + 3) // 4}"
-    )
-    probs = {}
-    finished = 0
-
-    def stop(line: str) -> dict:
-        ctx["out"](line)
-        ctx["out"](f"jev: partial rows={finished}")
-        return {"stopped": line, "partialRows": finished}
-
-    timeout_ms = ctx.get("timeoutMs") or JEV_TIMEOUT_MS
-    backoff_ms = ctx.get("backoffMs") or JEV_BACKOFF_MS
-    auth = spawn_call(
-        gate["path"],
-        ["auth", "test", "--provider", gate["provider"]],
-        "",
-        ctx["env"],
-        timeout_ms,
-    )
-    model = "unknown"
-    if auth["code"] == 0:
-        try:
-            parsed = json.loads(auth["stdout"])
-        except json.JSONDecodeError:
-            parsed = None
-        if isinstance(parsed, dict) and isinstance(parsed.get("model"), str):
-            model = parsed["model"]
-    ctx["callLog"]["append"](
-        {
-            "backend": "jev",
-            "kind": "auth_test",
-            "rowId": None,
-            "category": None,
-            "rerun": None,
-            "attempt": 1,
-            "wallMs": auth["wall_ms"],
-            "exitCode": auth["code"],
-            "probability": None,
-            "flag": None,
-            "status": "measured" if auth["code"] == 0 else "unmeasured",
-            "jevVersion": JEV_VERSION,
-            "provider": gate["provider"],
-            "model": model,
-        }
-    )
-    if auth["code"] != 0:
-        if auth["code"] == 3:
-            return stop("jev arm stopped: key rejected")
-        if auth["code"] == 130:
-            return stop("jev arm stopped: interrupted")
-        return stop("jev arm stopped: auth test failed")
-    ctx["out"](f"jev: auth test provider={gate['provider']} model={model}")
-
-    def record(row: dict, rerun: int, attempt: int, result: dict, probability, status: str) -> dict:
-        return {
-            "backend": "jev",
-            "kind": "noul",
-            "rowId": row["id"],
-            "category": row["category"],
-            "rerun": rerun,
-            "attempt": attempt,
-            "wallMs": result["wall_ms"],
-            "exitCode": result["code"],
-            "probability": probability,
-            "flag": None if probability is None else probability >= FLAG_AT,
-            "status": status,
-            "jevVersion": JEV_VERSION,
-            "provider": gate["provider"],
-            "model": model,
-        }
-
-    for row in rows:
-        call_args = ["noul", "--provider", gate["provider"], "-q", row["question"]]
-        answers = []
-        for rerun in range(JEV_RERUNS):
-            attempt = 1
-            result = spawn_call(gate["path"], call_args, row["text"], ctx["env"], timeout_ms)
-            if not result["timed_out"] and result["code"] == 4:
-                ctx["callLog"]["append"](record(row, rerun, attempt, result, None, "unmeasured"))
-                time.sleep(backoff_ms / 1000)
-                attempt = 2
-                result = spawn_call(gate["path"], call_args, row["text"], ctx["env"], timeout_ms)
-            probability = None
-            status = "unmeasured"
-            stop_line = None
-            if result["timed_out"]:
-                status = "unmeasured_timeout"
-            elif result["code"] == 0:
-                try:
-                    parsed = json.loads(result["stdout"])
-                except json.JSONDecodeError:
-                    parsed = None
-                answer = None
-                if isinstance(parsed, dict):
-                    answer = parsed.get("answers", {}).get("answer", {}).get("noul")
-                if (
-                    isinstance(answer, (int, float))
-                    and not isinstance(answer, bool)
-                    and 0 <= answer <= 1
-                ):
-                    probability = float(answer)
-                    status = "measured"
-            elif result["code"] == 2:
-                stop_line = "jev arm stopped: usage error"
-            elif result["code"] == 3:
-                stop_line = "jev arm stopped: key rejected"
-            elif result["code"] == 130:
-                stop_line = "jev arm stopped: interrupted"
-            ctx["callLog"]["append"](record(row, rerun, attempt, result, probability, status))
-            if stop_line is not None:
-                return stop(stop_line)
-            answers.append(probability)
-        probs[row["id"]] = answers
-        finished += 1
-
-    column = summarize_column("jev", rows, probs, plan["baseline"], plan["phrases"])
-    ctx["out"](column["detail"])
-    for category in CATEGORIES:
-        entry = column["categories"][category]
-        ctx["out"](
-            f"category {category}: {entry['outcome']} K={entry['K']} "
-            f"M={entry['M']} A={entry['A']} B={entry['B']} W={entry['W']} "
-            f"L={entry['L']} TP={entry['TP']} FP={entry['FP']} F={entry['F']} "
-            f"p={entry['p']}"
-        )
-    for category in CATEGORIES:
-        brier = column["categories"][category]["brier"]
-        shown = "none" if brier is None else f"{brier:.4f}"
-        ctx["out"](f"brier ({category}): {shown}")
-    ctx["out"](
-        f"flips: F={column['totals']['F']} of {JEV_RERUNS * column['totals']['M']} calls"
-    )
-    stored = ((ctx.get("stored") or {}).get("columns") or {}).get("jev")
-    requalify = None
-    if stored is not None and (
-        stored.get("provider") != gate["provider"] or stored.get("model") != model
-    ):
-        requalify = "requalify: model changed"
-        ctx["out"](requalify)
-    ctx["out"](column["line"])
-    return {"column": column, "requalify": requalify}
-
-
-# ───────────────────────────────────────────────────────────────
-# 9. VERDICT
+# 7. QUESTIONS AND KEEP RULE
 # ───────────────────────────────────────────────────────────────
 
 # The three fixed instructions, one per category, printed verbatim with their
-# digests before any row is asked, so a report can be checked against the text
-# a model was actually given.
+# digests, so a report pins the exact wording each category's label settles.
 QUESTIONS = {
     "synonym-cycling": (
         "Does this passage refer to the same thing by three or more different words?"
@@ -1425,23 +1024,22 @@ QUESTIONS = {
     ),
 }
 
-# The margin is fixed before any call: a backend has to beat its baseline by at
-# least a tenth of the measured rows, and the line that names every threshold
-# prints before the first row is asked.
+# The margin and the keep rule are fixed and printed before any measurement, so
+# a change to either is an amendment rather than a tuning.
 MARGIN = 0.10
-MARGIN_LINE = "margin: 0.10"
+MARGIN_LINE = f"margin: {MARGIN:.2f}"
 KEEP_RULE_LINE = (
     "keep rule: coverage 10*M >= 9*K, kill 5*TP < 3*(TP+FP) in every category, "
     "precision TP+FP >= 1 and 5*TP >= 4*(TP+FP), margin 10*(A-B) >= M, "
-    "sign test p < 0.05, flips 10*F <= 3*M (jev only), keep at two categories passing"
+    "sign test p < 0.05, keep at two categories passing"
 )
 
 
 def question_lines() -> list[str]:
     """Format the three fixed questions as their preamble lines.
 
-    Each line carries the question's SHA-256 beside its text, so a report
-    records the exact instruction a backend was asked, not just its name.
+    Each line carries the question's SHA-256 beside its text, so a report pins
+    the exact wording each category's label settles, not just the name.
 
     Returns:
         One ``question <c> sha256=<64hex>: <text>`` line per ``CATEGORIES`` entry.
@@ -1452,330 +1050,8 @@ def question_lines() -> list[str]:
     ]
 
 
-def sign_test_p(wins: int, losses: int) -> dict:
-    """Compute the exact one-sided sign test over backend-only wins and losses.
-
-    The tail sums the binomial coefficients from ``wins`` to ``wins + losses``
-    over ``2 ** n`` fair trials, and the 0.05 bar is tested on the integers
-    themselves, so no float rounding can decide a verdict. No disagreements
-    give p 1.
-
-    Args:
-        wins: Rows only the backend got right.
-        losses: Rows only the baseline got right.
-
-    Returns:
-        ``{"p": <float>, "below": <bool>}``, where ``below`` is the exact
-        ``p < 0.05`` answer.
-    """
-    n = wins + losses
-    if n == 0:
-        return {"p": 1, "below": False}
-    num = sum(math.comb(n, i) for i in range(wins, n + 1))
-    den = 1 << n
-    return {"p": num / den, "below": 20 * num < den}
-
-
-def _category_condition(entry: dict, backend: str) -> str | None:
-    """Name the first per-category keep-rule condition an entry fails.
-
-    The five conditions run in the order the printed line names them: the
-    zero-call refusal, precision, margin, the sign test and, for Jev only,
-    stability. ``None`` means every condition passed.
-
-    Args:
-        entry: One category's counts, as ``decide_verdict`` receives them.
-        backend: ``jev``.
-
-    Returns:
-        The failing condition's name, or None when the category passes.
-    """
-    if entry.get("headroom"):
-        return entry["headroom"]
-    flags = entry["TP"] + entry["FP"]
-    if not (flags >= 1 and 5 * entry["TP"] >= 4 * flags):
-        return "precision"
-    if not (10 * (entry["A"] - entry["B"]) >= entry["M"]):
-        return "margin"
-    if not sign_test_p(entry["W"], entry["L"])["below"]:
-        return "sign test"
-    if backend == "jev" and not (10 * entry["F"] <= 3 * entry["M"]):
-        return "flips"
-    return None
-
-
-def decide_verdict(counts: dict, backend: str) -> dict:
-    """Decide one column's verdict from its per-category counts.
-
-    The keep rule runs in its own order: the coverage check over every
-    category first, then the kill clause, and only then each category's own
-    conditions. A column that fails coverage stops, a column whose precision
-    is below the bar in every category kills, and a column that leaves fewer
-    than two categories passing stops without a keep.
-
-    Args:
-        counts: ``{<category>: <counts>}``, each entry carrying ``K``, ``M``,
-            ``A``, ``B``, ``W``, ``L``, ``TP``, ``FP``, ``F`` and an optional
-            ``headroom`` naming the zero-call refusal.
-        backend: ``jev``.
-
-    Returns:
-        ``{"outcome": "keep"|"kill"|"stop", "reason": <str|None>,
-        "p": <float>}``, where ``p`` is the sign test over the column's wins
-        and losses.
-    """
-    entries = list(counts.values())
-    sign = sign_test_p(
-        sum(entry["W"] for entry in entries),
-        sum(entry["L"] for entry in entries),
-    )
-    if not all(10 * entry["M"] >= 9 * entry["K"] for entry in entries):
-        return {"outcome": "stop", "reason": "coverage", "p": sign["p"]}
-    if all(
-        entry["TP"] + entry["FP"] == 0
-        or 5 * entry["TP"] < 3 * (entry["TP"] + entry["FP"])
-        for entry in entries
-    ):
-        return {"outcome": "kill", "reason": "precision", "p": sign["p"]}
-    passing = sum(1 for entry in entries if _category_condition(entry, backend) is None)
-    if passing >= 2:
-        return {"outcome": "keep", "reason": None, "p": sign["p"]}
-    return {"outcome": "stop", "reason": "categories", "p": sign["p"]}
-
-
-def verdict_text(v: dict) -> str:
-    """Render a verdict as its report words.
-
-    Args:
-        v: A verdict from ``decide_verdict``.
-
-    Returns:
-        ``keep``, ``kill (precision)`` or ``stop (<reason>)``.
-    """
-    if v["outcome"] == "keep":
-        return "keep"
-    if v["outcome"] == "kill":
-        return "kill (precision)"
-    return f"stop ({v['reason']})"
-
-
-def summarize_column(
-    backend: str, rows: list[dict], probs: dict, baseline: dict, phrases: list[str]
-) -> dict:
-    """Score one backend's column from the calls it made.
-
-    A row is measured only when every expected call returned a probability in
-    [0, 1], so a timeout or an empty answer leaves the row out of M instead of
-    counting as a no. Its flag is the modal call flag (``2 * yes > calls``),
-    TP and FP read that flag against the label, and F counts the calls that
-    disagreed with the modal flag. Each category is tested against its own
-    baseline flags and carries the first condition it fails. Brier is per
-    category over measured rows, with a Jev row's probability the mean of its
-    reruns; it is reported and never decides.
-
-    Args:
-        backend: ``jev``.
-        rows: Plan rows, each carrying ``id``, ``category``, ``label`` and
-            ``text``.
-        probs: ``{<row id>: [<probability or None>, ...]}``, one entry per
-            call the backend was expected to make for that row.
-        baseline: A summary from ``summarize_baseline``; its flags say which
-            measured rows the baseline got right.
-        phrases: The significance-inflation phrases, kept so every plan shares
-            one signature; the built rows already carry their candidate flags.
-
-    Returns:
-        The column summary: the counts ``K``, ``M``, ``A``, ``B``, ``W``,
-        ``L``, ``TP``, ``FP``, ``F`` and ``p``, the column's ``outcome`` and
-        ``reason``, a ``categories`` entry per category (the same counts plus
-        ``outcome``, ``condition``, ``brier``, ``candidate`` and
-        ``yesShare``), ``totals``, the verdict ``line`` and the ``detail``
-        line. The detail's latency fields read ``none``: this summary sees
-        probabilities, and the wall times live in the run's call records.
-    """
-    expected = JEV_RERUNS
-    categories = {}
-    totals = {
-        "K": 0, "M": 0, "A": 0, "B": 0, "W": 0, "L": 0, "TP": 0, "FP": 0, "F": 0,
-    }
-    baseline_categories = baseline.get("categories") or {}
-    headroom_source = {
-        category: baseline_categories.get(category) or {"K": 0, "B": 0}
-        for category in CATEGORIES
-    }
-    headroom_by_category = dict(
-        zip(CATEGORIES, headroom_lines({"categories": headroom_source}))
-    )
-    for category in CATEGORIES:
-        entries = [row for row in rows if row["category"] == category]
-        base = baseline_categories.get(category) or {"K": 0, "B": 0}
-        flags = base.get("flags") or {}
-        headroom_line = headroom_by_category[category]
-        entry = {
-            "K": len(entries),
-            "M": 0,
-            "A": 0,
-            "B": 0,
-            "W": 0,
-            "L": 0,
-            "TP": 0,
-            "FP": 0,
-            "F": 0,
-            "headroom": (
-                None
-                if headroom_line.startswith("headroom")
-                else headroom_line.split(" (", 1)[0]
-            ),
-            "brier": None,
-            "candidate": sum(1 for row in entries if row.get("candidate")),
-            "yesShare": sum(1 for row in entries if row.get("label") == "yes"),
-        }
-        brier_sum = 0.0
-        for row in entries:
-            answers = probs.get(row["id"])
-            if not isinstance(answers, list) or len(answers) != expected:
-                continue
-            if not all(
-                isinstance(value, (int, float))
-                and not isinstance(value, bool)
-                and 0 <= value <= 1
-                for value in answers
-            ):
-                continue
-            entry["M"] += 1
-            yes_count = sum(1 for value in answers if value >= FLAG_AT)
-            flag = 2 * yes_count > len(answers)
-            entry["F"] += len(answers) - (yes_count if flag else len(answers) - yes_count)
-            label_yes = row.get("label") == "yes"
-            right = flag == label_yes
-            base_right = bool(flags.get(row["id"])) == label_yes
-            if right:
-                entry["A"] += 1
-            if base_right:
-                entry["B"] += 1
-            if right and not base_right:
-                entry["W"] += 1
-            if base_right and not right:
-                entry["L"] += 1
-            if flag:
-                if label_yes:
-                    entry["TP"] += 1
-                else:
-                    entry["FP"] += 1
-            brier_sum += ((sum(answers) / len(answers)) - (1.0 if label_yes else 0.0)) ** 2
-        entry["brier"] = brier_sum / entry["M"] if entry["M"] else None
-        entry["p"] = sign_test_p(entry["W"], entry["L"])["p"]
-        entry["condition"] = _category_condition(entry, backend)
-        entry["outcome"] = entry["condition"] or "pass"
-        categories[category] = entry
-        for key in totals:
-            totals[key] += entry[key]
-    verdict = decide_verdict(categories, backend)
-    totals["p"] = verdict["p"]
-    line = (
-        f"verdict {backend}: {verdict_text(verdict)} K={totals['K']} "
-        f"M={totals['M']} A={totals['A']} B={totals['B']} W={totals['W']} "
-        f"L={totals['L']} TP={totals['TP']} FP={totals['FP']} F={totals['F']} "
-        f"p={totals['p']:.4g}"
-    )
-    detail = (
-        f"column {backend}: measured={totals['M']} of {totals['K']} "
-        "p50=none p95=none"
-    )
-    return {
-        "backend": backend,
-        "K": totals["K"],
-        "M": totals["M"],
-        "A": totals["A"],
-        "B": totals["B"],
-        "W": totals["W"],
-        "L": totals["L"],
-        "TP": totals["TP"],
-        "FP": totals["FP"],
-        "F": totals["F"],
-        "p": totals["p"],
-        "outcome": verdict["outcome"],
-        "reason": verdict["reason"],
-        "categories": categories,
-        "totals": totals,
-        "line": line,
-        "detail": detail,
-    }
-
-
-def build_report(input: dict) -> dict:
-    """Lay out one run's report body for ``report.json``.
-
-    Args:
-        input: The run's pieces: ``commit``, ``questions``, ``margin``,
-            ``keepRule``, the ``baseline`` summary, the per-category
-            ``headroom`` lines, the ``columns`` that ran, the ``skipped`` and
-            ``stopped`` arms, the ``requalify`` lines and whether the
-            categories stop fired.
-
-    Returns:
-        The report body: the run's identity, the frame and baseline facts,
-        then one column per backend that ran, with its counts, its categories
-        and its own identity fields.
-    """
-    baseline = input.get("baseline") or {}
-    report = {
-        "commit": input["commit"],
-        "questions": input["questions"],
-        "margin": input["margin"],
-        "keepRule": input["keepRule"],
-        "baseline": {"categories": {}},
-        "headroom": input.get("headroom") or {},
-        "columns": {},
-        "skipped": input.get("skipped") or {},
-        "stopped": input.get("stopped") or {},
-        "requalify": input.get("requalify") or {},
-        "categoriesStopped": bool(input.get("categoriesStopped")),
-    }
-    for category in CATEGORIES:
-        entry = (baseline.get("categories") or {}).get(category) or {}
-        report["baseline"]["categories"][category] = {
-            "K": entry.get("K", 0),
-            "flagNothingRight": entry.get("flagNothingRight", 0),
-            "comparatorRight": entry.get("comparatorRight", 0),
-            "method": entry.get("method"),
-            "B": entry.get("B", 0),
-            "yesShare": entry.get("yesShare", 0),
-        }
-    for backend, column in (input.get("columns") or {}).items():
-        entry = {
-            "verdict": column["outcome"],
-            "reason": column["reason"],
-            "line": column["line"],
-            "totals": column["totals"],
-            "categories": {},
-        }
-        for category in CATEGORIES:
-            counts = column["categories"][category]
-            entry["categories"][category] = {
-                "K": counts["K"],
-                "M": counts["M"],
-                "A": counts["A"],
-                "B": counts["B"],
-                "W": counts["W"],
-                "L": counts["L"],
-                "TP": counts["TP"],
-                "FP": counts["FP"],
-                "F": counts["F"],
-                "p": counts["p"],
-                "outcome": counts["outcome"],
-                "condition": counts["condition"],
-                "brier": counts["brier"],
-                "candidate": counts["candidate"],
-                "yesShare": counts["yesShare"],
-            }
-        entry.update(column.get("identity") or {})
-        report["columns"][backend] = entry
-    return report
-
-
 # ───────────────────────────────────────────────────────────────
-# 10. RUN
+# 8. RUN
 # ───────────────────────────────────────────────────────────────
 
 
@@ -1784,9 +1060,8 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
 
     Args:
         argv: Command-line arguments; the process arguments when omitted.
-        deps: Optional overrides for the repository root, the scanner path,
-            the output and error writers, the spawn environment and the
-            call timeouts.
+        deps: Optional overrides for the repository root, the scanner path and
+            the output and error writers.
 
     Returns:
         0 when the run printed its lines, 2 on an invocation, an input or a
@@ -1801,29 +1076,14 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
     parser.add_argument("--draw", action="store_true", help="draw the unlabeled labels sample")
     parser.add_argument("--seed", help="the draw seed, a non-negative integer")
     parser.add_argument("--labels", help="path of the labels file")
-    parser.add_argument("--jev", action="store_true", help="measure the Jev backend")
-    parser.add_argument("--out", help="directory that holds report.json and calls.jsonl")
     try:
         values = parser.parse_args(argv)
     except SystemExit as stop:
         return int(stop.code) if isinstance(stop.code, int) else 2
-    if values.jev and not values.out:
-        err("--jev needs --out <dir> so every call is recorded")
-        return 2
     repo_root = deps.get("repo_root") or DEFAULT_REPO_ROOT
     scanner = deps.get("scanner") or SCANNER
-    env = deps.get("env") or dict(os.environ)
-    timeout_ms = deps.get("timeout_ms") or JEV_TIMEOUT_MS
-    backoff_ms = deps.get("backoff_ms") or JEV_BACKOFF_MS
     if values.draw:
-        # The draw writes the unlabeled sample only; an arm switch would ask for
-        # a measurement this mode never makes.
-        if (
-            getattr(values, "jev", False)
-            or getattr(values, "out", None) not in (None, "")
-        ):
-            err("--draw takes only --seed and --labels")
-            return 2
+        # The draw writes the unlabeled sample and never measures.
         if re.fullmatch(r"\d+", values.seed or "") is None:
             err("--draw needs --seed <non-negative integer>")
             return 2
@@ -1888,14 +1148,9 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
         phrases = parse_significance_phrases(
             DEFAULT_RULES_PATH.read_text(encoding="utf-8")
         )
-        rows = []
         summary = None
         if gate["complete"]:
-            built = build_rows(repo_root, labels, phrases)
-            rows = [row for row in built if not row["refused"]]
-            for row in rows:
-                row["question"] = QUESTIONS[row["category"]]
-            summary = summarize_baseline(built)
+            summary = summarize_baseline(build_rows(repo_root, labels, phrases))
     except ValueError as failure:
         err(f"cannot read an input: {failure}")
         return 2
@@ -1905,7 +1160,6 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
     except SystemExit as stop:
         return int(stop.code) if isinstance(stop.code, int) else 1
 
-    categories_stopped = False
     if not gate["complete"]:
         for line in gate_lines(gate):
             out(line)
@@ -1914,84 +1168,8 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
             out(line)
         for line in headroom_lines(summary):
             out(line)
-        categories_stopped = stop_categories(summary)
-        if categories_stopped:
+        if stop_categories(summary):
             out(STOP_CATEGORIES_LINE)
-
-    columns = {}
-    skipped = {}
-    stopped = {}
-    requalify = {}
-    if not categories_stopped:
-        stored = read_stored_report(values.out) if values.jev else None
-        call_log = create_call_log(values.out)
-        if values.jev:
-            check = jev_gate({"out": out, "env": env, "timeoutMs": timeout_ms})
-            if not check["passed"]:
-                skipped["jev"] = check["reason"]
-            elif not gate["complete"]:
-                line = "jev arm skipped: fewer than 150 labeled rows"
-                out(line)
-                skipped["jev"] = line
-            else:
-                plan = {"rows": rows, "baseline": summary, "phrases": phrases}
-                ctx = {
-                    "out": out,
-                    "env": env,
-                    "timeoutMs": timeout_ms,
-                    "backoffMs": backoff_ms,
-                    "callLog": call_log,
-                    "stored": stored,
-                }
-                arm = run_jev_arm(plan, check, ctx)
-                if "stopped" in arm:
-                    stopped["jev"] = {
-                        "line": arm["stopped"],
-                        "partialRows": arm["partialRows"],
-                    }
-                else:
-                    column = dict(arm["column"])
-                    column["identity"] = {
-                        "jevVersion": JEV_VERSION,
-                        "provider": check["provider"],
-                    }
-                    columns["jev"] = column
-                    requalify["jev"] = arm["requalify"]
-
-    if values.out and (columns or stopped or categories_stopped):
-        headroom = {}
-        if summary is not None:
-            for category, line in zip(CATEGORIES, headroom_lines(summary)):
-                headroom[category] = {
-                    "line": line,
-                    "canPass": line.startswith("headroom"),
-                }
-        report = build_report(
-            {
-                "commit": commit,
-                "questions": {
-                    category: {
-                        "text": QUESTIONS[category],
-                        "sha256": sha256(QUESTIONS[category]),
-                    }
-                    for category in CATEGORIES
-                },
-                "margin": MARGIN,
-                "keepRule": KEEP_RULE_LINE,
-                "baseline": summary,
-                "headroom": headroom,
-                "columns": columns,
-                "skipped": skipped,
-                "stopped": stopped,
-                "requalify": requalify,
-                "categoriesStopped": categories_stopped,
-            }
-        )
-        target = Path(values.out)
-        target.mkdir(parents=True, exist_ok=True)
-        (target / "report.json").write_text(
-            json.dumps(report, indent=2) + "\n", encoding="utf-8"
-        )
     return 0
 
 
