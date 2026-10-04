@@ -1,5 +1,5 @@
 {
-  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
+  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22661,8 +22661,14 @@
     "command contract": [
       "command contract"
     ],
+    "command contract commands filter": [
+      "command contract commands filter"
+    ],
     "command contract continuity key": [
       "command contract continuity key"
+    ],
+    "command contract merged workflow": [
+      "command contract merged workflow"
     ],
     "command contract plan": [
       "command contract plan"
@@ -43270,6 +43276,12 @@
     ],
     "generate candidate": [
       "generate candidate"
+    ],
+    "generate command routers clean": [
+      "generate-command-routers clean"
+    ],
+    "generate command routers path drift": [
+      "generate-command-routers path drift"
     ],
     "generate context": [
       "generate context"
@@ -90648,6 +90660,15 @@
     ],
     "speckit reviewer benchmarks": [
       "SPECKIT_REVIEWER_BENCHMARKS"
+    ],
+    "speckit router contract drift": [
+      "speckit router contract drift"
+    ],
+    "speckit router contract drift plan": [
+      "speckit router contract drift plan"
+    ],
+    "speckit router contract drift summary": [
+      "speckit router contract drift summary"
     ],
     "speckit router references": [
       "speckit router references"

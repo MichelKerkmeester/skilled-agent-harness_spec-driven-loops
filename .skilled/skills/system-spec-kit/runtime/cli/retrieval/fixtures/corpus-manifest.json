@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8bd7ff0c84d507e44a90543ef666a2cf76c91cf850f88fe324e620816ca86d8d",
+  "corpusHash": "0e0e2492034ec2fd305afe7754ae9ced22092153ac8152a1cc4b7ccdf3ff6b86",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23336,
+  "includedPathCount": 23340,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23363,10 +23363,14 @@
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
+  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28766,6 +28770,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/scratch",
       "reason": "excluded directory"
     },
     {

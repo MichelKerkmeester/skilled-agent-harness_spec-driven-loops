@@ -1,5 +1,5 @@
 {
-  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
+  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13155,6 +13155,10 @@
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -38148,8 +38152,14 @@
     "command contract": [
       4960
     ],
+    "command contract commands filter": [
+      13146
+    ],
     "command contract continuity key": [
       12259
+    ],
+    "command contract merged workflow": [
+      13147
     ],
     "command contract plan": [
       4959
@@ -51852,7 +51862,7 @@
       12251
     ],
     "doctor audit followups": [
-      13145
+      13149
     ],
     "doctor baseline verification": [
       12167
@@ -52096,7 +52106,7 @@
     ],
     "doctor gates drift": [
       13127,
-      13145
+      13149
     ],
     "doctor hard cutover": [
       10104
@@ -61114,6 +61124,12 @@
     "generate candidate": [
       1709
     ],
+    "generate command routers clean": [
+      13145
+    ],
+    "generate command routers path drift": [
+      13147
+    ],
     "generate context": [
       2378,
       7887
@@ -67899,7 +67915,8 @@
       13109,
       13117,
       13122,
-      13128
+      13128,
+      13148
     ],
     "implementation testing verification phases": [
       830
@@ -95298,7 +95315,7 @@
       13144
     ],
     "release update signals": [
-      13145
+      13149
     ],
     "release updater over rebuild": [
       12995
@@ -113615,6 +113632,15 @@
       10300,
       10814
     ],
+    "speckit router contract drift": [
+      13147
+    ],
+    "speckit router contract drift plan": [
+      13146
+    ],
+    "speckit router contract drift summary": [
+      13145
+    ],
     "speckit router references": [
       10915
     ],
@@ -118044,7 +118070,8 @@
       13109,
       13117,
       13122,
-      13128
+      13128,
+      13148
     ],
     "task cache removal": [
       503
@@ -118392,7 +118419,8 @@
       13109,
       13117,
       13122,
-      13128
+      13128,
+      13148
     ],
     "task detail without network": [
       523
@@ -121483,7 +121511,7 @@
     ],
     "trigger index freshness": [
       13116,
-      13145
+      13149
     ],
     "trigger index generator": [
       2388,
@@ -124797,7 +124825,8 @@
       13109,
       13117,
       13122,
-      13128
+      13128,
+      13148
     ],
     "verification class blind to failure class": [
       6989

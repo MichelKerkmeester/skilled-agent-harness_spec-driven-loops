@@ -99,9 +99,11 @@
         "argument_hint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
-        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode autopilot; not aliased to :auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode confirm)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml", "commands": ["/speckit:resume"] },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
       "mode_matrix": {
         "default_policy": "ask",
@@ -112,8 +114,9 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/speckit-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml", "commands": ["/speckit:resume"] },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
