@@ -64,6 +64,8 @@ The gate reads `labels.jsonl` before any model call. Each natural section needs 
 
 `report.json` records the current run commit and the scored corpus commit with a SHA-256 snapshot digest. It also carries SHA-256 hashes of `labels.jsonl` and `planted.jsonl`, the primary, reworded and review question hashes, both comparator Brier scores and the selected comparator score. When `--reworded-arm` runs, the report adds a `jev-reworded` column beside the primary `jev` column. The Jev column reports natural and planted recall separately, close label calls and the hybrid floor that preserves lexical matches.
 
+`report.json` also carries `dataPin`, the scored rows with their labels and text hashes behind one SHA-256 digest. The `jev` column carries `analysis`: a probability-aware arm that flags a row when the mean of its probabilities reaches 0.6, its margin slack and a bootstrap interval over whole source groups. The run prints that arm's verdict, margin slack and bootstrap lines after the Jev column. A later run into the same `--out` keeps the earlier `calls.jsonl` and `report.json` as the next numbered pair before it writes its own.
+
 The lexical screen includes agent-directed phrases, reporting redirection and the existing instruction patterns. The hybrid floor combines those lexical matches with the primary Jev flag. The keep-rule calculation still compares the primary Jev result with the selected baseline.
 
 ---
@@ -79,8 +81,8 @@ node --test .skilled/skills/cli-classifier/benchmark/injection-screen/tests/scor
 The tests run against fixture repositories in the OS temp directory and a stub `jev` binary. No test reaches a real backend. A passing run reports:
 
 ```text
-ℹ tests 48
-ℹ pass 48
+ℹ tests 57
+ℹ pass 57
 ℹ fail 0
 ```
 
