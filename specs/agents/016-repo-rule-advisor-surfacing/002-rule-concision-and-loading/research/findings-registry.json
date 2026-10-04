@@ -1,0 +1,771 @@
+{
+  "mergedFrom": [
+    "deepseek-v4-1-flash-max",
+    "luna-advocate",
+    "luna-compliance",
+    "swe-2-max"
+  ],
+  "lineageExecutors": {
+    "deepseek-v4-1-flash-max": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "luna-advocate": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "luna-compliance": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "swe-2-max": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-1",
+      "text": "What does a full load of the repository rules cost per session and per compaction window?",
+      "status": "resolved",
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "q-2",
+      "text": "How does prompt caching affect input cost versus context occupancy?",
+      "status": "resolved",
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "q-3",
+      "text": "What compression range is plausible, and what behavior does compression risk losing?",
+      "status": "resolved",
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "q-4",
+      "text": "Which cross-lineage claims survive adversarial review?",
+      "status": "resolved",
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter002-n1-confound",
+      "iteration": 2,
+      "label": "The bare-imperative contrast rests on two prohibitions with confounds (detection ambiguity for legit tables, different base rates); directional evidence only",
+      "evidence": "prep/evidence-pack.md:45-51",
+      "confidence": "high (as a caveat)",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter002-patterns",
+      "iteration": 2,
+      "label": "10 compression patterns measured: P1 bare-vs-justified (n=2 labelled), P2 pointer dedup, P3 self-check fold (high risk), P4 boilerplate, P5 frontmatter relocation, P6 AGENTS.md restatement, P7 justification tails, P8 meta, P9 triplicate collapse, P10 enumeration punctuation",
+      "evidence": "iterations/iteration-002.md section 2",
+      "confidence": "high on bytes; low-medium on risk column",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter002-card-enforcement",
+      "iteration": 2,
+      "label": "Card drops every numbered-section norm: loses measured/operative enforcement in 6 enumerated files (comm-prose semicolon ban, comm table/filler bans, blast-radius tier table, uncertainty LOGIC-SYNC+never-invent, evidence receipt/command tests, root-cause loop); holds only for umbrella files (skill-hub, answer-the-actual-request); partial for 5",
+      "evidence": "communication-prose.md:109; blast-radius.md:59-63; uncertainty-and-honesty.md:66-68,100-102; evidence-and-proof.md:62-71; root-cause-and-debugging.md:51-60",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter003-floor",
+      "iteration": 3,
+      "label": "Compression floor tracks rule-statement share: e-and-p (64% normative) floors near -11%, communication (43%) reaches -28%; no uniform per-file rate",
+      "evidence": "draft ledgers vs iteration-002 model",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter003-comm-draft",
+      "iteration": 3,
+      "label": "communication.md draft: 11,458 -> 8,279 B (-27.8%); enforcement lost = three named edge clauses ~145 B (paragraph-step, count-line-is-not-an-item, reader-decides) + all failure-naming sentences",
+      "evidence": "drafts/communication.md; drafts/communication.ledger.md; wc -c",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter003-eap-draft",
+      "iteration": 3,
+      "label": "evidence-and-proof.md draft: 11,823 -> 10,465 B (-11.5%); enforcement loss ~zero - every tier, test, checklist and disclosure survives",
+      "evidence": "drafts/evidence-and-proof.md; drafts/evidence-and-proof.ledger.md; wc -c",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter002-card-measured",
+      "iteration": 2,
+      "label": "Card (frontmatter+fires-when+the-rule) = 960-1,809 B/file, 18,207 total, 17.0% of corpus; sibling claim confirmed within ~2%",
+      "evidence": "independent block-span measurement; steer.md:12",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter001-distribution",
+      "iteration": 1,
+      "label": "Rule-statement is 54.0% of corpus (57,847 B); self-check 10.2% (10,941); frontmatter 9.6% (10,246); failure-prevents 5.5% (5,909); fires-when 4.1% (4,414); examples only 1.2% (1,312)",
+      "evidence": "iterations/iteration-001.md totals row",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter001-parts",
+      "iteration": 1,
+      "label": "All 13 rules decomposed into the steer parts; every file reconciles to wc -c exactly, grand total 107,092 B = evidence-pack section 1",
+      "evidence": "iterations/iteration-001.md; scratch/classify-parts.py; scratch/parts-dump.txt",
+      "confidence": "high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter002-targets",
+      "iteration": 2,
+      "label": "Modelled per-rule targets total ~77,000 B (~19,250 tokens, -28%) - later falsified as uniform; see f-iter003-floor",
+      "evidence": "iterations/iteration-002.md section 3",
+      "confidence": "medium (superseded)",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter002-selfcheck-carrier",
+      "iteration": 2,
+      "label": "Self-check is the outside-card part carrying enforcement: already a compressed restatement of every norm (489-1,648 B); card+checklist is a ready-made slim load",
+      "evidence": "communication.md:239-250; scratch/parts-dump.txt",
+      "confidence": "medium-high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter003-slimcard-caveat",
+      "iteration": 3,
+      "label": "Card+checklist retains norm SHAPE not CONTENT: comm.md card+checklist ~3,030 B passes the audit items but drops the offender enumeration and re-render spec the checklist audits",
+      "evidence": "drafts/communication.ledger.md; iteration-002.md section 1",
+      "confidence": "medium-high",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "f-iter003-failurelines-unknown",
+      "iteration": 3,
+      "label": "Whether failure-naming sentences carry model-side motivation is UNKNOWN; both drafts drop them all and are the test artifacts for that question",
+      "evidence": "draft ledgers",
+      "confidence": "n/a (UNKNOWN flagged)",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "F26",
+      "statement": "Consistency: no reopening of the advisor-pointer or trigger-index refusals; measure-before-build applies to the hook only; concision playbook stays other lineages' scope.",
+      "evidence": [
+        "001 research.md §1,§7",
+        "steer.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F28",
+      "statement": "Must-carry set vs the smallest cap (16,384 B, ends mid-line 175): inside today - Four Laws 11-18, PLAN-WORKFLOW LOCK 20-30, Comment Hygiene 32-34, Halt Conditions 36-41, gates 49-61/70-77/79-86/93-101, Verification Standards 151-161, Final-State Verification 165-170; outside today - section 8 pointer line 261 and clauses 263, section 10 mandates 281, 285.",
+      "evidence": [
+        "AGENTS.md line numbers",
+        "byte-offset count",
+        "steer.md revised"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F4",
+      "statement": "Reply-time five: 42,811 B all five; 18,340 B mandatory two; 29,143 B with handoff at turn end.",
+      "evidence": [
+        "AGENTS.md:261",
+        "wc -c"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F23",
+      "statement": "Part 1: AGENTS.md carries binding clauses plus pointer lines (the §8 pattern), never full rule text; stay inside the 16,384-byte guaranteed delivery budget. Falsifier: a measured prohibition that moves only when its full text is resident.",
+      "evidence": [
+        "AGENTS.md:261,263,153",
+        "evidence-pack §3",
+        "F1,F15"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "REPO RULES.md is the Gate 5 router, loaded on the first write of a session; read-only turns never fire Gate 5.",
+      "evidence": [
+        "AGENTS.md:93-97",
+        "wc -c REPO RULES.md = 11853"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F15",
+      "statement": "The 16,384-byte delivery cap constrains resident-card options in at least this runtime.",
+      "evidence": [
+        "F1"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F9",
+      "statement": "Option 1 status quo: resident ~6.8k tok (4.1k as delivered); per-window fixed loads router ~3.0k + brief ~65 + notice ~138, variable rule loads 6.2-8.2k per fire; silence = nothing fires; model-side dedup only; six runtimes for the brief.",
+      "evidence": [
+        "F1-F7",
+        "REPO RULES.md:14,18",
+        "AGENTS.md:94",
+        "injection-contract.md:64,66"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F24",
+      "statement": "Part 2: Gate 5 loads router plus matched cards, full text on demand; ~70-80% load-event reduction at measured bounds; keeps the action key and silence; no new surface. Falsifier: compliance drop, frequent card-insufficient full opens, or cards unbuildable in bands.",
+      "evidence": [
+        "F11,F13,F16",
+        "REPO RULES.md:18,58-72",
+        "rule-anatomy.md §1"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F25",
+      "statement": "Part 3: no hook now; future role is action-boundary card delivery on the directive-lifecycle window model with delivered-set keying and boundary-epoch-only suppression; must not be an always-on constant. Falsifier: a measured Gate 5 miss rate with cost; or transcript evidence everywhere plus the extension built.",
+      "evidence": [
+        "F17-F22",
+        "injection-contract.md:52-54",
+        "001 research.md §1,§5",
+        "022 decisions.md:33-36"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F11",
+      "statement": "Option 3 Gate 5 cards: 0 resident; per-fire 0.7-1.8k tokens vs 6.2-8.2k today (~70-80% reduction); silence = no trigger match; reaches every runtime Gate 5 reaches.",
+      "evidence": [
+        "F3",
+        "REPO RULES.md:14,18",
+        "AGENTS.md:94,98"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F3",
+      "statement": "Trigger-table rule files load per matched action; 3-4 files firing at once is the normal case (~24.7-33.0 KB per load event).",
+      "evidence": [
+        "REPO RULES.md:12-17",
+        "wc -c corpus 107092"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F10",
+      "statement": "Option 2 resident cards: +2,509 B to +17,882 B; zero per-turn; full text on demand 1.4-3.0k per file; silence model-mediated; reset at compaction; verified delivery only Claude and Devin.",
+      "evidence": [
+        "card measurements",
+        "AGENTS.md:261",
+        "SYNC.md:84"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F27",
+      "statement": "Runtime caps sourced: Claude Code no hard cap on CLAUDE.md (200-line/25KB caps apply to auto-memory MEMORY.md only); Codex project_doc_max_bytes default 32 KiB cumulative across the AGENTS.md chain (local config has no override); Devin 16,384 B observed; Cursor no enforced cap sourced (advisory 500 lines; 1k-char prerelease warning reported as visual bug); OpenCode no byte guard (entire file injected every loop; effective cap = context window); Pi UNKNOWN (no byte cap documented).",
+      "evidence": [
+        "code.claude.com/docs/en/memory",
+        "developers.openai.com/codex/guides/agents-md",
+        "openai/codex code constant 32*1024",
+        "this session's rule block (Devin 16384)",
+        "cursor.com/docs/rules.md",
+        "opencode.ai/v2/docs/instructions",
+        "github.com/anomalyco/opencode/issues/18037",
+        "github.com/earendil-works/pi usage.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F18",
+      "statement": "Storage: durable tmpdir store (base dir env or tmpdir()/speckit-advisor), layout directive-lifecycle/<project-hash>/<session-hash>.json plus generation/epoch/poison files; Pi globalThis map; OpenCode epoch map; spec-gate alternative under .skilled/skills/.state/spec-gate/.",
+      "evidence": [
+        "directive-lifecycle-file-store.ts:45-52",
+        "directive-lifecycle-store.py:19-24,58-77,189-196",
+        "prompt-advisor.ts:114-129",
+        "system-skill-advisor.js:228-246,416-420",
+        "spec-gate-core.mjs:71,802-803"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F21",
+      "statement": "Design delta: whole-payload equality is the current dedup key; 'a given rule at most once' needs a delivered-card set - new work.",
+      "evidence": [
+        "directive-lifecycle-store.py:257-265",
+        "directive-lifecycle.ts:164-179"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F19",
+      "statement": "Reset: compaction via boundary events from registered owners (session-prime, post-compaction, cursor precompact, codex session-start), transcript shrink, and epoch advance (null session invalidates all).",
+      "evidence": [
+        "directive-lifecycle.ts:72-74,165,170,183-191",
+        "spec-kit boundary.ts:38-41,5-6",
+        "session-prime.ts:215,222-225",
+        "post-compaction.cjs:110-131",
+        "cursor precompact.js:44",
+        "codex session-start.js:26",
+        ".codex/hooks.json:3,151"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F14",
+      "statement": "Reset-semantics mismatch: only the directive lifecycle matches 'reset only on a compaction boundary'; the spec-gate marker is session-scoped with different reset events.",
+      "evidence": [
+        "directive-lifecycle.ts:72-74,165-179",
+        "spec-gate-core.mjs:340-346"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F17",
+      "statement": "Marker: directive-lifecycle receipt v2 (directives/transcriptPath/transcriptHighWaterBytes/storeGeneration/lifecycleEpoch) with proven-repeat suppression; spec-gate field naming is the naming precedent only.",
+      "evidence": [
+        "directive-lifecycle.ts:92-104,164-179",
+        "directive-lifecycle-store.py:166-186,246-273",
+        "spec-gate-core.mjs:352-354,364"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F12",
+      "statement": "Option 4 hook cards: 0 resident; measured fire count (orchestrator, 93 of 265 windows load any rule; 3.5 rules avg, median 3, p90 7) puts card delivery at ~820-1,560 tokens in loading windows, ~290-550 averaged across all windows; dedup machinery exists; transcript evidence for dedup proof UNKNOWN outside Claude.",
+      "evidence": [
+        "injection-contract.md:20,64,66,79,81,261",
+        "directive-lifecycle.ts:72-74,133-135,165-179",
+        "spec-gate-core.mjs:71,340-354,802-803",
+        "prompt-advisor.ts:114-129,222-227",
+        "steer.md revised (orchestrator fire count)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F6",
+      "statement": "Session-start/compaction recovery path exists; size UNKNOWN.",
+      "evidence": [
+        "injection-contract.md:209-215,229-235"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F5",
+      "statement": "Advisor brief ~261 B full / ~54 B deduped per prompt; spec-gate notice 551 B once per session.",
+      "evidence": [
+        "injection-contract.md:52-66,72-81",
+        "spec-gate-core.mjs:162-170 measured",
+        "001 lineage iteration 2"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F20",
+      "statement": "Coverage: Claude/Devin/Codex/OpenCode/Pi covered; Cursor reset covered but delivery contradicted within the contract; dedup proof needs transcript evidence or delivery stays full every turn (once-per-window not met on transcript-less runtimes).",
+      "evidence": [
+        "injection-contract.md:64,66,100,233,261",
+        "directive-lifecycle.ts:129-135"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F7",
+      "statement": "Compaction is the observed natural window boundary: 104 re-reads after a boundary vs 1 within a window.",
+      "evidence": [
+        "prep/evidence-pack.md §2"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F8",
+      "statement": "Gate 5 reach is partial: 14 of 44 sessions read any rule via Read (undercount).",
+      "evidence": [
+        "prep/evidence-pack.md §2"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F16",
+      "statement": "Card-size bounds measured: index form 2,509 B total; full card proxy 17,882 B total (935-1,784 B per rule); drafted size UNKNOWN.",
+      "evidence": [
+        "sed+wc -c REPO RULES.md:58-72",
+        "python parser .skilled/repo-rules/*.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F22",
+      "statement": "Inherited bounds: race can double-deliver (precedent accepts); kill switches restore full; all uncertainty fails open to full delivery.",
+      "evidence": [
+        "spec-gate-core.mjs:345-351",
+        "injection-contract.md:20",
+        "directive-lifecycle.ts:4-6,37-41"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F29",
+      "statement": "Orchestrator's measured fire count: 93 of 265 compaction windows load any rule (35%); 3.5 distinct rules average, median 3, p90 7; supersedes the option-4 per-window UNKNOWN.",
+      "evidence": [
+        "steer.md revised (orchestrator measurement)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F1",
+      "statement": "AGENTS.md reaches the model as the session rules block; in this Devin session it was delivered truncated at 16,384 bytes (about 10.6 KB not resident).",
+      "evidence": [
+        "this session's injected rule block",
+        "AGENTS.md:1-3",
+        "wc -c AGENTS.md = 27012"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F13",
+      "statement": "Option 5 load everything: 145,957 B / ~36.5k tokens per load; no silence; no mechanical dedup.",
+      "evidence": [
+        "wc -c",
+        "evidence-pack.md §1"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-001",
+      "label": "A full-load scenario is about 37k estimated input tokens per context window: AGENTS.md 6.8k + REPO RULES.md 3.0k + all 13 rule files 26.8k. For a session that hits Gate 5 and then a substantive reply loading the five reply rules, the measured components total about 20.5k before any other action-triggered rules. The estimate is 4 bytes per token, not tokenizer output.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:19-26",
+        "AGENTS.md:93-101",
+        "AGENTS.md:259-261"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "If a full rule bundle is reloaded after every compaction, each later window adds about 37k tokens; if only the 13 rule bodies are re-read, it adds about 26.8k. The evidence pack counts 104 post-compaction rule re-reads after compaction boundaries, but does not provide each window's file mix or size, so actual cumulative per-session reload cost is UNKNOWN.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23,26,35-37"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "label": "API prompt caching can discount repeated input and reuse cached KV state for an unchanged prefix; it does not itself shorten the prompt. Inference: cached input cost and context occupancy are separate. This Codex invocation's actual cache-hit rate, context limit, and price for gpt-6-luna are UNKNOWN.",
+      "sources": [
+        "https://developers.openai.com/api/docs/guides/prompt-caching (lines 947, 952-954, 1045-1047, 1533-1535, 1897-1899)",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter001-004",
+      "label": "A measured 4,984-byte slice of the existing router trigger table is 95.3% smaller by bytes than the 107,092-byte rule corpus, but it is only a route-and-summary proxy. ASSUMPTION: applying the 935-1,784-byte card-size bounds named in steer.md to each of 13 files implies 78.4-88.6% fewer corpus bytes; no rendered-token or behavior-preservation test supports that range.",
+      "sources": [
+        "REPO RULES.md:38-52 (4,984 bytes measured 2026-10-04)",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/steer.md:11"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter001-005",
+      "label": "The current evidence does not establish that full loading improves compliance broadly: table use is 20.3% after reading communication.md versus 11.6% in never-read sessions, while semicolon use is 17.0% after reading communication-prose.md versus 43.7% in never-read sessions. Pattern-based detection and non-randomized sessions limit causal interpretation.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:41-51"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter001-006",
+      "label": "Whether a blanket 37k-token load is affordable for this model/runtime is UNKNOWN: the evidence pack estimates text size but supplies neither gpt-6-luna's usable context window nor Codex billing/cache telemetry.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:19-26",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "label": "F24's measured card-size savings may be real, but card-only content drops numbered-body norms in 6 of 13 rules and is partial in 5; the missing semicolon ban is the only observed rule with a read-associated reduction. The 'no measurement needed to start' conclusion is unsafe for a default rollout. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:49-55",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-002.md:15-25",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md:61-65,81-85",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:46"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "label": "F23's pointer pattern is a sound routing shape, but 'already working' is not established: answer-the-actual-request.md appears in 4 of 82 shell-inclusive session reads, without an opportunity denominator, and another lineage reports an observed 16,384-byte delivery cut before AGENTS.md:261. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:26-47",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:34-37",
+        "AGENTS.md:259-261"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "label": "F25's wait-for-a-measured-Gate-5-miss rule stands. The 104 post-compaction re-reads and four answer-rule reads are counts, not opportunity-adjusted proof that a needed rule was missed; prior research recommends a logging-only observer first. Verdict: stands.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:57-65",
+        "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/research.md:21-25,50-54,72-77",
+        "specs/hooks/022-smart-rule-injection/decisions.md:33-36",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:35-37"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "label": "The table claim is descriptive for long, no-tool replies in this sample, not a causal estimate: the after rate is 20.3% of 1,063 replies and never is 11.6% of 86, but the cohorts are not randomized and the table regex flags requested document tables. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:43-51",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/measure-rule-compliance.py:19-39,52-54,82-106"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "label": "The two observations do not support a causal rule that shorter literal prohibitions bind better: a punctuation ban and a table ban differ in rule, task exposure, baseline rate, exception structure, and sample sizes, and neither was randomized. Verdict: refuted as a causal inference; retained only as a hypothesis.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-001.md:65-67",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:43-51",
+        ".skilled/repo-rules/communication.md:91-99",
+        ".skilled/repo-rules/communication-prose.md:101-110"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "label": "On the card conflict, the evidence supports the loss warning over wholesale card-only rollout: the proposed card omits numbered body rules in 6 files, including No semicolon, and is partial in 5. A card plus all self-checks would still be about 72.8% fewer bytes by calculation, but its behavior effect remains unmeasured. Verdict: weakened for F24's cost claim; the card-only safety claim is refuted.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-002.md:15-25",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:51-55",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md:61-65,81-85"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    },
+    {
+      "id": "f-iter002-007",
+      "label": "A response linter could be cause-independent only if it can prevent or repair the delivered reply with a low-false-positive predicate. The current Claude Stop completion hook is async, completion-claim-specific, advisory-only, and returns approve; a pipe-table check also flags requested tables unless it reads the request and exceptions. We and luna-compliance used the same gpt-6-luna model ID, so my agreement on the false-positive and enforcement caveats is not independent-model corroboration. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/iterations/iteration-002.md:31-39",
+        ".claude/settings.json:167-181",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs:5-21,110-139",
+        ".skilled/hooks/completion/README.md:18-20,58-69,128-137",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/measure-rule-compliance.py:19-39",
+        "AGENTS.md:24-29",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/invocation-metadata.json:1",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 2,
+      "_lineages": [
+        "luna-advocate"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "An always-on rule directive in any prompt-time hook",
+      "reason": "022 bar; retired directives restating resident content",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Spec-gate marker as drop-in for the steer's reset constraint",
+      "reason": "Session-scoped resets, not compaction-boundary resets",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Treating the full 27,012 B AGENTS.md as unconditionally resident",
+      "reason": "This session shows a 16,384-byte delivery cap in at least one runtime",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Whole-payload equality as sufficient for per-rule once-per-window",
+      "reason": "Changing card subsets produce different payloads; needs a delivered-set extension",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 9,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 55,
+    "sourceFindings": 72,
+    "reconstructionGaps": 12,
+    "convergenceScore": 0.36,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "swe-2-max",
+      "message": "Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 13 entries.",
+      "aliasKey": "findings",
+      "canonicalKey": "keyFindings",
+      "coercedCount": 13
+    }
+  ]
+}

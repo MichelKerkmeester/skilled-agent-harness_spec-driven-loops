@@ -1,0 +1,30 @@
+{
+  "specFolder": "agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
+  "description": "The evidence pack counts a rule as read only when the `Read` tool named its path, so shell reads and hook injections are missed and the counts",
+  "keywords": [
+    "evidence",
+    "pack",
+    "counts",
+    "rule",
+    "read",
+    "only",
+    "tool",
+    "named",
+    "path",
+    "shell",
+    "reads",
+    "hook",
+    "injections",
+    "missed"
+  ],
+  "lastUpdated": "2026-10-04T14:49:19.508Z",
+  "specId": "004",
+  "folderSlug": "rule-delivery-instrumentation",
+  "parentChain": [
+    "agents",
+    "016-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

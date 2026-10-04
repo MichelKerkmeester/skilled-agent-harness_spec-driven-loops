@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "description": "The 13 repo rules total about 27k tokens and sessions read only a few of them",
+  "keywords": [
+    "repo",
+    "rules",
+    "total",
+    "about",
+    "27k",
+    "tokens",
+    "sessions",
+    "read",
+    "only",
+    "them"
+  ],
+  "lastUpdated": "2026-10-04T14:23:05.407Z",
+  "specId": "002",
+  "folderSlug": "rule-concision-and-loading",
+  "parentChain": [
+    "agents",
+    "016-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-10-26_15-23__four-lineage-steered-deep-research-deepseek-4-and.md"
+  ]
+}

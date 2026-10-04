@@ -1,0 +1,47 @@
+{
+  "openQuestions": [
+    "Causal effect and mechanism for the observed rule-read compliance patterns remain unknown.",
+    "Actual tokenizer and per-session billed savings from same-path wording or slim cards remain unknown.",
+    "Two-week sample adequacy and effect size for randomized rule tests remain unknown.",
+    "Engineering, latency, false-positive, and cross-runtime transcript-adapter costs remain unknown."
+  ],
+  "resolvedQuestions": [
+    "The supplied aggregates identify the semicolon check as read-associated with a lower rate and the table check as not lower after reading, while leaving causation unresolved.",
+    "A card must retain the self-check for an enforcement-preserving compression hypothesis; the paired byte savings for two rules are measurable."
+  ],
+  "keyFindings": [
+    "The semicolon rate is 37.0% before, 17.0% after, and 43.7% never; association is not causal.",
+    "The table rate is 17.4% before and 20.3% after; the detector also counts legitimate requested-document tables.",
+    "The five reply-time rules total 42,811 bytes, about 10.7k four-byte token-equivalents; actual per-response load and billing are unknown.",
+    "A two-rule card plus self-check pilot measures 4,757 bytes against 18,340 full bytes, a conditional 13,583-byte reduction.",
+    "Bare rule cards omit operative norms in six of thirteen files; retain self-checks in compression experiments.",
+    "The current completion Stop sentinel is asynchronous and advisory-only; it does not block or rewrite replies.",
+    "Devin AGENTS.md truncation removes the §8 pointer and is a separate runtime issue from Claude Code measurements."
+  ],
+  "ruledOutDirections": [
+    "Treat observational before/after/never groups as causal estimates.",
+    "Use plain Fires when and The rule cards without self-checks as safe compression.",
+    "Treat the current completion-evidence Stop sentinel as a reply linter or rewrite hook.",
+    "Attribute the Claude Code compliance pattern to Devin AGENTS.md truncation.",
+    "Load all thirteen rule files on every response as the default cost strategy."
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 4,
+    "resolvedQuestions": 2,
+    "keyFindings": 7,
+    "sourceFindings": 17,
+    "reconstructionGaps": 0,
+    "convergenceScore": null,
+    "convergenceThreshold": 0.05,
+    "stopReason": "maxIterationsReached",
+    "coverageBySources": {
+      "prepMeasurements": "used",
+      "repoRulesAndRouting": "used",
+      "runtimeHooks": "used",
+      "steering": "used",
+      "crossLineageByteAnalysis": "used",
+      "officialHookDocumentation": "used"
+    }
+  }
+}

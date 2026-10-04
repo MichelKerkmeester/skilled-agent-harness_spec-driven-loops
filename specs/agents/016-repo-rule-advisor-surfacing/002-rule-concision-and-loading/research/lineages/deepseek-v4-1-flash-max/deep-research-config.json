@@ -1,0 +1,89 @@
+{
+  "topic": "Question: how should this repository's repo rules (.skilled/repo-rules/, 13 files, about 27k tokens) be written and loaded to change model behaviour, and at what context cost? First read prep/evidence-pack.md in the spec folder named below: measured token load and compliance baseline. Before every iteration read steer.md in your lineage directory and answer only its question. Cite file:line or a prep/ measurement for every claim. Mark unmeasured figures UNKNOWN. Read-only on the repository. Spec folder: specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading (pre-approved, Gate 3 answered).",
+  "steer": {
+    "present": true,
+    "path": "steer.md",
+    "question": "what should AGENTS.md always carry, what should Gate 5 load, and what role, if any, should a hook have?",
+    "hookConstraint": "deliver a given rule at most once per compaction window, reset only on a compaction boundary"
+  },
+  "maxIterations": 4,
+  "minIterations": 4,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 4,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "createdAt": "2026-10-04T13:22:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-1-flash-max-1791120151016-ksetij",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "resource_map_present": false,
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}
