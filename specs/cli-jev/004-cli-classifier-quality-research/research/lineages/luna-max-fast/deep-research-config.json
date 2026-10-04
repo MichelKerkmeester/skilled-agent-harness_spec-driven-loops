@@ -1,0 +1,60 @@
+{
+  "topic": "Audit the shipped cli-classifier work (the .skilled/skills/cli-classifier hub, its cli-jev packet, shared/ transport and scorer-report scripts, benchmark/, feature catalog, manual testing playbook, changelogs and READMEs, plus every live caller of shared/scripts/jev-transport.mjs and scorer-report.mjs in sk-doc, system-deep-loop and system-spec-kit) on seven axes: (1) sk-doc compliance of every doc; (2) sk-code-opencode compliance of every script and test; (3) system-skill-advisor integration: routing vocabulary, leaf manifests, graph metadata and how a prompt reaches the hub; (4) UX for an external repository user who installs the skill without Jev, and for the operator who runs the benchmarks; (5) documentation accuracy against the code; (6) bugs in the scripts and tests; (7) drift between docs, metadata, mirrors and code, and whether the measured with-and-without results are visible to a reader. Read only. Cite file:line for every finding, give it a severity (P0 to P2) and an axis, and say how you confirmed it.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/cli-jev/004-cli-classifier-quality-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-10-04T13:03:20Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-codex",
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1440
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-max-fast-1791118713156-9uew1r",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  }
+}

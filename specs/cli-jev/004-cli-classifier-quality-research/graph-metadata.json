@@ -20,9 +20,8 @@
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "implementation summary",
-      "what shipped",
-      "validation evidence"
+      "cli-classifier research summary",
+      "cli-classifier audit findings"
     ],
     "key_topics": [
       "cli-classifier",
@@ -39,12 +38,17 @@
       "task"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/deep-research-config.json",
+      "shared/scripts/README.md",
+      "shared/README.md"
     ],
     "entities": [
       {
@@ -72,6 +76,30 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -90,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -97,12 +131,6 @@
       },
       {
         "name": "Live Jev",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -166,50 +194,28 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place",
     "created_at": "2026-10-04T12:56:31Z",
-    "last_save_at": "2026-10-04T12:57:45.730Z",
+    "last_save_at": "2026-10-04T13:52:05.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:94a2bc15cdac9220e8f9368fc596aa4c09eb53504418986c65c92c81f3fda40c",
+    "source_fingerprint": "sha256:705a96bf8d71ac7aa2f4e6b714d377909fa50ed326a9a7dbf9a620a74b01b578",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "215d59cee4503b552ae1ede4b7d2949a3ba564eb0db35876597a97c67a9138d8",
+      "spec.md": "0cec572022cfe7b37ebf86544f8ade59c499495c1f97109cdbc0374bdc0f828e",
       "plan.md": "cef8f311b185b1aae62f96957a484e4e8ae9ff5c31384dcc4691161697411259",
-      "tasks.md": "adb8abb5a84a7d394f72b6d61f79102e37f70b8d9169e673c702bd4d43c4c270",
-      "implementation-summary.md": "f71b0aff600dfa74b473de93562dd4aaf28876a5eb7ff4d3c9958142b8613ef9"
+      "tasks.md": "69888bf507de8fcc0496f4cc6f140d697bf28cd05d8134bdcb0c1b1921da2ab9",
+      "implementation-summary.md": "617248413a03a7ec86f7bd0c53e62d48d03954b5862bc9085b49f007cbedac4e",
+      "research/research.md": "dfaec81c0087f88c722954fdfc82146cccedd63d7a9d29b5aa94907c5c1be39c"
     },
     "last_active_at": null
   }
