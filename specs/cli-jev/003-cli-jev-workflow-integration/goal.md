@@ -46,9 +46,9 @@ _memory:
 |----|---|
 | D1 | Jev only, dormant unless `jev auth status` passes. Jev gets no secret |
 | D2 | `cli-classifier` stays a parent hub |
-| D3 | Run 019 to 049 in parallel when disjoint |
+| D3 | Run 019 to 050 in parallel when disjoint |
 | D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo. Claude only as arbiter or 050 reviewer. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
 | D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -111,6 +111,7 @@ Decisions outrank child goals.
 | 47 | 047-measure-every-jev-feature/goal.md |
 | 48 | 048-jev-feature-improvement-research/goal.md |
 | 49 | 049-jev-feature-improvement-build/goal.md |
+| 50 | 050-pi-default-review/goal.md |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -118,7 +119,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 049 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 050 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -188,6 +189,7 @@ and findings belong here.
 | 038 pi classifier transport integration | Done | The working tree at HEAD `c5c72d31ec` on worktree 071: one opt-in Pi transport module for Jev `choice` questions beside the jev CLI, two approved callers wired with one call site each behind byte-identical switch-off recordings (59 and 202 lines), a module suite at 22 of 22 with 0 failed and one row per gate, and 9 changed docs VALID. SWE 2 max review PASS with no open P0 or P1 and four P2s recorded; the orchestrator commits the build path-scoped |
 | 041 code READMEs and routing alignment | Done | Build `2116de635c` on worktree 071, 32 files, all written by DeepSeek V4.1 Flash on cli-pi. Eleven code-folder READMEs, each VALID with its documented test command passing. Hub `ROUTER.md` promoted to `router_state: active` with seven intents, both mode section 2s on the sk-create-skill template, one keyword list across all three routers. The ten-prompt compiled-route probe keeps its eight correct rows and now routes the two former misses; the fleet vocabulary-reach check passes with cli-classifier at 49 phrases; the leaf-route replay scores the hub's four new gold rows at F1 1.000. SWE 2 max review round 1 FAIL (five P1 stale-wording and evidence items, all fixed), round 2 PASS with one P2, fixed. Phase docs: strict PASSED, check-goal 5/5, 26 of 26 checklist rows. Evidence: `041-code-readmes-and-routing-alignment/scratch/evidence/build-evidence.md` |
 | 049 jev feature improvement build | Done | All 12 children Complete. Since the first push: 009 `87cd7c8dc4` maps each jev provider to the Pi classifier on its own host, and its paired run on the official host adopts (agreement 95.1, p95 299/575 ms) with `TYPESAFE_API_KEY` read per process from the operator's Keychain; 012 `eb3580b152` and `004aa45d69` stop retrying lineages the projection gateway refused. Final tree: deep-loop runtime 161 of 161 files (2,901 passed), cli-classifier 128 of 128; 049 strict recursive 13 of 13 |
+| 050 Pi default and feature review | Done | Pi answers Jev choice and noul calls by default when it can (`67fd8577ef`), and a fresh Opus 5.5 reviewer re-measured nine features over it (`9399d3b40a`). 037 read keep-cli on the repeat, and the operator kept Pi as the default |
 | Criterion 1 (2026-10-03) | Done | All 22 listed phases read Complete with 0 open goal criteria, except 045, whose criteria 1, 2 and 4 are superseded by its ADR-001 after the operator's Deem deprecation, as its log records |
 
 ### Deviations and findings
@@ -279,4 +281,5 @@ and findings belong here.
 | 048 Complete, all criteria met again (2026-10-03) | All ten children hold a merged `research.md` from DeepSeek (5 iterations) and Luna (3), each with one `synthesis_complete`. Three deep-loop runtime faults are recorded as P2 in 048's log: no producer for `run_initialized` (a config row blocks the first projection), the 15-key init row, and delta field drift in the merge. `validate.sh --strict --recursive` passes on 048 and its 10 children, `check-goal.cjs` passes on all 11 goals. Committed on `worktrees/085-jev-feature-improvement-research`, not merged |
 | 049 opened (2026-10-03) | The operator asked for a phase per researched feature to build its recommendations, and for the workflow faults. 049 bound as row 49 with twelve children, Planned and not released: D3 still ends at 048. To fit the budget, the binding rows dropped their backticks, which `check-goal.cjs` accepts, with no wording changed |
 | Directive amendment: release 049 (2026-10-03) | Source: the operator's "Yes both" to two asks: release 049 for build by extending D3, and merge the worktree branch into main and push it. D3 now runs 019 to 049. Criterion 1 names 036 to 049 and is open until 049 is Complete. Same length, so the slice stays under budget. Rollback: restore sections 1 and 3 from `git show 300058eaaa:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Directive amendment: bind 050 (2026-10-03) | Source: the operator, 2026-10-03: "Make cli pi default transport if available", then "ask fresh opus 5.5 xhigh to review and test / measure and possibly redune and fix" the features worth wiring in and those stopped on margin, with DeepSeek V4.1 Flash max on cli-pi (OpenCode Go or Cline) and Luna 6 max fast on cli-codex. D3 now runs 019 to 050, the binding gains 050 and criteria 1 and 5 are open until 050 closes. D5 lets a Claude leaf act as 050's reviewer, because the operator named it. Rollback: restore sections 1 to 3 from `git show HEAD:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` at this commit's parent |
 <!-- /ANCHOR:log -->

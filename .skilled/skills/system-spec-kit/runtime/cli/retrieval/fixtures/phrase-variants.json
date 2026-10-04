@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0f7839a293bce80f94241e658ff2deec9c6c1347120f63a06b39d1636b4e0cba",
+  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49594,6 +49594,12 @@
     "jev feature refinement": [
       "jev feature refinement"
     ],
+    "jev feature remeasure": [
+      "jev feature remeasure"
+    ],
+    "jev feature review": [
+      "jev feature review"
+    ],
     "jev final synthesis summary": [
       "jev final synthesis summary"
     ],
@@ -49866,6 +49872,9 @@
     ],
     "jev transport": [
       "jev transport"
+    ],
+    "jev transport auto": [
+      "jev transport auto"
     ],
     "jev transport classification": [
       "jev transport classification"
@@ -66878,6 +66887,9 @@
     ],
     "pi default assertion roster": [
       "pi default assertion roster"
+    ],
+    "pi default transport": [
+      "pi default transport"
     ],
     "pi delegation boundary": [
       "pi delegation boundary"

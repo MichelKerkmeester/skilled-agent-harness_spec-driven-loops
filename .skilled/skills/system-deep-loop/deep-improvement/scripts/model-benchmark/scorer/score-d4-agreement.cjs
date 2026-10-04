@@ -22,6 +22,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { spawn, spawnSync } = require('node:child_process');
 const { parseArgs } = require('node:util');
+const { spawnClassifierCall } = require('../../../../../cli-classifier/shared/scripts/jev-transport.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -880,6 +881,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
       attempt,
       wallMs: r.wallMs,
       exitCode: r.code,
+      transport: r.transport,
       noul,
       status,
       jevVersion,
@@ -894,7 +896,14 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
       const callArgs = ['noul', '--provider', gate.provider, '-q', QUESTION];
       let attempt = 1;
       modelCalls += 1;
-      let r = await spawnCall(gate.path, callArgs, row.state, ctx.env, ctx.timeoutMs);
+      let r = await spawnClassifierCall({
+        file: gate.path,
+        args: callArgs,
+        stdin: row.state,
+        env: ctx.env,
+        timeoutMs: ctx.timeoutMs,
+        report: ctx.out,
+      });
       wallTimes.push(r.wallMs);
 
       if (!r.timedOut && r.code === 4) {
@@ -902,7 +911,14 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
         attempt = 2;
         modelCalls += 1;
-        r = await spawnCall(gate.path, callArgs, row.state, ctx.env, ctx.timeoutMs);
+        r = await spawnClassifierCall({
+          file: gate.path,
+          args: callArgs,
+          stdin: row.state,
+          env: ctx.env,
+          timeoutMs: ctx.timeoutMs,
+          report: ctx.out,
+        });
         wallTimes.push(r.wallMs);
       }
 

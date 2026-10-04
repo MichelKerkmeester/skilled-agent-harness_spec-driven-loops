@@ -408,6 +408,7 @@ describe('score-severity-replay jev gate and arm', () => {
   function armEnv(stubs: string): NodeJS.ProcessEnv {
     const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
     delete env.JEV_PROVIDER;
+    env.JEV_TRANSPORT = 'jev';
     return env;
   }
 
@@ -588,6 +589,31 @@ describe('score-severity-replay jev gate and arm', () => {
     expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')).not.toContain('P2-001');
   });
 
+  it('records the selected transport on judgment calls', async () => {
+    const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
+    const env = armEnv(stubs);
+    const lines: string[] = [];
+    const out = tempDir('severity-replay-transport-');
+    const plan = planOf([{ findingId: 'transport-row', label: 'P1' }]);
+    const fake = fakeGit('');
+    const gate = replay.jevGate({ out: (line: string) => lines.push(line), env, timeoutMs: 5000 });
+
+    await replay.runJevArm(plan, gate, {
+      out: (line: string) => lines.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+      callLog: replay.createCallLog(out),
+      stored: null,
+      git: fake.git,
+      root: '/repo',
+    });
+
+    const judgmentCalls = readCalls(out).filter((call: any) => call.call !== 'auth_test');
+    expect(judgmentCalls).toHaveLength(4);
+    expect(judgmentCalls.every((call: any) => call.transport === 'jev')).toBe(true);
+  });
+
   it('an unpublished row is withheld from Jev', async () => {
     const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
     const env = armEnv(stubs);
@@ -709,7 +735,7 @@ describe('score-severity-replay main', () => {
   }
 
   function stubEnv(stubs: string): NodeJS.ProcessEnv {
-    return { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    return { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}`, JEV_TRANSPORT: 'jev' };
   }
 
   function labelSheet(rows: Array<{ findingId: string; label: string }>): string {
@@ -736,7 +762,7 @@ describe('score-severity-replay main', () => {
     const code = await replay.main(argv, {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
-      env,
+      env: { ...env, JEV_TRANSPORT: 'jev' },
       timeoutMs: 5000,
       backoffMs: 1,
       git,

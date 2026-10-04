@@ -184,7 +184,7 @@ function makeStubs(opts = {}) {
 
 function runWithStubs(stubs, args, extraEnv = {}) {
   return runScript(args, {
-    env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, ...extraEnv }
+    env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, ...extraEnv }
   });
 }
 

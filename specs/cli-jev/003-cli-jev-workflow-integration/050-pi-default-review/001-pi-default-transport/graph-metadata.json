@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi default transport",
+      "jev transport auto",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "default",
+      "transport",
+      "jev",
+      "auto",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+      ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+      ".skilled/skills/cli-classifier/shared/scripts/README.md",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verdict-fallback.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-d4-agreement.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-completion-claims.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-severity-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-debug-next-check.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi transport answered with 95.1% agreement with the jev CLI in about half the p95 time, yet it runs only when a caller sets `JEVTRANSPORT=pi`",
+    "created_at": "2026-10-03T17:39:27Z",
+    "last_save_at": "2026-10-03T19:32:34.014Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:100fae07c69cc31eec0b0e370a153fc6bf5aae357384ad4d7c9643aa6939bd43",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9fbf54cecb2670e75128098fd66e800600b8087f9cdf544f053fada4977a442b",
+      "plan.md": "ee89f54cde937c09279f3a2fbe11545e4fe5d052d3f98fe2b4a079e8321ea6ee",
+      "tasks.md": "e68ed6750971bf9aa2600e279aa45e04d3cf98f2d2ea121200b36470d5dab34e",
+      "implementation-summary.md": "8a945682a05a25afff38bae1758fab001d4c32d7c9e9b263745ea7d48733de9d"
+    },
+    "last_active_at": null
+  }
+}

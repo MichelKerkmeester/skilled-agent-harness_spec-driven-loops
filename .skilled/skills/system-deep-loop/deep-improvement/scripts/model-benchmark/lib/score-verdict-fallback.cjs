@@ -25,6 +25,7 @@ const { parseArgs } = require('node:util');
 
 const { extractVerdict } = require('./reviewer-scorer.cjs');
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../../lib/profile-resolve.cjs');
+const { spawnClassifierCall } = require('../../../../../cli-classifier/shared/scripts/jev-transport.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -833,6 +834,7 @@ async function runJevArm(plan, gate, ctx) {
       attempt,
       wallMs: r.wallMs,
       exitCode: r.code,
+      transport: r.transport,
       pick,
       pickProb,
       status,
@@ -853,7 +855,14 @@ async function runJevArm(plan, gate, ctx) {
       }
       const callArgs = ['choice', '--provider', gate.provider, '-q', QUESTION, ...optionArgs];
       const attempt = 1;
-      const r = await spawnCall(gate.path, callArgs, row.output, ctx.env, ctx.timeoutMs);
+      const r = await spawnClassifierCall({
+        file: gate.path,
+        args: callArgs,
+        stdin: row.output,
+        env: ctx.env,
+        timeoutMs: ctx.timeoutMs,
+        report: ctx.out,
+      });
       wallTimes.push(r.wallMs);
 
       let pick = null;

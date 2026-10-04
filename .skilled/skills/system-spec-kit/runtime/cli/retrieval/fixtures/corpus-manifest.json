@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ace2332970e3725d0f4b7346c09c4505ced59d658134b0008d36cb810b619c93",
+  "corpusHash": "8bd7ff0c84d507e44a90543ef666a2cf76c91cf850f88fe324e620816ca86d8d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23324,
+  "includedPathCount": 23336,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9050,6 +9050,18 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
@@ -23354,7 +23366,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f7839a293bce80f94241e658ff2deec9c6c1347120f63a06b39d1636b4e0cba",
+  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24614,6 +24626,14 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/scratch",
       "reason": "excluded directory"
     },
     {

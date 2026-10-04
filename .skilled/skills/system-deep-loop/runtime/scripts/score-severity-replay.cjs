@@ -20,6 +20,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 const { spawn, spawnSync } = require('node:child_process');
 const { parseArgs } = require('node:util');
+const { spawnClassifierCall } = require('../../../cli-classifier/shared/scripts/jev-transport.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1006,6 +1007,7 @@ async function runJevArm(plan, gate, ctx) {
       p0Probability: outcome.p0Probability ?? null,
       noul: outcome.noul ?? null,
       status,
+      transport: r.transport,
       jevVersion,
       provider: gate.provider,
       model,
@@ -1070,14 +1072,28 @@ async function runJevArm(plan, gate, ctx) {
       const args = ['choice', '--provider', gate.provider, '-q', QUESTION_SEVERITY];
       for (const option of rotateOptions(OPTIONS, order)) args.push('-o', `${option.key}=${option.description}`);
       let attempt = 1;
-      let r = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
+      let r = await spawnClassifierCall({
+        file: gate.path,
+        args,
+        stdin: state,
+        env: ctx.env,
+        timeoutMs,
+        report: ctx.out,
+      });
       wallTimes.push(r.wallMs);
 
       if (!r.timedOut && r.code === 4) {
         ctx.callLog.append(record(row, 'severity', order, attempt, r, {}, 'unmeasured'));
         await new Promise((resolve) => setTimeout(resolve, backoffMs));
         attempt = 2;
-        r = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
+        r = await spawnClassifierCall({
+          file: gate.path,
+          args,
+          stdin: state,
+          env: ctx.env,
+          timeoutMs,
+          report: ctx.out,
+        });
         wallTimes.push(r.wallMs);
       }
 
@@ -1117,7 +1133,14 @@ async function runJevArm(plan, gate, ctx) {
     const state = buildRowState(row);
     const callArgs = ['noul', '--provider', gate.provider, '-q', QUESTION_FUNNEL];
     const attempt = 1;
-    const r = await spawnCall(gate.path, callArgs, state, ctx.env, timeoutMs);
+    const r = await spawnClassifierCall({
+      file: gate.path,
+      args: callArgs,
+      stdin: state,
+      env: ctx.env,
+      timeoutMs,
+      report: ctx.out,
+    });
     wallTimes.push(r.wallMs);
 
     let noul = null;

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6675,
-    "ok": 13077,
+    "ok": 13089,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23324,
+  "documentsScanned": 23336,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0f7839a293bce80f94241e658ff2deec9c6c1347120f63a06b39d1636b4e0cba",
+  "manifestHash": "609dcb80c683bdc6edca46ef96c4dc575730b62d1616f521dfdff3aa4d4aa4c7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33404,
+      "ok": 33408,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -66357,6 +66357,14 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/scratch",
       "reason": "excluded directory"
     },
     {

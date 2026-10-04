@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review",
+  "description": "Make Pi the default Jev transport when available, then have a fresh Opus reviewer test, re-measure and fix nine features",
+  "keywords": [
+    "default",
+    "jev",
+    "transport",
+    "available",
+    "fresh",
+    "opus",
+    "reviewer",
+    "test",
+    "re-measure",
+    "nine",
+    "features"
+  ],
+  "lastUpdated": "2026-10-03T17:39:26.931Z",
+  "specId": "050",
+  "folderSlug": "pi-default-review",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
