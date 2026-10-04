@@ -374,8 +374,10 @@ model: opus
 | `title` | Plain string | Non-empty, and usually mirrors the H1 |
 | `description` | Single line | Non-empty, with no folded (`>`) or multiline scalars |
 | `trigger_phrases` | YAML block list | 3-8 distinctive lowercase multi-word phrases drawn from the doc's content |
-| `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated`. Default `normal`, with `important` only for formal contract/invariant docs |
-| `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general` |
+| `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated`. Default `normal`, with `important` only for formal contract/invariant docs. Listed aliases such as `high` are legal |
+| `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general`. Listed aliases such as `review` or `reference` are legal |
+
+Both lists, with their aliases, live in this mode's `assets/frontmatter-values.json`, which spec docs and skill docs share. Write a canonical value in new docs. A value outside the file fails the skill-advisor checker and warns in `validate_document.py` and spec-kit's `validate.sh`.
 | `version` | `X.Y.Z.W` | Required, 4-part, inserted as the last key in the block, derived per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 
 **Trigger phrase quality**:
@@ -788,8 +790,10 @@ validation_rules:
         max_items: 8
       importance_tier:
         enum: [constitutional, critical, important, normal, temporary, deprecated]
+        aliases_from: ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json"
       contextType:
         enum: [planning, research, implementation, general]
+        aliases_from: ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json"
 
   Knowledge:
     # knowledge files OUTSIDE skill folders only

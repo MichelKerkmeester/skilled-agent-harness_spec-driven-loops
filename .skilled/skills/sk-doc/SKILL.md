@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.2.6.0
+version: 2.3.0.0
 metadata:
   author: OpenCode
   family: sk-util
