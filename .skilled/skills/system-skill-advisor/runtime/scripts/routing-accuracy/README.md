@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 | Metric | Value |
 |---|---:|
-| Code files | 4 |
+| Code files | 7 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -67,8 +67,6 @@ Run individual scripts from the repository root with the documented arguments.
 | Path | Purpose |
 |---|---|
 | `gate3-corpus-runner.mjs` | MJS source file in this folder. |
-| `score-jev-tiebreak.mjs` | Offline Jev tie-break eval of the advisor's near-tie cluster. The default run is a zero-call census, and `--jev` adds a model column only when its own check passes. |
-| `score-suggested-order.mjs` | Offline Jev order of the advisor's whole near-tie cluster, timed inside a child like the prompt hook's. The default run makes no model call, and `--jev` adds a column only when there is headroom and its own check passes. |
 | `score-routing-corpus.py` | PY source file in this folder. |
 
 ---

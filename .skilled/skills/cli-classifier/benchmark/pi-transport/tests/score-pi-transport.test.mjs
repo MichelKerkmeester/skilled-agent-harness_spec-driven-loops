@@ -16,7 +16,7 @@ import * as S from '../score-pi-transport.mjs';
 
 // The cases build their option text and rotations with the CLI's own builders,
 // so the shapes under test are the ones the CLI actually passes.
-import { optionArgs, rotations } from '../../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs';
+import { optionArgs, rotations } from '../replay-helpers.mjs';
 
 // Fresh temp directory whose name marks it as a fixture.
 function tempDir(prefix) {
@@ -311,22 +311,19 @@ test('main_unreadable_baseline_exits_one', async () => {
   assert.deepEqual(errors, []);
 });
 
-// The copied literals belong to the suggested-order eval and stay private there;
-// this test reads that file from disk to pin the copy and to signal the switch
-// to an import if its declarations ever become exported.
-const UPSTREAM_SUGGESTED_ORDER = path.resolve(
+// The copied abstain text stays private beside the replay helpers, which build
+// the CLI's own option args; this test reads that file from disk to pin the copy
+// and to signal the switch to an import if its declaration ever becomes exported.
+const REPLAY_HELPERS = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  '../../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs',
+  '../replay-helpers.mjs',
 );
 
 test('census_private_literals_still_match', () => {
-  const source = fs.readFileSync(UPSTREAM_SUGGESTED_ORDER, 'utf8');
-  for (const [name, value] of [
-    ['CHOICE_QUESTION', S.CHOICE_QUESTION],
-    ['NONE_DESCRIPTION', S.NONE_DESCRIPTION],
-  ]) {
+  const source = fs.readFileSync(REPLAY_HELPERS, 'utf8');
+  for (const [name, value] of [['NONE_DESCRIPTION', S.NONE_DESCRIPTION]]) {
     const declared = new RegExp(`^const ${name} = '([^']*)';$`, 'm').exec(source);
-    assert.notEqual(declared, null, `${name} is no longer declared as a private const beside the suggested-order eval`);
+    assert.notEqual(declared, null, `${name} is no longer declared as a private const beside the replay helpers`);
     assert.equal(declared[1], value, `${name} no longer matches the copied literal`);
   }
 });

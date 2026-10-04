@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 49 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 47 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -155,7 +155,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
 - **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
-- **Wave 8**: `SC-001..SC-007` scorer fusion.
+- **Wave 8**: `SC-001..SC-005` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
 
 ---
@@ -263,7 +263,7 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 ## 14. SCORER FUSION
 
-This category validates scorer fusion scenarios `SC-001..SC-007`.
+This category validates scorer fusion scenarios `SC-001..SC-005`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -272,8 +272,6 @@ This category validates scorer fusion scenarios `SC-001..SC-007`.
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
-| SC-006 | Offline Jev Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
-| SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |
 
 ---
 
