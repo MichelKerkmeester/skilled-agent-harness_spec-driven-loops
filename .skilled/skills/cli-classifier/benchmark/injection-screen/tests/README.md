@@ -15,7 +15,7 @@ trigger_phrases:
 
 `tests/` holds one self-running Node test file for the injection-screen scorer. It drives `score-injection-screen.mjs` through the exports that file publishes and through its `main` entrypoint, then asserts the printed lines, the exit codes and the written files.
 
-Every case runs against a fixture repository in the OS temp directory and a stub `jev` binary placed first on `PATH`. No case reaches a real backend, and the file holds no credential.
+Every case runs against a fixture repository in the OS temp directory and a stub `jev` binary placed first on `PATH`. Three cases also put a stand-in Pi package ahead of it, whose runtime answers in-process, to check the Pi route. No case reaches a real backend, and the file holds no credential.
 
 ---
 
@@ -23,7 +23,7 @@ Every case runs against a fixture repository in the OS temp directory and a stub
 
 | File | Responsibility |
 |---|---|
-| `score-injection-screen.test.mjs` | Tests tracked paths and head commit, the fetch census, section splitting, corpus walking and its dotenv refusal, lexical hits, seeded draws, planted insertion, the 90-row label gate, baseline headroom, the keep, kill and stop verdict rules, and the backend gate and arm on a stub binary. |
+| `score-injection-screen.test.mjs` | Tests tracked paths and head commit, the fetch census, section splitting, corpus walking and its dotenv refusal, lexical hits, seeded draws, planted insertion, the 90-row label gate, baseline headroom, the keep, kill and stop verdict rules, the backend gate and arm on a stub binary, and the model the verdict and each call record name on the CLI, Pi and mixed routes. |
 
 ---
 

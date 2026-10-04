@@ -748,17 +748,6 @@
       "nativeTop": "mcp-tooling",
       "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
       "approvedAt": "2026-09-22"
-    },
-    {
-      "id": "harder:a936c52192b6",
-      "corpus": "harder",
-      "prompt": "Score this task brief for ambiguity, missing inputs, and whether the requested behavior is testable.",
-      "gold": "sk-prompt",
-      "promptHash": "sha256:a936c52192b6ff78967b746e09cedfe0998ae0a7a16b87aff4158ee244126097",
-      "localTop": "none",
-      "nativeTop": "cli-classifier",
-      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
-      "approvedAt": "2026-09-29"
     }
   ]
 }

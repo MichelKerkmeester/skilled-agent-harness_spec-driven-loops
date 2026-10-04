@@ -165,6 +165,7 @@ All three MCP tool skills below nest under the `mcp-tooling` parent hub as workf
 | `Variable 'clickup__official_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup__official_CLICKUP_API_KEY` | Prepend the manual name with each underscore doubled from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
 | `Execution timeout exceeded` | Workflow calls more tools than the default 30-second timeout allows | Set `timeout: 60000` for 3 to 5 tools or `timeout: 120000` for 6 or more |
 | Config file not found | `UTCP_CONFIG_FILE` points to a relative path or the file is missing | Use an absolute path in the `UTCP_CONFIG_FILE` value and confirm the file exists with `ls -la` |
+| Code Mode is not installed, its `dist` is stale or a runtime does not load it | The build or a runtime registration is missing | Run `/doctor:mcp install` to build Code Mode, configure `.utcp_config.json` and register it in the runtime configs, or `/doctor:mcp debug` for a PASS/WARN/FAIL check (`--fix` for guided repair) |
 | A tool is missing from `list_tools()` | The tool is a native MCP tool in `opencode.json`. Code Mode only sees `.utcp_config.json` tools | Call native MCP tools directly by their function name without using `call_tool_chain` |
 
 ---

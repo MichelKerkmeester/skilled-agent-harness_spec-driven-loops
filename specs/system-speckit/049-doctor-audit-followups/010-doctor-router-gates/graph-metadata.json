@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/010-doctor-router-gates",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/010-doctor-router-gates",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor router input gate",
+      "extract structure allowed-tools commands",
+      "doctor router gates",
+      "doctor router gates plan",
+      "extractor command exemption plan",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor router gates summary",
+      "extractor command allowed-tools fix"
+    ],
+    "key_topics": [
+      "doctor",
+      "router",
+      "input",
+      "gate",
+      "extract",
+      "structure",
+      "allowed-tools",
+      "commands",
+      "gates",
+      "plan",
+      "extractor",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/skill-advisor.md",
+      ".skilled/commands/doctor/mcp.md",
+      ".skilled/skills/sk-doc/shared/scripts/extract_structure.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/skill-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract_structure.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/extract_structure.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_extract_structure_regressions.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-create-command template requires a mandatory input gate before the router contract whenever the argument hint declares a required `<argument>`",
+    "created_at": "2026-10-04T08:03:02Z",
+    "last_save_at": "2026-10-04T08:08:06.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dfdd1b554b1079924ded6c52188a9ad1ddab6eb1a3be4d297e0858bb86741b22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d7e51c62273a26247ba707ce3c91e7df44cf9b778483867607f1d4c3f253df8",
+      "plan.md": "e7cfda52be6789f2222b269f2991220928297b50c2f4b9f5be702e9049b8dc6f",
+      "tasks.md": "2e6d0f029c18127f2c1e6d11284147a412fc53825e24a0ad66cca165b501a09c",
+      "implementation-summary.md": "4613e7c2d6a25c1ee5f3dad2e29c831ca85993ca5885f572b828bed4824d088c"
+    },
+    "last_active_at": null
+  }
+}

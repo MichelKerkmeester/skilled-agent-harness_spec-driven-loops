@@ -72,6 +72,7 @@ Run the owning package test command from the nearest package boundary.
 | `test-flowchart-validator.sh` | Tests for `validate-flowchart.sh` (box alignment + labels). |
 | `test-frontmatter-version.mjs` | Unit/integration tests for `frontmatter-version.mjs`. |
 | `test-cite-drift-scan.mjs` | Unit/integration tests for `cite-drift-scan.mjs`. |
+| `test_cite_drift_advisory.py` | Tests for the citation drift advisory at the end of `validate_document.py`'s human report. |
 | `test_package_skill_regressions.py` | Regression tests for `package_skill.py`. |
 | `test_quick_validate_086.py` | Tests for `quick_validate.py`. |
 | `test_validator.py` | Tests for `validate_document.py`. |

@@ -1,0 +1,48 @@
+{
+  "topic": "Research, without editing anything, three connected questions about the doctor commands in this repository (.skilled/commands/doctor/). (1) Two contract gaps. First: /doctor:speckit (doctor-speckit-retrieval.yaml) reports corpus_pollution at medium severity whenever the phraseQuality bucket in .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json has any non-zero class, and the current corpus always has some (about 251 of 33,700 phrases), so status=OK is unreachable. Decide the right fix: re-rank pollution as advisory outside severity_max, a share threshold, a corpus clean-up, a generator change, or a mix, citing how the lookup ranks such phrases and which tests and playbook scenarios (DOC-349, DOC-350) change. Second: /doctor:mcp (mcp.md, doctor-mcp-presentation.txt) defines a cross-sub-action flag error but no error for an unknown flag such as --server; design the missing unknown-flag error and say how other doctor commands handle unknown flags today. (2) A long-lived local test environment for /doctor:update (update.md, release-update.cjs, doctor-update-*.yaml): a git worktree at .worktrees/.doctor-update-test-environment, local only and never pushed, checked out at an older release tag (v4.0.0.0, v4.0.0.1 or v4.0.0.2), carrying local overrides so check, align, apply, rollback and record-base each have real customized, conflict, removed and local-only units to act on. For sk-code, compare stripping every mode except sk-code-opencode and sk-code-webflow and then editing sk-code-webflow, against adding a custom sk-code-web-dev packet derived from sk-code-webflow without Webflow references; recommend one. For sk-git, plan replacing it with the older Barter sk-git at barter/ai-speckit/coder-backup/ai-speckit-main/coder/.opencode/skills/sk-git (10 files). Establish from release-update.cjs whether overrides must be committed or may stay uncommitted, how the engine classifies each unit, what record-base and the release state need, how to reset the environment after an apply or rollback, and how a worktree whose directory name does not follow the sk-git worktrees/NNN-slug grammar should be created under the sk-git rules (worktree-naming.sh, detached HEAD versus a local branch). Keep the token cost of building it low. (3) Which other doctor commands (/doctor:git, /doctor:mcp, /doctor:env, /doctor:runtime-mirrors, /doctor:skill-advisor, /doctor:deep-loop, /doctor:speckit) would gain from running their manual testing scenarios against the same environment instead of a throwaway disposable copy, and list exactly which scenario files in the doctor-commands folders of the system-spec-kit, system-skill-advisor, system-deep-loop, sk-git and mcp-code-mode manual testing playbooks need updating, plus any new scenarios to create. Cite a file and line for every claim and end with an ordered implementation plan.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research",
+  "createdAt": "2026-10-04T13:59:40.115Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "cline-pass/deepseek-v4.1-flash",
+        "reasoningEffort": "xhigh",
+        "timeoutSeconds": 1800,
+        "iterations": 3,
+        "label": "deepseek-v4-1-flash-cline",
+        "count": 1
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "timeoutSeconds": 1800,
+        "iterations": 2,
+        "label": "luna-6-max-fast",
+        "count": 1
+      }
+    ],
+    "concurrency": 1
+  },
+  "lineage": {
+    "sessionId": "2026-10-04T13:59:40.115Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1
+  }
+}

@@ -7,7 +7,8 @@ import { createHash } from 'node:crypto';
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
-import { binomTail, buildDescriber, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, runArm, scanText, scanTranscriptFile, summarizeEvents, verdictLine, wilsonInterval } from '../evals/score-alignment-suggestion';
+import { pathToFileURL } from 'node:url';
+import { binomTail, buildDescriber, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, runArm, scanText, scanTranscriptFile, scoreProbabilityArm, summarizeEvents, verdictLine, wilsonInterval } from '../evals/score-alignment-suggestion';
 import type { Row, VerdictCounts } from '../evals/score-alignment-suggestion';
 
 const tempDirs: string[] = [];
@@ -589,7 +590,10 @@ echo "$*" >> "$(dirname "$0")/jev.log"
 case "$1" in
   --version) echo "\${STUB_JEV_VERSION:-jev 0.6.2}"; exit 0 ;;
   auth) if [ "$2" = status ]; then exit "\${STUB_JEV_AUTH:-0}"; fi; echo '{"model":"stub-model"}'; exit 0 ;;
-  choice) read -r state; case "$state" in pick:*) k="\${state#pick:}"; p="\${STUB_JEV_PROB:-0.9}"; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":%s}}}}\\n' "$k" "$k" "$p"; exit 0 ;; esac; exit 1 ;;
+  choice) read -r state; case "$state" in
+    split) case "$7" in 003-c=*) k="001-a"; p="0.95" ;; *) k="002-b"; p="0.4" ;; esac; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":%s}}}}\\n' "$k" "$k" "$p"; exit 0 ;;
+    pick:*) k="\${state#pick:}"; p="\${STUB_JEV_PROB:-0.9}"; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":%s}}}}\\n' "$k" "$k" "$p"; exit 0 ;;
+  esac; exit 1 ;;
 esac
 exit 1
 `;
@@ -938,5 +942,103 @@ describe('model arms', () => {
       { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0 },
     ]);
     expect(scoredPicks).toEqual([['001-a'], ['001-a', '001-a', '001-a']]);
+  });
+});
+
+describe('probability-aware arm and out guard', () => {
+  function splitRows(dir: string): string {
+    return writeRows(dir, [
+      ...Array.from({ length: 20 }, () => ({ label: '001-a', state: 'split' })),
+      ...Array.from({ length: 10 }, () => ({ label: '002-b', state: 'pick:002-b' })),
+    ]);
+  }
+
+  function runScore(f: string, outDir: string, stub: string, out: string[], err: string[]): Promise<number> {
+    return main(['--score', f, '--jev', '--accept-payload', '--out', outDir], {
+      out: (line) => out.push(line),
+      err: (line) => err.push(line),
+      env: { ...process.env, PATH: stub + delimiter + process.env.PATH, JEV_TRANSPORT: 'jev' },
+      describe: (folder) => folder,
+    });
+  }
+
+  it('prints the probability-aware verdict, decided subset, slack and bootstrap after the Jev arm', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir, outDir);
+    const stub = makeBackendStubs();
+    const f = splitRows(rowsDir);
+
+    const out: string[] = [];
+    const err: string[] = [];
+    const code = await runScore(f, outDir, stub, out, err);
+
+    expect(code).toBe(0);
+    expect(err).toEqual([]);
+    const pinsIndex = out.findIndex((line) => line.startsWith('pins:'));
+    expect(pinsIndex).toBeGreaterThan(0);
+    expect(out.slice(pinsIndex - 4, pinsIndex)).toEqual([
+      'verdict probability-aware: stop (flips) K=30 M=30 A=30 B=20 W=10 L=0 F=20 p=0.0010 baseline=target',
+      'decided-subset probability-aware: 30/30 accuracy=1.0000',
+      'margin slack probability-aware: 7.0 rows',
+      'bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[0.3333,0.3333] clusters=1 replicates=1000',
+    ]);
+    expect(out.findIndex((line) => line.startsWith('verdict probability-aware:'))).toBeGreaterThan(
+      out.findIndex((line) => line.startsWith('verdict jev:'))
+    );
+
+    const report = JSON.parse(readFileSync(join(outDir, 'report.json'), 'utf8')) as {
+      analysis: { probabilityAware: { line: string } };
+      dataPin: { rowCount: number; rows: Array<Record<string, unknown>> };
+    };
+    expect(report.analysis.probabilityAware.line).toBe(
+      'verdict probability-aware: stop (flips) K=30 M=30 A=30 B=20 W=10 L=0 F=20 p=0.0010 baseline=target'
+    );
+    expect(report.dataPin.rowCount).toBe(30);
+    expect(Object.keys(report.dataPin.rows[0])).toEqual(['id', 'target', 'label', 'stateSha256']);
+  });
+
+  it("sums each pass's none probability into the none key when the pick named a real folder", async () => {
+    const scorerReport = (await import(
+      pathToFileURL(join(REPO, '.skilled', 'skills', 'cli-classifier', 'shared', 'scripts', 'scorer-report.mjs')).href
+    )) as Parameters<typeof scoreProbabilityArm>[0];
+    const rows: Row[] = [
+      { id: 'none-row', path: 'data', target: '001-a', alternatives: ['002-b'], state: 's', gold: null, label: 'none_of_these' },
+    ];
+
+    const analysis = scoreProbabilityArm(
+      scorerReport,
+      rows,
+      { 'none-row': ['001-a', '001-a', '001-a'] },
+      { 'none-row': [0.1, 0.1, 0.1] },
+      { 'none-row': [0.9, 0.9, 0.9] },
+      'target'
+    );
+
+    expect(analysis.probabilityAware).toMatchObject({ K: 1, M: 1, A: 1, B: 0, W: 1, L: 0, F: 0 });
+    expect(analysis.probabilityAware.line).toBe(
+      'verdict probability-aware: stop (sign test) K=1 M=1 A=1 B=0 W=1 L=0 F=0 p=0.5000 baseline=target'
+    );
+  });
+
+  it('refuses a second run into the same --out and leaves the first report unchanged', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir, outDir);
+    const stub = makeBackendStubs();
+    const f = splitRows(rowsDir);
+
+    const firstCode = await runScore(f, outDir, stub, [], []);
+    const reportBytes = readFileSync(join(outDir, 'report.json'));
+
+    const out: string[] = [];
+    const err: string[] = [];
+    const secondCode = await runScore(f, outDir, stub, out, err);
+
+    expect(firstCode).toBe(0);
+    expect(secondCode).toBe(2);
+    expect(out).toEqual([]);
+    expect(err).toEqual(['--out directory already holds a run']);
+    expect(readFileSync(join(outDir, 'report.json')).equals(reportBytes)).toBe(true);
   });
 });

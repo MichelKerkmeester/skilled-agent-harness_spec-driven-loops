@@ -229,6 +229,7 @@ sk-git/
 | GitHub MCP returns 401 or 403 | PAT expired or missing scopes | Regenerate the PAT, then expose it as `GITHUB_PERSONAL_ACCESS_TOKEN` in `.utcp_config.json` |
 | Worktree shows "already exists" or is locked | A previous worktree was not removed cleanly | Run `git worktree prune`, then retry |
 | Branch divergence over 50 commits from base | A long-running branch fell behind main | Merge or rebase the base in incrementally before opening a PR |
+| You want an optional hook gate off for good, or a different commit, PR or branch rule | The per-command `SPECKIT_SKIP_*` prefix covers one command, and the rules live in the templates | Run `/doctor:git hooks` to save a gate setting in git config (`speckit.hooks.<key>`), or `/doctor:git standards` to change a rule in the repository's `.sk-git/` template copies. `--dry-run` shows the plan and writes nothing |
 | A bare worktree's strict-validate looks green on zero files | The worktree lacks gitignored deps so the run is a silent no-op | Re-run the toolchain on `main` after merge, per `references/large-reorg-playbook.md` |
 
 ---

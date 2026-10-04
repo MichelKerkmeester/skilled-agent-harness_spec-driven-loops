@@ -39,7 +39,7 @@ Only the operator writes labels. `--score <rows file>` runs alone. With fewer th
 
 ### The Keep Rule And Verdict
 
-The keep rule is fixed in code and printed before any call: `keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M`. Each arm prints one `verdict jev: keep|kill|stop ...` line with `K= M= A= B= W= L= F= p= baseline=` and writes `report.json` and `calls.jsonl` under `--out`. Today the run stops at its label gate, because no operator labels exist yet, and a live Jev run waits on the operator's yes.
+The keep rule is fixed in code and printed before any call: `keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M`. Each arm prints one `verdict jev: keep|kill|stop ...` line with `K= M= A= B= W= L= F= p= baseline=` and writes `report.json` and `calls.jsonl` under `--out`. A second run into an `--out` that already holds a run prints `--out directory already holds a run` and exits 2. After the arms the run prints `verdict probability-aware: ...`, which picks for each row the listed folder its three passes gave the highest summed probability, then that arm's decided-subset accuracy, margin slack and a bootstrap interval that resamples whole target folders. `report.json` adds `dataPin`, the scored rows with their state hashes behind one SHA-256 digest, and `analysis`. Today the run stops at its label gate, because no operator labels exist yet, and a live Jev run waits on the operator's yes.
 
 ---
 
@@ -51,12 +51,13 @@ The keep rule is fixed in code and printed before any call: `keep rule: coverage
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` | Script | Counts the alignment saves, replays both validator paths, runs the label gate and the opt-in arm, and prints the verdict lines |
 | `runtime/cli/spec-folder/alignment-validator.ts` | Shared | Read only: the script replays `validateContentAlignment`, `validateFolderAlignment` and `isArchiveFolder` from here |
+| `.skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs` | Shared | Loaded at run time: the row pin, the output-directory check, the probability-aware pick, margin slack and the cluster bootstrap |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts` | Vitest | 35 cases, run from `runtime/cli` as `npx vitest run --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts`, with every backend in the file a stub |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts` | Vitest | 45 cases, run from `runtime/cli` as `npx vitest run --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts`, with every backend in the file a stub |
 | `../../manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md` | Manual playbook | Playbook scenario 461 for the alignment suggestion measurement |
 
 ---

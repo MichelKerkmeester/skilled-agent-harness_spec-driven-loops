@@ -21,8 +21,8 @@ operating_mode:
 speckit_retrieval_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
   generated trigger index at .skilled/skills/system-spec-kit/runtime/data/trigger-index.json as
-  the artifact it diagnoses but never regenerates. Regeneration is owned by the
-  /doctor:rebuild orchestrator, which runs the generator over the whole corpus in one pass.
+  the artifact it diagnoses but never regenerates. Regeneration is one generator run over the
+  whole corpus (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs), which the pre-commit hook also runs when spec docs change.
 
 upstream_assets:
   contract: "local command design contract"
@@ -39,10 +39,10 @@ upstream_assets:
   pass_policy:
     lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
-    index_regenerates_byte_identical: true  # two generator runs must hash the same; proof owned by /doctor:rebuild
-    index_regenerates_byte_identical_owner: "/doctor:rebuild"  # its generator leg rebuilds the index and its --check verification proves the result; this read-only doctor writes only its report and state log, so it can never run the two builds the proof needs
+    index_regenerates_byte_identical: true  # two generator runs must hash the same; proof owned by the generator itself
+    index_regenerates_byte_identical_owner: "generate-trigger-index.mjs"  # running it twice and comparing hashes proves the result; this read-only doctor writes only its report and state log, so it can never run the two builds the proof needs
 speckit_retrieval_doctor_philosophy:
-  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:rebuild"
+  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration is the generator's own run"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"
   mandate: "This command is read-only by contract."
   honest_loss: "The retired continuity database offered semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. None of them has a replacement here. This doctor diagnoses a lexical index and a lexical scan, and it reports a miss as a miss."
@@ -65,7 +65,7 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-speckit-retrieval-moved.*.txt"  # the moved-citation listing, one line per citation
   forbidden_targets:
     - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
-    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit speckit-retrieval
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
     - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
@@ -142,9 +142,6 @@ staleness_signals:
   anchor_marker_drift:
     detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in the up-to-five sampled packets; phase 1 counts them per sample"
     severity: low
-  corpus_pollution:
-    detection: "The phraseQuality bucket in committed generation-diagnostics.json reports editor-fallback, folder-token-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token, and stop-word-only counts; any non-zero count is the signal. The generator judges each owning document with its own packet-folder tokens, so folder-token-fallback is counted the way the per-document validator reports it."
-    severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
     severity: high
@@ -156,6 +153,15 @@ staleness_signals:
     detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
     severity: medium
     note: "Claude reads the root AGENTS.md directly and Pi loads it from the working directory; Codex and the Cursor rule shared by Cursor and Devin carry generated pointer blocks. Reach is per runtime: a pointer, direct load, verified inheritance, or session-start injection each count as a path."
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY ADVISORIES
+# ─────────────────────────────────────────────────────────────────
+quality_advisories:
+  phrase_quality:
+    source: "The phraseQuality bucket in committed generation-diagnostics.json: editor-fallback, folder-token-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token and stop-word-only counts, for phrases and for owning documents. The generator judges each owning document with its own packet-folder tokens, so folder-token-fallback is counted the way the per-document validator reports it."
+    effect: "Reported, never scored. Advisories stay out of staleness_classes and severity_max, so they never change the status or the recommended command."
+    note: "The lookup does score these phrases: an exact match scores 1, and phrases of two or more tokens can match by containment or token overlap. The generator keeps every phrase and the lookup never reads the bucket, so a flagged phrase costs precision only when it outranks the right document for a real query. A corpus fix is warranted only when a measured lookup shows that."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -202,7 +208,7 @@ workflow:
       - "Sample up to 5 packets flagged as staleness candidates, taking them from the --check staleDocuments list first"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
-      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale."
+      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; list every non-zero class in quality_advisories with its phrase count, its document count and its share of all phrases. Advisories are never added to staleness_classes or severity_max."
       - "Interactive gate: citation_drift_scope. Unless the answer is skip, run upstream_assets.citation_drift_command once. Exit 2 is reported with stderr and never as clean. Write every 'cite moved:' line to <packet_scratch>/doctor-speckit-retrieval-moved.<timestamp>.txt. From the 'family' lines build the per-family table using upstream_assets.citation_drift_classes, then group the moved lines by their old and new path prefixes and keep the ten largest groups for the report"
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
@@ -214,8 +220,8 @@ workflow:
           ripgrep_ambient_config: L
           trigger_phrase_drift: P
           anchor_marker_drift: Q
-          corpus_pollution: R
           schema_version_mismatch: S
+      - quality_advisories: [{class: string, phrases: N, documents: N, share_of_phrases: percent}]
       - citation_drift:
           scope: all|skills|skipped
           families: {skills: {citations: N, moved: N, gone: N, past_end: N, basename_only: N, ambiguous: N}, specs: "same fields, or absent when scope is skills"}
@@ -228,14 +234,16 @@ workflow:
   phase_2_recommendation:
     purpose: Translate staleness signals into recommended action
     rules:
-      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:rebuild"
-      - "If severity_max == medium (index content stale per --check, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:rebuild, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      - "If severity_max == medium (index content stale per --check or manifest hash mismatch) → recommend full-corpus regeneration (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs)"
       - "If severity_max == low (trigger phrase drift, anchor drift, or an mtime sample that --check did not confirm) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
+      - "Status: MISSING when the index is absent; STALE when index_content_stale or committed_pair_mismatch fired; ATTENTION for any other medium or high signal; OK when only low signals or none fired, with a monitor recommendation for low signals"
+      - "Quality advisories never change the status or the recommended command. List them under the summary's Advisories line, or none"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
       - "citation_drift never raises severity_max. Report it beside the recommendation and point at the moved listing; the fix is editing the citing docs."
     outputs:
-      - status: OK|DEGRADED|STALE|MISSING
+      - status: OK|ATTENTION|STALE|MISSING
       - recommended_command: string
       - recommended_when: now|low-activity-window|monitor
 
@@ -247,7 +255,7 @@ workflow:
       - "Print summary table to stdout"
     outputs:
       - report_path: string
-      - status: STATUS_OK | STATUS_DEGRADED | STATUS_STALE | STATUS_MISSING
+      - status: STATUS_OK | STATUS_ATTENTION | STATUS_STALE | STATUS_MISSING
     validation: report_emitted
 
 # ─────────────────────────────────────────────────────────────────
@@ -262,17 +270,19 @@ output_contract:
     - recommendation_block
   optional_sections:
     - sample_staleness_explanations
+    - quality_advisories_block
     - citation_drift_summary  # per-family table, the ten largest moved prefixes and the listing path; says 'skipped' when the operator skipped it
   state_log:
     path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:
-      command: "/doctor:speckit speckit-retrieval"
+      command: "/doctor:speckit"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601
       duration_seconds: number
-      status: OK|DEGRADED|STALE|MISSING|FAIL|CANCELLED
+      status: OK|ATTENTION|STALE|MISSING|FAIL|CANCELLED
       staleness_classes: object
+      quality_advisories: array
       recommendation: string
 
 # ─────────────────────────────────────────────────────────────────
@@ -280,6 +290,6 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 lookup exits 2 or higher → STATUS=FAIL with stderr attached"
-  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:rebuild to generate it"
+  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs to generate it"
   - "Any phase emits a write attempt outside the packet scratch → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"

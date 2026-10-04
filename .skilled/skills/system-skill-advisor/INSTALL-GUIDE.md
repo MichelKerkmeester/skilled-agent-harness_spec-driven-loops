@@ -399,18 +399,18 @@ Most "match my setup" needs are signal additions, not lane-weight changes:
 
 > **Critical:** the advisor reads scoring inputs from `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without re-indexing produces identical pre-edit scores.
 
-### 14.2 Full tuning: `/doctor:speckit skill-advisor`
+### 14.2 Full tuning: `/doctor:skill-advisor tune`
 
 For batch optimization across all skills plus lane-weight tuning, run the gated doctor workflow:
 
 | Use case | Command |
 | --- | --- |
-| First-time tuning / re-tune after adding a skill | `/doctor:speckit skill-advisor` |
-| Preview without writing | `/doctor:speckit skill-advisor --dry-run` |
-| Tune one lane only | `/doctor:speckit skill-advisor --scope=explicit` (or `derived` / `lexical`) |
-| Skip post-apply tests (not recommended) | `/doctor:speckit skill-advisor --skip-tests` |
+| First-time tuning / re-tune after adding a skill | `/doctor:skill-advisor tune` |
+| Preview without writing | `/doctor:skill-advisor tune --dry-run` |
+| Tune one lane only | `/doctor:skill-advisor tune --scope=explicit` (or `derived` / `lexical`) |
+| Skip post-apply tests (not recommended) | `/doctor:skill-advisor tune --skip-tests` |
 
-Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.skilled/commands/doctor/speckit.md` and `.skilled/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`.
+Five phases gated behind operator approval: Discovery → Analysis → Proposal → Apply → Verify. Phase 3 (Apply) rebuilds `dist/`, runs `skill_graph_scan`, runs the advisor test suite, and writes a per-run rollback script. Full reference: `.skilled/commands/doctor/skill-advisor.md` and `.skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml`.
 
 ### 14.3 What tuning touches
 
@@ -424,7 +424,7 @@ Never touches any `SKILL.md` content, `weights-config.ts`, the fusion scorer, or
 
 ### 14.4 Tuning rollback
 
-`/doctor:speckit skill-advisor` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.skilled/scratch/`). The script restores only the files that run modified, preserves unrelated WIP and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
+`/doctor:skill-advisor tune` Phase 3 writes a per-run rollback script at `<packet_scratch>/rollback-<timestamp>.sh` (under `<spec-folder>/scratch/` or `.skilled/scratch/`). The script restores only the files that run modified, preserves unrelated WIP and rebuilds the package at the end. Prefer it over a broad `git checkout HEAD -- ...`, which would discard unrelated WIP.
 
 If the per-run script is unavailable (the run failed before Phase 3 completed), stash unrelated WIP first, then restore from HEAD and rebuild:
 

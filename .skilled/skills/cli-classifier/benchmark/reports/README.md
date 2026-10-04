@@ -24,10 +24,11 @@ Each row below is one run folder. Add a row by hand when a run folder lands, new
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-03 | [`2026-10-03--injection-screen--jev-pi-default/`](./2026-10-03--injection-screen--jev-pi-default/) | `score-injection-screen.mjs --jev`, default transport (Pi answered 189 of 189 classifier calls), `jev-1.13.0` | Jev right on 84 of 90 against 68 for the lexical screen, 2 false positives, p=0.0008 | **keep** | `specs/cli-jev/003-cli-jev-workflow-integration/051-followups` |
 | 2026-09-26 | [`2026-09-26--manual-testing-playbook--hub-routing-phrasings/`](./2026-09-26--manual-testing-playbook--hub-routing-phrasings/) | compiled front door, `--hub cli-jev`, policy `033a20d9…` | 3 PASS, 0 FAIL, 0 SKIP. The six advertised Jev phrasings route | **PASS** | `manual-testing-playbook` |
 | 2026-09-20 | [`2026-09-20-hub-routing-baseline/`](./2026-09-20-hub-routing-baseline/) | compiled front door, `--hub cli-jev`, policy `3240ebf5…` | 3 PASS, 0 FAIL, 0 SKIP | **PASS** | `manual-testing-playbook` |
 
-Both runs measured the Jev routing surface before it became mode `cli-jev` of this hub, so they name the retired `cli-jev` hub and its `cli-usage` mode. They stay as recorded.
+The two 2026-09 runs measured the Jev routing surface before it became mode `cli-jev` of this hub, so they name the retired `cli-jev` hub and its `cli-usage` mode. They stay as recorded.
 
 ---
 

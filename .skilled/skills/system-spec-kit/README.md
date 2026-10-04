@@ -322,19 +322,6 @@ default run makes no model call and changes no save. `--score` runs alone and st
 gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` adds
 a verdict column behind that backend's own check.
 
-`runtime/scripts/completion-claim-audit/score-completion-claims.mjs` scores the completion-claim
-detector against operator-labeled turns. Its default run makes no model call and writes no file.
-`--jev` runs that backend's arm behind its own check, and the Jev arm needs
-`--accept-payload` because its payload is the operator's session text.
-
-`runtime/scripts/debug-next-check/score-debug-next-check.mjs` measures offline whether a model
-choice of the cheapest next check for a debug hypothesis beats the best constant answer on
-operator-labeled rows. Its default run makes no model call and writes no file. With `--fixture`
-the run stops at the label gate: with fewer than 30 labeled rows it prints one stop line and
-exits 0. Behind the payload gate only rows marked `jev_ok` may leave the machine, and the Jev arm
-skips when none is marked. `--jev` adds a verdict column behind that backend's
-own check. It changes no debug step.
-
 ---
 
 ## 5. COMMANDS
@@ -575,6 +562,15 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/[project
 bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
+
+Four doctor commands wrap the checks this skill owns:
+
+| Command | What it does |
+|---|---|
+| `/doctor:speckit` | Checks that the trigger index is fresh, its lookup runs and the ripgrep recipes return results |
+| `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
+| `/doctor:env` | Shows the switches documented in [ENV-REFERENCE.md](./runtime/ENV-REFERENCE.md) and where each is set, and saves a preference after you approve the exact line |
+| `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback` and `record-base` |
 
 ---
 

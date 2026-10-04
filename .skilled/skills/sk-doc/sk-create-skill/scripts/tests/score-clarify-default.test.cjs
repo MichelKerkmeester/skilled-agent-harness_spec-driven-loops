@@ -136,6 +136,11 @@ function makeStubs(opts = {}) {
     '    text=$(cat)',
     '    case "$text" in *fail*) exit 1 ;; esac',
     '    if [ -n "$STUB_CHOICE_EXIT" ]; then exit "$STUB_CHOICE_EXIT"; fi',
+    '    prob=0.9',
+    '    if [ -n "$STUB_PROBS" ]; then',
+    '      count=$(cat "$STUB_LOG.choice-count" 2>/dev/null || echo 0)',
+    '      prob=$(printf \'%s\\n\' $STUB_PROBS | sed -n "$(( (count % 3) + 1 ))p")',
+    '    fi',
     '    if [ "$STUB_PICK" = "disagree" ]; then',
     '      count=$(cat "$STUB_LOG.choice-count" 2>/dev/null || echo 0)',
     '      if [ $((count % 3)) -eq 1 ]; then',
@@ -149,7 +154,7 @@ function makeStubs(opts = {}) {
     '    else',
     "      key=$(printf '%s' \"$text\" | sed -n 's/.*pick=\\([^ ]*\\).*/\\1/p')",
     '    fi',
-    '    printf \'{"answers":{"answer":{"choice":"%s","probabilities":{"%s":0.9}}},"model":"stub-jev-model"}\\n\' "$key" "$key"',
+    '    printf \'{"answers":{"answer":{"choice":"%s","probabilities":{"%s":%s}}},"model":"stub-jev-model"}\\n\' "$key" "$key" "$prob"',
     '    ;;'
   ];
 
@@ -186,6 +191,38 @@ function runWithStubs(stubs, args, extraEnv = {}) {
   return runScript(args, {
     env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, ...extraEnv }
   });
+}
+
+function makeFakePiBin() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-fake-pi-'));
+  fs.mkdirSync(path.join(root, 'bin'));
+  fs.mkdirSync(path.join(root, 'dist'));
+  fs.writeFileSync(path.join(root, 'bin', 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({
+    name: '@earendil-works/pi-coding-agent',
+    version: '0.99.2',
+    type: 'module'
+  }));
+  fs.writeFileSync(path.join(root, 'dist', 'index.js'), `
+export class ModelRuntime {
+  static create() {
+    return {
+      getModelOfType: (type, provider, id) => ({ type, provider, id }),
+      getAvailableOfType: async () => [{ id: 'jev-latest' }],
+      classify: async (model, context) => {
+        const keys = Object.keys(context.questions.answer.criteria);
+        const choice = keys[0];
+        const probabilities = Object.fromEntries(keys.map((key) => [key, key === choice ? 0.9 : 0.05]));
+        return { api: 'typesafe-system-one', provider: model.provider, model: model.id,
+          answers: { answer: { type: 'choice', choice, probabilities, confidence: 0.9 } },
+          stopReason: 'stop', timestamp: 0,
+          usage: { input: 100, output: 10 } };
+      },
+    };
+  }
+}
+`);
+  return path.join(root, 'bin');
 }
 
 function withoutLines(text, drop) {
@@ -309,6 +346,31 @@ test('the Jev arm refuses to run without an output directory', async () => {
     assert.equal(result.stdout, '');
     assert.ok(result.stderr.includes('error: --jev needs --out <dir>'));
     assert.equal(fs.existsSync(stubs.log), false);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('a second Jev run into the same output directory is refused', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const first = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(first.status, 0);
+    const reportBefore = fs.readFileSync(path.join(out, 'report.json'));
+    const callsBefore = fs.readFileSync(path.join(out, 'calls.jsonl'));
+
+    const second = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(second.status, 2);
+    assert.equal(second.stdout, '');
+    assert.ok(second.stderr.includes('error: --out directory already holds a run'));
+    assert.deepEqual(fs.readFileSync(path.join(out, 'report.json')), reportBefore);
+    assert.deepEqual(fs.readFileSync(path.join(out, 'calls.jsonl')), callsBefore);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
@@ -545,6 +607,38 @@ test('score report records replay identity and four digests', { timeout: 120000 
   }
 });
 
+test('the score report pins its row set and the arm names its model tuple', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+
+    assert.equal(report.dataPin.rowCount, 30);
+    assert.match(report.dataPin.rowSetSha256, /^[a-f0-9]{64}$/);
+    assert.equal(report.dataPin.optionSetSha256, report.digests.options.sha256);
+    assert.deepEqual(Object.keys(report.dataPin.rows[0]), ['id', 'hub', 'value', 'promptSha256']);
+    assert.deepEqual(report.columns.jev.modelTuple, {
+      jevVersion: '0.6.2',
+      provider: 'official',
+      model: 'stub-jev-model'
+    });
+
+    const calls = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line));
+    const choices = calls.filter((call) => call.kind === 'choice');
+    assert.equal(choices.length, 60);
+    assert.ok(choices.every((call) => Object.prototype.hasOwnProperty.call(call, 'none_prob')));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
 test("a label outside the row's alternatives exits 2 and names the row", async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
@@ -660,7 +754,7 @@ test('jev off PATH and a wrong jev version each skip', async () => {
 
     const wrong = await runWithStubs(
       stubs,
-      ['--score', file, '--jev', '--out', path.join(dir, 'out')],
+      ['--score', file, '--jev', '--out', path.join(dir, 'out-2')],
       { STUB_JEV_VERSION: 'jev 0.5.0' }
     );
     assert.equal(wrong.status, 0);
@@ -780,6 +874,45 @@ test('two disagreeing orders trigger the third call', { timeout: 120000 }, async
   }
 });
 
+test('the probability-aware arm answers by summed probability, not by the modal pick', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', out],
+      { STUB_PICK: 'disagree', STUB_PROBS: '0.3 0.95 0.3' }
+    );
+
+    assert.equal(result.status, 0);
+    const lines = result.stdout.split('\n');
+    const expected = [
+      'verdict probability-aware: stop (flips) K=30 M=30 A=30 B=0 W=30 L=0 F=30 p=9.313e-10',
+      'decided-subset probability-aware: 30/30 accuracy=1.0000',
+      'margin slack probability-aware: 27.0 rows',
+      'bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[1.0000,1.0000] clusters=1 replicates=1000'
+    ];
+    for (const line of expected) {
+      assert.ok(lines.includes(line), 'stdout is missing the line: ' + line);
+    }
+    const jevVerdict = lines.findIndex((line) => line.startsWith('verdict jev:'));
+    assert.ok(jevVerdict >= 0, 'the jev verdict line is missing');
+    assert.ok(jevVerdict < lines.indexOf(expected[0]));
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    // Two votes name mode-a and one names mode-b, so the two arms split: the
+    // modal pick follows the vote count while the probability-aware pick
+    // follows the probability the votes carry.
+    assert.deepEqual(report.columns.jev.picks.r0, ['mode-a', 'mode-b', 'mode-a']);
+    assert.equal(report.columns.jev.analysis.probabilityAware.picks.r0, 'mode-b');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
 test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
@@ -819,6 +952,82 @@ test('a rejected key stops the jev arm with no verdict', async () => {
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('a Pi-answered choice records the answering model while the auth test keeps the CLI model', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  const piBin = makeFakePiBin();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out], {
+      JEV_TRANSPORT: 'pi',
+      PATH: piBin + path.delimiter + stubs.dir + path.delimiter + '/usr/bin' + path.delimiter + '/bin'
+    });
+
+    assert.equal(result.status, 0);
+    // A skip line here would mean the CLI stub answered, so the model checks
+    // below would not exercise the Pi route at all.
+    assert.ok(!result.stdout.includes('skip: pi transport unavailable'));
+
+    const records = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line));
+    const authRecord = records.find((record) => record.kind === 'auth_test');
+    const choices = records.filter((record) => record.kind === 'choice');
+
+    assert.equal(authRecord.model, 'stub-jev-model');
+    assert.ok(choices.length > 0);
+    for (const record of choices) {
+      assert.equal(record.model, 'typesafe/jev-latest', 'choice row ' + record.row_id + ' order ' + record.order);
+    }
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+    fs.rmSync(path.dirname(piBin), { recursive: true, force: true });
+  }
+});
+
+test('a Pi-answered run records the pi transport and a forced CLI run records jev', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  const piBin = makeFakePiBin();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const piOut = path.join(dir, 'out-pi');
+    const piResult = await runWithStubs(stubs, ['--score', file, '--jev', '--out', piOut], {
+      JEV_TRANSPORT: 'pi',
+      PATH: piBin + path.delimiter + stubs.dir + path.delimiter + '/usr/bin' + path.delimiter + '/bin'
+    });
+
+    assert.equal(piResult.status, 0);
+    // A skip line here would mean the CLI stub answered, so the transport
+    // checks below would not exercise the Pi route at all.
+    assert.ok(!piResult.stdout.includes('skip: pi transport unavailable'));
+    const piChoices = fs.readFileSync(path.join(piOut, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line))
+      .filter((record) => record.kind === 'choice');
+    assert.ok(piChoices.length > 0);
+    for (const record of piChoices) {
+      assert.equal(record.transport, 'pi', 'choice row ' + record.row_id + ' order ' + record.order);
+    }
+
+    const cliOut = path.join(dir, 'out-cli');
+    const cliResult = await runWithStubs(stubs, ['--score', file, '--jev', '--out', cliOut]);
+
+    assert.equal(cliResult.status, 0);
+    const cliChoices = fs.readFileSync(path.join(cliOut, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line))
+      .filter((record) => record.kind === 'choice');
+    assert.ok(cliChoices.length > 0);
+    for (const record of cliChoices) {
+      assert.equal(record.transport, 'jev', 'choice row ' + record.row_id + ' order ' + record.order);
+    }
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+    fs.rmSync(path.dirname(piBin), { recursive: true, force: true });
   }
 });
 

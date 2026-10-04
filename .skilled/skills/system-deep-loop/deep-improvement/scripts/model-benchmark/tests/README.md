@@ -48,3 +48,4 @@ Current state:
 | `sweep-isolation.vitest.ts` | 15 | Per-cell cwd is under `os.tmpdir()` (not repo root), holds the prompt file, is cleaned up after single + multi-cell sweeps, and a simulated model write does not leak; plus fixture-shape + profile-load coverage for the hard / validation fixture packs. |
 | `d4-agreement.vitest.ts` | 27 | Offline D4 agreement measurement: the zero-call census, the label gate, the keep rule and the Jev arm on a stub backend. |
 | `verdict-fallback.vitest.ts` | 25 | Offline reviewer verdict fallback measurement: the fixture, outputs and reports census, the baselines, the label gate, the Jev gate and its skips, the keep rule and the Jev arm on a stub backend. |
+| `capture-reviewer-outputs.vitest.ts` | 5 | Reviewer-output capture: which paths count as reviewer outputs, the dedup, oversize and census counts, the unlabeled row shape, the default out path, the refusals, and a byte-identical rerun that never starts a stub `jev`. |

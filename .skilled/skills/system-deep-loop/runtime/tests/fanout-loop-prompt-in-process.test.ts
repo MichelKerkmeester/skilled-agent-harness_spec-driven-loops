@@ -86,3 +86,46 @@ describe('fanout-run.cjs — buildLoopPrompt in-process execution directive', ()
     }
   });
 });
+
+describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () => {
+  function reviewPrompt(kind: LineageKind): string {
+    return buildLoopPrompt(
+      'review',
+      'specs/test-fanout-in-process',
+      '/tmp/fanout-in-process-lineage',
+      'fanout-in-process-session',
+      { kind, label: `${kind}-seat`, model: 'gpt-5.6-codex', iterations: 5 },
+    );
+  }
+
+  it('includes the research contract for CLI seats and leaves native on its rendered iteration prompt', () => {
+    for (const kind of ['cli-pi', 'cli-codex'] as const) {
+      const prompt = researchPrompt(kind);
+      expect(prompt).toContain('CLI OUTPUT CONTRACT');
+      expect(prompt).toContain('.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl');
+      expect(prompt).toContain('.skilled/agents/deep-research.md');
+      expect(prompt).toContain('"type":"finding"');
+      expect(prompt.indexOf('CLI OUTPUT CONTRACT')).toBeLessThan(
+        prompt.indexOf('Read .skilled/skills/system-deep-loop/deep-research/SKILL.md'),
+      );
+    }
+    expect(researchPrompt('native')).not.toContain('CLI OUTPUT CONTRACT');
+  });
+
+  it('includes the review findingDetails contract for CLI seats and leaves native on its rendered iteration prompt', () => {
+    for (const kind of ['cli-pi', 'cli-codex'] as const) {
+      const prompt = reviewPrompt(kind);
+      expect(prompt).toContain('CLI OUTPUT CONTRACT');
+      expect(prompt).toContain('.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl');
+      expect(prompt).toContain('.skilled/agents/deep-review.md');
+      expect(prompt).toContain('findingDetails');
+      expect(prompt).toContain('P0 Findings');
+      expect(prompt).toContain('P1 Findings');
+      expect(prompt).toContain('P2 Findings');
+      expect(prompt.indexOf('CLI OUTPUT CONTRACT')).toBeLessThan(
+        prompt.indexOf('Read .skilled/skills/system-deep-loop/deep-review/SKILL.md'),
+      );
+    }
+    expect(reviewPrompt('native')).not.toContain('CLI OUTPUT CONTRACT');
+  });
+});

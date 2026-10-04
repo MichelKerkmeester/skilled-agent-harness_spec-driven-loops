@@ -1,0 +1,415 @@
+I'll start by reading the deep-research SKILL.md and checking the lineage directory state.
+
+The lineage directory exists with runner scaffolding. Let me read the rest of the SKILL.md and check the invocation metadata.
+
+Now let me examine the workflow YAML contract and the containment baseline config to understand the exact artifact structure expected.
+
+Let me find the deep-research workflow YAML and the command entrypoint.
+
+Let me read the deep-research-auto workflow YAML — this is the authoritative contract for phases and artifacts.
+
+The YAML is 2416 lines. Let me get an outline of its steps first, then read the key phase sections.
+
+
+
+Let me examine the fanout runner to understand exactly which artifacts it validates for lineage completion.
+
+
+
+
+
+
+
+Now let me understand the append gateway mechanics — where it writes and what it expects.
+
+The gateway needs an authority root and cutover binding. Let me verify those resolve correctly in this environment before planning writes.
+
+
+
+Now let me read the phase_loop core steps — read_state, dispatch, and reduce — to pin the per-iteration artifact contract.
+
+Now the critical section — the iteration dispatch contract (lines 1131–1769).
+
+
+
+Now let me read the reduce/refresh steps and phase_synthesis, plus the verify-iteration validator.
+
+Let me read phase_synthesis fully and check how the reducer resolves its paths — critical for keeping writes inside the lineage.
+
+Now let me inspect the reducer script's path resolution — I must ensure it writes inside the lineage only.
+
+
+
+
+
+
+
+
+
+Let me quickly check where the gateway's authority root and cutover binding resolve, so the first gateway call is safe.
+
+
+
+
+
+
+
+
+
+The gateway will run under `legacy_authoritative` route — sanctioned. Now let me check what the fan-out merge expects from each lineage's registry and artifacts.
+
+
+
+Let me verify how the gateway upcasts a legacy iteration row and what the state-log projection will contain — this is what the runner's completion check reads.
+
+
+
+
+
+
+
+
+
+
+
+The synthesis event's stopReason is critical for the runner. Let me inspect synthesis-closeout.cjs and its projection.
+
+The projection drops `stopReason` from `synthesis_committed`. Let me check how the runner actually reads the stop reason — there may be another event.
+
+
+
+Let me understand what the gateway does under legacy authority — this determines the state log mechanics.
+
+
+
+
+
+
+
+Let me check existing lineage runs in this repo for the exact synthesis record pattern that passed validation.
+
+
+
+Prior runs reveal the expected shape. Let me read the tail of the projection contract to settle the stopReason question.
+
+
+
+
+
+The mimo run reveals the exact pattern — a `deep_research.synthesis_complete` stem that preserves stopReason. Let me verify that stem is registered.
+
+
+
+Let me check the mimo lineage's config and state log head to mirror the exact accepted shapes.
+
+Let me see the mimo iteration file and delta shape — my primary templates for artifact structure.
+
+Templates acquired. Now let me look at the target spec folder and its context before init.
+
+
+
+
+
+Now let me survey the audit target surface so the strategy has real questions.
+
+
+
+
+
+The audit surface is fully mapped. Now I'll execute **phase_init** — creating the lineage state packet. Let me check the strategy template first.
+
+Now executing **phase_init**. Creating the lineage packet files.
+
+
+
+Now append the run_initialized event through the append gateway.
+
+Gateway works — receipt written and projection refreshed. Let me verify the created files.
+
+The pipeline works end-to-end. Now writing the strategy, registry, and dashboard.
+
+
+
+Phase init complete. Writing the iteration-1 prompt, then starting the loop. First checking for a lead steer file.
+
+**Iteration 1** begins. First: locate every live caller of the shared transport and scorer scripts.
+
+
+
+Caller inventory complete: 6 live transport callers. Now the first documentation-accuracy pass — reading the hub's core docs.
+
+Two docs already contradict on the Pi/CLI default. Let me read the transport script to settle it, plus the registry files.
+
+
+
+The contradiction is confirmed in code. Let me read the auto-branch and the remaining metadata files.
+
+
+
+The default-route finding is confirmed. Now reading the remaining metadata files.
+
+
+
+
+
+Let me check the cli-jev packet SKILL.md's transport claim and the latest hub changelog.
+
+Strong finding matrix forming. Let me verify the README's verification commands exist and check for stale `cli-deem` references.
+
+
+
+
+
+Running the README's verification commands with a git-status containment check.
+
+Verification commands all pass. Let me check whether README-version lag is a repo-wide pattern or a hub-specific drift.
+
+README-version lag is a repo convention — not a finding. Let me verify the feature-catalog's six-caller claim in code.
+
+Let me look closer at score-clarify-default's call record — it's the outlier.
+
+
+
+
+
+
+
+The claim needs precision. Let me verify cite-drift-scan actually calls the transport and see its record shape.
+
+Iteration 1 evidence is complete — two solid findings, positives, and cleared checks. Writing the iteration artifacts now.
+
+
+
+
+
+Iteration 1 verified (exit 0, expected route-proof-from-delta warning). Updating the state files.
+
+
+
+Iteration 1 complete. Starting **Iteration 2** — sk-doc compliance sweep. First the steer check and the validator's capabilities.
+
+Running the sk-doc validator across every hub and packet doc (auto-detected types).
+
+
+
+65 docs pass clean; 15 need attention. Let me get the exact issue details on representatives.
+
+Fallback warnings, not defects. Re-running the exit-1 files with explicit types.
+
+Let me check whether other skills' reference docs pass the same rule — this decides if it's a hub defect or repo-wide.
+
+Sibling references pass — this is hub-specific. Let me see the remaining details and the report docs.
+
+Checking whether benchmark-report validation is repo-wide governed, and the reference rule itself.
+
+
+
+Benchmark reports are a repo-wide pattern — cleared. Confirming the reference findings and the governing template.
+
+
+
+
+
+Explicit types clear the catalogs and playbooks. Final checks: sibling assets and the catalog phrasing elsewhere.
+
+
+
+The measurement doc makes the false claim explicitly. Let me read its context and check how validate_document is enforced.
+
+Let me check whether the shipped clarify-default measurement itself carries transport provenance.
+
+
+
+Iteration 2 evidence is complete. Writing the iteration artifacts.
+
+
+
+
+
+Iteration 2 verified. Updating state files, then on to iteration 3.
+
+Iteration 2 closed. Starting **Iteration 3** — sk-code-opencode compliance and bugs. First: steer check and syntax checks on every script.
+
+
+
+All scripts pass syntax checks. Now let me find the sk-code-opencode standard the axis references.
+
+
+
+Let me load the JavaScript checklist and quality standards that govern these scripts.
+
+
+
+Now checking the hub scripts and callers against the P0 checklist items.
+
+A compliance picture is forming. Let me find the repo's own JavaScript verifier — the authoritative check.
+
+
+
+Both header patterns exist repo-wide. Let me find the verifier that actually enforces the checklist.
+
+Let me quantify the header conventions repo-wide before judging the hub's headers.
+
+The style guide itself may sanction the MODULE header. Let me read it.
+
+The style guide sanctions MODULE headers — hub scripts comply. Now checking the finer P0/P1 items and test quality.
+
+
+
+Now the test suites — scorer-report tests in full, and the transport test structure.
+
+
+
+Tests are extensive. Let me run both shared suites with temp dirs redirected inside the lineage (containment-safe).
+
+Both suites pass (42/42, 8/8), no repo writes. Now reading scorer-report.mjs — the last unread shared script.
+
+scorer-report.mjs reads clean. Now the benchmark test suites and a scan of the two benchmark scorers.
+
+
+
+Both benchmark suites pass (57, 46). A count discrepancy appeared — the README claims 41 cases but 46 ran. Let me verify.
+
+Stale test count confirmed (41 claimed vs 46 actual). Final scan: the two benchmark scorers' entry points.
+
+
+
+Iteration 3 evidence is complete — all suites pass, one stale count found. Writing the artifacts.
+
+
+
+
+
+
+
+Iteration 3 verified. Starting **Iteration 4** — advisor integration (axis 3) and UX (axis 4). First: steer check and advisor wiring survey.
+
+
+
+
+
+The graph matches, but `hub_skills` omits cli-classifier. Let me check the advisor's semantics for that field and metadata routing.
+
+
+
+`hub_skills` is a degree metric — not a defect. Now the precise vocabulary-equality check the README promises.
+
+Parse artifact — let me redo the extraction correctly.
+
+The keyword sets differ — but I need the governing standard's exact wording. Let me read the parent-hub pattern doc.
+
+
+
+
+
+Let me compare the convention against sibling hubs to judge the README's keyword-equality rule.
+
+
+
+No sibling follows that keyword rule — it's not enforceable convention. Now the UX checks (axis 4) and the advisor fixture.
+
+
+
+
+
+Let me check the fixture semantics and the packet README's install story.
+
+
+
+
+
+Let me locate the "dispatch engine" that supposedly implements the eight hard rules.
+
+The dispatch engine lives in `.skilled/hooks/dispatch/`. Let me verify its wiring and test count.
+
+Checking whether the cli-jev rules are actually implemented and registered in the dispatch engine.
+
+
+
+
+
+The full routing chain verifies. Let me run the dispatch-engine unit tests to check the scenario's "20 tests" claim.
+
+Claim verified (20/20 pass). Final checks: the provider/key guidance and the benchmark operator flow.
+
+
+
+All wiring verified and consistent. Writing iteration 4 artifacts.
+
+
+
+
+
+Iteration 4 verified. Starting **Iteration 5** — axis 7 consolidation: mirror drift, metadata cross-checks, results visibility, and top-finding verification.
+
+
+
+Mirror is identical so far. Full tree diff and the measured-results visibility check.
+
+No mirror drift — perfect copy. Now the measured with-and-without results visibility.
+
+Rich with/without reporting. Let me test the legacy hub id and read the injection-screen measurement result.
+
+
+
+Let me verify the cited evidence files exist — the Pi-transport run record and any injection-screen run.
+
+
+
+The injection-screen result must be in packet 035. Let me check its recorded outcome.
+
+
+
+The 049 packet records the live verdict. Now: is that result visible from the hub docs?
+
+Let me confirm the file mtimes and whether the injection-screen README reflects the 049 changes.
+
+A review-band discrepancy appeared (README 0.60 vs packet 0.75). Checking the code.
+
+
+
+Code settles it: review band is 0.25–0.60 (hub README correct; the 049 summary's "0.75" is wrong). Now the final top-finding re-verification batch.
+
+All findings re-verified from the final state. Writing iteration 5 artifacts.
+
+
+
+
+
+
+
+All five iterations complete. Entering **phase_synthesis**. Let me check the research.md template and resource-map format first.
+
+
+
+
+
+Now writing the synthesis artifacts — resource map first, then research.md.
+
+
+
+Let me check the exact required fields for the deferred-writeback event before sending the terminal events.
+
+Now the terminal synthesis events through the gateway.
+
+Both terminal events committed. Now the final config update and a full replication of the runner's completion checks.
+
+
+
+All runner checks pass. Final inspection of the projected state log and the write boundary.
+
+The projection is exactly right. Final state-file updates and cleanup.
+
+
+
+Final cleanup and containment check.
+
+All artifacts in place, containment clean. Final strategy bookkeeping, then done.
+
+One final full-state verification, then completion.
+
+The registry is stale — it needs all 9 findings. Fixing now.
+
+
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-1-flash-max

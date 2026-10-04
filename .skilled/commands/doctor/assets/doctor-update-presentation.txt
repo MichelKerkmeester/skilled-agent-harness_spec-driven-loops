@@ -74,7 +74,7 @@ Removed units need a decision review: /doctor:update align [same release and sco
 Only update or new units need writes: /doctor:update apply [same release and scope flags]
 Removed, blocked or unknown units need review before applying: inspect the status details, then choose align or apply as appropriate.
 Downgrade units are older in the selected release than in this checkout. Apply never writes them. Roll back the apply that took the newer release, or use git, to return to an older release.
-Database regeneration after an update: /doctor:rebuild
+Advisor graph rebuild after an update: /doctor:skill-advisor rebuild
 No selected units need an update.
 ```
 
@@ -398,21 +398,21 @@ STATUS=[RECORDED|DRY_RUN|DECLINED|CANCELLED|FAILED]
 After STATUS=RECORDED: Commit .skilled/release/base.json, then run /doctor:update again.
 ```
 
-## 8. Database Rebuild Prompt
+## 8. Advisor Rebuild Prompt
 
 After the battery, ask:
 
 ```text
 The release update completed its post-apply checks.
-Run /doctor:rebuild now to refresh spec-kit databases?
+Run /doctor:skill-advisor rebuild now so skill routing uses the updated skills?
 Reply yes to run it, or no to skip.
 ```
 
 Record `reindex=rebuilt` only after successful completion is observed. If skipped, show:
 
 ```text
-Database rebuild skipped. The spec-kit database index may be stale.
-Run /doctor:rebuild when you are ready.
+Advisor rebuild skipped. Skill routing may use the previous skill metadata.
+Run /doctor:skill-advisor rebuild when you are ready.
 ```
 
 If rebuild fails, record `reindex=failed`, show the observed error and the same stale-index warning. Never present skipped or failed reindexing as full success.

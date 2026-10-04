@@ -45,3 +45,14 @@ def test_detect_document_type_supports_command_path():
     )
     assert doc_type == "command"
     assert source == "path"
+
+
+def test_comma_form_allowed_tools_is_flagged_for_skills_only():
+    module = _load_module()
+    content = "---\nname: demo\ndescription: Demo\nallowed-tools: Read, Bash\n---\n\n# Demo\n"
+
+    _, skill_issues, _ = module.parse_frontmatter(content, "skill")
+    assert any("array format" in issue for issue in skill_issues)
+
+    _, command_issues, _ = module.parse_frontmatter(content, "command")
+    assert not any("array format" in issue for issue in command_issues)

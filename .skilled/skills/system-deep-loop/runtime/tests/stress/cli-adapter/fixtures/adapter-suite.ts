@@ -98,7 +98,7 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
       break;
     case 'cli-pi':
       expect(args).toEqual(expect.arrayContaining([
-        '-p', '--offline', '--model', `openai-codex/${MODEL_BY_KIND[kind]}`,
+        '-p', '--offline', '--model', `openai/${MODEL_BY_KIND[kind]}`,
         '--thinking', 'high',
       ]));
       break;

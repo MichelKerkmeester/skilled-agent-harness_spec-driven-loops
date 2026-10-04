@@ -1,0 +1,102 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q3",
+      "text": "How can a long-lived local /doctor:update environment exercise customized, conflict, removed, and local-only units across record-base/check/align/apply/rollback, including release-tag and worktree constraints?",
+      "status": "resolved",
+      "answer": "Use a numbered local branch worktree at .0, overlay current updater assets, commit fixture changes, seed customized/conflict/removed/local units, and exercise apply/rollback with a clean baseline."
+    },
+    {
+      "id": "q4",
+      "text": "Which other doctor-command playbooks should reuse that environment, which exact scenario files need changes, and what new scenarios should be added?",
+      "status": "resolved",
+      "answer": "Migrate 27 copy-based scenario files across five doctor-command playbooks, update four suite README/index files, and add DOC-379 and DOC-380; keep read-only menu scenarios as-is."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "text": "Phrase-quality pollution is a persistent diagnostic advisory, not index staleness severity.",
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "text": "The lookup ranks exact and qualifying multi-token matches without consulting phraseQuality.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs"
+      ]
+    },
+    {
+      "id": "f-iter001-004",
+      "text": "MCP should distinguish unknown flags from known cross-sub-action flags.",
+      "sources": [
+        ".skilled/commands/doctor/mcp.md",
+        ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "text": "Historical .0/.2 worktrees need current updater assets overlaid; scope command:doctor out of unit status checks.",
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "text": "Use controlled local fixtures for the four unit statuses and a local synthetic deletion target because stock .0->.2 has no removed skill unit.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/sk-code/SKILL.md"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "text": "Commit fixture and base manifest; rollback immediately and verify no skipped paths before resetting the scenario.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-rollback.yaml"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "text": "Use sk-git numbered named-worktree grammar and a local long-lived branch.",
+      "sources": [
+        ".skilled/skills/sk-git/references/worktree-workflows.md",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "text": "Five doctor playbooks have 27 copy-based scenarios to migrate; two new scenarios cover updater lifecycle and MCP unknown flags.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 8,
+    "convergenceScore": 0.895,
+    "coverageBySources": {
+      "doctor-contracts": 7,
+      "retrieval": 4,
+      "updater-engine": 12,
+      "worktree-policy": 2,
+      "playbooks": 27,
+      "historical-tags": 3
+    }
+  }
+}

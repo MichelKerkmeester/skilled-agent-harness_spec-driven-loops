@@ -82,6 +82,32 @@ function stubDir(bodies: Record<string, string>): string {
   return dir;
 }
 
+function fakePiBin(answerSource: string): string {
+  const root = tempDir('fakepi-');
+  fs.mkdirSync(path.join(root, 'bin'));
+  fs.mkdirSync(path.join(root, 'dist'));
+  fs.writeFileSync(path.join(root, 'bin', 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.2', type: 'module' }));
+  fs.writeFileSync(path.join(root, 'dist', 'index.js'), `
+export class ModelRuntime {
+  static create() {
+    return {
+      getModelOfType: (type, provider, id) => ({ type, provider, id }),
+      getAvailableOfType: async () => [{ id: 'jev-latest' }, { id: 'typesafe/jev-1.13' }],
+      classify: async (model, context) => {
+        const text = String(context.state.request ?? Object.values(context.state)[0] ?? '');
+        const question = context.questions.answer;
+        ${answerSource}
+        return { api: 'typesafe-system-one', provider: model.provider, model: model.id, answers: { answer }, stopReason: 'stop', timestamp: 0,
+          usage: { input: 100, output: 10, cacheRead: 0, cacheWrite: 0, totalTokens: 110, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } } };
+      },
+    };
+  }
+}
+`);
+  return path.join(root, 'bin');
+}
+
 async function runMain(
   argv: string[],
   env: NodeJS.ProcessEnv = process.env,
@@ -777,6 +803,17 @@ case "$digit" in
 esac
 echo '{"answers":{"answer":{"choice":"'$pick'"}},"usage":{"input_tokens":10,"output_tokens":2}}'`;
   const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
+  const JEV_NAMED = JEV.replace('"usage":{"input_tokens":10,"output_tokens":2}', '"model":"stub-answer-model","usage":{"input_tokens":10,"output_tokens":2}');
+  const PI_CHOICE_ANSWER = `
+    const keys = Object.keys(question.criteria);
+    const idx = keys[0] === 'pass' ? 1 : keys[0] === 'fail' ? 2 : 3;
+    const at = text.indexOf('ORDER:');
+    const digits = at === -1 ? '111' : text.slice(at + 6, at + 9);
+    const pick = digits[idx - 1] === '1' ? 'pass' : digits[idx - 1] === '2' ? 'fail' : 'block';
+    const probabilities = {};
+    for (const key of keys) probabilities[key] = key === pick ? 1 : 0;
+    const answer = { type: 'choice', choice: pick, probabilities, confidence: 0.9 };
+  `;
 
   function armRows(digits: string[]): Array<{ id: string; output: string; label: string }> {
     return digits.map((digit, index) => ({
@@ -854,6 +891,62 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}},"usage":{"input_tokens":10,"out
       fail: { pass: 0, fail: 4, block: 0, abstain: 0, unknown: 0 },
       block: { pass: 0, fail: 0, block: 3, abstain: 0, unknown: 0 },
     });
+  });
+
+  it('names the model that answered a printed judgment', async () => {
+    const outputs = writeOutputs(armRows(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']));
+    const stubs = stubDir({ jev: JEV_NAMED });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--audit-orders', '--accept-payload', '--out', out], env);
+    const calls = readCalls(out);
+    const judgmentCalls = calls.filter((call) => call.output !== null);
+
+    expect(code).toBe(0);
+    expect(lines.some((line) => line.startsWith('verdict jev: keep') && line.endsWith('model=stub-answer-model'))).toBe(true);
+    expect(calls[0].model).toBe('stub-model');
+    expect(judgmentCalls.length).toBeGreaterThan(0);
+    expect(judgmentCalls.every((call) => call.model === 'stub-answer-model')).toBe(true);
+  });
+
+  it('names the model Pi answered with and records its usage', async () => {
+    const outputs = writeOutputs(armRows(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']));
+    const stubs = stubDir({ jev: JEV });
+    const piBin = fakePiBin(PI_CHOICE_ANSWER);
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${piBin}${path.delimiter}${stubs}${path.delimiter}${process.env.PATH}`,
+      JEV_TRANSPORT: 'pi',
+    };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+    const lines: string[] = [];
+    const errs: string[] = [];
+
+    const code = await vf.main(['--outputs', outputs, '--jev', '--audit-orders', '--accept-payload', '--out', out], {
+      out: (line: string) => lines.push(line),
+      err: (line: string) => errs.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+    });
+    const calls = readCalls(out);
+    const judgmentCalls = calls.filter((call) => call.output !== null);
+
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    expect(lines.some((line) => line.startsWith('verdict jev: keep') && line.endsWith('model=typesafe/jev-latest'))).toBe(true);
+    expect(judgmentCalls).toHaveLength(36);
+    for (const call of judgmentCalls) {
+      expect(call.transport).toBe('pi');
+      expect(call.model).toBe('typesafe/jev-latest');
+      expect(call.usageTokens).toEqual({ input: 100, output: 10, total: 110 });
+    }
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.columns.jev.usageTokens).toEqual({ input: 3600, output: 360, total: 3960, callsWithUsage: 36, callsWithoutUsage: 0 });
   });
 
   it('records the selected transport on judgment calls', async () => {

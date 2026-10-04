@@ -27,6 +27,7 @@ Current state:
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
 - `post-commit`, `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry, including the stash object a `rebase --autostash` records in its sequencer directory before git re-applies it, so a conflicted (un-applied) autostash cannot be lost silently.
 - `lib/autostash-orphan-guard.sh` is the one shared helper `post-commit`, `post-merge` and `post-rewrite` all source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate; `lib/message-contract-gate.sh` gives `commit-msg` and `pre-push` the validator path and the no-node fallback.
+- Each `SPECKIT_SKIP_*` gate in `pre-commit`, `prepare-commit-msg` and `pre-push` can also stay off for good. `lib/gate-config.sh` reads git config `speckit.hooks.<key>` from local and global config (a `git -c` flag or a `GIT_CONFIG_*` variable does not count) and, for a value of `off`, `false`, `no` or `0`, sets the gate's variable for that run and prints one line naming the setting. `lib/gates.tsv` is the one list of gates and keys, and `/doctor:git hooks` lists and changes them. The per-push approvals `SPECKIT_ALLOW_REMOTE_PUSH` and `SPECKIT_ALLOW_MASS_DELETION` are marked non-persistable and never read from config, and only a trusted toolchain repository reads any setting.
 - `pre-push` runs six gates on every push. A mass-deletion ceiling blocks a destructive range. A permission gate blocks any push to a branch outside the remote allowlist unless that push is approved, and creating a branch needs the allowlist or approval naming the branch. The skill-metadata gate warns about stale generated metadata and never blocks; CI enforces it. The compiled-routing gate blocks a failing route guard, and a pushed commit that is HEAD must carry the routing bytes the guard approved. The track-root gate blocks a pushed ref whose tip's track roots do not list exactly the packets they hold. The message-contract gate re-checks every commit the push adds, meaning commits no remote-tracking ref already holds, and the name of a new branch, against the repository's templates, which is what catches a commit made with `--no-verify`. `main`, `skilled/v*` and branches in the allowlist file pass the permission gate with nothing set.
 - Each gate finds its scripts under the source root the hook selects: whichever of `.skilled` and `.opencode` holds `skills/system-spec-kit/SKILL.md`, with `.skilled` preferred. The six lifecycle hooks (`prepare-commit-msg`, `pre-commit`, `pre-push`, `post-commit`, `post-merge` and `post-rewrite`) carry the same selection block, and `tests/source-root-selection.test.sh` holds the copies identical. Because the hooks run machine-wide and a cloned repository controls its own tree, a second block, also held identical by that test, keeps the selected root only for the checkout the hooks live in (or one of its worktrees) or a repository whose local config sets `skilled.trustRepoHooks=true` (a `git -c` flag or a `GIT_CONFIG_*` variable does not count); any other repository is treated as one without the toolchain, and its scripts never run. `commit-msg` is outside that block set: it finds its validator beside the installed hook. Every staged-path filter and pathspec names both roots. Where the toolchain ships, a missing gate script never passes in silence: a gate that can block exits 1 naming the path and its bypass, and a gate that cannot block warns. Any other repository the globally installed hooks run in sees no new output and no new block beyond the message contract.
 
@@ -76,6 +77,8 @@ git-hooks/
 +-- pre-push                        # Mass-deletion, remote-permission, skill-metadata, routing, track-root and message-contract gates
 +-- lib/
 |   +-- autostash-orphan-guard.sh   # Shared autostash anchor: stash list + rebase sequencer
+|   +-- gate-config.sh              # Persistent gate settings from git config, sourced by pre-commit, prepare-commit-msg and pre-push
+|   +-- gates.tsv                   # The gate registry: hook, config key, bypass variable, persistable
 |   +-- mass-deletion-guard.sh      # Mass-deletion detection sourced by pre-push
 |   `-- message-contract-gate.sh    # Validator lookup sourced by commit-msg and pre-push
 `-- README.md
@@ -88,6 +91,7 @@ post-merge / post-rewrite → lib/autostash-orphan-guard.sh
 post-commit → $SOURCE_ROOT/hooks/shared/hook-flags.sh, $SOURCE_ROOT/bin/git-sync.sh
 pre-commit → $SOURCE_ROOT comment-hygiene checker, agent-mirror checker, mirror sync scripts, skill-advisor card-sync guard, doctor mutation-class guard, $SOURCE_ROOT/bin/compiled-route-manifest.cjs
 pre-push → $SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh (sourced for the allowlist), lib/mass-deletion-guard.sh
+pre-commit / prepare-commit-msg / pre-push → lib/gate-config.sh → lib/gates.tsv
 ```
 
 Disallowed dependency direction:
@@ -172,6 +176,8 @@ bash -n .skilled/scripts/git-hooks/post-rewrite
 bash -n .skilled/scripts/git-hooks/pre-push
 bash -n .skilled/scripts/git-hooks/prepare-commit-msg
 bash -n .opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh
+bash -n .skilled/scripts/git-hooks/lib/gate-config.sh
+bash .skilled/scripts/git-hooks/tests/gate-config.test.sh
 git commit --allow-empty -m "hook smoke"
 ```
 

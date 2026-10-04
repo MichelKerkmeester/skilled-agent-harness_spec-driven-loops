@@ -307,6 +307,5 @@ test('gate lines when a miss survives both the tail window and the wrapper rule'
   assert.deepEqual(scorer.decisionLines(rows, results), [
     'better: arm=heuristic false_met=0 false_not_met_rate=0.20',
     'gate: tail_window leaves 2 false not_met rows outside the wrapper rule',
-    'gate: jev arm also needs the three redaction cases and a recorded per-call latency, checked by hand',
   ]);
 });

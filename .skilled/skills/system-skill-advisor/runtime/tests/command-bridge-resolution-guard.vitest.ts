@@ -123,7 +123,7 @@ describe('phrase boost bound', () => {
 
   it('matches the interval the doctor skill-advisor asset declares', () => {
     const asset = readFileSync(
-      resolve(repoRoot, '.skilled/commands/doctor/assets/doctor-skill-advisor.yaml'),
+      resolve(repoRoot, '.skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml'),
       'utf8',
     );
     const match = /phrase_boost_range:\s*"\[([^,]+),\s*([^\]]+)\]"/.exec(asset);

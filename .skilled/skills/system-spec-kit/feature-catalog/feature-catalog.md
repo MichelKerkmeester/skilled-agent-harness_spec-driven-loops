@@ -119,38 +119,6 @@ See [`tooling-and-scripts/compaction-recall-census.md`](tooling-and-scripts/comp
 
 ---
 
-### Completion claim audit
-
-#### Description
-
-Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--jev` and reports one keep, kill or stop decision.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind its own switch, `--jev`, with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
-
-#### Source Files
-
-See [`tooling-and-scripts/completion-claim-audit.md`](tooling-and-scripts/completion-claim-audit.md) for full implementation and test file listings.
-
----
-
-### Debug next check
-
-#### Description
-
-Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` makes zero model calls by default and writes nothing outside `--out`. Its fixture must sit outside the repository, `--jev` sends only rows marked `jev_ok: true`, and no run on real rows has printed a `verdict` line.
-
-#### Source Files
-
-See [`tooling-and-scripts/debug-next-check.md`](tooling-and-scripts/debug-next-check.md) for full implementation and test file listings.
-
----
-
 ### Alignment suggestion measurement
 
 #### Description
@@ -769,11 +737,11 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The argv-positional `/doctor:speckit` router and the subsystem routes it dispatches to.
+The doctor routers split by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`) and the subsystem routes they dispatch to.
 
 #### Current Reality
 
-The deep-loop, update and MCP-infrastructure routes survive; the memory and causal-graph routes were removed with the engine.
+The spec-kit retrieval, skill-advisor, deep-loop, runtime-mirrors, update and MCP-infrastructure routes survive. The memory and causal-graph routes were removed with the engine, and the standalone rebuild orchestrator was removed in favor of `/doctor:skill-advisor rebuild`.
 
 #### Source Files
 
@@ -787,7 +755,7 @@ See [`doctor-commands/category-overview.md`](doctor-commands/category-overview.m
 
 #### Description
 
-Argv-positional `/doctor:speckit` router that dispatches to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest.
+Four doctor routers that dispatch to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest, where each route names its owning command.
 
 #### Current Reality
 
