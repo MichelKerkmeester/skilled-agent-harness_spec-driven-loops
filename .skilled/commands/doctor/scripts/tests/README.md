@@ -35,6 +35,7 @@ Current state:
 | `parent-skill-check-leaf-manifest.test.cjs` | `parent-skill-check.cjs` leaf-manifest checks |
 | `parent-skill-check-root-router.test.cjs` | `parent-skill-check.cjs` root-router checks |
 | `release-update.test.cjs` | `release-update.cjs`, every subcommand against throwaway git repositories |
+| `doctor-update-contract.test.cjs` | Checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine |
 | `skill-advisor-route-contract.test.cjs` | The advisor commands and flags the doctor routes invoke |
 | `check-mcp-mutation-class.test.sh` | `check-mcp-mutation-class.sh` and its manifest |
 | `doctor-runtime-bootstrap.test.sh` | `doctor-runtime-bootstrap.sh`, with `npm` and `node` stubs and no `flock` on `PATH` |

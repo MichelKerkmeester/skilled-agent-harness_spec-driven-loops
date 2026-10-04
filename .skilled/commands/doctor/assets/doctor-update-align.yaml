@@ -29,19 +29,24 @@ upstream_assets:
     gitignore_match_required: true
     engine_run_dir_must_be_under: ".skilled/release/runs"
     only_customized_conflict_removed_units_need_decisions: true
+    dry_run_writes: none
 
 user_inputs:
   action: "align"
   release: "[RELEASE] optional tag"
   scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
+  remote: "[REMOTE] optional framework remote name or repository URL"
   offline: "[OFFLINE] boolean"
+  include_prerelease: "[INCLUDE_PRERELEASE] boolean"
   dry_run: "[DRY_RUN] boolean"
 
 field_handling:
   defaults:
     release_empty: engine_default
     scope_empty: all
+    remote_empty: base_json_remote_or_origin
     offline_empty: false
+    include_prerelease_empty: false
     dry_run_empty: false
   engine_mapping:
     command: "node .skilled/commands/doctor/scripts/release-update.cjs align"
@@ -49,6 +54,7 @@ field_handling:
     json: "--json for machine-readable plan and runDir"
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
+    remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
     offline: "--offline when requested"
     include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
     dry_run: "--dry-run when requested"
@@ -86,12 +92,12 @@ workflow:
       - "Confirm the current directory is inside a git repository and the engine exists."
       - "Confirm .skilled/release/runs is the intended ignored run root with git check-ignore."
       - "Bind action flags and confirm no cross-action flag reached the workflow."
-    on_failure: "Do not load or run engine align. Show the error template and stop without writing outside a run directory."
+    on_failure: "When git check-ignore does not match the run root, show the presentation's run-root template and stop. Otherwise do not load or run engine align. Show the error template and stop without writing outside a run directory."
 
   phase_2_engine_align:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--offline] [--dry-run] [--include-prerelease]"
-    flag_rule: "Include only bound optional flags. Do not pass --out; use the engine's default unique run path below .skilled/release/runs."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--dry-run] [--include-prerelease]"
+    flag_rule: "Include only bound optional flags. Pass [--remote <value>] when supplied. Otherwise use the remote recorded in base.json, then origin. Do not pass --out; use the engine's default unique run path below .skilled/release/runs."
     parse_json_fields: [command, repo, release, releaseCommit, head, upstream, checkout, status, units, files, evidenceFiles, proposalFiles, runDir, externalRunDir, dryRun]
     dry_run_rule: "When dryRun is true, show the plan only. It creates no run directory, evidence, proposals or decisions, so do not ask for decisions or offer an apply handoff."
     run_dir_rule: "For a non-dry run, validate runDir is canonical, new, non-symlinked and gitignored before reading or writing run artifacts."
@@ -99,7 +105,7 @@ workflow:
 
   phase_3_evidence_review:
     approval: none
-    unit_filter: "Review units whose status is customized, conflict or removed. Skip current, local, update, new, blocked and unknown units; report any of these separately when present."
+    unit_filter: "Review units whose status is customized, conflict or removed. Skip current, local, update, new, blocked, downgrade and unknown units; report any of these separately when present."
     procedure:
       - "For each selected unit, collect all non-same planned files and present one consolidated decision batch for that unit."
       - "Read each plan.evidenceFiles entry and show its complete evidence card with the engine recommendation."
@@ -126,8 +132,9 @@ workflow:
 
   phase_5_summary_handoff:
     approval: none
-    summarize: "Report decisions by unit, every deferred unit and any unresolved files. Never imply deferred files are ready to apply."
-    handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json for a completed decision set."
+    summarize: "Report decisions by unit, every deferred unit and each unresolved file. An unresolved file is a take-release or conflict file in a customized, conflict or removed unit that is not deferred and has no operator decide record. A prefilled record counts as unresolved. Never imply deferred files are ready to apply."
+    handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json only when no file is unresolved. Otherwise explain that apply skips each unit with an unresolved file."
+    commit_reminder: "If an earlier apply's files and release records are not committed, say to commit them before applying this decision set."
     apply_when_no_decisions: "When the plan has no customized, conflict or removed units, offer /doctor:update apply without a decisions path."
     dry_run_handoff: "Do not offer apply from a dry-run preview because no decisions.json exists."
 

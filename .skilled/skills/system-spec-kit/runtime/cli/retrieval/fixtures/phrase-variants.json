@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c112da52232d4c1f8196342729311e3b4c637f3c10afc91e057c644221e49cfc",
+  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16884,12 +16884,6 @@
     "citation census": [
       "citation census"
     ],
-    "citation drift advisory": [
-      "citation drift advisory"
-    ],
-    "citation drift advisory check": [
-      "citation drift advisory check"
-    ],
     "citation drift build order": [
       "citation drift build order"
     ],
@@ -22667,8 +22661,14 @@
     "command contract": [
       "command contract"
     ],
+    "command contract commands filter": [
+      "command contract commands filter"
+    ],
     "command contract continuity key": [
       "command contract continuity key"
+    ],
+    "command contract merged workflow": [
+      "command contract merged workflow"
     ],
     "command contract plan": [
       "command contract plan"
@@ -23605,11 +23605,17 @@
     "completion claim audit tasks": [
       "completion claim audit tasks"
     ],
+    "completion claim census": [
+      "completion claim census"
+    ],
     "completion claim census plan": [
       "completion claim census plan"
     ],
     "completion claim census tasks": [
       "completion claim census tasks"
+    ],
+    "completion claim detector": [
+      "completion claim detector"
     ],
     "completion claim gate": [
       "completion claim gate"
@@ -25103,6 +25109,9 @@
     ],
     "coordinated launcher wal durability remediation": [
       "coordinated launcher WAL durability remediation"
+    ],
+    "copied tree support decision": [
+      "copied tree support decision"
     ],
     "copilot advisor brief": [
       "copilot advisor brief"
@@ -28258,6 +28267,9 @@
     "debug logging flag": [
       "debug logging flag"
     ],
+    "debug next check": [
+      "debug next check"
+    ],
     "debug next check census": [
       "debug next-check census"
     ],
@@ -31162,6 +31174,9 @@
     ],
     "deep research executor split": [
       "deep research executor split"
+    ],
+    "deep research executor switch": [
+      "deep research executor switch"
     ],
     "deep research fan out cli devin": [
       "deep research fan-out cli-devin"
@@ -35555,6 +35570,9 @@
     "doctor update": [
       "/doctor:update"
     ],
+    "doctor update acceptance criteria": [
+      "doctor update acceptance criteria"
+    ],
     "doctor update audit": [
       "doctor update audit"
     ],
@@ -35564,8 +35582,23 @@
     "doctor update command": [
       "doctor update command"
     ],
+    "doctor update copied tree": [
+      "doctor update copied tree"
+    ],
     "doctor update decisions": [
       "doctor update decisions"
+    ],
+    "doctor update fix plan": [
+      "doctor update fix plan"
+    ],
+    "doctor update fix tasks": [
+      "doctor update fix tasks"
+    ],
+    "doctor update fixes": [
+      "doctor update fixes"
+    ],
+    "doctor update fixes summary": [
+      "doctor update fixes summary"
     ],
     "doctor update handover": [
       "/doctor:update handover"
@@ -35588,6 +35621,15 @@
     "doctor update paths": [
       "doctor update paths"
     ],
+    "doctor update perfection": [
+      "doctor update perfection"
+    ],
+    "doctor update perfection findings": [
+      "doctor update perfection findings"
+    ],
+    "doctor update perfection research": [
+      "doctor update perfection research"
+    ],
     "doctor update redesign": [
       "doctor update redesign"
     ],
@@ -35597,17 +35639,44 @@
     "doctor update relevance": [
       "/doctor:update relevance"
     ],
+    "doctor update remediation ranking": [
+      "doctor update remediation ranking"
+    ],
+    "doctor update research": [
+      "doctor update research"
+    ],
+    "doctor update research plan": [
+      "doctor update research plan"
+    ],
+    "doctor update research summary": [
+      "doctor update research summary"
+    ],
+    "doctor update research tasks": [
+      "doctor update research tasks"
+    ],
     "doctor update scaffold": [
       "doctor update scaffold"
     ],
     "doctor update split decision": [
       "doctor update split decision"
     ],
+    "doctor update stale apply lock": [
+      "doctor update stale apply lock"
+    ],
+    "doctor update stale lock": [
+      "doctor update stale lock"
+    ],
     "doctor update tasks": [
       "doctor update tasks"
     ],
     "doctor update v3 3 hardening handover": [
       "/doctor:update v3.3 hardening handover"
+    ],
+    "doctor update verification checklist": [
+      "doctor update verification checklist"
+    ],
+    "doctor update verification evidence": [
+      "doctor update verification evidence"
     ],
     "doctor update yaml": [
       "doctor-update.yaml"
@@ -40943,6 +41012,9 @@
     "finding set stability": [
       "finding-set stability"
     ],
+    "finding table census": [
+      "finding table census"
+    ],
     "findings completeness mapping table": [
       "findings completeness mapping table"
     ],
@@ -43205,6 +43277,12 @@
     "generate candidate": [
       "generate candidate"
     ],
+    "generate command routers clean": [
+      "generate-command-routers clean"
+    ],
+    "generate command routers path drift": [
+      "generate-command-routers path drift"
+    ],
     "generate context": [
       "generate context"
     ],
@@ -44107,6 +44185,9 @@
     ],
     "goal criteria rubric rules 4 and 5": [
       "goal criteria rubric rules 4 and 5"
+    ],
+    "goal criteria rules 4 and 5": [
+      "goal criteria rules 4 and 5"
     ],
     "goal cross runtime docs": [
       "goal cross runtime docs"
@@ -49540,9 +49621,6 @@
     "jev folder suggestion improvement": [
       "jev folder suggestion improvement"
     ],
-    "jev follow ups": [
-      "jev follow-ups"
-    ],
     "jev gate": [
       "jev gate"
     ],
@@ -50295,6 +50373,9 @@
     ],
     "labeled set scorer tasks": [
       "labeled set scorer tasks"
+    ],
+    "labeled turn judgment": [
+      "labeled turn judgment"
     ],
     "labeling card criteria": [
       "labeling card criteria"
@@ -51997,6 +52078,9 @@
     ],
     "lint goal criteria": [
       "lint-goal-criteria"
+    ],
+    "lint goal criteria cjs": [
+      "lint-goal-criteria.cjs"
     ],
     "lint goal criteria completion criteria": [
       "lint-goal-criteria completion criteria"
@@ -60242,8 +60326,14 @@
     "next action verb list": [
       "next action verb list"
     ],
+    "next check choice scorer": [
+      "next check choice scorer"
+    ],
     "next check keep rule": [
       "next check keep rule"
+    ],
+    "next check label census": [
+      "next-check label census"
     ],
     "next check label gate plan": [
       "next check label gate plan"
@@ -61812,6 +61902,9 @@
     ],
     "offline hallucination grader test": [
       "offline hallucination grader test"
+    ],
+    "offline jev tie break eval": [
+      "offline jev tie-break eval"
     ],
     "offline listing": [
       "offline listing"
@@ -68840,6 +68933,9 @@
     "prefetch cache": [
       "prefetch cache"
     ],
+    "prefill consent decision": [
+      "prefill consent decision"
+    ],
     "prefix break per session": [
       "prefix break per session"
     ],
@@ -73446,6 +73542,27 @@
     ],
     "release update customization": [
       "release update customization"
+    ],
+    "release update engine audit": [
+      "release-update engine audit"
+    ],
+    "release update engine defects": [
+      "release-update engine defects"
+    ],
+    "release update engine fixes": [
+      "release-update engine fixes"
+    ],
+    "release update engine fixes shipped": [
+      "release-update engine fixes shipped"
+    ],
+    "release update engine plan": [
+      "release-update engine plan"
+    ],
+    "release update engine research": [
+      "release-update engine research"
+    ],
+    "release update engine tasks": [
+      "release-update engine tasks"
     ],
     "release update signals": [
       "release update signals"
@@ -79596,6 +79713,7 @@
       "score-compaction-recall tasks"
     ],
     "score completion claims": [
+      "score completion claims",
       "score-completion-claims"
     ],
     "score completion claims complete": [
@@ -79603,6 +79721,9 @@
     ],
     "score completion claims completion criteria": [
       "score-completion-claims completion criteria"
+    ],
+    "score completion claims mjs": [
+      "score-completion-claims.mjs"
     ],
     "score completion claims plan": [
       "score-completion-claims plan"
@@ -79635,6 +79756,7 @@
       "score-d4-agreement tasks"
     ],
     "score debug next check": [
+      "score debug next check",
       "score-debug-next-check"
     ],
     "score debug next check build": [
@@ -79642,6 +79764,9 @@
     ],
     "score debug next check completion criteria": [
       "score-debug-next-check completion criteria"
+    ],
+    "score debug next check mjs": [
+      "score-debug-next-check.mjs"
     ],
     "score debug next check tasks": [
       "score-debug-next-check tasks"
@@ -79672,6 +79797,9 @@
     ],
     "score goal lint": [
       "score-goal-lint"
+    ],
+    "score goal lint cjs": [
+      "score-goal-lint.cjs"
     ],
     "score goal lint plan": [
       "score-goal-lint plan"
@@ -79766,6 +79894,9 @@
     "score severity replay build": [
       "score-severity-replay build"
     ],
+    "score severity replay cjs": [
+      "score-severity-replay.cjs"
+    ],
     "score severity replay completion criteria": [
       "score-severity-replay completion criteria"
     ],
@@ -79778,6 +79909,9 @@
     "score stop hint build": [
       "score-stop-hint build"
     ],
+    "score stop hint cjs": [
+      "score-stop-hint.cjs"
+    ],
     "score stop hint completion criteria": [
       "score-stop-hint completion criteria"
     ],
@@ -79789,6 +79923,9 @@
     ],
     "score stop rater build": [
       "score-stop-rater build"
+    ],
+    "score stop rater cjs": [
+      "score-stop-rater.cjs"
     ],
     "score stop rater completion criteria": [
       "score-stop-rater completion criteria"
@@ -79946,6 +80083,15 @@
     ],
     "scoring rubric cross critique": [
       "scoring_rubric cross-critique"
+    ],
+    "scoring severity replay": [
+      "scoring severity replay"
+    ],
+    "scoring stop hint replay": [
+      "scoring stop-hint replay"
+    ],
+    "scoring stop rater replay": [
+      "scoring stop-rater replay"
     ],
     "scoring tasks": [
       "scoring tasks"
@@ -81428,6 +81574,9 @@
     ],
     "severity replay plan": [
       "severity replay plan"
+    ],
+    "severity replay runtime": [
+      "severity replay runtime"
     ],
     "severity replay tasks": [
       "severity replay tasks"
@@ -90512,6 +90661,15 @@
     "speckit reviewer benchmarks": [
       "SPECKIT_REVIEWER_BENCHMARKS"
     ],
+    "speckit router contract drift": [
+      "speckit router contract drift"
+    ],
+    "speckit router contract drift plan": [
+      "speckit router contract drift plan"
+    ],
+    "speckit router contract drift summary": [
+      "speckit router contract drift summary"
+    ],
     "speckit router references": [
       "speckit router references"
     ],
@@ -91694,6 +91852,12 @@
     "stop hint keep rule": [
       "stop hint keep rule"
     ],
+    "stop hint replay": [
+      "stop-hint replay"
+    ],
+    "stop hint replay runtime": [
+      "stop-hint replay runtime"
+    ],
     "stop hint tasks": [
       "stop hint tasks"
     ],
@@ -91739,8 +91903,14 @@
     "stop rater gold fixed": [
       "stop rater gold fixed"
     ],
+    "stop rater replay": [
+      "stop-rater replay"
+    ],
     "stop rater replay plan": [
       "stop rater replay plan"
+    ],
+    "stop rater replay runtime": [
+      "stop-rater replay runtime"
     ],
     "stop rater tasks": [
       "stop rater tasks"
@@ -92495,6 +92665,9 @@
     ],
     "sufficient fits goal": [
       "sufficient fits goal"
+    ],
+    "suggested order eval": [
+      "suggested order eval"
     ],
     "suggested order eval verdict": [
       "suggested order eval verdict"
@@ -95272,6 +95445,9 @@
     ],
     "tie break arm tasks": [
       "tie-break arm tasks"
+    ],
+    "tie break eval": [
+      "tie-break eval"
     ],
     "tier 1 research and remediation": [
       "tier 1 research and remediation"

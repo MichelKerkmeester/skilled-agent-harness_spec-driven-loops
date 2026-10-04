@@ -538,6 +538,76 @@ test('a graph-metadata release edit outside the derived block is taken, then reg
   assert.equal(unit(report, 'hub-a').status, 'update');
 });
 
+test('a release rename links its old and new paths', () => {
+  const oldPath = '.skilled/skills/hub-a/references/old-name.md';
+  const newPath = '.skilled/skills/hub-a/references/new-name.md';
+  const fixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [oldPath]: 'same content\n',
+    },
+    {
+      [oldPath]: null,
+      [newPath]: 'same content\n',
+    },
+  );
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0);
+  assert.equal(unit(checked.document, 'skill:hub-a').status, 'update');
+  assert.equal(runFile(checked.document, oldPath).renamedTo, newPath);
+  assert.equal(runFile(checked.document, newPath).renamedFrom, oldPath);
+
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  assert.equal(fs.existsSync(path.join(fixture.operator, oldPath)), false);
+  assert.equal(readText(fixture.operator, newPath), 'same content\n');
+
+  const editedFixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [oldPath]: 'same content\n',
+    },
+    {
+      [oldPath]: null,
+      [newPath]: 'same content\n',
+    },
+  );
+  writeFile(editedFixture.operator, oldPath, 'operator edit\n');
+  commitAll(editedFixture.operator, 'edit renamed file locally');
+  const aligned = runCli(editedFixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const oldFile = runFile(aligned.document, oldPath);
+  assert.equal(oldFile.class, 'conflict');
+  assert.equal(oldFile.conflictKind, 'deleted-in-release');
+  assert.equal(oldFile.renamedTo, newPath);
+  const evidencePath = path.join(
+    aligned.document.runDir,
+    'evidence',
+    oldPath.replace(/^\.skilled\//, '') + '.md',
+  );
+  const evidenceCard = fs.readFileSync(evidencePath, 'utf8');
+  assert.ok(evidenceCard.includes('Rename: ' + oldPath + ' -> ' + newPath));
+});
+
+test('a release change to an unregenerated leaf manifest is written', () => {
+  const fixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [HUB_A_LEAF_MANIFEST]: '{"leaves":["base"]}\n',
+    },
+    {
+      [HUB_A_LEAF_MANIFEST]: '{"leaves":["release"]}\n',
+    },
+  );
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0);
+  assert.equal(runFile(checked.document, HUB_A_LEAF_MANIFEST).class, 'take-release');
+
+  const dry = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(dry.exitCode, 0, JSON.stringify(dry.document));
+  assert.ok(dry.document.writes.some((write) => write.path === HUB_A_LEAF_MANIFEST));
+});
+
 test('a copied tree reports a recorded base after record-base', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-recorded');
@@ -566,7 +636,8 @@ test('a copied tree reports a recorded base after record-base', () => {
     assert.equal(unit(after.document, key).baseSource, 'recorded', key);
   }
   assert.equal(unit(after.document, 'hub-a').status, 'update');
-  assert.deepEqual(after.document.baseRecording.units, ['skill:hub-d']);
+  assert.deepEqual(after.document.baseRecording.units, []);
+  assert.equal(after.document.baseRecording.needed, false);
 
   const again = runCli(vendor, ...recordArgs);
   assert.equal(again.exitCode, 1);
@@ -686,7 +757,8 @@ test('a name-only base.json record reads as the one unit with that name and is r
   writeBase(fixture.operator, { 'hub-a': { release: 'v1.0.0.0' } });
   const report = runCli(fixture.operator, 'check');
   assert.equal(report.exitCode, 0, JSON.stringify(report.document));
-  assert.equal(unit(report.document, 'hub-a').baseSource, 'recorded');
+  assert.equal(unit(report.document, 'hub-a').baseSource, 'recorded-unverified');
+  assert.ok(report.document.baseRecording.units.includes('skill:hub-a'));
   const applied = runCli(fixture.operator, 'apply');
   assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
   const base = readJson(path.join(fixture.operator, '.skilled/release/base.json'));
@@ -819,7 +891,174 @@ test('apply dry-run writes nothing and apply updates only uncustomized units by 
   assert.equal(base.units['skill:hub-b'], undefined);
 });
 
-test('apply leaves customized-unit release files alone unless a decisions file is named', () => {
+test('apply binds to the dry-run release and refuses a plan that changed', () => {
+  const fixture = makeFixture();
+  const preview = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.release, 'v1.1.0.0');
+  assert.equal(preview.document.runDir, null);
+  assert.match(preview.document.planDigest, /^[0-9a-f]{64}$/);
+
+  writeFile(fixture.upstream, HUB_A_FILE, '# a reference\nThird line\n');
+  commitAll(fixture.upstream, 'third release');
+  git(fixture.upstream, ['tag', '-a', 'v1.2.0.0', '-m', 'release v1.2.0.0']);
+  const pinned = runCli(
+    fixture.operator,
+    'apply',
+    '--release',
+    'v1.1.0.0',
+    '--plan-digest',
+    preview.document.planDigest,
+  );
+  assert.equal(pinned.exitCode, 0, JSON.stringify(pinned.document));
+  assert.equal(pinned.document.release, 'v1.1.0.0');
+  assert.equal(readText(fixture.operator, HUB_A_FILE), '# a reference\nRelease line\n');
+
+  const changedFixture = makeFixture();
+  const changedPreview = runCli(changedFixture.operator, 'apply', '--dry-run');
+  assert.equal(changedPreview.exitCode, 0, JSON.stringify(changedPreview.document));
+  writeFile(changedFixture.operator, HUB_A_FILE, '# a reference\nOperator line\n');
+  commitAll(changedFixture.operator, 'change planned file');
+  const refused = runCli(
+    changedFixture.operator,
+    'apply',
+    '--plan-digest',
+    changedPreview.document.planDigest,
+  );
+  assert.equal(refused.exitCode, 1, JSON.stringify(refused.document));
+  assert.match(refused.document.error, /plan changed since the dry-run/);
+  assert.equal(fs.existsSync(path.join(changedFixture.operator, HUB_D_FILE)), false);
+
+  const malformed = runCli(changedFixture.operator, 'apply', '--plan-digest', 'xyz');
+  assert.equal(malformed.exitCode, 2);
+});
+
+test('a second apply names the uncommitted release record and the commit remedy', () => {
+  const fixture = makeFixture({ withHubBRelease: true });
+  ignoreRuns(fixture.operator);
+  const firstApply = runCli(fixture.operator, 'apply');
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const adoptRelease = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    HUB_B_RELEASE_FILE,
+    'adopt-release',
+  );
+  assert.equal(adoptRelease.exitCode, 0, JSON.stringify(adoptRelease.document));
+  const keepLocal = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    CHILD_FILE,
+    'keep-local',
+  );
+  assert.equal(keepLocal.exitCode, 0, JSON.stringify(keepLocal.document));
+
+  const secondApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(aligned.document.runDir, 'decisions.json'),
+  );
+  assert.equal(secondApply.exitCode, 1);
+  assert.match(secondApply.document.error, /\.skilled\/release\/base\.json/);
+  assert.match(secondApply.document.error, /Commit it/);
+});
+
+test('a bare apply refuses an alignment run that holds operator decisions', () => {
+  const fixture = makeFixture({ withHubBRelease: true });
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const decision = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    HUB_B_RELEASE_FILE,
+    'adopt-release',
+  );
+  assert.equal(decision.exitCode, 0, JSON.stringify(decision.document));
+
+  const bareApply = runCli(fixture.operator, 'apply');
+  assert.equal(bareApply.exitCode, 1);
+  assert.match(bareApply.document.error, /holds operator decisions/);
+  assert.match(bareApply.document.error, /--decisions/);
+  assert.equal(fs.existsSync(path.join(aligned.document.runDir, 'rollback.json')), false);
+
+  const decidedApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(aligned.document.runDir, 'decisions.json'),
+  );
+  assert.equal(decidedApply.exitCode, 0, JSON.stringify(decidedApply.document));
+});
+
+test('an explicit older release reports downgrade and apply leaves the unit alone', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const firstApply = runCli(fixture.operator, 'apply');
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+  commitAll(fixture.operator, 'record installed release');
+
+  const olderCheck = runCli(fixture.operator, 'check', '--release', 'v1.0.0.0');
+  assert.equal(olderCheck.exitCode, 0, JSON.stringify(olderCheck.document));
+  assert.equal(unit(olderCheck.document, 'skill:hub-a').status, 'downgrade');
+
+  const olderApply = runCli(fixture.operator, 'apply', '--release', 'v1.0.0.0');
+  assert.equal(olderApply.exitCode, 0, JSON.stringify(olderApply.document));
+  assert.ok(olderApply.document.skippedUnits.some((entry) => (
+    entry.unit === 'skill:hub-a' && entry.reason === 'downgrade'
+  )));
+  assert.equal(readText(fixture.operator, HUB_A_FILE), '# a reference\nRelease line\n');
+});
+
+test(
+  'regenerated trigger-index and route manifests are generated and name their generators',
+  () => {
+    const triggerIndex = '.skilled/skills/system-spec-kit/runtime/data/trigger-index.json';
+    const reference = '.skilled/skills/system-spec-kit/references/r.md';
+    const routeManifest = '.skilled/bin/lib/compiled-routing/013-live-activation/'
+      + 'activation/sk-doc/manifest.json';
+    const binTool = '.skilled/bin/tool.cjs';
+    const fixture = makePair(
+      {
+        '.skilled/skills/system-spec-kit/SKILL.md': '# system-spec-kit\n',
+        [triggerIndex]: '{"v":1}\n',
+        [reference]: 'base\n',
+        [routeManifest]: '{"generation":1}\n',
+        [binTool]: 'base\n',
+      },
+      {
+        [reference]: 'release\n',
+        [binTool]: 'release\n',
+      },
+    );
+    writeFile(fixture.operator, triggerIndex, '{"v":2}\n');
+    writeFile(fixture.operator, routeManifest, '{"generation":2}\n');
+    commitAll(fixture.operator, 'regenerate derived files');
+
+    const checked = runCli(fixture.operator, 'check');
+    assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+    assert.equal(runFile(checked.document, triggerIndex).class, 'generated');
+    assert.equal(runFile(checked.document, routeManifest).class, 'generated');
+    assert.equal(unit(checked.document, 'skill:system-spec-kit').status, 'update');
+    assert.equal(unit(checked.document, 'directory:bin').status, 'update');
+
+    const preview = runCli(fixture.operator, 'apply', '--dry-run');
+    assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+    const writes = preview.document.writes.map((entry) => entry.path);
+    assert.ok(writes.includes(reference));
+    assert.ok(writes.includes(binTool));
+    assert.ok(!writes.includes(triggerIndex));
+    assert.ok(!writes.includes(routeManifest));
+    const generators = preview.document.followUps.regenerate.map((entry) => entry.generator);
+    assert.ok(generators.some((generator) => /generate-trigger-index\.mjs/.test(generator)));
+    assert.ok(generators.some((generator) => /compiled-route-manifest\.cjs/.test(generator)));
+  },
+);
+
+test('apply writes a customized unit only after decide records its release files', () => {
   const defaultFixture = makeFixture({ withHubBRelease: true });
   const defaultAlignment = runCli(defaultFixture.operator, 'align');
   assert.equal(defaultAlignment.exitCode, 0);
@@ -833,9 +1072,94 @@ test('apply leaves customized-unit release files alone unless a decisions file i
   const decidedAlignment = runCli(decidedFixture.operator, 'align');
   assert.equal(decidedAlignment.exitCode, 0);
   const decisionsPath = path.join(decidedAlignment.document.runDir, 'decisions.json');
+  const preview = runCli(decidedFixture.operator, 'apply', '--decisions', decisionsPath, '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.ok(preview.document.skippedUnits.some((entry) => (
+    entry.unit === 'skill:hub-b' && entry.reason === 'no decisions'
+  )));
+  assert.ok(!preview.document.writes.some((write) => write.path === HUB_B_RELEASE_FILE));
+  assert.equal(readText(decidedFixture.operator, HUB_B_RELEASE_FILE), 'base-managed\n');
+
+  const decided = decideFile(
+    decidedFixture.operator,
+    decidedAlignment.document.runDir,
+    HUB_B_RELEASE_FILE,
+    'adopt-release',
+  );
+  assert.equal(decided.exitCode, 0, JSON.stringify(decided.document));
   const decidedApply = runCli(decidedFixture.operator, 'apply', '--decisions', decisionsPath);
   assert.equal(decidedApply.exitCode, 0, JSON.stringify(decidedApply.document));
   assert.equal(readText(decidedFixture.operator, HUB_B_RELEASE_FILE), 'release-managed\n');
+});
+
+test('apply skips a unit whose changing files are only partly decided and keeps its base', () => {
+  const fixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      '.skilled/skills/hub-a/references/a.md': 'base a\n',
+      '.skilled/skills/hub-a/references/b.md': 'base b\n',
+    },
+    {
+      '.skilled/skills/hub-a/references/a.md': 'release a\n',
+      '.skilled/skills/hub-a/references/b.md': 'release b\n',
+    },
+  );
+  const aFile = '.skilled/skills/hub-a/references/a.md';
+  const bFile = '.skilled/skills/hub-a/references/b.md';
+  writeFile(fixture.operator, aFile, 'operator a\n');
+  commitAll(fixture.operator, 'customize one file');
+  ignoreRuns(fixture.operator);
+
+  const firstAlignment = runCli(fixture.operator, 'align');
+  assert.equal(firstAlignment.exitCode, 0, JSON.stringify(firstAlignment.document));
+  const firstDecision = decideFile(
+    fixture.operator,
+    firstAlignment.document.runDir,
+    aFile,
+    'keep-local',
+  );
+  assert.equal(firstDecision.exitCode, 0, JSON.stringify(firstDecision.document));
+  const firstApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(firstAlignment.document.runDir, 'decisions.json'),
+  );
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+  assert.deepEqual(firstApply.document.skippedUnits, [
+    { unit: 'skill:hub-a', reason: 'undecided files', paths: [bFile] },
+  ]);
+  assert.equal(readText(fixture.operator, bFile), 'base b\n');
+  assert.equal(readJson(path.join(fixture.operator, '.skilled/release/base.json')).units['skill:hub-a'], undefined);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/divergence.json')), false);
+
+  commitAll(fixture.operator, 'record partial decision result');
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  const hub = unit(checked.document, 'skill:hub-a');
+  assert.equal(hub.status, 'conflict');
+  assert.equal(runFile(checked.document, bFile).class, 'take-release');
+
+  const secondAlignment = runCli(fixture.operator, 'align');
+  assert.equal(secondAlignment.exitCode, 0, JSON.stringify(secondAlignment.document));
+  const secondDecision = decideFile(
+    fixture.operator,
+    secondAlignment.document.runDir,
+    bFile,
+    'adopt-release',
+  );
+  assert.equal(secondDecision.exitCode, 0, JSON.stringify(secondDecision.document));
+  const secondApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(secondAlignment.document.runDir, 'decisions.json'),
+  );
+  assert.equal(secondApply.exitCode, 0, JSON.stringify(secondApply.document));
+  assert.deepEqual(secondApply.document.skippedUnits, [
+    { unit: 'skill:hub-a', reason: 'undecided files', paths: [aFile] },
+  ]);
+  assert.equal(readText(fixture.operator, bFile), 'base b\n');
 });
 
 test('apply without a run plans update and new units and refuses decisions without a run', () => {
@@ -905,6 +1229,28 @@ test('rollback restores prior bytes and removes files added by apply', () => {
   assert.deepEqual(fs.readFileSync(path.join(fixture.operator, HUB_A_FILE)), beforeA);
   assert.equal(fs.existsSync(path.join(fixture.operator, HUB_D_FILE)), false);
   assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/base.json')), false);
+});
+
+test('rollback --dry-run previews restored and skipped paths and writes nothing', () => {
+  const fixture = makeFixture();
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  const runDir = applied.document.runDir;
+
+  const preview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.dryRun, true);
+  assert.ok(preview.document.restored.includes(HUB_A_FILE));
+  assert.ok(preview.document.restored.includes(HUB_D_FILE));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+
+  writeFile(fixture.operator, HUB_A_FILE, 'edited after apply\n');
+  const secondPreview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
+  assert.equal(secondPreview.exitCode, 0, JSON.stringify(secondPreview.document));
+  assert.ok(secondPreview.document.skipped.includes(HUB_A_FILE));
+  assert.equal(readText(fixture.operator, HUB_A_FILE), 'edited after apply\n');
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
 });
 
 test('apply and rollback preserve executable mode and symlink targets', () => {
@@ -1040,6 +1386,139 @@ test('apply refuses a --release mismatch, a held lock and an already applied run
   assert.equal(again.exitCode, 1);
   assert.match(again.document.error, /already applied/);
   assert.match(again.document.error, /align/);
+});
+
+test('a signal while the apply lock is held cannot strand the lock', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const preload = path.join(fixture.root, 'terminate-on-lock.cjs');
+  fs.writeFileSync(preload, [
+    "const fs = require('node:fs');",
+    'const originalOpenSync = fs.openSync;',
+    'fs.openSync = function openSync(filePath, flags, ...args) {',
+    '  const descriptor = originalOpenSync.call(fs, filePath, flags, ...args);',
+    "  if (filePath.endsWith('.apply.lock') && flags === 'wx') process.kill(process.pid, 'SIGTERM');",
+    '  return descriptor;',
+    '};',
+  ].join('\n') + '\n');
+
+  const applied = spawnSync(process.execPath, [
+    '--require',
+    preload,
+    SCRIPT_PATH,
+    'apply',
+    '--repo',
+    fixture.operator,
+    '--json',
+  ], { encoding: 'utf8' });
+  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
+    JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
+  assert.equal(fs.existsSync(lock), false);
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
+
+  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
+  assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
+});
+
+test('a signal deferred during apply still ends the process after the lock is released', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const preload = path.join(fixture.root, 'terminate-on-lock.cjs');
+  fs.writeFileSync(preload, [
+    "const fs = require('node:fs');",
+    'const originalOpenSync = fs.openSync;',
+    'fs.openSync = function openSync(filePath, flags, ...args) {',
+    '  const descriptor = originalOpenSync.call(fs, filePath, flags, ...args);',
+    "  if (filePath.endsWith('.apply.lock') && flags === 'wx') process.kill(process.pid, 'SIGTERM');",
+    '  return descriptor;',
+    '};',
+  ].join('\n') + '\n');
+
+  const applied = spawnSync(process.execPath, [
+    '--require',
+    preload,
+    SCRIPT_PATH,
+    'apply',
+    '--repo',
+    fixture.operator,
+    '--json',
+  ], { encoding: 'utf8' });
+  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  assert.equal(fs.existsSync(lock), false);
+  assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
+    JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
+
+  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
+  assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
+});
+
+test('a stale apply lock is reported with its recovery and only unlock clears it', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  const runDir = applied.document.runDir;
+  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  const deadPid = spawnSync(process.execPath, ['-e', '']).pid;
+  writeFile(fixture.operator, '.skilled/release/.apply.lock', JSON.stringify({
+    pid: deadPid,
+    startedAt: '2026-01-01T00:00:00.000Z',
+    command: 'apply',
+    runDir,
+  }) + '\n');
+
+  const blockedApply = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(blockedApply.exitCode, 1);
+  assert.match(blockedApply.document.error, /apply lock already exists/);
+  assert.match(blockedApply.document.error, /stale/);
+  assert.match(blockedApply.document.error, /unlock/);
+  assert.ok(blockedApply.document.error.includes(runDir));
+
+  const blockedRollback = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(blockedRollback.exitCode, 1);
+  assert.match(blockedRollback.document.error, /stale/);
+
+  const preview = runCli(fixture.operator, 'unlock', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.lock, 'stale');
+  assert.equal(preview.document.removable, true);
+  assert.equal(preview.document.rollbackRecorded, true);
+  assert.equal(preview.document.removed, false);
+  assert.ok(fs.existsSync(lock));
+
+  const unlocked = runCli(fixture.operator, 'unlock');
+  assert.equal(unlocked.exitCode, 0, JSON.stringify(unlocked.document));
+  assert.equal(unlocked.document.removed, true);
+  assert.equal(fs.existsSync(lock), false);
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
+
+  writeFile(fixture.operator, '.skilled/release/.apply.lock', JSON.stringify({
+    pid: process.pid,
+    startedAt: new Date().toISOString(),
+    command: 'apply',
+    runDir,
+  }) + '\n');
+  const live = runCli(fixture.operator, 'unlock');
+  assert.equal(live.exitCode, 1);
+  assert.match(live.document.error, /held by running process/);
+  assert.equal(fs.existsSync(lock), true);
+
+  writeFile(fixture.operator, '.skilled/release/.apply.lock', '{}\n');
+  const unknown = runCli(fixture.operator, 'unlock');
+  assert.equal(unknown.exitCode, 1);
+  assert.match(unknown.document.error, /no readable owner/);
+  assert.equal(fs.existsSync(lock), true);
 });
 
 test('a write failure partway through apply names the rollback command for its run', {
@@ -1199,6 +1678,118 @@ test('vendored tree infers the release base without shared history', () => {
   assert.equal(report.document.upstream.latest, 'v1.1.0.0');
   assert.equal(unit(report.document, 'hub-a').baseSource, 'inferred');
   assert.equal(unit(report.document, 'hub-a').status, 'update');
+});
+
+test('a copied tree names its framework remote once and later checks use it', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-remote');
+  const emptyRemote = path.join(fixture.root, 'operator-upstream.git');
+  git(fixture.root, ['init', '--bare', '-q', emptyRemote]);
+  git(vendor, ['remote', 'add', 'origin', emptyRemote]);
+
+  const withoutFrameworkRemote = runCli(vendor, 'check');
+  assert.equal(withoutFrameworkRemote.exitCode, 0,
+    JSON.stringify(withoutFrameworkRemote.document));
+  assert.equal(withoutFrameworkRemote.document.upstream.status, 'unknown');
+  assert.match(withoutFrameworkRemote.document.upstream.error,
+    /lists no stable vN\.N\.N\.N release tags/);
+
+  const namedRemote = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(namedRemote.exitCode, 0, JSON.stringify(namedRemote.document));
+  assert.ok(namedRemote.document.baseRecording.action.includes('--remote'));
+
+  const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  const basePath = path.join(vendor, '.skilled/release/base.json');
+  assert.equal(readJson(basePath).remote, fixture.upstream);
+  commitAll(vendor, 'record the framework remote');
+
+  const after = runCli(vendor, 'check');
+  assert.equal(after.exitCode, 0, JSON.stringify(after.document));
+  assert.equal(after.document.upstream.latest, 'v1.1.0.0');
+  assert.equal(unit(after.document, 'skill:hub-a').status, 'update');
+  assert.equal(unit(after.document, 'skill:hub-a').baseSource, 'recorded');
+
+  const rejectedFlag = runCli(vendor, 'check', '--remote=-uevil');
+  assert.equal(rejectedFlag.exitCode, 2);
+
+  const base = readJson(basePath);
+  base.remote = '-uevil';
+  fs.writeFileSync(basePath, JSON.stringify(base, null, 2) + '\n');
+  const rejectedRecord = runCli(vendor, 'check');
+  assert.equal(rejectedRecord.exitCode, 1);
+  assert.match(rejectedRecord.document.error, /base\.json remote/);
+});
+
+test('the shipped release ignore rule covers runs and the apply lock but not base records', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-ignore-'));
+  fixtureRoots.add(root);
+  git(root, ['init', '-q']);
+  const ignoreSource = path.join(__dirname, '..', '..', '..', '..', 'release', '.gitignore');
+  const ignoreTarget = path.join(root, '.skilled/release/.gitignore');
+  fs.mkdirSync(path.dirname(ignoreTarget), { recursive: true });
+  fs.copyFileSync(ignoreSource, ignoreTarget);
+
+  for (const filePath of ['.skilled/release/runs/x', '.skilled/release/.apply.lock']) {
+    const result = spawnSync('git', ['check-ignore', '-q', filePath], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, filePath);
+  }
+  for (const filePath of ['.skilled/release/base.json', '.skilled/release/divergence.json']) {
+    const result = spawnSync('git', ['check-ignore', '-q', filePath], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 1, filePath);
+  }
+});
+
+test('a copied tree needs no further base recording after record-base and a commit', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-base-recorded');
+  const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  commitAll(vendor, 'record the installed framework base');
+
+  const checked = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.equal(checked.document.baseRecording.needed, false);
+  assert.deepEqual(checked.document.baseRecording.units, []);
+  assert.equal(checked.document.units.some((entry) => entry.key === 'directory:release'), false);
+});
+
+test('record-base refuses a release that is not the nearest to the local tree', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-nearest-release');
+  const refused = runCli(vendor, 'record-base', '--release', 'v1.1.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(refused.exitCode, 1);
+  assert.match(refused.document.error, /not the nearest/);
+  assert.match(refused.document.error, /skill:hub-a/);
+  assert.match(refused.document.error, /v1\.0\.0\.0/);
+  assert.equal(fs.existsSync(path.join(vendor, '.skilled/release/base.json')), false);
+
+  const dryRun = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream, '--dry-run');
+  assert.equal(dryRun.exitCode, 0, JSON.stringify(dryRun.document));
+  assert.equal(dryRun.document.verified, true);
+
+  const trusted = runCli(vendor, 'record-base', '--release', 'v1.1.0.0',
+    '--remote', fixture.upstream, '--trust-release');
+  assert.equal(trusted.exitCode, 0, JSON.stringify(trusted.document));
+  assert.equal(trusted.document.verified, false);
+
+  const offline = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0', '--offline');
+  assert.equal(offline.exitCode, 1);
+  assert.match(offline.document.error, /--trust-release/);
+  const offlineTrusted = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0',
+    '--offline', '--trust-release');
+  assert.equal(offlineTrusted.exitCode, 0, JSON.stringify(offlineTrusted.document));
+  assert.equal(offlineTrusted.document.verified, false);
 });
 
 test('record-base --dry-run names the units it would record and writes nothing', () => {

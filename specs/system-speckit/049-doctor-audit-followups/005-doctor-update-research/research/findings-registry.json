@@ -1,0 +1,1012 @@
+{
+  "sessionId": "2026-10-03T19:12:55.598Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-does-each-workflow-check-align-apply-promise-only-what-release-update-cjs-act",
+      "inboxId": null,
+      "text": "Q1: Does each workflow (check, align, apply) promise only what release-update.cjs actually does: flags, exit codes, outputs, unit keys, locking, rollback?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-does-release-update-cjs-behave-correctly-in-real-operator-scenarios-vendored-",
+      "inboxId": null,
+      "text": "Q2: Does release-update.cjs behave correctly in real operator scenarios (vendored tree without tags, offline, prereleases, renamed, deleted, binary or generated files, partial or interrupted apply, rollback), and does a test cover each?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-do-update-md-and-doctor-update-presentation-txt-meet-the-sk-create-command-co",
+      "inboxId": null,
+      "text": "Q3: Do update.md and doctor-update-presentation.txt meet the sk-create-command contract (thin router, presentation split, approval gates, dry-run, rollback), and do they agree with the workflows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-is-customization-handling-sound-end-to-end-base-recording-three-way-merge-pro",
+      "inboxId": null,
+      "text": "Q4: Is customization handling sound end to end: base recording, three-way merge, provenance, hashes; align never writes skill bodies; apply applies only accepted decisions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-what-else-blocks-a-safe-end-to-end-update-for-an-operator-install-and-sync-sc",
+      "inboxId": null,
+      "text": "Q5: What else blocks a safe end-to-end update for an operator (install and sync scripts, post-apply rebuild and reindex, docs, recovery), ranked by severity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-does-each-workflow-check-align-apply-promise-only-what-release-update-cjs-act",
+      "inboxId": null,
+      "text": "Q1: Does each workflow (check, align, apply) promise only what release-update.cjs actually does: flags, exit codes, outputs, unit keys, locking, rollback?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-2-q2-does-release-update-cjs-behave-correctly-in-real-operator-scenarios-vendored-",
+      "inboxId": null,
+      "text": "Q2: Does release-update.cjs behave correctly in real operator scenarios (vendored tree without tags, offline, prereleases, renamed, deleted, binary or generated files, partial or interrupted apply, rollback), and does a test cover each?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-do-update-md-and-doctor-update-presentation-txt-meet-the-sk-create-command-co",
+      "inboxId": null,
+      "text": "Q3: Do update.md and doctor-update-presentation.txt meet the sk-create-command contract (thin router, presentation split, approval gates, dry-run, rollback), and do they agree with the workflows?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-q4-is-customization-handling-sound-end-to-end-base-recording-three-way-merge-pro",
+      "inboxId": null,
+      "text": "Q4: Is customization handling sound end to end: base recording, three-way merge, provenance, hashes; align never writes skill bodies; apply applies only accepted decisions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-what-else-blocks-a-safe-end-to-end-update-for-an-operator-install-and-sync-sc",
+      "inboxId": null,
+      "text": "Q5: What else blocks a safe end-to-end update for an operator (install and sync scripts, post-apply rebuild and reindex, docs, recovery), ranked by severity?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q1: Complete the field-by-field check of every workflow promise against engine exit codes, report fields, unit keys, lock behavior and rollback outcomes. The prerelease binding gap is established, but the full contract matrix remains open.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Finish the scenario matrix, especially abrupt interruption recovery, renames, offline align/apply and generated files outside the recognized patterns.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Inspect install and sync scripts, post-apply rebuild/reindex behavior, documentation and recovery paths.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Verify customization base recording, three-way merge provenance, hashes and decision-only apply behavior end to end.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Do update.md and doctor-update-presentation.txt meet the sk-create-command contract (thin router, presentation split, approval gates, dry-run, rollback), and do they agree with the workflows?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Does each workflow (check, align, apply) promise only what `release-update.cjs` actually does: flags, exit codes, outputs, unit keys, locking, rollback?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Is customization handling sound end to end: base recording, three-way merge, provenance, hashes; align never writes skill bodies; apply applies only accepted decisions?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: What else blocks a safe end-to-end update for an operator (install and sync scripts, post-apply rebuild and reindex, docs, recovery), ranked by severity?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Does release-update.cjs behave correctly in real operator scenarios (vendored tree without tags, offline, prereleases, renamed, deleted, binary or generated files, partial or interrupted apply, rollback), and does a test cover each?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Does each workflow (check, align, apply) promise only what release-update.cjs actually does: flags, exit codes, outputs, unit keys, locking, rollback?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1, Q2, Q3 and Q5 remain outside this iteration's focus.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The practical impact of tree-less legacy base records with mutable release tags was not reproduced; the code path is confirmed, but the resulting misclassification is not measured.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1-Q4 remain for the other iterations; this pass answered Q5 only.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the five key questions remain open. Unverified residue: P2-H and P2-I need a reproducing fixture; the iteration-5 copied-tree documentation claim was not re-read.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-p1-hard-interruption-can-strand-the-apply-lock",
+      "text": "P1: Hard interruption can strand the apply lock",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-p2-align-and-apply-do-not-declare-the-prerelease-input-they-map",
+      "text": "P2: Align and apply do not declare the prerelease input they map",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-p2-the-router-repeats-next-step-wording-owned-by-the-presentation-asset",
+      "text": "P2: The router repeats next-step wording owned by the presentation asset",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/workflows/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md"
+      ]
+    },
+    {
+      "id": "finding-2-11-binary-nul-invalid-utf-8-files-conflict-nul-bytes-are-covered-valid-utf-8-binary",
+      "text": "**Binary:** NUL/invalid-UTF-8 files conflict; NUL bytes are covered, valid-UTF-8 binary is not (`release-update.cjs:555-560,645-663`; `release-update.test.cjs:985-1015`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-10-deletions-unedited-deleted-files-are-take-release-locally-edited-deleted-files-c",
+      "text": "**Deletions:** unedited deleted files are `take-release`; locally edited deleted files conflict and need an explicit decision (`release-update.cjs:645-663`). Both file paths are covered (`release-update.test.cjs:588-601,985-1015`); whole-unit removal is reported separately (`release-update.test.cjs:446-455`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-12-generated-listed-artifacts-are-marked-for-regeneration-other-paths-are-ordinary-",
+      "text": "**Generated:** listed artifacts are marked for regeneration; other paths are ordinary files. Leaf manifest and graph metadata are tested; trigger-index patterns are not (`release-update.cjs:79-100,681-723`; `release-update.test.cjs:503-539`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-7-offline-safely-returns-unknown-blocked-without-local-evidence-cannot-discover-a-",
+      "text": "**Offline:** safely returns unknown/blocked without local evidence; cannot discover a remote release. Partially tested for an unresolvable recorded release (`release-update.test.cjs:603-617`), not for tagless vendor plus offline.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-1-p1-abrupt-apply-termination-can-strand-the-lock-needed-for-rollback-apply-acquir",
+      "text": "**P1 — Abrupt apply termination can strand the lock needed for rollback.** Apply acquires an exclusive lock (`release-update.cjs:1775-1794`), writes `rollback.json` before its per-file write loop (`release-update.cjs:1883-1902`), and removes the lock only in `finally` (`release-update.cjs:1903-1905`). Rollback also needs that lock (`release-update.cjs:2035-2036`). The partial-write test covers a caught filesystem error, verifies the lock is gone, then rolls back (`release-update.test.cjs:1045-1071`). **Inference:** abrupt process termination skips JavaScript cleanup, leaving a lock that blocks rollback; the CLI entrypoint has no signal cleanup or stale-owner recovery (`release-update.cjs:2177-2195`). A hard-kill fixture would confirm this boundary.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-3-p2-generated-file-handling-is-a-closed-path-allowlist-four-generated-path-classe",
+      "text": "**P2 — Generated-file handling is a closed path allowlist.** Four generated path classes are recognized (`release-update.cjs:79-100`); other generated outputs fall through to ordinary customization/conflict classification. Tests cover locally regenerated leaf manifests and graph metadata, plus authored graph-metadata edits (`release-update.test.cjs:503-539`), but not trigger-index artifacts or other generated paths. This is conservative, yet can make regeneration noise look like customization.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-5-p2-offline-plus-a-tagless-vendor-fails-closed-but-that-combination-is-untested-o",
+      "text": "**P2 — Offline plus a tagless vendor fails closed, but that combination is untested.** Offline mode suppresses remote tag lookup and fetch (`release-update.cjs:739-756`). Without local release/base evidence, units are `blocked` and the overall status is `unknown` (`release-update.cjs:907-920,1098-1105`). The existing offline test checks that an unrelated directory unit remains visible when a recorded release cannot resolve (`release-update.test.cjs:603-617`); it does not cover a tagless vendor with no network.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-4-p2-rename-handling-is-path-based-and-has-no-direct-rename-test-the-report-joins-",
+      "text": "**P2 — Rename handling is path-based and has no direct rename test.** The report joins entries by exact path (`release-update.cjs:1015-1058`), so a same-unit rename is treated as deletion plus addition. Separate changelog deletion/addition is tested (`release-update.test.cjs:588-601`), but no rename operation or locally edited rename is exercised. A whole-unit rename reports the old unit as `removed` (`release-update.cjs:907-920`); apply automatically handles only `update` and `new` units, leaving removal to explicit decisions (`release-update.cjs:1680-1696`). This is cautious but can leave the old unit until the operator accepts deletion.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-2-p2-valid-utf-8-nul-free-binary-content-can-reach-text-merging-isbinary-detects-n",
+      "text": "**P2 — Valid-UTF-8, NUL-free binary content can reach text merging.** `isBinary` detects NUL bytes or invalid UTF-8 only (`release-update.cjs:555-560`), and otherwise `classifyFile` can use a line merge (`release-update.cjs:645-663`). The binary test uses NUL-containing bytes (`release-update.test.cjs:985-1015`). **Inference:** some binary formats with valid UTF-8 and no NUL could be misclassified; a representative fixture is needed to confirm the merge risk.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-13-partial-apply-a-caught-write-failure-leaves-a-rollback-record-and-the-normal-exc",
+      "text": "**Partial apply:** a caught write failure leaves a rollback record and the normal exception path removes the lock; tested with a permission-induced failure and rollback (`release-update.cjs:1883-1905`; `release-update.test.cjs:1045-1071`). Hard interruption is untested and can strand the lock.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-8-prereleases-stable-is-default-include-prerelease-opts-in-with-numeric-release-an",
+      "text": "**Prereleases:** stable is default; `--include-prerelease` opts in, with numeric release and prerelease ordering (`release-update.cjs:154-201,252-259,739-750`). Covered (`release-update.test.cjs:362-399,576-585`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-9-renames-same-unit-file-moves-reduce-to-delete-plus-add-whole-unit-removal-needs-",
+      "text": "**Renames:** same-unit file moves reduce to delete plus add; whole-unit removal needs explicit decisions. No direct rename test; only separate add/delete coverage (`release-update.test.cjs:588-601`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-14-rollback-restores-unchanged-after-apply-paths-skips-later-edits-preserves-modes-",
+      "text": "**Rollback:** restores unchanged-after-apply paths, skips later edits, preserves modes/symlinks, and serializes with apply (`release-update.cjs:1797-1822,2015-2061`). Normal restoration, modes/symlinks, and edited-after-apply behavior are covered (`release-update.test.cjs:895-925,1123-1136`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-2-6-vendored-tree-without-tags-works-when-a-remote-is-reachable-remote-tags-are-quer",
+      "text": "**Vendored tree without tags:** works when a remote is reachable: remote tags are queried and missing commits fetched, then base inference compares trees (`release-update.cjs:743-755,793-836`). Covered using a no-history vendor and explicit local-path `--remote` (`release-update.test.cjs:1194-1202`). `record-base` requires the installed release named when no local tag exists (`release-update.cjs:1971-1980`; `release-update.test.cjs:541-568`).",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/release-update.cjs`",
+        "`.skilled/commands/doctor/scripts/tests/release-update.test.cjs`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-config.json`",
+        "`specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md`",
+        "`.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md`"
+      ]
+    },
+    {
+      "id": "finding-3-5-p2-read-only-does-not-disclose-git-metadata-writes",
+      "text": "P2: “Read-only” does not disclose Git metadata writes",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-p2-apply-dry-run-claims-no-writes-but-writes-a-state-log",
+      "text": "P2: Apply dry-run claims no writes but writes a state log",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-p2-cancellation-is-recorded-as-a-decline",
+      "text": "P2: Cancellation is recorded as a decline",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-p2-router-argument-metadata-differs-from-the-canonical-command-contract",
+      "text": "P2: Router argument metadata differs from the canonical command contract",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-p2-the-tool-grant-includes-two-unexplained-capabilities",
+      "text": "P2: The tool grant includes two unexplained capabilities",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-p2-apply-acceptance-is-a-workflow-gate",
+      "text": "P2: Apply acceptance is a workflow gate",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-p2-legacy-base-records-can-lack-a-fingerprint",
+      "text": "P2: Legacy base records can lack a fingerprint",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-p1-interrupted-apply-can-strand-a-partial-checkout-behind-an-un-clearable-docume",
+      "text": "**P1 — Interrupted apply can strand a partial checkout behind an un-clearable documented lock.** The engine creates .skilled/release/.apply.lock exclusively and stores pid/start time (release-update.cjs:1775-1794), writes rollback.json before applying files one at a time (1889-1902), then releases the lock in finally (1903-1905). **Inference:** forced termination such as SIGKILL bypasses JavaScript finally. The workflow refuses an existing lock and says not to remove it (doctor-update-apply.yaml:98, 129-131), while engine rollback must acquire that same lock (release-update.cjs:2035-2059). The documented recovery path therefore cannot reach rollback after a forced interruption; a partial tree may remain, and the phase-based terminal state record is bypassed (doctor-update-apply.yaml:191-195). Add a verified stale-owner recovery path before resuming or rolling back, and cover interruption recovery.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-p2-a-copied-skilled-tree-has-no-clear-documented-acquisition-sync-route-public-r",
+      "text": "**P2 — A copied .skilled tree has no clear documented acquisition/sync route.** Public release docs say consuming projects use an .opencode symlink and that the old sync step is eliminated (PUBLIC-RELEASE.md:3, 21-28, 74-76). The .skilled/bin inventory says git-sync.sh publishes committed work to the live branch for CI (README.md:27; git-sync.sh:3-9), while the scripts inventory says its install entrypoint installs Git hooks (scripts/README.md:16, 22-28; install-git-hooks.sh:2-16). In contrast, /doctor:update documents a first run after copying/installing .skilled and the required base recording, but not how a copied tree acquires the next release (update.md:68; doctor-update-presentation.txt:82-88). Clarify the supported deployment mode and the release source/update path for copied trees.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-p2-the-release-note-index-is-stale-it-says-current-top-level-entries-stop-at-v4-",
+      "text": "**P2 — The release-note index is stale.** It says current top-level entries stop at v4.0.0.2 and identifies .2 as upcoming (changelog/skilled/README.md:22-25), but v4.0.0.3.md is present and titled v4.0.0.3 (v4.0.0.3.md:2, 12). Refresh the index to keep installed-release identification and release-note lookup reliable.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-followups-regeneratehubs-holds-hub-names-source-skilled-commands-doctor-scripts-",
+      "text": "`followUps.regenerateHubs` holds hub names [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1946], while the battery command takes `<hub-dir>` [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:137-138].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-1-check-s-state-schema-promises-upstream-status-available-unknown-offline-source-s",
+      "text": "Check's state schema promises `upstream_status: available|unknown|offline` [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:79]; the engine emits `known|unknown`, with offline only as `error: 'offline mode'` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:744] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:771].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-7-confirmed-iteration-1-p2-align-and-apply-user-inputs-omit-include-prerelease-sou",
+      "text": "CONFIRMED (iteration 1, P2): align and apply `user_inputs` omit `include_prerelease` [SOURCE: .skilled/commands/doctor/assets/doctor-update-align.yaml:33-38] [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:37-42], while check declares it [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:40] and the router binds only declared inputs [SOURCE: .skilled/commands/doctor/update.md:50].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-8-confirmed-iteration-1-p2-the-router-carries-base-recording-next-step-wording-sou",
+      "text": "CONFIRMED (iteration 1, P2): the router carries base-recording next-step wording [SOURCE: .skilled/commands/doctor/update.md:68] that the presentation owns [SOURCE: .skilled/commands/doctor/assets/doctor-update-presentation.txt:82-88] [SOURCE: .skilled/skills/sk-doc/sk-create-command/SKILL.md:354].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-11-confirmed-iteration-2-p2-renames-are-joined-by-exact-path-with-no-rename-test-so",
+      "text": "CONFIRMED (iteration 2, P2): renames are joined by exact path with no rename test [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1015-1058].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-14-confirmed-iteration-3-p2-dry-run-writes-nothing-true-source-skilled-commands-doc",
+      "text": "CONFIRMED (iteration 3, P2): `dry_run_writes_nothing: true` [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:33] versus a state log written on dry-run [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:111]; align, by contrast, writes no dry-run log [SOURCE: .skilled/commands/doctor/assets/doctor-update-align.yaml:138].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-13-confirmed-iteration-3-p2-cancellation-and-interruption-map-to-status-declined-so",
+      "text": "CONFIRMED (iteration 3, P2): cancellation and interruption map to `STATUS=DECLINED` [SOURCE: .skilled/commands/doctor/assets/doctor-update-presentation.txt:212], with no cancelled status [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:197-203], against `STATUS=CANCELLED ACTION=cancelled` [SOURCE: .skilled/skills/sk-doc/sk-create-command/SKILL.md:379].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-15-confirmed-iteration-3-p2-the-canonical-hint-omits-include-prerelease-source-skil",
+      "text": "CONFIRMED (iteration 3, P2): the canonical hint omits `--include-prerelease` [SOURCE: .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:203].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-20-confirmed-iteration-4-invariant-align-writes-only-under-its-run-directory-source",
+      "text": "CONFIRMED (iteration 4 invariant): align writes only under its run directory [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1371-1382], and the suite passes.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-18-confirmed-and-widened-iteration-4-p2-acceptance-is-a-workflow-gate-test-822-appl",
+      "text": "CONFIRMED and WIDENED (iteration 4, P2, acceptance is a workflow gate): test 822 applies a prefilled `adopt-release` with no decide call [SOURCE: .skilled/commands/doctor/scripts/tests/release-update.test.cjs:832-838]. Iteration 4's \"the routed workflow closes this boundary\" does not hold for an interrupted align; see P1-A.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-9-confirmed-code-path-not-reproduced-iteration-2-p2-binary-detection-is-nul-or-inv",
+      "text": "CONFIRMED code path, not reproduced (iteration 2, P2): binary detection is NUL or invalid UTF-8 only [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:555-560].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-10-confirmed-with-narrowed-doc-claim-iteration-2-p2-the-generated-inventory-is-a-cl",
+      "text": "CONFIRMED with NARROWED doc claim (iteration 2, P2): the generated inventory is a closed list of four patterns [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:79-100] and no test touches the trigger-index patterns (grep of the test file finds none). The router claim that apply \"names their generators instead of writing them\" [SOURCE: .skilled/commands/doctor/update.md:66] is overbroad: reclassification applies only to `local-only` or `conflict` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:701-707], so a release change to an unregenerated artifact is `take-release` and apply writes it.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-16-confirmed-low-iteration-3-p2-grep-and-glob-are-granted-but-unused-source-skilled",
+      "text": "CONFIRMED, low (iteration 3, P2): Grep and Glob are granted but unused [SOURCE: .skilled/commands/doctor/update.md:4] [SOURCE: .skilled/skills/sk-doc/sk-create-command/SKILL.md:218-219].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-3-engine-rollback-exits-1-whenever-a-path-is-skipped-source-skilled-commands-docto",
+      "text": "Engine rollback exits 1 whenever a path is skipped [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2060]; the apply workflow's rollback steps do not say that exit 1 here means partial, not failure [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:178-181].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-6-exit-codes-0-1-and-2-kind-name-unit-keys-lock-acquisition-rollback-json-before-w",
+      "text": "Exit codes 0, 1 and 2, `kind:name` unit keys, lock acquisition, rollback.json-before-writes and the lock-release-in-finally guarantee all match the engine [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2166-2172] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1875-1905], except for the signal case in P1-B.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-12-narrowed-iteration-2-p2-offline-plus-tagless-vendor-the-fail-closed-result-is-co",
+      "text": "NARROWED (iteration 2, P2, offline plus tagless vendor): the fail-closed result is confirmed by probe (`blocked`, base `none`), but P1-C shows the routed command fails the same way online.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-17-narrowed-iteration-3-p2-read-only-the-check-workflow-does-disclose-the-fetch-exc",
+      "text": "NARROWED (iteration 3, P2, read-only): the check workflow does disclose the fetch exception [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:16-23], and the router summary says \"without changing checkout files\" [SOURCE: .skilled/commands/doctor/update.md:64]; only update.md:16 and the presentation omit the qualifier.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-19-narrowed-iteration-4-p2-tree-less-legacy-base-the-code-path-is-real-source-skill",
+      "text": "NARROWED (iteration 4, P2, tree-less legacy base): the code path is real [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:806], but every current writer records a tree [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1730] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1999], and the fingerprint guards only against a moved tag, never against a wrongly named release (P2-H).",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-21-narrowed-iteration-5-p2-stale-changelog-index-stale-as-claimed-source-skilled-ch",
+      "text": "NARROWED (iteration 5, P2, stale changelog index): stale as claimed [SOURCE: .skilled/changelog/skilled/README.md:23-25], `v4.0.0.3.md` exists, but the engine never reads the index; releases are identified from git tags [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:389-392]. Docs only, outside the update surface.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-2-no-workflow-maps-the-engine-report-status-current-updates-available-blocked-unkn",
+      "text": "No workflow maps the engine report status `current|updates-available|blocked|unknown` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1092-1100] onto `STATUS=OK|UNKNOWN|FAILED` [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:148-151].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-22-not-re-verified-this-pass-iteration-5-p2-copied-tree-acquisition-docs-p1-c-sharp",
+      "text": "Not re-verified this pass (iteration 5, P2, copied-tree acquisition docs): P1-C sharpens it, because the copied-tree path also needs a framework remote the routed command cannot name.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-engine-accepts-offline-and-remote-for-apply-source-skilled-commands-doctor-s",
+      "text": "The engine accepts `--offline` and `--remote` for apply [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:51-54], and a no-decisions apply does network work through `makePlan`, but the router offers neither for apply [SOURCE: .skilled/commands/doctor/update.md:38].",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        ".skilled/changelog/skilled/README.md",
+        "research/iterations/iteration-001.md to iteration-005.md, research/deltas/iter-001.jsonl to iter-005.jsonl, research/findings-registry.json",
+        "Command output: node --test (56/56 pass, exit 0); fixture probes p1, p2, p3 and the vendored probe (exit 0)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-d73f86e6dc0c",
+      "text": "A data-overwriting race from local edits between dry-run and approval: `assertPlanFresh` and the HEAD-dirty check refuse or skip instead [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1644-1661] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1877-1882].",
+      "contentHash": "d73f86e6dc0c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3797e1ddac8f",
+      "text": "A tracked `.skilled/release/` colliding with apply's metadata writes: `git ls-files .skilled/release` is empty and `runs/` is ignored at `.gitignore:256`.",
+      "contentHash": "3797e1ddac8f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-5756971b2c37",
+      "text": "An offline downgrade through a stale local tag: when the recorded base cannot resolve offline, the base falls back to ancestry, so newer local content reads `local-only`, not `take-release` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:797-819].",
+      "contentHash": "5756971b2c37",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e38c46aed404",
+      "text": "None. Every action produced evidence.",
+      "contentHash": "e38c46aed404",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 49,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.62,
+    "coverageBySources": {
+      "code": 3,
+      "other": 22
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

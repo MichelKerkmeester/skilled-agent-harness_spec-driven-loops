@@ -38,7 +38,7 @@ const MAX_MERGE_CELLS = 4000000;
 const GIT_MAX_BUFFER_BYTES = 64 * 1024 * 1024;
 const LOG_PREFIX = '[release-update]';
 const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/release-update.cjs';
-const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base> [options]';
+const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base|unlock> [options]';
 const HELP_FLAGS = new Set(['--help', '-h']);
 const objectFormats = new Map();
 
@@ -50,11 +50,13 @@ const COMMAND_OPTIONS = {
   decide: new Set(['repo', 'json', 'run', 'path', 'decision', 'unit', 'defer']),
   apply: new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run',
-    'include-prerelease',
+    'include-prerelease', 'plan-digest',
   ]),
-  rollback: new Set(['repo', 'json', 'run']),
+  rollback: new Set(['repo', 'json', 'run', 'dry-run']),
+  unlock: new Set(['repo', 'json', 'dry-run']),
   'record-base': new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
+    'trust-release',
   ]),
 };
 
@@ -64,6 +66,7 @@ const COMMAND_PURPOSES = {
   decide: 'Record one file decision, or defer one unit, inside an alignment run.',
   apply: 'Write the accepted release files and update the base and divergence records.',
   rollback: 'Restore the paths an alignment run recorded in its rollback plan.',
+  unlock: 'Remove an apply lock whose owner process is no longer running.',
   'record-base': 'Record every unit of a named release as the base, for a copied or fresh install.',
 };
 
@@ -73,9 +76,14 @@ const COMMAND_PURPOSES = {
 // apply. `scope: 'file'` means the generator owns the whole file; `scope:
 // 'derived'` means it owns only the top-level `derived` key of a JSON document,
 // so an edit anywhere else in that file is still an authored change.
+// Activation `fence-state.json` stays authored because no operator-side tool writes it.
+// `intent_signals` stays authored because its generator appends to an authored
+// list while preserving that list's order.
 const LEAF_MANIFEST_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write <skill-dir>';
 const SKILL_DERIVED_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root <skill-dir> --write';
 const TRIGGER_INDEX_GENERATOR = 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
+const COMPILED_ROUTE_GENERATOR = 'node .skilled/bin/compiled-route-manifest.cjs refresh '
+  + '--hub <hub> --skill-root .skilled/skills/<hub>';
 const GENERATED_ARTIFACTS = [
   {
     pattern: /^\.skilled\/skills\/.+\/leaf-manifest\.json$/,
@@ -96,6 +104,11 @@ const GENERATED_ARTIFACTS = [
     pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/cli\/retrieval\/fixtures\/(?:corpus-manifest|generation-diagnostics|phrase-variants)\.json$/,
     scope: 'file',
     generator: TRIGGER_INDEX_GENERATOR,
+  },
+  {
+    pattern: /^\.skilled\/bin\/lib\/compiled-routing\/[^/]+\/activation\/[^/]+\/manifest\.json$/,
+    scope: 'file',
+    generator: COMPILED_ROUTE_GENERATOR,
   },
 ];
 
@@ -495,8 +508,10 @@ function matchUnitRef(ref, units, remedy, usage = false) {
 
 function enumerateUnits(inputPaths) {
   const rawPaths = inputPaths.map((entry) => (typeof entry === 'string' ? entry : entry.path));
+  // The release directory holds engine records and run state, never framework content.
   const paths = [...new Set(rawPaths)]
-    .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/'));
+    .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/')
+      && !filePath.startsWith(RELEASE_DIR + '/'));
   // Keyed by kind and name: a skill hub may share its name with a top-level
   // directory such as hooks, and neither may hide the other.
   const units = new Map();
@@ -550,6 +565,16 @@ function enumerateUnits(inputPaths) {
 function sameState(left, right) {
   if (!left || !right) return !left && !right;
   return left.mode === right.mode && left.blob === right.blob;
+}
+
+// Record-base and base inference must agree on what nearest means.
+function unitDistance(localEntries, releaseEntries) {
+  const paths = new Set([...localEntries.keys(), ...releaseEntries.keys()]);
+  let distance = 0;
+  for (const filePath of paths) {
+    if (!sameState(localEntries.get(filePath), releaseEntries.get(filePath))) distance += 1;
+  }
+  return distance;
 }
 
 function isBinary(entry) {
@@ -736,6 +761,19 @@ function loadJson(filePath, fallback) {
   }
 }
 
+// base.json is a shared tracked file, and git reads a value that starts with a dash
+// as an option.
+function persistedRemote(repo) {
+  const base = loadJson(safeResolve(repo, BASE_FILE), {});
+  const remote = base && base.remote;
+  if (typeof remote !== 'string' || !remote) return null;
+  if (remote.startsWith('-')) {
+    throw new Error('base.json remote must name a remote or a repository URL, not an option: '
+      + remote);
+  }
+  return remote;
+}
+
 function releaseContext(repo, options) {
   const head = git(repo, ['rev-parse', 'HEAD']).trim();
   const accepts = acceptsTag(options.includePrerelease);
@@ -748,6 +786,11 @@ function releaseContext(repo, options) {
   const upstreamLatest = upstream.known
     ? latestTag(upstream.tags, options.includePrerelease)
     : null;
+  const upstreamError = upstream.known && !upstreamLatest
+    ? 'remote ' + options.remote + ' lists no '
+      + (options.includePrerelease ? '' : 'stable ')
+      + 'vN.N.N.N release tags, so name the framework repository with --remote'
+    : upstream.error;
   const release = options.release || upstreamLatest || localLatest;
   const commits = new Map();
   const releaseCommit = release
@@ -770,7 +813,7 @@ function releaseContext(repo, options) {
     upstream: {
       status: upstream.known && upstreamLatest ? 'known' : 'unknown',
       latest: upstreamLatest || 'unknown',
-      error: upstream.error,
+      error: upstreamError,
     },
     release,
     releaseCommit,
@@ -803,7 +846,10 @@ function baseForUnit(repo, unit, context, recorded, options) {
     if (commit) {
       const files = entriesForUnit(commitFiles(repo, commit), unit);
       const tree = unitTreeFingerprint(files);
-      if (!record.tree || record.tree === tree) {
+      if (!record.tree) {
+        return { source: 'recorded-unverified', release: record.release, commit, files };
+      }
+      if (record.tree === tree) {
         return { source: 'recorded', release: record.release, commit, files };
       }
     }
@@ -823,11 +869,7 @@ function baseForUnit(repo, unit, context, recorded, options) {
     const commit = tagCommit(repo, tag, options.remote, !options.offline, context.commits);
     if (!commit) continue;
     const files = entriesForUnit(commitFiles(repo, commit), unit);
-    const paths = new Set([...local.keys(), ...files.keys()]);
-    let distance = 0;
-    for (const filePath of paths) {
-      if (!sameState(local.get(filePath), files.get(filePath))) distance += 1;
-    }
+    const distance = unitDistance(local, files);
     if (!best || distance < best.distance
       || distance === best.distance && compareVersions(tag, best.release) > 0) {
       best = { source: 'inferred', release: tag, commit, files, distance };
@@ -963,6 +1005,28 @@ function normalizeBaseUnits(records, units, rewritten = new Set()) {
   return result;
 }
 
+function releaseRenames(repo, baseCommit, releaseCommit, pathspec) {
+  if (!baseCommit || !releaseCommit) return new Map();
+  const result = gitTry(repo, [
+    'diff', '-M', '--name-status', '-z', baseCommit, releaseCommit, '--', pathspec,
+  ]);
+  if (!result.ok) return new Map();
+  const records = result.value.split('\0');
+  const renames = new Map();
+  for (let index = 0; index < records.length;) {
+    const status = records[index++];
+    if (!status) break;
+    if (status.startsWith('R')) {
+      const oldPath = records[index++];
+      const newPath = records[index++];
+      if (oldPath && newPath) renames.set(oldPath, newPath);
+    } else {
+      index += status.startsWith('C') ? 2 : 1;
+    }
+  }
+  return renames;
+}
+
 function buildReport(repo, options) {
   const context = releaseContext(repo, options);
   const recordedRaw = loadJson(path.join(repo, BASE_FILE), { units: {} }).units || {};
@@ -1012,11 +1076,23 @@ function buildReport(repo, options) {
   const ledger = ledgerEntries(repo);
   const reports = [];
   const globalFiles = [];
+  const presentLocalUnits = new Set();
   for (const unit of units) {
     const base = baseForUnit(repo, unit, context, recorded, options);
     const baseFiles = base.files;
     const localUnit = entriesForUnit(context.localMap, unit);
+    if (hasPresentEntry(localUnit)) presentLocalUnits.add(unitKey(unit));
     const releaseUnit = entriesForUnit(context.targetMap, unit);
+    const hasRemovedPaths = [...baseFiles.keys()].some((filePath) => !releaseUnit.has(filePath));
+    const hasAddedPaths = [...releaseUnit.keys()].some((filePath) => !baseFiles.has(filePath));
+    const renames = hasRemovedPaths && hasAddedPaths
+      ? releaseRenames(
+        repo,
+        base.commit,
+        context.releaseCommit,
+        unit.kind === 'root' ? '.skilled' : '.skilled/' + unit.prefix,
+      )
+      : new Map();
     const paths = [...new Set([...baseFiles.keys(), ...localUnit.keys(), ...releaseUnit.keys()])]
       .sort();
     const fileReports = [];
@@ -1055,7 +1131,18 @@ function buildReport(repo, options) {
       fileReports.push(report);
       globalFiles.push(report);
     }
-    const status = unitStatus(fileReports, base, localUnit, releaseUnit);
+    for (const [oldPath, newPath] of renames) {
+      const oldFile = fileReports.find((file) => file.path === oldPath);
+      const newFile = fileReports.find((file) => file.path === newPath);
+      if (!oldFile || !newFile) continue;
+      oldFile.renamedTo = newPath;
+      newFile.renamedFrom = oldPath;
+    }
+    let status = unitStatus(fileReports, base, localUnit, releaseUnit);
+    if (base.release && context.release && !['current', 'local', 'blocked'].includes(status)
+      && compareVersions(context.release, base.release) < 0) {
+      status = 'downgrade';
+    }
     const regenerate = fileReports
       .filter((file) => file.class === 'generated' || file.regenerate)
       .map((file) => ({ path: file.path, generator: file.generator }));
@@ -1099,14 +1186,16 @@ function buildReport(repo, options) {
     status = 'unknown';
     for (const unit of reports) if (unit.status === 'current') unit.status = 'unknown';
   }
-  const unrecorded = reports.filter((unit) => (
-    unit.baseSource === 'inferred' || unit.baseSource === 'none'
-  ));
+  const unrecorded = reports.filter((unit) => presentLocalUnits.has(unit.key)
+    && ['inferred', 'none', 'recorded-unverified'].includes(unit.baseSource));
+  const remoteFlag = options.remoteSource === 'flag'
+    ? ' --remote ' + shellQuote(options.remote)
+    : '';
   const baseRecording = {
     needed: unrecorded.length > 0,
     units: unrecorded.map((unit) => unit.key),
     action: unrecorded.length
-      ? SCRIPT_COMMAND + ' record-base --release <installed-release>'
+      ? SCRIPT_COMMAND + ' record-base --release <installed-release>' + remoteFlag
       : null,
   };
   return {
@@ -1218,6 +1307,11 @@ function evidenceCard(repo, file, local, unit, merge) {
   const changelogRationale = changelogs.length
     ? changelogs.map((entry) => entry.path + '\n' + entry.content).join('\n\n')
     : 'no added changelog entry for this unit';
+  const rename = file.renamedFrom
+    ? file.renamedFrom + ' -> ' + file.path
+    : file.renamedTo
+      ? file.path + ' -> ' + file.renamedTo
+      : 'none';
   return [
     '# Release evidence: ' + file.path,
     '',
@@ -1230,6 +1324,7 @@ function evidenceCard(repo, file, local, unit, merge) {
     '- Local mode: ' + (file.local ? file.local.mode : 'absent'),
     '- Release blob: ' + (file.release ? file.release.blob : 'absent'),
     '- Release mode: ' + (file.release ? file.release.mode : 'absent'),
+    '- Rename: ' + rename,
     '- Merge summary: ' + (merge ? merge.kind : 'not applicable'),
     '- Changelog rationale: ' + changelogRationale,
     '- Recommended decision: ' + (recommendation(file, unit) || 'review'),
@@ -1567,6 +1662,14 @@ function resolveApplyRun(repo, options) {
     const latest = latestRun(repo, git(repo, ['rev-parse', 'HEAD']).trim());
     if (!latest) return planWithoutRun(repo, options);
     const run = loadRun(latest, repo);
+    const hasOperatorDecision = Object.values(run.decisions.files || {}).some(isOperatorDecision);
+    const hasDeferredUnit = (run.decisions.deferredUnits || []).length > 0;
+    if (hasOperatorDecision || hasDeferredUnit) {
+      // Reusing a decided run discards choices, can write a deferred unit, and uses up the run.
+      throw new Error('the newest alignment run at this HEAD holds operator decisions: ' + latest
+        + '. Apply them with --decisions ' + path.join(latest, 'decisions.json')
+        + ', or run align for a new plan');
+    }
     run.decisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
     return run;
   }
@@ -1661,6 +1764,42 @@ function assertPlanFresh(repo, run, paths) {
   }
 }
 
+function planDigest(run, prepared) {
+  // The digest covers what the operator approved. Release records follow from
+  // that set, and the run directory name carries a timestamp.
+  const state = (entry) => entry ? { mode: entry.mode, blob: entry.blob } : null;
+  const plan = {
+    release: run.plan.release,
+    releaseCommit: run.plan.releaseCommit || null,
+    writes: prepared.writes
+      .map((write) => write.metadata
+        ? { path: write.path }
+        : { path: write.path, before: state(write.before), after: state(write.after) })
+      .sort((a, b) => a.path.localeCompare(b.path)),
+    appliedUnits: [...prepared.appliedUnits].sort(),
+    skippedUnits: prepared.skippedUnits
+      .map(({ unit, reason }) => [unit, reason])
+      .sort(([unitA, reasonA], [unitB, reasonB]) => (
+        unitA.localeCompare(unitB) || reasonA.localeCompare(reasonB)
+      )),
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(plan)).digest('hex');
+}
+
+// A prefilled record is the engine's own suggestion, not the operator's consent.
+function isOperatorDecision(record) {
+  if (typeof record === 'string') return record.length > 0;
+  return Boolean(record && typeof record.decision === 'string' && record.source !== 'prefilled');
+}
+
+function dirtyTargetError(filePath) {
+  const message = 'target has staged or unstaged changes against HEAD: ' + filePath;
+  if (![BASE_FILE, DIVERGENCE_FILE].includes(filePath)) return new Error(message);
+  return new Error(message
+    + ', a release record that an earlier apply or record-base wrote. '
+    + 'Commit it together with the files that apply changed, then run apply again');
+}
+
 function prepareWrites(repo, run, scope) {
   const headFiles = commitFiles(repo, 'HEAD');
   const deferred = new Set(run.decisions.deferredUnits || []);
@@ -1677,6 +1816,10 @@ function prepareWrites(repo, run, scope) {
       skippedUnits.push({ unit: key, reason: 'deferred' });
       continue;
     }
+    if (unit.status === 'downgrade') {
+      skippedUnits.push({ unit: key, reason: 'downgrade' });
+      continue;
+    }
     if (['current', 'local', 'unknown', 'blocked'].includes(unit.status)) continue;
     if (['update', 'new'].includes(unit.status)) {
       for (const file of fileEntries) {
@@ -1689,9 +1832,18 @@ function prepareWrites(repo, run, scope) {
       continue;
     }
     const decided = run.decisions.files || {};
-    const chosen = fileEntries.filter((file) => decided[file.path]);
+    const chosen = fileEntries.filter((file) => isOperatorDecision(decided[file.path]));
     if (!chosen.length) {
       skippedUnits.push({ unit: key, reason: 'no decisions' });
+      continue;
+    }
+    const undecided = fileEntries
+      .filter((file) => ['take-release', 'conflict'].includes(file.class)
+        && !isOperatorDecision(decided[file.path]))
+      .map((file) => file.path);
+    if (undecided.length) {
+      // Skipping the whole unit avoids advancing its base past an unwritten release change.
+      skippedUnits.push({ unit: key, reason: 'undecided files', paths: undecided });
       continue;
     }
     for (const file of chosen) {
@@ -1724,7 +1876,9 @@ function prepareWrites(repo, run, scope) {
   // plan knows, so a record for a unit outside this plan keeps its own kind.
   const knownUnits = [...enumerateUnits([...headFiles.keys()]), ...run.plan.units];
   const baseUnits = normalizeBaseUnits(oldBase.units, uniqueUnits(knownUnits));
-  const newBase = { schemaVersion: 1, units: baseUnits };
+  const newBase = { schemaVersion: 1 };
+  if (typeof oldBase.remote === 'string') newBase.remote = oldBase.remote;
+  newBase.units = baseUnits;
   for (const key of appliedUnits) {
     const unit = unitMap.get(key);
     if (unit) newBase.units[key] = { release: run.plan.release, tree: unit.releaseTree };
@@ -1755,7 +1909,7 @@ function prepareWrites(repo, run, scope) {
   const headChangedPaths = [...new Set([...writes.map((entry) => entry.path)])];
   for (const filePath of headChangedPaths) {
     if (pathDirtyAgainstHead(repo, filePath, headFiles)) {
-      throw new Error('target has staged or unstaged changes against HEAD: ' + filePath);
+      throw dirtyTargetError(filePath);
     }
   }
   for (const write of writes) write.before = headFiles.get(write.path) || null;
@@ -1772,19 +1926,80 @@ function prepareWrites(repo, run, scope) {
   };
 }
 
-function acquireLock(repo) {
+function processRunning(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error.code === 'EPERM';
+  }
+}
+
+function readLockState(repo) {
+  const lockPath = safeResolve(repo, LOCK_FILE);
+  if (!fs.existsSync(lockPath)) return { state: 'absent', owner: null };
+  let owner;
+  try {
+    owner = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return { state: 'absent', owner: null };
+    return { state: 'unknown', owner: null };
+  }
+  if (!owner || typeof owner !== 'object' || Array.isArray(owner)
+    || !Number.isInteger(owner.pid) || owner.pid <= 0) {
+    return { state: 'unknown', owner };
+  }
+  return { state: processRunning(owner.pid) ? 'live' : 'stale', owner };
+}
+
+function lockConflictError(repo) {
+  const prefix = 'apply lock already exists: ' + LOCK_FILE;
+  const { state, owner } = readLockState(repo);
+  if (state === 'live') {
+    const command = typeof owner.command === 'string' && owner.command
+      ? owner.command
+      : 'unknown command';
+    return new Error(prefix + ', held by running process ' + owner.pid + ' (' + command
+      + '), so wait for it to finish');
+  }
+  if (state === 'stale') {
+    const command = typeof owner.command === 'string' && owner.command
+      ? owner.command
+      : 'unknown command';
+    const startedAt = typeof owner.startedAt === 'string' && owner.startedAt
+      ? owner.startedAt
+      : 'unknown start time';
+    let message = prefix + ', and it is stale because process ' + owner.pid + ' (' + command
+      + ', started ' + startedAt + ') is no longer running. Clear it with ' + SCRIPT_COMMAND
+      + ' unlock';
+    if (typeof owner.runDir === 'string' && owner.runDir
+      && fs.existsSync(path.join(path.resolve(repo, owner.runDir), 'rollback.json'))) {
+      message += ', then restore the interrupted run with ' + rollbackCommand(repo, owner.runDir);
+    }
+    return new Error(message);
+  }
+  return new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
+    + ' or record-base is running before removing it by hand');
+}
+
+function acquireLock(repo, owner) {
   const lockPath = safeResolve(repo, LOCK_FILE);
   fs.mkdirSync(path.dirname(lockPath), { recursive: true });
   let descriptor;
   try {
     descriptor = fs.openSync(lockPath, 'wx', 0o600);
   } catch (error) {
-    if (error.code === 'EEXIST') throw new Error('apply lock already exists: ' + LOCK_FILE);
+    if (error.code === 'EEXIST') throw lockConflictError(repo);
     throw error;
   }
   try {
-    const owner = { pid: process.pid, startedAt: new Date().toISOString() };
-    fs.writeFileSync(descriptor, JSON.stringify(owner) + '\n');
+    const lockOwner = {
+      pid: process.pid,
+      startedAt: new Date().toISOString(),
+      command: owner.command,
+      runDir: owner.runDir || null,
+    };
+    fs.writeFileSync(descriptor, JSON.stringify(lockOwner) + '\n');
   } catch (error) {
     fs.closeSync(descriptor);
     fs.rmSync(lockPath, { force: true });
@@ -1792,6 +2007,56 @@ function acquireLock(repo) {
   }
   fs.closeSync(descriptor);
   return lockPath;
+}
+
+// Only a dead owner's lock is safe to remove; keep live and unreadable locks for investigation.
+function unlockStale(repo, options) {
+  const { state, owner } = readLockState(repo);
+  const runDir = owner && typeof owner.runDir === 'string' && owner.runDir
+    ? owner.runDir
+    : null;
+  const rollbackRecorded = runDir
+    ? fs.existsSync(path.join(path.resolve(repo, runDir), 'rollback.json'))
+    : null;
+  const result = {
+    command: 'unlock',
+    dryRun: Boolean(options.dryRun),
+    lock: state,
+    owner,
+    removable: state === 'stale',
+    removed: false,
+    runDir,
+    rollbackRecorded,
+    rollback: rollbackRecorded ? rollbackCommand(repo, runDir) : null,
+  };
+  if (state === 'absent' || options.dryRun) return result;
+  if (state !== 'stale') throw lockConflictError(repo);
+  fs.rmSync(safeResolve(repo, LOCK_FILE));
+  result.removed = true;
+  return result;
+}
+
+// Node skips finally on these signals, so defer them until lock cleanup, then re-raise.
+// Unlock recovers from SIGKILL or power loss.
+function deferSignals() {
+  const signals = ['SIGINT', 'SIGTERM', 'SIGHUP'];
+  let receivedSignal = null;
+  const listeners = new Map();
+  for (const signal of signals) {
+    const listener = () => {
+      if (!receivedSignal) receivedSignal = signal;
+    };
+    listeners.set(signal, listener);
+    process.on(signal, listener);
+  }
+  return () => {
+    setImmediate(() => {
+      for (const [signal, listener] of listeners) {
+        process.removeListener(signal, listener);
+      }
+      if (receivedSignal) process.kill(process.pid, receivedSignal);
+    });
+  };
 }
 
 function writeAtomic(repo, filePath, entry, content) {
@@ -1832,7 +2097,7 @@ function applyPlan(repo, options) {
       + '; run align for a new plan, or undo this one with ' + rollbackCommand(repo, run.runDir));
   }
   if (fs.existsSync(safeResolve(repo, LOCK_FILE))) {
-    throw new Error('apply lock already exists: ' + LOCK_FILE);
+    throw lockConflictError(repo);
   }
   const { releaseCommit } = run.plan;
   if (releaseCommit && !gitTry(repo, ['cat-file', '-e', releaseCommit + '^{commit}']).ok) {
@@ -1857,11 +2122,20 @@ function applyPlan(repo, options) {
     })),
   };
   const regenerate = regenerateFollowUps(run.plan, prepared.appliedUnits);
+  const digest = planDigest(run, prepared);
+  if (options.planDigest && options.planDigest !== digest) {
+    throw new Error('plan changed since the dry-run: its digest no longer matches. '
+      + 'Run apply --dry-run again and approve the new plan');
+  }
   if (options.dryRun) {
     return {
       command: 'apply',
       dryRun: true,
       withoutRun: Boolean(run.withoutRun),
+      release: run.plan.release,
+      releaseCommit: run.plan.releaseCommit || null,
+      runDir: run.withoutRun ? null : run.runDir,
+      planDigest: digest,
       writes: prepared.writes.map((write) => ({
         path: write.path,
         mode: write.after && write.after.mode,
@@ -1872,12 +2146,19 @@ function applyPlan(repo, options) {
       followUps: followUps(prepared.writes, regenerate),
     };
   }
-  const acquired = acquireLock(repo);
+  const restoreSignals = deferSignals();
+  let acquired;
+  try {
+    acquired = acquireLock(repo, { command: 'apply', runDir: run.runDir });
+  } catch (error) {
+    restoreSignals();
+    throw error;
+  }
   try {
     assertPlanFresh(repo, run, prepared.freshnessPaths);
     for (const write of prepared.writes) {
       if (pathDirtyAgainstHead(repo, write.path, prepared.headFiles)) {
-        throw new Error('target has staged or unstaged changes against HEAD: ' + write.path);
+        throw dirtyTargetError(write.path);
       }
     }
     fs.mkdirSync(path.join(repo, RELEASE_DIR), { recursive: true });
@@ -1901,12 +2182,17 @@ function applyPlan(repo, options) {
         + '; the checkout is partly updated, restore it with ' + rollbackCommand(repo, run.runDir));
     }
   } finally {
-    fs.rmSync(acquired, { force: true });
+    try {
+      fs.rmSync(acquired, { force: true });
+    } finally {
+      restoreSignals();
+    }
   }
   return {
     command: 'apply',
     runDir: run.runDir,
     release: run.plan.release,
+    planDigest: digest,
     written: prepared.writes.filter((write) => write.after).map((write) => write.path),
     added: prepared.writes
       .filter((write) => write.after && !write.before)
@@ -1969,7 +2255,8 @@ function followUps(writes, regenerate = []) {
 // only infer its base. Recording every unit of the release it was installed from
 // gives the first check `recorded` evidence instead.
 function recordBase(repo, options) {
-  const localTags = tagNames(repo).filter(acceptsTag(options.includePrerelease));
+  const accepts = acceptsTag(options.includePrerelease);
+  const localTags = tagNames(repo).filter(accepts);
   const release = options.release || latestTag(localTags, options.includePrerelease);
   if (!release) {
     throw new Error('no local release tag exists;'
@@ -1980,6 +2267,46 @@ function recordBase(repo, options) {
   const releaseFiles = commitFiles(repo, commit);
   const units = applyScope(enumerateUnits([...releaseFiles.keys()]), options.scope);
   if (!units.length) throw new Error('release ' + release + ' holds no .skilled units to record');
+  if (!options.trustRelease) {
+    const listing = options.offline
+      ? { known: false, tags: [], error: 'offline mode' }
+      : remoteTags(repo, options.remote);
+    if (!listing.known) {
+      throw new Error('cannot list release tags (' + listing.error + '), so release ' + release
+        + ' cannot be checked against nearer releases. Pass --trust-release to record it unchecked');
+    }
+    const candidateTags = sortTags([...new Set([...localTags, ...listing.tags])].filter(accepts));
+    const commits = new Map([[release, commit]]);
+    const filesByTag = new Map([[release, releaseFiles]]);
+    const localTree = localFiles(repo, [...releaseFiles.keys()]);
+    const nearerReleases = [];
+    for (const unit of units) {
+      const localUnit = entriesForUnit(localTree, unit);
+      const namedDistance = unitDistance(localUnit, entriesForUnit(releaseFiles, unit));
+      let nearest = null;
+      for (const tag of candidateTags) {
+        if (tag === release) continue;
+        const candidateCommit = tagCommit(repo, tag, options.remote, !options.offline, commits);
+        if (!candidateCommit) continue;
+        if (!filesByTag.has(tag)) filesByTag.set(tag, commitFiles(repo, candidateCommit));
+        const candidateFiles = entriesForUnit(filesByTag.get(tag), unit);
+        const distance = unitDistance(localUnit, candidateFiles);
+        if (!nearest || distance < nearest.distance
+          || distance === nearest.distance && compareVersions(tag, nearest.tag) > 0) {
+          nearest = { tag, distance };
+        }
+      }
+      if (nearest && nearest.distance < namedDistance) {
+        nearerReleases.push(unitKey(unit) + ' is nearest ' + nearest.tag + ' ('
+          + nearest.distance + ' files differ, against ' + namedDistance + ' from ' + release + ')');
+      }
+    }
+    if (nearerReleases.length) {
+      throw new Error('release ' + release + ' is not the nearest release to this tree: '
+        + nearerReleases.join('; ') + '. Name the release this tree was installed from, or pass '
+        + '--trust-release to record ' + release + ' anyway');
+    }
+  }
   const headFiles = commitFiles(repo, 'HEAD');
   if (pathDirtyAgainstHead(repo, BASE_FILE, headFiles)) {
     throw new Error('base manifest has staged or unstaged changes against HEAD: ' + BASE_FILE
@@ -1992,19 +2319,42 @@ function recordBase(repo, options) {
     ...enumerateUnits([...headFiles.keys()]),
   ]);
   const nextUnits = normalizeBaseUnits(existing.units, knownUnits, recording);
-  const next = { schemaVersion: 1, units: nextUnits };
+  const next = { schemaVersion: 1 };
+  const remote = options.remoteSource === 'flag'
+    ? options.remote
+    : typeof existing.remote === 'string' ? existing.remote : null;
+  if (typeof remote === 'string') next.remote = remote;
+  next.units = nextUnits;
   for (const unit of units) {
     next.units[unitKey(unit)] = {
       release,
       tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)),
     };
   }
+  if (readLockState(repo).state !== 'absent') throw lockConflictError(repo);
   if (!options.dryRun) {
-    writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
+    const restoreSignals = deferSignals();
+    let acquired;
+    try {
+      acquired = acquireLock(repo, { command: 'record-base', runDir: null });
+    } catch (error) {
+      restoreSignals();
+      throw error;
+    }
+    try {
+      writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
+    } finally {
+      try {
+        fs.rmSync(acquired, { force: true });
+      } finally {
+        restoreSignals();
+      }
+    }
   }
   return {
     command: 'record-base',
     dryRun: Boolean(options.dryRun),
+    verified: !options.trustRelease,
     release,
     releaseCommit: commit,
     baseFile: BASE_FILE,
@@ -2012,7 +2362,7 @@ function recordBase(repo, options) {
   };
 }
 
-function rollbackPlan(repo, runPath) {
+function rollbackPlan(repo, runPath, options = {}) {
   const run = loadRun(runPath, repo);
   const rollback = readRunJson(run.runDir, 'rollback.json', null);
   if (!rollback) {
@@ -2032,7 +2382,30 @@ function rollbackPlan(repo, runPath) {
         + '; refusing to restore it');
     }
   }
-  const lockPath = acquireLock(repo);
+  if (options.dryRun) {
+    if (readLockState(repo).state !== 'absent') throw lockConflictError(repo);
+    const restored = [];
+    const skipped = [];
+    for (const entry of rollback.paths) {
+      const current = currentState(repo, entry.path);
+      if (sameState(current, entry.before) || sameState(current, entry.after)) {
+        restored.push(entry.path);
+      } else {
+        skipped.push(entry.path);
+      }
+    }
+    return {
+      command: 'rollback', dryRun: true, runDir: run.runDir, restored, skipped, exitCode: 0,
+    };
+  }
+  const restoreSignals = deferSignals();
+  let lockPath;
+  try {
+    lockPath = acquireLock(repo, { command: 'rollback', runDir: run.runDir });
+  } catch (error) {
+    restoreSignals();
+    throw error;
+  }
   const restored = [];
   const skipped = [];
   try {
@@ -2055,7 +2428,11 @@ function rollbackPlan(repo, runPath) {
       restored.push(entry.path);
     }
   } finally {
-    fs.rmSync(lockPath, { force: true });
+    try {
+      fs.rmSync(lockPath, { force: true });
+    } finally {
+      restoreSignals();
+    }
   }
   const exitCode = skipped.length ? 1 : 0;
   return { command: 'rollback', runDir: run.runDir, restored, skipped, exitCode };
@@ -2070,13 +2447,23 @@ function parseArgs(argv) {
   if (!command) throw usageError('missing subcommand');
   if (!COMMAND_OPTIONS[command]) throw usageError('unknown subcommand: ' + command);
   const options = {
-    command, remote: 'origin', scope: 'all', offline: false, json: false, dryRun: false,
+    command, scope: 'all', offline: false, json: false, dryRun: false,
   };
   const valueOptions = new Set([
     'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
+    'plan-digest',
   ]);
-  const booleanOptions = new Set(['offline', 'json', 'dry-run', 'defer', 'include-prerelease']);
-  const booleanKeys = { 'dry-run': 'dryRun', 'include-prerelease': 'includePrerelease' };
+  const booleanOptions = new Set([
+    'offline', 'json', 'dry-run', 'defer', 'include-prerelease', 'trust-release',
+  ]);
+  const booleanKeys = {
+    'dry-run': 'dryRun',
+    'include-prerelease': 'includePrerelease',
+    'trust-release': 'trustRelease',
+  };
+  const valueKeys = {
+    'plan-digest': 'planDigest',
+  };
   const seenOptions = new Set();
   for (let index = 1; index < argv.length; index += 1) {
     const token = argv[index];
@@ -2098,7 +2485,13 @@ function parseArgs(argv) {
     if (typeof value !== 'string' || !value || value.startsWith('--')) {
       throw usageError('--' + key + ' requires a value');
     }
-    options[key] = value;
+    options[valueKeys[key] || key] = value;
+  }
+  if (options.planDigest && !/^[0-9a-f]{64}$/.test(options.planDigest)) {
+    throw usageError('--plan-digest must be the 64-character digest that apply --dry-run printed');
+  }
+  if (options.remote && options.remote.startsWith('-')) {
+    throw usageError('--remote must name a remote or a repository URL, not an option');
   }
   if (options.release && !parseVersion(options.release)) {
     throw usageError('--release must be a version tag');
@@ -2146,6 +2539,12 @@ function runCommand(argv) {
     if (isHelpRequest(argv)) return { exitCode: 0, help: helpText(), json: false };
     options = parseArgs(argv);
     const repo = resolveRepo(options.repo);
+    if (COMMAND_OPTIONS[options.command].has('remote')) {
+      const flagRemote = options.remote;
+      const baseRemote = flagRemote ? null : persistedRemote(repo);
+      options.remoteSource = flagRemote ? 'flag' : baseRemote ? 'base' : 'default';
+      options.remote = flagRemote || baseRemote || 'origin';
+    }
     let result;
     if (options.command === 'check') {
       result = buildReport(repo, options);
@@ -2160,8 +2559,10 @@ function runCommand(argv) {
       result = applyPlan(repo, options);
     } else if (options.command === 'record-base') {
       result = recordBase(repo, options);
+    } else if (options.command === 'unlock') {
+      result = unlockStale(repo, options);
     } else {
-      result = rollbackPlan(repo, options.run);
+      result = rollbackPlan(repo, options.run, options);
     }
     return { exitCode: result.exitCode || 0, result, json: options.json };
   } catch (error) {

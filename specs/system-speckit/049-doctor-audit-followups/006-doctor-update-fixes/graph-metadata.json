@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor update fixes",
+      "release-update engine fixes",
+      "doctor update stale lock",
+      "doctor update copied tree",
+      "doctor update fix plan",
+      "release-update engine plan",
+      "prefill consent decision",
+      "copied tree support decision",
+      "doctor update fix tasks",
+      "release-update engine tasks",
+      "doctor update verification checklist",
+      "doctor update acceptance criteria"
+    ],
+    "key_topics": [
+      "doctor",
+      "release-update",
+      "engine",
+      "stale",
+      "lock",
+      "copied",
+      "tree",
+      "plan",
+      "prefill",
+      "consent",
+      "decision",
+      "support"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/README.txt",
+      ".skilled/release/.gitignore",
+      ".skilled/changelog/skilled/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-rollback.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".skilled/release/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "javascript-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-align.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-rollback.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-rollback.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-record-base.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:update` is not safe to build on yet",
+    "created_at": "2026-10-03T21:06:40Z",
+    "last_save_at": "2026-10-04T01:14:57.887Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c46c2794a162c29616c2befb749d1939769d3f7478d48f3f0293b65d3b131d75",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0d2b5ac87989ca88acf75e27fa20e0a0f4610ad7ab921508a29603c54beaed02",
+      "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
+      "tasks.md": "c6db83bb80ffb7039d8fb84c725dfa9ef34c11883a9dbd1668b2f04b960ffae9",
+      "implementation-summary.md": "6a3f6f39d7a3e5ffee3cfe42827fa30d5b9e0e356b1410e2fada8ad554540507"
+    },
+    "last_active_at": null
+  }
+}

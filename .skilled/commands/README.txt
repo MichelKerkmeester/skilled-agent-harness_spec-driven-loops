@@ -159,7 +159,7 @@ Five command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
 | Rebuild | `/doctor:rebuild [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor) |
-| Update | `/doctor:update [check|align|apply]` | Release-aware spec-kit updater with read-only check, decision alignment, and gated apply workflows |
+| Update | `/doctor:update [check|align|apply|rollback|record-base]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback and base-recording workflows |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 
 ### Deep Commands

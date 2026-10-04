@@ -21,8 +21,12 @@
  * routing behavior, which the router grammar keeps out of the contract.
  *
  * Topology drives what is derivable:
- *   - mode-pair          -> OWNED ASSETS (presentation+auto+confirm) and an
- *                           EXECUTION TARGETS mode table are path-checked.
+ *   - mode-pair          -> OWNED ASSETS (presentation plus one workflow, or an
+ *                           auto+confirm pair) and an EXECUTION TARGETS mode
+ *                           table are path-checked.
+ *
+ * An asset carrying a `commands` list applies only to those routers, so one
+ * family can mix routers whose asset shapes differ.
  *   - direct-dispatch    -> only the presentation asset is contract-owned; the
  *                           EXECUTION TARGETS procedure is hand-authored.
  *   - subaction-manifest -> presentation + route manifest are path-checked; the
@@ -128,6 +132,12 @@ function commandNameOf(routerAbs) {
   return path.basename(routerAbs, '.md');
 }
 
+// An entry without a `commands` list covers every router in its family.
+function appliesToCommand(entry, family, command) {
+  if (!Array.isArray(entry.commands)) return true;
+  return entry.commands.includes(`/${family}:${command}`);
+}
+
 // The set of asset paths the contract says this router owns/targets. Only the
 // contract-derivable kinds per topology are included.
 function expectedAssetPaths(family, familyContract, command) {
@@ -135,6 +145,7 @@ function expectedAssetPaths(family, familyContract, command) {
   const owned = Array.isArray(familyContract.owned_assets) ? familyContract.owned_assets : [];
   for (const asset of owned) {
     if (!asset || typeof asset.path !== 'string') continue;
+    if (!appliesToCommand(asset, family, command)) continue;
     // Skip assets owned by another skill, directory markers, and scripts — those
     // are not router-table asset-path cells.
     if (/owned by system-spec-kit|per-route target|generated|fallback/i.test(asset.purpose || '')) continue;

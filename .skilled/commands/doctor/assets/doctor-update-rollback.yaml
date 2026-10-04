@@ -1,0 +1,130 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE ROLLBACK WORKFLOW (MUTATING)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator restoring a recorded release update
+purpose: Preview the paths a rollback can restore, request approval, and report paths the engine leaves unchanged.
+action: preflight -> lock.check -> run.select -> rollback.preview -> approval -> rollback -> state.log
+
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: interactive
+  approvals: rollback_approval_plus_separate_stale_lock_approval
+  tracking: action_by_action
+  validation: engine_rollback_preview
+  state_dir: ".skilled/release/runs"
+
+rollback_orchestrator_invariant: |
+  The engine validates every path in rollback.json and owns the apply lock.
+  The workflow previews restored and skipped paths before approval. It never
+  restores a path the engine says to skip and never runs git restore.
+
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/release-update.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  pass_policy:
+    approval_required_before_restore: true
+    run_directory_must_be_below: ".skilled/release/runs"
+    engine_owns_lock: true
+
+user_inputs:
+  action: "rollback"
+  run: "[RUN] optional run directory below .skilled/release/runs"
+  dry_run: "[DRY_RUN] boolean"
+
+field_handling:
+  defaults:
+    run_empty: "Use a stale lock owner's run when it is available. Otherwise list rollback runs and ask the operator to choose one."
+    dry_run_empty: false
+  engine_mapping:
+    lock_check: "node .skilled/commands/doctor/scripts/release-update.cjs unlock --repo . --json --dry-run"
+    unlock: "node .skilled/commands/doctor/scripts/release-update.cjs unlock --repo . --json"
+    preview: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --dry-run --json"
+    rollback: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
+    run: "Pass --run <runDir> only after canonical path validation."
+    dry_run: "Use --dry-run for the preview and stop before approval."
+  engine_lock_fields: [state, owner, error]
+  engine_rollback_fields: [runDir, restored, skipped, ok, error]
+
+mutation_boundaries:
+  allowed_targets:
+    - "Paths listed in rollback.json and validated by the engine"
+    - ".skilled/release/.apply.lock through the engine only after stale-lock approval"
+    - "<runDir>/.doctor-update-rollback.last-run.json"
+  forbidden_targets:
+    - "every path outside those engine-validated targets and the selected run directory"
+    - "a lock whose owner is running or unreadable"
+    - "git restore or any path the engine reports as skipped"
+  validator:
+    name: canonical_path_validator
+    rule: "Resolve the selected run to a real directory below .skilled/release/runs. Reject symlinked runs. Let the engine validate every rollback path."
+
+state_log_schema:
+  command: "/doctor:update rollback"
+  destination: "<runDir>/.doctor-update-rollback.last-run.json"
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  run_dir: "string"
+  lock: "absent|cleared|refused"
+  restored: "array of paths"
+  skipped: "array of paths"
+  final_status: "rolled_back|partial|unlocked|dry_run|declined|cancelled|failed"
+  terminal_rule: "Write the state log on every terminal path except a dry run and a preflight failure."
+
+workflow:
+  phase_1_preflight:
+    approval: none
+    checks:
+      - "Confirm the current directory is inside the repository and the engine exists."
+      - "When run is supplied, resolve it to a canonical real directory below .skilled/release/runs."
+      - "Confirm the selected run and state log pass the canonical path validator."
+    on_failure: "Show the presentation error template and stop before writing."
+
+  phase_2_lock_check:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs unlock --repo . --json --dry-run"
+    lock_states:
+      absent: "Continue without unlocking."
+      running_or_unreadable: "Show the lock template and stop with STATUS=FAILED. Do not remove the lock."
+      stale: "Show the lock template and request separate approval to clear the stale lock. On yes, run unlock --repo . --json and continue. On no, stop with STATUS=DECLINED. On cancel or interruption, stop with STATUS=CANCELLED ACTION=cancelled."
+    run_binding: "When run is unbound, use the stale owner's runDir. When run is bound and differs from the owner's runDir, show both and ask which run to restore."
+    on_failure: "Read the lock result before stopping. Never remove a live or unreadable lock."
+
+  phase_3_run_selection:
+    approval: "Ask the operator to choose a run when no run is bound and no stale lock names one."
+    candidates: "List run directories below .skilled/release/runs that contain rollback.json, newest first."
+    after_unlock: "When the chosen run has no rollback.json after a stale lock was cleared, report that the interrupted run wrote nothing and stop with STATUS=UNLOCKED."
+
+  phase_4_preview:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --dry-run --json"
+    parse_json_fields: [runDir, restored, skipped]
+    display: "Show every path under restored and every path under skipped."
+    terminal_dry_run: "When --dry-run was supplied, stop with STATUS=DRY_RUN and write no state log."
+
+  phase_5_approval:
+    approval: "Ask once to restore the displayed paths."
+    no_approval: "On no, stop with STATUS=DECLINED and make no engine write."
+    cancel_or_interrupt: "Stop with STATUS=CANCELLED ACTION=cancelled and make no engine write."
+
+  phase_6_engine_rollback:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
+    exit_policy: "Read restored and skipped before judging the exit code. Exit 0 means every path was restored. Exit 1 with ok false and a non-empty skipped array means a partial rollback. Exit 1 with an error is a failure."
+
+  phase_7_skipped_paths:
+    action: "List each skipped path and say it changed after apply and was left unchanged."
+    forbidden: "Never run git restore from this workflow because the commit state of those paths may have changed after the session."
+    terminal_partial: "When skipped is non-empty, stop with STATUS=PARTIAL."
+
+  phase_8_state_log:
+    write: "<runDir>/.doctor-update-rollback.last-run.json"
+    fields: [command, start, end, duration_seconds, run_dir, lock, restored, skipped, final_status]
+    terminal_rule: "Write this log on every terminal path except a dry run and a preflight failure."
+
+terminal_statuses:
+  - "STATUS=ROLLED_BACK"
+  - "STATUS=PARTIAL"
+  - "STATUS=UNLOCKED"
+  - "STATUS=DRY_RUN"
+  - "STATUS=DECLINED"
+  - "STATUS=CANCELLED"
+  - "STATUS=FAILED"

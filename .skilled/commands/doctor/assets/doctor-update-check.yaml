@@ -36,6 +36,7 @@ user_inputs:
   json: "[JSON] boolean"
   release: "[RELEASE] optional tag"
   scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
+  remote: "[REMOTE] optional framework remote name or repository URL"
   offline: "[OFFLINE] boolean"
   include_prerelease: "[INCLUDE_PRERELEASE] boolean"
 
@@ -45,17 +46,20 @@ field_handling:
     json_empty: false
     release_empty: engine_default
     scope_empty: all
+    remote_empty: base_json_remote_or_origin
     offline_empty: false
   engine_mapping:
     command: "node .skilled/commands/doctor/scripts/release-update.cjs check"
     json: "Always pass --json for parsing; when the user supplied --json, return the parsed report as JSON instead of the prose dashboard."
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
-    offline: "--offline when requested"
+    remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
+    offline: "Pass --offline when requested. An offline check reports upstream.status unknown and sets upstream.error to offline mode."
     include_prerelease: "--include-prerelease when requested; latest-upstream resolution otherwise takes stable vN.N.N.N tags only, and a tag named with --release is used as given"
     repository: "--repo ."
   status_values:
-    unit: [current, local, update, new, customized, conflict, removed, blocked, unknown]
+    unit: [current, local, update, new, customized, conflict, removed, blocked, downgrade, unknown]
+    report: [current, updates-available, blocked, unknown]
     rule: "Treat only the listed values as known; preserve any unexpected value as UNKNOWN and report it."
 
 mutation_boundaries:
@@ -76,7 +80,7 @@ state_log_schema:
   end: "ISO-8601"
   duration_seconds: "number"
   release: "string|null"
-  upstream_status: "available|unknown|offline"
+  upstream_status: "known|unknown"
   status_counts: "map computed from the units array; counts.units is checked against the row total"
   final_status: "ok|unknown|failed"
 
@@ -91,8 +95,8 @@ workflow:
 
   phase_2_engine_check:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--offline] [--include-prerelease]"
-    flag_rule: "Include optional flags only when their input is bound; check accepts --json, --release, --scope, --offline and --include-prerelease."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
+    flag_rule: "Include optional flags only when their inputs are bound; check accepts --json, --release, --scope, --remote, --offline and --include-prerelease."
     parse_json_fields:
       - schemaVersion
       - command
@@ -113,10 +117,10 @@ workflow:
       - units
       - files
       - counts
-    file_fields: [path, unit, class, conflictKind, regenerate, generator, base, local, release]
+    file_fields: [path, unit, class, conflictKind, regenerate, generator, renamedFrom, renamedTo, base, local, release]
     unit_fields: [key, name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, regenerate, files, changelogs]
     unit_identity: "A unit is identified by its key, <kind>:<name> (kind is root, skill, command or directory), because a skill hub may share its name with a top-level directory. file.unit and baseRecording.units hold keys; join files to units on unit.key, never on name alone."
-    generated_class: "A file whose difference only a generator made (a leaf manifest, the trigger index and its sidecars, or a graph-metadata change confined to its derived block) reports class generated. It never makes its unit customized; apply leaves its bytes alone and names its generator under followUps.regenerate."
+    generated_class: "A file whose difference only a generator made (a leaf manifest, the trigger index and its sidecars, a compiled-route activation manifest, or a graph-metadata change confined to its derived block) reports class generated. It never makes its unit customized; apply leaves its bytes alone and names its generator under followUps.regenerate."
     exit_policy: "Exit 0 means a report was produced, not that upstream is known. Exit 2 is usage failure. Keep UNKNOWN explicit for unavailable upstream or unknown status."
     on_failure: "Present the command output and exit code, then stop without writing a file."
 
@@ -125,7 +129,7 @@ workflow:
     render: "Unless --json was requested, use the presentation dashboard with release position, upstream latest or UNKNOWN, ahead/behind counts, and per-unit status groups. When --json was requested, return the parsed engine report as JSON and do not add prose around it."
     grouping:
       quiet: "Combine current and local into one quiet line with both counts."
-      separate: [update, new, customized, conflict, removed, blocked, unknown]
+      separate: [update, new, customized, conflict, removed, blocked, downgrade, unknown]
     changelog: "Show available per-unit changelog highlights and mark missing highlights as unavailable."
     counts: "Compute unit counts by status from the units array; confirm counts.units equals the rendered row total and counts.files agrees with the file inventory. Preserve unknown unit values visibly."
 
@@ -136,13 +140,19 @@ workflow:
       customized_or_conflict: "Offer /doctor:update align with the same optional release and scope."
       update_or_new_only: "Offer /doctor:update apply, noting that a decision file is optional when no align decisions are needed."
       removed_or_blocked_or_unknown: "Show the status-specific explanation and do not imply automatic application is safe."
+      downgrade: "The selected release is older than the base release recorded for this unit. Apply never writes it. Roll back the apply that took the newer release, or use git, to return to an older release."
       databases: "Name /doctor:rebuild for database regeneration after applying a release."
-      base_recording: "When baseRecording.needed is true (a unit's baseSource is inferred or none, as on a copied or freshly installed tree), name baseRecording.action and ask the operator for the release the tree was installed from. Recording writes the git-tracked .skilled/release/base.json, so it needs the operator's approval like any other write; check itself never runs it."
+      base_recording: "When baseRecording.needed is true (at least one unit with local files has baseSource inferred, none or recorded-unverified), ask the operator for the release the tree was installed from and name /doctor:update record-base --release=<installed-release> [--remote=<framework-remote>]. Recording writes the git-tracked .skilled/release/base.json, so it needs operator approval; check itself never runs it."
       no_changes: "Report that the selected units are current or local."
 
   phase_5_terminal_status:
     approval: none
     fields: [command, start, end, duration_seconds, release, upstream_status, status_counts, final_status]
+    report_status_mapping:
+      current: "STATUS=OK"
+      updates-available: "STATUS=OK"
+      blocked: "STATUS=UNKNOWN and name the blocked units"
+      unknown: "STATUS=UNKNOWN"
     terminal_rule: "Return a terminal status without persisting a log file; the check action's mutation boundary allows no checkout path writes."
 
 terminal_statuses:
