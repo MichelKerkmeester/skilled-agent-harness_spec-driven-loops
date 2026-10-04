@@ -28,6 +28,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { spawnClassifierCall } from '../../shared/scripts/jev-transport.mjs';
+import { bootstrapLine, clusterBootstrapInterval, marginSlack, marginSlackLine, outDirectoryHoldsRun, pinRowSet } from '../../shared/scripts/scorer-report.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -625,7 +626,7 @@ export function gateLines(g) {
  * @param {string} repoRoot - Absolute path of the repository.
  * @param {object[]|null} labels - The drawn label rows.
  * @param {{ id: string, sentence: string|null }[]|null} planted - The planted sentence slots.
- * @returns {{ id: string, kind: string, label: string|null, text: string, lexical: boolean, commit: string, doc: string, sectionStart: number, sectionEnd: number, sectionSha12: string }[]} One scored row per drawn row, in draw order.
+ * @returns {{ id: string, kind: string, label: string|null, text: string, lexical: boolean, commit: string, doc: string, sectionStart: number, sectionEnd: number, sectionSha12: string, source: string }[]} One scored row per drawn row, in draw order.
  */
 export function buildRows(repoRoot, labels, planted) {
   const sourceRows = Array.isArray(labels) ? labels : [];
@@ -673,6 +674,7 @@ export function buildRows(repoRoot, labels, planted) {
       sectionStart: row.section_start,
       sectionEnd: row.section_end,
       sectionSha12: row.section_sha12,
+      source: row.source,
     });
   }
   return rows;
@@ -872,9 +874,10 @@ export function verdictText(v) {
  * @param {Map<string, (number|null)[]>} probs - Per-row probabilities, one entry per call.
  * @param {Map<string, boolean>} baselineFlags - Per-row flags from the chosen baseline.
  * @param {string} suffix - Text appended to the line when non-empty.
- * @returns {{ backend: string, K: number, M: number, calls: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, outcome: string, reason: string|null, brier: number|null, flagCounts: { review: number, flag: number, block: number }, naturalRecall: object, plantedRecall: object, hybridFloor: object, line: string, detail: string }} The column summary.
+ * @param {{ flagBy?: string }} [options] - Optional scoring switches; `flagBy: 'mean'` decides a measured row's flag on the mean of its probabilities instead of the majority.
+ * @returns {{ backend: string, K: number, M: number, calls: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, outcome: string, reason: string|null, brier: number|null, flagCounts: { review: number, flag: number, block: number }, naturalRecall: object, plantedRecall: object, hybridFloor: object, rowOutcomes: { id: string, flag: boolean, right: boolean, baseRight: boolean }[], line: string, detail: string }} The column summary.
  */
-export function summarizeColumn(backend, rows, probs, baselineFlags, suffix) {
+export function summarizeColumn(backend, rows, probs, baselineFlags, suffix, options = {}) {
   const K = rows.length;
   let M = 0;
   let calls = 0;
@@ -895,6 +898,7 @@ export function summarizeColumn(backend, rows, probs, baselineFlags, suffix) {
   const naturalPositive = rows.filter((row) => row.kind === 'natural' && row.label === 'instructs').length;
   const plantedPositive = rows.filter((row) => row.kind === 'planted' && row.label === 'instructs').length;
   const flagCounts = { review: 0, flag: 0, block: 0 };
+  const rowOutcomes = [];
   for (const row of rows) {
     const list = probs.get(row.id);
     if (!Array.isArray(list) || list.length < JEV_CONFIRM_CALLS || list.length > JEV_RERUNS
@@ -902,11 +906,14 @@ export function summarizeColumn(backend, rows, probs, baselineFlags, suffix) {
     M += 1;
     calls += list.length;
     const yesAt = (t) => list.filter((p) => p >= t).length;
-    const flag = 2 * yesAt(FLAG_AT) > list.length;
+    const flag = options.flagBy === 'mean'
+      ? list.reduce((sum, p) => sum + p, 0) / list.length >= FLAG_AT
+      : 2 * yesAt(FLAG_AT) > list.length;
     F += Math.min(yesAt(FLAG_AT), list.length - yesAt(FLAG_AT));
     const hybridFlag = flag || row.lexical === true;
     const right = (flag ? 'instructs' : 'clean') === row.label;
     const baseRight = (baselineFlags.get(row.id) === true ? 'instructs' : 'clean') === row.label;
+    rowOutcomes.push({ id: row.id, flag, right, baseRight });
     if (right) A += 1;
     if (baseRight) B += 1;
     if (right && !baseRight) W += 1;
@@ -962,6 +969,7 @@ export function summarizeColumn(backend, rows, probs, baselineFlags, suffix) {
     naturalRecall,
     plantedRecall,
     hybridFloor,
+    rowOutcomes,
     line,
     detail,
   };
@@ -1055,10 +1063,30 @@ export function spawnCall(file, args, stdinText, env, timeoutMs) {
 }
 
 /**
+ * Move a run already in the output directory aside so a new run does not
+ * overwrite it. The first free number wins, and each artifact is renamed only
+ * when it exists, so a directory holding no run is left untouched.
+ *
+ * @param {string | undefined} outDir Directory that may hold an earlier run.
+ * @returns {number | null} The number the earlier pair kept, or null when outDir holds no run.
+ */
+export function keepPriorRun(outDir) {
+  if (!outDirectoryHoldsRun(outDir)) return null;
+  let n = 1;
+  while (fs.existsSync(path.join(outDir, `calls.${n}.jsonl`)) || fs.existsSync(path.join(outDir, `report.${n}.json`))) n += 1;
+  for (const [name, kept] of [['calls.jsonl', `calls.${n}.jsonl`], ['report.json', `report.${n}.json`]]) {
+    const file = path.join(outDir, name);
+    if (fs.existsSync(file)) fs.renameSync(file, path.join(outDir, kept));
+  }
+  return n;
+}
+
+/**
  * One JSON-line record per model call under outDir. A missing or empty outDir
  * keeps no records, so nothing is created. The file is created empty on the
  * first append, and one line per call keeps a killed arm's earlier records
- * readable.
+ * readable. An earlier run's calls.jsonl and report.json are kept as the next
+ * numbered pair instead of being overwritten.
  *
  * @param {string | undefined} outDir Directory that holds calls.jsonl.
  * @returns {{ append: (record: object) => void }} Append-only call log.
@@ -1071,6 +1099,7 @@ export function createCallLog(outDir) {
       const filePath = path.join(outDir, 'calls.jsonl');
       if (!created) {
         fs.mkdirSync(outDir, { recursive: true });
+        keepPriorRun(outDir);
         fs.writeFileSync(filePath, '');
         created = true;
       }
@@ -1187,6 +1216,7 @@ export function jevGate(ctx) {
  *     rewordedStop: string|null,
  *     rewordedPartialRows: number,
  *     reviewQuestion: { queried: number, measured: number, flagged: number, results: object[] },
+ *     analysis: { probabilityAware: object, bootstrap: object },
  *     requalify: string|null
  *   }
  * >}
@@ -1401,6 +1431,33 @@ export async function runJevArm(plan, gate, ctx) {
     plan.baselineFlags,
     `jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${answeringModel}`,
   );
+  const probabilityAware = summarizeColumn('probability-aware', plan.rows, probs, plan.baselineFlags, '', { flagBy: 'mean' });
+  const rowById = new Map(plan.rows.map((row) => [row.id, row]));
+  const bootstrapItems = probabilityAware.rowOutcomes.map((outcome) => {
+    const row = rowById.get(outcome.id);
+    return { cluster: row.source ?? row.doc, delta: Number(outcome.right) - Number(outcome.baseRight) };
+  });
+  const bootstrapSeed = probabilityAware.rowOutcomes.map((outcome) => `${outcome.id}\u0000${outcome.flag ? 'instructs' : 'clean'}`).join('\n');
+  const bootstrap = clusterBootstrapInterval(bootstrapItems, bootstrapSeed);
+  const analysis = {
+    probabilityAware: {
+      K: probabilityAware.K,
+      M: probabilityAware.M,
+      A: probabilityAware.A,
+      B: probabilityAware.B,
+      W: probabilityAware.W,
+      L: probabilityAware.L,
+      TP: probabilityAware.TP,
+      FP: probabilityAware.FP,
+      F: probabilityAware.F,
+      p: probabilityAware.p,
+      outcome: probabilityAware.outcome,
+      reason: probabilityAware.reason,
+      line: probabilityAware.line,
+      marginSlack: marginSlack(probabilityAware),
+    },
+    bootstrap,
+  };
   const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
   ctx.out(`${column.detail} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
   ctx.out(`flips: F=${column.F} of ${column.calls} primary calls`);
@@ -1434,6 +1491,7 @@ export async function runJevArm(plan, gate, ctx) {
     rewordedStop,
     rewordedPartialRows: rewordedFinished,
     reviewQuestion,
+    analysis,
     requalify,
   };
 }
@@ -1443,11 +1501,11 @@ export async function runJevArm(plan, gate, ctx) {
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * The report.json body: the run and corpus snapshots, input and question
- * hashes, baseline counts and one entry per arm that ran. An arm absent from the run is left
- * out of every map; a skipped arm records its line, a stopped arm its line and
- * the rows that finished, and a column arm its counts, verdict and requalify
- * flag.
+ * The report.json body: the run and corpus snapshots, the pinned row set when
+ * the scored rows are handed in, input and question hashes, baseline counts and
+ * one entry per arm that ran. An arm absent from the run is left out of every
+ * map; a skipped arm records its line, a stopped arm its line and the rows that
+ * finished, and a column arm its counts, verdict and requalify flag.
  *
  * @param {{
  *   commit: string,
@@ -1455,11 +1513,12 @@ export async function runJevArm(plan, gate, ctx) {
  *   jev: object | undefined,
  *   reworded: object | undefined,
  *   labelsSha256: string|null,
- *   plantedSha256: string|null
- * }} input - The run snapshots, input hashes, baseline summary and Jev arm results.
+ *   plantedSha256: string|null,
+ *   rows?: object[] | undefined
+ * }} input - The run snapshots, input hashes, baseline summary, Jev arm results and the scored rows.
  * @returns {object} The report.json body.
  */
-export function buildReport({ commit, baseline, jev, reworded = undefined, labelsSha256 = null, plantedSha256 = null }) {
+export function buildReport({ commit, baseline, jev, reworded = undefined, labelsSha256 = null, plantedSha256 = null, rows = undefined }) {
   const report = {
     commit,
     corpus: {
@@ -1467,6 +1526,7 @@ export function buildReport({ commit, baseline, jev, reworded = undefined, label
       snapshotSha256: baseline.corpusSnapshotSha256,
       rows: baseline.K,
     },
+    dataPin: rows ? pinRowSet(rows.map((row) => ({ id: row.id, label: row.label, textSha256: sha256(row.text) }))) : null,
     instruction: INSTRUCTION,
     instructionSha256: sha256(INSTRUCTION),
     rewordedInstruction: REWORDED_INSTRUCTION,
@@ -1527,6 +1587,7 @@ export function buildReport({ commit, baseline, jev, reworded = undefined, label
       latency: column.latency,
     };
     if (arm.reviewQuestion !== undefined) report.columns[backend].reviewQuestion = arm.reviewQuestion;
+    if (backend === 'jev' && arm.analysis !== undefined) report.columns[backend].analysis = arm.analysis;
     if (backend === 'jev') {
       report.columns[backend].jevVersion = column.jevVersion;
       report.columns[backend].provider = column.provider;
@@ -1684,6 +1745,11 @@ export async function main(argv, deps = {}) {
       jev = { skipped: line };
     } else {
       jev = await runJevArm({ rows, baselineFlags: summary.flags }, check, { out, env, timeoutMs, backoffMs, callLog, stored, rewordedArm: values['reworded-arm'] === true });
+      if (jev.analysis !== undefined) {
+        out(jev.analysis.probabilityAware.line);
+        out(marginSlackLine('probability-aware', jev.analysis.probabilityAware.marginSlack));
+        out(bootstrapLine('probability-aware', jev.analysis.bootstrap));
+      }
     }
   }
 
@@ -1692,7 +1758,7 @@ export async function main(argv, deps = {}) {
     let reworded;
     if (jev.rewordedColumn) reworded = { column: jev.rewordedColumn };
     else if (jev.rewordedStop) reworded = { stopped: jev.rewordedStop, partialRows: jev.rewordedPartialRows };
-    const report = buildReport({ commit, baseline: summary, jev, reworded, labelsSha256, plantedSha256 });
+    const report = buildReport({ commit, baseline: summary, jev, reworded, labelsSha256, plantedSha256, rows });
     fs.mkdirSync(values.out, { recursive: true });
     fs.writeFileSync(path.join(values.out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   }

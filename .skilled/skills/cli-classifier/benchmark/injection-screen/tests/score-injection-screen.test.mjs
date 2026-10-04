@@ -207,6 +207,13 @@ if (args[0] === 'noul') {
   const question = args[args.indexOf('-q') + 1];
   if (env.STUB_REWORDED_EXIT && question === env.STUB_REWORDED_QUESTION) process.exit(Number(env.STUB_REWORDED_EXIT));
   let noul = input.includes('PLANTED-DIRECTIVE') ? 0.9 : 0.1;
+  if (env.STUB_SPLIT === '1') {
+    const splitHash = require('crypto').createHash('sha256').update(input).digest('hex');
+    const splitFile = path.join(__dirname, 'split-' + splitHash);
+    const seen = (fs.existsSync(splitFile) ? Number(fs.readFileSync(splitFile, 'utf8')) : 0) + 1;
+    fs.writeFileSync(splitFile, String(seen));
+    noul = input.includes('PLANTED-DIRECTIVE') ? (seen === 2 ? 0.1 : 0.65) : 0.1;
+  }
   if (env.STUB_DISAGREE === '1' && input.includes('DISAGREE')) noul = count === 1 ? 0.1 : 0.9;
   if (env.STUB_REVIEW_BAND === '1' && input.includes('REVIEW-BAND')) {
     noul = question === env.STUB_REVIEW_QUESTION ? 0.9 : 0.4;
@@ -955,7 +962,7 @@ test('the jev switch on the labeled fixture prints a verdict and records every c
     root, bin, env: { STUB_MUTATE_LABELS: f.labels },
   });
   assert.equal(r.code, 0);
-  const verdicts = r.lines.filter((l) => l.startsWith('verdict '));
+  const verdicts = r.lines.filter((l) => l.startsWith('verdict jev:'));
   assert.equal(verdicts.length, 1);
   assert.match(verdicts[0], /^verdict jev: keep /);
   const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
@@ -1008,4 +1015,76 @@ test('a reworded-arm failure keeps the primary verdict and reports the reworded 
   assert.equal(report.columns['jev-reworded'], undefined);
   assert.equal(report.stopped.jev, undefined);
   assert.deepEqual(report.stopped['jev-reworded'], { line: 'jev-reworded arm stopped: key rejected', partialRows: 0 });
+});
+
+test('the labeled run prints the probability-aware arm and pins the scored rows', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const f = await labeledFixture(root);
+  const outDir = path.join(tempDir('out'), 'run');
+  const r = await runMain(['--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted], { root, bin });
+  assert.equal(r.code, 0);
+
+  const verdictIndex = r.lines.findIndex((line) => line.startsWith('verdict jev:'));
+  const awareIndex = r.lines.indexOf('verdict probability-aware: keep K=90 M=90 A=90 B=60 W=30 L=0 TP=30 FP=0 F=0 p=9.313e-10');
+  const slackIndex = r.lines.indexOf('margin slack probability-aware: 21.0 rows');
+  const bootstrapIndex = r.lines.findIndex((line) => /^bootstrap probability-aware vs baseline: accuracy_delta_95_ci=\[-?\d\.\d{4},-?\d\.\d{4}\] clusters=\d+ replicates=1000$/.test(line));
+  const sources = new Set(S.readJsonl(f.labels).map((row) => row.source));
+  assert.ok(verdictIndex >= 0);
+  assert.ok(awareIndex > verdictIndex);
+  assert.ok(slackIndex > awareIndex);
+  assert.ok(bootstrapIndex > slackIndex);
+  assert.equal(Number(/clusters=(\d+)/.exec(r.lines[bootstrapIndex])[1]), sources.size);
+
+  const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+  assert.equal(report.dataPin.rowCount, 90);
+  assert.deepEqual(Object.keys(report.dataPin.rows[0]), ['id', 'label', 'textSha256']);
+  assert.equal(report.columns.jev.analysis.probabilityAware.line, r.lines[awareIndex]);
+});
+
+test('mean flags a split vote that the majority keeps', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const f = await labeledFixture(root);
+  const outDir = path.join(tempDir('out'), 'run');
+  const r = await runMain(['--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted], { root, bin, env: { STUB_SPLIT: '1' } });
+  assert.equal(r.code, 0);
+  assert.ok(r.lines.includes('verdict probability-aware: kill (precision) K=90 M=90 A=60 B=60 W=0 L=0 TP=0 FP=0 F=30 p=1.000'));
+  assert.ok(r.lines.includes('margin slack probability-aware: -9.0 rows'));
+  const jev = r.lines.find((line) => line.startsWith('verdict jev:'));
+  assert.ok(jev.startsWith('verdict jev: stop (flips) K=90 M=90 A=90 B=60 W=30 L=0 TP=30 FP=0 F=30 p=9.313e-10'));
+});
+
+test('a second run keeps the first as the next numbered pair and requalifies against it', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const f = await labeledFixture(root);
+  const outDir = path.join(tempDir('out'), 'run');
+  const args = ['--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted];
+  assert.equal((await runMain(args, { root, bin })).code, 0);
+  const firstCalls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8');
+  const firstReport = fs.readFileSync(path.join(outDir, 'report.json'), 'utf8');
+
+  const second = await runMain(args, { root, bin, env: { STUB_NOUL_MODEL: 'other-model' } });
+  assert.equal(second.code, 0);
+  assert.ok(second.lines.includes('requalify: model changed'));
+  assert.equal(fs.readFileSync(path.join(outDir, 'calls.1.jsonl'), 'utf8'), firstCalls);
+  assert.equal(fs.readFileSync(path.join(outDir, 'report.1.json'), 'utf8'), firstReport);
+  const secondCalls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8');
+  const secondReport = fs.readFileSync(path.join(outDir, 'report.json'), 'utf8');
+  assert.notEqual(secondCalls, firstCalls);
+  assert.equal(secondCalls.trim().split('\n').length, 181);
+  assert.equal(JSON.parse(secondReport).columns.jev.model, 'other-model');
+
+  assert.equal((await runMain(args, { root, bin })).code, 0);
+  assert.equal(fs.readFileSync(path.join(outDir, 'calls.1.jsonl'), 'utf8'), firstCalls);
+  assert.equal(fs.readFileSync(path.join(outDir, 'report.1.json'), 'utf8'), firstReport);
+  assert.equal(fs.readFileSync(path.join(outDir, 'calls.2.jsonl'), 'utf8'), secondCalls);
+  assert.equal(fs.readFileSync(path.join(outDir, 'report.2.json'), 'utf8'), secondReport);
+});
+
+test('keepPriorRun returns null on an empty directory and leaves it empty', () => {
+  const dir = tempDir('kept');
+  assert.equal(S.keepPriorRun(dir), null);
+  assert.deepEqual(fs.readdirSync(dir), []);
 });
