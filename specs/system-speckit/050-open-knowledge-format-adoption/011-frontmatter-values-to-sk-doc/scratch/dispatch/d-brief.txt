@@ -1,0 +1,12 @@
+Role: you edit JavaScript in this repository. Make exactly the change below and nothing else.
+
+The frontmatter value list moved to `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`. Its `contextType` key is now `{ canonical, aliases }` directly, with no `document` level.
+
+In `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs`:
+- Lines 40 to 43: set `SHARED_VALUES_PATH` to `join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'sk-doc', 'sk-create-frontmatter', 'assets', 'frontmatter-values.json')`.
+- Line 46: change `SHARED_VALUES.contextType.document` to `SHARED_VALUES.contextType`.
+- Lines 17 and 18 (header comment): where it names system-spec-kit's shared list, say it reads sk-create-frontmatter's frontmatter-values.json instead.
+
+Do not edit or delete any other file.
+
+Check: in `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/skill-doc-frontmatter-checker.vitest.ts` passes. Report the result.

@@ -1,0 +1,40 @@
+{
+  "sessionId": "fanout-deepseek-flash-max-1791092550011-hh7wyn",
+  "generation": 1,
+  "topic": "Decide, for each idea in Google's Open Knowledge Format (OKF v0.2), whether system-spec-kit should adopt, adapt or reject it.",
+  "createdAt": "2026-10-04T06:30:00Z",
+  "questions": {
+    "asked": 10,
+    "answered": 10,
+    "list": ["Q1 anatomy", "Q2 metadata", "Q3 search/navigation", "Q4 OKF deep read", "Q5 ecosystem", "Q6 crosswalk", "Q7 candidates", "Q8 blast radius", "Q9 adversarial", "Q10 synthesis"]
+  },
+  "promotedIdeas": [
+    { "id": "R1", "idea": "Structured provenance block on research/review artifacts + resolution rule", "verdict": "adapt", "rank": 1, "effort": "S/M", "risk": "low", "firstIteration": 6, "observations": 4 },
+    { "id": "R2", "idea": "One-way packet to OKF bundle export command", "verdict": "adopt", "rank": 2, "effort": "M", "risk": "low-medium", "firstIteration": 5, "observations": 4 },
+    { "id": "R3", "idea": "Freshness marker on decay-prone artifacts only", "verdict": "adapt", "rank": 3, "effort": "S/M", "risk": "medium", "firstIteration": 6, "observations": 4 },
+    { "id": "R4", "idea": "Actor convention for last_updated_by", "verdict": "adopt", "rank": 4, "effort": "S", "risk": "low", "firstIteration": 7, "observations": 3 },
+    { "id": "R5", "idea": "Optional type key on core templates, no backfill", "verdict": "adapt", "rank": 5, "effort": "S", "risk": "low value until a consumer exists", "firstIteration": 7, "observations": 2 }
+  ],
+  "suppressedIdeas": [
+    { "id": "R6", "idea": "verified trust tiers and attestation protocol", "verdict": "reject", "reason": "self-declared/advisory by spec; runtime protocol deferred; second truth vs closure gates", "iterations": [7, 8, 9] },
+    { "id": "R7", "idea": "per-folder index.md and log.md file families", "verdict": "reject", "reason": "new drift class; fail-closed index walker conflict; duplicates Phase Documentation Map and changelogs", "iterations": [7, 8, 9] },
+    { "id": "R8", "idea": "in-place OKF corpus conformance and bundle import", "verdict": "reject", "reason": "multi-thousand-doc migration class; import structurally blocked by generated sidecars", "iterations": [6, 7, 8, 9] }
+  ],
+  "rejectedPatterns": [
+    { "pattern": "treat description.json as an OKF concept", "reason": "generated file, no body, no OKF mapping", "iteration": 6 },
+    { "pattern": "import OKF bundles into packets", "reason": "generated sidecars have no OKF representation; every validator fires on imported docs", "iterations": [7, 8] }
+  ],
+  "divergence": {
+    "completed": [],
+    "overrides": [],
+    "saturatedDirections": []
+  },
+  "sources": {
+    "webSources": 17,
+    "nonSeedWebSources": 16,
+    "repositoryClaimPolicy": "file:line for every repository claim; URL for every web claim; live-run observations dated"
+  },
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "averageNewInfoRatio": 0.77
+}

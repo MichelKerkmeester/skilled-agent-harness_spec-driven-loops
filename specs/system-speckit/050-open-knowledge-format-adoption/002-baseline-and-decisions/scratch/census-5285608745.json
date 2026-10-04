@@ -1,0 +1,130 @@
+{
+  "commit": "5285608745fe243e633c6e396345611e32744113",
+  "rename_records": 420245,
+  "frontmatter": {
+    "spec": {
+      "docs": 23370,
+      "no_frontmatter": 4904,
+      "contextType_docs": 11387,
+      "contextType_distinct": 33,
+      "contextType": {
+        "implementation": 5912,
+        "general": 3626,
+        "planning": 1039,
+        "research": 370,
+        "spec": 80,
+        "review": 65,
+        "decision": 48,
+        "specification": 38,
+        "tasks": 37,
+        "plan": 36,
+        "reference": 27,
+        "architecture": 23,
+        "implementation-summary": 15,
+        "documentation": 9,
+        "handover": 8,
+        "task": 8,
+        "research-prompts": 7,
+        "audit": 6,
+        "testing": 5,
+        "manual-testing": 4,
+        "verification": 4,
+        "implementation-plan": 3,
+        "tasks-ledger": 3,
+        "analysis": 2,
+        "decision-record": 2,
+        "phase-parent": 2,
+        "review-report": 2,
+        "deferred": 1,
+        "governance": 1,
+        "implementation_plan": 1,
+        "remediation": 1,
+        "resource-map": 1,
+        "synthesis": 1
+      },
+      "importance_tier_docs": 11366,
+      "importance_tier_distinct": 10,
+      "importance_tier": {
+        "important": 5145,
+        "normal": 4879,
+        "high": 803,
+        "critical": 499,
+        "supporting": 17,
+        "useful": 12,
+        "medium": 6,
+        "planning": 3,
+        "standard": 1,
+        "temporary": 1
+      }
+    },
+    "skill": {
+      "docs": 8667,
+      "no_frontmatter": 4491,
+      "contextType_docs": 1610,
+      "contextType_distinct": 6,
+      "contextType": {
+        "general": 927,
+        "implementation": 593,
+        "reference": 50,
+        "planning": 34,
+        "research": 4,
+        "review": 2
+      },
+      "importance_tier_docs": 1628,
+      "importance_tier_distinct": 4,
+      "importance_tier": {
+        "normal": 1425,
+        "important": 189,
+        "high": 12,
+        "supporting": 2
+      }
+    }
+  },
+  "citations": {
+    "spec": {
+      "source_tag": {
+        "moved_in_range": 10217,
+        "gone": 6487,
+        "in_range": 4755,
+        "ambiguous": 2586,
+        "basename_only": 1241,
+        "moved_past_end": 505,
+        "past_end": 270
+      },
+      "bare": {
+        "gone": 36839,
+        "ambiguous": 25574,
+        "moved_in_range": 21388,
+        "basename_only": 18667,
+        "in_range": 10145,
+        "past_end": 691,
+        "moved_past_end": 565
+      }
+    },
+    "skill": {
+      "source_tag": {
+        "in_range": 5
+      },
+      "bare": {
+        "gone": 119,
+        "in_range": 117,
+        "basename_only": 51,
+        "ambiguous": 40,
+        "past_end": 18,
+        "moved_in_range": 6
+      }
+    }
+  },
+  "moved_top_roots": {
+    ".opencode -> .skilled": 26372,
+    ".opencode -> specs": 4861,
+    "specs -> specs": 844,
+    ".opencode -> .opencode": 202,
+    "specs -> .skilled": 104,
+    "repo-rules -> repo-rules": 92,
+    ".skilled -> .skilled": 76,
+    "scripts -> .skilled": 68,
+    ".skilled -> .opencode": 31,
+    ".. -> specs": 12
+  }
+}

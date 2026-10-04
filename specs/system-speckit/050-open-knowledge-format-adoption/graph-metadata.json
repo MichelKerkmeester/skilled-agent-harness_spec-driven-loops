@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research",
+    "system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions",
+    "system-speckit/050-open-knowledge-format-adoption/003-context-type-unification",
+    "system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection",
+    "system-speckit/050-open-knowledge-format-adoption/005-source-resolver",
+    "system-speckit/050-open-knowledge-format-adoption/006-anchor-citation-form",
+    "system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout",
+    "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening",
+    "system-speckit/050-open-knowledge-format-adoption/009-census-hardening",
+    "system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening",
+    "system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open knowledge format",
+      "okf adoption",
+      "spec-kit frontmatter improvements",
+      "spec-kit search improvements",
+      "okf deep research",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "open",
+      "knowledge",
+      "format",
+      "okf",
+      "adoption",
+      "spec-kit",
+      "frontmatter",
+      "improvements",
+      "search",
+      "deep",
+      "research",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-okf-deep-research/goal.md",
+      "002-baseline-and-decisions/goal.md",
+      "003-context-type-unification/goal.md",
+      "004-citation-drift-detection/goal.md",
+      "005-source-resolver/goal.md",
+      "007-docs-and-closeout/goal.md",
+      "008-context-type-hardening/goal.md",
+      "009-census-hardening/goal.md",
+      "010-source-tag-hardening/goal.md",
+      "011-frontmatter-values-to-sk-doc/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Knowledge Format",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurement",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Google Cloud published the Open Knowledge Format (OKF) in June 2026 as an open, vendor-neutral way to package agent-readable knowledge as a directory of markdown files with YAML frontmatter",
+    "created_at": "2026-10-04T05:36:10Z",
+    "last_save_at": "2026-10-04T20:05:20.876Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f4a5f3b9c51029a75f296583b31c7af314d3855049598f98f72630ed997a6681",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7dc4c1deccda72fc7283603b0e8a3e0458883197f67e93309800620fa80657e9"
+    },
+    "last_active_at": null
+  }
+}

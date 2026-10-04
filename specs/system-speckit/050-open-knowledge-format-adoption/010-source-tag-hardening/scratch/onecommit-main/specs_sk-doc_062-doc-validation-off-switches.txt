@@ -1,0 +1,14 @@
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/iterations/iteration-001.md:17	.skilled/skills/sk-doc/scripts/tests/validate-skip-switch.vitest.ts:67-75	guessed	no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:171	quality-audit.sh:125-150	guessed	no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:171	strict-pass-freshness.ts:253-272	guessed	no file at that path; only .skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:179	hook-flags.sh:25-29	guessed	no file at that path; only .skilled/hooks/shared/hook-flags.sh shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:179	hook-flags.cjs:93-96	guessed	no file at that path; only .skilled/hooks/shared/hook-flags.cjs shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:179	validation_switch.py:43-45	guessed	no file at that path; only .skilled/skills/sk-doc/shared/scripts/validation_switch.py shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	hook-flags.cjs:107-122	guessed	no file at that path; only .skilled/hooks/shared/hook-flags.cjs shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	validation_switch.py:65-80	guessed	no file at that path; only .skilled/skills/sk-doc/shared/scripts/validation_switch.py shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	hook-flags.sh:43-48	guessed	no file at that path; only .skilled/hooks/shared/hook-flags.sh shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	check-dist-staleness.sh:35-50	guessed	no file at that path; several tracked files share its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	hook-flags.test.cjs:193-245	guessed	no file at that path; only .skilled/hooks/shared/hook-flags.test.cjs shares its name
+WARN	specs/sk-doc/062-doc-validation-off-switches/review/lineages/luna/review-report.md:187	test_validation_switch.py:63-76	guessed	no file at that path; only .skilled/skills/sk-doc/scripts/tests/test_validation_switch.py shares its name
+IGNORED	0
+CHECKED	83

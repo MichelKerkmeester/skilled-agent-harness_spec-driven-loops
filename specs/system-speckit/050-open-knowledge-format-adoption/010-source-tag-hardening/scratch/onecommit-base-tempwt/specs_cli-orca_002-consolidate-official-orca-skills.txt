@@ -1,0 +1,4 @@
+WARN	specs/cli-orca/002-consolidate-official-orca-skills/research/research.md:42	skill-guides/computer-use.md:14	guessed	no file at that path; only .skilled/skills/cli-orca/references/orca-skills/computer-use.md shares its name
+WARN	specs/cli-orca/002-consolidate-official-orca-skills/research/research.md:42	skill-guides/orca-cli.md:33-45	guessed	no file at that path; only .skilled/skills/cli-orca/references/orca-skills/orca-cli.md shares its name
+WARN	specs/cli-orca/002-consolidate-official-orca-skills/research/research.md:46	skill-guides/orca-cli.md:36-45	guessed	no file at that path; only .skilled/skills/cli-orca/references/orca-skills/orca-cli.md shares its name
+CHECKED	3

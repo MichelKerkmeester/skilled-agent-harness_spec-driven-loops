@@ -1,0 +1,17 @@
+Role: you edit JavaScript and Bash in this repository. Make exactly the change below and nothing else.
+
+The frontmatter value list moved to `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`. Its `contextType` key is now `{ canonical, aliases }` directly, with no `document` level.
+
+1. In `.skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs`:
+- Line 21: set `VALUES_PATH` to `path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'sk-create-frontmatter', 'assets', 'frontmatter-values.json')`.
+- In `loadAccepted()`, change `values.contextType.document` to `values.contextType`.
+
+2. In `.skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh`:
+- Line 12: replace `shared/frontmatter-values.json` with `sk-create-frontmatter's frontmatter-values.json`.
+- Line 56: replace `.skilled/skills/system-spec-kit/shared/frontmatter-values.json` with `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`.
+
+3. In `.skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json` line 222: replace `shared/frontmatter-values.json` with `sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`.
+
+Do not edit or delete any other file.
+
+Check: in `.skilled/skills/system-spec-kit/runtime/cli`, `npx vitest run --config ../../vitest.config.ts --project cli tests/check-frontmatter-values.vitest.ts` passes. Report the result.

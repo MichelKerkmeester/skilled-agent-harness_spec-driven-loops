@@ -1,0 +1,764 @@
+{
+ "packets": [
+  "specs/agents/009-turn-closeout-next-steps/001-deep-research",
+  "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research",
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research",
+  "specs/cli-orca/002-consolidate-official-orca-skills",
+  "specs/hooks/002-injection-bloat-reduction",
+  "specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research",
+  "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context",
+  "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research",
+  "specs/sk-doc/062-doc-validation-off-switches",
+  "specs/sk-git/028-crawlable-commit-history/001-research",
+  "specs/sk-prompt/007-sk-prompt-parent",
+  "specs/system-deep-loop/037-graph-engineering/003-graph-arch",
+  "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2",
+  "specs/system-speckit/027-xce-research-based-refinement",
+  "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation",
+  "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements",
+  "specs/sk-code/002-rust-standards-for-code-opencode/001-research",
+  "specs/sk-communication/001-sk-communication-creation/001-research-strategy"
+ ],
+ "folders": 54,
+ "default_identical": true,
+ "forced_results_identical": true,
+ "forced_folders_warned": 23,
+ "before": {
+  "specs/agents/009-turn-closeout-next-steps/001-deep-research": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/001-deep-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-orca/002-consolidate-official-orca-skills": {
+   "rules": {
+    "cli-orca/002-consolidate-official-orca-skills": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/002-injection-bloat-reduction": {
+   "rules": {
+    "hooks/002-injection-bloat-reduction": [],
+    "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation": [],
+    "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding": [],
+    "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup": [],
+    "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats": [],
+    "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering": [],
+    "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction": [],
+    "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation": [],
+    "hooks/002-injection-bloat-reduction/008-sk-code-alignment": [],
+    "hooks/002-injection-bloat-reduction/009-testing-doc-alignment": [],
+    "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model": [],
+    "hooks/002-injection-bloat-reduction/011-playbook-results-automation": [],
+    "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation": [],
+    "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup": [],
+    "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle": [],
+    "hooks/002-injection-bloat-reduction/015-directive-docs-alignment": [],
+    "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment": [],
+    "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification": [],
+    "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery": [],
+    "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research": {
+   "rules": {
+    "sk-code/001-sk-code-parent/025-code-quality-and-shared-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context": {
+   "rules": {
+    "sk-communication/006-sk-communication-clarity/001-research-communication-context": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": {
+   "rules": {
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-doc/062-doc-validation-off-switches": {
+   "rules": {
+    "sk-doc/062-doc-validation-off-switches": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-git/028-crawlable-commit-history/001-research": {
+   "rules": {
+    "sk-git/028-crawlable-commit-history/001-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-prompt/007-sk-prompt-parent": {
+   "rules": {
+    "sk-prompt/007-sk-prompt-parent": [],
+    "sk-prompt/007-sk-prompt-parent/001-research-and-context": [],
+    "sk-prompt/007-sk-prompt-parent/002-architecture-decision": [],
+    "sk-prompt/007-sk-prompt-parent/003-scaffold-hub": [],
+    "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve": [],
+    "sk-prompt/007-sk-prompt-parent/005-foldin-prompt-models": [],
+    "sk-prompt/007-sk-prompt-parent/006-advisor-and-integration": [],
+    "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review": [],
+    "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout": [],
+    "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-deep-loop/037-graph-engineering/003-graph-arch": {
+   "rules": {
+    "system-deep-loop/037-graph-engineering/003-graph-arch": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": {
+   "rules": {
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-speckit/027-xce-research-based-refinement": {
+   "rules": {
+    "system-speckit/027-xce-research-based-refinement": [],
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup": [],
+    "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine": [],
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search": [],
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph": [],
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure": [],
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/006-synthesis-presentation": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/001-deep-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": {
+   "rules": {
+    "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/002-rust-standards-for-code-opencode/001-research": {
+   "rules": {
+    "sk-code/002-rust-standards-for-code-opencode/001-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/001-sk-communication-creation/001-research-strategy": {
+   "rules": {
+    "sk-communication/001-sk-communication-creation/001-research-strategy": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  }
+ },
+ "after_default": {
+  "specs/agents/009-turn-closeout-next-steps/001-deep-research": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/001-deep-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-orca/002-consolidate-official-orca-skills": {
+   "rules": {
+    "cli-orca/002-consolidate-official-orca-skills": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/002-injection-bloat-reduction": {
+   "rules": {
+    "hooks/002-injection-bloat-reduction": [],
+    "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation": [],
+    "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding": [],
+    "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup": [],
+    "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats": [],
+    "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering": [],
+    "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction": [],
+    "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation": [],
+    "hooks/002-injection-bloat-reduction/008-sk-code-alignment": [],
+    "hooks/002-injection-bloat-reduction/009-testing-doc-alignment": [],
+    "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model": [],
+    "hooks/002-injection-bloat-reduction/011-playbook-results-automation": [],
+    "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation": [],
+    "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup": [],
+    "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle": [],
+    "hooks/002-injection-bloat-reduction/015-directive-docs-alignment": [],
+    "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment": [],
+    "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification": [],
+    "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery": [],
+    "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research": {
+   "rules": {
+    "sk-code/001-sk-code-parent/025-code-quality-and-shared-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context": {
+   "rules": {
+    "sk-communication/006-sk-communication-clarity/001-research-communication-context": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": {
+   "rules": {
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-doc/062-doc-validation-off-switches": {
+   "rules": {
+    "sk-doc/062-doc-validation-off-switches": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-git/028-crawlable-commit-history/001-research": {
+   "rules": {
+    "sk-git/028-crawlable-commit-history/001-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-prompt/007-sk-prompt-parent": {
+   "rules": {
+    "sk-prompt/007-sk-prompt-parent": [],
+    "sk-prompt/007-sk-prompt-parent/001-research-and-context": [],
+    "sk-prompt/007-sk-prompt-parent/002-architecture-decision": [],
+    "sk-prompt/007-sk-prompt-parent/003-scaffold-hub": [],
+    "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve": [],
+    "sk-prompt/007-sk-prompt-parent/005-foldin-prompt-models": [],
+    "sk-prompt/007-sk-prompt-parent/006-advisor-and-integration": [],
+    "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review": [],
+    "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout": [],
+    "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-deep-loop/037-graph-engineering/003-graph-arch": {
+   "rules": {
+    "system-deep-loop/037-graph-engineering/003-graph-arch": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": {
+   "rules": {
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-speckit/027-xce-research-based-refinement": {
+   "rules": {
+    "system-speckit/027-xce-research-based-refinement": [],
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup": [],
+    "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine": [],
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search": [],
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph": [],
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure": [],
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/006-synthesis-presentation": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/001-deep-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": {
+   "rules": {
+    "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/002-rust-standards-for-code-opencode/001-research": {
+   "rules": {
+    "sk-code/002-rust-standards-for-code-opencode/001-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/001-sk-communication-creation/001-research-strategy": {
+   "rules": {
+    "sk-communication/001-sk-communication-creation/001-research-strategy": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  }
+ },
+ "after_forced_cutoff_2000": {
+  "specs/agents/009-turn-closeout-next-steps/001-deep-research": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/001-deep-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": []
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-orca/002-consolidate-official-orca-skills": {
+   "rules": {
+    "cli-orca/002-consolidate-official-orca-skills": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/002-injection-bloat-reduction": {
+   "rules": {
+    "hooks/002-injection-bloat-reduction": [
+     "!SOURCE_TAGS"
+    ],
+    "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation": [],
+    "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding": [],
+    "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup": [],
+    "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats": [],
+    "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering": [],
+    "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction": [],
+    "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation": [],
+    "hooks/002-injection-bloat-reduction/008-sk-code-alignment": [
+     "!SOURCE_TAGS"
+    ],
+    "hooks/002-injection-bloat-reduction/009-testing-doc-alignment": [
+     "!SOURCE_TAGS"
+    ],
+    "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model": [],
+    "hooks/002-injection-bloat-reduction/011-playbook-results-automation": [],
+    "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation": [],
+    "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup": [],
+    "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle": [],
+    "hooks/002-injection-bloat-reduction/015-directive-docs-alignment": [],
+    "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment": [],
+    "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification": [],
+    "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery": [
+     "!SOURCE_TAGS"
+    ],
+    "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research": {
+   "rules": {
+    "sk-code/001-sk-code-parent/025-code-quality-and-shared-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context": {
+   "rules": {
+    "sk-communication/006-sk-communication-clarity/001-research-communication-context": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": {
+   "rules": {
+    "sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-doc/062-doc-validation-off-switches": {
+   "rules": {
+    "sk-doc/062-doc-validation-off-switches": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-git/028-crawlable-commit-history/001-research": {
+   "rules": {
+    "sk-git/028-crawlable-commit-history/001-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-prompt/007-sk-prompt-parent": {
+   "rules": {
+    "sk-prompt/007-sk-prompt-parent": [
+     "!SOURCE_TAGS"
+    ],
+    "sk-prompt/007-sk-prompt-parent/001-research-and-context": [],
+    "sk-prompt/007-sk-prompt-parent/002-architecture-decision": [],
+    "sk-prompt/007-sk-prompt-parent/003-scaffold-hub": [],
+    "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve": [],
+    "sk-prompt/007-sk-prompt-parent/005-foldin-prompt-models": [],
+    "sk-prompt/007-sk-prompt-parent/006-advisor-and-integration": [],
+    "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review": [],
+    "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout": [],
+    "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-deep-loop/037-graph-engineering/003-graph-arch": {
+   "rules": {
+    "system-deep-loop/037-graph-engineering/003-graph-arch": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": {
+   "rules": {
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/system-speckit/027-xce-research-based-refinement": {
+   "rules": {
+    "system-speckit/027-xce-research-based-refinement": [
+     "!SOURCE_TAGS"
+    ],
+    "system-speckit/027-xce-research-based-refinement/000-release-cleanup": [],
+    "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine": [],
+    "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search": [
+     "!SOURCE_TAGS"
+    ],
+    "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph": [],
+    "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure": [],
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation": []
+   },
+   "results": [
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED",
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation": {
+   "rules": {
+    "agents/009-turn-closeout-next-steps/006-synthesis-presentation": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research": {
+   "rules": {
+    "cli-external-orchestration/071-cli-hermes-creation/001-deep-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": {
+   "rules": {
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": {
+   "rules": {
+    "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-code/002-rust-standards-for-code-opencode/001-research": {
+   "rules": {
+    "sk-code/002-rust-standards-for-code-opencode/001-research": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  },
+  "specs/sk-communication/001-sk-communication-creation/001-research-strategy": {
+   "rules": {
+    "sk-communication/001-sk-communication-creation/001-research-strategy": [
+     "!SOURCE_TAGS"
+    ]
+   },
+   "results": [
+    "RESULT: PASSED"
+   ]
+  }
+ }
+}

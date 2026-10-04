@@ -1,0 +1,89 @@
+{
+  "per_packet_median_s": {
+    "specs/agents/009-turn-closeout-next-steps/001-deep-research": {
+      "B": 1.243,
+      "N": 1.229
+    },
+    "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research": {
+      "B": 1.168,
+      "N": 1.247
+    },
+    "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research": {
+      "B": 1.208,
+      "N": 1.155
+    },
+    "specs/cli-orca/002-consolidate-official-orca-skills": {
+      "B": 1.177,
+      "N": 1.246
+    },
+    "specs/hooks/002-injection-bloat-reduction": {
+      "B": 1.213,
+      "N": 1.208
+    },
+    "specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research": {
+      "B": 1.207,
+      "N": 1.665
+    },
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context": {
+      "B": 1.205,
+      "N": 1.587
+    },
+    "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research": {
+      "B": 1.179,
+      "N": 1.211
+    },
+    "specs/sk-doc/062-doc-validation-off-switches": {
+      "B": 1.194,
+      "N": 1.306
+    },
+    "specs/sk-git/028-crawlable-commit-history/001-research": {
+      "B": 1.2,
+      "N": 1.237
+    },
+    "specs/sk-prompt/007-sk-prompt-parent": {
+      "B": 1.24,
+      "N": 1.482
+    },
+    "specs/system-deep-loop/037-graph-engineering/003-graph-arch": {
+      "B": 1.318,
+      "N": 3.547
+    },
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2": {
+      "B": 1.214,
+      "N": 1.351
+    },
+    "specs/system-speckit/027-xce-research-based-refinement": {
+      "B": 1.292,
+      "N": 2.775
+    },
+    "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation": {
+      "B": 1.156,
+      "N": 1.199
+    },
+    "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research": {
+      "B": 1.171,
+      "N": 1.442
+    },
+    "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research": {
+      "B": 1.196,
+      "N": 1.196
+    },
+    "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements": {
+      "B": 1.257,
+      "N": 1.683
+    },
+    "specs/sk-code/002-rust-standards-for-code-opencode/001-research": {
+      "B": 1.251,
+      "N": 1.597
+    },
+    "specs/sk-communication/001-sk-communication-creation/001-research-strategy": {
+      "B": 1.24,
+      "N": 1.45
+    }
+  },
+  "sum_B": 24.33,
+  "sum_N": 30.81,
+  "total_growth": 0.2665,
+  "max_packet_growth": 1.6912,
+  "median_packet_growth": 0.1033
+}

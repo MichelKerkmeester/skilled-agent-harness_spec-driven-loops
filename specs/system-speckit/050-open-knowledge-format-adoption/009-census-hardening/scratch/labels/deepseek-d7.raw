@@ -1,0 +1,10 @@
+{"row": 111, "label": "intended", "pick": ".skilled/skills/sk-code/code-quality/SKILL.md"}
+{"row": 112, "label": "intended", "pick": ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts"}
+{"row": 113, "label": "intended", "pick": ".skilled/skills/sk-code/code-quality/SKILL.md"}
+{"row": 114, "label": "not_intended", "pick": ""}
+{"row": 115, "label": "intended", "pick": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md"}
+{"row": 116, "label": "cant_tell", "pick": ""}
+{"row": 117, "label": "not_intended", "pick": ""}
+{"row": 118, "label": "intended", "pick": "specs/system-speckit/027-xce-research-based-refinement/research/003-memory-causal-expansion/iterations/iteration-039.md"}
+{"row": 119, "label": "intended", "pick": "specs/system-speckit/027-xce-research-based-refinement/research/003-memory-causal-expansion/iterations/iteration-026.md"}
+{"row": 120, "label": "not_intended", "pick": ""}

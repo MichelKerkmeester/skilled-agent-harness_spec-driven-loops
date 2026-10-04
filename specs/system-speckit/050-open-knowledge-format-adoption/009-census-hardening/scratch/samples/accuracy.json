@@ -1,0 +1,60 @@
+{
+  "protocol": "v1",
+  "seed": 20261004,
+  "pool_sizes": {
+    "moved": 27320,
+    "gone": 45338,
+    "past_end": 677,
+    "basename_only": 21251,
+    "ambiguous": 29860,
+    "guessed": 51111
+  },
+  "classes": {
+    "moved": {
+      "n": 100,
+      "right": 98,
+      "accuracy": 0.98,
+      "wilson95": [
+        0.93,
+        0.9945
+      ]
+    },
+    "past_end": {
+      "n": 100,
+      "right": 100,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.963,
+        1.0
+      ]
+    },
+    "gone": {
+      "n": 100,
+      "right": 100,
+      "accuracy": 1.0,
+      "wilson95": [
+        0.963,
+        1.0
+      ]
+    }
+  },
+  "gone_causes_whole_class": {
+    "never existed": 28610,
+    "deleted": 14330,
+    "deleted (renamed, no rule)": 2349,
+    "tracked": 1,
+    "ignored": 48
+  },
+  "gone_causes_sample": {
+    "deleted": 32,
+    "never existed": 58,
+    "deleted (renamed, no rule)": 10
+  },
+  "sizes": {
+    "moved": 100,
+    "gone": 100,
+    "past_end": 100,
+    "basename_only": 50,
+    "ambiguous": 50
+  }
+}

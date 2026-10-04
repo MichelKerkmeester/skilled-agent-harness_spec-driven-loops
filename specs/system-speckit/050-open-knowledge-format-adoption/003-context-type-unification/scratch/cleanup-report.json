@@ -1,0 +1,328 @@
+{
+  "edits": 102,
+  "packets": {
+    "specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+      "after": "RESULT: PASSED"
+    },
+    "specs/hooks/002-injection-bloat-reduction/010-playbook-cheapest-model": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/hooks/002-injection-bloat-reduction/010-playbook-cheapest-model",
+      "after": "RESULT: PASSED"
+    },
+    "specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation",
+      "after": "RESULT: PASSED"
+    },
+    "specs/hooks/009-goal-isolation/005-verification-and-validation": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/hooks/009-goal-isolation/005-verification-and-validation",
+      "after": "RESULT: PASSED"
+    },
+    "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures",
+      "after": "RESULT: PASSED"
+    },
+    "specs/sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-deep-loop/036-deep-loop-innovation": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper": {
+      "before": "RESULT: FAILED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity": {
+      "before": "RESULT: FAILED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research": {
+      "before": "RESULT: FAILED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation": {
+      "before": "RESULT: FAILED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation": {
+      "before": "RESULT: FAILED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention": {
+      "before": "RESULT: FAILED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas": {
+      "before": "RESULT: PASSED",
+      "repair": "repaired specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
+      "after": "RESULT: PASSED"
+    },
+    "specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas": {
+      "before": "RESULT: FAILED",
+      "repair": "FAILED specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas \u2014 re-derive: exit 1: backfill-graph-metadata: target graph-metadata path fails the writer rules: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/graph-metadata.json",
+      "after": "RESULT: FAILED"
+    },
+    "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: PASSED"
+    }
+  },
+  "no_packet": [],
+  "applied": 102,
+  "not_applied": [],
+  "changed_result": {
+    "specs/system-speckit/026-graph-and-context-optimization": {
+      "before": "RESULT: PASSED",
+      "repair": "inspected=1 repaired=0 failed=0",
+      "after": "RESULT: FAILED"
+    }
+  },
+  "mapping": {
+    "contextType": {
+      "architecture": "planning",
+      "implementation-summary": "implementation",
+      "handover": "general",
+      "task": "planning",
+      "research-prompts": "research",
+      "audit": "research",
+      "testing": "implementation",
+      "verification": "implementation",
+      "manual-testing": "implementation",
+      "implementation-plan": "planning",
+      "implementation_plan": "planning",
+      "tasks-ledger": "planning",
+      "analysis": "research",
+      "decision-record": "planning",
+      "phase-parent": "planning",
+      "review-report": "research",
+      "governance": "planning",
+      "synthesis": "research",
+      "deferred": "general",
+      "remediation": "implementation",
+      "resource-map": "general"
+    },
+    "importance_tier": {
+      "planning": "normal"
+    }
+  }
+}

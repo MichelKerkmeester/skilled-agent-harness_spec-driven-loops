@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening",
+  "description": "Phase 8: context-type-hardening",
+  "keywords": [
+    "phase",
+    "context-type-hardening"
+  ],
+  "lastUpdated": "2026-10-04T12:00:33.339Z",
+  "specId": "008",
+  "folderSlug": "context-type-hardening",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

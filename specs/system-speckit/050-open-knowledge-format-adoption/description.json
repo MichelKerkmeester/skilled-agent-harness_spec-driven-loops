@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption",
+  "description": "Open Knowledge Format adoption for system-spec-kit: research, design, implementation",
+  "keywords": [
+    "open",
+    "knowledge",
+    "format",
+    "adoption",
+    "system-spec-kit",
+    "research",
+    "design",
+    "implementation"
+  ],
+  "lastUpdated": "2026-10-04T05:36:10.942Z",
+  "specId": "050",
+  "folderSlug": "open-knowledge-format-adoption",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
