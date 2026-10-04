@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | None (top-level packet) |
@@ -129,7 +129,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 3 | 003-doctor-gates-and-drift/ | Restore the doctor gates' coverage, fix the failing fixtures, and align the doctor's own text and counts | Complete |
 | 4 | 004-doctor-scripts-conformance/ | Bring every doctor script to the sk-code OpenCode standards, remove dead code and put each script under an automated test that CI runs | Complete |
 | 5 | 005-doctor-update-research/ | Six iterations of deep research into whether `/doctor:update` and the release-update engine are complete and correct, ending in a ranked fix list | Complete |
-| 6 | 006-doctor-update-fixes/ | Fix every finding and recommendation of the doctor-update research, reviewed first by a fresh Opus 5.5 and implemented by Sonnet 5.5 | In Progress |
+| 6 | 006-doctor-update-fixes/ | Fix every finding and recommendation of the doctor-update research, reviewed first by a fresh Opus 5.5 and implemented by cli-codex gpt-6-luna at max on the fast tier | Complete |
 
 ### Phase Transition Rules
 
