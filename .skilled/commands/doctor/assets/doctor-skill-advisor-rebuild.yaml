@@ -1,0 +1,120 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SKILL-ADVISOR REBUILD WORKFLOW (INTERACTIVE MUTATING MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator rebuilding the skill advisor's routing graph in interactive mode
+purpose: Rebuild skill-graph.sqlite from the checked-in graph-metadata.json files through the advisor CLI, behind one approval, a backup and a restore on failure
+action: Probe advisor status -> show the plan -> approval -> back up skill-graph.sqlite -> advisor_rebuild + skill_graph_scan -> validate -> final status
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_with_single_approval
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_before_first_write
+  tracking: phase_by_phase
+  validation: skill_graph_validate_after_rebuild
+
+# ─────────────────────────────────────────────────────────────────
+# REBUILD INVARIANT
+# ─────────────────────────────────────────────────────────────────
+rebuild_invariant: |
+  skill-graph.sqlite is derived state. The source of truth is the checked-in
+  .skilled/skills/*/graph-metadata.json files, so a rebuild loses nothing the disk does
+  not hold. The workflow still backs the database up first, because a rebuild that fails
+  halfway leaves the advisor routing off a partial graph until someone notices.
+  Every write goes through the advisor CLI: advisor_rebuild rebuilds the native graph and
+  skill_graph_scan re-indexes graph-metadata.json with the hash-aware indexer. The
+  workflow never edits graph-metadata.json, scorer code or any skill file. A dry run stops
+  after the plan and writes nothing.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  contract: "local command design contract"
+  advisor_cli: ".skilled/bin/skill-advisor.cjs"
+  sqlite_graph: ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+  disk_truth: ".skilled/skills/*/graph-metadata.json"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "[DRY_RUN] - show the plan and stop before any write (default false)"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    dry_run: false
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.pre-doctor-skill-advisor-rebuild.*.bak"
+  forbidden_targets:
+    - ".skilled/skills/*/graph-metadata.json"
+    - ".skilled/skills/system-skill-advisor/runtime/lib/**"
+    - ".skilled/skills/*/SKILL.md"
+  invariant: "Only the advisor CLI writes skill-graph.sqlite; the workflow itself writes only the backup copy and restores it on failure."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_probe:
+    purpose: "Report the advisor's current state before asking for anything"
+    activities:
+      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only. Exit 75 means no daemon is running; record it as daemon=absent, which the rebuild itself does not need."
+      - "Record whether skill-graph.sqlite exists, its size and modified time"
+      - "Count the .skilled/skills/*/graph-metadata.json files the rebuild will index"
+
+  phase_2_plan_and_approval:
+    purpose: "Show exactly what will change, then ask once"
+    activities:
+      - "Render the presentation contract's rebuild plan: current status, database path, backup path, metadata file count, and the two CLI commands that will run"
+      - "If dry_run is true, render the dry-run result and stop with STATUS=OK; nothing is written"
+      - "Ask the presentation contract's approval prompt; on anything but approve, stop with STATUS=CANCELLED"
+
+  phase_3_backup:
+    purpose: "Keep a restorable copy of the current database"
+    activities:
+      - "If skill-graph.sqlite exists, copy it to skill-graph.sqlite.pre-doctor-skill-advisor-rebuild.<timestamp>.bak in the same directory and confirm the copy's size matches"
+      - "If it does not exist, record backup=none; there is nothing to restore"
+
+  phase_4_rebuild:
+    purpose: "Rebuild through the advisor CLI"
+    activities:
+      - "Run node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json"
+      - "Run node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json"
+      - "On a non-zero exit from either, go to phase_6_restore"
+
+  phase_5_verify:
+    purpose: "Prove the rebuilt graph is usable"
+    activities:
+      - "Run node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only"
+      - "Run node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only"
+      - "If validation reports errors, go to phase_6_restore; otherwise render the mutating result with STATUS=OK and keep the backup path in the summary"
+
+  phase_6_restore:
+    purpose: "Put the previous database back when the rebuild failed"
+    runs_when: "phase_4_rebuild or phase_5_verify failed"
+    activities:
+      - "If a backup exists, copy it back over skill-graph.sqlite and report STATUS=ROLLED_BACK with the failing command and its output"
+      - "If no backup exists, report STATUS=FAIL and name advisor_rebuild as the next step to retry"
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt"
+  statuses: [OK, CANCELLED, ROLLED_BACK, FAIL]

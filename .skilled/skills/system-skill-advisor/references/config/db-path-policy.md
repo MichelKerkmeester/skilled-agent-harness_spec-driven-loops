@@ -68,7 +68,7 @@ ADR-001 constraint A requires DB-local ownership for the extracted advisor. The 
 
 This separation gives cleaner mutation scope:
 
-- `/doctor:rebuild` and future repair flows can reason per skill package.
+- `/doctor:skill-advisor rebuild` and future repair flows can reason per skill package.
 - The advisor daemon is the single writer for `skill-graph.sqlite`.
 - `system-spec-kit` keeps memory and spec packet state without owning advisor runtime data.
 - Backups, cleanup and integrity checks can target the advisor package directly.

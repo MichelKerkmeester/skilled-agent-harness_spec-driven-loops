@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor ownership split",
+      "doctor skill-advisor command",
+      "delete doctor rebuild",
+      "doctor deep-loop command",
+      "doctor ownership split plan",
+      "doctor route command owner",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "doctor",
+      "ownership",
+      "split",
+      "skill-advisor",
+      "command",
+      "delete",
+      "rebuild",
+      "deep-loop",
+      "plan",
+      "route",
+      "owner",
+      "task"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor-rebuild.yaml",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-rebuild.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor-rebuild.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-tune.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor-tune.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:speckit` was one router for nine targets, and eight of them belonged to other owners: four to the skill advisor's routing quality, one each to the deep loop and the runtime mirrors, one to the parent-hub canon and one to a Fable 5 metrics check nobody used",
+    "created_at": "2026-10-04T06:09:43Z",
+    "last_save_at": "2026-10-04T06:45:28.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca3d37068f439516eae4d1a665cb7da217c7f2e88330ff406559bbf7e1a31f75",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be76d687803dbf6bab1b12824accaf8fc5ab536efb0c264a145fade7e72db05d",
+      "plan.md": "f06550bd2cfc3efb97580f7ef14f7638836e123d5598e6e7320168c83841c102",
+      "tasks.md": "0244e501c5a3247809e9a1e1646e7b6d56ba3cc9359c9ebd979730f8e9f391c4",
+      "implementation-summary.md": "a1af6f00a71fe88e6d4bf3b3b345bab2da6eae9968fa1f765d2ca73cdae00e00"
+    },
+    "last_active_at": null
+  }
+}

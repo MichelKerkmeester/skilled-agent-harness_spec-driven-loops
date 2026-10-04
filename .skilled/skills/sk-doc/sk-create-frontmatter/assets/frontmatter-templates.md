@@ -299,7 +299,7 @@ description: "Multi-stack coding standards and verification. Smart router auto-d
 
 The trimmed version retains every routing-keyword the advisor cares about (`coding`, `standards`, `verification`, `surface`, `code patterns`) while losing the brittle stack enumeration that would have to be edited every time a library is added.
 
-**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:speckit skill-budget` periodically to detect accumulated drift across the project.
+**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:skill-advisor skill-budget` periodically to detect accumulated drift across the project.
 
 **What the audit counts**: the total is the authored surface, not exactly the list Claude Code loads. It sums every `.skilled/skills/*/SKILL.md`, every `.skilled/commands/**/*.md` and the agents in `.skilled/agents/` and `.claude/agents/` (deduped by name), so it includes the runtime-exclusive commands `goal-opencode.md` and `vision.md`, which are never mirrored into `.claude/commands`. The Claude Code budget it reports is read from `SLASH_COMMAND_TOOL_CHAR_BUDGET` when that variable is set, and falls back to 8,000.
 

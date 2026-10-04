@@ -29,7 +29,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const COMMANDS_DIR = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor');
 const ASSETS_DIR = path.join(COMMANDS_DIR, 'assets');
 const ROUTES_PATH = path.join(COMMANDS_DIR, '_routes.yaml');
-const ROUTER_MD_PATH = path.join(COMMANDS_DIR, 'speckit.md');
+const ROUTER_MD_PATH = path.join(COMMANDS_DIR, 'skill-advisor.md');
 const ADVISOR_RUNTIME = path.join(
   REPO_ROOT, '.skilled', 'skills', 'system-skill-advisor', 'runtime',
 );
@@ -141,8 +141,10 @@ function cliCommandName(entry) {
 
 function skillAdvisorRouteCliCommands() {
   const routes = parseYaml(read(ROUTES_PATH));
-  const route = routes.routes.find((entry) => entry.target === 'skill-advisor');
-  assert.ok(route, '_routes.yaml must declare a skill-advisor route');
+  const route = routes.routes.find(
+    (entry) => entry.command === '/doctor:skill-advisor' && entry.target === 'tune',
+  );
+  assert.ok(route, '_routes.yaml must declare the /doctor:skill-advisor tune route');
   assert.ok(
     Array.isArray(route.cli_commands),
     'skill-advisor route must declare cli_commands as an array',
@@ -243,7 +245,7 @@ test('the doctor command docs and workflow assets reach the advisor through the 
 
   assert.ok(
     allowedTools(read(ROUTER_MD_PATH)).includes(REQUIRED_ROUTER_TOOL),
-    `doctor/speckit.md allowed-tools must include ${REQUIRED_ROUTER_TOOL}, `
+    `doctor/skill-advisor.md allowed-tools must include ${REQUIRED_ROUTER_TOOL}, `
       + 'the surface its advisor CLI commands run through',
   );
 });

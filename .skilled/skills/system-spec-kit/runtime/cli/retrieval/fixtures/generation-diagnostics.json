@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6675,
-    "ok": 13093,
+    "missing-frontmatter": 6666,
+    "ok": 13098,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23340,
+  "documentsScanned": 23336,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
+  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33415,
+      "ok": 33422,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -34562,55 +34562,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-g5-confirm-failure-injection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-g6-concurrent.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-g7-sigint.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-g8-migration-gap.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-g9-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-rebuild-tier-aware-default.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-3-3-0-0-to-3-4-1-0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-cleanup-legacy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/version-migration-no-op.md",
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35068,12 +35020,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/metrics/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -70501,6 +70447,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/scratch",
       "reason": "excluded directory"
     },
     {

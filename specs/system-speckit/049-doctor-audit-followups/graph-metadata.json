@@ -10,7 +10,8 @@
     "system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance",
     "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes",
-    "system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift"
+    "system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift",
+    "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split"
   ],
   "manual": {
     "depends_on": [],
@@ -52,10 +53,8 @@
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
       ".skilled/commands/doctor/scripts/route-validate.py",
-      ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
       ".skilled/commands/doctor/scripts/audit_descriptions.py",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt"
     ],
     "entities": [
@@ -120,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-rebuild-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
-        "source": "derived"
-      },
-      {
         "name": "audit_descriptions.py",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
@@ -135,12 +128,6 @@
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "fable-baseline.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
         "source": "derived"
       },
       {
@@ -188,16 +175,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-04T05:05:23.578Z",
+    "last_save_at": "2026-10-04T06:45:32.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6eee0f98b248f1307e5cbc19ea12a97647ae3349c0ea223eb2942d0cc4c00553",
+    "source_fingerprint": "sha256:4f3162a684d85e819337d255015823f50a17c19e48bafc1110136c43cde7571a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a25593615ae41f3361c2f0606696a682711d214471b4d6f4ff0e1685b2765fcc"
+      "spec.md": "a6612bb9e74b697d9fcdcbc9e0a287add5fe7bd6a76a83e04e66171c86a64913"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "last_active_at": "2026-10-03T20:43:10.206Z"

@@ -195,20 +195,21 @@
       "topology": "subaction-route-manifest",
       "router_path": [
         ".skilled/commands/doctor/speckit.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/deep-loop.md",
+        ".skilled/commands/doctor/runtime-mirrors.md",
         ".skilled/commands/doctor/mcp.md",
-        ".skilled/commands/doctor/rebuild.md",
         ".skilled/commands/doctor/update.md",
         ".skilled/commands/doctor/env.md"
       ],
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install [--runtime <name>]|debug [--fix]> (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (rebuild); [check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml", "target": ".skilled/commands/doctor/assets/doctor-<target>.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop and runtime-mirrors", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
-        { "selector": "rebuild", "target": ".skilled/commands/doctor/assets/doctor-rebuild.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
         { "selector": "apply", "target": ".skilled/commands/doctor/assets/doctor-update-apply.yaml" },
@@ -231,7 +232,7 @@
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-env-presentation.txt" },
-        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows)" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows, named by each route's yaml field)" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
       "loader_requirements": [
@@ -239,8 +240,9 @@
         "Parse the positional target before any flag; reject cross-target flags before loading the target YAML",
         "Bare /doctor:update runs the read-only check action, and /doctor:update apply, rollback and record-base each request approval before their first write",
         "The manifest exposes each route's mutation class (read-only | add-only | mutates) and gate-3 location before acting",
-        "/doctor:rebuild carries no required positional: input.required is true for the speckit and mcp routers only",
-        "rebuild acquires a flock before database-rebuild probes and may end STATUS=RESTART_REQUIRED",
+        "Each _routes.yaml route names its owning command; a command that owns one route (speckit, deep-loop, runtime-mirrors) takes no required positional, and input.required is true for the skill-advisor and mcp routers only",
+        "/doctor:speckit answers a target another doctor command owns with a moved-target notice and loads no workflow",
+        "/doctor:skill-advisor rebuild backs up skill-graph.sqlite before advisor_rebuild and restores it when the rebuild or its validation fails",
         "/doctor:env reads ENV-REFERENCE.md at every invocation, reports only secret source presence, and supports list plus section or variable selectors and --dry-run",
         "/doctor:env has no required positional; it writes only an explicitly confirmed eligible preference to hook-flags.env or Claude settings and never writes .env or a shell profile"
       ],
@@ -248,11 +250,11 @@
       "destructive_policy": {
         "has_destructive_ops": true,
         "gated": true,
-        "operations": ["skill-advisor target writes lib/scorer/lanes sources", "mcp install writes the Code Mode build, selected runtime config and .utcp_config.json; credential values remain operator-managed in root .env", "rebuild rewrites spec-kit SQLite databases (snapshotted first unless --no-snapshot)", "update apply writes only the engine's displayed release plan after one startup approval, records rollback.json before target writes and runs the post-apply battery", "update rollback restores a run's rollback record after one approval and clears a stale apply lock only with its own approval", "update record-base writes .skilled/release/base.json after one approval", "env updates one eligible preference in hook-flags.env or the Claude settings env block after explicit confirmation"]
+        "operations": ["skill-advisor tune writes lib/scorer/lanes sources", "skill-advisor rebuild rewrites skill-graph.sqlite through the advisor CLI after a backup", "mcp install writes the Code Mode build, selected runtime config and .utcp_config.json; credential values remain operator-managed in root .env", "update apply writes only the engine's displayed release plan after one startup approval, records rollback.json before target writes and runs the post-apply battery", "update rollback restores a run's rollback record after one approval and clears a stale apply lock only with its own approval", "update record-base writes .skilled/release/base.json after one approval", "env updates one eligible preference in hook-flags.env or the Claude settings env block after explicit confirmation"]
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit <target>", "/doctor:speckit list", "/doctor:speckit ?", "/doctor:mcp <install|debug>", "/doctor:rebuild", "/doctor:update [check|align|apply|rollback|record-base] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
       "workflow_schema_ref": null
     },
     "deep": {

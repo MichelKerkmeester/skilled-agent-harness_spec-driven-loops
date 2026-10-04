@@ -3,21 +3,27 @@
 # COMPONENT: DOCTOR ROUTE VALIDATOR
 # ───────────────────────────────────────────────────────────────
 """
-route-validate.py validates the canonical manifest for the /doctor:speckit router.
+route-validate.py validates the canonical manifest for the routed doctor commands.
+
+Every route names the command that owns it; that command's router is
+<doctor-dir>/<name>.md and its presentation is
+<assets-dir>/doctor-<name>-presentation.txt.
 
 Validates `.skilled/commands/doctor/_routes.yaml` against:
   A. YAML parse + schema_version
-  B. Routes list integrity + required keys per route
+  B. Routes list integrity + required keys per route; each route's command names
+     an existing doctor router
   C. No duplicate target names
   D. Every route's YAML asset exists in assets/
   E. Mutation class is one of {read-only, add-only, mutates}
-  F. Each route's mcp_tools is a subset of the router's frontmatter allowed-tools
+  F. Each route's mcp_tools is a subset of its router's frontmatter allowed-tools
      union; each cli_commands entry invokes the advisor CLI with a known command
   G. Every route has ≥1 trigger phrase
   H. Flag-name collisions across targets (informational only)
   I. Every route's script_invocations resolve to an existing local script file
-  J. Target-set parity across _routes.yaml, speckit.md's Workflow Assets table,
-     and doctor_speckit_presentation.txt's menu/valid-targets/subsystem table
+  J. Per command, target-set parity between _routes.yaml and the router's
+     targets table; a command with more than one route also keeps parity with its
+     presentation's menu, valid-targets line and subsystem table
   K. Read-only mutation-policy: a `mutating: read-only` route may not declare a
      packet/file/DB write in its target YAML or grant a known-mutating advisor
      command
@@ -27,8 +33,8 @@ Validates `.skilled/commands/doctor/_routes.yaml` against:
      comment alone does not count)
 
 Usage:
-    python3 route-validate.py --routes <_routes.yaml> --router <speckit.md>
-        --assets-dir <assets/> --presentation <presentation.txt> --repo-root <root>
+    python3 route-validate.py --routes <_routes.yaml> --doctor-dir <doctor/>
+        --assets-dir <assets/> --repo-root <root>
 
 Exit codes:
   0 - all assertions pass
@@ -56,6 +62,7 @@ except ImportError:
 # ───────────────────────────────────────────────────────────────
 
 REQUIRED_KEYS = {
+    "command",
     "target",
     "yaml",
     "setup_vars",
@@ -68,6 +75,7 @@ REQUIRED_KEYS = {
 # tool ids, or advisor CLI invocations.
 TOOL_DECLARATION_KEYS = ("mcp_tools", "cli_commands")
 VALID_MUTATING = {"read-only", "add-only", "mutates"}
+COMMAND_RE = re.compile(r"^/doctor:([a-z0-9-]+)$")
 
 # Matches repo-relative local script paths inside script_invocations prose,
 # e.g. ".skilled/bin/skill-advisor.cjs" or ".skilled/commands/doctor/scripts/x.py"
@@ -224,8 +232,22 @@ def parse_router_allowed_tools(router_path: Path) -> Set[str]:
     return {t.strip() for t in raw.split(",") if t.strip()}
 
 
-def parse_speckit_targets(router_path: Path) -> Set[str]:
-    """Extract target names from speckit.md's Workflow Assets table rows,
+def command_name(route: Dict[str, Any]) -> Optional[str]:
+    """The router name a route's command points at, e.g. /doctor:speckit -> speckit."""
+    match = COMMAND_RE.match(str(route.get("command", "")))
+    return match.group(1) if match else None
+
+
+def router_path_for(doctor_dir: Path, name: str) -> Path:
+    return doctor_dir / f"{name}.md"
+
+
+def presentation_path_for(assets_dir: Path, name: str) -> Path:
+    return assets_dir / f"doctor-{name}-presentation.txt"
+
+
+def parse_router_targets(router_path: Path) -> Set[str]:
+    """Extract target names from a router's targets table rows,
     e.g. "| `memory` | `.skilled/commands/doctor/assets/doctor-memory.yaml` |"."""
     if not router_path.exists():
         return set()
@@ -417,22 +439,41 @@ def check_mutation_classes(routes: Sequence[Dict[str, Any]], result: Result) -> 
         result.passed("E1: all mutation classes valid")
 
 
-def check_tool_declarations(routes: Sequence[Dict[str, Any]], router_path: Path, result: Result) -> None:
-    """F1-F3: mcp_tools stay inside the router union; cli_commands name known advisor commands."""
-    router_tools = parse_router_allowed_tools(router_path)
-    if not router_tools:
-        result.warn("F1: could not extract allowed-tools from router frontmatter; skipping F2 subset check")
-    else:
-        result.info(f"Router allowed-tools union: {len(router_tools)} entries")
-        f2_failed = False
-        for route in routes:
-            target = route.get("target")
-            for tool in route.get("mcp_tools") or []:
-                if tool not in router_tools:
-                    result.fail(f"F2: route '{target}' lists mcp_tool '{tool}' but it is NOT in the router's allowed-tools union")
-                    f2_failed = True
-        if not f2_failed:
-            result.passed("F2: all route mcp_tools are subsets of router allowed-tools union")
+def check_commands(routes: Sequence[Dict[str, Any]], doctor_dir: Path, result: Result) -> None:
+    """B3: every route's command is /doctor:<name> and that router file exists."""
+    b3_failed = False
+    for route in routes:
+        target = route.get("target")
+        name = command_name(route)
+        if name is None:
+            result.fail(f"B3: route '{target}' has command {route.get('command')!r}; expected /doctor:<name>")
+            b3_failed = True
+        elif not router_path_for(doctor_dir, name).exists():
+            result.fail(f"B3: route '{target}' names {route.get('command')} but {router_path_for(doctor_dir, name)} does not exist")
+            b3_failed = True
+    if not b3_failed:
+        result.passed("B3: every route's command names an existing doctor router")
+
+
+def check_tool_declarations(routes: Sequence[Dict[str, Any]], doctor_dir: Path, result: Result) -> None:
+    """F1-F3: mcp_tools stay inside their router's union; cli_commands name known advisor commands."""
+    f2_failed = False
+    for route in routes:
+        target = route.get("target")
+        tools = route.get("mcp_tools") or []
+        name = command_name(route)
+        if not tools or name is None:
+            continue
+        router_tools = parse_router_allowed_tools(router_path_for(doctor_dir, name))
+        if not router_tools:
+            result.warn(f"F1: could not extract allowed-tools from {name}.md frontmatter; skipping F2 for route '{target}'")
+            continue
+        for tool in tools:
+            if tool not in router_tools:
+                result.fail(f"F2: route '{target}' lists mcp_tool '{tool}' but it is NOT in {name}.md's allowed-tools union")
+                f2_failed = True
+    if not f2_failed:
+        result.passed("F2: all route mcp_tools are subsets of their router's allowed-tools union")
 
     f3_failed = False
     for route in routes:
@@ -469,17 +510,21 @@ def check_trigger_phrases(routes: Sequence[Dict[str, Any]], result: Result) -> N
 
 
 def report_flag_collisions(routes: Sequence[Dict[str, Any]], result: Result) -> None:
-    """H1: informational warning for a flag name shared across targets."""
-    flag_owners: Dict[str, List[str]] = {}
+    """H1: informational warning for a flag name shared by targets of one command.
+
+    Targets of different commands never share a parse, so only a collision
+    inside one router is worth a warning.
+    """
+    flag_owners: Dict[tuple, List[str]] = {}
     for route in routes:
         target = route.get("target")
         for flag in route.get("allowed_flags") or []:
             # Strip the value portion: "--scope=A|B" and "--server <name>" both name the flag only.
             name = re.split(r"[ =]", flag, 1)[0]
-            flag_owners.setdefault(name, []).append(target)
-    for name, owners in flag_owners.items():
+            flag_owners.setdefault((route.get("command"), name), []).append(target)
+    for (command, name), owners in flag_owners.items():
         if len(owners) > 1:
-            result.warn(f"H1: flag '{name}' appears in multiple targets (allowed but informational): {', '.join(owners)}")
+            result.warn(f"H1: flag '{name}' appears in multiple {command} targets (allowed but informational): {', '.join(owners)}")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -501,34 +546,41 @@ def check_script_invocations(routes: Sequence[Dict[str, Any]], repo_root: Path, 
 
 
 def check_target_parity(
-    targets: Sequence[Any],
-    router_path: Path,
-    presentation_path: Path,
+    routes: Sequence[Dict[str, Any]],
+    doctor_dir: Path,
+    assets_dir: Path,
     result: Result,
 ) -> None:
-    """J1: manifest targets match speckit.md and every presentation display."""
-    manifest_targets = {t for t in targets if t}
-    presentation_targets = parse_presentation_targets(presentation_path)
-    parity_checks = {
-        "speckit.md Workflow Assets table": parse_speckit_targets(router_path),
-        "presentation menu (Accepted answers)": presentation_targets["menu"],
-        "presentation 'Valid targets:' line": presentation_targets["valid_targets"],
-        "presentation subsystem manifest table": presentation_targets["subsystem"],
-    }
+    """J1: per command, manifest targets match the router table and, for a
+    multi-route command, every presentation display."""
+    by_command: Dict[str, Set[str]] = {}
+    for route in routes:
+        name = command_name(route)
+        if name and route.get("target"):
+            by_command.setdefault(name, set()).add(route["target"])
     j_failed = False
-    for label, display_set in parity_checks.items():
-        missing_from_display = manifest_targets - display_set
-        extra_in_display = display_set - manifest_targets
-        if missing_from_display or extra_in_display:
-            details = []
-            if missing_from_display:
-                details.append(f"missing from {label}: {', '.join(sorted(missing_from_display))}")
-            if extra_in_display:
-                details.append(f"stale/extra in {label}: {', '.join(sorted(extra_in_display))}")
-            result.fail(f"J1: target-set parity mismatch — {'; '.join(details)}")
-            j_failed = True
+    for name, manifest_targets in sorted(by_command.items()):
+        parity_checks = {f"{name}.md targets table": parse_router_targets(router_path_for(doctor_dir, name))}
+        if len(manifest_targets) > 1:
+            presentation_targets = parse_presentation_targets(presentation_path_for(assets_dir, name))
+            parity_checks.update({
+                f"{name} presentation menu (Accepted answers)": presentation_targets["menu"],
+                f"{name} presentation 'Valid targets:' line": presentation_targets["valid_targets"],
+                f"{name} presentation subsystem manifest table": presentation_targets["subsystem"],
+            })
+        for label, display_set in parity_checks.items():
+            missing_from_display = manifest_targets - display_set
+            extra_in_display = display_set - manifest_targets
+            if missing_from_display or extra_in_display:
+                details = []
+                if missing_from_display:
+                    details.append(f"missing from {label}: {', '.join(sorted(missing_from_display))}")
+                if extra_in_display:
+                    details.append(f"stale/extra in {label}: {', '.join(sorted(extra_in_display))}")
+                result.fail(f"J1: target-set parity mismatch — {'; '.join(details)}")
+                j_failed = True
     if not j_failed:
-        result.passed("J1: _routes.yaml routes, speckit.md table, and all 3 presentation displays are in parity")
+        result.passed(f"J1: targets are in parity with their router and presentation across {len(by_command)} commands")
 
 
 def check_read_only_policy(routes: Sequence[Dict[str, Any]], assets_dir: Path, result: Result) -> None:
@@ -590,9 +642,8 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     """Parse the validator's command line."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--routes", required=True, help="Path to _routes.yaml")
-    ap.add_argument("--router", required=True, help="Path to doctor.md (router)")
-    ap.add_argument("--assets-dir", required=True, help="Path to assets/ dir")
-    ap.add_argument("--presentation", required=True, help="Path to doctor_speckit_presentation.txt")
+    ap.add_argument("--doctor-dir", required=True, help="Path to the doctor command dir holding each <name>.md router")
+    ap.add_argument("--assets-dir", required=True, help="Path to assets/ dir holding the workflows and presentations")
     ap.add_argument("--repo-root", required=True, help="Path to repository root (resolves script_invocations paths)")
     return ap.parse_args(argv)
 
@@ -610,16 +661,14 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     """
     args = parse_args(argv)
     routes_path = Path(args.routes)
-    router_path = Path(args.router)
+    doctor_dir = Path(args.doctor_dir)
     assets_dir = Path(args.assets_dir)
-    presentation_path = Path(args.presentation)
     repo_root = Path(args.repo_root)
 
     result = Result()
     result.info(f"Manifest:     {routes_path}")
-    result.info(f"Router:       {router_path}")
+    result.info(f"Doctor dir:   {doctor_dir}")
     result.info(f"Assets:       {assets_dir}")
-    result.info(f"Presentation: {presentation_path}")
     result.info(f"Repo root:    {repo_root}")
     print("")
 
@@ -635,14 +684,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     route_maps = [route for route in routes if isinstance(route, dict)]
     targets = [route.get("target") for route in route_maps]
+    check_commands(route_maps, doctor_dir, result)
     check_duplicate_targets(targets, result)
     check_yaml_assets(route_maps, assets_dir, result)
     check_mutation_classes(route_maps, result)
-    check_tool_declarations(route_maps, router_path, result)
+    check_tool_declarations(route_maps, doctor_dir, result)
     check_trigger_phrases(route_maps, result)
     report_flag_collisions(route_maps, result)
     check_script_invocations(route_maps, repo_root, result)
-    check_target_parity(targets, router_path, presentation_path, result)
+    check_target_parity(route_maps, doctor_dir, assets_dir, result)
     check_read_only_policy(route_maps, assets_dir, result)
     check_workflow_activity(route_maps, assets_dir, result)
 

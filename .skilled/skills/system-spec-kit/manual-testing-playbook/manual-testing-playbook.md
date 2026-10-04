@@ -38,7 +38,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:speckit` routes. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
+This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:deep-loop` diagnostic. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
 
 ### What This Playbook No Longer Covers
 
@@ -246,22 +246,14 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 
 ### 7.2 Doctor Commands
 
-Category notes and the retired ID range: [`doctor-commands/README.md`](doctor-commands/README.md).
+Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-commands/README.md).
 
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
 | DOC-331 | Doctor deep-loop lazy init | [DOC-331](doctor-commands/doctor-deep-loop-lazy-init.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-332 | Doctor deep-loop empty, no source | [DOC-332](doctor-commands/doctor-deep-loop-empty-no-source.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-333 | Doctor deep-loop convergence | [DOC-333](doctor-commands/doctor-deep-loop-convergence.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-338 | Doctor rebuild G5 failure injection mid-rebuild | [DOC-338](doctor-commands/doctor-rebuild-g5-confirm-failure-injection.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-339 | Doctor rebuild G6 concurrent refusal | [DOC-339](doctor-commands/doctor-rebuild-g6-concurrent.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-340 | Doctor rebuild G7 SIGINT | [DOC-340](doctor-commands/doctor-rebuild-g7-sigint.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-341 | Doctor rebuild G8 migration gap | [DOC-341](doctor-commands/doctor-rebuild-g8-migration-gap.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-342 | Doctor rebuild G9 dashboard | [DOC-342](doctor-commands/doctor-rebuild-g9-dashboard.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-344 | Doctor rebuild tier-aware default | [DOC-344](doctor-commands/doctor-rebuild-tier-aware-default.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-345 | Version migration 3.3.0.0 to 3.4.1.0 | [DOC-345](doctor-commands/version-migration-3-3-0-0-to-3-4-1-0.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-346 | Version migration cleanup legacy | [DOC-346](doctor-commands/version-migration-cleanup-legacy.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-347 | Version migration no-op | [DOC-347](doctor-commands/version-migration-no-op.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
+| DOC-348 | Doctor skill-advisor rebuild | [DOC-348](doctor-commands/doctor-skill-advisor-rebuild.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 

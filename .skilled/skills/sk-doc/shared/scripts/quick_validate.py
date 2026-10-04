@@ -215,7 +215,7 @@ def validate_skill(
 
         if '<' in description or '>' in description:
             # Command descriptions legitimately carry <arg> placeholder notation
-            # (e.g. /doctor:speckit <target>); a skill description with angle brackets
+            # (e.g. /doctor:skill-advisor <target>); a skill description with angle brackets
             # breaks registration, so it stays a hard failure there.
             if kind == 'command':
                 warnings.append("Description contains angle brackets (< or >) — allowed as <arg> placeholder notation for commands")

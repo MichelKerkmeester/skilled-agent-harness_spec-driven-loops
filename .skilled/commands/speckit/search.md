@@ -80,7 +80,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.
 1. Run the command with the resolved `QUERY`.
 2. Branch on the exit status: `0` = candidates, `1` = clean no-hit, `2` or higher = the index is missing or unreadable.
 3. Render candidates with the Section 2 contract in the presentation asset — score, match class and path, in the order the tool returned them.
-4. On exit `2` or higher, render the Section 7 error display with stderr attached and name `/doctor:speckit speckit-retrieval` as the diagnostic. Never report it as a no-hit.
+4. On exit `2` or higher, render the Section 7 error display with stderr attached and name `/doctor:speckit` as the diagnostic. Never report it as a no-hit.
 
 ### Free-text lane
 
