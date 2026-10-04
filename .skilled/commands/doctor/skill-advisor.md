@@ -9,6 +9,16 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 
 This command is a thin router. It resolves the target and setup values from `_routes.yaml`, then loads the target workflow YAML and the presentation contract.
 
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `target` is bound.
+
+1. Parse the first positional token of `$ARGUMENTS` as `target`, before any flag. `list`, `?` and `--list` render the route manifest instead of binding a target, and `--target=<name>` is a compatibility alias.
+2. Treat an absent or whitespace-only target as missing. Do not infer it from conversation history, open files, earlier runs or repository state.
+3. When it is missing, show the presentation contract's target-resolution prompt, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
+
+If this gate was skipped, stop, say so, return to it, and bind the target before loading any workflow.
+
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
@@ -53,14 +63,13 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 1. Read `.skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt`.
 2. Read `.skilled/commands/doctor/_routes.yaml` and keep the `/doctor:skill-advisor` routes.
-3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
-4. If target is unresolved, ask the presentation contract's target-resolution prompt and wait.
-5. If target is unknown, render the presentation contract's unknown-target failure and stop.
-6. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, `cli_commands`, and script invocations from the route.
-7. Parse remaining flags using only the resolved target's `allowed_flags`; reject cross-target flags using the presentation contract's error wording.
-8. Resolve any missing setup variables using the presentation contract's per-target setup prompts.
-9. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
-10. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
+3. Take `target` from the input gate.
+4. If target is unknown, render the presentation contract's unknown-target failure and stop.
+5. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, `cli_commands`, and script invocations from the route.
+6. Parse remaining flags using only the resolved target's `allowed_flags`; reject cross-target flags using the presentation contract's error wording.
+7. Resolve any missing setup variables using the presentation contract's per-target setup prompts.
+8. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
+9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
 ---
 

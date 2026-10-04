@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d96dd700614560e2f4069fd5f019ebe4275e3e6c96ab9a8b0cd7f8085cc0cab8",
+  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35429,8 +35429,20 @@
     "doctor router cutover from legacy files": [
       "doctor router cutover from legacy files"
     ],
+    "doctor router gates": [
+      "doctor router gates"
+    ],
+    "doctor router gates plan": [
+      "doctor router gates plan"
+    ],
+    "doctor router gates summary": [
+      "doctor router gates summary"
+    ],
     "doctor router implementation plan": [
       "doctor router implementation plan"
+    ],
+    "doctor router input gate": [
+      "doctor router input gate"
     ],
     "doctor router phase 1": [
       "doctor router phase 1"
@@ -38992,6 +39004,9 @@
     "extract session data": [
       "extract session data"
     ],
+    "extract structure allowed tools commands": [
+      "extract structure allowed-tools commands"
+    ],
     "extract structure script obsidian": [
       "extract structure script obsidian"
     ],
@@ -39021,6 +39036,12 @@
     ],
     "extractkeywords quality fix plan": [
       "extractKeywords quality fix plan"
+    ],
+    "extractor command allowed tools fix": [
+      "extractor command allowed-tools fix"
+    ],
+    "extractor command exemption plan": [
+      "extractor command exemption plan"
     ],
     "extracttriggersfromcontent cap": [
       "extractTriggersFromContent cap"

@@ -31,11 +31,13 @@ from typing import Dict, List, Any, Optional, Tuple
 # 1. FRONTMATTER PARSER
 # ───────────────────────────────────────────────────────────────
 
-def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
+def parse_frontmatter(content: str, doc_type: Optional[str] = None) -> Tuple[Dict[str, Any], List[str], str]:
     """Extract and parse YAML frontmatter from markdown content.
 
     Args:
         content: Raw markdown file content.
+        doc_type: Detected document type. Commands are exempt from the array-format
+            allowed-tools rule, because the command template writes the list comma-separated.
 
     Returns:
         Tuple of (parsed_dict, issues_list, raw_frontmatter).
@@ -92,7 +94,7 @@ def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
     
     # Check for allowed-tools format
     tools_match = re.search(r'allowed-tools:\s*(.+)', raw)
-    if tools_match:
+    if tools_match and doc_type != 'command':
         tools_value = tools_match.group(1).strip()
         if tools_value and not tools_value.startswith('['):
             # Check if it's a comma-separated string without brackets
@@ -1186,7 +1188,7 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
         return {'error': f"Failed to read file ({type(exc).__name__}): {exc}"}
 
     doc_type, detected_from = detect_document_type(filepath)
-    parsed_fm, fm_issues, raw_fm = parse_frontmatter(content)
+    parsed_fm, fm_issues, raw_fm = parse_frontmatter(content, doc_type)
     frontmatter_data = {
         'raw': raw_fm,
         'parsed': parsed_fm,

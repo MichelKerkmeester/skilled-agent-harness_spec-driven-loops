@@ -133,6 +133,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 7 | 007-speckit-router-contract-drift/ | Align the command contract with the merged speckit lifecycle workflows so the router generator check passes, the one check still failing when phase 006 closed | Complete |
 | 8 | 008-doctor-ownership-split/ | Split `/doctor:speckit` by owner into `/doctor:skill-advisor`, `/doctor:deep-loop` and `/doctor:runtime-mirrors`, and delete `/doctor:rebuild` and the fable-mode target | Complete |
 | 9 | 009-doctor-git/ | Add `/doctor:git`: switch the shipped hook gates on or off in git config, and change the commit, PR and branch rules in the repository's own `.sk-git/` copies | Complete |
+| 10 | 010-doctor-router-gates/ | Add the mandatory input gate to `/doctor:skill-advisor` and `/doctor:mcp`, and stop the structure extractor flagging comma-form `allowed-tools` in commands | Complete |
 
 ### Phase Transition Rules
 
@@ -153,6 +154,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 006-doctor-update-fixes | 007-speckit-router-contract-drift | Phase 006's acceptance criteria are Met and the doctor suites pass | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0 once phase 007 lands |
 | 007-speckit-router-contract-drift | 008-doctor-ownership-split | Phase 007's acceptance criteria are Met and the router generator check passes | `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0, and `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 once phase 008 lands |
 | 008-doctor-ownership-split | 009-doctor-git | Phase 008's acceptance criteria are Met and the route validator passes across the four routed commands | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, and `bash .skilled/scripts/git-hooks/tests/gate-config.test.sh` passes once phase 009 lands |
+| 009-doctor-git | 010-doctor-router-gates | Phase 009's acceptance criteria are Met and `/doctor:git` passes the shared command validators | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, and `python3 -m pytest .skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py` passes once phase 010 lands |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d96dd700614560e2f4069fd5f019ebe4275e3e6c96ab9a8b0cd7f8085cc0cab8",
+  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13163,6 +13163,10 @@
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -51868,7 +51872,7 @@
       12245
     ],
     "doctor audit followups": [
-      13153
+      13157
     ],
     "doctor baseline verification": [
       12161
@@ -52115,7 +52119,7 @@
     ],
     "doctor gates drift": [
       13121,
-      13153
+      13157
     ],
     "doctor git command": [
       13151
@@ -52299,8 +52303,20 @@
     "doctor router cutover from legacy files": [
       10098
     ],
+    "doctor router gates": [
+      13155
+    ],
+    "doctor router gates plan": [
+      13154
+    ],
+    "doctor router gates summary": [
+      13153
+    ],
     "doctor router implementation plan": [
       9131
+    ],
+    "doctor router input gate": [
+      13155
     ],
     "doctor router phase 1": [
       9132,
@@ -56394,6 +56410,9 @@
     "extract session data": [
       2302
     ],
+    "extract structure allowed tools commands": [
+      13155
+    ],
     "extract structure script obsidian": [
       858
     ],
@@ -56428,6 +56447,12 @@
     ],
     "extractkeywords quality fix plan": [
       11530
+    ],
+    "extractor command allowed tools fix": [
+      13153
+    ],
+    "extractor command exemption plan": [
+      13154
     ],
     "extracttriggersfromcontent cap": [
       11343,
@@ -67959,7 +67984,8 @@
       13122,
       13142,
       13147,
-      13152
+      13152,
+      13156
     ],
     "implementation testing verification phases": [
       830
@@ -95344,7 +95370,7 @@
       13138
     ],
     "release update signals": [
-      13153
+      13157
     ],
     "release updater over rebuild": [
       12989
@@ -118058,7 +118084,8 @@
       13122,
       13142,
       13147,
-      13152
+      13152,
+      13156
     ],
     "task cache removal": [
       503
@@ -118410,7 +118437,8 @@
       13122,
       13142,
       13147,
-      13152
+      13152,
+      13156
     ],
     "task detail without network": [
       523
@@ -121500,7 +121528,7 @@
     ],
     "trigger index freshness": [
       13110,
-      13153
+      13157
     ],
     "trigger index generator": [
       2379,
@@ -124819,7 +124847,8 @@
       13122,
       13142,
       13147,
-      13152
+      13152,
+      13156
     ],
     "verification class blind to failure class": [
       6983

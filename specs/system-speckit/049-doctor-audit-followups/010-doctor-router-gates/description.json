@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/010-doctor-router-gates",
+  "description": "Phase 10: doctor-router-gates",
+  "keywords": [
+    "phase",
+    "doctor-router-gates"
+  ],
+  "lastUpdated": "2026-10-04T08:03:02.830Z",
+  "specId": "010",
+  "folderSlug": "doctor-router-gates",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7f6dd53319d8823f1ff4ef9d48a4ec14990dac97a226b35f16632cdf4b60d53b",
+  "corpusHash": "7880c7af957273804f94fc7b411d03fa79d7244f8af5dd13e521a37e17b9bc0e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23327,
+  "includedPathCount": 23331,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23354,10 +23354,14 @@
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d96dd700614560e2f4069fd5f019ebe4275e3e6c96ab9a8b0cd7f8085cc0cab8",
+  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28769,6 +28773,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/scratch",
       "reason": "excluded directory"
     },
     {
