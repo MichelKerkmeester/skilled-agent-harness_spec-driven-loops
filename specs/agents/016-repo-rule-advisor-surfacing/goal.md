@@ -87,7 +87,7 @@ string, not these files.
 - [ ] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for this packet and all eight phase folders
 - [ ] `001-advisor-surfacing/research/research.md` and `002-rule-concision-and-loading/research/research.md` both exist, and each states one verdict
 - [ ] `check-rule-copies.js` runs in the `rule-canary` CI workflow and reports every must-carry `AGENTS.md` anchor ending before byte 16,384, with `AGENTS.md` at or under 32,768 bytes
-- [ ] `check-repo-rules.cjs` prints RESULT: PASSED with no failed check, and `wc -c` puts the 13 rule files in `.skilled/repo-rules/` at or below 91,028 bytes
+- [ ] `check-repo-rules.cjs` prints RESULT: PASSED with no failed check, and `wc -c` puts the 13 rule files in `.skilled/repo-rules/` at or below 91,028 bytes, a target 006 ADR-002 waives at the measured 94,609
 - [ ] `measure-rule-compliance.py` sits in `sk-create-repo-rule/scripts/` with a passing pytest suite, and `git log` shows its baseline under `004-rule-delivery-instrumentation/baselines/` committed before the first 006 rule commit
 - [ ] `007-table-wording-experiment` and `008-gate5-card-pilot` each commit `preregistration.md` before block 1 and record in `results/` a decision made by that pre-registered rule
 - [ ] After the 008 decision, `git status` and a file listing show no artifact of a rejected card arm
@@ -109,6 +109,7 @@ and findings belong here.
 | Goal retrofit | Done | Parent and eight phase goals authored on 2026-10-04 from each folder's own spec.md, acceptance-criteria.md where present and tasks.md |
 | Phases 001 and 002 | Complete per the phase map | spec.md Phase Documentation Map. Criteria left unticked until an evaluator confirms them |
 | D2 amendment | Done | operator chose to fold a simple-terms clause for communication.md into 006; D2 and 006 D1 amended, 006 REQ-007 and AC-006 added |
+| Byte criterion amendment | Done | operator waived the 91,028 B target; criterion names 006 ADR-002 |
 
 ### Deviations and findings
 

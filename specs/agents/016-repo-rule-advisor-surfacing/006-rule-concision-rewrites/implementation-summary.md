@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-04T22:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped 13 rule rewrites with ledgers and a second review"
-    next_safe_action: "Operator decides AC-004, then measure the post-change window with the 004 analyzer"
+    next_safe_action: "Measure the post-change window with the 004 analyzer once sessions accumulate"
     blockers: []
     key_files:
       - "spec.md"
@@ -99,7 +99,7 @@ Five workers rewrote the rules in parallel, each bound to the `sk-create-repo-ru
 | Headings | All 131 heading lines identical to `ledgers/headings-before.txt` |
 | Added em dash or semicolon | 0 across the corpus diff |
 | AGENTS.md canary | `check-rule-copies.js` OK |
-| Byte target | NOT MET: 94,609 B against at most 91,028 B |
+| Byte target | Waived by ADR-002 at the measured 94,609 B (target at most 91,028 B) |
 | Post-change window | NOT YET MEASURED: opens at the last rule commit, 2026-10-04T22:20:44+02:00 |
 | Strict validation | See the parent's recursive `validate.sh --strict` run |
 <!-- /ANCHOR:verification -->
@@ -109,7 +109,7 @@ Five workers rewrote the rules in parallel, each bound to the `sk-create-repo-ru
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **AC-004 is unmet.** Reaching 91,028 B would need about 3.6 KB more, and the workers and the reviewer found no more apparatus. The operator either waives the target with an ADR or names what may go.
+1. **The byte target is waived.** Reaching 91,028 B would need about 3.6 KB of operative text, so the operator waived it in `decision-record.md` ADR-002.
 2. **The post-change window needs time.** Sessions must accumulate after 2026-10-04T22:20:44+02:00 before the 004 analyzer can compare them with the baseline, and D6 holds 007 until then.
 3. **Two inconsistencies found and left alone** in `delegation-and-orchestration.md`: §7 says `evidence-and-proof.md` "already refuses" a claim it never states, and §5 says to open one citation while the self-check says every citation.
 <!-- /ANCHOR:limitations -->

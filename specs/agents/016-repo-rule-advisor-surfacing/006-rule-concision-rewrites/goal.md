@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] implementation-summary.md carries a second reviewer's sign-off that comparing each ledger with its diff finds no imperative, test, exception, Fires-when bullet or self-check item missing
 - [ ] node check-repo-rules.cjs on the rewritten corpus reports 10/10
 - [ ] rg output shows every section reference from the T003 inventory still resolving to a section with the same number
-- [ ] wc -c puts the 13 rule files at or below 91,028 bytes
+- [ ] wc -c puts the 13 rule files at or below 91,028 bytes, or ADR-002 records the operator's waiver
 - [ ] git diff filtered to added lines in .skilled/repo-rules/ shows no em dash or semicolon
 - [ ] A phase 004 analyzer report measures a post-change window against the baseline
 - [ ] communication.md carries the simple-terms clause, and the diff shows it keeps every caveat and number rule intact
@@ -83,6 +83,7 @@ and findings belong here.
 | Rewrites | Done | 13 commits 023e4915c1..6f29aba2b4, 107,092 to 94,609 B, second review restored one clause |
 | Byte target | Blocked | 94,609 B above 91,028 B; operator decides waiver or further cuts |
 | Post-change window | Waiting | opens 2026-10-04T22:20:44+02:00 |
+| Byte target | Waived | operator chose waiver; decision-record.md ADR-002 |
 
 ### Deviations and findings
 

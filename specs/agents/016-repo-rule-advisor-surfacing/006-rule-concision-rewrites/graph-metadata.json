@@ -46,9 +46,11 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "ledgers/bytes-before.txt",
-      "ledgers/headings-before.txt"
+      "ledgers/headings-before.txt",
+      "ledgers/bytes-after.txt"
     ],
     "entities": [
       {
@@ -82,6 +84,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -97,6 +105,12 @@
         "name": "headings-before.txt",
         "kind": "file",
         "path": "ledgers/headings-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "bytes-after.txt",
+        "kind": "file",
+        "path": "ledgers/bytes-after.txt",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Rule statement is 57,847 of 107,092 bytes (54.0%)",
     "created_at": "2026-10-04T14:39:59Z",
-    "last_save_at": "2026-10-04T20:22:04.784Z",
+    "last_save_at": "2026-10-04T20:24:18.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +209,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:979a548546499fd60c12e4eb793423b5d8121d36a4e4c54d55d4deaa5fce22e7",
+    "source_fingerprint": "sha256:536bc2e01d4c48c32daa6ff0017c8367e5cb07ac86431e6319cec31dd2cdded3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2dfd483bdf5f7655edfbb5001774eaf4ddc395de53236b494816ca7695f20254",
       "plan.md": "317962ff0bbfa42677e29c1ca33a6aadec9f7f8be041d92d29f92d20f0e3aba9",
       "tasks.md": "6543203eea5de7daf627c83e1a5a5a0c14fd9378bc553417371759fcdb1be5fc",
-      "implementation-summary.md": "6b618513d81165be891e785f664aab2947340160da00bb9fab3b981e63c49765"
+      "decision-record.md": "4360894908ed1121c0376bf11678acf63f096c0f0a95bbd6f52ae6019a6f67c1",
+      "implementation-summary.md": "5b596ebf6ffa4c2758f0a01086fb5f696a751ec2837403fa2ef47eda017e373e"
     },
     "last_active_at": null
   }
