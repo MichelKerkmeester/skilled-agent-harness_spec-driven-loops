@@ -77,7 +77,7 @@ CI runs the doctor suite green, and a reader of the root README or of a targeted
 - Recheck the v4.0.0.3 entry against the code
 
 ### Out of Scope
-- The other Spec-Kit Check jobs - they fail for unrelated reasons and belong to their own packets
+- Other CI workflows - this phase fixes the doctor-scripts job only
 - Closed phase docs - they keep the position they were written with
 
 ### Files to Change

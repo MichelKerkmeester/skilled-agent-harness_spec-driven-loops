@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The Spec-Kit Check doctor-scripts job fails 212 of 213 tests: `skill-advisor-route-contract.test.cjs` requires `yaml`, which `.skilled` only pulls in as a transitive dependency, and the job never installs `.skilled`",
     "created_at": "2026-10-04T09:58:03Z",
-    "last_save_at": "2026-10-04T10:07:48.931Z",
+    "last_save_at": "2026-10-04T10:19:04.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d237de9e1b27a9e4116927ec2665ad910d195e2b688d4898ff998e568b2cc0fc",
+    "source_fingerprint": "sha256:15756bd8a4ccb52e5393e5396c067a359060a5fbd98261304d593502ee88e129",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec9eb7e13df0fc02c5909b0df51dc93abfc84036cdd6912eb9679fe9a87af72c",
+      "spec.md": "ef71e627a2821441e931bfb944303ec65aafc93937a583ff650f350ca8f0e7d6",
       "plan.md": "df21d12e87dc93fcac927c89d73c2baa3e70fb2f53654089051e6b262d570330",
       "tasks.md": "3d9f177c44aebb2bab751f10abcad7e1ffac9089403f1a4509ebb40cd5848b5f",
-      "implementation-summary.md": "2d1b9d58b0ebcfe6e25424cdd9e660a826851c757efbc98c9dff2dde973119cc"
+      "implementation-summary.md": "0e4b8f938b9438d235473d59634ca8d61bd49cb94412a4169b2674e02458141c"
     },
     "last_active_at": null
   }
