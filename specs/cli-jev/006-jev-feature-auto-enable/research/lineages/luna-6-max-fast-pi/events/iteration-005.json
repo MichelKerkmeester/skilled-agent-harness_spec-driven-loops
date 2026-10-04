@@ -1,0 +1,51 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "runId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "sessionId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "lineageId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "run": 5,
+  "status": "complete",
+  "focus": "Cross-feature gate verification and unified proof-or-retire rule",
+  "findingsCount": 5,
+  "newInfoRatio": 0.5,
+  "noveltyJustification": "The iteration directly verifies the exact four-entry gate registry, switch-first credential readiness, helper-test limits, three distinct consumer fallback shapes, and the shared reporting/local-verdict boundary. The feature-specific proof needs largely synthesize prior iterations rather than add new population evidence.",
+  "keyQuestions": [
+    "What unified proof-or-retire rule and ranked next step applies across the three candidates?"
+  ],
+  "answeredQuestions": [
+    "What unified proof-or-retire rule and ranked next step applies across the three candidates?"
+  ],
+  "ruledOut": [
+    "Adding an unproven feature to the default-on registry as a harmless registration change.",
+    "Treating shared helper tests as proof of consumer-level fail-open behavior.",
+    "Using a pooled keep across features as deployment authority despite different eligible populations and labels.",
+    "Treating statistical stops as kills or fixture keeps as authorization for auto-on serving."
+  ],
+  "toolsUsed": ["Read", "Bash"],
+  "sourcesQueried": [
+    ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:33-55,77-105,139-185",
+    ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-72,107-130,159-229",
+    ".skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-110",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:333-360",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-632",
+    ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1440-1449,1467-1475,1546-1556",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:26,55-64,816-894",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:25,45-51,637-695,1558-1573",
+    ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:59,525,745-758,1622-1627"
+  ],
+  "timestamp": "2026-10-04T22:07:40.000Z",
+  "edgeCase": "feature-specific-eligibility-and-default-on-registration",
+  "graphEvents": [],
+  "stopReason": "maxIterationsReached",
+  "terminal": true,
+  "executor": {
+    "kind": "cli-pi",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max"
+  }
+}

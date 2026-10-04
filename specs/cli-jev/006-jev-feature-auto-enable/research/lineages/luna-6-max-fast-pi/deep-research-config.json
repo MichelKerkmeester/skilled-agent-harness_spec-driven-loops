@@ -1,0 +1,40 @@
+{
+  "topic": "Research how to prove, improve, harden, debug, integrate and test the three Jev classifier features that have no clean keep verdict, so each can either earn a live, auto-on path like the four proven features or be retired with evidence. (1) Spec-track narrowing, .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: its first live run kept (97 right of 256 against ripgrep), but the repeat on a 270-row corpus stopped on margin (106 vs 82, bootstrap interval spanning zero). (2) Routing clarify default, .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs: a keep on a fixture corpus (28 vs 15 of 54), while the real router clarifies only 3 of 359 committed prompts and the scorer now refuses rows the router no longer clarifies. (3) Alignment folder suggestion, .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts: a keep on fixture rows (39 vs 30 of 40), but a distractor-state control turns it to kill (W=0 L=30). For each feature answer: what corpus, labels, keep rule and power would prove a live win or settle a kill; what question, option or input changes would improve accuracy; which failure modes need hardening; where it would plug into a live path behind the shared gate .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs (featureReady, JEV_FEATURE_<NAME>, auto-on with a stored credential) the way cite-drift, the injection screen hook, the reviewer verdict fallback and the D4 hallucination grader now do; and what tests would cover it. Measured history lives in specs/cli-jev/003-cli-jev-workflow-integration/ children 017, 020, 022, 047, 048 and 049. Read only outside your lineage folder. Cite file:line for every claim, give each recommendation a priority (P0 to P2) and say how you confirmed it.",
+  "research_topic": "Prove, improve, harden, debug, integrate and test the three Jev classifier features without a clean keep verdict (spec-track narrowing, routing clarify default, alignment folder suggestion) so each earns a live auto-on path behind the shared jev-features gate or is retired with evidence.",
+  "specFolder": "specs/cli-jev/006-jev-feature-auto-enable",
+  "artifactDir": "specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi",
+  "fanout_lineage_artifact_dir": "specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi",
+  "loopType": "research",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "timeoutSeconds": 3600
+  },
+  "resource_map": {
+    "emit": true,
+    "resource_map_present": false
+  },
+  "lineage": {
+    "label": "luna-6-max-fast-pi",
+    "sessionId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "createdAt": "2026-10-04T21:40:57.000Z"
+}
