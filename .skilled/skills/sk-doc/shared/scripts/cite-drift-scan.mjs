@@ -22,6 +22,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { featureSwitch } from '../../../cli-classifier/shared/scripts/jev-features.mjs';
 import { spawnClassifierCall } from '../../../cli-classifier/shared/scripts/jev-transport.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -1440,8 +1441,12 @@ export async function runJevArm(plan, gate, ctx) {
 // blocks: a missing tool, credential or citation is silence, and the caller
 // ignores the exit code.
 
-/** Set to 0 to skip the advisory check entirely. */
-export const ADVISE_OPT_OUT_ENV = 'SKDOC_CITE_DRIFT_CHECK';
+/**
+ * The advisory's own switch. Setting it to 0 skips the check entirely, as do
+ * the shared JEV_FEATURES master switch and the older SKDOC_CITE_DRIFT_CHECK
+ * name the feature table still honors.
+ */
+export const ADVISE_OPT_OUT_ENV = 'JEV_FEATURE_CITE_DRIFT';
 
 /** Every advisory line starts with this, so a caller can forward only these. */
 export const ADVISE_PREFIX = 'cite-drift advisory:';
@@ -1539,7 +1544,7 @@ function adviseWindow(repoRoot, target, line) {
  * @returns {Promise<number>} Always 0.
  */
 export async function runAdvise(docs, ctx) {
-  if (ctx.env[ADVISE_OPT_OUT_ENV] === '0') return 0;
+  if (!featureSwitch('cite-drift', ctx.env).enabled) return 0;
   let citations;
   try {
     citations = adviseCitations(docs, ctx.repoRoot, listTrackedFiles(ctx.repoRoot));
