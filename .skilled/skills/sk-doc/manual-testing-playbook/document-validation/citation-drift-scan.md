@@ -1,7 +1,7 @@
 ---
 title: "SD-021 -- Citation drift scan"
 description: "This scenario validates the citation drift scan for `SD-021`. It focuses on the default run printing the count lines, the dead citations and the label-gate stop with zero model calls, then a `--jev` run whose missing credential is refused before any call and writes no file."
-version: 2.2.0.0
+version: 2.3.0.5
 ---
 
 # SD-021 -- Citation drift scan
