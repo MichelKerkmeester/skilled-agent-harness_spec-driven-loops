@@ -1911,8 +1911,8 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'opencode-go/deepseek-v4.1-flash': 'opencode-go',
       'cline-pass/deepseek-v4.1-flash': 'cline-pass',
       'minimax-m3': 'minimax',
-      'gpt-6-luna': 'openai-codex',
-      'gpt-6-sol': 'openai-codex',
+      'gpt-6-luna': 'openai',
+      'gpt-6-sol': 'openai',
       // Both MiMo literals go through DevPass → llmgateway/mimo-v2.6-{pro,flash}.
       'mimo-v2.6-pro': 'llmgateway',
       'mimo-v2.6-flash': 'llmgateway',
@@ -2057,7 +2057,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       { kind: 'cli-pi', model: 'gpt-6-luna', reasoningEffort },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null; serviceTier: string | null } };
-    const base = ['-p', '--offline', '--model', 'openai-codex/gpt-6-luna', '--thinking'];
+    const base = ['-p', '--offline', '--model', 'openai/gpt-6-luna', '--thinking'];
     const xhigh = build('xhigh');
     expect(xhigh.args).toEqual([...base, 'xhigh', 'p']);
     expect(xhigh.effectiveConfig.reasoningEffort).toBe('xhigh');
@@ -2081,7 +2081,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       { kind: 'cli-pi', model: 'gpt-6-sol' },
       'p', 'read-only', 'plan', opts,
     ) as { args: string[] };
-    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-6-sol', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'p']);
+    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai/gpt-6-sol', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'p']);
     const write = buildLineageCommand(
       { kind: 'cli-pi', model: 'gpt-6-sol' },
       'p', 'workspace-write', 'default', opts,

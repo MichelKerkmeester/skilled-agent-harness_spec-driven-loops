@@ -2608,7 +2608,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 }
 
 // Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
-// (openai-codex fronts the GPT-6 tunes; minimax fronts its own family; opencode-go fronts
+// (openai fronts the GPT-6 tunes; minimax fronts its own family; opencode-go fronts
 // Qwen 3.8 Max; DevPass fronts DeepSeek V4 Flash under its bare literal since 2026-09-07, for
 // the same flat-price reason GLM moved there — the direct DeepSeek API provider was retired
 // from the roster — and fronts MiMo since 2026-09-23, when the direct Xiaomi provider left the
@@ -2621,8 +2621,8 @@ const PI_MODEL_PROVIDERS = new Map([
   ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
   ['cline-pass/deepseek-v4.1-flash', 'cline-pass'],
   ['minimax-m3', 'minimax'],
-  ['gpt-6-luna', 'openai-codex'],
-  ['gpt-6-sol', 'openai-codex'],
+  ['gpt-6-luna', 'openai'],
+  ['gpt-6-sol', 'openai'],
   ['mimo-v2.6-pro', 'llmgateway'],
   ['mimo-v2.6-flash', 'llmgateway'],
   ['qwen3.8-max', 'opencode-go'],
