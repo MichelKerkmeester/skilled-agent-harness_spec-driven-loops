@@ -1,0 +1,573 @@
+{
+  "mergedFrom": [
+    "deepseek-v4-1-flash-cline",
+    "luna-6-max-fast"
+  ],
+  "lineageExecutors": {
+    "deepseek-v4-1-flash-cline": {
+      "kind": "cli-pi",
+      "model": "cline-pass/deepseek-v4.1-flash",
+      "reasoningEffort": "xhigh"
+    },
+    "luna-6-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What should /doctor:speckit do with non-zero phraseQuality diagnostics, given the lookup ranking behavior, and how should DOC-349/DOC-350 and tests change?",
+      "status": "resolved",
+      "answer": "Re-rank phrase quality as an advisory outside staleness_signals/staleness_classes/severity_max; report per-class counts and share in a quality_advisories block; align the YAML status enum with the presentation; DOC-349 becomes fresh-index STATUS_OK with the advisory visible, DOC-350 keeps index_content_stale STATUS_STALE plus an isolation assertion; keep generator tests and add doctor-level contract tests. Lookup ranking, generator diagnostics and the corpus stay unchanged.",
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "What unknown-flag error should /doctor:mcp add, and how do the other doctor command contracts handle unknown arguments today?",
+      "status": "resolved",
+      "answer": "For a recognized sub-action reject a flag present in neither schema before YAML load with STATUS=FAIL ERROR=\"unknown_flag\", naming the flag, sub-action and its valid flags, while keeping cross_sub_action_flag_injection for known other-sub-action flags. Add the wording to mcp.md and the presentation and create DOC-379; every sibling router already separates unknown from cross-* misuse.",
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How can a long-lived local /doctor:update environment exercise customized, conflict, removed and local-only units across record-base/check/align/apply/rollback, including release-tag and worktree constraints?",
+      "status": "resolved",
+      "answer": "Create the sk-git allocator worktree worktrees/{NNN}-doctor-update-test-environment at v4.0.0.0 with --no-provision (the requested literal name is out of grammar; detached HEAD is unusable because commits are required). Overlay the current updater assets, commit the four fixtures (webflow SKILL.md edit, Barter sk-git plus a forced release-changed conflict anchor, new sk-code-web-dev packet, local v4.0.0.3-fixture deleting sk-code-obsidian), record-base offline with --trust-release, commit base.json, and reset apply via rollback --run=<runDir>. Prefer the derived web-dev packet over stripping sk-code modes.",
+      "_lineages": [
+        "deepseek-v4-1-flash-cline",
+        "luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Which other doctor-command playbooks should reuse that environment, which exact scenario files change, and what new scenarios are added?",
+      "status": "resolved",
+      "answer": "Six of seven non-updater commands gain (speckit, runtime-mirrors, skill-advisor, env, mcp, git standards; deep-loop only DOC-368). Change 23 existing scenario files plus 4 READMEs (12+README system-spec-kit, 4 system-skill-advisor, 1+README system-deep-loop, 3+README sk-git, 3+README mcp-code-mode). DOC-370 stays on a disposable clone because linked worktrees share Git config. Create DOC-379 doctor-mcp-unknown-flag and DOC-380 doctor-update-environment.",
+      "_lineages": [
+        "deepseek-v4-1-flash-cline",
+        "luna-6-max-fast"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001--5501eebbca2f",
+      "text": "corpus_pollution is a freshness-class signal with 251 flagged phrases of 33,719 always present, so a fresh index can never reach STATUS=OK; make it an advisory outside severity_max.",
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--5501eebbca2f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--99ccc67454e9",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-001--99ccc67454e9",
+      "text": "Phrase-quality pollution is a persistent diagnostic advisory, not index staleness severity.",
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--99ccc67454e9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--5501eebbca2f",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-002--43145a32332e",
+      "text": "The lookup ranks exact and qualifying multi-token matches without consulting phraseQuality.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--43145a32332e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--7d4742d3fbaf",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-002--7d4742d3fbaf",
+      "text": "The never-rank rationale is too broad: exact matches score before the token floor and multi-token flagged classes can score by containment or overlap; the lookup never consults phraseQuality and the generator keeps the phrases.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--7d4742d3fbaf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--43145a32332e",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-004--227ef4129a75",
+      "text": "/doctor:mcp needs an unknown_flag error for flags in neither schema, distinct from cross_sub_action_flag_injection, rendered before YAML load with the sub-action's valid flags.",
+      "sources": [
+        ".skilled/commands/doctor/mcp.md",
+        ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+        ".skilled/commands/doctor/_routes.yaml"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--227ef4129a75",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--a196598143ed",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-004--a196598143ed",
+      "text": "MCP should distinguish unknown flags from known cross-sub-action flags.",
+      "sources": [
+        ".skilled/commands/doctor/mcp.md",
+        ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--a196598143ed",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--227ef4129a75",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-001--21bab34ee0c8",
+      "text": "Create the environment as worktrees/{NNN}-doctor-update-test-environment from v4.0.0.0 with --no-provision; the literal .doctor-update-test-environment name is outside the validated sk-git grammar and detached HEAD cannot hold the required commits.",
+      "sources": [
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        ".skilled/skills/sk-git/references/worktree-workflows.md",
+        ".gitignore"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--21bab34ee0c8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--9404a853bb3e",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-001--9404a853bb3e",
+      "text": "Historical .0/.2 worktrees need current updater assets overlaid; scope command:doctor out of unit status checks.",
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--9404a853bb3e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--21bab34ee0c8",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-002--2529ccb8592b",
+      "text": "The release tags carry only the legacy updater, so the fixture overlays the current update.md, _routes.yaml, presentation, five action YAMLs and release-update.cjs; that overlay is one unit, command:commands/doctor, kept out of assertion scopes.",
+      "sources": [
+        ".skilled/commands/doctor/update.md",
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--2529ccb8592b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--e8a933db81bc",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-002--e8a933db81bc",
+      "text": "Use controlled local fixtures for the four unit statuses and a local synthetic deletion target because stock .0->.2 has no removed skill unit.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/sk-code/SKILL.md"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--e8a933db81bc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--2529ccb8592b",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-003--41d35be6b980",
+      "text": "Commit fixture and base manifest; rollback immediately and verify no skipped paths before resetting the scenario.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+        ".skilled/commands/doctor/assets/doctor-update-rollback.yaml"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--41d35be6b980",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--7f8d8a1cab30",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-003--7f8d8a1cab30",
+      "text": "Four fixtures give all statuses: customized via sk-code-webflow SKILL.md edit, conflict via Barter sk-git plus a forced release-changed path, removed via a local prerelease tag deleting sk-code-obsidian, local via a new sk-code-web-dev packet (staged so enumeration sees it).",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/sk-code/mode-registry.json"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--7f8d8a1cab30",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--41d35be6b980",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-004--8beb58dd868c",
+      "text": "Use sk-git numbered named-worktree grammar and a local long-lived branch.",
+      "sources": [
+        ".skilled/skills/sk-git/references/worktree-workflows.md",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--8beb58dd868c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--93262cfc69af",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-004--93262cfc69af",
+      "text": "Add the derived sk-code-web-dev packet instead of stripping modes; stripping breaks the hub's two-axis contract, produces mixed local/conflict units in deleted packets and forces router/registry/manifest edits.",
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--93262cfc69af",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--8beb58dd868c",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-006--38ad4e4b0183",
+      "text": "Five doctor playbooks have 27 copy-based scenarios to migrate; two new scenarios cover updater lifecycle and MCP unknown flags.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md"
+      ],
+      "_lineages": [
+        "luna-6-max-fast"
+      ],
+      "_conflictOf": "f-iter002-006",
+      "_conflict_id": "f-iter002-006--38ad4e4b0183",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-006",
+          "peerId": "f-iter002-006--d00395cd1f2b",
+          "peerLineages": [
+            "deepseek-v4-1-flash-cline"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-006--d00395cd1f2b",
+      "text": "Reset after apply with rollback --run=<runDir>: it restores before states, deletes added files, restores base.json/divergence.json, reports skipped paths with exit 1 and clears the lock; re-apply of the same run is refused once rollback.json exists.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/update.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ],
+      "_conflictOf": "f-iter002-006",
+      "_conflict_id": "f-iter002-006--d00395cd1f2b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-006",
+          "peerId": "f-iter002-006--38ad4e4b0183",
+          "peerLineages": [
+            "luna-6-max-fast"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "text": "DOC-349 changes to STATUS_OK with advisories; DOC-350 keeps STATUS_STALE with advisory isolation; generator tests stay and doctor-level contract tests are added.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-speckit-retrieval-healthy.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-speckit-stale-index.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter001-005",
+      "text": "All seven sibling doctor routers already separate unknown from cross-* misuse, so a dedicated MCP unknown_flag error matches the fleet.",
+      "sources": [
+        ".skilled/commands/doctor/git.md",
+        ".skilled/commands/doctor/skill-advisor.md",
+        ".skilled/commands/doctor/speckit.md",
+        ".skilled/commands/doctor/env.md",
+        ".skilled/commands/doctor/runtime-mirrors.md",
+        ".skilled/commands/doctor/deep-loop.md",
+        ".skilled/commands/doctor/update.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "text": "The fixture baseline must be committed: apply refuses planned targets dirty against HEAD and record-base refuses a dirty base.json; offline record-base of v4.0.0.0 needs --trust-release and reports verified:false, then base.json is committed.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/release/.gitignore"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter002-007",
+      "text": "The Barter sk-git snapshot is absent, so its 10-file overlap is UNKNOWN; the replacement plan forces one release-changed path to differ locally for a deterministic conflict and runs after the worktree is created because the replacement removes the allocator.",
+      "sources": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "text": "Six of the seven non-updater doctor commands gain from the shared environment; deep-loop gains only for DOC-368 because its other scenarios require empty or specially populated graph states.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-002",
+      "text": "Exactly 23 existing scenario files plus 4 READMEs change across the five doctor-commands playbooks; DOC-351/364/365/367/369/374/378 are already copy-free.",
+      "sources": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-003",
+      "text": "DOC-370 must keep a disposable clone: it writes local Git config and a linked worktree resolves config and hooks to the shared common Git dir, so the fixture would mutate the main checkout's state.",
+      "sources": [
+        ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-004",
+      "text": "Create DOC-379 doctor-mcp-unknown-flag and DOC-380 doctor-update-environment (shared-environment lifecycle and rollback reset contract).",
+      "sources": [
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md",
+        ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    },
+    {
+      "id": "f-iter003-005",
+      "text": "Ordered plan: fix the contracts first, then build and commit the worktree fixtures, record and commit the base, migrate the 27 files and add the two scenarios, then verify with scoped dry-run-first actions and a rollback to baseline; never push the fixture branch or tag.",
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/sk-git/scripts/worktree-naming.sh"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-cline"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 25,
+    "sourceFindings": 25,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.859,
+    "coverageBySources": {}
+  }
+}

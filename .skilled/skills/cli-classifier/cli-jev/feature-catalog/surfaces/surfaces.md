@@ -71,7 +71,7 @@ contract unchanged.
 **The gateway-key answer**: an OpenAI-compatible LLM Gateway credential cannot front Jev through
 `--provider custom` without a translating proxy, because the payload and the answer path are the
 native contract and the bearer variable is `JEV_API_KEY`. Receipts in
-`references/providers-and-models.md` §4.
+`references/providers-and-models.md` §5.
 
 Anchors: `references/providers-and-models.md`, the per-scenario files under `manual-testing-playbook/providers/`
 (JEV-009, JEV-014, JEV-021).

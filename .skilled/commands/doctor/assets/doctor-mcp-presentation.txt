@@ -44,6 +44,18 @@ Flag '--runtime' is only valid for `install`. Did you mean `/doctor:mcp install 
 STATUS=FAIL ERROR="cross_sub_action_flag_injection"
 ```
 
+Reject a flag that neither sub-action accepts, naming the selected sub-action's valid flag:
+
+```text
+Flag '[flag]' is not valid for `install`. Valid: --runtime <name>.
+STATUS=FAIL ERROR="unknown_flag"
+```
+
+```text
+Flag '[flag]' is not valid for `debug`. Valid: --fix.
+STATUS=FAIL ERROR="unknown_flag"
+```
+
 Render the setup dashboard after the sub-action and flags resolve:
 
 ```text

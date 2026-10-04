@@ -119,7 +119,7 @@ workflow:
       file: [adopt-release, keep-local, merge, use-proposal]
       unit: [defer]
     eligibility:
-      adopt-release: "Only for take-release files and for binary, deleted-locally or deleted-in-release conflicts, which have no proposal; for those conflicts it writes the release bytes or the release deletion. A mergeable or conflicting text file takes merge, use-proposal or keep-local."
+      adopt-release: "Only for take-release files and for binary, deleted-locally or deleted-in-release conflicts, which have no proposal; for those conflicts it writes the release bytes or the release deletion. A mergeable or conflicting text file takes merge, use-proposal or keep-local. A symlink-parent conflict, a release path below a local symlink, takes keep-local only, because writing it would follow the link."
       merge: "Only when the engine reports a mergeable conflict and the proposal has no unresolved markers."
       use-proposal: "Only after the proposal is shown and has no unresolved markers."
       keep-local: "Keep the checkout version for this planned file."

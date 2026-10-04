@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment",
+  "description": "Phase 24: doctor-docs-alignment",
+  "keywords": [
+    "phase",
+    "doctor-docs-alignment"
+  ],
+  "lastUpdated": "2026-10-04T20:11:48.034Z",
+  "specId": "024",
+  "folderSlug": "doctor-docs-alignment",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

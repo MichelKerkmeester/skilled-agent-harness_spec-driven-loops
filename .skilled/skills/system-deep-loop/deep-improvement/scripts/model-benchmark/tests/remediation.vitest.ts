@@ -278,14 +278,14 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     const readOnly = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
     expect(readOnly.bin).toBe('pi');
     expect(readOnly.args).toEqual([
-      '-p', '--offline', '--model', 'openai-codex/gpt-6-sol',
+      '-p', '--offline', '--model', 'openai/gpt-6-sol',
       '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'high', 'prompt',
     ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
     const writeCapable = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
     expect(writeCapable.args).toEqual([
-      '-p', '--offline', '--model', 'openai-codex/gpt-6-sol', '--thinking', 'high', 'prompt',
+      '-p', '--offline', '--model', 'openai/gpt-6-sol', '--thinking', 'high', 'prompt',
     ]);
   });
 
@@ -371,7 +371,7 @@ describe('shared-builder dispatch failure classification', () => {
   it('cli-pi: a zero exit carrying an auth-failure banner is a failed dispatch, not scorable output', () => {
     const restore = installStubExecutors(['pi']);
     try {
-      const fakeSpawn = () => ({ status: 0, stdout: 'No API key found for provider openai-codex', stderr: '' });
+      const fakeSpawn = () => ({ status: 0, stdout: 'No API key found for provider openai', stderr: '' });
       const r = dispatchModel.dispatchReal({
         executor: 'cli-pi', model: 'gpt-6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
       });

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-04T13:58:00.819Z",
+  "specId": "019",
+  "folderSlug": "doctor-test-environment-research",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

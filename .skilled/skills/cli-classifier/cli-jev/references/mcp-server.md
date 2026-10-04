@@ -14,14 +14,23 @@ version: 0.1.0.2
 
 # Jev MCP Server
 
-> `jev-mcp` ships in the same installation as `jev` — there is no optional extra to enable. This
-> packet documents the server and the operator step that connects it. **No repository MCP config is
-> modified by this packet**: the CLI is the hub's dispatch surface, and an MCP host is the
-> operator's choice.
+The `jev-mcp` stdio server and the operator step that connects it to an MCP host.
 
 ---
 
-## 1. STARTING THE SERVER
+## 1. OVERVIEW
+
+### Purpose
+
+`jev-mcp` ships in the same installation as `jev` — there is no optional extra to enable. This packet documents the server and the operator step that connects it. **No repository MCP config is modified by this packet**: the CLI is the hub's dispatch surface, and an MCP host is the operator's choice.
+
+### Usage
+
+Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step, and section 7 says when the CLI is the better surface.
+
+---
+
+## 2. STARTING THE SERVER
 
 ```bash
 jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
@@ -37,7 +46,7 @@ looks healthy and produces no usable output.
 
 ---
 
-## 2. THE TOOL SURFACE
+## 3. THE TOOL SURFACE
 
 The server advertises exactly four tools. **LIVE** probe: a stdio handshake answers `initialize`
 with `serverInfo.name = "jev"`, `version = "0.6.2"`, protocol `2025-06-18`, then `tools/list`
@@ -58,7 +67,7 @@ Each tool also accepts `provider`, `model` and `endpoint` overrides, all three n
 
 ---
 
-## 3. STATE IS SENT VERBATIM
+## 4. STATE IS SENT VERBATIM
 
 The single most important difference from the CLI: **`-` and `@path` are literal strings in the MCP
 tools.** They are not stdin and not a file reference. The adapter hands the value straight to the
@@ -76,7 +85,7 @@ dispatch surface for this hub: the convenience forms are CLI-only.
 
 ---
 
-## 4. PROVIDER RESOLUTION
+## 5. PROVIDER RESOLUTION
 
 The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`,
 then `official`. An invalid `JEV_PROVIDER` fails before any provider access with a tool error
@@ -89,7 +98,7 @@ surfaces work.
 
 ---
 
-## 5. THE OPERATOR STEP
+## 6. THE OPERATOR STEP
 
 Wiring the server into a host is an operator action. The block below is the standard stdio shape;
 the host's own config file is the operator's to choose, and this packet writes none of them.
@@ -118,7 +127,7 @@ Notes that decide whether it works:
 
 ---
 
-## 6. WHEN TO PREFER THE CLI
+## 7. WHEN TO PREFER THE CLI
 
 | Situation | Surface |
 |---|---|

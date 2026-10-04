@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9d137bb43e0d231e36a42e06b4c0799b0816c3f324d3c3c85b1d42e38bdb848f",
+  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7201,6 +7201,9 @@
     ],
     "2026 09 27 sk design validation": [
       "2026-09-27 sk-design validation"
+    ],
+    "2026 10 03 injection screen run": [
+      "2026-10-03 injection screen run"
     ],
     "22 scenario release readiness": [
       "22 scenario release readiness"
@@ -17091,6 +17094,12 @@
     "clarify default tasks": [
       "clarify default tasks"
     ],
+    "clarify default transport fix": [
+      "clarify-default transport fix"
+    ],
+    "clarify default transport record": [
+      "clarify-default transport record"
+    ],
     "clarify gold not built": [
       "clarify gold not built"
     ],
@@ -17580,6 +17589,12 @@
     "cli classifier 0 7 0 0": [
       "cli-classifier 0.7.0.0"
     ],
+    "cli classifier 0 8 0 0": [
+      "cli-classifier 0.8.0.0"
+    ],
+    "cli classifier audit findings": [
+      "cli-classifier audit findings"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17595,8 +17610,20 @@
     "cli classifier cleanup tasks": [
       "cli classifier cleanup tasks"
     ],
+    "cli classifier compliance audit": [
+      "cli-classifier compliance audit"
+    ],
     "cli classifier feature catalog": [
       "cli-classifier feature catalog"
+    ],
+    "cli classifier fixes plan": [
+      "cli-classifier fixes plan"
+    ],
+    "cli classifier fixes summary": [
+      "cli-classifier fixes summary"
+    ],
+    "cli classifier fixes tasks": [
+      "cli-classifier fixes tasks"
     ],
     "cli classifier hub": [
       "cli-classifier hub"
@@ -17655,6 +17682,18 @@
     "cli classifier pre release versions": [
       "cli classifier pre-release versions"
     ],
+    "cli classifier quality fixes": [
+      "cli-classifier quality fixes"
+    ],
+    "cli classifier quality research": [
+      "cli-classifier quality research"
+    ],
+    "cli classifier research plan": [
+      "cli-classifier research plan"
+    ],
+    "cli classifier research summary": [
+      "cli-classifier research summary"
+    ],
     "cli classifier root router": [
       "cli-classifier root router"
     ],
@@ -17687,6 +17726,9 @@
     ],
     "cli classifier v0 7 0 0": [
       "cli-classifier v0.7.0.0"
+    ],
+    "cli classifier v0 8 0 0": [
+      "cli-classifier v0.8.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18960,6 +19002,9 @@
     "cli jev move results": [
       "cli-jev move results"
     ],
+    "cli jev overview fix": [
+      "cli-jev overview fix"
+    ],
     "cli jev parent hub": [
       "cli-jev parent hub"
     ],
@@ -19025,6 +19070,18 @@
     ],
     "cli jev workflow integration goal": [
       "cli-jev workflow integration goal"
+    ],
+    "cli lineage findings contract": [
+      "cli lineage findings contract"
+    ],
+    "cli lineage findings contract plan": [
+      "cli lineage findings contract plan"
+    ],
+    "cli lineage findings contract summary": [
+      "cli lineage findings contract summary"
+    ],
+    "cli lineage findings contract tasks": [
+      "cli lineage findings contract tasks"
     ],
     "cli lineage nesting": [
       "cli lineage nesting"
@@ -35202,6 +35259,18 @@
     "doctor confirm dry run plan": [
       "doctor confirm dry-run plan"
     ],
+    "doctor contract fixes": [
+      "doctor contract fixes"
+    ],
+    "doctor contract fixes plan": [
+      "doctor contract fixes plan"
+    ],
+    "doctor contract fixes summary": [
+      "doctor contract fixes summary"
+    ],
+    "doctor contract fixes tasks": [
+      "doctor contract fixes tasks"
+    ],
     "doctor cutover phase 2": [
       "doctor cutover phase 2"
     ],
@@ -35224,6 +35293,9 @@
     "doctor deep loop command": [
       "doctor deep-loop command"
     ],
+    "doctor deep loop scenarios": [
+      "doctor deep-loop scenarios"
+    ],
     "doctor deep loop yaml": [
       "doctor-deep-loop.yaml"
     ],
@@ -35232,6 +35304,18 @@
     ],
     "doctor diagnostics dashboard": [
       "doctor diagnostics dashboard"
+    ],
+    "doctor docs alignment": [
+      "doctor docs alignment"
+    ],
+    "doctor docs alignment plan": [
+      "doctor docs alignment plan"
+    ],
+    "doctor docs alignment summary": [
+      "doctor docs alignment summary"
+    ],
+    "doctor docs alignment tasks": [
+      "doctor docs alignment tasks"
     ],
     "doctor docs and ci fix": [
       "doctor docs and ci fix"
@@ -35299,6 +35383,9 @@
     "doctor git command": [
       "doctor git command"
     ],
+    "doctor git hooks standards scenarios": [
+      "doctor git hooks standards scenarios"
+    ],
     "doctor git plan": [
       "doctor git plan"
     ],
@@ -35353,6 +35440,9 @@
     "doctor mcp install audit acceptance": [
       "doctor mcp-install audit acceptance"
     ],
+    "doctor mcp install debug scenarios": [
+      "doctor mcp install debug scenarios"
+    ],
     "doctor mcp install relevance": [
       "/doctor:mcp install relevance"
     ],
@@ -35361,6 +35451,9 @@
     ],
     "doctor mcp install yaml": [
       "doctor-mcp-install.yaml"
+    ],
+    "doctor mcp unknown flag": [
+      "doctor mcp unknown flag"
     ],
     "doctor memory": [
       "/doctor memory",
@@ -35405,11 +35498,98 @@
     "doctor parent skill yaml": [
       "doctor-parent-skill.yaml"
     ],
+    "doctor playbook deep loop": [
+      "doctor playbook deep-loop"
+    ],
+    "doctor playbook deep loop plan": [
+      "doctor-playbook-deep-loop plan"
+    ],
+    "doctor playbook deep loop shipped": [
+      "doctor-playbook-deep-loop shipped"
+    ],
+    "doctor playbook deep loop summary": [
+      "doctor-playbook-deep-loop summary"
+    ],
+    "doctor playbook deep loop tasks": [
+      "doctor-playbook-deep-loop tasks"
+    ],
+    "doctor playbook environment migration": [
+      "doctor playbook environment migration"
+    ],
+    "doctor playbook environment migration plan": [
+      "doctor playbook environment migration plan"
+    ],
+    "doctor playbook environment migration summary": [
+      "doctor playbook environment migration summary"
+    ],
+    "doctor playbook environment migration tasks": [
+      "doctor playbook environment migration tasks"
+    ],
+    "doctor playbook git": [
+      "doctor playbook git"
+    ],
+    "doctor playbook git plan": [
+      "doctor-playbook-git plan"
+    ],
+    "doctor playbook git shipped": [
+      "doctor-playbook-git shipped"
+    ],
+    "doctor playbook git summary": [
+      "doctor-playbook-git summary"
+    ],
+    "doctor playbook git tasks": [
+      "doctor-playbook-git tasks"
+    ],
     "doctor playbook invocation rewrite": [
       "doctor playbook invocation rewrite"
     ],
+    "doctor playbook mcp": [
+      "doctor playbook mcp"
+    ],
+    "doctor playbook mcp plan": [
+      "doctor-playbook-mcp plan"
+    ],
+    "doctor playbook mcp shipped": [
+      "doctor-playbook-mcp shipped"
+    ],
+    "doctor playbook mcp summary": [
+      "doctor-playbook-mcp summary"
+    ],
+    "doctor playbook mcp tasks": [
+      "doctor-playbook-mcp tasks"
+    ],
     "doctor playbook sed": [
       "doctor playbook sed"
+    ],
+    "doctor playbook skill advisor": [
+      "doctor playbook skill-advisor"
+    ],
+    "doctor playbook skill advisor plan": [
+      "doctor-playbook-skill-advisor plan"
+    ],
+    "doctor playbook skill advisor shipped": [
+      "doctor-playbook-skill-advisor shipped"
+    ],
+    "doctor playbook skill advisor summary": [
+      "doctor-playbook-skill-advisor summary"
+    ],
+    "doctor playbook skill advisor tasks": [
+      "doctor-playbook-skill-advisor tasks"
+    ],
+    "doctor playbook spec kit": [
+      "doctor playbook spec-kit"
+    ],
+    "doctor playbook spec kit plan": [
+      "doctor-playbook-spec-kit plan"
+    ],
+    "doctor playbook spec kit shipped": [
+      "doctor-playbook-spec-kit shipped"
+    ],
+    "doctor playbook spec kit summary": [
+      "doctor-playbook-spec-kit summary"
+    ],
+    "doctor playbook spec kit tasks": [
+      "doctor-playbook-spec-kit tasks"
     ],
     "doctor pointers shipped": [
       "doctor pointers shipped"
@@ -35516,6 +35696,9 @@
     "doctor runtime mirrors yaml": [
       "doctor-runtime-mirrors.yaml"
     ],
+    "doctor scenarios test environment": [
+      "doctor scenarios test environment"
+    ],
     "doctor script tests": [
       "doctor script tests"
     ],
@@ -35570,6 +35753,9 @@
     "doctor skill advisor rebuild shipped": [
       "doctor skill-advisor rebuild shipped"
     ],
+    "doctor skill advisor scenarios": [
+      "doctor skill-advisor scenarios"
+    ],
     "doctor skill advisor yaml": [
       "doctor-skill-advisor.yaml"
     ],
@@ -35603,6 +35789,9 @@
     "doctor speckit parent skill relevance": [
       "/doctor:speckit parent-skill relevance"
     ],
+    "doctor speckit phrase quality advisory": [
+      "doctor speckit phrase quality advisory"
+    ],
     "doctor speckit retrieval audit": [
       "doctor speckit-retrieval audit"
     ],
@@ -35621,6 +35810,9 @@
     "doctor speckit runtime mirrors relevance": [
       "/doctor:speckit runtime-mirrors relevance"
     ],
+    "doctor speckit scenarios": [
+      "doctor speckit scenarios"
+    ],
     "doctor speckit skill advisor relevance": [
       "/doctor:speckit skill-advisor relevance"
     ],
@@ -35638,6 +35830,33 @@
     ],
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
+    ],
+    "doctor test environment research": [
+      "doctor test environment research"
+    ],
+    "doctor test environment research plan": [
+      "doctor test environment research plan"
+    ],
+    "doctor test environment research summary": [
+      "doctor test environment research summary"
+    ],
+    "doctor test environment research tasks": [
+      "doctor test environment research tasks"
+    ],
+    "doctor test environment worktree": [
+      "doctor test environment worktree"
+    ],
+    "doctor test environments": [
+      "doctor test environments"
+    ],
+    "doctor test environments plan": [
+      "doctor test environments plan"
+    ],
+    "doctor test environments summary": [
+      "doctor test environments summary"
+    ],
+    "doctor test environments tasks": [
+      "doctor test environments tasks"
     ],
     "doctor test runner": [
       "doctor test runner"
@@ -35681,8 +35900,14 @@
     "doctor update fixes summary": [
       "doctor update fixes summary"
     ],
+    "doctor update fixture scenarios": [
+      "doctor update fixture scenarios"
+    ],
     "doctor update handover": [
       "/doctor:update handover"
+    ],
+    "doctor update manual test": [
+      "doctor update manual test"
     ],
     "doctor update orchestrator": [
       "doctor update orchestrator"
@@ -35747,8 +35972,17 @@
     "doctor update stale lock": [
       "doctor update stale lock"
     ],
+    "doctor update symlinked folder": [
+      "doctor update symlinked folder"
+    ],
     "doctor update tasks": [
       "doctor update tasks"
+    ],
+    "doctor update test fixture": [
+      "doctor update test fixture"
+    ],
+    "doctor update test worktree": [
+      "doctor update test worktree"
     ],
     "doctor update v3 3 hardening handover": [
       "/doctor:update v3.3 hardening handover"
@@ -39836,6 +40070,9 @@
     "fan out cross lineage merge": [
       "fan-out cross-lineage merge"
     ],
+    "fan out deep research plan": [
+      "fan-out deep research plan"
+    ],
     "fan out deep review mimo deepseek": [
       "fan-out deep review mimo deepseek"
     ],
@@ -40069,6 +40306,9 @@
     ],
     "fanout live web search": [
       "fanout live web search"
+    ],
+    "fanout loop prompt output contract": [
+      "fanout loop prompt output contract"
     ],
     "fanout manifest compiler complete": [
       "fanout manifest compiler complete"
@@ -41119,6 +41359,18 @@
     ],
     "findings ledger": [
       "findings ledger"
+    ],
+    "findings not enumerated": [
+      "findings not enumerated"
+    ],
+    "findings not enumerated gate": [
+      "findings not enumerated gate"
+    ],
+    "findings not enumerated shipped": [
+      "findings not enumerated shipped"
+    ],
+    "findings not enumerated tasks": [
+      "findings not enumerated tasks"
     ],
     "findings reconciliation": [
       "findings reconciliation"
@@ -48766,6 +49018,9 @@
     "injection refusal ledger tasks": [
       "injection refusal ledger tasks"
     ],
+    "injection screen benchmark report": [
+      "injection screen benchmark report"
+    ],
     "injection screen build order": [
       "injection screen build order"
     ],
@@ -48774,6 +49029,9 @@
     ],
     "injection screen keep rule": [
       "injection screen keep rule"
+    ],
+    "injection screen keep verdict": [
+      "injection screen keep verdict"
     ],
     "injection screen label gate": [
       "injection screen label gate"
@@ -49639,6 +49897,9 @@
     "jev clarify default improvement": [
       "jev clarify default improvement"
     ],
+    "jev classifier drift research": [
+      "jev classifier drift research"
+    ],
     "jev cli": [
       "jev cli"
     ],
@@ -49740,6 +50001,9 @@
     ],
     "jev injection screen improvement": [
       "jev injection screen improvement"
+    ],
+    "jev injection screen result": [
+      "jev injection screen result"
     ],
     "jev integration build phases": [
       "jev integration build phases"
@@ -50754,6 +51018,9 @@
     ],
     "latent failure untraveled path": [
       "latent failure untraveled path"
+    ],
+    "latest iteration record merge": [
+      "latest iteration record merge"
     ],
     "launch wrapper child detection guard hook": [
       "launch wrapper child detection guard hook"
@@ -67120,6 +67387,9 @@
     "pi fast mode w subagent support contract": [
       "pi_fast_mode_w_subagent_support contract"
     ],
+    "pi first jev transport": [
+      "pi-first jev transport"
+    ],
     "pi fork fix plan": [
       "pi fork fix plan"
     ],
@@ -67300,8 +67570,8 @@
     "pi only hook": [
       "pi-only hook"
     ],
-    "pi openai codex opencode go minimax llmgateway": [
-      "pi openai-codex opencode-go minimax llmgateway"
+    "pi openai opencode go minimax llmgateway": [
+      "pi openai opencode-go minimax llmgateway"
     ],
     "pi openrouter roster": [
       "pi openrouter roster"
@@ -71809,6 +72079,9 @@
     "reconsolidation quality auto fix default": [
       "reconsolidation quality-auto-fix default"
     ],
+    "reconstruction gap": [
+      "reconstruction gap"
+    ],
     "reconstruction gap tasks": [
       "reconstruction gap tasks"
     ],
@@ -73650,6 +73923,18 @@
     ],
     "release update signals": [
       "release update signals"
+    ],
+    "release update symlink parent": [
+      "release update symlink parent"
+    ],
+    "release update symlink parent plan": [
+      "release update symlink parent plan"
+    ],
+    "release update symlink parent summary": [
+      "release update symlink parent summary"
+    ],
+    "release update symlink parent tasks": [
+      "release update symlink parent tasks"
     ],
     "release updater over rebuild": [
       "release updater over rebuild"
@@ -77520,6 +77805,9 @@
     ],
     "root readme deep research": [
       "root readme deep research"
+    ],
+    "root readme doctor commands": [
+      "root readme doctor commands"
     ],
     "root readme drift fixed": [
       "root readme drift fixed"
@@ -93084,6 +93372,9 @@
     "symlink not followed": [
       "symlink not followed"
     ],
+    "symlink parent conflict": [
+      "symlink-parent conflict"
+    ],
     "symlink refusal scope": [
       "symlink refusal scope"
     ],
@@ -93152,6 +93443,9 @@
     ],
     "synthesis artifact staging": [
       "synthesis artifact staging"
+    ],
+    "synthesis closeout count only": [
+      "synthesis closeout count only"
     ],
     "synthesis complete validation": [
       "synthesis_complete validation"
@@ -97967,6 +98261,9 @@
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
+    ],
+    "v4 0 0 3 changelog doctor": [
+      "v4.0.0.3 changelog doctor"
     ],
     "v4 0 0 3 changelog gaps": [
       "v4.0.0.3 changelog gaps"

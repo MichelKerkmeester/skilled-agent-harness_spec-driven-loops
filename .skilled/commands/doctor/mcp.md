@@ -60,7 +60,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 5. Parse remaining flags using only the selected sub-action schema:
    - `install`: optional `--runtime <name>` from `opencode`, `claude`, `codex`, `cursor`, `pi`, or `devin`
    - `debug`: optional `--fix`
-6. Reject cross-sub-action flags before YAML load using the presentation contract's error wording.
+6. Before YAML load, reject a flag that belongs to the other sub-action with the presentation contract's cross-sub-action error, and a flag neither sub-action accepts with its unknown-flag error.
 7. Load the selected workflow YAML and execute it step by step.
 8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
@@ -71,7 +71,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-presentation.txt`:
 
 - Sub-action menu, accepted answers, and cancellation display.
-- Unknown-sub-action and cross-sub-action flag errors.
+- Unknown-sub-action, cross-sub-action flag and unknown-flag errors.
 - MCP assessment, install, repair, verification, and final-report display templates.
 - Examples, troubleshooting display, and next-step text.
 

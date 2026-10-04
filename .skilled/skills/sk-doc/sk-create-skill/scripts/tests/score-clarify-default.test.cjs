@@ -989,6 +989,48 @@ test('a Pi-answered choice records the answering model while the auth test keeps
   }
 });
 
+test('a Pi-answered run records the pi transport and a forced CLI run records jev', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  const piBin = makeFakePiBin();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const piOut = path.join(dir, 'out-pi');
+    const piResult = await runWithStubs(stubs, ['--score', file, '--jev', '--out', piOut], {
+      JEV_TRANSPORT: 'pi',
+      PATH: piBin + path.delimiter + stubs.dir + path.delimiter + '/usr/bin' + path.delimiter + '/bin'
+    });
+
+    assert.equal(piResult.status, 0);
+    // A skip line here would mean the CLI stub answered, so the transport
+    // checks below would not exercise the Pi route at all.
+    assert.ok(!piResult.stdout.includes('skip: pi transport unavailable'));
+    const piChoices = fs.readFileSync(path.join(piOut, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line))
+      .filter((record) => record.kind === 'choice');
+    assert.ok(piChoices.length > 0);
+    for (const record of piChoices) {
+      assert.equal(record.transport, 'pi', 'choice row ' + record.row_id + ' order ' + record.order);
+    }
+
+    const cliOut = path.join(dir, 'out-cli');
+    const cliResult = await runWithStubs(stubs, ['--score', file, '--jev', '--out', cliOut]);
+
+    assert.equal(cliResult.status, 0);
+    const cliChoices = fs.readFileSync(path.join(cliOut, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line))
+      .filter((record) => record.kind === 'choice');
+    assert.ok(cliChoices.length > 0);
+    for (const record of cliChoices) {
+      assert.equal(record.transport, 'jev', 'choice row ' + record.row_id + ' order ' + record.order);
+    }
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+    fs.rmSync(path.dirname(piBin), { recursive: true, force: true });
+  }
+});
+
 test('a replay of the recorded three-order run matches every full modal pick within 118 calls', () => {
   const fixture = path.join(__dirname, 'fixtures', '047-020-recorded-picks.jsonl');
   const records = fs.readFileSync(fixture, 'utf8').trim().split('\n').map((line) => JSON.parse(line));

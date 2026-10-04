@@ -12,7 +12,7 @@
   "defaultProjectTrust": "always",
   "treeFilterMode": "default",
   "enabledModels": [
-    "openai-codex/gpt-6-luna",
+    "openai/gpt-6-luna",
     "llmgateway/gpt-6-luna",
     "llmgateway/deepseek-v4.1-flash",
     "opencode-go/deepseek-v4.1-flash",
