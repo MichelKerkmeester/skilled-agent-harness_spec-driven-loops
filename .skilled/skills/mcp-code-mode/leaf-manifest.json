@@ -16,6 +16,7 @@
         "manual-testing-playbook/doctor-commands/doctor-mcp-debug.md",
         "manual-testing-playbook/doctor-commands/doctor-mcp-install.md",
         "manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md",
+        "manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md",
         "manual-testing-playbook/env-var-prefixing/prefixed-env-load.md",
         "manual-testing-playbook/env-var-prefixing/unprefixed-env-not-found.md",
         "manual-testing-playbook/env-var-prefixing/validate-config-script.md",

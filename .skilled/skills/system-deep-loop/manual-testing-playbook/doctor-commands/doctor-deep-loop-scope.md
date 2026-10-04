@@ -1,7 +1,7 @@
 ---
 title: "DOC-368 -- Doctor deep-loop scope"
 description: "Manual scenario validating that /doctor:deep-loop --scope selects the research, review, council, both or all graph sources, that an absent flag asks the scope prompt and applies its default of all, and that a value outside the documented set is refused with the argument failure path."
-version: 1.1.0.0
+version: 1.2.0.0
 id: doctor-commands-doctor-deep-loop-scope
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -21,8 +21,8 @@ The refusal path is also user-observable. A value outside that set fails before 
 - Playbook ID: DOC-368.
 - Real user request: `Check the deep-loop coverage for research, review and council with scope, and confirm that an unknown scope value is refused.`
 - Prompt: `Check the deep-loop coverage for research, review and council with scope, and confirm that an unknown scope value is refused.`
-- Preconditions: A disposable copy of the repository that contains at least one research iteration folder, one review iteration folder and one ai-council artifact set, plus an active spec packet whose scratch directory is writable.
-- Expected execution process: Create the disposable copy, inventory the three source sets, run the five documented scopes in turn plus one run without the flag that answers the scope prompt, approve the three blocking gates in each accepted run, then run a value outside the documented set and capture the refusal.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, holding at least one research iteration folder, one review iteration folder and one ai-council artifact set, plus an active spec packet whose scratch directory is writable.
+- Expected execution process: Set up the environment, inventory the three source sets, run the provision step when the environment has no dependencies yet, run the five documented scopes in turn plus one run without the flag that answers the scope prompt, approve the three blocking gates in each accepted run, then run a value outside the documented set and capture the refusal.
 - Expected signals: Phase 0 globs `<active-spec-folder>/research/iterations/*.md` for `--scope=research` and no review or ai-council source. The same holds for `--scope=review` over `<active-spec-folder>/review/iterations/*.md`, and `--scope=council` globs `<active-spec-folder>/ai-council/**`, stats `council-graph.sqlite` and samples the council graph with `loopType='council'`. `--scope=both` globs the research and review iteration folders and stats `deep-loop-graph.sqlite` without touching `ai-council/**` or `council-graph.sqlite`, and `--scope=all` adds the `ai-council/**` glob, the `council-graph.sqlite` stat and the `loopType='council'` council sampling on top of both iteration folders. A run without `--scope` prints the presentation contract's scope prompt `Which deep-loop history should be checked?` with options `1` to `5`, and an empty answer resolves to `all` with the matching Phase 0 activity. Each setup dashboard shows the resolved `Scope:` value. Every status, query and convergence call carries `--read-only`. The diagnostic summary shows `DOCTOR DIAGNOSTIC RESULT` with the resolved `Scope:` value and a matching `STATUS=[status]`, and the state log at `<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json` records the same value in its `scope` field. The unknown value run prints the argument failure block, with the offending argument substituted into `Unknown argument: [argument]`, and ends at `STATUS=FAIL ERROR="unknown_argument"` before the workflow YAML loads.
 - Desired user-visible outcome: A focused diagnostic per documented scope and one for the prompted default run, each naming the resolved scope in the setup dashboard and the result summary, plus one clear argument failure for the unknown value.
 - Pass/fail: PASS if each scope reads only the source set its policy row names, the no-flag run asks the scope prompt and resolves an empty answer to `all`, each state log records the matching scope, and the unknown value prints the argument failure block with `STATUS=FAIL ERROR="unknown_argument"` before any workflow phase runs.
@@ -40,19 +40,20 @@ Check the deep-loop coverage for research, review and council with scope, and co
 
 ### Commands
 
-1. Create a disposable copy of the repository, because each accepted run writes a packet-local state log.
-2. In the copy, inventory the three focused source sets:
+1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
+2. In the environment, inventory the three focused source sets:
    - `find specs -path '*/research/iterations/*.md' | head`
    - `find specs -path '*/review/iterations/*.md' | head`
    - `find specs -path '*/ai-council/*' | head`
-3. Run `/doctor:deep-loop --scope=research` through the real runtime.
-4. Answer `y` at the three blocking gates, `before_phase_1_analysis`, `before_phase_2_recommendation` and `before_phase_3_report`.
-5. Capture the setup dashboard, the Phase 0 Glob activity, the diagnostic summary, the `scope` field of the state log, and the `--read-only` flag on the status, query and convergence calls.
-6. Repeat steps 3 to 5 with `--scope=review`, `--scope=council`, `--scope=both` and `--scope=all`.
-7. Run `/doctor:deep-loop` with no flag, confirm the scope prompt `Which deep-loop history should be checked?` appears with options `1` to `5`, answer with an empty reply so the `all` default applies, approve the three gates and capture the same signals as step 5.
-8. Run `/doctor:deep-loop --scope=benchmark`, a value outside the documented set, and capture the full output.
-9. Confirm the unknown value run produced no diagnostic summary and no state log.
-10. Discard the disposable copy and confirm the live working copy has no new state log under its active packet scratch folder.
+3. If the environment has no dependencies yet, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .worktrees/.doctor-test-environment`.
+4. Run `/doctor:deep-loop --scope=research` through the real runtime.
+5. Answer `y` at the three blocking gates, `before_phase_1_analysis`, `before_phase_2_recommendation` and `before_phase_3_report`.
+6. Capture the setup dashboard, the Phase 0 Glob activity, the diagnostic summary, the `scope` field of the state log, and the `--read-only` flag on the status, query and convergence calls.
+7. Repeat steps 4 to 6 with `--scope=review`, `--scope=council`, `--scope=both` and `--scope=all`.
+8. Run `/doctor:deep-loop` with no flag, confirm the scope prompt `Which deep-loop history should be checked?` appears with options `1` to `5`, answer with an empty reply so the `all` default applies, approve the three gates and capture the same signals as step 6.
+9. Run `/doctor:deep-loop --scope=benchmark`, a value outside the documented set, and capture the full output.
+10. Confirm the unknown value run produced no diagnostic summary and no state log.
+11. Restore every file the scenario changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 
 ### Expected
 
@@ -68,7 +69,7 @@ The unknown value never loads the workflow YAML. It prints the presentation cont
 - The `--read-only` flag on every status, query and convergence invocation.
 - The literal line `Unknown argument: --scope=benchmark`, the only-flag line that follows it, and `STATUS=FAIL ERROR="unknown_argument"`.
 - Confirmation that the unknown value run produced no diagnostic summary and no state log.
-- The live working copy comparison before and after the scenario.
+- The final `git status --porcelain` output from step 11.
 
 ### Pass / Fail
 
@@ -88,6 +89,7 @@ If a scope touches a source outside its policy row, inspect `field_handling.scop
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-deep-loop-presentation.txt](../../../../commands/doctor/assets/doctor-deep-loop-presentation.txt)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
+- Environment guide: [doctor-commands README](../../../system-spec-kit/manual-testing-playbook/doctor-commands/README.md)
 
 Provenance: manual only - /doctor:deep-loop
 
@@ -101,5 +103,5 @@ Provenance: manual only - /doctor:deep-loop
 - Command mode: `/doctor:deep-loop --scope`
 - YAML asset: `doctor-deep-loop.yaml`
 - Graph targets: `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` and `.skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite`
-- Mutation boundary: add-only diagnostic. The workflow writes only its packet-local state log under the active packet's scratch folder, and the iteration markdown files and ai-council artifacts stay read-only inputs.
+- Mutation boundary: add-only diagnostic. The workflow writes only its packet-local state log under the active packet's scratch folder inside the environment, and the iteration markdown files and ai-council artifacts stay read-only inputs. The environment is restored after the run.
 - Feature file path: `doctor-commands/doctor-deep-loop-scope.md`

@@ -1,7 +1,7 @@
 ---
 title: "DOC-372 -- Doctor git standards change rule"
 description: "Manual scenario validating that /doctor:git standards changes or removes one rule and points out the template prose that still describes the old rule."
-version: 1.0.0.0
+version: 1.1.0.0
 id: doctor-commands-doctor-git-standards-change-rule
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario validates the rule change flow of `/doctor:git standards`. It confirms that a change plan names the setting, its old and new value, the rule ids that switch on or off and every prose passage that still states the old rule, that the prose follow-up is offered after the write, and that the check ends clean once the prose matches the rules block.
 
-The scenario writes `.sk-git/` files, so it runs against a disposable copy of the repository and ends by discarding that copy. The rules block itself is only ever changed through the script, and the shipped assets stay untouched.
+The scenario writes `.sk-git/` files, so it runs in the environment and ends by restoring it. The rules block itself is only ever changed through the script, and the shipped assets stay untouched.
 
 ---
 
@@ -23,8 +23,8 @@ The scenario writes `.sk-git/` files, so it runs against a disposable copy of th
 - Playbook ID: DOC-372.
 - Real user request: `Raise the commit subject limit to 120 characters and point out any template prose that still states the old limit.`
 - Prompt: `Raise the commit subject limit to 120 characters and point out any template prose that still states the old limit.`
-- Preconditions: A disposable copy of the repository where the shipped sk-git templates are the active rules, so the init step can copy them into `.sk-git/`.
-- Expected execution process: Run `/doctor:git standards`, approve the init copy, change `subject.maxLength` to 120, approve the write and the prose follow-up, remove `subject.warnLength`, approve again, finish with `done`, and discard the copy.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, where the shipped sk-git templates are the active rules, so the init step can copy them into `.sk-git/`.
+- Expected execution process: Run `/doctor:git standards` in the environment, approve the init copy, change `subject.maxLength` to 120, approve the write and the prose follow-up, remove `subject.warnLength`, approve again, finish with `done`, and restore the environment.
 - Expected signals: The first plan renders `RULE CHANGE PLAN` with `Template: .sk-git/commit-message-template.md`, `Setting: commit subject.maxLength: 100 -> 120`, the `Rules switched on` and `Rules switched off` lines and `Prose to update:` lines naming each passage that still states 100 characters for `subject.max-length`, including the contract paragraph and the self-check bullet. The second plan renders `Setting: commit subject.warnLength: 80 -> null`, `Rules switched off: subject.length-target` and a `Prose to update:` line naming the prose that still names `subject.length-target`. After each approved write the presentation asks `The template's prose still states the old rule. Update those lines in .sk-git/commit-message-template.md to match? Reply approve, or no to leave them.` and only the named lines change. `check --json` exits 0 with `STATUS=OK DRIFT=0 BROKEN=0` after the prose edits. The result renders `DOCTOR MUTATING RESULT` with `STATUS=OK`, each applied change, the files written, the last check result and the undo for each.
 - Desired user-visible outcome: Each rule change states its prose drift up front, the prose is brought back in line only on approval, and the final check is clean.
 - Pass/fail: PASS if every plan names its prose drift before the write, the prose follow-up is offered after each write, only the named lines change, both checks end clean, and the result lists the changes, files, check result and undo with `STATUS=OK`.
@@ -42,7 +42,7 @@ Raise the commit subject limit to 120 characters and point out any template pros
 
 ### Commands
 
-1. Create a disposable copy of the repository, for example a scratch clone under `/tmp/`, and work only inside it.
+1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
 2. Confirm the shipped sk-git templates are the active rules: `node .skilled/commands/doctor/scripts/git-standards.cjs status --json`.
 3. Run `/doctor:git standards` through the real runtime and approve the init copy so `.sk-git/` holds editable templates.
 4. At the change menu, choose `1` for a rule setting, kind `commit`, setting `subject.maxLength`, value `120`.
@@ -53,7 +53,7 @@ Raise the commit subject limit to 120 characters and point out any template pros
 9. Capture the second plan with its `Rules switched off` and `Prose to update` lines, approve, then approve the prose follow-up.
 10. Run `check --json` again and keep its exit code and `STATUS` line.
 11. Reply `D` to finish and capture the result block.
-12. Discard the disposable copy and confirm the live working copy has no `.sk-git/` directory and unchanged shipped assets.
+12. Restore every file the scenario changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 
 ### Expected
 
@@ -68,7 +68,7 @@ The final check is clean and the result lists every applied change, the files wr
 - Both `check --json` outputs with their exit codes and `STATUS` lines.
 - The template diffs showing that only the rules block and the named prose lines changed.
 - The `DOCTOR MUTATING RESULT` block with the files written and the undo for each change.
-- The step 12 confirmation that the live copy is unchanged.
+- The final `git status --porcelain` output from step 12.
 
 ### Pass / Fail
 
@@ -77,7 +77,7 @@ The final check is clean and the result lists every applied change, the files wr
 
 ### Failure Triage
 
-If a plan lists no prose drift, inspect `templateDriftErrors` and `lengthLiteralErrors` in `message-contract.mjs` and confirm the prose names the changed rule id. If the prose prompt does not appear, inspect Phase 6 of `doctor-git-standards.yaml`. If `check` exits 1, the remaining drift is reported and the prose follow-up was skipped, so repeat it. If `check` exits 2, the block is broken, so restore the copy with the recorded undo and report the run as `FAIL`.
+If a plan lists no prose drift, inspect `templateDriftErrors` and `lengthLiteralErrors` in `message-contract.mjs` and confirm the prose names the changed rule id. If the prose prompt does not appear, inspect Phase 6 of `doctor-git-standards.yaml`. If `check` exits 1, the remaining drift is reported and the prose follow-up was skipped, so repeat it. If `check` exits 2, the block is broken, so restore the environment with the recorded undo and report the run as `FAIL`.
 
 ---
 
@@ -90,6 +90,7 @@ If a plan lists no prose drift, inspect `templateDriftErrors` and `lengthLiteral
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
 - Standards writer: [.skilled/commands/doctor/scripts/git-standards.cjs](../../../../commands/doctor/scripts/git-standards.cjs)
 - Shipped templates: [.skilled/skills/sk-git/assets/commit-message-template.md](../../../../skills/sk-git/assets/commit-message-template.md)
+- Environment guide: [doctor-commands README](../../../system-spec-kit/manual-testing-playbook/doctor-commands/README.md)
 
 Provenance: manual only - /doctor:git
 
@@ -102,5 +103,5 @@ Provenance: manual only - /doctor:git
 - Feature name: Doctor git standards change rule
 - Command mode: `/doctor:git standards`
 - YAML asset: `doctor-git-standards.yaml`
-- Mutation boundary: the rules block and the named prose lines in `.sk-git/commit-message-template.md` inside a disposable copy. The rules block changes only through `git-standards.cjs` after an approved plan, and the shipped assets stay untouched.
+- Mutation boundary: the rules block and the named prose lines in `.sk-git/commit-message-template.md` inside the environment. The rules block changes only through `git-standards.cjs` after an approved plan, and the shipped assets stay untouched. The environment is restored after the run.
 - Feature file path: `doctor-commands/doctor-git-standards-change-rule.md`

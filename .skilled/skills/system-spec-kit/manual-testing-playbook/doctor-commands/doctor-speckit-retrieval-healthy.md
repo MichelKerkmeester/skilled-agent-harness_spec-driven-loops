@@ -1,7 +1,7 @@
 ---
 title: "DOC-349 -- Doctor speckit retrieval healthy"
 description: "Manual scenario validating that /doctor:speckit reports a fresh trigger index, a working lookup and working ripgrep recipes as OK, lists phrase-quality advisories without changing that status, and writes nothing to the repository artifacts."
-version: 1.2.0.0
+version: 1.3.0.0
 id: doctor-commands-doctor-speckit-retrieval-healthy
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -23,7 +23,7 @@ The command is read-only by contract for the artifacts it diagnoses. Its only al
 - Playbook ID: DOC-349.
 - Real user request: `Check whether the spec-kit trigger index and the retrieval recipes are healthy.`
 - Prompt: `Check whether the spec-kit trigger index and the retrieval recipes are healthy.`
-- Preconditions: A disposable copy of the repository whose trigger index was generated over the same corpus, and an active spec packet with a writable scratch directory for the diagnostic report and state log.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, whose trigger index was generated over the same corpus, and an active spec packet with a writable scratch directory for the diagnostic report and state log.
 - Expected execution process: Confirm the index is fresh, run `/doctor:speckit`, approve both blocking gates, capture every Phase 0 signal, and compare the trigger index checksum before and after the run.
 - Expected signals: The check command exits 0 with `fresh: true`. The lookup exits 0 or 1 with `indexHash`, `manifestHash` and `candidatePhraseCount` recorded. `committed_pair_match` is true. The recipe exits 0 with a non-zero path count, and the same recipe without `--no-config` returns the same path set. The re-run against a nonexistent root exits 2 with stderr. Every class in the `staleness_classes` map is zero. `quality_advisories` lists each non-zero class in the `phraseQuality` bucket of `generation-diagnostics.json` with its phrase count, document count and share of all phrases. Phase 2 reports `status=OK` with no action needed, Phase 3 reports `STATUS_OK`, and the summary shows `Target: speckit-retrieval`, `Status: OK` and an `Advisories:` line naming those classes. The trigger index checksum is identical before and after the run.
 - Desired user-visible outcome: A diagnostic summary that names the target, reports `Status: OK`, and lists the phrase-quality advisories as information only.
@@ -42,15 +42,15 @@ Check whether the spec-kit trigger index and the retrieval recipes are healthy.
 
 ### Commands
 
-1. Create a disposable copy of the repository.
-2. In the copy, confirm the index is present and fresh:
+1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
+2. In the environment, confirm the index is present and fresh:
    - `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json` exits 0 with `fresh: true`. When it exits 1, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` once and re-check.
 3. Record the checksum: `shasum -a 256 .skilled/skills/system-spec-kit/runtime/data/trigger-index.json`.
 4. Run `/doctor:speckit` through the real runtime.
 5. Answer `y` at both blocking gates, `before_phase_1_analysis` and `before_phase_2_recommendation`.
 6. Capture the Phase 0 discovery outputs, the Phase 1 `staleness_classes` map, the Phase 2 status and recommendation, and the report and state log paths.
 7. Record the checksum again and compare it with step 3.
-8. Discard the disposable copy and confirm the trigger index checksum in the live working copy matches its pre-scenario value.
+8. Restore every file the scenario changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 
 ### Expected
 
@@ -66,6 +66,7 @@ The doctor writes only its packet-local report and state log. The trigger index 
 - The `staleness_classes` map, the `quality_advisories` list and the Phase 2 status.
 - Checksums from steps 3 and 7.
 - The report path and the state log path.
+- The final `git status --porcelain` output.
 
 ### Pass / Fail
 
@@ -74,7 +75,7 @@ The doctor writes only its packet-local report and state log. The trigger index 
 
 ### Failure Triage
 
-If the check reports not fresh, inspect which corpus document changed and regenerate the index in the disposable copy. If the lookup exits 2 or higher, inspect the index read in `lookup-trigger-index.mjs` and attach its stderr. If the recipe returns nothing, inspect the path-only recipe in the retrieval conventions and its flags in `doctor-speckit-retrieval.yaml`.
+If the check reports not fresh, inspect which corpus document changed and regenerate the index in the environment. If the lookup exits 2 or higher, inspect the index read in `lookup-trigger-index.mjs` and attach its stderr. If the recipe returns nothing, inspect the path-only recipe in the retrieval conventions and its flags in `doctor-speckit-retrieval.yaml`.
 
 ---
 
@@ -85,6 +86,7 @@ If the check reports not fresh, inspect which corpus document changed and regene
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml](../../../../commands/doctor/assets/doctor-speckit-retrieval.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-speckit-presentation.txt](../../../../commands/doctor/assets/doctor-speckit-presentation.txt)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
+- Environment guide: [doctor-commands README](README.md)
 
 Provenance: manual only - /doctor:speckit
 

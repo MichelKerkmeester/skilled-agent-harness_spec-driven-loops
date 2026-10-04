@@ -261,6 +261,7 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 | DOC-359 | Doctor update apply | [DOC-359](doctor-commands/doctor-update-apply.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 | DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 
