@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6658,
-    "ok": 13100,
+    "ok": 13104,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23327,
+  "documentsScanned": 23331,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d96dd700614560e2f4069fd5f019ebe4275e3e6c96ab9a8b0cd7f8085cc0cab8",
+  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33407,
+      "ok": 33414,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -70386,6 +70386,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/scratch",
       "reason": "excluded directory"
     },
     {
