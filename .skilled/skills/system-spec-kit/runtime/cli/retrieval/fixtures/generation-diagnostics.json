@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6716,
-    "ok": 13178,
+    "missing-frontmatter": 6711,
+    "ok": 13137,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23463,
+  "documentsScanned": 23417,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
+  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -33682,18 +33682,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -65029,24 +65017,6 @@
       "line": 2,
       "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
