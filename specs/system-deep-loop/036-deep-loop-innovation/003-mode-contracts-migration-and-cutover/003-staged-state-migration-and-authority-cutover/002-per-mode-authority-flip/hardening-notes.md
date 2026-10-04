@@ -5,7 +5,7 @@ trigger_phrases:
   - "per-mode authority flip hardening notes"
   - "authority flip reverse cas atomic cutover hardening"
 importance_tier: "critical"
-contextType: "analysis"
+contextType: "research"
 parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip"
 ---
 

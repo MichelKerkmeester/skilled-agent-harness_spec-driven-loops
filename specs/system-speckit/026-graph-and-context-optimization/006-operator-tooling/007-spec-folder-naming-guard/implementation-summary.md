@@ -6,7 +6,7 @@ trigger_phrases:
   - "naming guard research summary"
   - "feasibility verdict partial"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard"

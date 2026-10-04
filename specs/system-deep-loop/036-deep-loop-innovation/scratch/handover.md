@@ -7,7 +7,7 @@ trigger_phrases:
   - "resume WS1 remediation"
   - "014 authority cutover gate"
 importance_tier: "critical"
-contextType: "handover"
+contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:

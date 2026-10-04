@@ -12,7 +12,7 @@ trigger_phrases:
   - "compose.sh"
   - "template levels"
 importance_tier: "high"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research"

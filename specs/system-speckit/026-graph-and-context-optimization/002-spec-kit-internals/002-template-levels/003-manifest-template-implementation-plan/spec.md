@@ -8,7 +8,7 @@ trigger_phrases:
   - "level-contract resolver"
   - "kill level dirs"
 importance_tier: "high"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan"

@@ -47,8 +47,7 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "resource-map.md",
-      "scripts/spec/validate.sh"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -61,12 +60,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -144,17 +137,17 @@
     ],
     "causal_summary": "After this session's wave of remediation work (013 research → 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization wrapper packet is approximately release-ready",
     "created_at": "2026-04-29T22:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.615Z",
+    "last_save_at": "2026-10-04T09:19:29.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:299e7e1989498627d4ba13ff247da7a54980f7ee199a24384dced28dcaed9128",
+    "source_fingerprint": "sha256:01234366003ec83ca82ae6839f3ca2db6f80373e841fb4bafd9f49b60d5905f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a8620c956bb289e5e6b6b4b6aa52c7e67fce93e9cc7bb6eeffb28fb7a0c163b",
+      "spec.md": "634896d52b32894f90149c6aea2fdb28611860ebf52d4fefc48d473d09d617d4",
       "resource-map.md": "b41ec1a24d3844b7e2d53ed4b5edc7cb514acfa7714e9e4697f9df75fade9aae"
     },
     "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit",

@@ -2,7 +2,7 @@
 title: "Manual Tests — Code-Graph Hooks + OpenCode Plugin Bridge"
 description: "Paste-ready prompts for verifying code-graph lifecycle hook parity across Claude, Copilot, Gemini, and OpenCode plugin. Covers HOOK-P1-001 (minimal bridge transport mismatch) and HOOK-P2-005 (plugin tests mocking bridge contract)."
 importance_tier: "high"
-contextType: "manual-testing"
+contextType: "implementation"
 trigger_phrases: []
 ---
 

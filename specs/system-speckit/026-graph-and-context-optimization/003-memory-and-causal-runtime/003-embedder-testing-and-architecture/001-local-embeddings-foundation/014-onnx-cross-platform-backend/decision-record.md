@@ -6,7 +6,7 @@ trigger_phrases:
   - "onnx backend rejected"
   - "cocoindex onnx adr"
 importance_tier: "important"
-contextType: "decision-record"
+contextType: "planning"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record-core | v2.2 -->
 # Decision Record: 014/014 ONNX cross-platform backend — REJECTED

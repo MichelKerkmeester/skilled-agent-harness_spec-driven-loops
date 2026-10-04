@@ -4,7 +4,7 @@ description: "T### task list for the semantic matcher sub-phase: pure cosine mat
 trigger_phrases:
   - "027 phase 004 semantic matcher tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher"

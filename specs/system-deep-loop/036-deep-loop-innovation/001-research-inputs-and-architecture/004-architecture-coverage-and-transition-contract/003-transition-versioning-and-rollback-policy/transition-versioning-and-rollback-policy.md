@@ -6,7 +6,7 @@ trigger_phrases:
   - "canonical typed event envelope"
   - "per-mode authority rollback contract"
 importance_tier: "critical"
-contextType: "governance"
+contextType: "planning"
 ---
 # Ratified Transition, Versioning & Rollback Policy
 

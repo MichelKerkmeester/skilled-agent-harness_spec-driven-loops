@@ -7,7 +7,7 @@ trigger_phrases:
   - "concurrent goal validation"
   - "pi goal re-enable gate"
 importance_tier: "important"
-contextType: "verification"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/009-goal-isolation/005-verification-and-validation"

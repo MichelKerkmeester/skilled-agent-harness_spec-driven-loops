@@ -2,7 +2,7 @@
 title: "Phase Review Report: 002-cache-warning-hooks"
 description: "2-iteration deep review of 002-cache-warning-hooks. Verdict CONDITIONAL with 0 P0 / 1 P1 / 0 P2 findings."
 importance_tier: "important"
-contextType: "review-report"
+contextType: "research"
 trigger_phrases: []
 ---
 

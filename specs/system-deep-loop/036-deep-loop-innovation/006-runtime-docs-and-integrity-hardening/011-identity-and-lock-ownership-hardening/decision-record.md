@@ -7,7 +7,7 @@ trigger_phrases:
   - "F005 loop lock hardening decision"
   - "policy authorization state ADR"
 importance_tier: "critical"
-contextType: "decision-record"
+contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/011-identity-and-lock-ownership-hardening"
 _memory:
   continuity:

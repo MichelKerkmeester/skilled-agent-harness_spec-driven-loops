@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The local `cocoindex-code` soft fork reports `0.2.3+spec-kit-fork.0.2.0` while upstream `cocoindex-code` has reached `v0.2.33`",
     "created_at": "2026-05-19T20:22:26Z",
-    "last_save_at": "2026-08-30T15:39:30.697Z",
+    "last_save_at": "2026-10-04T09:22:21.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7cf65cf53d53fc7252562bedff99561c0365fe49c20a1a95b5465cc2f08a4d9",
+    "source_fingerprint": "sha256:cf32ad4f14b06549d73acd0438b14f364ca8b9ae6e21bd9121730edda82860c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7088f9a81337c0841336f5f5e31ca33f760209d359a2548763e919a84eaf628",
       "plan.md": "8d1b7b4d24e529e17e2890b801d044884f0b59200f1b94c9e523e3619707c305",
       "tasks.md": "376967dc012b04d6baeb85576ebd7d9b152827f0386df95ccb27d41d0cf7398a",
-      "implementation-summary.md": "c6331de88af2bb1ffc17ede884badb46221ef4d2b44c2317c3f9baa851c433b8"
+      "implementation-summary.md": "18fb6d4f2784516eb3a653104228875bf1f6b031a3e1ab5b1d92be99c2f08c7c"
     },
     "last_active_child_id": null,
     "last_active_at": null

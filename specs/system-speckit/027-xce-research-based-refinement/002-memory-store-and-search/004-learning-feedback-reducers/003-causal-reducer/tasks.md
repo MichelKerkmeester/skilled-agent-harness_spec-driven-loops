@@ -4,7 +4,7 @@ description: "Task list for the session-trace causal reducer."
 trigger_phrases:
   - "009 causal reducer tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer"

@@ -7,7 +7,7 @@ trigger_phrases:
   - "451 test regression postmortem"
   - "per-mode certificate fixture digest break"
 importance_tier: "critical"
-contextType: "handover"
+contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation/011-identity-and-lock-ownership-hardening"
 _memory:
   continuity:
