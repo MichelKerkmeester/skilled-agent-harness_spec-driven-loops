@@ -24,7 +24,7 @@ trigger_phrases:
   - "cause then fix"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.1.1
 ---
 
 # Rule: Evidence and proof
@@ -56,26 +56,23 @@ carries its receipt, or is explicitly labeled as inferred.**
 | **INFERRED** | Plausible, unverified | Say so, and say what would confirm it |
 
 Prose that mixes the three without marking them reads as if all of it were observed.
-That is how a confident summary certifies work nobody checked. What to do when a claim
-cannot be resolved is [`uncertainty-and-honesty.md`](uncertainty-and-honesty.md).
+What to do when a claim cannot be resolved is
+[`uncertainty-and-honesty.md`](uncertainty-and-honesty.md).
 
 **A receipt confirms only what could have contradicted it.** If the claim being false would
-have left the receipt unchanged, the receipt is not an observation of that claim, whatever
-you ran. It belongs in INFERRED until repaired. Four shapes recur, each with one repair.
+have left the receipt unchanged, the receipt is not an observation of that claim. It
+belongs in INFERRED until repaired. Four shapes recur, each with one repair.
 A search that found nothing: demonstrate the search on a known instance of what you claim
 is absent, or you have tested your pattern, not the claim. A read that stopped short: read
 the span where the failure would actually print. A total carried from another analysis:
-derive it here, at the total's own level, because verifying its parts is not deriving the
-whole. A match that never distinguished roles: compare what the two sides are, not the
-digits they share. With no known instance to hand, the honest output is INFERRED plus the
-step that would confirm it.
+derive it here, at the total's own level. A match that never distinguished roles: compare
+what the two sides are, not the digits they share. With no known instance to hand, the
+honest output is INFERRED plus the step that would confirm it.
 
 When a report leads with a cause, the cause carries its standing, and the cause-then-fix
-order holds. Where no run confirms the cause, label it as suspected and name the next
-check. A confirmed cause is reported as a finding. Against the tiers, a suspected cause
-is INFERRED, and the INFERRED tier already demands what would confirm it, so the clause
-adds a reporting shape and takes nothing from the proof. There is no unmarked case: a
-cause is either a finding with its receipt or suspected with its next check.
+order holds. Where no run confirms the cause, it is INFERRED: label it as suspected and
+name the next check. A confirmed cause is reported as a finding with its receipt. There
+is no unmarked case.
 
 The failure this prevents: an unconfirmed cause asserted as definitive, which the next
 reader treats as settled and stops testing.
@@ -85,7 +82,6 @@ reader treats as settled and stops testing.
 ## 2. COMMAND EVIDENCE
 
 **A command counts as evidence only after its output and exit status have been read.**
-Not launched. Not assumed. Read.
 
 - Never report output you did not see, or the output you *expected*.
 - **Exit 0 with no output is a suspicious pass, not a pass.** A runner that failed to
@@ -105,8 +101,8 @@ Not launched. Not assumed. Read.
 2. **It ran on the wrong thing.** Wrong path, branch, or working directory; a symlink
    that resolved elsewhere; a filter that matched nothing. A search that returns nothing
    is not evidence of absence until you have confirmed it read the file: `grep` treats a
-   source file holding a NUL byte as binary and prints nothing at all, and several files
-   here use NUL as a composite-key separator. Re-run with `-a` before concluding.
+   source file holding a NUL byte as binary and prints nothing at all. Re-run with `-a`
+   before concluding.
 3. **It ran on stale artifacts.** Cached output, an old bundle, pre-change fixtures, a
    metadata fingerprint that no longer attests its source.
 4. **It asserted nothing.** A test with no assertion, a mocked subject, an auto-updated
@@ -117,9 +113,9 @@ Not launched. Not assumed. Read.
 ## 4. THE NEGATIVE CONTROL
 
 **Before the fix, reproduce the exact failing symptom with the exact check you will use
-to prove the fix.** Then the same check proves the change. A check that passed before
-your change and passes after it proves nothing about your change. If reproducing is
-unsafe, say so and name what you used instead.
+to prove the fix.** A check that passed before your change and passes after it proves
+nothing about your change. If reproducing is unsafe, say so and name what you used
+instead.
 
 ---
 
@@ -139,11 +135,9 @@ delta. An unmeasured performance claim is not a caveat, it is a fabrication.
 
 ## 6. SHAPE-SPECIFIC PROOF
 
-Three task shapes fail in ways the checks above do not catch:
-
 - **Filter or transform:** enumerate every in-scope variant *first*, process each, then
   rescan the whole surface for residue. The variants you never enumerated are the ones
-  you missed, and a clean diff does not reveal an unprocessed input.
+  you missed.
 - **Computed answer:** derive it a second way, independently, before writing the number.
   Re-reading your own arithmetic is not an independent derivation.
 - **Exact artifact:** check filename, path, format and content shape directly. Having
@@ -156,9 +150,9 @@ Three task shapes fail in ways the checks above do not catch:
 A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion: each
 is a **claim to confirm against the real symptom**, not a fact to act on. Acting on an
 unconfirmed finding produces a fix for a bug that was never there, plus a diff nobody
-can explain. Confirming against the real symptom is
-[`root-cause-and-debugging.md`](root-cause-and-debugging.md), and what a delegate hands
-back is [`delegation-and-orchestration.md`](delegation-and-orchestration.md).
+can explain. Confirming the symptom is
+[`root-cause-and-debugging.md`](root-cause-and-debugging.md), and a delegate's return is
+[`delegation-and-orchestration.md`](delegation-and-orchestration.md).
 
 ---
 
@@ -194,26 +188,21 @@ Every substantive turn ends with an honest status. Four things, briefly:
 2. **What is inferred** rather than observed.
 3. **What only the operator can verify.**
 4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
-   Four different states, routinely conflated.
 
 And plainly: **what is not done.** If tests fail, say so and show the output. If a step
 was skipped, say it was skipped. If scope was left out, name it and why. Work that is
-done and verified is stated plainly, without hedging, the hedging habit devalues the
-honest report when it matters. **The first report is the honest one:** a claim that
-becomes accurate only under interrogation failed when it was written, not when it
-was corrected. This section covers what happened. What is now the
-operator's to do is a separate report, see
-[`communication-handoff.md`](communication-handoff.md) §1.
+done and verified is stated plainly, without hedging. **The first report is the honest
+one:** a claim that becomes accurate only under interrogation failed when it was
+written, not when it was corrected. What is now the operator's to do is a separate
+report, see [`communication-handoff.md`](communication-handoff.md) §1.
 
 ---
 
 ## 11. REASON FROM DATA, NOT FROM MEMORY
 
-Everything above is about proving a claim after the fact. This is about where the claim
-came from. Two habits produce most of the claims that then need retracting:
+Two habits produce most of the claims that then need retracting:
 
-**Reasoning from what the code probably does.** You have read this pattern a hundred
-times, so you know what `resolveConfig` returns. Open it. The cost of being wrong here
+**Reasoning from what the code probably does.** Open it. The cost of being wrong here
 is not one wrong sentence, it is a fix built on a wrong model, which fails in a way
 that looks like a different bug.
 
@@ -225,8 +214,7 @@ defect.
 
 Before the change, run the checks that decide whether it is the right change at all:
 does something simpler already do this, what does it cost at runtime, who maintains it
-after you, and is any of it outside the frozen scope. These are cheap before the edit
-and expensive after it, the same asymmetry as §8's proof plan, one step earlier.
+after you, and is any of it outside the frozen scope.
 
 ---
 
