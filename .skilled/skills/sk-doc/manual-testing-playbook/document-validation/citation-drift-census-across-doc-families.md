@@ -1,7 +1,7 @@
 ---
 title: "SD-022 -- Citation drift census across doc families"
 description: "This scenario validates the citation drift census across doc families for `SD-022`. It focuses on the skills census printing its family and totals lines ending in the corpus and commit, `--moved` adding only the `cite moved:` lines, and the working tree staying unchanged."
-version: 1.0.0.0
+version: 2.3.0.2
 ---
 
 # SD-022 -- Citation drift census across doc families
