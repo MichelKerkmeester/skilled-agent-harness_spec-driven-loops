@@ -62,5 +62,4 @@ The check never changes the validator's exit code. It does not run with `--json`
 - Feature file path: `document-validation/citation-drift-scan.md`
 
 Related references:
-- [goal-criteria-lint.md](goal-criteria-lint.md) - flags goal completion criteria a reader cannot check from the line alone
 - [changelog-entry-frontmatter-check.md](changelog-entry-frontmatter-check.md) - blocks a changelog entry that lacks the search metadata a spec document carries

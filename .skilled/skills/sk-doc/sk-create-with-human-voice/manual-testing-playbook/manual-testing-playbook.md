@@ -263,14 +263,14 @@ Desired user-visible outcome: the user gets the mechanical number and a reader's
 ### HVT-004 | The reader-needed lens measurement
 
 #### Description
-Verify the zero-call run prints the census and the stop line and calls no backend, and that a stub-backend run adds only its skip line.
+Verify the zero-call run prints the census, the questions and the stop line, writes no file and leaves the tree unchanged.
 
 #### Scenario Contract
-Prompt: `Run the reader-needed lens with the stub first on PATH, once with no switch and once with --jev, and tell me what it printed and whether anything left the machine.`
+Prompt: `Run the reader-needed lens against a scratch labels path and tell me what it printed.`
 
-The default run makes no model call, writes no file and holds no credential. Before the operator's labels exist it stops at the label gate with `stop: fewer than 150 labeled rows`, so a transcript that quotes a measurement from it has read the sample frame as a result. No run has printed a `verdict` line.
+The default run makes no model call, writes no file and holds no credential. Before the operator's labels exist it stops at the label gate with `stop: fewer than 150 labeled rows`, so a transcript that quotes a measurement from it has read the sample frame as a result. No run prints a measurement beyond the label gate.
 
-Desired user-visible outcome: the user sees the census and the stop line as the whole result before the labels exist, and sees the default run call no backend and a stub backend refused at the health check without measuring anything.
+Desired user-visible outcome: the user sees the census and the stop line as the whole result before the labels exist, and sees the lens write no file and leave the tree unchanged.
 
 #### Test Execution
 > **Feature File:** [HVT-004](tell-detection/reader-needed-lens-measurement.md)

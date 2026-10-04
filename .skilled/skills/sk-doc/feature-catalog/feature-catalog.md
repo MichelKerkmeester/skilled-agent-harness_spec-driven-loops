@@ -50,7 +50,7 @@ Replays each parent hub's stage-two keyword block against the committed gold wit
 
 #### Current Reality
 
-`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`. The tie-break arm stays dormant until `--jev` with `--out <dir>` runs behind its gate and ends the column in `verdict jev: <keep|kill|stop (<reason>)>` under the keep rule. A `keep` serves nothing.
+`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`.
 
 #### Source Files
 
@@ -106,20 +106,6 @@ Blocks a changelog entry that lacks the search metadata a spec document carries,
 
 See [`document-validation/changelog-entry-frontmatter-check.md`](document-validation/changelog-entry-frontmatter-check.md) for the checks, the type order and source anchors.
 
-### Goal Criteria Lint
-
-#### Description
-
-Flags goal completion criteria that a reader cannot check from the line alone, so an author can fix them before the objective carries them.
-
-#### Current Reality
-
-`lint-goal-criteria.cjs` in `sk-create-goal` gives the mode's rules 4 and 5 their first machine check, with no model call and exit 0 on every input. `score-goal-lint.cjs` measures it against operator labels, and `goal-criteria-labels.jsonl` holds 100 drawn lines that wait for those labels.
-
-#### Source Files
-
-See [`document-validation/goal-criteria-lint.md`](document-validation/goal-criteria-lint.md) for the rules, the line classes and source anchors.
-
 ### Citation Drift Scan
 
 #### Description
@@ -138,14 +124,14 @@ See [`document-validation/citation-drift-scan.md`](document-validation/citation-
 
 #### Description
 
-Measures offline whether a Jev `noul` flags three reader-needed Human Voice Rules tells better than the scanner's floor, which flags none of them.
+Measures offline how two no-call comparators and a flag-nothing floor read three reader-needed Human Voice Rules tells, against the operator's labels.
 
 #### Current Reality
 
-`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. `--jev` measures one backend and needs `--out <dir>` so every call is recorded.
+`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. The lens calls no backend: its only child process is the local scanner, and no switch names a model.
 
 #### Source Files
 
 See [`document-validation/hvr-reader-needed-lens.md`](document-validation/hvr-reader-needed-lens.md) for the census, the label draw and source anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the goal-criteria lint of `sk-create-goal` and the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
