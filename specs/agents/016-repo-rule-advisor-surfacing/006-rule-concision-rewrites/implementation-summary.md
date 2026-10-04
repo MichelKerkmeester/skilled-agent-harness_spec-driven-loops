@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Rule concision rewrites"
-description: "Planned, not built. This phase will deliver 13 apparatus-only rule rewrites with keep and drop ledgers."
+description: "All 13 repo rules lost their apparatus in 13 commits, 11.7% of the corpus, with every norm kept and one approved norm added. The byte target and the post-change window are still open."
 trigger_phrases:
   - "rule concision rewrites summary"
 importance_tier: "normal"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites"
-    last_updated_at: "2026-10-04T15:00:00Z"
+    last_updated_at: "2026-10-04T22:40:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Planned the phase from the 002 research verdict"
-    next_safe_action: "Start with tasks.md T001 once the predecessor handoff is met"
+    recent_action: "Shipped 13 rule rewrites with ledgers and a second review"
+    next_safe_action: "Operator decides AC-004, then measure the post-change window with the 004 analyzer"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-rule-concision-rewrites |
-| **Completed** | Not started |
+| **Completed** | In progress: rewrites shipped 2026-10-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,17 +48,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase is planned: `spec.md` states the problem and requirements, `plan.md` the approach, and `tasks.md` the ordered work. When it ships it delivers 13 apparatus-only rule rewrites with keep and drop ledgers.
+Every repo rule now costs less to load and says the same thing. The 13 files went from 107,092 to 94,609 bytes, an 11.7% cut, and every imperative, test, Fires-when bullet, failure line and self-check item survived.
 
 ### Phase 6: rule-concision-rewrites
 
-The plan comes from the verdict in `../002-rule-concision-and-loading/research/research.md`.
+Each rule shipped in its own commit with a ledger that quotes every dropped sentence and files it as boilerplate, restatement, rationale or provenance. `communication.md` also gained the operator-approved norm "Complex topic, simple words" at the end of §1.
+
+Per-file cuts ran from 1.7% (`root-cause-and-debugging.md`) to 20.7% (`communication-handoff.md`). The files with the most rule statement had the least to cut, as the 002 research predicted.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | Planning documents for this phase |
+| `.skilled/repo-rules/*.md` | Modified | 13 apparatus-only rewrites, versions bumped |
+| `ledgers/*.ledger.md` | Created | One keep and drop ledger per rule |
+| `ledgers/bytes-before.txt`, `bytes-after.txt` | Created | The before and after byte tables |
+| `ledgers/headings-before.txt`, `section-refs-before.txt` | Created | Heading and reference inventory for AC-003 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +71,9 @@ The plan comes from the verdict in `../002-rule-concision-and-loading/research/r
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. Planned with `/speckit:plan` in auto mode after a four-agent codebase exploration shared across phases 003 to 008.
+Five workers rewrote the rules in parallel, each bound to the `sk-create-repo-rule` Revise path. A script checked each result against the pre-rewrite commit: headings, Fires-when bullets, failure lines, self-check items, header lines, frontmatter, the version bump and added punctuation. An independent reviewer then compared every ledger with its diff.
+
+**Second review.** The reviewer did not sign off at first. It found one operative loss: "A tally is not a finding" in `delegation-and-orchestration.md` §5 was the only ban on settling a disagreement by majority, and the ledger had called it a restatement. It was restored. The reviewer judged the other twelve files clean and found no ledger omission. "The cap is a cut too" in `communication.md` §8 was also restored, because the merged floor sentence covered it only by inference.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -76,7 +83,9 @@ Not delivered yet. Planned with `/speckit:plan` in auto mode after a four-agent 
 
 | Decision | Why |
 |----------|-----|
-| Phase order 003 to 008 | Measurement and gates land before any rule or loading change, and the two experiments never overlap |
+| Two of the three "edge clauses" were not added | They were never in any committed `communication.md`. A full-history search finds them only in the research draft's commit, so the draft ledger listed losses that never happened. Adding them would be two unapproved norms |
+| Stop each file where the rest was operative | 006 D1 allows apparatus cuts only, so the byte target gave way |
+| Keep failure-like sentences that lack the standard opener | They are a section's only statement of what goes wrong |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -86,7 +95,13 @@ Not delivered yet. Planned with `/speckit:plan` in auto mode after a four-agent 
 
 | Check | Result |
 |-------|--------|
-| Planning docs | `validate.sh specs/agents/016-repo-rule-advisor-surfacing --strict --recursive` returned RESULT: PASSED on 2026-10-04 |
+| Checker | RESULT: PASSED (10/10 checks) after the last commit |
+| Headings | All 131 heading lines identical to `ledgers/headings-before.txt` |
+| Added em dash or semicolon | 0 across the corpus diff |
+| AGENTS.md canary | `check-rule-copies.js` OK |
+| Byte target | NOT MET: 94,609 B against at most 91,028 B |
+| Post-change window | NOT YET MEASURED: opens at the last rule commit, 2026-10-04T22:20:44+02:00 |
+| Strict validation | See the parent's recursive `validate.sh --strict` run |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +109,9 @@ Not delivered yet. Planned with `/speckit:plan` in auto mode after a four-agent 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** Every requirement is open.
+1. **AC-004 is unmet.** Reaching 91,028 B would need about 3.6 KB more, and the workers and the reviewer found no more apparatus. The operator either waives the target with an ADR or names what may go.
+2. **The post-change window needs time.** Sessions must accumulate after 2026-10-04T22:20:44+02:00 before the 004 analyzer can compare them with the baseline, and D6 holds 007 until then.
+3. **Two inconsistencies found and left alone** in `delegation-and-orchestration.md`: §7 says `evidence-and-proof.md` "already refuses" a claim it never states, and §5 says to open one citation while the self-check says every citation.
 <!-- /ANCHOR:limitations -->
 
 ---

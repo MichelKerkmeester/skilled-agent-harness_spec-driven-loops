@@ -105,7 +105,7 @@ Decide, from repository evidence, what should surface repo rules, how to write t
 | 3 | `003-agents-md-delivery-prefix/` | Move every hard blocker and the §8 load line inside Devin's 16,384-byte cut, with a CI guard | Complete |
 | 4 | `004-rule-delivery-instrumentation/` | Offline analyzer for Gate 5 and §8 miss rates and rule-version compliance, plus a committed baseline | Complete |
 | 5 | `005-trigger-coverage-check/` | Tenth repo-rule check: router rows cover each rule's Fires-when bullets | Complete |
-| 6 | `006-rule-concision-rewrites/` | Apparatus-only cuts to all 13 rules with keep and drop ledgers | Planned |
+| 6 | `006-rule-concision-rewrites/` | Apparatus-only cuts to all 13 rules with keep and drop ledgers | In Progress |
 | 7 | `007-table-wording-experiment/` | Pre-registered ABAB test of short versus current no-table wording | Planned |
 | 8 | `008-gate5-card-pilot/` | Card generator and a three-arm pilot: full files, cards at Gate 5, resident reply-rule cards | Planned |
 

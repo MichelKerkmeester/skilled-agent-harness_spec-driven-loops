@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the `sk-create-repo-rule` mode contract and confirm its edit path for existing rules
-- [ ] T002 Record the before byte table (`wc -c .skilled/repo-rules/*.md`)
-- [ ] T003 Inventory every `§N` reference into a rule (`rg -n 'md\`? §[0-9]' .skilled AGENTS.md`)
+- [x] T001 Read the `sk-create-repo-rule` mode contract and confirm its edit path for existing rules
+- [x] T002 Record the before byte table (`wc -c .skilled/repo-rules/*.md`)
+- [x] T003 Inventory every `§N` reference into a rule (`rg -n 'md\`? §[0-9]' .skilled AGENTS.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,9 +41,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Ship `evidence-and-proof.md` from its draft with a ledger
-- [ ] T005 Ship `communication.md` from its draft, restoring the three edge clauses and the failure lines, and add the simple-terms clause (REQ-007)
-- [ ] T006 [P] Rewrite the remaining 11 rules, one commit and one ledger each
+- [x] T004 Ship `evidence-and-proof.md` from its draft with a ledger
+- [x] T005 Ship `communication.md` from its draft, restoring the three edge clauses and the failure lines, and add the simple-terms clause (REQ-007)
+- [x] T006 [P] Rewrite the remaining 11 rules, one commit and one ledger each
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,8 +51,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run `check-repo-rules.cjs` after every rule
-- [ ] T008 Second-reviewer comparison of each ledger with its diff
+- [x] T007 Run `check-repo-rules.cjs` after every rule
+- [x] T008 Second-reviewer comparison of each ledger with its diff
 - [ ] T009 Record the after byte table and open the post-change window with the phase 004 analyzer
 <!-- /ANCHOR:phase-3 -->
 
