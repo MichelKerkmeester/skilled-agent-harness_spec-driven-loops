@@ -27,7 +27,7 @@ case "$1" in
   *) exit 2 ;;
 esac
 """
-CLEARED = ("JEV_PROVIDER", "SKDOC_CITE_DRIFT_CHECK", "SKDOC_CITE_DRIFT_OUT", "SKDOC_SKIP_VALIDATION", "HOOK_FLAGS_CONFIG")
+CLEARED = ("JEV_PROVIDER", "JEV_FEATURES", "JEV_FEATURE_CITE_DRIFT", "SKDOC_CITE_DRIFT_CHECK", "SKDOC_CITE_DRIFT_OUT", "SKDOC_SKIP_VALIDATION", "HOOK_FLAGS_CONFIG")
 
 
 def fixture_doc(tmp_path: Path, source: str) -> Path:
@@ -62,6 +62,7 @@ def run(doc: Path, bin_dir: Path, tmp_path: Path, *extra: str, **env_extra: str)
         "PATH": f"{bin_dir}{os.pathsep}{os.environ.get('PATH', '')}",
         "JEV_TRANSPORT": "jev",
         "STUB_LOG": str(tmp_path / "stub.log"),
+        "HOOK_FLAGS_CONFIG": str(tmp_path / "no-hook-flags.env"),
     })
     env.update(env_extra)
     return subprocess.run(
@@ -105,6 +106,16 @@ def test_opt_out_never_runs_the_check(tmp_path, stub):
     doc = fixture_doc(tmp_path, "valid-readme.md")
     out_dir = tmp_path / "calls"
     result = run(doc, stub, tmp_path, SKDOC_CITE_DRIFT_CHECK="0", SKDOC_CITE_DRIFT_OUT=str(out_dir), STUB_NOUL="0.1")
+    assert result.returncode == 0
+    assert "cite-drift advisory:" not in result.stdout
+    assert stub_calls(tmp_path) == []
+    assert not out_dir.exists()
+
+
+def test_master_switch_off_skips_the_check(tmp_path, stub):
+    doc = fixture_doc(tmp_path, "valid-readme.md")
+    out_dir = tmp_path / "calls"
+    result = run(doc, stub, tmp_path, JEV_FEATURES="off", SKDOC_CITE_DRIFT_OUT=str(out_dir), STUB_NOUL="0.1")
     assert result.returncode == 0
     assert "cite-drift advisory:" not in result.stdout
     assert stub_calls(tmp_path) == []
