@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-10-04T14:13:19Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Fixed the required findings, verified each test both ways and passed a Luna review"
-    next_safe_action: "Await operator call on optional items"
+    next_safe_action: "None; packet complete"
     blockers: []
     key_files:
       - ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
@@ -53,6 +53,10 @@ Every required finding from the cli-classifier quality research is closed. The f
 ### Code fixes
 
 `spawnClassifierCall` in `jev-transport.mjs` now defaults an omitted `env` to the process environment, so a caller using the documented minimal shape can reach Pi. `choiceRequestFrom` refuses a `choice` call with no question, matching the `noul` parser and the CLI's own contract. `score-clarify-default.cjs` writes `transport` on each call record, falling back to `jev` for the CLI-only retry path. Each fix carries one new test that fails without it.
+
+### Optional fixes (amendment)
+
+The hub `SKILL.md` keyword list carried bare `score` and `choice`. The advisor scores a one-word keyword at 0.7 when it appears in a prompt, so "Score this task brief for ambiguity" reached cli-classifier. The keywords now read `jev score` and `jev choice`. The brief prompt no longer routes here, four real Jev prompts still do, and the advisor's divergence ledger dropped the entry its ratchet test reported as resolved. The hub README now opens with the install, auth and status commands. The latest live injection screen run is checked in under `benchmark/reports/`, and the hub is released as `v0.8.0.0`.
 
 ### Doc fixes
 
@@ -101,6 +105,10 @@ DeepSeek V4.1 Flash at max thinking on cli-pi wrote the three code fixes, one br
 | Baseline suite set rerun | PASS: transport 96 to 98, clarify and leaf-route 57 to 58, every other count unchanged |
 | Luna read-only review | PASS: no findings on any change |
 | `ci-skill-root-metadata.cjs --skill cli-classifier` | PASS: checked=1 passed=1 |
+| Advisor replay after the keyword change | PASS: the brief prompt returns no recommendation, four Jev prompts return cli-classifier |
+| Compiled front door after the re-mint | PASS: three Jev prompts route to `cli-jev`, the brief and an off-topic prompt defer |
+| `parent-skill-check.cjs .skilled/skills/cli-classifier` | PASS: all invariants, version 0.8.0.0 matches the newest changelog |
+| Suite set after the amendment | PASS: every count equal to the run before it, advisor parity 54 of 54 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -108,7 +116,7 @@ DeepSeek V4.1 Flash at max thinking on cli-pi wrote the three code fixes, one br
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Optional findings stay open.** A `v0.8.0.0` changelog, the hub install line, a checked-in injection screen report and the advisor "score" misroute each wait for an operator call.
+1. **The injection screen report predates the probability-aware arm.** It shows the majority verdict only. A new live run would add the second verdict line.
 2. **Luna could not run the suites.** Its read-only sandbox refused temporary files, so the suite evidence is the orchestrator's own run.
 <!-- /ANCHOR:limitations -->
 
