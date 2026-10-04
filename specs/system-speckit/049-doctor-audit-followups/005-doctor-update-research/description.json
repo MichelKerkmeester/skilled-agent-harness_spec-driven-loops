@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
+  "description": "Phase 5: doctor-update-research",
+  "keywords": [
+    "phase",
+    "doctor-update-research"
+  ],
+  "lastUpdated": "2026-10-03T20:43:10.176Z",
+  "specId": "005",
+  "folderSlug": "doctor-update-research",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-10-26_21-43__deep-research-on-doctor-update-completed-in-six.md"
+  ]
+}

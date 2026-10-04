@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor update research",
+      "doctor update perfection",
+      "release-update engine research",
+      "doctor update research plan",
+      "deep research executor switch",
+      "doctor update research tasks",
+      "doctor update research summary",
+      "doctor update perfection findings",
+      "release-update engine defects",
+      "doctor update perfection research",
+      "release-update engine audit",
+      "doctor update remediation ranking"
+    ],
+    "key_topics": [
+      "doctor",
+      "research",
+      "perfection",
+      "release-update",
+      "engine",
+      "plan",
+      "deep",
+      "executor",
+      "switch",
+      "tasks",
+      "summary",
+      "findings"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      "research/deep-research-strategy.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/iterations/iteration-006.md",
+      "specs/system-speckit/048-doctor-command-audit/003-update/research/research.md",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      "research/resource-map.md",
+      "research/deltas/iter-001.jsonl",
+      "research/deep-research-config.json",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:update` updates an operator's framework copy to a newer release while keeping their customizations",
+    "created_at": "2026-10-03T19:08:25Z",
+    "last_save_at": "2026-10-03T20:43:10.176Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f5232366fa38a311e6bc613f46a3563f31756ff7eba72d38b2cc5c9041bd6db5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73e59370fa2878602236a94e404d8c57a752b3ffc3b61ab35ca4c239f480ab4f",
+      "plan.md": "0305bae45eea7bba915b6ada7dc1e7db6dfeb84e25594e65475db955d79a58f8",
+      "tasks.md": "dc85eb2c496a51f32165ab8ce4a960b684a28c0ac07b1d73b551e8d857850480",
+      "implementation-summary.md": "cd9c9072e9b4eb089503071c800043366d5cb09a2dfea5c7dd988a9e0f37c7bd",
+      "research/research.md": "f9b6b674fc74814c2bd291dc79993e80ac913263486542ad77b68da60802d8bd"
+    },
+    "last_active_at": null
+  }
+}

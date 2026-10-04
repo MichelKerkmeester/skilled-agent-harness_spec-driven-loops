@@ -252,6 +252,12 @@ standalone:
       apply:
         yaml: doctor-update-apply.yaml
         mutating: mutates
+      rollback:
+        yaml: doctor-update-rollback.yaml
+        mutating: mutates
+      record-base:
+        yaml: doctor-update-record-base.yaml
+        mutating: mutates
     trigger_phrases:
       - "spec-kit version migration"
       - "doctor update"

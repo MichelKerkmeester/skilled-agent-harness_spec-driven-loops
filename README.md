@@ -1216,7 +1216,7 @@ Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` wit
 - Additional gates: Q-PROBE (skill-advisor daemon notice, informational), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
-**`/doctor:update [check|align|apply]`** - release-aware spec-kit updater with a read-only check, an alignment step that writes only inside its run directory, and a dry-run plan followed by one approval before applying and verifying release files.
+**`/doctor:update [check|align|apply|rollback|record-base]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery and approved base recording.
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 

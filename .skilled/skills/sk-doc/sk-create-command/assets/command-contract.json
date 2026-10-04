@@ -99,9 +99,11 @@
         "argument_hint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml (bound to autopilot execution mode; not aliased to :auto)" },
-        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode autopilot; not aliased to :auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode confirm)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml", "commands": ["/speckit:resume"] },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
       "mode_matrix": {
         "default_policy": "ask",
@@ -112,8 +114,9 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/speckit-<name>-presentation.txt" },
-        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml" },
-        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml" }
+        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml", "commands": ["/speckit:resume"] },
+        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
@@ -200,7 +203,7 @@
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install [--runtime <name>]|debug [--fix]> (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (rebuild); [check|align|apply] [--json] [--release=<tag>] [--scope=all|<unit,...>] [--offline] [--dry-run] [--decisions=<path>] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
+        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install [--runtime <name>]|debug [--fix]> (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (rebuild); [check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
       },
       "execution_targets": [
         { "selector": "<target> resolved via _routes.yaml", "target": ".skilled/commands/doctor/assets/doctor-<target>.yaml" },
@@ -209,6 +212,8 @@
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
         { "selector": "apply", "target": ".skilled/commands/doctor/assets/doctor-update-apply.yaml" },
+        { "selector": "rollback", "target": ".skilled/commands/doctor/assets/doctor-update-rollback.yaml" },
+        { "selector": "record-base", "target": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml" },
         { "selector": "list | section | variable [--dry-run]", "target": ".skilled/commands/doctor/assets/doctor-env.yaml" }
       ],
       "mode_matrix": {
@@ -222,6 +227,8 @@
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-rollback.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-env-presentation.txt" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows)" },
@@ -230,7 +237,7 @@
       "loader_requirements": [
         "Read the presentation asset and _routes.yaml before dispatch",
         "Parse the positional target before any flag; reject cross-target flags before loading the target YAML",
-        "Bare /doctor:update runs the read-only check action; /doctor:update apply requests one approval before its first release-managed write",
+        "Bare /doctor:update runs the read-only check action, and /doctor:update apply, rollback and record-base each request approval before their first write",
         "The manifest exposes each route's mutation class (read-only | add-only | mutates) and gate-3 location before acting",
         "/doctor:rebuild carries no required positional: input.required is true for the speckit and mcp routers only",
         "rebuild acquires a flock before database-rebuild probes and may end STATUS=RESTART_REQUIRED",
@@ -241,11 +248,11 @@
       "destructive_policy": {
         "has_destructive_ops": true,
         "gated": true,
-        "operations": ["skill-advisor target writes lib/scorer/lanes sources", "mcp install writes the Code Mode build, selected runtime config and .utcp_config.json; credential values remain operator-managed in root .env", "rebuild rewrites spec-kit SQLite databases (snapshotted first unless --no-snapshot)", "update apply writes only the engine's displayed release plan after one startup approval, records rollback.json before target writes and runs the post-apply battery", "env updates one eligible preference in hook-flags.env or the Claude settings env block after explicit confirmation"]
+        "operations": ["skill-advisor target writes lib/scorer/lanes sources", "mcp install writes the Code Mode build, selected runtime config and .utcp_config.json; credential values remain operator-managed in root .env", "rebuild rewrites spec-kit SQLite databases (snapshotted first unless --no-snapshot)", "update apply writes only the engine's displayed release plan after one startup approval, records rollback.json before target writes and runs the post-apply battery", "update rollback restores a run's rollback record after one approval and clears a stale apply lock only with its own approval", "update record-base writes .skilled/release/base.json after one approval", "env updates one eligible preference in hook-flags.env or the Claude settings env block after explicit confirmation"]
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit <target>", "/doctor:speckit list", "/doctor:speckit ?", "/doctor:mcp <install|debug>", "/doctor:rebuild", "/doctor:update [check|align|apply] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit <target>", "/doctor:speckit list", "/doctor:speckit ?", "/doctor:mcp <install|debug>", "/doctor:rebuild", "/doctor:update [check|align|apply|rollback|record-base] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
       "workflow_schema_ref": null
     },
     "deep": {
