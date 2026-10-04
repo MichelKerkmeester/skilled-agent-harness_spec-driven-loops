@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/020-doctor-contract-fixes",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/020-doctor-contract-fixes",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor contract fixes",
+      "doctor speckit phrase quality advisory",
+      "doctor mcp unknown flag",
+      "doctor contract fixes plan",
+      "doctor contract fixes tasks",
+      "doctor contract fixes summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "contract",
+      "speckit",
+      "phrase",
+      "quality",
+      "advisory",
+      "mcp",
+      "unknown",
+      "flag",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/mcp.md",
+      ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+      ".skilled/commands/doctor/scripts/tests/doctor-speckit-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-mcp-contract.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-speckit-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-mcp-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/scripts/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The retrieval doctor treated any low-quality trigger phrase as staleness, and the committed corpus always has some, so a fresh index never reported OK",
+    "created_at": "2026-10-04T17:25:26Z",
+    "last_save_at": "2026-10-04T17:34:19.548Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30e04d784f7e05100e1b93cf73a0d506e0983d11cbfb5000618dbdcc813e30ad",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1b17995f7bf1cef52bf3eb5378b34fc6e9a1b2e3aad31651026288cdfca24f87",
+      "plan.md": "f26a70d6df02b898c2a10232b39582f30fad0ed4ded41e0906496cd2b8522850",
+      "tasks.md": "e2135365dd52753c422849b9e7d09b6e1ad01f219db6784e20e5ef035f2c9329",
+      "implementation-summary.md": "94e7004178d261923e9f30b6ea6d3cff055d37b3bd131a3b693bb7b844e8fa0d"
+    },
+    "last_active_at": null
+  }
+}
