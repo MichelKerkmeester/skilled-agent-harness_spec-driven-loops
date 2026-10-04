@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# MODULE: MCP Stdio Probe
+# ───────────────────────────────────────────────────────────────
+# Handshakes with `jev-mcp` over stdio, initializes a session and prints the
+# advertised tools without making a judgment call. Kept as the raw evidence of
+# the post-migration re-verification report beside this file.
 """Handshake with `jev-mcp` over stdio and print its advertised tools.
 
 Read-only probe: it starts the server, initializes a session, lists tools, and

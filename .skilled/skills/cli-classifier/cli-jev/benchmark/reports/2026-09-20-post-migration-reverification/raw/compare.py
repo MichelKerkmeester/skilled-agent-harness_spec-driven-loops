@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# MODULE: Probe Matrix Comparer
+# ───────────────────────────────────────────────────────────────
+# Compares the re-run probe matrices against the recorded baseline, label by
+# label, normalizing only the scratch paths that legitimately moved. Kept as the
+# raw evidence of the post-migration re-verification report beside this file.
 """Compare the re-run probe matrices against the recorded baseline.
 
 Normalizes the two things that legitimately moved: the scratch path used for the
