@@ -7,7 +7,8 @@
 // bodies of the rule files themselves. One report keeps files, router rows,
 // phrases, structure, body links and firing conditions in agreement, so drift
 // fails here instead of surfacing later as a rule that silently never loads or
-// points at a file that is gone.
+// points at a file that is gone. Generated rule cards are held to the same
+// standard: each committed card must equal the one its rule renders today.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -17,6 +18,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.cjs');
+const { renderCard, CARDS_DIR } = require('./build-rule-cards.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -272,6 +274,7 @@ function loadContext(root, rulesDir) {
       const body = lines.slice(bodyStart);
       return {
         name,
+        content,
         lines: lineCount(content),
         phrases: parseTriggerPhrases(lines, range),
         keys: parseTopLevelKeys(lines, range),
@@ -519,6 +522,47 @@ function checkFiresWhenCoverage(context) {
   };
 }
 
+// 11. Every committed card equals the card its rule renders now. A card is a
+// verbatim copy, so any difference is a rule edit nobody regenerated, a card
+// left behind by a removed rule, or a rule whose card was never built. A corpus
+// without a cards directory has opted out of cards and passes.
+function checkCardSync(context) {
+  const cardsDirAbs = path.join(context.root, context.rulesDir, CARDS_DIR);
+  if (!fs.existsSync(cardsDirAbs) || !fs.statSync(cardsDirAbs).isDirectory()) {
+    return { ok: true, detail: 'no cards directory' };
+  }
+  const present = new Set(fs
+    .readdirSync(cardsDirAbs, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => entry.name));
+  const problems = [];
+  const ruleNames = new Set();
+  for (const rule of context.rules) {
+    ruleNames.add(rule.name);
+    let expected;
+    try {
+      expected = renderCard(rule.name, rule.content);
+    } catch (error) {
+      problems.push(`${CARDS_DIR}/${rule.name}: cannot render (${error.message})`);
+      continue;
+    }
+    if (!present.has(rule.name)) {
+      problems.push(`${CARDS_DIR}/${rule.name}: missing`);
+    } else if (fs.readFileSync(path.join(cardsDirAbs, rule.name), 'utf8') !== expected) {
+      problems.push(`${CARDS_DIR}/${rule.name}: drifted from its rule`);
+    }
+  }
+  for (const name of [...present].sort()) {
+    if (!ruleNames.has(name)) problems.push(`${CARDS_DIR}/${name}: orphaned, no rule backs it`);
+  }
+  return {
+    ok: problems.length === 0,
+    detail: problems.length === 0
+      ? `cards=${present.size} every card matches its rule`
+      : problems.join('; ')
+  };
+}
+
 const CHECKS = [
   ['count parity', checkCounts],
   ['row coverage', checkWiring],
@@ -529,7 +573,8 @@ const CHECKS = [
   ['rule links', checkRuleLinks],
   ['fires-when sections', checkFiresWhenSections],
   ['index summaries', checkIndexSummaries],
-  ['fires-when coverage', checkFiresWhenCoverage]
+  ['fires-when coverage', checkFiresWhenCoverage],
+  ['card sync', checkCardSync]
 ];
 
 function main() {

@@ -17,7 +17,7 @@ _memory:
       - "baselines/2026-10-04-baseline.txt"
       - "plan.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:56ad0bf729b810ad1d32d35b1887f4b7b2e44ce98fb365ac1a0b5ceb74628a98"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
     completion_pct: 100

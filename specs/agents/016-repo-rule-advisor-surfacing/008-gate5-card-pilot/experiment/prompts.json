@@ -1,0 +1,65 @@
+{
+  "suffix": "Spec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions.",
+  "prompts": [
+    {
+      "id": "w01",
+      "text": "Entries in src/orbit/cache.py seem to live one second longer than their TTL. Fix it."
+    },
+    {
+      "id": "w02",
+      "text": "The cache holds one entry more than max_entries before evicting. Fix that."
+    },
+    {
+      "id": "w03",
+      "text": "Add a test to tests/test_cache.py proving an entry expires exactly at its TTL."
+    },
+    {
+      "id": "w04",
+      "text": "Mark the roadmap item about metrics export as done and note today's date."
+    },
+    {
+      "id": "w05",
+      "text": "The README is missing the ORBIT_MAX_ENTRIES variable. Document it."
+    },
+    {
+      "id": "w06",
+      "text": "Remove docs/incident-2026-09.md, we no longer need it in the repo."
+    },
+    {
+      "id": "w07",
+      "text": "Rename the config key ttl_seconds to default_ttl everywhere it appears."
+    },
+    {
+      "id": "w08",
+      "text": "Add a clear() method to the cache that empties it, with a test."
+    },
+    {
+      "id": "w09",
+      "text": "Our tests are failing, make them pass."
+    },
+    {
+      "id": "w10",
+      "text": "Switch the store to write-behind like the caching doc suggests."
+    },
+    {
+      "id": "w11",
+      "text": "Add a dependency on a retry library and use it in store.py for failed writes."
+    },
+    {
+      "id": "w12",
+      "text": "Update docs/dependencies.md: the logging library moved to version 3.0."
+    },
+    {
+      "id": "w13",
+      "text": "Clean up src/orbit so it's ready for review."
+    },
+    {
+      "id": "w14",
+      "text": "Fix the expiry bug in cache.py and tell me when it's done and verified."
+    },
+    {
+      "id": "w15",
+      "text": "Make the cache thread-safe."
+    }
+  ]
+}

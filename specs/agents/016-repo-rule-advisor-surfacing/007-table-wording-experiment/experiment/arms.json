@@ -1,0 +1,23 @@
+{
+  "experiment": "007-table-wording",
+  "arms": [
+    {
+      "name": "current",
+      "edits": []
+    },
+    {
+      "name": "short",
+      "edits": [
+        {
+          "file": ".skilled/repo-rules/communication.md",
+          "replace": [
+            [
+              "**No tables in a reply.** One or two facts go in a sentence. Parallel items go in a\nbulleted list. A table earns its place in a file someone returns to, never in a reply\nthey read once. The one exception is the in-flight block in\n[`communication-handoff.md`](communication-handoff.md) §6: work still running is a reply\nthe operator returns to while it runs.",
+              "**No tables in a reply,** except the in-flight block in\n[`communication-handoff.md`](communication-handoff.md) §6. Use a sentence for one or two\nfacts and bullets for parallel items."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

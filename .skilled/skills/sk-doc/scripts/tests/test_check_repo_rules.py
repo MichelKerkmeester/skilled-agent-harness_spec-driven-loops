@@ -57,12 +57,14 @@ def run(root: Path) -> subprocess.CompletedProcess:
     return subprocess.run(["node", str(CHECKER), "--root", str(root)], capture_output=True, text=True)
 
 
-def test_covered_bullets_pass_all_ten_checks(tmp_path: Path) -> None:
+def test_covered_bullets_pass_every_check(tmp_path: Path) -> None:
     result = run(make_tree(tmp_path))
 
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "10/10 PASS fires-when coverage" in result.stdout
-    assert "RESULT: PASSED (10/10 checks)" in result.stdout
+    assert "10/11 PASS fires-when coverage" in result.stdout
+    assert "11/11 PASS card sync" in result.stdout
+    assert "no cards directory" in result.stdout
+    assert "RESULT: PASSED (11/11 checks)" in result.stdout
 
 
 def test_removing_a_router_item_fails_check_ten_with_rule_bullet_and_line(tmp_path: Path) -> None:
