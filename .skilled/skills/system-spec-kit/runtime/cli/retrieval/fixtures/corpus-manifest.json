@@ -1,5 +1,5 @@
 {
-  "corpusHash": "405c093f578d530e8a3ef3a96a0fe9a6b8ca5b90d49206e6c148b9fd5c10bfb0",
+  "corpusHash": "7605d3d7bad9b681421b0e761573dce69e3ba00724b0e8251da459012deb3c4d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23459,
+  "includedPathCount": 23463,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23486,10 +23486,14 @@
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4423f52209fe208f18a4faed0fd9a9a50d733d3892ba1fa32891b556303efd6c",
+  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28977,6 +28981,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/scratch",
       "reason": "excluded directory"
     },
     {

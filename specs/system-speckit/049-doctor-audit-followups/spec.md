@@ -147,6 +147,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 21 | 021-doctor-test-environments/ | Build the long-lived `/doctor:update` fixture and the current-code doctor environment as local worktrees | Complete |
 | 22 | 022-doctor-playbook-environment-migration/ | Point the doctor scenarios at the two environments and add the environment scenario | Complete |
 | 23 | 023-release-update-symlink-parent/ | Report a release path below a local symlink as a `symlink-parent` conflict in `/doctor:update` instead of aborting, and drop the fixture workaround | Complete |
+| 24 | 024-doctor-docs-alignment/ | Align the root and skill READMEs with the doctor commands and bring the v4.0.0.3 changelog up to date | Complete |
 
 ### Phase Transition Rules
 
@@ -181,6 +182,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 020-doctor-contract-fixes | 021-doctor-test-environments | Both contracts are fixed and tested | A scoped offline check in the fixture classifies the four units as designed |
 | 021-doctor-test-environments | 022-doctor-playbook-environment-migration | Both environments exist and reset cleanly | Every changed scenario validates and names its environment and reset step |
 | 022-doctor-playbook-environment-migration | 023-release-update-symlink-parent | The update scenarios run on the fixture | An unscoped fixture check finishes with no workaround commit |
+| 023-release-update-symlink-parent | 024-doctor-docs-alignment | The engine fix is pushed | Every doc claim about the doctor commands matches the command files |
 <!-- /ANCHOR:phase-map -->
 
 ---
