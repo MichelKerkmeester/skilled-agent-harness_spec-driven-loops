@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-10-04T10:40:00Z"
     last_updated_by: "doctor-docs-and-ci-fix"
     recent_action: "Fixed the doctor CI install and added doctor pointers to the README and targeted skills"
-    next_safe_action: "Confirm the doctor-scripts job passes on the pushed commit"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".github/workflows/spec-kit-check.yml"
@@ -99,6 +99,7 @@ Each pointer was checked against the command's `argument-hint` and description b
 | `validate_document.py` on the seven edited docs | Six VALID with 0 issues; `ENV-REFERENCE.md` carries the same two warnings as the committed copy |
 | `hvr_scan.py` | Hard-blocker counts equal the committed copies in every file |
 | Mirror, prompt, hook, Hermes skill, metadata and route-guard checks | All pass |
+| Spec-Kit Check doctor-scripts job on `b2446371ab` | success |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +107,7 @@ Each pointer was checked against the command's `argument-hint` and description b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Other Spec-Kit Check jobs.** Other jobs in the workflow were already failing before this phase, and this phase fixes only the doctor-scripts job.
+1. **None.** Since 2026-10-03 the doctor-scripts job was the only failing Spec-Kit Check job, and it passes on the pushed commit.
 <!-- /ANCHOR:limitations -->
 
 ---
