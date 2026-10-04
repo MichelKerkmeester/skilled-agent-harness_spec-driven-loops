@@ -563,6 +563,15 @@ bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
+Four doctor commands wrap the checks this skill owns:
+
+| Command | What it does |
+|---|---|
+| `/doctor:speckit` | Checks that the trigger index is fresh, its lookup runs and the ripgrep recipes return results |
+| `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
+| `/doctor:env` | Shows the switches documented in [ENV-REFERENCE.md](./runtime/ENV-REFERENCE.md) and where each is set, and saves a preference after you approve the exact line |
+| `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback` and `record-base` |
+
 ---
 
 ## 9. FAQ

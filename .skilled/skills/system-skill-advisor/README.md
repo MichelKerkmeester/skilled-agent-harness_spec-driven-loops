@@ -191,6 +191,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
 | CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
 | CLI exits 69 with a stale-build message | The dist build is older than the sources | Rebuild with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then rerun |
+| Routing feels off, or you are not sure the graph is current | Lane weights, graph freshness, router reach, skill budgets or a parent hub may have drifted | Run `/doctor:skill-advisor`. `tune` re-tunes the scoring lanes, `rebuild` rebuilds `skill-graph.sqlite` with a backup, and `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill` are read-only audits |
 
 ---
 

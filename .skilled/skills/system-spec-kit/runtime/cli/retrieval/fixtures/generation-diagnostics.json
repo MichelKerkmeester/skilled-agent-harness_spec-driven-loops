@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6666,
-    "ok": 13114,
+    "ok": 13118,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23349,
+  "documentsScanned": 23353,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
+  "manifestHash": "5b6cdfd7b9084d2864dee1e6d55edb46750937c30f1ef5a458397c39f4bb3294",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33430,
+      "ok": 33437,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -70446,6 +70446,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/scratch",
       "reason": "excluded directory"
     },
     {

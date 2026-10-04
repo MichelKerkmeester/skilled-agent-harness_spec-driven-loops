@@ -136,6 +136,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 10 | 010-doctor-router-gates/ | Add the mandatory input gate to `/doctor:skill-advisor` and `/doctor:mcp`, and stop the structure extractor flagging comma-form `allowed-tools` in commands | Complete |
 | 11 | 011-changelog-v4003-research/ | Research what the v4.0.0.3 release notes still need about the doctor command changes and the git hook work | Complete |
 | 12 | 012-changelog-v4003-update/ | Apply the checked findings to the v4.0.0.3 release notes | Complete |
+| 13 | 013-doctor-docs-and-ci-fix/ | Fix the doctor CI install and point the README and targeted skills at the doctor commands | Complete |
 
 ### Phase Transition Rules
 
@@ -159,6 +160,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 009-doctor-git | 010-doctor-router-gates | Phase 009's acceptance criteria are Met and `/doctor:git` passes the shared command validators | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, and `python3 -m pytest .skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py` passes once phase 010 lands |
 | 010-doctor-router-gates | 011-changelog-v4003-research | Phase 010's acceptance criteria are Met | `research/research.md` exists once phase 011 lands |
 | 011-changelog-v4003-research | 012-changelog-v4003-update | `research/research.md` lists the checked findings | `validate_document.py` passes on the v4.0.0.3 entry once phase 012 lands |
+| 012-changelog-v4003-update | 013-doctor-docs-and-ci-fix | The v4.0.0.3 entry covers the doctor commands | `run-all.sh` passes from a clean install and every edited doc validates |
 <!-- /ANCHOR:phase-map -->
 
 ---
