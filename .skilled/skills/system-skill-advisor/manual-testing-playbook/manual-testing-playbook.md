@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 49 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
