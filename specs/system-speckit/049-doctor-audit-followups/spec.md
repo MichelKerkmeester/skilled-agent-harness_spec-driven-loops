@@ -142,6 +142,12 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 16 | 016-doctor-playbook-deep-loop/ | Manual test scenarios for `/doctor:deep-loop` in the system-deep-loop playbook | Complete |
 | 17 | 017-doctor-playbook-git/ | Manual test scenarios for `/doctor:git` in the sk-git playbook | Complete |
 | 18 | 018-doctor-playbook-mcp/ | Manual test scenarios for `/doctor:mcp` in the mcp-code-mode playbook, plus the stale `--server` flag in the route manifest | Complete |
+| 19 | 019-doctor-test-environment-research/ | Research the two doctor contract fixes and a long-lived local test environment for the doctor scenarios | Complete |
+| 20 | 020-doctor-contract-fixes/ | Report phrase quality as an advisory in `/doctor:speckit`, align its status list, and add the `/doctor:mcp` unknown-flag error | Complete |
+| 21 | 021-doctor-test-environments/ | Build the long-lived `/doctor:update` fixture and the current-code doctor environment as local worktrees | Complete |
+| 22 | 022-doctor-playbook-environment-migration/ | Point the doctor scenarios at the two environments and add the environment scenario | Complete |
+| 23 | 023-release-update-symlink-parent/ | Report a release path below a local symlink as a `symlink-parent` conflict in `/doctor:update` instead of aborting, and drop the fixture workaround | Complete |
+| 24 | 024-doctor-docs-alignment/ | Align the root and skill READMEs with the doctor commands and bring the v4.0.0.3 changelog up to date | Complete |
 
 ### Phase Transition Rules
 
@@ -171,6 +177,12 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 015-doctor-playbook-skill-advisor | 016-doctor-playbook-deep-loop | The skill-advisor scenarios are indexed | The deep-loop playbook and topology checks pass once phase 016 lands |
 | 016-doctor-playbook-deep-loop | 017-doctor-playbook-git | The deep-loop scenarios are indexed | The sk-git playbook validator exits 0 once phase 017 lands |
 | 017-doctor-playbook-git | 018-doctor-playbook-mcp | The git scenarios are indexed | `route-validate.sh` and the doctor suites pass once phase 018 lands |
+| 018-doctor-playbook-mcp | 019-doctor-test-environment-research | The doctor scenarios exist in every owning playbook | `research/research.md` gives a cited plan for the fixes and the environment |
+| 019-doctor-test-environment-research | 020-doctor-contract-fixes | The research gives a cited plan for both fixes | The new contract tests fail on the old contracts and pass on the new ones |
+| 020-doctor-contract-fixes | 021-doctor-test-environments | Both contracts are fixed and tested | A scoped offline check in the fixture classifies the four units as designed |
+| 021-doctor-test-environments | 022-doctor-playbook-environment-migration | Both environments exist and reset cleanly | Every changed scenario validates and names its environment and reset step |
+| 022-doctor-playbook-environment-migration | 023-release-update-symlink-parent | The update scenarios run on the fixture | An unscoped fixture check finishes with no workaround commit |
+| 023-release-update-symlink-parent | 024-doctor-docs-alignment | The engine fix is pushed | Every doc claim about the doctor commands matches the command files |
 <!-- /ANCHOR:phase-map -->
 
 ---

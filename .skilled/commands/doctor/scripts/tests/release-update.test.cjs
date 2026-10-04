@@ -1360,6 +1360,30 @@ test('binary and deleted-in-release conflicts can adopt the release', () => {
   assert.equal(fs.existsSync(path.join(fixture.operator, old)), false);
 });
 
+test('a release file below a local symlinked folder is a conflict that never writes through it', () => {
+  const shared = '.skilled/skills/hub-a/shared/notes.md';
+  const linked = '.skilled/skills/hub-a/refs/notes.md';
+  const fixture = makePair(
+    { '.skilled/skills/hub-a/SKILL.md': '# hub-a\n', [shared]: 'shared\n' },
+    { [linked]: 'release notes\n' },
+  );
+  fs.symlinkSync('shared', path.join(fixture.operator, '.skilled/skills/hub-a/refs'));
+  commitAll(fixture.operator, 'operator links refs to shared');
+  ignoreRuns(fixture.operator);
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0, checked.stderr);
+  assert.equal(unit(checked.document, 'skill:hub-a').status, 'conflict');
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const runDir = aligned.document.runDir;
+  const file = runFile(readJson(path.join(runDir, 'plan.json')), linked);
+  assert.equal(file.class, 'conflict');
+  assert.equal(file.conflictKind, 'symlink-parent');
+  const refused = decideFile(fixture.operator, runDir, linked, 'adopt-release');
+  assert.notEqual(refused.exitCode, 0);
+  assert.equal(readText(fixture.operator, shared), 'shared\n');
+});
+
 test('apply refuses a --release mismatch, a held lock and an already applied run', () => {
   const fixture = makeFixture();
   ignoreRuns(fixture.operator);
