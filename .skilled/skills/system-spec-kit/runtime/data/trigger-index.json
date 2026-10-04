@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bbe6ca0aa638d330dc274eb7cd18b62475d713f01b0a82bd2cbe09d9e2b62151",
+  "manifestHash": "0f7839a293bce80f94241e658ff2deec9c6c1347120f63a06b39d1636b4e0cba",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -21787,8 +21787,7 @@
       13100,
       13106,
       13111,
-      13117,
-      13128
+      13117
     ],
     "acceptance criteria closure gate": [
       12031,
@@ -25712,8 +25711,7 @@
       13077,
       13083,
       13089,
-      13095,
-      13130
+      13095
     ],
     "architecture diagram": [
       1097,
@@ -41018,8 +41016,7 @@
       13094,
       13102,
       13107,
-      13113,
-      13129
+      13113
     ],
     "continue post review closeout": [
       3280
@@ -41490,6 +41487,9 @@
     ],
     "coordinated launcher wal durability remediation": [
       8956
+    ],
+    "copied tree support decision": [
+      13130
     ],
     "copilot advisor brief": [
       9098
@@ -52410,6 +52410,9 @@
     "doctor update": [
       9137
     ],
+    "doctor update acceptance criteria": [
+      13128
+    ],
     "doctor update audit": [
       13030
     ],
@@ -52419,8 +52422,23 @@
     "doctor update command": [
       9118
     ],
+    "doctor update copied tree": [
+      13131
+    ],
     "doctor update decisions": [
       9113
+    ],
+    "doctor update fix plan": [
+      13130
+    ],
+    "doctor update fix tasks": [
+      13132
+    ],
+    "doctor update fixes": [
+      13131
+    ],
+    "doctor update fixes summary": [
+      13129
     ],
     "doctor update handover": [
       9114
@@ -52486,11 +52504,20 @@
     "doctor update stale apply lock": [
       13125
     ],
+    "doctor update stale lock": [
+      13131
+    ],
     "doctor update tasks": [
       9119
     ],
     "doctor update v3 3 hardening handover": [
       9132
+    ],
+    "doctor update verification checklist": [
+      13132
+    ],
+    "doctor update verification evidence": [
+      13129
     ],
     "doctor update yaml": [
       13030
@@ -58066,8 +58093,7 @@
       12947,
       12951,
       12955,
-      12959,
-      13131
+      12959
     ],
     "feature specification 028 drift remediation": [
       11028
@@ -67012,8 +67038,7 @@
       13095,
       13103,
       13108,
-      13114,
-      13130
+      13114
     ],
     "implementation status": [
       4003,
@@ -67462,8 +67487,7 @@
       13094,
       13102,
       13107,
-      13113,
-      13129
+      13113
     ],
     "implementation summary attestation point": [
       12216
@@ -67844,8 +67868,7 @@
       13097,
       13105,
       13110,
-      13116,
-      13132
+      13116
     ],
     "implementation testing verification phases": [
       830
@@ -90168,6 +90191,9 @@
     "prefetch cache": [
       547
     ],
+    "prefill consent decision": [
+      13130
+    ],
     "prefix break per session": [
       3647
     ],
@@ -90605,8 +90631,7 @@
       12947,
       12951,
       12955,
-      12959,
-      13131
+      12959
     ],
     "procedural benchmark gate task": [
       11151
@@ -95209,8 +95234,20 @@
     "release update engine defects": [
       13122
     ],
+    "release update engine fixes": [
+      13131
+    ],
+    "release update engine fixes shipped": [
+      13129
+    ],
+    "release update engine plan": [
+      13130
+    ],
     "release update engine research": [
       13126
+    ],
+    "release update engine tasks": [
+      13132
     ],
     "release update signals": [
       13133
@@ -96486,8 +96523,7 @@
       12947,
       12951,
       12955,
-      12959,
-      13131
+      12959
     ],
     "requirements rules and checklist": [
       1060
@@ -115831,8 +115867,7 @@
       12947,
       12951,
       12955,
-      12959,
-      13131
+      12959
     ],
     "success criteria section": [
       1325,
@@ -117959,8 +117994,7 @@
       13097,
       13105,
       13110,
-      13116,
-      13132
+      13116
     ],
     "task cache removal": [
       503
@@ -118306,8 +118340,7 @@
       13097,
       13105,
       13110,
-      13116,
-      13132
+      13116
     ],
     "task detail without network": [
       523
@@ -118891,8 +118924,7 @@
       13077,
       13083,
       13089,
-      13095,
-      13130
+      13095
     ],
     "telemetry and process verification harness": [
       8695,
@@ -120183,8 +120215,7 @@
       13077,
       13083,
       13089,
-      13095,
-      13130
+      13095
     ],
     "tests that cannot fail": [
       952
@@ -123755,8 +123786,7 @@
       13094,
       13102,
       13107,
-      13113,
-      13129
+      13113
     ],
     "validation first workflow": [
       1406
@@ -124707,8 +124737,7 @@
       13097,
       13105,
       13110,
-      13116,
-      13132
+      13116
     ],
     "verification class blind to failure class": [
       6977
@@ -126564,8 +126593,7 @@
       13094,
       13102,
       13107,
-      13113,
-      13129
+      13113
     ],
     "what shipped acceptance closure": [
       12412

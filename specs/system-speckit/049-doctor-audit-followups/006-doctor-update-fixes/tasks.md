@@ -35,13 +35,13 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the inputs before the first edit of a phase (`../005-doctor-update-research/research/research.md`, `plan.md`)
+- [x] T001 Read the inputs before the first edit of a phase (`../005-doctor-update-research/research/research.md`, `plan.md`)
   - Read the research.md Section 11 entry for every finding in your phase, the verdict table and decisions in `plan.md` Section 3, and every file your phase's tasks name.
   - Line numbers in this file cite commit `506bc5a10c`. Earlier phases move them. Find code by its function name. If the code does not match a brief, stop and report the mismatch instead of guessing.
-- [ ] T002 Capture the baseline at the start of each phase (`.skilled/commands/doctor/scripts/tests/`)
+- [x] T002 Capture the baseline at the start of each phase (`.skilled/commands/doctor/scripts/tests/`)
   - Run `node --test .skilled/commands/doctor/scripts/tests/release-update.test.cjs` and record the `tests`, `pass` and `fail` lines and the exit status. On 2026-10-03 it reported 56, 56, 0, exit 0, in 91 seconds.
   - Run `bash .skilled/commands/doctor/scripts/tests/run-all.sh` and record its last two lines and exit status. On 2026-10-03 it reported 8 suites passed, 0 failed, exit 0, with 183 node:test tests across 9 files.
-- [ ] T003 Follow these rules in every phase (all files below)
+- [x] T003 Follow these rules in every phase (all files below)
   - Never put a finding id (such as DU-01), a spec path, a packet number, a phase number or a phase letter into a code comment, a test name, an error message or a YAML comment. Keep the durable reason instead.
   - Follow `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md`: keep the box header and `'use strict'`, keep the numbered ALL-CAPS sections, use camelCase function names, write comments that explain why, never commit commented-out code, and keep the `[release-update]` log prefix.
   - Run engine commands only inside throwaway fixtures made by the suite's helpers. Never run `align`, `apply`, `rollback`, `record-base` or `unlock` against this repository.
@@ -323,7 +323,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Phase A checks
 
-- [ ] T070 Run the phase A checks and record their output and exit status (engine suite, doctor runner)
+- [x] T070 Run the phase A checks and record their output and exit status (engine suite, doctor runner)
   - `node --test .skilled/commands/doctor/scripts/tests/release-update.test.cjs`: expect `tests 59`, `pass 59`, `fail 0`, exit 0.
   - Fail-first: the three new tests fail against the old engine, and the rewritten prefill test fails on its new assertions.
   - `bash .skilled/commands/doctor/scripts/tests/run-all.sh`: expect exit 0 and 0 failed suites.
@@ -333,7 +333,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Phase B checks
 
-- [ ] T071 Run the phase B checks and record their output and exit status (engine suite, doctor runner, YAML, router)
+- [x] T071 Run the phase B checks and record their output and exit status (engine suite, doctor runner, YAML, router)
   - Engine suite: expect `tests 63`, `pass 63`, `fail 0`, exit 0. Fail-first for the four new tests.
   - `bash .skilled/commands/doctor/scripts/tests/run-all.sh`: exit 0.
   - YAML parse for all three workflows: exit 0.
@@ -344,7 +344,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Phase C checks
 
-- [ ] T072 Run the phase C checks and record their output and exit status (engine suite, runner, routes, contract, catalog, guard)
+- [x] T072 Run the phase C checks and record their output and exit status (engine suite, runner, routes, contract, catalog, guard)
   - Engine suite: expect `tests 69`, `pass 69`, `fail 0`, exit 0. Fail-first for the six new tests.
   - `bash .skilled/commands/doctor/scripts/tests/run-all.sh`: exit 0.
   - YAML parse for all five workflows and `_routes.yaml`: exit 0.
@@ -358,7 +358,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Phase D checks
 
-- [ ] T073 Run the phase D checks and record their output and exit status (engine suite, contract test, runner, contract, router)
+- [x] T073 Run the phase D checks and record their output and exit status (engine suite, contract test, runner, contract, router)
   - Engine suite: expect `tests 71`, `pass 71`, `fail 0`, exit 0. Fail-first for the two new tests.
   - `node --test .skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs`: every test passes, exit 0. Each contract test fails when its assertion is pointed at the pre-phase text of its file.
   - `bash .skilled/commands/doctor/scripts/tests/run-all.sh`: exit 0, node:test step over 10 files.
@@ -368,7 +368,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Closure
 
-- [ ] T074 Validate and reconcile the packet (`specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/`)
+- [x] T074 Validate and reconcile the packet (`specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/`)
   - Mark every `acceptance-criteria.md` row with its observed evidence, and fill `implementation-summary.md`.
   - Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes --strict` and require `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
@@ -378,9 +378,9 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, T001 to T074
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every acceptance row Met, with the engine suite at 71 of 71 and `run-all.sh` exit 0 from the final state
+- [x] All tasks marked `[x]`, T001 to T074
+- [x] No `[B]` blocked tasks remaining
+- [x] Every acceptance row Met, with the engine suite at 72 of 72 (one test more than planned, from the signal re-raise task) and `run-all.sh` exit 0 from the final state
 <!-- /ANCHOR:completion -->
 
 ---
@@ -425,10 +425,10 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `node --check .skilled/commands/doctor/scripts/release-update.cjs` and both test files pass
-- [ ] CHK-011 [P0] No finding id, spec path or packet number in any changed code comment, test name or message
-- [ ] CHK-012 [P1] Every new refusal exits 1 before the first target write and names its remedy
-- [ ] CHK-013 [P1] New code follows the sk-code-opencode JavaScript checklist
+- [x] CHK-010 [P0] `node --check .skilled/commands/doctor/scripts/release-update.cjs` and both test files pass
+- [x] CHK-011 [P0] No finding id, spec path or packet number in any changed code comment, test name or message
+- [x] CHK-012 [P1] Every new refusal exits 1 before the first target write and names its remedy
+- [x] CHK-013 [P1] New code follows the sk-code-opencode JavaScript checklist
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -436,10 +436,10 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met with observed evidence
-- [ ] CHK-021 [P0] Engine suite 71 of 71 and `run-all.sh` exit 0 from the final state
-- [ ] CHK-022 [P1] Every new engine test observed failing against the old engine
-- [ ] CHK-023 [P1] Error scenarios validated: live, stale and unreadable locks, digest mismatch, nearer release, dirty release record
+- [x] CHK-020 [P0] All acceptance criteria met with observed evidence
+- [x] CHK-021 [P0] Engine suite 72 of 72 (71 planned plus the signal re-raise test) and `run-all.sh` exit 0 from the final state
+- [x] CHK-022 [P1] Every new engine test observed failing against the old engine
+- [x] CHK-023 [P1] Error scenarios validated: live, stale and unreadable locks, digest mismatch, nearer release, dirty release record
 <!-- /ANCHOR:testing -->
 
 ---
@@ -447,13 +447,13 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class. Class-of-bug: DU-01, DU-02, DU-09, DU-15. Cross-consumer: DU-03, DU-05, DU-10, DU-13, DU-14, DU-20. Algorithmic: DU-04, DU-11, DU-17. Matrix/evidence: DU-12, DU-16. Instance-only: DU-06, DU-07, DU-08, DU-18, DU-19, DU-21 to DU-26.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed with the `rg` commands in `plan.md` addendum.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for `skippedUnits`, `baseRecording`, `baseSource`, the dry-run result and the lock message.
-- [ ] CHK-FIX-004 [P0] The remote guard has adversarial tests: a flag value and a `base.json` value that start with `-`.
-- [ ] CHK-FIX-005 [P1] Matrix axes from `plan.md` addendum listed with their covered rows before completion is claimed.
-- [ ] CHK-FIX-006 [P1] The signal test runs with a preload that changes process-wide state, inside its own child process only.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the commit of each phase, not a moving range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. Class-of-bug: DU-01, DU-02, DU-09, DU-15. Cross-consumer: DU-03, DU-05, DU-10, DU-13, DU-14, DU-20. Algorithmic: DU-04, DU-11, DU-17. Matrix/evidence: DU-12, DU-16. Instance-only: DU-06, DU-07, DU-08, DU-18, DU-19, DU-21 to DU-26.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed with the `rg` commands in `plan.md` addendum.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for `skippedUnits`, `baseRecording`, `baseSource`, the dry-run result and the lock message.
+- [x] CHK-FIX-004 [P0] The remote guard has adversarial tests: a flag value and a `base.json` value that start with `-`.
+- [x] CHK-FIX-005 [P1] Matrix axes from `plan.md` addendum listed with their covered rows before completion is claimed.
+- [x] CHK-FIX-006 [P1] The signal test runs with a preload that changes process-wide state, inside its own child process only.
+- [x] CHK-FIX-007 [P1] Evidence pinned to the commit of each phase, not a moving range.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -461,9 +461,9 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets in any new file
-- [ ] CHK-031 [P0] Remote values starting with `-` refused from the flag and from `base.json`, and plan-path and rollback-path confinement unchanged
-- [ ] CHK-032 [P1] `unlock` never removes a lock whose owner is running or unreadable
+- [x] CHK-030 [P0] No hardcoded secrets in any new file
+- [x] CHK-031 [P0] Remote values starting with `-` refused from the flag and from `base.json`, and plan-path and rollback-path confinement unchanged
+- [x] CHK-032 [P1] `unlock` never removes a lock whose owner is running or unreadable
 <!-- /ANCHOR:security -->
 
 ---
@@ -471,9 +471,9 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks synchronized with what shipped
-- [ ] CHK-041 [P1] Every new function carries a WHY comment where its reason is not obvious
-- [ ] CHK-042 [P2] Scripts and tests READMEs, the command catalog row and the root README line updated
+- [x] CHK-040 [P1] Spec, plan and tasks synchronized with what shipped
+- [x] CHK-041 [P1] Every new function carries a WHY comment where its reason is not obvious
+- [x] CHK-042 [P2] Scripts and tests READMEs, the command catalog row and the root README line updated
 <!-- /ANCHOR:docs -->
 
 ---
@@ -481,8 +481,8 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only, and fixtures under the OS temp directory
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only, and fixtures under the OS temp directory
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -492,11 +492,11 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 2 of 12 |
-| P1 Items | 13 | 1 of 13 |
-| P2 Items | 1 | 0 of 1 |
+| P0 Items | 12 | 12 of 12 |
+| P1 Items | 13 | 13 of 13 |
+| P2 Items | 1 | 1 of 1 |
 
-**Verification Date**: 2026-10-03
+**Verification Date**: 2026-10-04
 <!-- /ANCHOR:summary -->
 
 ---

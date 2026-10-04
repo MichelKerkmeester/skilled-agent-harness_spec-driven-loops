@@ -38,7 +38,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -155,12 +155,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -183,20 +177,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-03T21:53:20.070Z",
+    "last_save_at": "2026-10-04T01:16:43.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cb922301a779524e2b57fc870a1f9eadf77d0b2f7eb03425e8b9e1e8418b048a",
+    "source_fingerprint": "sha256:fb250d4cde6290b8a8482099aba96c0ddbba653454f89e7c559e0a9e04142338",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72c808b68bb159aa1cf9d742b1fb8a7c8c2ea56bbe2ff09447a3667b6a7edda7"
+      "spec.md": "a77150cbc5cbdf35b00755b799a5ae701a6f98eab7429ba86d763a0c92b5277a"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "last_active_at": "2026-10-03T20:43:10.206Z"

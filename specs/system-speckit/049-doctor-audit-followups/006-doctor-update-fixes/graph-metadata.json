@@ -39,28 +39,28 @@
       "support"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
-      ".skilled/release/.gitignore",
-      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/README.txt",
+      ".skilled/release/.gitignore",
+      ".skilled/changelog/skilled/README.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
       ".skilled/commands/doctor/update.md",
       ".skilled/commands/doctor/assets/doctor-update-check.yaml",
       ".skilled/commands/doctor/assets/doctor-update-align.yaml",
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
       ".skilled/commands/doctor/assets/doctor-update-rollback.yaml",
       ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
-      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/commands/doctor/scripts/README.md"
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
     ],
     "entities": [
       {
@@ -94,24 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "javascript-checklist.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".skilled/release/.gitignore",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-update-contract.test.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "release-update.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/release-update.cjs",
@@ -121,6 +103,42 @@
         "name": "release-update.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".skilled/release/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "javascript-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
         "source": "derived"
       },
       {
@@ -166,24 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "command-contract.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/scripts/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-04T01:12:15.532Z",
+    "last_save_at": "2026-10-04T01:14:57.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b886c3e2008073ad1826bcd50937788a32eaf9e035ccb9369871204479f13332",
+    "source_fingerprint": "sha256:c46c2794a162c29616c2befb749d1939769d3f7478d48f3f0293b65d3b131d75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d22b9ff0f2775959e9b4e5be206c0ca0213ae6815507d7ad6d03a45d4a1f08f2",
+      "spec.md": "0d2b5ac87989ca88acf75e27fa20e0a0f4610ad7ab921508a29603c54beaed02",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "70f571be12eec5fa204faf4c58946c03de580745beee515d227b25027efb1832",
-      "implementation-summary.md": "172d9af9cb2009af142a06dbd11e29b4ef9334f75b2127219615cafa9b62bf55"
+      "tasks.md": "c6db83bb80ffb7039d8fb84c725dfa9ef34c11883a9dbd1668b2f04b960ffae9",
+      "implementation-summary.md": "6a3f6f39d7a3e5ffee3cfe42827fa30d5b9e0e356b1410e2fada8ad554540507"
     },
     "last_active_at": null
   }
