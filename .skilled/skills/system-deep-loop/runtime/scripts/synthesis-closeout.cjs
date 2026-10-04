@@ -27,6 +27,7 @@ const {
   resolve,
   sep,
 } = require('node:path');
+const { latestIterationRecords, findingKeys } = require('../lib/deep-loop/iteration-findings.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -155,6 +156,7 @@ function readJsonl(filePath) {
   return { records, parseFailures };
 }
 
+
 // Lineage logs are the iteration record when a run fans out. The root log then
 // holds compatibility rows, so it is read only when no lineage log exists.
 function lineageStateLogs(artifactDir, mode) {
@@ -193,27 +195,6 @@ function countIterationFindings(record, fields) {
     if (Array.isArray(record[field])) return record[field].length;
   }
   return 0;
-}
-
-function normalizeFindingKey(value) {
-  return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
-}
-
-function findingKeys(candidate) {
-  if (typeof candidate === 'string') {
-    const key = normalizeFindingKey(candidate);
-    return key ? [key] : [];
-  }
-  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
-  return [...new Set([
-    candidate.id,
-    candidate.findingId,
-    candidate.title,
-    candidate.summary,
-    candidate.text,
-    candidate.finding,
-    candidate.description,
-  ].map(normalizeFindingKey).filter(Boolean))];
 }
 
 function collectIterationFindingGroups(record, fields) {
@@ -303,7 +284,9 @@ function closeOut(args) {
   const registry = readJson(args.registry);
   const evidence = registryEvidence(mode, registry);
   const lineageLogs = lineageStateLogs(args.artifactDir, mode);
-  const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog]).map(readJsonl);
+  const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog])
+    .map(readJsonl)
+    .map((entry) => ({ ...entry, records: latestIterationRecords(entry.records) }));
   const stateRecords = parsedState.flatMap((entry) => entry.records);
   const stateParseFailureCount = parsedState.reduce((sum, entry) => sum + entry.parseFailures, 0);
   const totalIterations = stateRecords.filter((record) => record && record.type === 'iteration').length;
