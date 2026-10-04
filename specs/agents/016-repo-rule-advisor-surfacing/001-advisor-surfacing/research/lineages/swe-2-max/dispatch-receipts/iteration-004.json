@@ -1,0 +1,12 @@
+{
+  "iteration": 4,
+  "status": "completed",
+  "executor": "cli-devin",
+  "model": "swe-2-max",
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "artifacts": [
+    "iterations/iteration-004.md",
+    "deltas/iter-004.jsonl"
+  ],
+  "completion_note": "Iteration executed in-process by the detached lineage executor per the pre-dispatch rule; no nested dispatch was performed."
+}

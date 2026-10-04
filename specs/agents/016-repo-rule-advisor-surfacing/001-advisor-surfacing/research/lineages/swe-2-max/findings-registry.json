@@ -1,0 +1,98 @@
+{
+  "openQuestions": [
+    {
+      "id": "kq-miss-rate",
+      "text": "What is the measured rate of sessions that write without loading the trigger-table rules (Gate-5 misses)?",
+      "status": "unknown",
+      "note": "No telemetry exists anywhere for Gate-5 compliance; the strong-form (c) build is gated on this measurement or on operator risk acceptance."
+    },
+    {
+      "id": "kq-mirror-reach",
+      "text": "Does Gate 5's contract reach every mirror runtime identically?",
+      "status": "open",
+      "note": "Carried open from specs/agents/010-repo-rule-system-integration item 28; affects the portability matrix."
+    },
+    {
+      "id": "kq-action-lane",
+      "text": "Could Gate 1 lookup output ever present candidates by obligation type (rule-to-load) rather than context type?",
+      "status": "open",
+      "note": "The reopening test for refined-(e): only an action/load presentation channel dissolves the recorded objection's exact wording."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-current-path",
+      "answer": "Repo rules reach the model only via Gate 5 at the first write, action-matched through REPO RULES.md; read-only turns never fire it, and AGENTS.md §8 separately loads the five reply-fired rules by name on every substantive reply.",
+      "resolvedInRun": 1,
+      "source": "AGENTS.md:93-101,259-263; REPO RULES.md:40-52"
+    },
+    {
+      "id": "kq-candidate-a",
+      "answer": "A constant second directive under Directives:, dedup-bounded (~0 suppressed, ~150-250 chars per delivery episode), never self-silent; fails the 022 bar on both prongs — refuse.",
+      "resolvedInRun": 2,
+      "source": "render.ts:102-106,438-449,476-489; directive-lifecycle.ts:139-178; decisions.md:21-24"
+    },
+    {
+      "id": "kq-candidate-b",
+      "answer": "Rule rows in Gate 1 lookup output, self-silent on vocabulary miss but firing on read-only turns; <1% artifact growth; reverses retrieval-conventions.md:284 and misses sibling-local rules — refuse.",
+      "resolvedInRun": 2,
+      "source": "lookup-trigger-index.mjs:22-26,51,129; corpus.mjs:30,299-310; retrieval-conventions.md:271,284"
+    },
+    {
+      "id": "kq-candidate-c",
+      "answer": "Weak form (per-action classification) refused: <=4/13 rules tool-observable, riskiest commands already guarded. Strong form (once-per-session first-mutation reminder via the Gate-3 marker pattern) is the single admissible build, gated on a measured miss or operator risk acceptance.",
+      "resolvedInRun": 3,
+      "source": "spec-gate-core.mjs:376-444,1736-1783; .claude/settings.json; REPO RULES.md:40-52"
+    },
+    {
+      "id": "kq-portability",
+      "answer": "Measured live: (a) portable via shared renderer; (b) indexes shared rules in siblings through the linked .skilled dir but misses sibling-local rules at root repo-rules/ (out-of-root symlink skip); (c) weakest via per-runtime invisibility traps.",
+      "resolvedInRun": 3,
+      "source": "live probe on Obsidian Plugin; corpus.mjs:299-310; injection-contract.md:100,172,201"
+    },
+    {
+      "id": "kq-verdict",
+      "answer": "No new model-facing surface: the coverage is a designed partition (Gate 5 + AGENTS.md §8 loader + resident floor). The real fragility is CI-side — no check that trigger rows cover rule fires.",
+      "resolvedInRun": 4,
+      "source": "AGENTS.md:153,261; 010 synthesis.md:53-57; cross-lineage-synthesis.md:72"
+    }
+  ],
+  "findings": [
+    {
+      "id": "f-gate5-partition",
+      "label": "Coverage is a designed partition: Gate 5 (8 action-fired rules) + AGENTS.md:261 reply-fired loader (5 rules) + resident floor (AGENTS.md:153,70-78,135-147)",
+      "iterations": [1, 4],
+      "confidence": "high"
+    },
+    {
+      "id": "f-retrieval-exclusion",
+      "label": "repo-rules excluded from both retrieval lanes by recorded decision; indexing would surface rules as context candidates",
+      "iterations": [1, 2],
+      "confidence": "high"
+    },
+    {
+      "id": "f-injection-bar",
+      "label": "Prompt-time injection must name a gate-enforced prohibition, not restate a resident disposition (022 bar, 18 refusals)",
+      "iterations": [1, 2],
+      "confidence": "high"
+    },
+    {
+      "id": "f-tool-boundary-blindness",
+      "label": "<=4/13 rules have tool-observable triggers; 9 fire inside reasoning/prose where no hook can key",
+      "iterations": [3],
+      "confidence": "high"
+    },
+    {
+      "id": "f-federation-shape",
+      "label": "Double symlink chain plus sibling-local rules; routing is per-repo while content is shared",
+      "iterations": [3],
+      "confidence": "high (live-probed)"
+    },
+    {
+      "id": "f-real-gap-ci",
+      "label": "No mechanical check that trigger rows cover rule fires; the failure already happened once (5 dropped fires, 010 item 2/18)",
+      "iterations": [3, 4],
+      "confidence": "high"
+    }
+  ]
+}

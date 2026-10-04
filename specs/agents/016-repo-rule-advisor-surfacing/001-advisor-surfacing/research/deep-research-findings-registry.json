@@ -1,0 +1,979 @@
+{
+  "mergedFrom": [
+    "deepseek-v4-1-flash-max",
+    "swe-2-max"
+  ],
+  "lineageExecutors": {
+    "deepseek-v4-1-flash-max": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "swe-2-max": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "kq-action-lane",
+      "text": "Could Gate 1 lookup output ever present candidates by obligation type (rule-to-load) rather than context type?",
+      "status": "open",
+      "note": "The reopening test for refined-(e): only an action/load presentation channel dissolves the recorded objection's exact wording.",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-mirror-reach",
+      "text": "Does Gate 5's contract reach every mirror runtime identically?",
+      "status": "open",
+      "note": "Carried open from specs/agents/010-repo-rule-system-integration item 28; affects the portability matrix.",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-miss-rate",
+      "text": "What is the measured rate of sessions that write without loading the trigger-table rules (Gate-5 misses)?",
+      "status": "unknown",
+      "note": "No telemetry exists anywhere for Gate-5 compliance; the strong-form (c) build is gated on this measurement or on operator risk acceptance.",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-candidate-a",
+      "answer": "A constant second directive under Directives:, dedup-bounded (~0 suppressed, ~150-250 chars per delivery episode), never self-silent; fails the 022 bar on both prongs — refuse.",
+      "resolvedInRun": 2,
+      "source": "render.ts:102-106,438-449,476-489; directive-lifecycle.ts:139-178; decisions.md:21-24",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-portability",
+      "answer": "Measured live: (a) portable via shared renderer; (b) indexes shared rules in siblings through the linked .skilled dir but misses sibling-local rules at root repo-rules/ (out-of-root symlink skip); (c) weakest via per-runtime invisibility traps.",
+      "resolvedInRun": 3,
+      "source": "live probe on Obsidian Plugin; corpus.mjs:299-310; injection-contract.md:100,172,201",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-verdict",
+      "answer": "No new model-facing surface: the coverage is a designed partition (Gate 5 + AGENTS.md §8 loader + resident floor). The real fragility is CI-side — no check that trigger rows cover rule fires.",
+      "resolvedInRun": 4,
+      "source": "AGENTS.md:153,261; 010 synthesis.md:53-57; cross-lineage-synthesis.md:72",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-current-path",
+      "answer": "Repo rules reach the model only via Gate 5 at the first write, action-matched through REPO RULES.md; read-only turns never fire it, and AGENTS.md §8 separately loads the five reply-fired rules by name on every substantive reply.",
+      "resolvedInRun": 1,
+      "source": "AGENTS.md:93-101,259-263; REPO RULES.md:40-52",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-candidate-b",
+      "answer": "Rule rows in Gate 1 lookup output, self-silent on vocabulary miss but firing on read-only turns; <1% artifact growth; reverses retrieval-conventions.md:284 and misses sibling-local rules — refuse.",
+      "resolvedInRun": 2,
+      "source": "lookup-trigger-index.mjs:22-26,51,129; corpus.mjs:30,299-310; retrieval-conventions.md:271,284",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "kq-candidate-c",
+      "answer": "Weak form (per-action classification) refused: <=4/13 rules tool-observable, riskiest commands already guarded. Strong form (once-per-session first-mutation reminder via the Gate-3 marker pattern) is the single admissible build, gated on a measured miss or operator risk acceptance.",
+      "resolvedInRun": 3,
+      "source": "spec-gate-core.mjs:376-444,1736-1783; .claude/settings.json; REPO RULES.md:40-52",
+      "_lineages": [
+        "swe-2-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**022 bar test.** The hygiene directive survives the bar because it \"names a specific prohibition a pre-commit gate enforces\" [SOURCE: injection-contract.md:52-54; render.ts:110-112]. A Gate-5 pointer restates `AGENTS.md:93-101` — content the always-loaded document already carries verbatim — and no mechanical gate enforces the trigger-table load (no hook denies a write that skipped it). It fails the bar's duplication prong unless framed for runtimes where `AGENTS.md` is absent — the exact reason hygiene exists [SOURCE: render.ts:110-112] — and even then it lacks the enforcement prong.",
+      "text": "**022 bar test.** The hygiene directive survives the bar because it \"names a specific prohibition a pre-commit gate enforces\" [SOURCE: injection-contract.md:52-54; render.ts:110-112]. A Gate-5 pointer restates `AGENTS.md:93-101` — content the always-loaded document already carries verbatim — and no mechanical gate enforces the trigger-table load (no hook denies a write that skipped it). It fails the bar's duplication prong unless framed for runtimes where `AGENTS.md` is absent — the exact reason hygiene exists [SOURCE: render.ts:110-112] — and even then it lacks the enforcement prong.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**And the riskiest tool actions are already guarded.** The Bash matcher already runs `git-preflight-advisory` (warn) and `git-message-gate` (deny) plus `dispatch-preflight-lint` (block/warn) [SOURCE: .claude/settings.json PreToolUse Bash group; injection-contract.md:153-164]. The commands a blast-radius nudge would catch are the commands existing guards already inspect — marginal coverage ≈ low.",
+      "text": "**And the riskiest tool actions are already guarded.** The Bash matcher already runs `git-preflight-advisory` (warn) and `git-message-gate` (deny) plus `dispatch-preflight-lint` (block/warn) [SOURCE: .claude/settings.json PreToolUse Bash group; injection-contract.md:153-164]. The commands a blast-radius nudge would catch are the commands existing guards already inspect — marginal coverage ≈ low.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**But the tool-observable action space covers a minority of the corpus.** Mapping all 13 rules' fire lists: tool-visible triggers exist for `blast-radius` (rm/git/npm/curl commands), `skill-hub-routing` (registry/graph path prefixes), `prevent-overengineering` (new-file Write, weakly), `scope-discipline` (out-of-scope paths — needs frozen scope a hook cannot see). The other 9 — uncertainty, evidence, answer-the-actual-request, communication×4, delegation, root-cause (retry detection needs history) — fire inside reasoning or prose with no tool call to key on [SOURCE: REPO RULES.md:40-52 fire lists]. A PreToolUse advisory is structurally blind to the majority of the corpus.",
+      "text": "**But the tool-observable action space covers a minority of the corpus.** Mapping all 13 rules' fire lists: tool-visible triggers exist for `blast-radius` (rm/git/npm/curl commands), `skill-hub-routing` (registry/graph path prefixes), `prevent-overengineering` (new-file Write, weakly), `scope-discipline` (out-of-scope paths — needs frozen scope a hook cannot see). The other 9 — uncertainty, evidence, answer-the-actual-request, communication×4, delegation, root-cause (retry detection needs history) — fire inside reasoning or prose with no tool call to key on [SOURCE: REPO RULES.md:40-52 fire lists]. A PreToolUse advisory is structurally blind to the majority of the corpus.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "**Candidate (a) under federation.** The advisor brief is emitted per-runtime by the same shared renderer; siblings share `.skilled` wholesale, so the brief (and a hypothetical second directive) behaves identically — portability is (a)'s one clean axis.",
+      "text": "**Candidate (a) under federation.** The advisor brief is emitted per-runtime by the same shared renderer; siblings share `.skilled` wholesale, so the brief (and a hypothetical second directive) behaves identically — portability is (a)'s one clean axis.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**Candidate (b) under federation — measured.** In the sibling, `.skilled/repo-rules/*` entries are NOT themselves symlinks (real files through a linked directory) → `recordFile` runs with `isLink=false` → the out-of-root refusal does NOT fire → the 13 shared files index cleanly under the `.skilled/repo-rules/` spelling [SOURCE: corpus.mjs:299-310; live `readdirSync`/`realpathSync` probe on `Obsidian Plugin`]. But the 3 sibling-local rules at root `repo-rules/` are file symlinks resolving outside the sibling root → `'symlink target outside the repository'` skip [SOURCE: corpus.mjs:307-310; live probe]. **Net: (b) indexes the shared 13 but structurally misses sibling-local rules — under-serving exactly the repos that layer their own rules.** In this repo (b) indexes all 13.",
+      "text": "**Candidate (b) under federation — measured.** In the sibling, `.skilled/repo-rules/*` entries are NOT themselves symlinks (real files through a linked directory) → `recordFile` runs with `isLink=false` → the out-of-root refusal does NOT fire → the 13 shared files index cleanly under the `.skilled/repo-rules/` spelling [SOURCE: corpus.mjs:299-310; live `readdirSync`/`realpathSync` probe on `Obsidian Plugin`]. But the 3 sibling-local rules at root `repo-rules/` are file symlinks resolving outside the sibling root → `'symlink target outside the repository'` skip [SOURCE: corpus.mjs:307-310; live probe]. **Net: (b) indexes the shared 13 but structurally misses sibling-local rules — under-serving exactly the repos that layer their own rules.** In this repo (b) indexes all 13.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**Correction to iteration 3.** The spec-gate advise rate is ~1–33/day (peak 33 on 2026-09-30, recent 1–7/day) measured over the log's dated rows — not \"5 in 2 days.\" Still cheap for a once-per-session marker form, but the honest number is per-day, not per-event [SOURCE: .skilled/skills/.state/spec-gate/spec-gate-warnings.log, `awk` date histogram].",
+      "text": "**Correction to iteration 3.** The spec-gate advise rate is ~1–33/day (peak 33 on 2026-09-30, recent 1–7/day) measured over the log's dated rows — not \"5 in 2 days.\" Still cheap for a once-per-session marker form, but the honest number is per-day, not per-event [SOURCE: .skilled/skills/.state/spec-gate/spec-gate-warnings.log, `awk` date histogram].",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**Emission shape.** `renderAdvisorBrief` emits `Advisor: {live|stale}; use {skill} {conf}/{unc} pass.` (route block), then unconditionally appends `DIRECTIVES_LABEL` + `HYGIENE_DIRECTIVE` [SOURCE: render.ts:438-449]. A repo-rules pointer would be a second constant directive under `Directives:`, registered as a new policy id — `directiveBlockIds()` currently carries only `POLICY_COMMENT_HYGIENE_ID` [SOURCE: render.ts:102-106]. It would also ride the three fallback heads (`outage`, `skipped`, `no-match`), which append the same directive block [SOURCE: render.ts:476-489]. Emitted text ≈ one additional ~120–200-char line.",
+      "text": "**Emission shape.** `renderAdvisorBrief` emits `Advisor: {live|stale}; use {skill} {conf}/{unc} pass.` (route block), then unconditionally appends `DIRECTIVES_LABEL` + `HYGIENE_DIRECTIVE` [SOURCE: render.ts:438-449]. A repo-rules pointer would be a second constant directive under `Directives:`, registered as a new policy id — `directiveBlockIds()` currently carries only `POLICY_COMMENT_HYGIENE_ID` [SOURCE: render.ts:102-106]. It would also ride the three fallback heads (`outage`, `skipped`, `no-match`), which append the same directive block [SOURCE: render.ts:476-489]. Emitted text ≈ one additional ~120–200-char line.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**Emission shape.** The Gate 1 lookup returns rows of `{matchClass, path, phrases[], score}` from the committed artifact `runtime/data/trigger-index.json` [SOURCE: lookup-trigger-index.mjs:51,129]. Indexed rules would surface as `.skilled/repo-rules/<rule>.md` candidate rows — a context suggestion naming a file to read. Live check: `lookup-trigger-index.mjs --json --scoring-only -- \"name the rollback first before force pushing\"` returns `\"results\": []` today; with the root added, `blast-radius.md` would match on `\"name the rollback first\"` + `\"force push\"` [SOURCE: .skilled/repo-rules/blast-radius.md:6-8].",
+      "text": "**Emission shape.** The Gate 1 lookup returns rows of `{matchClass, path, phrases[], score}` from the committed artifact `runtime/data/trigger-index.json` [SOURCE: lookup-trigger-index.mjs:51,129]. Indexed rules would surface as `.skilled/repo-rules/<rule>.md` candidate rows — a context suggestion naming a file to read. Live check: `lookup-trigger-index.mjs --json --scoring-only -- \"name the rollback first before force pushing\"` returns `\"results\": []` today; with the root added, `blast-radius.md` would match on `\"name the rollback first\"` + `\"force push\"` [SOURCE: .skilled/repo-rules/blast-radius.md:6-8].",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**Every rule file already carries `trigger_phrases` frontmatter, read by nothing at retrieval time.** Spot check shows 17–30 phrases per file [SOURCE: .skilled/repo-rules/blast-radius.md:4-20]. The conventions doc records that those phrases currently serve only `sk-create-repo-rule`'s own collision check [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:284].",
+      "text": "**Every rule file already carries `trigger_phrases` frontmatter, read by nothing at retrieval time.** Spot check shows 17–30 phrases per file [SOURCE: .skilled/repo-rules/blast-radius.md:4-20]. The conventions doc records that those phrases currently serve only `sk-create-repo-rule`'s own collision check [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:284].",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "**Final candidate×axis matrix (all evidence from iterations 1–3, re-verified):**",
+      "text": "**Final candidate×axis matrix (all evidence from iterations 1–3, re-verified):**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-10",
+      "title": "**Gate 5 under federation.** Works by contract, not mechanism: the sibling's `AGENTS.md` is the same file (symlink), its `REPO RULES.md` is its own real table routing to its own `repo-rules/` — the design keeps the corpus federated while the router stays local [SOURCE: `ls -la \"Obsidian Plugin/\"`]. This is why the corpus-rooted surfaces are the wrong layer: the *routing* is deliberately per-repo even where the *content* is shared.",
+      "text": "**Gate 5 under federation.** Works by contract, not mechanism: the sibling's `AGENTS.md` is the same file (symlink), its `REPO RULES.md` is its own real table routing to its own `repo-rules/` — the design keeps the corpus federated while the router stays local [SOURCE: `ls -la \"Obsidian Plugin/\"`]. This is why the corpus-rooted surfaces are the wrong layer: the *routing* is deliberately per-repo even where the *content* is shared.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**Match key: none — constant.** It cannot condition on action or topic; it appears on every delivered brief including pure-read turns, so it fires precisely where Gate 5 deliberately does not.",
+      "text": "**Match key: none — constant.** It cannot condition on action or topic; it appears on every delivered brief including pure-read turns, so it fires precisely where Gate 5 deliberately does not.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-10",
+      "title": "**Match key: prompt topic.** The lookup scores normalized query tokens against `trigger_phrases` — pure vocabulary matching [SOURCE: lookup-trigger-index.mjs:132-134; normalize.mjs scoring]. The trigger table it would duplicate is action-keyed [SOURCE: REPO RULES.md:12]. A rule surfaced because the prompt *mentions* rollbacks arrives on turns where the model takes no mutating action at all.",
+      "text": "**Match key: prompt topic.** The lookup scores normalized query tokens against `trigger_phrases` — pure vocabulary matching [SOURCE: lookup-trigger-index.mjs:132-134; normalize.mjs scoring]. The trigger table it would duplicate is action-keyed [SOURCE: REPO RULES.md:12]. A rule surfaced because the prompt *mentions* rollbacks arrives on turns where the model takes no mutating action at all.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-9",
+      "title": "**Open prior items that bound this research.** 010 item 18 (open): \"zero repo-rule matches across eighteen workflows\" and the link checker's roots exclude the repo root — no mechanical coverage exists for rules today [SOURCE: cross-lineage-synthesis.md:72]. 010 item 28 (open): \"the Gate 5 reach question for the mirror runtimes\" is unsettled — Gate 5's contract reaches each runtime differently [SOURCE: cross-lineage-synthesis.md:81].",
+      "text": "**Open prior items that bound this research.** 010 item 18 (open): \"zero repo-rule matches across eighteen workflows\" and the link checker's roots exclude the repo root — no mechanical coverage exists for rules today [SOURCE: cross-lineage-synthesis.md:72]. 010 item 28 (open): \"the Gate 5 reach question for the mirror runtimes\" is unsettled — Gate 5's contract reaches each runtime differently [SOURCE: cross-lineage-synthesis.md:81].",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**Per-turn cost and silence.** Strongest form (first-write reminder): ~one ~150-char `additionalContext` line per session, silent thereafter via marker — near-zero cost, measured precedent: `spec-gate-warnings.log` shows ~5 advise rows in 2 days [SOURCE: .skilled/skills/.state/spec-gate/spec-gate-warnings.log tail]. Weaker form (every mutation classified): silent on non-matching tool calls by construction; but cannot measure need — no log of Gate-5 misses exists (010 item 28 open) and the 022 rule forbids estimating one [SOURCE: decisions.md:33-36; cross-lineage-synthesis.md:81].",
+      "text": "**Per-turn cost and silence.** Strongest form (first-write reminder): ~one ~150-char `additionalContext` line per session, silent thereafter via marker — near-zero cost, measured precedent: `spec-gate-warnings.log` shows ~5 advise rows in 2 days [SOURCE: .skilled/skills/.state/spec-gate/spec-gate-warnings.log tail]. Weaker form (every mutation classified): silent on non-matching tool calls by construction; but cannot measure need — no log of Gate-5 misses exists (010 item 28 open) and the 022 rule forbids estimating one [SOURCE: decisions.md:33-36; cross-lineage-synthesis.md:81].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**Per-turn cost.** Marginal: 13 docs × ~17–30 phrases ≈ +~300 phrases onto a committed artifact that already holds 33,688 phrases across 3.7 MB — under 1% growth; parse cost per lookup is unchanged in shape (the artifact is parsed cold each call) [SOURCE: trigger-index.json measured; lookup-trigger-index.mjs:77-93]. The real cost is a row added to Gate 1's surfaced context whenever phrases match — a suggestion the model may then spend a Read on.",
+      "text": "**Per-turn cost.** Marginal: 13 docs × ~17–30 phrases ≈ +~300 phrases onto a committed artifact that already holds 33,688 phrases across 3.7 MB — under 1% growth; parse cost per lookup is unchanged in shape (the artifact is parsed cold each call) [SOURCE: trigger-index.json measured; lookup-trigger-index.mjs:77-93]. The real cost is a row added to Gate 1's surfaced context whenever phrases match — a suggestion the model may then spend a Read on.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**Per-turn cost.** Zero on suppressed turns; the directive's full bytes on every full-delivery turn. `HYGIENE_DIRECTIVE` is ~230 chars [SOURCE: render.ts:112]; a comparable rules pointer adds roughly that once per delivery episode. The route block is capped at 80 tokens (320 chars), ambiguous at 120 [SOURCE: render.ts:90-93,131-137] — a directive is NOT token-capped; it is appended after `capText` [SOURCE: render.ts:438-449].",
+      "text": "**Per-turn cost.** Zero on suppressed turns; the directive's full bytes on every full-delivery turn. `HYGIENE_DIRECTIVE` is ~230 chars [SOURCE: render.ts:112]; a comparable rules pointer adds roughly that once per delivery episode. The route block is capped at 80 tokens (320 chars), ambiguous at 120 [SOURCE: render.ts:90-93,131-137] — a directive is NOT token-capped; it is appended after `capText` [SOURCE: render.ts:438-449].",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-11",
+      "title": "**Portability trap shared by (b) and any corpus-level surface.** The walker dedupes by resolved path and refuses a symlink whose target lands outside the repo root: `'symlink target outside the repository'` [SOURCE: corpus.mjs:299-310,334-342]. In sibling repos the shared rule files are symlinks INTO this checkout [SOURCE: specs/agents/010-repo-rule-system-integration/research/synthesis.md:13,31] — so an index built in a sibling would either skip them as out-of-root links or index duplicates, and `corpusRootsFor` only rewrites the `.skilled/` spelling anyway [SOURCE: corpus.mjs:44-51]. The federation shape works against a corpus-rooted surface.",
+      "text": "**Portability trap shared by (b) and any corpus-level surface.** The walker dedupes by resolved path and refuses a symlink whose target lands outside the repo root: `'symlink target outside the repository'` [SOURCE: corpus.mjs:299-310,334-342]. In sibling repos the shared rule files are symlinks INTO this checkout [SOURCE: specs/agents/010-repo-rule-system-integration/research/synthesis.md:13,31] — so an index built in a sibling would either skip them as out-of-root links or index duplicates, and `corpusRootsFor` only rewrites the `.skilled/` spelling anyway [SOURCE: corpus.mjs:44-51]. The federation shape works against a corpus-rooted surface.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**Portability: weakest of the three.** Each runtime needs its own adapter + registration; visibility varies by runtime — OpenCode's mcp-route-guard is `[LOG]`-only \"genuinely invisible to the OpenCode model\" [SOURCE: injection-contract.md:172]; Claude/Devin PostToolUse stdout \"likely never reach[es] the assistant's context\" [SOURCE: injection-contract.md:201]; Cursor's `beforeSubmitPrompt` never delivers at all [SOURCE: injection-contract.md:100]. An advisory can silently become invisible per runtime — the trap the contract doc exists to name.",
+      "text": "**Portability: weakest of the three.** Each runtime needs its own adapter + registration; visibility varies by runtime — OpenCode's mcp-route-guard is `[LOG]`-only \"genuinely invisible to the OpenCode model\" [SOURCE: injection-contract.md:172]; Claude/Devin PostToolUse stdout \"likely never reach[es] the assistant's context\" [SOURCE: injection-contract.md:201]; Cursor's `beforeSubmitPrompt` never delivers at all [SOURCE: injection-contract.md:100]. An advisory can silently become invisible per runtime — the trap the contract doc exists to name.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**PRIOR DECISION — event frequency must be measured, never reasoned.** The strongest injection candidate in 022 \"died on measurement\": the advisory it would ride fires ~8 times/minute at peak while the underlying condition persists tens of minutes [SOURCE: decisions.md:33-36]. Any candidate whose cost model assumes rarity needs a measured rate, not an estimated one.",
+      "text": "**PRIOR DECISION — event frequency must be measured, never reasoned.** The strongest injection candidate in 022 \"died on measurement\": the advisory it would ride fires ~8 times/minute at peak while the underlying condition persists tens of minutes [SOURCE: decisions.md:33-36]. Any candidate whose cost model assumes rarity needs a measured rate, not an estimated one.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**PRIOR DECISION — repo-rules were deliberately excluded from BOTH retrieval lanes.** `retrieval-conventions.md:284`: \"`.skilled/repo-rules` | No | No as a root; reached under `.skilled` | **Decided against.** The rule documents carry the same frontmatter as spec docs, but they are loaded at Gate 5 through the trigger table in `REPO RULES.md`, not retrieved at Gate 1; indexing them would surface a rule as a context candidate.\" `CORPUS_ROOTS` is `['specs', '.skilled/skills', '.skilled/hooks', '.skilled/changelog/skilled']` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:30], and the divergence table is machine-enforced by `runtime/cli/tests/retrieval-coverage-parity.vitest.ts` [SOURCE: retrieval-conventions.md:271]. Candidate (b) is therefore not an open design — it is a proposal to overturn a recorded decision and must answer the recorded reason.",
+      "text": "**PRIOR DECISION — repo-rules were deliberately excluded from BOTH retrieval lanes.** `retrieval-conventions.md:284`: \"`.skilled/repo-rules` | No | No as a root; reached under `.skilled` | **Decided against.** The rule documents carry the same frontmatter as spec docs, but they are loaded at Gate 5 through the trigger table in `REPO RULES.md`, not retrieved at Gate 1; indexing them would surface a rule as a context candidate.\" `CORPUS_ROOTS` is `['specs', '.skilled/skills', '.skilled/hooks', '.skilled/changelog/skilled']` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:30], and the divergence table is machine-enforced by `runtime/cli/tests/retrieval-coverage-parity.vitest.ts` [SOURCE: retrieval-conventions.md:271]. Candidate (b) is therefore not an open design — it is a proposal to overturn a recorded decision and must answer the recorded reason.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**PRIOR DECISION — the prompt-time injection bar.** Packet 022 settled: \"a prompt-time injection earns its slot by naming a specific prohibition a gate enforces, not by restating a disposition the always-loaded document already carries\" [SOURCE: specs/hooks/022-smart-rule-injection/decisions.md:21-24; 001-deep-research/implementation-summary.md:51]. Eighteen prompt-vocabulary candidates were refused under it. The governor and proof-over-appearance advisor directives were retired for exactly this reason; the comment-hygiene directive survives because a pre-commit gate enforces it [SOURCE: .skilled/hooks/injection-contract.md:52-54].",
+      "text": "**PRIOR DECISION — the prompt-time injection bar.** Packet 022 settled: \"a prompt-time injection earns its slot by naming a specific prohibition a gate enforces, not by restating a disposition the always-loaded document already carries\" [SOURCE: specs/hooks/022-smart-rule-injection/decisions.md:21-24; 001-deep-research/implementation-summary.md:51]. Eighteen prompt-vocabulary candidates were refused under it. The governor and proof-over-appearance advisor directives were retired for exactly this reason; the comment-hygiene directive survives because a pre-commit gate enforces it [SOURCE: .skilled/hooks/injection-contract.md:52-54].",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-14",
+      "title": "**Refined-(b): index rules but present them as rules, not context candidates.** The exclusion reason is precise — \"indexing them would surface a rule *as a context candidate*\" [SOURCE: retrieval-conventions.md:284]. A lookup lane that renders `.skilled/repo-rules/` hits with their Gate-5 load semantics (\"rule to load on action match\", not \"context to read\") answers the recorded objection's exact wording. Against it: still topic-matched, still fires on read-only turns, still a recorded-decision reversal requiring parity-test + conventions-table + artifact regeneration.",
+      "text": "**Refined-(b): index rules but present them as rules, not context candidates.** The exclusion reason is precise — \"indexing them would surface a rule *as a context candidate*\" [SOURCE: retrieval-conventions.md:284]. A lookup lane that renders `.skilled/repo-rules/` hits with their Gate-5 load semantics (\"rule to load on action match\", not \"context to read\") answers the recorded objection's exact wording. Against it: still topic-matched, still fires on read-only turns, still a recorded-decision reversal requiring parity-test + conventions-table + artifact regeneration.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-8",
+      "title": "**Refined-(e) recorded but not recommended.** Indexing rules while rendering them as Gate-5 loads (not context candidates) answers the exclusion objection's literal wording [SOURCE: retrieval-conventions.md:284], but remains topic-matched, fires on read-only turns, and reverses a recorded decision + parity test + committed artifact. The test that would change this: Gate 1's output gaining a non-context presentation channel (e.g., an action/load lane) — then re-open.",
+      "text": "**Refined-(e) recorded but not recommended.** Indexing rules while rendering them as Gate-5 loads (not context candidates) answers the exclusion objection's literal wording [SOURCE: retrieval-conventions.md:284], but remains topic-matched, fires on read-only turns, and reverses a recorded decision + parity test + committed artifact. The test that would change this: Gate 1's output gaining a non-context presentation channel (e.g., an action/load lane) — then re-open.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**Rules deliberately do not do route selection.** `REPO RULES.md` §4: \"Out: skill routing, workflow selection, spec-folder mechanics, and the mechanics of agent and CLI dispatch\" [SOURCE: REPO RULES.md:90-94]. The trigger table is a router keyed on action; a surface that suggests rules keyed on prompt topic would invert the corpus's own match discipline.",
+      "text": "**Rules deliberately do not do route selection.** `REPO RULES.md` §4: \"Out: skill routing, workflow selection, spec-folder mechanics, and the mechanics of agent and CLI dispatch\" [SOURCE: REPO RULES.md:90-94]. The trigger table is a router keyed on action; a surface that suggests rules keyed on prompt topic would invert the corpus's own match discipline.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**Silence condition.** `--scoring-only` drops score-0 partials; a no-match prompt exits 1 with empty output [SOURCE: lookup-trigger-index.mjs:22-26]. So (b) IS self-silencing per turn — but only on vocabulary mismatch, not on action irrelevance. A read-only prompt containing \"rollback\" still surfaces the rule, inverting Gate 5's deliberate read-only exemption [SOURCE: AGENTS.md:94].",
+      "text": "**Silence condition.** `--scoring-only` drops score-0 partials; a no-match prompt exits 1 with empty output [SOURCE: lookup-trigger-index.mjs:22-26]. So (b) IS self-silencing per turn — but only on vocabulary mismatch, not on action irrelevance. A read-only prompt containing \"rollback\" still surfaces the rule, inverting Gate 5's deliberate read-only exemption [SOURCE: AGENTS.md:94].",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**Silence condition: none of its own.** The directive is constant; it has no condition beyond the brief itself. Its delivery is governed by the lifecycle dedup, not by relevance: full delivery on first proven message, every lifecycle boundary, directives-payload change, transcript reset, or any fail-open doubt [SOURCE: directive-lifecycle.ts:139-153,165-178]. On suppressed turns the model gets only `parts.head` (the Advisor line, ~43 bytes: `ROUTE_ONLY_ESTIMATED_BYTES`) [SOURCE: render.ts:99; directive-lifecycle.ts:149,179].",
+      "text": "**Silence condition: none of its own.** The directive is constant; it has no condition beyond the brief itself. Its delivery is governed by the lifecycle dedup, not by relevance: full delivery on first proven message, every lifecycle boundary, directives-payload change, transcript reset, or any fail-open doubt [SOURCE: directive-lifecycle.ts:139-153,165-178]. On suppressed turns the model gets only `parts.head` (the Advisor line, ~43 bytes: `ROUTE_ONLY_ESTIMATED_BYTES`) [SOURCE: render.ts:99; directive-lifecycle.ts:149,179].",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**The advisor cannot suggest rules without a corpus change.** The scorer's recommendation kind is `'skill' | 'command'` only [SOURCE: scorer/types.ts:47,156]; zero `repo-rules` references anywhere in `runtime/lib` or the scorer. A \"suggest rules\" variant of (a) means admitting rules into the advisor's scored corpus — a topic-matched recommendation polluting the skill-routing contract, symmetric to the REPO RULES.md §4 carve-out (\"Out: skill routing\" — the layers are deliberately separate) [SOURCE: scorer/types.ts:47; REPO RULES.md:90-94].",
+      "text": "**The advisor cannot suggest rules without a corpus change.** The scorer's recommendation kind is `'skill' | 'command'` only [SOURCE: scorer/types.ts:47,156]; zero `repo-rules` references anywhere in `runtime/lib` or the scorer. A \"suggest rules\" variant of (a) means admitting rules into the advisor's scored corpus — a topic-matched recommendation polluting the skill-routing contract, symmetric to the REPO RULES.md §4 carve-out (\"Out: skill routing\" — the layers are deliberately separate) [SOURCE: scorer/types.ts:47; REPO RULES.md:90-94].",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**The coverage partition is designed, not an oversight.** `AGENTS.md:261` loads the five reply-fired rules by name — `communication.md`, `communication-prose.md`, `communication-decisions.md`, `communication-handoff.md`, `answer-the-actual-request.md` — \"before any substantive reply… These five fire on a reply rather than on a write, so Gate 5 never reaches them.\" The framework already routes the rules Gate 5 cannot reach through a second, always-loaded instruction.",
+      "text": "**The coverage partition is designed, not an oversight.** `AGENTS.md:261` loads the five reply-fired rules by name — `communication.md`, `communication-prose.md`, `communication-decisions.md`, `communication-handoff.md`, `answer-the-actual-request.md` — \"before any substantive reply… These five fire on a reply rather than on a write, so Gate 5 never reaches them.\" The framework already routes the rules Gate 5 cannot reach through a second, always-loaded instruction.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The current path is single-door, action-keyed, write-gated.** Gate 5 fires on \"the FIRST write of the session\" and \"Read-only turns never fire it\" [SOURCE: AGENTS.md:94]. The model then matches \"the action you are about to take\" against the trigger table — \"the action, never the topic of the request\" [SOURCE: AGENTS.md:96; REPO RULES.md:12]. The corpus today is 13 rule files (verified `ls`), routed by 13 trigger rows [SOURCE: REPO RULES.md:40-52] and 13 index rows [SOURCE: REPO RULES.md:60-72].",
+      "text": "**The current path is single-door, action-keyed, write-gated.** Gate 5 fires on \"the FIRST write of the session\" and \"Read-only turns never fire it\" [SOURCE: AGENTS.md:94]. The model then matches \"the action you are about to take\" against the trigger table — \"the action, never the topic of the request\" [SOURCE: AGENTS.md:96; REPO RULES.md:12]. The corpus today is 13 rule files (verified `ls`), routed by 13 trigger rows [SOURCE: REPO RULES.md:40-52] and 13 index rows [SOURCE: REPO RULES.md:60-72].",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**The federation is a double symlink chain plus sibling-local rules.** This repo: `.skilled/repo-rules/` = 13 real files; `repo-rules/` at root = 13 symlinks → `.skilled/repo-rules/` [SOURCE: `ls -la Public/repo-rules/`]. `Obsidian Plugin`: `.skilled` → symlink to `Public/.skilled`; `AGENTS.md` → absolute symlink to `Public/AGENTS.md`; `repo-rules/` = file symlinks → `Public/repo-rules/` **plus 3 real local rules** (`screenshot-currency.md`, `spec-tree-layout.md`, `verification-gates.md`) absent from `.skilled/repo-rules` [SOURCE: `ls -la \"Obsidian Plugin/repo-rules/\"`]. Its `REPO RULES.md` is a distinct real file (9,581 bytes) with its own trigger table [SOURCE: `ls -la \"Obsidian Plugin/\"`].",
+      "text": "**The federation is a double symlink chain plus sibling-local rules.** This repo: `.skilled/repo-rules/` = 13 real files; `repo-rules/` at root = 13 symlinks → `.skilled/repo-rules/` [SOURCE: `ls -la Public/repo-rules/`]. `Obsidian Plugin`: `.skilled` → symlink to `Public/.skilled`; `AGENTS.md` → absolute symlink to `Public/AGENTS.md`; `repo-rules/` = file symlinks → `Public/repo-rules/` **plus 3 real local rules** (`screenshot-currency.md`, `spec-tree-layout.md`, `verification-gates.md`) absent from `.skilled/repo-rules` [SOURCE: `ls -la \"Obsidian Plugin/repo-rules/\"`]. Its `REPO RULES.md` is a distinct real file (9,581 bytes) with its own trigger table [SOURCE: `ls -la \"Obsidian Plugin/\"`].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "**The federation is real and changes the portability calculus.** Nine-plus rule files are symlinked into sibling repos (`Mobile CLI`, `Obsidian Plugin`) whose `AGENTS.md` files are absolute symlinks into this checkout; the shared corpus is one physical file set reached from multiple roots [SOURCE: specs/agents/010-repo-rule-system-integration/research/synthesis.md:13,31]. In this checkout the 13 files are real files, not links (verified `ls -la`). Any new surface keyed on `.skilled/repo-rules/` must resolve correctly where the directory itself is a federation mount.",
+      "text": "**The federation is real and changes the portability calculus.** Nine-plus rule files are symlinked into sibling repos (`Mobile CLI`, `Obsidian Plugin`) whose `AGENTS.md` files are absolute symlinks into this checkout; the shared corpus is one physical file set reached from multiple roots [SOURCE: specs/agents/010-repo-rule-system-integration/research/synthesis.md:13,31]. In this checkout the 13 files are real files, not links (verified `ls -la`). Any new surface keyed on `.skilled/repo-rules/` must resolve correctly where the directory itself is a federation mount.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**The genuinely uncovered cell is narrow.** Of 13 rules: 5 are reply-fired (§8 loader), 8 are action-fired (Gate 5). Of the 8, four — uncertainty, evidence, root-cause, delegation — can also fire on pure read-only reasoning turns (diagnose, answer-without-certainty, judge a delegation), where neither loader reaches them. What is uncovered there is only the rules' *expanded* text; their binding clauses are the resident floor (precedence level 3, REPO RULES.md:22-27).",
+      "text": "**The genuinely uncovered cell is narrow.** Of 13 rules: 5 are reply-fired (§8 loader), 8 are action-fired (Gate 5). Of the 8, four — uncertainty, evidence, root-cause, delegation — can also fire on pure read-only reasoning turns (diagnose, answer-without-certainty, judge a delegation), where neither loader reaches them. What is uncovered there is only the rules' *expanded* text; their binding clauses are the resident floor (precedence level 3, REPO RULES.md:22-27).",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "**The injection channel inventory is mapped, and it contains a portability trap.** The advisor brief is `[SYS]` model-context-only on Claude/Cursor/Devin/Codex/OpenCode and `[MSG]` visible on Pi [SOURCE: injection-contract.md:50-68]. Tool-time hooks exist and are the candidate (c) precedent: dispatch-preflight-lint `[BLOCK]`/`[SYS]` [SOURCE: injection-contract.md:155-164], mcp-route-guard `[SYS]` except OpenCode where it is `[LOG]`-only — \"genuinely invisible to the OpenCode model\" [SOURCE: injection-contract.md:166-172]. Post-edit-quality on Claude Code and Devin writes plain stdout that \"likely never reach[es] the assistant's context at all in normal use\" — confirmed for Claude, unverified for Devin [SOURCE: injection-contract.md:201].",
+      "text": "**The injection channel inventory is mapped, and it contains a portability trap.** The advisor brief is `[SYS]` model-context-only on Claude/Cursor/Devin/Codex/OpenCode and `[MSG]` visible on Pi [SOURCE: injection-contract.md:50-68]. Tool-time hooks exist and are the candidate (c) precedent: dispatch-preflight-lint `[BLOCK]`/`[SYS]` [SOURCE: injection-contract.md:155-164], mcp-route-guard `[SYS]` except OpenCode where it is `[LOG]`-only — \"genuinely invisible to the OpenCode model\" [SOURCE: injection-contract.md:166-172]. Post-edit-quality on Claude Code and Devin writes plain stdout that \"likely never reach[es] the assistant's context at all in normal use\" — confirmed for Claude, unverified for Devin [SOURCE: injection-contract.md:201].",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**The once-per-session mechanism is directly cloneable.** Gate 3 delivers `GATE_3_MUTATION_NOTICE` once at the first non-exempt mutation via a persisted session marker (`gate3DeliveryMarker`, `recordGate3NoticeDelivered`); \"an open gate speaks once … a mutation after that delivery stays silent\" [SOURCE: spec-gate-core.mjs:1736-1783,376-444]. A \"first write → remember Gate 5\" advisory is the same shape: one `additionalContext` line per session at first mutation.",
+      "text": "**The once-per-session mechanism is directly cloneable.** Gate 3 delivers `GATE_3_MUTATION_NOTICE` once at the first non-exempt mutation via a persisted session marker (`gate3DeliveryMarker`, `recordGate3NoticeDelivered`); \"an open gate speaks once … a mutation after that delivery stays silent\" [SOURCE: spec-gate-core.mjs:1736-1783,376-444]. A \"first write → remember Gate 5\" advisory is the same shape: one `additionalContext` line per session at first mutation.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-7",
+      "title": "**The only admissible form that survives all four tests** is the strong-form (c): a once-per-session `additionalContext` at the first non-exempt mutation — \"match your action against `REPO RULES.md` and load every firing rule.\" It names a declared [HARD] BLOCK at the moment it binds (022 bar ✓), matches the action event not the topic (table semantics ✓), self-silences via the cloneable Gate-3 marker (cost ≈ ~1 line/session, measured precedent ~1–33 advises/day) (✓), and needs a per-runtime adapter (portability △). **Its blocker: no measured Gate-5 miss rate exists**, so admission today would be speculative — it is a candidate for build only if a miss is observed or the operator accepts the unmeasured risk [SOURCE: decisions.md:33-36; cross-lineage-synthesis.md:81].",
+      "text": "**The only admissible form that survives all four tests** is the strong-form (c): a once-per-session `additionalContext` at the first non-exempt mutation — \"match your action against `REPO RULES.md` and load every firing rule.\" It names a declared [HARD] BLOCK at the moment it binds (022 bar ✓), matches the action event not the topic (table semantics ✓), self-silences via the cloneable Gate-3 marker (cost ≈ ~1 line/session, measured precedent ~1–33 advises/day) (✓), and needs a per-runtime adapter (portability △). **Its blocker: no measured Gate-5 miss rate exists**, so admission today would be speculative — it is a candidate for build only if a miss is observed or the operator accepts the unmeasured risk [SOURCE: decisions.md:33-36; cross-lineage-synthesis.md:81].",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-11",
+      "title": "**The read-only-turn gap is mostly covered by the promotion pattern.** Rules binding on read turns (uncertainty, evidence, communication, answering) already have their load-bearing clauses promoted into the always-loaded `AGENTS.md` §3–§4 — Confidence Thresholds, Restraint Signals, Verification Standards, Communication sections. This is the remedy 022 itself prescribed: \"a clause that must bind while reading belongs where it always loads … promotion into the resident layer, not injection\" [SOURCE: 001-deep-research/implementation-summary.md:55].",
+      "text": "**The read-only-turn gap is mostly covered by the promotion pattern.** Rules binding on read turns (uncertainty, evidence, communication, answering) already have their load-bearing clauses promoted into the always-loaded `AGENTS.md` §3–§4 — Confidence Thresholds, Restraint Signals, Verification Standards, Communication sections. This is the remedy 022 itself prescribed: \"a clause that must bind while reading belongs where it always loads … promotion into the resident layer, not injection\" [SOURCE: 001-deep-research/implementation-summary.md:55].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**The read-turn floor is explicit.** `AGENTS.md:153`: the five Verification Standards \"bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.\" Plus Confidence Thresholds (§2:70-78), Restraint Signals (§3:135-147), and the §8 two binding clauses (AGENTS.md:263). The compressed obligations a rule file would add depth to are already resident.",
+      "text": "**The read-turn floor is explicit.** `AGENTS.md:153`: the five Verification Standards \"bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.\" Plus Confidence Thresholds (§2:70-78), Restraint Signals (§3:135-147), and the §8 two binding clauses (AGENTS.md:263). The compressed obligations a rule file would add depth to are already resident.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-13",
+      "title": "**The real uncovered hole is neither (a)–(c)'s territory.** 010 item 18 (open): zero repo-rule coverage in 18 workflows — no mechanical check that trigger rows cover rule fires [SOURCE: cross-lineage-synthesis.md:72; synthesis.md item 2/:53]. That is a CI/generator-check gap (the `create-repo-rule` verify step checks counts+links only), not a model-surface gap — no advisory fixes drift between rows and fires.",
+      "text": "**The real uncovered hole is neither (a)–(c)'s territory.** 010 item 18 (open): zero repo-rule coverage in 18 workflows — no mechanical check that trigger rows cover rule fires [SOURCE: cross-lineage-synthesis.md:72; synthesis.md item 2/:53]. That is a CI/generator-check gap (the `create-repo-rule` verify step checks counts+links only), not a model-surface gap — no advisory fixes drift between rows and fires.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "**The recorded decision it must overturn.** `retrieval-conventions.md:284` decided against BOTH lanes with a stated reason — \"indexing them would surface a rule as a context candidate\" at Gate 1 when they are meant to bind at Gate 5. `CORPUS_ROOTS` confirms the exclusion is live [SOURCE: corpus.mjs:30]. The divergence table is enforced by `retrieval-coverage-parity.vitest.ts` [SOURCE: retrieval-conventions.md:271]. Adding the root = reversing a recorded decision + updating the conventions table + regenerating a committed artifact — not a config tweak.",
+      "text": "**The recorded decision it must overturn.** `retrieval-conventions.md:284` decided against BOTH lanes with a stated reason — \"indexing them would surface a rule as a context candidate\" at Gate 1 when they are meant to bind at Gate 5. `CORPUS_ROOTS` confirms the exclusion is live [SOURCE: corpus.mjs:30]. The divergence table is enforced by `retrieval-coverage-parity.vitest.ts` [SOURCE: retrieval-conventions.md:271]. Adding the root = reversing a recorded decision + updating the conventions table + regenerating a committed artifact — not a config tweak.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-12",
+      "title": "**The residual gap is real but small.** Spec.md names it: \"later actions in a long session depend on the model re-consulting the table unprompted\" [SOURCE: spec.md:38]. Gate 5's loaded table persists in context; the failure mode is model discipline, not missing context. No measured miss rate exists — and per the 022 rule, an unmeasured rate cannot justify a surface [SOURCE: decisions.md:33-36].",
+      "text": "**The residual gap is real but small.** Spec.md names it: \"later actions in a long session depend on the model re-consulting the table unprompted\" [SOURCE: spec.md:38]. Gate 5's loaded table persists in context; the failure mode is model discipline, not missing context. No measured miss rate exists — and per the 022 rule, an unmeasured rate cannot justify a surface [SOURCE: decisions.md:33-36].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-9",
+      "title": "**The uncovered hole that matters is CI-side, not model-side.** 010 item 18: no mechanical check that trigger rows cover rule fires — the `create-repo-rule` verify step checks counts and links only [SOURCE: synthesis.md item 2/:53-57; cross-lineage-synthesis.md:72]. This is where evidence says the real fragility lives (five rows dropped fires before; the failure mode already happened once).",
+      "text": "**The uncovered hole that matters is CI-side, not model-side.** 010 item 18: no mechanical check that trigger rows cover rule fires — the `create-repo-rule` verify step checks counts and links only [SOURCE: synthesis.md item 2/:53-57; cross-lineage-synthesis.md:72]. This is where evidence says the real fragility lives (five rows dropped fires before; the failure mode already happened once).",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**The wiring seat exists and is proven.** `.claude/settings.json` registers `PreToolUse` matchers: `Write|Edit` → `spec-gate-enforce.mjs`; `Bash` → 4 hooks including `git-preflight-advisory` and `git-message-gate`; `Task` → dispatch guards; `mcp__claude_ai_.*` → mcp-route-guard [SOURCE: .claude/settings.json hooks block]. A rules advisory would be a fifth concern folder under `.skilled/hooks/` with per-runtime adapters, honoring the kill-switch convention (`SYSTEM_<CONCERN>_DISABLED`, `SYSTEM_HOOKS_DISABLED`) [SOURCE: .skilled/hooks/README.md kill-switch index].",
+      "text": "**The wiring seat exists and is proven.** `.claude/settings.json` registers `PreToolUse` matchers: `Write|Edit` → `spec-gate-enforce.mjs`; `Bash` → 4 hooks including `git-preflight-advisory` and `git-message-gate`; `Task` → dispatch guards; `mcp__claude_ai_.*` → mcp-route-guard [SOURCE: .claude/settings.json hooks block]. A rules advisory would be a fifth concern folder under `.skilled/hooks/` with per-runtime adapters, honoring the kill-switch convention (`SYSTEM_<CONCERN>_DISABLED`, `SYSTEM_HOOKS_DISABLED`) [SOURCE: .skilled/hooks/README.md kill-switch index].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/swe-2-max/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "swe-2-max"
+      ]
+    },
+    {
+      "id": "F8",
+      "statement": "The advisor brief fires every user prompt; the constant directive is deduped via directive-lifecycle.ts.",
+      "evidence": [
+        ".skilled/hooks/injection-contract.md:64-65"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F16",
+      "statement": "Blast radius: render.ts three emit sites + OpenCode plugin mirror + exact-string tests.",
+      "evidence": [
+        ".skilled/plugins/system-skill-advisor.js:68-73"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F34",
+      "statement": "All candidates respect 010's no-rule-growth constraint; emitted text must never embed the corpus path.",
+      "evidence": [
+        "010 synthesis.md:15",
+        "iteration 1 F9"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F10",
+      "statement": "010's constraint: content that must bind while reading cannot live in a rule file; the rule set should not grow.",
+      "evidence": [
+        "010 synthesis.md:15"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F7",
+      "statement": "022's measurement lesson: event frequency must be read from the log, never reasoned about.",
+      "evidence": [
+        "022 decisions.md:33-36"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F18",
+      "statement": "Candidate (a) fails 022's bar: restates a Gate-5 disposition, names no gate-enforced prohibition; hygiene asymmetry.",
+      "evidence": [
+        "022 implementation-summary.md:51"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F6",
+      "statement": "022's admission bar refuses prompt-time injections that restate a disposition; only a gate-enforced prohibition earns a slot.",
+      "evidence": [
+        "022 implementation-summary.md:51"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F4",
+      "statement": "A static second load path already exists where Gate 5 cannot reach replies (AGENTS.md:261).",
+      "evidence": [
+        "AGENTS.md:261"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F1",
+      "statement": "Gate 5 fires on the first write of a session only; read-only turns never fire it.",
+      "evidence": [
+        "AGENTS.md:93-94"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F31",
+      "statement": "Candidate (d): no measured miss exists; flip test = measured miss with cost; status quo covers first-write and replies.",
+      "evidence": [
+        "AGENTS.md:93-94,261",
+        "022 decisions.md:33-36"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F2",
+      "statement": "The router matches on the action about to be taken, never the prompt topic.",
+      "evidence": [
+        "REPO RULES.md:12",
+        "AGENTS.md:96"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F30",
+      "statement": "Candidate (c) matches on action — the router's own key; only candidate addressing later-in-session actions; shared core + per-runtime wiring.",
+      "evidence": [
+        "REPO RULES.md:12",
+        "injection-contract.md:143-202"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F23",
+      "statement": "Candidate (b) matches prompt topic, never action; trigger-table action phrases absent from rule trigger_phrases; complementary to Gate 5.",
+      "evidence": [
+        "REPO RULES.md:40",
+        "simulation"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F33",
+      "statement": "No tool-call-to-trigger-row mapping module exists today; spec-gate classifies spec-folder intent, not rule rows.",
+      "evidence": [
+        "checked iteration 4"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F24",
+      "statement": "Portability: canonical .skilled path wins dedupe; sibling reads shared index via .skilled symlink; root 'repo-rules' breaks sibling; one static root cannot serve both layouts.",
+      "evidence": [
+        "corpus.mjs:283-327,307-310"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F19",
+      "statement": "Candidate (b) is one line at corpus.mjs:30; generator indexes 13 docs / 255 phrases; 7 single-token phrases never rank.",
+      "evidence": [
+        "corpus.mjs:30",
+        "retrieval-conventions.md:261"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F13",
+      "statement": "Dedup: full on first/boundaries/content-change/transcript-shrink; route-only on proven repeats; fail-safe full otherwise.",
+      "evidence": [
+        "directive-lifecycle.ts:121-180"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F9",
+      "statement": "Federation: canonical corpus .skilled/repo-rules (13 files); Public/repo-rules is a symlink layer; Obsidian holds 12 of 13 symlinked; answer-the-actual-request.md never propagated.",
+      "evidence": [
+        "directory listings"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F26",
+      "statement": "Maintenance: staleness is phrase-set only; publication fail-closed corpus-wide; corpus checker internal-only.",
+      "evidence": [
+        "freshness.mjs:4-6",
+        "check-repo-rules.cjs:292-312"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F29",
+      "statement": "Candidate (c) silence: no row match + once-per-session dedup with re-arm; cost: process spawn per matched event + ~100-200B advisory; frequency log-measured post-build.",
+      "evidence": [
+        "injection-contract.md:79-80,143-202"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F17",
+      "statement": "Pointer text must name the repo-root router, never the corpus path.",
+      "evidence": [
+        "iteration 1 F9",
+        "REPO RULES.md:3-6"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F32",
+      "statement": "Cross-candidate: only (c) action-keyed; (a) fails 022 bar; (b) reverses documented decision, topic-keyed; (d) no measured miss/win; (c) strongest precedent, open risk classifier quality.",
+      "evidence": [
+        "iteration-004.md section 3"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F20",
+      "statement": "Empirical: today rule-vocab prompts return 0 results exit 1; simulated hits are 0.880 query-containment ('add a retry'->root-cause, 'force push'->blast-radius, 'unsolicited warning'->answer-the-actual-request).",
+      "evidence": [
+        "lookup + scorePhrase simulation iteration 3"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F22",
+      "statement": "Silence: scoring-only drops score-0 rows and exits 1; 2 of 5 realistic prompts zero-hit.",
+      "evidence": [
+        "lookup-trigger-index.mjs:204,335"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F27",
+      "statement": "Rule phrase 'silent reinterpretation' is already an index key owned by another document; index tolerates multi-owner phrases; corpus collision hygiene is index-blind.",
+      "evidence": [
+        "measured collision check"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F3",
+      "statement": "Corpus is 13 rule files with 255 trigger_phrases total; phrases name dispositions, not tool actions.",
+      "evidence": [
+        "measured phrase counts"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F12",
+      "statement": "Measured sizes: route 42B, label 12B, hygiene 207B, full brief ~261B; pointer draft 162B (~40 tokens).",
+      "evidence": [
+        "node measurement iteration 2"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F15",
+      "statement": "Candidate (a) is a prompt-time reminder surface, not action-keyed; value is timing and AGENTS.md-absent runtimes.",
+      "evidence": [
+        "render.ts:110-111"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F14",
+      "statement": "No repo-relevance signal in the renderer; handler carries workspaceRoot; unconditional emission fires in repos without REPO RULES.md.",
+      "evidence": [
+        "render.ts:389-394"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F11",
+      "statement": "Brief emission: three emit sites (render.ts:441,449,486); route capped at 80 tokens; directives appended after cap.",
+      "evidence": [
+        "render.ts:438-449"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F25",
+      "statement": "Documented decision-against at retrieval-conventions.md:284 states the structural reason; admission must overturn it explicitly.",
+      "evidence": [
+        "retrieval-conventions.md:284"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F5",
+      "statement": "The trigger index deliberately excludes .skilled/repo-rules; the documented reason is that indexing them would surface a rule as a context candidate.",
+      "evidence": [
+        "retrieval-conventions.md:284"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F28",
+      "statement": "Candidate (c) shape: advisory naming rule file(s) for the matched action; spec-gate precedent proves delivery machinery; tool-call→row mapping does not exist today.",
+      "evidence": [
+        "spec-gate-core.mjs:140-142,404-452",
+        ".claude/settings.json:98-102"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F21",
+      "statement": "Index: 3,738,528 bytes / 33,688 phrases / 13,172 paths; growth +13 paths, +255 phrases, est. +10-25KB; parse dominates per-lookup.",
+      "evidence": [
+        "trigger-index.json measured"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Framing advisor pointer as action-keyed",
+      "reason": "Prompt-time surfaces cannot match actions",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Naming the corpus path in pointer text",
+      "reason": "Three corpus locations across federation",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Prompt-topic matching via trigger_phrases as action substitute",
+      "reason": "Phrases are dispositions; router matches actions",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Reusing 010 federation counts as current fact",
+      "reason": "Mobile CLI absent; corpus 11→13; Obsidian holds 12 of 13",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "direction": "Root 'repo-rules' as drop-in for CORPUS_ROOTS",
+      "reason": "Outside-repo symlink refusal breaks the sibling",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 3,
+    "resolvedQuestions": 6,
+    "keyFindings": 77,
+    "sourceFindings": 77,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.625,
+    "coverageBySources": {}
+  }
+}

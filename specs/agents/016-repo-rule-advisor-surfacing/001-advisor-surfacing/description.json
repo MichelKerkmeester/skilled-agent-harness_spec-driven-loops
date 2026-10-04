@@ -1,0 +1,31 @@
+{
+  "specFolder": "agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing",
+  "description": "Repo rules in `.skilled/repo-rules/` reach the model through one door: Gate 5, which fires on the first write of a session and asks the model to match",
+  "keywords": [
+    "repo",
+    "rules",
+    "skilled",
+    "repo-rules",
+    "reach",
+    "model",
+    "one",
+    "door",
+    "gate",
+    "fires",
+    "first",
+    "write",
+    "session",
+    "asks",
+    "match"
+  ],
+  "lastUpdated": "2026-10-04T13:11:44.576Z",
+  "specId": "001",
+  "folderSlug": "advisor-surfacing",
+  "parentChain": [
+    "agents",
+    "016-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
