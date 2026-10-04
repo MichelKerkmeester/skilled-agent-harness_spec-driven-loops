@@ -30,7 +30,7 @@ upstream_assets:
   presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
   pass_policy:
     startup_approval_required: true
-    dry_run_writes_nothing: true
+    dry_run_writes: none
     engine_lock: ".skilled/release/.apply.lock"
     rollback_record: "<runDir>/rollback.json"
 
@@ -95,7 +95,7 @@ state_log_schema:
   battery: "map of check name to pass|fail|not_run"
   reindex: "rebuilt|skipped|failed|not_applicable"
   rollback: "not_needed|completed|partial|failed"
-  final_status: "dry_run|applied|partial|failed|rolled_back|declined"
+  final_status: "dry_run|applied|partial|failed|rolled_back|declined|cancelled"
 
 workflow:
   phase_1_preflight:
@@ -118,12 +118,14 @@ workflow:
       - "Confirm every write path is allowed by the canonical path validator."
       - "Show the full plan, including added, replaced and deleted paths, skipped units and follow-up checks."
       - "Show each skipped unit with its reason, and for reason undecided files list its paths."
-    terminal_dry_run: "If the user supplied --dry-run, write the state log and stop with STATUS=DRY_RUN. Do not ask for startup approval or call apply without --dry-run."
+    terminal_dry_run: "If the user supplied --dry-run, stop with STATUS=DRY_RUN without writing a state log. Do not ask for startup approval or call apply without --dry-run."
     on_failure: "Write the state log, show the engine refusal and stop without mutation."
 
   phase_3_startup_approval:
     approval: "Ask once for approval to apply the exact displayed plan. Do not continue until the operator approves."
-    no_approval: "Write only the terminal state log, perform no release-managed write, do not call engine apply without --dry-run, and stop with STATUS=DECLINED."
+    no_approval:
+      explicit_no_or_ambiguous: "Write only the terminal state log, perform no release-managed write, do not call engine apply without --dry-run, and stop with STATUS=DECLINED."
+      cancellation_or_interruption: "Write only the terminal state log, perform no release-managed write, do not call engine apply without --dry-run, and stop with STATUS=CANCELLED ACTION=cancelled."
     changed_plan: "If the engine refuses because the plan changed since the dry-run, discard the approval, rerun the dry-run and ask again."
 
   phase_4_engine_apply:
@@ -211,11 +213,12 @@ workflow:
     approval: none
     write: ".skilled/release/runs/.doctor-update.last-run.json"
     fields: [command, start, end, duration_seconds, run_dir, release, dry_run, startup_approved, writes, battery, reindex, rollback, final_status]
-    terminal_rule: "Write the state log on every terminal path, including preflight failure, dry-run, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Confirm any engine-acquired lock was released before ending."
+    terminal_rule: "Write the state log on every terminal path except dry-run, including preflight failure, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Confirm any engine-acquired lock was released before ending. A dry run writes no state log."
 
 terminal_statuses:
   - "STATUS=DRY_RUN"
   - "STATUS=DECLINED"
+  - "STATUS=CANCELLED"
   - "STATUS=APPLIED"
   - "STATUS=PARTIAL"
   - "STATUS=ROLLED_BACK"

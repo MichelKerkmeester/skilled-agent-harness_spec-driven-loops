@@ -29,6 +29,7 @@ upstream_assets:
     gitignore_match_required: true
     engine_run_dir_must_be_under: ".skilled/release/runs"
     only_customized_conflict_removed_units_need_decisions: true
+    dry_run_writes: none
 
 user_inputs:
   action: "align"

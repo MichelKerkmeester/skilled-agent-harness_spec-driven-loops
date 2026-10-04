@@ -538,6 +538,76 @@ test('a graph-metadata release edit outside the derived block is taken, then reg
   assert.equal(unit(report, 'hub-a').status, 'update');
 });
 
+test('a release rename links its old and new paths', () => {
+  const oldPath = '.skilled/skills/hub-a/references/old-name.md';
+  const newPath = '.skilled/skills/hub-a/references/new-name.md';
+  const fixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [oldPath]: 'same content\n',
+    },
+    {
+      [oldPath]: null,
+      [newPath]: 'same content\n',
+    },
+  );
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0);
+  assert.equal(unit(checked.document, 'skill:hub-a').status, 'update');
+  assert.equal(runFile(checked.document, oldPath).renamedTo, newPath);
+  assert.equal(runFile(checked.document, newPath).renamedFrom, oldPath);
+
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  assert.equal(fs.existsSync(path.join(fixture.operator, oldPath)), false);
+  assert.equal(readText(fixture.operator, newPath), 'same content\n');
+
+  const editedFixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [oldPath]: 'same content\n',
+    },
+    {
+      [oldPath]: null,
+      [newPath]: 'same content\n',
+    },
+  );
+  writeFile(editedFixture.operator, oldPath, 'operator edit\n');
+  commitAll(editedFixture.operator, 'edit renamed file locally');
+  const aligned = runCli(editedFixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const oldFile = runFile(aligned.document, oldPath);
+  assert.equal(oldFile.class, 'conflict');
+  assert.equal(oldFile.conflictKind, 'deleted-in-release');
+  assert.equal(oldFile.renamedTo, newPath);
+  const evidencePath = path.join(
+    aligned.document.runDir,
+    'evidence',
+    oldPath.replace(/^\.skilled\//, '') + '.md',
+  );
+  const evidenceCard = fs.readFileSync(evidencePath, 'utf8');
+  assert.ok(evidenceCard.includes('Rename: ' + oldPath + ' -> ' + newPath));
+});
+
+test('a release change to an unregenerated leaf manifest is written', () => {
+  const fixture = makePair(
+    {
+      '.skilled/skills/hub-a/SKILL.md': '# hub-a\n',
+      [HUB_A_LEAF_MANIFEST]: '{"leaves":["base"]}\n',
+    },
+    {
+      [HUB_A_LEAF_MANIFEST]: '{"leaves":["release"]}\n',
+    },
+  );
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0);
+  assert.equal(runFile(checked.document, HUB_A_LEAF_MANIFEST).class, 'take-release');
+
+  const dry = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(dry.exitCode, 0, JSON.stringify(dry.document));
+  assert.ok(dry.document.writes.some((write) => write.path === HUB_A_LEAF_MANIFEST));
+});
+
 test('a copied tree reports a recorded base after record-base', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-recorded');

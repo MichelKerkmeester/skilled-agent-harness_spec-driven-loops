@@ -32,6 +32,8 @@ Accepted flags by action:
 
 Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags. Both compare version segments as numbers. A tag named with `--release` is used as given.
 
+A check may fetch release commits it lacks into the git object store. That changes no checkout file or ref. Pass --offline to prevent every fetch.
+
 Bare `/doctor:update` runs `check`. There are no `:auto` or `:confirm` suffixes.
 
 ## 2. Check Dashboard
@@ -43,7 +45,7 @@ When the operator passes `--json`, return the engine report as one JSON document
 ```text
 Spec-kit Release Check
 
-Release position: [ahead|behind|even|unknown] [release tag or UNKNOWN]
+Release position: [ahead|behind|at-release|unknown] [release tag or UNKNOWN]
 Upstream latest: [tag or UNKNOWN]
 Checkout: [head]  Ahead: [count]  Behind: [count]  Dirty: [yes|no]
 Report status: [status]
@@ -134,6 +136,7 @@ Class: [class]  Conflict type: [kind or none]
 Base blob / mode: [blob or absent] / [mode or absent]
 Local blob / mode: [blob or absent] / [mode or absent]
 Release blob / mode: [blob or absent] / [mode or absent]
+Rename: [from path -> to path, or none]
 Merge summary: [summary]
 Changelog rationale: [rationale]
 Recommended decision: [decision or review]
@@ -248,7 +251,7 @@ Apply exactly this release plan to the checkout?
 Reply yes to approve the planned writes, or no to leave release-managed files unchanged.
 ```
 
-Only an unambiguous `yes` approves. On `no`, cancellation, ambiguity or interruption, do not run engine apply without `--dry-run`. Write the terminal state log and report `STATUS=DECLINED`. If the operator supplied `--dry-run`, do not ask this prompt; stop after the plan with `STATUS=DRY_RUN`.
+Only an unambiguous `yes` approves. On an explicit `no` or an ambiguous answer, do not run engine apply without `--dry-run`. Write the terminal state log and report `STATUS=DECLINED`. On cancellation or interruption, do not run engine apply without `--dry-run`. Write the terminal state log and report `STATUS=CANCELLED ACTION=cancelled`. If the operator supplied `--dry-run`, do not ask this prompt; stop after the plan with `STATUS=DRY_RUN`.
 
 ## 5. Post-Apply Battery and Recovery
 
@@ -450,9 +453,9 @@ Skipped units: [list or none]
 Post-apply checks: [pass count] passed, [fail count] failed
 Database reindex: [rebuilt|skipped|failed|not applicable]
 Rollback: [not needed|completed|partial|failed]
-State log: .skilled/release/runs/.doctor-update.last-run.json
+State log: .skilled/release/runs/.doctor-update.last-run.json, or none for a dry run
 Commit the applied files and the changed release records under .skilled/release/ before the next /doctor:update apply.
-STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|DRY_RUN|FAILED]
+STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 ```
 
 ### Failure

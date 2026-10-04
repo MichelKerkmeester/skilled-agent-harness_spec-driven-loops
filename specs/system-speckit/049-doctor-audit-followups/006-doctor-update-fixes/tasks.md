@@ -254,49 +254,49 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Phase D: contract hygiene (DU-13 items 1, 2 and 6, DU-17 to DU-24, DU-26)
 
-- [ ] T050 DU-13 items 1, 2 and 6: use the engine's vocabulary (`doctor-update-check.yaml` lines 57-59, 79, 120, 143-151, presentation line 44)
+- [x] T050 DU-13 items 1, 2 and 6: use the engine's vocabulary (`doctor-update-check.yaml` lines 57-59, 79, 120, 143-151, presentation line 44)
   - Line 79: `upstream_status: "known|unknown"`, with a note that an offline check reports `unknown` with `upstream.error` `offline mode`.
   - Add `report: [current, updates-available, blocked, unknown]` to `status_values`, and a `report_status_mapping` in phase 5: `current` and `updates-available` give `STATUS=OK`, `blocked` gives `STATUS=UNKNOWN` with the blocked units named, and `unknown` gives `STATUS=UNKNOWN`.
   - Presentation line 44: `Release position: [ahead|behind|at-release|unknown] [release tag or UNKNOWN]`.
 
-- [ ] T051 DU-17: link a release rename in the report and the evidence card (`release-update.cjs`, `buildReport` 1015-1085, `evidenceCard` 1216-1250, `doctor-update-check.yaml` line 116, presentation lines 108-117)
+- [x] T051 DU-17: link a release rename in the report and the evidence card (`release-update.cjs`, `buildReport` 1015-1085, `evidenceCard` 1216-1250, `doctor-update-check.yaml` line 116, presentation lines 108-117)
   - Add `releaseRenames(repo, baseCommit, releaseCommit, pathspec)`. When either commit is missing it returns an empty map. Otherwise it runs `gitTry(repo, ['diff', '-M', '--name-status', '-z', baseCommit, releaseCommit, '--', pathspec])`, parses records whose status starts with `R` into old and new paths, and returns a map from old to new. A failed call returns an empty map.
   - In `buildReport`, call it only for a unit that holds at least one file with a base entry and no release entry and at least one file with a release entry and no base entry. Use `.skilled` as the pathspec for the root unit and `.skilled/<prefix>` otherwise. For each pair whose two paths are both in this unit's file reports, set `renamedTo` on the old report and `renamedFrom` on the new one.
   - In `evidenceCard`, add the line `- Rename: <from> -> <to>` when the file has either field, else `- Rename: none`.
   - Add `renamedFrom` and `renamedTo` to `file_fields` in `doctor-update-check.yaml`, and the line `Rename: [from path -> to path, or none]` to the presentation evidence card.
   - Test, new, in section 4: `a release rename links its old and new paths`. Use `makePair` with base files `.skilled/skills/hub-a/SKILL.md` and `.skilled/skills/hub-a/references/old-name.md` (`same content\n`), where the release deletes `old-name.md` and adds `new-name.md` with the same content. Assert `check` reports `skill:hub-a` as `update`, `old-name.md` with `renamedTo` set to the new path and `new-name.md` with `renamedFrom` set to the old path. Run `apply` and assert the old file is gone and the new one exists. In a second `makePair`, have the operator edit `old-name.md` and commit, then align. Assert the plan reports `old-name.md` as a `deleted-in-release` conflict with `renamedTo` set, and its evidence card contains `Rename: .skilled/skills/hub-a/references/old-name.md -> .skilled/skills/hub-a/references/new-name.md`.
 
-- [ ] T052 DU-18: record cancellation as CANCELLED (`doctor-update-apply.yaml` lines 89, 114-117, 197-203, presentation lines 212 and 321)
+- [x] T052 DU-18: record cancellation as CANCELLED (`doctor-update-apply.yaml` lines 89, 114-117, 197-203, presentation lines 212 and 321)
   - Add `cancelled` to `final_status`. Split `no_approval`: an explicit no or an ambiguous answer stops with `STATUS=DECLINED`, and a cancellation or interruption stops with `STATUS=CANCELLED ACTION=cancelled`. Neither runs engine apply without `--dry-run`. Add `STATUS=CANCELLED` to `terminal_statuses`.
   - Presentation line 212: map no and ambiguity to `STATUS=DECLINED`, and cancellation and interruption to `STATUS=CANCELLED ACTION=cancelled`. Add `CANCELLED` to the apply result status list at line 321.
 
-- [ ] T053 DU-19: one dry-run rule for align and apply (`doctor-update-apply.yaml` lines 33, 111, 191-195, `doctor-update-align.yaml` pass policy, presentation line 320)
+- [x] T053 DU-19: one dry-run rule for align and apply (`doctor-update-apply.yaml` lines 33, 111, 191-195, `doctor-update-align.yaml` pass policy, presentation line 320)
   - Replace `dry_run_writes_nothing: true` with `dry_run_writes: none` in apply's pass policy, and add `dry_run_writes: none` to align's pass policy.
   - Change `terminal_dry_run` to stop with `STATUS=DRY_RUN` without writing a state log. Remove dry-run from the `terminal_rule` list in phase 7 and add "A dry run writes no state log."
   - Presentation apply result: change the state-log line to `State log: .skilled/release/runs/.doctor-update.last-run.json, or none for a dry run`.
 
-- [ ] T054 DU-20: summarize the hint and sync it with the contract (`update.md` line 3, `command-contract.json` line 203)
+- [x] T054 DU-20: summarize the hint and sync it with the contract (`update.md` line 3, `command-contract.json` line 203)
   - Set `argument-hint: "[check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags]"`. It is 128 characters.
   - In `command-contract.json` `doctor.input.argument_hint`, replace the update segment so it reads that exact string followed by ` (update)`.
 
-- [ ] T055 DU-21: remove next-step wording from the router (`update.md` line 68)
+- [x] T055 DU-21: remove next-step wording from the router (`update.md` line 68)
   - Replace the paragraph with: "A first run on a copied or freshly installed tree reports `baseRecording.needed`. The `record-base` action records the base, and the presentation's base-recording template owns what the operator is told."
 
-- [ ] T056 DU-22: correct the generated-files sentence (`update.md` line 66)
+- [x] T056 DU-22: correct the generated-files sentence (`update.md` line 66)
   - Replace the second sentence with: "Generated files (leaf manifests, the trigger index and its sidecars, compiled-route activation manifests, and graph-metadata `derived` blocks) never count as customizations. A copy the operator regenerated stays in place and apply names its generator, while a release change to a copy the operator never regenerated is applied like any other file."
   - Test, new, in section 4: `a release change to an unregenerated leaf manifest is written`. Use `makePair` with base `.skilled/skills/hub-a/SKILL.md` and `.skilled/skills/hub-a/leaf-manifest.json` (`{"leaves":["base"]}\n`), where the release changes the manifest to `{"leaves":["release"]}\n`. Leave the operator copy untouched. Assert `check` reports the manifest as `take-release`, and `apply --dry-run` lists it in `writes`.
 
-- [ ] T057 DU-23: say check is read-only for the checkout (`update.md` line 16, presentation after line 31)
+- [x] T057 DU-23: say check is read-only for the checkout (`update.md` line 16, presentation after line 31)
   - Line 16: "Bare `/doctor:update` runs the `check` action, which is read-only for the checkout."
   - Presentation, after the release-policy line: `A check may fetch release commits it lacks into the git object store. That changes no checkout file or ref. Pass --offline to prevent every fetch.`
 
-- [ ] T058 DU-24: grant only the tools the command uses (`update.md` line 4)
+- [x] T058 DU-24: grant only the tools the command uses (`update.md` line 4)
   - Set `allowed-tools: Read, Bash`.
 
-- [ ] T059 DU-26: refresh the release-note index (`.skilled/changelog/skilled/README.md` lines 23 and 25)
+- [x] T059 DU-26: refresh the release-note index (`.skilled/changelog/skilled/README.md` lines 23 and 25)
   - Run `git tag -l 'v4*'` first. Line 23 lists every top-level `vN.N.N.N.md` file. Line 25 names the top-level entry whose tag does not exist yet, which on 2026-10-03 was `v4.0.0.3.md`. If every entry is tagged, line 25 says that no upcoming entry exists.
 
-- [ ] T060 Contract test: create `doctor-update-contract.test.cjs` (`.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs`, new)
+- [x] T060 Contract test: create `doctor-update-contract.test.cjs` (`.skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs`, new)
   - Layout like `release-update.test.cjs`: box header, `'use strict'`, numbered ALL-CAPS sections, `node:test` and `node:assert/strict`. Read files with `fs.readFileSync`. Parse YAML text with small line-based helpers, because Node has no YAML parser, and keep each helper under 20 lines.
   - `every routed flag is a declared input of its action's workflow`: parse each `- \`<action>\` accepts ...` line in `update.md`, map each flag to an input key (strip the dashes, hyphen to underscore), and assert the key appears in that action's YAML `user_inputs` block.
   - `workflow and presentation vocabulary matches the engine`: for each engine value (`known`, `unknown`, `at-release`, `ahead`, `behind`, `current`, `updates-available`, `blocked`, `downgrade`) assert it appears quoted in `release-update.cjs`. Assert the check YAML `upstream_status` line has `known|unknown` and no `available`, the check YAML maps `blocked`, and the presentation `Release position:` line has `at-release` and no `even`.
@@ -312,7 +312,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
   - `the lock template routes stale locks to rollback`: the presentation contains `Run /doctor:update rollback to clear the lock`.
   - Run: `node --test .skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs`.
 
-- [ ] T061 List the contract test (`.skilled/commands/doctor/scripts/tests/README.md` line 37)
+- [x] T061 List the contract test (`.skilled/commands/doctor/scripts/tests/README.md` line 37)
   - Add a row for `doctor-update-contract.test.cjs` that says it checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine.
 <!-- /ANCHOR:phase-2 -->
 

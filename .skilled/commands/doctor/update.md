@@ -1,7 +1,7 @@
 ---
 description: Route /doctor:update check, align, apply, rollback or record-base operations for a spec-kit release.
-argument-hint: "[check|align|apply] [--json] [--release=<tag>] [--scope=all|<unit,...>] [--offline] [--dry-run] [--decisions=<path>] [--include-prerelease]"
-allowed-tools: Read, Bash, Grep, Glob
+argument-hint: "[check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags]"
+allowed-tools: Read, Bash
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -13,7 +13,7 @@ This command routes release-aware check, align, apply, rollback and record-base 
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
-Load the presentation contract before showing action errors, startup questions, dashboards, evidence cards, approval prompts, results or next steps. Bare `/doctor:update` runs the read-only `check` action. The command is confirm-only and has no `:auto` or `:confirm` suffix.
+Load the presentation contract before showing action errors, startup questions, dashboards, evidence cards, approval prompts, results or next steps. Bare `/doctor:update` runs the `check` action, which is read-only for the checkout. The command is confirm-only and has no `:auto` or `:confirm` suffix.
 
 Reject an unknown action or any flag that is invalid for the selected action before loading that action's YAML. Normalize equals-form values such as `--release=<tag>`, `--scope=<value>`, `--decisions=<path>`, `--remote=<name-or-url>` and `--run=<runDir>` to the engine's separate flag and value form. Do not pass router-only arguments to the engine.
 
@@ -67,6 +67,6 @@ All visible text and layouts live only in `.skilled/commands/doctor/assets/docto
 
 `check` reports release position and per-unit status without changing checkout files. `align` gathers explicit decisions into an ignored run directory and never writes outside it. `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout. When no unapplied alignment run exists at the current HEAD, it writes only update and new units. `rollback` previews a recorded rollback, then asks before restoring paths or clearing a stale lock. `record-base` previews the units for a release and asks before writing the recorded base. The five actions share the release-update engine while retaining action-specific input and mutation boundaries.
 
-Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed. Both orders compare version segments as numbers. A tag named with `--release` is used as given. Generated files (leaf manifests, the trigger index and its sidecars, and graph-metadata `derived` blocks) never count as customizations. Apply names their generators instead of writing them.
+Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed. Both orders compare version segments as numbers. A tag named with `--release` is used as given. Generated files (leaf manifests, the trigger index and its sidecars, compiled-route activation manifests, and graph-metadata `derived` blocks) never count as customizations. A copy the operator regenerated stays in place and apply names its generator, while a release change to a copy the operator never regenerated is applied like any other file.
 
-First run after copying or installing `.skilled/`: `check` reports `baseRecording.needed` and offers `/doctor:update record-base --release=<installed-release>`. The record-base workflow saves the selected release so later checks compare against a recorded base instead of an inferred one.
+A first run on a copied or freshly installed tree reports `baseRecording.needed`. The `record-base` action records the base, and the presentation's base-recording template owns what the operator is told.
