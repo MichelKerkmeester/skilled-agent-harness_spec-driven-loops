@@ -1,0 +1,7 @@
+{
+ "packets": 58,
+ "folders": 191,
+ "changed_folders": {},
+ "excluded_rule": "FRONTMATTER_VALUES",
+ "method": "per folder, x/! rule set, HEAD content vs current content, current tooling"
+}

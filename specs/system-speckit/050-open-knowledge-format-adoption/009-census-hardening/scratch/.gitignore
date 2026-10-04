@@ -1,0 +1,7 @@
+# Regenerable intermediates too large for git (2.6 GB, 133 MB, 96 MB).
+# rows-after.jsonl is rebuilt by census-rows.mjs; renames-head.txt and
+# ever-paths.txt are git-history dumps at commit 5285608745 that
+# sample-and-check.py reads.
+rows-after.jsonl
+renames-head.txt
+ever-paths.txt

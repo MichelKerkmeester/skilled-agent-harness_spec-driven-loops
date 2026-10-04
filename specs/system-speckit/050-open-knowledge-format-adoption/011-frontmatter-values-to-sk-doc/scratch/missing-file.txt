@@ -1,0 +1,14 @@
+== ts source
+rc=1
+== ts dist
+    throw new Error('frontmatter value list not found: sk-doc/sk-create-frontmatter/assets/frontmatter-values.json');
+== rule helper
+shared frontmatter list unreadable: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json'
+rc=2
+== advisor
+Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json'
+== python
+loaded None warnings []
+
+== ts source (rerun from the shared folder; the first run failed on npx, not the module)
+Error: frontmatter value list not found: sk-doc/sk-create-frontmatter/assets/frontmatter-values.json

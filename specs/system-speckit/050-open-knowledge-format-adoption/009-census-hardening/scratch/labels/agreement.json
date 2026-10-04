@@ -1,0 +1,86 @@
+{
+  "rows": 150,
+  "luna_labeled": 150,
+  "deepseek_labeled": 150,
+  "both_labeled": 150,
+  "kappa": 0.3094,
+  "observed_agreement": 0.6,
+  "confusion": {
+    "cant_tell|cant_tell": 3,
+    "cant_tell|intended": 43,
+    "cant_tell|not_intended": 11,
+    "intended|cant_tell": 1,
+    "intended|intended": 71,
+    "intended|not_intended": 3,
+    "not_intended|intended": 2,
+    "not_intended|not_intended": 16
+  },
+  "by_origin": {
+    "c9-": {
+      "n": 100,
+      "kappa": 0.2634,
+      "agree": 67
+    },
+    "t10": {
+      "n": 50,
+      "kappa": 0.2961,
+      "agree": 23
+    }
+  },
+  "hard_disputes": 5,
+  "soft_disputes": 55,
+  "pick_disputes": 1,
+  "cap": 40,
+  "operator_rows": [
+    47,
+    80,
+    92,
+    102,
+    109,
+    51,
+    52,
+    54,
+    55,
+    56,
+    58,
+    59,
+    60,
+    61,
+    65,
+    68,
+    71,
+    73,
+    75,
+    76,
+    77,
+    79,
+    81,
+    83,
+    86,
+    87,
+    89,
+    90,
+    91,
+    93,
+    95,
+    97,
+    98,
+    99,
+    100,
+    101,
+    103,
+    105,
+    106,
+    107
+  ],
+  "luna_counts": {
+    "intended": 75,
+    "not_intended": 18,
+    "cant_tell": 57
+  },
+  "deepseek_counts": {
+    "intended": 116,
+    "not_intended": 30,
+    "cant_tell": 4
+  }
+}

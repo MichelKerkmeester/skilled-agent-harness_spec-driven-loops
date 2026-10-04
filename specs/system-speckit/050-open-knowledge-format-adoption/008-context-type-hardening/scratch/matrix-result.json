@@ -1,0 +1,29 @@
+{
+ "protocol": "v1",
+ "seed": 20261004,
+ "rows": 1188,
+ "expected_warn": 180,
+ "w1_status": [
+  "warn",
+  "180 frontmatter value(s) outside the shared list"
+ ],
+ "W1": {
+  "tp": 180,
+  "fp": 0,
+  "fn": 0,
+  "tn": 1008,
+  "recall": 1.0,
+  "precision": 1.0
+ },
+ "W2": {
+  "tp": 180,
+  "fp": 0,
+  "fn": 0,
+  "tn": 1008,
+  "recall": 1.0,
+  "precision": 1.0
+ },
+ "w1_misses": [],
+ "w2_misses": [],
+ "fixture_dir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/fv-matrix-_o__dmh7"
+}

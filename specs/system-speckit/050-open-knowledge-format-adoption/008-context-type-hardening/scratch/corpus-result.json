@@ -1,0 +1,12 @@
+{
+ "protocol": "v1",
+ "docs_scanned": 22754,
+ "tracked": 32037,
+ "untracked": 96,
+ "w1_warnings": 0,
+ "w2_warnings": 0,
+ "w1_seconds": 12.3,
+ "w2_seconds": 11.5,
+ "w1": [],
+ "w2": []
+}

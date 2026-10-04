@@ -1,0 +1,4 @@
+./specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/implementation-summary.md
+./specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md
+./specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/goal.md
+./specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/tasks.md

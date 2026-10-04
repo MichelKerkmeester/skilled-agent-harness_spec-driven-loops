@@ -1,0 +1,13 @@
+Role: you edit Python in this repository. Make exactly the change below and nothing else.
+
+The frontmatter value list moved to `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`. Its `contextType` key is now `{ canonical, aliases }` directly, with no `document` level.
+
+1. In `.skilled/skills/sk-doc/shared/scripts/validate_document.py`:
+- Lines 1589 to 1593: set `FRONTMATTER_VALUES_PATH` to `Path(__file__).resolve().parents[2] / 'sk-create-frontmatter' / 'assets' / 'frontmatter-values.json'`, and replace the two comment lines above it with: `# The value list belongs to sk-create-frontmatter, which owns the frontmatter contract;` and `# spec-kit's validator reads the same file, so spec docs and skill docs agree.`
+- In `validate_frontmatter_values`, change `values['contextType']['document']` to `values['contextType']`.
+
+2. In `.skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py` line 5: replace `system-spec-kit's frontmatter-values.json` with `sk-create-frontmatter's frontmatter-values.json`.
+
+Do not edit or delete any other file. Keep the behavior where a missing file returns None and no warning.
+
+Check: `python3 .skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py` exits 0. Report the result.

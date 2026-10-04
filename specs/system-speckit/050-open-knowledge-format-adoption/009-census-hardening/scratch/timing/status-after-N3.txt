@@ -1,0 +1,607 @@
+ M .opencode/package-lock.json
+ M .opencode/package.json
+ M .skilled/commands/deep/assets/compiled/deep-research.contract.md
+ M .skilled/commands/deep/assets/compiled/deep-review.contract.md
+ M .skilled/commands/deep/research.md
+ M .skilled/commands/deep/review.md
+ M .skilled/commands/doctor/_routes.yaml
+ M .skilled/commands/doctor/assets/doctor-deep-loop.yaml
+ M .skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml
+ M .skilled/commands/doctor/speckit.md
+ M .skilled/commands/speckit/assets/speckit-complete.yaml
+ M .skilled/commands/speckit/assets/speckit-plan.yaml
+ M .skilled/commands/speckit/complete.md
+ M .skilled/commands/speckit/implement.md
+ M .skilled/commands/speckit/plan.md
+ M .skilled/commands/speckit/save.md
+ M .skilled/skills/sk-doc/ROUTER.md
+ M .skilled/skills/sk-doc/SKILL.md
+ M .skilled/skills/sk-doc/description.json
+ M .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md
+ M .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+ M .skilled/skills/sk-doc/hub-router.json
+ M .skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md
+ M .skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/sk-doc/mode-registry.json
+ M .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs
+ M .skilled/skills/sk-doc/shared/scripts/README.md
+ M .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs
+ M .skilled/skills/sk-doc/shared/scripts/validate_document.py
+ M .skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md
+ M .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
+ M .skilled/skills/system-deep-loop/deep-research/SKILL.md
+ M .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
+ M .skilled/skills/system-deep-loop/deep-review/SKILL.md
+ M .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
+ M .skilled/skills/system-skill-advisor/SKILL.md
+ M .skilled/skills/system-spec-kit/ARCHITECTURE.md
+ M .skilled/skills/system-spec-kit/README.md
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-spec-kit/references/config/environment-variables.md
+ M .skilled/skills/system-spec-kit/references/structure/grep-convention.md
+ M .skilled/skills/system-spec-kit/references/validation/validation-rules.md
+ M .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md
+ M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+ M .skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/phase-status-from-payload.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts
+ M .skilled/skills/system-spec-kit/shared/context-types.ts
+ M .skilled/skills/system-spec-kit/shared/tests/context-types.test.ts
+ M .skilled/skills/system-spec-kit/shared/tsconfig.json
+ M specs/hooks/002-injection-bloat-reduction/008-sk-code-alignment/graph-metadata.json
+ M specs/hooks/002-injection-bloat-reduction/008-sk-code-alignment/implementation-summary.md
+ M specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/graph-metadata.json
+ M specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/implementation-summary.md
+ M specs/hooks/002-injection-bloat-reduction/010-playbook-cheapest-model/graph-metadata.json
+ M specs/hooks/002-injection-bloat-reduction/010-playbook-cheapest-model/implementation-summary.md
+ M specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation/graph-metadata.json
+ M specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation/implementation-summary.md
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/graph-metadata.json
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/handover.md
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/implementation-summary.md
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/plan.md
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/spec.md
+ M specs/hooks/009-goal-isolation/005-verification-and-validation/tasks.md
+ M specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md
+ M specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/graph-metadata.json
+ M specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/handover.md
+ M specs/sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review/graph-metadata.json
+ M specs/sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review/plan.md
+ M specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/transition-versioning-and-rollback-policy.md
+ M specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip/hardening-notes.md
+ M specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip/t001-disposition.md
+ M specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/decision-record.md
+ M specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/graph-metadata.json
+ M specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/handover.md
+ M specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/graph-metadata.json
+ M specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/handover.md
+ M specs/system-deep-loop/036-deep-loop-innovation/scratch/handover.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/003-fix-release-readiness-findings-synthesis/synthesis.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings/deferred-p2.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit/audit-findings.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit/cross-runtime-diff.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment/audit-findings.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment/lint-results.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment/remediation-log.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/audit-findings.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog/remediation-log.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/resource-map.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/001-cache-warning-hooks/review/review-report.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality/review/review-report.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion/plan.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion/spec.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion/tasks.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/HANDOVER-2026-05-14-evening.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/handover.md
+ M specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/review/resource-map.md
+ M specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes/graph-metadata.json
+ M specs/system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes/implementation-summary.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/README.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/architecture-audits.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/cross-project-comparisons.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/pattern-mining.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/refactor-surveys.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/technical-investigations.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/deep-research-prompts/unknown-unknowns.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/README.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/code-graph-hooks.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/opencode-plugin.md
+ M specs/system-speckit/026-graph-and-context-optimization/scratch/manual-test-prompts-029-hooks/skill-advisor-hooks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/tasks.md
+ M specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/implementation-summary.md
+ M specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/graph-metadata.json
+ M specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research/implementation-summary.md
+ M specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/graph-metadata.json
+ M specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/plan.md
+ M specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/spec.md
+ M specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/implementation-summary.md
+ M specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/plan.md
+ M specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/spec.md
+ M specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas/tasks.md
+ M specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/lineages/deepseek-v4-flash-code-standards-r2/deep-research-strategy.md
+ M specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/lineages/deepseek-v4-flash-code-standards/deep-research-strategy.md
+ M specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/lineages/gemini-3-8-flash-code-standards/deep-research-strategy.md
+ M specs/system-speckit/graph-metadata.json
+?? .skilled/skills/sk-doc/changelog/v2.3.0.0.md
+?? .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md
+?? .skilled/skills/sk-doc/feature-catalog/document-validation/shared-frontmatter-value-warning.md
+?? .skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md
+?? .skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md
+?? .skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py
+?? .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json
+?? .skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.1.0.md
+?? .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md
+?? .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md
+?? .skilled/skills/system-skill-advisor/changelog/v0.14.3.0.md
+?? .skilled/skills/system-spec-kit/changelog/v2.7.0.0.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/shared-frontmatter-value-list.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-tag-resolution.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md
+?? .skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs
+?? .skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh
+?? .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs
+?? .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/check-frontmatter-values.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts
+?? .skilled/skills/system-spec-kit/shared/frontmatter-values.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/deep-research-findings-registry.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/fanout-attribution.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/findings-registry.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-audit-ledger/frames/0000000000000001.frame
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-audit-ledger/frames/0000000000000002.frame
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-config.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-dashboard.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-effect-ledger/frames/0000000000000001.frame
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-effect-ledger/frames/0000000000000002.frame
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-state.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deep-research-strategy.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-001.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-002.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-003.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-004.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-005.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-006.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-007.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-008.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-009.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/deltas/iter-010.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/findings-registry.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/invocation-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-001.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-002.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-003.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-004.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-005.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-006.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-007.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-008.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-009.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/iterations/iteration-010.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/logs/fanout-lineage.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/logs/fanout-lineage.out
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/research.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max/resource-map.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/observability-events.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/orchestration-summary.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/research.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/scratch/seed/okf-README.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/scratch/seed/okf-SPEC.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/baseline.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/decision-record.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/agreement.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/agreement.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/census-5285608745.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/census.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/label-brief.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/labels-claude.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/labels-deepseek.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/labels-deepseek.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/labels-deepseek.raw
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/sample-rows.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch/sample_draw.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/cleanup-report.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/cleanup.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/cli-summary-after.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/cli-summary-baseline.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/d1-proof.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/d1_proof.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/sweep-after.tsv
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch/sweep-before.tsv
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/census.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/decision-record.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/scratch/doctor-citation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch/p005-comparison.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch/p005-packets.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch/p005_capture.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/measurement-protocol.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/corpus-result.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/corpus.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/generator-seeds.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/generator-seeds.raw.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/matrix-result.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/matrix.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers-result.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers-score.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/01.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/02.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/03.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/04.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/05.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/06.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/07.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/08.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/09.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/10.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/01.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/02.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/03.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/04.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/05.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/06.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/07.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/08.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/09.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/10.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-01.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-01.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-02.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-02.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-03.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-03.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-04.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-04.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-05.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-05.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-06.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-06.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-07.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-07.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-08.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-08.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-09.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-09.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-10.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/deepseek-10.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-01.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-02.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-03.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-04.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-05.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-06.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-07.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-08.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-09.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/raw/swe-10.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/01.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/02.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/03.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/04.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/05.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/06.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/07.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/08.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/09.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/10.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/measurement-protocol.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/baseline-census.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/baseline-census.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/baseline-scanner/cite-drift-labels.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/baseline-scanner/cite-drift-redirects.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/baseline-scanner/cite-drift-scan.mjs
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/census-rows.mjs
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/ever-paths.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/rebuilt-redirects.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/renames-head.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/rows-after.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/rows-after.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/sample-and-check.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/samples/accuracy.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/samples/guessed-for-labeling.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/samples/sample-gone.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/samples/sample-moved.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/samples/sample-past_end.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/space-fix-delta.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch/timing.sh
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/implementation-summary.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/measurement-protocol.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/plan.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/.gitkeep
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-orca_002-consolidate-official-orca-skills.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_cli-orca_002-consolidate-official-orca-skills.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_hooks_002-injection-bloat-reduction.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_hooks_002-injection-bloat-reduction.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-doc_062-doc-validation-off-switches.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-doc_062-doc-validation-off-switches.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-git_028-crawlable-commit-history_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-git_028-crawlable-commit-history_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-prompt_007-sk-prompt-parent.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_sk-prompt_007-sk-prompt-parent.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-speckit_027-xce-research-based-refinement.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/after-runs/specs_system-speckit_027-xce-research-based-refinement.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-helper/check-source-tags-helper.mjs
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-orca_002-consolidate-official-orca-skills.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_cli-orca_002-consolidate-official-orca-skills.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_hooks_002-injection-bloat-reduction.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_hooks_002-injection-bloat-reduction.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-doc_062-doc-validation-off-switches.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-doc_062-doc-validation-off-switches.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-git_028-crawlable-commit-history_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-git_028-crawlable-commit-history_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-prompt_007-sk-prompt-parent.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_sk-prompt_007-sk-prompt-parent.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-speckit_027-xce-research-based-refinement.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/baseline-runs/specs_system-speckit_027-xce-research-based-refinement.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/guard/compare.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_agents_009-turn-closeout-next-steps_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_agents_009-turn-closeout-next-steps_006-synthesis-presentation.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-external-orchestration_071-cli-hermes-creation_001-deep-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-external-orchestration_071-cli-hermes-creation_011-dispatch-preflight-parity-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_002-track-narrowing-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-jev_003-cli-jev-workflow-integration_048-jev-feature-improvement-research_009-pi-transport-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-orca_002-consolidate-official-orca-skills.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_cli-orca_002-consolidate-official-orca-skills.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_hooks_002-injection-bloat-reduction.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_hooks_002-injection-bloat-reduction.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_hooks_008-pi-caching-like-reasonix_007-research-fork-improvements.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_001-sk-code-parent_025-code-quality-and-shared-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-code_002-rust-standards-for-code-opencode_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_001-sk-communication-creation_001-research-strategy.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-communication_006-sk-communication-clarity_001-research-communication-context.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-design_018-sk-design-parent-v2_001-sk-create-chart_013-shadcn-reference-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-doc_062-doc-validation-off-switches.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-doc_062-doc-validation-off-switches.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-git_028-crawlable-commit-history_001-research.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-git_028-crawlable-commit-history_001-research.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-prompt_007-sk-prompt-parent.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_sk-prompt_007-sk-prompt-parent.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-deep-loop_037-graph-engineering_003-graph-arch.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-skill-advisor_025-mcp-decommission-cli-front-door_011-deep-research-swe-2.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-speckit_027-xce-research-based-refinement.err
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/main-runs/specs_system-speckit_027-xce-research-based-refinement.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/planted-baseline-output.txt
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/planted-packet/research/planted.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/planted-packet/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/planted-result.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/planted.py
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/samples/accuracy.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/samples/guessed-for-labeling.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/samples/sample-gone.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/samples/sample-moved.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/samples/sample-past_end.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/tag-rows.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/tag-rows.mjs
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/two-checkout-diff.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch/warn-rows.jsonl
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/spec.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/tasks.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/description.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/goal.md
+?? specs/system-speckit/050-open-knowledge-format-adoption/graph-metadata.json
+?? specs/system-speckit/050-open-knowledge-format-adoption/spec.md

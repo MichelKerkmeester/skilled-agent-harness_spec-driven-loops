@@ -1,0 +1,4218 @@
+{
+  "source": {
+    "command": "git log -M --diff-filter=R --name-status --format= HEAD",
+    "commit": "5285608745fe243e633c6e396345611e32744113",
+    "renameRecords": 455348,
+    "minRecords": 50,
+    "minAgreement": 0.95,
+    "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
+  },
+  "rules": [
+    {
+      "from": ".agents/",
+      "to": ".gemini/",
+      "records": 60,
+      "agreement": 0.9677
+    },
+    {
+      "from": ".opencode/",
+      "to": ".skilled/",
+      "records": 17767,
+      "agreement": 0.9998
+    },
+    {
+      "from": ".opencode/changelog/system-spec-kit/",
+      "to": ".opencode/skill/system-spec-kit/changelog/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/command/",
+      "to": ".opencode/commands/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/",
+      "to": ".opencode/skills/",
+      "records": 4149,
+      "agreement": 0.9975
+    },
+    {
+      "from": ".opencode/skill/sk-agent-improver/",
+      "to": ".opencode/skill/sk-improve-agent/",
+      "records": 75,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/sk-code--full-stack/",
+      "to": ".opencode/skill/sk-code-full-stack/",
+      "records": 70,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/sk-deep-research/",
+      "to": ".opencode/skill/deep-research/",
+      "records": 97,
+      "agreement": 0.97
+    },
+    {
+      "from": ".opencode/skill/sk-deep-review/",
+      "to": ".opencode/skill/deep-review/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/sk-improve-agent/",
+      "to": ".opencode/skill/deep-agent-improvement/",
+      "records": 115,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/skill-advisor/",
+      "to": ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/system-spec-kit/mcp_server/skill-advisor/",
+      "to": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/",
+      "records": 206,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/workflows-code--full-stack/",
+      "to": ".opencode/skill/sk-code--full-stack/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skill/workflows-code--web-dev/",
+      "to": ".opencode/skill/sk-code--web/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/.goal-state/",
+      "to": ".opencode/skills/.goal-state/.archive/",
+      "records": 84,
+      "agreement": 0.9882
+    },
+    {
+      "from": ".opencode/skills/.loop-guard-state/",
+      "to": ".opencode/skills/.loop-guard-state/.archive/",
+      "records": 67,
+      "agreement": 0.9852
+    },
+    {
+      "from": ".opencode/skills/cli-claude-code/",
+      "to": ".opencode/skills/cli-external/cli-claude-code/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/cli-codex/",
+      "to": ".opencode/skills/z_archive/cli-codex-retired/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/cli-external/",
+      "to": ".opencode/skills/cli-external-orchestration/",
+      "records": 158,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/cli-opencode/",
+      "to": ".opencode/skills/cli-external/cli-opencode/",
+      "records": 134,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-agent-improvement/",
+      "to": ".opencode/skills/deep-improvement/",
+      "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-context/",
+      "to": ".opencode/skills/deep-loop-workflows/context/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-improvement/",
+      "to": ".opencode/skills/deep-loop-workflows/improvement/",
+      "records": 293,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-runtime/",
+      "to": ".opencode/skills/system-deep-loop/runtime/",
+      "records": 259,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/",
+      "to": ".opencode/skills/system-deep-loop/",
+      "records": 884,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/ai-council/",
+      "to": ".opencode/skills/deep-loop-workflows/deep-ai-council/",
+      "records": 118,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/context/",
+      "to": ".opencode/skills/deep-loop-workflows/deep-context/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/improvement/",
+      "to": ".opencode/skills/deep-loop-workflows/deep-improvement/",
+      "records": 297,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/research/",
+      "to": ".opencode/skills/deep-loop-workflows/deep-research/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-loop-workflows/review/",
+      "to": ".opencode/skills/deep-loop-workflows/deep-review/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-research/",
+      "to": ".opencode/skills/deep-loop-workflows/research/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/deep-review/",
+      "to": ".opencode/skills/deep-loop-workflows/review/",
+      "records": 124,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/mcp-chrome-devtools/",
+      "to": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/mcp-click-up/",
+      "to": ".opencode/skills/mcp-tooling/mcp-click-up/",
+      "records": 305,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/mcp-figma/",
+      "to": ".opencode/skills/mcp-tooling/mcp-figma/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-ai-council/",
+      "to": ".opencode/skills/deep-ai-council/",
+      "records": 89,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/benchmark/",
+      "to": ".opencode/skills/sk-code/benchmark/reports/",
+      "records": 103,
+      "agreement": 0.9537
+    },
+    {
+      "from": ".opencode/skills/sk-code/benchmark/reports/",
+      "to": ".skilled/skills/sk-code/benchmark/reports/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/code-implement/references/webflow/",
+      "to": ".opencode/skills/sk-code/webflow/references/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/code-opencode/",
+      "to": ".opencode/skills/sk-code/sk-code-opencode/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/code-review/manual_testing_playbook/",
+      "to": ".opencode/skills/sk-code/review/manual_testing_playbook/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/code-webflow/",
+      "to": ".opencode/skills/sk-code/sk-code-webflow/",
+      "records": 151,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/opencode/",
+      "to": ".opencode/skills/sk-code/code-opencode/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/review/",
+      "to": ".opencode/skills/sk-code/code-review/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/webflow/",
+      "to": ".opencode/skills/sk-code/code-webflow/",
+      "records": 116,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design-md-generator/",
+      "to": ".opencode/skills/sk-design/sk-design-md-generator/",
+      "records": 7942,
+      "agreement": 0.9896
+    },
+    {
+      "from": ".opencode/skills/sk-design/benchmark/",
+      "to": ".opencode/skills/sk-design/benchmark/reports/",
+      "records": 74,
+      "agreement": 0.961
+    },
+    {
+      "from": ".opencode/skills/sk-design/design-interface/",
+      "to": ".opencode/skills/sk-design/sk-design-interface/",
+      "records": 133,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design/design-md-generator/",
+      "to": ".opencode/skills/sk-design/sk-design-md-generator/",
+      "records": 119,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design/md-generator/",
+      "to": ".opencode/skills/sk-design/design-md-generator/",
+      "records": 83,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design/sk-create-chart/",
+      "to": ".opencode/skills/sk-design/sk-design-chart/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design/sk-create-diagram/",
+      "to": ".opencode/skills/sk-design/sk-design-diagram/",
+      "records": 188,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-design/styles/",
+      "to": ".opencode/skills/sk-design/styles/library/bundles/",
+      "records": 7740,
+      "agreement": 0.9912
+    },
+    {
+      "from": ".opencode/skills/sk-design/styles/library/",
+      "to": ".opencode/skills/sk-design-md-generator/styles/library/",
+      "records": 7745,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-doc/benchmark/compiled-routing/",
+      "to": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/",
+      "records": 53,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-doc/sk-create-chart/",
+      "to": ".opencode/skills/sk-design/sk-create-chart/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-doc/sk-create-diagram/",
+      "to": ".opencode/skills/sk-design/sk-create-diagram/",
+      "records": 190,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt-models/",
+      "to": ".opencode/skills/sk-prompt/prompt-models/",
+      "records": 315,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt-small-model/",
+      "to": ".opencode/skills/sk-prompt-models/",
+      "records": 314,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt-small-model/benchmarks/113-005-swe-1.6-extraction-rerun/",
+      "to": ".opencode/skills/sk-prompt-small-model/benchmarks/002-swe-1.6-extraction-rerun/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt-small-model/benchmarks/120-003-minimax-prompt-framework/",
+      "to": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt-small-model/benchmarks/126-004-mimo-prompt-framework/",
+      "to": ".opencode/skills/sk-prompt-small-model/benchmarks/004-mimo-prompt-framework/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/prompt-improve/",
+      "to": ".opencode/skills/sk-prompt/sk-prompt-improve/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/prompt-models/",
+      "to": ".opencode/skills/sk-prompt/sk-prompt-models/",
+      "records": 339,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/prompt-models/benchmarks/002-swe-1.6-extraction-rerun/",
+      "to": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--extraction-rerun--swe-1-6/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/prompt-models/benchmarks/003-minimax-prompt-framework/",
+      "to": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/",
+      "to": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-prompt/sk-prompt-improve/",
+      "to": ".opencode/skills/sk-prompt/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-code-graph/mcp_server/",
+      "to": ".opencode/skills/system-code-graph/mcp-server/",
+      "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/sk-design/",
+      "to": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/sk_design/",
+      "records": 76,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-skill-advisor/mcp-server/",
+      "to": ".opencode/skills/system-skill-advisor/runtime/",
+      "records": 400,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-skill-advisor/mcp_server/",
+      "to": ".opencode/skills/system-skill-advisor/mcp-server/",
+      "records": 338,
+      "agreement": 0.997
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/",
+      "to": ".opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/",
+      "to": ".opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/mcp-server/",
+      "to": ".opencode/skills/system-spec-kit/runtime/",
+      "records": 323,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/mcp_server/lib/",
+      "to": ".opencode/skills/system-spec-kit/mcp-server/lib/",
+      "records": 347,
+      "agreement": 0.9559
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/",
+      "to": ".opencode/skills/system-skill-advisor/mcp_server/lib/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/",
+      "to": ".opencode/skills/system-skill-advisor/mcp_server/tests/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/mcp_server/tests/",
+      "to": ".opencode/skills/system-spec-kit/mcp-server/tests/",
+      "records": 777,
+      "agreement": 0.951
+    },
+    {
+      "from": ".opencode/skills/system-spec-kit/scripts/",
+      "to": ".opencode/skills/system-spec-kit/runtime/cli/",
+      "records": 942,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/",
+      "to": "specs/",
+      "records": 49889,
+      "agreement": 0.9995
+    },
+    {
+      "from": ".opencode/specs/001-anobel.com/",
+      "to": ".opencode/specs/01--anobel.com/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/002-commands-and-skills/001-commands/",
+      "to": ".opencode/specs/002-commands-and-skills/",
+      "records": 69,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/002-commands-and-skills/038-skill-rename/",
+      "to": ".opencode/specs/002-commands-and-skills/z_archive/038-skill-rename/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/002-commands-and-skills/046-sk-doc-visual-design-system/",
+      "to": ".opencode/specs/002-commands-and-skills/049-sk-doc-visual-design-system/",
+      "records": 71,
+      "agreement": 0.9594
+    },
+    {
+      "from": ".opencode/specs/002-commands-and-skills/z_archive/038-skill-rename/",
+      "to": ".opencode/specs/03--commands-and-skills/skills/003-skill-rename/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/",
+      "to": ".opencode/specs/003-system-spec-kit/z_archive/",
+      "records": 1080,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/136-mcp-working-memory-hybrid-rag/scratch/",
+      "to": ".opencode/specs/02--system-spec-kit/020-mcp-working-memory-hybrid-rag/scratch/",
+      "records": 179,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/011-sqlite-to-libsql/",
+      "to": ".opencode/specs/003-system-spec-kit/140-sqlite-to-libsql/",
+      "records": 3214,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/138-hybrid-rag-fusion/z_archive/",
+      "to": ".opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/z_archive/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/139-hybrid-rag-fusion/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/",
+      "records": 184,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/140-hybrid-rag-fusion-refinement/",
+      "to": ".opencode/specs/02--system-spec-kit/023-hybrid-rag-fusion-refinement/",
+      "records": 176,
+      "agreement": 0.9943
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/140-sqlite-to-libsql/",
+      "to": ".opencode/specs/003-system-spec-kit/141-sqlite-to-libsql/",
+      "records": 3228,
+      "agreement": 0.9993
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/142-sqlite-to-libsql/",
+      "to": ".opencode/specs/02--system-spec-kit/024-sqlite-to-libsql/",
+      "records": 3220,
+      "agreement": 0.9993
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/z_archive/",
+      "to": ".opencode/specs/003-system-spec-kit/",
+      "records": 293,
+      "agreement": 0.9965
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/z_archive/118-fix-command-dispatch/",
+      "to": ".opencode/specs/02--system-spec-kit/z_archive/001-fix-command-dispatch/",
+      "records": 857,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/003-system-spec-kit/z_archive/130-memory-overhaul-and-agent-upgrade-release/",
+      "to": ".opencode/specs/02--system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/004-agents/014-command-agent-utilization/",
+      "to": ".opencode/specs/004-agents/z_archive/014-command-agent-utilization/",
+      "records": 100,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/004-agents/z_archive/",
+      "to": ".opencode/specs/05--agent-orchestration/z_archive/",
+      "records": 218,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/005-anobel.com/",
+      "to": ".opencode/specs/001-anobel.com/",
+      "records": 187,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/",
+      "to": ".opencode/specs/system-spec-kit/",
+      "records": 4955,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/020-mcp-working-memory-hybrid-rag/",
+      "to": ".opencode/specs/02--system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/",
+      "records": 260,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/000-feature-overview/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/000-hybrid-rag-fusion-epic/sources/000-feature-overview/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/012-pre-release-remediation/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/020-pre-release-remediation/",
+      "records": 79,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/008-architecture-audit/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/005-architecture-audit/",
+      "records": 100,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/008-combined-bug-fixes/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/007-combined-bug-fixes/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/009-architecture-audit/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/008-architecture-audit/",
+      "records": 96,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/009-architecture-audit/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing/",
+      "records": 596,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/scratch/stateless-research/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/research/agent-outputs/stateless-research/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/011-perfect-session-capturing/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-perfect-session-capturing/",
+      "records": 123,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/012-architecture-audit/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/010-architecture-audit/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/012-code-audit-per-feature-catalog/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/",
+      "records": 182,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/012-perfect-session-capturing/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/011-perfect-session-capturing/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/013-code-audit-per-feature-catalog/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/012-code-audit-per-feature-catalog/",
+      "records": 179,
+      "agreement": 0.9944
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/013-improve-stateless-mode/scratch/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/011-perfect-session-capturing/scratch/stateless-research/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/014-hydra-db-based-features/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/",
+      "records": 75,
+      "agreement": 0.9868
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/014-manual-testing-per-playbook/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/015-hydra-db-based-features/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/014-hydra-db-based-features/",
+      "records": 70,
+      "agreement": 0.9722
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/019-manual-testing-per-playbook/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/014-manual-testing-per-playbook/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/020-pre-release-remediation/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/020-post-release-fixes/",
+      "records": 79,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/029-architecture-audit/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/012-architecture-audit/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/023-esm-module-compliance/",
+      "to": ".opencode/specs/02--system-spec-kit/023-hybrid-rag-fusion-refinement/",
+      "records": 637,
+      "agreement": 0.9906
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/023-hybrid-rag-fusion-refinement/000-feature-overview/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/000-feature-overview/",
+      "records": 64,
+      "agreement": 0.9846
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/023-hybrid-rag-fusion-refinement/feature_catalog/",
+      "to": ".opencode/specs/02--system-spec-kit/022-hybrid-rag-fusion/feature-catalog/",
+      "records": 144,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/02--system-spec-kit/024-sqlite-to-libsql/context/libsql-main/libsql-sqlite3/test/",
+      "to": ".opencode/specs/02--system-spec-kit/024-sqlite-to-turso/context/turso-main/testing/sqlite3/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/03--commands-and-skills/",
+      "to": ".opencode/specs/03--skilled-agent-orchestration/",
+      "records": 380,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/03--skilled-agent-orchestration/040-sk-auto-deep-research-review-improvement/",
+      "to": ".opencode/specs/skilled-agent-orchestration/040-sk-auto-deep-research-review-improvement/",
+      "records": 112,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/03--skilled-agent-orchestration/041-sk-recursive-agent-loop/",
+      "to": ".opencode/specs/skilled-agent-orchestration/041-sk-recursive-agent-loop/",
+      "records": 167,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/03--skilled-agent-orchestration/z_archive/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/",
+      "records": 163,
+      "agreement": 0.9939
+    },
+    {
+      "from": ".opencode/specs/05--agent-orchestration/",
+      "to": ".opencode/specs/04--agent-orchestration/",
+      "records": 361,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/",
+      "to": ".opencode/specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/",
+      "records": 224,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/019-cli-opencode-minimax-optimization/",
+      "to": ".opencode/specs/cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/022-cli-devin-deprecation/",
+      "to": ".opencode/specs/cli-external-orchestration/z_archive/022-cli-devin-deprecation/",
+      "records": 102,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/",
+      "to": ".opencode/specs/cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/092-cli-devin-prompt-quality/",
+      "to": ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/",
+      "records": 224,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/098-cli-opencode-minimax-optimization/",
+      "to": ".opencode/specs/cli-external-orchestration/019-cli-opencode-minimax-optimization/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/111-cli-devin-deprecation/",
+      "to": ".opencode/specs/cli-external-orchestration/022-cli-devin-deprecation/",
+      "records": 102,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/cli-external-orchestration/116-kimi-k2-7-code-support/",
+      "to": ".opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/029-deep-loop-workflows/",
+      "to": ".opencode/specs/system-deep-loop/029-deep-loop-workflows/",
+      "records": 340,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/030-agent-loops-improved/",
+      "to": ".opencode/specs/deep-loops/030-deep-loop-improved/",
+      "records": 2454,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/030-deep-loop-improved/",
+      "to": ".opencode/specs/system-deep-loop/030-deep-loop-improved/",
+      "records": 2405,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/",
+      "to": ".opencode/specs/system-deep-loop/031-deep-loop-gpt-reliability/",
+      "records": 1560,
+      "agreement": 0.9725
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-deep-agent-router-and-orchestration/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-gpt-verification-smoke/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-gpt-behavioral-hardening-research/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research/",
+      "records": 584,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/014-skill-doc-drift-audit/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/001-skill-doc-drift-audit/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/015-skill-doc-drift-remediation/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/005-skill-doc-hygiene/002-skill-doc-drift-remediation/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/016-mk-deep-loop-guard-hardening/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/034-gpt-reliability-research/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/035-gpt-reliability-fixes/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/006-reliability-fixes/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/036-command-contract-compiler/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/",
+      "records": 596,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/032-goal-opencode-plugin/",
+      "to": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/",
+      "records": 934,
+      "agreement": 0.9967
+    },
+    {
+      "from": ".opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/",
+      "to": ".opencode/specs/system-deep-loop/033-deep-loop-behavior-benchmarks/",
+      "records": 624,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/034-gpt-reliability-research/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/034-gpt-reliability-research/",
+      "records": 55,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/035-deprecate-deep-context-integrate-capabilities/",
+      "to": ".opencode/specs/system-deep-loop/035-deprecate-deep-context-integrate-capabilities/",
+      "records": 109,
+      "agreement": 0.9909
+    },
+    {
+      "from": ".opencode/specs/deep-loops/035-gpt-reliability-fixes/",
+      "to": ".opencode/specs/deep-loops/031-deep-loop-gpt-reliability/035-gpt-reliability-fixes/",
+      "records": 55,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/deep-loops/z_archive/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/",
+      "records": 6126,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/mcp-tooling/003-mcp-figma-transfer/",
+      "to": ".opencode/specs/mcp-tooling/z_archive/003-mcp-figma-transfer/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/mcp-tooling/004-mcp-figma-transfer/",
+      "to": ".opencode/specs/mcp-tooling/003-mcp-figma-transfer/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/",
+      "to": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-code/001-sk-code-parent/",
+      "to": ".opencode/specs/sk-code/017-sk-code-parent/",
+      "records": 217,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-code/999-sk-code-parent/",
+      "to": ".opencode/specs/sk-code/001-sk-code-parent/",
+      "records": 208,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-code/z_archive/010-sk-code-ponytail-based-refinement/",
+      "to": ".opencode/specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/",
+      "records": 132,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-design/012-style-database-and-interface-commands/002-research-design-commands/",
+      "to": ".opencode/specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-design/012-style-database-and-interface-commands/007-gap-remediation-research/",
+      "to": ".opencode/specs/sk-design/012-sk-design-program/001-research/005-gap-remediation-research/",
+      "records": 130,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-design/013-styles-database-rust-opportunities/",
+      "to": ".opencode/specs/sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities/",
+      "records": 108,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/",
+      "to": ".opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-design/017-remediation-program-review/",
+      "to": ".opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/011-skill-anchor-toc-removal/",
+      "to": ".opencode/specs/sk-doc/033-create-diff-mode/011-skill-anchor-toc-removal/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/",
+      "to": ".opencode/specs/sk-doc/033-create-diff-mode/013-catalog-playbook-snippet-denumbering/",
+      "records": 224,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/014-skill-readme-standardization/",
+      "to": ".opencode/specs/sk-doc/033-create-diff-mode/014-skill-readme-standardization/",
+      "records": 229,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/015-sk-doc-parent/",
+      "to": ".opencode/specs/sk-doc/014-sk-doc-parent/",
+      "records": 454,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/015-sk-doc-router-alignment/",
+      "to": ".opencode/specs/sk-doc/018-sk-doc-router-alignment/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/016-benchmark-authoring-centralization/",
+      "to": ".opencode/specs/sk-doc/017-benchmark-authoring-centralization/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/016-sk-doc-router-alignment/",
+      "to": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/017-benchmark-authoring-centralization/",
+      "to": ".opencode/specs/sk-doc/030-benchmark-authoring-centralization/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/017-hyphen-naming-convention/",
+      "to": ".opencode/specs/sk-doc/019-hyphen-naming-convention/",
+      "records": 1105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/018-benchmark-authoring-centralization/",
+      "to": ".opencode/specs/sk-doc/018-benchmark-authoring-and-validation-fixes/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-hyphen-naming-convention/",
+      "to": ".opencode/specs/sk-doc/032-hyphen-naming-convention/",
+      "records": 941,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/",
+      "records": 1585,
+      "agreement": 0.9548
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/",
+      "to": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/002-default-mode-policy-research/",
+      "records": 97,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/",
+      "to": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/",
+      "records": 75,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/000-contract-schemas/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/",
+      "records": 179,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/",
+      "records": 112,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/",
+      "records": 149,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/",
+      "records": 255,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/",
+      "records": 99,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/",
+      "records": 956,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/",
+      "to": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/",
+      "records": 97,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/030-benchmark-authoring-centralization/",
+      "to": ".opencode/specs/sk-doc/018-benchmark-authoring-centralization/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/031-sk-doc-router-alignment/",
+      "to": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/",
+      "records": 419,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/032-hyphen-naming-convention/",
+      "to": ".opencode/specs/sk-doc/020-hyphen-naming-convention/",
+      "records": 1104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/033-create-diff-mode/",
+      "to": ".opencode/specs/sk-doc/016-create-diff-mode/",
+      "records": 813,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/999-create-diff-mode/",
+      "to": ".opencode/specs/sk-doc/033-create-diff-mode/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-doc/999-sk-doc-parent/",
+      "to": ".opencode/specs/sk-doc/014-sk-doc-parent/",
+      "records": 323,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-git/001-research-and-requirements/",
+      "to": ".opencode/specs/sk-git/008-research-and-requirements/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-git/137-parallel-session-git-autosync/",
+      "to": ".opencode/specs/sk-git/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/",
+      "to": ".opencode/specs/sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/",
+      "to": ".opencode/specs/sk-prompt/z_archive/",
+      "records": 598,
+      "agreement": 0.9966
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/004-prompt-knowledge-layering/",
+      "to": ".opencode/specs/sk-prompt/005-sk-prompt-knowledge-layering/",
+      "records": 166,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/005-sk-prompt-models-rename/",
+      "to": ".opencode/specs/sk-prompt/006-sk-prompt-models-rename/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/006-sk-prompt-parent/",
+      "to": ".opencode/specs/sk-prompt/007-sk-prompt-parent/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/007-sk-prompt-parent/",
+      "to": "specs/sk-prompt/007-sk-prompt-parent/",
+      "records": 124,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/068-sk-improve-prompt-rename/",
+      "to": ".opencode/specs/sk-prompt/002-sk-improve-prompt-rename/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/105-prompt-knowledge-layering/",
+      "to": ".opencode/specs/sk-prompt/004-prompt-knowledge-layering/",
+      "records": 161,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/sk-prompt/z_archive/",
+      "to": "specs/sk-prompt/z_archive/",
+      "records": 600,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/",
+      "records": 12464,
+      "agreement": 0.9992
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/040-sk-auto-deep-research-review-improvement/",
+      "to": ".opencode/specs/skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/051-skill-advisor-reindex-and-stress-test/",
+      "to": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/",
+      "records": 92,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/053-mcp-figma-transfer/",
+      "to": ".opencode/specs/mcp-tooling/004-mcp-figma-transfer/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/091-commit-standards-and-retroactive-rewrite/",
+      "to": ".opencode/specs/sk-git/z_archive/091-commit-standards-and-retroactive-rewrite/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/093-small-ai-model-optimization/",
+      "to": ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/",
+      "records": 229,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/095-skill-anchor-toc-removal/",
+      "to": ".opencode/specs/sk-doc/011-skill-anchor-toc-removal/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/097-track-review/",
+      "to": ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-track-review/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/098-097-remediation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/003-remediation/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/108-catalog-playbook-snippet-denumbering/",
+      "to": ".opencode/specs/sk-doc/013-catalog-playbook-snippet-denumbering/",
+      "records": 220,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/109-skill-readme-standardization/",
+      "to": ".opencode/specs/sk-doc/014-skill-readme-standardization/",
+      "records": 229,
+      "agreement": 0.9744
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/",
+      "to": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/",
+      "records": 329,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/005-extraction-rerun/state/",
+      "to": ".opencode/skills/sk-prompt-small-model/benchmarks/113-005-swe-1.6-extraction-rerun/state/",
+      "records": 53,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/114-cli-devin-swe16-prompt-optimization/",
+      "to": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/",
+      "records": 107,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-research-smallcode/",
+      "to": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/116-cli-devin-extraction-rerun/",
+      "to": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/005-extraction-rerun/",
+      "records": 82,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/",
+      "to": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime-release-cleanup/",
+      "records": 69,
+      "agreement": 0.9583
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/",
+      "to": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/",
+      "records": 116,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/scratch/",
+      "to": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/z_archive/arc-workspaces/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/118-cross-model-validation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/113-cli-devin-prompt-quality-arc/007-cross-model-validation/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/121-sk-prompt-models-rename/",
+      "to": ".opencode/specs/sk-prompt/005-sk-prompt-models-rename/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/",
+      "to": ".opencode/specs/sk-code/999-sk-code-parent/",
+      "records": 215,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/124-sk-prompt-parent/",
+      "to": ".opencode/specs/sk-prompt/006-sk-prompt-parent/",
+      "records": 74,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/125-cli-external-parent/",
+      "to": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/",
+      "to": ".opencode/specs/sk-doc/999-sk-doc-parent/",
+      "records": 250,
+      "agreement": 0.996
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/",
+      "to": ".opencode/skills/sk-prompt-small-model/benchmarks/126-004-mimo-prompt-framework/eval/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/",
+      "to": ".opencode/specs/mcp-tooling/008-mcp-tooling-parent/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/131-deep-skill-evolution/",
+      "to": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/",
+      "records": 805,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/",
+      "to": ".opencode/specs/skilled-agent-orchestration/131-command-agent-conformance-audit/",
+      "records": 256,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/133-plugin-hook-opportunities/",
+      "to": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/000-plugin-hook-opportunities/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/134-cli-codex-revival/",
+      "to": ".opencode/specs/cli-external-orchestration/027-cli-codex-revival/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/134-plugin-hook-implementation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/",
+      "records": 132,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/135-cli-hub-rename/",
+      "to": ".opencode/specs/cli-external-orchestration/028-cli-hub-rename/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/137-parallel-session-git-autosync/",
+      "to": ".opencode/specs/sk-git/137-parallel-session-git-autosync/",
+      "records": 61,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/142-cli-devin-deprecation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/",
+      "records": 96,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/",
+      "records": 132,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/143-deep-improvement-guarded-refine-hardening/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/139-deep-improvement-guarded-refine-hardening/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/143-sk-design-interface/",
+      "to": ".opencode/specs/design/001-sk-design-interface/",
+      "records": 293,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/",
+      "to": ".opencode/specs/skilled-agent-orchestration/143-sk-design-interface/",
+      "records": 294,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/144-operate-like-fable-5/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/114-operate-like-fable-5/",
+      "records": 193,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/145-mcp-open-design/",
+      "to": ".opencode/specs/design/002-mcp-open-design/",
+      "records": 189,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/145-xce-feature-adoption-advisor-codegraph/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/",
+      "records": 62,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support/",
+      "to": ".opencode/specs/design/003-mcp-figma-with-direct-cli-support/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/",
+      "to": ".opencode/specs/skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/",
+      "records": 123,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/147-deep-loop-workflows/",
+      "to": ".opencode/specs/deep-loops/029-deep-loop-workflows/",
+      "records": 169,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/",
+      "to": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/",
+      "records": 275,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/149-kimi-k2-7-code-support/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/",
+      "to": ".opencode/specs/skilled-agent-orchestration/144-operate-like-fable-5/",
+      "records": 195,
+      "agreement": 0.9701
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/",
+      "to": ".opencode/specs/skilled-agent-orchestration/145-mcp-open-design/",
+      "records": 164,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/",
+      "to": ".opencode/specs/skilled-agent-orchestration/150-mcp-open-design/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/150-parent-nested-skill-pattern/",
+      "to": ".opencode/specs/skilled-agent-orchestration/117-parent-nested-skill-pattern/",
+      "records": 101,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/151-mcp-figma-with-direct-cli-support/",
+      "to": ".opencode/specs/skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/152-deep-loop-workflows/",
+      "to": ".opencode/specs/skilled-agent-orchestration/147-deep-loop-workflows/",
+      "records": 157,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/154-frontmatter-versioning/",
+      "to": ".opencode/specs/skilled-agent-orchestration/118-frontmatter-versioning/",
+      "records": 77,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/",
+      "to": ".opencode/specs/design/008-sk-design-parent/",
+      "records": 1277,
+      "agreement": 0.9992
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/154-sk-design-parent/037-design-routing-and-integration-research/",
+      "to": ".opencode/specs/design/008-sk-design-parent/044-design-routing-and-integration-research/",
+      "records": 166,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/155-parent-nested-skill-pattern/",
+      "to": ".opencode/specs/skilled-agent-orchestration/150-parent-nested-skill-pattern/",
+      "records": 97,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/155-parent-skill-native-invocability/",
+      "to": ".opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/001-native-invocability-planning/",
+      "records": 58,
+      "agreement": 0.983
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/",
+      "to": ".opencode/specs/deep-loops/030-agent-loops-improved/",
+      "records": 160,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/002-goal-opencode-plugin/",
+      "to": ".opencode/specs/deep-loops/032-goal-opencode-plugin/",
+      "records": 80,
+      "agreement": 0.9876
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/003-deep-loop-runtime/",
+      "to": ".opencode/specs/deep-loops/030-agent-loops-improved/002-deep-loop-runtime/",
+      "records": 111,
+      "agreement": 0.991
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/156-agent-loops-improved/004-deep-loop-workflows/",
+      "to": ".opencode/specs/deep-loops/030-agent-loops-improved/003-deep-loop-workflows/",
+      "records": 76,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/158-sk-prompt-models-rename/",
+      "to": ".opencode/specs/skilled-agent-orchestration/121-sk-prompt-models-rename/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/",
+      "to": ".opencode/specs/skilled-agent-orchestration/",
+      "records": 8165,
+      "agreement": 0.969
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/055-sk-code-motion-dev-and-playbook/",
+      "to": ".opencode/specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/031-sk-deep-rename/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/",
+      "to": ".opencode/specs/sk-prompt/068-sk-improve-prompt-rename/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/",
+      "to": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/",
+      "to": ".opencode/specs/cli-external-orchestration/092-cli-devin-prompt-quality/",
+      "records": 220,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization/",
+      "to": ".opencode/specs/cli-external-orchestration/098-cli-opencode-minimax-optimization/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/",
+      "to": ".opencode/specs/sk-prompt/105-prompt-knowledge-layering/",
+      "records": 157,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/",
+      "to": ".opencode/specs/cli-external-orchestration/111-cli-devin-deprecation/",
+      "records": 96,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/",
+      "records": 57,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/",
+      "records": 216,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/113-sk-code-ponytail-based-refinement/",
+      "to": ".opencode/specs/sk-code/z_archive/010-sk-code-ponytail-based-refinement/",
+      "records": 132,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/",
+      "records": 228,
+      "agreement": 0.9956
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/",
+      "to": ".opencode/specs/deep-loops/z_archive/021-deep-skill-evolution/",
+      "records": 1059,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/",
+      "to": ".opencode/specs/cli-external-orchestration/116-kimi-k2-7-code-support/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/",
+      "to": ".opencode/specs/deep-loops/z_archive/022-deep-agent-improvement-benchmark-mode/",
+      "records": 245,
+      "agreement": 0.9959
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/",
+      "to": ".opencode/specs/deep-loops/z_archive/023-deep-improvement-skill-benchmark-mode/",
+      "records": 372,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/",
+      "to": ".opencode/specs/deep-loops/z_archive/024-deep-loop-parallel-fanout/",
+      "records": 101,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/",
+      "records": 166,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/",
+      "records": 226,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/134-deep-context-gathering/",
+      "to": ".opencode/specs/deep-loops/z_archive/025-deep-context-gathering/",
+      "records": 159,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/135-skill-readme-standardization/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/109-skill-readme-standardization/",
+      "records": 379,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/",
+      "records": 96,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/skilled-agent-orchestration/z_archive/139-deep-improvement-guarded-refine-hardening/",
+      "to": ".opencode/specs/deep-loops/z_archive/027-deep-improvement-guarded-refine-hardening/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-code-graph/",
+      "to": ".opencode/specs/system-code-graph/z_archive/",
+      "records": 2016,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-code-graph/001-code-graph-core/",
+      "to": ".opencode/specs/system-code-graph/025-code-graph-core/",
+      "records": 327,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-code-graph/007-code-graph-buildout/",
+      "to": ".opencode/specs/system-code-graph/031-code-graph-buildout/",
+      "records": 1376,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-code-graph/008-code-graph-scatter/",
+      "to": ".opencode/specs/system-code-graph/032-code-graph-scatter/",
+      "records": 144,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/",
+      "to": ".opencode/specs/system-code-graph/033-advisor-code-graph-shared-features/",
+      "records": 89,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/029-deep-loop-workflows/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/023-deep-loop-workflows/",
+      "records": 162,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/030-deep-loop-improved/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/024-deep-loop-improved/",
+      "records": 1181,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/031-deep-loop-gpt-reliability/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/",
+      "records": 767,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/",
+      "records": 457,
+      "agreement": 0.9978
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/033-deep-loop-behavior-benchmarks/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/",
+      "records": 258,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/",
+      "to": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/",
+      "records": 844,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/035-deprecate-deep-context-integrate-capabilities/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/",
+      "records": 52,
+      "agreement": 0.9811
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/036-skill-benchmark-codex-executor/",
+      "to": ".opencode/specs/system-deep-loop/034-skill-benchmark-codex-executor/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/029-deep-loop-runtime/",
+      "records": 292,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/052-deep-loop-unification/",
+      "to": ".opencode/specs/system-deep-loop/030-deep-loop-unification/",
+      "records": 667,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/054-smart-routing-benchmark-program/",
+      "to": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/",
+      "records": 113,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/059-deep-alignment-mode/",
+      "to": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/",
+      "records": 126,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/",
+      "to": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/",
+      "records": 844,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/005-deep-loop-effectiveness-and-fanout/",
+      "to": ".opencode/specs/system-deep-loop/065-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/066-command-surface-benchmark/",
+      "to": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/",
+      "records": 522,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/",
+      "to": ".opencode/specs/system-deep-loop/036-skill-benchmark-codex-executor/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/009-sk-deep-research-review-improvement-1/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/044-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1/",
+      "records": 115,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/010-sk-recursive-agent-loop/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/001-sk-recursive-agent-loop/",
+      "records": 205,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/011-sk-deep-research-review-improvement-2/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/",
+      "records": 199,
+      "agreement": 0.995
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/012-sk-agent-improver-test-report-alignment/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/",
+      "records": 117,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/016-sk-deep-rename/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/015-sk-deep-rename/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/020-deep-multi-ai-council-skill/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/",
+      "records": 75,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/000-release-cleanup/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/",
+      "records": 272,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/",
+      "records": 116,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/002-deep-review/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/",
+      "records": 114,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/003-deep-loop-runtime/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/",
+      "records": 92,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/004-deep-research/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/",
+      "records": 67,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/005-deep-agent-improvement/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/",
+      "records": 91,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/006-deep-stack-cross-cutting/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/007-deep-stack-playbook-validation/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/",
+      "records": 136,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/021-skill-readme-standardization/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/020-skill-readme-standardization/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/022-deep-agent-improvement-benchmark-mode/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/",
+      "records": 266,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/022-multi-ai-council-write-protocol/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol/",
+      "records": 87,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/023-deep-improvement-skill-benchmark-mode/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/",
+      "records": 376,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/023-sk-deep-research-evolution/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/022-sk-deep-research-evolution/",
+      "records": 469,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/024-deep-loop-parallel-fanout/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/009-deep-loop-parallel-fanout/",
+      "records": 117,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/025-deep-context-gathering/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/010-deep-context-gathering/",
+      "records": 175,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/027-deep-improvement-guarded-refine-hardening/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/012-deep-improvement-guarded-refine-hardening/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/031-sk-deep-rename/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/016-sk-deep-rename/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/042-skill-readme-standardization/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/021-skill-readme-standardization/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/043-multi-ai-council-write-protocol/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/022-multi-ai-council-write-protocol/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-deep-loop/z_archive/044-sk-deep-research-evolution/",
+      "to": ".opencode/specs/system-deep-loop/z_archive/023-sk-deep-research-evolution/",
+      "records": 475,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/001-skill-advisor-tuning/",
+      "to": ".opencode/specs/system-skill-advisor/012-skill-advisor-tuning/",
+      "records": 120,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/001-skill-graph/",
+      "to": ".opencode/specs/system-skill-advisor/004-skill-graph/",
+      "records": 584,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/002-skill-advisor-runtime/",
+      "to": ".opencode/specs/system-skill-advisor/001-skill-advisor-tuning/002-skill-advisor-runtime/",
+      "records": 61,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/002-skill-advisor-scoring-engine/",
+      "to": ".opencode/specs/system-skill-advisor/005-skill-advisor-scoring-engine/",
+      "records": 131,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/003-skill-advisor-routing-engine/",
+      "to": ".opencode/specs/system-skill-advisor/006-skill-advisor-routing-engine/",
+      "records": 608,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/004-skill-advisor-production-hardening/",
+      "to": ".opencode/specs/system-skill-advisor/007-skill-advisor-production-hardening/",
+      "records": 117,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/004-skill-graph/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/004-skill-graph/",
+      "records": 593,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/005-skill-advisor-documentation/",
+      "to": ".opencode/specs/system-skill-advisor/008-skill-advisor-documentation/",
+      "records": 205,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/005-skill-advisor-scoring-engine/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/",
+      "records": 131,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/006-playbook-run-and-remediation/",
+      "to": ".opencode/specs/system-skill-advisor/009-playbook-run-and-remediation/",
+      "records": 108,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/006-skill-advisor-routing-engine/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine/",
+      "records": 608,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/007-skill-advisor-embedder-stack/",
+      "to": ".opencode/specs/system-skill-advisor/010-skill-advisor-embedder-stack/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/007-skill-advisor-production-hardening/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/007-skill-advisor-production-hardening/",
+      "records": 118,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/008-skill-advisor-cli/",
+      "to": ".opencode/specs/system-skill-advisor/011-skill-advisor-cli/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/008-skill-advisor-documentation/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/",
+      "records": 218,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/009-advisor-and-codegraph-migrated-items/",
+      "to": ".opencode/specs/system-skill-advisor/013-advisor-and-codegraph-migrated-items/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/009-playbook-run-and-remediation/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/010-skill-advisor-embedder-stack/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/011-skill-advisor-cli/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/011-skill-advisor-cli/",
+      "records": 69,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/011-skill-advisor-phase-parent/",
+      "to": ".opencode/specs/system-skill-advisor/015-skill-advisor-phase-parent/",
+      "records": 162,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/012-skill-advisor-tuning/",
+      "to": ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning/",
+      "records": 222,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/013-advisor-and-codegraph-migrated-items/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/",
+      "records": 71,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/015-skill-advisor-phase-parent/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/015-skill-advisor-phase-parent/",
+      "records": 162,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-skill-advisor/016-skill-advisor-tuning/",
+      "to": ".opencode/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/",
+      "records": 222,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/",
+      "to": ".opencode/specs/system-speckit/",
+      "records": 25385,
+      "agreement": 0.9972
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/",
+      "to": ".opencode/specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/",
+      "records": 1961,
+      "agreement": 0.9994
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/",
+      "to": ".opencode/specs/system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/",
+      "records": 647,
+      "agreement": 0.9984
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/024-compact-code-graph/",
+      "to": ".opencode/specs/system-spec-kit/z_archive/024-compact-code-graph/",
+      "records": 915,
+      "agreement": 0.9978
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/002-search-scenario-execution/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution/",
+      "records": 127,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-changelog-backfill-and-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/",
+      "records": 57,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup-playbooks/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-cleanup-playbooks/",
+      "records": 177,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/",
+      "records": 151,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-deep-review-program/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/032-release-readiness-deep-review-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-program/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/",
+      "records": 227,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-dependency-security-supply-chain-audit/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-full-matrix-execution-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-runtime-matrix-execution-validation/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-tanstack-security-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/001-tanstack-security-audit/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/022-full-matrix-execution-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/006-full-matrix-execution-validation/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cleanup/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/",
+      "records": 334,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/",
+      "records": 357,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/",
+      "records": 106,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/024-followup-quality-pass/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-followup-quality-pass/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/",
+      "records": 1399,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-mcp-runtime-stress-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/",
+      "records": 748,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-full-matrix-execution-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/022-full-matrix-execution-validation/",
+      "records": 109,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-followup-quality-pass/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/024-followup-quality-pass/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-release-readiness-deep-review-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/032-release-readiness-deep-review-program/",
+      "records": 92,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/",
+      "records": 834,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/",
+      "records": 667,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/002-search-scenario-execution/",
+      "records": 127,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/010-stress-test-rerun-v1-0-2/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/010-stress-test-close-loop-measurement-rerun/",
+      "records": 140,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups/",
+      "records": 79,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/011-post-stress-followup-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/011-post-stress-finding-remediation-research/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/015-mcp-runtime-stress-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-mcp-runtime-stress-remediation/",
+      "records": 755,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/",
+      "records": 222,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-bugs-and-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-bug-improvement-research/",
+      "records": 78,
+      "agreement": 0.9873
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-research-bugs-and-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-bugs-and-improvements/",
+      "records": 79,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/046-system-deep-research-bugs-and-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/003-system-deep-research-bugs-and-improvements/",
+      "records": 79,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/049-deep-research-finding-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/004-deep-research-finding-remediation/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/015-mcp-runtime-stress-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/015-mcp-runtime-stress-remediation/",
+      "records": 755,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/022-full-matrix-execution-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/022-full-matrix-execution-validation/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/024-followup-quality-pass/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/024-followup-quality-pass/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/032-release-readiness-deep-review-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/032-release-readiness-deep-review-program/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/046-system-deep-research-bugs-and-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/046-system-deep-research-bugs-and-improvements/",
+      "records": 78,
+      "agreement": 0.9873
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/006-research/049-deep-research-finding-remediation/",
+      "records": 74,
+      "agreement": 0.9866
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-continuity-memory-runtime/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/",
+      "records": 249,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/",
+      "records": 87,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/",
+      "records": 84,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/",
+      "records": 447,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-search-intelligence-stress-test/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/",
+      "records": 157,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/changelog/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-issues/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-remediation/",
+      "records": 168,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-quality-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-continuity-memory-runtime/002-memory-quality-remediation/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/001-sandbox-usefulness-trials/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-runtime-and-scan/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/004-runtime-and-scan/",
+      "records": 262,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-resilience-and-advisor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/005-resilience-and-advisor/",
+      "records": 309,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/013-docs-and-readmes/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes/",
+      "records": 57,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-real-world-usefulness-test-planning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/",
+      "records": 215,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/015-system-code-graph-uplift-phase-parent/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/",
+      "records": 107,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/007-foundational-runtime/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-runtime-and-scan/003-resolver-and-hook-improvements/",
+      "records": 82,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-advisor-refinement/research/015-code-graph-advisor-refinement-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-and-advisor-refinement-research-and-fixes/research/001-code-graph-advisor-refinement-roadmap/",
+      "records": 53,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-code-graph-and-advisor-refinement-research-and-fixes/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/",
+      "records": 99,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/004-research-and-fix-code-graph-advisor-refinement/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-resilience-and-advisor/001-code-graph-advisor-refinement/",
+      "records": 99,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/006-code-graph-resilience-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-resilience-and-advisor/002-code-graph-resilience-research/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-runtime-and-scan/004-end-user-scope-default-and-opt-in/",
+      "records": 111,
+      "agreement": 0.991
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in/",
+      "records": 100,
+      "agreement": 0.99
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-resilience-and-advisor/004-iteration-quality-meta-research/",
+      "records": 97,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/014-real-world-usefulness-test-planning/",
+      "records": 210,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test/001-execution/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/001-sandbox-usefulness-trials/",
+      "records": 87,
+      "agreement": 0.9886
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/015-system-code-graph-uplift-phase-parent/",
+      "records": 107,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-system-code-graph-uplift-phase-parent/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-release-cleanup-playbooks/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup-playbooks/",
+      "records": 178,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-release-cleanup-playbooks/002-cleanup-and-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-release-cleanup-playbooks/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates/",
+      "records": 289,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/017-research-search-fusion-tuning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-continuity-research/001-search-fusion-tuning/",
+      "records": 142,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/018-research-content-routing-accuracy/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-continuity-research/002-content-routing-accuracy/",
+      "records": 158,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/019-research-graph-metadata-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-continuity-research/003-graph-metadata-validation/",
+      "records": 165,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-continuity-memory-runtime/003-continuity-refactor-gates/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates/review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review-archive/006-continuity-refactor-gates/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-external-project-adoption/",
+      "records": 133,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-external-project-adoption/",
+      "records": 135,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/",
+      "records": 444,
+      "agreement": 0.9932
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/001-search-fusion-tuning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/",
+      "records": 109,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/002-content-routing-accuracy/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/",
+      "records": 89,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/003-graph-metadata-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/",
+      "records": 1583,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/001-skill-advisor-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-daemon-and-unification/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/002-skill-graph-daemon-native-advisor-tools/",
+      "records": 209,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-advisor-scoring-engine/",
+      "records": 131,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-skill-advisor-routing-engine/",
+      "records": 598,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/004-skill-advisor-hook-surface/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/004-advisor-hook-surface-integration/",
+      "records": 141,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/",
+      "records": 209,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-docs-quality-refactor/001-audit-and-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-documentation-quality-refactor/001-documentation-quality-audit-research/",
+      "records": 67,
+      "agreement": 0.971
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/",
+      "records": 972,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-hook-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/003-code-graph-hook-improvements/",
+      "records": 82,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/005-code-graph-advisor-refinement/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/004-code-graph-advisor-refinement/",
+      "records": 99,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-resilience-research/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/008-end-user-scope-default/",
+      "records": 112,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-fix-iteration-quality-meta-research/",
+      "records": 97,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-real-world-usefulness-test/",
+      "records": 215,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/037-system-code-graph-comprehensive-deep-review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
+      "records": 55,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/015-deep-review-and-remediation-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/",
+      "records": 181,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-skill-advisor-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-skill-advisor-graph/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-cleanup-and-audit/review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review-archive/008-cleanup-and-audit/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/",
+      "records": 160,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/research/016-foundational-runtime-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/research/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-search-and-routing-tuning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/001-search-and-routing-tuning/",
+      "records": 367,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-skill-graph/",
+      "records": 579,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-advisor-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/001-skill-advisor-graph/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-graph-daemon-and-advisor-unification/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-daemon-and-unification/",
+      "records": 227,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/008-skill-graph-daemon-and-advisor-unification/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-graph-daemon-and-advisor-unification/",
+      "records": 227,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/006-system-skill-advisor-extraction/",
+      "records": 259,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-scorer/",
+      "records": 131,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/011-skill-advisor-hook-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/001-skill-advisor-hook-improvements/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-skill-advisor-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/002-skill-advisor-graph/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-router/",
+      "records": 598,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/007-skill-advisor-hook-surface/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/004-skill-advisor-hook-surface/",
+      "records": 143,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/012-skill-advisor-setup-command/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/005-skill-advisor-setup-command/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/",
+      "records": 209,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/006-docs-quality-refactor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/005-docs/004-docs-quality-refactor/",
+      "records": 106,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/007-skill-advisor-hook-surface/",
+      "records": 143,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/008-skill-graph-daemon-and-advisor-unification/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/008-skill-graph-daemon-and-advisor-unification/",
+      "records": 227,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/011-skill-advisor-hook-improvements/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/002-scorer/011-skill-advisor-hook-improvements/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/012-skill-advisor-setup-command/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/003-router/012-skill-advisor-setup-command/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/009-system-skill-advisor-extraction/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/",
+      "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/022-system-skill-advisor-extraction/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction/",
+      "records": 259,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
+      "records": 312,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-consolidation-investigation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/001-template-level-consolidation-research/",
+      "records": 57,
+      "agreement": 0.9661
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-template-greenfield-redesign/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design/",
+      "records": 72,
+      "agreement": 0.9729
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/",
+      "records": 74,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-daemon-parity/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/",
+      "records": 698,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/research/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/research/",
+      "records": 127,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/review/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-package/002-skill-graph-daemon-and-advisor-unification/review/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/",
+      "records": 184,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-continuity-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-search-and-routing-tuning/",
+      "records": 515,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/",
+      "records": 102,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/",
+      "records": 116,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-hook-parity/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-parity/",
+      "records": 200,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-search-and-routing-tuning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/",
+      "records": 146,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-search-and-routing-tuning/review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review-archive/010-search-and-routing-tuning/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/",
+      "records": 323,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-template-consolidation-investigation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/001-consolidation-investigation/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-mcp-runtime-stress-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/011-mcp-runtime-stress-remediation/",
+      "records": 755,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-resource-map-template/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-resource-map-template/",
+      "records": 87,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-skill-advisor-graph/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/002-skill-advisor-graph/",
+      "records": 59,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-causal-graph-channel-routing/001-initial-delivery/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/001-initial-delivery/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-graph-impact-and-affordance-uplift/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-spec-kit-commands/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-canonical-intake-and-middleware-cleanup/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/",
+      "records": 2772,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-deprecate-coco-index/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/",
+      "records": 174,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/",
+      "records": 755,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/",
+      "records": 673,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-migration/",
+      "records": 1098,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-memory-save-planner-first-default/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-memory-save-rewrite/",
+      "records": 82,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-save-flow-unified-journey/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-memory-save-planner-first-default/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-global-security-sweep-and-supply-chain-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-implementation-deep-review/review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review-archive/015-implementation-deep-review/",
+      "records": 317,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-install-scripts-doctor-realignment/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-skill-advisor-semantic-lane/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/013-skill-advisor-semantic-lane/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-audit/008-tanstack-security-audit/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/",
+      "records": 2340,
+      "agreement": 0.9856
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-code-index-stack/",
+      "records": 109,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-local-embeddings-foundation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/",
+      "records": 792,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-cocoindex-stack/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/004-cocoindex-stack/",
+      "records": 108,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency/",
+      "records": 172,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation-arc/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/009-memory-leak-remediation/",
+      "records": 173,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/010-system-spec-kit-mcp-sidecar-investigation/001-deep-research-drift-and-simplification/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification/",
+      "records": 55,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/012-mcp-launcher-concurrency-arc/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/006-mcp-launcher-concurrency-arc/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-implementation-deep-review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-implementation-deep-review/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-save-flow-unified-journey/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-save-flow-unified-journey/",
+      "records": 82,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-mk-spec-memory-rename/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-llama-cpp/052-mk-spec-memory-rename/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/018-canonical-continuity-refactor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-canonical-continuity-refactor/",
+      "records": 197,
+      "agreement": 0.98
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/019-system-hardening/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/003-system-hardening/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/020-skill-advisor-hook-surface/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-daemon-parity/001-skill-advisor-hook-surface/",
+      "records": 194,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/021-smart-router-context-efficacy/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/004-smart-router-context-efficacy/",
+      "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/035-full-matrix-execution-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/035-full-matrix-execution-validation/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/037-followup-quality-pass/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/037-followup-quality-pass/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/045-release-readiness-deep-review-program/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/045-release-readiness-deep-review-program/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research-archive/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/",
+      "records": 517,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/001-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/001-research-graph-context-systems-pt-01/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/001-research-graph-context-systems-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/research/001-research-graph-context-systems-pt-01/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/001-research-graph-context-systems/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/001-pt-01/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-foundational-runtime-001-initial-research/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-pt-01/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-foundational-runtime-deep-review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-foundational-runtime-001-initial-research/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-foundational-runtime-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/001-foundational-runtime/research/016-foundational-runtime-pt-01/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/016-foundational-runtime-pt-01/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-cli-runtime-executors-001-executor-feature/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-sk-deep-cli-runtime-execution-001-executor-feature/",
+      "records": 67,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-sk-deep-cli-runtime-execution-pt-01/",
+      "records": 69,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-sk-deep-cli-runtime-execution-001-executor-feature/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-pt-01/",
+      "records": 69,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-sk-deep-cli-runtime-execution-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/017-sk-deep-cli-runtime-execution/001-executor-feature/research/017-sk-deep-cli-runtime-execution-pt-01/",
+      "records": 69,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/018-deep-loop-cli-executor/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/017-cli-runtime-executors-001-executor-feature/",
+      "records": 67,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/research/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-daemon-parity/002-skill-graph-daemon-and-advisor-unification/research/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "records": 123,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review-archive/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/",
+      "records": 905,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/006-continuity-refactor-gates-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-release-cleanup-playbooks/review/006-continuity-refactor-gates-pt-01/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/006-continuity-refactor-gates/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/006-pt-01/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/006-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/006-continuity-refactor-gates-pt-01/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/008-cleanup-and-audit-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-release-cleanup-playbooks/002-cleanup-and-audit/review/008-cleanup-and-audit-pt-01/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/008-cleanup-and-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/008-pt-01/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/008-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/008-cleanup-and-audit-pt-01/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/010-pt-02/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/010-search-and-routing-tuning-pt-02/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/010-search-and-routing-tuning-pt-02/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/001-search-and-routing-tuning/review/010-search-and-routing-tuning-pt-02/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/010-search-and-routing-tuning/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/010-pt-02/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-deep-review-and-remediation-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-deep-review-remediation/001-deep-review-and-remediation/review/015-deep-review-and-remediation-pt-01/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-deep-review-and-remediation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-pt-01/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-implementation-deep-review/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-packets-009-014-audit/",
+      "records": 313,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-packets-009-014-audit/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-deep-review-and-remediation/",
+      "records": 313,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/015-deep-review-and-remediation-pt-01/",
+      "records": 318,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/review/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/009-hook-daemon-parity/002-skill-graph-daemon-and-advisor-unification/review/027-skill-graph-daemon-and-advisor-unification-pt-01/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/",
+      "records": 50,
+      "agreement": 0.9803
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/",
+      "records": 321,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/",
+      "records": 254,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/",
+      "to": ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
+      "records": 57,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/028-tri-system-deep-research/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/",
+      "records": 161,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/029-deep-research-remediation/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/",
+      "to": ".opencode/specs/z_future/code-graph-and-cocoindex/",
+      "records": 288,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/",
+      "to": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/",
+      "records": 343,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/research/",
+      "to": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-mcp-cli-feasibility/",
+      "to": ".opencode/specs/system-spec-kit/028-mcp-to-cli-tool-transition/001-spec-memory-cli/",
+      "records": 94,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-005-revisit-027/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/cross-packet-027-reconciliation/",
+      "records": 108,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-006-sibling-revisit/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/sibling-cross-cutting-revisit/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-007-memory-systems/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/external-memory-systems/",
+      "records": 51,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-revisit-027/research/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-005-revisit-027/",
+      "records": 107,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/006-sibling-revisit/research/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-006-sibling-revisit/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/007-memory-systems/research/",
+      "to": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/research/from-007-memory-systems/",
+      "records": 50,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/028-skill-advisor-playbook-run/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/",
+      "records": 105,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/029-code-graph-playbook-validation/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/",
+      "records": 91,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/029-system-code-graph-uplift/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/019-system-code-graph-uplift/",
+      "records": 104,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/030-deep-loop-skills-playbook-validation/",
+      "to": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/",
+      "records": 136,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/",
+      "to": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/",
+      "records": 122,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-spec-kit/z_future/",
+      "to": ".opencode/specs/z_future/",
+      "records": 899,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/",
+      "to": ".opencode/specs/system-speckit/042-spec-root-resolution-hardening/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/002-graph-and-context-optimization/",
+      "to": ".opencode/specs/system-speckit/027-graph-and-context-optimization/",
+      "records": 9583,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/003-xce-research-based-refinement/",
+      "to": ".opencode/specs/system-speckit/028-xce-research-based-refinement/",
+      "records": 4725,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/004-memory-search-intelligence/",
+      "to": ".opencode/specs/system-speckit/029-memory-search-intelligence/",
+      "records": 3783,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
+      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/",
+      "records": 303,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/004-code-graph/",
+      "to": ".opencode/specs/system-code-graph/007-code-graph-buildout/",
+      "records": 1357,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
+      "to": ".opencode/specs/system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/027-graph-and-context-optimization/",
+      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/",
+      "records": 9583,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
+      "to": ".opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/001-speckit-memory/",
+      "records": 317,
+      "agreement": 0.9968
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/research/",
+      "records": 381,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/",
+      "to": ".opencode/specs/system-code-graph/001-code-graph-core/",
+      "records": 315,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/004-novel-research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/004-novel-research/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/005-shared-engine-and-research/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/006-generated-metadata-build/",
+      "records": 87,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/vague-query-model-benchmark/",
+      "records": 288,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/research/",
+      "records": 136,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-skill-advisor/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-skill-advisor/research/",
+      "records": 150,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "records": 288,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-deep-loop/",
+      "to": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/",
+      "records": 234,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/",
+      "records": 1069,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "records": 122,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/028-xce-research-based-refinement/",
+      "to": ".opencode/specs/system-speckit/027-xce-research-based-refinement/",
+      "records": 4721,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/029-memory-search-intelligence/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/",
+      "records": 3783,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/042-spec-root-resolution-hardening/",
+      "to": ".opencode/specs/system-speckit/029-spec-root-resolution-hardening/",
+      "records": 130,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/system-speckit/z_archive/024-compact-code-graph/030-opencode-graph-plugin/",
+      "to": ".opencode/specs/system-code-graph/z_archive/017-opencode-graph-plugin/",
+      "records": 92,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/specs/z_future/",
+      "to": ".opencode/specs/z-future/",
+      "records": 528,
+      "agreement": 1
+    },
+    {
+      "from": ".skilled/skills/cli-classifier/cli-usage/",
+      "to": ".skilled/skills/cli-classifier/cli-jev/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".skilled/skills/cli-jev/",
+      "to": ".skilled/skills/cli-classifier/",
+      "records": 70,
+      "agreement": 1
+    },
+    {
+      "from": "packages/",
+      "to": ".opencode/skills/sk-communication/",
+      "records": 207,
+      "agreement": 1
+    },
+    {
+      "from": "packages/pi-fast-mode-w-subagent-support/",
+      "to": ".pi/extensions/pi-fast-mode-w-subagent-support/",
+      "records": 63,
+      "agreement": 1
+    },
+    {
+      "from": "skill/",
+      "to": ".opencode/skill/",
+      "records": 181,
+      "agreement": 1
+    },
+    {
+      "from": "skills/",
+      "to": "skill/",
+      "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents/007-repo-rules-router/",
+      "to": "specs/sk-doc/040-create-repo-rules/001-repo-rules-router/",
+      "records": 99,
+      "agreement": 0.99
+    },
+    {
+      "from": "specs/cli-external-orchestration/",
+      "to": "specs/cli-external-orchestration/z_archive/",
+      "records": 1410,
+      "agreement": 1
+    },
+    {
+      "from": "specs/cli-external-orchestration/035-improved-communication/",
+      "to": "specs/sk-communication/001-sk-communication-creation/",
+      "records": 718,
+      "agreement": 1
+    },
+    {
+      "from": "specs/cli-external-orchestration/044-pi-mobile-ui-ux-research/research/",
+      "to": "specs/app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/research/ui-ux/",
+      "records": 120,
+      "agreement": 1
+    },
+    {
+      "from": "specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux/research/",
+      "to": "specs/app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/research/chat-ux-desktop-parity/",
+      "records": 110,
+      "agreement": 1
+    },
+    {
+      "from": "specs/cli-external-orchestration/074-cli-jev-creation/",
+      "to": "specs/cli-jev/001-cli-jev-creation/",
+      "records": 93,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks/001-per-prompt-injection-audit/",
+      "to": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/",
+      "records": 86,
+      "agreement": 1
+    },
+    {
+      "from": "specs/mcp-tooling/",
+      "to": "specs/mcp-tooling/z_archive/",
+      "records": 1443,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/017-sk-code-parent/",
+      "to": "specs/sk-code/001-sk-code-parent/",
+      "records": 239,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/018-rust-standards-for-code-opencode/",
+      "to": "specs/sk-code/002-rust-standards-for-code-opencode/",
+      "records": 125,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/019-split-doc-template-alignment/",
+      "to": "specs/sk-doc/032-split-doc-template-alignment/",
+      "records": 164,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/025-sk-code-obsidian-surface/",
+      "to": "specs/sk-code/007-sk-code-obsidian-surface/",
+      "records": 84,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-design/",
+      "to": "specs/sk-design/z_archive/",
+      "records": 2183,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/",
+      "to": "specs/sk-doc/z_archive/",
+      "records": 6863,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/028-sk-communication-skill/",
+      "to": "specs/sk-doc/039-sk-communication-skill/",
+      "records": 86,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/051-sk-create-chart/",
+      "to": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/",
+      "records": 1514,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/053-chart-visual-overhaul/",
+      "to": "specs/sk-doc/051-sk-create-chart/009-chart-visual-overhaul/",
+      "records": 179,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-git/",
+      "to": "specs/sk-git/z_archive/",
+      "records": 249,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/",
+      "to": "specs/system-deep-loop/z_archive/",
+      "records": 1467,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "records": 436,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/",
+      "records": 146,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/",
+      "records": 76,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "records": 435,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "records": 146,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "records": 76,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research/",
+      "records": 95,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "records": 64,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/",
+      "to": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/",
+      "records": 204,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/045-fanout-write-containment-hardening/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/",
+      "records": 764,
+      "agreement": 0.9986
+    },
+    {
+      "from": "specs/system-deep-loop/049-deep-loop-alignment-review/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/",
+      "records": 314,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/033-spec-kit-template-optimization/",
+      "to": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
+      "records": 200,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/033-spec-template-context-optimization/",
+      "to": "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/",
+      "records": 113,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/033-spec-templates-and-context-reducer/research/",
+      "to": "specs/system-speckit/034-spec-template-context-optimizations/research/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/",
+      "to": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/",
+      "records": 450,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/034-spec-template-context-optimizations/",
+      "to": "specs/system-speckit/033-spec-template-context-optimization/",
+      "records": 112,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/035-spec-kit-simplification-research/",
+      "to": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/",
+      "records": 713,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/036-recorded-findings-closure/",
+      "to": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/",
+      "records": 150,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/036-spec-doc-template-reduction/",
+      "to": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/",
+      "records": 323,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/037-decisions-memory-redesign/",
+      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/",
+      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
+      "records": 96,
+      "agreement": 0.9896
+    },
+    {
+      "from": "specs/system-speckit/042-nested-goal-template-addon/",
+      "to": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/",
+      "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/045-daemon-and-test-harness-hardening/",
+      "to": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/",
+      "records": 61,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/049-memory-decommission/",
+      "to": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/",
+      "records": 362,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/052-memory-decommission-landing/",
+      "to": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/",
+      "records": 96,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/053-spec-kit-runtime-rename/",
+      "to": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/",
+      "records": 137,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/054-decommission-debt-fixes/",
+      "to": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
+      "records": 652,
+      "agreement": 1
+    }
+  ]
+}

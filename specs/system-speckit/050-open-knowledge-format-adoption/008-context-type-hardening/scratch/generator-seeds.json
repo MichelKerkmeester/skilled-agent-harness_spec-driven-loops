@@ -1,0 +1,722 @@
+[
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl",
+  "line": 8,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl",
+  "line": 9,
+  "key": "contextType",
+  "raw": "\"review\"",
+  "value": "review",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+  "line": 8,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+  "line": 9,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/review-report.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/review-report.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"review\"",
+  "value": "review",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+  "line": 23,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+  "line": 24,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/research.spec.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/packet-types/research.spec.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"research\"",
+  "value": "research",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "normal",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "reference",
+  "value": "reference",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+  "line": 21,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+  "line": 22,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/spec.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/README.md",
+  "line": 8,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/README.md",
+  "line": 9,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/implementation-summary.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+  "line": 21,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+  "line": 22,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/implementation-summary.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+  "line": 21,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+  "line": 22,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/tasks.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-1/plan.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md",
+  "line": 12,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md",
+  "line": 13,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/before-after.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md",
+  "line": 12,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md",
+  "line": 13,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/research.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/research.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "normal",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "reference",
+  "value": "reference",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/acceptance-criteria.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/acceptance-criteria.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+  "line": 540,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+  "line": 541,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/spec.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/spec.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/spec.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/spec.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl",
+  "line": 10,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl",
+  "line": 11,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+  "line": 8,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+  "line": 9,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/plan.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/plan.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/implementation-summary.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/roadmap.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/debug-delegation.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl",
+  "line": 12,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/resource-map.md.tmpl",
+  "line": 13,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/plan.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/plan.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+  "line": 10,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+  "line": 11,
+  "key": "contextType",
+  "raw": "\"planning\"",
+  "value": "planning",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+  "line": 10,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+  "line": 11,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/plan.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/addons/timeline.md.tmpl",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/tasks.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+  "line": 6,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+  "line": 7,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-2/implementation-summary.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/changelog/root.md",
+  "line": 6,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/changelog/root.md",
+  "line": 7,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3+/tasks.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"normal\"",
+  "value": "normal",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/tasks.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"general\"",
+  "value": "general",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/acceptance-criteria.md",
+  "line": 9,
+  "key": "importance_tier",
+  "raw": "\"important\"",
+  "value": "important",
+  "kind": "ok"
+ },
+ {
+  "file": ".skilled/skills/system-spec-kit/templates/examples/level-3/acceptance-criteria.md",
+  "line": 10,
+  "key": "contextType",
+  "raw": "\"implementation\"",
+  "value": "implementation",
+  "kind": "ok"
+ }
+]
