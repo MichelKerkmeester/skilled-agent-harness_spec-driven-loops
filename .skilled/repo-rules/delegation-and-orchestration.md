@@ -24,7 +24,7 @@ trigger_phrases:
   - "deep loop"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Delegation and orchestration
@@ -53,56 +53,49 @@ repository, no single model's verdict, the delegate's or your own, closes a ques
 One check comes first: **is delegating cheaper than doing it?** A dispatch costs
 a brief, a wait, and a verification pass. Work you could finish in the time it takes to
 write the brief is work you should finish, see [`prevent-overengineering.md`](prevent-overengineering.md).
-This is the first question, not a caveat at the end.
 
 The failure this prevents: dispatching as though the delegate were you with more time.
-It is not. It has no memory of this session, and no access to what you already ruled out.
+It has no memory of this session, and no access to what you already ruled out.
 
 > **One lens, stated as such.** The claims in this file about how models behave under a
-> vague brief are judgment from limited observation, not measurement, the disclosure
-> §4 and §6 require of every judgment claim, applied here. What would change them:
-> a run where a deliberately underspecified brief returned findings as well-grounded as
-> a specified one.
+> vague brief are judgment from limited observation, not measurement. What would change
+> them: a run where a deliberately underspecified brief returned findings as
+> well-grounded as a specified one.
 
 ---
 
 ## 2. BEFORE YOU DISPATCH
 
-Five things, in order. None is optional, and the first is a hard rule elsewhere.
+Five things, in order. None is optional.
 
 1. **Read the executor's own contract**, per `AGENTS.md` §10 Operational Mandates, the CLI dispatch bullet.
 2. **Bind the write authority.** Say where the delegate may write before it starts.
-   A delegate given the repository is a delegate that will eventually edit something
-   nobody reviewed.
 
    **The freeze runs both ways.** While a fan-out lineage runs, the orchestrator
    changes nothing in the repository outside that lineage's directory until the run
-   settles, because the runner's write containment attributes every out-of-lineage
-   change to the lineage, reverts it and fails the run.
+   settles, because the runner's write containment reverts every out-of-lineage change
+   and fails the run.
 3. **Freeze the scope in the brief itself.** See [`scope-discipline.md`](scope-discipline.md).
-   Scope you did not write down is scope the delegate will infer, and it will infer wider.
 4. **State the shape of an acceptable answer.** Not the answer, the shape. A file list,
-   a table with named columns, a verdict plus citations. "Investigate X" returns an essay.
-5. **Pre-resolve every gate the delegate cannot ask you about.** A dispatched worker reads the
-   same gates you do and obeys them, including the ones that stop and wait for an operator.
-   Nobody is at its prompt, so it stops forever and reports success. Setting the environment
-   variable that waives a gate is not enough: it makes the waiver true, not observable, and a
-   model cannot read an environment variable. Put the answer in the prompt. Give the decision,
-   not permission to skip it.
+   a table with named columns, a verdict plus citations.
+5. **Pre-resolve every gate the delegate cannot ask you about.** A dispatched worker obeys
+   the same gates you do, including the ones that wait for an operator. Nobody is at its
+   prompt, so it stops forever and reports success. Setting the environment variable that
+   waives a gate is not enough: a model cannot read an environment variable. Put the answer
+   in the prompt. Give the decision, not permission to skip it.
 
 ---
 
 ## 3. A BRIEF CARRIES EVIDENCE, NOT PREFERENCE
 
-A brief that says *do what you think is best* gets back what the model thinks is best,
-which is a sample from a distribution, not a finding about this repository.
+A brief that says *do what you think is best* gets back a sample from a distribution, not
+a finding about this repository.
 
 **Put in the brief:** the files and symbols to read, with paths; what has already been
 ruled out and why; the constraint that must hold; the format of the return; the
 requirement to cite `file:line` for every claim.
 
-**Keep out of the brief:** your preferred conclusion. If you tell a delegate what you
-expect, you have built a machine for confirming it. Ask the question you actually have.
+**Keep out of the brief:** your preferred conclusion. Ask the question you actually have.
 
 The failure this prevents: a five-iteration research run that produces a fluent
 restatement of the brief's own assumptions, and reads as corroboration.
@@ -124,16 +117,14 @@ of two designs is better), one lens is not a finding. Do one of these, and say w
   rule needed" becomes "find the commits where its absence cost us something."
 - **Escalate it:** if it is genuinely a preference, it is the operator's, not the model's.
 
-Agreement between two runs of the same model is not corroboration. It is the same
-opinion twice.
+Agreement between two runs of the same model is not corroboration.
 
 ---
 
 ## 5. WHAT COMES BACK IS UNVERIFIED
 
-A delegate reporting `COMPLETE` has reported a claim about itself. See
-[`evidence-and-proof.md`](evidence-and-proof.md) §7, a finding is a hypothesis until
-something you ran confirms it. Four checks before you quote a return:
+A delegate reporting `COMPLETE` has reported a claim about itself, see
+[`evidence-and-proof.md`](evidence-and-proof.md) §7. Four checks before you quote a return:
 
 - **Does the citation resolve?** Open one of them. A fabricated `file:line` is the
   cheapest thing to detect and the most expensive thing to propagate.
@@ -151,12 +142,10 @@ confidence attached and none of your verification.
 **When a check fails, there is a next step and it is not silence.** A return that fails
 verification is not discarded and not quoted. Re-dispatch with the brief corrected for
 what the failure revealed, or record the failure as the finding, a delegate that could
-not answer is evidence about the question. What you may not do is drop it, because the
-next reader cannot tell an unasked question from an unanswerable one.
+not answer is evidence about the question.
 
-**Persist your side too.** The delegate's state is written down and yours usually is not.
-Keep the brief, the checks you ran and the verdict, in whatever artifact owns the work. A
-verified return with no record of the verification later reads as an unverified one.
+**Persist your side too.** Keep the brief, the checks you ran and the verdict, in
+whatever artifact owns the work.
 
 **When two delegates disagree, do not average them.** It means the question was
 underspecified or the evidence is thin. Find which, and say which. A tally is not a finding.
@@ -165,8 +154,8 @@ underspecified or the evidence is thin. Find which, and say which. A tally is no
 
 ## 6. YOUR OWN OPINION IS ALSO ONE OPINION
 
-The rule cuts inward. Skipping delegation because you already know the answer is the
-same single-lens failure, minus the paper trail. When you are about to answer a
+Skipping delegation because you already know the answer is the same single-lens
+failure, minus the paper trail. When you are about to answer a
 judgment question from your own reading alone, either ground it in the repository or
 say plainly that it is your judgment and what would change it.
 
@@ -183,7 +172,7 @@ back out or gets raised as an amendment. Widening scope is the operator's call, 
 delegating did not transfer that.
 
 You also stay accountable for what the delegate did. "The sub-agent wrote it" is not a
-defect report; it is the same sentence as "not my code", which
+defect report. It is the same sentence as "not my code", which
 [`evidence-and-proof.md`](evidence-and-proof.md) already refuses.
 
 **Do not commit what you did not read, and staging by name is not enough.** A live
@@ -209,8 +198,7 @@ reverse. When a delegate's work does belong in your commit, read it first and sa
   cheaper done directly.
 - **Not permission to defer the verdict.** The orchestrator decides. A delegate that
   returns three options has returned three options, not a decision.
-- **Not about human collaboration.** It addresses machine delegation. The parts that
-  generalize do so by accident, not by design.
+- **Not about human collaboration.** It addresses machine delegation.
 
 ---
 
