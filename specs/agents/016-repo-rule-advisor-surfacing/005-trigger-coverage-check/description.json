@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check",
   "description": "`check-repo-rules.cjs` runs nine checks and none compares a trigger row in `REPO RULES.md` with its rule's `## Fires when` bullets",
   "keywords": [
@@ -17,7 +18,7 @@
     "fires",
     "bullets"
   ],
-  "lastUpdated": "2026-10-04T14:49:19.518Z",
+  "lastUpdated": "2026-10-04T19:48:25.747Z",
   "specId": "005",
   "folderSlug": "trigger-coverage-check",
   "parentChain": [
@@ -25,6 +26,5 @@
     "016-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

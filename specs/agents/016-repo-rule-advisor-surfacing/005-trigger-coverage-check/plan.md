@@ -37,13 +37,13 @@ Extend the checker in place with a pure check function in the existing `CHECKS` 
 
 ### Definition of Ready
 - [x] Problem statement backed by measurement in `002-rule-concision-and-loading`
-- [ ] Predecessor handoff met: The gap named in `001-advisor-surfacing/research/research.md`
+- [x] Predecessor handoff met: The gap named in `001-advisor-surfacing/research/research.md`
 - [x] Affected files identified by codebase exploration
 
 ### Definition of Done
-- [ ] All requirements met
-- [ ] Tests and checks named in the testing strategy pass
-- [ ] spec.md, plan.md and tasks.md synchronized
+- [x] All requirements met
+- [x] Tests and checks named in the testing strategy pass
+- [x] spec.md, plan.md and tasks.md synchronized
 <!-- /ANCHOR:quality-gates -->
 
 ---

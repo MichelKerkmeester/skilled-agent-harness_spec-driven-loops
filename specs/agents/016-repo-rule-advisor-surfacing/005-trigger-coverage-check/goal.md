@@ -76,6 +76,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase work | Pending | tasks.md T001 to T008 open |
+| Check 10 and router routes | Done | checker 10/10 PASSED; pytest 3/3; seven router items added |
 
 ### Deviations and findings
 
