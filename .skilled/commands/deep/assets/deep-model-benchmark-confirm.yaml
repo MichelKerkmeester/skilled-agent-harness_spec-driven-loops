@@ -37,7 +37,7 @@ evaluation_philosophy:
 user_inputs:
   profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json."
   scoring_method: "[SCORING_METHOD] - 'pattern' for the default heading/pattern matcher, '5dim' for the ported 5-dimension scorer, 'reviewer' for flagged expected-verdict reviewer fixtures. Default: pattern."
-  grader: "[GRADER] - 'noop' deterministic no-dispatch grader, 'mock', or 'llm' (model dispatch). Default: noop."
+  grader: "[GRADER] - 'auto' (Jev when a Jev credential is stored and its feature switch is on, else noop), 'noop' deterministic no-dispatch grader, 'mock', 'llm' (model dispatch) or 'jev' (Jev required). Default: auto."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for benchmark runtime. REQUIRED."
   run_label: "[RUN_LABEL] - Directory-safe benchmark identifier matching ^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$. REQUIRED."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations before forced stop. Default: 5."
@@ -51,7 +51,7 @@ field_handling:
   defaults:
     profile_empty: ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json"
     scoring_method_empty: "pattern"
-    grader_empty: "noop"
+    grader_empty: "auto"
     max_iterations_empty: "5"
     target_model_empty: "Unused unless grader == 'llm'"
   validation:
@@ -61,7 +61,7 @@ field_handling:
     profile_must_resolve: "Profile path or ID must resolve to an existing profile JSON before phase_loop"
     scoring_method_enum: "Must be one of: pattern, 5dim, reviewer"
     reviewer_scorer_flag: "scoring_method=reviewer requires SPECKIT_REVIEWER_BENCHMARKS=1 or true; otherwise reviewer fixtures are inert."
-    grader_enum: "Must be one of: noop, mock, llm"
+    grader_enum: "Must be one of: auto, noop, mock, llm, jev"
     target_model_required_when_llm: "When grader == 'llm', target_model MUST be provided"
 
 # ─────────────────────────────────────────────────────────────────

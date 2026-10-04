@@ -337,7 +337,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### How It Works
 
-`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`. Any other `--grader` value exits 2 before a profile loads.
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader auto` is the default, grading D4 with the Jev cascade when a Jev credential is stored and resolving to the deterministic `noop` otherwise, with `--grader mock`, `--grader llm` and `--grader jev` selecting the stub, real or Jev grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`. Any other `--grader` value exits 2 before a profile loads.
 
 #### Source Files
 

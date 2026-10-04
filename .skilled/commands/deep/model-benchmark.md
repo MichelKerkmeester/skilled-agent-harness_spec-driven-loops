@@ -108,7 +108,7 @@ a workflow input, never an execution mode.
 | `--spec-folder` | `PATH` | Binds the packet that owns this run's writes. |
 | `--run-label` | `NAME` | Names the run inside the packet's `improvement/` tree. |
 | `--scorer` | `pattern` \| `5dim` \| `reviewer` | Selects the scoring method, binding `scoring_method`. |
-| `--grader` | `noop` \| `mock` \| `llm` | Selects the grader. `noop` keeps the run deterministic; `llm` grades it and makes `--executor` and `--model` required. |
+| `--grader` | `auto` \| `noop` \| `mock` \| `llm` \| `jev` | Selects the grader. `auto`, the default, uses Jev when a Jev credential is stored and its switch is on (`JEV_FEATURE_HALLUCINATION_GRADER` for 5dim D4, `JEV_FEATURE_VERDICT_FALLBACK` for reviewer verdicts), else `noop`. `noop` keeps the run deterministic; `llm` grades it and makes `--executor` and `--model` required; `jev` requires a stored Jev credential. |
 | `--iterations` | `N` | Iteration count, binding `max_iterations`. Default `5`. |
 | `--executor`, `--model` | `NAME` | Executor kind and model for the grader, required only when `--grader=llm`. |
 

@@ -1,5 +1,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Benchmark Runner — Fixture and Integration Scoring                       ║
+// ║ COMPONENT: Benchmark Runner — Fixture and Integration Scoring            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Score benchmark fixtures and integration reports.               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -17,6 +19,9 @@ const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve
 // aggregation, and deliverable-contract extraction.
 const { assertGraderIndependence } = require('../shared/model-family.cjs');
 const { extractDeliverable } = require('../shared/extract-deliverable.cjs');
+// The default hallucination grader runs through the hosted Jev cascade, so the
+// runner asks the same feature gate every optional Jev path asks before it spawns.
+const { featureReady } = require('../../../../cli-classifier/shared/scripts/jev-features.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -432,11 +437,11 @@ function buildBenchmarkDeltas(profile, fixtures, results) {
 // Routes the materialized fixture output through the ported 5-dim scorer
 // (deterministic checks + grader factory) instead of the default heading/pattern
 // matcher. Opt-in so the default `pattern` path stays byte-identical; the scorer
-// module is lazily required only on this path. graderKind defaults to 'noop'
-// (deterministic, no LLM dispatch) so a benchmark run stays hermetic unless the
-// operator explicitly asks for the 'llm' grader.
+// module is lazily required only on this path. graderKind defaults to 'auto':
+// the hosted Jev cascade grades D4 when its credential gate is ready, and the
+// run stays deterministic-only otherwise or when another grader is asked for.
 
-async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, scorerModule) {
+async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, graderOptions, scorerModule) {
   if (!fs.existsSync(outputPath)) {
     return {
       id: fixture.id,
@@ -464,6 +469,7 @@ async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, scorerM
     },
     cwd: cwdAbs,
     graderKind,
+    graderOptions,
   });
   const score = Math.round((result.weightedScore || 0) * 100);
   const failureModes = [];
@@ -577,10 +583,10 @@ async function main() {
     process.stderr.write(`run-benchmark: unknown --scorer '${scorer}', defaulting to 'pattern'\n`);
     scorer = 'pattern';
   }
-  const graderKind = args.grader || 'noop';
+  const graderRequested = args.grader || 'auto';
   const samples = Math.max(1, parseInt(args.samples, 10) || 1);
   const allowSameFamily = args['allow-same-family'] === true || args['allow-same-family'] === 'true';
-  const usage = 'Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm] [--samples <n>] [--allow-same-family]\n';
+  const usage = 'Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm|jev|auto] [--samples <n>] [--allow-same-family]\n';
 
   if (!profileArg || !outputsDir || !outputPath) {
     process.stderr.write(usage);
@@ -590,12 +596,40 @@ async function main() {
   // The scorer turns any grader kind it does not know into the mock stub, so an
   // unknown value would score with fake D4 numbers and print nothing. Refuse it
   // here, before any profile loads.
-  const VALID_GRADERS = new Set(['noop', 'mock', 'llm']);
-  if (!VALID_GRADERS.has(graderKind)) {
-    process.stderr.write(`run-benchmark: unknown --grader '${graderKind}' (expected noop, mock or llm)\n`);
+  const VALID_GRADERS = new Set(['noop', 'mock', 'llm', 'jev', 'auto']);
+  if (!VALID_GRADERS.has(graderRequested)) {
+    process.stderr.write(`run-benchmark: unknown --grader '${graderRequested}' (expected noop, mock, llm, jev or auto)\n`);
     process.stderr.write(usage);
     process.exit(2);
   }
+
+  // Resolve the grader once, before any profile loads or fixture work, so the
+  // report records one stable choice. `auto` asks the Jev gate only on the 5dim
+  // path, where a stored credential turns hallucination grading on by default;
+  // every other scorer keeps `noop` and never spawns a readiness check.
+  let graderKind = graderRequested;
+  let graderReason = 'explicit';
+  let jevGate = null;
+  if (graderRequested === 'auto') {
+    if (scorer === '5dim') {
+      jevGate = featureReady('hallucination-grader');
+      graderKind = jevGate.ready ? 'jev' : 'noop';
+      graderReason = jevGate.reason;
+    } else {
+      graderKind = 'noop';
+      graderReason = 'grader unused by the pattern scorer';
+    }
+  } else if (graderRequested === 'jev') {
+    jevGate = featureReady('hallucination-grader');
+    if (!jevGate.ready) {
+      process.stderr.write(`run-benchmark: --grader jev needs jev on PATH with a stored credential (${jevGate.reason})\n`);
+      process.exit(2);
+    }
+    graderReason = jevGate.reason;
+  }
+  const graderOptions = jevGate !== null && jevGate.ready
+    ? { jev: { path: jevGate.path, provider: jevGate.provider }, env: process.env }
+    : undefined;
 
   let profileId = profileArg;
   const stateLogPath = args['state-log'] || inferStateLogPath(outputsDir);
@@ -652,7 +686,7 @@ async function main() {
       results = await Promise.all(
         fixtures.map((fixture) => scoreFixtureWithSamples(
           fixture, outputsDir, samples,
-          (outPath) => scoreFixture5dim(fixture, outPath, cwdAbs, graderKind, scorerModule),
+          (outPath) => scoreFixture5dim(fixture, outPath, cwdAbs, graderKind, graderOptions, scorerModule),
         )),
       );
     } else {
@@ -739,6 +773,8 @@ async function main() {
       // Grader is part of the run identity for the 5dim path; persist it on
       // every report so 5dim+mock/llm runs are attributable.
       grader: graderKind,
+      graderRequested,
+      graderReason,
       // Run-identity and anti-Goodhart fields are omitted when defaults apply.
       ...(graderIndependence && { graderModel, graderIndependence }),
       ...(samples > 1 && { samples }),
@@ -799,6 +835,8 @@ async function main() {
         mode: 'model-benchmark',
         scoringMethod: scorer,
         grader: graderKind,
+        graderRequested,
+        graderReason,
         profileId,
         family: profile.family,
         target: profile.targetPath,
@@ -824,6 +862,8 @@ async function main() {
       // failure, so carry scorer + grader provenance here too.
       scoringMethod: scorer,
       grader: graderKind,
+      graderRequested,
+      graderReason,
       profileId,
       family: null,
       evaluationMode: 'benchmark',
@@ -846,6 +886,8 @@ async function main() {
         evaluationMode: 'benchmark',
         scoringMethod: scorer,
         grader: graderKind,
+        graderRequested,
+        graderReason,
         profileId,
         family: null,
         provenance: {
