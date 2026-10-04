@@ -12,7 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { buildCensus, decideVerdict, extractCitations, flagByIdentifierOverlap, headCommit, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, listTrackedFiles, main, MARGIN_LINE, parseLabels, resolveCitation, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/cite-drift-scan.mjs';
+import { buildCensus, corpusDocs, decideVerdict, deriveRedirects, extractCitations, flagByIdentifierOverlap, headCommit, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/cite-drift-scan.mjs';
 
 const ALPHA_DOC = '.skilled/skills/alpha-skill/SKILL.md';
 const ALPHA_SKILL_ROOT = '.skilled/skills/alpha-skill';
@@ -173,6 +173,8 @@ const makeDrawFixture = () => {
   return root;
 };
 
+// One committed-read log covers both read mechanisms: `git show` names the
+// path in its argument, `cat-file --batch` names it on a stdin line.
 const makeGitShowCounter = (root) => {
   const bin = path.join(root, 'git-counter-bin');
   const logPath = path.join(root, 'git-show-paths.log');
@@ -181,6 +183,12 @@ const makeGitShowCounter = (root) => {
   fs.writeFileSync(path.join(bin, 'git'), [
     '#!/bin/sh',
     'if [ "$3" = "show" ]; then printf "%s\\n" "${4#*:}" >> "$CITE_GIT_SHOW_LOG"; fi',
+    'if [ "$3" = "cat-file" ]; then',
+    '  input="$CITE_GIT_SHOW_LOG.stdin"',
+    '  cat > "$input"',
+    '  sed "s/^[^:]*://" "$input" >> "$CITE_GIT_SHOW_LOG"',
+    '  exec "$CITE_REAL_GIT" "$@" < "$input"',
+    'fi',
     'exec "$CITE_REAL_GIT" "$@"',
     '',
   ].join('\n'), { mode: 0o755 });
@@ -197,6 +205,7 @@ test('extract prose', () => {
     target: 'src/a.ts',
     targetLine: 12,
     targetLineEnd: null,
+    lead: '',
   }]);
 });
 
@@ -283,6 +292,333 @@ test('resolve unresolved', () => {
   }
 });
 
+test('resolve spaced path', () => {
+  const { root } = makeFixture();
+  try {
+    commitFiles(root, { 'REPO RULES.md': '# Rules\n\nThe rule text.\n' });
+    const tracked = listTrackedFiles(root);
+    const [citation] = extractCitations('The rules in `REPO RULES.md:2` apply.\n', ALPHA_DOC);
+    assert.equal(citation.lead, 'REPO');
+    assert.deepEqual(
+      resolveCitation(citation, { tracked, repoRoot: root, skillRoot: ALPHA_SKILL_ROOT }),
+      { status: 'in_range', path: 'REPO RULES.md', endLine: 2 },
+    );
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('resolve spaced prose stays prose', () => {
+  const { root } = makeFixture();
+  try {
+    const [citation] = extractCitations('For the rules, see the RULES.md:3 entry.\n', ALPHA_DOC);
+    assert.equal(citation.lead, 'see the');
+    assert.deepEqual(
+      resolveCitation(citation, { tracked: listTrackedFiles(root), repoRoot: root, skillRoot: ALPHA_SKILL_ROOT }),
+      { status: 'unresolved', path: null, endLine: null },
+    );
+    commitFiles(root, { 'RULES.md': '# Rules\n\nThe rule text.\n' });
+    assert.deepEqual(
+      resolveCitation(citation, { tracked: listTrackedFiles(root), repoRoot: root, skillRoot: ALPHA_SKILL_ROOT }),
+      { status: 'in_range', path: 'RULES.md', endLine: 3 },
+    );
+  } finally {
+    cleanup(root);
+  }
+});
+
+// Adds committed files to a fixture so one test can extend the shared tree.
+const commitFiles = (root, files) => {
+  for (const [rel, text] of Object.entries(files)) {
+    const full = path.join(root, rel);
+    fs.mkdirSync(path.dirname(full), { recursive: true });
+    fs.writeFileSync(full, text);
+  }
+  runGit(root, 'add', '-A');
+  runGit(root, 'commit', '-q', '-m', 'extra');
+};
+
+// A census run with an explicit redirect table, so the shipped one cannot shape a fixture.
+const runCensus = async (repoRoot, argv = [], deps = {}) => {
+  const lines = [];
+  const errors = [];
+  const labelsPath = path.join(repoRoot, 'labels-not-present.jsonl');
+  const code = await main([...argv, '--labels', labelsPath], {
+    repoRoot,
+    out: (line) => lines.push(line),
+    err: (line) => errors.push(line),
+    redirects: [],
+    ...deps,
+  });
+  return { code, lines, errors, totalLine: lines.find((line) => line.startsWith('citations=')) };
+};
+
+const ZERO_MOVES = 'moved_in_range=0 moved_past_end=0 basename_only=0';
+
+test('basename only', async () => {
+  const { root } = makeFixture();
+  try {
+    commitFiles(root, {
+      'deep/nested/lonely.ts': TEN_LINES,
+      '.skilled/skills/beta-skill/guide.md': 'Only the basename of `lonely.ts:3` matches.\n',
+    });
+    const tracked = listTrackedFiles(root);
+    const citation = {
+      doc: `${ALPHA_SKILL_ROOT}/docs/note.md`,
+      line: 1,
+      sentence: 'Only the basename matches.',
+      target: 'lonely.ts',
+      targetLine: 3,
+      targetLineEnd: null,
+    };
+    // The line fits the matched file, yet a guessed path is never in range.
+    assert.deepEqual(
+      resolveCitation(citation, { tracked, repoRoot: root, skillRoot: ALPHA_SKILL_ROOT }),
+      { status: 'basename_only', path: 'deep/nested/lonely.ts', endLine: 3 },
+    );
+    const run = await runCensus(root);
+    assert.equal(run.code, 0);
+    assert.ok(run.lines.includes('skill beta-skill: citations=1 in_range=0 past_end=0 moved_in_range=0 moved_past_end=0 basename_only=1 ambiguous=0 unresolved=0 dead=0'));
+    assert.match(run.totalLine, /^citations=2 in_range=1 past_end=0 moved_in_range=0 moved_past_end=0 basename_only=1 /);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('moved via redirect rule', async () => {
+  const { root } = makeFixture();
+  try {
+    commitFiles(root, {
+      '.skilled/skills/beta-skill/moved.md': 'Renamed `old-src/inside.ts:3` and `old-src/inside.ts:999`.\n',
+    });
+    const tracked = listTrackedFiles(root);
+    const redirects = [{ from: 'old-src/', to: 'src/' }];
+    const cite = (target, targetLine) => resolveCitation(
+      { doc: ALPHA_DOC, line: 1, sentence: '', target, targetLine, targetLineEnd: null },
+      { tracked, repoRoot: root, skillRoot: ALPHA_SKILL_ROOT, redirects },
+    );
+    assert.deepEqual(cite('old-src/inside.ts', 3), { status: 'moved_in_range', path: 'src/inside.ts', endLine: 3 });
+    assert.deepEqual(cite('old-src/inside.ts', 999), { status: 'moved_past_end', path: 'src/inside.ts', endLine: 999 });
+    // A path renamed in two stages follows both rules to the tracked file.
+    const chained = resolveCitation(
+      { doc: ALPHA_DOC, line: 1, sentence: '', target: 'older/inside.ts', targetLine: 3, targetLineEnd: null },
+      { tracked, repoRoot: root, redirects: [{ from: 'older/', to: 'old-src/' }, ...redirects] },
+    );
+    assert.equal(chained.status, 'moved_in_range');
+
+    const run = await runCensus(root, [], { redirects });
+    assert.equal(run.code, 0);
+    assert.match(run.totalLine, /^citations=3 in_range=1 past_end=0 moved_in_range=1 moved_past_end=1 basename_only=0 ambiguous=0 unresolved=0 refused=0 dead=0 /);
+    assert.deepEqual(run.lines.filter((line) => line.startsWith('cite dead: ')), []);
+    // The moved listing is opt-in and names the new path; the default run prints none.
+    assert.deepEqual(run.lines.filter((line) => line.startsWith('cite moved: ')), []);
+    const listed = await runCensus(root, ['--moved'], { redirects });
+    assert.deepEqual(listed.lines.filter((line) => line.startsWith('cite moved: ')), [
+      'cite moved: skills .skilled/skills/beta-skill/moved.md:1 -> old-src/inside.ts:3 now src/inside.ts (moved_in_range)',
+      'cite moved: skills .skilled/skills/beta-skill/moved.md:1 -> old-src/inside.ts:999 now src/inside.ts (moved_past_end)',
+    ]);
+    // Without the rule the same citations only match by basename: redirects come first.
+    const bare = await runCensus(root);
+    assert.match(bare.totalLine, / moved_in_range=0 moved_past_end=0 basename_only=2 /);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('gone stays gone', async () => {
+  const { root } = makeFixture({ deadMissing: true });
+  try {
+    commitFiles(root, {
+      'elsewhere/target.ts': TEN_LINES,
+      '.skilled/skills/beta-skill/removed.md': 'A deleted file `removed/never.ts:1` was never renamed.\n',
+    });
+    fs.rmSync(path.join(root, `${ALPHA_SKILL_ROOT}/gone/target.ts`));
+    const tracked = listTrackedFiles(root);
+    // Each rule would land on a different path; neither may rescue a gone target.
+    const redirects = [
+      { from: `${ALPHA_SKILL_ROOT}/gone/`, to: 'elsewhere/' },
+      { from: 'removed/', to: 'src/' },
+    ];
+    const resolved = resolveCitation(alphaCitation(root), { tracked, repoRoot: root, skillRoot: ALPHA_SKILL_ROOT, redirects });
+    assert.equal(resolved.status, 'missing');
+    const run = await runCensus(root, [], { redirects });
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines.filter((line) => line.startsWith('cite dead: ')), [
+      `cite dead: ${ALPHA_DOC}:2 -> gone/target.ts:1`,
+    ]);
+    assert.match(run.totalLine, new RegExp(` ${ZERO_MOVES} ambiguous=0 unresolved=1 refused=0 dead=1 `));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('corpus filter', async () => {
+  const { root } = makeFixture();
+  try {
+    commitFiles(root, {
+      'specs/track-a/001-live/spec.md': 'Live `src/inside.ts:3` holds.\n',
+      'specs/track-a/z_archive/002-old/spec.md': 'Archived `src/inside.ts:4` is skipped.\n',
+      'specs/z_archive/old.md': 'Archived `src/inside.ts:5` is skipped.\n',
+      'specs/track-b/plan.md': 'Past `src/inside.ts:999` is dead.\n',
+    });
+    const commit = headCommit(root).slice(0, 12);
+    const tracked = listTrackedFiles(root);
+    assert.deepEqual(corpusDocs(tracked, 'specs').map((entry) => entry.doc), [
+      'specs/track-a/001-live/spec.md',
+      'specs/track-b/plan.md',
+    ]);
+
+    const specs = await runCensus(root, ['--corpus', 'specs']);
+    assert.equal(specs.code, 0);
+    assert.deepEqual(specs.lines.filter((line) => /^(skill|track|family) /.test(line)), [
+      `track track-a: citations=1 in_range=1 past_end=0 ${ZERO_MOVES} ambiguous=0 unresolved=0 dead=0`,
+      `track track-b: citations=1 in_range=0 past_end=1 ${ZERO_MOVES} ambiguous=0 unresolved=0 dead=1`,
+      `family specs: citations=2 in_range=1 past_end=1 ${ZERO_MOVES} ambiguous=0 unresolved=0 refused=0 dead=1`,
+    ]);
+    assert.equal(specs.totalLine, `citations=2 in_range=1 past_end=1 ${ZERO_MOVES} ambiguous=0 unresolved=0 refused=0 dead=1 corpus=specs commit=${commit}`);
+    assert.deepEqual(specs.lines.filter((line) => line.startsWith('cite dead: ')), [
+      'cite dead: specs/track-b/plan.md:1 -> src/inside.ts:999',
+    ]);
+
+    const all = await runCensus(root, ['--corpus', 'all']);
+    assert.deepEqual(all.lines.filter((line) => line.startsWith('family ')), [
+      `family skills: citations=1 in_range=1 past_end=0 ${ZERO_MOVES} ambiguous=0 unresolved=0 refused=0 dead=0`,
+      `family specs: citations=2 in_range=1 past_end=1 ${ZERO_MOVES} ambiguous=0 unresolved=0 refused=0 dead=1`,
+    ]);
+    assert.match(all.totalLine, new RegExp(`^citations=3 .* corpus=all commit=${commit}$`));
+
+    const skills = await runCensus(root);
+    assert.ok(!skills.lines.some((line) => line.startsWith('track ')));
+    assert.deepEqual(skills.lines.filter((line) => line.startsWith('family ')).map((line) => line.split(':')[0]), ['family skills']);
+    assert.match(skills.totalLine, / corpus=skills commit=/);
+
+    const bad = await runCensus(root, ['--corpus', 'archive']);
+    assert.equal(bad.code, 2);
+    assert.deepEqual(bad.errors, ['--corpus needs one of skills, specs, all']);
+    const draw = await runCensus(root, ['--corpus', 'specs', '--draw', '--seed', '1']);
+    assert.equal(draw.code, 2);
+    assert.deepEqual(draw.errors, ['--draw reads the skills corpus only']);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('redirect table refused when malformed', async () => {
+  const { root } = makeFixture();
+  try {
+    const tablePath = path.join(root, 'redirects.json');
+    fs.writeFileSync(tablePath, '{"rules":[{"from":"old"}]}\n');
+    const lines = [];
+    const errors = [];
+    const code = await main(['--labels', path.join(root, 'none.jsonl')], {
+      repoRoot: root,
+      out: (line) => lines.push(line),
+      err: (line) => errors.push(line),
+      redirectsPath: tablePath,
+    });
+    assert.equal(code, 2);
+    assert.deepEqual(lines, []);
+    assert.match(errors[0], /malformed/);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('derive redirects', () => {
+  const records = [];
+  const add = (count, from, to) => {
+    for (let index = 0; index < count; index += 1) records.push(`R100\t${from(index)}\t${to(index)}`);
+  };
+  add(60, (i) => `old/m${i}.ts`, (i) => `new/m${i}.ts`);
+  add(2, (i) => `old/x${i}.ts`, (i) => `stray/x${i}.ts`);
+  // A redundant child repeats its parent and is dropped; the hub moved elsewhere and stays.
+  add(55, (i) => `old/sub/s${i}.ts`, (i) => `new/sub/s${i}.ts`);
+  add(55, (i) => `old/hub/h${i}.ts`, (i) => `new/merged/hub/h${i}.ts`);
+  // Too few records, then too little agreement.
+  add(40, (i) => `few/f${i}.ts`, (i) => `many/f${i}.ts`);
+  add(50, (i) => `mix/k${i}.ts`, (i) => `a/k${i}.ts`);
+  add(10, (i) => `mix/j${i}.ts`, (i) => `b/j${i}.ts`);
+  records.push('R090\told/renamed.ts\tnew/other-name.ts', 'R100\t"quoted\\tpath.ts"\t"new/quoted\\tpath.ts"');
+
+  const derived = deriveRedirects(`${records.join('\n')}\n`);
+  assert.equal(derived.records, 273);
+  assert.deepEqual(derived.rules, [
+    { from: 'old/', to: 'new/', records: 115, agreement: 0.9829 },
+    { from: 'old/hub/', to: 'new/merged/hub/', records: 55, agreement: 1 },
+  ]);
+});
+
+// A rebuild needs a repo whose history holds enough renames under one folder
+// to pass a rule; 55 identical-content moves under old/ clear the 50-record bar.
+test('rebuild redirects writes a table loadRedirects accepts', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'cite-drift-rebuild-'));
+  const outPath = path.join(os.tmpdir(), `cite-drift-rebuild-${process.pid}.json`);
+  try {
+    fs.mkdirSync(path.join(root, 'old'));
+    for (let index = 0; index < 55; index += 1) {
+      fs.writeFileSync(path.join(root, 'old', `f${index}.ts`), `export const f${index} = ${index};\n`);
+    }
+    runGit(root, 'init', '-q');
+    runGit(root, 'add', '-A');
+    runGit(root, 'commit', '-q', '-m', 'before rename');
+    runGit(root, 'mv', 'old', 'new');
+    runGit(root, 'commit', '-q', '-m', 'rename old to new');
+
+    const lines = [];
+    const errors = [];
+    const code = await main(['--rebuild-redirects', outPath], {
+      repoRoot: root,
+      out: (line) => lines.push(line),
+      err: (line) => errors.push(line),
+    });
+    assert.equal(code, 0);
+    assert.deepEqual(errors, []);
+    const commit = headCommit(root);
+    assert.deepEqual(lines, [
+      `redirects: path=${outPath} commit=${commit.slice(0, 12)} records=55 rules=1`,
+    ]);
+
+    const parsed = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+    assert.deepEqual(Object.keys(parsed), ['source', 'rules']);
+    assert.deepEqual(Object.keys(parsed.source), [
+      'command', 'commit', 'renameRecords', 'minRecords', 'minAgreement', 'derivedBy',
+    ]);
+    assert.equal(parsed.source.command, 'git log -M --diff-filter=R --name-status --format= HEAD');
+    assert.equal(parsed.source.commit, commit);
+    assert.equal(parsed.source.renameRecords, 55);
+    assert.deepEqual(loadRedirects(outPath), [
+      { from: 'old/', to: 'new/', records: 55, agreement: 1 },
+    ]);
+    // The flagged run writes only the out-path, never inside the repo.
+    assert.equal(runGit(root, 'status', '--porcelain').toString(), '');
+  } finally {
+    cleanup(root);
+    fs.rmSync(outPath, { force: true });
+  }
+});
+
+test('rebuild redirects outside a repo returns 2', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'cite-drift-rebuild-none-'));
+  const outPath = path.join(os.tmpdir(), `cite-drift-rebuild-none-${process.pid}.json`);
+  try {
+    const lines = [];
+    const errors = [];
+    const code = await main(['--rebuild-redirects', outPath], {
+      repoRoot: root,
+      out: (line) => lines.push(line),
+      err: (line) => errors.push(line),
+    });
+    assert.equal(code, 2);
+    assert.deepEqual(lines, []);
+    assert.equal(errors.length, 1);
+    assert.match(errors[0], /git log failed/);
+    assert.ok(!fs.existsSync(outPath));
+  } finally {
+    cleanup(root);
+    fs.rmSync(outPath, { force: true });
+  }
+});
+
 test('dead missing target', async () => {
   const { root } = makeFixture({ deadMissing: true });
   try {
@@ -348,6 +684,50 @@ test('refused untracked', async () => {
     const run = await runMain(root);
     assert.equal(run.code, 0);
     assert.match(run.lines.find((line) => line.startsWith('citations=')), /refused=1 dead=/);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('census prefetch stores the same text git show returns', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'cite-drift-batch-'));
+  try {
+    const docs = {
+      [ALPHA_DOC]: '# Café\nThe window `src/inside.ts:3` still holds.\n',
+      '.skilled/skills/beta-skill/SKILL.md': '# Beta skill\nAnother shared document.\n',
+    };
+    for (const [rel, text] of Object.entries({ ...docs, 'src/inside.ts': TEN_LINES })) {
+      const full = path.join(root, rel);
+      fs.mkdirSync(path.dirname(full), { recursive: true });
+      fs.writeFileSync(full, text);
+    }
+    runGit(root, 'init', '-q');
+    runGit(root, 'add', '-A');
+    runGit(root, 'commit', '-q', '-m', 'batch fixture');
+    // The index tracks a staged path HEAD does not hold: the batch marks it
+    // missing, so its cache slot is null and the census skips it.
+    fs.writeFileSync(path.join(root, '.skilled/skills/beta-skill/staged.md'), 'Not committed yet.\n');
+    runGit(root, 'add', '.skilled/skills/beta-skill/staged.md');
+
+    const commit = headCommit(root);
+    const readCache = new Map();
+    const census = buildCensus(root, listTrackedFiles(root), readCache, { redirects: [] });
+
+    assert.equal(census.commit, commit);
+    assert.equal(census.total.citations, 1);
+    assert.equal(census.total.in_range, 1);
+    assert.equal(census.total.dead, 0);
+    assert.deepEqual(
+      census.perSkill.map((entry) => [entry.skill, entry.citations, entry.in_range]),
+      [['alpha-skill', 1, 1], ['beta-skill', 0, 0]],
+    );
+    for (const [doc, text] of Object.entries(docs)) {
+      const key = `${commit}:${doc}`;
+      assert.equal(readCache.get(key), text);
+      assert.equal(readCache.get(key), runGit(root, 'show', `${commit}:${doc}`).toString());
+    }
+    assert.equal(readCache.get(`${commit}:.skilled/skills/beta-skill/staged.md`), null);
+    assert.equal(readCache.size, 3);
   } finally {
     cleanup(root);
   }
