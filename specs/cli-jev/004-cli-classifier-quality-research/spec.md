@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-04 |
 | **Branch** | `worktrees/085-jev-feature-improvement-research` |
 <!-- /ANCHOR:metadata -->
@@ -36,6 +36,17 @@ Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier par
 
 ### Purpose
 Produce a ranked, evidence-cited findings report that says where the shipped cli-classifier work falls short on each of those seven axes, so a follow-up packet can fix what matters.
+### Research Findings
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Source of truth: `research/research.md`. Ten iterations across two lineages produced eleven distinct findings, all confirmed by the orchestrator: one P1 and ten P2, no P0.
+
+- P1 CQ-01: five cli-jev reference and asset docs fail `validate_document.py` for a missing Overview section.
+- P2 CQ-02: the hub `SKILL.md` describes the transport default backwards (Pi is tried first when nothing is selected).
+- P2 CQ-03: `score-clarify-default.cjs` records `backend: 'jev'` and no `transport`, against the catalog's claim.
+- P2 CQ-04 and CQ-05: two shared-transport edge cases no live caller reaches (a `choice` with no question, an omitted `env`).
+- P2 CQ-06 to CQ-12: a stale shared README, a 41-versus-46 test count, a missing `v0.8.0.0` changelog, an install line only in the packet README, one approved advisor divergence and a 0.75-versus-0.60 band in a 049 summary.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:problem -->
 
 ---

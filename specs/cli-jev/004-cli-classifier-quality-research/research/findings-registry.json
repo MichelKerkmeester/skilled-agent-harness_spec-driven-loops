@@ -1,0 +1,178 @@
+{
+  "mergedFrom": [
+    "deepseek-v4-1-flash-max",
+    "luna-max-fast"
+  ],
+  "lineageExecutors": {
+    "deepseek-v4-1-flash-max": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "luna-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Do the hub and packet docs comply with sk-doc standards, and does each doc's claim match the code it describes?",
+      "resolution": "answered: F-003 (P1 cluster) + F-001/F-002/F-004/F-005/F-009; remainder validates clean",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "Do the scripts and tests comply with sk-code-opencode standards, and do they carry latent bugs?",
+      "resolution": "answered: no functional bugs found; 153 tests pass; F-005 count defect",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How does a prompt reach the hub through the skill-advisor graph, and does that wiring resolve?",
+      "resolution": "answered: chain verified end to end (advisor graph, compiled route, hub router, dispatch hook); F-006 approved divergence",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "What is the UX for an external repository user who installs the skill without Jev, and for the operator who runs the benchmarks?",
+      "resolution": "answered: operator flow complete; F-007 prerequisite gap",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "Where do docs, metadata, mirrors and code drift apart, and are the measured with-and-without results visible to a reader?",
+      "resolution": "answered: F-008 metadata/changelog lag; mirror byte-identical; pi-transport and hub-routing results visible",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-006",
+      "axis": 3,
+      "severity": "P2",
+      "title": "Approved advisor divergence: non-Jev score prompt reaches cli-classifier natively",
+      "evidence": "system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json:753-761",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-003",
+      "axis": 1,
+      "severity": "P1",
+      "title": "Five packet docs miss the required Overview section",
+      "evidence": ".skilled/skills/cli-classifier/cli-jev/references/{cli-reference,integration-patterns,mcp-server,providers-and-models}.md + cli-jev/assets/question-shaping-card.md (validator INVALID)",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-008",
+      "axis": 7,
+      "severity": "P2",
+      "title": "Hub changelog and version metadata lag the 2026-10-03 injection-screen improvements present in shipped files",
+      "evidence": "description.json:25, graph-metadata.json:111 vs 049-.../004-injection-screen-improvements/implementation-summary.md:3,93-94",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-001",
+      "axis": 5,
+      "severity": "P2",
+      "title": "Hub SKILL.md misdescribes the transport default",
+      "evidence": ".skilled/skills/cli-classifier/SKILL.md:114 vs shared/scripts/jev-transport.mjs:4-7,55-73,534-553",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-009",
+      "axis": 5,
+      "severity": "P2",
+      "title": "Packet summary recording the hub's live result misstates the review band (0.25-0.75 vs code 0.25-0.60)",
+      "evidence": "049-.../implementation-summary.md:56 vs score-injection-screen.mjs:65-67,1387",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-005",
+      "axis": 5,
+      "severity": "P2",
+      "title": "Pi-transport test README claims 41 cases; the suite holds 46",
+      "evidence": "benchmark/pi-transport/tests/README.md:26 vs 46 test() declarations",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-002",
+      "axis": 5,
+      "severity": "P2",
+      "title": "score-clarify-default.cjs drops the answering route; catalog five-scorer claim does not reconcile with code",
+      "evidence": "feature-catalog.md:63 vs sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1271,1315,1368",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-007",
+      "axis": 4,
+      "severity": "P2",
+      "title": "The jev install prerequisite is not surfaced where an external user starts",
+      "evidence": "hub README/SKILL (no line) vs cli-jev/README.md:127",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "F-004",
+      "axis": 5,
+      "severity": "P2",
+      "title": "Transport-integration measurement doc claims a route record score-clarify-default does not write",
+      "evidence": "feature-catalog/measurements/pi-transport-integration.md:90-91,117",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 9,
+    "sourceFindings": 9,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

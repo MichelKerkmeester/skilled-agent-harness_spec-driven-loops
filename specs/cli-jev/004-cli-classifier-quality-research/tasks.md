@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Scaffold the packet and fill spec, plan and tasks (`spec.md`, `plan.md`, `tasks.md`)
-- [ ] T002 Bind the research topic and the two-lineage fan-out config (`research/deep-research-config.json`)
-- [ ] T003 Commit the packet before the run so write containment starts from a clean tree
+- [x] T001 Scaffold the packet and fill spec, plan and tasks (`spec.md`, `plan.md`, `tasks.md`)
+- [x] T002 Bind the research topic and the two-lineage fan-out config (`research/deep-research-config.json`)
+- [x] T003 Commit the packet before the run so write containment starts from a clean tree
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Run the DeepSeek V4.1 Flash max lineage on cli-devin, five iterations (`research/lineages/deepseek-v4-1-flash-max/`)
-- [ ] T005 [P] Run the GPT-6 Luna max fast lineage on cli-codex, five iterations (`research/lineages/luna-max-fast/`)
-- [ ] T006 Merge both lineages and write the synthesis (`research/research.md`)
-- [ ] T007 Record any lineage failure or disagreement in the synthesis
+- [x] T004 [P] Run the DeepSeek V4.1 Flash max lineage on cli-devin, five iterations (`research/lineages/deepseek-v4-1-flash-max/`)
+- [x] T005 [P] Run the GPT-6 Luna max fast lineage on cli-codex, five iterations (`research/lineages/luna-max-fast/`)
+- [x] T006 Merge both lineages and write the synthesis (`research/research.md`)
+- [x] T007 Record any lineage failure or disagreement in the synthesis
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Spot-check the top findings against the repository (`implementation-summary.md`)
-- [ ] T009 Confirm no write landed outside `research/` (`git status`)
-- [ ] T010 Validate the packet with `validate.sh --strict` and write the summary
+- [x] T008 Spot-check the top findings against the repository (`implementation-summary.md`)
+- [x] T009 Confirm no write landed outside `research/` (`git status`)
+- [x] T010 Validate the packet with `validate.sh --strict` and write the summary
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Top findings spot-checked
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Top findings spot-checked
 <!-- /ANCHOR:completion -->
 
 ---
