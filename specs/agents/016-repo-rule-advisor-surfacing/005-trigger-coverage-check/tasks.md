@@ -31,8 +31,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `check-repo-rules.cjs` `CHECKS`, `splitRouterSections` and check 9
-- [ ] T002 Measure token overlap between every Fires-when bullet and its router row, and set the threshold
+- [x] T001 Read `check-repo-rules.cjs` `CHECKS`, `splitRouterSections` and check 9
+- [x] T002 Measure token overlap between every Fires-when bullet and its router row, and set the threshold
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,10 +40,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add check 10 and `--root` (`check-repo-rules.cjs`)
-- [ ] T004 Write covered and uncovered fixtures (`test_check_repo_rules.py`)
-- [ ] T005 Fix the router rows for each real gap (`REPO RULES.md`)
-- [ ] T006 Update the check lists (`SKILL.md`, `rule-anatomy.md`)
+- [x] T003 Add check 10 and `--root` (`check-repo-rules.cjs`)
+- [x] T004 Write covered and uncovered fixtures (`test_check_repo_rules.py`)
+- [x] T005 Fix the router rows for each real gap (`REPO RULES.md`)
+- [x] T006 Update the check lists (`SKILL.md`, `rule-anatomy.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,8 +51,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run the checker on the corpus and the pytest suite
-- [ ] T008 List every router edit in `implementation-summary.md`
+- [x] T007 Run the checker on the corpus and the pytest suite
+- [x] T008 List every router edit in `implementation-summary.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

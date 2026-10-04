@@ -27,10 +27,19 @@ const ROUTER_FILE = 'REPO RULES.md';
 // A repository that keeps its toolchain under a source root keeps the corpus
 // inside it, and one that does not keeps the corpus at the repository root. The
 // probe order is the whole layout decision: the first candidate that exists as a
-// directory is the one this run reads, so both layouts pass the same nine checks.
+// directory is the one this run reads, so both layouts pass the same checks.
 const RULES_DIR_CANDIDATES = ['.skilled/repo-rules', 'repo-rules'];
 const LINE_LIMIT = 250;
 const NAME_WIDTH = 19;
+// Check 10 compares words, not meaning. A Fires-when bullet is covered when one
+// router item carries at least this share of its content words. Measured across
+// the corpus, a bullet's own row covers a median 0.75 of its words and the best
+// other row 0.17. Every bullet under 0.30 named a condition its row never did.
+const COVERAGE_THRESHOLD = 0.3;
+const STOP_WORDS = new Set(('a an the to of or and in on at by for with from as is are be any all that this which ' +
+  'you your it its one two about into than when what how there their not will was has have can do does did own off out')
+  .split(' '));
+const SUFFIXES = ['ations', 'ation', 'ions', 'ion', 'ings', 'ing', 'ers', 'er', 'ed', 'es', 's', 'e'];
 const REQUIRED_KEYS = [
   'title',
   'description',
@@ -43,6 +52,12 @@ const REQUIRED_KEYS = [
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
+
+// `--root <dir>` points the checker at another tree, such as a test fixture.
+function parseRootArg(argv) {
+  const index = argv.indexOf('--root');
+  return index !== -1 && argv[index + 1] ? path.resolve(argv[index + 1]) : null;
+}
 
 // Walk up from the script so the command works from anywhere in the tree.
 function findRepoRoot(startDir) {
@@ -200,6 +215,35 @@ function splitRouterSections(lines) {
     });
   }
   return sections;
+}
+
+// Content words, crudely stemmed, so "fails" and "failure" can meet.
+function contentWords(text) {
+  const words = new Set();
+  const plain = text.replace(/\]\([^)]*\)/gu, ']').toLowerCase();
+  for (const word of plain.match(/[a-z]+/gu) || []) {
+    if (word.length < 3 || STOP_WORDS.has(word)) continue;
+    const suffix = SUFFIXES.find((candidate) => word.endsWith(candidate) && word.length - candidate.length >= 4);
+    words.add(suffix === undefined ? word : word.slice(0, -suffix.length));
+  }
+  return words;
+}
+
+// Two stems meet when equal, or when the shorter, at four letters or more,
+// begins the longer: "auth" meets "authentication".
+function wordsMeet(left, right) {
+  if (left === right) return true;
+  const [shorter, longer] = left.length <= right.length ? [left, right] : [right, left];
+  return shorter.length >= 4 && longer.startsWith(shorter);
+}
+
+function coverage(bulletWords, itemWords) {
+  if (bulletWords.size === 0) return 1;
+  let met = 0;
+  for (const word of bulletWords) {
+    if ([...itemWords].some((other) => wordsMeet(word, other))) met += 1;
+  }
+  return met / bulletWords.size;
 }
 
 function summarize(problems) {
@@ -433,6 +477,48 @@ function checkIndexSummaries(context) {
   };
 }
 
+// 10. Every Fires-when bullet has a counterpart in its rule's router row, because
+// Gate 5 loads by the row: a condition the row never names is one no session is
+// sent to the rule for. A bullet whose head ends in a colon is also scored on the
+// head alone, so a long list of examples does not hide a covered condition.
+function checkFiresWhenCoverage(context) {
+  const problems = [];
+  let bullets = 0;
+  const rows = new Map();
+  for (const row of context.triggerRows) {
+    const target = row.links.map(normalizeTarget).find((link) => ruleLinkDir(context, link) !== null);
+    if (target === undefined) continue;
+    const cells = row.text.split('|');
+    const items = (cells[1] || '').split('·').map(contentWords);
+    rows.set(path.basename(target), { lineNumber: row.lineNumber, items });
+  }
+  for (const rule of context.rules) {
+    const row = rows.get(rule.name);
+    const start = rule.body.findIndex((line) => /^##\s+Fires when\s*$/u.test(line));
+    if (row === undefined || start === -1) continue;
+    for (let index = start + 1; index < rule.body.length; index += 1) {
+      const line = rule.body[index];
+      if (/^##\s/u.test(line)) break;
+      const bullet = line.match(/^\s*(?:[-*+]|\d+[.)])\s+(.*)$/u);
+      if (bullet === null) continue;
+      bullets += 1;
+      const text = bullet[1].trim();
+      const head = text.includes(': ') ? text.slice(0, text.indexOf(': ')) : null;
+      const score = (words) => Math.max(...row.items.map((item) => coverage(words, item)));
+      const best = Math.max(score(contentWords(text)), head === null ? 0 : score(contentWords(head)));
+      if (best < COVERAGE_THRESHOLD) {
+        problems.push(`${rule.name}: "${text}" has no counterpart in router line ${row.lineNumber}`);
+      }
+    }
+  }
+  return {
+    ok: problems.length === 0,
+    detail: problems.length === 0
+      ? `bullets=${bullets} every bullet has a router counterpart (threshold ${COVERAGE_THRESHOLD})`
+      : problems.join('; ')
+  };
+}
+
 const CHECKS = [
   ['count parity', checkCounts],
   ['row coverage', checkWiring],
@@ -442,14 +528,16 @@ const CHECKS = [
   ['divider parity', checkDividerParity],
   ['rule links', checkRuleLinks],
   ['fires-when sections', checkFiresWhenSections],
-  ['index summaries', checkIndexSummaries]
+  ['index summaries', checkIndexSummaries],
+  ['fires-when coverage', checkFiresWhenCoverage]
 ];
 
 function main() {
   exitIfValidationOff('check-repo-rules.cjs');
-  const located = findRepoRoot(__dirname);
-  if (located === null) {
-    console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR_CANDIDATES.join(' or ')} directory found above ${__dirname}`);
+  const rootArg = parseRootArg(process.argv.slice(2));
+  const located = findRepoRoot(rootArg || __dirname);
+  if (located === null || (rootArg !== null && located.root !== rootArg)) {
+    console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR_CANDIDATES.join(' or ')} directory found at ${rootArg || `or above ${__dirname}`}`);
     return 2;
   }
 
