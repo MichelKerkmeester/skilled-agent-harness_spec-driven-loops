@@ -1,7 +1,7 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-09-03"
+last_updated: "2026-10-04"
 version: 2.1.0.99
 ---
 
@@ -229,8 +229,10 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | M-007 | Session capturing pipeline quality | [M-007](tooling-and-scripts/session-capturing-pipeline-quality.md) | [session-capturing-pipeline-quality](../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md) |
 | 241 | Session extraction and enrichment | [241](tooling-and-scripts/session-extraction-and-enrichment.md) | [session-extraction-and-enrichment](../feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md) |
 | 243 | Setup, native module health and prerequisite validation | [243](tooling-and-scripts/setup-native-module-health-and-mcp-installation.md) | [setup-native-module-health-and-mcp-installation](../feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md) |
+| 464 | Shared frontmatter value list | [464](tooling-and-scripts/shared-frontmatter-value-list.md) | [shared-frontmatter-value-list](../feature-catalog/tooling-and-scripts/shared-frontmatter-value-list.md) |
 | EX-041 | sk-git worktree convention | [EX-041](tooling-and-scripts/sk-git-worktree-convention.md) | [sk-git-worktree-convention](../feature-catalog/tooling-and-scripts/sk-git-worktree-convention.md) |
 | 150 | Source-dist alignment validation | [150](tooling-and-scripts/source-dist-alignment-validation.md) | [source-dist-alignment-enforcement](../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md) |
+| 465 | Source tag resolution | [465](tooling-and-scripts/source-tag-resolution.md) | [source-tag-resolution](../feature-catalog/tooling-and-scripts/source-tag-resolution.md) |
 | 242 | Spec-folder detection and description metadata | [242](tooling-and-scripts/spec-folder-detection-and-description.md) | [spec-folder-detection-and-description](../feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md) |
 | PHASE-008 | Spec-folder literal naming (CLI-driven slug) | [PHASE-008](tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md) | [spec-folder-literal-naming-ai-derived-slugs](../feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md) |
 | PHASE-006 | Spec-folder literal naming (create.sh fallback) | [PHASE-006](tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) | [spec-folder-literal-naming-create-sh-fallback](../feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) |

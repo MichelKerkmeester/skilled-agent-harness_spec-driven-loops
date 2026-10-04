@@ -14,6 +14,7 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 
 // Internal modules
+import { IMPORTANCE_TIERS, SESSION_CONTEXT_TYPES } from '@spec-kit/shared/context-types';
 import { CONFIG } from '../config/index.js';
 import { SemanticSignalExtractor } from '../lib/semantic-signal-extractor.js';
 import type {
@@ -151,15 +152,6 @@ function detectImportanceTier(filesModified: string[], contextType: string): str
   return 'normal';
 }
 
-const VALID_IMPORTANCE_TIERS = new Set([
-  'constitutional',
-  'critical',
-  'important',
-  'normal',
-  'temporary',
-  'deprecated',
-]);
-
 function resolveImportanceTier(
   filesModified: string[],
   contextType: string,
@@ -167,7 +159,7 @@ function resolveImportanceTier(
 ): string {
   if (typeof explicitImportanceTier === 'string') {
     const normalizedTier = explicitImportanceTier.trim().toLowerCase();
-    if (VALID_IMPORTANCE_TIERS.has(normalizedTier)) {
+    if (IMPORTANCE_TIERS.has(normalizedTier)) {
       return normalizedTier;
     }
   }
@@ -573,20 +565,6 @@ function extractKeyTopics(summary: string | undefined, decisions: DecisionForTop
  * @param explicitImportanceTier - Optional caller-provided tier override from structured input.
  * @returns Composite characteristics including context type, importance tier, decision count, and tool counts.
  */
-const VALID_CONTEXT_TYPES = new Set([
-  'implementation',
-  'research',
-  'debugging',
-  'review',
-  'planning',
-  'decision',
-  'architecture',
-  'configuration',
-  'documentation',
-  'general',
-  'discovery',
-]);
-
 function detectSessionCharacteristics(
   observations: Observation[],
   userPrompts: UserPrompt[],
@@ -601,7 +579,7 @@ function detectSessionCharacteristics(
   // Honor explicit contextType from JSON payload when valid
   const contextType = (
     typeof explicitContextType === 'string' &&
-    VALID_CONTEXT_TYPES.has(explicitContextType.trim().toLowerCase())
+    SESSION_CONTEXT_TYPES.has(explicitContextType.trim().toLowerCase())
   )
     ? explicitContextType.trim().toLowerCase()
     : detectContextType(toolCounts, decisionCount);

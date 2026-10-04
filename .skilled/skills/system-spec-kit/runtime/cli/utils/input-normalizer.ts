@@ -6,6 +6,7 @@
 // 1. INPUT NORMALIZER
 // ───────────────────────────────────────────────────────────────────
 // Validates, normalizes, and transforms raw input data into structured session format
+import { IMPORTANCE_TIERS, SESSION_CONTEXT_TYPES } from '@spec-kit/shared/context-types';
 import { structuredLog } from './logger.js';
 import {
   buildSpecAffinityTargets,
@@ -1129,11 +1130,9 @@ const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'newGapsDiscovered', 'new_gaps_discovered',
 ]);
 
-// Valid contextType values for enum validation.
-const VALID_CONTEXT_TYPES: string[] = [
-  'implementation', 'research', 'debugging', 'review', 'planning',
-  'decision', 'architecture', 'configuration', 'documentation', 'general',
-];
+// A save payload's contextType classifies the session, so it is checked
+// against the session list, not the document list.
+const VALID_CONTEXT_TYPES: readonly string[] = [...SESSION_CONTEXT_TYPES];
 
 function validateInputData(data: RawInputData, specFolderArg: string | null = null): void {
   const errors: string[] = [];
@@ -1258,7 +1257,7 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
     errors.push('next_steps must be an array');
   }
 
-  const validTiers: string[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+  const validTiers: readonly string[] = [...IMPORTANCE_TIERS];
   if (data.importanceTier !== undefined && !validTiers.includes(data.importanceTier)) {
     errors.push(`Invalid importanceTier: ${data.importanceTier}. Valid values: ${validTiers.join(', ')}`);
   }

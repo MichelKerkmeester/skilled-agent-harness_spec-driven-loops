@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-09-03"
+last_updated: "2026-10-04"
 version: 2.1.0.99
 ---
 
@@ -455,6 +455,22 @@ See [`tooling-and-scripts/setup-native-module-health-and-mcp-installation.md`](t
 
 ---
 
+### Shared frontmatter value list
+
+#### Description
+
+One JSON list holds the legal contextType and importance_tier values, the save CLI reads its sets from it, and the FRONTMATTER_VALUES rule warns when a packet doc carries a value outside it.
+
+#### Current Reality
+
+sk-create-frontmatter's `assets/frontmatter-values.json` feeds `shared/context-types.ts`, which the save CLI and the frontmatter migration import; the warn-severity `FRONTMATTER_VALUES` rule never fails a run, `--strict` included.
+
+#### Source Files
+
+See [`tooling-and-scripts/shared-frontmatter-value-list.md`](tooling-and-scripts/shared-frontmatter-value-list.md) for full implementation and test file listings.
+
+---
+
 ### sk-git numbered worktree convention
 
 #### Description
@@ -500,6 +516,22 @@ The check matters more after a large source deletion, because orphaned dist outp
 #### Source Files
 
 See [`tooling-and-scripts/source-dist-alignment-enforcement.md`](tooling-and-scripts/source-dist-alignment-enforcement.md) for full implementation and test file listings.
+
+---
+
+### Source tag resolution
+
+#### Description
+
+The SOURCE_TAGS rule resolves each path:line citation inside a [SOURCE: ...] tag in a packet's research and review artifacts and warns when the file is gone, has moved, is shorter than the cited line or matches only by file name.
+
+#### Current Reality
+
+`check-source-tags-helper.mjs` resolves through sk-doc's `resolveCitation`, skips packets created on or before `SPECKIT_SOURCE_TAG_CUTOFF`, and a pass means only that the path and line exist.
+
+#### Source Files
+
+See [`tooling-and-scripts/source-tag-resolution.md`](tooling-and-scripts/source-tag-resolution.md) for full implementation and test file listings.
 
 ---
 
