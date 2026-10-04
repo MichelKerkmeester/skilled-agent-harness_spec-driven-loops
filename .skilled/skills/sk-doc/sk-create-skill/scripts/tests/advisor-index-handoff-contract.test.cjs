@@ -25,7 +25,7 @@ const PARENT_AUTO = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'asse
 const PARENT_CONFIRM = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-parent-confirm.yaml');
 const PARENT_PRESENTATION = path.join(REPO_ROOT, '.skilled', 'commands', 'create', 'assets', 'create-skill-parent-presentation.txt');
 
-const DOCTOR_SKILL_ADVISOR = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'assets', 'doctor-skill-advisor.yaml');
+const DOCTOR_SKILL_ADVISOR = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'assets', 'doctor-skill-advisor-tune.yaml');
 
 const FULL_HANDOFF_SURFACES = [STANDALONE_AUTO, STANDALONE_CONFIRM, STANDALONE_PRESENTATION, PARENT_AUTO, PARENT_CONFIRM, PARENT_PRESENTATION];
 
@@ -166,7 +166,7 @@ test('parent create workflows use the scoped generate-leaf-manifest.cjs --write,
 // 7. TESTS — doctor adapter uses the same verification-state vocabulary
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('doctor-skill-advisor.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag', () => {
+test('doctor-skill-advisor-tune.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag', () => {
   const text = read(DOCTOR_SKILL_ADVISOR);
   assert.match(text, /'fail' when is_valid = false/u);
   assert.match(text, /'warn' when is_valid = true and warning_count > 0/u);
@@ -174,7 +174,7 @@ test('doctor-skill-advisor.yaml derives skill_graph_validate severity using the 
   assert.match(text, /UNAVAILABLE \(retryable\), not FAILED/u);
 });
 
-test('doctor-skill-advisor.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary', () => {
+test('doctor-skill-advisor-tune.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary', () => {
   const text = read(DOCTOR_SKILL_ADVISOR);
   assert.match(text, /verification_status:\s*"pass \| fail \| partial \| skipped_unverified"/u);
 });

@@ -60,7 +60,7 @@ Research graph semantics: `loopType` is `research`; node kinds include `QUESTION
 
 ## 4. DOCTOR CONSUMER
 
-`/doctor:speckit deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
+`/doctor:deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
 
 | Route | Target | Mutation class |
 |---|---|---|
@@ -69,8 +69,8 @@ Research graph semantics: `loopType` is `research`; node kinds include `QUESTION
 Doctor integration patterns:
 
 - Run status-style probes against the graph.
-- Snapshot or VACUUM the DB before mutating repairs.
-- Rebuild graph rows from existing iteration markdown when lazy-init is available.
+- Never write the graph from the doctor. No whole-graph rebuild tool ships, because the graph fills as loop iterations upsert their rows.
+- When lazy-init is available, recommend resuming the loop or a manual repair through `runtime/scripts/upsert.cjs` from the iteration records.
 - Use upsert semantics rather than inventing graph state.
 - Report empty graph with no sources as degraded, not repaired.
 
@@ -156,10 +156,9 @@ The following consumers were surfaced by a deep-research audit and were absent f
 |---|----------|------|-------------------|
 | 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep_ai_council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
 | 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
-| 3 | `/doctor:speckit` route manifest | `.skilled/commands/doctor/_routes.yaml:50-65` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
-| 4 | `/doctor:rebuild` command | `.skilled/commands/doctor/rebuild.md` + `.skilled/commands/doctor/assets/doctor-rebuild.yaml` | References deep-loop scripts plus the `.pre-doctor-rebuild.*.bak` backup-pattern reads |
+| 3 | `/doctor:deep-loop` route manifest | `.skilled/commands/doctor/_routes.yaml:58-74` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
 | 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
-| 7 | Doctor + deep-improvement | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` + `doctor-rebuild.yaml` + `.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
+| 7 | Doctor + deep-improvement | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` + `.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 
 ### Note: cross-package test discovery
 
@@ -196,6 +195,6 @@ Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and
 | `lib/coverage-graph/*.ts` | Graph storage, query, and signal primitives. |
 | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Review auto consumer. |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml` | Research auto consumer. |
-| `.skilled/commands/doctor/speckit.md` | Doctor route boundary. |
+| `.skilled/commands/doctor/deep-loop.md` | Doctor route boundary. |
 | `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Runtime test discovery. |
 

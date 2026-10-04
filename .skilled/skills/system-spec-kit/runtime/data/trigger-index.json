@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
+  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13159,6 +13159,11 @@
     "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -21426,7 +21431,8 @@
       13118,
       13123,
       13129,
-      13140
+      13140,
+      13149
     ],
     "ac traceability table": [
       10307,
@@ -21803,7 +21809,8 @@
       13112,
       13118,
       13123,
-      13129
+      13129,
+      13149
     ],
     "acceptance criteria closure gate": [
       12043,
@@ -35540,7 +35547,8 @@
       13118,
       13123,
       13129,
-      13140
+      13140,
+      13149
     ],
     "closure gate blocks evidence": [
       11983
@@ -43317,9 +43325,6 @@
     "cross study integration tasks": [
       6831
     ],
-    "cross subsystem aligner doctor rebuild": [
-      2275
-    ],
     "cross subsystem health dashboard": [
       9130
     ],
@@ -49504,6 +49509,9 @@
     "delete constitutional folder": [
       12003
     ],
+    "delete doctor rebuild": [
+      13152
+    ],
     "delete folder": [
       583
     ],
@@ -51862,7 +51870,7 @@
       12251
     ],
     "doctor audit followups": [
-      13149
+      13154
     ],
     "doctor baseline verification": [
       12167
@@ -52034,6 +52042,9 @@
       13016,
       13044
     ],
+    "doctor deep loop command": [
+      13152
+    ],
     "doctor deep loop yaml": [
       13019,
       13048
@@ -52106,7 +52117,7 @@
     ],
     "doctor gates drift": [
       13127,
-      13149
+      13154
     ],
     "doctor hard cutover": [
       10104
@@ -52203,6 +52214,15 @@
       9175,
       10122
     ],
+    "doctor ownership split": [
+      13152
+    ],
+    "doctor ownership split plan": [
+      13151
+    ],
+    "doctor ownership split summary": [
+      13150
+    ],
     "doctor parent skill audit": [
       13066
     ],
@@ -52241,6 +52261,9 @@
     ],
     "doctor retrieval signals tasks": [
       12457
+    ],
+    "doctor route command owner": [
+      13151
     ],
     "doctor route degraded adapters": [
       12248
@@ -52352,7 +52375,11 @@
       13080
     ],
     "doctor skill advisor command": [
-      9673
+      9673,
+      13152
+    ],
+    "doctor skill advisor rebuild shipped": [
+      13150
     ],
     "doctor skill advisor yaml": [
       13084
@@ -67916,7 +67943,8 @@
       13117,
       13122,
       13128,
-      13148
+      13148,
+      13153
     ],
     "implementation testing verification phases": [
       830
@@ -95315,7 +95343,7 @@
       13144
     ],
     "release update signals": [
-      13149
+      13154
     ],
     "release updater over rebuild": [
       12995
@@ -109460,6 +109488,9 @@
     "skill advisor readme sweep": [
       9654
     ],
+    "skill advisor rebuild doctor": [
+      2275
+    ],
     "skill advisor recall improvement": [
       9546
     ],
@@ -118071,7 +118102,8 @@
       13117,
       13122,
       13128,
-      13148
+      13148,
+      13153
     ],
     "task cache removal": [
       503
@@ -118420,7 +118452,8 @@
       13117,
       13122,
       13128,
-      13148
+      13148,
+      13153
     ],
     "task detail without network": [
       523
@@ -121511,7 +121544,7 @@
     ],
     "trigger index freshness": [
       13116,
-      13149
+      13154
     ],
     "trigger index generator": [
       2388,
@@ -124826,7 +124859,8 @@
       13117,
       13122,
       13128,
-      13148
+      13148,
+      13153
     ],
     "verification class blind to failure class": [
       6989
@@ -125720,7 +125754,8 @@
       13118,
       13123,
       13129,
-      13140
+      13140,
+      13149
     ],
     "wal autocheckpoint 256": [
       9246,

@@ -29,7 +29,6 @@ Current state:
 | `run-all.sh` | Runs every suite below, plus `route-validate.sh --self-test` and the skill-graph freshness panel |
 | `agent-roster-mirror-check.test.cjs` | `agent-roster-mirror-check.cjs` |
 | `command-catalog-mirror-check.test.cjs` | `command-catalog-mirror-check.cjs` |
-| `fable-mode-check.test.cjs` | `fable-mode-check.cjs` |
 | `parent-skill-check-invariants.test.cjs` | `parent-skill-check.cjs`, one or more cases per invariant id |
 | `parent-skill-check-command-column.test.cjs` | `parent-skill-check.cjs` command-column checks |
 | `parent-skill-check-leaf-manifest.test.cjs` | `parent-skill-check.cjs` leaf-manifest checks |
@@ -38,7 +37,6 @@ Current state:
 | `doctor-update-contract.test.cjs` | Checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine |
 | `skill-advisor-route-contract.test.cjs` | The advisor commands and flags the doctor routes invoke |
 | `check-mcp-mutation-class.test.sh` | `check-mcp-mutation-class.sh` and its manifest |
-| `doctor-runtime-bootstrap.test.sh` | `doctor-runtime-bootstrap.sh`, with `npm` and `node` stubs and no `flock` on `PATH` |
 | `mcp-doctor.test.sh` | `mcp-doctor.sh` and `mcp-doctor-lib.sh` |
 | `route-validate.test.sh` | `route-validate.sh` and `route-validate.py` |
 | `test_audit_descriptions.py` | `audit_descriptions.py` |

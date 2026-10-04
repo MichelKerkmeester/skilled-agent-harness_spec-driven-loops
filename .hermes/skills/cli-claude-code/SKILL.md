@@ -39,7 +39,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 
 ### When NOT to Use
 
-- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation.
+- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation. Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model. To pin an effort level, use an agent definition whose frontmatter sets `model` and `effort`, such as `~/.claude/agents/opus-xhigh.md` or `sonnet-xhigh.md`.
 - Simple, quick tasks where CLI overhead is not worth it.
 - Tasks requiring interactive terminal UI (use `claude` directly instead).
 - Context already loaded and understood by the calling AI.
@@ -57,7 +57,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 # Verify Claude Code CLI is available before routing
 command -v claude || echo "Not installed. Run: npm install -g @anthropic-ai/claude-code"
 
-# SELF-INVOCATION GUARD: If you ARE Claude Code, do not use this skill — use native capabilities
+# SELF-INVOCATION GUARD: inside Claude Code, never shell out to claude. Dispatch a native subagent (Agent tool), pinning model and effort through an agent definition.
 [ -n "$CLAUDECODE" ] && echo "ERROR: Already inside Claude Code session. Do not self-invoke."
 ```
 
@@ -253,7 +253,7 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 - **Non-interactive requires `-p` (print) mode** — `claude -p "prompt" --output-format text 2>&1`. `--output-format` defaults to `text`; use `json` (adds role/content/cost metadata) or `stream-json` only when a pipeline needs it. Capture stderr with `2>&1`.
 - **`--permission-mode plan` is read-only** — use it for review/analysis/exploration (no file writes). `bypassPermissions` auto-approves all writes and **requires explicit user approval**; the default mode already allows writes.
 - **No `--search` flag** — Claude Code has no live web browsing. Route web research to cli-opencode.
-- **Check `$CLAUDECODE` before dispatch** — a set value means the caller is already inside Claude Code; refuse (self-invocation), do not dispatch.
+- **Check `$CLAUDECODE` before dispatch** — a set value means the caller is already inside Claude Code; do not dispatch the CLI, route to a native subagent instead.
 
 ---
 

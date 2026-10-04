@@ -9,29 +9,26 @@ version: 2.0.0.0
 
 ## 1. OVERVIEW
 
-Manual testing scenarios for the spec-kit `/doctor:speckit` command surface.
+Manual testing scenarios for the doctor command surface.
 
 ## Scope
 
-12 scenarios covering the routes that survive the memory decommission:
+4 scenarios covering the routes that survive the memory decommission:
 
-- `/doctor:speckit deep-loop`: 3 scenarios (DOC-331 to DOC-333): lazy-init, empty-graph refusal, convergence gold-battery
-- `/doctor:rebuild`: 6 scenarios (DOC-338 to DOC-342, DOC-344): G5 failure injection, G6 concurrent dispatch flock, G7 SIGINT mid-rebuild, G8 migration manifest gap, G9 cross-subsystem dashboard, default tier-aware flow
-- Version migration: 3 scenarios (DOC-345 to DOC-347): end-to-end 3.3.0.0 to 3.4.1.0, cleanup-legacy with per-file prompts, no-op run
+- `/doctor:deep-loop`: 3 scenarios (DOC-331 to DOC-333): lazy-init availability, empty-graph refusal, convergence gold-battery
+- `/doctor:skill-advisor rebuild`: 1 scenario (DOC-348): dry run, backed-up rebuild, restore on failure
 
-The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. MCP infrastructure scenarios are not built.
+The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. The standalone rebuild-orchestrator and version-migration scenarios were removed with that command, and their former IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired as well. MCP infrastructure scenarios are not built.
 
-The `/doctor:speckit <target>` route manifest exposes nine targets: `/doctor:speckit speckit-retrieval`, `/doctor:speckit deep-loop`, `/doctor:speckit skill-advisor`, `/doctor:speckit skill-budget`, `/doctor:speckit parent-skill`, `/doctor:speckit skill-graph-freshness`, `/doctor:speckit router-reach`, `/doctor:speckit fable-mode` and `/doctor:speckit runtime-mirrors`.
-
-The legacy colon-form commands were consolidated into `/doctor:speckit <target>`, with `/doctor:rebuild`, `/doctor:update`, `/doctor:mcp` and `/doctor:env` as standalone companions.
+The doctor routers split by owner. `/doctor:speckit` takes no target and diagnoses spec-kit retrieval. `/doctor:skill-advisor <target>` owns six targets: `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`. `/doctor:deep-loop` and `/doctor:runtime-mirrors` take no target. `/doctor:update`, `/doctor:mcp` and `/doctor:env` are standalone companions.
 
 ## Harness
 
-Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, or `version-migration-<short-name>.md` for the version-migration group, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, or `SKIP` verdict; a scenario the harness cannot run deterministically is a `SKIP` whose blocker names that limitation. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
+Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, or `SKIP` verdict. A scenario the harness cannot run deterministically is a `SKIP` whose blocker names that limitation. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
 
 ## See Also
 
-- Router source: `.skilled/commands/doctor/speckit.md`
+- Router source: `.skilled/commands/doctor/deep-loop.md`
 - Route manifest: `.skilled/commands/doctor/_routes.yaml`
 - CI assertion: `.skilled/commands/doctor/scripts/route-validate.sh`
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)

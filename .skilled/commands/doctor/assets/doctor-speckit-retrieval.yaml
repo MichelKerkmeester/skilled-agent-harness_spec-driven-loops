@@ -21,8 +21,8 @@ operating_mode:
 speckit_retrieval_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
   generated trigger index at .skilled/skills/system-spec-kit/runtime/data/trigger-index.json as
-  the artifact it diagnoses but never regenerates. Regeneration is owned by the
-  /doctor:rebuild orchestrator, which runs the generator over the whole corpus in one pass.
+  the artifact it diagnoses but never regenerates. Regeneration is one generator run over the
+  whole corpus (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs), which the pre-commit hook also runs when spec docs change.
 
 upstream_assets:
   contract: "local command design contract"
@@ -37,10 +37,10 @@ upstream_assets:
   pass_policy:
     lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
-    index_regenerates_byte_identical: true  # two generator runs must hash the same; proof owned by /doctor:rebuild
-    index_regenerates_byte_identical_owner: "/doctor:rebuild"  # its generator leg rebuilds the index and its --check verification proves the result; this read-only doctor writes only its report and state log, so it can never run the two builds the proof needs
+    index_regenerates_byte_identical: true  # two generator runs must hash the same; proof owned by the generator itself
+    index_regenerates_byte_identical_owner: "generate-trigger-index.mjs"  # running it twice and comparing hashes proves the result; this read-only doctor writes only its report and state log, so it can never run the two builds the proof needs
 speckit_retrieval_doctor_philosophy:
-  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:rebuild"
+  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration is the generator's own run"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"
   mandate: "This command is read-only by contract."
   honest_loss: "The retired continuity database offered semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. None of them has a replacement here. This doctor diagnoses a lexical index and a lexical scan, and it reports a miss as a miss."
@@ -62,7 +62,7 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-speckit-retrieval-state.*.json"  # the diagnostic state log only
   forbidden_targets:
     - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
-    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit speckit-retrieval
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
     - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
@@ -208,8 +208,8 @@ workflow:
   phase_2_recommendation:
     purpose: Translate staleness signals into recommended action
     rules:
-      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:rebuild"
-      - "If severity_max == medium (index content stale per --check, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:rebuild, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      - "If severity_max == medium (index content stale per --check, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs), or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
       - "If severity_max == low (trigger phrase drift, anchor drift, or an mtime sample that --check did not confirm) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
@@ -244,7 +244,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:
-      command: "/doctor:speckit speckit-retrieval"
+      command: "/doctor:speckit"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601
@@ -258,6 +258,6 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 lookup exits 2 or higher → STATUS=FAIL with stderr attached"
-  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:rebuild to generate it"
+  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs to generate it"
   - "Any phase emits a write attempt outside the packet scratch → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"

@@ -529,7 +529,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
-- `/doctor:speckit speckit-retrieval` checks that the index and the recipes are still healthy
+- `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
 
 ---
@@ -714,7 +714,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 ├── compat/     stable compatibility entry for compiled consumers and the Python shim
 ├── config/     route exclusions
 ├── data/       the default prompt policy that skips casual prompts
-├── database/   SQLite skill graph and doctor-rebuild state
+├── database/   SQLite skill graph
 ├── handlers/   the nine command handlers
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
@@ -1192,29 +1192,27 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Its option 1 hands release updates to `/doctor:update`.
+Seven commands cover the diagnostic surface, one per owner. The four routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
-**`/doctor:speckit <target>` (router)**
+**`/doctor:speckit`** - spec-kit retrieval
 
-- Single entry point for 9 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
-- Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
-- Each target loads its own self-contained YAML workflow under `assets/doctor-<target>.yaml`
-- Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor:speckit skill-advisor --dry-run`, `/doctor:speckit router-reach`, `/doctor:speckit fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
-- `--target=<name>` is preserved as a compatibility alias for flag-only invocation
+- Checks that the generated trigger index is fresh, that its lookup runs and that the ripgrep recipes return results, then names the regeneration command when the index is stale
+- An old target name such as `/doctor:speckit deep-loop` gets a notice naming the command that owns it now
+
+**`/doctor:skill-advisor <target>`** - skill advisor tuning, rebuild and audits
+
+- `tune` re-tunes the scoring lanes after a per-skill review. `rebuild` rebuilds `skill-graph.sqlite` from the checked-in `graph-metadata.json` files through the advisor CLI, after a backup it restores when the rebuild fails
+- Read-only audits: `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`
+- Interactive menu when no target is supplied. Examples: `/doctor:skill-advisor rebuild --dry-run`, `/doctor:skill-advisor router-reach --hub=sk-doc`
+
+**`/doctor:deep-loop [--scope=research|review|council|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
+
+**`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
 - `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
-
-**`/doctor:rebuild`** - multi-subsystem rebuild orchestrator
-
-- Dependency-safe rebuild across trigger index → skill-graph → advisor
-- One lock (`system-skill-advisor/runtime/database/.doctor-rebuild.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-rebuild.last-run.json`)
-- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
-- Additional gates: Q-PROBE (skill-advisor daemon notice, informational), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
-- Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
 **`/doctor:update [check|align|apply|rollback|record-base]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery and approved base recording.
 
@@ -1225,7 +1223,7 @@ Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` wit
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 16 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 17 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY

@@ -727,7 +727,6 @@
     ".skilled/skills/system-spec-kit/runtime/cli/hermes",
     ".skilled/skills/system-spec-kit/runtime/cli/lib",
     ".skilled/skills/system-spec-kit/runtime/cli/loaders",
-    ".skilled/skills/system-spec-kit/runtime/cli/metrics",
     ".skilled/skills/system-spec-kit/runtime/cli/observability",
     ".skilled/skills/system-spec-kit/runtime/cli/ops",
     ".skilled/skills/system-spec-kit/runtime/cli/optimizer",

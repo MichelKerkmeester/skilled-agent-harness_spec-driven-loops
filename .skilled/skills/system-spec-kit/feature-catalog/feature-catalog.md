@@ -737,11 +737,11 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The argv-positional `/doctor:speckit` router and the subsystem routes it dispatches to.
+The doctor routers split by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`) and the subsystem routes they dispatch to.
 
 #### Current Reality
 
-The deep-loop, update and MCP-infrastructure routes survive; the memory and causal-graph routes were removed with the engine.
+The spec-kit retrieval, skill-advisor, deep-loop, runtime-mirrors, update and MCP-infrastructure routes survive. The memory and causal-graph routes were removed with the engine, and the standalone rebuild orchestrator was removed in favor of `/doctor:skill-advisor rebuild`.
 
 #### Source Files
 
@@ -755,7 +755,7 @@ See [`doctor-commands/category-overview.md`](doctor-commands/category-overview.m
 
 #### Description
 
-Argv-positional `/doctor:speckit` router that dispatches to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest.
+Four doctor routers that dispatch to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest, where each route names its owning command.
 
 #### Current Reality
 

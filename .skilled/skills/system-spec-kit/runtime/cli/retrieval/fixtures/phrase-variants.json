@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
+  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26839,9 +26839,6 @@
     "cross study integration tasks": [
       "cross study integration tasks"
     ],
-    "cross subsystem aligner doctor rebuild": [
-      "cross-subsystem aligner doctor rebuild"
-    ],
     "cross subsystem health dashboard": [
       "cross-subsystem health dashboard"
     ],
@@ -32785,6 +32782,9 @@
     "delete constitutional folder": [
       "delete constitutional folder"
     ],
+    "delete doctor rebuild": [
+      "delete doctor rebuild"
+    ],
     "delete folder": [
       "delete folder"
     ],
@@ -35200,6 +35200,9 @@
     "doctor deep loop audit acceptance": [
       "doctor deep-loop audit acceptance"
     ],
+    "doctor deep loop command": [
+      "doctor deep-loop command"
+    ],
     "doctor deep loop yaml": [
       "doctor-deep-loop.yaml"
     ],
@@ -35342,6 +35345,15 @@
     "doctor mutation class read only": [
       "doctor mutation class read-only"
     ],
+    "doctor ownership split": [
+      "doctor ownership split"
+    ],
+    "doctor ownership split plan": [
+      "doctor ownership split plan"
+    ],
+    "doctor ownership split summary": [
+      "doctor ownership split summary"
+    ],
     "doctor parent skill audit": [
       "doctor parent-skill audit"
     ],
@@ -35380,6 +35392,9 @@
     ],
     "doctor retrieval signals tasks": [
       "doctor retrieval signals tasks"
+    ],
+    "doctor route command owner": [
+      "doctor route command owner"
     ],
     "doctor route degraded adapters": [
       "doctor route degraded adapters"
@@ -35488,6 +35503,9 @@
     ],
     "doctor skill advisor command": [
       "doctor skill-advisor command"
+    ],
+    "doctor skill advisor rebuild shipped": [
+      "doctor skill-advisor rebuild shipped"
     ],
     "doctor skill advisor yaml": [
       "doctor-skill-advisor.yaml"
@@ -86717,6 +86735,9 @@
     ],
     "skill advisor readme sweep": [
       "skill advisor README sweep"
+    ],
+    "skill advisor rebuild doctor": [
+      "skill advisor rebuild doctor"
     ],
     "skill advisor recall improvement": [
       "skill advisor recall improvement"
