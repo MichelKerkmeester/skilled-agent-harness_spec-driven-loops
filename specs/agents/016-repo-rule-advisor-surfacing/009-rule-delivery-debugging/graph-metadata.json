@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot",
-  "spec_folder": "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot",
+  "packet_id": "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
   "parent_id": "agents/016-repo-rule-advisor-surfacing",
   "children_ids": [],
   "manual": {
@@ -11,13 +11,13 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gate 5 card pilot",
-      "card plus self-check",
-      "resident reply rule cards",
-      "rule card generator",
-      "gate 5 card pilot plan",
-      "card plus self-check plan",
-      "gate 5 card pilot tasks",
+      "rule delivery debugging",
+      "mandated rule load skipped",
+      "gate 5 miss cause",
+      "reply rule miss by executor",
+      "rule delivery debugging plan",
+      "mandated rule load fix plan",
+      "rule delivery debugging tasks",
       "acceptance criteria",
       "closure gate",
       "ac traceability",
@@ -25,21 +25,21 @@
       "packet goal"
     ],
     "key_topics": [
-      "gate",
-      "card",
-      "pilot",
-      "plus",
-      "self-check",
-      "resident",
-      "reply",
       "rule",
-      "cards",
-      "generator",
-      "plan",
-      "tasks"
+      "delivery",
+      "debugging",
+      "mandated",
+      "load",
+      "skipped",
+      "gate",
+      "miss",
+      "cause",
+      "reply",
+      "executor",
+      "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "experiment/arms.json",
-      "experiment/prompts.json",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
+      ".codex/AGENTS.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py"
     ],
     "entities": [
       {
@@ -90,43 +88,19 @@
         "source": "derived"
       },
       {
-        "name": "arms.json",
-        "kind": "config",
-        "path": "experiment/arms.json",
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
-        "name": "prompts.json",
-        "kind": "config",
-        "path": "experiment/prompts.json",
-        "source": "derived"
-      },
-      {
-        "name": "build-rule-cards.cjs",
+        "name": "rule-experiment.py",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-repo-rules.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pilot Gate",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -150,6 +124,18 @@
         "source": "derived"
       },
       {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Natural Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -162,13 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Generate",
+        "name": "Overview Measure",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Generated",
+        "name": "Pattern Measure",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,7 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Rules",
+        "name": "Data Flow Prompt",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A plain card drops the operative bans in 6 of 13 rules",
-    "created_at": "2026-10-04T14:40:01Z",
-    "last_save_at": "2026-10-04T21:54:52.971Z",
+    "causal_summary": "`AGENTS.md` mandates two loads: Gate 5 opens `REPO RULES.md` before the first write, and the reply-rule line loads `communication.md` and `communication-prose.md` before a substantive reply",
+    "created_at": "2026-10-04T21:40:03Z",
+    "last_save_at": "2026-10-04T21:54:52.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab4d36bd2988c20145f12a68047b9d745efd80a6979e7a7f79f9d63a63acbb01",
+    "source_fingerprint": "sha256:17f313fc251f68b5fa616c18cb5ae76ce9f3b4ab2022968e1ab79e312dd19008",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17a862ee024c88af0f72120a4f9918e8e9d5f75b9491fb5e64e3691d22026884",
-      "plan.md": "4221202ace47c62fe74a6bbc7a6abf7488cc5a623878ec30e69a94fd4ed295ee",
-      "tasks.md": "896c28f61cea492304144d195ab3745f4968183806f56dc4686025b63a08326c",
-      "implementation-summary.md": "853e25de74cb7c41954555ab21904036167c22d8ed1b3fe0e57b1476f601d7b5"
+      "spec.md": "32bb698c9a77172f32d07a3627e852ae64840cf8c1fbdd9f1f0baf3081258277",
+      "plan.md": "d5905c71f4198a54e970e4a157aa2b58cd0d4e28172079ca855a62d2e5871ec9",
+      "tasks.md": "bec260b53c6710fda0cefe247e7d2255281c5f62a129ea55cf0664485de48b78",
+      "implementation-summary.md": "6f2a5a020a5f9b5c25c46751990d40cf663646c8bb8da7568e07e1d894d0c32e"
     },
     "last_active_at": null
   }

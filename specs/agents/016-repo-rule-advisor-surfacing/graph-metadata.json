@@ -11,7 +11,9 @@
     "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check",
     "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites",
     "agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment",
-    "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
+    "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot",
+    "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
+    "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface"
   ],
   "manual": {
     "depends_on": [],
@@ -58,6 +60,8 @@
       "006-rule-concision-rewrites/goal.md",
       "007-table-wording-experiment/goal.md",
       "008-gate5-card-pilot/goal.md",
+      "009-rule-delivery-debugging/goal.md",
+      "010-rule-phrase-find-surface/goal.md",
       "002-rule-concision-and-loading/research/research.md"
     ],
     "entities": [
@@ -134,12 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "no",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -148,17 +146,17 @@
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-04T21:04:05.938Z",
+    "last_save_at": "2026-10-04T21:57:42.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bc4b64ffe863e3a5bd938f0c015efc529780f3f3f960c0501451c2169d89a57a",
+    "source_fingerprint": "sha256:a42445ebaff718002d83198889767dec3a5832b351356ff91db00a6e35cbc626",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93c3933f205e6210f14cae2c8b0ff358c046cc9ee02bbe3c0f53e90dc551d474"
+      "spec.md": "fcddb532c3e19718572bd905920a273bbbd3fe08af52fc57210d97e5400845b4"
     },
     "last_active_child_id": "agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
     "last_active_at": "2026-10-04T21:04:05.938Z"

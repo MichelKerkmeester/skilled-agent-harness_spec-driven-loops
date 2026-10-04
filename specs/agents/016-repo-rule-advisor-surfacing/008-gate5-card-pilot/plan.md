@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Gate 5 card pilot"
-description: "Generate cards from the rules so they cannot drift, then rotate three loading arms through pre-registered blocks and decide from the measured checks and fallbacks."
+description: "Generate cards from the rules so they cannot drift, then compare two loading arms in isolated test environments and decide from the measured checks and fallbacks."
 trigger_phrases:
   - "gate 5 card pilot plan"
   - "card plus self-check plan"
@@ -24,10 +24,10 @@ contextType: "implementation"
 | **Language/Stack** | Node.js (CommonJS), Markdown, Python analyzer |
 | **Framework** | None |
 | **Storage** | Generated card files |
-| **Testing** | pytest for the generator and check 11, phase 004 analyzer |
+| **Testing** | pytest for the generator and check 11, `rule-experiment.py score` |
 
 ### Overview
-Generate cards from the rules so they cannot drift, then rotate three loading arms through pre-registered blocks and decide from the measured checks and fallbacks.
+Generate cards from the rules so they cannot drift, then compare two loading arms in isolated test environments and decide from the measured checks and fallbacks. Arm C is dropped under REQ-005.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -52,15 +52,15 @@ Generate cards from the rules so they cannot drift, then rotate three loading ar
 ## 3. ARCHITECTURE
 
 ### Pattern
-Generated derivative plus rotating-arm pilot
+Generated derivative plus a two-arm pilot in isolated test environments
 
 ### Key Components
 - **Generator**: cuts each rule's Fires when, The rule and SELF-CHECK sections into a card with a link to the full file
 - **Check 11**: regenerates and compares, so a stale card fails CI
-- **Arms**: router and `AGENTS.md` variants swapped by commit at block boundaries
+- **Arms**: `full` and `cards`, each an isolated git repository built by `rule-experiment.py` from `experiment/arms.json`
 
 ### Data Flow
-Rules feed the generator, cards land under `cards/`, the router or `AGENTS.md` points at them per arm, and the analyzer attributes each reply to the arm live at its timestamp.
+Rules feed the generator, and the `cards` arm environment gets its cards under `cards/` with the router pointing at them. Each run copies its arm fresh, and `score` reports the checks per arm and executor. The live router changes only if arm `cards` is adopted.
 
 ### Decision
 **ADR-001: Generated card files instead of line-range reads.** A router line telling the model to read a line range of each rule would avoid new files, but the range moves with every edit and the SELF-CHECK is not adjacent to The rule. Generated cards with a sync check cost 13 derived files and one check, and they cannot drift silently.
@@ -74,8 +74,10 @@ Rules feed the generator, cards land under `cards/`, the router or `AGENTS.md` p
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `check-repo-rules.cjs` file discovery | Reads every `*.md` in the rules directory | Unchanged if `cards/` is a subdirectory | T001 confirms the readdir filter ignores directories |
-| `REPO RULES.md` Load column | What Gate 5 loads | Variant per arm | Block commits |
-| `AGENTS.md` §8 | Reply-rule load line | Variant in arm C | Phase 003 guard still passes |
+| `REPO RULES.md` Load column | What Gate 5 loads | Card links in arm `cards` only | `experiment/arms.json` |
+| Check 2, row coverage | Matches trigger rows to rule files | Must accept card links before arm `cards` goes live | Fails by design on the arm router |
+| Check 10, Fires-when coverage | Matches rule bullets to router rows | Must resolve card links before arm `cards` goes live | Reports zero bullets on the arm router, against 61 live |
+| `AGENTS.md` §8 | Reply-rule load line | Unchanged, arm C dropped | REQ-005 measurement |
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -96,7 +98,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |-----------|-------|-------|
 | Unit | Generator determinism and check 11 drift detection | pytest |
 | Integration | Corpus gate with cards present | `check-repo-rules.cjs` |
-| Measurement | Rotating blocks | Phase 004 analyzer |
+| Measurement | Isolated runs, two arms | `rule-experiment.py score` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -106,9 +108,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 003 guard | Internal | Yellow | Arm C could break the delivery prefix |
-| Phase 004 analyzer | Internal | Yellow | No attribution by arm |
-| Phase 007 closed | Internal | Yellow | Windows overlap |
+| `rule-experiment.py` | Internal | Green | No isolated runs |
+| Phase 006 window measured | Internal | Yellow | A winning arm cannot go live |
+| Phase 007 decision | Internal | Yellow | A winning arm cannot go live |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -116,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A card arm worsens a measured check, or the pilot is abandoned
-- **Procedure**: Revert the arm commit. If both card arms are rejected, delete the generator, `cards/` and check 11.
+- **Trigger**: The card arm worsens a measured check, or the pilot is abandoned
+- **Procedure**: The runs change nothing live. If arm `cards` is rejected, delete the generator, check 11 and its tests. If it was adopted and later fails, revert the adoption commit.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -147,9 +149,9 @@ Setup ──► Implementation ──► Verification
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Setup | Med | 3-4 hours |
-| Core Implementation | Med | 4-6 hours plus the measurement blocks |
+| Core Implementation | Med | 4-6 hours plus run time |
 | Verification | Med | 3-4 hours |
-| **Total** |  | **10-14 hours of work across several weeks of blocks** |
+| **Total** |  | **10-14 hours of work plus run time** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -162,7 +164,7 @@ Setup ──► Implementation ──► Verification
 - [ ] The checks in the testing strategy pass before the commit
 
 ### Rollback Procedure
-1. Revert the arm commit. If both card arms are rejected, delete the generator, `cards/` and check 11.
+1. If arm `cards` is rejected, delete the generator, check 11 and its tests. If an adoption fails later, revert the adoption commit.
 2. Rerun the checks named in the testing strategy on the reverted tree.
 
 ### Data Reversal

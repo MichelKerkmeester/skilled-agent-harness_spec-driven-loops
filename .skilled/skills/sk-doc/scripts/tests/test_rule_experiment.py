@@ -76,3 +76,31 @@ def test_arm_edit_refuses_an_ambiguous_match(tmp_path: Path) -> None:
 
     with pytest.raises(SystemExit, match="found 2"):
         rx.apply_edit(str(tmp_path), {"file": "rule.md", "replace": [["same", "other"]]}, str(tmp_path))
+
+
+def test_newcombe_matches_the_published_worked_example() -> None:
+    # Newcombe (1998), method 10: 56/70 minus 48/80 is 0.2000 with interval 0.0524 to 0.3339.
+    diff = rx.newcombe(48, 80, 56, 70)
+
+    assert round(diff["d"], 4) == 0.2
+    assert [round(bound, 4) for bound in diff["ci95"]] == [0.0524, 0.3339]
+    assert rx.newcombe(0, 0, 1, 2) is None
+
+
+def test_rule_read_after_the_final_reply_is_not_delivered(tmp_path: Path) -> None:
+    run_dir = str(tmp_path / "run")
+    export = devin_export(tmp_path / "t.json", run_dir, [
+        {"source": "agent", "message": "Interim note. " * 40},
+        read_step(f"{run_dir}/.skilled/repo-rules/communication.md"),
+        {"source": "agent", "message": TABLE_REPLY},
+    ])
+    early = rx.score_run({"exit": 0, "transcript": export, "run_dir": run_dir, "executor": "deepseek"}, {})
+    assert early["communication_delivered"] is True
+
+    late = devin_export(tmp_path / "late.json", run_dir, [
+        {"source": "agent", "message": TABLE_REPLY},
+        {"source": "agent", "tool_calls": [{"function_name": "read",
+                                            "arguments": {"file_path": f"{run_dir}/.skilled/repo-rules/communication.md"}}]},
+    ])
+    scored = rx.score_run({"exit": 0, "transcript": late, "run_dir": run_dir, "executor": "deepseek"}, {})
+    assert scored["communication_delivered"] is False

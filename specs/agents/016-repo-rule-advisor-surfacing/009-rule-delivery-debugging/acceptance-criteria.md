@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Gate 5 card pilot"
+title: "Acceptance Criteria: Rule delivery debugging"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
-    last_updated_at: "2026-10-04T15:00:00Z"
+    packet_pointer: "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging"
+    last_updated_at: "2026-10-04T21:40:04Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Acceptance Criteria: Gate 5 card pilot
+# Acceptance Criteria: Rule delivery debugging
 
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot
+**Packet:** agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging
 **Level:** 2
-**Status:** In Progress
+**Status:** Draft
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a rule edited without regenerating its card, When the checker runs, Then check 11 fails naming the card | `test_build_rule_cards.py`, 4 passed on 2026-10-04, including the drift test asserting `cards/alpha.md: drifted from its rule` | Met | - |
-| AC-002 | REQ-002 | Given the first scored run, When `git log` is read, Then `preregistration.md` was committed earlier | `git log` output | Unmet | - |
-| AC-003 | REQ-003 | Given the scored runs, When each arm's long replies are counted, Then each meets the pre-registered size | `results/` report | Unmet | - |
-| AC-004 | REQ-004 | Given the analysis, When the decision rule is applied, Then the outcome and its numbers are recorded | `results/` and `implementation-summary.md` | Unmet | - |
-| AC-005 | REQ-005 | Given the post-003 `AGENTS.md`, When the five reply-rule cards are added, Then arm C runs only at or under 32,768 bytes | `wc -c AGENTS.md` 26,778 B plus 7,677 B of generated reply-rule cards is 34,455 B, so arm C is dropped, recorded in `experiment/arms.json` | Met | - |
-| AC-006 | REQ-006 | Given the decision, When the tree is inspected, Then no rejected arm's artifact remains | `git status` and file listing | Unmet | - |
+| AC-001 | REQ-001 | Given the prompt sets and the adopted diff, When they are searched for instructions to read a rule, Then none is found | `grep` over `experiment/` prompt files and `git show` of the adoption commit | Unmet | - |
+| AC-002 | REQ-002 | Given the result files, When each rate is read, Then it carries a denominator and a Wilson 95% interval | `results/` | Unmet | - |
+| AC-003 | REQ-003 | Given the harness runs, When rates are reported, Then Gate 5 and reply-rule miss rates appear for each executor | `rule-experiment.py score` output in `results/` | Unmet | - |
+| AC-004 | REQ-004 | Given the missed runs, When the audit is read, Then each falls in one cause class and the class counts sum to the miss count | `results/` cause table | Unmet | - |
+| AC-005 | REQ-005 | Given the first scored arm run, When `git log` is read, Then `preregistration.md` was committed earlier | `git log` output | Unmet | - |
+| AC-006 | REQ-006 | Given a hook arm, When the pre-registration is read, Then the measured miss rate passed its stated threshold before the arm ran | `preregistration.md` and `results/` | Unmet | - |
+| AC-007 | REQ-007 | Given the adoption commit, When `git log` is read, Then it is later than the commits recording the 006 and 007 window results | `git log` output | Unmet | - |
+| AC-008 | REQ-008 | Given the plan, When its decision on varying the global instructions is read, Then it names one route and the reason | `plan.md` decision | Unmet | - |
 
 ### Status values
 
@@ -84,8 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+The phase is planned and every criterion is open.
 <!-- /ANCHOR:closure -->

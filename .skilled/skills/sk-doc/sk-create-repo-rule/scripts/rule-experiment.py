@@ -48,6 +48,8 @@ ROUTER = "REPO RULES.md"
 REPLY_RULES = ("communication.md", "communication-prose.md")
 RULE_REF = re.compile(r"(REPO RULES\.md|REPO\\ RULES\.md|repo-rules/(?:cards/)?[a-z0-9-]+\.md)")
 PATCH_PATH = re.compile(r"\*\*\* (?:Update|Add|Delete) File: ([^\\\n\"]+)")
+RATE_METRICS = ["table_unasked", "table_unasked_rule_delivered", "communication_delivered", "any_prohibition",
+                "gate5_miss", "reply_rules_miss", "fallback"]
 SKILL_LINK = re.compile(r"\]\((\.\./skills/[^)#\s]+)")
 SESSION_ID = re.compile(r"^session id: ([0-9a-f-]{36})", re.M)
 RUN_TIMEOUT = 900
@@ -151,6 +153,8 @@ def run_one(executor: str, template: str, run_dir: str, prompt: Dict, suffix: st
         proc = subprocess.run(cmd, cwd=run_dir, env=env, stdin=subprocess.DEVNULL, capture_output=True,
                               text=True, timeout=RUN_TIMEOUT)
         record["exit"] = proc.returncode
+        if proc.returncode != 0:
+            record["error"] = (proc.stderr or proc.stdout)[-400:]
         if executor == "luna":
             match = SESSION_ID.search(proc.stdout + proc.stderr)
             found = glob.glob(os.path.expanduser(f"~/.codex/sessions/**/rollout-*{match.group(1)}.jsonl"),
@@ -291,7 +295,9 @@ def score_run(record: Dict, arm_spec: Dict) -> Optional[Dict]:
                 wrote, first_write_ok = True, ROUTER in delivered
         elif event[0] == "reply":
             reply = event[1]
+            # Snapshot at the reply: a rule counts as delivered only if it was read before the final reply.
             reply_delivered = all(rule in delivered for rule in REPLY_RULES)
+            communication_delivered = "communication.md" in delivered
     if reply is None:
         return None
     rule_bytes = 0
@@ -306,7 +312,7 @@ def score_run(record: Dict, arm_spec: Dict) -> Optional[Dict]:
         "long_reply": long_reply,
         "checks": {name: bool(test(reply, prose)) for name, (_, test) in MRC.CHECKS.items()},
         "asked_table": record.get("asked_table", False),
-        "communication_delivered": "communication.md" in delivered,
+        "communication_delivered": communication_delivered,
         "reply_rules_delivered": reply_delivered,
         "wrote": wrote,
         "gate5_ok": first_write_ok,
@@ -334,11 +340,36 @@ def summarize(rows: List[Dict]) -> Dict:
         "table_unasked_rule_delivered": rate(delivered, None, "table"),
         "communication_delivered": rate(unasked, "communication_delivered"),
         "prohibitions": {name: rate(long_rows, None, name) for name in MRC.CHECKS},
+        "any_prohibition": MRC.rate(sum(1 for r in long_rows if any(r["checks"].values())), len(long_rows)),
         "gate5_miss": MRC.rate(sum(1 for r in writers if not r["gate5_ok"]), len(writers)),
         "reply_rules_miss": MRC.rate(sum(1 for r in long_rows if not r["reply_rules_delivered"]), len(long_rows)),
         "fallback": rate(carders, "fallback"),
         "mean_rule_bytes": (sum(r["rule_bytes"] for r in rows) / len(rows)) if rows else None,
     }
+
+
+def newcombe(k1: int, n1: int, k2: int, n2: int) -> Optional[Dict]:
+    """Second proportion minus the first, with Newcombe's hybrid score 95% interval."""
+    if not n1 or not n2:
+        return None
+    lo1, hi1 = MRC.wilson(k1, n1)
+    lo2, hi2 = MRC.wilson(k2, n2)
+    p1, p2 = k1 / n1, k2 / n2
+    d = p2 - p1
+    return {"d": d, "ci95": (d - ((p2 - lo2) ** 2 + (hi1 - p1) ** 2) ** 0.5,
+                             d + ((hi2 - p2) ** 2 + (p1 - lo1) ** 2) ** 0.5)}
+
+
+def compare(result: Dict, order: List[str], metric: str) -> Dict:
+    """Difference on `metric` for each pair of arms in arms-file order, within each executor group."""
+    out = {}
+    prefixes = sorted({name.rsplit("/", 1)[0] for name in result})
+    for prefix in prefixes:
+        names = [f"{prefix}/{arm}" for arm in order if f"{prefix}/{arm}" in result]
+        for first, second in zip(names, names[1:]):
+            a, b = result[first][metric], result[second][metric]
+            out[f"{second} - {first}"] = newcombe(a["k"], a["n"], b["k"], b["n"])
+    return out
 
 
 def score(args: argparse.Namespace) -> None:
@@ -349,16 +380,18 @@ def score(args: argparse.Namespace) -> None:
     groups: Dict[Tuple[str, str], List[Dict]] = {}
     failed: Dict[Tuple[str, str], int] = {}
     for record in records:
-        key = (record["executor"], record["arm"])
+        key = ("pooled" if args.pool else record["executor"], record["arm"])
         scored = score_run(record, arm_specs.get(record["arm"], {}))
         if scored is None:
             failed[key] = failed.get(key, 0) + 1
         else:
             groups.setdefault(key, []).append(scored)
-    result = {f"{executor}/{arm}": dict(summarize(rows), unscorable=failed.get((executor, arm), 0))
-              for (executor, arm), rows in sorted(groups.items())}
+    result = {f"{executor}/{arm}": dict(summarize(groups.get((executor, arm), [])), unscorable=failed.get((executor, arm), 0))
+              for executor, arm in sorted(set(groups) | set(failed))}
+    order = list(arm_specs) or sorted({record["arm"] for record in records})
+    diffs = compare(result, order, args.metric)
     if args.json:
-        print(json.dumps(result, indent=2))
+        print(json.dumps({"groups": result, "differences": {"metric": args.metric, **diffs}}, indent=2))
         return
     for name, summary in result.items():
         print(f"== {name}: runs={summary['runs_scored']} long={summary['long_replies']} unscorable={summary['unscorable']}")
@@ -370,6 +403,9 @@ def score(args: argparse.Namespace) -> None:
         print(f"   gate5 miss {MRC.fmt_rate(summary['gate5_miss'])} | reply-rules miss "
               f"{MRC.fmt_rate(summary['reply_rules_miss'])} | fallback {MRC.fmt_rate(summary['fallback'])} | "
               f"mean rule bytes {'n/a' if mean is None else round(mean)}")
+    for name, diff in diffs.items():
+        text = "n/a" if diff is None else f"{100 * diff['d']:+.1f} pts [{100 * diff['ci95'][0]:+.1f} to {100 * diff['ci95'][1]:+.1f}]"
+        print(f"== {args.metric}: {name} {text}")
 
 # ───────────────────────────────────────────────────────────────
 # 6. ENTRY POINT
@@ -397,6 +433,9 @@ def main(argv: List[str]) -> None:
     s.add_argument("--runs", nargs="+", required=True)
     s.add_argument("--arms")
     s.add_argument("--json", action="store_true")
+    s.add_argument("--pool", action="store_true", help="group by arm across executors")
+    s.add_argument("--metric", default="table_unasked_rule_delivered", choices=RATE_METRICS,
+                   help="summary rate the arm difference uses")
     args = parser.parse_args(argv)
     {"build": build, "run": run, "score": score}[args.command](args)
 
