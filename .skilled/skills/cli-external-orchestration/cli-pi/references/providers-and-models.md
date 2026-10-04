@@ -6,7 +6,7 @@ trigger_phrases:
   - "which model for pi dispatch"
   - "pi thinking reasoning effort"
   - "pi has no default model"
-  - "pi openai-codex opencode-go minimax llmgateway"
+  - "pi openai opencode-go minimax llmgateway"
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
@@ -46,9 +46,9 @@ Pi is a multi-provider passthrough at the binary layer. Pi's own CLI accepts eit
 
 The table below is the closed roster for cli-pi dispatch, sourced from the machine-local authenticated set (`~/.pi/agent/auth.json` + `models-store.json`; opencode-go added 2026-08-07). Re-read `models-store.json` to confirm an id is still authenticated on this machine, but do not dispatch anything outside this roster.
 
-### openai-codex
+### openai
 
-Custom provider carrying the GPT-6 personas — see the effort cross-map in §4. Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). Both GPT-6 ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), which lists them since `pi update --models` refreshed it on 2026-09-23. `.pi/models.json` defines no `openai-codex` models, because only the custom `llmgateway` and `cline-pass` providers need manual entries; `pi --list-models gpt-6` confirms both resolve. `openai-codex/gpt-6-luna` at `medium` is the pi-blackhole compaction model; Pi's own default is the DevPass Luna route below.
+Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). Both GPT-6 ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms both resolve. `openai/gpt-6-luna` at `medium` is the pi-blackhole compaction model. Pi's own default is the DevPass Luna route below.
 
 | Model id | Notes |
 |----------|-------|
@@ -110,7 +110,7 @@ Effort policy: the ladders differ, so there is no single tier for this provider 
 | `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. **This is the deep-loop fan-out route for GLM-5.3-Flash** (bare literal `glm-5.3-flash`, mapped to `llmgateway` since 2026-09-05); the effort pin in `isFlashMaxPinnedModel` forces `max`, a tier this route has. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
 | `llmgateway/mimo-v2.6-pro` | MiMo-V2.6-Pro via DevPass; reasoning and image-capable, with `none`/`low`/`medium`/`high` variants, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out, $0.0036 cached read per million tokens. Catalog-listed 2026-09-22. **This is the deep-loop fan-out route for MiMo** (bare literal `mimo-v2.6-pro`, mapped to `llmgateway` since 2026-09-23, when the `xiaomi` provider left the roster). Dispatch-verified the same day: a fan-out-built `pi -p --offline --model llmgateway/mimo-v2.6-pro --thinking high` turn replied `OK` in 11 seconds |
 | `llmgateway/mimo-v2.6-flash` | MiMo-V2.6-Flash via DevPass, the cheaper MiMo tier. Reasoning and image-capable with the same `none`/`low`/`medium`/`high` ladder as Pro, 1M context and 131K output. Catalog costs are $0.14 in, $0.28 out and $0.0028 cached read per million tokens. **This is the deep-loop fan-out route for MiMo Flash** (bare literal `mimo-v2.6-flash`, mapped to `llmgateway` since 2026-09-30). Dispatch-verified 2026-09-30 by a one-turn smoke at `--thinking high` that replied `PONG` |
-| `llmgateway/gpt-6-luna` | GPT-6 Luna via DevPass; reasoning and image-capable, efforts `none` through `max` on the gateway, which the `thinkingLevelMap` carries as `low` through `max` with `minimal` folded into `low`. 1.05M context, 128K output, and catalog costs of $0.10 in, $0.50 out, $0.01 cached read and $0.125 cache write per million tokens. Catalog-listed 2026-09-23, listed by `pi --list-models gpt-6` and dispatch-verified the same day by a one-turn smoke that replied `OK` for $0.0009. It is Pi's default model in `.pi/settings.json`, at the global `xhigh`. **Direct-dispatch only:** the bare `gpt-6-luna` literal maps to `openai-codex` in `PI_MODEL_PROVIDERS`, so the deep-loop fan-out reaches Luna through the ChatGPT subscription, not through DevPass |
+| `llmgateway/gpt-6-luna` | GPT-6 Luna via DevPass; reasoning and image-capable, efforts `none` through `max` on the gateway, which the `thinkingLevelMap` carries as `low` through `max` with `minimal` folded into `low`. 1.05M context, 128K output, and catalog costs of $0.10 in, $0.50 out, $0.01 cached read and $0.125 cache write per million tokens. Catalog-listed 2026-09-23, listed by `pi --list-models gpt-6` and dispatch-verified the same day by a one-turn smoke that replied `OK` for $0.0009. It is Pi's default model in `.pi/settings.json`, at the global `xhigh`. **Direct-dispatch only:** the bare `gpt-6-luna` literal maps to `openai` in `PI_MODEL_PROVIDERS`, so the deep-loop fan-out reaches Luna through the ChatGPT subscription, not through DevPass |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the five authenticated providers above have a confirmed installed catalog.
 
@@ -161,8 +161,8 @@ cli-pi expresses reasoning effort through the first-class, standalone **`--think
 ### Do NOT copy Codex effort syntax into Pi
 A common, real confusion: cli-codex controls effort through config-level `-c model_reasoning_effort=...` (and `-c service_tier=...`). **Those forms are Codex-specific and must NOT be copied into a `pi` invocation.** Pi uses the bare `--thinking <tier>` flag and has no confirmed service-tier control surface.
 
-### GPT-6 effort ceilings via the `openai-codex` provider
-The GPT-6 tiers are reachable through Pi's `openai-codex` provider, but Pi's `--thinking` scale tops out at `max`. Ceilings come from the cli-codex model-selection table — cross-reference [cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) for the authoritative effort map.
+### GPT-6 effort ceilings via the `openai` provider
+The GPT-6 tiers are reachable through Pi's `openai` provider, but Pi's `--thinking` scale tops out at `max`. Ceilings come from the cli-codex model-selection table — cross-reference [cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) for the authoritative effort map.
 
 | Model | Codex-documented effort ceiling | Reachable via Pi `--thinking`? |
 |-------|---------------------------------|--------------------------------|
@@ -213,4 +213,4 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 - [cli-reference.md](./cli-reference.md) — full `pi` flags, headless modes, auth failure behavior, §13 model selection
 - [integration-patterns.md](./integration-patterns.md) — conductor/executor dispatch shapes, print/JSON/RPC, and anti-patterns
 - [../SKILL.md](../SKILL.md) — cli-pi mode overview, routing, and recursion bounds
-- [../../cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) — authoritative GPT-6 effort-ceiling cross-map for the `openai-codex` tiers
+- [../../cli-codex/references/providers-and-models.md](../../cli-codex/references/providers-and-models.md) — authoritative GPT-6 effort-ceiling cross-map for the `openai` tiers
