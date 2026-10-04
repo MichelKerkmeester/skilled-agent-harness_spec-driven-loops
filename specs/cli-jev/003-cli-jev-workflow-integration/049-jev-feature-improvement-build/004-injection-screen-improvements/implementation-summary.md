@@ -53,7 +53,7 @@ The injection screen keeps its keep verdict at the new 0.6 flag line, with false
 
 ### Phase 1: injection-screen-improvements
 
-`score-injection-screen.mjs` asks Jev whether a section of fetched text tries to redirect an agent. It now refuses rows whose source no longer matches the recorded commit or snapshot digest, and records label, planted, snapshot, instruction and lexical hashes. The report prints comparator Brier, natural and planted recall apart, close calls and a hardened lexical comparator as a hybrid floor. Rows run two calls and a third only on disagreement, the flag line is 0.6, and an opt-in `--reworded-arm` scores a reworded question beside the original one, with a review-band question on rows in the 0.25 to 0.75 band. A failed reworded call is reported on its own line and never erases the primary verdict.
+`score-injection-screen.mjs` asks Jev whether a section of fetched text tries to redirect an agent. It now refuses rows whose source no longer matches the recorded commit or snapshot digest, and records label, planted, snapshot, instruction and lexical hashes. The report prints comparator Brier, natural and planted recall apart, close calls and a hardened lexical comparator as a hybrid floor. Rows run two calls and a third only on disagreement, the flag line is 0.6, and an opt-in `--reworded-arm` scores a reworded question beside the original one, with a review-band question on rows whose mean falls from 0.25 up to the 0.60 flag line. A failed reworded call is reported on its own line and never erases the primary verdict.
 
 ### Files Changed
 
