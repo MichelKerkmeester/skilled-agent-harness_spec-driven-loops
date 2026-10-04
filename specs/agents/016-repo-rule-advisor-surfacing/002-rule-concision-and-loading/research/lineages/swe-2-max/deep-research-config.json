@@ -1,0 +1,53 @@
+{
+  "topic": "Which sentences in a repo rule change model behaviour, and what does shortening or removing each part cost? (CONCISION angle of: how should this repository's repo rules be written and loaded to change model behaviour, and at what context cost?)",
+  "research_topic": "Question: how should this repository's repo rules (.skilled/repo-rules/, 13 files, about 27k tokens) be written and loaded to change model behaviour, and at what context cost? First read prep/evidence-pack.md in the spec folder named below: measured token load and compliance baseline. Before every iteration read steer.md in your lineage directory and answer only its question. Cite file:line or a prep/ measurement for every claim. Mark unmeasured figures UNKNOWN. Read-only on the repository. Spec folder: specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading (pre-approved, Gate 3 answered).",
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "artifact_dir": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max",
+  "fanout_lineage_artifact_dir": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-swe-2-max-1791120151016-ksetij",
+    "generation": 1,
+    "lineageId": "swe-2-max",
+    "lineageMode": "detached"
+  },
+  "steer": {
+    "path": "steer.md",
+    "angle": "CONCISION",
+    "question": "which sentences in a rule change behaviour, and what does shortening or removing each cost?"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max",
+    "forbiddenWrites": [
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/spec.md",
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/plan.md",
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/tasks.md",
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/deep-research-config.json",
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/orchestration-status.log",
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/observability-events.jsonl",
+      ".skilled",
+      "REPO RULES.md",
+      "AGENTS.md"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "status": "initialized",
+  "createdAt": "2026-10-04T15:30:00.000Z"
+}

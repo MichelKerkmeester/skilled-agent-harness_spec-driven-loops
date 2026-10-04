@@ -1,0 +1,68 @@
+{
+  "run_id": "1791120151016-ksetij",
+  "loop_type": "research",
+  "spec_folder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "base_artifact_dir": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 4,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-v4-1-flash-max",
+      "state_log": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-04T13:22:31.020Z",
+        "end_at_iso": "2026-10-04T13:32:51.117Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T13:36:00Z",
+          "deltaMs": 68883
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T13:46:00Z",
+          "deltaMs": 668883
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T13:55:00Z",
+          "deltaMs": 1208883
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T14:00:00Z",
+          "deltaMs": 1508883
+        }
+      ]
+    }
+  ]
+}

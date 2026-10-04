@@ -24,7 +24,7 @@ trigger_phrases:
   - "fallback for a constraint that does not exist"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Prevent overengineering
@@ -44,9 +44,8 @@ version: 1.0.1.0
 **Build the smallest thing that solves the stated problem. Build the bigger thing only
 after naming what fails at the smaller one.**
 
-The naming is the whole rule. "It's cleaner" is not a failure. "A future caller might"
-is not a failure. A failure is something that breaks today, for a requirement that
-exists today.
+"It's cleaner" is not a failure. "A future caller might" is not a failure. A failure
+is something that breaks today, for a requirement that exists today.
 
 ---
 
@@ -67,12 +66,11 @@ that says what fails at the cheaper one** in the response, not just in your head
 
 > **This orders moves by what being wrong costs, and it is deliberately not the numbered
 > rung ladder.** For code, the code skill's universal quality standards are the
-> authoritative rungs. Route through `sk-code` to reach them, because
-> where that file sits is each repository's own business. That ladder orders *solution
-> sources*: standard library, then native platform, then an installed dependency. Two orderings, two axes, one authority: cite
-> rung numbers from that file, and cite moves by name from this one. Naming a "rung 2"
-> here would mean something different there, which is exactly the confusion this section
-> stopped causing.
+> authoritative rungs. Route through `sk-code` to reach them. That ladder orders
+> *solution sources*: standard library, then native platform, then an installed
+> dependency. Two orderings, two axes, one authority: cite rung numbers from that file,
+> and cite moves by name from this one. A "rung 2" named here would mean something
+> different there.
 
 Building nothing is not a formality: a surprising share of requests are already satisfied
 by code that exists, and reading first is what reveals it. The sentence, written out:
@@ -117,15 +115,14 @@ axis in the test matrix. Default to hardcoding. An option earns existence when *
 real callers need different values today**.
 
 **Abstraction.** One instance is a case, two a coincidence, three a pattern. Abstracting
-at two buys a wrong abstraction more often than it saves a duplication, and duplication
-is cheaper to fix than the wrong seam.
+at two buys a wrong abstraction more often than it saves a duplication.
 
 **Error handling.** Catch only what you can handle. A `try` that logs and re-raises, or
 swallows an exception into a default, converts a loud failure into a silent wrong answer.
 
 **Defensive checks.** Do not validate what the type system, the caller contract, or the
 layer above already guarantees. A null check on something never null tells the next
-reader it *is* sometimes null, and they will code around a ghost.
+reader it *is* sometimes null.
 
 **Tests.** The coverage floor and the earns-its-place bar are `AGENTS.md` §3. The ladder
 applies to test code exactly as to the code under test.
@@ -138,9 +135,8 @@ actually have is an untested branch that will rot. Add the no-install path, the 
 path, or the degraded path only when you can name the environment that needs it. "In
 case" is not an environment.
 
-**Dependencies.** Prefer what the project has. A new one is the costliest move in §1,
-needs its climbing sentence, and takes the `blast-radius.md` pass too, installing
-mutates the environment.
+**Dependencies.** Prefer what the project has. A new one also takes the
+`blast-radius.md` pass, because installing mutates the environment.
 
 ---
 

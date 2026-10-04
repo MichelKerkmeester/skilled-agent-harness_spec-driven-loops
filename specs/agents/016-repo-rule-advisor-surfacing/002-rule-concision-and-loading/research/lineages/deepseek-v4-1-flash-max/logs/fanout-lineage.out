@@ -1,0 +1,223 @@
+I'll start by reading the workflow contract, the evidence pack, and checking the lineage directory state.
+
+Reading the rest of the SKILL.md, steer.md, and the spec folder contents.
+
+Now reading the evidence pack, spec, config, and checking a sibling lineage for the expected structure.
+
+The sibling lineages only have pre-run scaffolding. Let me read the state format references and the fan-out adapter to learn the exact expected lineage layout.
+
+Reading the fan-out contract and the state outputs format.
+
+Let me examine a completed sibling lineage from the predecessor spec to see the exact expected file layout, and read the JSONL state format.
+
+A completed sibling lineage exists in the predecessor spec. Let me study its exact file formats as the template.
+
+Now let me read the remaining template files from that completed lineage.
+
+I now have the full template. Next, gathering the evidence sources named in steer.md: AGENTS.md, REPO RULES.md, the injection contract, and the dedup machinery.
+
+
+
+Now reading the hook injection contract, directive lifecycle, spec-gate core, and the predecessor's research synthesis.
+
+Now reading the spec-gate core around the delivery marker, the rest of the injection contract, and the predecessor's synthesis.
+
+Reading the predecessor synthesis (001-advisor-surfacing research.md).
+
+All required reading for iteration 1 is done. Now measuring the current load paths (read-only commands only).
+
+Measuring the remaining cost surfaces: the spec-gate notice size, the user-level CLAUDE.md relationship, and where per-session state lives.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The advisor delivery chain is now clear. Let me read the durable store to pin down where dedup state lives.
+
+
+
+This store is the core of iteration 3. Now reading the advisor's own hook entry to see how delivery decisions are wired per runtime.
+
+The dedup machinery is fully mapped. Now gathering the card-size proxies and the rule-authoring template (for option estimates).
+
+
+
+
+
+Two more targeted checks for the dedup coverage question: what Pi's adapter forwards and which events Codex wires.
+
+
+
+
+
+Now measuring per-rule section sizes (card proxies) with a read-only parser.
+
+Measurements complete. Let me confirm line counts and current UTC time, then begin phase_init.
+
+Phase_init begins now. Creating the state packet files inside the lineage directory.
+
+
+
+
+
+Phase_init complete. Now executing iteration 1 — current load paths and costs.
+
+
+
+
+
+
+
+Now the reducer refresh after iteration 1 — registry, dashboard, strategy.
+
+
+
+
+
+
+
+Iteration 1 complete. Before iteration 2, re-reading steer.md and checking how the root doc reaches each runtime (for the "runtimes it reaches" fields).
+
+
+
+All evidence gathered. Writing iteration 2 — the five options matrix.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 2 complete. Before iteration 3, re-reading steer.md and checking whether the boundary bridge is wired into any session/compaction owner.
+
+The boundary bridge IS wired through session-prime and post-compaction. Reading both call sites.
+
+
+
+
+
+
+
+
+
+
+
+All wiring verified. Writing iteration 3 — the hook dedup design.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 3 complete. Now iteration 4 — the verdict: one answer per part of the Question line.
+
+
+
+
+
+
+
+
+
+Iteration loop complete (4/4). Now phase_synthesis — writing the lineage synthesis `research.md`.
+
+
+
+Now checking the sibling's resource-map format before writing ours.
+
+
+
+Phase_synthesis close-out: final state records, config status, and strategy closure.
+
+
+
+Final-state verification: artifacts, JSON validity, iteration counts, and containment.
+
+The registry's final write dropped F1-F22 from the findings array — repairing it to carry all 26 findings.
+
+
+
+
+
+The steer file grew mid-run (1524→2279 bytes). Reading it now to weigh the lead's update before closing.
+
+The lead's steering arrived mid-run with new iteration-4 requirements. Executing them now: verifying the truncation line, and sourcing runtime byte caps.
+
+
+
+
+
+
+
+
+
+Sourcing runtime caps — repo search found none, so checking upstream docs for the config keys.
+
+Codex, Claude Code, and Cursor caps sourced. Two more: OpenCode and Pi.
+
+All six caps sourced. Now integrating the lead's steering into iteration 4 — rewriting it with the Runtime caps section, the measured fire count, and the must-carry clause lines.
+
+Now propagating the steering content through the delta, registry, and synthesis.
+
+Delta updated (8 records). Now the registry with F27-F29 and the amended F12.
+
+Now updating the synthesis `research.md` with the caps section and corrected numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Final validation pass across all artifacts.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-1-flash-max

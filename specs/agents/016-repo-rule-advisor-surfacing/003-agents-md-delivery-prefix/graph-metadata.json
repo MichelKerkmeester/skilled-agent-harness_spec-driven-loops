@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix",
+  "parent_id": "agents/016-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents md delivery prefix",
+      "devin agents md truncation",
+      "agents md byte guard",
+      "16384 byte cut",
+      "agents md delivery prefix plan",
+      "devin agents md truncation plan",
+      "agents md delivery prefix tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "packet goal"
+    ],
+    "key_topics": [
+      "agents",
+      "delivery",
+      "prefix",
+      "devin",
+      "truncation",
+      "byte",
+      "guard",
+      "cut",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+      ".codex/AGENTS.md",
+      ".cursor/rules/skill-routing.md",
+      ".github/workflows/rule-canary-sync.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule-canary-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/rule-canary-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin cuts `AGENTS.md` at byte 16,384, partway through line 175 of 285 (`002-rule-concision-and-loading/prep/evidence-pack.md` §5)",
+    "created_at": "2026-10-04T14:39:55Z",
+    "last_save_at": "2026-10-04T19:04:46.010Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fab88d2f07f1590d02bdb2bd7cea7205183654b271d7af333d7daec31f00075e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7617c903cbdb564f30eb6b67998c4b926ae3804a5a3e4675590678153ab883c7",
+      "plan.md": "40650f92dad03a852c625f25676ac5f97a44cab7ed8f3055a4cc0084461690b9",
+      "tasks.md": "93a3e062ff5fe8574719be0d200a68008d8c0bbf5cd6bad31e57b215ee939188",
+      "implementation-summary.md": "eecbd8ff09bee5aa08081f8329dcea4e033e92acb40f278dd3a99342f23cb0ea"
+    },
+    "last_active_at": null
+  }
+}
