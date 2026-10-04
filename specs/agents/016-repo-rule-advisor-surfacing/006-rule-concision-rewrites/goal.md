@@ -80,6 +80,9 @@ and findings belong here.
 |------|-------|----------|
 | Phase work | Pending | spec.md metadata Status Draft. Criteria trace to acceptance-criteria.md AC-001 to AC-005 and spec.md REQ-006 |
 | Simple-terms clause | Pending | operator request 2026-10-04; REQ-007, T005, AC-006 |
+| Rewrites | Done | 13 commits 023e4915c1..6f29aba2b4, 107,092 to 94,609 B, second review restored one clause |
+| Byte target | Blocked | 94,609 B above 91,028 B; operator decides waiver or further cuts |
+| Post-change window | Waiting | opens 2026-10-04T22:20:44+02:00 |
 
 ### Deviations and findings
 
