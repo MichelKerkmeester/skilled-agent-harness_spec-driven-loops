@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-jev/001-cli-jev-creation",
     "cli-jev/002-cli-jev-hub-migration",
-    "cli-jev/003-cli-jev-workflow-integration"
+    "cli-jev/003-cli-jev-workflow-integration",
+    "cli-jev/004-cli-classifier-quality-research"
   ],
   "manual": {
     "depends_on": [],

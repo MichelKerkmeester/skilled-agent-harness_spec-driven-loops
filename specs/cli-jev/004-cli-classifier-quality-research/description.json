@@ -1,0 +1,30 @@
+{
+  "specFolder": "cli-jev/004-cli-classifier-quality-research",
+  "description": "Deep research on cli-classifier quality: sk-doc and sk-code-opencode compliance, skill advisor integration, UX, documentation, bugs, drift and visible",
+  "keywords": [
+    "deep",
+    "research",
+    "cli-classifier",
+    "quality",
+    "sk-doc",
+    "sk-code-opencode",
+    "compliance",
+    "skill",
+    "advisor",
+    "integration",
+    "documentation",
+    "bugs",
+    "drift",
+    "visible",
+    "measurements"
+  ],
+  "lastUpdated": "2026-10-04T12:56:31.598Z",
+  "specId": "004",
+  "folderSlug": "cli-classifier-quality-research",
+  "parentChain": [
+    "cli-jev"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
