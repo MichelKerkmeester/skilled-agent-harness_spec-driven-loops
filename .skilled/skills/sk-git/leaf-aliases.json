@@ -121,6 +121,41 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/README.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/README.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-target-menu.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md",
     "diskPath": "manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md"
   },
