@@ -31,6 +31,8 @@ upstream_assets:
   lookup_command: 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"'
   lookup_policy: "The lookup reads a file and exits. There is no socket to probe and no daemon to start. Exit 0 = at least one candidate, exit 1 = clean no-hit reported as an empty result, exit 2 or higher = an execution error reported with stderr attached and never as a no-hit."
   generator_command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+  citation_drift_command: "node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs --corpus <all|skills> --moved"  # zero model calls, writes nothing; reads committed docs and the worktree line counts of their targets
+  citation_drift_classes: "moved = moved_in_range + moved_past_end (the path was renamed; the line is checked in the new file), gone = unresolved + missing (no file and no recorded rename), past_end = the file exists but is shorter than the cited line. basename_only and ambiguous are guesses by file name and are reported, never counted as moved"
   files:
     acceptance: "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md"  # the bar the index and lookup were accepted against
     latency_report: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/latency-report.json"  # cold-lookup budget evidence
@@ -60,6 +62,7 @@ mutation_boundaries:
   allowed_targets:
     - "<packet_scratch>/doctor-speckit-retrieval-report.*.md"  # the diagnostic report only
     - "<packet_scratch>/doctor-speckit-retrieval-state.*.json"  # the diagnostic state log only
+    - "<packet_scratch>/doctor-speckit-retrieval-moved.*.txt"  # the moved-citation listing, one line per citation
   forbidden_targets:
     - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
     - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit speckit-retrieval
@@ -94,6 +97,13 @@ interactive_gates:
       y: "continue to phase_1_analysis"
       n: "STATUS=CANCELLED; emit state log with phase=phase_0_discovery"
       details: "print Phase 0 discovery outputs, then ask again"
+  citation_drift_scope:
+    prompt: "Run the citation-drift census? It reads every committed doc and makes no model call. all = spec and skill docs (about 12 minutes), skills = skill docs only (about 3 minutes), skip = leave it out. (all/skills/skip)"
+    blocking: true
+    approvals:
+      all: "run upstream_assets.citation_drift_command with --corpus all"
+      skills: "run upstream_assets.citation_drift_command with --corpus skills"
+      skip: "record citation_drift as skipped in the report; never as clean"
   before_phase_2_recommendation:
     prompt: "Phase 1 complete. Continue to Phase 2? (y/n/details)"
     blocking: true
@@ -138,6 +148,10 @@ staleness_signals:
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
     severity: high
+  citation_drift:
+    detection: "The citation-drift census reports, per doc family, citations whose target moved, is gone, or ends before the cited line"
+    severity: low
+    note: "Informational. A moved citation still points at a real file under its new path, so the summary names that path. It does not say whether the cited lines support the claim: the census checks existence, never support. Fixing citations is an authoring task, so no regeneration is ever recommended for this signal."
   gate1_instruction_parity:
     detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
     severity: medium
@@ -189,6 +203,7 @@ workflow:
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
       - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale."
+      - "Interactive gate: citation_drift_scope. Unless the answer is skip, run upstream_assets.citation_drift_command once. Exit 2 is reported with stderr and never as clean. Write every 'cite moved:' line to <packet_scratch>/doctor-speckit-retrieval-moved.<timestamp>.txt. From the 'family' lines build the per-family table using upstream_assets.citation_drift_classes, then group the moved lines by their old and new path prefixes and keep the ten largest groups for the report"
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
@@ -201,6 +216,11 @@ workflow:
           anchor_marker_drift: Q
           corpus_pollution: R
           schema_version_mismatch: S
+      - citation_drift:
+          scope: all|skills|skipped
+          families: {skills: {citations: N, moved: N, gone: N, past_end: N, basename_only: N, ambiguous: N}, specs: "same fields, or absent when scope is skills"}
+          top_moved_prefixes: "up to 10 entries of {from, to, citations}"
+          moved_listing_path: string
       - sample_staleness_explanations: [up to 5 entries]
       - severity_max: low|medium|high
     validation: analysis_complete
@@ -213,6 +233,7 @@ workflow:
       - "If severity_max == low (trigger phrase drift, anchor drift, or an mtime sample that --check did not confirm) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
+      - "citation_drift never raises severity_max. Report it beside the recommendation and point at the moved listing; the fix is editing the citing docs."
     outputs:
       - status: OK|DEGRADED|STALE|MISSING
       - recommended_command: string
@@ -241,6 +262,7 @@ output_contract:
     - recommendation_block
   optional_sections:
     - sample_staleness_explanations
+    - citation_drift_summary  # per-family table, the ten largest moved prefixes and the listing path; says 'skipped' when the operator skipped it
   state_log:
     path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:

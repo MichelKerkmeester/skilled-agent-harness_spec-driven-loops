@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "e7955ceb472b462bf6ec13eaf287b0d74f21df0196a725a137fd48239ecdb8d8",
+      "sha256": "14096b2335e263b9d53b3911c4788ac4df8c39430cf618e044260bb6c1b4e582",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "7907b66e42184b43f1b5a87ac159611d70303bc64e4738d37a44af5cd402fb00",
+      "sha256": "a71c8b0d73cae02adc89d39230e602de918eb99c4e4d1680c14af2c26b85e271",
       "section": "full"
     },
     {

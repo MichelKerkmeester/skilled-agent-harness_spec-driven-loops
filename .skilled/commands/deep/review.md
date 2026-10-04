@@ -123,3 +123,5 @@ The following content lives only in `.skilled/commands/deep/assets/deep-review-p
 
 **Review path (findings):** `/deep:review` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
 **Review path (clean):** `/deep:review` -> (if PASS) `/create:changelog`
+
+Each iteration's prompt tells the writer that its `[SOURCE: path:line]` tags are checked by the `SOURCE_TAGS` rule. That rule runs in the next `/speckit:*` validation rather than inside this workflow, whose validation calls list their own rules.

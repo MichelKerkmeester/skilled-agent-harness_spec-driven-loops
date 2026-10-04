@@ -98,3 +98,5 @@ The following content lives only in `.skilled/commands/speckit/assets/speckit-co
 ## 6. WORKFLOW SUMMARY
 
 The YAML workflow runs the full lifecycle from specification through implementation, validation, context refresh, and workflow closeout. Optional research, context, and phase-decomposition flows are routed through the selected workflow asset.
+
+Its `validate.sh --strict` calls now include two warn-only rules, and neither fails the run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.
