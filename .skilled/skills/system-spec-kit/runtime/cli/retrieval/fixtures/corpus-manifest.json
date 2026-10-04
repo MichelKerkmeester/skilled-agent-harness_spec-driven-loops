@@ -1,5 +1,5 @@
 {
-  "corpusHash": "605c3180485b4d7c481f2fdfadc2f211ceeaa8bc50b69a2db195448d4fabb2c0",
+  "corpusHash": "14b0c823312705120599ce0967ca41f897e607beacdc77191d7d7f6988f15704",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23317,
+  "includedPathCount": 23324,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9049,6 +9049,13 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/implementation-summary.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/plan.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/research/fanout-attribution.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/research/research.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/research/resource-map.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/spec.md",
+    "specs/cli-jev/004-cli-classifier-quality-research/tasks.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -23347,7 +23354,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8a84d6f84d9461da38ccbf0da57402acab9d4641dffaa57f125a642d2be2a3ef",
+  "manifestHash": "04d3f5e7fbc8dcec41728f2c0765d7cb04d901581c7758365bd953f6d7041ec3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24619,6 +24626,14 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/scratch",
       "reason": "excluded directory"
     },
     {
