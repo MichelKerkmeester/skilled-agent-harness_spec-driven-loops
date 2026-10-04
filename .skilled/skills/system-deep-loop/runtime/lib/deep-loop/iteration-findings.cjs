@@ -54,4 +54,33 @@ function deltaRowIteration(row, fileRun) {
   return Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
 }
 
-module.exports = { parseIterationMarkdownFindings, latestIterationRecords, deltaRowIteration };
+function normalizeFindingKey(value) {
+  return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+// Every identity a finding can be matched by. The closeout and the merge must agree
+// on what makes a state finding present in a registry, so both read these keys.
+function findingKeys(candidate) {
+  if (typeof candidate === 'string') {
+    const key = normalizeFindingKey(candidate);
+    return key ? [key] : [];
+  }
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
+  return [...new Set([
+    candidate.id,
+    candidate.findingId,
+    candidate.title,
+    candidate.summary,
+    candidate.text,
+    candidate.finding,
+    candidate.description,
+  ].map(normalizeFindingKey).filter(Boolean))];
+}
+
+module.exports = {
+  parseIterationMarkdownFindings,
+  latestIterationRecords,
+  deltaRowIteration,
+  normalizeFindingKey,
+  findingKeys,
+};

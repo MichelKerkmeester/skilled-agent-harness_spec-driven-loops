@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-deep-loop/042-cli-lineage-findings-contract"
     last_updated_at: "2026-10-04T15:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Implemented, reviewed twice and verified the runtime fix"
-    next_safe_action: "Prove SC-002 with the DeepSeek-only rerun in the AI Systems research packet"
+    recent_action: "Fixed the merge regression the proof run exposed, proved SC-002 with synthesis_complete"
+    next_safe_action: "None. The packet is closed"
     blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "5347dbce-12b3-4d28-9826-cfbf11c6be1d"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 042-cli-lineage-findings-contract |
-| **Completed** | 2026-10-04, pending the SC-002 rerun |
+| **Completed** | 2026-10-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -63,7 +63,7 @@ The gate reads exactly what the reducers read. For research, that is the structu
 |------|--------|---------|
 | `runtime/scripts/fanout-run.cjs` | Modified | CLI OUTPUT CONTRACT block per loop type |
 | `runtime/scripts/verify-iteration.cjs` | Modified | `findings_not_enumerated` for research and review |
-| `runtime/lib/deep-loop/iteration-findings.cjs` | Created | Shared Markdown parser, `latestIterationRecords`, `deltaRowIteration` |
+| `runtime/lib/deep-loop/iteration-findings.cjs` | Created | Shared Markdown parser, `latestIterationRecords`, `deltaRowIteration`, `findingKeys` |
 | `runtime/scripts/fanout-merge.cjs` | Modified | Latest record per iteration, registry list guards, shared helpers |
 | `runtime/scripts/synthesis-closeout.cjs` | Modified | Latest record per iteration |
 | `runtime/tests/unit/verify-iteration.vitest.ts` | Modified | Research and review gate cases |
@@ -71,6 +71,7 @@ The gate reads exactly what the reducers read. For research, that is the structu
 | `runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts` | Created | Closeout counts one record per iteration |
 | `runtime/tests/unit/fanout-merge-latest-record.vitest.ts` | Created | Merge counts one record per iteration |
 | `runtime/tests/unit/fanout-merge-question-shape.vitest.ts` | Created | A number where a list belongs no longer aborts the merge |
+| `runtime/tests/unit/fanout-merge-structured-missing.vitest.ts` | Created | A registry missing a finding the state names is completed, and the closeout passes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -79,6 +80,8 @@ The gate reads exactly what the reducers read. For research, that is the structu
 ## How It Was Delivered
 
 GPT-6 Luna max wrote the first version through cli-codex. SWE 2 max then reviewed it through cli-devin and asked for changes: the gate counted delta rows the merge files under another iteration, and `latestIterationRecords` existed twice. Both were fixed. DeepSeek V4.1 Flash max reviewed next, through cli-devin, and found the review gate demanded `findingDetails.length` equal `findingsCount`, which 547 real records break, and ignored `finalSeverity`. The review gate was reworked to gate the iteration's own claim against the three sources the reducer reads. DeepSeek reviewed that rework and asked for five more corrections, all taken: a list-shaped `findingsNew` claims its length, delta rows follow the reducer's numeric attribution, Markdown counts only under the file name the reducer loads, a details list with a bad entry no longer blocks the other sources, and a test for each. Every new rule was disabled in turn to prove its test fails. The final gate, replayed over all 491 review state logs in this repository, rejects 110 of the 926 records that claim new findings, down from 385 under the first version, and none of the 110 is newer than June 2026.
+
+The proof run then exposed a regression of this change. OpenCode Go refused DeepSeek V4.1 Flash for a workspace region setting, so with the operator's choice the DeepSeek lineage reran through cli-devin on `deepseek-v4-1-flash-max`, the same model at the same effort. All five new iterations passed the gate, each claimed count matched by its finding rows: 7, 9, 9, 9 and 10. The combined closeout still failed, now with `structured_state_findings_missing_from_registry`. Luna's state names 15 findings in `findings` lists that its own registry lacks. Before this change, Luna's iteration 1 was counted twice, which pushed its count-only total past its registry size and triggered a rebuild that carried those 15 in. Counting it once removed that accidental trigger. The merge now rebuilds whenever state findings are missing from the registry, by the same keys the closeout uses, and appends the missing ones when the rebuild is the smaller of the two. Replayed on copies, Luna alone closes at 36 findings as it did before this change, DeepSeek alone at 44, and both at 80. DeepSeek reviewed that fix through cli-devin and found three more ways it could pass a closeout it should fail, all taken: the append path now keeps the rebuild's gap and adds only what it appends to the source count, a failed rebuild never lowers a gap the registry already recorded, and an entry the cross-lineage merge would drop no longer counts as holding a finding.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,6 +94,7 @@ GPT-6 Luna max wrote the first version through cli-codex. SWE 2 max then reviewe
 | Review gates on `findingsNew`, a list by its length or a count object by its sum, falling back to `findingsCount` only when `findingsNew` is absent | `findingsCount` is the running total of active findings, so an iteration that adds nothing still carries a positive count that earlier iterations listed. The contract allows both `findingsNew` shapes (`reduce-state.cjs:1516-1519`) |
 | Review accepts `findingDetails`, ranked delta rows or reducer-parsed Markdown, each under the reducer's own rule | These are the three sources the review reducer reads (`reduce-state.cjs:885-913`), with numeric attribution (`:891`) and exact file names (`:2137`). The gate must not reject a finding the reducer keeps or accept one it drops |
 | Review details need not equal the count | Details list every active finding while the count is narrower, and the reducer pads totals the details miss (`reduce-state.cjs:743-766`) |
+| The merge and the closeout share `findingKeys` | The closeout fails a registry that lacks a finding the state names, so the merge must judge "missing" by the same keys or it will keep a registry the closeout rejects |
 | A non-empty research structured list with unreadable entries does not fall back to other sources | It mirrors the merge's structured-authority rule, so the gate and the merge agree |
 | Council is unchanged | Its CLI gets a fully rendered round prompt with the required sections (`deep-ai-council/scripts/orchestrate-session.cjs:145-173,262-295`), and its finding count is derived from headings |
 | Improvement is unchanged | `deep-improvement/scripts/shared/loop-host.cjs:134-181` runs deterministic helpers with no findings count and no iteration gate |
@@ -108,7 +112,8 @@ GPT-6 Luna max wrote the first version through cli-codex. SWE 2 max then reviewe
 | Each review gate branch disabled in turn | Its test failed, then passed on restore |
 | Gate over the AI Systems research run | DeepSeek iterations 1-5 fail `findings_not_enumerated`, Luna 1-5 pass |
 | Corpus replay, review, shipped rule | 110 of 926 claiming records rejected, 76 of them archived, newest June 2026 |
-| Full runtime suite | PASS: 167 files, 2,816 passed, 8 skipped, exit 0. Baseline 164 files, 2,799 passed, 8 skipped, so 3 new files and 17 new tests with no failure |
+| Full runtime suite | PASS: 168 files, 2,821 passed, 8 skipped, exit 0. Baseline 164 files, 2,799 passed, 8 skipped, so 4 new files and 22 new tests with no failure |
+| SC-002, the AI Systems research rerun | DeepSeek lineage rerun through cli-devin, merged with Luna at 80 findings and gap 0, closeout `synthesis_complete` at ledger sequence 4 |
 | `validate.sh --strict` | `RESULT: PASSED`, 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
@@ -117,7 +122,7 @@ GPT-6 Luna max wrote the first version through cli-codex. SWE 2 max then reviewe
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **SC-002 is unproven here.** It needs the DeepSeek-only rerun of the AI Systems research, which runs in that repository after this commit.
+1. **An existing review registry is never rebuilt from state.** The research merge now completes a registry that lacks findings its state names. The review merge rebuilds only when a lineage has no registry at all, so a review registry missing some `findingDetails` entries would still fail the closeout. This was true before this packet and is left for its own fix.
 2. **The review agent's Markdown shape is not the shape the reducer parses.** `.skilled/agents/deep-review.md:212` asks for `N. **Title** -- file:line -- Description`, while `reduce-state.cjs:258-268` reads only `- **F001**:` bullets. Review findings still reach the reducer through `findingDetails` and delta rows, so nothing is lost, but Markdown alone never enumerates an agent-format review. This predates this packet and is left for its own fix.
 3. **34 live review records from April to June 2026 would now fail.** They list findings in shapes no reducer reads. The gate only runs on new iterations, so these records are untouched.
 <!-- /ANCHOR:limitations -->
