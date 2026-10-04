@@ -39,16 +39,18 @@
       "decisions"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
-      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md"
     ],
     "entities": [
       {
@@ -82,15 +84,27 @@
         "source": "derived"
       },
       {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-report.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
+        "source": "derived"
+      },
+      {
         "name": "cite-drift-scan.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
         "source": "derived"
       },
       {
-        "name": "jev-transport.mjs",
+        "name": "replay-helpers.mjs",
         "kind": "file",
-        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 050 kept Pi as the default and left open items",
     "created_at": "2026-10-03T21:08:42Z",
-    "last_save_at": "2026-10-03T21:10:28.438Z",
+    "last_save_at": "2026-10-04T07:14:41.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1965df0d86361f000969f01a7808ea8ef29957e5fa49621e3995f693d6e75e47",
+    "source_fingerprint": "sha256:9c37d98cc84d1186c2f29ac858a9312f2d5222bd9eee124e5ec25297781d9db0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d054b548147e4eef7fbe88d8816dc8d7b0ddff8648df12ba7d4f8fe2fc9ca16b",
+      "spec.md": "c5063646c024f4c0414636cf60803f972fc912d1ef7f3e7b3250f17971dbc897",
       "plan.md": "fb9b934798347662af263e29ca8799038ea3191618f00aded1532124ecd4f2bd",
-      "tasks.md": "8039eac70944e015837cd37b97c09d5a938b5a24519a0bcda8387f7bdfadc4ac",
-      "implementation-summary.md": "dbb15187ed5dfce8d35afdafadb82c22f2ad4d6df5ab375228d0881601b908fc"
+      "tasks.md": "8a232d07609e222392a0210c681751dbd86634127c2ee6c858870e148d4dafb5",
+      "implementation-summary.md": "6dd734d9e0079a476c18d2aa11f76079d7fef68c86a497410f01d06e1f80a411"
     },
     "last_active_at": null
   }
