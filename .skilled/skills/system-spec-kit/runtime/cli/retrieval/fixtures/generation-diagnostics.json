@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6670,
-    "ok": 13078,
+    "missing-frontmatter": 6673,
+    "ok": 13082,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23317,
+  "documentsScanned": 23324,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8a84d6f84d9461da38ccbf0da57402acab9d4641dffaa57f125a642d2be2a3ef",
+  "manifestHash": "04d3f5e7fbc8dcec41728f2c0765d7cb04d901581c7758365bd953f6d7041ec3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33437,
+      "ok": 33444,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -35381,6 +35381,24 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/research/research.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -66318,6 +66336,14 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/004-cli-classifier-quality-research/scratch",
       "reason": "excluded directory"
     },
     {
