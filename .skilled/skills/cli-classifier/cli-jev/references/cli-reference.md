@@ -14,15 +14,23 @@ version: 0.1.0.2
 
 # Jev CLI Reference
 
-> The binary is the authority. Every claim below was read from the vendored source at
-> `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py`
-> and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output
-> and exit status; claims marked **SOURCE** are read from that file and are re-probed after any
-> version change.
+The pinned `jev` command contract, read from source and probed live against `jev 0.6.2`.
 
 ---
 
-## 1. INVOCATION
+## 1. OVERVIEW
+
+### Purpose
+
+The binary is the authority. Every claim below was read from the vendored source at `specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
+
+### Usage
+
+Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and the behaviors that look like bugs but are not.
+
+---
+
+## 2. INVOCATION
 
 ```bash
 jev --version          # LIVE → stdout "jev 0.6.2", exit 0
@@ -35,7 +43,7 @@ valid choices.
 
 ---
 
-## 2. SUBCOMMANDS
+## 3. SUBCOMMANDS
 
 | Subcommand | Purpose | Required flags |
 |---|---|---|
@@ -54,7 +62,7 @@ skill directory it does not own, recognized by its `.jev-cli-managed` marker.
 
 ---
 
-## 3. SHARED FLAGS ON THE JUDGMENT SUBCOMMANDS
+## 4. SHARED FLAGS ON THE JUDGMENT SUBCOMMANDS
 
 | Flag | Effect |
 |---|---|
@@ -78,7 +86,7 @@ exit 2 once a response exists.
 
 ---
 
-## 4. STATE INPUT
+## 5. STATE INPUT
 
 `-s/--state` accepts three forms, resolved in this order by `read_text()`:
 
@@ -99,7 +107,7 @@ valid object exits 3 at the credential check; `run -` with `{"state":"x"}` exits
 
 ---
 
-## 5. QUESTION SHAPES
+## 6. QUESTION SHAPES
 
 Each subcommand builds the same System One request. **SOURCE** `question_request()`:
 
@@ -143,7 +151,7 @@ i.e. the CLI built and attempted the request. **SOURCE**: the MCP tool raises
 
 ---
 
-## 6. EXIT CODES
+## 7. EXIT CODES
 
 | Exit | Class | Emitted when | Evidence |
 |---|---|---|---|
@@ -160,7 +168,7 @@ shape that makes exit-code handling mandatory.
 
 ---
 
-## 7. AUTHENTICATION COMMANDS
+## 8. AUTHENTICATION COMMANDS
 
 ```bash
 jev auth status     # LIVE, no key → exit 3, {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
@@ -175,7 +183,7 @@ terminal on exit; piped input is read with `.strip()`.
 
 ---
 
-## 8. THINGS THAT LOOK LIKE BUGS AND ARE NOT
+## 9. THINGS THAT LOOK LIKE BUGS AND ARE NOT
 
 - **`auth status` exits 3 rather than reporting an unset key.** A missing credential is a failure,
   and the caller's move differs from a judgment's, so it is an error path by design.

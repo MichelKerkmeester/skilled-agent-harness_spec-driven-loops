@@ -16,7 +16,12 @@
     "system-speckit/049-doctor-audit-followups/010-doctor-router-gates",
     "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
     "system-speckit/049-doctor-audit-followups/012-changelog-v4003-update",
-    "system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix"
+    "system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix",
+    "system-speckit/049-doctor-audit-followups/014-doctor-playbook-spec-kit",
+    "system-speckit/049-doctor-audit-followups/015-doctor-playbook-skill-advisor",
+    "system-speckit/049-doctor-audit-followups/016-doctor-playbook-deep-loop",
+    "system-speckit/049-doctor-audit-followups/017-doctor-playbook-git",
+    "system-speckit/049-doctor-audit-followups/018-doctor-playbook-mcp"
   ],
   "manual": {
     "depends_on": [],
@@ -45,7 +50,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -180,16 +185,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-04T10:07:47.474Z",
+    "last_save_at": "2026-10-04T12:56:34.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:32332c1dfa5798603f4f0e4de3edcc7ca99a2b27805a8059fb3c7dc61b7a026d",
+    "source_fingerprint": "sha256:9bda99112d372f4fbf24893020be8fc6f736ec8cd3b85f067d6e035d4dd9c24a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f5c830578ca08f6d9870c0c9fdd7adb4a1060e261a9ce94c71a8ab72571f2e5"
+      "spec.md": "3ce667ea90c753f04b06eb87a681e69283770273ac001dda98543117855f6d59"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
     "last_active_at": "2026-10-04T08:38:47.405Z"

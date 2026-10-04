@@ -306,6 +306,41 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/lifecycle-routing/age-haircut.md",
     "diskPath": "manual-testing-playbook/lifecycle-routing/age-haircut.md"
   },
