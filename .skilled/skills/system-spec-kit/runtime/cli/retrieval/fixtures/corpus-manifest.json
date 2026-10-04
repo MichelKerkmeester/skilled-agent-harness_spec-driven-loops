@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7e800f5bed2e206774aeec47987c196eb54d70889488f160c46290ddf60e4d79",
+  "corpusHash": "a626bd22fa436cb08623f4964da768431c593c1c645f18a2bc900e72a2ef5554",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23349,
+  "includedPathCount": 23353,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23376,10 +23376,14 @@
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
+  "manifestHash": "5b6cdfd7b9084d2864dee1e6d55edb46750937c30f1ef5a458397c39f4bb3294",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28803,6 +28807,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/scratch",
       "reason": "excluded directory"
     },
     {

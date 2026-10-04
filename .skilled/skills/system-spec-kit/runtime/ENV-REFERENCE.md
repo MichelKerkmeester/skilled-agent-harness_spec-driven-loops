@@ -13,6 +13,8 @@ description: Environment variables read by the surviving spec-kit engine (valida
 
 All variables are optional. The engine runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
 
+`/doctor:env` reads this file at run time. It shows a switch's default and where it is set, by name only, and saves a preference only after you approve the exact line and destination.
+
 **What this package still is.** The memory engine was removed. The MCP transport (`context-server`), the memory tools and handlers, the memory database and its launcher, sqlite vector search, the in-package embedders, the evals and migrations, and the spec-memory CLI shim and plugin bridge are all gone. What remains is the spec-kit engine: the validation orchestrator, the graph and description metadata generators, the documentation level contracts, the continuity writer's imports, and the runtime hook adapters under `hooks/` for Claude, Codex, Cursor, Devin and Pi.
 
 **What is documented elsewhere but kept here.** The skill advisor, the shared HF model server and its `hf-embed` socket, and the shared embeddings and IPC code under `.skilled/skills/system-spec-kit/shared` and `.skilled/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that actually reads it so ownership is unambiguous.

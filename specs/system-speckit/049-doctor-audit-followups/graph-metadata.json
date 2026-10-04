@@ -15,7 +15,8 @@
     "system-speckit/049-doctor-audit-followups/009-doctor-git",
     "system-speckit/049-doctor-audit-followups/010-doctor-router-gates",
     "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
-    "system-speckit/049-doctor-audit-followups/012-changelog-v4003-update"
+    "system-speckit/049-doctor-audit-followups/012-changelog-v4003-update",
+    "system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -179,16 +180,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-04T08:55:16.127Z",
+    "last_save_at": "2026-10-04T10:07:47.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f7cec941cc14a00a7d65fdfa8a09b2e1d44b626c593f315877b4792e797f1d4c",
+    "source_fingerprint": "sha256:32332c1dfa5798603f4f0e4de3edcc7ca99a2b27805a8059fb3c7dc61b7a026d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3dbbdbfc02f1d2e4bc03d90a864e6f338e7288e6a774fac4f7f1c66f4d1c5120"
+      "spec.md": "5f5c830578ca08f6d9870c0c9fdd7adb4a1060e261a9ce94c71a8ab72571f2e5"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
     "last_active_at": "2026-10-04T08:38:47.405Z"

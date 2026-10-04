@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
+  "manifestHash": "5b6cdfd7b9084d2864dee1e6d55edb46750937c30f1ef5a458397c39f4bb3294",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13177,6 +13177,10 @@
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/013-doctor-docs-and-ci-fix/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -51895,7 +51899,7 @@
       12245
     ],
     "doctor audit followups": [
-      13167
+      13171
     ],
     "doctor baseline verification": [
       12161
@@ -51948,6 +51952,9 @@
     ],
     "doctor command cutover summary": [
       9134
+    ],
+    "doctor command pointers in skill readmes": [
+      13169
     ],
     "doctor command presentation": [
       10613
@@ -52090,6 +52097,18 @@
       10613,
       10911
     ],
+    "doctor docs and ci fix": [
+      13169
+    ],
+    "doctor docs and ci fix plan": [
+      13168
+    ],
+    "doctor docs and ci fix summary": [
+      13167
+    ],
+    "doctor docs and ci fix tasks": [
+      13170
+    ],
     "doctor dq route summary": [
       11384
     ],
@@ -52151,7 +52170,7 @@
     ],
     "doctor gates drift": [
       13121,
-      13167
+      13171
     ],
     "doctor git command": [
       13151
@@ -52280,6 +52299,9 @@
     ],
     "doctor playbook sed": [
       9136
+    ],
+    "doctor pointers shipped": [
+      13167
     ],
     "doctor pollution signal": [
       12395
@@ -52413,6 +52435,9 @@
     ],
     "doctor scripts verification evidence": [
       13124
+    ],
+    "doctor scripts yaml dependency": [
+      13169
     ],
     "doctor sequential thinking removal": [
       12160
@@ -95410,7 +95435,7 @@
       13138
     ],
     "release update signals": [
-      13167
+      13171
     ],
     "release updater over rebuild": [
       12989
@@ -121576,7 +121601,7 @@
     ],
     "trigger index freshness": [
       13110,
-      13167
+      13171
     ],
     "trigger index generator": [
       2379,
