@@ -50,7 +50,7 @@ Replays each parent hub's stage-two keyword block against the committed gold wit
 
 #### Current Reality
 
-`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`.
+`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 59-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`.
 
 #### Source Files
 

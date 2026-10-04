@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/018-doctor-playbook-mcp",
+  "description": "Phase 18: doctor-playbook-mcp",
+  "keywords": [
+    "phase",
+    "doctor-playbook-mcp"
+  ],
+  "lastUpdated": "2026-10-04T11:02:50.970Z",
+  "specId": "018",
+  "folderSlug": "doctor-playbook-mcp",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

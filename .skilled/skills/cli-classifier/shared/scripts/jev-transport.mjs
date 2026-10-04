@@ -89,6 +89,7 @@ export function choiceRequestFrom(args) {
   if (!Array.isArray(args) || args[0] !== 'choice') return null;
 
   let question = '';
+  let hasQuestion = false;
   let provider;
   const keys = [];
   const criteria = {};
@@ -104,6 +105,7 @@ export function choiceRequestFrom(args) {
     if (token === '-q' || token === '--question') {
       if (index + 1 >= args.length) return null;
       question = args[index + 1];
+      hasQuestion = true;
       index += 1;
       continue;
     }
@@ -123,6 +125,7 @@ export function choiceRequestFrom(args) {
     return null;
   }
 
+  if (!hasQuestion) return null;
   if (keys.length === 0) return null;
   return { provider, question, keys, criteria };
 }
@@ -502,14 +505,16 @@ async function spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs) {
 /**
  * One bounded call that reaches the CLI or, when Pi's cached preflight passes
  * for a supported request, Pi. Only an explicit Pi route reports a failed gate;
- * every CLI fallback receives the remaining call budget.
+ * every CLI fallback receives the remaining call budget. An omitted `env`
+ * defaults to the process environment, so Pi discovery searches the PATH the
+ * caller runs with instead of an empty one.
  *
  * @param {{ file: string, args: string[], stdin: string, env?: object, timeoutMs: number, transport?: 'jev' | 'pi', report?: (line: string) => void }} options Call description.
  * @param {{ spawn?: Function, runtime?: object, createRuntime?: (packageDir: string) => Promise<object> | object }} [deps] Test seams for the child spawn and classifier runtime.
  * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean, transport: 'pi' | 'jev', model: string | null }>} The call outcome.
  */
 export async function spawnClassifierCall(options, deps = {}) {
-  const env = options.env ?? {};
+  const env = options.env ?? process.env;
   const report = options.report ?? ((line) => process.stdout.write(`${line}\n`));
   const spawnFn = deps.spawn ?? spawn;
   const timeoutMs = Number.isFinite(options.timeoutMs)
