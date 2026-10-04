@@ -19,6 +19,11 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const {
+  parseIterationMarkdownFindings,
+  latestIterationRecords,
+  deltaRowIteration,
+} = require('../lib/deep-loop/iteration-findings.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
@@ -184,34 +189,6 @@ function readStateLog(root, stateLogPath, label) {
   return records;
 }
 
-function parseIterationMarkdownFindings(content, run, sourcePath) {
-  const lines = content.split(/\r?\n/);
-  const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
-  if (headingIndex < 0) return [];
-  const sectionLines = [];
-  for (let index = headingIndex + 1; index < lines.length; index += 1) {
-    const line = lines[index].trim();
-    if (/^##\s+/.test(line)) break;
-    sectionLines.push(line);
-  }
-  const subheadingFindings = sectionLines.flatMap((line) => {
-    const match = line.match(/^###\s+\d+\.\s+(.+)$/);
-    return match ? [match[1]] : [];
-  });
-  const findingTexts = subheadingFindings.length > 0
-    ? subheadingFindings
-    : sectionLines.flatMap((line) => {
-      const match = line.match(/^\d+\.\s+(.+)$/);
-      return match ? [match[1]] : [];
-    });
-  return findingTexts.map((text, index) => ({
-      id: `iteration-${run}-finding-${index + 1}`,
-      title: text,
-      text,
-      addedAtIteration: run,
-      _iteration_source: sourcePath,
-    }));
-}
 
 function loadIterationFindings(root, lineageDir, label) {
   const iterationsDir = path.join(lineageDir, 'iterations');
@@ -266,8 +243,7 @@ function loadDeltaFindings(root, lineageDir, label) {
         return;
       }
       if (!record || typeof record !== 'object' || record.type !== 'finding') return;
-      const iterationNumber = Number(record.iteration);
-      const run = Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
+      const run = deltaRowIteration(record, fileRun);
       // `claim` is the field a reasoning-model lineage writes its finding body under; `summary`
       // is its condensed restatement. Both carry the same durable text the other aliases do,
       // and a finding whose text is unreadable would otherwise be dropped without a trace.
@@ -768,7 +744,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
 
   for (const { label, registry } of lineageData) {
     if (!registry) continue;
-    for (const q of registry.openQuestions ?? []) {
+    for (const q of (Array.isArray(registry.openQuestions) ? registry.openQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
       if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...q, _lineages: [label] });
@@ -780,7 +756,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
     // Resolved questions are produced per-lineage by the research reducer but
     // were previously dropped here, under-reporting answered coverage in the
     // merged registry. Collect them with the same id/_lineages discipline.
-    for (const q of registry.resolvedQuestions ?? []) {
+    for (const q of (Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
       if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
@@ -789,7 +765,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
         addLineage(existing, label);
       }
     }
-    for (const d of registry.ruledOutDirections ?? []) {
+    for (const d of (Array.isArray(registry.ruledOutDirections) ? registry.ruledOutDirections : [])) {
       const id = d.id || d.direction;
       if (!id) continue;
       if (!ruledOutById.has(id)) ruledOutById.set(id, { ...d, _lineages: [label] });
@@ -1022,6 +998,7 @@ function buildAttributionMd(lineageData, loopType) {
  */
 function reconstructReviewRegistryFromState(stateRecords, label) {
   if (!Array.isArray(stateRecords)) return null;
+  stateRecords = latestIterationRecords(stateRecords);
   const openFindings = [];
   const resolvedFindings = [];
   for (const record of stateRecords) {
@@ -1151,6 +1128,7 @@ function researchCandidatesFromIteration(record, iterationFindingsByRun = new Ma
  */
 function rebuildResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map(), deltaFindingsByRun = new Map()) {
   if (!Array.isArray(stateRecords)) return null;
+  stateRecords = latestIterationRecords(stateRecords);
   const keyFindings = [];
   let reconstructionGaps = 0;
   for (const record of stateRecords) {
@@ -1294,7 +1272,9 @@ async function main() {
     if (!registry && compatibilityRegistryName) {
       registry = readJsonFile(artifactRoot, path.join(lineageDir, compatibilityRegistryName), `lineage ${label} compatibility registry`);
     }
-    const stateRecords = readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`);
+    const stateRecords = latestIterationRecords(
+      readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`),
+    );
     const iterationFindingsByRun = loadIterationFindings(artifactRoot, lineageDir, label);
     // Leaf-only review/research lineages (orchestrator-managed direct-leaf convention) may carry
     // active findings only in their state log's findingDetails, with no registry file.

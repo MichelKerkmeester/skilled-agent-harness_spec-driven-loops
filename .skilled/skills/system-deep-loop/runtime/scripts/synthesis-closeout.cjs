@@ -27,6 +27,7 @@ const {
   resolve,
   sep,
 } = require('node:path');
+const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -154,6 +155,7 @@ function readJsonl(filePath) {
   }
   return { records, parseFailures };
 }
+
 
 // Lineage logs are the iteration record when a run fans out. The root log then
 // holds compatibility rows, so it is read only when no lineage log exists.
@@ -303,7 +305,9 @@ function closeOut(args) {
   const registry = readJson(args.registry);
   const evidence = registryEvidence(mode, registry);
   const lineageLogs = lineageStateLogs(args.artifactDir, mode);
-  const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog]).map(readJsonl);
+  const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog])
+    .map(readJsonl)
+    .map((entry) => ({ ...entry, records: latestIterationRecords(entry.records) }));
   const stateRecords = parsedState.flatMap((entry) => entry.records);
   const stateParseFailureCount = parsedState.reduce((sum, entry) => sum + entry.parseFailures, 0);
   const totalIterations = stateRecords.filter((record) => record && record.type === 'iteration').length;
