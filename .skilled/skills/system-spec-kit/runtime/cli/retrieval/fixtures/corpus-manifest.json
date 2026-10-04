@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e88384925dbc7dc2468feaa0d15b71598bea5db42f00bea54258a12bf55d531c",
+  "corpusHash": "7f6dd53319d8823f1ff4ef9d48a4ec14990dac97a226b35f16632cdf4b60d53b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23341,
+  "includedPathCount": 23327,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -5958,7 +5958,6 @@
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
-    ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
@@ -7228,7 +7227,6 @@
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/synthesis.md",
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/correctness.md",
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/maintainability.md",
-    ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md",
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/security.md",
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/traceability.md",
     ".skilled/skills/system-deep-loop/deep-review/feature-catalog/severity-system/adversarial-self-check.md",
@@ -7268,7 +7266,6 @@
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/auto-mode-deep-review-kickoff.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md",
-    ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-cli-lineages-review.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-native-sequential-review.md",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-single-executor-parity-review.md",
@@ -7392,9 +7389,6 @@
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/prompt-pack.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/bayesian-scorer.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/convergence-score-delta.md",
-    ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
-    ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
-    ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/append-mode-event-script.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/convergence-script.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/script-entry-points/query-script.md",
@@ -7508,9 +7502,6 @@
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/prompt-rendering/prompt-pack.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/bayesian-scorer.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/convergence-score-delta.md",
-    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
-    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md",
-    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/append-mode-event-script.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/convergence-script.md",
     ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/query-script.md",
@@ -7619,8 +7610,6 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/attribution.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
-    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md",
-    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
     ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
     ".skilled/skills/system-skill-advisor/hooks/lib/README.md",
@@ -7675,8 +7664,6 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
-    ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md",
-    ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
     ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
     ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
     ".skilled/skills/system-skill-advisor/references/graph/propagate-enhances.md",
@@ -8002,12 +7989,10 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-standards-alignment.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verdict-freshness-validation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/derived-packet-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
@@ -8072,11 +8057,9 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
@@ -8229,8 +8212,6 @@
     ".skilled/skills/system-spec-kit/runtime/lib/validation/README.md",
     ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
     ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/README.md",
-    ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
-    ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/substrate/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/README.md",
@@ -9053,6 +9034,11 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
@@ -23371,7 +23357,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1b63b23e90c81cce75a50825a924b95fd3794a7ee79844d66c0de4aa6e688ba5",
+  "manifestHash": "d96dd700614560e2f4069fd5f019ebe4275e3e6c96ab9a8b0cd7f8085cc0cab8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24026,10 +24012,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/description/fixtures",
       "reason": "excluded directory"
     },
@@ -24639,6 +24621,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/scratch",
       "reason": "excluded directory"
     },
     {

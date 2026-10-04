@@ -260,7 +260,6 @@ Expected output: zero issues reported.
 | [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Single source of truth for dimensions, severities, verdicts, gates and lifecycle modes |
 | [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`scripts/score-residue-flagger.cjs`](./scripts/score-residue-flagger.cjs) | Counts finding tables and resolvable citations across committed review documents, zero model calls by default, plus the `--jev` arm |
 | [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
 | [`assets/deep-review-strategy.md`](./assets/deep-review-strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
 | [`assets/deep-review-dashboard.md`](./assets/deep-review-dashboard.md) | Dashboard template with convergence trend and iteration summary |

@@ -821,6 +821,7 @@ async function runJevArm(plan, gate, ctx) {
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
 
   const answers = new Map();
+  const answered = new Set();
 
   /**
    * One calls.jsonl record. A call that led to a stop carries no judgment,
@@ -840,7 +841,7 @@ async function runJevArm(plan, gate, ctx) {
       status,
       jevVersion,
       provider: gate.provider,
-      model,
+      model: r.model ?? model,
       usageTokens: usage,
     };
   }
@@ -863,6 +864,7 @@ async function runJevArm(plan, gate, ctx) {
         timeoutMs: ctx.timeoutMs,
         report: ctx.out,
       });
+      if (typeof r.model === 'string') answered.add(r.model);
       wallTimes.push(r.wallMs);
 
       let pick = null;
@@ -904,6 +906,8 @@ async function runJevArm(plan, gate, ctx) {
     answers.set(row.id, values);
     finished += 1;
   }
+  // The verdict names the model that answered its calls, joining the names when more than one answered.
+  const answeringModel = answered.size === 0 ? model : [...answered].sort().join('+');
 
   const column = summarizeColumn(
     'jev',
@@ -911,7 +915,7 @@ async function runJevArm(plan, gate, ctx) {
     answers,
     plan.baselineCalls,
     plan.labelsSha,
-    `jev_version=${jevVersion} provider=${gate.provider} model=${model}`,
+    `jev_version=${jevVersion} provider=${gate.provider} model=${answeringModel}`,
     ordersPerMiss,
   );
   const latency = {
@@ -921,7 +925,7 @@ async function runJevArm(plan, gate, ctx) {
   ctx.out(`column jev: K=${column.K} measured=${column.M} unmeasured=${column.unmeasured} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
   const storedJev = ctx.stored?.columns?.jev;
   let requalify = null;
-  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== model)) {
+  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== answeringModel)) {
     requalify = 'requalify: model changed';
     ctx.out(requalify);
   }
@@ -933,7 +937,7 @@ async function runJevArm(plan, gate, ctx) {
       latency,
       jevVersion,
       provider: gate.provider,
-      model,
+      model: answeringModel,
       usageTokens,
     },
     requalify,

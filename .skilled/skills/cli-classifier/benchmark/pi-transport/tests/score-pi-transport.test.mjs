@@ -16,7 +16,7 @@ import * as S from '../score-pi-transport.mjs';
 
 // The cases build their option text and rotations with the CLI's own builders,
 // so the shapes under test are the ones the CLI actually passes.
-import { optionArgs, rotations } from '../../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs';
+import { optionArgs, rotations } from '../replay-helpers.mjs';
 
 // Fresh temp directory whose name marks it as a fixture.
 function tempDir(prefix) {
@@ -311,22 +311,19 @@ test('main_unreadable_baseline_exits_one', async () => {
   assert.deepEqual(errors, []);
 });
 
-// The copied literals belong to the suggested-order eval and stay private there;
-// this test reads that file from disk to pin the copy and to signal the switch
-// to an import if its declarations ever become exported.
-const UPSTREAM_SUGGESTED_ORDER = path.resolve(
+// The copied abstain text stays private beside the replay helpers, which build
+// the CLI's own option args; this test reads that file from disk to pin the copy
+// and to signal the switch to an import if its declaration ever becomes exported.
+const REPLAY_HELPERS = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  '../../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs',
+  '../replay-helpers.mjs',
 );
 
 test('census_private_literals_still_match', () => {
-  const source = fs.readFileSync(UPSTREAM_SUGGESTED_ORDER, 'utf8');
-  for (const [name, value] of [
-    ['CHOICE_QUESTION', S.CHOICE_QUESTION],
-    ['NONE_DESCRIPTION', S.NONE_DESCRIPTION],
-  ]) {
+  const source = fs.readFileSync(REPLAY_HELPERS, 'utf8');
+  for (const [name, value] of [['NONE_DESCRIPTION', S.NONE_DESCRIPTION]]) {
     const declared = new RegExp(`^const ${name} = '([^']*)';$`, 'm').exec(source);
-    assert.notEqual(declared, null, `${name} is no longer declared as a private const beside the suggested-order eval`);
+    assert.notEqual(declared, null, `${name} is no longer declared as a private const beside the replay helpers`);
     assert.equal(declared[1], value, `${name} no longer matches the copied literal`);
   }
 });
@@ -356,7 +353,7 @@ test('to_classifier_context_wraps_state_and_one_question', () => {
   const keys = ['sk-code', 'none'];
   const criteria = { 'sk-code': 'Description of sk-code', none: S.NONE_DESCRIPTION };
   const context = S.toClassifierContext({ prompt, keys, criteria });
-  assert.equal(context.state.request, prompt);
+  assert.deepEqual(context.state, { text: prompt });
   assert.deepEqual(Object.keys(context.questions), ['answer']);
   assert.equal(context.questions.answer.type, 'choice');
   assert.equal(context.questions.answer.instructions, S.CHOICE_QUESTION);
@@ -810,14 +807,14 @@ test('run_pi_arm_measures_a_full_map_and_records_it', async () => {
   });
   assert.match(choice.run_date, /^\d{4}-\d{2}-\d{2}$/);
   assert.deepEqual(Object.keys(choice.probabilities), ['mcp-code-mode', 'sk-code', 'mcp-tooling', 'none']);
-  const stateSha12 = createHash('sha256').update(JSON.stringify({ request: ARM_PROMPT })).digest('hex').slice(0, 12);
+  const stateSha12 = createHash('sha256').update(JSON.stringify({ text: ARM_PROMPT })).digest('hex').slice(0, 12);
   assert.equal(choice.state_sha12, stateSha12);
 
   // The call carried the state wrapper and the CLI's rotation, and nothing else
   // in its options, so no credential or transport detail can travel with it.
   const asked = runtime.classifications[0];
   assert.equal(asked.model.id, 'typesafe/jev-1.13');
-  assert.equal(asked.context.state.request, ARM_PROMPT);
+  assert.deepEqual(asked.context.state, { text: ARM_PROMPT });
   assert.deepEqual(Object.keys(asked.context.questions.answer.criteria), ['mcp-code-mode', 'sk-code', 'mcp-tooling', 'none']);
   assert.deepEqual(Object.keys(asked.options), ['signal']);
 });

@@ -21,7 +21,8 @@ The transport answers one `choice` or `noul` question through either the `jev` C
 classifier runtime. With no transport named it tries Pi and falls back to the CLI, it keeps the CLI's
 result shape on both backends, and a Pi gate failure on a route that named Pi prints exactly one skip
 line before the CLI runs, so a caller changes no parsing either way. Every outcome names the route that
-answered, `pi` or `jev`.
+answered, `pi` or `jev`, and the model that answered: Pi's `<provider>/<model>` such as
+`typesafe/jev-latest`, the CLI's printed `model`, or `null` when neither names one.
 
 ---
 
@@ -44,9 +45,10 @@ unset. The environment read is the `env` object the caller already passes to `je
 
 The Pi route is entered when the arguments are the declared `choice` shape,
 `choice [--provider <p>] [-q <text>] (-o <key>=<desc>)+`, or the declared `noul` shape,
-`noul -q|--question <text> [--provider <name>]`, with the state on stdin. Any other flag keeps the call
-on the CLI: `auth`, `score`, `run` and a call with an unmappable flag are spawned there unchanged and
-print nothing, because those have no transport decision to make.
+`noul -q|--question <text> [--provider <name>]`, with the state on stdin. Pi receives that state as
+`{ text: <stdin> }`, because its state must be a JSON object, and that key's answers came closer to the
+CLI's bare-string answers than the earlier `request` key's. Any other flag keeps the call on the CLI: `auth`, `score`, `run` and a call with an unmappable
+flag are spawned there unchanged and print nothing, because those have no transport decision to make.
 
 ### Gates And Fallback
 
@@ -71,8 +73,9 @@ receives a CLI-shaped outcome. On the automatic route a failed preflight falls b
 line, and a failure after the gates pass falls back on either route. The call itself is
 `runtime.classify(model, context, { signal })` under the caller's own timeout, and no retry runs inside
 the transport. The answer is written back on stdout as `answers.answer.choice` with
-`answers.answer.probabilities`, or `answers.answer.noul` as a probability, a top-level `model`, compact
-JSON with a trailing newline, and exit code 0.
+`answers.answer.probabilities`, or `answers.answer.noul` as a probability, a top-level `model`, `usage`
+with `input_tokens` and `output_tokens` when Pi reports token counts, compact JSON with a trailing
+newline, and exit code 0.
 
 ### Credentials
 
@@ -84,22 +87,18 @@ only.
 
 ### Callers And Recorded Result
 
-Ten callers route their calls through the transport. The eight scorers record the answering route as
+Six callers route their calls through the transport. The five scorers record the answering route as
 `transport` in their call records:
 
-- `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` and
-  `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` (sk-doc), one choice call
-  site each with their auth test passing through the same seam
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` (sk-doc), one choice call
+  site with its auth test passing through the same seam
 - `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (sk-doc)
 - `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` (cli-classifier)
 - `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs`
   and `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs`
   (system-deep-loop deep-improvement)
-- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs`,
-  `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` and
-  `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs`
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs`
   (system-spec-kit)
-- `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` (system-deep-loop runtime)
 
 The predecessor phase's recorded run at
 `specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
@@ -115,16 +114,12 @@ p95_ms=340/387 cost_per_100=0.0022`, and only `choice` was measured in that run.
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Script | The switch, the request mapper, the context mapper, the four Pi preflight gates, the backend fallback and the CLI-shaped payload |
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Caller | Routes its choice calls and its auth test through the transport and records the answering route as `transport` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Caller | Routes its choice calls and its auth test through the transport and records the answering route as `transport` |
 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 
 ### Validation And Tests
 
