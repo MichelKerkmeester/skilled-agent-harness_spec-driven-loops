@@ -46,7 +46,7 @@ user_inputs:
 
 field_handling:
   defaults:
-    decisions_empty: "use the newest alignment run made at the current HEAD that holds no rollback.json, with no file decisions; when no such run exists, the engine plans from the current check and writes only update and new units"
+    decisions_empty: "Use the newest alignment run at this HEAD only when it has no rollback.json, operator decisions or deferred units. If it has an operator decision or deferred unit, refuse and show the engine --decisions path. When no reusable run exists, the engine plans from the current check and writes only update and new units."
     dry_run_empty: false
     release_empty: engine_default_from_plan
     scope_empty: all
@@ -60,8 +60,8 @@ field_handling:
     remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
     offline: "--offline when requested"
     include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
-  engine_plan_fields: [command, dryRun, writes, skippedUnits, appliedUnits, followUps]
-  engine_apply_fields: [command, runDir, release, written, added, deleted, skippedUnits, appliedUnits, followUps]
+  engine_plan_fields: [command, dryRun, release, releaseCommit, runDir, planDigest, writes, skippedUnits, appliedUnits, followUps]
+  engine_apply_fields: [command, runDir, release, planDigest, written, added, deleted, skippedUnits, appliedUnits, followUps]
   follow_up_fields: [regenerateHubs, regenerate, reinstallHooks, runtimeMirrors, rebuildDatabases]
 
 mutation_boundaries:
@@ -104,7 +104,7 @@ workflow:
       - "Confirm current directory is inside the intended git repository and the engine exists."
       - "Resolve the selected run from --decisions or the engine's latest-run rule; confirm its plan belongs to this repository and matches any supplied release."
       - "If no unapplied alignment run made at the current HEAD exists and no --decisions path was given, continue: the engine plans from the current check, writes only update and new units, re-verifies each local file against its base under the lock, and records plan.json and rollback.json in a new run directory. Customized or conflicting units are skipped with reason no decisions; direct the operator to /doctor:update align for those. A --decisions path with no plan.json beside it is refused by the engine."
-      - "Confirm .skilled/release/.apply.lock does not exist. If present, refuse and do not remove it."
+      - "Run node .skilled/commands/doctor/scripts/release-update.cjs unlock --repo . --json --dry-run. If the lock is absent, continue. If the owner is running or unreadable, show the presentation lock template and stop with STATUS=FAILED. If the owner is stale, show the template with /doctor:update rollback recovery and stop. This workflow never removes a lock."
       - "Confirm the run directory and state-log target pass the canonical path validator and are gitignored."
     clean_targets: "The engine's apply --dry-run is authoritative for selected target cleanliness, drift, marker/hash validity and lock absence. A refusal stops before startup approval and before release-managed writes."
     on_failure: "If git check-ignore does not match the run root, show the presentation's run-root template and stop. Otherwise write the terminal state log if the validated run root is available, leave any pre-existing lock untouched, show the failure and stop."
@@ -124,11 +124,12 @@ workflow:
   phase_3_startup_approval:
     approval: "Ask once for approval to apply the exact displayed plan. Do not continue until the operator approves."
     no_approval: "Write only the terminal state log, perform no release-managed write, do not call engine apply without --dry-run, and stop with STATUS=DECLINED."
-    changed_plan: "If the plan changes before approval is recorded, discard the approval, rerun dry-run and present the new plan."
+    changed_plan: "If the engine refuses because the plan changed since the dry-run, discard the approval, rerun the dry-run and ask again."
 
   phase_4_engine_apply:
     approval: "Requires the one startup approval. No further startup approval is requested for the exact displayed plan."
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease] [--release <dry-run release, omitted when unknown>] --plan-digest <dry-run planDigest>"
+    execution_rule: "Run engine apply in one call with no tool timeout shorter than the run needs. Use the longest available runtime timeout, or run it in the background and wait for its exit. A killed apply leaves a stale lock that /doctor:update rollback recovers."
     engine_guarantees:
       - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
       - "Write <runDir>/rollback.json before the first target file write."
@@ -144,9 +145,17 @@ workflow:
     approval: none
     checks:
       - name: leaf_manifests
-        when: "For every hub listed in followUps.regenerateHubs."
-        command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <hub-dir>"
-        repair: "With approval, rerun the same command using --write <hub-dir>."
+        when: "For every hub name in followUps.regenerateHubs, check the directory .skilled/skills/<hub>. For every leaf-manifest.json path in followUps.regenerate, check the directory that holds it. Check each directory once."
+        command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <directory>"
+        repair: "With approval, rerun the same command using --write <directory>."
+      - name: trigger_index
+        when: "followUps.regenerate names generate-trigger-index.mjs"
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check"
+        repair: "With approval, run the same command without --check, then rerun --check."
+      - name: compiled_routes
+        when: "followUps.regenerate names compiled-route-manifest.cjs"
+        command: "node .skilled/bin/compiled-route-guard.cjs"
+        repair: "With approval, for each hub the guard reports stale, run node .skilled/bin/compiled-route-manifest.cjs refresh --hub <hub> --skill-root .skilled/skills/<hub>, then rerun the guard."
       - name: skill_derived_metadata
         when: "Always."
         command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --all --dry-run"
@@ -187,7 +196,7 @@ workflow:
     result_rule: "Run every applicable check, capture output and exit code, and record each pass or fail. For every failure offer its documented write counterpart with approval when one exists, or engine rollback. If a repair is approved, rerun that check."
     failure_recovery:
       rollback_command: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
-      rollback_order: "Run engine rollback first. Read restored and skipped arrays. For any skipped path, explain that git restore will discard its current contents and request approval, then run git restore -- <exact-skipped-paths> only for approved paths reported by engine rollback."
+      rollback_order: "Run engine rollback first. Engine rollback exits 1 with ok false when it skipped any path. That is the partial path, not a failed rollback, so read restored and skipped before judging the exit code. For any skipped path, explain that git restore will discard its current contents and request approval, then run git restore -- <exact-skipped-paths> only for approved paths."
       rollback_validation: "Verify the engine rollback output, report every restored and skipped path, and confirm .skilled/release/.apply.lock is absent. Do not claim complete rollback when any path remains skipped or failed."
 
   phase_6_rebuild_prompt:

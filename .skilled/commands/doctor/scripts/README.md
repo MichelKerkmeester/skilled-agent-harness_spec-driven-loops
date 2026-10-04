@@ -56,7 +56,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `check-mcp-mutation-class.sh` | Enforces read-only and mutating classifications for MCP doctor and installer scripts. |
 | `doctor-runtime-bootstrap.sh` | Installs or builds required runtime dependencies for the update route when needed. |
 | `parent-skill-check.cjs` | Audits parent skill hubs against structural and routing invariants. |
-| `release-update.cjs` | Plans, aligns, applies and rolls back framework release updates for the three `/doctor:update` workflows. |
+| `release-update.cjs` | Plans, aligns, applies, rolls back and records framework release bases for the five `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
 | `fable-mode-check.cjs` | Reports deep-loop behavioral metrics against an optional baseline. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |

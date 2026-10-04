@@ -821,6 +821,173 @@ test('apply dry-run writes nothing and apply updates only uncustomized units by 
   assert.equal(base.units['skill:hub-b'], undefined);
 });
 
+test('apply binds to the dry-run release and refuses a plan that changed', () => {
+  const fixture = makeFixture();
+  const preview = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.release, 'v1.1.0.0');
+  assert.equal(preview.document.runDir, null);
+  assert.match(preview.document.planDigest, /^[0-9a-f]{64}$/);
+
+  writeFile(fixture.upstream, HUB_A_FILE, '# a reference\nThird line\n');
+  commitAll(fixture.upstream, 'third release');
+  git(fixture.upstream, ['tag', '-a', 'v1.2.0.0', '-m', 'release v1.2.0.0']);
+  const pinned = runCli(
+    fixture.operator,
+    'apply',
+    '--release',
+    'v1.1.0.0',
+    '--plan-digest',
+    preview.document.planDigest,
+  );
+  assert.equal(pinned.exitCode, 0, JSON.stringify(pinned.document));
+  assert.equal(pinned.document.release, 'v1.1.0.0');
+  assert.equal(readText(fixture.operator, HUB_A_FILE), '# a reference\nRelease line\n');
+
+  const changedFixture = makeFixture();
+  const changedPreview = runCli(changedFixture.operator, 'apply', '--dry-run');
+  assert.equal(changedPreview.exitCode, 0, JSON.stringify(changedPreview.document));
+  writeFile(changedFixture.operator, HUB_A_FILE, '# a reference\nOperator line\n');
+  commitAll(changedFixture.operator, 'change planned file');
+  const refused = runCli(
+    changedFixture.operator,
+    'apply',
+    '--plan-digest',
+    changedPreview.document.planDigest,
+  );
+  assert.equal(refused.exitCode, 1, JSON.stringify(refused.document));
+  assert.match(refused.document.error, /plan changed since the dry-run/);
+  assert.equal(fs.existsSync(path.join(changedFixture.operator, HUB_D_FILE)), false);
+
+  const malformed = runCli(changedFixture.operator, 'apply', '--plan-digest', 'xyz');
+  assert.equal(malformed.exitCode, 2);
+});
+
+test('a second apply names the uncommitted release record and the commit remedy', () => {
+  const fixture = makeFixture({ withHubBRelease: true });
+  ignoreRuns(fixture.operator);
+  const firstApply = runCli(fixture.operator, 'apply');
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const adoptRelease = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    HUB_B_RELEASE_FILE,
+    'adopt-release',
+  );
+  assert.equal(adoptRelease.exitCode, 0, JSON.stringify(adoptRelease.document));
+  const keepLocal = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    CHILD_FILE,
+    'keep-local',
+  );
+  assert.equal(keepLocal.exitCode, 0, JSON.stringify(keepLocal.document));
+
+  const secondApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(aligned.document.runDir, 'decisions.json'),
+  );
+  assert.equal(secondApply.exitCode, 1);
+  assert.match(secondApply.document.error, /\.skilled\/release\/base\.json/);
+  assert.match(secondApply.document.error, /Commit it/);
+});
+
+test('a bare apply refuses an alignment run that holds operator decisions', () => {
+  const fixture = makeFixture({ withHubBRelease: true });
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const decision = decideFile(
+    fixture.operator,
+    aligned.document.runDir,
+    HUB_B_RELEASE_FILE,
+    'adopt-release',
+  );
+  assert.equal(decision.exitCode, 0, JSON.stringify(decision.document));
+
+  const bareApply = runCli(fixture.operator, 'apply');
+  assert.equal(bareApply.exitCode, 1);
+  assert.match(bareApply.document.error, /holds operator decisions/);
+  assert.match(bareApply.document.error, /--decisions/);
+  assert.equal(fs.existsSync(path.join(aligned.document.runDir, 'rollback.json')), false);
+
+  const decidedApply = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(aligned.document.runDir, 'decisions.json'),
+  );
+  assert.equal(decidedApply.exitCode, 0, JSON.stringify(decidedApply.document));
+});
+
+test('an explicit older release reports downgrade and apply leaves the unit alone', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const firstApply = runCli(fixture.operator, 'apply');
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+  commitAll(fixture.operator, 'record installed release');
+
+  const olderCheck = runCli(fixture.operator, 'check', '--release', 'v1.0.0.0');
+  assert.equal(olderCheck.exitCode, 0, JSON.stringify(olderCheck.document));
+  assert.equal(unit(olderCheck.document, 'skill:hub-a').status, 'downgrade');
+
+  const olderApply = runCli(fixture.operator, 'apply', '--release', 'v1.0.0.0');
+  assert.equal(olderApply.exitCode, 0, JSON.stringify(olderApply.document));
+  assert.ok(olderApply.document.skippedUnits.some((entry) => (
+    entry.unit === 'skill:hub-a' && entry.reason === 'downgrade'
+  )));
+  assert.equal(readText(fixture.operator, HUB_A_FILE), '# a reference\nRelease line\n');
+});
+
+test(
+  'regenerated trigger-index and route manifests are generated and name their generators',
+  () => {
+    const triggerIndex = '.skilled/skills/system-spec-kit/runtime/data/trigger-index.json';
+    const reference = '.skilled/skills/system-spec-kit/references/r.md';
+    const routeManifest = '.skilled/bin/lib/compiled-routing/013-live-activation/'
+      + 'activation/sk-doc/manifest.json';
+    const binTool = '.skilled/bin/tool.cjs';
+    const fixture = makePair(
+      {
+        '.skilled/skills/system-spec-kit/SKILL.md': '# system-spec-kit\n',
+        [triggerIndex]: '{"v":1}\n',
+        [reference]: 'base\n',
+        [routeManifest]: '{"generation":1}\n',
+        [binTool]: 'base\n',
+      },
+      {
+        [reference]: 'release\n',
+        [binTool]: 'release\n',
+      },
+    );
+    writeFile(fixture.operator, triggerIndex, '{"v":2}\n');
+    writeFile(fixture.operator, routeManifest, '{"generation":2}\n');
+    commitAll(fixture.operator, 'regenerate derived files');
+
+    const checked = runCli(fixture.operator, 'check');
+    assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+    assert.equal(runFile(checked.document, triggerIndex).class, 'generated');
+    assert.equal(runFile(checked.document, routeManifest).class, 'generated');
+    assert.equal(unit(checked.document, 'skill:system-spec-kit').status, 'update');
+    assert.equal(unit(checked.document, 'directory:bin').status, 'update');
+
+    const preview = runCli(fixture.operator, 'apply', '--dry-run');
+    assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+    const writes = preview.document.writes.map((entry) => entry.path);
+    assert.ok(writes.includes(reference));
+    assert.ok(writes.includes(binTool));
+    assert.ok(!writes.includes(triggerIndex));
+    assert.ok(!writes.includes(routeManifest));
+    const generators = preview.document.followUps.regenerate.map((entry) => entry.generator);
+    assert.ok(generators.some((generator) => /generate-trigger-index\.mjs/.test(generator)));
+    assert.ok(generators.some((generator) => /compiled-route-manifest\.cjs/.test(generator)));
+  },
+);
+
 test('apply writes a customized unit only after decide records its release files', () => {
   const defaultFixture = makeFixture({ withHubBRelease: true });
   const defaultAlignment = runCli(defaultFixture.operator, 'align');
@@ -992,6 +1159,28 @@ test('rollback restores prior bytes and removes files added by apply', () => {
   assert.deepEqual(fs.readFileSync(path.join(fixture.operator, HUB_A_FILE)), beforeA);
   assert.equal(fs.existsSync(path.join(fixture.operator, HUB_D_FILE)), false);
   assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/base.json')), false);
+});
+
+test('rollback --dry-run previews restored and skipped paths and writes nothing', () => {
+  const fixture = makeFixture();
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  const runDir = applied.document.runDir;
+
+  const preview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  assert.equal(preview.document.dryRun, true);
+  assert.ok(preview.document.restored.includes(HUB_A_FILE));
+  assert.ok(preview.document.restored.includes(HUB_D_FILE));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+
+  writeFile(fixture.operator, HUB_A_FILE, 'edited after apply\n');
+  const secondPreview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
+  assert.equal(secondPreview.exitCode, 0, JSON.stringify(secondPreview.document));
+  assert.ok(secondPreview.document.skipped.includes(HUB_A_FILE));
+  assert.equal(readText(fixture.operator, HUB_A_FILE), 'edited after apply\n');
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
 });
 
 test('apply and rollback preserve executable mode and symlink targets', () => {

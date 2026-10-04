@@ -104,7 +104,7 @@ workflow:
 
   phase_3_evidence_review:
     approval: none
-    unit_filter: "Review units whose status is customized, conflict or removed. Skip current, local, update, new, blocked and unknown units; report any of these separately when present."
+    unit_filter: "Review units whose status is customized, conflict or removed. Skip current, local, update, new, blocked, downgrade and unknown units; report any of these separately when present."
     procedure:
       - "For each selected unit, collect all non-same planned files and present one consolidated decision batch for that unit."
       - "Read each plan.evidenceFiles entry and show its complete evidence card with the engine recommendation."
@@ -133,6 +133,7 @@ workflow:
     approval: none
     summarize: "Report decisions by unit, every deferred unit and each unresolved file. An unresolved file is a take-release or conflict file in a customized, conflict or removed unit that is not deferred and has no operator decide record. A prefilled record counts as unresolved. Never imply deferred files are ready to apply."
     handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json only when no file is unresolved. Otherwise explain that apply skips each unit with an unresolved file."
+    commit_reminder: "If an earlier apply's files and release records are not committed, say to commit them before applying this decision set."
     apply_when_no_decisions: "When the plan has no customized, conflict or removed units, offer /doctor:update apply without a decisions path."
     dry_run_handoff: "Do not offer apply from a dry-run preview because no decisions.json exists."
 
