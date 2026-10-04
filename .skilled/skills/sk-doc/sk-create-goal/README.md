@@ -188,7 +188,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | [`assets/goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) | The blank for a phase parent, with its binding table |
 | [`assets/goal-phase-child-template.md`](./assets/goal-phase-child-template.md) | The blank for a phase child |
 | [`assets/goal-exemplars.md`](./assets/goal-exemplars.md) | Cited goal excerpts with rubric outcomes |
-| [`scripts/README.md`](./scripts/README.md) | The checker, the criteria lint, its scorer, their tests and fixtures |
+| [`scripts/README.md`](./scripts/README.md) | The checker, the criteria lint, their tests and fixtures |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The nine operator scenarios and the run-record contract |
 | [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) | The system-spec-kit source the three templates copy |
 | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |

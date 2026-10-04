@@ -1,6 +1,6 @@
 ---
 title: "sk-create-goal scripts: goal checker and criteria lint"
-description: "Read-only checker and advisory criteria lint for packet goal files, with the label sample, node:test suites and fixtures."
+description: "Read-only checker and advisory criteria lint for packet goal files, with the node:test suites and fixtures."
 trigger_phrases:
   - "check-goal script"
   - "goal conformance checker"
@@ -34,7 +34,6 @@ Current state:
 scripts/
 +-- check-goal.cjs               # CLI and exported checks
 +-- lint-goal-criteria.cjs       # Advisory lint for criteria rules 4 and 5
-+-- goal-criteria-labels.jsonl   # Drawn criterion lines, 98 labeled under one rubric
 +-- tests/
 |   +-- check-goal.test.cjs      # Positive, negative and unfilled-template controls
 |   +-- lint-goal-criteria.test.cjs # Both rules, the walker and parser parity
@@ -52,7 +51,6 @@ scripts/
 |---|---|
 | `check-goal.cjs` | Runs the five named checks on one packet, or on every active goal with `--all`. Exports `CHECKS`, `checkMissingBindingRows`, `checkPlaceholders`, `checkCriteriaCount`, `checkParentBudget`, `checkFrontmatterFence`, `checkGoalPacket` and `scanCorpus`. |
 | `lint-goal-criteria.cjs` | Lints the criteria of one packet, or of every active goal with `--all`, for rules 4 and 5. Skips `z_archive` and counts `scratch` goals apart. Prints counts and flagged lines, or JSON with `--json`, and always exits 0. |
-| `goal-criteria-labels.jsonl` | 100 drawn criterion lines, one JSON row each with `id`, `text_sha12` and four label fields. An operator-delegated arbiter filled 98 under rubric `mimo-02-strict-v1` and left 2 stale rows null. No row holds criterion text. |
 | `tests/check-goal.test.cjs` | Proves the positive fixture passes every check, each negative fixture fails only its named check, and an unfilled copy of each asset template fails the placeholder check. |
 | `tests/lint-goal-criteria.test.cjs` | Holds each rule to its pass and fail cases, the walker to its scratch and archive exclusions, the parser to the checker's criteria count and the command line to exit 0. |
 | `tests/template-parity.test.cjs` | Fails when an asset template's fixed text drifts from `goal.md.tmpl` at that template's level. |

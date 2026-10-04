@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 809,
+  "derived_count": 807,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -46,7 +46,6 @@
     ".skilled/hooks/git-primary-reconcile",
     ".skilled/hooks/git-worktree-guard",
     ".skilled/hooks/goal",
-    ".skilled/hooks/goal/lib",
     ".skilled/hooks/hook-install",
     ".skilled/hooks/mcp-route-guard",
     ".skilled/hooks/permission-policy",
@@ -777,7 +776,6 @@
     ".skilled/skills/system-spec-kit/runtime/lib/utils",
     ".skilled/skills/system-spec-kit/runtime/lib/validation",
     ".skilled/skills/system-spec-kit/runtime/scripts",
-    ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall",
     ".skilled/skills/system-spec-kit/runtime/stress-test",
     ".skilled/skills/system-spec-kit/runtime/stress-test/substrate",
     ".skilled/skills/system-spec-kit/runtime/tests",

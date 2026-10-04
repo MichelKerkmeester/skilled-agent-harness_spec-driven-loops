@@ -310,12 +310,6 @@ the spec track would beat those two lanes. Its default run makes no model call a
 `--jev` adds a model column behind that backend's own check. It changes no lookup,
 index or recipe.
 
-`runtime/scripts/compaction-recall/score-compaction-recall.mjs` measures what a host compaction
-keeps. It reads only the transcripts an operator names, makes no model call and prints counts,
-scores and one stop line: whether the stock summary and the recovered-context brief keep what the
-work after the compaction uses, and whether the vendored staged fit can hold the session at all. It
-changes no hook, setting or transcript.
-
 `runtime/cli/evals/score-alignment-suggestion.ts` measures offline whether a classifier picking one
 of the folders the validator lists when a save scores below 50 would beat the plain baseline. Its
 default run makes no model call and changes no save. `--score` runs alone and stops at the label
