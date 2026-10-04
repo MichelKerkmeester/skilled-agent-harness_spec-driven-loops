@@ -14,15 +14,23 @@ version: 0.1.0.2
 
 # Jev Providers and Models
 
-> Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`,
-> `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe
-> could reach the branch without a credential. No authenticated call was made: every
-> provider-reachability claim below is **SOURCE** unless it says otherwise, and the one live check
-> that was run is marked **LIVE**.
+The four Jev providers, their keys, endpoints and default models at `jev-cli` 0.6.2.
 
 ---
 
-## 1. THE PROVIDER TABLE
+## 1. OVERVIEW
+
+### Purpose
+
+Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made: every provider-reachability claim below is **SOURCE** unless it says otherwise, and the one live check that was run is marked **LIVE**.
+
+### Usage
+
+Start at the provider table in section 2. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider and section 8 separates confirmed claims from unconfirmed ones.
+
+---
+
+## 2. THE PROVIDER TABLE
 
 | Provider | `--provider` value | Key variable | Endpoint | Default model |
 |---|---|---|---|---|
@@ -48,7 +56,7 @@ this body and return `{"answers": {"<name>": {"<type>": <value>}}}`.
 
 ---
 
-## 2. KEY RESOLUTION ORDER
+## 3. KEY RESOLUTION ORDER
 
 For the selected provider, `api_key()` resolves in this order:
 
@@ -70,7 +78,7 @@ another.
 
 ---
 
-## 3. PER-PROVIDER TRANSLATION
+## 4. PER-PROVIDER TRANSLATION
 
 Only `vercel` changes the wire format. For every other provider the body is sent byte-for-byte as
 built and the response is returned unchanged.
@@ -87,7 +95,7 @@ gateway returns must read them before normalization — this client does not exp
 
 ---
 
-## 4. THE `custom` PROVIDER AND THE OPERATOR'S GATEWAY KEY
+## 5. THE `custom` PROVIDER AND THE OPERATOR'S GATEWAY KEY
 
 The question this packet had to answer: **can the operator's existing LLM Gateway key front Jev
 through `--provider custom` with `JEV_ENDPOINT`?**
@@ -117,7 +125,7 @@ not claim one exists.
 
 ---
 
-## 5. MODEL SELECTION
+## 6. MODEL SELECTION
 
 - `--model` overrides the provider default for one command.
 - `run` keeps the `model` carried in the request unless `--model` overrides it; when the request
@@ -133,7 +141,7 @@ honest difference from the executor packets, whose models this repo pins.
 
 ---
 
-## 6. VERIFYING A PROVIDER
+## 7. VERIFYING A PROVIDER
 
 ```bash
 command -v jev && jev --version           # binary present
@@ -149,7 +157,7 @@ jev auth set --provider <name>             # store one; masked prompt, or pipe i
 
 ---
 
-## 7. CONFIRMED AND STILL UNCONFIRMED
+## 8. CONFIRMED AND STILL UNCONFIRMED
 
 At pin time the following were source-read only, because no provider credential existed in this
 workspace and the packet does not spend the operator's quota guessing. An operator credential for

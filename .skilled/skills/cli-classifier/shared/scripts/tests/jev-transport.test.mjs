@@ -202,6 +202,10 @@ test('choice_request_rejects_any_other_invocation', () => {
   for (const args of rejected) assert.equal(S.choiceRequestFrom(args), null, args.join(' '));
 });
 
+test('choice_request_rejects_options_without_a_question', () => {
+  assert.equal(S.choiceRequestFrom(['choice', '-o', 'a=A', '-o', 'b=B']), null);
+});
+
 test('classifier_context_carries_the_state_and_ordered_criteria', () => {
   const request = { question: 'Q', keys: ['a', 'b'], criteria: { a: 'A', b: 'B' } };
   const context = S.classifierContextFor(request, 'the row prompt');
@@ -304,6 +308,33 @@ test('spawn_call_explicit_jev_is_the_cli_spawn', async () => {
   assert.deepEqual(runtime.calls.model, []);
   assert.deepEqual(runtime.calls.available, []);
   assert.deepEqual(runtime.calls.classify, []);
+});
+
+test('spawn_call_omitted_environment_searches_the_process_path', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const savedPath = process.env.PATH;
+  const savedTransport = process.env.JEV_TRANSPORT;
+  process.env.PATH = bin;
+  process.env.JEV_TRANSPORT = '';
+  try {
+    const { lines, report } = collector();
+    const spawn = spawnStub();
+    const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+    const options = callOptions({ report });
+    // The documented call shape omits env, so the process environment stands in.
+    delete options.env;
+
+    const outcome = await S.spawnClassifierCall(options, { spawn: spawn.spawnFn, runtime });
+
+    assert.deepEqual(lines, []);
+    assert.equal(spawn.calls.length, 0);
+    assert.equal(outcome.transport, 'pi');
+  } finally {
+    if (savedPath === undefined) delete process.env.PATH;
+    else process.env.PATH = savedPath;
+    if (savedTransport === undefined) delete process.env.JEV_TRANSPORT;
+    else process.env.JEV_TRANSPORT = savedTransport;
+  }
 });
 
 test('spawn_call_official_provider_maps_to_typesafe_jev_latest', async () => {

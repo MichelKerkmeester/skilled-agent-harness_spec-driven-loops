@@ -23,7 +23,7 @@ The cases build their option text and rotations with the CLI's own builders, inj
 
 | File | Responsibility |
 |---|---|
-| `score-pi-transport.test.mjs` | 41 cases for `../score-pi-transport.mjs`: the PATH lookup, the baseline reader, the census lines, the invocation guards, the criteria map and classifier context, the probability readers, the mean maps, the replay plan, the metrics, the judge outcomes, the verdict and column lines, both arm gates and the end-to-end runs. Runs with `node --test`. |
+| `score-pi-transport.test.mjs` | 46 cases for `../score-pi-transport.mjs`: the PATH lookup, the baseline reader, the census lines, the invocation guards, the criteria map and classifier context, the probability readers, the mean maps, the replay plan, the metrics, the judge outcomes, the verdict and column lines, both arm gates and the end-to-end runs. Runs with `node --test`. |
 
 ---
 
