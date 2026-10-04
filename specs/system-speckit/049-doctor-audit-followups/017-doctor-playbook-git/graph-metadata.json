@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/017-doctor-playbook-git",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/017-doctor-playbook-git",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor playbook git",
+      "doctor git hooks standards scenarios",
+      "doctor-playbook-git plan",
+      "doctor-playbook-git tasks",
+      "doctor-playbook-git summary",
+      "doctor-playbook-git shipped"
+    ],
+    "key_topics": [
+      "doctor",
+      "playbook",
+      "git",
+      "hooks",
+      "standards",
+      "scenarios",
+      "doctor-playbook-git",
+      "plan",
+      "tasks",
+      "summary",
+      "shipped",
+      "change"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-git/leaf-manifest.json",
+      ".skilled/commands/doctor/git.md",
+      ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+      ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-hooks.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-hooks.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-standards.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-standards.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:git hooks` and `/doctor:git standards` change git config and the repository's `.sk-git/` templates, but the sk-git playbook has no scenario for either, nor for the menu shown when no target is given",
+    "created_at": "2026-10-04T11:02:49Z",
+    "last_save_at": "2026-10-04T12:56:30.427Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d3250f4a7ef3a0c2b3297219801f16f757156d613d7f2d3846e1fde2d2328b89",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7723df88d37c2bdae33b04aa874a5a3889cd7cadbbd4bd2ef2eeb81c53bb88cf",
+      "plan.md": "329085784e85f5a77eab7e762da0783955f8247bb280059c431fe3a1ec058683",
+      "tasks.md": "499819ee3dbe904edad498188ab45e390aff2b4cce861585b5e2e1cc99fa596a",
+      "implementation-summary.md": "612fdf0c08fb412bcecf189f910acf00238bd36e6cd0829b085fbef223e49e93"
+    },
+    "last_active_at": null
+  }
+}
