@@ -50,9 +50,9 @@ const COMMAND_OPTIONS = {
   decide: new Set(['repo', 'json', 'run', 'path', 'decision', 'unit', 'defer']),
   apply: new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run',
-    'include-prerelease',
+    'include-prerelease', 'plan-digest',
   ]),
-  rollback: new Set(['repo', 'json', 'run']),
+  rollback: new Set(['repo', 'json', 'run', 'dry-run']),
   unlock: new Set(['repo', 'json', 'dry-run']),
   'record-base': new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
@@ -76,9 +76,14 @@ const COMMAND_PURPOSES = {
 // apply. `scope: 'file'` means the generator owns the whole file; `scope:
 // 'derived'` means it owns only the top-level `derived` key of a JSON document,
 // so an edit anywhere else in that file is still an authored change.
+// Activation `fence-state.json` stays authored because no operator-side tool writes it.
+// `intent_signals` stays authored because its generator appends to an authored
+// list while preserving that list's order.
 const LEAF_MANIFEST_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write <skill-dir>';
 const SKILL_DERIVED_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root <skill-dir> --write';
 const TRIGGER_INDEX_GENERATOR = 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
+const COMPILED_ROUTE_GENERATOR = 'node .skilled/bin/compiled-route-manifest.cjs refresh '
+  + '--hub <hub> --skill-root .skilled/skills/<hub>';
 const GENERATED_ARTIFACTS = [
   {
     pattern: /^\.skilled\/skills\/.+\/leaf-manifest\.json$/,
@@ -99,6 +104,11 @@ const GENERATED_ARTIFACTS = [
     pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/cli\/retrieval\/fixtures\/(?:corpus-manifest|generation-diagnostics|phrase-variants)\.json$/,
     scope: 'file',
     generator: TRIGGER_INDEX_GENERATOR,
+  },
+  {
+    pattern: /^\.skilled\/bin\/lib\/compiled-routing\/[^/]+\/activation\/[^/]+\/manifest\.json$/,
+    scope: 'file',
+    generator: COMPILED_ROUTE_GENERATOR,
   },
 ];
 
@@ -1089,7 +1099,11 @@ function buildReport(repo, options) {
       fileReports.push(report);
       globalFiles.push(report);
     }
-    const status = unitStatus(fileReports, base, localUnit, releaseUnit);
+    let status = unitStatus(fileReports, base, localUnit, releaseUnit);
+    if (base.release && context.release && !['current', 'local', 'blocked'].includes(status)
+      && compareVersions(context.release, base.release) < 0) {
+      status = 'downgrade';
+    }
     const regenerate = fileReports
       .filter((file) => file.class === 'generated' || file.regenerate)
       .map((file) => ({ path: file.path, generator: file.generator }));
@@ -1603,6 +1617,14 @@ function resolveApplyRun(repo, options) {
     const latest = latestRun(repo, git(repo, ['rev-parse', 'HEAD']).trim());
     if (!latest) return planWithoutRun(repo, options);
     const run = loadRun(latest, repo);
+    const hasOperatorDecision = Object.values(run.decisions.files || {}).some(isOperatorDecision);
+    const hasDeferredUnit = (run.decisions.deferredUnits || []).length > 0;
+    if (hasOperatorDecision || hasDeferredUnit) {
+      // Reusing a decided run discards choices, can write a deferred unit, and uses up the run.
+      throw new Error('the newest alignment run at this HEAD holds operator decisions: ' + latest
+        + '. Apply them with --decisions ' + path.join(latest, 'decisions.json')
+        + ', or run align for a new plan');
+    }
     run.decisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
     return run;
   }
@@ -1697,10 +1719,40 @@ function assertPlanFresh(repo, run, paths) {
   }
 }
 
+function planDigest(run, prepared) {
+  // The digest covers what the operator approved. Release records follow from
+  // that set, and the run directory name carries a timestamp.
+  const state = (entry) => entry ? { mode: entry.mode, blob: entry.blob } : null;
+  const plan = {
+    release: run.plan.release,
+    releaseCommit: run.plan.releaseCommit || null,
+    writes: prepared.writes
+      .map((write) => write.metadata
+        ? { path: write.path }
+        : { path: write.path, before: state(write.before), after: state(write.after) })
+      .sort((a, b) => a.path.localeCompare(b.path)),
+    appliedUnits: [...prepared.appliedUnits].sort(),
+    skippedUnits: prepared.skippedUnits
+      .map(({ unit, reason }) => [unit, reason])
+      .sort(([unitA, reasonA], [unitB, reasonB]) => (
+        unitA.localeCompare(unitB) || reasonA.localeCompare(reasonB)
+      )),
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(plan)).digest('hex');
+}
+
 // A prefilled record is the engine's own suggestion, not the operator's consent.
 function isOperatorDecision(record) {
   if (typeof record === 'string') return record.length > 0;
   return Boolean(record && typeof record.decision === 'string' && record.source !== 'prefilled');
+}
+
+function dirtyTargetError(filePath) {
+  const message = 'target has staged or unstaged changes against HEAD: ' + filePath;
+  if (![BASE_FILE, DIVERGENCE_FILE].includes(filePath)) return new Error(message);
+  return new Error(message
+    + ', a release record that an earlier apply or record-base wrote. '
+    + 'Commit it together with the files that apply changed, then run apply again');
 }
 
 function prepareWrites(repo, run, scope) {
@@ -1717,6 +1769,10 @@ function prepareWrites(repo, run, scope) {
     const fileEntries = run.plan.files.filter((file) => file.unit === key);
     if (deferred.has(key)) {
       skippedUnits.push({ unit: key, reason: 'deferred' });
+      continue;
+    }
+    if (unit.status === 'downgrade') {
+      skippedUnits.push({ unit: key, reason: 'downgrade' });
       continue;
     }
     if (['current', 'local', 'unknown', 'blocked'].includes(unit.status)) continue;
@@ -1808,7 +1864,7 @@ function prepareWrites(repo, run, scope) {
   const headChangedPaths = [...new Set([...writes.map((entry) => entry.path)])];
   for (const filePath of headChangedPaths) {
     if (pathDirtyAgainstHead(repo, filePath, headFiles)) {
-      throw new Error('target has staged or unstaged changes against HEAD: ' + filePath);
+      throw dirtyTargetError(filePath);
     }
   }
   for (const write of writes) write.before = headFiles.get(write.path) || null;
@@ -2021,11 +2077,20 @@ function applyPlan(repo, options) {
     })),
   };
   const regenerate = regenerateFollowUps(run.plan, prepared.appliedUnits);
+  const digest = planDigest(run, prepared);
+  if (options.planDigest && options.planDigest !== digest) {
+    throw new Error('plan changed since the dry-run: its digest no longer matches. '
+      + 'Run apply --dry-run again and approve the new plan');
+  }
   if (options.dryRun) {
     return {
       command: 'apply',
       dryRun: true,
       withoutRun: Boolean(run.withoutRun),
+      release: run.plan.release,
+      releaseCommit: run.plan.releaseCommit || null,
+      runDir: run.withoutRun ? null : run.runDir,
+      planDigest: digest,
       writes: prepared.writes.map((write) => ({
         path: write.path,
         mode: write.after && write.after.mode,
@@ -2048,7 +2113,7 @@ function applyPlan(repo, options) {
     assertPlanFresh(repo, run, prepared.freshnessPaths);
     for (const write of prepared.writes) {
       if (pathDirtyAgainstHead(repo, write.path, prepared.headFiles)) {
-        throw new Error('target has staged or unstaged changes against HEAD: ' + write.path);
+        throw dirtyTargetError(write.path);
       }
     }
     fs.mkdirSync(path.join(repo, RELEASE_DIR), { recursive: true });
@@ -2082,6 +2147,7 @@ function applyPlan(repo, options) {
     command: 'apply',
     runDir: run.runDir,
     release: run.plan.release,
+    planDigest: digest,
     written: prepared.writes.filter((write) => write.after).map((write) => write.path),
     added: prepared.writes
       .filter((write) => write.after && !write.before)
@@ -2251,7 +2317,7 @@ function recordBase(repo, options) {
   };
 }
 
-function rollbackPlan(repo, runPath) {
+function rollbackPlan(repo, runPath, options = {}) {
   const run = loadRun(runPath, repo);
   const rollback = readRunJson(run.runDir, 'rollback.json', null);
   if (!rollback) {
@@ -2270,6 +2336,22 @@ function rollbackPlan(repo, runPath) {
       throw new Error('rollback path is outside the plan\'s units: ' + entry.path
         + '; refusing to restore it');
     }
+  }
+  if (options.dryRun) {
+    if (readLockState(repo).state !== 'absent') throw lockConflictError(repo);
+    const restored = [];
+    const skipped = [];
+    for (const entry of rollback.paths) {
+      const current = currentState(repo, entry.path);
+      if (sameState(current, entry.before) || sameState(current, entry.after)) {
+        restored.push(entry.path);
+      } else {
+        skipped.push(entry.path);
+      }
+    }
+    return {
+      command: 'rollback', dryRun: true, runDir: run.runDir, restored, skipped, exitCode: 0,
+    };
   }
   const restoreSignals = deferSignals();
   let lockPath;
@@ -2324,6 +2406,7 @@ function parseArgs(argv) {
   };
   const valueOptions = new Set([
     'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
+    'plan-digest',
   ]);
   const booleanOptions = new Set([
     'offline', 'json', 'dry-run', 'defer', 'include-prerelease', 'trust-release',
@@ -2332,6 +2415,9 @@ function parseArgs(argv) {
     'dry-run': 'dryRun',
     'include-prerelease': 'includePrerelease',
     'trust-release': 'trustRelease',
+  };
+  const valueKeys = {
+    'plan-digest': 'planDigest',
   };
   const seenOptions = new Set();
   for (let index = 1; index < argv.length; index += 1) {
@@ -2354,7 +2440,10 @@ function parseArgs(argv) {
     if (typeof value !== 'string' || !value || value.startsWith('--')) {
       throw usageError('--' + key + ' requires a value');
     }
-    options[key] = value;
+    options[valueKeys[key] || key] = value;
+  }
+  if (options.planDigest && !/^[0-9a-f]{64}$/.test(options.planDigest)) {
+    throw usageError('--plan-digest must be the 64-character digest that apply --dry-run printed');
   }
   if (options.remote && options.remote.startsWith('-')) {
     throw usageError('--remote must name a remote or a repository URL, not an option');
@@ -2428,7 +2517,7 @@ function runCommand(argv) {
     } else if (options.command === 'unlock') {
       result = unlockStale(repo, options);
     } else {
-      result = rollbackPlan(repo, options.run);
+      result = rollbackPlan(repo, options.run, options);
     }
     return { exitCode: result.exitCode || 0, result, json: options.json };
   } catch (error) {

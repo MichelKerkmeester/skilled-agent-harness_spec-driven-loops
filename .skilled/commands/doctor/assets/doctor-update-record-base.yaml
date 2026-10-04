@@ -1,0 +1,124 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE RECORD-BASE WORKFLOW (MUTATING)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator recording the release this checkout is based on
+purpose: Preview the units a release tag would record, verify the nearest release, and ask before writing base.json.
+action: preflight -> record_base.preview -> nearest_release.review -> approval -> record_base -> state.log
+
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: interactive
+  approvals: record_base_approval_plus_separate_trust_release_approval
+  tracking: action_by_action
+  validation: nearest_release_and_engine_report
+  state_dir: ".skilled/release/runs"
+
+record_base_invariant: |
+  The engine writes .skilled/release/base.json under the apply lock.
+  Show the selected release and every unit before asking for approval.
+  A nearest-release override needs its own approval that names the risk.
+
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/release-update.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  pass_policy:
+    write_approval_required: true
+    nearest_release_check_required: true
+    state_log_requires_ignored_run_root: true
+
+user_inputs:
+  action: "record-base"
+  release: "[RELEASE] required release tag"
+  remote: "[REMOTE] optional framework remote name or repository URL"
+  scope: "[SCOPE] optional all or comma-separated units"
+  offline: "[OFFLINE] boolean"
+  include_prerelease: "[INCLUDE_PRERELEASE] boolean"
+  trust_release: "[TRUST_RELEASE] boolean"
+  dry_run: "[DRY_RUN] boolean"
+
+field_handling:
+  defaults:
+    release_empty: "Ask which release this tree was installed from."
+    remote_empty: base_json_remote_or_origin
+    scope_empty: all
+    offline_empty: false
+    include_prerelease_empty: false
+    trust_release_empty: false
+    dry_run_empty: false
+  engine_mapping:
+    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    record_base: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
+    scope: "--scope <value> when supplied"
+    offline: "--offline when requested"
+    include_prerelease: "--include-prerelease when requested"
+    trust_release: "--trust-release only after explicit approval naming the risk"
+  engine_result_fields: [release, remote, units, verified, error]
+
+mutation_boundaries:
+  allowed_targets:
+    - ".skilled/release/base.json through the engine"
+    - ".skilled/release/.apply.lock through the engine"
+    - ".skilled/release/runs/.doctor-update-record-base.last-run.json when the run root is ignored"
+  forbidden_targets:
+    - "all checkout files other than .skilled/release/base.json"
+    - "any path outside the engine targets and documented state log"
+    - "a lock owned by another process"
+  validator:
+    name: canonical_path_validator
+    rule: "Resolve .skilled/release/base.json, the engine-owned lock and the optional state log to canonical repository paths."
+
+state_log_schema:
+  command: "/doctor:update record-base"
+  destination: ".skilled/release/runs/.doctor-update-record-base.last-run.json when git check-ignore matches the runs root"
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  release: "string"
+  remote: "string|null"
+  units: "array of unit keys"
+  verified: "boolean"
+  final_status: "recorded|dry_run|declined|cancelled|failed"
+  terminal_rule: "Write the state log only when the runs root is ignored. A dry run writes no state log."
+
+workflow:
+  phase_1_preflight:
+    approval: none
+    checks:
+      - "Confirm the current directory is inside the repository and the engine exists."
+      - "When release is absent, ask which release this tree was installed from."
+      - "Bind only the record-base inputs and validate .skilled/release/base.json and the lock path."
+    on_failure: "Show the presentation error template and stop before writing."
+
+  phase_2_engine_dry_run:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --json --dry-run --release <tag> [--remote <value>] [--scope <value>] [--offline] [--include-prerelease] [--trust-release]"
+    flag_rule: "Pass every bound optional flag. When remote is absent, use the remote in base.json and then origin."
+    success: "Show every unit the engine would record and whether the nearest-release check ran in verified."
+    nearest_release_refusal: "When another release is nearer, show the nearest-release template. Offer the nearest release when every listed unit names the same one. To keep the named release, request explicit approval to retry with --trust-release and state that the tag may not match the files in this tree."
+    dirty_record_refusal: "When base.json has uncommitted changes, show the presentation commit instruction and stop."
+    lock_refusal: "When the engine reports a lock, show the presentation lock template and stop."
+
+  phase_3_dry_run:
+    terminal_rule: "When --dry-run was supplied, stop with STATUS=DRY_RUN and write no state log."
+
+  phase_4_approval:
+    approval: "Ask once to write .skilled/release/base.json for the listed units. If --trust-release is set, state the risk in this approval."
+    no_approval: "On no, stop with STATUS=DECLINED and make no engine write."
+    cancel_or_interrupt: "Stop with STATUS=CANCELLED ACTION=cancelled."
+
+  phase_5_engine_record_base:
+    command: "Run the same record-base command without --dry-run after approval."
+    result: "Show the engine result and the presentation commit instruction."
+
+  phase_6_state_log:
+    write: ".skilled/release/runs/.doctor-update-record-base.last-run.json when git check-ignore matches the runs root"
+    fields: [command, start, end, duration_seconds, release, remote, units, verified, final_status]
+    terminal_rule: "When git check-ignore does not match the runs root, return the status in the presentation only."
+
+terminal_statuses:
+  - "STATUS=RECORDED"
+  - "STATUS=DRY_RUN"
+  - "STATUS=DECLINED"
+  - "STATUS=CANCELLED"
+  - "STATUS=FAILED"

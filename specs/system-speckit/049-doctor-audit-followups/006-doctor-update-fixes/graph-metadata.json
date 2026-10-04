@@ -54,13 +54,13 @@
       ".skilled/commands/doctor/assets/doctor-update-check.yaml",
       ".skilled/commands/doctor/assets/doctor-update-align.yaml",
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-rollback.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
       ".skilled/commands/doctor/scripts/README.md",
-      ".skilled/commands/doctor/scripts/tests/README.md",
-      ".skilled/commands/README.txt",
-      ".skilled/changelog/skilled/README.md"
+      ".skilled/commands/doctor/scripts/tests/README.md"
     ],
     "entities": [
       {
@@ -142,6 +142,18 @@
         "source": "derived"
       },
       {
+        "name": "doctor-update-rollback.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-rollback.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-record-base.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-record-base.yaml",
+        "source": "derived"
+      },
+      {
         "name": "doctor-update-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
@@ -163,12 +175,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/commands/README.txt",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-03T23:21:34.502Z",
+    "last_save_at": "2026-10-04T00:24:51.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fda23ae1b3da003500d02cc27f1ff33adb1671220fd38b57bf66d69763de4e3",
+    "source_fingerprint": "sha256:c03043316b5144272be14ed9cfcef42eb3ea75df81afca5f8a81fb3177ea7844",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d22b9ff0f2775959e9b4e5be206c0ca0213ae6815507d7ad6d03a45d4a1f08f2",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "b672715bb8f95eb1d65c2c142c216934934bbbfb3a0b6abb3fb117752bb2882e",
+      "tasks.md": "d6723f9dd8b72d951372ef96c289b8ce9f2fb725cd9ad065bb1774514d1c0beb",
       "implementation-summary.md": "172d9af9cb2009af142a06dbd11e29b4ef9334f75b2127219615cafa9b62bf55"
     },
     "last_active_at": null
