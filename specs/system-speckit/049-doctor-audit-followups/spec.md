@@ -137,6 +137,11 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 11 | 011-changelog-v4003-research/ | Research what the v4.0.0.3 release notes still need about the doctor command changes and the git hook work | Complete |
 | 12 | 012-changelog-v4003-update/ | Apply the checked findings to the v4.0.0.3 release notes | Complete |
 | 13 | 013-doctor-docs-and-ci-fix/ | Fix the doctor CI install and point the README and targeted skills at the doctor commands | Complete |
+| 14 | 014-doctor-playbook-spec-kit/ | Manual test scenarios for `/doctor:speckit`, `/doctor:runtime-mirrors`, `/doctor:env` and `/doctor:update` in the system-spec-kit playbook | Complete |
+| 15 | 015-doctor-playbook-skill-advisor/ | Manual test scenarios for every `/doctor:skill-advisor` target in the system-skill-advisor playbook | Complete |
+| 16 | 016-doctor-playbook-deep-loop/ | Manual test scenarios for `/doctor:deep-loop` in the system-deep-loop playbook | Complete |
+| 17 | 017-doctor-playbook-git/ | Manual test scenarios for `/doctor:git` in the sk-git playbook | Complete |
+| 18 | 018-doctor-playbook-mcp/ | Manual test scenarios for `/doctor:mcp` in the mcp-code-mode playbook, plus the stale `--server` flag in the route manifest | Complete |
 
 ### Phase Transition Rules
 
@@ -161,6 +166,11 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 010-doctor-router-gates | 011-changelog-v4003-research | Phase 010's acceptance criteria are Met | `research/research.md` exists once phase 011 lands |
 | 011-changelog-v4003-research | 012-changelog-v4003-update | `research/research.md` lists the checked findings | `validate_document.py` passes on the v4.0.0.3 entry once phase 012 lands |
 | 012-changelog-v4003-update | 013-doctor-docs-and-ci-fix | The v4.0.0.3 entry covers the doctor commands | `run-all.sh` passes from a clean install and every edited doc validates |
+| 013-doctor-docs-and-ci-fix | 014-doctor-playbook-spec-kit | The doctor CI job passes | The system-spec-kit playbook validator exits 0 once phase 014 lands |
+| 014-doctor-playbook-spec-kit | 015-doctor-playbook-skill-advisor | The DOC- series and scenario shape are set | The skill-advisor playbook inventory test passes once phase 015 lands |
+| 015-doctor-playbook-skill-advisor | 016-doctor-playbook-deep-loop | The skill-advisor scenarios are indexed | The deep-loop playbook and topology checks pass once phase 016 lands |
+| 016-doctor-playbook-deep-loop | 017-doctor-playbook-git | The deep-loop scenarios are indexed | The sk-git playbook validator exits 0 once phase 017 lands |
+| 017-doctor-playbook-git | 018-doctor-playbook-mcp | The git scenarios are indexed | `route-validate.sh` and the doctor suites pass once phase 018 lands |
 <!-- /ANCHOR:phase-map -->
 
 ---

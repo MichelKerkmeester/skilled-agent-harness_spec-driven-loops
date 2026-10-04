@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 807,
+  "derived_count": 809,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -299,6 +299,7 @@
     ".skilled/skills/cli-orca",
     ".skilled/skills/cli-orca/assets",
     ".skilled/skills/mcp-code-mode",
+    ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands",
     ".skilled/skills/mcp-code-mode/mcp-server",
     ".skilled/skills/mcp-code-mode/mcp-server/scripts",
     ".skilled/skills/mcp-code-mode/scripts",
@@ -491,6 +492,7 @@
     ".skilled/skills/sk-git/benchmark/reports",
     ".skilled/skills/sk-git/benchmark/reports/2026-07-10--live--glm-5-2-high",
     ".skilled/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7",
+    ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands",
     ".skilled/skills/sk-git/scripts",
     ".skilled/skills/sk-git/scripts/hooks",
     ".skilled/skills/sk-git/scripts/hooks/opencode",
@@ -552,6 +554,7 @@
     ".skilled/skills/system-deep-loop/deep-review",
     ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests",
     ".skilled/skills/system-deep-loop/deep-review/scripts",
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands",
     ".skilled/skills/system-deep-loop/runtime",
     ".skilled/skills/system-deep-loop/runtime/database",
     ".skilled/skills/system-deep-loop/runtime/lib",
