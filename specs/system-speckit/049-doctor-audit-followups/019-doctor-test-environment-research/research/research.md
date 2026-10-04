@@ -64,7 +64,7 @@ A new scenario covers `install --server` and an unknown flag on `debug`.
 
 **record-base.** Run `--release=v4.0.0.0 --offline --trust-release`, which yields `verified: false`, then commit `base.json`. [SOURCE: `.skilled/commands/doctor/scripts/release-update.cjs:2257-2361`] Offline `check` reports overall upstream status as `unknown` but still classifies units, so scenarios assert the unit rows. [SOURCE: `.skilled/commands/doctor/scripts/release-update.cjs:781-793`]
 
-**Reset.** After `apply`, run `rollback --run=<runDir>`. It must report every written path restored, `skipped` empty and the lock gone, after which `git status --porcelain` matches the committed fixture. Never re-apply a run; run `align` again instead. [SOURCE: `.skilled/commands/doctor/scripts/release-update.cjs:2095-2101,2365-2439`]
+**Reset.** After `apply`, run `rollback --run=<runDir>`. It must report every written path restored, `skipped` empty and the lock gone, after which `git status --porcelain` matches the committed fixture. Never re-apply a run. Run `align` again instead. [SOURCE: `.skilled/commands/doctor/scripts/release-update.cjs:2095-2101,2365-2439`]
 
 ## 5. Worktree creation under the sk-git rules
 
@@ -117,7 +117,7 @@ DOC-378 is the last ID in use.
 
 | Claim | Check | Result |
 |---|---|---|
-| Linked worktrees share `.git/config` | `git rev-parse --git-path config` in a linked worktree | Returns the main checkout's `.git/config`; `extensions.worktreeConfig` unset |
+| Linked worktrees share `.git/config` | `git rev-parse --git-path config` in a linked worktree | Returns the main checkout's `.git/config`, with `extensions.worktreeConfig` unset |
 | Enumeration starts from the index | Read `release-update.cjs:385-394` | Confirmed |
 | `apply` refuses dirty targets | Read `release-update.cjs:2158-2163` | Confirmed |
 | Status lists disagree | `grep` of the retrieval YAML and presentation | Confirmed at `:217`, `:252` and presentation `:70` |

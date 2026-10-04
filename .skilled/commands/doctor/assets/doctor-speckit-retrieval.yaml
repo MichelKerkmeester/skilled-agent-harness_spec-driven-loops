@@ -132,9 +132,6 @@ staleness_signals:
   anchor_marker_drift:
     detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in the up-to-five sampled packets; phase 1 counts them per sample"
     severity: low
-  corpus_pollution:
-    detection: "The phraseQuality bucket in committed generation-diagnostics.json reports editor-fallback, folder-token-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token, and stop-word-only counts; any non-zero count is the signal. The generator judges each owning document with its own packet-folder tokens, so folder-token-fallback is counted the way the per-document validator reports it."
-    severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
     severity: high
@@ -142,6 +139,15 @@ staleness_signals:
     detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
     severity: medium
     note: "Claude reads the root AGENTS.md directly and Pi loads it from the working directory; Codex and the Cursor rule shared by Cursor and Devin carry generated pointer blocks. Reach is per runtime: a pointer, direct load, verified inheritance, or session-start injection each count as a path."
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY ADVISORIES
+# ─────────────────────────────────────────────────────────────────
+quality_advisories:
+  phrase_quality:
+    source: "The phraseQuality bucket in committed generation-diagnostics.json: editor-fallback, folder-token-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token and stop-word-only counts, for phrases and for owning documents. The generator judges each owning document with its own packet-folder tokens, so folder-token-fallback is counted the way the per-document validator reports it."
+    effect: "Reported, never scored. Advisories stay out of staleness_classes and severity_max, so they never change the status or the recommended command."
+    note: "The lookup does score these phrases: an exact match scores 1, and phrases of two or more tokens can match by containment or token overlap. The generator keeps every phrase and the lookup never reads the bucket, so a flagged phrase costs precision only when it outranks the right document for a real query. A corpus fix is warranted only when a measured lookup shows that."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -188,7 +194,7 @@ workflow:
       - "Sample up to 5 packets flagged as staleness candidates, taking them from the --check staleDocuments list first"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
-      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale."
+      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; list every non-zero class in quality_advisories with its phrase count, its document count and its share of all phrases. Advisories are never added to staleness_classes or severity_max."
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
@@ -199,8 +205,8 @@ workflow:
           ripgrep_ambient_config: L
           trigger_phrase_drift: P
           anchor_marker_drift: Q
-          corpus_pollution: R
           schema_version_mismatch: S
+      - quality_advisories: [{class: string, phrases: N, documents: N, share_of_phrases: percent}]
       - sample_staleness_explanations: [up to 5 entries]
       - severity_max: low|medium|high
     validation: analysis_complete
@@ -209,12 +215,14 @@ workflow:
     purpose: Translate staleness signals into recommended action
     rules:
       - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
-      - "If severity_max == medium (index content stale per --check, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs), or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == medium (index content stale per --check or manifest hash mismatch) → recommend full-corpus regeneration (node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs)"
       - "If severity_max == low (trigger phrase drift, anchor drift, or an mtime sample that --check did not confirm) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
+      - "Status: MISSING when the index is absent; STALE when index_content_stale or committed_pair_mismatch fired; ATTENTION for any other medium or high signal; OK when only low signals or none fired, with a monitor recommendation for low signals"
+      - "Quality advisories never change the status or the recommended command. List them under the summary's Advisories line, or none"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
     outputs:
-      - status: OK|DEGRADED|STALE|MISSING
+      - status: OK|ATTENTION|STALE|MISSING
       - recommended_command: string
       - recommended_when: now|low-activity-window|monitor
 
@@ -226,7 +234,7 @@ workflow:
       - "Print summary table to stdout"
     outputs:
       - report_path: string
-      - status: STATUS_OK | STATUS_DEGRADED | STATUS_STALE | STATUS_MISSING
+      - status: STATUS_OK | STATUS_ATTENTION | STATUS_STALE | STATUS_MISSING
     validation: report_emitted
 
 # ─────────────────────────────────────────────────────────────────
@@ -241,6 +249,7 @@ output_contract:
     - recommendation_block
   optional_sections:
     - sample_staleness_explanations
+    - quality_advisories_block
   state_log:
     path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:
@@ -249,8 +258,9 @@ output_contract:
       intent: DIAGNOSE
       timestamp: ISO_8601
       duration_seconds: number
-      status: OK|DEGRADED|STALE|MISSING|FAIL|CANCELLED
+      status: OK|ATTENTION|STALE|MISSING|FAIL|CANCELLED
       staleness_classes: object
+      quality_advisories: array
       recommendation: string
 
 # ─────────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 ---
 title: "DOC-350 -- Doctor speckit stale index"
 description: "Manual scenario validating that /doctor:speckit on a stale trigger index reports the index_content_stale signal and names the regeneration command without regenerating it."
-version: 1.0.0.0
+version: 1.1.0.0
 id: doctor-commands-doctor-speckit-stale-index
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -25,9 +25,9 @@ The doctor never regenerates the index itself. Its only writes are the packet-lo
 - Prompt: `Check why the spec-kit trigger index looks stale and tell me how to fix it.`
 - Preconditions: A disposable copy of the repository whose trigger index is fresh before the drift edit, and an active spec packet with a writable scratch directory for the diagnostic report and state log.
 - Expected execution process: Make the copy fresh, edit one indexed document's trigger phrases, confirm the staleness with the check command, run `/doctor:speckit`, capture the recommendation, compare the checksum, then restore the edited document.
-- Expected signals: The check command exits 1 with `fresh: false` and a non-empty `staleDocuments` list naming the edited document. Phase 1 classifies `index_content_stale`. Phase 2 reports medium severity and its `recommended_command` is `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`. Phase 3 reports `STATUS_STALE` and the summary shows `Target: speckit-retrieval` with `Status: STALE`. The trigger index checksum is identical before and after the doctor run.
+- Expected signals: The check command exits 1 with `fresh: false` and a non-empty `staleDocuments` list naming the edited document. Phase 1 classifies `index_content_stale`. Phase 2 reports medium severity and its `recommended_command` is `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`. Phase 3 reports `STATUS_STALE` and the summary shows `Target: speckit-retrieval` with `Status: STALE`. The `Advisories:` line lists the phrase-quality classes from the diagnostics, and they add no severity and change neither the status nor the recommended command. The trigger index checksum is identical before and after the doctor run.
 - Desired user-visible outcome: A diagnostic summary that names the stale signal and the exact regeneration command.
-- Pass/fail: PASS if the check exits 1 with `fresh: false`, `index_content_stale` is classified, the regeneration command is named, and the trigger index checksum is unchanged.
+- Pass/fail: PASS if the check exits 1 with `fresh: false`, `index_content_stale` is classified, the regeneration command is named, the phrase-quality advisories leave the status and recommendation unchanged, and the trigger index checksum is unchanged.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
@@ -57,21 +57,21 @@ Check why the spec-kit trigger index looks stale and tell me how to fix it.
 
 Phase 0's check exits 1 and records the stale document count. Phase 1 classifies `index_content_stale` at medium severity. Phase 2 recommends a full-corpus regeneration and its `recommended_command` is the generator command. The presentation's troubleshooting row names the same command.
 
-The summary shows `Status: STALE`. The doctor writes only its packet-local report and state log, and the index checksum is unchanged because regeneration is left to the operator.
+The summary shows `Status: STALE`, and its phrase-quality advisories are information only: the status and the recommended command come from the freshness evidence alone. The doctor writes only its packet-local report and state log, and the index checksum is unchanged because regeneration is left to the operator.
 
 ### Evidence
 
 - The fresh baseline check with exit 0 and `fresh: true`.
 - The edit to the document's `trigger_phrases` list and the failing check with its `staleDocuments` entry.
 - The Phase 1 `index_content_stale` classification and the Phase 2 `recommended_command`.
-- The summary block with `Status: STALE`.
+- The summary block with `Status: STALE` and its `Advisories:` line.
 - Checksums from steps 3 and 9.
 - The restored document and the final check with exit 0 and `fresh: true`.
 
 ### Pass / Fail
 
-- **Pass**: The check exits 1 with `fresh: false`, `index_content_stale` is classified, the regeneration command is named, and the trigger index checksum is unchanged.
-- **Fail**: The check stays fresh after the edit, the recommendation names no command, the summary is not stale, or the index changes during the run.
+- **Pass**: The check exits 1 with `fresh: false`, `index_content_stale` is classified, the regeneration command is named, the phrase-quality advisories leave the status and recommendation unchanged, and the trigger index checksum is unchanged.
+- **Fail**: The check stays fresh after the edit, the recommendation names no command, the summary is not stale, a phrase-quality advisory adds severity or changes the recommendation, or the index changes during the run.
 
 ### Failure Triage
 
