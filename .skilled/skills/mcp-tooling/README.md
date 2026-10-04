@@ -72,7 +72,7 @@ Search MagicPath for the saved button component and show its source.
 
 The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
 
-For installation or debugging, use `/doctor:mcp`. The doctor route reports bridge state without changing configuration.
+For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
 
 ---
 

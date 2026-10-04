@@ -33,6 +33,7 @@ const OPTION_REMEDY = 'pass the kind:name form, for example ';
 // Conflicts align writes no proposal for. Taking the release whole (its bytes,
 // or its deletion) is the only way to accept the release side of them.
 const ADOPTABLE_CONFLICTS = new Set(['binary', 'deleted-locally', 'deleted-in-release']);
+const SYMLINK_PARENT_CODE = 'ESYMLINKPARENT';
 const MAX_MERGE_CELLS = 4000000;
 // Large enough for `ls-tree -r` over the whole .skilled tree and its biggest blobs.
 const GIT_MAX_BUFFER_BYTES = 64 * 1024 * 1024;
@@ -244,7 +245,9 @@ function safeResolve(root, relative, { allowMissingParents = true } = {}) {
     try {
       const stats = fs.lstatSync(cursor);
       if (stats.isSymbolicLink() || !stats.isDirectory()) {
-        throw new Error('path parent is not a real directory: ' + cursor);
+        const error = new Error('path parent is not a real directory: ' + cursor);
+        error.code = SYMLINK_PARENT_CODE;
+        throw error;
       }
     } catch (error) {
       if (error.code === 'ENOENT' && allowMissingParents) break;
@@ -353,8 +356,16 @@ function indexFiles(repo) {
   return entries;
 }
 
+// A release path below a local symlink or file has no real local state, and
+// reading it would follow the link, so it is reported rather than read.
 function worktreeEntry(repo, filePath, allowUntracked = false) {
-  const absolutePath = safeResolve(repo, filePath);
+  let absolutePath;
+  try {
+    absolutePath = safeResolve(repo, filePath);
+  } catch (error) {
+    if (error.code !== SYMLINK_PARENT_CODE) throw error;
+    return { unsupported: true, symlinkParent: true, blob: null, mode: null, content: null };
+  }
   let stats;
   try {
     stats = fs.lstatSync(absolutePath);
@@ -668,6 +679,7 @@ function mergeText(baseBytes, localBytes, releaseBytes) {
 }
 
 function classifyFile(base, local, release) {
+  if (local && local.symlinkParent) return { class: 'conflict', conflictKind: 'symlink-parent' };
   if (sameState(local, release)) return { class: 'same', conflictKind: null };
   if (sameState(local, base)) return { class: 'take-release', conflictKind: null };
   if (sameState(release, base)) return { class: 'local-only', conflictKind: null };
@@ -1125,7 +1137,7 @@ function buildReport(repo, options) {
         unit: unitKey(unit),
         ...summary,
         base: baseEntry && { mode: baseEntry.mode, blob: baseEntry.blob },
-        local: local && { mode: local.mode, blob: local.blob },
+        local: local && !local.symlinkParent ? { mode: local.mode, blob: local.blob } : null,
         release: releaseEntry && { mode: releaseEntry.mode, blob: releaseEntry.blob },
       };
       fileReports.push(report);
@@ -1265,7 +1277,9 @@ function mergeResultForReport(repo, file, local) {
 function recommendation(file, unit) {
   if (file.conflictKind === 'mergeable') return 'merge';
   if (file.conflictKind === 'conflicting') return 'use-proposal';
-  if (['deleted-locally', 'deleted-in-release'].includes(file.conflictKind)) return 'keep-local';
+  if (['deleted-locally', 'deleted-in-release', 'symlink-parent'].includes(file.conflictKind)) {
+    return 'keep-local';
+  }
   if (file.class === 'local-only' || file.class === 'kept-local') return 'keep-local';
   if (file.class === 'take-release' && unit.status === 'customized') return 'adopt-release';
   return null;

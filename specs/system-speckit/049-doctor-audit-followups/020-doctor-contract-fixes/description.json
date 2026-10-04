@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/020-doctor-contract-fixes",
+  "description": "Phase 20: doctor-contract-fixes",
+  "keywords": [
+    "phase",
+    "doctor-contract-fixes"
+  ],
+  "lastUpdated": "2026-10-04T17:25:27.248Z",
+  "specId": "020",
+  "folderSlug": "doctor-contract-fixes",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

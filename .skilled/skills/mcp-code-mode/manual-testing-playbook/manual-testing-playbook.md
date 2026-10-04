@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 9 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 32 deterministic scenarios across 9 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -493,7 +493,7 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 ## 15. DOCTOR COMMANDS
 
-This category covers 4 scenario summaries for `/doctor:mcp` while the linked feature files remain the canonical execution contract. Run `install` and `debug --fix` against a disposable copy, because both write configuration. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
+This category covers 5 scenario summaries for `/doctor:mcp` while the linked feature files remain the canonical execution contract. Run `install` and `debug --fix` against a disposable copy, because both write configuration. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
 
 ### DOC-375 | Doctor mcp install
 
@@ -550,6 +550,21 @@ Expected signals: The bare `/doctor:mcp` invocation binds no sub-action, and the
 
 #### Test Execution
 > **Feature File:** [DOC-378](../manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md)
+
+### DOC-380 | Doctor mcp unknown flag
+
+#### Description
+
+Prove an unknown flag is refused with `unknown_flag` and the valid-flag hint before any workflow loads, and that a flag owned by the other sub-action still gets `cross_sub_action_flag_injection`.
+
+#### Scenario Contract
+
+Prompt: `Install Code Mode for the server runtime.`
+
+Expected signals: `/doctor:mcp install --server` renders ``Flag '--server' is not valid for `install`. Valid: --runtime <name>.`` followed by `STATUS=FAIL ERROR="unknown_flag"`.
+
+#### Test Execution
+> **Feature File:** [DOC-380](../manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md)
 
 ---
 
@@ -626,3 +641,4 @@ Expected signals: The bare `/doctor:mcp` invocation binds no sub-action, and the
 - DOC-376: [Doctor mcp debug](../manual-testing-playbook/doctor-commands/doctor-mcp-debug.md)
 - DOC-377: [Doctor mcp debug fix](../manual-testing-playbook/doctor-commands/doctor-mcp-debug-fix.md)
 - DOC-378: [Doctor mcp target menu](../manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md)
+- DOC-380: [Doctor mcp unknown flag](../manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md)
