@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e45b34b62861760b366b2f3e8ae4192f2adda39ed57dc05840d35204c7ea9c17",
+  "manifestHash": "44d1bb10bc1cf81427b169ffd1f5bb0df072eb55febd5218e6caf64e56ab9bd2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17091,6 +17091,12 @@
     "clarify default tasks": [
       "clarify default tasks"
     ],
+    "clarify default transport fix": [
+      "clarify-default transport fix"
+    ],
+    "clarify default transport record": [
+      "clarify-default transport record"
+    ],
     "clarify gold not built": [
       "clarify gold not built"
     ],
@@ -17580,6 +17586,9 @@
     "cli classifier 0 7 0 0": [
       "cli-classifier 0.7.0.0"
     ],
+    "cli classifier audit findings": [
+      "cli-classifier audit findings"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17595,8 +17604,20 @@
     "cli classifier cleanup tasks": [
       "cli classifier cleanup tasks"
     ],
+    "cli classifier compliance audit": [
+      "cli-classifier compliance audit"
+    ],
     "cli classifier feature catalog": [
       "cli-classifier feature catalog"
+    ],
+    "cli classifier fixes plan": [
+      "cli-classifier fixes plan"
+    ],
+    "cli classifier fixes summary": [
+      "cli-classifier fixes summary"
+    ],
+    "cli classifier fixes tasks": [
+      "cli-classifier fixes tasks"
     ],
     "cli classifier hub": [
       "cli-classifier hub"
@@ -17654,6 +17675,18 @@
     ],
     "cli classifier pre release versions": [
       "cli classifier pre-release versions"
+    ],
+    "cli classifier quality fixes": [
+      "cli-classifier quality fixes"
+    ],
+    "cli classifier quality research": [
+      "cli-classifier quality research"
+    ],
+    "cli classifier research plan": [
+      "cli-classifier research plan"
+    ],
+    "cli classifier research summary": [
+      "cli-classifier research summary"
     ],
     "cli classifier root router": [
       "cli-classifier root router"
@@ -18959,6 +18992,9 @@
     ],
     "cli jev move results": [
       "cli-jev move results"
+    ],
+    "cli jev overview fix": [
+      "cli-jev overview fix"
     ],
     "cli jev parent hub": [
       "cli-jev parent hub"
@@ -39929,6 +39965,9 @@
     "fan out cross lineage merge": [
       "fan-out cross-lineage merge"
     ],
+    "fan out deep research plan": [
+      "fan-out deep research plan"
+    ],
     "fan out deep review mimo deepseek": [
       "fan-out deep review mimo deepseek"
     ],
@@ -49731,6 +49770,9 @@
     ],
     "jev clarify default improvement": [
       "jev clarify default improvement"
+    ],
+    "jev classifier drift research": [
+      "jev classifier drift research"
     ],
     "jev cli": [
       "jev cli"
