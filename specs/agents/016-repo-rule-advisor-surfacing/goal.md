@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing"
-    last_updated_at: "2026-10-04T16:40:25Z"
+    last_updated_at: "2026-10-04T22:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the durable directive"
+    recent_action: "Amended D6 and added phases 009 and 010"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Each phase passes validate.sh --strict on its own before its successor starts. Only 004 and 005 may start in parallel with the phase before them. |
-| D2 | Build phases 003 to 008 apply the 002 verdict and nothing beyond it, except one operator-added clause in 006: communication.md asks for complex topics in simple terms from the first explanation. |
+| D1 | Each phase passes validate.sh --strict before its successor starts. 004, 005 and the isolated 007 and 008 runs may overlap. |
+| D2 | Build phases 003 to 008 apply the 002 verdict and nothing beyond it, except the operator's simple-terms clause for communication.md in 006. |
 | D3 | No once-per-compaction rule hook is built until a measured miss rate justifies one. |
 | D4 | Rule trigger_phrases stay in rule frontmatter, with no sidecar. |
 | D5 | The 004 baseline is committed before 006 changes any rule. |
-| D6 | Measurement windows never overlap: 006 ships and its post-change window is measured before 007 starts, and 007 commits its wording decision before 008 starts. |
+| D6 | Measurement windows never overlap on the live repository. 007 and 008 run in isolated test environments that leave live rule files unchanged. A winner goes live only after the 006 window is measured, and 007 decides before an 008 winner is adopted. |
 
 <!-- /ANCHOR:directive -->
 
@@ -71,6 +71,8 @@ phase and binds as if written here.
 | 006-rule-concision-rewrites | `006-rule-concision-rewrites/goal.md` |
 | 007-table-wording-experiment | `007-table-wording-experiment/goal.md` |
 | 008-gate5-card-pilot | `008-gate5-card-pilot/goal.md` |
+| 009-rule-delivery-debugging | `009-rule-delivery-debugging/goal.md` |
+| 010-rule-phrase-find-surface | `010-rule-phrase-find-surface/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -84,12 +86,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for this packet and all eight phase folders
+- [ ] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for this packet and all ten phase folders
 - [ ] `001-advisor-surfacing/research/research.md` and `002-rule-concision-and-loading/research/research.md` both exist, and each states one verdict
 - [ ] `check-rule-copies.js` runs in the `rule-canary` CI workflow and reports every must-carry `AGENTS.md` anchor ending before byte 16,384, with `AGENTS.md` at or under 32,768 bytes
 - [ ] `check-repo-rules.cjs` prints RESULT: PASSED with no failed check, and `wc -c` puts the 13 rule files in `.skilled/repo-rules/` at or below 91,028 bytes, a target 006 ADR-002 waives at the measured 94,609
 - [ ] `measure-rule-compliance.py` sits in `sk-create-repo-rule/scripts/` with a passing pytest suite, and `git log` shows its baseline under `004-rule-delivery-instrumentation/baselines/` committed before the first 006 rule commit
-- [ ] `007-table-wording-experiment` and `008-gate5-card-pilot` each commit `preregistration.md` before block 1 and record in `results/` a decision made by that pre-registered rule
+- [ ] `007-table-wording-experiment` and `008-gate5-card-pilot` each commit `preregistration.md` before their first scored run and record in `results/` a decision made by that pre-registered rule
 - [ ] After the 008 decision, `git status` and a file listing show no artifact of a rejected card arm
 <!-- /ANCHOR:completion -->
 
@@ -111,6 +113,10 @@ and findings belong here.
 | D2 amendment | Done | operator chose to fold a simple-terms clause for communication.md into 006; D2 and 006 D1 amended, 006 REQ-007 and AC-006 added |
 | Byte criterion amendment | Done | operator waived the 91,028 B target; criterion names 006 ADR-002 |
 | CI rule canary | Done | pushed c83421238f; Rule Canary Sync and Repo Rules Corpus passed, last delivery-prefix anchor ends at byte 16345 |
+| D6 amendment | Done | Operator ran 007 and 008 now in isolated test environments built from edba53daeb. Windows never overlap on the live repository, a winner goes live only after the 006 window, and 007 decides before an 008 winner is adopted. D2 prose shortened to fit the 4,000-char budget, clause detail stays in 006 D1 |
+| Phases 009 and 010 added | Done | Phase-add: map rows, binding rows and child goals for 009-rule-delivery-debugging and 010-rule-phrase-find-surface. Criterion 1 now names ten phase folders and criterion 6 says first scored run instead of block 1 |
+| 007 and 008 status | In Progress | 007 preregistration committed in edba53daeb and the 600-run experiment is running. 008 arm C dropped under REQ-005 (26,778 B + 7,677 B = 34,455 B), generator and check 11 committed, preregistration pending |
+| D1 amendment | Done | operator asked to run 007 and 008 now; D1 lets both run together in isolated environments, live adoption order unchanged under D6 |
 
 ### Deviations and findings
 

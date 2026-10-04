@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
+  "description": "Phase 9: rule-delivery-debugging",
+  "keywords": [
+    "phase",
+    "rule-delivery-debugging"
+  ],
+  "lastUpdated": "2026-10-04T21:40:04.594Z",
+  "specId": "009",
+  "folderSlug": "rule-delivery-debugging",
+  "parentChain": [
+    "agents",
+    "016-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

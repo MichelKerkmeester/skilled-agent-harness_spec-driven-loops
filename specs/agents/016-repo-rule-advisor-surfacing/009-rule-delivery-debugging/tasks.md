@@ -1,13 +1,13 @@
 ---
-title: "Tasks: Gate 5 card pilot"
+title: "Tasks: Rule delivery debugging"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "gate 5 card pilot tasks"
+  - "rule delivery debugging tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Gate 5 card pilot
+# Tasks: Rule delivery debugging
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm `check-repo-rules.cjs` ignores a `cards/` subdirectory (count parity reads 13 files with 13 cards present)
-- [x] T002 Check the arm C size condition against the post-003 `AGENTS.md` (26,778 B plus 7,677 B is 34,455 B, arm C dropped)
-- [ ] T003 Compute run counts and sample size, then commit `preregistration.md`
+- [ ] T001 Collect natural miss rates from the control arms of 007 (`current`) and 008 (`full`), which match the live rules (`results/`)
+- [ ] T002 Decide whether arms vary the global instructions through a project-level `AGENTS.md` or a copied global, and record why (`plan.md`)
+- [ ] T003 [P] Trace how each executor receives its global instructions in an isolated environment: Devin's 16,384-byte cut and the `.codex/AGENTS.md` target of `~/.codex/AGENTS.md` (`results/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,11 +41,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Write the generator and generate the 13 cards (`build-rule-cards.cjs`, `edba53daeb`)
-- [x] T005 Add check 11 (`check-repo-rules.cjs`, `edba53daeb`)
-- [x] T006 Write pytest for determinism and drift (`test_build_rule_cards.py`, 4 passed)
-- [x] T007 Prepare the arm `cards` router variant (`experiment/arms.json`)
-- [ ] T008 Run both arms in isolated environments, interleaved in a seeded order
+- [ ] T004 Measure natural Gate 5 and reply-rule miss rates per executor with the harness, on prompts that never mention rules (`results/`)
+- [ ] T005 Class every missed run as not delivered, truncated, outranked or seen and skipped (`results/`)
+- [ ] T006 Draft candidate arms from the causes, adding a hook arm only past the D3 threshold (`experiment/`)
+- [ ] T007 Commit `preregistration.md` with arms, metric, sample size and decision rule before the first scored arm run
+- [ ] T008 Run the arms in a seeded interleaved order
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,9 +53,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Analyze per arm and apply the decision rule (`results/`)
-- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests
-- [ ] T011 Run the checker and the phase 003 guard on the final state
+- [ ] T009 Score the arms and apply the decision rule (`results/`)
+- [ ] T010 Confirm no prompt set and no adopted diff contains rule-reading instructions
+- [ ] T011 Adopt the winner live after the 006 and 007 windows are measured, then run `check-rule-copies.js` and `check-repo-rules.cjs`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -106,7 +106,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Changed scripts pass their existing lint or syntax checks
+- [ ] CHK-010 [P0] Any changed script passes its existing tests
 - [ ] CHK-011 [P1] New code follows the surrounding file's patterns
 <!-- /ANCHOR:code-quality -->
 
@@ -115,11 +115,11 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] Generator deterministic and check 11 catches drift
-- [ ] CHK-021 [P0] Pre-registration committed before the first scored run
-- [ ] CHK-022 [P0] Each arm at sample size
-- [x] CHK-023 [P1] Arm C size condition recorded
-- [ ] CHK-024 [P1] No unused card artifacts remain
+- [ ] CHK-020 [P0] No prompt set or adopted diff adds rule-reading instructions
+- [ ] CHK-021 [P0] Every rate carries its denominator and Wilson interval
+- [ ] CHK-022 [P0] Pre-registration committed before the first scored arm run
+- [ ] CHK-023 [P0] Every missed run classed by cause
+- [ ] CHK-024 [P1] Hook arm run only past the stated threshold
 <!-- /ANCHOR:testing -->
 
 ---
@@ -162,8 +162,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 3/7 |
-| P1 Items | 6 | 1/6 |
+| P0 Items | 9 | 2/9 |
+| P1 Items | 6 | 0/6 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: Pending

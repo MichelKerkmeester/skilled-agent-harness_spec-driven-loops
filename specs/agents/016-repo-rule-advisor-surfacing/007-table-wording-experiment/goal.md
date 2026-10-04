@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment"
-    last_updated_at: "2026-10-04T16:40:25Z"
+    last_updated_at: "2026-10-04T22:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the durable directive"
+    recent_action: "Amended D1, D2, D4 and the criteria for isolated test environments"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -44,10 +44,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Only the table block in communication.md changes, swapped at block boundaries in ABAB order: current, short, current, short. |
-| D2 | Variants alternate by block. Sessions are not randomized and no hook serves variants. |
+| D1 | Only the table block in communication.md differs between the two arms, current and short. |
+| D2 | Arms are isolated test environments built from commit edba53daeb, with runs interleaved in one order shuffled with seed 16. No hook serves variants, and the live rule files do not change during the run. |
 | D3 | The semicolon rate is tracked only as a drift control. |
-| D4 | Block 1 starts only after phase 006 has shipped. |
+| D4 | The chosen wording goes live only after the 006 post-change window is measured. |
 
 <!-- /ANCHOR:directive -->
 
@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] git log shows preregistration.md, with its metric, sample size, block schedule and decision rule, committed before block 1 starts
-- [ ] git log shows no change to communication.md beyond the table-block swaps, and none to AGENTS.md or REPO RULES.md, inside any block
+- [ ] git log shows preregistration.md, with its metric, sample size, run schedule and decision rule, committed before the first scored run
+- [ ] git log shows no change to the live communication.md, AGENTS.md or REPO RULES.md between the first scored run and the decision
 - [ ] Each arm reaches the pre-registered sample size
-- [ ] results/ reports each block's table rate with its denominator and Wilson interval, excluding requested tables
-- [ ] The decision follows the pre-registered rule, a null result included, and the chosen wording is committed with a ledger entry
+- [ ] results/ reports each arm's table rate with its denominator and Wilson interval, excluding requested tables
+- [ ] The decision follows the pre-registered rule, a null result included, and the chosen wording is committed with a ledger entry after the 006 window is measured
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,7 +76,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase work | Pending | tasks.md T001 to T010 open |
+| Phase work | In Progress | T001 to T003 done, preregistration.md committed in edba53daeb. The 600-run experiment is running |
+| Isolated-environment amendment | Done | Live ABAB blocks replaced at the operator's request to run now. D1, D2, D4, REQ-002 and the criteria amended to match preregistration.md |
 
 ### Deviations and findings
 

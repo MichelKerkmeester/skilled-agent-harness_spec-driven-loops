@@ -1,13 +1,13 @@
 ---
-title: "Tasks: Table wording experiment"
+title: "Tasks: Rule phrase find surface"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "table wording experiment tasks"
+  - "rule phrase find surface tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Table wording experiment
+# Tasks: Rule phrase find surface
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -31,9 +31,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Copy the two variants into `preregistration.md`
-- [x] T002 Compute run counts and sample size from the pilot delivery rates
-- [x] T003 Commit the pre-registration (`edba53daeb`)
+- [ ] T001 Re-measure phrase counts and body overlap per rule (scratch/)
+- [ ] T002 Draft one or two natural queries per rule and record which miss under the ripgrep recipe (scratch/)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +40,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build both arm environments from commit `edba53daeb`
-- [ ] T005 Run DeepSeek, 300 runs in the seed-16 order
-- [ ] T006 Run Luna, 300 runs in the seed-16 order
-- [ ] T007 Count unscorable runs separately
+- [ ] T003 [P] Fix the `.skilled/repo-rules` row wording (`retrieval-conventions.md:284`)
+- [ ] T004 [P] Settle the phrase guidance in the template and `rule-anatomy.md`
+- [ ] T005 [P] Optional: add the warn-only near-duplicate check with a pytest fixture (`check-repo-rules.cjs`)
+- [ ] T006 [B] Add plain-noun phrases for the queries that miss, after the 006 window is measured (`.skilled/repo-rules/*.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +51,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Check with `git log` that the live rule files did not change during the run
-- [ ] T009 Score and apply the decision rule (`results/`)
-- [ ] T010 Commit the chosen wording after the 006 window is measured
+- [ ] T007 Run `retrieval-coverage-parity.vitest.ts`
+- [ ] T008 Run `check-repo-rules.cjs` and its pytest suite
+- [ ] T009 Rerun the T002 query list and confirm each finds its rule
 <!-- /ANCHOR:phase-3 -->
 
 ---

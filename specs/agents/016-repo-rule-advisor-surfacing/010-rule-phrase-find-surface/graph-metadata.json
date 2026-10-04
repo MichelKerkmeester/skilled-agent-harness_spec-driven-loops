@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot",
-  "spec_folder": "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot",
+  "packet_id": "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
   "parent_id": "agents/016-repo-rule-advisor-surfacing",
   "children_ids": [],
   "manual": {
@@ -11,45 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gate 5 card pilot",
-      "card plus self-check",
-      "resident reply rule cards",
-      "rule card generator",
-      "gate 5 card pilot plan",
-      "card plus self-check plan",
-      "gate 5 card pilot tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr",
-      "packet goal"
+      "rule phrase find surface",
+      "repo rule trigger phrases ripgrep",
+      "rule phrase count target",
+      "plain noun rule phrases",
+      "rule phrase find surface plan",
+      "rule phrase find surface tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "rule phrase find surface summary"
     ],
     "key_topics": [
-      "gate",
-      "card",
-      "pilot",
-      "plus",
-      "self-check",
-      "resident",
-      "reply",
       "rule",
-      "cards",
-      "generator",
-      "plan",
-      "tasks"
+      "phrase",
+      "find",
+      "surface",
+      "repo",
+      "trigger",
+      "phrases",
+      "ripgrep",
+      "count",
+      "target",
+      "plain",
+      "noun"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "experiment/arms.json",
-      "experiment/prompts.json",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
     ],
     "entities": [
@@ -72,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
@@ -90,21 +82,21 @@
         "source": "derived"
       },
       {
-        "name": "arms.json",
-        "kind": "config",
-        "path": "experiment/arms.json",
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
-        "name": "prompts.json",
-        "kind": "config",
-        "path": "experiment/prompts.json",
+        "name": "repo-rule-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
         "source": "derived"
       },
       {
-        "name": "build-rule-cards.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+        "name": "rule-anatomy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
         "source": "derived"
       },
       {
@@ -115,18 +107,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pilot Gate",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -150,6 +130,18 @@
         "source": "derived"
       },
       {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -162,13 +154,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Generate",
+        "name": "Overview Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Generated",
+        "name": "Pattern Doc",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,7 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Rules",
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,28 +188,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A plain card drops the operative bans in 6 of 13 rules",
-    "created_at": "2026-10-04T14:40:01Z",
-    "last_save_at": "2026-10-04T21:54:52.971Z",
+    "causal_summary": "A rule's `triggerphrases` are the words a ripgrep search can find it by",
+    "created_at": "2026-10-04T21:40:04Z",
+    "last_save_at": "2026-10-04T21:54:52.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab4d36bd2988c20145f12a68047b9d745efd80a6979e7a7f79f9d63a63acbb01",
+    "source_fingerprint": "sha256:e8f2fde6821641232749e92804ad9dc2a929ac7d0e05a16c2acbdf8ea401fd9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17a862ee024c88af0f72120a4f9918e8e9d5f75b9491fb5e64e3691d22026884",
-      "plan.md": "4221202ace47c62fe74a6bbc7a6abf7488cc5a623878ec30e69a94fd4ed295ee",
-      "tasks.md": "896c28f61cea492304144d195ab3745f4968183806f56dc4686025b63a08326c",
-      "implementation-summary.md": "853e25de74cb7c41954555ab21904036167c22d8ed1b3fe0e57b1476f601d7b5"
+      "spec.md": "153eb740a6125c973dc87eb2af8b3eca3f551ccc9410552e4baadb5bd3448655",
+      "plan.md": "50ae9143ce334a782111dfb11f33ba86a62d9ff554710d03264a319dd8eb71a1",
+      "tasks.md": "d78ab6a71b83040ac21b4537052d79b61fd0edacf24bed771f5798dcf7a6173f",
+      "implementation-summary.md": "5ed43d2dd39fdb7806bf14544f30d0017b0ad8fd206e05cd082e50fb2843ea1a"
     },
     "last_active_at": null
   }

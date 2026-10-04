@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: Table wording experiment"
-description: "Reading communication.md shows no measurable association with fewer tables. Test whether wording is the cause by alternating the current 612-byte table block with a 152-byte imperative at the same path, in pre-registered time blocks."
+description: "Reading communication.md shows no measurable association with fewer tables. Test whether wording is the cause by comparing the current 612-byte table block with a 152-byte imperative in isolated test environments, runs interleaved in a pre-registered seeded order."
 trigger_phrases:
   - "table wording experiment"
   - "no table rule wording"
-  - "abab rule experiment"
+  - "isolated rule experiment"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -21,14 +21,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-04 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 8 |
+| **Phase** | 7 of 10 |
 | **Predecessor** | 006-rule-concision-rewrites |
 | **Successor** | 008-gate5-card-pilot |
-| **Handoff Criteria** | Pre-registered decision reached and the chosen wording committed |
+| **Handoff Criteria** | Pre-registered decision reached, and the chosen wording committed once the 006 window is measured |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,15 +38,16 @@ contextType: "implementation"
 
 This is **Phase 7** of the repo rule surfacing, concision and loading specification.
 
-**Scope Boundary**: The table block in `communication.md` only, swapped at block boundaries. Everything else frozen during the blocks.
+**Scope Boundary**: The table block in `communication.md` only, varied between two arms of isolated test environments. The live rule files do not change during the run.
 
 **Dependencies**:
 - Phase 004 analyzer and baseline
-- Phase 006 shipped, so the rest of the rule is stable
+- The `rule-experiment.py` harness, committed in `edba53daeb`
+- Phase 006 window measured before the chosen wording goes live
 
 **Deliverables**:
 - Pre-registration document
-- Four measurement blocks
+- 600 scored runs across two arms and two executors
 - Result and decision
 
 **Changelog**:
@@ -71,22 +72,25 @@ A pre-registered answer to whether the shorter imperative wording lowers the tab
 ## 3. SCOPE
 
 ### In Scope
-- Pre-registration: metric, sample size from the phase 004 baseline, block schedule and decision rule, committed before block 1
-- Four alternating blocks, current wording then short wording then current then short
-- Analysis with the phase 004 analyzer, attributing replies by rule version
+- Pre-registration: metric, sample size, run schedule and decision rule, committed before the first scored run
+- Two arms, current and short wording, each an isolated git repository built by `rule-experiment.py` from commit `edba53daeb`
+- 30 reply-only prompts, 5 runs per prompt per arm per executor, interleaved in one order shuffled with seed 16
+- Scoring with `rule-experiment.py score`, which applies the phase 004 analyzer's checks
 
 ### Out of Scope
-- Per-session randomization - the rule is read from one path, and a hook that served variants would be a new runtime surface built for one experiment
-- Any other edit to `communication.md`, `AGENTS.md` §8 or `REPO RULES.md` during the blocks
+- Live ABAB time blocks - replaced at the operator's request to run now, since isolated environments need no live edit and keep the 006 window clean
+- A hook that serves variants in live sessions - the environments make one unnecessary
+- Any edit to the live `communication.md`, `AGENTS.md` or `REPO RULES.md` during the run
 - Other prohibitions - semicolon is tracked only as a drift control
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/repo-rules/communication.md` | Modify | Table block swapped at each block boundary |
+| `.skilled/repo-rules/communication.md` | Modify | Chosen wording, only after the decision and the 006 window |
+| `experiment/arms.json`, `experiment/prompts.json` | Create | Arm edits and the 30 prompts |
 | `preregistration.md` | Create | Metric, sample size, schedule and decision rule |
-| `results/` | Create | Aggregates-only block reports |
+| `results/` | Create | Aggregates-only reports per arm and executor |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -98,15 +102,15 @@ A pre-registered answer to whether the shorter imperative wording lowers the tab
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | The pre-registration is committed before block 1 starts |
-| REQ-002 | `git log` shows no other change to `communication.md`, `AGENTS.md` or `REPO RULES.md` inside any block |
-| REQ-003 | The result reports each block's table rate with denominator and Wilson interval, excluding requested tables, and applies the pre-registered decision rule |
+| REQ-001 | The pre-registration is committed before the first scored run |
+| REQ-002 | The test environments are built from commit `edba53daeb`, and `git log` shows no change to the live `communication.md`, `AGENTS.md` or `REPO RULES.md` between the first scored run and the decision |
+| REQ-003 | The result reports each arm's table rate with denominator and Wilson interval, excluding requested tables, and applies the pre-registered decision rule |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-004 | The chosen wording is committed with a ledger entry |
+| REQ-004 | The chosen wording is committed with a ledger entry, after the 006 window is measured |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -125,9 +129,10 @@ A pre-registered answer to whether the shorter imperative wording lowers the tab
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Model or runtime updates during the blocks | Med | ABAB ordering spreads drift across both arms, and the semicolon rate is a drift control |
-| Risk | Not enough long replies per block | Med | Block length is set from baseline volume, and blocks extend rather than end early |
-| Risk | Another session edits a frozen file | Med | Freeze noted in the commit message and checked in REQ-002 |
+| Risk | Model or runtime updates during the run | Med | The seeded interleaved order spreads drift across both arms, and the semicolon rate is a drift control |
+| Risk | Too few delivered long replies per arm | Med | 300 runs per arm, sized from the pilot's delivery rates |
+| Risk | Another session edits a live rule file | Med | Environments are built from `edba53daeb`, so a live edit cannot reach a run, and REQ-002 checks the live files |
+| Risk | The fixture project differs from live use | Med | The result says it covers two executors on a fixture, and phase 009 measures live delivery |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,7 +140,7 @@ A pre-registered answer to whether the shorter imperative wording lowers the tab
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What effect size is worth detecting? Proposal: a drop from about 20% to 10%, which needs roughly 200 long replies per arm at 80% power. T002 recomputes from the baseline.
+- What effect size is worth detecting? Answered in `preregistration.md` §3: a drop from about 20% to 10%, about 200 delivered long replies per arm at 80% power, from 300 runs per arm.
 <!-- /ANCHOR:questions -->
 
 ---
