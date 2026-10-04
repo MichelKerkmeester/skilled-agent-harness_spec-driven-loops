@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/004-cli-classifier-quality-research",
+  "spec_folder": "cli-jev/004-cli-classifier-quality-research",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-classifier quality research",
+      "cli-classifier compliance audit",
+      "jev classifier drift research",
+      "cli-classifier research plan",
+      "fan-out deep research plan",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "cli-classifier research summary",
+      "cli-classifier audit findings"
+    ],
+    "key_topics": [
+      "cli-classifier",
+      "quality",
+      "research",
+      "compliance",
+      "audit",
+      "jev",
+      "classifier",
+      "drift",
+      "plan",
+      "fan-out",
+      "deep",
+      "task"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/deep-research-config.json",
+      "shared/scripts/README.md",
+      "shared/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Topic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `cli-jev/003-cli-jev-workflow-integration` shipped the cli-classifier parent hub, its cli-jev packet, a shared Jev transport and six scorer callers across sk-doc, system-deep-loop and system-spec-kit, then deleted the features that did not earn their place",
+    "created_at": "2026-10-04T12:56:31Z",
+    "last_save_at": "2026-10-04T13:52:05.113Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:705a96bf8d71ac7aa2f4e6b714d377909fa50ed326a9a7dbf9a620a74b01b578",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0cec572022cfe7b37ebf86544f8ade59c499495c1f97109cdbc0374bdc0f828e",
+      "plan.md": "cef8f311b185b1aae62f96957a484e4e8ae9ff5c31384dcc4691161697411259",
+      "tasks.md": "69888bf507de8fcc0496f4cc6f140d697bf28cd05d8134bdcb0c1b1921da2ab9",
+      "implementation-summary.md": "617248413a03a7ec86f7bd0c53e62d48d03954b5862bc9085b49f007cbedac4e",
+      "research/research.md": "dfaec81c0087f88c722954fdfc82146cccedd63d7a9d29b5aa94907c5c1be39c"
+    },
+    "last_active_at": null
+  }
+}

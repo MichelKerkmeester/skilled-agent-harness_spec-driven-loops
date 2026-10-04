@@ -69,6 +69,7 @@ DOCTOR DIAGNOSTIC RESULT
 Target: speckit-retrieval
 Status: [OK|STALE|MISSING|ATTENTION|CANCELLED|FAIL]
 Evidence: [index verdict, lookup exit class, recipe hits, report path]
+Advisories: [non-zero phrase-quality classes with counts and share, or none]
 Recommendation: [operator action or none]
 STATUS=[status]
 ```

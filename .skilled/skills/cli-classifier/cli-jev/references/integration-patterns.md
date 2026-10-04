@@ -14,14 +14,23 @@ version: 0.1.0.2
 
 # Jev Integration Patterns
 
-> Jev returns one typed value. Every pattern below is a way of turning that value into a decision
-> without letting the judgment outrank the caller's own rules. The command shapes are the pinned
-> contract from `references/cli-reference.md`; the discipline is the hub's `transport-axis` rule
-> that a transport pairs with a workflow before any effecting operation.
+Four shipped ways to turn one typed Jev value into a decision.
 
 ---
 
-## 1. THE GATE
+## 1. OVERVIEW
+
+### Purpose
+
+Jev returns one typed value. Every pattern below is a way of turning that value into a decision without letting the judgment outrank the caller's own rules. The command shapes are the pinned contract from `references/cli-reference.md`; the discipline is the hub's `transport-axis` rule that a transport pairs with a workflow before any effecting operation.
+
+### Usage
+
+Pick the pattern by what the caller does with the answer. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level and section 5 batches several questions. Section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
+
+---
+
+## 2. THE GATE
 
 **Use when** a step must clear a threshold before proceeding and the threshold is the caller's.
 
@@ -45,7 +54,7 @@ model opinion, which is the failure this pattern exists to avoid.
 
 ---
 
-## 2. TRIAGE
+## 3. TRIAGE
 
 **Use when** something has to land in one of a known set of buckets.
 
@@ -73,7 +82,7 @@ caller to invent a cut line where the model already had to decide the same quest
 
 ---
 
-## 3. BRANCH ON AN ORDERED LEVEL
+## 4. BRANCH ON AN ORDERED LEVEL
 
 **Use when** the answer is a degree rather than a category, and several thresholds act on it.
 
@@ -96,7 +105,7 @@ Two cautions from the pinned contract:
 
 ---
 
-## 4. BATCH
+## 5. BATCH
 
 **Use when** several questions genuinely apply to one state and one round trip is cheaper than four.
 
@@ -129,7 +138,7 @@ jev run @"$REQUEST_JSON" --pretty </dev/null
 
 ---
 
-## 5. WHAT NOT TO DO
+## 6. WHAT NOT TO DO
 
 | Anti-pattern | Why it fails |
 |---|---|
@@ -142,7 +151,7 @@ jev run @"$REQUEST_JSON" --pretty </dev/null
 
 ---
 
-## 6. WHERE THIS SITS IN A DISPATCH
+## 7. WHERE THIS SITS IN A DISPATCH
 
 A typical composition:
 

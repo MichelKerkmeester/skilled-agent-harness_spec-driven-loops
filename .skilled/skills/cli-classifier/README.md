@@ -49,6 +49,18 @@ advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev
                                           one typed answer and an exit code
 ```
 
+### Before You Start
+
+The hub routes nothing until the `jev` binary is on `PATH`. Install the pinned CLI and store a key for the provider you use:
+
+```bash
+uv tool install jev-cli                    # the contract is pinned against jev-cli 0.6.2
+jev auth set --provider official           # prompts for TYPESAFE_API_KEY; other providers use their own name
+jev auth status --provider official </dev/null
+```
+
+Without `jev`, the hub reports mode `cli-jev` as unavailable instead of guessing a judgment. `cli-jev/references/providers-and-models.md` lists the four providers and their keys.
+
 ---
 
 ## 3. MODES AND PACKETS
@@ -82,6 +94,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v0.8.0.0 | [`changelog/v0.8.0.0.md`](./changelog/v0.8.0.0.md) |
 | v0.7.0.0 | [`changelog/v0.7.0.0.md`](./changelog/v0.7.0.0.md) |
 | v0.6.0.0 | [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md) |
 | v0.5.0.0 | [`changelog/v0.5.0.0.md`](./changelog/v0.5.0.0.md) |

@@ -1,0 +1,68 @@
+{
+  "run_id": "1791131869951-25703c",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/specs/system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-v4-1-flash-cline",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/specs/system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research/research/lineages/deepseek-v4-1-flash-cline/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-04T16:37:49.957Z",
+        "end_at_iso": "2026-10-04T16:47:41.001Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 5
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T16:52:41.000Z",
+          "deltaMs": 179999
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T17:04:12.000Z",
+          "deltaMs": 870999
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T17:12:48.000Z",
+          "deltaMs": 1386999
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-10-04T17:20:31.000Z",
+          "deltaMs": 1849999
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,814 @@
+{
+  "sessionId": "2026-10-04T07:44:47.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Two sk-doc catalog docs claim a 56-row leaf-route gold while the replay reports 59",
+      "file": ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Generated leaf registries for system-skill-advisor still cite four deleted leaf docs",
+      "file": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      "line": 46,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "dead_code_surface",
+      "doc_count_drift",
+      "fixture_staleness",
+      "stale_generated_artifact"
+    ],
+    "ruledOut": [
+      "dangling_import_or_spawn",
+      "dangling_markdown_link",
+      "dead_code_surface",
+      "doc_count_drift",
+      "fixture_staleness",
+      "mirror_drift",
+      "removed_flag_reference",
+      "stale_generated_artifact",
+      "stale_reference",
+      "survivor_parse_or_import_breakage"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "stale_generated_artifact": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "stale_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "dangling_import_or_spawn": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "removed_flag_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "fixture_staleness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "survivor_parse_or_import_breakage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "doc_count_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "dangling_markdown_link": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "dead_code_surface": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy",
+        ".skilled/skills/system-deep-loop/runtime/scripts",
+        ".skilled/skills/system-spec-kit/runtime/scripts"
+      ],
+      "bugClass": "dangling_import_or_spawn",
+      "disposition": "ruled_out",
+      "rationale": "Zero live importers or spawners remain; only release-history prose cites the names.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:1"
+      ],
+      "reason": "repo-wide exact search clean outside specs/ and changelog/"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py"
+      ],
+      "bugClass": "removed_flag_reference",
+      "disposition": "ruled_out",
+      "rationale": "The stripped files and their surviving docs/tests are consistent with the removal; --jev references that remain belong to live scripts that still own the flag.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:1",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1"
+      ],
+      "reason": "no caller of the two stripped replays passes the removed flag"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode",
+        ".hermes",
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".devin"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "No mirror carries deleted code; mirror views are hardlinks, so there is one stale artifact, not several.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "reason": "find over all mirrors returns no deleted scorer file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Fixture tokens trace to surviving spec-doc owners, so regeneration keeps them; no dead index entry.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:101985"
+      ],
+      "reason": "index has no .skilled deleted-doc path and no deleted-scorer token"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs"
+      ],
+      "bugClass": "survivor_parse_or_import_breakage",
+      "disposition": "ruled_out",
+      "rationale": "Every surviving in-scope file parses and every imported helper name resolves.",
+      "evidenceRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs:44",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:34"
+      ],
+      "reason": "node --check, py_compile and import/export cross-check all pass"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-101",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc",
+        ".skilled/skills/system-deep-loop",
+        ".skilled/skills/system-spec-kit",
+        ".skilled/skills/cli-classifier"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "No other root carries the stale pair; system-skill-advisor is the sole instance and is already tracked as R1-P1-001.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "reason": "check-mode gate passes every root except the one already reported"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills",
+        ".github",
+        ".opencode",
+        ".hermes",
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".devin"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "No surviving manual playbook index, router artifact or benchmark file names a deleted scenario or scorer.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md:53"
+      ],
+      "reason": "repo-wide search clean outside the known generated and excluded classes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Fixture tokens trace to surviving spec docs and spec-tree paths; no dead .skilled path.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:79695"
+      ],
+      "reason": "direct reads show spec-tree ownership of every token and path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md"
+      ],
+      "bugClass": "dangling_markdown_link",
+      "disposition": "ruled_out",
+      "rationale": "All relative links in the checked docs resolve on disk.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:1"
+      ],
+      "reason": "link existence check returned no broken target"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-201",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs"
+      ],
+      "bugClass": "dead_code_surface",
+      "disposition": "ruled_out",
+      "rationale": "All nine exports are consumed by the live scorer and its live test; no moved helper is orphaned.",
+      "evidenceRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs:44",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:34"
+      ],
+      "reason": "per-export usage counts are all nonzero"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-202",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py",
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs"
+      ],
+      "bugClass": "dead_code_surface",
+      "disposition": "ruled_out",
+      "rationale": "No orphaned definition, flag or report line survives the strip; the surviving gate line is still printed and still asserted.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:390",
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs:208"
+      ],
+      "reason": "no single-use definition and no leftover Jev token or flag"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures",
+        ".skilled/skills/system-deep-loop/runtime/tests/fixtures",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures",
+        ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "The deleted fixtures went with their deleted tests; every surviving fixture keeps at least one live reader.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs:993"
+      ],
+      "reason": "no fixture file left with zero live readers"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-204",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "doc_count_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every count claim affected by the deletion was updated inside the deletion commits and matches disk; R2-P2-001 stays the only stale count and is already open.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:19",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:31"
+      ],
+      "reason": "stated totals reconcile with disk after the deletion"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-205",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+        ".skilled/skills/system-skill-advisor/leaf-aliases.json"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "The stale pair is gone and no sibling root carries it; R1-P1-001 is resolved by this evidence.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "reason": "metadata gate is clean fleet-wide and both registries are free of the deleted leaf names"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-206",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+        ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        ".github/workflows"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "No runner or script entry names a deleted artifact.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/vitest.config.ts:16"
+      ],
+      "reason": "zero deleted basenames in runner configs, package scripts or workflows"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy",
+        ".skilled/skills/system-deep-loop/runtime/scripts",
+        ".skilled/skills/system-spec-kit/runtime/scripts"
+      ],
+      "bugClass": "dangling_import_or_spawn",
+      "disposition": "ruled_out",
+      "rationale": "Zero live importers or spawners remain; only release-history prose cites the names.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:1"
+      ],
+      "proof": "repo-wide exact search clean outside specs/ and changelog/"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py"
+      ],
+      "bugClass": "removed_flag_reference",
+      "disposition": "ruled_out",
+      "rationale": "The stripped files and their surviving docs/tests are consistent with the removal; --jev references that remain belong to live scripts that still own the flag.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:1",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1"
+      ],
+      "proof": "no caller of the two stripped replays passes the removed flag"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode",
+        ".hermes",
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".devin"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "No mirror carries deleted code; mirror views are hardlinks, so there is one stale artifact, not several.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "proof": "find over all mirrors returns no deleted scorer file"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Fixture tokens trace to surviving spec-doc owners, so regeneration keeps them; no dead index entry.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json:101985"
+      ],
+      "proof": "index has no .skilled deleted-doc path and no deleted-scorer token"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs"
+      ],
+      "bugClass": "survivor_parse_or_import_breakage",
+      "disposition": "ruled_out",
+      "rationale": "Every surviving in-scope file parses and every imported helper name resolves.",
+      "evidenceRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs:44",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:34"
+      ],
+      "proof": "node --check, py_compile and import/export cross-check all pass"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-101",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc",
+        ".skilled/skills/system-deep-loop",
+        ".skilled/skills/system-spec-kit",
+        ".skilled/skills/cli-classifier"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "No other root carries the stale pair; system-skill-advisor is the sole instance and is already tracked as R1-P1-001.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "proof": "check-mode gate passes every root except the one already reported"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-102",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills",
+        ".github",
+        ".opencode",
+        ".hermes",
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".pi",
+        ".devin"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "No surviving manual playbook index, router artifact or benchmark file names a deleted scenario or scorer.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md:53"
+      ],
+      "proof": "repo-wide search clean outside the known generated and excluded classes"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "Fixture tokens trace to surviving spec docs and spec-tree paths; no dead .skilled path.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:79695"
+      ],
+      "proof": "direct reads show spec-tree ownership of every token and path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md"
+      ],
+      "bugClass": "dangling_markdown_link",
+      "disposition": "ruled_out",
+      "rationale": "All relative links in the checked docs resolve on disk.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:1"
+      ],
+      "proof": "link existence check returned no broken target"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-201",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs"
+      ],
+      "bugClass": "dead_code_surface",
+      "disposition": "ruled_out",
+      "rationale": "All nine exports are consumed by the live scorer and its live test; no moved helper is orphaned.",
+      "evidenceRefs": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs:44",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:34"
+      ],
+      "proof": "per-export usage counts are all nonzero"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-202",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py",
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs"
+      ],
+      "bugClass": "dead_code_surface",
+      "disposition": "ruled_out",
+      "rationale": "No orphaned definition, flag or report line survives the strip; the surviving gate line is still printed and still asserted.",
+      "evidenceRefs": [
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:390",
+        ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs:208"
+      ],
+      "proof": "no single-use definition and no leftover Jev token or flag"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures",
+        ".skilled/skills/system-deep-loop/runtime/tests/fixtures",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures",
+        ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures"
+      ],
+      "bugClass": "fixture_staleness",
+      "disposition": "ruled_out",
+      "rationale": "The deleted fixtures went with their deleted tests; every surviving fixture keeps at least one live reader.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs:993"
+      ],
+      "proof": "no fixture file left with zero live readers"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-204",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "doc_count_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every count claim affected by the deletion was updated inside the deletion commits and matches disk; R2-P2-001 stays the only stale count and is already open.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:19",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:31"
+      ],
+      "proof": "stated totals reconcile with disk after the deletion"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-205",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+        ".skilled/skills/system-skill-advisor/leaf-aliases.json"
+      ],
+      "bugClass": "stale_generated_artifact",
+      "disposition": "ruled_out",
+      "rationale": "The stale pair is gone and no sibling root carries it; R1-P1-001 is resolved by this evidence.",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/leaf-manifest.json:46"
+      ],
+      "proof": "metadata gate is clean fleet-wide and both registries are free of the deleted leaf names"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-206",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+        ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+        ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        ".github/workflows"
+      ],
+      "bugClass": "stale_reference",
+      "disposition": "ruled_out",
+      "rationale": "No runner or script entry names a deleted artifact.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/vitest.config.ts:16"
+      ],
+      "proof": "zero deleted basenames in runner configs, package scripts or workflows"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "dead_code_surface",
+      "fixture_staleness",
+      "doc_count_drift",
+      "stale_generated_artifact",
+      "stale_reference",
+      "dangling_markdown_link",
+      "mirror_drift"
+    ],
+    "covered": [
+      "dead_code_surface",
+      "fixture_staleness",
+      "doc_count_drift"
+    ],
+    "ruledOut": [
+      "stale_generated_artifact",
+      "stale_reference",
+      "dangling_markdown_link",
+      "mirror_drift",
+      "fixture_staleness"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

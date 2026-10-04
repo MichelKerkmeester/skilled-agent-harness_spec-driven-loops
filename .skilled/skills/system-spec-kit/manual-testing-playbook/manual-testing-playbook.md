@@ -244,14 +244,24 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 
 ### 7.2 Doctor Commands
 
-Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-commands/README.md).
+Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-commands/README.md). The `/doctor:skill-advisor` scenarios live in the system-skill-advisor playbook, the `/doctor:deep-loop` scenarios in the system-deep-loop playbook, the `/doctor:git` scenarios in the sk-git playbook and the `/doctor:mcp` scenarios in the mcp-code-mode playbook.
 
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
-| DOC-331 | Doctor deep-loop lazy init | [DOC-331](doctor-commands/doctor-deep-loop-lazy-init.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-332 | Doctor deep-loop empty, no source | [DOC-332](doctor-commands/doctor-deep-loop-empty-no-source.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-333 | Doctor deep-loop convergence | [DOC-333](doctor-commands/doctor-deep-loop-convergence.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-348 | Doctor skill-advisor rebuild | [DOC-348](doctor-commands/doctor-skill-advisor-rebuild.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-349 | Doctor speckit retrieval healthy | [DOC-349](doctor-commands/doctor-speckit-retrieval-healthy.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-350 | Doctor speckit stale index | [DOC-350](doctor-commands/doctor-speckit-stale-index.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-351 | Doctor speckit moved target | [DOC-351](doctor-commands/doctor-speckit-legacy-target.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-352 | Doctor runtime mirrors in sync | [DOC-352](doctor-commands/doctor-runtime-mirrors-in-sync.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-353 | Doctor runtime mirrors drift | [DOC-353](doctor-commands/doctor-runtime-mirrors-drift.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-354 | Doctor env inspect | [DOC-354](doctor-commands/doctor-env-inspect.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-355 | Doctor env save preference | [DOC-355](doctor-commands/doctor-env-save-preference.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-356 | Doctor env secret and per-invocation switches | [DOC-356](doctor-commands/doctor-env-secret-and-per-invocation.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-357 | Doctor update check | [DOC-357](doctor-commands/doctor-update-check.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-358 | Doctor update align | [DOC-358](doctor-commands/doctor-update-align.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-359 | Doctor update apply | [DOC-359](doctor-commands/doctor-update-apply.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 

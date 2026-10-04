@@ -2,10 +2,10 @@
 name: cli-classifier
 description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.7.0.0
+version: 0.8.0.0
 ---
 
-<!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, choice, score -->
+<!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, jev choice, jev score -->
 
 # cli-classifier - Classifier Transport Hub
 
@@ -111,7 +111,7 @@ cli-classifier/
 
 ### Offline Measurement
 
-`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether Jev's `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls; `--jev` runs the hosted classifier only after its gate passes. No hook screens fetched content, so no verdict is wired to anything. `shared/scripts/jev-transport.mjs` carries the opt-in Pi route for `choice` questions, with the `jev` CLI as the default and the fallback, and `shared/scripts/tests/jev-transport.test.mjs` pins both paths with stubs and no socket.
+`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether Jev's `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls; `--jev` runs the hosted classifier only after its gate passes. No hook screens fetched content, so no verdict is wired to anything. `shared/scripts/jev-transport.mjs` answers `choice` and `noul` questions through Pi's classifier runtime first when no transport is named, and through the `jev` CLI wherever Pi's preflight fails. `JEV_TRANSPORT=jev` forces the CLI, and `shared/scripts/tests/jev-transport.test.mjs` pins both paths with stubs and no socket.
 
 ---
 
@@ -136,7 +136,7 @@ cli-classifier/
 ### ESCALATE IF
 
 - A request needs a judgment and an edit but no workflow mode is selected. Report the gap instead of mutating from a transport.
-- `command -v jev` fails. Mode `cli-jev` is not routable on this machine, and the hub says so rather than inventing a judgment.
+- `command -v jev` fails. Mode `cli-jev` is not routable on this machine, and the hub says so rather than inventing a judgment. Point the user at `uv tool install jev-cli`.
 
 ---
 
@@ -147,7 +147,7 @@ cli-classifier/
 - Root router: [`ROUTER.md`](./ROUTER.md).
 - Mode `cli-jev`: [`cli-jev/SKILL.md`](./cli-jev/SKILL.md), [`cli-jev/references/cli-reference.md`](./cli-jev/references/cli-reference.md), [`cli-jev/references/providers-and-models.md`](./cli-jev/references/providers-and-models.md), [`cli-jev/references/integration-patterns.md`](./cli-jev/references/integration-patterns.md), [`cli-jev/references/mcp-server.md`](./cli-jev/references/mcp-server.md).
 - Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v0.7.0.0.md`](./changelog/v0.7.0.0.md).
+- Hub changelog: [`changelog/v0.8.0.0.md`](./changelog/v0.8.0.0.md).
 
 ---
 

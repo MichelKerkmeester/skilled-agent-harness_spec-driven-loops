@@ -1269,6 +1269,7 @@ async function runJevArm(labeled, gate, ctx) {
       writeCall(outDir, {
         kind: fields.kind,
         backend: 'jev',
+        transport: result.transport ?? 'jev',
         row_id: fields.row_id,
         order: fields.order,
         wall_ms: result.wallMs,
@@ -1313,6 +1314,7 @@ async function runJevArm(labeled, gate, ctx) {
   writeCall(outDir, {
     kind: 'auth_test',
     backend: 'jev',
+    transport: auth.transport ?? 'jev',
     row_id: null,
     order: null,
     wall_ms: auth.wallMs,
@@ -1366,6 +1368,7 @@ async function runJevArm(labeled, gate, ctx) {
       writeCall(outDir, {
         kind: 'choice',
         backend: 'jev',
+        transport: result.transport ?? 'jev',
         row_id: row.id,
         order,
         wall_ms: result.wallMs,
