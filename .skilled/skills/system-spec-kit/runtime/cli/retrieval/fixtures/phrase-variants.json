@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8a84d6f84d9461da38ccbf0da57402acab9d4641dffaa57f125a642d2be2a3ef",
+  "manifestHash": "e45b34b62861760b366b2f3e8ae4192f2adda39ed57dc05840d35204c7ea9c17",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35224,6 +35224,9 @@
     "doctor deep loop command": [
       "doctor deep-loop command"
     ],
+    "doctor deep loop scenarios": [
+      "doctor deep-loop scenarios"
+    ],
     "doctor deep loop yaml": [
       "doctor-deep-loop.yaml"
     ],
@@ -35299,6 +35302,9 @@
     "doctor git command": [
       "doctor git command"
     ],
+    "doctor git hooks standards scenarios": [
+      "doctor git hooks standards scenarios"
+    ],
     "doctor git plan": [
       "doctor git plan"
     ],
@@ -35353,6 +35359,9 @@
     "doctor mcp install audit acceptance": [
       "doctor mcp-install audit acceptance"
     ],
+    "doctor mcp install debug scenarios": [
+      "doctor mcp install debug scenarios"
+    ],
     "doctor mcp install relevance": [
       "/doctor:mcp install relevance"
     ],
@@ -35405,11 +35414,86 @@
     "doctor parent skill yaml": [
       "doctor-parent-skill.yaml"
     ],
+    "doctor playbook deep loop": [
+      "doctor playbook deep-loop"
+    ],
+    "doctor playbook deep loop plan": [
+      "doctor-playbook-deep-loop plan"
+    ],
+    "doctor playbook deep loop shipped": [
+      "doctor-playbook-deep-loop shipped"
+    ],
+    "doctor playbook deep loop summary": [
+      "doctor-playbook-deep-loop summary"
+    ],
+    "doctor playbook deep loop tasks": [
+      "doctor-playbook-deep-loop tasks"
+    ],
+    "doctor playbook git": [
+      "doctor playbook git"
+    ],
+    "doctor playbook git plan": [
+      "doctor-playbook-git plan"
+    ],
+    "doctor playbook git shipped": [
+      "doctor-playbook-git shipped"
+    ],
+    "doctor playbook git summary": [
+      "doctor-playbook-git summary"
+    ],
+    "doctor playbook git tasks": [
+      "doctor-playbook-git tasks"
+    ],
     "doctor playbook invocation rewrite": [
       "doctor playbook invocation rewrite"
     ],
+    "doctor playbook mcp": [
+      "doctor playbook mcp"
+    ],
+    "doctor playbook mcp plan": [
+      "doctor-playbook-mcp plan"
+    ],
+    "doctor playbook mcp shipped": [
+      "doctor-playbook-mcp shipped"
+    ],
+    "doctor playbook mcp summary": [
+      "doctor-playbook-mcp summary"
+    ],
+    "doctor playbook mcp tasks": [
+      "doctor-playbook-mcp tasks"
+    ],
     "doctor playbook sed": [
       "doctor playbook sed"
+    ],
+    "doctor playbook skill advisor": [
+      "doctor playbook skill-advisor"
+    ],
+    "doctor playbook skill advisor plan": [
+      "doctor-playbook-skill-advisor plan"
+    ],
+    "doctor playbook skill advisor shipped": [
+      "doctor-playbook-skill-advisor shipped"
+    ],
+    "doctor playbook skill advisor summary": [
+      "doctor-playbook-skill-advisor summary"
+    ],
+    "doctor playbook skill advisor tasks": [
+      "doctor-playbook-skill-advisor tasks"
+    ],
+    "doctor playbook spec kit": [
+      "doctor playbook spec-kit"
+    ],
+    "doctor playbook spec kit plan": [
+      "doctor-playbook-spec-kit plan"
+    ],
+    "doctor playbook spec kit shipped": [
+      "doctor-playbook-spec-kit shipped"
+    ],
+    "doctor playbook spec kit summary": [
+      "doctor-playbook-spec-kit summary"
+    ],
+    "doctor playbook spec kit tasks": [
+      "doctor-playbook-spec-kit tasks"
     ],
     "doctor pointers shipped": [
       "doctor pointers shipped"
@@ -35570,6 +35654,9 @@
     "doctor skill advisor rebuild shipped": [
       "doctor skill-advisor rebuild shipped"
     ],
+    "doctor skill advisor scenarios": [
+      "doctor skill-advisor scenarios"
+    ],
     "doctor skill advisor yaml": [
       "doctor-skill-advisor.yaml"
     ],
@@ -35620,6 +35707,9 @@
     ],
     "doctor speckit runtime mirrors relevance": [
       "/doctor:speckit runtime-mirrors relevance"
+    ],
+    "doctor speckit scenarios": [
+      "doctor speckit scenarios"
     ],
     "doctor speckit skill advisor relevance": [
       "/doctor:speckit skill-advisor relevance"
@@ -35683,6 +35773,9 @@
     ],
     "doctor update handover": [
       "/doctor:update handover"
+    ],
+    "doctor update manual test": [
+      "doctor update manual test"
     ],
     "doctor update orchestrator": [
       "doctor update orchestrator"
