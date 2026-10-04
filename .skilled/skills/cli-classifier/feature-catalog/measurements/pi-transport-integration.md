@@ -87,22 +87,18 @@ only.
 
 ### Callers And Recorded Result
 
-Ten callers route their calls through the transport. The eight scorers record the answering route as
+Six callers route their calls through the transport. The five scorers record the answering route as
 `transport` in their call records:
 
-- `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` and
-  `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` (sk-doc), one choice call
-  site each with their auth test passing through the same seam
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` (sk-doc), one choice call
+  site with its auth test passing through the same seam
 - `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (sk-doc)
 - `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` (cli-classifier)
 - `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs`
   and `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs`
   (system-deep-loop deep-improvement)
-- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs`,
-  `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` and
-  `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs`
+- `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs`
   (system-spec-kit)
-- `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` (system-deep-loop runtime)
 
 The predecessor phase's recorded run at
 `specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
@@ -118,16 +114,12 @@ p95_ms=340/387 cost_per_100=0.0022`, and only `choice` was measured in that run.
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Script | The switch, the request mapper, the context mapper, the four Pi preflight gates, the backend fallback and the CLI-shaped payload |
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Caller | Routes its choice calls and its auth test through the transport and records the answering route as `transport` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Caller | Routes its choice calls and its auth test through the transport and records the answering route as `transport` |
 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` | Caller | Routes its calls through the transport and records the answering route as `transport` |
 
 ### Validation And Tests
 
