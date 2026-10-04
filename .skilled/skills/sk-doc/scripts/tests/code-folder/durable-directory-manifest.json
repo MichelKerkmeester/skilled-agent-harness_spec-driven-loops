@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 809,
+  "derived_count": 807,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -775,8 +775,6 @@
     ".skilled/skills/system-spec-kit/runtime/lib/validation",
     ".skilled/skills/system-spec-kit/runtime/scripts",
     ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall",
-    ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit",
-    ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check",
     ".skilled/skills/system-spec-kit/runtime/stress-test",
     ".skilled/skills/system-spec-kit/runtime/stress-test/substrate",
     ".skilled/skills/system-spec-kit/runtime/tests",

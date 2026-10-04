@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """Plain-runner tests for the reader-needed lens.
 
-Every case runs against a throwaway git repository and a stub jev binary first
-on PATH, so no case reaches a live backend. The runner prints one PASS or FAIL
-line per case and ends with ALL PASS or the failure count.
+Every case runs against a throwaway git repository and a stub scanner, so no
+case reads outside its fixture. The runner prints one PASS or FAIL line per
+case and ends with ALL PASS or the failure count.
 """
 
 from __future__ import annotations
 
 import contextlib
 import io
-import json
 import os
 import subprocess
 import sys
@@ -29,9 +28,8 @@ import hvr_reader_lens as S  # noqa: E402
 def clean_env() -> dict:
     """Return a copy of the process environment without fixture redirectors.
 
-    A fixture must not inherit the caller's git redirectors or backend
-    endpoints; a git one would retarget a command at the real repository, and
-    the worktree carries one routinely.
+    A fixture must not inherit the caller's git redirectors; one would retarget
+    a command at the real repository, and the worktree carries one routinely.
     """
     env = dict(os.environ)
     for key in (
@@ -39,7 +37,6 @@ def clean_env() -> dict:
         "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
         "GIT_CONFIG", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_SYSTEM", "GIT_CONFIG_COUNT",
         "GIT_NAMESPACE", "GIT_CEILING_DIRECTORIES",
-        "JEV_PROVIDER",
     ):
         env.pop(key, None)
     return env
@@ -93,78 +90,12 @@ def make_repo(files: dict, second: dict | None = None) -> Path:
     return root
 
 
-# The stubs answer the two reader-needed constructions the corpus carries and
-# nothing else, so a fixture labeled from those constructions is answered right.
-JEV_STUB = r'''#!/usr/bin/env python3
-"""Stub jev: logs its argv, then answers identity, auth and noul offline."""
-
-import json
-import os
-import sys
-from pathlib import Path
-
-ARGS = sys.argv[1:]
-with (Path(__file__).resolve().parent / 'jev.log').open('a', encoding='utf-8') as handle:
-    handle.write(json.dumps(ARGS) + '\n')
-
-
-def answer_noul() -> None:
-    text = sys.stdin.read().lower()
-    if os.environ.get('STUB_NOUL_EXIT'):
-        raise SystemExit(int(os.environ['STUB_NOUL_EXIT']))
-    if os.environ.get('STUB_NOUL_EMPTY') == '1':
-        print('{"answers":{"answer":{}}}')
-        return
-    tell = 'marks a pivotal moment in' in text or 'from startups to' in text
-    print(json.dumps({'answers': {'answer': {'noul': 0.9 if tell else 0.1}}}, separators=(',', ':')))
-
-
-if ARGS[:1] == ['--version']:
-    print(os.environ.get('STUB_JEV_VERSION', 'jev 0.6.2'))
-elif ARGS[:2] == ['auth', 'status']:
-    raise SystemExit(int(os.environ.get('STUB_AUTH_STATUS_EXIT', '0')))
-elif ARGS[:2] == ['auth', 'test']:
-    print('{"ok":true,"model":"stub-model"}')
-    raise SystemExit(int(os.environ.get('STUB_AUTH_TEST_EXIT', '0')))
-elif ARGS[:1] == ['noul']:
-    answer_noul()
-else:
-    raise SystemExit(2)
-'''
-
-
-def make_stubs() -> Path:
-    """Write the stub jev binary into a fresh temp directory."""
-    bin_dir = temp_dir("bin")
-    for name, source in (("jev", JEV_STUB),):
-        target = bin_dir / name
-        target.write_text(source, encoding="utf-8")
-        target.chmod(0o755)
-    return bin_dir
-
-
-def stub_log(bin_dir: Path, name: str) -> list:
-    """Return the parsed argument arrays the named stub recorded, empty when it never ran."""
-    log = Path(bin_dir) / f"{name}.log"
-    if not log.exists():
-        return []
-    return [json.loads(line) for line in log.read_text(encoding="utf-8").splitlines() if line]
-
-
-def stub_env(bin_dir: Path, extra: dict | None = None) -> dict:
-    """Return an environment with the stub directory first on PATH."""
-    env = clean_env()
-    env["PATH"] = f"{bin_dir}{os.pathsep}{env.get('PATH', '')}"
-    env.update(extra or {})
-    return env
-
-
 def run_main(args: list, options: dict | None = None) -> dict:
     """Run the lens against one fixture and collect its output lines and exit code.
 
     Args:
         args: Command-line arguments for the lens.
-        options: Optional ``root``, ``bin``, ``scanner`` and ``env`` overrides.
+        options: Optional ``root`` and ``scanner`` overrides.
 
     Returns:
         ``{"code": int, "lines": list, "errs": list}``.
@@ -172,10 +103,6 @@ def run_main(args: list, options: dict | None = None) -> dict:
     opts = options or {}
     lines: list[str] = []
     errs: list[str] = []
-    env = clean_env()
-    if opts.get("bin"):
-        env["PATH"] = f"{opts['bin']}{os.pathsep}{env.get('PATH', '')}"
-    env.update(opts.get("env") or {})
     code = S.main(
         list(args),
         {
@@ -183,9 +110,6 @@ def run_main(args: list, options: dict | None = None) -> dict:
             "scanner": opts.get("scanner"),
             "out": lines.append,
             "err": errs.append,
-            "env": env,
-            "timeout_ms": 20000,
-            "backoff_ms": 1,
         },
     )
     return {"code": code, "lines": lines, "errs": errs}
@@ -220,9 +144,7 @@ def corpus_files() -> dict:
     """Build the shared corpus: twelve skills, each carrying both tells and plain docs.
 
     Five documents per tell per skill leave the per-skill cap reachable in every
-    category, and the plain documents give the fills somewhere to come from. The
-    stub backends answer the two tell lines, so a fixture labeled from the same
-    constructions is answered correctly.
+    category, and the plain documents give the fills somewhere to come from.
     """
     files: dict = {}
     for skill in CORPUS_SKILLS:
@@ -619,10 +541,7 @@ def run() -> int:
             ["--draw", "--seed", "x", "--labels", str(seed_labels)],
             {"root": draw_root, "scanner": draw_scanner},
         ),
-        run_main(
-            ["--draw", "--jev", "--labels", str(seed_labels)],
-            {"root": draw_root, "scanner": draw_scanner},
-        ),
+
     ]
     check(
         "--draw needs a valid non-negative seed",
@@ -757,398 +676,17 @@ def run() -> int:
         and all(row["text"] is None for row in built_refusals),
     )
 
-    # The cap fires before the child's sleep ends, so a stalled backend can
-    # never hold a run open; the arms record the timed_out flag as
-    # unmeasured_timeout rather than a score.
-    slow_dir = temp_dir("slow")
-    slow_script = slow_dir / "slow_child.py"
-    slow_script.write_text("import time\n\ntime.sleep(30)\n", encoding="utf-8")
-    slow_call = S.spawn_call(sys.executable, [str(slow_script)], "", clean_env(), 300)
-    check(
-        "a spawn past the timeout is killed and marked unmeasured_timeout",
-        slow_call["timed_out"] is True
-        and slow_call["code"] is None
-        and slow_call["stdout"] == ""
-        and slow_call["stderr"] == ""
-        and isinstance(slow_call["wall_ms"], int)
-        and slow_call["wall_ms"] < 30000
-        and S.JEV_TIMEOUT_MS == 90000
-        and S.JEV_BACKOFF_MS == 2000,
-    )
 
-    # A body with no answer is a missed measurement: the record keeps a null
-    # probability and an unmeasured status, so a missing answer can never be
-    # read as a score of 0.
-    call_bin = make_stubs()
-    empty_call = S.spawn_call(
-        str(call_bin / "jev"),
-        ["noul", "-q", "Does this text tell?"],
-        "The guide states each step once.",
-        stub_env(call_bin, {"STUB_NOUL_EMPTY": "1"}),
-        20000,
-    )
-    empty_body = json.loads(empty_call["stdout"])
-    calls_dir = temp_dir("calls")
-    call_log = S.create_call_log(calls_dir)
-    call_log["append"](
-        {
-            "backend": "jev",
-            "kind": "noul",
-            "rowId": "r001",
-            "category": "synonym-cycling",
-            "rerun": 0,
-            "attempt": 1,
-            "wallMs": empty_call["wall_ms"],
-            "exitCode": empty_call["code"],
-            "probability": None,
-            "flag": None,
-            "status": "unmeasured",
-            "jevVersion": "0.6.2",
-            "provider": "official",
-            "model": "stub-model",
-        }
-    )
-    recorded_calls = S.read_jsonl(calls_dir / "calls.jsonl")
-    check(
-        "a missing answer is recorded unmeasured, never 0",
-        empty_call["code"] == 0
-        and "noul" not in empty_body["answers"]["answer"]
-        and len(recorded_calls) == 1
-        and recorded_calls[0]["probability"] is None
-        and recorded_calls[0]["status"] == "unmeasured"
-        and recorded_calls[0]["flag"] is None,
-    )
-
-    no_out_bin = make_stubs()
-    no_out_run = run_main(
-        ["--jev"],
-        {"root": draw_root, "scanner": draw_scanner, "bin": no_out_bin},
-    )
-    check(
-        "--out is required for the Jev switch",
-        no_out_run["code"] == 2
-        and no_out_run["lines"] == []
-        and no_out_run["errs"]
-        == ["--jev needs --out <dir> so every call is recorded"]
-        and stub_log(no_out_bin, "jev") == [],
-    )
-
-    verdict_questions = {
-        "synonym-cycling": (
-            "Does this passage refer to the same thing by three or more different words?"
-        ),
-        "significance-inflation": (
-            "Does this passage declare that something is important or historic instead of "
-            "stating what happened?"
-        ),
-        "false-ranges": (
-            "Does this passage use a from X to Y construction whose endpoints are not on a "
-            "meaningful scale?"
-        ),
-    }
-    verdict_rows = []
-    number = 0
-    for category, tell in (
-        ("synonym-cycling", SIGNIFICANCE_TELL),
-        ("significance-inflation", SIGNIFICANCE_TELL),
-        ("false-ranges", FALSE_RANGE_TELL),
-    ):
-        for _ in range(50):
-            number += 1
-            verdict_rows.append(
-                {
-                    "id": f"r{number:03d}",
-                    "category": category,
-                    "label": "yes",
-                    "text": tell,
-                    "question": verdict_questions[category],
-                }
-            )
-    verdict_baseline = S.summarize_baseline(
-        [
-            {
-                "id": row["id"],
-                "category": row["category"],
-                "label": "yes",
-                "candidate": False,
-            }
-            for row in verdict_rows
-        ]
-    )
-
-    jev_bin = make_stubs()
-    jev_env = stub_env(jev_bin, {"JEV_PROVIDER": "openrouter"})
-    jev_lines: list[str] = []
-    jev_gate = S.jev_gate({"out": jev_lines.append, "env": jev_env, "timeoutMs": 20000})
-    check(
-        "jev gate passes jev 0.6.2 with a credential",
-        jev_gate["passed"] is True
-        and jev_gate["path"] == str(jev_bin / "jev")
-        and jev_gate["provider"] == "openrouter"
-        and jev_lines == [f"jev: path={jev_bin / 'jev'} provider=openrouter"]
-        and stub_log(jev_bin, "jev")
-        == [["--version"], ["auth", "status", "--provider", "openrouter"]],
-    )
-
-    no_cred_bin = make_stubs()
-    no_cred_env = stub_env(
-        no_cred_bin, {"STUB_AUTH_STATUS_EXIT": "3", "JEV_PROVIDER": "openrouter"}
-    )
-    no_cred_lines: list[str] = []
-    no_cred_gate = S.jev_gate(
-        {"out": no_cred_lines.append, "env": no_cred_env, "timeoutMs": 20000}
-    )
-    no_cred_run = run_main(
-        [
-            "--jev",
-            "--out",
-            str(temp_dir("jev-skip-out")),
-            "--labels",
-            str(temp_dir("jev-skip") / "labels.jsonl"),
-        ],
-        {
-            "root": draw_root,
-            "scanner": draw_scanner,
-            "bin": no_cred_bin,
-            "env": {"STUB_AUTH_STATUS_EXIT": "3", "JEV_PROVIDER": "openrouter"},
-        },
-    )
-    check(
-        "jev gate skips no credential",
-        no_cred_gate["passed"] is False
-        and no_cred_lines == [
-            f"jev: path={no_cred_bin / 'jev'} provider=openrouter",
-            "jev arm skipped: no credential",
-        ]
-        and no_cred_run["code"] == 0
-        and "jev arm skipped: no credential" in no_cred_run["lines"],
-    )
-
-    version_bin = make_stubs()
-    version_env = stub_env(version_bin, {"STUB_JEV_VERSION": "jev 0.7.0"})
-    version_lines: list[str] = []
-    version_gate = S.jev_gate(
-        {"out": version_lines.append, "env": version_env, "timeoutMs": 20000}
-    )
-    check(
-        "jev gate skips a wrong version",
-        version_gate["passed"] is False
-        and version_lines == [
-            f"jev: path={version_bin / 'jev'} provider=official",
-            "jev arm skipped: version",
-            f'jev: found="jev 0.7.0" path={version_bin / "jev"}',
-        ]
-        and stub_log(version_bin, "jev") == [["--version"]],
-    )
-
-    jev_arm_bin = make_stubs()
-    jev_arm_env = stub_env(jev_arm_bin, {"JEV_PROVIDER": "openrouter"})
-    jev_arm_lines: list[str] = []
-    jev_arm_gate = S.jev_gate(
-        {"out": jev_arm_lines.append, "env": jev_arm_env, "timeoutMs": 20000}
-    )
-    jev_arm_out = temp_dir("jev-verdict")
-    jev_arm = S.run_jev_arm(
-        {"rows": verdict_rows, "baseline": verdict_baseline, "phrases": phrases},
-        jev_arm_gate,
-        {
-            "out": jev_arm_lines.append,
-            "env": jev_arm_env,
-            "timeoutMs": 20000,
-            "backoffMs": 1,
-            "callLog": S.create_call_log(jev_arm_out),
-            "stored": None,
-        },
-    )
-    jev_calls = [
-        call
-        for call in stub_log(jev_arm_bin, "jev")
-        if call[:1] == ["noul"] or call[:2] == ["auth", "test"]
-    ]
-    check(
-        "jev arm sends one --provider on every call",
-        jev_arm_gate["passed"] is True
-        and len(jev_calls) == 1 + S.JEV_RERUNS * len(verdict_rows)
-        and sum(1 for call in jev_calls if call[:2] == ["auth", "test"]) == 1
-        and sum(1 for call in jev_calls if call[:1] == ["noul"])
-        == S.JEV_RERUNS * len(verdict_rows)
-        and all(call.count("--provider") == 1 for call in jev_calls)
-        and all(
-            call[call.index("--provider") + 1] == "openrouter" for call in jev_calls
-        )
-        and any(
-            line.startswith(
-                "jev: payload: sections of tracked committed skill docs; "
-                "planned calls: 451; estimated input tokens: "
-            )
-            for line in jev_arm_lines
-        )
-        and jev_arm["column"]["line"] in jev_arm_lines,
-    )
-
-    stop_bin = make_stubs()
-    stop_env = stub_env(
-        stop_bin, {"STUB_NOUL_EXIT": "3", "JEV_PROVIDER": "openrouter"}
-    )
-    stop_lines: list[str] = []
-    stop_gate = S.jev_gate(
-        {"out": stop_lines.append, "env": stop_env, "timeoutMs": 20000}
-    )
-    stop_out = temp_dir("jev-stop")
-    stop_arm = S.run_jev_arm(
-        {"rows": verdict_rows, "baseline": verdict_baseline, "phrases": phrases},
-        stop_gate,
-        {
-            "out": stop_lines.append,
-            "env": stop_env,
-            "timeoutMs": 20000,
-            "backoffMs": 1,
-            "callLog": S.create_call_log(stop_out),
-            "stored": None,
-        },
-    )
-    check(
-        "jev exit 3 after the gate stops the arm",
-        stop_gate["passed"] is True
-        and stop_arm == {
-            "stopped": "jev arm stopped: key rejected",
-            "partialRows": 0,
-        }
-        and stop_lines[-2:]
-        == ["jev arm stopped: key rejected", "jev: partial rows=0"]
-        and not any(line.startswith("verdict") for line in stop_lines),
-    )
-
-    def verdict_entry(**overrides) -> dict:
-        """Build one category's counts with every keep-rule condition passing."""
-        entry = {
-            "K": 10, "M": 15, "A": 15, "B": 5, "W": 10, "L": 0,
-            "TP": 15, "FP": 0, "F": 0, "headroom": None,
-        }
-        entry.update(overrides)
-        return entry
-
-    keep_verdict = S.decide_verdict(
-        {category: verdict_entry() for category in S.CATEGORIES}, "jev"
-    )
-    check(
-        "verdict keep when every check passes",
-        keep_verdict["outcome"] == "keep"
-        and keep_verdict["reason"] is None
-        and S.verdict_text(keep_verdict) == "keep"
-        and keep_verdict["p"] < 0.05,
-    )
-
-    kill_verdict = S.decide_verdict(
-        {category: verdict_entry(TP=0, FP=5) for category in S.CATEGORIES}, "jev"
-    )
-    silent_verdict = S.decide_verdict(
-        {category: verdict_entry(TP=0, FP=0) for category in S.CATEGORIES}, "jev"
-    )
-    check(
-        "verdict kill (precision)",
-        kill_verdict["outcome"] == "kill"
-        and kill_verdict["reason"] == "precision"
-        and S.verdict_text(kill_verdict) == "kill (precision)"
-        and silent_verdict["outcome"] == "kill",
-    )
-
-    coverage_counts = {category: verdict_entry() for category in S.CATEGORIES}
-    coverage_counts[S.CATEGORIES[0]] = verdict_entry(M=8)
-    coverage_verdict = S.decide_verdict(coverage_counts, "jev")
-    check(
-        "verdict stop (coverage)",
-        coverage_verdict["outcome"] == "stop"
-        and coverage_verdict["reason"] == "coverage"
-        and S.verdict_text(coverage_verdict) == "stop (coverage)",
-    )
-
-    one_pass_verdict = S.decide_verdict(
-        {
-            S.CATEGORIES[0]: verdict_entry(),
-            S.CATEGORIES[1]: verdict_entry(A=5, B=5),
-            S.CATEGORIES[2]: verdict_entry(W=0, L=0),
-        },
-        "jev",
-    )
-    check(
-        "verdict stop (categories)",
-        one_pass_verdict["outcome"] == "stop"
-        and one_pass_verdict["reason"] == "categories"
-        and S.verdict_text(one_pass_verdict) == "stop (categories)",
-    )
-
-    check(
-        "sign test is exact and returns p 1 at no disagreements",
-        S.sign_test_p(5, 0) == {"p": 0.03125, "below": True}
-        and S.sign_test_p(4, 0)["p"] == 0.0625
-        and S.sign_test_p(4, 0)["below"] is False
-        and S.sign_test_p(0, 0) == {"p": 1, "below": False},
-    )
-
-    # One switch in one call: the Jev arm runs behind its own gate and prints
-    # its column. The labels are mixed against the comparators so the zero-call
-    # run keeps the headroom the arm needs before it may start.
-    arm_bin = make_stubs()
-    arm_labels = temp_dir("arm-labels") / "labels.jsonl"
-    run_main(
-        ["--draw", "--seed", "7", "--labels", str(arm_labels)],
-        {"root": draw_root, "scanner": draw_scanner},
-    )
-    arm_rows = S.read_jsonl(arm_labels)
-    arm_tracked = S.tracked_files(draw_root)
-    for row in arm_rows:
-        text = S.read_section(draw_root, row, arm_tracked)
-        if row["category"] == "synonym-cycling":
-            row["label"] = (
-                "yes" if SIGNIFICANCE_TELL in text or FALSE_RANGE_TELL in text else "no"
-            )
-        else:
-            row["label"] = "no" if row["candidate"] else "yes"
-    S.write_jsonl(arm_labels, arm_rows)
-    arm_out = temp_dir("arm-out")
-    arm_run = run_main(
-        ["--jev", "--out", str(arm_out), "--labels", str(arm_labels)],
-        {"root": draw_root, "scanner": draw_scanner, "bin": arm_bin},
-    )
-    arm_lines = arm_run["lines"]
-    jev_verdict_at = next(
-        (index for index, line in enumerate(arm_lines) if line.startswith("verdict jev:")),
-        None,
-    )
-    check(
-        "the Jev switch prints its column",
-        arm_run["code"] == 0
-        and jev_verdict_at is not None
-        and sum(
-            1 for line in arm_lines[:jev_verdict_at] if line.startswith("category ")
-        )
-        == 3,
-    )
-
-    arm_report = json.loads((arm_out / "report.json").read_text(encoding="utf-8"))
-    check(
-        "report.json holds the column's verdict line, categories and identity",
-        arm_report["columns"]["jev"]["line"] == arm_lines[jev_verdict_at]
-        and set(arm_report["columns"]["jev"]["categories"]) == set(S.CATEGORIES)
-        and arm_report["columns"]["jev"]["jevVersion"] == S.JEV_VERSION
-        and "provider" in arm_report["columns"]["jev"],
-    )
-
-    idle_bin = make_stubs()
     idle_dir = temp_dir("idle")
     idle_labels = idle_dir / "labels.jsonl"
     idle_run = run_main(
         ["--labels", str(idle_labels)],
-        {"root": draw_root, "scanner": draw_scanner, "bin": idle_bin},
+        {"root": draw_root, "scanner": draw_scanner},
     )
     check(
-        "default run calls no stub and writes no file",
+        "default run writes no file and stops at the label gate",
         idle_run["code"] == 0
-        and stub_log(idle_bin, "jev") == []
-
         and not (idle_dir / "report.json").exists()
-        and not (idle_dir / "calls.jsonl").exists()
         and not idle_labels.exists()
         and S.GATE_STOP_LINE in idle_run["lines"],
     )

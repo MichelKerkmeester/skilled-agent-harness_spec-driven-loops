@@ -17,7 +17,7 @@ version: 2.2.0.1
 
 Replays each parent hub's stage-two keyword block against the committed gold with zero model calls and judges keep, drop or stop against the prose arm.
 
-Every parent hub ships a `ROUTER.md` whose `INTENT_SIGNALS` and `RESOURCE_MAP` blocks map a request's intent to the leaf resources the hub loads. `leaf-route-replay.cjs` in `sk-create-skill` runs those blocks over the gold the hubs commit and reports what the keyword arm selects. It never changes a router, a map, a manifest or a playbook. The tie-break arm stays dormant unless `--jev` is switched on.
+Every parent hub ships a `ROUTER.md` whose `INTENT_SIGNALS` and `RESOURCE_MAP` blocks map a request's intent to the leaf resources the hub loads. `leaf-route-replay.cjs` in `sk-create-skill` runs those blocks over the gold the hubs commit and reports what the keyword arm selects. It never changes a router, a map, a manifest or a playbook, and it makes zero model calls.
 
 ---
 
@@ -27,7 +27,7 @@ With no switch the run makes zero model calls. The script reads each parent hub'
 
 `--transcripts <dir>` recounts the reads behind the block. The script walks the directory and counts one read per transcript line naming a Read on a `ROUTER.md`, takes the bytes from the paired `tool_result`, and buckets each read by hub and ISO week. It prints `router reads: files=<F> reads=<R> bytes=<B>` then one `router read hub=<id> week=<YYYY-Www> reads=<r> bytes=<b>` line per bucket, and `week=unknown` for a line with no timestamp. Counts and bytes leave the recount and transcript text never does. Without the flag the run prints `router reads: not measured`. `--prose <file>` adds the comparison arm: one line per scenario holding the id and the `workflowMode:leafResourceId` pairs the main AI loaded after reading a `ROUTER.md`, a line that does not fit that grammar is skipped and never guessed. The replay rule fixes coverage first at `10*P >= 9*N`, where `N` counts the rows the keyword arm scored and `P` the rows the prose file covers, and prints `replay verdict: stop (prose arm covers <P> of <N> rows)` below it. Past coverage the keyword arm's mean F1 on the covered rows meets the prose arm's mean F1 on the same rows, `drop` below and `keep` otherwise, and every verdict line ends with `N=<N> P=<P> keyword_f1=<x|n/a> prose_f1=<y|n/a>`. With no `--prose` file the covered set is empty, so the verdict stops on coverage.
 
-`--jev` breaks the ties the replay found, the rows that kept two or more intents, behind its gate, and needs `--out <dir>`. Before any call the run prints `tied: K=<K>`, the `baseline: <union|first>` choice, `margin: 0.10`, `keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(SA-SB) >= M, sign test p < 0.05, flips 10*F <= 3*M` and `instruction: -q "Which intent does this request need?"`. A baseline with fewer than five improvable rows prints `no headroom` and no gate runs. The arm answers every tied row three times in rotated option order and writes every call to `calls.jsonl` before any stop. The column ends in `verdict jev: <keep|kill|stop (<reason>)> K=<K> M=<M> SA=<SA> SB=<SB> W=<W> L=<L> F=<F> p=<p> baseline=<union|first>` followed by the identity fields, and a stopped arm prints `jev: partial_rows=<n>` after its stop line with no verdict. `--report <dir>` writes `report.json` holding the per-hub rows, the totals, the router-read count, the replay verdict and each column verdict that ran. Nothing else is written and no router, map, manifest or playbook is touched.
+`--report <dir>` writes `report.json` holding the per-hub rows, the totals, the router-read count and the replay verdict. Nothing else is written and no router, map, manifest or playbook is touched.
 
 ---
 
@@ -37,7 +37,7 @@ With no switch the run makes zero model calls. The script reads each parent hub'
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Script | Keyword replay, read recount, replay verdict, the tie-break arm and the column verdict |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` | Script | Keyword replay, read recount and replay verdict |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs` | Script | Playbook scenario parser the replay imports for its gold rows |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` | Shared | Frontmatter state and dict-body extraction for `INTENT_SIGNALS` and `RESOURCE_MAP` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs` | Shared | `dualReadLegacyResource` and `compositeKey`, the leaf-pair conversion boundary |
@@ -46,7 +46,7 @@ With no switch the run makes zero model calls. The script reads each parent hub'
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | Unit | Router parsing, the keyword arm, row scoring, the recount, the replay verdict and the gate on a stub binary |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | Unit | Router parsing, the keyword arm, row scoring, the recount, the replay verdict and the baseline and verdict math |
 | `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md` | Manual playbook | Runs the zero-call replay and confirms the markers, the not-measured line and the replay stop line |
 
 ---

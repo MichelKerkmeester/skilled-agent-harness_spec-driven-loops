@@ -322,19 +322,6 @@ default run makes no model call and changes no save. `--score` runs alone and st
 gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` adds
 a verdict column behind that backend's own check.
 
-`runtime/scripts/completion-claim-audit/score-completion-claims.mjs` scores the completion-claim
-detector against operator-labeled turns. Its default run makes no model call and writes no file.
-`--jev` runs that backend's arm behind its own check, and the Jev arm needs
-`--accept-payload` because its payload is the operator's session text.
-
-`runtime/scripts/debug-next-check/score-debug-next-check.mjs` measures offline whether a model
-choice of the cheapest next check for a debug hypothesis beats the best constant answer on
-operator-labeled rows. Its default run makes no model call and writes no file. With `--fixture`
-the run stops at the label gate: with fewer than 30 labeled rows it prints one stop line and
-exits 0. Behind the payload gate only rows marked `jev_ok` may leave the machine, and the Jev arm
-skips when none is marked. `--jev` adds a verdict column behind that backend's
-own check. It changes no debug step.
-
 ---
 
 ## 5. COMMANDS

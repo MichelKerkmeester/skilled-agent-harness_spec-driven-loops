@@ -201,8 +201,6 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 089 | Code standards alignment | [089](tooling-and-scripts/code-standards-alignment.md) | [code-standards-alignment](../feature-catalog/tooling-and-scripts/code-standards-alignment.md) |
 | 460 | Compaction recall census | [460](tooling-and-scripts/compaction-recall-census.md) | [compaction-recall-census](../feature-catalog/tooling-and-scripts/compaction-recall-census.md) |
 | 461 | Alignment suggestion measurement | [461](tooling-and-scripts/alignment-suggestion-measurement.md) | [alignment-suggestion-measurement](../feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md) |
-| 462 | Completion claim audit | [462](tooling-and-scripts/completion-claim-audit.md) | [completion-claim-audit](../feature-catalog/tooling-and-scripts/completion-claim-audit.md) |
-| 463 | Debug next check | [463](tooling-and-scripts/debug-next-check.md) | [debug-next-check](../feature-catalog/tooling-and-scripts/debug-next-check.md) |
 | 233 | Completion verification workflow | [233](tooling-and-scripts/completion-verification-workflow.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
 | 240 | Core workflow infrastructure | [240](tooling-and-scripts/core-workflow-infrastructure.md) | [core-workflow-infrastructure](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
 | DBG-SCAF-001 | Debug-delegation scaffold generator | [DBG-SCAF-001](tooling-and-scripts/debug-delegation-scaffold-generator.md) | [debug-delegation-scaffold-generator](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |

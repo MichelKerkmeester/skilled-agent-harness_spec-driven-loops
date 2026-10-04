@@ -23,6 +23,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { spawnClassifierCall } from '../../../../cli-classifier/shared/scripts/jev-transport.mjs';
+import { bootstrapLine, clusterBootstrapInterval as clusterBootstrapItems, decidedSubsetLine, marginSlack, marginSlackLine, outDirectoryHoldsRun, pinRowSet as pinRows, probabilityAwarePick } from '../../../../cli-classifier/shared/scripts/scorer-report.mjs';
 
 import { DEFAULT_REPO_ROOT } from './generate-trigger-index.mjs';
 import { compareCodeUnits, normalizeTriggerText } from './lib/normalize.mjs';
@@ -58,7 +59,6 @@ export const NONE_KEY = 'none';
 export const NONE_DESCRIPTION = 'None of these tracks';
 export const ORDERS = 3;
 export const SHORTLIST_SIZE = 5;
-const BOOTSTRAP_REPLICATES = 1000;
 export const MARGIN_LINE = 'margin: 0.10';
 export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, '
   + 'margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M';
@@ -1032,25 +1032,10 @@ export function pinRowSet(testSet, options) {
     track: row.track,
     questionSha256: createHash('sha256').update(row.question).digest('hex'),
   }));
-  const canonical = JSON.stringify({ rows, optionSetSha256: options.sha256 });
-  return {
-    rowSetSha256: createHash('sha256').update(canonical).digest('hex'),
-    rowCount: rows.length,
-    optionSetSha256: options.sha256,
-    rows,
-  };
+  return pinRows(rows, { optionSetSha256: options.sha256 });
 }
 
-/**
- * Whether an output directory already contains a scorer run.
- *
- * @param {string | undefined} outDir Candidate output directory.
- * @returns {boolean} True when either durable run artifact already exists.
- */
-export function outDirectoryHoldsRun(outDir) {
-  if (typeof outDir !== 'string' || outDir === '') return false;
-  return ['calls.jsonl', 'report.json'].some((name) => fs.existsSync(path.join(outDir, name)));
-}
+export { outDirectoryHoldsRun };
 
 /**
  * Read recorded calls without invoking the Jev executable.
@@ -1168,30 +1153,35 @@ function selectReplayRows(testSet, rowPins) {
 }
 
 /**
- * One model identity shared by every record in a replay.
+ * The model identity a scored call log prints. Measured judgment records win
+ * over the others, because an auth probe names the model the CLI used to check
+ * the credential rather than the one that answered a judgment; every usable
+ * record is the fallback when no judgment measured. Version and provider must
+ * each be single-valued, and the distinct answering model names are sorted and
+ * joined so a log that mixed models still names each one.
  *
  * @param {Array<Record<string, unknown>>} records Recorded calls.
  * @returns {{ jevVersion: string, provider: string, model: string }}
- * @throws {Error} When the records do not identify exactly one model tuple.
+ * @throws {Error} When the records do not identify exactly one Jev model tuple.
  */
 export function modelTupleFromRecords(records) {
-  const tuples = new Map();
-  for (const record of records) {
-    if (
-      record.backend !== 'jev'
-      || typeof record.jevVersion !== 'string'
-      || typeof record.provider !== 'string'
-      || typeof record.model !== 'string'
-    ) continue;
-    const tuple = {
-      jevVersion: record.jevVersion,
-      provider: record.provider,
-      model: record.model,
-    };
-    tuples.set(JSON.stringify(tuple), tuple);
+  const usable = records.filter((record) => record.backend === 'jev'
+    && typeof record.jevVersion === 'string'
+    && typeof record.provider === 'string'
+    && typeof record.model === 'string');
+  const measuredJudgments = usable.filter((record) => record.kind !== 'auth_test' && record.status === 'measured');
+  const chosen = measuredJudgments.length > 0 ? measuredJudgments : usable;
+  const jevVersions = new Set(chosen.map((record) => record.jevVersion));
+  const providers = new Set(chosen.map((record) => record.provider));
+  if (jevVersions.size !== 1 || providers.size !== 1) {
+    throw new Error('call log must identify exactly one Jev model tuple');
   }
-  if (tuples.size !== 1) throw new Error('call log must identify exactly one Jev model tuple');
-  return [...tuples.values()][0];
+  const models = [...new Set(chosen.map((record) => record.model))].sort();
+  return {
+    jevVersion: [...jevVersions][0],
+    provider: [...providers][0],
+    model: models.join('+'),
+  };
 }
 
 function recordsByRowAndOrder(records, kind) {
@@ -1227,32 +1217,9 @@ function picksForRow(byRow, rowId, orderCount = ORDERS) {
   return Array.from({ length: orderCount }, (_, order) => recordedPick(byOrder?.get(order)));
 }
 
-function sumProbability(scores, key, value) {
-  if (typeof key !== 'string' || typeof value !== 'number' || !Number.isFinite(value)) return;
-  scores.set(key, (scores.get(key) ?? 0) + value);
-}
-
 function probabilityPick(records) {
   if (!Array.isArray(records) || records.length !== ORDERS) return null;
-  const scores = new Map();
-  for (const record of records) {
-    if (recordedPick(record) === null) return null;
-    if (record.pick === NONE_KEY) {
-      sumProbability(scores, NONE_KEY, record.pickProb ?? record.noneProb);
-    } else {
-      sumProbability(scores, record.pick, record.pickProb);
-      sumProbability(scores, NONE_KEY, record.noneProb);
-    }
-  }
-  let bestKey = null;
-  let bestScore = -Infinity;
-  for (const [key, score] of scores) {
-    if (score > bestScore) {
-      bestKey = key;
-      bestScore = score;
-    }
-  }
-  return bestKey;
+  return probabilityAwarePick(records.map((record) => ({ pick: recordedPick(record), pickProb: record?.pickProb, noneProb: record?.noneProb })), NONE_KEY);
 }
 
 function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, orderCount) {
@@ -1314,19 +1281,8 @@ function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, or
     decidedCount,
     decidedCorrect,
     decidedAccuracy: decidedCount === 0 ? null : decidedCorrect / decidedCount,
-    marginSlack: M === 0 ? null : (A - B) - (M / 10),
+    marginSlack: marginSlack({ A, B, M }),
   };
-}
-
-function percentile(values, quantile) {
-  if (values.length === 0) return null;
-  const sorted = [...values].sort((left, right) => left - right);
-  const position = (sorted.length - 1) * quantile;
-  const lower = Math.floor(position);
-  const upper = Math.ceil(position);
-  if (lower === upper) return sorted[lower];
-  const fraction = position - lower;
-  return sorted[lower] + ((sorted[upper] - sorted[lower]) * fraction);
 }
 
 /**
@@ -1338,58 +1294,18 @@ function percentile(values, quantile) {
  * @returns {{ clusterCount: number, replicates: number, estimate: number | null, lower: number | null, upper: number | null }}
  */
 export function clusterBootstrapInterval(rows, picks, baselinePicks) {
-  const clusters = new Map();
-  let totalDelta = 0;
-  let totalRows = 0;
+  const items = [];
   for (const row of rows) {
     const pick = picks.get(row.id);
     if (typeof pick !== 'string') continue;
-    const delta = Number(pick === row.track) - Number(baselinePicks.get(row.id) === row.track);
-    if (!clusters.has(row.track)) clusters.set(row.track, []);
-    clusters.get(row.track).push(delta);
-    totalDelta += delta;
-    totalRows += 1;
-  }
-  const names = [...clusters.keys()].sort(compareCodeUnits);
-  if (names.length === 0) {
-    return {
-      clusterCount: 0,
-      replicates: BOOTSTRAP_REPLICATES,
-      estimate: null,
-      lower: null,
-      upper: null,
-    };
+    items.push({
+      cluster: row.track,
+      delta: Number(pick === row.track) - Number(baselinePicks.get(row.id) === row.track),
+    });
   }
 
   const seedText = rows.map((row) => `${row.id}\u0000${picks.get(row.id) ?? ''}`).join('\n');
-  const seedBytes = createHash('sha256').update(seedText).digest();
-  let state = seedBytes.readUInt32BE(0) || 1;
-  const random = () => {
-    state = (Math.imul(1664525, state) + 1013904223) >>> 0;
-    return state / 0x1_0000_0000;
-  };
-  const estimates = [];
-  for (let replicate = 0; replicate < BOOTSTRAP_REPLICATES; replicate += 1) {
-    let delta = 0;
-    let sampledRows = 0;
-    for (let draw = 0; draw < names.length; draw += 1) {
-      const name = names[Math.floor(random() * names.length)];
-      const cluster = clusters.get(name);
-      for (const rowDelta of cluster) {
-        delta += rowDelta;
-        sampledRows += 1;
-      }
-    }
-    estimates.push(sampledRows === 0 ? 0 : delta / sampledRows);
-  }
-
-  return {
-    clusterCount: names.length,
-    replicates: BOOTSTRAP_REPLICATES,
-    estimate: totalDelta / totalRows,
-    lower: percentile(estimates, 0.025),
-    upper: percentile(estimates, 0.975),
-  };
+  return clusterBootstrapItems(items, seedText);
 }
 
 /**
@@ -1467,11 +1383,8 @@ function recordedAnalysisLines(analysis, out) {
   out(columnLine(analysis.column, analysis.latency));
   out(analysis.column.line);
   out(analysis.probabilityAware.line);
-  const decidedAccuracy = analysis.probabilityAware.decidedAccuracy;
-  out(`decided-subset probability-aware: ${analysis.probabilityAware.decidedCorrect}/${analysis.probabilityAware.decidedCount}`
-    + ` accuracy=${decidedAccuracy === null ? 'none' : decidedAccuracy.toFixed(4)}`);
-  const marginSlack = analysis.probabilityAware.marginSlack;
-  out(`margin slack probability-aware: ${marginSlack === null ? 'none' : marginSlack.toFixed(1)} rows`);
+  out(decidedSubsetLine('probability-aware', analysis.probabilityAware));
+  out(marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
   out(analysis.oneCall.line);
   out(`shortlist arm: candidates=${analysis.shortlist.candidateTracks}`
     + ` calls_per_row=${analysis.shortlist.callsPerRow} accuracy=not-measured reason=${analysis.shortlist.reason}`);
@@ -1480,9 +1393,7 @@ function recordedAnalysisLines(analysis, out) {
       + ` correct=${bucket.correct} wrong=${bucket.wrong} abstained=${bucket.abstained}`
       + ` confusion=${JSON.stringify(bucket.confusion)}`);
   }
-  const { clusterCount, replicates, lower, upper } = analysis.bootstrap;
-  out(`bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[${lower === null ? 'none' : lower.toFixed(4)},${upper === null ? 'none' : upper.toFixed(4)}]`
-    + ` clusters=${clusterCount} replicates=${replicates}`);
+  out(bootstrapLine('probability-aware', analysis.bootstrap));
 }
 
 /**
@@ -1788,7 +1699,7 @@ export async function runJevArm(plan, gate, ctx) {
       status,
       jevVersion: JEV_VERSION,
       provider: gate.provider,
-      model,
+      model: r.model ?? model,
     };
   }
 
@@ -1862,11 +1773,8 @@ export async function runJevArm(plan, gate, ctx) {
     finished += 1;
   }
 
-  const modelTuple = {
-    jevVersion: JEV_VERSION,
-    provider: gate.provider,
-    model,
-  };
+  // A live run and a replay of its own call log must print the same verdict line, so both read the records.
+  const modelTuple = modelTupleFromRecords(callRecords);
   const analysis = analyzeRecordedCalls(plan, callRecords, modelTuple);
   recordedAnalysisLines(analysis, ctx.out);
   const column = {

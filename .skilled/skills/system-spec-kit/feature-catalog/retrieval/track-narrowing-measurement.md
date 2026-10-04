@@ -33,7 +33,7 @@ With no switch the script makes no model call and writes no file. It prints the 
 
 ### Model Columns
 
-`--jev` asks one Jev provider the `choice` question over the tracks plus `none`, in three option orders for every row. The arm runs only behind its own check: the pinned Jev version and its credential status. A run with the switch needs `--out <dir>`, where it writes `calls.jsonl` with one record per call and `report.json`. The keep rule asks, in order, for coverage of nine rows in ten, a margin of one measured row in ten over the baseline, a one-sided sign test below 0.05 and at most one call in ten that differs from its row's most common pick. Each verdict line names the model it measured, and a later run into the same directory prints a requalify line when that model changed.
+`--jev` asks one Jev provider the `choice` question over the tracks plus `none`, in three option orders for every row. The arm runs only behind its own check: the pinned Jev version and its credential status. A run with the switch needs `--out <dir>`, where it writes `calls.jsonl` with one record per call and `report.json`. The keep rule asks, in order, for coverage of nine rows in ten, a margin of one measured row in ten over the baseline, a one-sided sign test below 0.05 and at most one call in ten that differs from its row's most common pick. Each call record and the verdict line name the model that answered the call: Pi's model when Pi answered, the CLI's when the CLI did, joined with `+` when both answered in one run. A run refuses an `--out` directory that already holds a run, so no recording is overwritten. `report.json` pins the scored rows, each with its question hash, beside the option set and the model tuple. After the verdict the run prints a probability-aware arm that sums each row's pick probabilities over its three orders, that arm's decided-subset accuracy and margin slack, a one-call arm, a per-track table and a bootstrap interval that resamples whole tracks. `--replay <calls.jsonl>` scores a recording's own rows again with no call.
 
 ---
 
@@ -46,6 +46,7 @@ With no switch the script makes no model call and writes no file. It prints the 
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` | Script | Builds the test set, scores both baselines, runs the model arms and prints each verdict |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Shared | The lookup the first baseline reads |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs` | Shared | The path-only ripgrep recipe the second baseline runs |
+| `.skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs` | Shared | The row pin, the output-directory check, the probability-aware pick, margin slack and the cluster bootstrap this script shares with its sibling scorers |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json` | Shared | The paraphrase probes the last line reports |
 
 ### Validation And Tests

@@ -17,11 +17,11 @@ description: "Python and Node utilities shared across every /create:* command: t
 
 | File | Purpose |
 |------|---------|
-| `validate_document.py` | Validates a markdown document against its type template (readme, skill, reference, asset, agent, command, install_guide, spec, changelog), with `--fix` and `--json` modes. |
+| `validate_document.py` | Validates a markdown document against its type template (readme, skill, reference, asset, agent, command, install_guide, spec, changelog), with `--fix` and `--json` modes. Its human report ends with any `cite-drift advisory:` lines from `cite-drift-scan.mjs --advise`, which never change the exit code; `SKDOC_CITE_DRIFT_CHECK=0` skips them. |
 | `extract_structure.py` | Extracts frontmatter, headings, code blocks and metrics from a markdown document as JSON for AI-assisted analysis. |
 | `quick_validate.py` | Validates a `SKILL.md`'s frontmatter: required fields, name format, description budget and no placeholders. |
 | `frontmatter-version.mjs` | Computes, applies or verifies the 4-part `version` frontmatter field across in-scope skill docs. |
-| `cite-drift-scan.mjs` | Counts the `<path>.<ext>:<line>` citations in the prose of every tracked skill doc at HEAD, prints per-skill and total counts plus the dead citations, and makes zero model calls by default. `--draw --seed <n>` writes 40 rows (20 live, 20 constructed) to `cite-drift-labels.jsonl`, the default labels file beside the script, and `--labels <file>` names another. `--jev` needs `--out <dir>` and measures the backend against two fixed comparators. |
+| `cite-drift-scan.mjs` | Counts the `<path>.<ext>:<line>` citations in the prose of every tracked skill doc at HEAD, prints per-skill and total counts plus the dead citations, and makes zero model calls by default. `--draw --seed <n>` writes 40 rows (20 live, 20 constructed) to `cite-drift-labels.jsonl`, the default labels file beside the script, and `--labels <file>` names another. `--jev` needs `--out <dir>` and measures the backend against two fixed comparators. `--advise <doc>...` checks only those documents' citations, stays silent without a stored Jev credential and always exits 0. |
 | `check-frontmatter-versions.sh` | Thin CI/pre-commit wrapper that execs `frontmatter-version.mjs gate`. |
 | `naming_root_resolver.py` | Canonical-only resolver for the `feature-catalog` and `manual-testing-playbook` root directory names. Fails closed on a legacy underscore alias. |
 | `check_no_new_snake_case.py` | Rejects non-exempt snake_case filesystem names, in changed-only or whole-tree mode. |

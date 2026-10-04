@@ -119,38 +119,6 @@ See [`tooling-and-scripts/compaction-recall-census.md`](tooling-and-scripts/comp
 
 ---
 
-### Completion claim audit
-
-#### Description
-
-Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--jev` and reports one keep, kill or stop decision.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind its own switch, `--jev`, with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
-
-#### Source Files
-
-See [`tooling-and-scripts/completion-claim-audit.md`](tooling-and-scripts/completion-claim-audit.md) for full implementation and test file listings.
-
----
-
-### Debug next check
-
-#### Description
-
-Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` makes zero model calls by default and writes nothing outside `--out`. Its fixture must sit outside the repository, `--jev` sends only rows marked `jev_ok: true`, and no run on real rows has printed a `verdict` line.
-
-#### Source Files
-
-See [`tooling-and-scripts/debug-next-check.md`](tooling-and-scripts/debug-next-check.md) for full implementation and test file listings.
-
----
-
 ### Alignment suggestion measurement
 
 #### Description
