@@ -1,7 +1,7 @@
 ---
 title: "465 -- Source tag resolution"
 description: "This scenario validates source tag resolution for `465`. It focuses on the SOURCE_TAGS helper checking every [SOURCE: ...] citation in a research packet with no warning when the cutoff is moved back, and skipping the same packet with one line naming the cutoff when it is not."
-version: 1.0.0.0
+version: 2.7.0.2
 ---
 
 # 465 -- Source tag resolution
