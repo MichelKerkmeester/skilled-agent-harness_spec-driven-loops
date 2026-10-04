@@ -34,6 +34,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from typing import Dict, List, Optional, Tuple
 
@@ -50,6 +51,8 @@ RULE_REF = re.compile(r"(REPO RULES\.md|REPO\\ RULES\.md|repo-rules/(?:cards/)?[
 PATCH_PATH = re.compile(r"\*\*\* (?:Update|Add|Delete) File: ([^\\\n\"]+)")
 RATE_METRICS = ["table_unasked", "table_unasked_rule_delivered", "communication_delivered", "any_prohibition",
                 "gate5_miss", "reply_rules_miss", "fallback"]
+QUOTA = re.compile(r"usage limit|quota has been exhausted|resource_exhausted", re.I)
+QUOTA_STOP = 3
 SKILL_LINK = re.compile(r"\]\((\.\./skills/[^)#\s]+)")
 SESSION_ID = re.compile(r"^session id: ([0-9a-f-]{36})", re.M)
 RUN_TIMEOUT = 900
@@ -179,7 +182,13 @@ def run(args: argparse.Namespace) -> None:
     todo = [job for job in jobs if (job[0], job[1]["id"], job[2]) not in done]
     print(f"{len(todo)} runs to do ({len(jobs) - len(todo)} already recorded)", flush=True)
 
+    stop = threading.Event()
+    lock = threading.Lock()
+    streak = [0]
+
     def task(job):
+        if stop.is_set():
+            return None
         arm, prompt, rep = job
         run_dir = os.path.join(args.envs, arm, "runs", f"{args.executor}-{prompt['id']}-r{rep}")
         if os.path.exists(run_dir):
@@ -188,16 +197,30 @@ def run(args: argparse.Namespace) -> None:
                          prompts.get("suffix", ""))
         record.update(arm=arm, prompt_id=prompt["id"], rep=rep, executor=args.executor,
                       asked_table=bool(MRC.TABLE_ASK.search(prompt["text"])))
+        # A quota failure says nothing about the arm, so it is not recorded and a resume reruns it.
+        record["quota"] = bool(QUOTA.search(record.get("error") or ""))
+        with lock:
+            streak[0] = streak[0] + 1 if record["quota"] else 0
+            if streak[0] >= QUOTA_STOP:
+                stop.set()
         return record
 
     with open(args.out, "a") as out, concurrent.futures.ThreadPoolExecutor(args.jobs) as pool:
         futures = [pool.submit(task, job) for job in todo]
         for count, future in enumerate(concurrent.futures.as_completed(futures), 1):
             record = future.result()
+            if record is None:
+                continue
+            if record.pop("quota"):
+                print(f"[{count}/{len(todo)}] {record['arm']} {record['prompt_id']} r{record['rep']} quota, not recorded",
+                      flush=True)
+                continue
             out.write(json.dumps(record) + "\n")
             out.flush()
             print(f"[{count}/{len(todo)}] {record['arm']} {record['prompt_id']} r{record['rep']} "
                   f"exit={record['exit']} {record['seconds']}s", flush=True)
+    if stop.is_set():
+        print(f"stopped: {QUOTA_STOP} quota failures in a row; resume once the quota resets", flush=True)
 
 # ───────────────────────────────────────────────────────────────
 # 4. TRANSCRIPTS

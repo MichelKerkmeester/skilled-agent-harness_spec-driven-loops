@@ -104,3 +104,25 @@ def test_rule_read_after_the_final_reply_is_not_delivered(tmp_path: Path) -> Non
     ])
     scored = rx.score_run({"exit": 0, "transcript": late, "run_dir": run_dir, "executor": "deepseek"}, {})
     assert scored["communication_delivered"] is False
+
+
+def test_quota_failures_are_not_recorded_and_stop_the_run(tmp_path: Path, monkeypatch) -> None:
+    arms = tmp_path / "arms.json"
+    arms.write_text(json.dumps({"arms": [{"name": "a"}, {"name": "b"}]}))
+    prompts = tmp_path / "prompts.json"
+    prompts.write_text(json.dumps({"prompts": [{"id": f"p{i}", "text": "q"} for i in range(10)]}))
+    calls = []
+
+    def quota_run(executor, template, run_dir, prompt, suffix):
+        calls.append(prompt["id"])
+        return {"run_dir": run_dir, "exit": 1, "error": "ERROR: You've hit your usage limit.", "seconds": 0.1}
+
+    monkeypatch.setattr(rx, "run_one", quota_run)
+    out = tmp_path / "runs.jsonl"
+    args = rx.argparse.Namespace(arms=str(arms), envs=str(tmp_path / "envs"), prompts=str(prompts), executor="luna",
+                                 out=str(out), repeat=1, jobs=1, seed=1, limit=0)
+
+    rx.run(args)
+
+    assert out.read_text() == ""
+    assert len(calls) < 20
