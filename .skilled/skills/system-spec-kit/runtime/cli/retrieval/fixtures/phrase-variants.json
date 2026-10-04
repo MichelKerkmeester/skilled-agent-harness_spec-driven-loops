@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
+  "manifestHash": "f00a899fea342527031495196ff9a517137eccced304bf7b8279ef2c66591635",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16884,6 +16884,12 @@
     "citation census": [
       "citation census"
     ],
+    "citation drift advisory": [
+      "citation drift advisory"
+    ],
+    "citation drift advisory check": [
+      "citation drift advisory check"
+    ],
     "citation drift build order": [
       "citation drift build order"
     ],
@@ -23605,17 +23611,11 @@
     "completion claim audit tasks": [
       "completion claim audit tasks"
     ],
-    "completion claim census": [
-      "completion claim census"
-    ],
     "completion claim census plan": [
       "completion claim census plan"
     ],
     "completion claim census tasks": [
       "completion claim census tasks"
-    ],
-    "completion claim detector": [
-      "completion claim detector"
     ],
     "completion claim gate": [
       "completion claim gate"
@@ -28266,9 +28266,6 @@
     ],
     "debug logging flag": [
       "debug logging flag"
-    ],
-    "debug next check": [
-      "debug next check"
     ],
     "debug next check census": [
       "debug next-check census"
@@ -41012,9 +41009,6 @@
     "finding set stability": [
       "finding-set stability"
     ],
-    "finding table census": [
-      "finding table census"
-    ],
     "findings completeness mapping table": [
       "findings completeness mapping table"
     ],
@@ -44185,9 +44179,6 @@
     ],
     "goal criteria rubric rules 4 and 5": [
       "goal criteria rubric rules 4 and 5"
-    ],
-    "goal criteria rules 4 and 5": [
-      "goal criteria rules 4 and 5"
     ],
     "goal cross runtime docs": [
       "goal cross runtime docs"
@@ -49621,6 +49612,9 @@
     "jev folder suggestion improvement": [
       "jev folder suggestion improvement"
     ],
+    "jev follow ups": [
+      "jev follow-ups"
+    ],
     "jev gate": [
       "jev gate"
     ],
@@ -50373,9 +50367,6 @@
     ],
     "labeled set scorer tasks": [
       "labeled set scorer tasks"
-    ],
-    "labeled turn judgment": [
-      "labeled turn judgment"
     ],
     "labeling card criteria": [
       "labeling card criteria"
@@ -52078,9 +52069,6 @@
     ],
     "lint goal criteria": [
       "lint-goal-criteria"
-    ],
-    "lint goal criteria cjs": [
-      "lint-goal-criteria.cjs"
     ],
     "lint goal criteria completion criteria": [
       "lint-goal-criteria completion criteria"
@@ -60326,14 +60314,8 @@
     "next action verb list": [
       "next action verb list"
     ],
-    "next check choice scorer": [
-      "next check choice scorer"
-    ],
     "next check keep rule": [
       "next check keep rule"
-    ],
-    "next check label census": [
-      "next-check label census"
     ],
     "next check label gate plan": [
       "next check label gate plan"
@@ -61902,9 +61884,6 @@
     ],
     "offline hallucination grader test": [
       "offline hallucination grader test"
-    ],
-    "offline jev tie break eval": [
-      "offline jev tie-break eval"
     ],
     "offline listing": [
       "offline listing"
@@ -79713,7 +79692,6 @@
       "score-compaction-recall tasks"
     ],
     "score completion claims": [
-      "score completion claims",
       "score-completion-claims"
     ],
     "score completion claims complete": [
@@ -79721,9 +79699,6 @@
     ],
     "score completion claims completion criteria": [
       "score-completion-claims completion criteria"
-    ],
-    "score completion claims mjs": [
-      "score-completion-claims.mjs"
     ],
     "score completion claims plan": [
       "score-completion-claims plan"
@@ -79756,7 +79731,6 @@
       "score-d4-agreement tasks"
     ],
     "score debug next check": [
-      "score debug next check",
       "score-debug-next-check"
     ],
     "score debug next check build": [
@@ -79764,9 +79738,6 @@
     ],
     "score debug next check completion criteria": [
       "score-debug-next-check completion criteria"
-    ],
-    "score debug next check mjs": [
-      "score-debug-next-check.mjs"
     ],
     "score debug next check tasks": [
       "score-debug-next-check tasks"
@@ -79797,9 +79768,6 @@
     ],
     "score goal lint": [
       "score-goal-lint"
-    ],
-    "score goal lint cjs": [
-      "score-goal-lint.cjs"
     ],
     "score goal lint plan": [
       "score-goal-lint plan"
@@ -79894,9 +79862,6 @@
     "score severity replay build": [
       "score-severity-replay build"
     ],
-    "score severity replay cjs": [
-      "score-severity-replay.cjs"
-    ],
     "score severity replay completion criteria": [
       "score-severity-replay completion criteria"
     ],
@@ -79909,9 +79874,6 @@
     "score stop hint build": [
       "score-stop-hint build"
     ],
-    "score stop hint cjs": [
-      "score-stop-hint.cjs"
-    ],
     "score stop hint completion criteria": [
       "score-stop-hint completion criteria"
     ],
@@ -79923,9 +79885,6 @@
     ],
     "score stop rater build": [
       "score-stop-rater build"
-    ],
-    "score stop rater cjs": [
-      "score-stop-rater.cjs"
     ],
     "score stop rater completion criteria": [
       "score-stop-rater completion criteria"
@@ -80083,15 +80042,6 @@
     ],
     "scoring rubric cross critique": [
       "scoring_rubric cross-critique"
-    ],
-    "scoring severity replay": [
-      "scoring severity replay"
-    ],
-    "scoring stop hint replay": [
-      "scoring stop-hint replay"
-    ],
-    "scoring stop rater replay": [
-      "scoring stop-rater replay"
     ],
     "scoring tasks": [
       "scoring tasks"
@@ -81574,9 +81524,6 @@
     ],
     "severity replay plan": [
       "severity replay plan"
-    ],
-    "severity replay runtime": [
-      "severity replay runtime"
     ],
     "severity replay tasks": [
       "severity replay tasks"
@@ -91852,12 +91799,6 @@
     "stop hint keep rule": [
       "stop hint keep rule"
     ],
-    "stop hint replay": [
-      "stop-hint replay"
-    ],
-    "stop hint replay runtime": [
-      "stop-hint replay runtime"
-    ],
     "stop hint tasks": [
       "stop hint tasks"
     ],
@@ -91903,14 +91844,8 @@
     "stop rater gold fixed": [
       "stop rater gold fixed"
     ],
-    "stop rater replay": [
-      "stop-rater replay"
-    ],
     "stop rater replay plan": [
       "stop rater replay plan"
-    ],
-    "stop rater replay runtime": [
-      "stop-rater replay runtime"
     ],
     "stop rater tasks": [
       "stop rater tasks"
@@ -92665,9 +92600,6 @@
     ],
     "sufficient fits goal": [
       "sufficient fits goal"
-    ],
-    "suggested order eval": [
-      "suggested order eval"
     ],
     "suggested order eval verdict": [
       "suggested order eval verdict"
@@ -95445,9 +95377,6 @@
     ],
     "tie break arm tasks": [
       "tie-break arm tasks"
-    ],
-    "tie break eval": [
-      "tie-break eval"
     ],
     "tier 1 research and remediation": [
       "tier 1 research and remediation"
