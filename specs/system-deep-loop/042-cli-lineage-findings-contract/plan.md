@@ -114,7 +114,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The review reducer's `parseIterationFile` export | Internal | Green | The gate's Markdown source would need its own parser |
-| The AI Systems research rerun | External to this repository | Pending | SC-002 stays unproven until it runs |
+| The AI Systems research rerun | External to this repository | Green | Closed `synthesis_complete`, proving SC-002 |
 <!-- /ANCHOR:dependencies -->
 
 ---

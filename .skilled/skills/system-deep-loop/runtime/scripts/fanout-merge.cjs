@@ -23,6 +23,7 @@ const {
   parseIterationMarkdownFindings,
   latestIterationRecords,
   deltaRowIteration,
+  findingKeys,
 } = require('../lib/deep-loop/iteration-findings.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
@@ -1203,6 +1204,61 @@ function countOnlyResearchFindings(stateRecords) {
   }, 0);
 }
 
+// The cross-lineage merge keys a research finding by its id or title and drops any
+// entry with neither, so only such entries count as present in a registry.
+function mergeKeepsResearchFinding(finding) {
+  return Boolean(finding) && typeof finding === 'object' && Boolean(finding.id || finding.title);
+}
+
+function keptResearchFindingKeys(findings) {
+  return new Set(findings.filter(mergeKeepsResearchFinding).flatMap(findingKeys));
+}
+
+// Structured findings a state record lists by name, matched against the registry by
+// the same keys the closeout uses, so a registry the closeout would reject for a
+// missing finding is rebuilt here instead.
+function researchStructuredFindingsMissingFromRegistry(stateRecords, registry) {
+  const registryFindings = [registry?.keyFindings, registry?.findings]
+    .find((value) => Array.isArray(value) && value.length > 0) || [];
+  const registryKeys = keptResearchFindingKeys(registryFindings);
+  return latestIterationRecords(stateRecords).reduce((sum, record) => {
+    if (!record || record.type !== 'iteration') return sum;
+    const structured = [record.keyFindings, record.findings]
+      .find((value) => Array.isArray(value) && value.length > 0);
+    if (!structured) return sum;
+    return sum + structured
+      .map(findingKeys)
+      .filter((keys) => keys.length > 0 && !keys.some((key) => registryKeys.has(key)))
+      .length;
+  }, 0);
+}
+
+// Add the rebuilt findings a kept registry does not already hold, for a registry
+// that is larger than the rebuild but still misses findings the state names. The
+// rebuild's gap survives, and only the added findings raise the source count, which
+// falls back to the registry size the way the cross-lineage merge reads it.
+function appendMissingResearchFindings(registry, reconstructed) {
+  const kept = [registry.keyFindings, registry.findings]
+    .find((value) => Array.isArray(value) && value.length > 0) || [];
+  const keptKeys = keptResearchFindingKeys(kept);
+  const added = reconstructed.keyFindings.filter((finding) => !findingKeys(finding).some((key) => keptKeys.has(key)));
+  const keyFindings = [...kept, ...added];
+  const metrics = registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {};
+  return {
+    ...registry,
+    keyFindings,
+    metrics: {
+      ...metrics,
+      keyFindings: keyFindings.length,
+      sourceFindings: (Number(metrics.sourceFindings) || kept.length) + added.length,
+      reconstructionGaps: Math.max(
+        Number(metrics.reconstructionGaps) || 0,
+        Number(reconstructed.metrics?.reconstructionGaps) || 0,
+      ),
+    },
+  };
+}
+
 function mergeReconstructedResearchRegistry(registry, reconstructed) {
   if (!registry) return reconstructed;
   return {
@@ -1286,7 +1342,10 @@ async function main() {
     }
     const registryCount = researchRegistryFindingCount(registry);
     const countOnlyTotal = countOnlyResearchFindings(stateRecords);
-    if (loopType === 'research' && (registryCount === 0 || registryCount < countOnlyTotal)) {
+    const structuredMissing = loopType === 'research'
+      ? researchStructuredFindingsMissingFromRegistry(stateRecords, registry)
+      : 0;
+    if (loopType === 'research' && (registryCount === 0 || registryCount < countOnlyTotal || structuredMissing > 0)) {
       // Reconstruction can throw when one iteration's findingsCount contradicts its
       // structured findings array. That must degrade only this lineage — left
       // uncaught, the throw unwinds out of this per-lineage loop and aborts the merge
@@ -1309,13 +1368,19 @@ async function main() {
       }
       if (reconstructed && (registryCount === 0 || reconstructed.keyFindings.length > registryCount)) {
         registry = mergeReconstructedResearchRegistry(registry, reconstructed);
+      } else if (reconstructed && structuredMissing > 0) {
+        registry = appendMissingResearchFindings(registry, reconstructed);
       } else if (registryCount > 0) {
-        // A kept registry names its gap whether the rebuild came back short or threw.
+        // A kept registry names its gap whether the rebuild came back short or threw,
+        // and never lowers a gap it already recorded.
         registry = {
           ...registry,
           metrics: {
             ...(registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {}),
-            reconstructionGaps: Math.max(0, countOnlyTotal - registryCount),
+            reconstructionGaps: Math.max(
+              Number(registry.metrics?.reconstructionGaps) || 0,
+              countOnlyTotal - registryCount,
+            ),
           },
         };
       }

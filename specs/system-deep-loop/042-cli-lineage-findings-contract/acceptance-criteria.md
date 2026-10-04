@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T13:23:40Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded evidence for every criterion"
-    next_safe_action: "Prove SC-002 with the DeepSeek-only rerun in the AI Systems research packet"
+    next_safe_action: "None. The packet is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-deep-loop/042-cli-lineage-findings-contract
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -61,9 +61,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-004 | Given each new test, When it runs against the unpatched code, Then it fails | Unpatched run: 9 failed. Each review gate rule disabled in turn failed its own test, `.skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts:655` among them, then passed on restore | Met | - |
 | AC-006 | REQ-005 | Given a lineage registry with `openQuestions` stored as a number, When the merge runs, Then it exits 0 and keeps every lineage | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-question-shape.vitest.ts:14` | Met | - |
 | AC-007 | REQ-006 | Given `deep-ai-council` and `deep-improvement`, When checked for the defect class, Then each is shown absent with file:line evidence | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:145`, `.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs:134` | Met | - |
-| AC-008 | REQ-007 | Given the full runtime suite, When run after the change, Then no test fails that passed at the baseline of 164 files and 2,799 passed | PASS: 167 files, 2,816 passed, 8 skipped, exit 0. Baseline 164 files, 2,799 passed, 8 skipped, so 3 new files and 17 new tests with no failure | Met | - |
+| AC-008 | REQ-007 | Given the full runtime suite, When run after the change, Then no test fails that passed at the baseline of 164 files and 2,799 passed | PASS: 168 files, 2,821 passed, 8 skipped, exit 0. Baseline 164 files, 2,799 passed, 8 skipped, so 4 new files and 22 new tests with no failure | Met | - |
 | AC-009 | SC-001 | Given the ten kept iterations of the AI Systems research run, When the gate runs on each, Then the five DeepSeek iterations fail with `findings_not_enumerated` and the five Luna iterations pass | Replayed 2026-10-04: DeepSeek 1-5 fail, Luna 1-5 pass | Met | - |
-| AC-010 | SC-002 | Given this change in place, When the DeepSeek lineage of that research reruns, Then the closeout reports `synthesis_complete` | Runs in the AI Systems repository after this commit | Unmet | - |
+| AC-010 | SC-002 | Given this change in place, When the DeepSeek lineage of that research reruns, Then the closeout reports `synthesis_complete` | AI Systems `specs/088-media-editor-cli-runtime/001-deep-research/research/`: DeepSeek rerun through cli-devin, merge 80 findings with gap 0, closeout exit 0 and `synthesis_complete` recorded at ledger sequence 4 | Met | - |
+| AC-011 | REQ-003 | Given a lineage registry larger than its count-only total that lacks a finding its state names, When the merge and the closeout run, Then the merge adds the finding and the closeout reports `synthesis_complete` | Five cases from `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-structured-missing.vitest.ts:59` to `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-structured-missing.vitest.ts:157`, each guarding rule disabled in turn failed its own case | Met | - |
 
 ### Status values
 
@@ -88,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 to AC-009 are met by tests, negative controls and a replay of the failing run. AC-010 stays open until the DeepSeek-only rerun in the AI Systems research packet closes with `synthesis_complete`.
+Every criterion is met. Tests with negative controls carry AC-001 to AC-008 and AC-011, a replay of the failing run carries AC-009, and the rerun of that research closing with `synthesis_complete` carries AC-010. Review-mode registries that already exist are not rebuilt from state, which this packet leaves as it found it.
 <!-- /ANCHOR:closure -->

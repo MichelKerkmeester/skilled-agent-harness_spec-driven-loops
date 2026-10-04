@@ -27,7 +27,7 @@ const {
   resolve,
   sep,
 } = require('node:path');
-const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
+const { latestIterationRecords, findingKeys } = require('../lib/deep-loop/iteration-findings.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -195,27 +195,6 @@ function countIterationFindings(record, fields) {
     if (Array.isArray(record[field])) return record[field].length;
   }
   return 0;
-}
-
-function normalizeFindingKey(value) {
-  return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
-}
-
-function findingKeys(candidate) {
-  if (typeof candidate === 'string') {
-    const key = normalizeFindingKey(candidate);
-    return key ? [key] : [];
-  }
-  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
-  return [...new Set([
-    candidate.id,
-    candidate.findingId,
-    candidate.title,
-    candidate.summary,
-    candidate.text,
-    candidate.finding,
-    candidate.description,
-  ].map(normalizeFindingKey).filter(Boolean))];
 }
 
 function collectIterationFindingGroups(record, fields) {

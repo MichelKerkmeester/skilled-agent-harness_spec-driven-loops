@@ -61,6 +61,8 @@ contextType: "general"
 - [x] T013 Replay the review gate over every real review state log in this repository
 - [x] T014 Full runtime suite against the baseline
 - [x] T015 Strict packet validation
+- [x] T016 Fix the merge regression the proof run exposed: rebuild when state findings are missing from a registry, by the closeout's keys (`runtime/scripts/fanout-merge.cjs`, `runtime/lib/deep-loop/iteration-findings.cjs`)
+- [x] T017 Close the AI Systems research run with `synthesis_complete` (SC-002)
 <!-- /ANCHOR:phase-3 -->
 
 ---

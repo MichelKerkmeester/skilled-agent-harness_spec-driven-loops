@@ -39,7 +39,7 @@
       "prompt"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,6 +139,12 @@
       },
       {
         "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A `/deep:research` fan-out with two CLI lineages, DeepSeek V4.1 Flash on cli-pi and GPT-6 Luna on cli-codex, finished all ten iterations, and every iteration passed `verify-iteration.cjs`",
     "created_at": "2026-10-04T13:23:40Z",
-    "last_save_at": "2026-10-04T15:37:49.066Z",
+    "last_save_at": "2026-10-04T16:28:46.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bed13887dcc4fc8855d4e4d956f7beb4e53373d5e3b025fabd9486d16a8fbe4",
+    "source_fingerprint": "sha256:c60edc2a3cebbe91e334034d3cf94a79a92745b67118df8601dcd676ff7b529c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea5201430e99abf691ea2b02d9e68035c4a08f61ed740cdf45b9155857caa9fb",
-      "plan.md": "efe79a8831766c7dc92be984812b4f9baf063d2f6dfc8eea61fe4d53800e6f45",
-      "tasks.md": "3a3f30dc6319115d9643eac1e50fa261e15cf99dce14088377a6bb36f85b2d8a",
-      "implementation-summary.md": "a4547b6035c74635e9848c2016435939328f330d8e553bb81940427162b8f9ac"
+      "spec.md": "b25dc331563b5c6f6d2ca372d4b958426bf346e034f07b1b264ed96bf7fb1219",
+      "plan.md": "ba4315f604670967e987daab4e8d8635115775c9202206da9ddb4039a9f36cdf",
+      "tasks.md": "515ecdcab158cd6399e22348c64e35ee217642b8388edc41f24b9d73dad913a4",
+      "implementation-summary.md": "3d53a5b7955fb051f4bbb852d31acb3db5842002f13c0f7807afebad771c9f12"
     },
     "last_active_at": null
   }
