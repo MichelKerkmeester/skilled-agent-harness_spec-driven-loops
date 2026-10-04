@@ -478,16 +478,18 @@ export function criteriaMap(optionPairs) {
  * The classifier context Pi receives for one option rotation: the prompt as the
  * state, and one named choice question carrying the CLI's own question text and
  * option descriptions. `keys` fixes the option order, so the JSON object the
- * model sees matches the rotation the CLI was given.
+ * model sees matches the rotation the CLI was given. The prompt sits under the
+ * `text` key, the same key the shared transport sends, so the benchmark asks Pi
+ * what the transport asks it.
  *
  * @param {{ prompt: string, keys: string[], criteria: Record<string, string> }} question One row's prompt, its option keys in rotation order and their descriptions.
- * @returns {{ state: { request: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> }> }} Context for `classify()`.
+ * @returns {{ state: { text: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> }> }} Context for `classify()`.
  */
 export function toClassifierContext({ prompt, keys, criteria }) {
   const ordered = {};
   for (const key of keys) ordered[key] = criteria[key];
   return {
-    state: { request: prompt },
+    state: { text: prompt },
     questions: {
       [QUESTION_NAME]: { type: 'choice', instructions: CHOICE_QUESTION, criteria: ordered },
     },

@@ -356,7 +356,7 @@ test('to_classifier_context_wraps_state_and_one_question', () => {
   const keys = ['sk-code', 'none'];
   const criteria = { 'sk-code': 'Description of sk-code', none: S.NONE_DESCRIPTION };
   const context = S.toClassifierContext({ prompt, keys, criteria });
-  assert.equal(context.state.request, prompt);
+  assert.deepEqual(context.state, { text: prompt });
   assert.deepEqual(Object.keys(context.questions), ['answer']);
   assert.equal(context.questions.answer.type, 'choice');
   assert.equal(context.questions.answer.instructions, S.CHOICE_QUESTION);
@@ -810,14 +810,14 @@ test('run_pi_arm_measures_a_full_map_and_records_it', async () => {
   });
   assert.match(choice.run_date, /^\d{4}-\d{2}-\d{2}$/);
   assert.deepEqual(Object.keys(choice.probabilities), ['mcp-code-mode', 'sk-code', 'mcp-tooling', 'none']);
-  const stateSha12 = createHash('sha256').update(JSON.stringify({ request: ARM_PROMPT })).digest('hex').slice(0, 12);
+  const stateSha12 = createHash('sha256').update(JSON.stringify({ text: ARM_PROMPT })).digest('hex').slice(0, 12);
   assert.equal(choice.state_sha12, stateSha12);
 
   // The call carried the state wrapper and the CLI's rotation, and nothing else
   // in its options, so no credential or transport detail can travel with it.
   const asked = runtime.classifications[0];
   assert.equal(asked.model.id, 'typesafe/jev-1.13');
-  assert.equal(asked.context.state.request, ARM_PROMPT);
+  assert.deepEqual(asked.context.state, { text: ARM_PROMPT });
   assert.deepEqual(Object.keys(asked.context.questions.answer.criteria), ['mcp-code-mode', 'sk-code', 'mcp-tooling', 'none']);
   assert.deepEqual(Object.keys(asked.options), ['signal']);
 });
