@@ -11,8 +11,11 @@
 //   title            non-empty
 //   description      non-empty
 //   trigger_phrases  3-8 non-empty items
-//   importance_tier  constitutional|critical|important|normal|temporary|deprecated
-//   contextType      planning|research|implementation|general
+//   importance_tier  a canonical value or alias from the shared list
+//   contextType      a canonical document value or alias from the shared list
+//
+// The lists live in sk-create-frontmatter's frontmatter-values.json, which every
+// frontmatter checker reads, so this file holds no copy of them.
 //
 // Modes:
 //   --shape    (default) a doc carrying ANY detailed field must be fully valid;
@@ -27,16 +30,22 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { readdirSync, readFileSync } from 'node:fs';
-import { join, relative, basename } from 'node:path';
+import { join, relative, basename, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const IMPORTANCE_TIERS = new Set([
-  'constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated',
-]);
-const CONTEXT_TYPES = new Set(['planning', 'research', 'implementation', 'general']);
+const SHARED_VALUES_PATH = join(
+  dirname(fileURLToPath(import.meta.url)),
+  '..', '..', '..', 'sk-doc', 'sk-create-frontmatter', 'assets', 'frontmatter-values.json',
+);
+const SHARED_VALUES = JSON.parse(readFileSync(SHARED_VALUES_PATH, 'utf8'));
+const TIER_LIST = SHARED_VALUES.importanceTier;
+const CONTEXT_LIST = SHARED_VALUES.contextType;
+const IMPORTANCE_TIERS = new Set([...TIER_LIST.canonical, ...Object.keys(TIER_LIST.aliases)]);
+const CONTEXT_TYPES = new Set([...CONTEXT_LIST.canonical, ...Object.keys(CONTEXT_LIST.aliases)]);
 const DETAILED_FIELDS = ['trigger_phrases', 'importance_tier', 'contextType'];
 const DOC_SUBDIRS = ['references', 'assets'];
 
@@ -128,12 +137,12 @@ function validateBlock(fields) {
   if (!fields.importance_tier) {
     problems.push('importance_tier missing');
   } else if (!IMPORTANCE_TIERS.has(fields.importance_tier)) {
-    problems.push(`importance_tier "${fields.importance_tier}" not in {${[...IMPORTANCE_TIERS].join('|')}}`);
+    problems.push(`importance_tier "${fields.importance_tier}" not in {${TIER_LIST.canonical.join('|')}} or its aliases`);
   }
   if (!fields.contextType) {
     problems.push('contextType missing');
   } else if (!CONTEXT_TYPES.has(fields.contextType)) {
-    problems.push(`contextType "${fields.contextType}" not in {${[...CONTEXT_TYPES].join('|')}}`);
+    problems.push(`contextType "${fields.contextType}" not in {${CONTEXT_LIST.canonical.join('|')}} or its aliases`);
   }
   return problems;
 }
