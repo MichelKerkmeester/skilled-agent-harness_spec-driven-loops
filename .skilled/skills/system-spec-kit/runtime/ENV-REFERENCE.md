@@ -424,6 +424,22 @@ Detection and enforcement for Task-tool dispatches to deep-loop sub-agents (Deep
 
 ---
 
+## JEV CLASSIFIER FEATURES
+
+Features that ask Typesafe's Jev classifier one measured question each. Every one runs by default once `jev` is on PATH and `jev auth status --provider <JEV_PROVIDER>` passes, and none runs without that credential. A switch set to `0`, `false`, `no` or `off` turns its feature off. The environment is read first, then `.skilled/hooks/hook-flags.env`. No feature ever blocks work: each one advises or scores.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `JEV_FEATURES` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | Master switch. Off stops every feature below. | `.skilled/skills/cli-classifier/shared/scripts/jev-features.mjs` |
+| `JEV_FEATURE_CITE_DRIFT` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | Citation drift advisory at the end of `validate_document.py`'s human report. `SKDOC_CITE_DRIFT_CHECK=0` still turns it off. | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` |
+| `JEV_FEATURE_INJECTION_SCREEN` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | Claude Code PostToolUse screen of WebFetch text. Adds one advisory line when a section reads as instructions aimed at an AI agent. | `.skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs` |
+| `JEV_FEATURE_VERDICT_FALLBACK` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | Under `--grader auto`, the reviewer benchmark asks Jev for a verdict its parser cannot read. | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs` |
+| `JEV_FEATURE_HALLUCINATION_GRADER` | unset (on) | boolean (off `0`/`false`/`no`/`off`) | Under `--grader auto`, the 5dim model benchmark grades D4 with Jev on outputs the deterministic check flags. | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` |
+| `JEV_PROVIDER` | `official` | string | Jev provider every feature asks and checks the credential for. | `.skilled/skills/cli-classifier/shared/scripts/jev-features.mjs` |
+| `JEV_TRANSPORT` | unset (Pi first) | string (`jev` or `pi`) | `jev` skips Pi's classifier and always uses the jev CLI. | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` |
+
+---
+
 ## 9. QUICK START EXAMPLES
 
 Every example below drives a variable with a live reader. The retrieval registry in Section 1 is deliberately absent: setting one of those changes nothing.
