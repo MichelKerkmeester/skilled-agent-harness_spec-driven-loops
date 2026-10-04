@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent",
+  "description": "Phase 23: release-update-symlink-parent",
+  "keywords": [
+    "phase",
+    "release-update-symlink-parent"
+  ],
+  "lastUpdated": "2026-10-04T19:22:59.756Z",
+  "specId": "023",
+  "folderSlug": "release-update-symlink-parent",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

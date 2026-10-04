@@ -22,7 +22,11 @@
     "system-speckit/049-doctor-audit-followups/016-doctor-playbook-deep-loop",
     "system-speckit/049-doctor-audit-followups/017-doctor-playbook-git",
     "system-speckit/049-doctor-audit-followups/018-doctor-playbook-mcp",
-    "system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research"
+    "system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research",
+    "system-speckit/049-doctor-audit-followups/020-doctor-contract-fixes",
+    "system-speckit/049-doctor-audit-followups/021-doctor-test-environments",
+    "system-speckit/049-doctor-audit-followups/022-doctor-playbook-environment-migration",
+    "system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent"
   ],
   "manual": {
     "depends_on": [],
@@ -186,16 +190,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-04T16:51:42.116Z",
+    "last_save_at": "2026-10-04T19:35:42.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:63933ff9aafcd69581dc91f7fc2f86b900ff72f6c7fea55b2265373d2c7999fe",
+    "source_fingerprint": "sha256:2d95af22d6f9f2cea0647aadec644d890a755e3f4563e8db1aefc4bf199804c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "340d75965cd264eee01799d26fa31578edf6fecbb4d8f0fb40e92dbc859b2e13"
+      "spec.md": "45f571e005443c090869b9914c6762f6f4ba7a0addb1ee5cda76b18361fda16f"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
     "last_active_at": "2026-10-04T08:38:47.405Z"
