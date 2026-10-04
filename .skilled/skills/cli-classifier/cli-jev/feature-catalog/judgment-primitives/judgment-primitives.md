@@ -13,7 +13,7 @@ version: 0.1.0.2
 # Judgment primitives
 
 Each primitive is one request type. The caller picks by what it will do with the value, and the
-answer path is `answers.<name>.<type>` — see `references/cli-reference.md` §5 for the receipts.
+answer path is `answers.<name>.<type>` — see `references/cli-reference.md` §6 for the receipts.
 
 ---
 
@@ -27,8 +27,8 @@ answer path is `answers.<name>.<type>` — see `references/cli-reference.md` §5
 | `--value` output | the bare number |
 | Choose it when | the caller owns a threshold and will compare against it |
 
-Anchors: `SKILL.md` §4 (narrowest question type), `references/cli-reference.md` §5,
-`assets/question-shaping-card.md` §1.
+Anchors: `SKILL.md` §4 (narrowest question type), `references/cli-reference.md` §6,
+`assets/question-shaping-card.md` §2.
 
 **The trap**: a `noul` answer that then gets compared to a threshold invented at the call site. If
 the threshold is really the decision, the question was a `choice`.
@@ -47,7 +47,7 @@ the threshold is really the decision, the question was a `choice`.
 
 Anchors: `SKILL.md` hard rule `jev-choice-option-cardinality`,
 `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` (`jev-choice-option-cardinality`),
-`references/integration-patterns.md` §2.
+`references/integration-patterns.md` §3.
 
 **The trap**: single-option `choice`. The CLI sends it, the MCP tool refuses it, and the answer is a
 foregone conclusion either way. The packet's guard refuses it at the command line, which is the
@@ -66,7 +66,7 @@ earliest of the three.
 | Choose it when | the answer is a degree and several thresholds act on it |
 
 Anchors: `SKILL.md` hard rule `jev-score-level-cardinality`,
-`dispatch-rule-checks.mjs` (`jev-score-level-cardinality`), `references/integration-patterns.md` §3.
+`dispatch-rule-checks.mjs` (`jev-score-level-cardinality`), `references/integration-patterns.md` §4.
 
 **The traps**: descending levels invert every comparison downstream, and a fractional position
 silently falls through an integer `case` pattern. Both are in the pattern's own text.
@@ -84,7 +84,7 @@ silently falls through an integer `case` pattern. Both are in the pattern's own 
 | Choose it when | one state answers several questions and one round trip is cheaper |
 
 Anchors: `SKILL.md` hard rule `jev-value-not-with-run`, `dispatch-rule-checks.mjs`
-(`jev-value-not-with-run`), `references/integration-patterns.md` §4.
+(`jev-value-not-with-run`), `references/integration-patterns.md` §5.
 
 **The trap**: batching unrelated decisions. Questions share the state's context, so a bundle of
 questions the state does not answer invites confident answers about nothing.

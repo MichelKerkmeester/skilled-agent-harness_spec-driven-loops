@@ -262,21 +262,21 @@ routes:
 mcp_subroutes:
   - sub_action: install
     yaml: doctor-mcp-install.yaml
-    allowed_flags: ["--server <name>", "--runtime <name>"]
+    allowed_flags: ["--runtime <name>"]
     mutating: mutates
-    gate3_location: "MCP server install dirs + runtime config (.opencode.json / .claude/settings.json / )"
+    gate3_location: "Code Mode build output, .utcp_config.json and the runtime MCP configs"
     trigger_phrases:
       - "MCP install"
-      - "MCP server fresh install"
+      - "Code Mode fresh install"
       - "reinstall MCP"
 
   - sub_action: debug
     yaml: doctor-mcp-debug.yaml
-    allowed_flags: ["--fix", "--server <name>"]
+    allowed_flags: ["--fix"]
     mutating: mutates
-    gate3_location: "MCP server logs + runtime config repair"
+    gate3_location: "Code Mode configuration and runtime registration repair"
     trigger_phrases:
-      - "MCP server broken"
+      - "Code Mode broken"
       - "MCP debug"
       - "MCP connection failure"
       - "mcp-doctor.sh"

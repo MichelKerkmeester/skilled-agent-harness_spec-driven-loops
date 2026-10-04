@@ -88,6 +88,7 @@ and findings belong here.
 | Stream E (2026-10-03) | Done | Retirement sweep of live-describing docs and stale counts |
 | Stream D (2026-10-04) | Done | Shared report helper; 017, 035, 020 and 022 probability-aware arms and pins; 037 text amendment logged 2026-10-03T23:00:35Z, rerun stop (coverage) K=111 M=99 A=95 agreement 96.0 (run 051-037-paired-20261003) |
 | Stream F (2026-10-04) | Done | Nine scorers deleted, two Jev arms and one gate line removed, generated surfaces regenerated; commits ec7be335a2 to d48913df93 |
+| Deletion deep review (2026-10-04) | Done | Three DeepSeek V4.1 Flash iterations on cli-pi (correctness, traceability, maintainability), verdict PASS with one advisory. P1 R1-P1-001, a stale advisor leaf registry still listing the four deleted scorer-fusion docs, was fixed in `424cf11a5e` and confirmed resolved. P2 R2-P2-001, a 56 against 59 gold-row count, predates the deletion. Report: `review/review-report.md` |
 
 ### Deviations and findings
 

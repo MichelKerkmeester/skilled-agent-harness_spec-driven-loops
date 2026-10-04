@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/015-doctor-playbook-skill-advisor",
+  "description": "Phase 15: doctor-playbook-skill-advisor",
+  "keywords": [
+    "phase",
+    "doctor-playbook-skill-advisor"
+  ],
+  "lastUpdated": "2026-10-04T11:02:48.764Z",
+  "specId": "015",
+  "folderSlug": "doctor-playbook-skill-advisor",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

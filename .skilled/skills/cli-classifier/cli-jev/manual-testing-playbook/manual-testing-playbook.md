@@ -146,6 +146,6 @@ translating-proxy path that would change that answer was never built or probed.
 | Exit 3 with a key exported | The key is set for a different provider than `--provider` selects | `jev auth status --provider <name>` |
 | Exit 3 with `auth status` reporting stored | The stored value is empty, or the credential file is malformed | Read the store's shape, not its value |
 | Exit 4 on every call | Network egress blocked, or a `custom` endpoint that is not listening | Re-probe against a known-refused port |
-| Exit 2 on a command that looks right | A flag conflict (`--value` with `run`) or a state form the CLI does not accept | Compare against `../references/cli-reference.md` §3 |
+| Exit 2 on a command that looks right | A flag conflict (`--value` with `run`) or a state form the CLI does not accept | Compare against `../references/cli-reference.md` §4 |
 | A judgment that reads as `false` | Exit 4 was treated as the value | Handle the exit status before parsing anything |
 | A hang with no output | State defaulted to stdin and stdin is a terminal | Add `</dev/null` or pass `-s` inline |

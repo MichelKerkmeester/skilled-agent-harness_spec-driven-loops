@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/016-doctor-playbook-deep-loop",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/016-doctor-playbook-deep-loop",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor playbook deep-loop",
+      "doctor deep-loop scenarios",
+      "doctor-playbook-deep-loop plan",
+      "doctor-playbook-deep-loop tasks",
+      "doctor-playbook-deep-loop summary",
+      "doctor-playbook-deep-loop shipped"
+    ],
+    "key_topics": [
+      "doctor",
+      "playbook",
+      "deep-loop",
+      "scenarios",
+      "doctor-playbook-deep-loop",
+      "plan",
+      "tasks",
+      "summary",
+      "shipped",
+      "three",
+      "live",
+      "system-spec-kit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/doctor/deep-loop.md",
+      ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-deep-loop-scope.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/deep-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-deep-loop.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three `/doctor:deep-loop` scenarios live in the system-spec-kit playbook, away from the skill they check, and none of them tests how `--scope` selects the research, review or council graphs",
+    "created_at": "2026-10-04T11:02:49Z",
+    "last_save_at": "2026-10-04T12:56:28.874Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:011ce25d9462dd4d5e96b6b58e76aed3b0b2b702b0257b9845df8b6d7159cf99",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "439d11ecb1047bda62e05913e55ea8d4b49e6b42d0403c5dc0df46a56f9876ba",
+      "plan.md": "12ed62b54faf9bafc65957dc1c2f46cd33327d82f4c9f4d47dc7e8b8952eb556",
+      "tasks.md": "81875aa419adb723ad45d6f6cec5f58221d7115eeb469fbf07772f8df5d66b91",
+      "implementation-summary.md": "89497ce9a495634b1631b5f082b9210fd0bab14ff92baceb688f55cbc335246f"
+    },
+    "last_active_at": null
+  }
+}
