@@ -90,7 +90,7 @@ workflow:
     activities:
       - "Run node .skilled/commands/doctor/scripts/git-standards.cjs init --json, which writes nothing, and render the files it would copy"
       - "If dry_run is true, render the dry-run line and continue to phase_3_choose with nothing editable"
-      - "Ask the presentation's init prompt; on approve run node .skilled/commands/doctor/scripts/git-standards.cjs init --apply --json, on anything else stop with STATUS=CANCELLED"
+      - "Ask the presentation's init prompt; on approve run node .skilled/commands/doctor/scripts/git-standards.cjs init --apply --json, on anything else render the presentation contract's cancelled result (STATUS=CANCELLED ACTION=cancelled) and stop"
       - "Existing files in .sk-git/ are kept, never overwritten; report them"
 
   phase_3_choose:
@@ -124,9 +124,9 @@ workflow:
   phase_7_report:
     purpose: "Summarize every change made in this run"
     activities:
-      - "Render the mutating result: each applied change, the files written, the last check result and the undo for each, or none"
+      - "Render the presentation contract's result: success with each applied change, the files written, the last check result and the undo for each"
       - "Remind the operator that .sk-git/ is ordinary repository content: commit it so CI and teammates enforce the same rules"
-      - "Status is OK when every approved change checked clean or with reported drift only, CANCELLED when nothing was approved, FAIL when a write or check failed"
+      - "Status is STATUS=OK when every approved change checked clean or with reported drift only, STATUS=CANCELLED ACTION=cancelled when nothing was approved, STATUS=FAIL when a write or check failed"
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT

@@ -83,7 +83,7 @@ An operator can now keep any optional hook gate off without prefixing every comm
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The operator chose the shape before work began: one `/doctor:git` command with `hooks` and `standards` targets, git config keys for persistence, and the `.sk-git/` folder for rule overrides so sk-git stays untouched. The parent session built and tested it in one pass. The installed-hook test was proven to fail on a scratch copy with the wiring removed. The runtime copies were regenerated through their sync scripts, never edited by hand.
+The operator chose the shape before work began: one `/doctor:git` command with `hooks` and `standards` targets, git config keys for persistence, and the `.sk-git/` folder for rule overrides so sk-git stays untouched. The parent session built and tested it in one pass. The installed-hook test was proven to fail on a scratch copy with the wiring removed. The runtime copies were regenerated through their sync scripts, never edited by hand. A second pass held the router and presentation to the sk-create-command templates: the router gained the mandatory input gate its required `<hooks|standards>` argument calls for, the full argument table, a numbered workflow summary and `allowed-tools` cut to the three it uses, and the presentation took the template's four sections with a cancelled result.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,7 +115,7 @@ The operator chose the shape before work began: one `/doctor:git` command with `
 | `route-validate.sh` | `OK: route-validate — 11 routes validated, 2 warnings`, exit 0 |
 | Contract | Valid against its schema; router generator `routers=35 clean=35 path-drift=0` |
 | Mirrors and catalog | 181 runtime mirrors and 37 prompts each for Codex, Pi and Hermes in sync; catalog `STATUS=OK`; compiled route guard exit 0 |
-| Docs | `validate_document.py --type command` on `git.md`: 0 issues; `check-markdown-links.cjs`: 0 broken across 7,870 files |
+| Docs | `validate_document.py --type command` on `git.md`: 0 issues; `check_authored_name_kebab.py`: PASS; `extract_structure.py`: checklist 3 of 3, DQI 89, the same as every sibling router; `check-markdown-links.cjs`: 0 broken across 7,870 files |
 | Comment hygiene | Exit 0 on every new and changed code file |
 <!-- /ANCHOR:verification -->
 
