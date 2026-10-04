@@ -71,6 +71,11 @@
   },
   {
     "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
     "leafResourceId": "manual-testing-playbook/env-var-prefixing/prefixed-env-load.md",
     "diskPath": "manual-testing-playbook/env-var-prefixing/prefixed-env-load.md"
   },

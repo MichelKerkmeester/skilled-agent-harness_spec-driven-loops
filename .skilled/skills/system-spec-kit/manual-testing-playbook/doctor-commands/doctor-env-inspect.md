@@ -1,7 +1,7 @@
 ---
 title: "DOC-354 -- Doctor env inspect"
 description: "Manual scenario validating that /doctor:env list prints the parsed switch inventory and the read-only source state by name only, and that one variable selector shows the documented default and every source where the switch is set."
-version: 1.0.0.0
+version: 1.1.0.0
 id: doctor-commands-doctor-env-inspect
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario validates the two read paths of `/doctor:env` against the committed environment reference. It confirms that `list` prints the unique variable count, the complete inventory table and the complete read-only source-state table without a value in any cell, then stops with a terminal status. It then confirms that one variable selector shows the documented default, type, description and source, plus the set or unset state of that switch in every inspected source.
 
-The selected variable ends at its value prompt, where the operator cancels, so the run reaches a terminal status without choosing a destination and without writing. The whole run happens in a disposable copy, so even a mistaken answer cannot touch the live tree.
+The selected variable ends at its value prompt, where the operator cancels, so the run reaches a terminal status without choosing a destination and without writing. The whole run happens in the environment, so even a mistaken answer cannot touch the live tree.
 
 ---
 
@@ -23,7 +23,7 @@ The selected variable ends at its value prompt, where the operator cancels, so t
 - Playbook ID: DOC-354.
 - Real user request: `Show me the documented environment switches and where each one is set.`
 - Prompt: `Show me the documented environment switches and where each one is set.`
-- Preconditions: A disposable copy of the repository holding the committed `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, and a runtime that can execute `/doctor:env` with Bash access.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, holding the committed `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, and a runtime that can execute `/doctor:env` with Bash access.
 - Expected execution process: Run `/doctor:env list`, then `/doctor:env SPECKIT_AC_COVERAGE_FLOOR`, then a selector that matches nothing, capturing the tables and the terminal status of each run, and compare the working tree state and the destination checksums before and after.
 - Expected signals: The list run prints `Environment Switch Inventory`, the reference path, the parsed unique variable count ahead of the tables, one inventory row per parsed variable carrying Section, Variable, Default, Type, Description, Documented source and Class, and a read-only source-state table holding exactly one of `set`, `unset` or `unreadable` for every parsed variable in the process environment, hook-flags.env, .env and Claude Code settings columns. No cell in either table carries a value. The run stops after the tables with `STATUS=OK`, and neither the selection menu nor the next-step prompt appears. The variable run prints `Selected preference: SPECKIT_AC_COVERAGE_FLOOR`, a `Section:` line naming the reference heading path that owns the row, `Default: 0.9`, `Type: number (0..1)`, a `Does:` line carrying the documented description, `Documented source: cli/rules/check-ac-coverage.sh`, and the current-value-by-source table naming all four sources. Cancelling at the value prompt returns `STATUS=CANCELLED ACTION=cancelled` and changes nothing. The no-match selector returns `STATUS=FAIL ERROR="no matching section or variable"` and asks for no value. The working tree state and every recorded checksum are unchanged at the end.
 - Desired user-visible outcome: A count, an inventory table and a source-state table that name switches without showing values, followed by one variable block that names its default and where it is set, ending in a status that leaves every file alone.
@@ -42,8 +42,8 @@ Show me the documented environment switches and where each one is set.
 
 ### Commands
 
-1. Create a disposable copy of the repository.
-2. In the copy, record `git status --porcelain` and the sha256 of `.skilled/hooks/hook-flags.env`, `.env` and `.claude/settings.local.json` where each exists, and record each missing one as absent.
+1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
+2. In the environment, record `git status --porcelain` and the sha256 of `.skilled/hooks/hook-flags.env`, `.env` and `.claude/settings.local.json` where each exists, and record each missing one as absent.
 3. Run `/doctor:env list` through the real runtime.
 4. Capture the count line and both tables. Confirm the count matches the number of distinct variable rows, that every parsed variable has a source-state row, and that no cell carries a value. Note whether any row is classified secret, because the committed reference classifies none today.
 5. Run `/doctor:env SPECKIT_AC_COVERAGE_FLOOR`.
@@ -51,7 +51,7 @@ Show me the documented environment switches and where each one is set.
 7. At the value prompt, reply `cancel`. Capture the terminal status.
 8. Run `/doctor:env not-a-documented-switch` and capture its terminal status and error.
 9. Record `git status --porcelain` and the checksums from step 2 again and compare.
-10. Discard the disposable copy and confirm the live working copy is unchanged.
+10. Restore every file the scenario changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 
 ### Expected
 
@@ -87,6 +87,7 @@ If the count disagrees with the number of distinct variable rows, inspect the tw
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-env.yaml](../../../../commands/doctor/assets/doctor-env.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-env-presentation.txt](../../../../commands/doctor/assets/doctor-env-presentation.txt)
 - Inventory source of truth: [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](../../runtime/ENV-REFERENCE.md)
+- Environment guide: [doctor-commands README](README.md)
 
 The `/doctor:env` route is a standalone companion with no entry in the doctor route manifest.
 

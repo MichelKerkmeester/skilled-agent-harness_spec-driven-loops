@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Doctor Commands
@@ -19,7 +19,7 @@ DOC- numbers are shared with the doctor scenarios in the system-spec-kit, system
 
 ## How to Run
 
-Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Run each one in a disposable copy of the repository, run the real command, inspect real files and record a `PASS`, `FAIL` or `SKIP` verdict. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the evidence and result-recording policy.
+Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Run the real command, inspect real files and record a `PASS`, `FAIL` or `SKIP` verdict. Run DOC-371 to DOC-373 in the shared current-code test environment at `.worktrees/.doctor-test-environment` and restore it afterwards. Run DOC-370 in a disposable clone, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository. DOC-369 and DOC-374 change nothing and run in any working copy. The [environment guide](../../../system-spec-kit/manual-testing-playbook/doctor-commands/README.md) describes the environment and its reset steps. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the evidence and result-recording policy.
 
 ## See Also
 

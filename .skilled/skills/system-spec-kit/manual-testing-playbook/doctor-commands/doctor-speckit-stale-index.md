@@ -1,7 +1,7 @@
 ---
 title: "DOC-350 -- Doctor speckit stale index"
 description: "Manual scenario validating that /doctor:speckit on a stale trigger index reports the index_content_stale signal and names the regeneration command without regenerating it."
-version: 1.1.0.0
+version: 1.2.0.0
 id: doctor-commands-doctor-speckit-stale-index
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -23,8 +23,8 @@ The doctor never regenerates the index itself. Its only writes are the packet-lo
 - Playbook ID: DOC-350.
 - Real user request: `Check why the spec-kit trigger index looks stale and tell me how to fix it.`
 - Prompt: `Check why the spec-kit trigger index looks stale and tell me how to fix it.`
-- Preconditions: A disposable copy of the repository whose trigger index is fresh before the drift edit, and an active spec packet with a writable scratch directory for the diagnostic report and state log.
-- Expected execution process: Make the copy fresh, edit one indexed document's trigger phrases, confirm the staleness with the check command, run `/doctor:speckit`, capture the recommendation, compare the checksum, then restore the edited document.
+- Preconditions: The current-code doctor environment at `.worktrees/.doctor-test-environment`, fast-forwarded to `origin/main` with an empty `git status --porcelain`, whose trigger index is fresh before the drift edit, and an active spec packet with a writable scratch directory for the diagnostic report and state log.
+- Expected execution process: Make the environment's index fresh, edit one indexed document's trigger phrases, confirm the staleness with the check command, run `/doctor:speckit`, capture the recommendation, compare the checksum, then restore the edited document.
 - Expected signals: The check command exits 1 with `fresh: false` and a non-empty `staleDocuments` list naming the edited document. Phase 1 classifies `index_content_stale`. Phase 2 reports medium severity and its `recommended_command` is `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`. Phase 3 reports `STATUS_STALE` and the summary shows `Target: speckit-retrieval` with `Status: STALE`. The `Advisories:` line lists the phrase-quality classes from the diagnostics, and they add no severity and change neither the status nor the recommended command. The trigger index checksum is identical before and after the doctor run.
 - Desired user-visible outcome: A diagnostic summary that names the stale signal and the exact regeneration command.
 - Pass/fail: PASS if the check exits 1 with `fresh: false`, `index_content_stale` is classified, the regeneration command is named, the phrase-quality advisories leave the status and recommendation unchanged, and the trigger index checksum is unchanged.
@@ -42,8 +42,8 @@ Check why the spec-kit trigger index looks stale and tell me how to fix it.
 
 ### Commands
 
-1. Create a disposable copy of the repository.
-2. Make the index fresh in the copy: run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json`, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when it exits 1, and confirm the check exits 0 with `fresh: true`.
+1. `cd .worktrees/.doctor-test-environment`, run `git fetch origin` and `git merge --ff-only origin/main`, and confirm `git status --porcelain` prints nothing.
+2. Make the index fresh in the environment: run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json`, run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when it exits 1, and confirm the check exits 0 with `fresh: true`.
 3. Record the checksum: `shasum -a 256 .skilled/skills/system-spec-kit/runtime/data/trigger-index.json`.
 4. Edit one indexed document's frontmatter `trigger_phrases` list, for example by adding one new phrase to a spec packet's `spec.md`, then save it without running the generator.
 5. Confirm the staleness: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json` exits 1 with `fresh: false` and `staleDocuments` naming the edited document.
@@ -51,7 +51,7 @@ Check why the spec-kit trigger index looks stale and tell me how to fix it.
 7. Answer `y` at both blocking gates, `before_phase_1_analysis` and `before_phase_2_recommendation`.
 8. Capture the Phase 1 staleness class, the Phase 2 `recommended_command`, the summary status, and the report path.
 9. Record the checksum again and confirm it matches step 3.
-10. Restore the edited document in the copy with `git checkout -- <document>` and confirm the check exits 0 with `fresh: true` again.
+10. Restore the edited document in the environment with `git checkout -- <document>`, confirm the check exits 0 with `fresh: true` again, and confirm `git status --porcelain` prints nothing.
 
 ### Expected
 
@@ -67,6 +67,7 @@ The summary shows `Status: STALE`, and its phrase-quality advisories are informa
 - The summary block with `Status: STALE` and its `Advisories:` line.
 - Checksums from steps 3 and 9.
 - The restored document and the final check with exit 0 and `fresh: true`.
+- The final `git status --porcelain` output.
 
 ### Pass / Fail
 
@@ -86,6 +87,7 @@ If the check stays fresh after the edit, inspect the index's `paths` array and c
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml](../../../../commands/doctor/assets/doctor-speckit-retrieval.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-speckit-presentation.txt](../../../../commands/doctor/assets/doctor-speckit-presentation.txt)
 - Route manifest: [.skilled/commands/doctor/_routes.yaml](../../../../commands/doctor/_routes.yaml)
+- Environment guide: [doctor-commands README](README.md)
 
 Provenance: manual only - /doctor:speckit
 
