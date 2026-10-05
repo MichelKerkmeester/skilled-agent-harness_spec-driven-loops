@@ -1,0 +1,14 @@
+INTERIM, not a decision. Luna 235/360 runs, DeepSeek 0/360 (Devin quota). Scored 2026-10-05T02:50:27Z by rule-experiment.py score.
+== luna/cards: runs=120 long=91 unscorable=0
+   table (unasked) 0.0% of 91 [0.0-4.1] | with communication.md delivered 0.0% of 73 [0.0-5.0] | delivery 80.2% of 91 [70.9-87.1]
+   empty_opener 0.0% of 91 [0.0-4.1] | label_first_line 0.0% of 91 [0.0-4.1] | em_dash 0.0% of 91 [0.0-4.1] | semicolon 52.7% of 91 [42.6-62.7]
+   gate5 miss 7.0% of 114 [3.6-13.2] | reply-rules miss 25.3% of 91 [17.5-35.1] | fallback 65.6% of 93 [55.5-74.5] | mean rule bytes 42745
+== luna/full: runs=115 long=97 unscorable=0
+   table (unasked) 0.0% of 97 [0.0-3.8] | with communication.md delivered 0.0% of 84 [0.0-4.4] | delivery 86.6% of 97 [78.4-92.0]
+   empty_opener 0.0% of 97 [0.0-3.8] | label_first_line 0.0% of 97 [0.0-3.8] | em_dash 2.1% of 97 [0.6-7.2] | semicolon 56.7% of 97 [46.8-66.1]
+   gate5 miss 4.5% of 110 [2.0-10.2] | reply-rules miss 18.6% of 97 [12.1-27.4] | fallback n/a | mean rule bytes 59106
+== table_unasked_rule_delivered: luna/cards - luna/full +0.0 pts [-4.4 to +5.0]
+== any_prohibition: luna/cards - luna/full -4.0 pts [-17.8 to +10.1]
+== gate5_miss: luna/cards - luna/full +2.5 pts [-4.1 to +9.2]
+== reply_rules_miss: luna/cards - luna/full +6.7 pts [-5.1 to +18.5]
+== fallback: luna/cards - luna/full n/a
