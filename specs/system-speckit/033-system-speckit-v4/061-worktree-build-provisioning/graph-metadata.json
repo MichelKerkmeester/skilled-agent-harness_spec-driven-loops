@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`opencode-plugins-folder-purity.vitest.ts` imports every plugin under `.skilled/plugins/`, and one of them imports the build output of `sk-communication/cli-communication-projection`",
     "created_at": "2026-09-24T06:18:52Z",
-    "last_save_at": "2026-10-05T06:43:29.488Z",
+    "last_save_at": "2026-10-05T07:30:48.707Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db97302dd40242c7e1572e9689670ae07ce60ee6fc47cb1075d9b2653194d200",
+    "source_fingerprint": "sha256:a3a03f60a5af628b86c86df39be1184fbe3aabd5f95f4f7d89ebafd41fdfdca8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "913daa11b7f832c9a226dbd129cc8678af3b8805ad4b01008c7949e9780d16eb",
+      "spec.md": "50fce07edcfdd419a3a61412cacd44fc5a746973e372bf3e37656bee7d60fb92",
       "plan.md": "faa714599c1b7a3be53ee6997fa9b141e900b138b637e7b69bc777bb2524bb9c",
-      "tasks.md": "b52e282a4a1421c5648bf57b6c67b2c08c365de53bbe788c83bccf9d10fdf63d",
-      "implementation-summary.md": "27241c153a24e28e85cbb51bf280571cb2cf1a45d6ddf77b7bcfa7a507024d78"
+      "tasks.md": "9f74f2a96b7dc040f6f5806affc357e175154aabbea4c661426f7b691a4059a8",
+      "implementation-summary.md": "d550b7444a5c9c579a6b69c06bc9b24376da16b72ac61c359b17cae653550f20"
     },
     "last_active_at": null
   }
