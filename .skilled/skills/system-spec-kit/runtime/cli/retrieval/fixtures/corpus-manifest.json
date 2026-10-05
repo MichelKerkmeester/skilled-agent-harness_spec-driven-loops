@@ -1,5 +1,5 @@
 {
-  "corpusHash": "09f333e618df8d820466a33fd63ef7c3a08650389f651e9ad2501ffcb501fc29",
+  "corpusHash": "3119346f8187174b701456d35077194ec90303ab38504caea7a65bd5f4251021",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23640,
+  "includedPathCount": 23644,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23594,6 +23594,10 @@
     "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23670,7 +23674,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
+  "manifestHash": "7a52f80717fd83a8ccc2a767d91b9bd4869fbf25eb2409bf8f9695972a977462",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29218,6 +29222,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
       "reason": "excluded directory"
     },
     {

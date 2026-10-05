@@ -44,7 +44,7 @@ function derivedFixture(index = 0): SkillDerivedV2 {
     key_files: [`.skilled/skills/skill-${index}/SKILL.md`],
     demotion: 1,
     trust_lane: 'derived_generated',
-    sanitizer_version: 'sanitizeSkillLabel:v1',
+    sanitizer_version: 'sanitizeSkillLabel:v2',
     lifecycle_status: 'active',
   };
 }

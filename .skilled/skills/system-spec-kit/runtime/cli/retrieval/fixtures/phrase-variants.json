@@ -1,5 +1,5 @@
 {
-  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
+  "manifestHash": "7a52f80717fd83a8ccc2a767d91b9bd4869fbf25eb2409bf8f9695972a977462",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33390,6 +33390,18 @@
     ],
     "derived repair automation": [
       "derived repair automation"
+    ],
+    "derived sanitizer instruction shape": [
+      "derived sanitizer instruction shape"
+    ],
+    "derived sanitizer instruction shape plan": [
+      "derived sanitizer instruction shape plan"
+    ],
+    "derived sanitizer instruction shape summary": [
+      "derived sanitizer instruction shape summary"
+    ],
+    "derived sanitizer instruction shape tasks": [
+      "derived sanitizer instruction shape tasks"
     ],
     "derived skill metadata": [
       "derived skill metadata"
@@ -79839,11 +79851,17 @@
     "sandboxed child tsx checks": [
       "sandboxed child tsx checks"
     ],
+    "sanitizer drops routing labels": [
+      "sanitizer drops routing labels"
+    ],
     "sanitizer version stamp": [
       "sanitizer version stamp"
     ],
     "sanitizeskilllabel": [
       "sanitizeSkillLabel"
+    ],
+    "sanitizeskilllabel v2": [
+      "sanitizeSkillLabel v2"
     ],
     "saturation threshold enforcement": [
       "saturation threshold enforcement"
