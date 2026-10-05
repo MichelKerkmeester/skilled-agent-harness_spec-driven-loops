@@ -8,12 +8,19 @@ import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, wr
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { binomTail, buildDescriber, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, runArm, scanText, scanTranscriptFile, scoreProbabilityArm, summarizeEvents, verdictLine, wilsonInterval } from '../evals/score-alignment-suggestion';
+import { binomTail, buildDescriber, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, maskState, modalPick, parseRows, replayPath, runArm, scanText, scanTranscriptFile, scoreProbabilityArm, summarizeEvents, verdictLine, wilsonInterval } from '../evals/score-alignment-suggestion';
 import type { Row, VerdictCounts } from '../evals/score-alignment-suggestion';
 
 const tempDirs: string[] = [];
 
 const REPO = resolve(__dirname, '..', '..', '..', '..', '..', '..');
+
+/** The shared scorer kit, loaded the way the scorer loads it at run time. */
+async function loadScorerKit(): Promise<Parameters<typeof scoreProbabilityArm>[0]> {
+  return (await import(
+    pathToFileURL(join(REPO, '.skilled', 'skills', 'cli-classifier', 'shared', 'scripts', 'scorer-report.mjs')).href
+  )) as Parameters<typeof scoreProbabilityArm>[0];
+}
 
 afterEach(() => {
   for (const dir of tempDirs.splice(0)) {
@@ -409,7 +416,7 @@ describe('scorer and gate', () => {
       'candidate recall: content=0/0 (n/a) folder=30/30 (100.0%) overall=30/30 (100.0%)',
       'baseline: target=27 top=3 chosen=target comparator=auto',
       'margin: 0.10',
-      'keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M',
+      'keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, strongest A>S, class floor A_c>=B_c, flips 10*F<=3*M',
       'question: Which spec folder should this save go to?',
     ]);
   });
@@ -542,7 +549,7 @@ describe('keep rule', () => {
       r3: ['001-a', null, '001-a'],
     };
 
-    expect(countVerdict(parsed.rows, picks, 'target')).toEqual({ K: 3, M: 2, A: 2, B: 1, W: 1, L: 0, F: 1 });
+    expect(countVerdict(parsed.rows, picks, 'target')).toEqual({ K: 3, M: 2, A: 2, B: 1, W: 1, L: 0, F: 1, policies: { target: 1, top: 1 } });
   });
 
   it('keeps a column that beats the baseline', () => {
@@ -567,6 +574,14 @@ describe('keep rule', () => {
     expect(line).toContain(' p=0.0000 baseline=target jev_version=jev 0.6.2');
   });
 
+  it('kills on a pair count whose coefficients overflow a float', async () => {
+    const scorerReport = await loadScorerKit();
+
+    const verdict = decideVerdict({ K: 1100, M: 1100, A: 0, B: 100, W: 500, L: 600, F: 0 }, scorerReport);
+
+    expect(verdict.verdict).toBe('kill');
+  });
+
   it('stops on margin and on coverage', () => {
     expect(decideVerdict({ K: 30, M: 30, A: 27, B: 27, W: 0, L: 0, F: 0 })).toEqual({ verdict: 'stop (margin)', p: 1 });
     expect(decideVerdict({ K: 30, M: 26, A: 26, B: 20, W: 6, L: 0, F: 0 })).toEqual({ verdict: 'stop (coverage)', p: 1 });
@@ -578,6 +593,66 @@ describe('keep rule', () => {
     expect(sign.verdict).toBe('stop (sign test)');
     expect(sign.p).toBeCloseTo(0.125, 12);
     expect(decideVerdict({ K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 10 }).verdict).toBe('stop (flips)');
+  });
+
+  it('stops on the strongest policy before the class floor, and keeps when both pass', () => {
+    const base = { K: 30, M: 30, A: 28, B: 23, W: 5, L: 0, F: 0 };
+    const strongestFail = { pass: false, name: 'target', right: 27 };
+    const floorFail = { pass: false, classes: [{ cls: 'folder', n: 30, jev: 28, baseline: 29 }], failing: ['folder'] };
+
+    const strongest = decideVerdict({ ...base, strongest: strongestFail, floor: floorFail });
+    expect(strongest.verdict).toBe('stop (strongest policy)');
+    expect(strongest.p).toBeCloseTo(1 / 32, 12);
+
+    expect(decideVerdict({ ...base, strongest: { pass: true, name: 'target', right: 27 }, floor: floorFail }).verdict).toBe('stop (class floor)');
+    expect(decideVerdict({ ...base, strongest: { pass: true, name: 'target', right: 27 }, floor: { pass: true, classes: [], failing: [] } }).verdict).toBe('keep');
+  });
+});
+
+describe('masked-state rule', () => {
+  it('removes the lead sentence and keeps the rest', () => {
+    const options = [{ folder: '012-some-slug', description: 'Unrelated description' }];
+
+    const result = maskState('This session is working on the alignment scorer. Then it wrote tests.', options);
+
+    expect(result.leadRemoved).toBe(true);
+    expect(result.text).toBe('Then it wrote tests.');
+  });
+
+  it('removes a lead with no sentence end whole', () => {
+    const options = [{ folder: '012-some-slug', description: 'Unrelated description' }];
+
+    const result = maskState('This session is working on the alignment scorer', options);
+
+    expect(result.leadRemoved).toBe(true);
+    expect(result.text).toBe('[masked]');
+  });
+
+  it('drops a sentence that copies an option description', () => {
+    const options = [{ folder: '001-alpha', description: 'Reconciles the ledger entries' }];
+
+    const result = maskState('Kept sentence here. Reconciles the ledger entries. Another kept one.', options);
+
+    expect(result.sentencesRemoved).toBe(1);
+    expect(result.text).toBe('Kept sentence here. Another kept one.');
+  });
+
+  it('replaces a numbered folder and a bare slug, case-insensitively', () => {
+    const options = [{ folder: '012-some-slug', description: 'Unrelated description' }];
+
+    const result = maskState('Working in 012-some-slug today. The SOME-SLUG path is old.', options);
+
+    expect(result.slugsReplaced).toBe(2);
+    expect(result.text).toBe('Working in [folder] today. The [folder] path is old.');
+  });
+
+  it('turns a state made only of copied text into [masked]', () => {
+    const options = [{ folder: '001-alpha', description: 'Kernel telemetry review' }];
+
+    const result = maskState('Kernel telemetry review.', options);
+
+    expect(result.text).toBe('[masked]');
+    expect(result.sentencesRemoved).toBe(1);
   });
 });
 
@@ -891,7 +966,7 @@ describe('model arms', () => {
     expect(out.some((line) => line.startsWith('negative control label-swap: W+L='))).toBe(true);
     expect(out.some((line) => line.startsWith('negative control distractor-state: W+L='))).toBe(true);
     expect(out).toContain(`pins: corpus_sha256=${pins.corpus_sha256} report_sha256=${pins.report_sha256} scorer_sha256=${pins.scorer_sha256}`);
-    expect(readFileSync(join(stub, 'jev.log'), 'utf8').split('\n').filter((line) => line.startsWith('choice '))).toHaveLength(210);
+    expect(readFileSync(join(stub, 'jev.log'), 'utf8').split('\n').filter((line) => line.startsWith('choice '))).toHaveLength(300);
   });
 
   it('skips passes two and three only after a probability of exactly 1.0', async () => {
@@ -938,10 +1013,107 @@ describe('model arms', () => {
     // A certainty-one row must still count as measured and score its single pick;
     // asserting only the call count would pass even if the row went unmeasured.
     expect(scoredCounts).toEqual([
-      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0 },
-      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0 },
+      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0, policies: { target: 1, top: 0 } },
+      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0, policies: { target: 1, top: 0 } },
     ]);
     expect(scoredPicks).toEqual([['001-a'], ['001-a', '001-a', '001-a']]);
+  });
+
+  it('scores the strongest policy on the measured rows only', async () => {
+    const scorerReport = await loadScorerKit();
+    const stub = makeBackendStubs();
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(outDir);
+
+    const rows: Row[] = [
+      ...Array.from({ length: 12 }, (_, index) => ({
+        id: `strongest-measured-${index}`,
+        path: 'data',
+        target: '001-a',
+        alternatives: ['002-b', '003-c'],
+        state: 'pick:002-b',
+        gold: null,
+        label: '002-b',
+      })),
+      {
+        id: 'strongest-unmeasured',
+        path: 'data',
+        target: '001-a',
+        alternatives: ['002-b', '003-c'],
+        state: 'unmeasured',
+        gold: null,
+        label: '002-b',
+      },
+    ];
+
+    const result = await runArm(
+      'jev',
+      rows,
+      'target',
+      { cmd: [join(stub, 'jev')] },
+      {
+        out: () => undefined,
+        env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
+        timeoutMs: 1000,
+        backoffMs: 0,
+        outDir,
+        describe: (folder) => folder,
+        scorerReport,
+      }
+    );
+
+    if (!('verdict' in result)) throw new Error('stub arm stopped');
+    expect(result.verdict).toBe('stop (strongest policy)');
+    expect(result.counts.strongest).toEqual({ pass: false, name: 'top', right: 12 });
+  });
+
+  it('stops on the class floor once the strongest policy holds', async () => {
+    const scorerReport = await loadScorerKit();
+    const stub = makeBackendStubs();
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(outDir);
+
+    const rows: Row[] = [
+      ...Array.from({ length: 7 }, (_, index) => ({
+        id: `floor-folder-${index}`,
+        path: 'data',
+        target: '001-a',
+        alternatives: ['002-b', '003-c'],
+        state: 'pick:003-c',
+        gold: null,
+        label: '003-c',
+      })),
+      {
+        id: 'floor-content',
+        path: 'cli',
+        target: '001-a',
+        alternatives: ['002-b', '003-c'],
+        state: 'pick:002-b',
+        gold: null,
+        label: '001-a',
+      },
+    ];
+
+    const result = await runArm(
+      'jev',
+      rows,
+      'target',
+      { cmd: [join(stub, 'jev')] },
+      {
+        out: () => undefined,
+        env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
+        timeoutMs: 1000,
+        backoffMs: 0,
+        outDir,
+        describe: (folder) => folder,
+        scorerReport,
+      }
+    );
+
+    if (!('verdict' in result)) throw new Error('stub arm stopped');
+    expect(result.verdict).toBe('stop (class floor)');
+    expect(result.counts.strongest).toEqual({ pass: true, name: 'target', right: 1 });
+    expect(result.counts.floor?.failing).toEqual(['content']);
   });
 });
 
@@ -977,8 +1149,12 @@ describe('probability-aware arm and out guard', () => {
     expect(err).toEqual([]);
     const pinsIndex = out.findIndex((line) => line.startsWith('pins:'));
     expect(pinsIndex).toBeGreaterThan(0);
-    expect(out.slice(pinsIndex - 4, pinsIndex)).toEqual([
+    expect(out.slice(pinsIndex - 8, pinsIndex)).toEqual([
       'verdict probability-aware: stop (flips) K=30 M=30 A=30 B=20 W=10 L=0 F=20 p=0.0010 baseline=target',
+      'strongest policy probability-aware: policy=target right=20 jev=30 pass=yes',
+      'class floor probability-aware folder: n=30 jev=30 baseline=20',
+      'class floor probability-aware: failing=none',
+      'power probability-aware: pairs=10 win_rate=1.0000 power=1.0000 pairs_for_80=5 mde_win_rate=0.9167',
       'decided-subset probability-aware: 30/30 accuracy=1.0000',
       'margin slack probability-aware: 7.0 rows',
       'bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[0.3333,0.3333] clusters=1 replicates=1000',
@@ -1040,5 +1216,70 @@ describe('probability-aware arm and out guard', () => {
     expect(out).toEqual([]);
     expect(err).toEqual(['--out directory already holds a run']);
     expect(readFileSync(join(outDir, 'report.json')).equals(reportBytes)).toBe(true);
+  });
+});
+
+describe('masked-state ablation', () => {
+  it('--arm masked-state runs the gate and one masked arm only, and records no state text', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir, outDir);
+    const stub = makeBackendStubs();
+    const f = writeRows(rowsDir, [
+      ...Array.from({ length: 20 }, () => ({ label: '001-a', state: 'pick:001-a' })),
+      ...Array.from({ length: 10 }, () => ({ label: '002-b', state: 'pick:002-b' })),
+    ]);
+
+    const out: string[] = [];
+    const err: string[] = [];
+    const code = await main(['--score', f, '--jev', '--accept-payload', '--arm', 'masked-state', '--out', outDir], {
+      out: (line) => out.push(line),
+      err: (line) => err.push(line),
+      env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
+      describe: (folder) => folder,
+    });
+
+    expect(code).toBe(0);
+    expect(err).toEqual([]);
+    expect(out).toContain('mask: rows=30 changed=30 lead_removed=0 sentences_removed=30 slugs_replaced=0 emptied=30');
+    const verdictIndex = out.findIndex((line) => line.startsWith('verdict jev: '));
+    expect(verdictIndex).toBeGreaterThan(0);
+    expect(out.slice(verdictIndex + 1, verdictIndex + 5)).toEqual([
+      'strongest policy ablation masked-state: policy=target right=0 jev=0 pass=no',
+      'class floor ablation masked-state: failing=none',
+      'power ablation masked-state: pairs=0 win_rate=none power=none pairs_for_80=none mde_win_rate=none',
+      'ablation masked-state: W+L=0 interval95=[0.000,1.000]',
+    ]);
+    expect(out.some((line) => line.startsWith('negative control'))).toBe(false);
+    expect(out.some((line) => line.startsWith('bootstrap probability-aware'))).toBe(false);
+
+    const jevLog = readFileSync(join(stub, 'jev.log'), 'utf8').trim().split(/\n/);
+    expect(jevLog.filter((line) => line.startsWith('choice '))).toHaveLength(90);
+    expect(jevLog.filter((line) => !line.startsWith('choice '))).toEqual([
+      '--version',
+      'auth status --provider official',
+      'auth test --provider official',
+    ]);
+
+    const calls = readFileSync(join(outDir, 'calls.jsonl'), 'utf8');
+    const reportBytes = readFileSync(join(outDir, 'report.json'), 'utf8');
+    const report = JSON.parse(reportBytes) as { columns: { jev?: unknown; ablations?: { maskedState?: unknown } } };
+    expect(report.columns.jev).toBeUndefined();
+    expect(report.columns.ablations?.maskedState).toBeDefined();
+    for (const artifact of [out.join('\n'), calls, reportBytes]) {
+      expect(artifact).not.toContain('pick:001-a');
+      expect(artifact).not.toContain('pick:002-b');
+    }
+  });
+
+  it('rejects an unknown --arm value', async () => {
+    const out: string[] = [];
+    const err: string[] = [];
+
+    const code = await main(['--arm', 'other'], { out: (line) => out.push(line), err: (line) => err.push(line) });
+
+    expect(code).toBe(2);
+    expect(out).toEqual([]);
+    expect(err).toEqual(['--arm must be masked-state']);
   });
 });

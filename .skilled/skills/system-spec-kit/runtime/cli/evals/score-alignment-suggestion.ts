@@ -506,6 +506,28 @@ export function listTranscriptFiles(dir: string): string[] {
 // 7. SCORER AND GATE
 // ───────────────────────────────────────────────────────────────────
 
+/** Whether a column strictly beats the strongest simple policy scored on the same rows. */
+export interface StrongestPolicyResult {
+  pass: boolean;
+  name: string | null;
+  right: number;
+}
+
+/** One save-path class's right counts, the rows the class-floor gate reads. */
+export interface ClassFloorCount {
+  cls: string;
+  n: number;
+  jev: number;
+  baseline: number;
+}
+
+/** Whether a column holds the baseline's right count inside every save-path class. */
+export interface ClassFloorResult {
+  pass: boolean;
+  classes: ClassFloorCount[];
+  failing: string[];
+}
+
 /** The shared report pieces the classifier scorers export, typed as this scorer calls them. */
 interface ScorerReport {
   pinRowSet(rows: Array<Record<string, unknown>>): { rowSetSha256: string; rowCount: number; rows: Array<Record<string, unknown>> };
@@ -514,9 +536,15 @@ interface ScorerReport {
   decidedSubset(pairs: Array<{ pick: string | null; gold: string | null }>, noneKey: string | null): { decidedCount: number; decidedCorrect: number; decidedAccuracy: number | null };
   marginSlack(tally: { A: number; B: number; M: number }): number | null;
   clusterBootstrapInterval(items: Array<{ cluster: string; delta: number }>, seedText: string): { clusterCount: number; replicates: number; estimate: number | null; lower: number | null; upper: number | null };
+  binomialTailHalf(n: number, k: number): { num: bigint; den: bigint };
+  beatsStrongestPolicy(jevRight: number, policies: Record<string, number>): StrongestPolicyResult;
+  classFloor(rows: Array<{ cls: string; jevRight: boolean; baselineRight: boolean }>): ClassFloorResult;
   decidedSubsetLine(name: string, subset: { decidedCount: number; decidedCorrect: number; decidedAccuracy: number | null }): string;
   marginSlackLine(name: string, slack: number | null): string;
   bootstrapLine(name: string, bootstrap: { clusterCount: number; replicates: number; lower: number | null; upper: number | null }): string;
+  strongestPolicyLine(name: string, jevRight: number, bar: StrongestPolicyResult): string;
+  classFloorLines(name: string, floor: ClassFloorResult): string[];
+  powerLine(name: string, measurement: { pairs: number; winRate: number | null }): string;
 }
 
 // Loaded at run time because the shared module belongs to another skill, outside this package's compile root.
@@ -681,7 +709,9 @@ export function modalPick(picks: Array<string | null>): { pick: string | null; f
 
 /**
  * Counts the keep rule needs: callable rows K, measured rows M, the right counts
- * A and B, the disagreements W and L, and flips F.
+ * A and B, the disagreements W and L, flips F, and the target and top policy
+ * right counts scored on those same measured rows. The strongest-policy and
+ * class-floor results are optional, so a direct caller can decide without them.
  */
 export interface VerdictCounts {
   K: number;
@@ -691,6 +721,9 @@ export interface VerdictCounts {
   W: number;
   L: number;
   F: number;
+  policies?: Record<string, number>;
+  strongest?: StrongestPolicyResult;
+  floor?: ClassFloorResult;
 }
 
 /** Preserves differing rows for review because W+L alone hides which labels disagree. */
@@ -718,7 +751,8 @@ export function countVerdict(
   chosen: 'target' | 'top',
   confidenceGated = false
 ): VerdictCounts {
-  const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0 };
+  const policies = { target: 0, top: 0 };
+  const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0, policies };
   for (const row of rows) {
     const rowPicks = picks[row.id];
     if (rowPicks === undefined || rowPicks.some((pick) => pick === null)) continue;
@@ -737,23 +771,87 @@ export function countVerdict(
     if (baselineRight) counts.B += 1;
     if (columnRight && !baselineRight) counts.W += 1;
     if (baselineRight && !columnRight) counts.L += 1;
+    // The policy bar reads the same measured rows the right counts do, so an
+    // unmeasured row cannot lift a policy the model never faced.
+    if (row.target === label) policies.target += 1;
+    if (row.alternatives[0] === label) policies.top += 1;
   }
   return counts;
 }
 
+/** The save-path class a row belongs to, the same split the save path line prints. */
+function savePathClass(row: Row): string {
+  return row.path === 'cli' ? 'content' : row.path === 'data' ? 'folder' : 'other';
+}
+
+/** Per-row rightness under the measured-row rule, keyed by save-path class. */
+function classFloorInput(
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  chosen: 'target' | 'top',
+  confidenceGated = false
+): Array<{ cls: string; jevRight: boolean; baselineRight: boolean }> {
+  const input: Array<{ cls: string; jevRight: boolean; baselineRight: boolean }> = [];
+  for (const row of rows) {
+    const rowPicks = picks[row.id];
+    if (rowPicks === undefined || rowPicks.some((pick) => pick === null)) continue;
+    const singleCertainPass = confidenceGated && rowPicks.length === 1;
+    if (!singleCertainPass && rowPicks.length !== PASSES) continue;
+    const pick = singleCertainPass ? rowPicks[0] : modalPick(rowPicks).pick;
+    const label = effectiveLabel(row);
+    const baselineAnswer = chosen === 'target' ? row.target : row.alternatives[0];
+    input.push({ cls: savePathClass(row), jevRight: pick === label, baselineRight: baselineAnswer === label });
+  }
+  return input;
+}
+
 /**
- * Applies the keep rule in order: coverage, kill, margin, sign test, flips, keep.
- * The p value is the sign-test tail, except a kill reports its tail and coverage reports 1.
+ * Fills the two keep-rule gate fields a set of counts needs, scored over the same picks
+ * the counts came from. A direct caller without the shared report leaves the gates unset,
+ * and decideVerdict then skips them.
  */
-export function decideVerdict(c: VerdictCounts): { verdict: string; p: number } {
+function attachGates(
+  counts: VerdictCounts,
+  scorerReport: ScorerReport | null,
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  chosen: 'target' | 'top',
+  confidenceGated = false
+): void {
+  if (scorerReport === null) return;
+  counts.strongest = scorerReport.beatsStrongestPolicy(counts.A, counts.policies ?? {});
+  counts.floor = scorerReport.classFloor(classFloorInput(rows, picks, chosen, confidenceGated));
+}
+
+/**
+ * Applies the keep rule in order: coverage, kill, margin, sign test, strongest policy,
+ * class floor, flips, keep. A gate whose result is absent is skipped, so a caller that
+ * counted no policies or classes still decides. The kill and sign tails come from the
+ * shared report's exact fraction when one is loaded, so a pair count whose coefficients
+ * overflow a float cannot hide a kill. The p value is the sign-test tail, except a kill
+ * reports its own tail and coverage reports 1.
+ */
+export function decideVerdict(
+  c: VerdictCounts,
+  scorerReport: ScorerReport | null = null
+): { verdict: string; p: number } {
   if (10 * c.M < 9 * c.K) return { verdict: 'stop (coverage)', p: 1 };
 
-  const killP = binomTail(c.W + c.L, c.L);
-  if (c.W + c.L > 0 && killP <= 0.05) return { verdict: 'kill', p: killP };
+  const pairs = c.W + c.L;
+  const kill = scorerReport?.binomialTailHalf(pairs, c.L) ?? null;
+  const killP = kill === null ? binomTail(pairs, c.L) : Number(kill.num) / Number(kill.den);
+  if (pairs > 0 && (kill === null ? killP <= 0.05 : 20n * kill.num <= kill.den)) {
+    return { verdict: 'kill', p: killP };
+  }
 
-  const signP = c.W + c.L === 0 ? 1 : binomTail(c.W + c.L, c.W);
+  const sign = scorerReport?.binomialTailHalf(pairs, c.W) ?? null;
+  const signP = sign === null ? binomTail(pairs, c.W) : Number(sign.num) / Number(sign.den);
   if (10 * (c.A - c.B) < c.M) return { verdict: 'stop (margin)', p: signP };
-  if (signP >= 0.05) return { verdict: 'stop (sign test)', p: signP };
+  if (!(pairs > 0 && (sign === null ? signP < 0.05 : 20n * sign.num < sign.den))) {
+    return { verdict: 'stop (sign test)', p: signP };
+  }
+  if (c.strongest !== undefined && !c.strongest.pass) return { verdict: 'stop (strongest policy)', p: signP };
+  if (c.floor !== undefined && !c.floor.pass) return { verdict: 'stop (class floor)', p: signP };
   if (10 * c.F > 3 * c.M) return { verdict: 'stop (flips)', p: signP };
   return { verdict: 'keep', p: signP };
 }
@@ -814,10 +912,12 @@ function scorePicks(
   rows: Row[],
   picks: Record<string, Array<string | null>>,
   chosen: 'target' | 'top',
-  confidenceGated = false
+  confidenceGated = false,
+  scorerReport: ScorerReport | null = null
 ): ArmMetrics {
   const counts = countVerdict(rows, picks, chosen, confidenceGated);
-  const decided = decideVerdict(counts);
+  attachGates(counts, scorerReport, rows, picks, chosen, confidenceGated);
+  const decided = decideVerdict(counts, scorerReport);
   return {
     verdict: decided.verdict,
     counts,
@@ -861,7 +961,9 @@ export function scoreProbabilityArm(
   noneProbs: Record<string, Array<number | null>>,
   chosen: 'target' | 'top'
 ): ProbabilityAwareAnalysis {
-  const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0 };
+  const policies = { target: 0, top: 0 };
+  const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0, policies };
+  const floorInput: Array<{ cls: string; jevRight: boolean; baselineRight: boolean }> = [];
   const pairs: Array<{ pick: string | null; gold: string | null }> = [];
   const items: Array<{ cluster: string; delta: number }> = [];
   const probabilityPicks = new Map<string, string | null>();
@@ -899,11 +1001,16 @@ export function scoreProbabilityArm(
     if (baselineRight) counts.B += 1;
     if (columnRight && !baselineRight) counts.W += 1;
     if (baselineRight && !columnRight) counts.L += 1;
+    if (row.target === label) policies.target += 1;
+    if (row.alternatives[0] === label) policies.top += 1;
+    floorInput.push({ cls: savePathClass(row), jevRight: columnRight, baselineRight });
     pairs.push({ pick, gold: label });
     items.push({ cluster: row.target, delta: Number(columnRight) - Number(baselineRight) });
   }
 
-  const decided = decideVerdict(counts);
+  counts.strongest = scorerReport.beatsStrongestPolicy(counts.A, counts.policies ?? {});
+  counts.floor = scorerReport.classFloor(floorInput);
+  const decided = decideVerdict(counts, scorerReport);
   const line = verdictLine('probability-aware', counts, decided, chosen, '');
   const subset = scorerReport.decidedSubset(pairs, NONE_KEY);
   const slack = scorerReport.marginSlack(counts);
@@ -933,6 +1040,101 @@ function distractorStates(rows: Row[]): Row[] {
     ...row,
     state: rows.length > 1 ? rows[(index + 1) % rows.length].state : 'Unrelated context',
   }));
+}
+
+/** Collapses whitespace and lower-cases so copied descriptions compare on words alone. */
+function normalizeCopyText(value: string): string {
+  return value.replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+/**
+ * Rewrites a save state so it no longer carries the options' own words: the lead sentence
+ * that names the session, every sentence copied from an option description, and every folder
+ * name and bare slug. The counts let a reader judge how much was removed.
+ */
+export function maskState(
+  state: string,
+  options: Array<{ folder: string; description: string }>
+): { text: string; leadRemoved: boolean; sentencesRemoved: number; slugsReplaced: number } {
+  let text = state;
+  let leadRemoved = false;
+  const lead = 'This session is working on ';
+  if (text.startsWith(lead)) {
+    const end = /\.(?=\s|$)/.exec(text);
+    // Without a sentence end the lead is the whole state, so dropping it leaves
+    // nothing behind for the description pass to keep.
+    text = end === null ? '' : text.slice(end.index + 1);
+    leadRemoved = true;
+  }
+
+  const descriptions = options
+    .map((option) => normalizeCopyText(option.description))
+    .filter((description) => description !== '');
+  const kept: string[] = [];
+  let sentencesRemoved = 0;
+  for (const sentence of text.split(/\.\s+/)) {
+    const normalized = normalizeCopyText(sentence);
+    if (descriptions.some((description) => normalized.includes(description) || description.includes(normalized))) {
+      sentencesRemoved += 1;
+      continue;
+    }
+    kept.push(sentence);
+  }
+
+  let slugsReplaced = 0;
+  let masked = kept.join('. ').replace(/\b\d{3}-[a-z0-9-]+\b/g, () => {
+    slugsReplaced += 1;
+    return '[folder]';
+  });
+  for (const option of options) {
+    const slug = /^\d{3}-(.*)$/.exec(option.folder);
+    for (const pattern of [option.folder, slug === null ? '' : slug[1]]) {
+      if (pattern === '') continue;
+      const escaped = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      masked = masked.replace(new RegExp(escaped, 'gi'), () => {
+        slugsReplaced += 1;
+        return '[folder]';
+      });
+    }
+  }
+
+  const trimmed = masked.trim();
+  return { text: trimmed === '' ? '[masked]' : trimmed, leadRemoved, sentencesRemoved, slugsReplaced };
+}
+
+/**
+ * Rewrites every row's state through `maskState` over the row's own options, so the masked
+ * arm keeps the same options, labels, order and scorer as the primary arm.
+ */
+export function maskedStates(
+  rows: Row[],
+  describe: Describer
+): {
+  rows: Row[];
+  stats: { rows: number; changed: number; leadRemoved: number; sentencesRemoved: number; slugsReplaced: number; emptied: number };
+} {
+  const stats = { rows: rows.length, changed: 0, leadRemoved: 0, sentencesRemoved: 0, slugsReplaced: 0, emptied: 0 };
+  const masked = rows.map((row) => {
+    const state = row.state ?? '';
+    const options = [row.target, ...row.alternatives].map((folder) => ({
+      folder,
+      description: describe(folder, row.path, row.target),
+    }));
+    const result = maskState(state, options);
+    if (result.text !== state) stats.changed += 1;
+    if (result.leadRemoved) stats.leadRemoved += 1;
+    stats.sentencesRemoved += result.sentencesRemoved;
+    stats.slugsReplaced += result.slugsReplaced;
+    if (result.text === '[masked]') stats.emptied += 1;
+    return { ...row, state: result.text };
+  });
+  return { rows: masked, stats };
+}
+
+/** Formats the masked arm's counters; it never carries state text. */
+function maskStatsLine(stats: { rows: number; changed: number; leadRemoved: number; sentencesRemoved: number; slugsReplaced: number; emptied: number }): string {
+  return `mask: rows=${stats.rows} changed=${stats.changed} lead_removed=${stats.leadRemoved}`
+    + ` sentences_removed=${stats.sentencesRemoved} slugs_replaced=${stats.slugsReplaced} emptied=${stats.emptied}`;
 }
 
 /**
@@ -1326,6 +1528,7 @@ export async function runArm(
     backoffMs: number;
     outDir: string;
     describe: Describer;
+    scorerReport?: ScorerReport | null;
   },
   options: { name?: string; confidenceGated?: boolean } = {}
 ): Promise<ArmOutcome> {
@@ -1471,12 +1674,20 @@ export async function runArm(
   }
 
   const counts = countVerdict(rows, picks, chosen, confidenceGated);
-  const decided = decideVerdict(counts);
+  attachGates(counts, ctx.scorerReport ?? null, rows, picks, chosen, confidenceGated);
+  const decided = decideVerdict(counts, ctx.scorerReport ?? null);
   const extra = `jev_version=${JEV_VERSION} provider=${provider} model=${jevModel}`;
   const line = verdictLine(backend, counts, decided, chosen, extra);
   const discordantRows = listDiscordantRows(rows, picks, chosen, confidenceGated);
   const interval = wilsonInterval(counts.W, counts.W + counts.L);
+  const scorerReport = ctx.scorerReport ?? null;
   ctx.out(line);
+  if (scorerReport !== null && counts.strongest !== undefined && counts.floor !== undefined) {
+    ctx.out(scorerReport.strongestPolicyLine(armName, counts.A, counts.strongest));
+    for (const floorLine of scorerReport.classFloorLines(armName, counts.floor)) ctx.out(floorLine);
+    const decidedPairs = counts.W + counts.L;
+    ctx.out(scorerReport.powerLine(armName, { pairs: decidedPairs, winRate: decidedPairs === 0 ? null : counts.W / decidedPairs }));
+  }
   ctx.out(`${armName}: W+L=${counts.W + counts.L} interval95=[${interval.lower.toFixed(3)},${interval.upper.toFixed(3)}]`);
   ctx.out(`${armName}: discordant_rows=${discordantRows.length}`);
   for (const discordant of discordantRows) {
@@ -1503,12 +1714,16 @@ export interface MainDeps {
   backoffMs?: number;
 }
 
+const USAGE = 'usage: npx tsx evals/score-alignment-suggestion.ts [--report <dir>] [--transcripts <dir>] [--rows-out <file>]'
+  + ' | --score <rows file> [--jev] [--accept-payload] [--out <dir>] [--baseline target|top] [--arm masked-state]';
+
 const MAIN_OPTIONS = {
   report: { type: 'string' },
   transcripts: { type: 'string' },
   'rows-out': { type: 'string' },
   score: { type: 'string' },
   baseline: { type: 'string' },
+  arm: { type: 'string' },
   out: { type: 'string' },
   jev: { type: 'boolean' },
   'accept-payload': { type: 'boolean' },
@@ -1529,6 +1744,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
   let rowsOut: string | undefined;
   let score: string | undefined;
   let baselineArgument: string | undefined;
+  let armArgument: string | undefined;
   let outDir: string | undefined;
   let jev = false;
   let acceptPayload = false;
@@ -1539,11 +1755,18 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     rowsOut = values['rows-out'];
     score = values.score;
     baselineArgument = values.baseline;
+    armArgument = values.arm;
     outDir = values.out;
     jev = values.jev === true;
     acceptPayload = values['accept-payload'] === true;
   } catch (error) {
     err(`usage error: ${error instanceof Error ? error.message : String(error)}`);
+    err(USAGE);
+    return 2;
+  }
+
+  if (armArgument !== undefined && armArgument !== 'masked-state') {
+    err('--arm must be masked-state');
     return 2;
   }
 
@@ -1570,6 +1793,18 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
   }
   if (jev && outDir === undefined) {
     err('--jev needs --out <dir> so every call is recorded');
+    return 2;
+  }
+  if (armArgument !== undefined && score === undefined) {
+    err('--arm needs --score <rows file>');
+    return 2;
+  }
+  if (armArgument !== undefined && !jev) {
+    err('--arm needs --jev');
+    return 2;
+  }
+  if (armArgument !== undefined && outDir === undefined) {
+    err('--arm needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1647,7 +1882,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     }
 
     out(`margin: ${MARGIN_TEXT}`);
-    out('keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M');
+    out('keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, strongest A>S, class floor A_c>=B_c, flips 10*F<=3*M');
     out(`question: ${CHOICE_QUESTION}`);
 
     const env = deps.env ?? process.env;
@@ -1655,6 +1890,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
       jev?: ArmOutcome;
       confidenceGated?: ArmOutcome;
       negativeControls?: { labelSwap: ArmMetrics; distractorState?: ArmOutcome };
+      ablations?: { maskedState?: ArmOutcome };
     } = {};
     let analysis: ProbabilityAwareAnalysis | null = null;
     const armCtx = {
@@ -1664,50 +1900,70 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
       backoffMs: deps.backoffMs ?? BACKOFF_MS,
       outDir: outDir ?? '',
       describe: deps.describe ?? buildDescriber(deps.specsRoot ?? SPECS_ROOT),
+      scorerReport,
     };
 
     const jevGateResult = jev ? jevGate({ out, env, acceptPayload }) : null;
     if (jevGateResult !== null && jevGateResult.passed && jevGateResult.path !== null) {
       const gate = { cmd: [jevGateResult.path], provider: jevGateResult.provider };
-      const primary = await runArm(
-        'jev',
-        callable,
-        baseline.chosen,
-        gate,
-        armCtx
-      );
-      columns.jev = primary;
-      if ('picks' in primary) {
-        const labelSwap = scorePicks(swapTargetTopLabels(callable), primary.picks, baseline.chosen);
-        columns.negativeControls = { labelSwap };
-        out(`negative control label-swap: W+L=${labelSwap.counts.W + labelSwap.counts.L} interval95=[${labelSwap.interval.lower.toFixed(3)},${labelSwap.interval.upper.toFixed(3)}]`);
-        out(`negative control label-swap: discordant_rows=${labelSwap.discordantRows.length}`);
-        for (const discordant of labelSwap.discordantRows) {
-          out(`negative control label-swap: discordant row_id=${discordant.rowId} outcome=${discordant.outcome} label=${discordant.label} comparator=${discordant.comparatorPick} model=${discordant.modelPick}`);
-        }
-
-        columns.confidenceGated = await runArm(
+      if (armArgument === 'masked-state') {
+        const maskedOnly = maskedStates(callable, armCtx.describe);
+        out(maskStatsLine(maskedOnly.stats));
+        columns.ablations = {
+          maskedState: await runArm('jev', maskedOnly.rows, baseline.chosen, gate, armCtx, { name: 'ablation masked-state' }),
+        };
+      } else {
+        const primary = await runArm(
           'jev',
           callable,
           baseline.chosen,
           gate,
-          armCtx,
-          { name: 'confidence-gated', confidenceGated: true }
+          armCtx
         );
-        columns.negativeControls.distractorState = await runArm(
-          'jev',
-          distractorStates(callable),
-          baseline.chosen,
-          gate,
-          armCtx,
-          { name: 'negative control distractor-state' }
-        );
-        if (scorerReport !== null) {
-          analysis = scoreProbabilityArm(scorerReport, callable, primary.picks, primary.pickProbs, primary.noneProbs, baseline.chosen);
-          out(analysis.probabilityAware.line);
-          out(scorerReport.decidedSubsetLine('probability-aware', analysis.probabilityAware));
-          out(scorerReport.marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
-          out(scorerReport.bootstrapLine('probability-aware', analysis.bootstrap));
+        columns.jev = primary;
+        if ('picks' in primary) {
+          const labelSwap = scorePicks(swapTargetTopLabels(callable), primary.picks, baseline.chosen, false, scorerReport);
+          columns.negativeControls = { labelSwap };
+          out(`negative control label-swap: W+L=${labelSwap.counts.W + labelSwap.counts.L} interval95=[${labelSwap.interval.lower.toFixed(3)},${labelSwap.interval.upper.toFixed(3)}]`);
+          out(`negative control label-swap: discordant_rows=${labelSwap.discordantRows.length}`);
+          for (const discordant of labelSwap.discordantRows) {
+            out(`negative control label-swap: discordant row_id=${discordant.rowId} outcome=${discordant.outcome} label=${discordant.label} comparator=${discordant.comparatorPick} model=${discordant.modelPick}`);
+          }
+
+          columns.confidenceGated = await runArm(
+            'jev',
+            callable,
+            baseline.chosen,
+            gate,
+            armCtx,
+            { name: 'confidence-gated', confidenceGated: true }
+          );
+          columns.negativeControls.distractorState = await runArm(
+            'jev',
+            distractorStates(callable),
+            baseline.chosen,
+            gate,
+            armCtx,
+            { name: 'negative control distractor-state' }
+          );
+          const masked = maskedStates(callable, armCtx.describe);
+          out(maskStatsLine(masked.stats));
+          columns.ablations = {
+            maskedState: await runArm('jev', masked.rows, baseline.chosen, gate, armCtx, { name: 'ablation masked-state' }),
+          };
+          if (scorerReport !== null) {
+            analysis = scoreProbabilityArm(scorerReport, callable, primary.picks, primary.pickProbs, primary.noneProbs, baseline.chosen);
+            out(analysis.probabilityAware.line);
+            if (analysis.probabilityAware.strongest !== undefined && analysis.probabilityAware.floor !== undefined) {
+              out(scorerReport.strongestPolicyLine('probability-aware', analysis.probabilityAware.A, analysis.probabilityAware.strongest));
+              for (const floorLine of scorerReport.classFloorLines('probability-aware', analysis.probabilityAware.floor)) out(floorLine);
+              const decidedPairs = analysis.probabilityAware.W + analysis.probabilityAware.L;
+              out(scorerReport.powerLine('probability-aware', { pairs: decidedPairs, winRate: decidedPairs === 0 ? null : analysis.probabilityAware.W / decidedPairs }));
+            }
+            out(scorerReport.decidedSubsetLine('probability-aware', analysis.probabilityAware));
+            out(scorerReport.marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
+            out(scorerReport.bootstrapLine('probability-aware', analysis.bootstrap));
+          }
         }
       }
     }
