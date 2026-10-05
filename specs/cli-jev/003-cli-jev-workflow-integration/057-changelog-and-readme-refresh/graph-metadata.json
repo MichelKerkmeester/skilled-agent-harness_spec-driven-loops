@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
-  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/057-changelog-and-readme-refresh",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/057-changelog-and-readme-refresh",
   "parent_id": "cli-jev/003-cli-jev-workflow-integration",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "codex task dispatch payload",
-      "codex bash tool rename",
-      "codex exec matcher",
-      "javascript checklist module header",
-      "codex payload probe plan",
-      "codex bash matcher plan",
+      "v4.0.0.3 changelog classifier refresh",
+      "root readme classifier refresh",
+      "jev changelog accuracy",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
       "task breakdown",
       "implementation tasks",
       "verification checklist",
       "task dependencies",
-      "acceptance criteria",
-      "closure gate"
+      "implementation summary"
     ],
     "key_topics": [
-      "codex",
-      "task",
-      "dispatch",
-      "payload",
-      "bash",
-      "tool",
-      "rename",
-      "exec",
-      "matcher",
-      "javascript",
-      "checklist",
-      "module"
+      "changelog",
+      "classifier",
+      "refresh",
+      "root",
+      "readme",
+      "jev",
+      "accuracy",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,13 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
       "implementation-summary.md",
-      ".codex/hooks.json",
-      ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
-      "runtime/hooks/codex/spec-gate-enforce.mjs",
-      ".codex/SYNC.md",
-      "runtime-mirrors/hook-registry.json"
+      ".skilled/changelog/skilled/v4.0.0.3.md"
     ],
     "entities": [
       {
@@ -72,45 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "codex-shell-tool.test.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-enforce.mjs",
-        "kind": "file",
-        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
+        "name": "v4.0.0.3.md",
         "kind": "doc",
-        "path": ".codex/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-registry.json",
-        "kind": "config",
-        "path": "runtime-mirrors/hook-registry.json",
+        "path": ".skilled/changelog/skilled/v4.0.0.3.md",
         "source": "derived"
       },
       {
@@ -120,7 +85,7 @@
         "source": "derived"
       },
       {
-        "name": "Probing Codex",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -162,7 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Thin",
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,13 +145,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Codex",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,27 +161,56 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
-    "created_at": "2026-10-05T15:41:54Z",
-    "last_save_at": "2026-10-05T18:42:50.278Z",
+    "causal_summary": "The changelog's classifier section was written on 2026-10-04, before phases 52 to 56",
+    "created_at": "2026-10-05T18:36:02Z",
+    "last_save_at": "2026-10-05T18:42:48.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f701b3aff7310b646eec1c8f3fb2742d1d4d505fc1a6d1f255373069c46cf1b2",
+    "source_fingerprint": "sha256:7f3a0b73b09aa36de3e46e78001b26786dee4d953d0260d47cbc6754788a782c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15fb526316e3eb702009286f161b68693a1e7130136c6b7eddcf7a4d9134bd11",
-      "plan.md": "95a849fcf755774f0e4325a2667d258b71ec8479845cca8d8be44a8eba22a3ca",
-      "tasks.md": "5041808218c59afee5fe2175a72cd749d614588306dae6cdb8dee27d11fb05a6",
-      "implementation-summary.md": "adebe3dca1c182a41678a748f4886a6202e8a35694058a95616ff9791d2ca9b5"
+      "spec.md": "ff2bf9f8cbe7e184e54a7e221b4cca4db144711b3babe1b529c145c6ca9985d5",
+      "plan.md": "80b65c4b8e0ee1c0a6acdf1e78bedf987efc46890c5bb72127cff66afb0bfb4f",
+      "tasks.md": "0a279253da24be39d9129756b20005fe9bb322c01409ed28748db1006caf8b9a",
+      "implementation-summary.md": "360ac02a4a5e4f3e11424424cc2d8f21485a4bbcde8bc278b6ae1da88e9e677e"
     },
     "last_active_at": null
   }

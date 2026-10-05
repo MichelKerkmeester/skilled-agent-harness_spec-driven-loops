@@ -119,7 +119,7 @@ The orchestrator ran codex-cli 0.160 with a throwaway `CODEX_HOME` holding a sym
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Changed Codex hook entries need the operator's approval.** Codex records each approval as a `trusted_hash` in `~/.codex/config.toml` and skips an entry whose matcher changed. Open `/hooks` in an interactive Codex session and approve them. The git message gate entry had no approval even before this phase.
+1. **Changed Codex hook entries need the operator's approval.** Codex records each approval as a `trusted_hash` in `~/.codex/config.toml` and skips an entry with no approval. A changed matcher likely needs approving again, which the probe did not test. Open `/hooks` in an interactive Codex session and approve every entry it lists as needing review. The git message gate entry had no approval even before this phase.
 2. **Open sessions keep their old hook sets until restarted.**
 <!-- /ANCHOR:limitations -->
 
