@@ -44,6 +44,11 @@ SK_VISION = REPO_ROOT / ".skilled" / "hooks" / "sk-vision" / "devin" / "sk-visio
 POST_EDIT_QUALITY = (
     REPO_ROOT / ".skilled" / "hooks" / "post-edit-quality" / "devin" / "post-edit-quality.cjs"
 )
+# The screen only ever warns, so this runs the Devin adapter's `webfetch` branch: the same words and
+# the same verdict no matter which runtime fetched the page.
+INJECTION_SCREEN = (
+    REPO_ROOT / ".skilled" / "hooks" / "classifier-injection-screen" / "devin" / "classifier-injection-screen-posttooluse.mjs"
+)
 MCP_ROUTE_GUARD = (
     REPO_ROOT / ".skilled" / "hooks" / "mcp-route-guard" / "devin" / "mcp-route-guard.cjs"
 )
@@ -109,6 +114,8 @@ SESSION_START_GUARDS: Tuple[Tuple[str, Path, Tuple[str, ...]], ...] = (
     ("dist-freshness", REPO_ROOT / ".skilled" / "hooks" / "dist-freshness" / "devin" / "check-dist-staleness.sh", ("python3", "--all")),
     ("git-hooks-check", REPO_ROOT / ".skilled" / "hooks" / "git-hooks-check" / "devin" / "check-git-hooks.sh", ("bash",)),
     ("git-primary-reconcile", REPO_ROOT / ".skilled" / "hooks" / "git-primary-reconcile" / "pi" / "git-primary-reconcile.sh", ("bash",)),
+    # The follower it starts detaches with its output sent to /dev/null, so the capture never waits on it.
+    ("git-live-follow", REPO_ROOT / ".skilled" / "hooks" / "git-live-follow" / "devin" / "git-live-follow.sh", ("bash", "--start")),
 )
 
 
@@ -158,6 +165,9 @@ MESSAGE_GATE_SHAPE = re.compile(r"\b(?:git|gh)\b")
 # reads the file path, never the name.
 EDIT_TOOLS = {"write_file", "patch"}
 DEVIN_EDIT_TOOL = "edit"
+# The Devin adapter recognizes the fetch tool name of its own runtime, the same way it recognizes
+# that edit-tool name.
+DEVIN_FETCH_TOOL = "webfetch"
 
 # Hermes hands work out through one dispatch tool, and the shared dispatch guard expects the
 # subagent tool name of its own runtime.
@@ -169,6 +179,10 @@ DELEGATE_CORE_TOOL = "run_subagent"
 # value the call did.
 VISION_TOOL = "vision_analyze"
 VISION_IMAGE_ARG = "image_url"
+
+# The fetched web text the injection screen reads arrives as a tool result and not as an argument,
+# so this bridge branches on the tool name alone; Hermes fetches a page with this one tool.
+WEB_EXTRACT_TOOL = "web_extract"
 
 # The shared dispatch guard reads its generic placeholder as "no target named" and parses the target
 # from the prompt body instead, so a role carrying that value is left off the subagent type.
@@ -215,6 +229,9 @@ CORE_TIMEOUT_SECONDS = 15
 # The vision core answers through a model call and takes tens of seconds on a loaded machine, so it
 # carries a budget of its own rather than the one the verdict cores finish inside.
 VISION_CORE_TIMEOUT_SECONDS = 25
+# The injection screen answers through classifier calls over the fetched text, which take longer
+# than the verdict cores but well under the vision core's model call.
+INJECTION_SCREEN_TIMEOUT_SECONDS = 30
 
 
 def _run_core(
@@ -321,6 +338,43 @@ def _vision_advisory(image: str) -> Optional[str]:
     """The shared vision core's guidance for one image path, or None when it stays silent."""
     payload = {"prompt": image, "cwd": os.getcwd()}
     context = _hook_output(_run_core(SK_VISION, payload, VISION_CORE_TIMEOUT_SECONDS)).get("additionalContext")
+    return context.strip() if isinstance(context, str) and context.strip() else None
+
+
+def _extracted_text(result: Any) -> Optional[str]:
+    """The text a `web_extract` result carries: the non-empty `content` fields of its `results`
+    joined in order, or None when the result is not that JSON."""
+    if not isinstance(result, str):
+        return None
+    try:
+        body = json.loads(result)
+    except ValueError:
+        return None
+    results = body.get("results") if isinstance(body, dict) else None
+    if not isinstance(results, list):
+        return None
+    parts = [
+        entry["content"]
+        for entry in results
+        if isinstance(entry, dict) and isinstance(entry.get("content"), str) and entry["content"].strip()
+    ]
+    return "\n\n".join(parts) if parts else None
+
+
+def _injection_advisory(result: Any) -> Optional[str]:
+    """The injection screen's warning for the text one `web_extract` call fetched, or None.
+
+    The one guard that reads a result rather than a call's arguments: fetched web text is
+    untrusted input and only the result carries it. The Devin adapter is the one run, because the
+    fetch tool name it screens for is the shape this payload is built in; a result that carries
+    no text never reaches it.
+    """
+    text = _extracted_text(result)
+    if text is None:
+        return None
+    payload = {"tool_name": DEVIN_FETCH_TOOL, "tool_response": {"content": text}}
+    output = _hook_output(_run_core(INJECTION_SCREEN, payload, INJECTION_SCREEN_TIMEOUT_SECONDS))
+    context = output.get("additionalContext")
     return context.strip() if isinstance(context, str) and context.strip() else None
 
 
@@ -473,11 +527,18 @@ def transform_tool_result(
 ) -> Optional[str]:
     """Append this call's advisory to its result: the Gate-3 notice for a write the session has
     not been asked about yet, the post-edit quality pass for a file write, the sk-git line for a
-    git command, the vision guidance for an image, the dispatch guard's notes for a delegated
-    batch, or the MCP route guard for an external server's tool. None leaves the result as it came
-    in, which is also what a silent or failing core does."""
+    git command, the vision guidance for an image, the injection screen's warning for fetched web
+    text, the dispatch guard's notes for a delegated batch, or the MCP route guard for an external
+    server's tool. None leaves the result as it came in, which is also what a silent or failing
+    core does."""
     try:
-        advisory = _result_advisory(tool_name, args or {}, session_id)
+        # The injection screen is the one advisory that reads the result, so its branch sits here
+        # rather than in _result_advisory, which only ever sees a call's arguments.
+        advisory = (
+            _injection_advisory(result)
+            if tool_name == WEB_EXTRACT_TOOL
+            else _result_advisory(tool_name, args or {}, session_id)
+        )
         if not advisory:
             return None
         text = result if isinstance(result, str) else json.dumps(result) if result is not None else ""
