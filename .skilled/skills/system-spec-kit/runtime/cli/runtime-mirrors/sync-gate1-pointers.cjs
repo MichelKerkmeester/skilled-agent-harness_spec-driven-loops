@@ -4,9 +4,9 @@
 // MODULE: Gate 1 pointer synchronizer
 // ───────────────────────────────────────────────────────────────────
 // The Gate 1 trigger-index lookup instruction lives once, in the root
-// AGENTS.md. Claude reads that file directly and Pi loads it from the working
-// directory, but Codex's global instruction file and the Cursor rule that
-// Cursor and Devin share are read on their own, so each carries a pointer
+// AGENTS.md. Claude reads that file directly, Pi loads it from the working
+// directory and Codex's global instruction file is a symlink to it. The Cursor
+// rule that Cursor and Devin share is read on its own, so it carries a pointer
 // block generated from the root line rather than a hand-kept copy. Write mode
 // rewrites the block in place; --check reports drift and writes nothing.
 //
@@ -26,10 +26,6 @@ const SOURCE_MARKER = 'lookup-trigger-index.mjs';
 
 /** The instruction files that carry a generated pointer block, relative to the repo root. */
 const TARGETS = [
-  {
-    file: path.join('.codex', 'AGENTS.md'),
-    intro: 'When the repository you are working in carries `.skilled/skills/system-spec-kit` or `.opencode/skills/system-spec-kit`, its root `AGENTS.md` §2 Gate 1 applies on every new prompt; the lookup it names is:',
-  },
   {
     file: path.join('.cursor', 'rules', 'skill-routing.md'),
     intro: 'Gate 1 of the root `AGENTS.md` applies on every new prompt; before routing to a packet, run the lookup it names:',

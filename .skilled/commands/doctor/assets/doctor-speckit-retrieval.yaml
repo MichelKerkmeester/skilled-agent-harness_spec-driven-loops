@@ -150,9 +150,9 @@ staleness_signals:
     severity: low
     note: "Informational. A moved citation still points at a real file under its new path, so the summary names that path. It does not say whether the cited lines support the claim: the census checks existence, never support. Fixing citations is an authoring task, so no regeneration is ever recommended for this signal."
   gate1_instruction_parity:
-    detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
+    detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, .codex/AGENTS.md is no longer a symlink to the root AGENTS.md, the generated pointer block in .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
     severity: medium
-    note: "Claude reads the root AGENTS.md directly and Pi loads it from the working directory; Codex and the Cursor rule shared by Cursor and Devin carry generated pointer blocks. Reach is per runtime: a pointer, direct load, verified inheritance, or session-start injection each count as a path."
+    note: "Claude reads the root AGENTS.md directly, Pi loads it from the working directory and Codex reads it through the .codex/AGENTS.md symlink; the Cursor rule shared by Cursor and Devin carries a generated pointer block. Reach is per runtime: a pointer, direct load, verified inheritance, or session-start injection each count as a path."
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY ADVISORIES
@@ -180,7 +180,7 @@ workflow:
       - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase with --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**'; record exit status and path count"
       - "Run the same recipe once more without --no-config; a different path set is the ripgrep_ambient_config signal"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
-      - "Gate 1 reach, per runtime: verify the root AGENTS.md instruction Claude reads directly and Pi loads from the working directory; run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check for Codex through .codex/AGENTS.md and Cursor and Devin through .cursor/rules/skill-routing.md. Any missing instruction path or a non-zero exit is the gate1_instruction_parity signal"
+      - "Gate 1 reach, per runtime: verify the root AGENTS.md instruction Claude reads directly and Pi loads from the working directory; confirm .codex/AGENTS.md is a symlink to ../AGENTS.md for Codex, and run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check for Cursor and Devin through .cursor/rules/skill-routing.md. Any missing instruction path or a non-zero exit is the gate1_instruction_parity signal"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - index_present: true|false

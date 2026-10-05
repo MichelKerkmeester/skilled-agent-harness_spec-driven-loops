@@ -108,6 +108,6 @@ The arms ran in isolated test environments built by `rule-experiment.py`, each w
 
 1. **One model in the replication.** Both replication lanes ran DeepSeek V4.1 Flash. Luna's result comes from the first run only.
 2. **No live window.** Gate 6 landed with the 007 wording and the 010 phrases, so a live measurement cannot isolate it.
-3. **Codex global carries no mandate.** `.codex/AGENTS.md` still holds neither mandate, so Codex sessions outside a repository with a root `AGENTS.md` do not get Gate 6.
+3. **Codex reads the root file twice here.** `.codex/AGENTS.md` is now a symlink to the root `AGENTS.md`, so every Codex session gets Gate 6 through `~/.codex/AGENTS.md`. Inside this repository Codex also loads the root file as project instructions, so it likely reads the same text twice.
 4. **Cline still misses.** DeepSeek through Cline missed the reply rules in 34.9% of long replies under Gate 6.
 <!-- /ANCHOR:limitations -->
