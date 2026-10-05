@@ -1,5 +1,5 @@
 {
-  "manifestHash": "43aeb8cf8f3955e911fafd255b6251f1482ebe30d2569bcfc81376d9d13c2a23",
+  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22429,6 +22429,12 @@
     "codex background execution": [
       "codex background execution"
     ],
+    "codex bash matcher plan": [
+      "codex bash matcher plan"
+    ],
+    "codex bash tool rename": [
+      "codex bash tool rename"
+    ],
     "codex branch event dir": [
       "codex branch event dir"
     ],
@@ -22506,6 +22512,9 @@
     ],
     "codex exec json stream": [
       "codex exec json stream"
+    ],
+    "codex exec matcher": [
+      "codex exec matcher"
     ],
     "codex exec model reasoning effort": [
       "codex exec model reasoning effort"
@@ -22612,6 +22621,9 @@
     "codex output projection": [
       "codex output projection"
     ],
+    "codex payload probe plan": [
+      "codex payload probe plan"
+    ],
     "codex pi sync agents": [
       "codex pi sync agents"
     ],
@@ -22689,6 +22701,9 @@
     ],
     "codex stop cleanup diagnostic": [
       "codex stop cleanup diagnostic"
+    ],
+    "codex task dispatch payload": [
+      "codex task dispatch payload"
     ],
     "codex timeout stale marker": [
       "Codex timeout stale marker"
@@ -50250,6 +50265,9 @@
     "javascript brace style": [
       "javascript brace style"
     ],
+    "javascript checklist module header": [
+      "javascript checklist module header"
+    ],
     "javascript cleanup destroy": [
       "javascript cleanup destroy"
     ],
@@ -50360,6 +50378,9 @@
     ],
     "jev census baseline column": [
       "jev census baseline column"
+    ],
+    "jev changelog accuracy": [
+      "jev changelog accuracy"
     ],
     "jev choice near tie cluster": [
       "jev choice near-tie cluster"
@@ -78477,6 +78498,9 @@
     "root readme alignment": [
       "root readme alignment"
     ],
+    "root readme classifier refresh": [
+      "root readme classifier refresh"
+    ],
     "root readme counts update": [
       "root readme counts update"
     ],
@@ -99187,6 +99211,9 @@
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
+    ],
+    "v4 0 0 3 changelog classifier refresh": [
+      "v4.0.0.3 changelog classifier refresh"
     ],
     "v4 0 0 3 changelog doctor": [
       "v4.0.0.3 changelog doctor"

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6765,
-    "ok": 13415,
+    "missing-frontmatter": 6759,
+    "ok": 13383,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23749,
+  "documentsScanned": 23711,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "43aeb8cf8f3955e911fafd255b6251f1482ebe30d2569bcfc81376d9d13c2a23",
+  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33853,
+      "ok": 33862,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -28354,12 +28354,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".skilled/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -33775,18 +33769,6 @@
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -65243,24 +65225,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -66980,6 +66944,14 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/057-changelog-and-readme-refresh/scratch",
       "reason": "excluded directory"
     },
     {
