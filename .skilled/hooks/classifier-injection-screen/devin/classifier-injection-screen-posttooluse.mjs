@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Claude PostToolUse Injection Screen
+// MODULE: Devin PostToolUse Injection Screen
 // ───────────────────────────────────────────────────────────────────
-// PostToolUse(WebFetch) injection screen for Claude Code.
+// PostToolUse(webfetch) injection screen for Devin CLI -- the Devin sibling of the
+// Claude WebFetch screen.
 //
 // Fetched web text is untrusted input, and a page can try to issue orders to
-// the agent that reads it. This adapter takes the text Claude just fetched,
+// the agent that reads it. This adapter takes the text Devin just fetched,
 // screens it with the measured question, and adds one advisory line naming how
 // many sections read as instructions and where the strongest one sits.
 //
@@ -52,7 +53,9 @@ async function main() {
     return done(); // no/invalid payload -> fail open
   }
 
-  if (String(payload?.tool_name ?? '') !== 'WebFetch') return done();
+  // Devin's hook payload names its fetch tool `webfetch` and carries the page
+  // text in `tool_response.output`.
+  if (payload?.tool_name !== 'webfetch') return done();
 
   const advisory = await screenAdvisory(fetchedText(payload?.tool_response), { env: process.env });
   if (advisory === null) return done();

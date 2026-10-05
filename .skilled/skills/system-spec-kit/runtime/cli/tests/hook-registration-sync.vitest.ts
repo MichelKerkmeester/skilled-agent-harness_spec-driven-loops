@@ -10,11 +10,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { afterAll, describe, expect, it } from 'vitest';
 
 const SCRIPT = path.resolve(__dirname, '..', 'runtime-mirrors', 'sync-hook-registrations.cjs');
 const REGISTRY = path.resolve(__dirname, '..', 'runtime-mirrors', 'hook-registry.json');
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
+const { renderCursorCommand } = createRequire(__filename)(SCRIPT) as { renderCursorCommand: (config: { defaultMessage: string }, binding: Record<string, unknown>) => string };
 const FILES = ['.claude/settings.json', '.codex/hooks.json', '.cursor/hooks.json', '.devin/hooks.v1.json'];
 
 function run(root: string, ...args: string[]): { status: number | null; stdout: string; stderr: string } {
@@ -91,6 +93,12 @@ describe('sync-hook-registrations.cjs', () => {
       expect(enforce!.bindings[runtime]?.length, runtime).toBeGreaterThan(0);
     }
     const bindingCount = registry.hooks.reduce((total, hook) => total + Object.values(hook.bindings).reduce((sum, list) => sum + list.length, 0), 0);
-    expect(bindingCount).toBe(87);
+    expect(bindingCount).toBe(92);
+  });
+
+  it('detaches a background binding on Cursor the way the project-dir runtimes do', () => {
+    const binding = { event: 'sessionStart', group: 0, slot: 0, matcher: null, runner: 'bash', script: '.skilled/bin/git-primary-reconcile.sh', timeout: 10, fallback: 'background' };
+    expect(renderCursorCommand({ defaultMessage: 'unused' }, binding)).toBe('bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &');
+    expect(() => renderCursorCommand({ defaultMessage: 'unused' }, { ...binding, fallback: 'echo' })).toThrow(/none, background or envelope/u);
   });
 });
