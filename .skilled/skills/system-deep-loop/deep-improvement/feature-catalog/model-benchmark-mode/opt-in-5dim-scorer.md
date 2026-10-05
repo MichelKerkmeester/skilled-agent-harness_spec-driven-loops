@@ -24,7 +24,7 @@ This feature controls how `run-benchmark.cjs` judges materialized outputs. It ke
 
 ## 2. HOW IT WORKS
 
-`run-benchmark.cjs --scorer pattern` is the default. It uses the byte-identical heading and pattern matcher, so a run with no scorer flag produces the same deterministic result as before. `--scorer 5dim` is opt-in: it routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer that combines deterministic checks with a pluggable grader.
+`run-benchmark.cjs --scorer pattern` is the default. It uses the byte-identical heading and pattern matcher, so a run with no scorer flag produces the same deterministic result as before. `--scorer 5dim` is opt-in: it routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer that combines deterministic checks with a pluggable grader. The Jev cascade grader is `scripts/model-benchmark/scorer/classifier-score-model-variant.cjs`.
 
 Grader selection is separate from scorer selection. `--grader auto` is the default: with a stored Jev credential it grades D4 with the Jev cascade, which asks only about outputs the deterministic hallucination check flags, and without one it resolves to `noop`, deterministic with no model dispatch. `--grader noop` forces the deterministic path, `--grader mock` selects the stub grader, `--grader llm` the real grader and `--grader jev` the cascade, exiting 2 without a credential. The report records the resolved `grader`, the `graderRequested` value and the `graderReason`. Any other value exits 2 with the usage line before a profile loads, so a mistyped kind can no longer score with the stub. The benchmark report and the `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`, so downstream consumers can attribute each result to the scorer that produced it.
 
@@ -38,6 +38,7 @@ Grader selection is separate from scorer selection. `--grader auto` is the defau
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Resolves `--scorer` and `--grader`, runs the default pattern matcher, and stamps `scoringMethod` on the report. |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Ported five-dimension scorer reached only under `--scorer 5dim`. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/classifier-score-model-variant.cjs` | Jev grader | Builds the cascade D4 grader that votes only the rows the deterministic hallucination check flags. |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader harness | Hosts the pluggable `noop`, `mock`, and `llm` grader paths the 5-dim scorer consumes. |
 
 ### Validation And Tests
@@ -45,7 +46,7 @@ Grader selection is separate from scorer selection. `--grader auto` is the defau
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies pattern-default parity, `--scorer 5dim` routing, grader selection, and `scoringMethod` stamping end to end. |
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer module behavior in isolation. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer and its Jev grader module behavior in isolation. |
 
 ---
 

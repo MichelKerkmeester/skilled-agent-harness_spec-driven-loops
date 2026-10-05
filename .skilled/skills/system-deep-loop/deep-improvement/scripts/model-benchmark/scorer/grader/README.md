@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- The grader is pluggable. `score-model-variant.cjs` builds a grader function for `noop`, `mock`, or `llm` (real) modes, and the harness runs the mock or real dispatch path.
+- The grader is pluggable. `score-model-variant.cjs` builds a grader function for `noop`, `mock`, or `llm` (real) modes, and the harness runs the mock or real dispatch path. The `jev` kind is built by `../classifier-score-model-variant.cjs` instead and does not pass through this harness.
 - The model-provided score and confidence are clamped to `[0,1]`, including on the cache-hit path, so a malformed response cannot poison the weighted total.
 - Parsing falls back through fenced JSON, regex object extraction, and a score-only regex before reporting `parse_status: failed`.
 - `prompts/` holds the system prompts: the primary grader and the adversarial skeptic.
@@ -47,6 +47,7 @@ dispute.cjs ──(low confidence or dispute rate)──▶ adversarial second g
 Dependency direction:
 harness ───▶ ../lib/cache , harness ───▶ prompts/
 dispute ───▶ harness , prompts/ are read-only data
+../classifier-score-model-variant.cjs ───▶ cli-classifier jev-transport (jev kind, bypasses this harness)
 ```
 
 ---

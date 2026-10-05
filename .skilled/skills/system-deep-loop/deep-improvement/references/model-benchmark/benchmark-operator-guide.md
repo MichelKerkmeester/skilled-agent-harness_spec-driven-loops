@@ -52,7 +52,7 @@ node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/r
 
 ### Scorer Selection
 
-`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`), and `--grader auto|noop|mock|llm|jev` to pick the D4 grader. The default `auto` uses the Jev cascade when a Jev credential is stored and `noop` otherwise; pass `--grader noop` for a deterministic run on any machine. The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
+`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`), and `--grader auto|noop|mock|llm|jev` to pick the D4 grader. The default `auto` uses the Jev cascade (the grader in `scorer/classifier-score-model-variant.cjs`) when a Jev credential is stored and `noop` otherwise; pass `--grader noop` for a deterministic run on any machine. The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
 
 ```text
 node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs \

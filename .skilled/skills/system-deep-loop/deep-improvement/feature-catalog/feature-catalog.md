@@ -29,7 +29,7 @@ The skill runs two lanes through one agent. Each category and feature below is t
 | Evaluation loop | 7 features | Lane A | `.skilled/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.skilled/agents/deep-improvement.md` |
 | Scoring system | 5 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `scorer/score-d4-agreement.cjs` |
-| Model-benchmark mode | 6 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`, `lib/score-verdict-fallback.cjs` |
+| Model-benchmark mode | 6 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`, `scorer/classifier-score-model-variant.cjs`, `lib/score-verdict-fallback.cjs`, `lib/classifier-reviewer-scorer.cjs` |
 
 ---
 
@@ -337,7 +337,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### How It Works
 
-`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader auto` is the default, grading D4 with the Jev cascade when a Jev credential is stored and resolving to the deterministic `noop` otherwise, with `--grader mock`, `--grader llm` and `--grader jev` selecting the stub, real or Jev grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`. Any other `--grader` value exits 2 before a profile loads.
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer whose Jev cascade grader is `scripts/model-benchmark/scorer/classifier-score-model-variant.cjs`. `--grader auto` is the default, grading D4 with the Jev cascade when a Jev credential is stored and resolving to the deterministic `noop` otherwise, with `--grader mock`, `--grader llm` and `--grader jev` selecting the stub, real or Jev grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`. Any other `--grader` value exits 2 before a profile loads.
 
 #### Source Files
 
