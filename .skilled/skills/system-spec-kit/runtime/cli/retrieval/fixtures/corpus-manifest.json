@@ -1,5 +1,5 @@
 {
-  "corpusHash": "588b015eef34193d11e697040b30b9811b5a7040f6c5aa63d39f12a9d8ef9723",
+  "corpusHash": "106e8f5bf64453be059f67c9d6fbd61419efe338e734263b4645a71033bbd40f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23733,
+  "includedPathCount": 23741,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23674,6 +23674,10 @@
     "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23746,6 +23750,10 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/plan.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/tasks.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/goal.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/review/deep-review-dashboard.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/review/deep-review-strategy.md",
@@ -23763,7 +23771,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0633d56532ac6bd77b81f900ab84904899079135d519241ac6db20c254258641",
+  "manifestHash": "c75f03e8cb49376a1ae04aa6243a22faadb7fc985cfdddaeef7b9588aa0d4a25",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29394,6 +29402,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
       "reason": "excluded directory"
     },
@@ -29435,6 +29447,10 @@
     },
     {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

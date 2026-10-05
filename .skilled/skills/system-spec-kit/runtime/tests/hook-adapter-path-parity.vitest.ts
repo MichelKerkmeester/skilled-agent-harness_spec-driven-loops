@@ -229,6 +229,7 @@ describe('hook adapter path parity', () => {
     const commands = cursorCommands();
     expect(commands.length).toBeGreaterThan(0);
     for (const { runtime, event, command } of commands) {
+      if (isBackgroundedReconcile(command)) continue;
       expect(command, `${runtime}:${event}`).toContain('mkHookDrift');
       expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
     }

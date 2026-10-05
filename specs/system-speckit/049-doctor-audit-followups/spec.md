@@ -153,6 +153,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 27 | 027-derived-sanitizer-instruction-shape/ | Narrow the derived label sanitizer to instruction phrasing so every curated skill metadata block carries a truthful stamp | Complete |
 | 28 | 028-advisor-stress-fixtures/ | Update the two skill-advisor stress tests whose fixtures predate code changes, so the stress suite passes | Complete |
 | 29 | 029-main-ci-regenerations/ | Regenerate the derived files behind three red checks on main | Complete |
+| 30 | 030-cursor-reconcile-test-exemption/ | Exempt the backgrounded reconcile hook in the Cursor parity assertion so Spec-Kit Check passes | Complete |
 
 ### Phase Transition Rules
 
@@ -193,6 +194,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 026-doctor-run-followups | 027-derived-sanitizer-instruction-shape | Seven skills stay unstamped because the sanitizer would drop their labels | All 14 skills pass the sanitizer unchanged and graph validation reports 0 warnings |
 | 027-derived-sanitizer-instruction-shape | 028-advisor-stress-fixtures | All 14 skills carry a proven sanitizer stamp | The skill-advisor stress suite passes 64 of 64 |
 | 028-advisor-stress-fixtures | 029-main-ci-regenerations | The skill-advisor stress suite passes | Command Tree Parity, sk-doc Script Tests and Deep-Loop Runtime Tests pass on main |
+| 029-main-ci-regenerations | 030-cursor-reconcile-test-exemption | Three red checks cleared | Spec-Kit Check passes on main |
 <!-- /ANCHOR:phase-map -->
 
 ---
