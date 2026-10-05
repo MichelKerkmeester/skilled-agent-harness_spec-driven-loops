@@ -69,7 +69,7 @@ The plugin purity suite and the pi-extension suite now fail with `Run: bash .ski
 |------|--------|---------|
 | `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Optional build output per line; projection package added. Follow-up: build outputs for spec-kit's `runtime` and `runtime/cli` |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modified | Build step; default to the current worktree |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Provisioning tests with npm stubbed, including a linked worktree |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Provisioning tests with npm stubbed, including a linked worktree. Follow-up: fails when a listed package with a build script and an untracked `main` names no output |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modified | Name the fix for a missing plugin build |
 | `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` | Modified | Check for the advisor build before the imports load |
 <!-- /ANCHOR:what-built -->
@@ -113,6 +113,8 @@ A GPT-6 Luna executor made the script, list and test changes from a brief. The o
 | Follow-up: provision with spec-kit's `shared/dist` and `runtime/dist` removed, before the fix | `0 installed, 0 built, 9 already present, 0 failed`; both outputs missing; `repair-derived` reports `failed=1` |
 | Follow-up: the same, after the fix | `0 installed, 2 built, 9 already present, 0 failed`; both outputs present; `repair-derived` reports `failed=0`; a second run builds 0 |
 | Follow-up: `worktree-naming.test.sh` | PASS, 83 of 83 |
+| Follow-up: the suite with the output check | PASS, 85 of 85 |
+| Follow-up: the same suite against the list before the fix | FAIL, 84 of 85: "every buildable listed package names its build output" names `.skilled/skills/system-spec-kit/runtime` and `.skilled/skills/system-spec-kit/runtime/cli` |
 <!-- /ANCHOR:verification -->
 
 ---

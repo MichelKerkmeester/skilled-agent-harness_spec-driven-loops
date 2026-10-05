@@ -325,6 +325,34 @@ else
   echo "FAIL: linked worktree fixture creation"
 fi
 
+# ── every buildable listed package names its build output ────────
+# A listed package whose `main` is an untracked build product, listed without
+# its output, is installed but never built, so a fresh worktree lacks code that
+# scripts import, and provisioning still reports success.
+REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd -P)"
+unnamed_build_outputs() { # unnamed_build_outputs <list> -- print each listed package missing its output
+  local list="$1" pkg artifact _ main
+  while read -r pkg artifact _; do
+    case "$pkg" in ''|\#*) continue ;; esac
+    [ -n "$artifact" ] && continue
+    [ -f "$REPO_ROOT/$pkg/package.json" ] || continue
+    main="$(node -e '
+      const path = require("path");
+      const manifest = require(path.resolve(process.argv[1], "package.json"));
+      if (manifest.scripts && manifest.scripts.build && manifest.main) process.stdout.write(path.normalize(manifest.main));
+    ' "$REPO_ROOT/$pkg" 2>/dev/null)"
+    [ -n "$main" ] || continue
+    git -C "$REPO_ROOT" ls-files --error-unmatch "$pkg/$main" >/dev/null 2>&1 && continue
+    echo "$pkg"
+  done < "$list"
+}
+expect_eq "every buildable listed package names its build output" "" \
+  "$(unnamed_build_outputs "$SCRIPT_DIR/worktree-provision-paths.txt")"
+UNNAMED_LIST="$TMP/unnamed-output-paths.txt"
+printf '.skilled/skills/system-spec-kit/runtime\n' > "$UNNAMED_LIST"
+expect_eq "a buildable package listed without its output is reported" \
+  ".skilled/skills/system-spec-kit/runtime" "$(unnamed_build_outputs "$UNNAMED_LIST")"
+
 # ── report ─────────────────────────────────────────────────────
 echo "worktree-naming tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]
