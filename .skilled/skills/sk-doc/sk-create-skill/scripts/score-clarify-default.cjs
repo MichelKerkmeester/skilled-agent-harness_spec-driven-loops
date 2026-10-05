@@ -48,7 +48,7 @@ const NONE_DESCRIPTION = 'None of these modes';
 const ORDERS = 3;
 const EARLY_STOP_ORDERS = 2;
 const MARGIN_LINE = 'margin: 0.10';
-const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M';
+const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, strongest policy A > S, class floor A_c >= B_c, flips 10*F <= 3*M';
 
 const JEV_VERSION = 'jev 0.6.2';
 const JEV_TIMEOUT_MS = 90000;
@@ -365,11 +365,15 @@ function rowLines(rows) {
 /**
  * Count front-door lines across a transcript directory, recursing into
  * subdirectories. A line counts once when it names at least one hub/action
- * pair, and each distinct pair on it counts once for its hub. Only counts
- * leave this function; transcript text never does.
+ * pair, and each distinct pair on it counts once for its hub. A Codex log
+ * mirrors most tool output as an `event_msg` record after the item record
+ * that produced it, so a mirror line is skipped and counted apart instead of
+ * doubling every tally. Only lines that name a hub id are parsed, which keeps
+ * large logs fast, and only counts leave this function; transcript text never
+ * does.
  *
  * @param {string} dir - Directory to walk.
- * @returns {{ files: number, linesMatched: number, byHub: Object<string, { route: number, clarify: number, defer: number, reject: number }>, perFile: Array<{ file: string, lines: number }> }} The transcript count.
+ * @returns {{ files: number, linesMatched: number, skippedMirror: number, byHub: Object<string, { route: number, clarify: number, defer: number, reject: number }>, perFile: Array<{ file: string, lines: number }> }} The transcript count, with its Codex mirror-line total.
  */
 function countTranscripts(dir) {
   const files = [];
@@ -391,11 +395,25 @@ function countTranscripts(dir) {
   const byHub = {};
   const perFile = [];
   let linesMatched = 0;
+  let skippedMirror = 0;
 
   for (const file of files) {
     const lines = fs.readFileSync(file, 'utf8').split('\n');
     let matched = 0;
     for (const line of lines) {
+      if (line.includes('hubId')) {
+        let parsed;
+        try {
+          parsed = JSON.parse(line);
+        } catch {
+          // A line that does not parse is matched as before.
+          parsed = null;
+        }
+        if (parsed && parsed.type === 'event_msg') {
+          skippedMirror += 1;
+          continue;
+        }
+      }
       const pairs = new Set();
       for (const match of line.matchAll(FRONT_DOOR_PATTERN)) pairs.add(match[1] + '\t' + match[2]);
       if (pairs.size === 0) continue;
@@ -410,18 +428,19 @@ function countTranscripts(dir) {
     perFile.push({ file: path.relative(dir, file), lines: matched });
   }
 
-  return { files: files.length, linesMatched, byHub, perFile };
+  return { files: files.length, linesMatched, skippedMirror, byHub, perFile };
 }
 
 /**
- * Format the transcript count: the file and matched-line totals, one line
- * per hub in sorted order, and the real clarify rate the transcripts show.
+ * Format the transcript count: the file, matched-line and mirror-skip totals,
+ * one line per hub in sorted order, and the real clarify rate the transcripts
+ * show.
  *
- * @param {{ files: number, linesMatched: number, byHub: Object<string, { route: number, clarify: number, defer: number, reject: number }> }} result - countTranscripts output.
+ * @param {{ files: number, linesMatched: number, skippedMirror: number, byHub: Object<string, { route: number, clarify: number, defer: number, reject: number }> }} result - countTranscripts output.
  * @returns {Array<string>} Transcript report lines.
  */
 function transcriptLines(result) {
-  const lines = [`transcripts: files=${result.files} lines_matched=${result.linesMatched}`];
+  const lines = [`transcripts: files=${result.files} lines_matched=${result.linesMatched} mirror_lines_skipped=${result.skippedMirror}`];
   let clarify = 0;
   let total = 0;
   for (const hub of Object.keys(result.byHub).sort()) {
@@ -722,6 +741,23 @@ function baselineScores(labeled) {
 }
 
 /**
+ * Right counts of the three simple policies for one column, keyed by policy
+ * name, the shape the strongest-policy gate compares an arm against. The
+ * values come from that column's measured rows, so the bar rests on exactly
+ * the rows the arm can count.
+ *
+ * @param {{ firstAlternative: number, secondAlternative: number, alwaysNone: number }} right - Measured-row right counts by policy.
+ * @returns {Record<string, number>} Policy name to right count.
+ */
+function policyRightCounts(right) {
+  return {
+    'first-alternative': right.firstAlternative,
+    'second-alternative': right.secondAlternative,
+    'always-none': right.alwaysNone
+  };
+}
+
+/**
  * Summarize deterministic baselines and an optional measured column by hub
  * and by whether the label names a mode or none of the offered modes.
  *
@@ -854,18 +890,22 @@ function modalPick(answers) {
 
 /**
  * First failed condition decides, in this order: coverage, kill, margin,
- * sign test, flips. Every outcome carries p, the sign test's exact tail.
+ * sign test, strongest policy, class floor, flips. A strongest or floor
+ * result that is absent skips its gate. Every outcome carries p, the sign
+ * test's exact tail.
  *
- * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number }} counts - The column's counts.
- * @returns {{ outcome: 'keep' | 'kill' | 'stop', reason: 'coverage' | 'margin' | 'sign test' | 'flips' | null, p: number }} The decision.
+ * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number, strongest?: { pass: boolean, name: string | null, right: number } | null, floor?: { pass: boolean, classes: Array<object>, failing: string[] } | null }} counts - The column's counts and the optional gate results.
+ * @returns {{ outcome: 'keep' | 'kill' | 'stop', reason: 'coverage' | 'margin' | 'sign test' | 'strongest policy' | 'class floor' | 'flips' | null, p: number }} The decision.
  */
-function decideVerdict({ K, M, A, B, W, L, F }) {
+function decideVerdict({ K, M, A, B, W, L, F, strongest = null, floor = null }) {
   const sign = tailP(W + L, W);
   if (!(10 * M >= 9 * K)) return { outcome: 'stop', reason: 'coverage', p: sign.p };
   const kill = tailP(W + L, L);
   if (W + L > 0 && 20n * kill.num <= kill.den) return { outcome: 'kill', reason: null, p: sign.p };
   if (!(10 * (A - B) >= M)) return { outcome: 'stop', reason: 'margin', p: sign.p };
   if (!(W + L > 0 && 20n * sign.num < sign.den)) return { outcome: 'stop', reason: 'sign test', p: sign.p };
+  if (strongest !== null && !strongest.pass) return { outcome: 'stop', reason: 'strongest policy', p: sign.p };
+  if (floor !== null && !floor.pass) return { outcome: 'stop', reason: 'class floor', p: sign.p };
   if (!(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', p: sign.p };
   return { outcome: 'keep', reason: null, p: sign.p };
 }
@@ -876,14 +916,17 @@ function decideVerdict({ K, M, A, B, W, L, F }) {
  * than all orders, with every answer a string; every other row stays
  * unmeasured. A row that stopped early carries only the votes it measured, so
  * the flips a pick lacks are counted over those measured votes alone. An
- * unstable or abstained pick is wrong for the column.
+ * unstable or abstained pick is wrong for the column. Measured rows also feed
+ * the per-class floor tally against the first-alternative baseline and the
+ * strongest-policy right counts, so the bar sits on the same rows as the arm.
  *
- * @param {Array<{ id: string, alternatives: Array<string>, value: string }>} labeled - Kept rows.
+ * @param {Array<{ id: string, hub: string, alternatives: Array<string>, value: string }>} labeled - Kept rows.
  * @param {Map<string, Array<string | null>>} answersById - Row id to submitted keys in call order.
- * @returns {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number, unstable: number, abstained: number }} The column's counts.
+ * @returns {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number, unstable: number, abstained: number, policies: Record<string, number>, floor: { pass: boolean, classes: Array<object>, failing: string[] } }} The column's counts, its measured-row policy rights and its class floor.
  */
 function scoreColumn(labeled, answersById) {
   const K = labeled.length;
+  const floorRows = [];
   let M = 0;
   let A = 0;
   let B = 0;
@@ -892,6 +935,8 @@ function scoreColumn(labeled, answersById) {
   let F = 0;
   let unstable = 0;
   let abstained = 0;
+  let secondAlternative = 0;
+  let alwaysNone = 0;
 
   for (const row of labeled) {
     const answers = answersById.get(row.id);
@@ -910,27 +955,34 @@ function scoreColumn(labeled, answersById) {
     if (baseRight) B += 1;
     if (colRight && !baseRight) W += 1;
     if (baseRight && !colRight) L += 1;
+    if (row.alternatives[1] === row.value) secondAlternative += 1;
+    if (row.value === NONE_KEY) alwaysNone += 1;
+    const cls = row.hub + '/' + (row.value === NONE_KEY ? 'none' : 'mode');
+    floorRows.push({ cls, jevRight: colRight, baselineRight: baseRight });
   }
 
-  return { K, M, A, B, W, L, F, unstable, abstained };
+  // The baseline right count B is the first-alternative count on these rows.
+  const policies = policyRightCounts({ firstAlternative: B, secondAlternative, alwaysNone });
+  return { K, M, A, B, W, L, F, unstable, abstained, policies, floor: scorerReport.classFloor(floorRows) };
 }
 
 /**
  * Count the probability-aware column: the measure rule is scoreColumn's, but
  * a counted row's pick is the key its measured votes' probabilities favor
  * rather than the key they name most often. Each counted row also feeds the
- * decided-subset tally and one bootstrap delta against the first-alternative
- * baseline.
+ * decided-subset tally, one bootstrap delta against the first-alternative
+ * baseline, the per-class floor tally and the strongest-policy right counts.
  *
  * @param {Array<{ id: string, hub: string, alternatives: Array<string>, value: string }>} labeled - Kept rows.
  * @param {Map<string, Array<string | null>>} picks - Row id to submitted keys in call order.
  * @param {Map<string, Array<{ pick: string | null, pickProb: number | null, noneProb: number | null }>>} votes - Row id to measured votes and their probabilities.
- * @returns {{ probabilityAware: object, bootstrap: object }} The probability-aware column and its cluster bootstrap interval.
+ * @returns {{ probabilityAware: object, bootstrap: object, floor: { pass: boolean, classes: Array<object>, failing: string[] }, strongest: { pass: boolean, name: string | null, right: number } }} The probability-aware column, its cluster bootstrap interval, its class floor and its strongest-policy verdict.
  */
 function scoreProbabilityArm(labeled, picks, votes) {
   const K = labeled.length;
   const pairs = [];
   const items = [];
+  const floorRows = [];
   const probabilityPicks = new Map();
   let M = 0;
   let A = 0;
@@ -938,6 +990,8 @@ function scoreProbabilityArm(labeled, picks, votes) {
   let W = 0;
   let L = 0;
   let F = 0;
+  let secondAlternative = 0;
+  let alwaysNone = 0;
 
   for (const row of labeled) {
     const answers = picks.get(row.id);
@@ -955,12 +1009,19 @@ function scoreProbabilityArm(labeled, picks, votes) {
     if (baseRight) B += 1;
     if (right && !baseRight) W += 1;
     if (baseRight && !right) L += 1;
+    if (row.alternatives[1] === row.value) secondAlternative += 1;
+    if (row.value === NONE_KEY) alwaysNone += 1;
+    const cls = row.hub + '/' + (row.value === NONE_KEY ? 'none' : 'mode');
+    floorRows.push({ cls, jevRight: right, baselineRight: baseRight });
     pairs.push({ pick, gold: row.value });
     items.push({ cluster: row.hub, delta: Number(right) - Number(baseRight) });
   }
 
   const counts = { K, M, A, B, W, L, F };
-  const decision = decideVerdict(counts);
+  const policies = policyRightCounts({ firstAlternative: B, secondAlternative, alwaysNone });
+  const strongest = scorerReport.beatsStrongestPolicy(A, policies);
+  const floor = scorerReport.classFloor(floorRows);
+  const decision = decideVerdict({ ...counts, strongest, floor });
   const subset = scorerReport.decidedSubset(pairs, NONE_KEY);
   const slack = scorerReport.marginSlack({ A, B, M });
   const seedText = labeled.map((row) => `${row.id}\u0000${probabilityPicks.get(row.id) ?? ''}`).join('\n');
@@ -975,6 +1036,7 @@ function scoreProbabilityArm(labeled, picks, votes) {
       W,
       L,
       F,
+      policies,
       outcome: decision.outcome,
       reason: decision.reason,
       p: decision.p,
@@ -985,7 +1047,9 @@ function scoreProbabilityArm(labeled, picks, votes) {
       marginSlack: slack,
       picks: Object.fromEntries(probabilityPicks)
     },
-    bootstrap
+    bootstrap,
+    floor,
+    strongest
   };
 }
 
@@ -1015,6 +1079,25 @@ function verdictLine(backend, counts, decision, suffix) {
     + ' p=' + formatP(decision.p);
   if (typeof suffix === 'string' && suffix !== '') line += ' ' + suffix;
   return line;
+}
+
+/**
+ * The strongest-policy, class-floor and power lines that follow one arm's
+ * verdict line.
+ *
+ * @param {string} name - Arm name.
+ * @param {{ A: number, W: number, L: number }} counts - The column's counts.
+ * @param {{ pass: boolean, name: string | null, right: number }} strongest - beatsStrongestPolicy output.
+ * @param {{ pass: boolean, classes: Array<object>, failing: string[] }} floor - classFloor output.
+ * @returns {Array<string>} The report lines.
+ */
+function gateLines(name, counts, strongest, floor) {
+  const pairs = counts.W + counts.L;
+  return [
+    scorerReport.strongestPolicyLine(name, counts.A, strongest),
+    ...scorerReport.classFloorLines(name, floor),
+    scorerReport.powerLine(name, { pairs, winRate: pairs === 0 ? null : counts.W / pairs })
+  ];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1397,13 +1480,16 @@ async function runJevArm(labeled, gate, ctx) {
   }
 
   const counts = scoreColumn(labeled, picks);
-  const decision = decideVerdict(counts);
+  const strongest = scorerReport.beatsStrongestPolicy(counts.A, counts.policies);
+  const decision = decideVerdict({ ...counts, strongest });
   const line = verdictLine('jev', counts, decision, 'jev_version=0.6.2 provider=' + provider + ' model=' + model);
   out(line);
+  for (const gateLine of gateLines('jev', counts, strongest, counts.floor)) out(gateLine);
   out('jev: calls=' + calls + ' choice_calls=' + choiceCalls
     + ' early_stops=' + inferredThirdOrderIds.length);
   const analysis = scoreProbabilityArm(labeled, picks, votes);
   out(analysis.probabilityAware.line);
+  for (const gateLine of gateLines('probability-aware', analysis.probabilityAware, analysis.strongest, analysis.floor)) out(gateLine);
   out(scorerReport.decidedSubsetLine('probability-aware', analysis.probabilityAware));
   out(scorerReport.marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
   out(scorerReport.bootstrapLine('probability-aware', analysis.bootstrap));

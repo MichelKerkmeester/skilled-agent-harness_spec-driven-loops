@@ -428,6 +428,41 @@ test('the transcript count prints counts and no transcript text', { timeout: 120
   }
 });
 
+test('countTranscripts skips the Codex event-message mirror of a tool output', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-tx-'));
+  try {
+    const frontDoor = '{"hubId":"sk-code","action":"clarify"}';
+    fs.writeFileSync(path.join(dir, 'codex.jsonl'), [
+      JSON.stringify({
+        timestamp: '2026-03-17T14:16:40.164Z',
+        ordinal: 8,
+        type: 'response_item',
+        payload: { type: 'function_call_output', call_id: 'call-1', output: frontDoor }
+      }),
+      JSON.stringify({
+        timestamp: '2026-03-17T14:16:40.164Z',
+        ordinal: 9,
+        type: 'event_msg',
+        payload: {
+          type: 'item_completed',
+          item: { type: 'CommandExecution', id: 'item-3', aggregated_output: frontDoor }
+        }
+      })
+    ].join('\n') + '\n');
+
+    const result = S.countTranscripts(dir);
+
+    assert.equal(result.files, 1);
+    assert.equal(result.linesMatched, 1);
+    assert.equal(result.skippedMirror, 1);
+    assert.equal(result.byHub['sk-code'].clarify, 1);
+    assert.deepEqual(result.perFile, [{ file: 'codex.jsonl', lines: 1 }]);
+    assert.equal(S.transcriptLines(result)[0], 'transcripts: files=1 lines_matched=1 mirror_lines_skipped=1');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('the gate stops at 29 labeled rows', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
@@ -476,7 +511,7 @@ test('30 labeled rows print baselines and class-by-hub results', async () => {
       'result: hub=hub-x class=mode rows=30 first=0/30 second=30/30 always_none=0/30'
     ));
     assert.ok(result.stdout.includes('margin: 0.10'));
-    assert.ok(result.stdout.includes('keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M'));
+    assert.ok(result.stdout.includes('keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, strongest policy A > S, class floor A_c >= B_c, flips 10*F <= 3*M'));
     assert.ok(result.stdout.includes('headroom: a 10-point gain fits above 0/30'));
     assert.match(result.stdout, /^options: 3 sha256=[0-9a-f]{64} none="None of these modes"$/m);
   } finally {
@@ -694,11 +729,37 @@ test('decideVerdict checks coverage, kill, margin, sign test and flips in order'
   }
 });
 
+test('decideVerdict stops on the strongest policy and the class floor after the sign test', () => {
+  const counts = { K: 30, M: 30, A: 30, B: 0, W: 30, L: 0, F: 0 };
+  const strongestPass = { pass: true, name: 'first-alternative', right: 10 };
+  const strongestFail = { pass: false, name: 'second-alternative', right: 30 };
+  const floorPass = { pass: true, classes: [], failing: [] };
+  const floorFail = { pass: false, classes: [], failing: ['hub-x/none'] };
+
+  const strongestStop = S.decideVerdict({ ...counts, strongest: strongestFail, floor: floorPass });
+  assert.equal(strongestStop.outcome, 'stop');
+  assert.equal(strongestStop.reason, 'strongest policy');
+
+  const floorStop = S.decideVerdict({ ...counts, strongest: strongestPass, floor: floorFail });
+  assert.equal(floorStop.outcome, 'stop');
+  assert.equal(floorStop.reason, 'class floor');
+
+  const bothFail = S.decideVerdict({ ...counts, strongest: strongestFail, floor: floorFail });
+  assert.equal(bothFail.reason, 'strongest policy');
+
+  const flipsStop = S.decideVerdict({ ...counts, F: 10, strongest: strongestPass, floor: floorPass });
+  assert.equal(flipsStop.reason, 'flips');
+
+  const kept = S.decideVerdict({ ...counts, strongest: strongestPass, floor: floorPass });
+  assert.equal(kept.outcome, 'keep');
+  assert.equal(kept.reason, null);
+});
+
 test('scoreColumn counts measured, unstable and flips', () => {
   const labeled = [
-    { id: 'a', alternatives: ['m1', 'm2'], value: 'm2' },
-    { id: 'b', alternatives: ['m1', 'm2'], value: 'm1' },
-    { id: 'c', alternatives: ['m1', 'm2'], value: 'm2' }
+    { id: 'a', hub: 'hub-x', alternatives: ['m1', 'm2'], value: 'm2' },
+    { id: 'b', hub: 'hub-x', alternatives: ['m1', 'm2'], value: 'm1' },
+    { id: 'c', hub: 'hub-x', alternatives: ['m1', 'm2'], value: 'm2' }
   ];
   const answers = new Map([
     ['a', ['m2', 'm2', 'm2']],
@@ -708,7 +769,23 @@ test('scoreColumn counts measured, unstable and flips', () => {
 
   const counts = S.scoreColumn(labeled, answers);
 
-  assert.deepEqual(counts, { K: 3, M: 2, A: 1, B: 1, W: 1, L: 1, F: 3, unstable: 1, abstained: 0 });
+  assert.deepEqual(counts, {
+    K: 3,
+    M: 2,
+    A: 1,
+    B: 1,
+    W: 1,
+    L: 1,
+    F: 3,
+    unstable: 1,
+    abstained: 0,
+    policies: { 'first-alternative': 1, 'second-alternative': 1, 'always-none': 0 },
+    floor: {
+      pass: true,
+      classes: [{ cls: 'hub-x/mode', n: 2, jev: 1, baseline: 1 }],
+      failing: []
+    }
+  });
   assert.equal(
     S.verdictLine('jev', counts, { outcome: 'stop', reason: 'coverage', p: 0.5 }, 'model=x'),
     'verdict jev: stop (coverage) K=3 M=2 A=1 B=1 W=1 L=1 F=3 p=0.5000 model=x'
@@ -771,7 +848,10 @@ test('two agreeing orders keep only the two measured votes', { timeout: 120000 }
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
+    // A mixed row set keeps the second-alternative baseline at 15, so the arm's
+    // 30 right picks strictly beat every simple policy and the keep is real.
+    const promptForRow = (i, label) => 'row ' + i + ' pick=' + (label === 'none' ? 'none_of_these' : 'mode-b') + ' first=mode-a';
+    const file = writeRowsFile(dir, [...Array(15).fill('second'), ...Array(15).fill('none')], promptForRow);
     const out = path.join(dir, 'out');
     const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
 
@@ -889,7 +969,7 @@ test('the probability-aware arm answers by summed probability, not by the modal 
     assert.equal(result.status, 0);
     const lines = result.stdout.split('\n');
     const expected = [
-      'verdict probability-aware: stop (flips) K=30 M=30 A=30 B=0 W=30 L=0 F=30 p=9.313e-10',
+      'verdict probability-aware: stop (strongest policy) K=30 M=30 A=30 B=0 W=30 L=0 F=30 p=9.313e-10',
       'decided-subset probability-aware: 30/30 accuracy=1.0000',
       'margin slack probability-aware: 27.0 rows',
       'bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[1.0000,1.0000] clusters=1 replicates=1000'
@@ -897,6 +977,8 @@ test('the probability-aware arm answers by summed probability, not by the modal 
     for (const line of expected) {
       assert.ok(lines.includes(line), 'stdout is missing the line: ' + line);
     }
+    assert.ok(result.stdout.includes('strongest policy probability-aware: policy=second-alternative right=30 jev=30 pass=no'));
+    assert.ok(result.stdout.includes('power probability-aware: pairs=30 win_rate=1.0000 power=1.0000'));
     const jevVerdict = lines.findIndex((line) => line.startsWith('verdict jev:'));
     assert.ok(jevVerdict >= 0, 'the jev verdict line is missing');
     assert.ok(jevVerdict < lines.indexOf(expected[0]));
@@ -928,6 +1010,85 @@ test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, as
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('verdict jev: stop (coverage) K=30 M=26'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('a jev arm that only ties the always-none policy stops on the strongest policy', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const promptForRow = (i, label) => 'row ' + i + ' pick=' + (label === 'none' ? 'none_of_these' : 'mode-b') + ' first=mode-a';
+    const file = writeRowsFile(dir, [...Array(20).fill('none'), ...Array(10).fill('first')], promptForRow);
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('verdict jev: stop (strongest policy)'));
+    assert.ok(result.stdout.includes('strongest policy jev: policy=always-none right=20 jev=20 pass=no'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('the strongest-policy bar counts only the rows the arm measured', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const promptForRow = (i) => 'row ' + i + ' pick=none_of_these first=mode-a';
+    const file = writeRowsFile(dir, Array(30).fill('none'), promptForRow);
+    const rows = fs.readFileSync(file, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    // The failing row stays labeled none, so a bar counted over every labeled
+    // row would print 30 while the arm can count at most 29 measured rows.
+    rows[0].prompt += ' fail';
+    fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('strongest policy jev: policy=always-none right=29 jev=29 pass=no'));
+    assert.ok(result.stdout.includes(
+      'verdict jev: stop (strongest policy) K=30 M=29 A=29 B=0 W=29 L=0 F=0 p=1.863e-9'
+    ));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('a jev arm that loses one hub class stops on the class floor', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const picks = [...Array(10).fill('mode-a'), ...Array(5).fill('mode-b'), ...Array(15).fill('none_of_these')];
+    const promptForRow = (i) => 'row ' + i + ' pick=' + picks[i] + ' first=mode-a';
+    const file = writeRowsFile(dir, [...Array(15).fill('first'), ...Array(15).fill('none')], promptForRow);
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('verdict jev: stop (class floor)'));
+    assert.ok(result.stdout.includes('class floor jev hub-x/mode: n=15 jev=10 baseline=15'));
+    assert.ok(result.stdout.includes('class floor jev: failing=hub-x/mode'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('the jev verdict output carries a power line', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('power jev: pairs=30 win_rate=1.0000 power=1.0000'));
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
