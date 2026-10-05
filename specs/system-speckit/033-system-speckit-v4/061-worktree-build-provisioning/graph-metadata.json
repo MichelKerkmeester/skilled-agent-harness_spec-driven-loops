@@ -48,6 +48,9 @@
       ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
       ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+      "dist/continuity/generate-context.js",
+      "runtime/dist/api/index.js",
+      "runtime/cli/dist/continuity/generate-context.js",
       "runtime/tests/opencode-plugins-folder-purity.vitest.ts",
       "runtime/tests/spec-gate-pi-extension.vitest.ts"
     ],
@@ -104,6 +107,18 @@
         "name": "spec-gate-pi-extension.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "dist/continuity/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": "runtime/dist/api/index.js",
         "source": "derived"
       },
       {
@@ -183,23 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`opencode-plugins-folder-purity.vitest.ts` imports every plugin under `.skilled/plugins/`, and one of them imports the build output of `sk-communication/cli-communication-projection`",
     "created_at": "2026-09-24T06:18:52Z",
-    "last_save_at": "2026-09-24T06:42:42.460Z",
+    "last_save_at": "2026-10-05T07:30:48.707Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8fd6e09f4b5739a6efec9cab911a35fa8c87065f7b6a1b172e82f6f78092a0d",
+    "source_fingerprint": "sha256:a3a03f60a5af628b86c86df39be1184fbe3aabd5f95f4f7d89ebafd41fdfdca8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e7c2e7996ad62600ebc854a62316b38f3e50f15e29f1a97a46023510cf424fa",
+      "spec.md": "50fce07edcfdd419a3a61412cacd44fc5a746973e372bf3e37656bee7d60fb92",
       "plan.md": "faa714599c1b7a3be53ee6997fa9b141e900b138b637e7b69bc777bb2524bb9c",
-      "tasks.md": "a0a8d731bbc42bf60d1ec18fee59a839b3994f7b9b516c4a80e7a0660ffc4caa",
-      "implementation-summary.md": "e985d43d07084fc64adbd213485a26068a05221430e39ccfde7c9b2bd50ea172"
+      "tasks.md": "9f74f2a96b7dc040f6f5806affc357e175154aabbea4c661426f7b691a4059a8",
+      "implementation-summary.md": "d550b7444a5c9c579a6b69c06bc9b24376da16b72ac61c359b17cae653550f20"
     },
     "last_active_at": null
   }

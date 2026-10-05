@@ -1,5 +1,5 @@
 {
-  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
+  "manifestHash": "d9ef1a7766089f070381064ace32b89d6f7affa0d0a41e490ae65ba1fbee8bf4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7133,6 +7133,9 @@
     "16 optimization patterns": [
       "16 optimization patterns"
     ],
+    "16384 byte cut": [
+      "16384 byte cut"
+    ],
     "17 modals no scenario": [
       "17 modals no scenario"
     ],
@@ -7451,6 +7454,9 @@
     "ab shipped search levers": [
       "ab shipped search levers"
     ],
+    "abab rule experiment": [
+      "abab rule experiment"
+    ],
     "ablation accuracy": [
       "ablation accuracy"
     ],
@@ -7702,6 +7708,9 @@
     ],
     "acquire loop lock": [
       "acquire loop lock"
+    ],
+    "action keyed rule nudge": [
+      "action keyed rule nudge"
     ],
     "activate authorized ledger": [
       "activate authorized ledger"
@@ -8951,6 +8960,9 @@
     "advisor renderer fixture drift": [
       "advisor renderer fixture drift"
     ],
+    "advisor repo rule pointer": [
+      "advisor repo rule pointer"
+    ],
     "advisor residue sweep": [
       "advisor residue sweep"
     ],
@@ -9076,6 +9088,9 @@
     ],
     "advisor shim fix": [
       "advisor shim fix"
+    ],
+    "advisor should not suggest repo rules": [
+      "advisor should not suggest repo rules"
     ],
     "advisor skill graph bfs": [
       "advisor skill graph BFS"
@@ -9933,6 +9948,9 @@
     "agents md bloat audit plan": [
       "agents.md bloat audit plan"
     ],
+    "agents md byte guard": [
+      "agents md byte guard"
+    ],
     "agents md cleanup plan": [
       "agents-md cleanup plan"
     ],
@@ -9941,6 +9959,18 @@
     ],
     "agents md communication": [
       "agents md communication"
+    ],
+    "agents md delivery prefix": [
+      "agents md delivery prefix"
+    ],
+    "agents md delivery prefix plan": [
+      "agents md delivery prefix plan"
+    ],
+    "agents md delivery prefix summary": [
+      "agents.md delivery prefix summary"
+    ],
+    "agents md delivery prefix tasks": [
+      "agents md delivery prefix tasks"
     ],
     "agents md improvement": [
       "AGENTS.md improvement"
@@ -9978,6 +10008,9 @@
     ],
     "agents md tasks": [
       "agents.md tasks"
+    ],
+    "agents md truncation devin": [
+      "agents md truncation devin"
     ],
     "agents md validation claims": [
       "agents md validation claims"
@@ -10399,6 +10432,9 @@
     "analyzed created updated removed paths": [
       "analyzed created updated removed paths"
     ],
+    "anchor citation threshold": [
+      "anchor citation threshold"
+    ],
     "anchor generator": [
       "anchor generator"
     ],
@@ -10413,6 +10449,9 @@
     ],
     "anchor miss returnedtokens zero": [
       "anchor-miss returnedTokens zero"
+    ],
+    "anchor phase removed": [
+      "anchor phase removed"
     ],
     "anchor prefix matching": [
       "anchor prefix matching"
@@ -10591,6 +10630,9 @@
     ],
     "app owned verification scripts": [
       "app-owned verification scripts"
+    ],
+    "apparatus only cuts": [
+      "apparatus only cuts"
     ],
     "append after repair": [
       "append after repair"
@@ -12017,6 +12059,9 @@
     ],
     "auto follow skips dirty tree": [
       "auto follow skips dirty tree"
+    ],
+    "auto grader plan": [
+      "auto grader plan"
     ],
     "auto heal validation": [
       "auto heal validation"
@@ -13992,6 +14037,9 @@
     "byte stable second run gate": [
       "byte stable second run gate"
     ],
+    "byte target waiver": [
+      "byte target waiver"
+    ],
     "c f hybrid": [
       "C+F hybrid"
     ],
@@ -14695,6 +14743,15 @@
     "card field renderer parameter classes": [
       "card field renderer parameter classes"
     ],
+    "card plus self check": [
+      "card plus self-check"
+    ],
+    "card plus self check loading": [
+      "card plus self-check loading"
+    ],
+    "card plus self check plan": [
+      "card plus self-check plan"
+    ],
     "card sync guard rewrite": [
       "card-sync-guard-rewrite"
     ],
@@ -15151,6 +15208,15 @@
     "census drift 127 packets": [
       "census drift 127 packets"
     ],
+    "census hardening": [
+      "census hardening"
+    ],
+    "census hardening summary": [
+      "census hardening summary"
+    ],
+    "census measurement protocol": [
+      "census measurement protocol"
+    ],
     "census path and config drift repair": [
       "census path and config drift repair"
     ],
@@ -15174,6 +15240,9 @@
     ],
     "census then fix": [
       "census then fix"
+    ],
+    "census timing protocol": [
+      "census timing protocol"
     ],
     "certificate semantic binding": [
       "certificate semantic binding"
@@ -15261,6 +15330,9 @@
     ],
     "changelog and readme verdicts": [
       "changelog and readme verdicts"
+    ],
+    "changelog and version bumps": [
+      "changelog and version bumps"
     ],
     "changelog audit 026": [
       "changelog audit 026"
@@ -16338,6 +16410,9 @@
     "check prompt quality card sync": [
       "check-prompt-quality-card-sync"
     ],
+    "check repo rules tenth check": [
+      "check repo rules tenth check"
+    ],
     "check review convergence": [
       "check review convergence"
     ],
@@ -16358,6 +16433,9 @@
     ],
     "check source dist alignment": [
       "check-source-dist-alignment"
+    ],
+    "check source tags helper mjs": [
+      "check-source-tags-helper.mjs"
     ],
     "check spec doc integrity": [
       "check-spec-doc-integrity"
@@ -16896,8 +16974,23 @@
     "circular self dispatch guard": [
       "circular self-dispatch guard"
     ],
+    "citation accuracy per class": [
+      "citation accuracy per class"
+    ],
+    "citation accuracy protocol": [
+      "citation accuracy protocol"
+    ],
+    "citation accuracy result": [
+      "citation accuracy result"
+    ],
+    "citation breakage census": [
+      "citation breakage census"
+    ],
     "citation census": [
       "citation census"
+    ],
+    "citation census moved files": [
+      "citation census moved files"
     ],
     "citation drift advisory": [
       "citation drift advisory"
@@ -16907,6 +17000,12 @@
     ],
     "citation drift build order": [
       "citation drift build order"
+    ],
+    "citation drift census": [
+      "citation drift census"
+    ],
+    "citation drift census across doc families": [
+      "citation drift census across doc families"
     ],
     "citation drift default on": [
       "citation drift default-on"
@@ -16965,6 +17064,9 @@
     "citation ledger refine verdict": [
       "citation ledger REFINE verdict"
     ],
+    "citation resolver reuse": [
+      "citation resolver reuse"
+    ],
     "citation retrofit coverage floor": [
       "citation retrofit coverage floor"
     ],
@@ -16983,6 +17085,12 @@
     "cite drift labels jsonl": [
       "cite-drift-labels.jsonl"
     ],
+    "cite drift redirect table": [
+      "cite drift redirect table"
+    ],
+    "cite drift redirects json": [
+      "cite-drift-redirects.json"
+    ],
     "cite drift scan": [
       "cite-drift-scan"
     ],
@@ -16991,6 +17099,9 @@
     ],
     "cite drift scan completion criteria": [
       "cite-drift-scan completion criteria"
+    ],
+    "cite drift scan corpus specs": [
+      "cite-drift-scan corpus specs"
     ],
     "cite drift scan mjs": [
       "cite-drift-scan.mjs"
@@ -17003,6 +17114,9 @@
     ],
     "cite drift scan tasks": [
       "cite-drift-scan tasks"
+    ],
+    "cite moved lines": [
+      "cite moved lines"
     ],
     "cite with caveat tier": [
       "cite with caveat tier"
@@ -20260,6 +20374,9 @@
     "closure placeholder replaced": [
       "closure placeholder replaced"
     ],
+    "closure record": [
+      "closure record"
+    ],
     "closure rows with evidence": [
       "closure rows with evidence"
     ],
@@ -23317,9 +23434,6 @@
     "compaction auto continue shipped": [
       "compaction auto continue shipped"
     ],
-    "compaction boundary report": [
-      "compaction boundary report"
-    ],
     "compaction brief recall": [
       "compaction brief recall"
     ],
@@ -24703,6 +24817,15 @@
     "context size overflow": [
       "context size overflow"
     ],
+    "context type hardening": [
+      "context type hardening"
+    ],
+    "context type hardening summary": [
+      "context type hardening summary"
+    ],
+    "context type measurement protocol": [
+      "context type measurement protocol"
+    ],
     "context vectors provider shard convention": [
       "context-vectors provider shard convention"
     ],
@@ -24732,6 +24855,21 @@
     ],
     "contextador token reduction claim": [
       "contextador token reduction claim"
+    ],
+    "contexttype census": [
+      "contexttype census"
+    ],
+    "contexttype policy": [
+      "contexttype policy"
+    ],
+    "contexttype policy amendment": [
+      "contextType policy amendment"
+    ],
+    "contexttype unification": [
+      "contextType unification"
+    ],
+    "contexttype value list": [
+      "contextType value list"
     ],
     "contiguous prefix stop consolidation": [
       "contiguous prefix stop consolidation"
@@ -26478,6 +26616,12 @@
     "create with human voice script tests": [
       "create-with-human-voice script tests"
     ],
+    "create with human voice v1 2 0 0": [
+      "create-with-human-voice v1.2.0.0"
+    ],
+    "create with human voice v1 2 1 0": [
+      "create-with-human-voice v1.2.1.0"
+    ],
     "create workspace tag": [
       "create workspace tag"
     ],
@@ -26516,9 +26660,6 @@
     ],
     "criteria exec hardening gate": [
       "criteria exec hardening gate"
-    ],
-    "criteria labels filled": [
-      "criteria labels filled"
     ],
     "criterion count preserved": [
       "criterion count preserved"
@@ -28332,9 +28473,6 @@
     ],
     "debug logging flag": [
       "debug logging flag"
-    ],
-    "debug next check census": [
-      "debug next-check census"
     ],
     "debug next check choice": [
       "debug next_check choice"
@@ -30629,15 +30767,6 @@
     "deep loop runtime 1 5 1 0": [
       "deep-loop-runtime 1.5.1.0"
     ],
-    "deep loop runtime 1 6 0 0": [
-      "deep-loop-runtime 1.6.0.0"
-    ],
-    "deep loop runtime 1 7 0 0": [
-      "deep-loop-runtime 1.7.0.0"
-    ],
-    "deep loop runtime 1 8 0 0": [
-      "deep-loop-runtime 1.8.0.0"
-    ],
     "deep loop runtime 1 9 0 0": [
       "deep-loop-runtime 1.9.0.0"
     ],
@@ -31030,6 +31159,9 @@
     ],
     "deep research 1 15 1 0": [
       "deep-research 1.15.1.0"
+    ],
+    "deep research 1 15 2 0": [
+      "deep-research 1.15.2.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -31666,6 +31798,9 @@
     "deep research v1 15 1 0": [
       "deep-research v1.15.1.0"
     ],
+    "deep research v1 15 2 0": [
+      "deep-research v1.15.2.0"
+    ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
     ],
@@ -31745,14 +31880,11 @@
     "deep review 1 11 0 36": [
       "deep-review 1.11.0.36"
     ],
-    "deep review 1 11 0 37": [
-      "deep-review 1.11.0.37"
-    ],
     "deep review 1 11 1 0": [
       "deep-review 1.11.1.0"
     ],
-    "deep review 1 11 2 0": [
-      "deep-review 1.11.2.0"
+    "deep review 1 11 3 0": [
+      "deep-review 1.11.3.0"
     ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
@@ -32367,6 +32499,9 @@
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
+    ],
+    "deep review v1 11 3 0": [
+      "deep-review v1.11.3.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -33190,9 +33325,6 @@
     "derived generated affordance scoring": [
       "derived generated affordance scoring"
     ],
-    "derived gold label gate": [
-      "derived gold label gate"
-    ],
     "derived graph projection": [
       "derived graph projection"
     ],
@@ -33258,6 +33390,18 @@
     ],
     "derived repair automation": [
       "derived repair automation"
+    ],
+    "derived sanitizer instruction shape": [
+      "derived sanitizer instruction shape"
+    ],
+    "derived sanitizer instruction shape plan": [
+      "derived sanitizer instruction shape plan"
+    ],
+    "derived sanitizer instruction shape summary": [
+      "derived sanitizer instruction shape summary"
+    ],
+    "derived sanitizer instruction shape tasks": [
+      "derived sanitizer instruction shape tasks"
     ],
     "derived skill metadata": [
       "derived skill metadata"
@@ -33746,6 +33890,12 @@
     ],
     "devin agent md profile": [
       "devin agent.md profile"
+    ],
+    "devin agents md truncation": [
+      "devin agents md truncation"
+    ],
+    "devin agents md truncation plan": [
+      "devin agents md truncation plan"
     ],
     "devin allowlist parity plan": [
       "devin allowlist parity plan"
@@ -35046,6 +35196,12 @@
     "docs change gate obsidian surface": [
       "docs change gate obsidian surface"
     ],
+    "docs closeout": [
+      "docs closeout"
+    ],
+    "docs closeout plan": [
+      "docs closeout plan"
+    ],
     "docs drift findings": [
       "docs drift findings"
     ],
@@ -35419,6 +35575,9 @@
     "doctor install guidance": [
       "doctor install guidance"
     ],
+    "doctor manual testing results": [
+      "doctor manual testing results"
+    ],
     "doctor mcp code mode": [
       "doctor mcp code mode"
     ],
@@ -35558,6 +35717,9 @@
     "doctor playbook mcp tasks": [
       "doctor-playbook-mcp tasks"
     ],
+    "doctor playbook results": [
+      "doctor playbook results"
+    ],
     "doctor playbook sed": [
       "doctor playbook sed"
     ],
@@ -35687,6 +35849,18 @@
     "doctor rows new adapters": [
       "doctor rows new adapters"
     ],
+    "doctor run followups": [
+      "doctor run followups"
+    ],
+    "doctor run followups plan": [
+      "doctor run followups plan"
+    ],
+    "doctor run followups summary": [
+      "doctor run followups summary"
+    ],
+    "doctor run followups tasks": [
+      "doctor run followups tasks"
+    ],
     "doctor runtime mirrors audit": [
       "doctor runtime-mirrors audit"
     ],
@@ -35695,6 +35869,18 @@
     ],
     "doctor runtime mirrors yaml": [
       "doctor-runtime-mirrors.yaml"
+    ],
+    "doctor scenario runs": [
+      "doctor scenario runs"
+    ],
+    "doctor scenario runs plan": [
+      "doctor scenario runs plan"
+    ],
+    "doctor scenario runs summary": [
+      "doctor scenario runs summary"
+    ],
+    "doctor scenario runs tasks": [
+      "doctor scenario runs tasks"
     ],
     "doctor scenarios test environment": [
       "doctor scenarios test environment"
@@ -40837,6 +41023,9 @@
     "fetch task file": [
       "fetch task file"
     ],
+    "fetched text injection check": [
+      "fetched text injection check"
+    ],
     "fetched text injection screen": [
       "fetched text injection screen"
     ],
@@ -41521,6 +41710,12 @@
     ],
     "finsweet custom select": [
       "finsweet custom select"
+    ],
+    "fires when router parity": [
+      "fires when router parity"
+    ],
+    "fires when router parity plan": [
+      "fires when router parity plan"
     ],
     "first changelog version": [
       "first changelog version"
@@ -42831,6 +43026,9 @@
     "frontmatter causal edges shipped": [
       "frontmatter causal edges shipped"
     ],
+    "frontmatter checker shared list": [
+      "frontmatter checker shared list"
+    ],
     "frontmatter command decision": [
       "frontmatter command decision"
     ],
@@ -43020,6 +43218,36 @@
     ],
     "frontmatter validator path": [
       "frontmatter validator path"
+    ],
+    "frontmatter value aliases": [
+      "frontmatter value aliases"
+    ],
+    "frontmatter value list owner": [
+      "frontmatter value list owner"
+    ],
+    "frontmatter value measurement": [
+      "frontmatter value measurement"
+    ],
+    "frontmatter value outside list": [
+      "frontmatter_value_outside_list"
+    ],
+    "frontmatter value warning": [
+      "frontmatter value warning"
+    ],
+    "frontmatter values json": [
+      "frontmatter-values.json"
+    ],
+    "frontmatter values move": [
+      "frontmatter values move"
+    ],
+    "frontmatter values move summary": [
+      "frontmatter values move summary"
+    ],
+    "frontmatter values rule": [
+      "FRONTMATTER_VALUES rule"
+    ],
+    "frontmatter values warn rule": [
+      "frontmatter values warn rule"
     ],
     "frontmatter variant taxonomy": [
       "frontmatter variant taxonomy"
@@ -43362,6 +43590,33 @@
     ],
     "gate 3 suppression": [
       "gate 3 suppression"
+    ],
+    "gate 5 backstop advisory": [
+      "gate 5 backstop advisory"
+    ],
+    "gate 5 card pilot": [
+      "gate 5 card pilot"
+    ],
+    "gate 5 card pilot plan": [
+      "gate 5 card pilot plan"
+    ],
+    "gate 5 card pilot summary": [
+      "gate 5 card pilot summary"
+    ],
+    "gate 5 card pilot tasks": [
+      "gate 5 card pilot tasks"
+    ],
+    "gate 5 loading design": [
+      "gate 5 loading design"
+    ],
+    "gate 5 miss rate": [
+      "gate 5 miss rate"
+    ],
+    "gate 5 miss rate plan": [
+      "gate 5 miss rate plan"
+    ],
+    "gate 5 rule loading": [
+      "gate 5 rule loading"
     ],
     "gate 7": [
       "gate 7"
@@ -44755,9 +45010,6 @@
     ],
     "goal line length standard": [
       "goal line length standard"
-    ],
-    "goal lint jev arm": [
-      "goal lint Jev arm"
     ],
     "goal lint model arm": [
       "goal lint model arm"
@@ -46168,6 +46420,9 @@
     "guardrail negative controls": [
       "guardrail negative controls"
     ],
+    "guessed row panel": [
+      "guessed row panel"
+    ],
     "guidance reconciliation complete": [
       "guidance reconciliation complete"
     ],
@@ -47424,6 +47679,9 @@
     "hook flags either root name": [
       "hook flags either root name"
     ],
+    "hook flags example kill switch test": [
+      "hook flags example kill switch test"
+    ],
     "hook flags guard implementation": [
       "hook-flags guard implementation"
     ],
@@ -47949,12 +48207,6 @@
     "hvr reader lens plan": [
       "hvr reader lens plan"
     ],
-    "hvr reader lens py": [
-      "hvr_reader_lens.py"
-    ],
-    "hvr reader lens py draw": [
-      "hvr_reader_lens.py --draw"
-    ],
     "hvr reader lens status": [
       "hvr reader lens status"
     ],
@@ -47962,7 +48214,6 @@
       "hvr reader lens tasks"
     ],
     "hvr reader needed lens": [
-      "hvr reader needed lens",
       "hvr reader-needed lens"
     ],
     "hvr reader needed lens goal": [
@@ -48355,6 +48606,12 @@
     "ids safe access": [
       "ids safe access"
     ],
+    "ignored folder consistency": [
+      "ignored folder consistency"
+    ],
+    "ignored folder result": [
+      "ignored folder result"
+    ],
     "ignored paths exemption plan": [
       "ignored paths exemption plan"
     ],
@@ -48555,6 +48812,12 @@
     ],
     "importance tier status content type": [
       "importance_tier status content_type"
+    ],
+    "importance tier value list": [
+      "importance_tier value list"
+    ],
+    "importance tier value warning": [
+      "importance_tier value warning"
     ],
     "impression capture scaffold": [
       "impression capture scaffold"
@@ -49027,6 +49290,9 @@
     "injection screen fixture tests": [
       "injection screen fixture tests"
     ],
+    "injection screen hook": [
+      "injection screen hook"
+    ],
     "injection screen keep rule": [
       "injection screen keep rule"
     ],
@@ -49452,6 +49718,9 @@
     ],
     "invented rules to avoid helping": [
       "invented rules to avoid helping"
+    ],
+    "invented source line warning": [
+      "invented source line warning"
     ],
     "inventory a notion workspace": [
       "inventory a notion workspace"
@@ -49879,6 +50148,9 @@
     "jev audit shape": [
       "jev audit shape"
     ],
+    "jev auto grader": [
+      "jev auto grader"
+    ],
     "jev batch questions": [
       "jev batch questions"
     ],
@@ -49954,6 +50226,15 @@
     "jev fan out merge improvement": [
       "jev fan-out merge improvement"
     ],
+    "jev feature auto enable": [
+      "jev feature auto enable"
+    ],
+    "jev feature auto enable plan": [
+      "jev feature auto enable plan"
+    ],
+    "jev feature auto enable summary": [
+      "jev feature auto enable summary"
+    ],
     "jev feature improvement build": [
       "jev feature improvement build"
     ],
@@ -49968,6 +50249,18 @@
     ],
     "jev feature review": [
       "jev feature review"
+    ],
+    "jev features": [
+      "JEV_FEATURES"
+    ],
+    "jev features env switches": [
+      "jev features env switches"
+    ],
+    "jev features helper": [
+      "jev-features helper"
+    ],
+    "jev features switch summary": [
+      "jev features switch summary"
     ],
     "jev final synthesis summary": [
       "jev final synthesis summary"
@@ -50094,9 +50387,6 @@
     ],
     "jev only measurements": [
       "jev only measurements"
-    ],
-    "jev only routing evals": [
-      "jev only routing evals"
     ],
     "jev only scorer": [
       "jev only scorer"
@@ -50539,6 +50829,9 @@
     "kebab to snake convention": [
       "kebab-to-snake convention"
     ],
+    "keep drop ledger": [
+      "keep drop ledger"
+    ],
     "keep iconic and health md only": [
       "keep iconic and health-md only"
     ],
@@ -50715,9 +51008,6 @@
     ],
     "labeled ground truth graph preservation": [
       "labeled ground truth graph preservation"
-    ],
-    "labeled p0 negatives": [
-      "labeled P0 negatives"
     ],
     "labeled prompts corpus": [
       "labeled prompts corpus"
@@ -58619,6 +58909,9 @@
     "missing section separators": [
       "missing section separators"
     ],
+    "missing value file behavior": [
+      "missing value file behavior"
+    ],
     "missing vector hygiene implementation": [
       "missing vector hygiene implementation"
     ],
@@ -59744,6 +60037,9 @@
     "model vs model profile template": [
       "model-vs-model profile template"
     ],
+    "model writer off list rate": [
+      "model writer off-list rate"
+    ],
     "modelcontextprotocol sdk cannot find module": [
       "modelcontextprotocol sdk cannot find module"
     ],
@@ -59959,6 +60255,12 @@
     ],
     "move worktrees out of checkout": [
       "move worktrees out of checkout"
+    ],
+    "moved citation redirect table": [
+      "moved citation redirect table"
+    ],
+    "moved gone past end citations": [
+      "moved gone past end citations"
     ],
     "mps auto detect cocoindex": [
       "mps auto-detect cocoindex"
@@ -60437,9 +60739,6 @@
     "near line cross body pairs": [
       "near-line cross-body pairs"
     ],
-    "near tie cluster eval": [
-      "near-tie cluster eval"
-    ],
     "near tie cluster order": [
       "near-tie cluster order"
     ],
@@ -60890,6 +61189,12 @@
     ],
     "no such table errors": [
       "no such table errors"
+    ],
+    "no table rule wording": [
+      "no table rule wording"
+    ],
+    "no table rule wording plan": [
+      "no table rule wording plan"
     ],
     "no tsx template fallback": [
       "no-tsx template fallback"
@@ -62137,6 +62442,15 @@
     "off deficient verdict": [
       "off deficient verdict"
     ],
+    "off list rate": [
+      "off-list rate"
+    ],
+    "off list rate protocol": [
+      "off-list rate protocol"
+    ],
+    "off list rate result": [
+      "off-list rate result"
+    ],
     "off switches section plan": [
       "off switches section plan"
     ],
@@ -62278,26 +62592,11 @@
     "offline reviewer verdict fallback test": [
       "offline reviewer verdict fallback test"
     ],
-    "offline severity replay": [
-      "offline severity replay"
-    ],
-    "offline stop decision replay": [
-      "offline stop-decision replay"
-    ],
-    "offline stop hint replay": [
-      "offline stop-hint replay"
-    ],
-    "offline suggested order eval": [
-      "offline suggested-order eval"
-    ],
     "offline task query": [
       "offline task query"
     ],
     "offline task view": [
       "offline task view"
-    ],
-    "offline tie break eval": [
-      "offline tie-break eval"
     ],
     "offline verification of model benchmark receipts": [
       "offline verification of model benchmark receipts"
@@ -62307,6 +62606,15 @@
     ],
     "offline verifier tasks": [
       "offline verifier tasks"
+    ],
+    "okf adoption": [
+      "okf adoption"
+    ],
+    "okf baseline": [
+      "okf baseline"
+    ],
+    "okf deep research": [
+      "okf deep research"
     ],
     "oklch color clustering": [
       "OKLCH color clustering"
@@ -62470,6 +62778,9 @@
     "onboarding kit gauntlet tooling": [
       "onboarding-kit gauntlet tooling"
     ],
+    "once per compaction rule hook": [
+      "once per compaction rule hook"
+    ],
     "one behavioral contract five schemas": [
       "one behavioral contract five schemas"
     ],
@@ -62607,6 +62918,9 @@
     ],
     "open horizons check": [
       "open horizons check"
+    ],
+    "open knowledge format": [
+      "open knowledge format"
     ],
     "open the changed png": [
       "open the changed png"
@@ -63232,6 +63546,9 @@
     ],
     "operator fix deep review findings for doctor update orchestrator changelog": [
       "operator fix deep review findings for doctor update orchestrator changelog"
+    ],
+    "operator label amendment": [
+      "operator label amendment"
     ],
     "operator label gate": [
       "operator label gate"
@@ -65366,6 +65683,9 @@
     ],
     "path validation helpers": [
       "path validation helpers"
+    ],
+    "paths with spaces": [
+      "paths with spaces"
     ],
     "pattern evidence contract fixture": [
       "pattern evidence contract fixture"
@@ -68110,6 +68430,21 @@
     ],
     "planning only boundary rejects implementation writes": [
       "planning-only boundary rejects implementation writes"
+    ],
+    "planted bad tags": [
+      "planted bad tags"
+    ],
+    "planted matrix protocol": [
+      "planted matrix protocol"
+    ],
+    "planted matrix result": [
+      "planted matrix result"
+    ],
+    "planted recall result": [
+      "planted recall result"
+    ],
+    "planted tag recall": [
+      "planted tag recall"
     ],
     "plateau detection": [
       "plateau detection"
@@ -71299,9 +71634,6 @@
     "reader needed lens build order": [
       "reader-needed lens build order"
     ],
-    "reader needed lens jev arm": [
-      "reader-needed lens Jev arm"
-    ],
     "reader needed lens keep rule": [
       "reader-needed lens keep rule"
     ],
@@ -71311,20 +71643,11 @@
     "reader needed lens label tasks": [
       "reader-needed lens label tasks"
     ],
-    "reader needed lens measurement": [
-      "reader-needed lens measurement"
-    ],
-    "reader needed lens tests": [
-      "reader-needed lens tests"
-    ],
     "reader needed lens verdict": [
       "reader-needed lens verdict"
     ],
     "reader needed lens verification": [
       "reader-needed lens verification"
-    ],
-    "reader needed tells": [
-      "reader-needed tells"
     ],
     "reader needed voice categories": [
       "reader-needed voice categories"
@@ -72255,6 +72578,9 @@
     ],
     "redirect metadata": [
       "redirect metadata"
+    ],
+    "redirect table rebuild": [
+      "redirect table rebuild"
     ],
     "redirect to": [
       "redirect_to"
@@ -73611,6 +73937,9 @@
     "release branch still carried memory": [
       "release branch still carried memory"
     ],
+    "release changelogs": [
+      "release changelogs"
+    ],
     "release cleanup": [
       "Release Cleanup"
     ],
@@ -74606,6 +74935,9 @@
     "reply harness rerun": [
       "reply harness rerun"
     ],
+    "reply rule miss rate": [
+      "reply rule miss rate"
+    ],
     "reply scoring harness": [
       "reply scoring harness"
     ],
@@ -74654,8 +74986,53 @@
     "repo rule": [
       "repo rule"
     ],
+    "repo rule advisor": [
+      "repo rule advisor"
+    ],
+    "repo rule advisor research": [
+      "repo rule advisor research"
+    ],
+    "repo rule advisor research plan": [
+      "repo rule advisor research plan"
+    ],
+    "repo rule advisor research tasks": [
+      "repo rule advisor research tasks"
+    ],
+    "repo rule advisor surfacing agents md delivery prefix changelog": [
+      "repo rule advisor surfacing agents md delivery prefix changelog"
+    ],
+    "repo rule advisor surfacing rule delivery instrumentation changelog": [
+      "repo rule advisor surfacing rule delivery instrumentation changelog"
+    ],
+    "repo rule advisor surfacing trigger coverage check changelog": [
+      "repo rule advisor surfacing trigger coverage check changelog"
+    ],
+    "repo rule advisor verdict": [
+      "repo rule advisor verdict"
+    ],
     "repo rule communication change": [
       "repo rule communication change"
+    ],
+    "repo rule compliance baseline": [
+      "repo rule compliance baseline"
+    ],
+    "repo rule concision": [
+      "repo rule concision"
+    ],
+    "repo rule concision research": [
+      "repo rule concision research"
+    ],
+    "repo rule concision research plan": [
+      "repo rule concision research plan"
+    ],
+    "repo rule concision research tasks": [
+      "repo rule concision research tasks"
+    ],
+    "repo rule concision summary": [
+      "repo rule concision summary"
+    ],
+    "repo rule loading": [
+      "repo rule loading"
     ],
     "repo rule mode": [
       "repo rule mode"
@@ -74668,6 +75045,9 @@
     ],
     "repo rule structure": [
       "repo rule structure"
+    ],
+    "repo rule surfacing": [
+      "repo rule surfacing"
     ],
     "repo rule template": [
       "repo rule template"
@@ -74701,6 +75081,12 @@
     ],
     "repo rules tasks": [
       "repo rules tasks"
+    ],
+    "repo rules trigger index": [
+      "repo rules trigger index"
+    ],
+    "repo rules trigger index decision": [
+      "repo rules trigger index decision"
     ],
     "repo study 1 plan": [
       "repo study 1 plan"
@@ -75788,6 +76174,9 @@
     "resetparserhealth production": [
       "resetParserHealth production"
     ],
+    "resident reply rule cards": [
+      "resident reply rule cards"
+    ],
     "residual backlog roadmap charter": [
       "residual backlog roadmap charter"
     ],
@@ -75836,9 +76225,6 @@
     "residue decommission missed": [
       "residue decommission missed"
     ],
-    "residue flagger": [
-      "residue flagger"
-    ],
     "residue flagger build order": [
       "residue flagger build order"
     ],
@@ -75850,9 +76236,6 @@
     ],
     "residue flagger label tasks": [
       "residue flagger label tasks"
-    ],
-    "residue flagger measurement": [
-      "residue flagger measurement"
     ],
     "residue flagger plan": [
       "residue flagger plan"
@@ -77269,6 +77652,9 @@
     "review skill doc authoring tasks": [
       "review skill doc authoring tasks"
     ],
+    "review source tags checked": [
+      "review source tags checked"
+    ],
     "review state reconstruction": [
       "review state reconstruction"
     ],
@@ -78322,6 +78708,27 @@
     "rule blank": [
       "rule blank"
     ],
+    "rule card generator": [
+      "rule card generator"
+    ],
+    "rule compliance analyzer": [
+      "rule compliance analyzer"
+    ],
+    "rule concision floor": [
+      "rule concision floor"
+    ],
+    "rule concision rewrites": [
+      "rule concision rewrites"
+    ],
+    "rule concision rewrites plan": [
+      "rule concision rewrites plan"
+    ],
+    "rule concision rewrites summary": [
+      "rule concision rewrites summary"
+    ],
+    "rule concision rewrites tasks": [
+      "rule concision rewrites tasks"
+    ],
     "rule contradiction resolution": [
       "rule contradiction resolution"
     ],
@@ -78334,6 +78741,18 @@
     "rule count 39 registry": [
       "rule count 39 registry"
     ],
+    "rule delivery instrumentation": [
+      "rule delivery instrumentation"
+    ],
+    "rule delivery instrumentation plan": [
+      "rule delivery instrumentation plan"
+    ],
+    "rule delivery instrumentation summary": [
+      "rule delivery instrumentation summary"
+    ],
+    "rule delivery instrumentation tasks": [
+      "rule delivery instrumentation tasks"
+    ],
     "rule file example and repair": [
       "rule file example and repair"
     ],
@@ -78342,6 +78761,9 @@
     ],
     "rule lifecycle": [
       "rule lifecycle"
+    ],
+    "rule loading research outcome": [
+      "rule loading research outcome"
     ],
     "rule precedence first match wins": [
       "rule precedence first match wins"
@@ -78369,6 +78791,9 @@
     ],
     "rule that binds on a read only turn": [
       "rule that binds on a read-only turn"
+    ],
+    "rule token load measurement": [
+      "rule token load measurement"
     ],
     "rule upgrade verification": [
       "rule upgrade verification"
@@ -78399,6 +78824,9 @@
     ],
     "rules content relocation": [
       "rules content relocation"
+    ],
+    "rules ignored after loading": [
+      "rules ignored after loading"
     ],
     "rules probe parity acceptance": [
       "rules probe parity acceptance"
@@ -78552,6 +78980,9 @@
     ],
     "run the five gates": [
       "run the five gates"
+    ],
+    "run time overage accepted": [
+      "run time overage accepted"
     ],
     "run time parser sweep": [
       "run-time parser sweep"
@@ -79420,8 +79851,17 @@
     "sandboxed child tsx checks": [
       "sandboxed child tsx checks"
     ],
+    "sanitizer drops routing labels": [
+      "sanitizer drops routing labels"
+    ],
+    "sanitizer version stamp": [
+      "sanitizer version stamp"
+    ],
     "sanitizeskilllabel": [
       "sanitizeSkillLabel"
+    ],
+    "sanitizeskilllabel v2": [
+      "sanitizeSkillLabel v2"
     ],
     "saturation threshold enforcement": [
       "saturation threshold enforcement"
@@ -80066,14 +80506,10 @@
       "score-clarify-default tasks"
     ],
     "score compaction recall": [
-      "score compaction recall",
       "score-compaction-recall"
     ],
     "score compaction recall completion criteria": [
       "score-compaction-recall completion criteria"
-    ],
-    "score compaction recall mjs": [
-      "score-compaction-recall.mjs"
     ],
     "score compaction recall plan": [
       "score-compaction-recall plan"
@@ -81558,6 +81994,9 @@
     "session cleanup trap": [
       "session cleanup trap"
     ],
+    "session context types literal": [
+      "session context types literal"
+    ],
     "session continuity priming": [
       "session continuity priming"
     ],
@@ -81623,6 +82062,9 @@
     ],
     "session lineage scope": [
       "SESSION_LINEAGE scope"
+    ],
+    "session list literal": [
+      "session list literal"
     ],
     "session log": [
       "session-log"
@@ -82245,6 +82687,12 @@
     "shared frontmatter parser tasks": [
       "shared frontmatter parser tasks"
     ],
+    "shared frontmatter value list": [
+      "shared frontmatter value list"
+    ],
+    "shared frontmatter value warning": [
+      "shared frontmatter value warning"
+    ],
     "shared helper extraction steps": [
       "shared helper extraction steps"
     ],
@@ -82695,6 +83143,15 @@
     ],
     "short registry reconstruction plan": [
       "short registry reconstruction plan"
+    ],
+    "shorter repo rules": [
+      "shorter repo rules"
+    ],
+    "shorter repo rules plan": [
+      "shorter repo rules plan"
+    ],
+    "should the advisor suggest repo rules": [
+      "should the advisor suggest repo rules"
     ],
     "should the determinism flag graduate": [
       "should the determinism flag graduate"
@@ -84589,6 +85046,9 @@
     "sk create frontmatter 1 0 0 0": [
       "sk-create-frontmatter 1.0.0.0"
     ],
+    "sk create frontmatter 1 0 1 0": [
+      "sk-create-frontmatter 1.0.1.0"
+    ],
     "sk create frontmatter mode": [
       "sk-create-frontmatter mode"
     ],
@@ -84600,6 +85060,12 @@
     ],
     "sk create frontmatter v1 0 0 0": [
       "sk-create-frontmatter v1.0.0.0"
+    ],
+    "sk create frontmatter v1 0 1 0": [
+      "sk-create-frontmatter v1.0.1.0"
+    ],
+    "sk create frontmatter value list": [
+      "sk-create-frontmatter value list"
     ],
     "sk create goal": [
       "sk-create-goal"
@@ -84615,12 +85081,6 @@
     ],
     "sk create goal 1 3 0 0": [
       "sk-create-goal 1.3.0.0"
-    ],
-    "sk create goal 1 4 0 0": [
-      "sk-create-goal 1.4.0.0"
-    ],
-    "sk create goal 1 4 1 0": [
-      "sk-create-goal 1.4.1.0"
     ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
@@ -84853,12 +85313,6 @@
     "sk create with human voice 1 1 0 0": [
       "sk-create-with-human-voice 1.1.0.0"
     ],
-    "sk create with human voice 1 2 0 0": [
-      "sk-create-with-human-voice 1.2.0.0"
-    ],
-    "sk create with human voice 1 2 1 0": [
-      "sk-create-with-human-voice 1.2.1.0"
-    ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
     ],
@@ -84867,12 +85321,6 @@
     ],
     "sk create with human voice v1 1 0 0": [
       "sk-create-with-human-voice v1.1.0.0"
-    ],
-    "sk create with human voice v1 2 0 0": [
-      "sk-create-with-human-voice v1.2.0.0"
-    ],
-    "sk create with human voice v1 2 1 0": [
-      "sk-create-with-human-voice v1.2.1.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -85264,6 +85712,9 @@
     "sk doc 2 2 6 0": [
       "sk-doc 2.2.6.0"
     ],
+    "sk doc 2 3 0 0": [
+      "sk-doc 2.3.0.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -85347,6 +85798,9 @@
     ],
     "sk doc feature catalog": [
       "sk-doc feature catalog"
+    ],
+    "sk doc frontmatter addendum": [
+      "sk-doc frontmatter addendum"
     ],
     "sk doc frontmatter alignment": [
       "sk-doc frontmatter alignment"
@@ -85521,6 +85975,9 @@
     ],
     "sk doc v2 2 6 0": [
       "sk-doc v2.2.6.0"
+    ],
+    "sk doc v2 3 0 0": [
+      "sk-doc v2.3.0.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -88859,6 +89316,9 @@
     "source baseline tasks": [
       "source-baseline tasks"
     ],
+    "source citation check": [
+      "source citation check"
+    ],
     "source directory readme": [
       "source directory readme"
     ],
@@ -88976,6 +89436,46 @@
     "source root sentinel either root": [
       "source root sentinel either root"
     ],
+    "source tag accuracy": [
+      "source tag accuracy"
+    ],
+    "source tag accuracy protocol": [
+      "source tag accuracy protocol"
+    ],
+    "source tag cutoff": [
+      "source tag cutoff"
+    ],
+    "source tag hardening": [
+      "source tag hardening"
+    ],
+    "source tag hardening summary": [
+      "source tag hardening summary"
+    ],
+    "source tag measurement protocol": [
+      "source tag measurement protocol"
+    ],
+    "source tag resolution": [
+      "source tag resolution"
+    ],
+    "source tag resolver": [
+      "source tag resolver"
+    ],
+    "source tag run time guard": [
+      "source tag run time guard"
+    ],
+    "source tag warning": [
+      "source tag warning"
+    ],
+    "source tags checked": [
+      "source tags checked"
+    ],
+    "source tags rule": [
+      "SOURCE_TAGS rule",
+      "source tags rule"
+    ],
+    "source tags rule plan": [
+      "source tags rule plan"
+    ],
     "source to target map": [
       "source to target map"
     ],
@@ -88994,6 +89494,9 @@
     ],
     "spaced alias decision": [
       "spaced alias decision"
+    ],
+    "spaced path fix": [
+      "spaced path fix"
     ],
     "spacing and type scale": [
       "spacing and type scale"
@@ -89645,6 +90148,9 @@
     "spec kit folder merges": [
       "spec-kit folder merges"
     ],
+    "spec kit frontmatter improvements": [
+      "spec-kit frontmatter improvements"
+    ],
     "spec kit greenfield": [
       "spec-kit greenfield"
     ],
@@ -90131,6 +90637,9 @@
     ],
     "spec kit scripts": [
       "spec kit scripts"
+    ],
+    "spec kit search improvements": [
+      "spec-kit search improvements"
     ],
     "spec kit shared file dependency edge": [
       "@spec-kit/shared file dependency edge"
@@ -91066,6 +91575,9 @@
     ],
     "speckit soft delete tombstones default off changelog": [
       "SPECKIT_SOFT_DELETE_TOMBSTONES default off changelog"
+    ],
+    "speckit source tag cutoff": [
+      "SPECKIT_SOURCE_TAG_CUTOFF"
     ],
     "speckit startup questions": [
       "speckit startup questions"
@@ -92125,6 +92637,9 @@
     "steer md prompt tasks": [
       "steer.md prompt tasks"
     ],
+    "steered four lineage research": [
+      "steered four lineage research"
+    ],
     "steering line status": [
       "steering line status"
     ],
@@ -93003,6 +93518,9 @@
     "sufficient fits goal": [
       "sufficient fits goal"
     ],
+    "suggest repo rules": [
+      "suggest repo rules"
+    ],
     "suggested order eval verdict": [
       "suggested order eval verdict"
     ],
@@ -93224,6 +93742,9 @@
     ],
     "surface provenance fields tasks": [
       "surface provenance fields tasks"
+    ],
+    "surface repo rules": [
+      "surface repo rules"
     ],
     "surface resource maps": [
       "surface resource maps"
@@ -93732,17 +94253,14 @@
     "system skill advisor 0 12 0 0": [
       "system-skill-advisor 0.12.0.0"
     ],
-    "system skill advisor 0 13 0 0": [
-      "system-skill-advisor 0.13.0.0"
-    ],
-    "system skill advisor 0 14 0 0": [
-      "system-skill-advisor 0.14.0.0"
-    ],
     "system skill advisor 0 14 1 0": [
       "system-skill-advisor 0.14.1.0"
     ],
     "system skill advisor 0 14 2 0": [
       "system-skill-advisor 0.14.2.0"
+    ],
+    "system skill advisor 0 14 3 0": [
+      "system-skill-advisor 0.14.3.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -93872,6 +94390,9 @@
     ],
     "system skill advisor v0 14 2 0": [
       "system-skill-advisor v0.14.2.0"
+    ],
+    "system skill advisor v0 14 3 0": [
+      "system-skill-advisor v0.14.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -94125,23 +94646,17 @@
     "system spec kit 2 2 0 0": [
       "system-spec-kit 2.2.0.0"
     ],
-    "system spec kit 2 3 0 0": [
-      "system-spec-kit 2.3.0.0"
-    ],
     "system spec kit 2 4 0 0": [
       "system-spec-kit 2.4.0.0"
-    ],
-    "system spec kit 2 5 0 0": [
-      "system-spec-kit 2.5.0.0"
-    ],
-    "system spec kit 2 6 0 0": [
-      "system-spec-kit 2.6.0.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
     "system spec kit 2 6 2 0": [
       "system-spec-kit 2.6.2.0"
+    ],
+    "system spec kit 2 7 0 0": [
+      "system-spec-kit 2.7.0.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -94512,6 +95027,9 @@
     "system spec kit v2 6 2 0": [
       "system-spec-kit v2.6.2.0"
     ],
+    "system spec kit v2 7 0 0": [
+      "system-spec-kit v2.7.0.0"
+    ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
     ],
@@ -94598,6 +95116,18 @@
     ],
     "table status fallback tasks": [
       "table status fallback tasks"
+    ],
+    "table wording experiment": [
+      "table wording experiment"
+    ],
+    "table wording experiment plan": [
+      "table wording experiment plan"
+    ],
+    "table wording experiment summary": [
+      "table wording experiment summary"
+    ],
+    "table wording experiment tasks": [
+      "table wording experiment tasks"
     ],
     "tag color configuration": [
       "tag color configuration"
@@ -95780,6 +96310,9 @@
     "threshold parity": [
       "threshold parity"
     ],
+    "threshold proposal retired": [
+      "threshold proposal retired"
+    ],
     "tie break arm plan": [
       "tie-break arm plan"
     ],
@@ -96660,6 +97193,18 @@
     "trigger command mirrors": [
       "trigger command mirrors"
     ],
+    "trigger coverage check": [
+      "trigger coverage check"
+    ],
+    "trigger coverage check plan": [
+      "trigger coverage check plan"
+    ],
+    "trigger coverage check summary": [
+      "trigger coverage check summary"
+    ],
+    "trigger coverage check tasks": [
+      "trigger coverage check tasks"
+    ],
     "trigger detection logic": [
       "trigger detection logic"
     ],
@@ -97080,6 +97625,9 @@
     "two by two positioning": [
       "two by two positioning"
     ],
+    "two checkout comparison": [
+      "two checkout comparison"
+    ],
     "two data folders collapsed": [
       "two data folders collapsed"
     ],
@@ -97103,6 +97651,9 @@
     ],
     "two launcher test flag flip implementation plan": [
       "two-launcher test flag flip implementation plan"
+    ],
+    "two lineage devin research": [
+      "two lineage devin research"
     ],
     "two lineage fan out": [
       "two lineage fan-out"
@@ -98485,6 +99036,9 @@
     "validate document py changelog": [
       "validate_document.py changelog"
     ],
+    "validate document py contexttype check": [
+      "validate_document.py contextType check"
+    ],
     "validate document readme fallback notice": [
       "validate_document readme fallback notice"
     ],
@@ -98844,6 +99398,9 @@
     ],
     "value embedding in prose": [
       "value embedding in prose"
+    ],
+    "value list owner change": [
+      "value list owner change"
     ],
     "value of computation allocation": [
       "value of computation allocation"
@@ -99816,6 +100373,9 @@
     "warn only branch policy text": [
       "warn-only branch policy text"
     ],
+    "warning recall matrix": [
+      "warning recall matrix"
+    ],
     "warnings enforcement path restore": [
       "warnings enforcement path restore"
     ],
@@ -99935,6 +100495,9 @@
     ],
     "webfetch injection classifier": [
       "webfetch injection classifier"
+    ],
+    "webfetch injection screen": [
+      "webfetch injection screen"
     ],
     "webfetch injection screen default on": [
       "webfetch injection screen default-on"
@@ -100589,6 +101152,9 @@
     "whole system gate tasks": [
       "whole system gate tasks",
       "whole-system gate tasks"
+    ],
+    "why are repo rules ignored": [
+      "why are repo rules ignored"
     ],
     "why did council recommend plan": [
       "why did council recommend plan"

@@ -1,0 +1,16 @@
+Role: you judge broken file citations in documentation. Answer from the text below only; do not read or run anything.
+
+Each row is a citation whose path no longer exists. "Candidates" are existing files a tool guessed it meant. Decide, from the citing text, whether a candidate is the file the author meant.
+
+Label each row with exactly one of:
+- intended: a candidate is the file the author meant
+- not_intended: no candidate is the file the author meant
+- cant_tell: the text does not let you decide
+
+For an ambiguous row (more than one candidate) labeled intended, give the candidate path you pick. Otherwise give an empty path.
+
+Output only one JSON object per row, one per line, nothing else:
+{"row": <row number>, "label": "<label>", "path": "<path or empty>"}
+
+Rows:
+

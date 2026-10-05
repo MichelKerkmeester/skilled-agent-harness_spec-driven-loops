@@ -1,10 +1,9 @@
 ---
 title: "Create-with-human-voice scripts tests"
-description: "Plain-runner python tests for the HVR scanner masking contract and the reader-needed lens."
+description: "Plain-runner python tests for the HVR scanner masking contract."
 trigger_phrases:
   - "create-with-human-voice script tests"
   - "hvr scanner masking tests"
-  - "reader-needed lens tests"
 ---
 
 # Create-with-human-voice scripts tests
@@ -13,9 +12,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/` holds the plain-runner suites for the two scripts in `../`. Each file carries its own assertions, prints one `PASS` or `FAIL` line per check and ends with `ALL PASS` or the failure count, so a run needs no test framework and exits nonzero on any failure.
+`tests/` holds the plain-runner suite for the scanner in `../`. The file carries its own assertions, prints one `PASS` or `FAIL` line per check and ends with `ALL PASS` or the failure count, so a run needs no test framework and exits nonzero on any failure.
 
-Both suites stay offline. `test_hvr_scan.py` drives `../hvr_scan.py` in a subprocess over temporary documents and the shipped fixtures. `test_hvr_reader_lens.py` runs `../hvr_reader_lens.py` against a throwaway git repository with a stub scanner, so no check leaves its fixture.
+The suite stays offline. `test_hvr_scan.py` drives `../hvr_scan.py` in a subprocess over temporary documents and the shipped fixtures.
 
 ---
 
@@ -24,7 +23,6 @@ Both suites stay offline. `test_hvr_scan.py` drives `../hvr_scan.py` in a subpro
 | File | Responsibility |
 |---|---|
 | `test_hvr_scan.py` | Pins the masking contract: which fences and spans a template payload reads as prose, which it still masks, how an inline span that wraps two lines is treated and the finding counts of the dirty and clean fixtures. |
-| `test_hvr_reader_lens.py` | Pins the reader-needed lens contract: the frame walker, the census, the draw, the label gate and the baselines, all against a throwaway git repository with a stub scanner. |
 | `fixtures/` | Prose samples the masking contract pins to fixed finding counts and the manual-testing playbook scenarios run against. |
 
 ---
@@ -35,10 +33,9 @@ Run from the repository root:
 
 ```bash
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_scan.py
-python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py
 ```
 
-Expected result: each script prints one `PASS` line per check and `ALL PASS`, and both exit 0.
+Expected result: the script prints one `PASS` line per check and `ALL PASS`, and exits 0.
 
 ---
 

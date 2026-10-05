@@ -1,0 +1,15 @@
+Role: you resolve a git merge conflict in JavaScript. Edit only the two files named below.
+
+A merge of origin/main left conflict markers in:
+- `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (3 hunks)
+- `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` (1 hunk)
+
+Both sides added features, and both must survive:
+- HEAD (ours): spec and research doc coverage, moved/gone/past-end classes, spaced paths such as `REPO RULES.md` through a word lead, batched `git cat-file --batch` reads in chunks, and `--rebuild-redirects <out>`.
+- origin/main (theirs, commit d29f0d1c57): the scan's word-match baseline compares only identifiers from the cited window, and call records and the verdict line name the answering model with token usage.
+
+Use `git show d29f0d1c57 -- <file>` to see exactly what main changed. Keep every test from both sides.
+
+Do not run `git add`, `git commit` or any other git write. Do not edit any other file.
+
+Check: no `<<<<<<<`, `=======` or `>>>>>>>` markers remain in either file, `node --check` passes on both, and `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` passes. Report the pass count.

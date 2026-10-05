@@ -9,7 +9,7 @@ import { z } from 'zod';
 // ───────────────────────────────────────────────────────────────
 
 export const SKILL_DERIVED_SCHEMA_VERSION = 2;
-export const SKILL_DERIVED_SANITIZER_VERSION = 'sanitizeSkillLabel:v1';
+export const SKILL_DERIVED_SANITIZER_VERSION = 'sanitizeSkillLabel:v2';
 
 // ───────────────────────────────────────────────────────────────
 // 2. SCHEMA

@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-04T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the shared list, the warn rule and the checker imports, cleaned 103 outlier docs"
-    next_safe_action: "Close AC-006 in the operator-approved commit"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/shared/frontmatter-values.json"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Spec docs and skill docs now take their `contextType` and `importance_tier` values from one file. Before this phase the spec corpus held 33 distinct `contextType` values and four tools kept their own lists. Now it holds 12, every one canonical or a listed alias, and a value outside the file draws a warning that names the values to use.
+Spec docs and skill docs now take their `contextType` and `importance_tier` values from one file. Before this phase the spec docs outside scratch folders held 31 distinct `contextType` values and four tools kept their own lists. Now they hold 12, every one canonical or a listed alias, and a value outside the file draws a warning that names the values to use.
 
 ### Phase 3: context-type-unification
 
@@ -120,7 +120,7 @@ Nothing is committed (root decision D4).
 | CLI suite | PASS, vitest 1648 passed and 19 skipped, same as the baseline. The legacy and validation legs print the same 39 summary lines (`scratch/cli-summary-baseline.txt`, `scratch/cli-summary-after.txt`). The first rerun failed one test, which caught the README's 40-rule claim, so that claim and `ARCHITECTURE.md` now say 41 |
 | CLI behavior probe on the built `dist` | PASS. Three new phase cases pass, and two of them fail when the normalizer is pointed at the document list, so they catch a merge of the two lists. Every value in the HEAD lists behaves as before in the normalizer and the session extractor, with one recorded deviation, below |
 | Warn, never error, on a planted value | PASS. A copy of a plan with `contextType: "architecture"`: the rule returns `warn` with the message naming the four canonical values. `validate_document.py` adds exactly one `frontmatter_value_outside_list` warning, and its exit code and blocking errors are identical to the unplanted original |
-| Spec-doc distinct `contextType` | 33 before, 12 after, all canonical or listed aliases |
+| Spec-doc distinct `contextType` | 31 before, 12 after outside scratch folders, all canonical or listed aliases; 33 and 15 with scratch folders counted. Recounted 2026-10-05 at `5285608745` and `cca919c5a4`; that commit's message pairs 33 with 12 across the two populations |
 | Corpus sweep | 102 warnings before, 0 after |
 | Packet results, D1 | PASS. Each of the 58 edited packets was validated on its own with its HEAD content and again with the edits, folder by folder: 191 folders, 0 changed sets of failing or warning rules (`scratch/d1-proof.json`, `scratch/d1_proof.py`). `FRONTMATTER_VALUES` is left out because it is the rule under test |
 | `/doctor:skill-graph-freshness` | PASS, no drift on any axis |
@@ -136,7 +136,7 @@ Nothing is committed (root decision D4).
 2. **Archived packets are not swept.** `z_archive` folders still hold 25 distinct off-list values. The census and the sweep leave archives out by design, and the rule never runs on an archived packet unless someone validates it directly.
 3. **Repairs refreshed other derived fields.** Running `repair-derived.cjs` on the 58 packets also refreshed stale derived fields in their `graph-metadata.json`, such as old `.opencode` paths. Those changes come from the repair tool, not from the mapping.
 4. **Two parent packets were already failing.** `026-…/001-release-readiness/002-release-readiness-deep-review-audits` and `026-…/004-followup-post-program/003-post-program-quality-pass` fail `SPEC_DOC_INTEGRITY` on links to child `checklist.md` files that an earlier commit retired. They fail the same way at HEAD. `cleanup.py` first recorded them as passing because it read the last `RESULT:` line, which for a phase parent is its final child's. The script now reads the first line, and the D1 row above replaces that measurement.
-5. **Each edited doc's own version waits for the commit.** Phase 007 wrote the skill changelogs and bumped each skill's `SKILL.md` version. The fourth digit of an edited doc's version, such as `frontmatter-templates.md`, counts the commits that changed it, so `frontmatter-version.mjs apply` can only raise it in the commit that carries this change.
+5. **Each edited doc's own version was set at the commit.** Closed on 2026-10-04 by `52de4c67f7` and `5b64ec8213` on main. Phase 007 wrote the skill changelogs and bumped each skill's `SKILL.md` version. The fourth digit of an edited doc's version, such as `frontmatter-templates.md`, counts the commits that changed it, so `frontmatter-version.mjs apply` can only raise it in the commit that carries this change.
 <!-- /ANCHOR:limitations -->
 
 ---

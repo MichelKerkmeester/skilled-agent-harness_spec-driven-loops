@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T09:20:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Added the operator UX and command-surface criterion"
-    next_safe_action: "Execute against the completion criteria"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-04-speckit-050"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] input-normalizer.ts and session-extractor.ts derive their contextType lists from shared/context-types.ts, and no retyped literal list remains
 - [x] a test passes for behavior that depends on the review value and one for planning
 - [x] a warn-only check in validator-registry.json and validate_document.py flags a fixture with an out-of-list value and fails no existing packet or skill doc
-- [ ] the distinct contextType count on spec docs falls from 33 to the canonical four plus aliases still present, in commits that each state a before and after count
+- [x] the distinct contextType count on spec docs falls from 33 to the canonical four plus aliases still present, in commits that each state a before and after count
 - [x] the skill advisor test suite gives the same result before and after
 - [x] before the warning ships, a full run over existing packets and skill docs prints zero new warnings, and a doc made by each /create:* workflow and each spec-kit template passes without one
 <!-- /ANCHOR:completion -->

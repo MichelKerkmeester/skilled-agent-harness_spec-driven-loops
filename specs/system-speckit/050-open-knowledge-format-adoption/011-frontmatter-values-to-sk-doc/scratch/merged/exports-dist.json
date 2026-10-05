@@ -1,0 +1,51 @@
+{
+  "CANONICAL_CONTEXT_TYPES": [
+    "general",
+    "implementation",
+    "planning",
+    "research"
+  ],
+  "DOCUMENT_CONTEXT_TYPE_ALIASES": {
+    "decision": "planning",
+    "discovery": "general",
+    "documentation": "general",
+    "plan": "planning",
+    "reference": "general",
+    "review": "research",
+    "spec": "planning",
+    "specification": "planning",
+    "tasks": "planning"
+  },
+  "IMPORTANCE_TIERS": [
+    "constitutional",
+    "critical",
+    "deprecated",
+    "important",
+    "normal",
+    "temporary"
+  ],
+  "IMPORTANCE_TIER_ALIASES": {
+    "high": "important",
+    "medium": "normal",
+    "standard": "normal",
+    "supporting": "normal",
+    "useful": "normal"
+  },
+  "LEGACY_CONTEXT_TYPE_ALIASES": {
+    "decision": "planning",
+    "discovery": "general"
+  },
+  "SESSION_CONTEXT_TYPES": [
+    "architecture",
+    "configuration",
+    "debugging",
+    "decision",
+    "discovery",
+    "documentation",
+    "general",
+    "implementation",
+    "planning",
+    "research",
+    "review"
+  ]
+}

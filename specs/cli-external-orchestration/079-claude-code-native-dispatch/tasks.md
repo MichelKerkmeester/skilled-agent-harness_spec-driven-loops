@@ -44,6 +44,9 @@ contextType: "general"
 
 - [x] T002 Reword the three guard lines (`.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md`)
 - [x] T003 Re-mint the hub manifest and copy it to its authored source
+- [x] T007 State effort inheritance and cite the subagents page in the bullet and guard comment (`.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md`)
+- [x] T008 Regenerate the Hermes copy (`node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`)
+- [x] T009 Add the doc test (`.skilled/skills/system-spec-kit/runtime/cli/tests/claude-code-native-dispatch-docs.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,6 +57,7 @@ contextType: "general"
 - [x] T004 `parent-skill-check.cjs` on the hub exits 0
 - [x] T005 `compiled-route-guard.cjs` exits 0 and `route-validate.sh` exits 0
 - [x] T006 Strict validation prints `RESULT: PASSED`
+- [x] T010 The doc test fails against the stale Hermes copy and passes after regeneration
 <!-- /ANCHOR:phase-3 -->
 
 ---

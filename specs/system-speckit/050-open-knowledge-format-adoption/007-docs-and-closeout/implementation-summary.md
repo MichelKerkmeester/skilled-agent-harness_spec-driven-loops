@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-04T13:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Reconciled the docs, wrote the changelogs and the closure record"
-    next_safe_action: "Operator reviews the diff and decides the commit"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/changelog/v2.7.0.0.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -139,7 +139,7 @@ A markdown agent wrote the catalog and playbook entries and ran its scenarios. E
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Each edited doc's own version waits for the commit.** The skill versions and changelogs are in, but the fourth digit of a doc's version counts its commits.
+1. **Each edited doc's own version was set at the commit.** Closed on 2026-10-04 by `52de4c67f7` and `5b64ec8213` on main. The skill versions and changelogs are in, but the fourth digit of a doc's version counts its commits.
 2. **The new rule test was not mutation-checked.** A run of the rule against a copy of the list with one alias removed was refused by a shell safety check, and it was not routed around. The test pins the exact message and canonical list instead.
 3. **sk-doc's playbook scenarios are not machine-checked.** The playbook validator lists the whole sk-doc tree as routing gold, so SD-022 and SD-023 pass only `validate_document.py`.
 <!-- /ANCHOR:limitations -->

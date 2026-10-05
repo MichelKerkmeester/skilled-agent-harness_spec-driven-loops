@@ -11,25 +11,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/050-open-knowledge-format-adoption/009-census-hardening"
-    last_updated_at: "2026-10-04T18:30:00Z"
+    last_updated_at: "2026-10-05T06:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed spaced paths, batched git reads, added the rebuild flag, and measured every class"
-    next_safe_action: "Operator labels the 40 disputed guessed rows in scratch/labels/operator-rows.md"
-    blockers:
-      - "Protocol section 4 operator labels for 40 guessed rows"
+    recent_action: "A three-family panel settled 33 of the 40 disputed guessed rows"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - "measurement-protocol.md"
       - "scratch/samples/accuracy.json"
       - "scratch/labels/agreement.json"
-      - "scratch/labels/operator-rows.md"
+      - "scratch/labels/panel/panel-scored.json"
+      - "decision-record.md"
       - "scratch/timing/timing.log"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Operator labels for the 40 most disputed guessed rows"
+    completion_pct: 100
+    open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -46,9 +45,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-census-hardening |
-| **Completed** | 2026-10-04, apart from the operator labels |
+| **Completed** | 2026-10-05 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -95,6 +94,10 @@ Each point estimate meets its threshold. The moved interval's lower bound, 93.0%
 
 **Guessed.** Luna 6 max fast (cli-codex) and DeepSeek V4.1 Flash max each labeled the same rows from the citing line, two lines either side and the candidate paths. DeepSeek ran through cli-devin `deepseek-v4-1-flash-max`, because the cli-opencode Go route returned "requires Global regions" and the Cline route carries no max tier. On the 100 census rows, both labelers called the guess intended for 62 (52.2–70.9%): 46 of 50 `basename_only` rows (81.2–96.8%) and 16 of 50 `ambiguous` rows (20.8–45.8%). Over all 150 guessed rows, with phase 010's 50 included, Cohen's kappa is 0.31 and observed agreement 60%; most disagreement is Luna answering can't tell where DeepSeek answers intended (43 rows). Kappa below 0.6 raised the operator cap to 40 rows, written to `scratch/labels/operator-rows.md`.
 
+**Guessed, panel verdict.** At the operator's request, ADR-001 in `decision-record.md` replaced the operator labels with a panel of three families that never saw these rows: SWE 2 max, GLM 5.3 Flash max and Gemini 3.8 Flash high. Each labeled the 40 rows blind. `python3 scratch/labels/score-panel.py` settles a row on two matching labels, and an `intended` majority on an ambiguous row also needs a matching path. The panel settled 33 of 40: 15 intended, 12 not intended, 6 can't tell, with 7 unsettled. Five of the 7 are ambiguous rows where SWE and GLM both answered intended but named different files. The three models agree less than Luna and DeepSeek did: SWE and GLM agree on 18 of 40 labels, GLM and Gemini on 18 and SWE and Gemini on 12. SWE called 34 of the 40 intended, GLM 20 and Gemini 8; Gemini called 26 not intended.
+
+Each panel verdict replaces the disputed row's label, and every other guessed row keeps the label Luna and DeepSeek share. That puts the census's guessed class at 75 intended of 93 settled rows, **80.6% (71.5–87.4%)**, with 7 rows unsettled; over all 100 rows, unsettled counted as not intended, it is 75% (65.7–82.5%). This is a panel verdict, what three models agree the author meant, not a ground truth, and the protocol sets no threshold for this class (`scratch/labels/panel/panel-scored.json`).
+
 **Timing** (`bash scratch/timing.sh <repo>`), three runs per arm, interleaved at one commit and worktree state:
 
 | Arm | Runs (s) | Median |
@@ -118,6 +121,8 @@ The current median is 29% of the baseline median; the target was at most 50%. Ea
 | Cap the lead at three words in the census, but not in the resolver | Prose rarely needs more, and phase 010 passes a tag's whole path span through the same resolver |
 | Route DeepSeek through cli-devin | The Go route refused the model and the Cline route lacks a max tier; the operator named Devin as a DeepSeek route |
 | Label in batches of 10 and 5 | At max effort DeepSeek ran out of output tokens on 150, 50 and 25 rows; every row was labeled in the end |
+| Settle the disputed rows by a model panel, not operator labels | The operator asked for models, then swapped DeepSeek for Gemini so no panelist re-judges rows it labeled (ADR-001) |
+| Move GLM from cli-pi to cli-devin, then to LLM Gateway | Go-route calls stalled, Devin truncated 5-row calls and then ran out of daily quota; each move kept the model and the brief, and `scratch/labels/panel/runs.log` records every call |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -128,13 +133,13 @@ The current median is 29% of the baseline median; the target was at most 50%. Ea
 | Check | Result |
 |-------|--------|
 | Protocol precedes data | PASS. sha256 `8afc427486f599ac…` unchanged; file time 12:22:56Z, first result file 14:24:09 local (12:24Z) |
-| Scanner tests | PASS. `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs`: 50 passed, 0 failed (baseline 45) |
+| Scanner tests | PASS. `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs`: 50 passed, 0 failed (baseline 45); 61 passed, 0 failed after the merge with main, rerun 2026-10-05 |
 | Accuracy thresholds | Point estimates PASS for all three; moved lower bound 93.0% < 95% |
 | Timing | PASS. 214.9 s against 735.6 s, 29% |
 | Output identity | PASS. Only the 7 spaced-delta lines differ |
 | Default run writes nothing | PASS. 0 files written on three current-scanner runs |
 | Rebuild | PASS. sha256 identical |
-| Operator labels | PENDING. 40 rows in `scratch/labels/operator-rows.md` |
+| Disputed guessed rows | PANEL VERDICT. 40 of 40 rows carry three votes; 33 settled, 7 unsettled (`scratch/labels/panel/panel-scored.json`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -142,7 +147,7 @@ The current median is 29% of the baseline median; the target was at most 50%. Ea
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The guessed class has no settled accuracy yet.** Kappa 0.31 shows the two labelers read the same evidence differently; the operator's 40 labels decide the disputed rows.
+1. **The guessed class rests on model judgment.** Kappa 0.31 between Luna and DeepSeek and 12 to 18 matches out of 40 between panelists show the same evidence reads differently to different models. The 80.6% is a panel verdict with 7 rows unsettled, and operator labels can still override any row.
 2. **Renamed files without a rule read as gone.** 2,349 gone rows point at files git shows were renamed; a narrower rule set or a file-level rename map would turn many of them into moved.
 3. **The lower bound on moved is below 95%.** A larger sample would narrow it; the protocol fixed 100.
 <!-- /ANCHOR:limitations -->

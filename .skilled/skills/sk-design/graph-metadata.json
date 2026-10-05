@@ -352,6 +352,7 @@
     ],
     "causal_summary": "sk-design is a standalone design skill that decides UI values and behavior when a surface is being built, improved, or reviewed. It carries fixed spacing, type, weight, color, elevation, radius, opacity and duration scales so values are chosen from a list rather than invented ad hoc; a seven-step build procedure; the hierarchy method that emphasizes by de-emphasizing; a palette construction method in HSL with contrast escape hatches; an interaction layer covering inputs, touch, focus, keyboard and performance; a motion model built on the twelve animation principles with enforceable timing, easing, physics and staging rules; the UX laws that decide target size, choice count, chunking and response budgets; and a severity-tiered WCAG review pass over UI code. It is the authoring counterpart to sk-design-md-generator, which measures an existing surface; a measured Style Reference outranks these defaults, and both skills state that precedence. The sk-design name previously belonged to a retired parent hub and carries nothing from it. Knowledge is distilled from four public sources: Refactoring UI, Rauno Freiberg's Web Interface Guidelines, Raphael Salaja's userinterface-wiki, and the Rams design-review skill.",
     "created_at": "2026-08-28T03:53:58.666360+00:00",
-    "last_updated_at": "2026-09-06T00:00:00Z"
+    "last_updated_at": "2026-09-06T00:00:00Z",
+    "sanitizer_version": "sanitizeSkillLabel:v2"
   }
 }

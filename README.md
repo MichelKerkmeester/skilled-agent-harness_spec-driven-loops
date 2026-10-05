@@ -846,11 +846,17 @@ Describe the job and it hands the dispatch to the right one.
 
 #### JUDGMENT TRANSPORT
 
-**`cli-classifier`** - typed judgments from the Jev CLI
+**`cli-classifier`** - typed judgments from Typesafe's Jev classifier
 
-When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service through the `jev` CLI (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else.
+When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else. Calls go to Pi's native classifier first and fall back to the `jev` CLI, and every answer records which route gave it.
 
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
+- **Four features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
+  - Citation drift advisory in `validate_document.py`: flags a `file:line` citation whose code no longer shows the claim (35 of 40 right against 13)
+  - Injection screen on Claude Code WebFetch results: one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
+  - Reviewer verdict fallback in the model benchmark: reads a verdict the parser misses (24 of 24 against 8)
+  - Hallucination grader for the benchmark's D4 dimension: asks only about outputs the deterministic check flags (55 of 56 against 47)
+- **Off with one line.** `JEV_FEATURES=0` stops all four, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. See `.env.example` section 17
 - **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
 
 &nbsp;
@@ -1386,7 +1392,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`cli-classifier`** - ✅ codebase-agnostic
 
-- Parent hub for typed-judgment transports: routes to `cli-jev` (the `jev` CLI, over the `cli-jev` packet) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Mode `cli-jev` needs the `jev` CLI on PATH
+- Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first, the `jev` CLI as fallback) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 

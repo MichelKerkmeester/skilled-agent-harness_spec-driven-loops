@@ -1,0 +1,6 @@
+shared-tests rc=0
+exports-dist rc=0
+exports-src rc=0
+cli-vitest rc=0
+sk-doc-py rc=0
+advisor-vitest rc=0

@@ -88,7 +88,7 @@ The model-benchmark mode (run via `scripts/shared/loop-host.cjs --mode=model-ben
 | --- | --- | --- |
 | `--mode` | `loop-host.cjs` | `agent-improvement` (default) or `model-benchmark`. Unknown values warn and fall back to agent-improvement. |
 | `--scorer` | `run-benchmark.cjs` | `pattern` (default, byte-identical heading/pattern matcher) or `5dim` (routes outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`). |
-| `--grader` | `run-benchmark.cjs` | `noop` (default, deterministic), `mock`, or `llm`. Only consulted under `--scorer 5dim`. |
+| `--grader` | `run-benchmark.cjs` | `auto` (default: the Jev cascade when a Jev credential is stored, else `noop`), `noop` (deterministic), `mock`, `llm` or `jev`. Only consulted under `--scorer 5dim`. |
 | `DEEP_AGENT_ALLOW_CRITERIA_EXEC` | env | Set to `0` to refuse criteria-driven shell execution in the 5-dim scorer. Default permissive. |
 | `DEEP_AGENT_GRADER_CACHE_RAW` | env | Set to `0` to redact raw grader output from the on-disk cache. Default permissive. |
 

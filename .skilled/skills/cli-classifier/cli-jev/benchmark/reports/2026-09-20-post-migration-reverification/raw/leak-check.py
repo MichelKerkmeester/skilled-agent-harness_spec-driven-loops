@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# MODULE: Credential Leak Check
+# ───────────────────────────────────────────────────────────────
+# Reads the credential store and intersects its token set with the token set of
+# every capture file, printing counts only so no key material is echoed. Kept as
+# the raw evidence of the post-migration re-verification report beside this file.
 """Value-blind leak check over the captured probe streams.
 
 Reads the credential store, extracts its token set, and intersects it with the token

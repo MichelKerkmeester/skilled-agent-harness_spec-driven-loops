@@ -1,0 +1,12 @@
+
+## Row 71 (ambiguous)
+- Doc: `specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/research/iterations/iteration-005.md:28`
+- Citation: `spec.md:58`
+- Candidates: `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/005-unfilled-placeholders/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/007-valid-anchors/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/008-invalid-anchors/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/009-valid-priority-tags/spec.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/010-valid-evidence/spec.md` and 4650 more
+
+```text
+| f-iter005-005 | BUGGED | Reranker model docs are partially stale after the Qwen promotion. Current source sets `DEFAULT_RERANKER_NAME = "Qwen/Qwen3-Reranker-0.6B"` at `registered_embedders.py:255-256` and `_DEFAULT_RERANK_MODEL = DEFAULT_RERANKER_NAME` at `config/config.py:30`. The top-level README agrees in the pipeline table at `README.md:78`, but still says `Cross-encoder rerank ... Local Jina v3 reranker` at `README.md:104`. Git history confirms the later flip in `63fcbb57d7 feat(reranker): flip default jina-v3 -> Qwen3-Reranker-0.6B`. | Replace the stale Jina sentence in the README with…
+| f-iter005-006 | DEAD | Public docs point to files/folders that do not exist. `INSTALL_GUIDE.md:350` links `feature_catalog/hybrid-search.md` and `INSTALL_GUIDE.md:367` links `feature_catalog/reranker.md`; actual files are `feature_catalog/05--search-and-ranking/07-hybrid-search-bm25-rrf.md` and `feature_catalog/05--search-and-ranking/08-reranker-cross-encoder.md`. `INSTALL_GUIDE.md:365` and `INSTALL_GUIDE.md:1088` cite `benchmark-2026-05-20-cocoindex-via-sidecar`, but `rg --files .opencode/skills/mcp-coco-index/mcp_server/benchmarks` only found the sidecar artifacts under `benchmark-2026-05-…
+| f-iter005-007 | MISSED | Nested `023-deep-research-arc-blind-spots/spec.md:2-3` says this is an 8-packet follow-on arc and `spec.md:58-67` maps only `001` through `008`. But `023-deep-research-arc-blind-spots/graph-metadata.json:6-16` includes an additional `010-public-repo-docs-alignment` chi
+```
+
