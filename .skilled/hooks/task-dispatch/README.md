@@ -61,7 +61,7 @@ Every covered runtime evaluates the **same** `lib/dispatch-guard.cjs` core. What
 | **Cursor** | `cursor/task-dispatch-guard.mjs` | `preToolUse` (matcher `Task`) | `tool_name: 'Task'`; forwards the payload unchanged (the Claude core already reads the shape Cursor emits) | `spawnSync`s the Claude adapter, then translates its `hookSpecificOutput` into Cursor's envelope: deny → `{permission: 'deny', user_message, agent_message}` (exit 2); warn → `{permission: 'allow', agent_message}`. |
 | **OpenCode** | `.skilled/plugins/system-deep-loop-guard.js` (mirrored at `opencode/`) | Plugin: `tool.execute.before` on `task` + `event` on `session.created` | `input.tool: 'task'`; reads `args.subagent_type`/`subagentType` + `args.prompt` | reject → throws `Error(result.detail)` (OpenCode treats a thrown `before` error as a denial); warn → state-dir log only, **never** stdout/stderr. `session.created` triggers a throttled state-directory sweep. |
 | **Codex** | — | — | — | `unverified`: `PreToolUse` exists but no confirmed agent-spawn tool event; no adapter is wired. |
-| **Pi** | — | — | — | `~ partial`: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered. No per-runtime adapter file lives in this concern's folder. |
+| **Pi** | `pi/task-dispatch-guard.ts` (linked as `.pi/extensions/task-dispatch-guard.ts`) | `tool_call` on `subagent` | `event.toolName: 'subagent'`; loads the core from its own folder or, through the extension link, from the hub | Advisory only: a core rejection returns a `reason`, never a block. `~ partial`: workflow-nested (`runs.run`) dispatches are not yet covered. |
 
 Cursor deliberately does not reimplement the policy: it forwards its payload and shells out to the Claude adapter, so a future change to the guard lands in both without a second edit. OpenCode is the only runtime that turns a reject into a thrown error rather than a deny envelope, and the only one that runs the state-directory sweep on `session.created`.
 
@@ -80,6 +80,7 @@ task-dispatch/
 |   `-- fable-subagent-guard.mjs  # PreToolUse(Task|Agent) Fable-model policy (Claude only)
 +-- devin/    task-dispatch-guard.cjs
 +-- cursor/   task-dispatch-guard.mjs
++-- pi/       task-dispatch-guard.ts (advisory tool_call adapter)
 `-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
@@ -94,6 +95,7 @@ task-dispatch/
 | `claude/fable-subagent-guard.mjs` | Claude-only `PreToolUse(Task\|Agent)` Fable-model policy. Reads the active model from the session transcript; denies `fork`, missing `model`, and non-opus/sonnet `model` when Fable drives the main loop. Fails open when the transcript is unreadable. |
 | `devin/task-dispatch-guard.cjs` | Devin `PreToolUse(run_subagent)` adapter over the same core. Accepts the four `subagent_type`/`agent_type` field aliases. |
 | `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` (matcher `Task`) adapter; `spawnSync`s the Claude adapter and translates its envelope into Cursor's permission shape. |
+| `pi/task-dispatch-guard.ts` | Pi `tool_call` adapter on the `subagent` tool. Turns every core rejection into an advisory reason and fails open. |
 | `.skilled/plugins/system-deep-loop-guard.js` | OpenCode plugin. `tool.execute.before` runs the policy (reject → thrown error); `event` on `session.created` runs the state-directory sweep. |
 
 ---

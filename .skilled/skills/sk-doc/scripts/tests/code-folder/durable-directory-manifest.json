@@ -42,6 +42,7 @@
     ".skilled/hooks/dist-freshness",
     ".skilled/hooks/git",
     ".skilled/hooks/git-hooks-check",
+    ".skilled/hooks/git-live-follow",
     ".skilled/hooks/git-message-gate",
     ".skilled/hooks/git-preflight",
     ".skilled/hooks/git-primary-reconcile",

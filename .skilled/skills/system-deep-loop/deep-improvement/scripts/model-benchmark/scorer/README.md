@@ -101,7 +101,7 @@ scorer/
 | Imports | `score-model-variant.cjs` requires `grader/harness.cjs` and `./classifier-score-model-variant.cjs`, and spawns the `deterministic/*.cjs` scripts as subprocesses. `classifier-score-model-variant.cjs` requires cli-classifier's `jev-transport.mjs` and `./score-d4-agreement.cjs` for the cascade's question, rerun count and state builder. `grader/harness.cjs` requires `lib/cache.cjs`. |
 | Exports | `score-model-variant.cjs` exports `score`, `buildGraderFn`, `scoreAcceptanceDeterministic`, and `DEFAULT_RUBRIC`. |
 | Ownership | This subtree owns the 5-dimension scoring contract. `cwd` passed into `score()` must be absolute. |
-| Grader default | `graderKind` defaults to `mock`. `noop` makes D4 a constant 1.0, `llm` runs the real grader and `jev` runs the cascade in `classifier-score-model-variant.cjs`. The benchmark adapter defaults to `noop` for hermetic runs. |
+| Grader default | `graderKind` defaults to `mock`. `noop` makes D4 a constant 1.0, `llm` runs the real grader and `jev` runs the cascade in `classifier-score-model-variant.cjs`. The benchmark adapter resolves its default `--grader auto` to `jev` when a Jev credential is stored and `JEV_FEATURE_HALLUCINATION_GRADER` is not off, and to `noop` otherwise, so a hermetic run stays deterministic. |
 
 ---
 
