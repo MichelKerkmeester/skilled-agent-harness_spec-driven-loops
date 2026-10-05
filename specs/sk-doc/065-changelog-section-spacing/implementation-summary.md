@@ -107,7 +107,7 @@ The three live release bodies were saved to `scratch/release-bodies-before/` bef
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The sk-doc hub check fails on an unrelated stale manifest.** `validate_skill_package.py` on the `sk-doc` hub reports `leaf-manifest.json` stale for `sk-create-frontmatter/assets/frontmatter-values.json`, a file this change does not touch. Regenerating it belongs to whoever added that file.
+1. **Two unrelated hub-check failures were fixed in a follow-up.** The stale `sk-doc` leaf manifest came right when origin's fix was merged in, and the five hub changelog entries `v1.5.0.0` to `v1.8.1.0` gained the `version` key their frontmatter lacked.
 2. **Older Skilled releases keep their spacing.** Entries and releases before v4 were left as published.
 <!-- /ANCHOR:limitations -->
 
