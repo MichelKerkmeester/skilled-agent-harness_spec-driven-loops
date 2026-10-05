@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c7e7026d0153941dc4f5a099b93588ba520cc12a6f6fb5197c2cbd00f9b59c11",
+  "manifestHash": "ef8a901803e7f3b10bc7a78d1edaf79e9d5949d901ba1262c515e5c9cd840b49",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43675,8 +43675,20 @@
     "gate 5 rule loading": [
       "gate 5 rule loading"
     ],
+    "gate 6 adopted": [
+      "gate 6 adopted"
+    ],
+    "gate 6 adoption ledger": [
+      "gate 6 adoption ledger"
+    ],
+    "gate 6 adoption without windows": [
+      "gate 6 adoption without windows"
+    ],
     "gate 6 guard unresolved": [
       "gate 6 guard unresolved"
+    ],
+    "gate 6 replication decision": [
+      "gate 6 replication decision"
     ],
     "gate 6 replication preregistration": [
       "gate 6 replication preregistration"
@@ -95308,6 +95320,9 @@
     ],
     "table status fallback tasks": [
       "table status fallback tasks"
+    ],
+    "table wording adoption ledger": [
+      "table wording adoption ledger"
     ],
     "table wording decision": [
       "table wording decision"

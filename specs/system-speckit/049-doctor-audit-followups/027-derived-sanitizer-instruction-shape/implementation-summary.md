@@ -63,6 +63,7 @@ Skill names no longer look like prompt injection to the sanitizer.
 | `lifecycle-derived-metadata.vitest.ts` | Modified | Routing-label test |
 | `lifecycle-routing-stress.vitest.ts` | Modified | Fixture version |
 | 14 `graph-metadata.json` files | Modified | v2 stamp |
+| `.skilled/changelog/skilled/v4.0.0.3.md` | Modified | Release note, upgrade note and the 36-of-36 scenario result |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,6 +98,7 @@ Graph validation first still reported 14 warnings reading v2 predates v1. The lo
 | `ci-skill-root-metadata` | 14 of 14 |
 | Graph validation | 0 warnings, 0 errors, 14 nodes, 57 edges |
 | DOC-362 rerun with DeepSeek in the test environment at `8a386d9df6` | PASS in 499 seconds, environment left clean |
+| v4.0.0.3 changelog after the entry | `validate_document.py` 0 issues; human-voice ceiling 98, unchanged |
 <!-- /ANCHOR:verification -->
 
 ---

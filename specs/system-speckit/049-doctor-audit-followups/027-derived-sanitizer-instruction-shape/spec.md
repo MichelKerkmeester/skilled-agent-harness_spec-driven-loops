@@ -88,6 +88,7 @@ A filter that rejects instruction phrasing while letting skill names and routing
 | `system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Modify | Routing-label test |
 | `system-skill-advisor/runtime/stress-test/skill-advisor/lifecycle-routing-stress.vitest.ts` | Modify | Fixture version |
 | 14 skill-root `graph-metadata.json` files | Modify | v2 stamp |
+| `.skilled/changelog/skilled/v4.0.0.3.md` | Modify | Release and upgrade notes for the v2 screen |
 <!-- /ANCHOR:scope -->
 
 ---

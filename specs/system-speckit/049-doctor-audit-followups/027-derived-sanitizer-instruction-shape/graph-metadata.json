@@ -38,7 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.3.md"
     ],
     "entities": [
       {
@@ -63,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.3.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.3.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sanitizer's instruction filter rejected any label containing words such as `system`, `developer`, `tool` or `run`",
     "created_at": "2026-10-05T09:13:11Z",
-    "last_save_at": "2026-10-05T09:30:32.159Z",
+    "last_save_at": "2026-10-05T15:22:32.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2062f623e2e6438676e8e107913f5004ab328cbb10d2257808847cbb445d0816",
+    "source_fingerprint": "sha256:33d72077dd5de5236c656cd531690e364ff70d30505b79594bb031becd0b10e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de3e8724f89a64b90c41234a43e030ababfa13047f2eac473cd7c2a41f5a9875",
+      "spec.md": "5adb9e34faa9ef570904fd633f82ed2a8bbd7e20732d39725faaeaff3957de3d",
       "plan.md": "4f819c6ea837fdf8c1f4092694c6c27c83ffbbcf78f485fe2056b3e6a86681c9",
       "tasks.md": "a592295bd7ddc34357701f8d40be36853ab5d54766576d8ddb2e4f75af5ab762",
-      "implementation-summary.md": "13b849792248b301767e8bdb76aa500e266eb984329704b4014d95858f941738"
+      "implementation-summary.md": "438400d402691c95d6c983dbcbfe6180bbe76345ee7d27aa8f3ad76f81da87a9"
     },
     "last_active_at": null
   }
