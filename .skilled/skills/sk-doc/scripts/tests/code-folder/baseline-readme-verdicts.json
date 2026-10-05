@@ -330,6 +330,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/hooks/classifier-injection-screen/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/hooks/codex-watchdog/README.md",
       "return_code": 0,
       "total_issues": 1,
@@ -495,16 +505,6 @@
           "type": "frontmatter_value_outside_list"
         }
       ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/hooks/injection-screen/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
     },
     {
       "auto_fixable_count": 0,

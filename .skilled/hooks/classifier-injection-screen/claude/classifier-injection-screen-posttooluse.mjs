@@ -22,7 +22,7 @@
 import process from 'node:process';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { featureReady } from '../../../skills/cli-classifier/shared/scripts/jev-features.mjs';
-import { screenText } from '../lib/screen-fetched-text.mjs';
+import { screenText } from '../lib/classifier-screen-fetched-text.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS

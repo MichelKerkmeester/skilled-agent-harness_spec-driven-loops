@@ -129,9 +129,9 @@ hooks/
 |   +-- codex/    post-edit-quality.cjs
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/)
-+-- injection-screen/                # Jev screen of WebFetch text for instructions aimed at an agent
-|   +-- lib/screen-fetched-text.mjs, screen-fetched-text.test.mjs
-|   `-- claude/   injection-screen-posttooluse.mjs, injection-screen-posttooluse.test.mjs
++-- classifier-injection-screen/                # Jev screen of WebFetch text for instructions aimed at an agent
+|   +-- lib/classifier-screen-fetched-text.mjs, classifier-screen-fetched-text.test.mjs
+|   `-- claude/   classifier-injection-screen-posttooluse.mjs, classifier-injection-screen-posttooluse.test.mjs
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
 |   +-- claude/   task-dispatch-guard.cjs, fable-subagent-guard.mjs
