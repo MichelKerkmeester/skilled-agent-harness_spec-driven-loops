@@ -21,7 +21,7 @@ trigger_phrases:
   - "stuck escalation format"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Root cause and debugging
@@ -84,16 +84,15 @@ Each is evidence you are patching in the wrong place:
 ## 3. WHEN AN ATTEMPT REPEATS
 
 **If an attempt repeats without producing new evidence, stop patching at the failure
-site.** How many local retries you get is set outside this file; what triggers the stop
-here is repetition without new evidence, not a fixed count.
+site.** The local retry count is set outside this file. This stop fires on repetition
+without new evidence, not on a count.
 
 Do not repeat the same guess with a variation. Instead:
 
 1. **Restate the problem one level up:** at the interface, the data flow, or the module
    boundary rather than the line.
 2. **Inspect the interface that actually exists.** Read the signature, type, schema,
-   docs, caller. Most repeated failures are a wrong assumption about an API, not a wrong
-   line of code.
+   docs, caller.
 3. **Try once from the new framing.**
 
 Verify commands, flags, paths and APIs exist before relying on them. When an option turns

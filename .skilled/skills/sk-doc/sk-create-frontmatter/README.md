@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.0.3
+version: 1.0.0.8
 ---
 
 # create-frontmatter
@@ -44,6 +44,8 @@ This mode is the answer to "who owns frontmatter."
 ### What It Owns, And What It Does Not
 
 It owns the **rules**: which fields a class carries, what each field may contain, the description budget and its trim style, and the derivation of the 4-part `version`.
+
+It also owns the **value lists** for `contextType` and `importance_tier`, in `assets/frontmatter-values.json`. spec-kit's validator and save code, sk-doc's `validate_document.py` and the skill-advisor checker all read that one file, so a value added there is legal everywhere at once. The list of session context types a save payload uses is not frontmatter, and stays in spec-kit.
 
 It does not own the **enforcement**. Three scripts do that, and all three stay in the hub's shared tier: the versioning engine, the corpus gate that wraps it, and the fast validator that four command workflows call. They stay because a post-edit hook outside this hub resolves one of them by literal path on every qualifying edit. Moving them would break a runtime hook to gain a tidier diagram.
 
@@ -182,5 +184,6 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the router, and the always-and-never rules |
 | [`references/README.md`](./references/README.md) | Router for this mode's reference set |
 | [`assets/frontmatter-templates.md`](./assets/frontmatter-templates.md) | The field reference and the per-class templates. Eleven sections, one per concern |
+| [`assets/frontmatter-values.json`](./assets/frontmatter-values.json) | The `contextType` and `importance_tier` values and aliases every checker reads |
 | [`references/frontmatter-versioning.md`](./references/frontmatter-versioning.md) | The 4-part version standard: scope, format, anchor derivation, the numstat gate and the insertion rule |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Eleven operator scenarios across field resolution, the description budget and version derivation |

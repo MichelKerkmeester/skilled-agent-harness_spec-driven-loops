@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context type hardening",
+      "frontmatter value measurement",
+      "warning recall matrix",
+      "off-list rate",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "context",
+      "type",
+      "hardening",
+      "frontmatter",
+      "value",
+      "measurement",
+      "warning",
+      "recall",
+      "matrix",
+      "off-list",
+      "rate",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/matrix.py",
+      "scratch/matrix-result.json",
+      "scratch/corpus.py",
+      "scratch/corpus-result.json",
+      "scratch/generator-seeds.raw.txt",
+      "scratch/generator-seeds.json",
+      "scratch/model-writers-score.py",
+      "scratch/model-writers-result.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "matrix.py",
+        "kind": "file",
+        "path": "scratch/matrix.py",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-result.json",
+        "kind": "config",
+        "path": "scratch/matrix-result.json",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.py",
+        "kind": "file",
+        "path": "scratch/corpus.py",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-result.json",
+        "kind": "config",
+        "path": "scratch/corpus-result.json",
+        "source": "derived"
+      },
+      {
+        "name": "generator-seeds.raw.txt",
+        "kind": "file",
+        "path": "scratch/generator-seeds.raw.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generator-seeds.json",
+        "kind": "config",
+        "path": "scratch/generator-seeds.json",
+        "source": "derived"
+      },
+      {
+        "name": "model-writers-score.py",
+        "kind": "file",
+        "path": "scratch/model-writers-score.py",
+        "source": "derived"
+      },
+      {
+        "name": "model-writers-result.json",
+        "kind": "config",
+        "path": "scratch/model-writers-result.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-values-helper.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 measured the cleanup: 33 distinct spec-doc values became 12, and 102 off-list values became 0",
+    "created_at": "2026-10-04T12:00:32Z",
+    "last_save_at": "2026-10-04T16:22:15.409Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:92b08c2711e21eebcc7c35fc7db978bd61ea3b174a29307c586afb2b2131e646",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e911aa9089a68de5772b240eb8924b71642bb66f59473a7484d704080e4dae24",
+      "plan.md": "ac39587d53fd5590bc5e439bbdc709af61a10ee77aa25c21d90fb5523af9f92b",
+      "tasks.md": "f50364f00c2c2636d4948c33d76938b9758dc63c07eaf8382fddf4a11102cb44",
+      "implementation-summary.md": "a3804524160aefaa92ba31c4b2bfba020761217c06a340a27c3ac6e15593bdcb"
+    },
+    "last_active_at": null
+  }
+}

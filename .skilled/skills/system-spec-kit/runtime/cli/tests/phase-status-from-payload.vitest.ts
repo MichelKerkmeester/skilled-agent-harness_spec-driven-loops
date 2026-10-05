@@ -53,4 +53,22 @@ describe('phase and status capture', () => {
     expect(sessionData.SESSION_STATUS).toBe('IN_PROGRESS');
     expect(sessionData.COMPLETION_PERCENT).toBe(95);
   });
+
+  // A save payload classifies the session, so these read the session list. The
+  // document list aliases review to research and has no debugging or decision;
+  // reading it here would move each of these sessions to a different phase.
+  it.each([
+    ['planning', 'PLANNING'],
+    ['debugging', 'DEBUGGING'],
+    ['decision', 'PLANNING'],
+  ])('derives the phase for a %s session from the session list', async (contextType, phase) => {
+    validateInputData({ sessionSummary: 'A session summary.', contextType }, 'test-packet');
+    const sessionData = await collectSessionData({
+      _source: 'file',
+      sessionSummary: 'A session summary.',
+      contextType,
+    } as never, 'test-packet');
+
+    expect(sessionData.PROJECT_PHASE).toBe(phase);
+  });
 });

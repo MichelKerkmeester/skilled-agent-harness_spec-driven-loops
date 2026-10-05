@@ -6,7 +6,7 @@ trigger_phrases:
   - "round 5 audit boundary"
   - "stale versus legitimate references"
 importance_tier: "important"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment"

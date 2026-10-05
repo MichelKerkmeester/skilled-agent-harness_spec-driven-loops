@@ -45,8 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
       "lib/README.md",
       "research/lineages/deepseek-flash/research.md"
     ],
@@ -73,18 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The injection-bloat shadow program (packet 002, phases 001-007) landed roughly sixteen changed code files across the `system-skill-advisor` runtime, the `system-spec-kit` Gate-3 hook adapters, and the OpenCode plugins",
     "created_at": "2026-08-07T14:02:15.127Z",
-    "last_save_at": "2026-08-30T15:39:08.960Z",
+    "last_save_at": "2026-10-04T09:12:13.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf49e9dfeec3517e62e8a714ded1e8cee3bbf38c6be65ce4eac0f5854badfd91",
+    "source_fingerprint": "sha256:386330a8686bfc139467de1c4900dee71378f68d74f167f42581ef2584e1228a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6d89e7515ff788ec532c90b1e72b8a0ea8b516ac958267e0dadc52baf1919fd",
       "plan.md": "e6a2eee4e2d407aef58dcf464051d9dcee3cc146acf379d2bad938a99e2d0849",
       "tasks.md": "47d6abd6a528ca7d61884b5148dba5be362f093df4489ee3651b2a7bf329130d",
-      "implementation-summary.md": "ebd4593c8aaad38777e6c23a9f3e1e9fdb56ee394e77ec882057dbd6361276de"
+      "implementation-summary.md": "51f5947cd7f0aedf67c033f709535bea3b012eb3da7ebe85783441597f023ec7"
     },
     "last_active_child_id": null,
     "last_active_at": null

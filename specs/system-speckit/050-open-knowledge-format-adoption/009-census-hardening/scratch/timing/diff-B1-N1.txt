@@ -1,0 +1,26 @@
+16c16
+< track agents: citations=3250 in_range=852 past_end=193 moved_in_range=190 moved_past_end=7 basename_only=490 ambiguous=991 unresolved=527 dead=193
+---
+> track agents: citations=3250 in_range=1095 past_end=193 moved_in_range=190 moved_past_end=7 basename_only=490 ambiguous=991 unresolved=284 dead=193
+20c20
+< track hooks: citations=6535 in_range=980 past_end=124 moved_in_range=1292 moved_past_end=59 basename_only=762 ambiguous=2193 unresolved=1125 dead=124
+---
+> track hooks: citations=6535 in_range=1075 past_end=124 moved_in_range=1292 moved_past_end=59 basename_only=762 ambiguous=2193 unresolved=1030 dead=124
+23c23
+< track sk-communication: citations=2418 in_range=330 past_end=15 moved_in_range=108 moved_past_end=0 basename_only=137 ambiguous=651 unresolved=1177 dead=15
+---
+> track sk-communication: citations=2418 in_range=361 past_end=15 moved_in_range=108 moved_past_end=0 basename_only=137 ambiguous=651 unresolved=1146 dead=15
+25c25
+< track sk-doc: citations=3391 in_range=1946 past_end=39 moved_in_range=50 moved_past_end=0 basename_only=603 ambiguous=597 unresolved=156 dead=39
+---
+> track sk-doc: citations=3391 in_range=2004 past_end=39 moved_in_range=50 moved_past_end=0 basename_only=603 ambiguous=597 unresolved=98 dead=39
+31c31
+< track system-speckit: citations=81387 in_range=5740 past_end=211 moved_in_range=16405 moved_past_end=375 basename_only=11563 ambiguous=13455 unresolved=33622 dead=211
+---
+> track system-speckit: citations=81387 in_range=5752 past_end=211 moved_in_range=16405 moved_past_end=375 basename_only=11563 ambiguous=13455 unresolved=33610 dead=211
+33,34c33,34
+< family specs: citations=139931 in_range=15190 past_end=675 moved_in_range=26733 moved_past_end=582 basename_only=21243 ambiguous=29831 unresolved=45657 refused=19 dead=676
+< citations=140287 in_range=15383 past_end=677 moved_in_range=26738 moved_past_end=582 basename_only=21251 ambiguous=29860 unresolved=45776 refused=19 dead=678 corpus=all commit=5285608745fe
+---
+> family specs: citations=139931 in_range=15629 past_end=675 moved_in_range=26733 moved_past_end=582 basename_only=21243 ambiguous=29831 unresolved=45218 refused=19 dead=676
+> citations=140287 in_range=15822 past_end=677 moved_in_range=26738 moved_past_end=582 basename_only=21251 ambiguous=29860 unresolved=45337 refused=19 dead=678 corpus=all commit=5285608745fe

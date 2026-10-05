@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.1.0.62
+version: 2.7.0.68
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -62,6 +62,8 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `AI_PROTOCOLS`       | ERROR    | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
 | `SPEC_DOC_SUFFICIENCY` | ERROR  | spec docs, goal.md | Anchor sufficiency; for `goal.md` also the durable budget (one limit: fail past 4000) and binding-row existence |
+| `FRONTMATTER_VALUES` | WARNING  | packet docs   | `contextType` or `importance_tier` outside sk-create-frontmatter's `frontmatter-values.json`; aliases are legal |
+| `SOURCE_TAGS`        | WARNING  | research/ + review/ | `[SOURCE: path:line]` tags that name a gone file, a moved file or a line past the end, in packets created after the cutoff |
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 
@@ -91,6 +93,40 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 **Waiver contract:** a criterion may only be dropped or replaced through a decision record. The Waiver cell must name `ADR-NNN`, and every ADR it names must be declared in `decision-record.md` as a heading, a bold list item or a table row, outside any code fence. `ADR-1` and `ADR-001` are the same record.
 
 **Column binding:** the criteria table is parsed by header name, not by column position, so an escaped pipe or an added column cannot shift the Status cell.
+
+### FRONTMATTER_VALUES
+
+`FRONTMATTER_VALUES` checks the `contextType` and `importance_tier` values in a packet's top-level docs against `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json`. It is registered at WARNING severity and never fails a run.
+
+**Rule ID:** `FRONTMATTER_VALUES`
+
+**The list:** four canonical document `contextType` values (`implementation`, `research`, `planning`, `general`) plus aliases such as `review` for `research` and `reference` for `general`, and the six tiers plus aliases such as `high` for `important`. An alias is legal; new docs should write the canonical value. The same file feeds sk-doc's `validate_document.py` and the skill-advisor frontmatter checker, so spec docs and skill docs share one list.
+
+**Not this rule's job:** a missing or empty value stays `FRONTMATTER_VALID`'s. A save payload's `contextType` is checked by the save CLI against the separate session list, which keeps values such as `debugging` and `decision` because they decide the project phase.
+
+**How to fix:** replace the value with one the warning names, or with a listed alias.
+
+### SOURCE_TAGS
+
+`SOURCE_TAGS` resolves every `path:line` citation inside a `[SOURCE: ...]` tag in a packet's research and review artifacts. It is registered at WARNING severity, so it never fails a run, `--strict` included.
+
+**Rule ID:** `SOURCE_TAGS`
+
+**Scope:** every `.md` file under the packet's `research/` and `review/` folders, lineages and iterations included. `prompts/` folders and fenced blocks are skipped. A tag holding a URL or prose, such as `[SOURCE: live run]`, names no line and is not checked.
+
+**Resolution:** the rule calls `resolveCitation` from sk-doc's `cite-drift-scan.mjs`, so a tag gets the same verdict as a bare citation in the drift census, through the same redirect table. Candidates are the citing file's folder, the repository root and the packet folder. Untracked files outside `.gitignore` count, so a packet can be checked before it is committed.
+
+**Rollout:** forward-only behind `SPECKIT_SOURCE_TAG_CUTOFF` (default `2026-10-04`), compared against the `Created` date in `spec.md`, the same pattern as `AC_CLOSURE`. A packet created on or before the cutoff, or whose date cannot be read, is skipped and says so. A malformed override falls back to the default.
+
+| Result | Meaning |
+|---|---|
+| `pass` | Every tag's path and line exist. This says nothing about whether the lines support the claim |
+| `warn`, gone | No file at the path and no recorded rename |
+| `warn`, moved | The file was renamed; the detail names the new path |
+| `warn`, past end | The file exists but is shorter than the cited line |
+| `warn`, guessed | No file at the path; only files with the same name exist |
+
+**How to fix:** point the tag at the current path and a line inside the file. A moved tag's warning names the path to use.
 
 `AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, malformed evidence citations, and unresolved evidence citations without adding strict warnings or errors. A citation is unresolved when its file is not found as an absolute path, in the packet folder or under the repository root, or when its line is outside that file, and it still counts toward the covered count. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
 

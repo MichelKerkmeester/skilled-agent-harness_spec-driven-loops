@@ -7,7 +7,7 @@ trigger_phrases:
   - "017 tasks"
   - "cli-copilot dispatch test parity tasks"
 importance_tier: "important"
-contextType: "tasks-ledger"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity"

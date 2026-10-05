@@ -12,7 +12,7 @@
 // and it must report each malformed shape separately to choose a repair.
 
 import * as path from 'path';
-import { CANONICAL_CONTEXT_TYPES, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';
+import { CANONICAL_CONTEXT_TYPES, IMPORTANCE_TIERS, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';
 import { resolveImportanceTier } from '../extractors/session-extractor.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -93,15 +93,6 @@ const GENERIC_TITLES = new Set([
   'conversation summary',
   'summary',
   'untitled',
-]);
-
-const VALID_IMPORTANCE_TIERS = new Set([
-  'constitutional',
-  'critical',
-  'important',
-  'normal',
-  'temporary',
-  'deprecated',
 ]);
 
 // Derive VALID_CONTEXT_TYPES from shared source of truth.
@@ -842,7 +833,7 @@ function normalizeImportanceTier(rawValue: string | null | undefined): string | 
   const normalized = rawValue.toLowerCase().replace(/[^a-z_]/g, '');
   const mapped = normalized === 'high' ? 'important' : normalized;
 
-  if (VALID_IMPORTANCE_TIERS.has(mapped)) {
+  if (IMPORTANCE_TIERS.has(mapped)) {
     return mapped;
   }
 

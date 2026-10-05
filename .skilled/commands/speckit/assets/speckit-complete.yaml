@@ -542,7 +542,7 @@ request_analysis_framework:
   solution_flow: [parse_request, gather_context, identify_approach, validate_choice, clarify_if_needed, scope_check, execute]
   design_principles:
     - "KISS: Use existing patterns, direct solution > clever complexity"
-    - "Evidence-Based: Cite sources [SOURCE: file:lines] or UNKNOWN"
+    - "Evidence-Based: Cite sources [SOURCE: file:lines] or UNKNOWN. validate.sh --strict checks each tag in research and review artifacts through its SOURCE_TAGS rule: path and line exist, nothing more"
     - "Effectiveness: Performant + Maintainable + Concise, solve ONLY stated problem"
   pre_change_validation: [simplest_solution, scope_discipline, spec_folder_created, read_files_first, clear_success_criteria, confidence_80_plus, sources_cited, user_approval, checklist_verified_L2_plus]
 

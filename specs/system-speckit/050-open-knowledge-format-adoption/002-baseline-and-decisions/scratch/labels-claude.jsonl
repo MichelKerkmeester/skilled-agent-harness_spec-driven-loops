@@ -1,0 +1,40 @@
+{"id": "d3-01", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 89 is the quoted criterion verbatim"}
+{"id": "d3-02", "verdict": "contradicts", "relocated": "yes", "relocated_line": 92, "note": "Line 80 is a code fence; dimensions listed at line 92"}
+{"id": "d3-03", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 20 holds the SPECKIT_LEVEL template marker"}
+{"id": "d3-04", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 94 is the quoted Phase opened progress row"}
+{"id": "d3-05", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 53 is decision D3 with the quoted text"}
+{"id": "d3-06", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 75 is the quoted criterion naming artifact and count"}
+{"id": "d3-07", "verdict": "partial", "relocated": "yes", "relocated_line": 252, "note": "Range starts in iteration-file sections; JSONL record begins at 252"}
+{"id": "d3-08", "verdict": "contradicts", "relocated": "no", "relocated_line": null, "note": "Line 111 blank; quote absent, line 94 says every child"}
+{"id": "d3-09", "verdict": "contradicts", "relocated": "yes", "relocated_line": 24, "note": "Line 26 is mirror verifier; runtime/ reference appears at 24"}
+{"id": "d3-10", "verdict": "contradicts", "relocated": "yes", "relocated_line": 319, "note": "Lines 343-350 are quality rules; fence contract at 319"}
+{"id": "d3-11", "verdict": "contradicts", "relocated": "yes", "relocated_line": 263, "note": "Lines 46-64 are keyword triggers; command-owned rule at 263"}
+{"id": "d3-12", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Table at 57-62 and line 66 match the measurements"}
+{"id": "d3-13", "verdict": "partial", "relocated": "yes", "relocated_line": 337, "note": "Range is status enum and escalation; exhausted rule at 337"}
+{"id": "d3-14", "verdict": "partial", "relocated": "no", "relocated_line": null, "note": "Line 123 has token indirection; class mechanism not stated"}
+{"id": "d3-15", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 74 cites the strict validate.sh command"}
+{"id": "d3-16", "verdict": "contradicts", "relocated": "yes", "relocated_line": 407, "note": "Range is command table; resource-map unless disabled at 407"}
+{"id": "d3-17", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 75 is the quoted criterion"}
+{"id": "d3-18", "verdict": "contradicts", "relocated": "yes", "relocated_line": 69, "note": "Lines 83-90 are criteria; eight binding rows at 69-76"}
+{"id": "d3-19", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Router resolves setup before YAML, hard-block gate at 22-23"}
+{"id": "d3-20", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Lines 125 and 129 keep the radar omission"}
+{"id": "d3-21", "verdict": "contradicts", "relocated": "yes", "relocated_line": 149, "note": "Line 146 is phase 002 row; budget cut criterion at 149"}
+{"id": "d3-22", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 118 is the C-4 row the claim reuses"}
+{"id": "d3-23", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 138 records VALID, 0 issues, 0 hard blockers"}
+{"id": "d3-24", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 15 names the daemon-backed CLI front door"}
+{"id": "d3-25", "verdict": "contradicts", "relocated": "yes", "relocated_line": 151, "note": "Lines 147-149 cover phases 003-005; 008 handoff at 151"}
+{"id": "d3-26", "verdict": "contradicts", "relocated": "no", "relocated_line": null, "note": "Root README line 52 has no semicolon; wrong README resolved"}
+{"id": "d3-27", "verdict": "contradicts", "relocated": "no", "relocated_line": null, "note": "Root README line 100 is diagram intro; no exit-3 dist rule"}
+{"id": "d3-28", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 28 closes carried numerics as historical, no edit"}
+{"id": "d3-29", "verdict": "contradicts", "relocated": "yes", "relocated_line": 70, "note": "Line 51 blank; objective_slice distinction at 70, stop at 72"}
+{"id": "d3-30", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 420 gives R8 later reason: no gold confirmed"}
+{"id": "d3-31", "verdict": "contradicts", "relocated": "yes", "relocated_line": 153, "note": "Line 239 is phase table row; unconditional binding at 153"}
+{"id": "d3-32", "verdict": "contradicts", "relocated": "no", "relocated_line": null, "note": "Lines 78-85 are key files; no bridgeTimeoutMs default documented"}
+{"id": "d3-33", "verdict": "contradicts", "relocated": "no", "relocated_line": null, "note": "Line 116 is rollback stop-for-yes, not resume re-anchoring"}
+{"id": "d3-34", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Lines 48-50 list SKILL.md, README stub, references, assets"}
+{"id": "d3-35", "verdict": "contradicts", "relocated": "yes", "relocated_line": 122, "note": "Line 62 is insertion point; no-silent-resolve rule at 122"}
+{"id": "d3-36", "verdict": "unclear", "relocated": "na", "relocated_line": null, "note": "Citation-count list makes no claim about line content"}
+{"id": "d3-37", "verdict": "partial", "relocated": "no", "relocated_line": null, "note": "Lines 243-247 only support rerunning parent-skill-check"}
+{"id": "d3-38", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Line 187 is the goal posture rule holding the replacement"}
+{"id": "d3-39", "verdict": "supports", "relocated": "na", "relocated_line": null, "note": "Lines 87-91 list data, retrieval and parity families"}
+{"id": "d3-40", "verdict": "contradicts", "relocated": "yes", "relocated_line": 139, "note": "Line 145 is insertion point; earliest-owner order at 139"}

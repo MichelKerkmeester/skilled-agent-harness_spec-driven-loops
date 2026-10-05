@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontmatter values move",
+      "frontmatter value list owner",
+      "sk-create-frontmatter value list",
+      "session context types literal",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "frontmatter",
+      "values",
+      "move",
+      "value",
+      "list",
+      "owner",
+      "sk-create-frontmatter",
+      "session",
+      "context",
+      "types",
+      "literal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json",
+      "scratch/baseline/old-shared-frontmatter-values.json",
+      ".skilled/skills/system-spec-kit/shared/context-types.ts",
+      ".skilled/skills/system-spec-kit/shared/tsconfig.json",
+      "runtime/cli/rules/check-frontmatter-values-helper.cjs",
+      "lib/validator-registry.json",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+      "scratch/run-checks.sh",
+      "scratch/missing-file.txt",
+      "scratch/after/old-path-rg.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-values.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json",
+        "source": "derived"
+      },
+      {
+        "name": "old-shared-frontmatter-values.json",
+        "kind": "config",
+        "path": "scratch/baseline/old-shared-frontmatter-values.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/context-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/shared/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-values-helper.cjs",
+        "kind": "file",
+        "path": "runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "check-skill-doc-frontmatter.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-checks.sh",
+        "kind": "script",
+        "path": "scratch/run-checks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "missing-file.txt",
+        "kind": "file",
+        "path": "scratch/missing-file.txt",
+        "source": "derived"
+      },
+      {
+        "name": "old-path-rg.txt",
+        "kind": "file",
+        "path": "scratch/after/old-path-rg.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-values.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-create-frontmatter` owns the frontmatter contract, but the list of allowed `contextType` and `importancetier` values lives in `system-spec-kit/shared/frontmatter-values.json`",
+    "created_at": "2026-10-04T19:31:12Z",
+    "last_save_at": "2026-10-04T20:03:22.120Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:615267df4d03867d4a7ee4377d868085a770ce393d3a9cb86bb5c000b71b536d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0bc3ebad43dbe6b6b0db4e674de0b387c3fac46a1ea542cbc7f6330177c70371",
+      "plan.md": "7b5b3013c419d51b690b46ec918d1357b696a6535e1ea919a20577704e0362ce",
+      "tasks.md": "853b2b46d3c36b4ccb329f92d8292c77308291ccf4e8924ea7fa981ae17d86af",
+      "decision-record.md": "0017f908d7ffc0f92dd5cee6cf29bb8fbfa242dc23340ca13477cef67523d484",
+      "implementation-summary.md": "5fa03dfadd37f89cd8328ee9a62c8f2a0279267857545a2bf25df3d33cdbacff"
+    },
+    "last_active_at": null
+  }
+}

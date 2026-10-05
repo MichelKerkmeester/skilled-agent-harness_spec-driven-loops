@@ -6,7 +6,7 @@ trigger_phrases:
   - "resume contracts and fixtures"
   - "improved communication phase 002"
 importance_tier: "high"
-contextType: "handover"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-communication/001-sk-communication-creation/002-contracts-and-fixtures"

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/README.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scratch/doctor-citation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl",
+      ".skilled/commands/doctor/speckit.md",
+      "shared/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-redirects.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-citation-summary.md",
+        "kind": "doc",
+        "path": "scratch/doctor-citation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cite-drift-scan.mjs` reads tracked skill docs only",
+    "created_at": "2026-10-04T08:04:51Z",
+    "last_save_at": "2026-10-04T12:06:05.536Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30fbd840d6c032ab01530086199d2c0d5ce9197cb10943f6843bb3c6d8543aed",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "432d6db9d24c96e17282aeebbbc72917083d6655cf106a09304f28f4ba6b111b",
+      "plan.md": "939b24fd25e35edf3975cd5edc7283a0092064244321d8b057be5fdb147cabe1",
+      "tasks.md": "264fd532835b4f22537017ad9fe436f7ab7daab1acf1aff1bb634c13c480afa0",
+      "decision-record.md": "ac9a3ef15e56d1ff0385ac7e6c174eaf1b71a0b4a324eba1551cb35c3b4e4777",
+      "implementation-summary.md": "b345549a18f2332c85bb7dcf221e15f0a268fc26a5fd6fc345986e455fad4385"
+    },
+    "last_active_at": null
+  }
+}

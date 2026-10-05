@@ -1,0 +1,83 @@
+{
+  "topic": "Should system-skill-advisor (or another surface) support and suggest repo rules from .skilled/repo-rules/ without adding context the model does not need? Today repo rules reach the model only through Gate 5 (AGENTS.md section 2), which fires on the first write of a session; the model then matches its action against the trigger table in the root REPO RULES.md. Candidate surfaces to evaluate, and any other the evidence raises: (a) a pointer line in the advisor brief rendered by .skilled/skills/system-skill-advisor/runtime/lib/render.ts, next to the existing Directives block and its dedup in hooks/lib/directive-lifecycle.ts; (b) adding .skilled/repo-rules to CORPUS_ROOTS in .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs so the Gate 1 trigger-index lookup can return rule files by their trigger_phrases frontmatter; (c) an action-keyed PreToolUse advisory, with the hooks under .skilled/hooks/ and .claude/settings.json as precedent; (d) no new surface. Prior work that must be read and either respected or explicitly overturned with evidence: specs/hooks/022-smart-rule-injection (decisions.md and 001-deep-research/implementation-summary.md), .skilled/hooks/injection-contract.md, REPO RULES.md section 4 (what is in and out of the rules' scope), and specs/agents/010-repo-rule-system-integration/research. For every candidate state: what it would emit, its silence condition, its per-turn context cost measured or estimated from the code, whether it matches on action or on prompt topic, portability across repos that share the rule corpus by symlink, and the evidence for and against. Cite file:line for every claim. Read-only on the repository; write only inside your lineage artifact directory. Spec folder: specs/agents/016-repo-rule-advisor-surfacing (pre-approved, Gate 3 answered).",
+  "maxIterations": 4,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing",
+  "createdAt": "2026-10-04T12:25:29Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-v4-1-flash-max-1791116504576-gieznv",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/016-repo-rule-advisor-surfacing/research/lineages/deepseek-v4-1-flash-max",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "resource_map_present": false,
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

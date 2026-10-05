@@ -1,0 +1,40 @@
+{"id":"d3-01","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 89 matches the quoted criterion exactly."}
+{"id":"d3-02","verdict":"partial","relocated":"yes","relocated_line":92,"note":"Four review dimensions sit at 92; cited 80 is a code fence."}
+{"id":"d3-03","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 20 carries a template marker as the evidence claims."}
+{"id":"d3-04","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 94 is the quoted progress row; 84 is the LOG heading."}
+{"id":"d3-05","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 53 contains the quoted sentence in decision row D3."}
+{"id":"d3-06","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 75 is the quoted criterion verbatim."}
+{"id":"d3-07","verdict":"supports","relocated":"na","relocated_line":null,"note":"Range covers one canonical JSONL record and its fields."}
+{"id":"d3-08","verdict":"contradicts","relocated":"no","relocated_line":null,"note":"Word children absent from file; line 111 is blank."}
+{"id":"d3-09","verdict":"partial","relocated":"yes","relocated_line":24,"note":"Runtime cross-reference is at 24; cited 26 is the mirror-sync row."}
+{"id":"d3-10","verdict":"partial","relocated":"yes","relocated_line":319,"note":"Generated-fence sentence is at 319; cited range holds rules 12-16."}
+{"id":"d3-11","verdict":"partial","relocated":"yes","relocated_line":263,"note":"Invocation contract at 263; cited 46-64 is triggers and use cases."}
+{"id":"d3-12","verdict":"supports","relocated":"na","relocated_line":null,"note":"Measurement table at 59-62 matches every quoted number."}
+{"id":"d3-13","verdict":"partial","relocated":"yes","relocated_line":337,"note":"Exhausted-approach rule sits at 337; cited range shows status and escalate blocks."}
+{"id":"d3-14","verdict":"supports","relocated":"na","relocated_line":null,"note":"Lines 123-131 carry the adopted token indirection and palette roles."}
+{"id":"d3-15","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 74 cites the strict validate.sh command as claimed."}
+{"id":"d3-16","verdict":"partial","relocated":"yes","relocated_line":407,"note":"Resource-map rule is at 407; cited 443-448 is the command table."}
+{"id":"d3-17","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 75 quotes the criterion verbatim with artifact and count."}
+{"id":"d3-18","verdict":"partial","relocated":"yes","relocated_line":69,"note":"Binding rows 001-008 sit at 69-76; cited 83-90 is completion criteria."}
+{"id":"d3-19","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 9 orders setup resolution before executing the owned YAML."}
+{"id":"d3-20","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 125 retains radar and arc-pie omissions after the comparison."}
+{"id":"d3-21","verdict":"partial","relocated":"yes","relocated_line":149,"note":"Over-budget cut criterion sits at 149; cited 146 is the 002-003 handoff row."}
+{"id":"d3-22","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 118 is the C-4 row the citing doc reuses."}
+{"id":"d3-23","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 138 records VALID 0 issues and zero hard blockers."}
+{"id":"d3-24","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 15 states the daemon-backed CLI front door, the REQ-007 evidence."}
+{"id":"d3-25","verdict":"partial","relocated":"yes","relocated_line":151,"note":"Routing/out-of-domain gate is at 151; cited rows cover phases 003-006."}
+{"id":"d3-26","verdict":"contradicts","relocated":"no","relocated_line":null,"note":"Root README 52 has no semicolon; 52:74 is sk-design-chart README."}
+{"id":"d3-27","verdict":"contradicts","relocated":"no","relocated_line":null,"note":"Cited line is a diagram intro; exit-3 stale-dist text is elsewhere."}
+{"id":"d3-28","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 28 is the A16 closure: not re-derivable, no replacement."}
+{"id":"d3-29","verdict":"partial","relocated":"yes","relocated_line":72,"note":"Print-and-stop rule is at 72; cited 51 is a blank line."}
+{"id":"d3-30","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 420 is the R8 row: no gold confirmed, stays later."}
+{"id":"d3-31","verdict":"partial","relocated":"yes","relocated_line":243,"note":"Stays-here residence rule is at 243; cited 239 is a phase-map row."}
+{"id":"d3-32","verdict":"contradicts","relocated":"no","relocated_line":null,"note":"README never mentions bridgeTimeoutMs or 1000; key-files table only."}
+{"id":"d3-33","verdict":"contradicts","relocated":"no","relocated_line":null,"note":"Lines 114/116 are blast-radius bullets; resume/recovery re-anchoring absent from file."}
+{"id":"d3-34","verdict":"supports","relocated":"na","relocated_line":null,"note":"Lines 48-50 list the deliverables the claim cites."}
+{"id":"d3-35","verdict":"partial","relocated":"yes","relocated_line":58,"note":"Read-through no-silent-stale rule at 58; cited 62 is insertion point."}
+{"id":"d3-36","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 63 exists as the adversarial-replay gate bullet."}
+{"id":"d3-37","verdict":"supports","relocated":"na","relocated_line":null,"note":"Lines 242-248 hold Verify against the hub and the check command."}
+{"id":"d3-38","verdict":"supports","relocated":"na","relocated_line":null,"note":"Line 187 carries the 4,000-character rule and ownership split."}
+{"id":"d3-39","verdict":"supports","relocated":"na","relocated_line":null,"note":"Lines 87-91 name data, retrieval and runtime-parity families."}
+{"id":"d3-40","verdict":"partial","relocated":"yes","relocated_line":139,"note":"Earliest-owner order is at 139; cited 145 is the insertion point."}

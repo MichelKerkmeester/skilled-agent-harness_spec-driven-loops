@@ -148,6 +148,10 @@ staleness_signals:
   missing_convergence_signal:
     detection: "packets with at least three iterations return empty signals from convergence.cjs"
     severity: high
+  unresolved_source_tags:
+    detection: "check-source-tags-helper.mjs prints WARN lines for [SOURCE: path:line] tags in the packet's research or review artifacts: a gone file, a moved file or a line past the end"
+    severity: low
+    note: "Informational and never a reason to rebuild a graph. The helper writes nothing and makes no model call. A resolved tag only proves the path and line exist."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -186,6 +190,7 @@ workflow:
       - "For sampled research namespaces, run query.cjs with --read-only --query-type unverified_claims --limit 50."
       - "For packets with at least three iterations, run convergence.cjs with --read-only --iteration <latest_iteration>."
       - "For ai-council packets with council artifacts (scope includes council), run status.cjs, query.cjs, and convergence.cjs with --read-only and loopType='council' against the council graph."
+      - "When scope includes research or review, run node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs <active-spec-folder>. Group its WARN lines by lineage (the folder after research/lineages/ or review/lineages/, or 'main' for the packet's own research or review files) and count each class: gone, moved, past end, guessed. Keep every moved tag's new path. A SKIP line means the packet was created on or before the cutoff: report the reason, never as clean; only when the operator asks to audit an older packet, rerun with SPECKIT_SOURCE_TAG_CUTOFF=2000-01-01. Exit 2 is reported with stderr."
       - "Classify drift as empty_graph, stale_graph, orphan_nodes, missing_convergence_signal, or coverage_gaps."
       - "Never call deep_loop_graph_upsert in diagnostic mode."
       - "Interactive gate: before_phase_2_recommendation."
@@ -196,6 +201,7 @@ workflow:
           orphan_nodes: N
           missing_convergence_signal: N
           coverage_gaps: N
+      - unresolved_source_tags: "per lineage, {gone, moved, past_end, guessed} counts plus the moved tags' new paths, or the SKIP reason"
       - convergence_samples: list
       - severity_max: low|medium|high
     validation: analysis_complete
@@ -207,6 +213,7 @@ workflow:
       - "If missing_convergence_signal > 0 -> recommend resuming the loop, whose iterations upsert their graph rows, or a manual repair through system-deep-loop/runtime/scripts/upsert.cjs from the iteration records; no whole-graph rebuild tool ships."
       - "If stale_graph=true or orphan_nodes > 0 -> recommend resuming the loop, whose iterations upsert their graph rows, or a manual repair through system-deep-loop/runtime/scripts/upsert.cjs from the iteration records; no whole-graph rebuild tool ships."
       - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph has its own replay)."
+      - "unresolved_source_tags never raises severity_max. List the counts per lineage beside the recommendation; the fix is editing the tags in the iteration files."
       - "If no drift -> status=OK, no action needed."
     outputs:
       - status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL

@@ -1,0 +1,77 @@
+{
+ "protocol": "v1",
+ "docs_scanned": 22782,
+ "tracked": 32037,
+ "untracked": 137,
+ "w1_warnings": 7,
+ "w2_warnings": 7,
+ "w1_seconds": 11.7,
+ "w2_seconds": 9.8,
+ "w1": [
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/08.md",
+   "contextType \"development\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/04.md",
+   "contextType \"process\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/05.md",
+   "contextType \"workflow\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/07.md",
+   "contextType \"guideline\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/08.md",
+   "contextType \"procedural\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/09.md",
+   "contextType \"design\" is not in the shared list; use one of implementation, research, planning, general"
+  ],
+  [
+   "WARN",
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/08.md",
+   "contextType \"chore\" is not in the shared list; use one of implementation, research, planning, general"
+  ]
+ ],
+ "w2": [
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/08.md",
+   "contextType \"development\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/04.md",
+   "contextType \"process\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/05.md",
+   "contextType \"workflow\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/07.md",
+   "contextType \"guideline\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/08.md",
+   "contextType \"procedural\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/09.md",
+   "contextType \"design\" is not in the shared list"
+  ],
+  [
+   "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/08.md",
+   "contextType \"chore\" is not in the shared list"
+  ]
+ ]
+}

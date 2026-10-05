@@ -9,7 +9,7 @@
 // exits 0.
 //
 // Usage:
-//   node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]
+//   node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]
 //
 // Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
 // invocation or unreadable input, refused before any call.
@@ -47,12 +47,18 @@ export const CITATION_RE = /(?<![\w./-])([A-Za-z0-9_./-]+\.(?:ts|cjs|mjs|js|py|m
 export const FENCE_RE = /^\s*(?:```|~~~)/;
 
 /** Markdown paragraphs stop at blank lines, fences and headings. */
-function paragraphClaim(lines, lineIndex) {
+function paragraphBounds(lines, lineIndex) {
   const isBoundary = (line) => line.trim() === '' || FENCE_RE.test(line) || /^\s{0,3}#{1,6}(?:\s|$)/.test(line);
   let start = lineIndex;
   let end = lineIndex;
   while (start > 0 && !isBoundary(lines[start - 1])) start -= 1;
   while (end + 1 < lines.length && !isBoundary(lines[end + 1])) end += 1;
+  return { start, end };
+}
+
+/** The full paragraph around one line, the unit a claim is read in. */
+function paragraphClaim(lines, lineIndex) {
+  const { start, end } = paragraphBounds(lines, lineIndex);
   return lines.slice(start, end + 1).join('\n').trim();
 }
 
@@ -67,7 +73,28 @@ function hasClaim(claim) {
 }
 
 /** Usage line printed when an invocation misses an input. */
-export const USAGE = 'usage: node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]';
+export const USAGE = 'usage: node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]';
+
+/** Prefix redirect table beside the script, derived from the git rename record. */
+export const REDIRECTS_PATH = path.join(SCRIPT_DIR, 'cite-drift-redirects.json');
+
+/** Doc families a census can cover; skills keeps the historical default. */
+export const CORPORA = ['skills', 'specs', 'all'];
+
+/** Every census status, in the order the report prints them. */
+export const STATUSES = [
+  'in_range', 'past_end', 'moved_in_range', 'moved_past_end', 'basename_only',
+  'ambiguous', 'unresolved', 'refused', 'missing',
+];
+
+/** A rule needs this many agreeing rename records before it may move a citation. */
+export const REDIRECT_MIN_RECORDS = 50;
+
+/** Share of the records under a prefix that must agree on one destination. */
+export const REDIRECT_MIN_AGREEMENT = 0.95;
+
+// A path renamed in stages needs several rewrites; the cap stops a rule cycle.
+const REDIRECT_MAX_HOPS = 8;
 
 // A large tree's `git ls-files -z` output runs far past Node's 1 MB default.
 const GIT_MAX_BUFFER = 268435456;
@@ -162,19 +189,36 @@ export function listTrackedFiles(repoRoot) {
   return new Set((result.stdout ?? '').split('\0').filter((entry) => entry !== ''));
 }
 
+// A path containing a space borrows the words before the match as part of its
+// name; three words back is the cap, so ordinary prose cannot send the
+// resolver chasing a whole sentence.
+const LEAD_WORDS_RE = /([A-Za-z0-9_./-]+(?: +[A-Za-z0-9_./-]+)*) *$/;
+
+/** The words a spaced path could have borrowed, nearest last, single-spaced. */
+function citationLead(line, matchIndex) {
+  const leadMatch = line.slice(0, matchIndex).match(LEAD_WORDS_RE);
+  if (leadMatch === null) return '';
+  return leadMatch[1].split(/ +/).slice(-3).join(' ');
+}
+
 /**
  * Citations in the prose of a document: every `path:line` or `path:line-end`
  * span outside a fenced block, one entry per occurrence in source order. The
  * sentence is the trimmed line that carries the citation; claim is its full
- * paragraph, which gives the reader the context the pointer depends on.
+ * paragraph, which gives the reader the context the pointer depends on. The
+ * lead is the run of at most three words before the match on the same line,
+ * which a path containing spaces borrows to resolve as one name.
  * @param {string} text
  * @param {string} doc Repo-relative path of the citing document.
- * @returns {Array<{ doc: string, line: number, sentence: string, claim: string, target: string, targetLine: number, targetLineEnd: number|null }>}
+ * @returns {Array<{ doc: string, line: number, sentence: string, claim: string, target: string, targetLine: number, targetLineEnd: number|null, lead: string }>}
  */
 export function extractCitations(text, doc) {
   const citations = [];
   const lines = text.split(/\r?\n/);
   let inFence = false;
+  // One string per paragraph: a megabyte table paragraph holding thousands of
+  // citations would otherwise be copied once per citation and exhaust the heap.
+  let paragraph = null;
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
     if (FENCE_RE.test(line)) {
@@ -183,18 +227,45 @@ export function extractCitations(text, doc) {
     }
     if (inFence) continue;
     for (const match of line.matchAll(CITATION_RE)) {
+      if (paragraph === null || index > paragraph.end) {
+        const { start, end } = paragraphBounds(lines, index);
+        paragraph = { end, claim: lines.slice(start, end + 1).join('\n').trim() };
+      }
       citations.push({
         doc,
         line: index + 1,
         sentence: line.trim(),
-        claim: paragraphClaim(lines, index),
+        claim: paragraph.claim,
         target: match[1],
         targetLine: Number(match[2]),
         targetLineEnd: match[3] === undefined ? null : Number(match[3]),
+        lead: citationLead(line, match.index),
       });
     }
   }
   return citations;
+}
+
+/**
+ * Worktree line count of one tracked path, or null when the worktree lacks it.
+ * A census cites the same target many times, so a shared cache reads it once.
+ * @param {string} repoPath
+ * @param {string} repoRoot
+ * @param {Map<string, number|null>|null} lineCounts
+ * @returns {number|null}
+ */
+function worktreeLineCount(repoPath, repoRoot, lineCounts) {
+  if (lineCounts?.has(repoPath)) return lineCounts.get(repoPath);
+  let lineCount = null;
+  try {
+    const text = fs.readFileSync(path.join(repoRoot, repoPath), 'utf8');
+    const lines = text.split(/\r?\n/);
+    lineCount = text === '' ? 0 : (text.endsWith('\n') ? lines.length - 1 : lines.length);
+  } catch {
+    lineCount = null;
+  }
+  lineCounts?.set(repoPath, lineCount);
+  return lineCount;
 }
 
 /**
@@ -203,34 +274,90 @@ export function extractCitations(text, doc) {
  * @param {string} repoPath Repo-relative path that the index tracks.
  * @param {{ targetLine: number, targetLineEnd: number|null }} citation
  * @param {string} repoRoot
+ * @param {Map<string, number|null>|null} [lineCounts]
  * @returns {{ status: 'in_range'|'past_end'|'missing', path: string, endLine: number|null }}
  */
-function resolveTracked(repoPath, citation, repoRoot) {
+function resolveTracked(repoPath, citation, repoRoot, lineCounts = null) {
   const endLine = citation.targetLineEnd ?? citation.targetLine;
-  let text;
-  try {
-    text = fs.readFileSync(path.join(repoRoot, repoPath), 'utf8');
-  } catch {
-    return { status: 'missing', path: repoPath, endLine: null };
-  }
-  const lines = text.split(/\r?\n/);
-  const lineCount = text === '' ? 0 : (text.endsWith('\n') ? lines.length - 1 : lines.length);
+  const lineCount = worktreeLineCount(repoPath, repoRoot, lineCounts);
+  if (lineCount === null) return { status: 'missing', path: repoPath, endLine: null };
   if (citation.targetLine > lineCount || endLine > lineCount) {
     return { status: 'past_end', path: repoPath, endLine };
   }
   return { status: 'in_range', path: repoPath, endLine };
 }
 
+// Tracked sets are rebuilt per run, so the index lives exactly as long as its set.
+const BASENAME_INDEXES = new WeakMap();
+
+/** Tracked paths grouped by basename, built once per tracked set. */
+function basenameIndex(tracked) {
+  let index = BASENAME_INDEXES.get(tracked);
+  if (index !== undefined) return index;
+  index = new Map();
+  for (const entry of tracked) {
+    const base = path.posix.basename(entry);
+    const group = index.get(base);
+    if (group === undefined) index.set(base, [entry]); else group.push(entry);
+  }
+  BASENAME_INDEXES.set(tracked, index);
+  return index;
+}
+
+const SORTED_REDIRECTS = new WeakMap();
+
+/** The redirect table longest prefix first, so the first match is the most specific. */
+function specificFirst(redirects) {
+  let sorted = SORTED_REDIRECTS.get(redirects);
+  if (sorted === undefined) {
+    sorted = [...redirects].sort((left, right) => right.from.length - left.from.length
+      || (left.from < right.from ? -1 : left.from > right.from ? 1 : 0));
+    SORTED_REDIRECTS.set(redirects, sorted);
+  }
+  return sorted;
+}
+
 /**
- * Resolved location of one citation, tested in order: the citing document's own
- * folder, the repository root, the citing document's skill root, then a unique
- * basename across the tracked set. Only a tracked path is read, so an untracked
- * copy is refused rather than opened.
- * @param {{ doc: string, target: string, targetLine: number, targetLineEnd: number|null }} citation
- * @param {{ tracked: Set<string>, repoRoot: string, skillRoot?: string|null }} context
- * @returns {{ status: 'in_range'|'past_end'|'ambiguous'|'unresolved'|'refused'|'missing', path: string|null, endLine: number|null }}
+ * Tracked path a redirect chain reaches from one candidate, or null. The most
+ * specific rule rewrites each hop, and a path renamed in stages takes one hop
+ * per stage until a tracked path appears.
+ * @param {string} candidate
+ * @param {Array<{ from: string, to: string }>} redirects Longest `from` first.
+ * @param {Set<string>} tracked
+ * @returns {string|null}
  */
-export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null }) {
+function redirectTarget(candidate, redirects, tracked) {
+  const seen = new Set([candidate]);
+  let current = candidate;
+  for (let hop = 0; hop < REDIRECT_MAX_HOPS; hop += 1) {
+    const rule = redirects.find((entry) => current.startsWith(entry.from));
+    if (rule === undefined) return null;
+    const next = rule.to + current.slice(rule.from.length);
+    if (tracked.has(next)) return next;
+    if (seen.has(next)) return null;
+    seen.add(next);
+    current = next;
+  }
+  return null;
+}
+
+/**
+ * Resolved location of one citation, tested in order: a lead's every suffix
+ * joined to the target as one spaced path, then the target as written, each at
+ * the citing document's own folder, the repository root and the citing
+ * document's skill root; then each of those rewritten by the redirect table;
+ * then a unique basename across the tracked set. Only a tracked path is read,
+ * so an untracked copy is refused rather than opened. A spaced path counts
+ * only when the whole joined name is tracked; it skips the table and the
+ * basename match. A redirect or basename match is a different path from the
+ * one written, so it never counts as in_range: moved_in_range and
+ * moved_past_end name a rename the table vouches for, and basename_only names a
+ * guess no rename record backs.
+ * @param {{ doc: string, target: string, targetLine: number, targetLineEnd: number|null, lead?: string }} citation
+ * @param {{ tracked: Set<string>, repoRoot: string, skillRoot?: string|null, redirects?: Array<{ from: string, to: string }>, lineCounts?: Map<string, number|null>|null }} context
+ * @returns {{ status: 'in_range'|'past_end'|'moved_in_range'|'moved_past_end'|'basename_only'|'ambiguous'|'unresolved'|'refused'|'missing', path: string|null, endLine: number|null }}
+ */
+export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null, redirects = [], lineCounts = null }) {
   const targetBase = path.posix.basename(citation.target);
   if (targetBase.startsWith('.env')) return { status: 'refused', path: null, endLine: null };
 
@@ -242,13 +369,43 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null 
     candidates.push(path.posix.join(skillRoot, citation.target));
   }
 
-  for (const candidate of candidates) {
-    if (tracked.has(candidate)) return resolveTracked(candidate, citation, repoRoot);
+  // 'REPO RULES.md:2' names one file, so a non-empty lead tries every suffix
+  // of its words joined to the target, longest first, at the same bases.
+  if (typeof citation.lead === 'string' && citation.lead !== '') {
+    const leadWords = citation.lead.split(' ');
+    for (let cut = 0; cut < leadWords.length; cut += 1) {
+      const spaced = `${leadWords.slice(cut).join(' ')} ${citation.target}`;
+      const spacedCandidates = [
+        path.posix.join(path.posix.dirname(citation.doc), spaced),
+        spaced,
+      ];
+      if (typeof skillRoot === 'string' && skillRoot !== '') {
+        spacedCandidates.push(path.posix.join(skillRoot, spaced));
+      }
+      for (const candidate of spacedCandidates) {
+        if (tracked.has(candidate)) return resolveTracked(candidate, citation, repoRoot, lineCounts);
+      }
+    }
   }
 
-  const sameBase = [...tracked].filter((entry) => path.posix.basename(entry) === targetBase);
+  for (const candidate of candidates) {
+    if (tracked.has(candidate)) return resolveTracked(candidate, citation, repoRoot, lineCounts);
+  }
+
+  const rules = specificFirst(redirects);
+  for (const candidate of candidates) {
+    const moved = redirectTarget(candidate, rules, tracked);
+    if (moved === null) continue;
+    const resolved = resolveTracked(moved, citation, repoRoot, lineCounts);
+    if (resolved.status === 'missing') return resolved;
+    return { ...resolved, status: resolved.status === 'in_range' ? 'moved_in_range' : 'moved_past_end' };
+  }
+
+  const sameBase = basenameIndex(tracked).get(targetBase) ?? [];
   if (sameBase.length > 1) return { status: 'ambiguous', path: null, endLine: null };
-  if (sameBase.length === 1) return resolveTracked(sameBase[0], citation, repoRoot);
+  if (sameBase.length === 1) {
+    return { status: 'basename_only', path: sameBase[0], endLine: citation.targetLineEnd ?? citation.targetLine };
+  }
 
   for (const candidate of candidates) {
     if (fs.existsSync(path.join(repoRoot, candidate))) {
@@ -272,72 +429,346 @@ function readCommittedText(repoRoot, commit, filePath, readCache) {
   return text;
 }
 
+// A census reads every committed document once, so one `cat-file --batch` call
+// per chunk pays a single git process where a `git show` per path paid one.
+const PREFETCH_CHUNK_PATHS = 1000;
+
 /**
- * Per-skill census over every tracked skill markdown document, read through the
- * committed tree. Reports citation counts by status, the dead list (missing
- * plus past_end) and the refused count.
+ * Warm the read cache for many committed paths in bulk, storing exactly what
+ * readCommittedText stores for each: the UTF-8 text under `${commit}:${path}`,
+ * or null when the commit does not hold the path. Git names each requested
+ * object on one stdin line and answers `<oid> <type> <size>`, the raw bytes
+ * and a newline, or `<name> missing`; repo paths hold no newline, so lines
+ * cannot collide. A failed chunk is fatal, never retried per document.
+ * @param {string} repoRoot
+ * @param {string} commit
+ * @param {string[]} filePaths Repo-relative paths to read at `commit`.
+ * @param {Map<string, string|null>} readCache
+ */
+function prefetchCommitted(repoRoot, commit, filePaths, readCache) {
+  for (let start = 0; start < filePaths.length; start += PREFETCH_CHUNK_PATHS) {
+    const chunk = filePaths.slice(start, start + PREFETCH_CHUNK_PATHS);
+    const result = spawnSync('git', ['-C', repoRoot, 'cat-file', '--batch'], {
+      input: `${chunk.map((filePath) => `${commit}:${filePath}`).join('\n')}\n`,
+      stdio: ['pipe', 'pipe', 'pipe'],
+      maxBuffer: GIT_MAX_BUFFER,
+    });
+    if (result.error || result.status !== 0 || result.stdout === null) {
+      const reason = (result.stderr?.toString() ?? '').trim() || result.error?.message || `exit ${result.status}`;
+      throw new Error(`git cat-file --batch failed at ${chunk[0]} in ${repoRoot}: ${reason}`);
+    }
+    const out = result.stdout;
+    let offset = 0;
+    for (const filePath of chunk) {
+      const headerEnd = out.indexOf(0x0a, offset);
+      if (headerEnd === -1) throw new Error(`git cat-file --batch truncated before ${filePath}`);
+      const header = out.toString('utf8', offset, headerEnd);
+      offset = headerEnd + 1;
+      const cacheKey = `${commit}:${filePath}`;
+      if (header.endsWith(' missing')) {
+        readCache?.set(cacheKey, null);
+        continue;
+      }
+      const sizeMatch = header.match(/^[0-9a-f]{40,64} \S+ (\d+)$/);
+      if (sizeMatch === null) throw new Error(`git cat-file --batch malformed reply for ${filePath}`);
+      const bodyEnd = offset + Number(sizeMatch[1]);
+      if (bodyEnd >= out.length || out[bodyEnd] !== 0x0a) {
+        throw new Error(`git cat-file --batch malformed reply for ${filePath}`);
+      }
+      readCache?.set(cacheKey, out.toString('utf8', offset, bodyEnd));
+      offset = bodyEnd + 1;
+    }
+  }
+}
+
+/**
+ * The redirect rules a census applies. A missing or malformed table is an
+ * error, not an empty table, so a broken install cannot quietly drop every
+ * moved citation into basename_only.
+ * @param {string} [filePath] Default REDIRECTS_PATH.
+ * @returns {Array<{ from: string, to: string, records: number }>}
+ */
+export function loadRedirects(filePath = REDIRECTS_PATH) {
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (error) {
+    throw new Error(`redirect table ${filePath} unreadable: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  const rules = parsed?.rules;
+  const isRule = (rule) => typeof rule?.from === 'string' && rule.from.endsWith('/')
+    && typeof rule.to === 'string' && (rule.to === '' || rule.to.endsWith('/'));
+  if (!Array.isArray(rules) || !rules.every(isRule)) {
+    throw new Error(`redirect table ${filePath} malformed: every rule needs a from and to directory prefix`);
+  }
+  return rules;
+}
+
+/**
+ * Every old directory prefix that explains one rename by a prefix swap: the
+ * shortest one, where the two paths stop sharing a tail, and each deeper one
+ * along the shared tail. A changed basename is not a directory move, and an
+ * empty old prefix would match every path in the tree, so both yield none.
+ */
+function renamePrefixes(from, to) {
+  const oldParts = from.split('/');
+  const newParts = to.split('/');
+  let shared = 0;
+  while (shared < oldParts.length && shared < newParts.length
+    && oldParts[oldParts.length - 1 - shared] === newParts[newParts.length - 1 - shared]) {
+    shared += 1;
+  }
+  const prefixes = [];
+  for (let cut = oldParts.length - shared; cut < oldParts.length; cut += 1) {
+    if (cut > 0) prefixes.push(`${oldParts.slice(0, cut).join('/')}/`);
+  }
+  return prefixes;
+}
+
+/** The destination prefix one record implies under a rule prefix, or null. */
+function impliedDestination(record, prefix) {
+  const rest = record.from.slice(prefix.length);
+  if (!record.to.endsWith(rest)) return null;
+  const cut = record.to.length - rest.length;
+  if (cut > 0 && record.to[cut - 1] !== '/') return null;
+  return record.to.slice(0, cut);
+}
+
+/**
+ * Directory-prefix redirect rules from a `git log -M --diff-filter=R
+ * --name-status --format=` listing. Every prefix that explains some rename is
+ * a candidate. Its pool is the renames under it that moved at its level or
+ * above, and the destination most of them imply is its proposed rewrite. A
+ * rule survives with at least minRecords agreeing records and minAgreement of
+ * its pool; a rule that only repeats its nearest accepted ancestor is dropped
+ * as redundant, and one that differs stays as that ancestor's exception, since
+ * the most specific prefix wins at resolution time.
+ * @param {string} renameText
+ * @param {{ minRecords?: number, minAgreement?: number }} [options]
+ * @returns {{ records: number, rules: Array<{ from: string, to: string, records: number, agreement: number }> }}
+ */
+export function deriveRedirects(renameText, { minRecords = REDIRECT_MIN_RECORDS, minAgreement = REDIRECT_MIN_AGREEMENT } = {}) {
+  const records = [];
+  for (const line of renameText.split('\n')) {
+    const fields = line.split('\t');
+    if (fields.length !== 3 || !/^R\d*$/.test(fields[0])) continue;
+    // Git C-quotes a path with unusual bytes; such a path never matches a citation.
+    if (fields[1].startsWith('"') || fields[2].startsWith('"')) continue;
+    records.push({ from: fields[1], to: fields[2] });
+  }
+  records.sort((left, right) => (left.from < right.from ? -1 : left.from > right.from ? 1 : 0));
+
+  const prefixes = new Set();
+  for (const record of records) {
+    for (const prefix of renamePrefixes(record.from, record.to)) prefixes.add(prefix);
+  }
+
+  // Paths under one prefix are contiguous once sorted, so a binary search finds the pool.
+  const firstAtOrAfter = (prefix) => {
+    let low = 0;
+    let high = records.length;
+    while (low < high) {
+      const middle = (low + high) >> 1;
+      if (records[middle].from < prefix) low = middle + 1; else high = middle;
+    }
+    return low;
+  };
+
+  const depth = (prefix) => prefix.split('/').length;
+  const ordered = [...prefixes].sort((left, right) => depth(right) - depth(left)
+    || (left < right ? -1 : left > right ? 1 : 0));
+  // A rename whose shortest prefix sits deeper than a candidate moved something
+  // inside that folder, which says nothing about where the folder itself went.
+  const moveDepth = records.map((record) => renamePrefixes(record.from, record.to)[0]?.length ?? Infinity);
+  // The deepest accepted rule covering each record, as resolution would pick it.
+  const owner = new Array(records.length).fill(null);
+  const repeats = (rule, prefix, destination) => rule.to === destination + rule.from.slice(prefix.length);
+  const accepted = [];
+  for (const prefix of ordered) {
+    const start = firstAtOrAfter(prefix);
+    let end = start;
+    while (end < records.length && records[end].from.startsWith(prefix)) end += 1;
+    if (end - start < minRecords) continue;
+
+    const eligible = [];
+    for (let index = start; index < end; index += 1) {
+      if (moveDepth[index] <= prefix.length) eligible.push(index);
+    }
+    if (eligible.length < minRecords) continue;
+    // Records a deeper rule already explains would vote for that rule's
+    // destination, so the parent's proposal comes from the rest when any remain.
+    const unowned = eligible.filter((index) => owner[index] === null);
+    const votes = new Map();
+    for (const index of unowned.length > 0 ? unowned : eligible) {
+      const destination = impliedDestination(records[index], prefix);
+      if (destination !== null) votes.set(destination, (votes.get(destination) ?? 0) + 1);
+    }
+    let best = null;
+    for (const [destination, count] of votes) {
+      if (best === null || count > best.count || (count === best.count && destination < best.destination)) {
+        best = { destination, count };
+      }
+    }
+    if (best === null) continue;
+
+    // A deeper rule that sends its records elsewhere is an exception the
+    // parent never applies to, so those records leave the parent's pool.
+    const pool = eligible.filter((index) => owner[index] === null || repeats(owner[index], prefix, best.destination));
+    const support = pool.filter((index) => impliedDestination(records[index], prefix) === best.destination).length;
+    if (support < minRecords || support < minAgreement * pool.length) continue;
+    const rule = { from: prefix, to: best.destination, support, pool: pool.length };
+    accepted.push(rule);
+    for (const index of pool) {
+      if (owner[index] === null) owner[index] = rule;
+    }
+  }
+
+  // Deepest first: a rule whose nearest surviving ancestor rewrites it the same
+  // way adds nothing, while one that differs stays as that ancestor's exception.
+  const byFrom = new Map(accepted.map((rule) => [rule.from, rule]));
+  for (const rule of [...accepted].sort((left, right) => depth(right.from) - depth(left.from))) {
+    const parts = rule.from.split('/').slice(0, -1);
+    for (let cut = parts.length - 1; cut > 0; cut -= 1) {
+      const parent = byFrom.get(`${parts.slice(0, cut).join('/')}/`);
+      if (parent === undefined) continue;
+      if (repeats(rule, parent.from, parent.to)) byFrom.delete(rule.from);
+      break;
+    }
+  }
+
+  const rules = [...byFrom.values()]
+    .sort((left, right) => (left.from < right.from ? -1 : left.from > right.from ? 1 : 0))
+    .map((rule) => ({
+      from: rule.from,
+      to: rule.to,
+      records: rule.support,
+      agreement: Math.floor((rule.support / rule.pool) * 10000) / 10000,
+    }));
+  return { records: records.length, rules };
+}
+
+/**
+ * The tracked documents one corpus covers, each with the family and group the
+ * report counts it under. Skills group by skill and resolve against their
+ * skill root; specs group by track, and any path through a z_archive folder is
+ * left out because archived packets are not maintained.
+ * @param {Set<string>} tracked
+ * @param {'skills'|'specs'|'all'} corpus
+ * @returns {Array<{ doc: string, family: 'skills'|'specs', group: string, skillRoot: string|null }>}
+ */
+export function corpusDocs(tracked, corpus) {
+  const docs = [];
+  for (const entry of tracked) {
+    if (!entry.endsWith('.md')) continue;
+    const parts = entry.split('/');
+    if (corpus !== 'specs' && entry.startsWith('.skilled/skills/')) {
+      docs.push({ doc: entry, family: 'skills', group: parts[2], skillRoot: `.skilled/skills/${parts[2]}` });
+    } else if (corpus !== 'skills' && parts[0] === 'specs' && !parts.includes('z_archive')) {
+      docs.push({ doc: entry, family: 'specs', group: parts.length > 2 ? parts[1] : '(root)', skillRoot: null });
+    }
+  }
+  return docs.sort((left, right) => (left.doc < right.doc ? -1 : left.doc > right.doc ? 1 : 0));
+}
+
+/**
+ * Census over every tracked document in the corpus, read through the committed
+ * tree. Reports citation counts by status per skill, per spec track, per doc
+ * family and in total, the dead list (missing plus past_end) and the refused
+ * count. Dead keeps its meaning across the new classes: a moved citation is
+ * counted under its own class, never folded into dead.
  * @param {string} repoRoot
  * @param {Set<string>} tracked
  * @param {Map<string, string|null>} [readCache]
+ * @param {{ corpus?: 'skills'|'specs'|'all', redirects?: Array<{ from: string, to: string }> }} [options]
  * @returns {{
  *   commit: string,
- *   perSkill: Array<{ skill: string, citations: number, in_range: number, past_end: number, ambiguous: number, unresolved: number, dead: number }>,
- *   total: { citations: number, in_range: number, past_end: number, ambiguous: number, unresolved: number, dead: number },
+ *   corpus: string,
+ *   perSkill: Array<{ skill: string, citations: number, dead: number }>,
+ *   perTrack: Array<{ track: string, citations: number, dead: number }>,
+ *   families: { skills?: object, specs?: object },
+ *   total: { citations: number, dead: number },
  *   dead: Array<{ doc: string, line: number, target: string, targetLine: number }>,
+ *   moved: Array<{ doc: string, family: string, line: number, target: string, targetLine: number, path: string, status: string }>,
  *   refused: number
  * }}
  */
-export function buildCensus(repoRoot, tracked, readCache = new Map()) {
+export function buildCensus(repoRoot, tracked, readCache = new Map(), options = {}) {
+  const corpus = options.corpus ?? 'skills';
+  const redirects = options.redirects ?? loadRedirects();
   const commit = headCommit(repoRoot);
-  const perSkill = new Map();
-  const totals = { citations: 0, in_range: 0, past_end: 0, ambiguous: 0, unresolved: 0, refused: 0, missing: 0 };
+  const emptyCounts = () => Object.fromEntries([['citations', 0], ...STATUSES.map((status) => [status, 0])]);
+  const groups = { skills: new Map(), specs: new Map() };
+  const families = {};
+  if (corpus !== 'specs') families.skills = emptyCounts();
+  if (corpus !== 'skills') families.specs = emptyCounts();
+  const totals = emptyCounts();
+  const lineCounts = new Map();
   const dead = [];
+  const moved = [];
 
-  const docs = [...tracked]
-    .filter((entry) => entry.startsWith('.skilled/skills/') && entry.endsWith('.md'))
-    .sort();
-  for (const doc of docs) {
+  const docs = corpusDocs(tracked, corpus);
+  prefetchCommitted(repoRoot, commit, docs.map((entry) => entry.doc), readCache);
+  for (const { doc, family, group, skillRoot } of docs) {
     const text = readCommittedText(repoRoot, commit, doc, readCache);
     // A path the index tracks but HEAD does not hold has nothing committed to scan.
     if (text === null) continue;
-    const skill = doc.split('/')[2];
-    const counts = perSkill.get(skill)
-      ?? { citations: 0, in_range: 0, past_end: 0, ambiguous: 0, unresolved: 0, refused: 0, missing: 0 };
-    const skillRoot = `.skilled/skills/${skill}`;
+    const counts = groups[family].get(group) ?? emptyCounts();
     for (const citation of extractCitations(text, doc)) {
-      const { status } = resolveCitation(citation, { tracked, repoRoot, skillRoot });
-      counts.citations += 1;
-      counts[status] += 1;
-      totals.citations += 1;
-      totals[status] += 1;
+      const { status, path: resolvedPath } = resolveCitation(citation, { tracked, repoRoot, skillRoot, redirects, lineCounts });
+      for (const bucket of [counts, families[family], totals]) {
+        bucket.citations += 1;
+        bucket[status] += 1;
+      }
       if (status === 'missing' || status === 'past_end') {
         dead.push({ doc, line: citation.line, target: citation.target, targetLine: citation.targetLine });
+      } else if (status === 'moved_in_range' || status === 'moved_past_end') {
+        moved.push({ doc, family, line: citation.line, target: citation.target, targetLine: citation.targetLine, path: resolvedPath, status });
       }
     }
-    perSkill.set(skill, counts);
+    groups[family].set(group, counts);
   }
 
   const project = (counts) => ({
     citations: counts.citations,
     in_range: counts.in_range,
     past_end: counts.past_end,
+    moved_in_range: counts.moved_in_range,
+    moved_past_end: counts.moved_past_end,
+    basename_only: counts.basename_only,
     ambiguous: counts.ambiguous,
     unresolved: counts.unresolved,
+    refused: counts.refused,
     dead: counts.missing + counts.past_end,
   });
+  const byName = (left, right) => (left[0] < right[0] ? -1 : left[0] > right[0] ? 1 : 0);
+  const byDocLine = (left, right) => {
+    if (left.doc !== right.doc) return left.doc < right.doc ? -1 : 1;
+    return left.line - right.line;
+  };
 
   return {
     commit,
-    perSkill: [...perSkill.entries()]
-      .map(([skill, counts]) => ({ skill, ...project(counts) }))
-      .sort((left, right) => (left.skill < right.skill ? -1 : left.skill > right.skill ? 1 : 0)),
+    corpus,
+    perSkill: [...groups.skills.entries()].sort(byName).map(([skill, counts]) => ({ skill, ...project(counts) })),
+    perTrack: [...groups.specs.entries()].sort(byName).map(([track, counts]) => ({ track, ...project(counts) })),
+    families: Object.fromEntries(Object.entries(families).map(([family, counts]) => [family, project(counts)])),
     total: project(totals),
-    dead: [...dead].sort((left, right) => {
-      if (left.doc !== right.doc) return left.doc < right.doc ? -1 : 1;
-      return left.line - right.line;
-    }),
+    dead: [...dead].sort(byDocLine),
+    moved: [...moved].sort(byDocLine),
     refused: totals.refused,
   };
+}
+
+/** One census row's counts as the report prints them, refused only where asked. */
+function countFields(counts, withRefused) {
+  const fields = [
+    `citations=${counts.citations}`, `in_range=${counts.in_range}`, `past_end=${counts.past_end}`,
+    `moved_in_range=${counts.moved_in_range}`, `moved_past_end=${counts.moved_past_end}`,
+    `basename_only=${counts.basename_only}`, `ambiguous=${counts.ambiguous}`, `unresolved=${counts.unresolved}`,
+  ];
+  if (withRefused) fields.push(`refused=${counts.refused}`);
+  fields.push(`dead=${counts.dead}`);
+  return fields.join(' ');
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -400,7 +831,9 @@ function mulberry32(seed) {
 
 /**
  * In-range citations of every scanned skill document, grouped by skill, read
- * through the recorded commit so a later edit cannot move a row.
+ * through the recorded commit so a later edit cannot move a row. Only a path
+ * that resolves as written qualifies: a moved or basename-only match points at
+ * a file the sentence never named, so its window would not test the claim.
  * @param {{ perSkill: Array<{ skill: string }> }} census
  * @param {string} repoRoot
  * @param {string} commit
@@ -1644,6 +2077,8 @@ export async function runAdvise(docs, ctx) {
  * @param {Record<string, string|undefined>} [deps.env] Arm environment. Default process.env.
  * @param {number} [deps.timeoutMs] Per-call timeout. Default CALL_TIMEOUT_MS.
  * @param {number} [deps.backoffMs] Retry wait behind an exit 4. Default BACKOFF_MS.
+ * @param {Array<{ from: string, to: string }>} [deps.redirects] Redirect rules. Default the table at deps.redirectsPath.
+ * @param {string} [deps.redirectsPath] Redirect table. Default REDIRECTS_PATH.
  * @returns {Promise<number>} 0 = report printed, 2 = bad invocation or unreadable input; --advise returns 0 unless the invocation is bad.
  */
 export async function main(argv, deps = {}) {
@@ -1667,6 +2102,9 @@ export async function main(argv, deps = {}) {
         jev: { type: 'boolean' },
         out: { type: 'string' },
         labels: { type: 'string' },
+        corpus: { type: 'string' },
+        moved: { type: 'boolean' },
+        'rebuild-redirects': { type: 'string' },
       },
     });
   } catch (error) {
@@ -1695,6 +2133,17 @@ export async function main(argv, deps = {}) {
   }
 
   const labelsPath = values.labels ?? LABELS_PATH;
+  const corpus = values.corpus ?? 'skills';
+
+  if (!CORPORA.includes(corpus)) {
+    err(`--corpus needs one of ${CORPORA.join(', ')}`);
+    return 2;
+  }
+  // Draw pools and the Jev payload are built from skill docs only.
+  if (values.draw === true && corpus !== 'skills') {
+    err('--draw reads the skills corpus only');
+    return 2;
+  }
 
   if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
     err('--jev needs --out <dir> so every call is recorded');
@@ -1724,10 +2173,50 @@ export async function main(argv, deps = {}) {
     }
   }
 
+  // The rebuild writes the table from the rename record alone and returns
+  // before any census input is read.
+  if (values['rebuild-redirects'] !== undefined) {
+    const renameLog = spawnSync('git', ['-C', repoRoot, 'log', '-M', '--diff-filter=R', '--name-status', '--format=', 'HEAD'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: GIT_MAX_BUFFER,
+    });
+    if (renameLog.error || renameLog.status !== 0) {
+      const reason = (renameLog.stderr ?? '').trim() || renameLog.error?.message || `exit ${renameLog.status}`;
+      err(`git log failed in ${repoRoot}: ${reason}`);
+      return 2;
+    }
+    try {
+      const derived = deriveRedirects(renameLog.stdout ?? '', {
+        minRecords: REDIRECT_MIN_RECORDS,
+        minAgreement: REDIRECT_MIN_AGREEMENT,
+      });
+      const commit = headCommit(repoRoot);
+      const table = {
+        source: {
+          command: 'git log -M --diff-filter=R --name-status --format= HEAD',
+          commit,
+          renameRecords: derived.records,
+          minRecords: REDIRECT_MIN_RECORDS,
+          minAgreement: REDIRECT_MIN_AGREEMENT,
+          derivedBy: 'deriveRedirects in cite-drift-scan.mjs',
+        },
+        rules: derived.rules,
+      };
+      fs.writeFileSync(values['rebuild-redirects'], `${JSON.stringify(table, null, 2)}\n`);
+      out(`redirects: path=${values['rebuild-redirects']} commit=${commit.slice(0, 12)} records=${derived.records} rules=${derived.rules.length}`);
+      return 0;
+    } catch (error) {
+      err(error instanceof Error ? error.message : String(error));
+      return 2;
+    }
+  }
+
   let census;
   const readCache = new Map();
   try {
-    census = buildCensus(repoRoot, listTrackedFiles(repoRoot), readCache);
+    const redirects = deps.redirects ?? loadRedirects(deps.redirectsPath ?? REDIRECTS_PATH);
+    census = buildCensus(repoRoot, listTrackedFiles(repoRoot), readCache, { corpus, redirects });
   } catch (error) {
     err(error instanceof Error ? error.message : String(error));
     return 2;
@@ -1760,11 +2249,23 @@ export async function main(argv, deps = {}) {
   }
 
   for (const entry of census.perSkill) {
-    out(`skill ${entry.skill}: citations=${entry.citations} in_range=${entry.in_range} past_end=${entry.past_end} ambiguous=${entry.ambiguous} unresolved=${entry.unresolved} dead=${entry.dead}`);
+    out(`skill ${entry.skill}: ${countFields(entry, false)}`);
   }
-  out(`citations=${census.total.citations} in_range=${census.total.in_range} past_end=${census.total.past_end} ambiguous=${census.total.ambiguous} unresolved=${census.total.unresolved} refused=${census.refused} dead=${census.total.dead} commit=${census.commit.slice(0, 12)}`);
+  for (const entry of census.perTrack) {
+    out(`track ${entry.track}: ${countFields(entry, false)}`);
+  }
+  for (const [family, counts] of Object.entries(census.families)) {
+    out(`family ${family}: ${countFields(counts, true)}`);
+  }
+  out(`${countFields(census.total, true)} corpus=${census.corpus} commit=${census.commit.slice(0, 12)}`);
   for (const entry of census.dead) {
     out(`cite dead: ${entry.doc}:${entry.line} -> ${entry.target}:${entry.targetLine}`);
+  }
+  // Opt-in, so the default census output and its recorded hash stay unchanged.
+  if (values.moved === true) {
+    for (const entry of census.moved) {
+      out(`cite moved: ${entry.family} ${entry.doc}:${entry.line} -> ${entry.target}:${entry.targetLine} now ${entry.path} (${entry.status})`);
+    }
   }
   let windows;
   try {

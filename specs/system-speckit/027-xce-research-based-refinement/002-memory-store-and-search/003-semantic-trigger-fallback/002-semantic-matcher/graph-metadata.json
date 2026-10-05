@@ -43,8 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/semantic-trigger-matcher.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-trigger-matcher.vitest.ts",
-        "kind": "test",
-        "path": "tests/semantic-trigger-matcher.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "With cached trigger embeddings available, the system still needs a similarity matcher to score a prompt embedding against trigger embeddings",
     "created_at": "2026-06-06T13:35:45Z",
-    "last_save_at": "2026-08-30T15:39:33.393Z",
+    "last_save_at": "2026-10-04T09:23:10.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3112ad44dd39e5d934a0f6113bda32a3c501e60ce033b529a99a47024f002afa",
+    "source_fingerprint": "sha256:37acca0d23af6e34758d55e0aa5c3a231670ebfd50dea81085a2d121978a0832",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f88473b7e708003dce4a271e427605fca01aa9b087ca2e98000602d5735bcb90",
       "plan.md": "227482fa1b4b34b798c20014eba32e3b07d0f65642d5b712b7e6e3136c4a23fd",
-      "tasks.md": "74e34cba6f376a27cd119cee0fe94b6bae9d3b82317a4b6f719763fa411ad2ab",
+      "tasks.md": "e75a1e8cb6e58a343c5566da54a5d0550be3400c004e1f362c9a67615a0c8566",
       "implementation-summary.md": "b1129b5d36663a3e6c6f1e6c74aa1981177de616cddf0b3840130aabcba3399a"
     },
     "last_active_child_id": null,

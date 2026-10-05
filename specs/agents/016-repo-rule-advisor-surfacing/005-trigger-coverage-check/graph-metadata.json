@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check",
+  "parent_id": "agents/016-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger coverage check",
+      "fires when router parity",
+      "check repo rules tenth check",
+      "trigger coverage check plan",
+      "fires when router parity plan",
+      "trigger coverage check tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "trigger coverage check summary"
+    ],
+    "key_topics": [
+      "trigger",
+      "coverage",
+      "check",
+      "fires",
+      "router",
+      "parity",
+      "repo",
+      "rules",
+      "tenth",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-repo-rules.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test_check_repo_rules.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_check_repo_rules.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule-anatomy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`check-repo-rules.cjs` runs nine checks and none compares a trigger row in `REPO RULES.md` with its rule's `## Fires when` bullets",
+    "created_at": "2026-10-04T14:39:58Z",
+    "last_save_at": "2026-10-04T19:48:38.751Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9963902cb1333f31375404d0b50c6d9a48b0bbf0133fd82ad528c74015d99bb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a4fbc13eba6c153b8894baf0be378e3dc5df46d44bc4f936b94c235349c012fe",
+      "plan.md": "8d6de1ed3f98aebcc53a04b7a8501f57c4f4d91b61b39d984d277cdb02fa9f88",
+      "tasks.md": "6a9cfe0204a5bf2696f846e60e3de2e01538882acfee79ab32e3776c374436b3",
+      "implementation-summary.md": "356a6efabb5a0bd6d7a263e486d4001934e35999888f385353f445de373226d5"
+    },
+    "last_active_at": null
+  }
+}

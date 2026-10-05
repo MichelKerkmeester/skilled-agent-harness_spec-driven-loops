@@ -8,7 +8,7 @@ trigger_phrases:
   - "description schema enum"
   - "mutation_class enum discipline"
 importance_tier: "normal"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas"

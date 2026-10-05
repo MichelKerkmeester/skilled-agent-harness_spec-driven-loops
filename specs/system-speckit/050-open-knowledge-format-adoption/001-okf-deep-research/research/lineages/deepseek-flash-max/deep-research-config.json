@@ -1,0 +1,65 @@
+{
+  "topic": "Decide, for each idea in Google's Open Knowledge Format (OKF v0.2), whether system-spec-kit should adopt, adapt or reject it, by comparing OKF with how system-spec-kit works today.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 180,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research",
+  "createdAt": "2026-10-04T05:44:02Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "executor": {
+    "kind": "cli-pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-flash-max-1791092550011-hh7wyn",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages/deepseek-flash-max",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

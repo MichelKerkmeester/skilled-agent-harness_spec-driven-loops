@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research",
+  "description": "No one has compared system-spec-kit against the Open Knowledge Format (OKF) with evidence",
+  "keywords": [
+    "one",
+    "compared",
+    "system-spec-kit",
+    "against",
+    "open",
+    "knowledge",
+    "format",
+    "okf",
+    "evidence"
+  ],
+  "lastUpdated": "2026-10-04T05:40:10.045Z",
+  "specId": "001",
+  "folderSlug": "okf-deep-research",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

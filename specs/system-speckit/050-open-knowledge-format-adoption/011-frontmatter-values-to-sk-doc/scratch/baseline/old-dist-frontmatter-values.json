@@ -1,0 +1,41 @@
+{
+    "contextType": {
+        "document": {
+            "canonical": ["implementation", "research", "planning", "general"],
+            "aliases": {
+                "decision": "planning",
+                "discovery": "general",
+                "review": "research",
+                "reference": "general",
+                "documentation": "general",
+                "spec": "planning",
+                "specification": "planning",
+                "plan": "planning",
+                "tasks": "planning"
+            }
+        },
+        "session": [
+            "implementation",
+            "research",
+            "debugging",
+            "review",
+            "planning",
+            "decision",
+            "architecture",
+            "configuration",
+            "documentation",
+            "general",
+            "discovery"
+        ]
+    },
+    "importanceTier": {
+        "canonical": ["constitutional", "critical", "important", "normal", "temporary", "deprecated"],
+        "aliases": {
+            "high": "important",
+            "supporting": "normal",
+            "useful": "normal",
+            "medium": "normal",
+            "standard": "normal"
+        }
+    }
+}

@@ -7,7 +7,7 @@ trigger_phrases:
   - "embedding feature validation"
   - "hf-local llama-cpp tests"
 importance_tier: "important"
-contextType: "testing"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite"

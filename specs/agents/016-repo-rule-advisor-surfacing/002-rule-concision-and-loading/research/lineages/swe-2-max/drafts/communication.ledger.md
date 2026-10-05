@@ -1,0 +1,23 @@
+# Ledger: communication.md draft
+
+Original: 11,458 B → draft: 8,279 B (−3,179 B, −27.8%). Rows are the file's parts; "kept" / "dropped" / "lost" refer to enforcement content, not words. Every prohibition, procedure and test survived; losses are named individually.
+
+| Part | Orig B | Draft B | Keep/Drop | Enforcement |
+|---|---:|---:|---|---|
+| Frontmatter (title, description, 26 trigger_phrases, tier, contextType, version) | 808 | 808 | keep | not behavioural; P5 relocation is a separate loading proposal |
+| Title + routing header | 246 | 123 | compress | kept: "load before writing any substantive reply" trigger line. Lost: AGENTS.md-precedence clause — non-operative, binds via the always-loaded doc anyway (P4) |
+| `## Fires when` | 437 | 362 | compress | kept: both trigger bullets + the deliberate-breadth clause (trigger design). Lost: AGENTS.md §8 provenance history (~170 B) — non-normative |
+| `## The rule` | 570 | 410 | compress | kept: the rule verbatim + "delivery, not rigor" boundary. Compressed: section-map pointer 340→185 B — navigation only |
+| §1 THE REGISTER YOU ARE IN | 729 | 464 | compress | kept: pick-the-right-register norm, the §6 deferral, both wrong-register failure shapes. Dropped: failure-prevents tail (129 B) — the two shapes it names survived inside the kept sentences |
+| §2 LENGTH | 1,150 | 685 | compress | kept: match-length norm incl. the effort axis (P9 collapse of three restatements to one); no-table norm + substitution rules + handoff §6 exception + comm-prose §4 floor pointer. Dropped: "reads as a form"/"parse a grid" justification (~250 B, P1/P7), 2 failure lines (~175 B), "effort spent is not a reason" restatement (~200 B). Risk: LOW on evidence — the table ban is the measured-no-effect rule (evidence-pack:45) |
+| §3 CUT FILLER | 1,102 | 779 | compress | kept: "every sentence carries information" + all six offender categories with their demo quotes — the enumeration IS the norm. Dropped: "most of them are instructions…" meta-sentence (~140 B), the "a reply that opens…" demonstration (~80 B), failure line (109 B). Risk: low — categories+instances retained |
+| §4 WHEN THE READER DID NOT FOLLOW | 1,214 | 1,054 | compress | kept: both trigger sets, the modality-switch norm, the full plain re-render fidelity spec (order/strength/protected-spans/hvr-rules/scope-exemptions/return-original). Compressed the spec's enumeration syntax ~792→~600 B. Dropped: failure line (145 B). Enforcement: intact — the fidelity requirements are the operative surface and all survive |
+| §5 THE FIRST LINE | 577 | 405 | compress | kept: norm, the read-alone test, all four named failures with their three demo strings. Dropped: gloss adjectives ("like a stage direction" etc., ~50 B), failure line (128 B). Kept: the taxonomy AND the instances it needs to be recognizable |
+| §6 HOW THE REPLY MOVES | 412 | 224 | compress | kept: norm + "what changed / what it implies / what comes next" mechanism. Dropped: failure line (154 B) |
+| §7 NUMBERED STEPS | 637 | 280 | compress | kept: the norm, one-per-line, number-at-start, stop-where-work-stops, the (1)(2)(3) anti-pattern. **Lost: "a step that is itself a paragraph is two steps that were not split" (~70 B) — a real edge case; coverage narrows** + failure line (131 B) |
+| §8 THE VISIBLE ITEM CAP | 612 | 278 | compress | kept: cap of five, split-or-show-five + count phrase, held-back-means-retained. **Lost: "a count line is not an item" exemption (~30 B) — small coverage narrowing** + failure line (131 B) + duplicate floor pointer (~60 B) |
+| §9 THE OUTCOME AND THE CLOSE | 652 | 293 | compress | kept: both norms (two-line outcome, end-when-done) with the deletion rule. Dropped: "outcome, not a recap" gloss (~80 B), failure line (~120 B), duplicate floor pointer (~60 B), "in reach of someone who stopped reading there" (~50 B) |
+| §10 TANGENTS | 335 | 193 | compress | kept: suppress-norm + offer-once-at-end-in-one-line. **Lost: "the reader decides whether it happens" (~45 B) — the decision-rights clause** + failure line (116 B) |
+| §11 WHAT THIS RULE IS NOT | 730 | 702 | compress | kept: all three "not" items (not-rigor / not-voice / not-omit) with their core arguments; trimmed glosses ~28 B. Enforcement kept — this is the misapplication fence |
+| §12 SELF-CHECK | 1,247 | 1,219 | keep | all 12 checklist items retained (P3-B: the checklist is the corpus's own compressed norm restatement — the enforcement carrier per the card test) |
+| **TOTAL** | **11,458** | **8,279** | | **−27.8%; enforcement loss confined to three named edge clauses (~145 B) + failure-naming sentences + justification text; every prohibition, test and taxonomy survives** |

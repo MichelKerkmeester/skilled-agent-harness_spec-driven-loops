@@ -157,3 +157,5 @@ The following content lives only in `.skilled/commands/deep/assets/deep-research
 The selected YAML workflow initializes deep-research state, dispatches fresh `@deep-research` LEAF agents per iteration, evaluates convergence, synthesizes `{artifact_dir}/research.md`, optionally emits `{artifact_dir}/resource-map.md`, and refreshes continuity through canonical spec docs. This command does not proceed to implementation.
 
 For code review and quality auditing, route to `/deep:review`. Research path: `/deep:research` → `/speckit:plan` → `/speckit:implement`; review path: `/deep:review` → (if issues) `/speckit:plan` → `/speckit:implement`.
+
+Each iteration's prompt tells the writer that its `[SOURCE: path:line]` tags are checked by the `SOURCE_TAGS` rule. That rule runs in the next `/speckit:*` validation rather than inside this workflow, whose validation calls list their own rules. A resolved tag proves only that the path and line exist.

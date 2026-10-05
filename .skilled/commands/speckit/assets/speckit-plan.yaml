@@ -619,6 +619,7 @@ workflow:
           format: '"Spec confidence low ([NN%]). Need clarity: A) [ambiguity 1] B) [ambiguity 2] C) [research spike suggestion]"'
           wait_for: "User response before finalizing spec.md"
       citation_requirement: "[SOURCE: file.md:lines] for code | [CITATION: URL] for external | [CITATION: NONE] for general knowledge"
+      citation_check: "validate.sh --strict resolves each [SOURCE: path:line] in research and review artifacts through its SOURCE_TAGS rule and warns on a gone file, a moved file or a line past the end, for packets created after its cutoff. A pass proves the path and line exist, not that they support the claim"
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"

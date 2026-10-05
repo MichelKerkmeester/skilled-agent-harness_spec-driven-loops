@@ -6,7 +6,7 @@ trigger_phrases:
   - "research driven fixes"
   - "causal cache depthtruncated variant"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"

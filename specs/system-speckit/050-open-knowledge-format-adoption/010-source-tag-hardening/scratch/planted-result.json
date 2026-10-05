@@ -1,0 +1,40 @@
+{
+  "exit": 0,
+  "stderr": "",
+  "tail": [
+    "IGNORED\t10",
+    "CHECKED\t60"
+  ],
+  "classes": {
+    "moved": {
+      "n": 10,
+      "recall": 1.0,
+      "missed": []
+    },
+    "gone": {
+      "n": 10,
+      "recall": 1.0,
+      "missed": []
+    },
+    "past end": {
+      "n": 10,
+      "recall": 1.0,
+      "missed": []
+    },
+    "guessed": {
+      "n": 10,
+      "recall": 1.0,
+      "missed": []
+    },
+    "control": {
+      "n": 10,
+      "warned": 0,
+      "wrong": []
+    },
+    "ignored": {
+      "n": 10,
+      "warned": 0,
+      "wrong": []
+    }
+  }
+}

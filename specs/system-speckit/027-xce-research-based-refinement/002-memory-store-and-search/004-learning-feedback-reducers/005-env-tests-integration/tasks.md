@@ -4,7 +4,7 @@ description: "Task list for env documentation and integration closeout."
 trigger_phrases:
   - "009 env tests tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration"

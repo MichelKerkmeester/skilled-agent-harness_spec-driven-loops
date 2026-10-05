@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/016-repo-rule-advisor-surfacing",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing",
+  "parent_id": null,
+  "children_ids": [
+    "agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing",
+    "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+    "agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix",
+    "agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
+    "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check",
+    "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites",
+    "agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment",
+    "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rule surfacing",
+      "repo rule concision",
+      "repo rule loading",
+      "gate 5 rule loading",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "repo",
+      "rule",
+      "surfacing",
+      "concision",
+      "loading",
+      "gate",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-advisor-surfacing/research/research.md",
+      "002-rule-concision-and-loading/spec.md",
+      "001-advisor-surfacing/goal.md",
+      "002-rule-concision-and-loading/goal.md",
+      "003-agents-md-delivery-prefix/goal.md",
+      "004-rule-delivery-instrumentation/goal.md",
+      "005-trigger-coverage-check/goal.md",
+      "006-rule-concision-rewrites/goal.md",
+      "007-table-wording-experiment/goal.md",
+      "008-gate5-card-pilot/goal.md",
+      "002-rule-concision-and-loading/research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Repo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rule Canary Sync",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Rules Corpus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
+    "created_at": "2026-10-04T13:11:17Z",
+    "last_save_at": "2026-10-04T20:46:43.475Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:bc4b64ffe863e3a5bd938f0c015efc529780f3f3f960c0501451c2169d89a57a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "93c3933f205e6210f14cae2c8b0ff358c046cc9ee02bbe3c0f53e90dc551d474"
+    },
+    "last_active_child_id": "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+    "last_active_at": "2026-10-04T14:23:05.428Z"
+  }
+}

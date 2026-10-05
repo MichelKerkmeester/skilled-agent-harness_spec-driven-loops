@@ -1,0 +1,37 @@
+{
+  "mergedFrom": [
+    "deepseek-flash-max"
+  ],
+  "lineageExecutors": {
+    "deepseek-flash-max": {
+      "kind": "cli-pi",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "sourceFindings": 0,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "deepseek-flash-max",
+      "message": "Registry has no usable \"keyFindings\" array (checked aliases: findings); lineage findings will be skipped.",
+      "aliasKey": null,
+      "canonicalKey": "keyFindings",
+      "coercedCount": 0
+    }
+  ]
+}

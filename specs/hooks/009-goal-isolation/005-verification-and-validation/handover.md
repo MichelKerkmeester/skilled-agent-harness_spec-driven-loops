@@ -7,7 +7,7 @@ trigger_phrases:
   - "goal plugin final state"
   - "pi goal session isolation"
 importance_tier: "critical"
-contextType: "handover"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks/009-goal-isolation/005-verification-and-validation"

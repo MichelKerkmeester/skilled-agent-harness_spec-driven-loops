@@ -44,17 +44,19 @@ routes:
     setup_vars: [execution_mode, intent]
     allowed_flags: []
     mutating: add-only
-    gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
+    gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json + <packet_scratch>/doctor-speckit-retrieval-moved.<timestamp>.txt"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
       - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json  # the staleness verdict: exit 0 = fresh, 1 = stale documents named, 2+ = unreadable index; writes nothing'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
       - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .skilled  # the section 2.2 recipe, flags verbatim"
+      - 'node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs --corpus <all|skills> --moved  # the citation-drift census, run only when the operator picks a scope at the citation_drift_scope gate; zero model calls, writes nothing, exit 2 = bad invocation or unreadable redirect table'
     trigger_phrases:
       - "trigger index drift"
       - "trigger index lookup fails"
       - "retrieval conventions doctor"
       - "ripgrep recipe check"
+      - "citation drift summary"
 
   - command: /doctor:deep-loop
     target: deep-loop
@@ -68,6 +70,7 @@ routes:
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --read-only'
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}" --limit 50 --read-only'
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --iteration "{latest_iteration}" --read-only'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs "{spec_folder}"  # [SOURCE:] tag resolution per lineage; writes nothing, zero model calls'
     trigger_phrases:
       - "deep-loop coverage"
       - "deep-loop graph empty or stale"

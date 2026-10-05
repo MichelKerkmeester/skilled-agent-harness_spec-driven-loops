@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/009-census-hardening",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/009-census-hardening",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "census hardening",
+      "citation accuracy per class",
+      "paths with spaces",
+      "redirect table rebuild",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "census",
+      "hardening",
+      "citation",
+      "accuracy",
+      "per",
+      "class",
+      "paths",
+      "spaces",
+      "redirect",
+      "table",
+      "rebuild",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      "scratch/census-rows.mjs",
+      "scratch/space-fix-delta.jsonl",
+      "scratch/labels/operator-rows.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+      "scratch/sample-and-check.py",
+      "scratch/labels/agreement.json",
+      "scratch/timing/timing.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "census-rows.mjs",
+        "kind": "file",
+        "path": "scratch/census-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "space-fix-delta.jsonl",
+        "kind": "file",
+        "path": "scratch/space-fix-delta.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "operator-rows.md",
+        "kind": "doc",
+        "path": "scratch/labels/operator-rows.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-redirects.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+        "source": "derived"
+      },
+      {
+        "name": "sample-and-check.py",
+        "kind": "file",
+        "path": "scratch/sample-and-check.py",
+        "source": "derived"
+      },
+      {
+        "name": "agreement.json",
+        "kind": "config",
+        "path": "scratch/labels/agreement.json",
+        "source": "derived"
+      },
+      {
+        "name": "timing.log",
+        "kind": "file",
+        "path": "scratch/timing/timing.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The census classified 140,287 citations and showed 27,320 as moved, but its accuracy per class rests on 8 moved rows checked by hand",
+    "created_at": "2026-10-04T12:00:33Z",
+    "last_save_at": "2026-10-04T16:23:21.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9b7d45b5d995b6619487f66d7b283977b581c40e59967d4b419e6afb7b4655fa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "07922ce64a999f3850bb98f94927fd9066bf99e94144cd55a7bfc8154fd50c92",
+      "plan.md": "b00b47f89e7e9497c8d31191ab0cc95ebc07c575b606128db59f1d8ac6b436de",
+      "tasks.md": "cb6c7b5d656ed3f31c517f8e05ca9c3c115bdd92b339b92ea7d7681cc80ccad6",
+      "implementation-summary.md": "438ab6101c01a5c6fccf7b9bb9be83712f305fe533ecd951ad1c7fb1e25f1ee0"
+    },
+    "last_active_at": null
+  }
+}

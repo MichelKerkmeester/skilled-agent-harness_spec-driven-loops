@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The semantic trigger stage needs cached trigger-phrase embeddings to run, but the trigger hot path has a tight latency budget (`trigger-matcher.ts:132-160`) and must never call an embedding provider inline",
     "created_at": "2026-06-06T13:35:44Z",
-    "last_save_at": "2026-08-30T15:39:33.385Z",
+    "last_save_at": "2026-10-04T09:23:07.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bceacc2713af32e059c9aae253a288a6dc891b5879d4680f2f2c76b680c9a542",
+    "source_fingerprint": "sha256:1fb69dea60bfbb1c2dc9a73f85daad965d8b12d29a07a3b1d53112b7d204b6bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2bf8aa5e3ee17c1bf3dcccf5b7bf9e16aa59c3723ecf6997f82893cef37e1e36",
       "plan.md": "ac3594add30c3fdad5d40bfcefc30f63928f29d6a8976cf2fcfc40f7c41153bf",
-      "tasks.md": "b0cb42869a4ed5ff8fde6ab3321af34933621b2c592f5adca5872203ebdf57da",
+      "tasks.md": "0c7b0bb1016df630c677255fbbc3b2c34868f589c58c113a8b2462d5a8e1aa1c",
       "implementation-summary.md": "b57b3a81952817bba28bfce001fcc9f288f066a1a4a5b9fdf4c050e99579f728"
     },
     "last_active_child_id": null,

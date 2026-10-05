@@ -7,7 +7,7 @@ trigger_phrases:
   - "testing doc alignment summary"
   - "feature catalog sweep result"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 parent: "hooks"
 _memory:
   continuity:

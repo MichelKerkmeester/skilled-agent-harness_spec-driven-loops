@@ -3,7 +3,7 @@ title: "Resource Map — Arc 009 Deep Review"
 description: "Per-finding resource map mapping each finding to its target surface for remediation."
 trigger_phrases:
   - "arc 009 review resource map"
-contextType: "resource-map"
+contextType: "general"
 ---
 # Resource Map — Arc 009 Deep Review
 

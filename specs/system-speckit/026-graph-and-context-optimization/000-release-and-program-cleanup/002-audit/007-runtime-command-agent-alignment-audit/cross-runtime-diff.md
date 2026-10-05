@@ -7,7 +7,7 @@ trigger_phrases:
   - "agent alignment review"
   - "cross-runtime agent consistency"
 importance_tier: "important"
-contextType: "audit"
+contextType: "research"
 ---
 # Cross-Runtime Diff: 049 Runtime Command Agent Alignment Review
 

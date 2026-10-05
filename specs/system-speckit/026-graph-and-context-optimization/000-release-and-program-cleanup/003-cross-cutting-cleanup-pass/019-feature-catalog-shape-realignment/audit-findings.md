@@ -7,7 +7,7 @@ trigger_phrases:
   - "sk-doc snippet template alignment"
   - "catalog OVERVIEW canonical"
 importance_tier: "important"
-contextType: "audit"
+contextType: "research"
 ---
 # Audit Findings: 050 Feature Catalog Shape Realignment
 

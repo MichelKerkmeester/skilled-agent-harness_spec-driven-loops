@@ -1,0 +1,10 @@
+{"row": 131, "label": "intended", "pick": "specs/system-speckit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md"}
+{"row": 132, "label": "not_intended", "pick": ""}
+{"row": 133, "label": "intended", "pick": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"}
+{"row": 134, "label": "intended", "pick": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/implementation-summary.md"}
+{"row": 135, "label": "intended", "pick": "specs/system-speckit/027-xce-research-based-refinement/context-index.md"}
+{"row": 136, "label": "intended", "pick": ".skilled/skills/sk-prompt/prompt-models/SKILL.md"}
+{"row": 137, "label": "intended", "pick": ".hermes/skills/deep-loop-runtime/SKILL.md"}
+{"row": 138, "label": "cant_tell", "pick": ""}
+{"row": 139, "label": "intended", "pick": ".skilled/skills/sk-code/code-quality/SKILL.md"}
+{"row": 140, "label": "intended", "pick": ".skilled/skills/mcp-code-mode/mcp-server/package.json"}

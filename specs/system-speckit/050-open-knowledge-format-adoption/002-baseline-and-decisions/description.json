@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions",
+  "description": "Phase 2: baseline-and-decisions",
+  "keywords": [
+    "phase",
+    "baseline-and-decisions"
+  ],
+  "lastUpdated": "2026-10-04T08:04:51.035Z",
+  "specId": "002",
+  "folderSlug": "baseline-and-decisions",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

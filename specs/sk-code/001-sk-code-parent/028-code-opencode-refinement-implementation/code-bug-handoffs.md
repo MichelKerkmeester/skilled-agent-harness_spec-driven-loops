@@ -6,7 +6,7 @@ trigger_phrases:
   - "C2 C4 C5 C6 C7 C8 code-opencode owners"
   - "code-opencode refinement deferred code bugs"
 importance_tier: "medium"
-contextType: "handover"
+contextType: "general"
 parent: "sk-code/001-sk-code-parent"
 _memory:
   continuity:

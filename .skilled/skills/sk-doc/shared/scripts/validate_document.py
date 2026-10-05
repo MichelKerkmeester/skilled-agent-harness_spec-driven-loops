@@ -1596,6 +1596,59 @@ def validate_changelog_frontmatter(
     return errors
 
 
+# The value list belongs to sk-create-frontmatter, which owns the frontmatter contract;
+# spec-kit's validator reads the same file, so spec docs and skill docs agree.
+FRONTMATTER_VALUES_PATH = (
+    Path(__file__).resolve().parents[2] / 'sk-create-frontmatter' / 'assets' / 'frontmatter-values.json'
+)
+_FRONTMATTER_VALUE_KEYS = (('contextType', 'contextType'), ('importance_tier', 'importanceTier'))
+
+
+def _load_frontmatter_values() -> Optional[Dict[str, Any]]:
+    """Read the shared value list, or None when this checkout does not carry it."""
+    try:
+        with open(FRONTMATTER_VALUES_PATH, 'r', encoding='utf-8') as handle:
+            return json.load(handle)
+    except FileNotFoundError:
+        return None
+
+
+def validate_frontmatter_values(content: str, values: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Warn when contextType or importance_tier is outside the shared list.
+
+    Aliases are legal. A missing or empty value is left to the presence checks,
+    so only a present value outside the list is reported.
+    """
+    if values is None:
+        return []
+    text = content[1:] if content.startswith('﻿') else content
+    head = text[_skip_leading_trivia(text):]
+    match = re.match(r'^---[ \t]*\r?\n(.*?)\r?\n---', head, re.DOTALL)
+    if not match:
+        return []
+    lists = {
+        'contextType': values['contextType'],
+        'importanceTier': values['importanceTier'],
+    }
+    warnings: List[Dict[str, Any]] = []
+    for field, list_key in _FRONTMATTER_VALUE_KEYS:
+        found = re.search(rf'^{field}:[ \t]*(.+?)[ \t]*$', match.group(1), re.MULTILINE)
+        if not found:
+            continue
+        value = _strip_matching_quotes(found.group(1)).strip().lower()
+        accepted = set(lists[list_key]['canonical']) | set(lists[list_key]['aliases'])
+        if value and value not in accepted:
+            canonical = ', '.join(lists[list_key]['canonical'])
+            warnings.append({
+                'type': 'frontmatter_value_outside_list',
+                'severity': 'warning',
+                'message': f'{field} "{value}" is not in the shared list',
+                'fix_hint': f'Use one of {canonical}, or an alias listed in {FRONTMATTER_VALUES_PATH.name}',
+                'auto_fixable': False,
+            })
+    return warnings
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -1683,6 +1736,7 @@ def validate_document(
         all_errors.extend(validate_changelog_frontmatter(content, file_path, doc_type_rules))
     if doc_type == 'code_folder':
         all_errors.extend(validate_code_folder(content, file_path))
+    all_errors.extend(validate_frontmatter_values(content, _load_frontmatter_values()))
 
     # README rules applied by default look like a README verdict, so say it was a fallback.
     if type_source == 'default':

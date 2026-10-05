@@ -57,4 +57,4 @@ The scope prompt, argument failure wording, diagnostic dashboard, result templat
 
 ## 6. WORKFLOW SUMMARY
 
-The workflow reads the deep-loop coverage graph through `status.cjs`, `query.cjs` and `convergence.cjs` in their read-only forms, classifies empty, stale or orphaned graphs and missing convergence signals, and recommends the repair. It writes only its state log to the active packet's scratch folder.
+The workflow reads the deep-loop coverage graph through `status.cjs`, `query.cjs` and `convergence.cjs` in their read-only forms, classifies empty, stale or orphaned graphs and missing convergence signals, and recommends the repair. When the scope includes research or review, it also lists unresolved `[SOURCE: path:line]` tags per lineage, read-only and with no model call. It writes only its state log to the active packet's scratch folder.

@@ -26,7 +26,8 @@
     "system-speckit/046-align-runtime-code-with-sk-code-opencode",
     "system-speckit/047-plugin-scanner-readiness",
     "system-speckit/048-doctor-command-audit",
-    "system-speckit/049-doctor-audit-followups"
+    "system-speckit/049-doctor-audit-followups",
+    "system-speckit/050-open-knowledge-format-adoption"
   ],
   "manual": {
     "depends_on": [],

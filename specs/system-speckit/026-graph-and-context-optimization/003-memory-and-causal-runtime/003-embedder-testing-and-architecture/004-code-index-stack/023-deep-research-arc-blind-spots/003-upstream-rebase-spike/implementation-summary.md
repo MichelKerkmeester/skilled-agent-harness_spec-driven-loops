@@ -5,7 +5,7 @@ trigger_phrases:
   - "023F summary"
   - "upstream rebase spike summary"
 importance_tier: "high"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike"

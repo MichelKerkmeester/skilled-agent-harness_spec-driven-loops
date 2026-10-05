@@ -47,5 +47,6 @@
   "statusLine": {
     "type": "command",
     "command": ".pi/statusline.sh"
-  }
+  },
+  "deviceId": "601f79cc-08e3-4c46-a7b6-6d59ac689f90"
 }
