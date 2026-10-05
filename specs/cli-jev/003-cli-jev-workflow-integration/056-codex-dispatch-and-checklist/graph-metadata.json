@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
-  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist",
   "parent_id": "cli-jev/003-cli-jev-workflow-integration",
   "children_ids": [],
   "manual": {
@@ -11,12 +11,12 @@
   },
   "derived": {
     "trigger_phrases": [
-      "jev alignment and hook parity",
-      "injection screen runtime parity",
-      "cross runtime hook parity",
-      "live sync hook parity",
-      "hook parity plan",
-      "injection screen adapters plan",
+      "codex task dispatch payload",
+      "codex bash tool rename",
+      "codex exec matcher",
+      "javascript checklist module header",
+      "codex payload probe plan",
+      "codex bash matcher plan",
       "task breakdown",
       "implementation tasks",
       "verification checklist",
@@ -25,18 +25,18 @@
       "closure gate"
     ],
     "key_topics": [
-      "jev",
-      "alignment",
-      "hook",
-      "parity",
-      "injection",
-      "screen",
-      "runtime",
-      "cross",
-      "live",
-      "sync",
-      "plan",
-      "adapters"
+      "codex",
+      "task",
+      "dispatch",
+      "payload",
+      "bash",
+      "tool",
+      "rename",
+      "exec",
+      "matcher",
+      "javascript",
+      "checklist",
+      "module"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -46,10 +46,10 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/plugins/classifier-injection-screen.js",
-      ".hermes/SYNC.md",
-      ".cursor/hooks.json",
-      ".devin/hooks.v1.json",
+      ".codex/hooks.json",
+      ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
+      "runtime/hooks/codex/spec-gate-enforce.mjs",
+      ".codex/SYNC.md",
       "runtime-mirrors/hook-registry.json"
     ],
     "entities": [
@@ -84,27 +84,27 @@
         "source": "derived"
       },
       {
-        "name": "classifier-injection-screen.js",
-        "kind": "code",
-        "path": ".opencode/plugins/classifier-injection-screen.js",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "codex-shell-tool.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
         "source": "derived"
       },
       {
         "name": "SYNC.md",
         "kind": "doc",
-        "path": ".hermes/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
+        "path": ".codex/SYNC.md",
         "source": "derived"
       },
       {
@@ -120,7 +120,7 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Probing Codex",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -162,19 +162,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shared",
+        "name": "Pattern Thin",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -190,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
-    "created_at": "2026-10-05T09:05:04Z",
-    "last_save_at": "2026-10-05T15:57:46.267Z",
+    "causal_summary": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
+    "created_at": "2026-10-05T15:41:54Z",
+    "last_save_at": "2026-10-05T16:04:15.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef53eaf8985e501f158f8442bc7fc20f934680ca50c8c80bce42de09dd2a45a",
+    "source_fingerprint": "sha256:cec32a10a9d514c161c9f0c9234f5b8c3ead26be41be15da4e5dd15ab2608c35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75666a84a1593767ff0a16575a793bbd95a6d45a988eb66408f29548ddc9cf04",
-      "plan.md": "932ca3f589b264e99c88b5a4a974a2890c92316641e1e90f605ffdbc75a3d481",
-      "tasks.md": "64ba3a39d082ba0d47734184c4e0910e5592288915d397870e8b5718e788d0f8",
-      "implementation-summary.md": "3eb8136ceeab33301deba359e0c7aed98937c067c49e3969bcc73c5bde9a7a61"
+      "spec.md": "e07e542195e820a6b017838b5b4727aeb9f855dd9f0695482c86bb7f4ab286c8",
+      "plan.md": "95a849fcf755774f0e4325a2667d258b71ec8479845cca8d8be44a8eba22a3ca",
+      "tasks.md": "5041808218c59afee5fe2175a72cd749d614588306dae6cdb8dee27d11fb05a6",
+      "implementation-summary.md": "ca3f551f30e69f1fa966671d2d7c8f5b9debbef599bfca33adb1e4b4cc4ea818"
     },
     "last_active_at": null
   }

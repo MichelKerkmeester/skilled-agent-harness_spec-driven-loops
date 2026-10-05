@@ -58,7 +58,8 @@
     "cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof",
     "cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features",
     "cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names",
-    "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity"
+    "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
+    "cli-jev/003-cli-jev-workflow-integration/056-codex-dispatch-and-checklist"
   ],
   "manual": {
     "depends_on": [],
@@ -245,17 +246,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-05T12:44:21.825Z",
+    "last_save_at": "2026-10-05T16:04:23.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4b7ee05dfdbf218c01531670a2d88801015bc4fd356e2a4f7591d9b61d5887c0",
+    "source_fingerprint": "sha256:245d4f444e44c35014f08d8328af7fad0cd4d902a625683a5bec193369215ea2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "22ec233be8c275e479393290a3313bf6301889ca05ab47e740582631ea958457"
+      "spec.md": "0d79ca771436bbc787754d533cb2c3a8a5b8f51ada48bc8c98a3aeff29d466fa"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/051-followups",
     "last_active_at": "2026-10-04T12:11:28.025Z"

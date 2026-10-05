@@ -177,6 +177,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 53 | 053-retire-unproven-features/ | Retire spec-track narrowing, clarify default and folder suggestion: delete their scorers, tests, catalog entries, playbook scenarios and keep-rule gates, and remove every other mention outside spec folders. | Complete |
 | 54 | 054-classifier-module-names/ | Move each kept Jev feature's code outside cli-classifier into a module named `classifier-` plus its host file, and rename the injection screen hook with the same prefix. | Complete |
 | 55 | 055-alignment-and-hook-parity/ | Align the Jev code with sk-code-opencode, bring every README and env surface to current reality, and give each hook an adapter on every runtime that can carry it or a recorded reason where none can. | Complete |
+| 56 | 056-codex-dispatch-and-checklist/ | Record Codex task dispatch as n/a from a captured spawn payload, make every Codex shell hook fire under the 0.160 `Bash` tool name, and bring the JavaScript checklist header rule to its style guide. | Complete |
 
 ### Phase Transition Rules
 
@@ -245,6 +246,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 052-unproven-feature-proof | 053-retire-unproven-features | 052 Complete and the operator retired the three unproven features | `validate.sh --strict` on 053 |
 | 053-retire-unproven-features | 054-classifier-module-names | 053 Complete and the operator asked for classifier names on the kept features' code | `validate.sh --strict` on 054 |
 | 054-classifier-module-names | 055-alignment-and-hook-parity | 054 Complete and the operator asked for code, doc, env and hook-parity alignment | `validate.sh --strict` on 055 |
+| 055-alignment-and-hook-parity | 056-codex-dispatch-and-checklist | 055 Complete with Codex task dispatch unverified and the checklist header rule at odds with its style guide | `validate.sh --strict` on 056 |
 <!-- /ANCHOR:phase-map -->
 
 ---
