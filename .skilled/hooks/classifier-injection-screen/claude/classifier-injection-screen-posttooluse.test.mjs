@@ -13,7 +13,7 @@ import path from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-const HOOK = path.join(path.dirname(fileURLToPath(import.meta.url)), 'injection-screen-posttooluse.mjs');
+const HOOK = path.join(path.dirname(fileURLToPath(import.meta.url)), 'classifier-injection-screen-posttooluse.mjs');
 
 // Fresh temp directory whose name marks it as a fixture.
 function tempDir(prefix) {

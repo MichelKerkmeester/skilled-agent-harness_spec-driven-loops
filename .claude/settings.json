@@ -221,7 +221,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=injection-screen-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=classifier-injection-screen-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 30
           }
         ]

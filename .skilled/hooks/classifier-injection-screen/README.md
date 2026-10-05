@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`injection-screen/` warns the agent when a page it just fetched reads as instructions aimed at an AI agent. After each Claude Code WebFetch, the hook splits the fetched text into sections and asks Jev the question that won the injection screen's measured keep: 84 of 90 labelled sections right against 68 for a fixed lexical screen, with 2 false flags. A flagged section adds one advisory line to the agent's context. The fetch result always reaches the model unchanged.
+`classifier-injection-screen/` warns the agent when a page it just fetched reads as instructions aimed at an AI agent. After each Claude Code WebFetch, the hook splits the fetched text into sections and asks Jev the question that won the injection screen's measured keep: 84 of 90 labelled sections right against 68 for a fixed lexical screen, with 2 false flags. A flagged section adds one advisory line to the agent's context. The fetch result always reaches the model unchanged.
 
 The hook runs only when `jev` is on PATH and `jev auth status` passes, so a machine without a stored Jev key never calls the service.
 
@@ -58,10 +58,10 @@ Each switch is read from the environment first and then from `.skilled/hooks/hoo
 
 | File | Role |
 |---|---|
-| `lib/screen-fetched-text.mjs` | `screenText(text, { env, gate, classify, budgetMs })`: sections, calls and the flag rule |
-| `lib/screen-fetched-text.test.mjs` | Flag, third-call, unmeasured, empty-text and section-cap cases with an injected classifier |
-| `claude/injection-screen-posttooluse.mjs` | Reads the PostToolUse payload, checks the switches and the credential, prints the advisory |
-| `claude/injection-screen-posttooluse.test.mjs` | Spawns the adapter with a stub `jev` on PATH |
+| `lib/classifier-screen-fetched-text.mjs` | `screenText(text, { env, gate, classify, budgetMs })`: sections, calls and the flag rule |
+| `lib/classifier-screen-fetched-text.test.mjs` | Flag, third-call, unmeasured, empty-text and section-cap cases with an injected classifier |
+| `claude/classifier-injection-screen-posttooluse.mjs` | Reads the PostToolUse payload, checks the switches and the credential, prints the advisory |
+| `claude/classifier-injection-screen-posttooluse.test.mjs` | Spawns the adapter with a stub `jev` on PATH |
 
 Registration lives in `system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, and `sync-hook-registrations.cjs` renders it into `.claude/settings.json`. Claude Code is the only runtime bound today.
 
@@ -70,6 +70,6 @@ Registration lives in `system-spec-kit/runtime/cli/runtime-mirrors/hook-registry
 ## 5. VALIDATION
 
 ```bash
-node --test .skilled/hooks/injection-screen/
+node --test .skilled/hooks/classifier-injection-screen/
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
 ```

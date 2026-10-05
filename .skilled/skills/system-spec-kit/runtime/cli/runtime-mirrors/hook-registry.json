@@ -639,7 +639,7 @@
             "slot": 0,
             "matcher": "WebFetch",
             "runner": "node",
-            "script": ".skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs",
+            "script": ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
             "timeout": 30,
             "fallback": "envelope"
           }

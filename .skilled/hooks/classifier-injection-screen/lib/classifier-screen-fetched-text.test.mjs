@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { INSTRUCTION } from '../../../skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs';
-import { screenText } from './screen-fetched-text.mjs';
+import { screenText } from './classifier-screen-fetched-text.mjs';
 
 const GATE = { path: '/stub/jev', provider: 'official' };
 
