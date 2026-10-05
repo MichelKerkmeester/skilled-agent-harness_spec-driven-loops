@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two aliases (`decision` to `planning`, `discovery` to `general`), and the `sk-doc` contract lists the same four",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-05T04:39:28.345Z",
+    "last_save_at": "2026-10-05T04:54:19.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2816a98db8f750bd30e19f6a06240d483966fd73deaa4097a41d9b277d046da4",
+    "source_fingerprint": "sha256:b3bb53a58848d7976493002bb66080c1aadd608b15e7dd6447ba4582e041c8d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "675d1369c3b9e7fcb23d0902d380b9f51bc0c917d7531fe736436fed473586ca",
       "plan.md": "d127595c8eb37df89ff4115686da86da51fc4eeaf9d0c1bbe9916db997a98bd7",
       "tasks.md": "57232d61181d524eb743049ce61fd6a21384ff92c1f94801777e5a949c209386",
-      "implementation-summary.md": "3e6d5ffa92c8284362cbca3002d6d9983965f756cf1b4182300e0de8e7c4335e"
+      "implementation-summary.md": "9bfb6d6bb5a906ca910e0a28942ff0962582eed2d561bd1edafed8d2a787694a"
     },
     "last_active_at": null
   }

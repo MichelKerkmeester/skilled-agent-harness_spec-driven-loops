@@ -1,0 +1,70 @@
+swe b1 rc=0 20:24:34-20:26:10
+glm b1 rc=0 20:24:34-20:27:50
+gemini b1 rc=1 20:24:34-20:30:12
+swe b2 rc=0 20:26:10-20:30:18
+swe b3 rc=0 20:30:18-20:32:04
+gemini b2 rc=0 20:30:12-20:35:13
+swe b4 rc=0 20:32:04-20:37:40
+gemini b3 rc=0 20:35:13-20:38:02
+gemini b4 rc=0 20:38:02-20:44:23
+gemini b1a rc=0 20:47:41
+gemini b1b rc=1 20:53:37
+gemini b1b1 rc=0 20:56:19
+gemini b1b2 rc=0 20:56:33
+gemini b1b3 rc=0 20:57:32
+glm b2 killed after 30 min with no output 20:58:01
+gemini b1b4 rc=0 20:58:12
+gemini b1b5 rc=0 20:58:27
+glm b2a killed after 600s 21:08:09
+glm b2b killed after 600s 21:18:10
+glm b3a killed after 600s 21:28:12
+glm b3b rc=0 125s 21:30:17
+glm b4a stopped at 7 min to switch route to cli-opencode 21:37:47
+glm-devin b4a rc=1 105s 21:39:51
+glm-devin b3a rc=1 105s 21:39:51
+glm-devin b4b rc=1 110s 21:39:56
+glm-devin b2b rc=1 110s 21:39:56
+glm-devin b2a rc=1 115s 21:40:01
+glm-devin 5-row calls all truncated at max output; rerun one row per call 23:40:24
+glm-devin b2a3 rc=0 10s 23:40:34
+glm-devin b2a1 rc=0 20s 23:40:44
+glm-devin b2a4 rc=0 45s 23:41:09
+glm-devin b2a2 rc=0 50s 23:41:14
+glm-devin b2a5 rc=1 105s 23:42:09
+glm-devin b2b1 rc=1 5s 23:42:14
+glm-devin b2b3 rc=1 5s 23:42:14
+glm-devin b2b2 rc=1 5s 23:42:14
+glm-devin b2b4 rc=1 5s 23:42:14
+glm-devin b2b5 rc=1 5s 23:42:14
+glm-devin b3a3 rc=1 5s 23:42:19
+glm-devin b3a4 rc=1 5s 23:42:19
+glm-devin b3a2 rc=1 5s 23:42:19
+glm-devin b3a1 rc=1 5s 23:42:19
+glm-devin b3a5 rc=1 5s 23:42:19
+glm-devin stopped: Devin daily usage quota exhausted (resource_exhausted) 23:42:28
+operator chose cli-pi via llmgateway/glm-5.3-flash for GLM's remaining 21 rows 06:09:04
+glm-gw b2b1 rc=0 10s 06:09:14
+glm-gw b2b3 rc=0 10s 06:09:27
+glm-gw b2b2 rc=0 15s 06:09:32
+glm-gw b2a5 rc=0 20s 06:09:37
+glm-gw b2b5 rc=0 45s 06:10:02
+glm-gw b2b4 rc=0 121s 06:11:18
+glm-gw b3a2 rc=0 90s 06:12:48
+glm-gw b3a5 rc=0 145s 06:13:43
+glm-gw b3a3 rc=0 396s 06:17:54
+glm-gw b3a1 rc=0 441s 06:18:39
+glm-gw b3a4 rc=0 541s 06:20:19
+glm-gw b4a5 rc=0 40s 06:20:59
+glm-gw b4a3 rc=0 160s 06:22:59
+glm-gw b4a1 rc=0 240s 06:24:19
+glm-gw b4a2 rc=0 260s 06:24:39
+glm-gw b4a4 rc=0 336s 06:25:55
+glm-gw b4b2 rc=0 85s 06:27:20
+glm-gw b4b5 rc=0 100s 06:27:35
+glm-gw b4b3 rc=1 270s 06:30:25
+glm-gw b4b4 rc=0 335s 06:31:30
+glm-gw b4b1 killed after 600s 06:35:56
+glm-gw single retry of 4b3 (gateway rejected) and 4b1 (600s cap) 06:36:21
+glm-gw b4b3 rc=0 10s 06:36:31
+glm-gw b4b1 rc=0 30s 06:36:51
+note: the log mixes clocks. Lines up to 'glm-devin b2a rc=1 115s 21:40:01' are UTC; every later line is local CEST (UTC+2).

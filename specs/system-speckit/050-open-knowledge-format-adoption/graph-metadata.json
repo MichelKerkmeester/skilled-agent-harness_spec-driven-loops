@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -113,7 +107,19 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Google Cloud",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -139,17 +145,17 @@
     ],
     "causal_summary": "Google Cloud published the Open Knowledge Format (OKF) in June 2026 as an open, vendor-neutral way to package agent-readable knowledge as a directory of markdown files with YAML frontmatter",
     "created_at": "2026-10-04T05:36:10Z",
-    "last_save_at": "2026-10-05T04:40:11.436Z",
+    "last_save_at": "2026-10-05T04:54:23.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a54959b39cd8e8f4575d0c1e027cd2ba0d91975e1c00725c686031ac49b645b2",
+    "source_fingerprint": "sha256:32ea589cb8f32e180f31476ced9e6751c326532659a15599c4bd1b7d508c017c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7dc4c1deccda72fc7283603b0e8a3e0458883197f67e93309800620fa80657e9"
+      "spec.md": "bf6046c1649e6edb113f09412afac40f82eb79b128a7751e002beffcae9922ce"
     },
     "last_active_at": null
   }

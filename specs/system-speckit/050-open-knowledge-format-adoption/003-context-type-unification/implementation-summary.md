@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Spec docs and skill docs now take their `contextType` and `importance_tier` values from one file. Before this phase the spec corpus held 33 distinct `contextType` values and four tools kept their own lists. Now it holds 12, every one canonical or a listed alias, and a value outside the file draws a warning that names the values to use.
+Spec docs and skill docs now take their `contextType` and `importance_tier` values from one file. Before this phase the spec docs outside scratch folders held 31 distinct `contextType` values and four tools kept their own lists. Now they hold 12, every one canonical or a listed alias, and a value outside the file draws a warning that names the values to use.
 
 ### Phase 3: context-type-unification
 
@@ -120,7 +120,7 @@ Nothing is committed (root decision D4).
 | CLI suite | PASS, vitest 1648 passed and 19 skipped, same as the baseline. The legacy and validation legs print the same 39 summary lines (`scratch/cli-summary-baseline.txt`, `scratch/cli-summary-after.txt`). The first rerun failed one test, which caught the README's 40-rule claim, so that claim and `ARCHITECTURE.md` now say 41 |
 | CLI behavior probe on the built `dist` | PASS. Three new phase cases pass, and two of them fail when the normalizer is pointed at the document list, so they catch a merge of the two lists. Every value in the HEAD lists behaves as before in the normalizer and the session extractor, with one recorded deviation, below |
 | Warn, never error, on a planted value | PASS. A copy of a plan with `contextType: "architecture"`: the rule returns `warn` with the message naming the four canonical values. `validate_document.py` adds exactly one `frontmatter_value_outside_list` warning, and its exit code and blocking errors are identical to the unplanted original |
-| Spec-doc distinct `contextType` | 33 before, 12 after, all canonical or listed aliases |
+| Spec-doc distinct `contextType` | 31 before, 12 after outside scratch folders, all canonical or listed aliases; 33 and 15 with scratch folders counted. Recounted 2026-10-05 at `5285608745` and `cca919c5a4`; that commit's message pairs 33 with 12 across the two populations |
 | Corpus sweep | 102 warnings before, 0 after |
 | Packet results, D1 | PASS. Each of the 58 edited packets was validated on its own with its HEAD content and again with the edits, folder by folder: 191 folders, 0 changed sets of failing or warning rules (`scratch/d1-proof.json`, `scratch/d1_proof.py`). `FRONTMATTER_VALUES` is left out because it is the rule under test |
 | `/doctor:skill-graph-freshness` | PASS, no drift on any axis |
