@@ -25,3 +25,11 @@ contextType: "implementation"
 **Effect on the analysis:** the pooled decision combines Luna and DeepSeek through OpenCode. The SWE-2 runs and the 5 earlier DeepSeek runs through Devin are reported as their own strata and left out of the decision. The decision rule is unchanged.
 
 **Dispatch notes:** runs pass `--auto` so headless edits are approved, like Devin's dangerous mode. Each run directory is a disposable copy with its own fresh git repository, so a stray write cannot reach the real repository. No agent persona is added to the prompt, because the executor's own behaviour is what the experiment measures.
+
+## 3. SCHEDULE CUT SHORT
+
+**What changed:** the remaining schedule is replaced by a top-up of one repeat per prompt per arm, 30 runs of DeepSeek through OpenCode Go, run 8 at a time across both experiments. The decision then pools every stratum collected: Luna, SWE-2 Max, DeepSeek through Devin and DeepSeek through OpenCode. This replaces the exclusions in section 2.
+
+**Why:** the full schedules would take most of a day under executor rate limits, and the operator chose a short top-up and a decision. Recorded on 2026-10-05, before the top-up runs and before the SWE-2 runs were scored.
+
+**Effect on the analysis:** the decision rule is applied as written to the pooled data. Every stratum is arm-balanced by the shuffled order. A rule the smaller sample cannot satisfy falls to its pre-registered fallback.
