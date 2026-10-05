@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The changelog standard put a `---` rule between top-level sections and an `&nbsp;` line between the items inside a section",
     "created_at": "2026-10-05T09:56:58Z",
-    "last_save_at": "2026-10-05T10:01:18.847Z",
+    "last_save_at": "2026-10-05T10:11:47.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b100496a53b004f4e38b2947b2c4a0e0f8b48bab42f9e85abda8d0741aa39e7",
+    "source_fingerprint": "sha256:d41a578acbcc26fd21bce2a5a99960dd1a0c7dd5790348bc82c85309558bf2ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "837f8d6cdfc76c35362d2e73b0bb59b0804170f5b9008d383504d9cf3ea469bf",
       "plan.md": "db564383032613dbf9d70d7e9f32466690c71bb6e8c5ffee18265f9ea9292d8d",
       "tasks.md": "2584e13b58d9d88350bbddc8d30d51e8e0ac8e0f661955395d86fa0568b15474",
-      "implementation-summary.md": "15724f1b911cae3c04618c7cc01fa2b3cc206f6d8237418b600d76b8fd25af47"
+      "implementation-summary.md": "27b75db0b5b86327747fdf20e16a72d89a7b18b9946ae4b1837459f84f1c2b17"
     },
     "last_active_at": null
   }
