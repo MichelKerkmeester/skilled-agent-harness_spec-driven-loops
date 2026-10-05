@@ -48,6 +48,7 @@ contextType: "general"
 - [x] T005 Correct the README classifier, plugin, hook-core, off-switch and live-sync lines (`README.md`)
 - [x] T006 Cut the Codex approval claim back to what was confirmed (`hook-contract.md`, phase 56 docs)
 - [x] T007 Recheck every added path on disk
+- [x] T011 Fix the follow-up drift: command count and entries, Hermes subsection and hooks rows, `.env.example` header, Hermes manifest
 <!-- /ANCHOR:phase-2 -->
 
 ---

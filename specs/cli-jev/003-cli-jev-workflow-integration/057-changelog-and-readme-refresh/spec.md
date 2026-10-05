@@ -73,10 +73,10 @@ A reader of either file learns what the classifier and hooks really do on each r
 - The changelog's injection screen, Pi route and off-switch sentences, two new hook items and two upgrade notes
 - The README's classifier, OpenCode plugin, Pi extension, hook-core, Codex approval, off-switch and live-sync lines
 - The Codex approval wording in the cli-codex hook contract and the phase 56 docs, cut back to what the probe confirmed
+- Follow-up drift the audits found: the README command count and its six missing commands, a Hermes plugin subsection, the hooks README rows Hermes runs, the `.env.example` header and the Hermes plugin manifest description
 
 ### Out of Scope
-- The README's command count - it predates this work
-- A Hermes subsection in the README and the Hermes live-sync row in the hooks README - outside the two files asked for
+- A Hermes column in the hooks coverage matrix - every cell needs its own check, and the rationale already records Hermes
 - Non-classifier fixes from the same commit range - other packets own them
 
 ### Files to Change
@@ -87,6 +87,7 @@ A reader of either file learns what the classifier and hooks really do on each r
 | `README.md` | Modify | Classifier, plugin, hook and switch lines |
 | `cli-codex/references/hook-contract.md` | Modify | Approval wording |
 | `056-codex-dispatch-and-checklist/{spec,implementation-summary}.md` | Modify | Approval wording |
+| `.skilled/hooks/README.md`, `.env.example`, `.hermes/plugins/repo-guards/plugin.yaml` | Modify | Hermes rows, header switch list, manifest description |
 <!-- /ANCHOR:scope -->
 
 ---

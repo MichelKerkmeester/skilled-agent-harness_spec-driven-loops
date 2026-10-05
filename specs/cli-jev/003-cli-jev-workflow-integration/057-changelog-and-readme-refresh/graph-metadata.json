@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/changelog/skilled/v4.0.0.3.md"
+      ".skilled/changelog/skilled/v4.0.0.3.md",
+      ".skilled/hooks/README.md",
+      ".hermes/plugins/repo-guards/plugin.yaml"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "v4.0.0.3.md",
         "kind": "doc",
         "path": ".skilled/changelog/skilled/v4.0.0.3.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.yaml",
+        "kind": "config",
+        "path": ".hermes/plugins/repo-guards/plugin.yaml",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The changelog's classifier section was written on 2026-10-04, before phases 52 to 56",
     "created_at": "2026-10-05T18:36:02Z",
-    "last_save_at": "2026-10-05T18:42:48.288Z",
+    "last_save_at": "2026-10-05T19:03:29.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f3a0b73b09aa36de3e46e78001b26786dee4d953d0260d47cbc6754788a782c",
+    "source_fingerprint": "sha256:cf45c3b7284c67dae2d5152af308e83fae882d6f7db89e7e16af532af3d49445",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff2bf9f8cbe7e184e54a7e221b4cca4db144711b3babe1b529c145c6ca9985d5",
+      "spec.md": "6779f97d2d03278ae87b72197d3d17816231d99d81899a2a73e467ae5c193763",
       "plan.md": "80b65c4b8e0ee1c0a6acdf1e78bedf987efc46890c5bb72127cff66afb0bfb4f",
-      "tasks.md": "0a279253da24be39d9129756b20005fe9bb322c01409ed28748db1006caf8b9a",
-      "implementation-summary.md": "360ac02a4a5e4f3e11424424cc2d8f21485a4bbcde8bc278b6ae1da88e9e677e"
+      "tasks.md": "1998e23fb59b4ca5d05c056e48e2f4cd1400d5fe637a42ab4560948ea9b0d103",
+      "implementation-summary.md": "9677bdbf0e6deb56b2b65478296784ae8e25bd552b2c1a689b676d2f923b24ad"
     },
     "last_active_at": null
   }

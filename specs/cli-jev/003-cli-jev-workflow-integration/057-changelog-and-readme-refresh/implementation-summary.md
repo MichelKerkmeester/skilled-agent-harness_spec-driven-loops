@@ -56,6 +56,8 @@ The changelog now places the injection screen on Claude Code, Devin, OpenCode, P
 
 The README carries the same Pi correction and the `JEV_PROVIDER` and `JEV_TRANSPORT` switches. Its OpenCode plugin list, Pi bridge list and hook-core list match the files on disk again, with a pointer to the per-runtime coverage matrix and the Codex approval step. The off switches now say the Jev switches read the same personal file and that the master switch spares the git message gate. The live-sync section names the runtimes that start the follower and the reconcile switch.
 
+A follow-up pass fixed the drift the audits found next to that work. The README now counts 39 commands, 36 in six groups plus 3 at the root, and describes the six it never named. A new Hermes Plugin subsection says what the `repo-guards` plugin runs before a tool call, after it, each turn and before the final answer, and how to turn it on. The hooks README credits Hermes on the seven session and live-sync hooks it runs, the `.env.example` header names the Jev switches among those that read `hook-flags.env`, and the Hermes manifest names the injection screen and session-start guards.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -63,6 +65,7 @@ The README carries the same Pi correction and the `JEV_PROVIDER` and `JEV_TRANSP
 | `.skilled/changelog/skilled/v4.0.0.3.md` | Modified | Classifier section, two hook items, two upgrade notes |
 | `README.md` | Modified | Classifier, plugin, hook-core, off-switch and live-sync lines |
 | `cli-codex/references/hook-contract.md`, phase 56 spec and summary | Modified | Codex approval claim cut back to what was confirmed |
+| `.skilled/hooks/README.md`, `.env.example`, `.hermes/plugins/repo-guards/plugin.yaml` | Modified | Hermes rows, header switch list, manifest description |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -82,7 +85,7 @@ Two read-only workers audited the changelog against phases 52 to 56 and the READ
 |----------|-----|
 | Edit the v4.0.0.3 entry in place | It has no release tag, and earlier commits amended it the same way |
 | Say only that `/hooks` lists entries needing review | The probe confirmed that an unapproved entry never runs, not that a changed matcher loses its approval |
-| Leave the command count and a Hermes subsection out | Neither concerns this work |
+| Leave a Hermes matrix column out | Every one of its 17 cells needs its own check, and the rationale already records Hermes |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -96,6 +99,8 @@ Two read-only workers audited the changelog against phases 52 to 56 and the READ
 | `hvr_scan.py` on the changelog and README | 0 hard blockers; deductions equal to the files before the edit (-2 and -14) |
 | `test_readme_manifest.py` and `test_readme_verdict_parity.py` | PASS |
 | Added README paths checked with `ls` | All present; 13 plugins read `hook-flags` |
+| Hermes claims checked against `repo-guards/__init__.py` hook functions | Each core sits under the hook named |
+| `hermes plugins validate` and the repo-guards tests | Validation passed; 51 passed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -104,7 +109,7 @@ Two read-only workers audited the changelog against phases 52 to 56 and the READ
 ## Known Limitations
 
 1. **Whether a changed Codex matcher needs re-approval is unconfirmed.** The docs tell you to approve whatever `/hooks` lists, which holds either way.
-2. **The README command count (34) differs from the files on disk (39).** It predates this work and is left for its owner.
+2. **The hooks coverage matrix still has no Hermes column.** Hermes coverage lives in `coverage-rationale.md`, the hooks table and the README subsection.
 <!-- /ANCHOR:limitations -->
 
 ---
