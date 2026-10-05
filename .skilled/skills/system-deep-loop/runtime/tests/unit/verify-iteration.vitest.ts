@@ -74,6 +74,30 @@ describe('verify-iteration leaf-reliability check', () => {
     expect(r.reason).toBe(REASONS.ITERATION_FILE_MISSING);
   });
 
+  it('names the dispatch failure from the completion receipt when the narrative is absent', () => {
+    writeComplete(dir, 1);
+    fs.rmSync(path.join(dir, 'iterations', 'iteration-001.md'));
+    const receipts = path.join(dir, 'dispatch-receipts');
+    fs.mkdirSync(receipts);
+    const executor = { kind: 'cli-pi', timeoutSeconds: 900 };
+    const receipt = (phase: string, issuedAt: string, facts: Record<string, unknown>) => fs.writeFileSync(
+      path.join(receipts, `dispatch-review-i1-g1.${phase}.json`),
+      JSON.stringify({ type: 'dispatch_receipt', phase, dispatchId: 'review-i1-g1', issuedAt, facts: { iteration: 1, executor, ...facts } }),
+    );
+    receipt('intent', '2026-10-05T09:02:25.000Z', {});
+    receipt('completion', '2026-10-05T09:17:24.000Z', { exitStatus: 143, signal: null });
+    fs.writeFileSync(path.join(receipts, 'dispatch-review-i1-g1.attempt-1.completion.json'), '{}');
+
+    const failed = verify('review', dir, 1);
+    expect(failed.reason).toBe(REASONS.DISPATCH_FAILED);
+    expect(failed.detail).toBe('dispatch review-i1-g1: cli-pi exited 143, after 899 s, at the 900 s executor timeout, '
+      + '1 earlier attempt(s) kept as dispatch-review-i1-g1.attempt-N; no iterations/iteration-001*.md written');
+
+    // A clean exit that still wrote nothing stays an artifact failure, not a dispatch one.
+    receipt('completion', '2026-10-05T09:05:00.000Z', { exitStatus: 0, signal: null });
+    expect(verify('review', dir, 1).reason).toBe(REASONS.ITERATION_FILE_MISSING);
+  });
+
   it('fails iteration_verdict_missing when the review verdict line is absent', () => {
     writeComplete(dir, 1);
     fs.writeFileSync(path.join(dir, 'iterations', 'iteration-001.md'), '# Iteration 1\n\nNo verdict here.\n');

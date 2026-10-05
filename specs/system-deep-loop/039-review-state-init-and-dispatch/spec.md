@@ -118,3 +118,26 @@ A workflow-opened deep-review run records its iterations through the gateway wit
 ---
 
 
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> The original init-and-dispatch work above stays documented in this folder's own plan, tasks and summary. Follow-on fixes found in later runs live in phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-lock-nonce-and-dispatch-failures/ | Release the review and council locks with their nonce, name a failed dispatch from its receipt, and drop the codex branch's unbound event loop | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| (single phase - no handoffs) | | | |
+<!-- /ANCHOR:phase-map -->

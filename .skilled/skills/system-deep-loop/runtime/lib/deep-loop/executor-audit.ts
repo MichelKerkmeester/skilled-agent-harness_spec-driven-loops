@@ -710,6 +710,32 @@ function tryWriteReceipt(
   }
 }
 
+// A workflow re-dispatches a failed iteration under the same dispatch id, so the
+// retry's receipts would overwrite the only record of the first attempt's exit.
+// Earlier pairs move to `dispatch-<id>.attempt-<n>.*` names, keeping the base
+// names for the latest attempt, which is the pair validators read. A rename that
+// fails leaves the old pair in place to be overwritten, as before.
+function archivePriorAttempt(receiptDir: string, dispatchId: string): void {
+  const current = receiptPaths(receiptDir, dispatchId);
+  if (!existsSync(current.intentPath) && !existsSync(current.completionPath)) {
+    return;
+  }
+  let attempt = 1;
+  while (existsSync(join(receiptDir, `dispatch-${dispatchId}.attempt-${attempt}.intent.json`))
+    || existsSync(join(receiptDir, `dispatch-${dispatchId}.attempt-${attempt}.completion.json`))) {
+    attempt += 1;
+  }
+  for (const phase of ['intent', 'completion'] as const) {
+    const from = phase === 'intent' ? current.intentPath : current.completionPath;
+    if (!existsSync(from)) continue;
+    try {
+      renameSync(from, join(receiptDir, `dispatch-${dispatchId}.attempt-${attempt}.${phase}.json`));
+    } catch {
+      // Overwriting the old receipt is the pre-existing behaviour; never block a dispatch on it.
+    }
+  }
+}
+
 // Pre-dispatch: write the INTENT receipt (engine-signed, no child id yet). The
 // dispatch has not happened, so the facts carry only what the engine intends.
 function beginReceipt(input: RunAuditedExecutorCommandInput): ReceiptContext | null {
@@ -718,6 +744,7 @@ function beginReceipt(input: RunAuditedExecutorCommandInput): ReceiptContext | n
   }
   const dispatchId = input.dispatchId ?? generateDispatchId(input);
   const key = deriveReceiptKey(getRunMasterSecret(), dispatchId);
+  archivePriorAttempt(input.receiptDir, dispatchId);
   const paths = receiptPaths(input.receiptDir, dispatchId);
   const record = buildReceiptRecord('intent', dispatchId, buildReceiptFacts(input), key);
   tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'intent', paths.intentPath, record);

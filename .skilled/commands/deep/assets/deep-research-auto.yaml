@@ -1726,7 +1726,7 @@ workflow:
         post_dispatch_validate:
           validator: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
-          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (dispatch_failed|iteration_file_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). dispatch_failed means the narrative is missing and the completion receipt shows a non-zero exit or a signal. The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode]

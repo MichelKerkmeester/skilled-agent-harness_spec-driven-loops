@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Deep Research Lock Release Nonce Test
+// MODULE: Deep Loop Lock Release Nonce Test
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
@@ -23,9 +23,16 @@ const SKILLS_ROOT = resolve(runtimeRoot, '..', '..', '..');
 const REPO_ROOT = resolve(SKILLS_ROOT, '..');
 const LOOP_LOCK_CLI = resolve(runtimeRoot, 'scripts', 'loop-lock.cjs');
 
-const AUTO_YAML_PATH = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
-const CONFIRM_YAML_PATH = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets', 'deep-research-confirm.yaml');
-const YAML_PATHS = [AUTO_YAML_PATH, CONFIRM_YAML_PATH];
+const ASSETS = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets');
+const AUTO_YAML_PATH = resolve(ASSETS, 'deep-research-auto.yaml');
+const REVIEW_AUTO_YAML_PATH = resolve(ASSETS, 'deep-review-auto.yaml');
+// Every workflow that takes the loop lock: acquire stamps a nonce, and release
+// refuses without it, so a release line that drops it leaves the lock behind.
+const YAML_PATHS = [
+  'deep-research-auto', 'deep-research-confirm',
+  'deep-review-auto', 'deep-review-confirm',
+  'deep-ai-council-auto', 'deep-ai-council-confirm',
+].map((name) => resolve(ASSETS, `${name}.yaml`));
 
 const tempDirs: string[] = [];
 
@@ -65,7 +72,7 @@ afterEach(() => {
 // 4. TESTS
 // ───────────────────────────────────────────────────────────────────
 
-describe('deep research lock release carries the acquire nonce', () => {
+describe('deep-loop lock release carries the acquire nonce', () => {
   for (const yamlPath of YAML_PATHS) {
     it(`passes --nonce on every release in ${basename(yamlPath)}`, () => {
       const text = readFileSync(yamlPath, 'utf8');
@@ -79,10 +86,10 @@ describe('deep research lock release carries the acquire nonce', () => {
     });
   }
 
-  it('releases the auto workflow lock when given the acquired owner pid and nonce', () => {
-    const dir = mkdtempSync(join(tmpdir(), 'deep-research-lock-release-'));
+  for (const yamlPath of [AUTO_YAML_PATH, REVIEW_AUTO_YAML_PATH]) it(`releases the ${basename(yamlPath)} lock when given the acquired owner pid and nonce`, () => {
+    const dir = mkdtempSync(join(tmpdir(), 'deep-loop-lock-release-'));
     tempDirs.push(dir);
-    const lockPath = join(dir, '.deep-research.lock');
+    const lockPath = join(dir, '.deep-loop.lock');
 
     const acquire = spawnSync(
       process.execPath,
@@ -102,7 +109,7 @@ describe('deep research lock release carries the acquire nonce', () => {
     expect(lock.acquireNonce.length).toBeGreaterThan(0);
     expect(existsSync(lockPath)).toBe(true);
 
-    const commandMatch = /command:\s*"([^"]+)"/u.exec(stepBlock(readFileSync(AUTO_YAML_PATH, 'utf8'), 'step_release_lock'));
+    const commandMatch = /command:\s*"([^"]+)"/u.exec(stepBlock(readFileSync(yamlPath, 'utf8'), 'step_release_lock'));
     const template = commandMatch?.[1];
     if (!template) {
       throw new Error('step_release_lock has no command');

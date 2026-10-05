@@ -58,6 +58,7 @@ const ARTIFACT_ID_BY_LOOP = {
 const CHECK_DIRECT_APPEND_CLI = path.join(__dirname, 'check-direct-append.cjs');
 
 const REASONS = {
+  DISPATCH_FAILED: 'dispatch_failed',
   ITERATION_FILE_MISSING: 'iteration_file_missing',
   ITERATION_VERDICT_MISSING: 'iteration_verdict_missing',
   STATE_RECORD_MISSING: 'state_record_missing',
@@ -338,6 +339,49 @@ function checkLedgerBacking(loopType, artifactDir, legacyFilePath) {
   };
 }
 
+function readReceipt(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+// The audited dispatch wrapper returns 0 for every executor outcome and records
+// the child's exit in a completion receipt, the one record of it that survives:
+// a dispatch_failure line it writes to the state log is gone at the next gateway
+// refresh. So when an iteration left nothing behind, the latest completion receipt
+// for that iteration says whether the executor failed, and how.
+function dispatchFailure(artifactDir, iteration) {
+  const receiptDir = path.join(artifactDir, 'dispatch-receipts');
+  let names;
+  try {
+    names = fs.readdirSync(receiptDir);
+  } catch {
+    return null;
+  }
+  const latest = names
+    .filter((name) => /^dispatch-.+\.completion\.json$/u.test(name) && !/\.attempt-\d+\.completion\.json$/u.test(name))
+    .map((name) => ({ name, receipt: readReceipt(path.join(receiptDir, name)) }))
+    .filter(({ receipt }) => receipt?.facts?.iteration === iteration)
+    .sort((a, b) => String(b.receipt.issuedAt).localeCompare(String(a.receipt.issuedAt)))[0];
+  if (!latest) return null;
+  const { exitStatus, signal, executor } = latest.receipt.facts;
+  const exited = typeof exitStatus === 'number' && exitStatus !== 0;
+  if (!exited && !signal) return null;
+  const dispatchId = latest.receipt.dispatchId;
+  const intent = readReceipt(path.join(receiptDir, `dispatch-${dispatchId}.intent.json`));
+  const seconds = intent ? Math.round((Date.parse(latest.receipt.issuedAt) - Date.parse(intent.issuedAt)) / 1000) : NaN;
+  const timeout = Number(executor?.timeoutSeconds);
+  const parts = [`${executor?.kind ?? 'executor'} ${signal ? `killed by ${signal}` : `exited ${exitStatus}`}`];
+  if (Number.isFinite(seconds)) {
+    parts.push(Number.isFinite(timeout) && seconds >= timeout - 2 ? `after ${seconds} s, at the ${timeout} s executor timeout` : `after ${seconds} s`);
+  }
+  const earlier = names.filter((name) => name.startsWith(`dispatch-${dispatchId}.attempt-`) && name.endsWith('.completion.json')).length;
+  if (earlier > 0) parts.push(`${earlier} earlier attempt(s) kept as dispatch-${dispatchId}.attempt-N`);
+  return `dispatch ${dispatchId}: ${parts.join(', ')}; no iterations/iteration-${pad3(iteration)}*.md written`;
+}
+
 function verify(loopType, artifactDir, iteration) {
   const leaf = LEAF_BY_LOOP[loopType];
   const stateLogName = STATE_LOG_BY_LOOP[loopType];
@@ -345,6 +389,8 @@ function verify(loopType, artifactDir, iteration) {
   // 1. Iteration narrative markdown.
   const narrativePath = findIterationNarrative(path.join(artifactDir, 'iterations'), iteration);
   if (!narrativePath) {
+    const failure = dispatchFailure(artifactDir, iteration);
+    if (failure) return { ok: false, reason: REASONS.DISPATCH_FAILED, detail: failure };
     return { ok: false, reason: REASONS.ITERATION_FILE_MISSING, detail: `no iterations/iteration-${pad3(iteration)}*.md under ${artifactDir}` };
   }
   const narrative = fs.readFileSync(narrativePath, 'utf8');
