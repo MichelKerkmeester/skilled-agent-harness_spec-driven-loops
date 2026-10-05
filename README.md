@@ -77,7 +77,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 34 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 ---
 
@@ -1044,6 +1044,17 @@ Other entries in `.pi/extensions/`:
 - **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`
 
 &nbsp;
+#### Hermes Plugin
+
+Hermes keeps shell hooks in your user-level config, so a repository cannot ship them. It ships one project plugin instead, `.hermes/plugins/repo-guards/`, which runs the same shared cores as the other runtimes and maps their answers onto Hermes's own hook events.
+
+- **Before a tool call, able to stop it:** dispatch preflight, the git message gate and the subagent dispatch guard
+- **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory, on-device image reads and the web-page injection screen on `web_extract` results
+- **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
+- **Before the final answer:** the completion-evidence nudge
+- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. See [`.hermes/SYNC.md`](.hermes/SYNC.md)
+
+&nbsp;
 #### Shared Hook Cores
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
@@ -1058,7 +1069,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-34 command entry points across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+39 command entry points: 36 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 #### SPEC KIT
 
@@ -1172,6 +1183,31 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 - Starts from the template for the goal's kind, checks the result and prints the chat slice to set as the session objective
 - Modes: `:auto`, `:confirm`
 
+**`/create:command`** - new slash commands
+
+- Creates or updates a slash command set: the Markdown entry point plus its `:auto` and `:confirm` workflow assets
+- Modes: `:auto`, `:confirm`
+
+**`/create:benchmark`** - benchmark packages
+
+- Authors or updates a benchmark package for a skill or mode, keyed by benchmark family
+- Modes: `:auto`, `:confirm`
+
+**`/create:diff`** - before and after document review
+
+- Builds a self-contained HTML report comparing two versions of a document, unified or side by side
+- Modes: `:auto`, `:confirm`
+
+**`/create:repo-rule`** - repository rules
+
+- Creates, revises or retires a rule under `repo-rules/` and wires it into `REPO RULES.md`
+- Modes: `:auto`, `:confirm`
+
+**`/create:with-human-voice`** - plain-language pass
+
+- Applies the Human Voice Rules to a file or passage, or scores it against them, then re-scans the result
+- Modes: `:auto`, `:confirm`
+
 &nbsp;
 #### DEEP
 
@@ -1249,7 +1285,7 @@ The 19 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 &nbsp;
 #### UTILITY
 
-**Agent Router**
+**`/agent-router`**
 
 - Routes a request to an AI system defined in the repository, found through its `AGENTS.md`
 - The current agent loads that system's skill and adopts its identity in full, then runs the request itself
