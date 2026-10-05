@@ -52,7 +52,7 @@ The release notes and the root README had fallen behind five phases of classifie
 
 ### Phase 57: changelog-and-readme-refresh
 
-The changelog now places the injection screen on Claude Code, Devin, OpenCode, Pi and Hermes, and says why Cursor and Codex cannot carry it. It sends only yes-or-no and choice questions to Pi first and names the injection screen's own switch. Two new items cover the Codex shell hooks that fire again and the live sync that now starts with Cursor, Devin and Hermes sessions. Two upgrade notes ask you to review Codex hooks with `/hooks` and to restart open sessions.
+Another session rewrote the same changelog on main while this phase ran, and its version already placed the injection screen on five runtimes and covered the wider live sync. When this branch was rebased onto it, main's version was kept and this phase added only the four facts main still lacked. Pi answers only yes-or-no and choice questions first. A new item covers the Codex shell hooks that fire again. Two upgrade notes ask you to review Codex hooks with `/hooks` and to restart open sessions.
 
 The README carries the same Pi correction and the `JEV_PROVIDER` and `JEV_TRANSPORT` switches. Its OpenCode plugin list, Pi bridge list and hook-core list match the files on disk again, with a pointer to the per-runtime coverage matrix and the Codex approval step. The off switches now say the Jev switches read the same personal file and that the master switch spares the git message gate. The live-sync section names the runtimes that start the follower and the reconcile switch.
 
@@ -62,7 +62,7 @@ A follow-up pass fixed the drift the audits found next to that work. The README 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/changelog/skilled/v4.0.0.3.md` | Modified | Classifier section, two hook items, two upgrade notes |
+| `.skilled/changelog/skilled/v4.0.0.3.md` | Modified | Pi route sentence, the Codex shell-hooks item, two upgrade notes |
 | `README.md` | Modified | Classifier, plugin, hook-core, off-switch and live-sync lines |
 | `cli-codex/references/hook-contract.md`, phase 56 spec and summary | Modified | Codex approval claim cut back to what was confirmed |
 | `.skilled/hooks/README.md`, `.env.example`, `.hermes/plugins/repo-guards/plugin.yaml` | Modified | Hermes rows, header switch list, manifest description |
@@ -83,6 +83,7 @@ Two read-only workers audited the changelog against phases 52 to 56 and the READ
 
 | Decision | Why |
 |----------|-----|
+| Keep main's changelog on the rebase and add only what it lacked | Another session had already brought it to the shipped state |
 | Edit the v4.0.0.3 entry in place | It has no release tag, and earlier commits amended it the same way |
 | Say only that `/hooks` lists entries needing review | The probe confirmed that an unapproved entry never runs, not that a changed matcher loses its approval |
 | Leave a Hermes matrix column out | Every one of its 17 cells needs its own check, and the rationale already records Hermes |

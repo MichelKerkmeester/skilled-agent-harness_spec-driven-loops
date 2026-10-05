@@ -44,7 +44,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Correct the changelog classifier section and add the hook items and upgrade notes (`.skilled/changelog/skilled/v4.0.0.3.md`)
+- [x] T004 Correct the changelog Pi route and add the Codex shell-hooks item and upgrade notes (`.skilled/changelog/skilled/v4.0.0.3.md`)
 - [x] T005 Correct the README classifier, plugin, hook-core, off-switch and live-sync lines (`README.md`)
 - [x] T006 Cut the Codex approval claim back to what was confirmed (`hook-contract.md`, phase 56 docs)
 - [x] T007 Recheck every added path on disk
