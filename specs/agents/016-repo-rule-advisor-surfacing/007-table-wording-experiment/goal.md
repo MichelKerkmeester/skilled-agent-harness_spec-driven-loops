@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked criteria 1 to 4 met from the decision in 6ffe5e5514"
-    next_safe_action: "Commit the short wording after the 006 window, then tick criterion 5"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "create-goal-retrofit-2026-10-04"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] git log shows no change to the live communication.md, AGENTS.md or REPO RULES.md between the first scored run and the decision
 - [x] Each arm reaches the pre-registered sample size, or decision-record.md ADR-001 waives it
 - [x] results/ reports each arm's table rate with its denominator and Wilson interval, excluding requested tables
-- [ ] The decision follows the pre-registered rule, a null result included, and the chosen wording is committed with a ledger entry after the 006 window is measured
+- [x] The decision follows the pre-registered rule, a null result included, and the chosen wording is committed with a ledger entry after the 006 window is measured, or decision-record.md ADR-002 drops the wait
 <!-- /ANCHOR:completion -->
 
 ---

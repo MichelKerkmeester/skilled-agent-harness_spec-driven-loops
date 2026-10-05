@@ -74,3 +74,67 @@ The pre-registration targets 180 runs per arm per executor. Executor quotas and 
 **How to roll back**: set AC-003 back to Unmet. The decision then waits on further runs.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
+
+---
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Hold the cards back from the live router
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-05 |
+| **Deciders** | Operator, with the assistant proposing |
+
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+Pre-registered rule 1 permits cards (`results/decision.md`). On 2026-10-05 the operator ended further test rounds for the parent packet and asked for the final recommendations to be applied. Without live windows, cards would land together with Gate 6, the 007 wording and the 010 phrases, and nothing would measure them separately.
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+**We chose**: keep the full rule files as the Gate 5 load and do not commit the 13 cards or switch the router.
+
+**How it works**: the generator `build-rule-cards.cjs`, check 11 and the `ruleLinkDir` card credit stay in place, so the cards router can be built and checked again in minutes. Check 11 reports "no cards directory" and passes. REQ-006 removal does not apply, because the pre-registered rule did not reject cards.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Hold the cards** | No unmeasured change to the Gate 5 load. Gate 6 lands without a second change to the reply-rule path | Keeps reading 29% more rule text per run | 7/10 |
+| Adopt the cards now | Follows the permitted decision | The full rule was reopened after the card in 55.9% of runs, and reply-rule misses leaned +6.5 points (-4.3 to +17.2) against cards, the path Gate 6 fixes | 4/10 |
+| Remove the pilot artifacts | Smaller checker | Throws away a working generator the rule did not reject | 3/10 |
+
+**Why this one**: the saving is modest once fallback is counted, and the one signal against cards concerns the reply rules Gate 6 now carries.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Rule bytes per Gate 5 load stay at the full-file size | L | Revisit with `build-rule-cards.cjs` if a later measurement shows rule size costs compliance |
+<!-- /ANCHOR:adr-003-consequences -->
+
+---
+
+<!-- ANCHOR:adr-003-impl -->
+### Implementation
+
+**How to roll back**: run `build-rule-cards.cjs`, point the 13 trigger-table links into `.skilled/repo-rules/cards/` and run `check-repo-rules.cjs`.
+<!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->

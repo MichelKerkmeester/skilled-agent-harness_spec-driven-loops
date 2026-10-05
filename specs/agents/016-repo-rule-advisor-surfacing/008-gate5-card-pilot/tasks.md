@@ -54,8 +54,8 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T009 Analyze per arm and apply the decision rule (`results/decision.md`: rule 1, adopt cards. Primary -4.0 points, -15.5 to +7.6. Gate 5 miss +2.2, -3.3 to +7.9. Bytes 42,064 against 59,620. Committed in `6ffe5e5514`)
-- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests (checker half done 2026-10-05: `ruleLinkDir` credits a rule through its card, and the cards router passes 11/11 with check 10 counting 61 bullets. The router change waits on the 006 and 007 live windows under parent D2)
-- [ ] T011 Run the checker and the phase 003 guard on the final state (open: runs after the T010 adoption)
+- [x] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests (checker half done 2026-10-05: `ruleLinkDir` credits a rule through its card, and the cards router passes 11/11 with check 10 counting 61 bullets. The router change is held, not adopted: `decision-record.md` ADR-003, 2026-10-05)
+- [x] T011 Run the checker and the phase 003 guard on the final state (2026-10-05: `check-repo-rules.cjs` RESULT: PASSED 11/11, check 11 "no cards directory"; `check-rule-copies.js` OK)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,9 +63,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,7 +98,7 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Predecessor handoff criteria met
+- [x] CHK-003 [P1] Predecessor handoff criteria met (007 decided, `007-table-wording-experiment/results/decision.md`)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -106,8 +106,8 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Changed scripts pass their existing lint or syntax checks
-- [ ] CHK-011 [P1] New code follows the surrounding file's patterns
+- [x] CHK-010 [P0] Changed scripts pass their existing lint or syntax checks (`node --check` on `build-rule-cards.cjs` and `check-repo-rules.cjs`; pytest 26 passed)
+- [x] CHK-011 [P1] New code follows the surrounding file's patterns (check 11 and `ruleLinkDir` reuse the checker's existing path resolution)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -117,9 +117,9 @@ contextType: "implementation"
 
 - [x] CHK-020 [P0] Generator deterministic and check 11 catches drift
 - [x] CHK-021 [P0] Pre-registration committed before the first scored run (`3990bc9fa5` at 23:58:14, first transcript 23:58:29)
-- [ ] CHK-022 [P0] Each arm at sample size (open: deviation 3 cut the schedule, so the arms hold 162 and 156 runs against 180 per arm per executor)
+- [x] CHK-022 [P0] Each arm at sample size (waived, `decision-record.md` ADR-002: deviation 3 cut the schedule, so the arms hold 162 and 156 runs against 180 per arm per executor)
 - [x] CHK-023 [P1] Arm C size condition recorded
-- [ ] CHK-024 [P1] No unused card artifacts remain
+- [x] CHK-024 [P1] No unused card artifacts remain (no `cards/` directory is committed; the generator and check 11 stay by ADR-003)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -127,8 +127,8 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Consumer inventory in `plan.md` affected surfaces is complete
-- [ ] CHK-FIX-002 [P1] Evidence is pinned to a commit SHA, not a moving branch range
+- [x] CHK-FIX-001 [P0] Consumer inventory in `plan.md` affected surfaces is complete (checks 2 and 10 accept card links, 793e65ece5)
+- [x] CHK-FIX-002 [P1] Evidence is pinned to a commit SHA, not a moving branch range (pre-registration 3990bc9fa5, decision 6ffe5e5514, checker 793e65ece5)
 <!-- /ANCHOR:fix-completeness -->
 
 ---

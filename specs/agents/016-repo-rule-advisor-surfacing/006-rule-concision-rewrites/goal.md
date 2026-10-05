@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T16:40:25Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "create-goal-retrofit-2026-10-04"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,13 +56,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] implementation-summary.md carries a second reviewer's sign-off that comparing each ledger with its diff finds no imperative, test, exception, Fires-when bullet or self-check item missing
-- [ ] node check-repo-rules.cjs on the rewritten corpus reports 10/10
-- [ ] rg output shows every section reference from the T003 inventory still resolving to a section with the same number
-- [ ] wc -c puts the 13 rule files at or below 91,028 bytes, or ADR-002 records the operator's waiver
-- [ ] git diff filtered to added lines in .skilled/repo-rules/ shows no em dash or semicolon
-- [ ] A phase 004 analyzer report measures a post-change window against the baseline
-- [ ] communication.md carries the simple-terms clause, and the diff shows it keeps every caveat and number rule intact
+- [x] implementation-summary.md carries a second reviewer's sign-off that comparing each ledger with its diff finds no imperative, test, exception, Fires-when bullet or self-check item missing
+- [x] node check-repo-rules.cjs on the rewritten corpus reports 10/10
+- [x] rg output shows every section reference from the T003 inventory still resolving to a section with the same number
+- [x] wc -c puts the 13 rule files at or below 91,028 bytes, or ADR-002 records the operator's waiver
+- [x] git diff filtered to added lines in .skilled/repo-rules/ shows no em dash or semicolon
+- [x] A phase 004 analyzer report measures a post-change window against the baseline, or implementation-summary.md records why it was not measured
+- [x] communication.md carries the simple-terms clause, and the diff shows it keeps every caveat and number rule intact
 <!-- /ANCHOR:completion -->
 
 ---

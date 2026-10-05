@@ -20,9 +20,11 @@ trigger_phrases:
   - "interrogation to get the truth"
   - "soft refusal"
   - "warning as filler"
+  - "unnecessary disclaimer"
+  - "refused the request"
 importance_tier: important
 contextType: reference
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 
 # Rule: Answer the actual request

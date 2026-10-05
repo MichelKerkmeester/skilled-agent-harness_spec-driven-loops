@@ -55,7 +55,7 @@ contextType: "implementation"
 
 - [x] T009 Score the arms and apply the decision rule (`results/`)
 - [x] T010 Confirm no prompt set and no adopted diff contains rule-reading instructions (the only rule-like text in `prompts.json` and `prompts-write.json` is the Gate 3 pre-answer; the adopted diff edits `AGENTS.md`, not a prompt)
-- [ ] T011 Adopt the winner live after the 006 and 007 windows are measured, then run `check-rule-copies.js` and `check-repo-rules.cjs`
+- [x] T011 Adopt the winner live after the 006 and 007 windows are measured, then run `check-rule-copies.js` and `check-repo-rules.cjs` (Gate 6 adopted 2026-10-05 without the windows, `decision-record.md` ADR-001; two sentences cut to keep Devin's prefix, `results/adoption-ledger.md`; `check-rule-copies.js` OK with 21 anchors, `check-repo-rules.cjs` RESULT: PASSED 11/11)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,9 +63,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,7 +98,7 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Predecessor handoff criteria met
+- [x] CHK-003 [P1] Predecessor handoff criteria met (008 decided by its pre-registered rule, `008-gate5-card-pilot/results/decision.md`)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -106,8 +106,8 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Any changed script passes its existing tests
-- [ ] CHK-011 [P1] New code follows the surrounding file's patterns
+- [x] CHK-010 [P0] Any changed script passes its existing tests (`test_rule_experiment.py` and siblings 26 passed; `check-rule-copies.test.sh` all cases passed)
+- [x] CHK-011 [P1] New code follows the surrounding file's patterns (the Gate 6 anchor uses the existing `section` anchor shape)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -115,11 +115,11 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] No prompt set or adopted diff adds rule-reading instructions
-- [ ] CHK-021 [P0] Every rate carries its denominator and Wilson interval
-- [ ] CHK-022 [P0] Pre-registration committed before the first scored arm run
-- [ ] CHK-023 [P0] Every missed run classed by cause
-- [ ] CHK-024 [P1] Hook arm run only past the stated threshold
+- [x] CHK-020 [P0] No prompt set or adopted diff adds rule-reading instructions (T010; the adopted diff edits `AGENTS.md` only)
+- [x] CHK-021 [P0] Every rate carries its denominator and Wilson interval (`results/final-scores.txt`, `final-scores-2.txt`, `control-arm-miss-rates.txt`)
+- [x] CHK-022 [P0] Pre-registration committed before the first scored arm run (5750410dfd at 09:41:29, first transcript created 09:41:53; d321efd706 at 11:01:05, first replication transcript 11:03:44)
+- [x] CHK-023 [P0] Every missed run classed by cause (`results/control-arm-miss-rates.txt`: 5 Gate 5 and 197 reply-rule misses, classes sum to both)
+- [x] CHK-024 [P1] Hook arm run only past the stated threshold (no hook arm ran: Gate 6 misses 21.1%, under 30%)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -127,8 +127,8 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Consumer inventory in `plan.md` affected surfaces is complete
-- [ ] CHK-FIX-002 [P1] Evidence is pinned to a commit SHA, not a moving branch range
+- [x] CHK-FIX-001 [P0] Consumer inventory in `plan.md` affected surfaces is complete (`check-rule-copies.js` row added at adoption)
+- [x] CHK-FIX-002 [P1] Evidence is pinned to a commit SHA, not a moving branch range (pre-registrations 5750410dfd and d321efd706, decisions d321efd706 and d716bddd43)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -136,7 +136,7 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No transcript text, secret or credential in any committed artifact
+- [x] CHK-030 [P0] No transcript text, secret or credential in any committed artifact (run records hold paths, exit codes and ids; scored rows hold booleans and ids)
 <!-- /ANCHOR:security -->
 
 ---

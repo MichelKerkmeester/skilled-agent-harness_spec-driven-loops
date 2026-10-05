@@ -20,9 +20,10 @@ trigger_phrases:
   - "no early stop"
   - "natural checkpoint"
   - "good stopping point"
+  - "unrelated change"
 importance_tier: important
 contextType: reference
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 # Rule: Scope discipline

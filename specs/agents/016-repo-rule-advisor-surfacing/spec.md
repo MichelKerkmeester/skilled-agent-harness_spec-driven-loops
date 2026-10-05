@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-04 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -108,11 +108,11 @@ Decide, from repository evidence, what should surface repo rules, how to write t
 | 3 | `003-agents-md-delivery-prefix/` | Move every hard blocker and the §8 load line inside Devin's 16,384-byte cut, with a CI guard | Complete |
 | 4 | `004-rule-delivery-instrumentation/` | Offline analyzer for Gate 5 and §8 miss rates and rule-version compliance, plus a committed baseline | Complete |
 | 5 | `005-trigger-coverage-check/` | Tenth repo-rule check: router rows cover each rule's Fires-when bullets | Complete |
-| 6 | `006-rule-concision-rewrites/` | Apparatus-only cuts to all 13 rules with keep and drop ledgers | In Progress |
-| 7 | `007-table-wording-experiment/` | Pre-registered test of short versus current no-table wording in isolated test environments | In Progress (decided, awaiting adoption) |
-| 8 | `008-gate5-card-pilot/` | Card generator and a two-arm pilot of full files against cards at Gate 5, resident cards dropped | In Progress (decided, awaiting adoption) |
-| 9 | `009-rule-delivery-debugging/` | Why each executor skips a mandated rule load, and a fix on the delivery surface | Planned |
-| 10 | `010-rule-phrase-find-surface/` | Rule trigger phrases as the ripgrep find surface: wording, guidance and plain-noun phrases | Planned |
+| 6 | `006-rule-concision-rewrites/` | Apparatus-only cuts to all 13 rules with keep and drop ledgers | Complete |
+| 7 | `007-table-wording-experiment/` | Pre-registered test of short versus current no-table wording in isolated test environments | Complete |
+| 8 | `008-gate5-card-pilot/` | Card generator and a two-arm pilot of full files against cards at Gate 5, resident cards dropped | Complete (cards held) |
+| 9 | `009-rule-delivery-debugging/` | Why each executor skips a mandated rule load, and a fix on the delivery surface | Complete |
+| 10 | `010-rule-phrase-find-surface/` | Rule trigger phrases as the ripgrep find surface: wording, guidance and plain-noun phrases | Complete |
 
 ### Phase Transition Rules
 

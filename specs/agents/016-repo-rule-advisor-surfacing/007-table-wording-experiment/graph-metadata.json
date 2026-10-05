@@ -39,7 +39,7 @@
       "completion"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,10 +49,11 @@
       "implementation-summary.md",
       "experiment/arms.json",
       "experiment/prompts.json",
-      "results/final-scores.txt",
       ".skilled/repo-rules/communication.md",
+      "results/final-scores.txt",
       "results/deviations.md",
-      "results/decision.md"
+      "results/decision.md",
+      "results/adoption-ledger.md"
     ],
     "entities": [
       {
@@ -104,15 +105,15 @@
         "source": "derived"
       },
       {
-        "name": "final-scores.txt",
-        "kind": "file",
-        "path": "results/final-scores.txt",
-        "source": "derived"
-      },
-      {
         "name": "communication.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-scores.txt",
+        "kind": "file",
+        "path": "results/final-scores.txt",
         "source": "derived"
       },
       {
@@ -128,13 +129,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "adoption-ledger.md",
+        "kind": "doc",
+        "path": "results/adoption-ledger.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -159,6 +160,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Long",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Long replies carry a table 17.4% of the time before a `communication.md` read, 20.3% after it and 11.6% in sessions that never read it (`002-rule-concision-and-loading/prep/evidence-pack.md` §3)",
     "created_at": "2026-10-04T14:40:00Z",
-    "last_save_at": "2026-10-05T07:33:02.338Z",
+    "last_save_at": "2026-10-05T11:03:32.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24e874d6b5e02e285030a5f5e451c39584a4f9a633e4d8fed04e751b991b5a50",
+    "source_fingerprint": "sha256:9e6f2c8abc830efabd028b648d5651751c5a938ca6315f977e5e1ed28c591ec1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6dfa7f04ec3e3e6b2724fa947e8bb507d2388842b77049ad599f128685758cc",
+      "spec.md": "1e96ef3be411a10b84e5eca6da4aef53388f14c3f8641d1b4e774c0510999a6c",
       "plan.md": "94d680067ec20ba0b9821f21a6478a7a4115de3434216b9c70ab6e388ce3f4bd",
-      "tasks.md": "c9b6092b228a72f542c2d779196a19c320bab540e031fb2f6691d03866931364",
-      "decision-record.md": "f5e4a471daa72abdf4903c323447d6308dd25b6242408baca1c2b3133b3318c5",
-      "implementation-summary.md": "5cbaba30dc31bf112bc7fc8f5309eb6494905e7d7ca71c55664292ea3c31a4af"
+      "tasks.md": "d68341a899a7820a7242c6b7afa508d73bc5817ecff833e0aec8a261b8e2fc8c",
+      "decision-record.md": "ab2c921561a7cd54232e7b834aeeef0259b30e1d52626a4aac3679f031422d57",
+      "implementation-summary.md": "8614524b0f5961ec82cc6c7f3e264c439f5d9ac41c8d7b8f29c970591b32b947"
     },
     "last_active_at": null
   }

@@ -76,6 +76,7 @@ Prompt sets with no mention of rules go to each arm's environment. Transcripts f
 | `REPO RULES.md` | The router Gate 5 opens | Unchanged until adoption | `check-repo-rules.cjs` after adoption |
 | `rule-experiment.py` | Builds arms and scores runs | Changed only if an arm needs it | pytest |
 | Phase 004 analyzer | Splits results on rule blob versions | Not a consumer of arms, measures the live window | Analyzer report |
+| `check-rule-copies.js` | Guards the clauses that must end inside Devin's 16,384-byte prefix | Anchor swapped at adoption: the removed bullet's line out, `#### GATE 6:` in | `check-rule-copies.test.sh` |
 <!-- /ANCHOR:affected-surfaces -->
 
 

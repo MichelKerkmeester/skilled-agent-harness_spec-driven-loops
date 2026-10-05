@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked criteria 1, 2, 5 and 6 met from the decision in 6ffe5e5514"
-    next_safe_action: "Land cards after the 006 window, once checks 2 and 10 accept card links (D6)"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "create-goal-retrofit-2026-10-04"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] pytest shows the card generator is deterministic, and a drift fixture with a rule edited without regenerating its card makes check 11 fail naming the card
 - [x] git log shows preregistration.md committed before the first scored run
 - [x] results/ shows each arm's long-reply count meeting the pre-registered size, or decision-record.md ADR-002 waives it
-- [ ] results/ and implementation-summary.md record the decision-rule outcome with the five prohibition checks, the fallback rate, delivered rule bytes per window and the Gate 5 and §8 miss rates per arm, each with denominator and interval
+- [x] results/ and implementation-summary.md record the decision-rule outcome with the five prohibition checks, the fallback rate, delivered rule bytes per window and the Gate 5 and §8 miss rates per arm, each with denominator and interval
 - [x] experiment/arms.json records arm C dropped because the post-003 AGENTS.md plus the five reply-rule cards exceeds 32,768 bytes
 - [x] git status and a file listing show no generator, cards or check 11 if arm cards is rejected
 <!-- /ANCHOR:completion -->
