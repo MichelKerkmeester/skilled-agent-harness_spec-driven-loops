@@ -64,7 +64,7 @@ Stress failures now surface on the push that causes them.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-While checking for an existing home, it turned out no workflow runs the advisor's full unit suite either; CI runs a hand-picked set of advisor test files. That gap is recorded rather than folded in.
+While checking for an existing home, it turned out no workflow runs the advisor's full unit suite either; CI runs a hand-picked set of advisor test files. That gap is recorded rather than folded in. The first CI run failed one file: the plugin imports the advisor runtime's built `dist`, which a local run already had and a fresh checkout did not. The workflow now builds the runtime after installing it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,6 +88,7 @@ While checking for an existing home, it turned out no workflow runs the advisor'
 | Workflow command locally | 21 of 21 files, 64 of 64 tests |
 | `check-gate-inputs.sh` | PASSED, 0 failures |
 | Workflows README | `validate_document.py` 0 issues |
+| First CI run | Failed on the missing advisor `dist`; build step added |
 <!-- /ANCHOR:verification -->
 
 ---

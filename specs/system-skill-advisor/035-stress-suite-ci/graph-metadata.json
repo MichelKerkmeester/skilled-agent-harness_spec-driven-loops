@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The stress suite is gated on `SPECKITRUNSTRESS` and uses its own Vitest config",
     "created_at": "2026-10-05T15:49:38Z",
-    "last_save_at": "2026-10-05T15:49:51.835Z",
+    "last_save_at": "2026-10-05T16:02:36.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d5dd479852d695195032271e837c758224b1b3f0b17a6ecd96f0704c7dcc5e5",
+    "source_fingerprint": "sha256:9f55fbfad98218c71098f50f717f086ea5d19deda92ce48823040b7c5885a418",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11bfe73ea78dab974d463249ae6fb8d2e088c87c3910f9e5f16ad3bf7708b0e8",
-      "plan.md": "7a0a46f0cd8b5d7e3c5e96d77355004d7d823f93da6b5e6c895c5a43ee4078ee",
+      "plan.md": "85c74e89854ec5e7f22a2e3bb0cf3ba0b4c3f3dd3f758fc5293a8498c0c38307",
       "tasks.md": "bcb1405f17e403f6c6a9cc4fab9bc71be7e2338c6716901b566df167bb848cfb",
-      "implementation-summary.md": "7ee8015491aa6cde60c6fdb9e62ce5c53141b1689422b7da7bbcf3a2932db240"
+      "implementation-summary.md": "04fdf38d50cd9a36da28556c26e092355ee621a3f720ac884d49a406b59db250"
     },
     "last_active_at": null
   }

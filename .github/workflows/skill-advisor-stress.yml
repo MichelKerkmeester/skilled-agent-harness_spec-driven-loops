@@ -49,16 +49,17 @@ jobs:
         with:
           node-version: '22'
 
-      # The suite loads the spec-kit test setup file and the built shared package,
-      # and the plugin stress test imports the OpenCode plugin, whose dependencies
-      # live in the .skilled package.
-      - name: Install the advisor runtime and what its stress suite loads
+      # The suite loads the spec-kit test setup file and the built shared package.
+      # The plugin stress test imports the OpenCode plugin, whose dependencies live
+      # in the .skilled package and which imports the advisor runtime's built dist.
+      - name: Install and build the advisor runtime and what its stress suite loads
         run: |
           set -euo pipefail
           npm --prefix .skilled ci
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 
       - name: Run the stress suite
         working-directory: .opencode/skills/system-skill-advisor/runtime
