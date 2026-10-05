@@ -91,6 +91,7 @@
         "assets/fixtures/over-budget-description.md",
         "assets/fixtures/under-budget-trim-lost-tokens.md",
         "assets/frontmatter-templates.md",
+        "assets/frontmatter-values.json",
         "references/README.md",
         "references/frontmatter-versioning.md"
       ],
