@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-10-04T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the shared list, the warn rule and the checker imports, cleaned 103 outlier docs"
-    next_safe_action: "Close AC-006 in the operator-approved commit"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/shared/frontmatter-values.json"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -136,7 +136,7 @@ Nothing is committed (root decision D4).
 2. **Archived packets are not swept.** `z_archive` folders still hold 25 distinct off-list values. The census and the sweep leave archives out by design, and the rule never runs on an archived packet unless someone validates it directly.
 3. **Repairs refreshed other derived fields.** Running `repair-derived.cjs` on the 58 packets also refreshed stale derived fields in their `graph-metadata.json`, such as old `.opencode` paths. Those changes come from the repair tool, not from the mapping.
 4. **Two parent packets were already failing.** `026-…/001-release-readiness/002-release-readiness-deep-review-audits` and `026-…/004-followup-post-program/003-post-program-quality-pass` fail `SPEC_DOC_INTEGRITY` on links to child `checklist.md` files that an earlier commit retired. They fail the same way at HEAD. `cleanup.py` first recorded them as passing because it read the last `RESULT:` line, which for a phase parent is its final child's. The script now reads the first line, and the D1 row above replaces that measurement.
-5. **Each edited doc's own version waits for the commit.** Phase 007 wrote the skill changelogs and bumped each skill's `SKILL.md` version. The fourth digit of an edited doc's version, such as `frontmatter-templates.md`, counts the commits that changed it, so `frontmatter-version.mjs apply` can only raise it in the commit that carries this change.
+5. **Each edited doc's own version was set at the commit.** Closed on 2026-10-04 by `52de4c67f7` and `5b64ec8213` on main. Phase 007 wrote the skill changelogs and bumped each skill's `SKILL.md` version. The fourth digit of an edited doc's version, such as `frontmatter-templates.md`, counts the commits that changed it, so `frontmatter-version.mjs apply` can only raise it in the commit that carries this change.
 <!-- /ANCHOR:limitations -->
 
 ---

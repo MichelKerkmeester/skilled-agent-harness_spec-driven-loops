@@ -1,0 +1,14 @@
+
+## Row 103 (ambiguous)
+- Doc: `specs/sk-prompt/007-sk-prompt-parent/review/deep-review-strategy.md:336`
+- Citation: `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108`
+- Candidates: `.pi/extensions/pi-cache-optimizer/benchmark/reports/2026-08-17--manual-testing-playbook--cache-behavior/skill-benchmark-report.json`, `.pi/extensions/pi-fast-mode-w-subagent-support/benchmark/reports/2026-08-17--manual-testing-playbook--fast-mode-usage/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/reports/2026-08-08--manual-testing-playbook--claude/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/cli-codex/benchmark/reports/2026-08-08--manual-testing-playbook--agent-routing-2/skill-benchmark-report.json`, `.skilled/skills/cli-external-orchestration/cli-codex/benchmark/reports/2026-08-08--manual-testing-playbook--agent-routing-3/skill-benchmark-report.json` and 279 more
+
+```text
+- What was tried: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
+
+### Overlay `playbook_capability`: DEFERRED to maintainability/traceability dimensions; this iteration only checked README and agent command-path correctness. -- BLOCKED (iteration 1, 1 attempts)
+```
+

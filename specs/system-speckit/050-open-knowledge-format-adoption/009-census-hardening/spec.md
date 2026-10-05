@@ -22,7 +22,7 @@ contextType: "planning"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-04 |
 | **Branch** | `worktrees/086-okf-adoption-research` |
 | **Parent Spec** | ../spec.md |
@@ -106,7 +106,7 @@ Each class the census prints carries a measured accuracy with its interval, and 
 | REQ-001 | `measurement-protocol.md` names every sample size, the seed, the ground-truth rule per class and every pass threshold, and its timestamp precedes every result file. |
 | REQ-002 | A citation whose path contains spaces resolves when the full path is a tracked file, a test covers it, and the census delta for that case is reported. |
 | REQ-003 | Each class gets a stratified random sample at the protocol's size. Ground truth comes from a factual check wherever one exists: file presence, git rename history or line count. |
-| REQ-004 | Cases with no factual answer are labeled by two models from different families. Their agreement is reported as Cohen's kappa, and the operator labels the rows they dispute most. |
+| REQ-004 | Cases with no factual answer are labeled by two models from different families. Their agreement is reported as Cohen's kappa, and the operator labels the rows they dispute most, or a model panel settles them as ADR-001 records. |
 | REQ-005 | Accuracy per class is reported with a Wilson 95% interval and compared with the protocol's threshold. |
 
 ### P1 - Required (complete OR user-approved deferral)

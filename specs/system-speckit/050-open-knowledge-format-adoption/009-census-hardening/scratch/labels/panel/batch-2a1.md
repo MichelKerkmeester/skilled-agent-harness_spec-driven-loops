@@ -1,0 +1,13 @@
+
+## Row 58 (ambiguous)
+- Doc: `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations-modes/iteration-033.md:636`
+- Citation: `n.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record.md:117`
+- Candidates: `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/decision-record.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/030-missing-decision-sections/decision-record.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/045-valid-sections/decision-record.md`, `.skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/decision-record.md`, `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-creation/expected-3phase-named/decision-record.md`, `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/post-save-render/test-packet/decision-record.md`, `.skilled/skills/system-spec-kit/templates/examples/level-3+/decision-record.md`, `.skilled/skills/system-spec-kit/templates/examples/level-3/decision-record.md` and 679 more
+
+```text
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/z_archive/resource-map.md:897:| .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization/description.json | Cited | OK | phase child; archived |
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/z_archive/resource-map.md:898:| .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization/graph-metadata.json | Cited | OK | phase child; archived |
+…os error 2)\\\\n.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:4:// Tests for the coverage graph database projection contract.\\\\n.opencode/skills/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts:196:    it('namespace matches sessionId format', () => {\\\\n.opencode/specs/skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record.md:117:**How to roll back**: Stop using the optimizer outputs, refuse all promotion output, keep canonical configs unchanged, and preserve advisory reports for audit/debu…
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/resource-map.md:358:| .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization/checklist.md
+```
+

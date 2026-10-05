@@ -1,0 +1,3 @@
+{"row": 68, "label": "not_intended", "path": ""}
+
+The citation is to a skill named `orca-linear`, and the doc text consistently discusses that specific skill (its CLI command, install instructions, hybrid-stub note). All visible candidates are unrelated `agent-*` skills (agent-ai-council, agent-code, agent-context, etc.), none of which is an orca-linear skill file, so no candidate matches what the author meant.

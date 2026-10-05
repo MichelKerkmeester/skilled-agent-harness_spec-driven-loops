@@ -128,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Behavior",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Behavior that ships without its contract text, catalog entry and changelog leaves two skills documenting different rules, which is the drift this program set out to remove",
     "created_at": "2026-10-04T08:04:54Z",
-    "last_save_at": "2026-10-04T12:06:09.105Z",
+    "last_save_at": "2026-10-05T04:39:30.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f77549634a4a52c443e6f02d16d63ffc191553163e73318166f6789045bc7a5a",
+    "source_fingerprint": "sha256:27635c4dedaacb3b58a7148f9d93462bb6cd5eae06b241ee46bbb750bc22d1ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecb825fa9c112d5e2dea7b33f6cabc3147c1e3e486b1e678dbdb52de2c5a5131",
+      "spec.md": "f5929f447864282fffb6be201fa92ff8c17623f41c8baa5abaf203d708da0985",
       "plan.md": "14cc6df16c12e99bcd9d25339d49e2f633891c7de87eb6a49790108b58eb4663",
       "tasks.md": "e7cc7d17813727c2bb457b1193e9d493bcc035b74a013aec2fd07e02e2828850",
-      "implementation-summary.md": "42f86a78c2a197122abec7c40cb5d8369dc7526408490b89574a3142b31f3e73"
+      "implementation-summary.md": "d00be0d62b50b91e3bc5cec77786f67a70d7d154dcb193b479e25c48a45c1b63"
     },
     "last_active_at": null
   }

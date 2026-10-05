@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/050-open-knowledge-format-adoption/003-context-type-unification"
     last_updated_at: "2026-10-04T08:04:51Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "All seven criteria met"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/050-open-knowledge-format-adoption/003-context-type-unification
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the `FRONTMATTER_VALUES` rule, When it meets a value outside the list, Then it warns and the packet still passes | Registered at warn severity; a planted `architecture` returns `warn`, and strict passes on warnings because `passed` counts errors only (implementation-summary.md:121) | Met | - |
 | AC-004 | REQ-004 | Given the outlier docs, When they are cleaned, Then the distinct spec-doc count falls from 33 to the canonical four plus aliases still present, with before and after counts recorded | 33 distinct values before, 12 after, all canonical or listed aliases (implementation-summary.md:122) | Met | - |
 | AC-005 | REQ-005 | Given the advisor suite, When it runs before and after, Then its result is identical | Advisor suite 1082 to 1084 passed, the delta being the two new tests; `--coverage` 101 docs and 0 violations both times (implementation-summary.md:117) | Met | - |
-| AC-006 | REQ-006 | Given an edited skill doc, When the phase closes, Then it has a bumped four-part version and a changelog entry | Changelog entries written and skill versions bumped in phase 007. Each doc's fourth version digit counts its commits, so it comes from `frontmatter-version.mjs apply` in the commit, and root D4 holds the commit (implementation-summary.md:139) | Unmet | - |
+| AC-006 | REQ-006 | Given an edited skill doc, When the phase closes, Then it has a bumped four-part version and a changelog entry | Changelog entries written and skill versions bumped in phase 007. Each doc's fourth version digit counts its commits, so it comes from `frontmatter-version.mjs apply` in the commit. Pushed to main 2026-10-04: `cca919c5a4` maps the spec-doc values and states 33 before and 12 after; `52de4c67f7` and `5b64ec8213` set each edited doc's derived version; `frontmatter-version.mjs verify` on the 23 versioned docs this program edited: ok=23 | Met | - |
 | AC-007 | REQ-007 | Given the warning is about to ship, When the sweep runs over every packet and skill doc, Then it prints zero warnings, and a doc from each generator passes | Sweep 102 warnings before, 0 after; 96 generator templates and assets, 0 warnings (implementation-summary.md:123) | Met | - |
 
 ### Status values
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Six of seven rows are met. AC-006 waits for the commit, which root decision D4 leaves to the operator. The changelogs and skill versions exist, and each edited doc's own version is derived in that commit.
+All seven rows are met. AC-006 closed when the operator-approved commits reached main on 2026-10-04 and each edited doc took its derived version.
 <!-- /ANCHOR:closure -->
