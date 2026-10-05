@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0633d56532ac6bd77b81f900ab84904899079135d519241ac6db20c254258641",
+  "manifestHash": "c75f03e8cb49376a1ae04aa6243a22faadb7fc985cfdddaeef7b9588aa0d4a25",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6956,6 +6956,18 @@
     "049 supersession": [
       "049 supersession"
     ],
+    "050 review remediation": [
+      "050 review remediation"
+    ],
+    "050 review remediation plan": [
+      "050 review remediation plan"
+    ],
+    "050 review remediation summary": [
+      "050 review remediation summary"
+    ],
+    "050 review remediation tasks": [
+      "050 review remediation tasks"
+    ],
     "051 closeout reconciliation": [
       "051 closeout reconciliation"
     ],
@@ -12363,6 +12375,9 @@
     "background sleeptime agent memory": [
       "background sleeptime agent memory"
     ],
+    "backgrounded reconcile drift marker": [
+      "backgrounded reconcile drift marker"
+    ],
     "backlog age gauge approach": [
       "backlog age gauge approach"
     ],
@@ -15235,8 +15250,17 @@
     "census hardening summary": [
       "census hardening summary"
     ],
+    "census line feed path": [
+      "census line feed path"
+    ],
     "census measurement protocol": [
       "census measurement protocol"
+    ],
+    "census newline fix": [
+      "census newline fix"
+    ],
+    "census newline pathname": [
+      "census newline pathname"
     ],
     "census path and config drift repair": [
       "census path and config drift repair"
@@ -27586,6 +27610,18 @@
     "cursor providers and models catalog": [
       "cursor providers-and-models catalog"
     ],
+    "cursor reconcile hook test exemption": [
+      "cursor reconcile hook test exemption"
+    ],
+    "cursor reconcile test exemption plan": [
+      "cursor reconcile test exemption plan"
+    ],
+    "cursor reconcile test exemption summary": [
+      "cursor reconcile test exemption summary"
+    ],
+    "cursor reconcile test exemption tasks": [
+      "cursor reconcile test exemption tasks"
+    ],
     "cursor runtime adapter seam": [
       "cursor runtime adapter seam"
     ],
@@ -27663,6 +27699,12 @@
     ],
     "cut out the logo from this image": [
       "cut out the logo from this image"
+    ],
+    "cutoff calendar date check": [
+      "cutoff calendar date check"
+    ],
+    "cutoff date fix": [
+      "cutoff date fix"
     ],
     "cutover certificate implementation plan": [
       "cutover certificate implementation plan"
@@ -40091,6 +40133,9 @@
     "factory voyage drift warning": [
       "factory voyage drift warning"
     ],
+    "fail before pass after": [
+      "fail before pass after"
+    ],
     "fail cleared re review pass": [
       "FAIL cleared re-review PASS"
     ],
@@ -43240,6 +43285,9 @@
     "frontmatter run time parser finding": [
       "frontmatter run-time parser finding"
     ],
+    "frontmatter scalar comment rule": [
+      "frontmatter scalar comment rule"
+    ],
     "frontmatter shared versus owned": [
       "frontmatter shared versus owned"
     ],
@@ -43269,6 +43317,12 @@
     ],
     "frontmatter value aliases": [
       "frontmatter value aliases"
+    ],
+    "frontmatter value comment fix": [
+      "frontmatter value comment fix"
+    ],
+    "frontmatter value comment parsing": [
+      "frontmatter value comment parsing"
     ],
     "frontmatter value list owner": [
       "frontmatter value list owner"
@@ -47648,6 +47702,9 @@
     ],
     "hook adapter implementation summary": [
       "hook adapter implementation summary"
+    ],
+    "hook adapter path parity cursor": [
+      "hook adapter path parity cursor"
     ],
     "hook adapter port": [
       "hook adapter port"
@@ -77534,6 +77591,9 @@
     "review executor behavior scenarios": [
       "review executor behavior scenarios"
     ],
+    "review finding fixes": [
+      "review finding fixes"
+    ],
     "review finding residue": [
       "review finding residue"
     ],
@@ -89663,6 +89723,9 @@
     ],
     "source tag cutoff": [
       "source tag cutoff"
+    ],
+    "source tag cutoff date": [
+      "source tag cutoff date"
     ],
     "source tag hardening": [
       "source tag hardening"

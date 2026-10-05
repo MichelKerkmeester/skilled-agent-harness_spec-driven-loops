@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6765,
-    "ok": 13399,
+    "ok": 13407,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23733,
+  "documentsScanned": 23741,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0633d56532ac6bd77b81f900ab84904899079135d519241ac6db20c254258641",
+  "manifestHash": "c75f03e8cb49376a1ae04aa6243a22faadb7fc985cfdddaeef7b9588aa0d4a25",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33812,
+      "ok": 33833,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -71247,6 +71247,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
       "reason": "excluded directory"
     },
@@ -71288,6 +71292,10 @@
     },
     {
       "path": "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/012-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

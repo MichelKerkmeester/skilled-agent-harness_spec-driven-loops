@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/030-cursor-reconcile-test-exemption",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cursor reconcile hook test exemption",
+      "hook adapter path parity cursor",
+      "backgrounded reconcile drift marker",
+      "cursor reconcile test exemption plan",
+      "cursor reconcile test exemption tasks",
+      "cursor reconcile test exemption summary"
+    ],
+    "key_topics": [
+      "cursor",
+      "reconcile",
+      "hook",
+      "test",
+      "exemption",
+      "adapter",
+      "path",
+      "parity",
+      "backgrounded",
+      "drift",
+      "marker",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".cursor/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Watch Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reconcile command runs in the background with `&`, and no host reads its output, so it carries no fallback branch on purpose",
+    "created_at": "2026-10-05T17:00:33Z",
+    "last_save_at": "2026-10-05T17:00:43.818Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c27e8fff9ae4bc8b53ab544e481e0d2daddf481ff7dbdbe30425a9114960221b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "582acc95663dc8cfc233cd2c2b6e616377713c8cdfdbf7e4b8600137fe74ff41",
+      "plan.md": "42095c57eaed9f7a00decf92412b4ebbe3837d80919260e93e86c66f07f348a3",
+      "tasks.md": "247030349557393762f058ca8bedc339fc86cf9bb3cb40887bd5401f697323b2",
+      "implementation-summary.md": "52f85310ca67e1444584a96da4286e92bbc24890059547b5f99fe7837190e461"
+    },
+    "last_active_at": null
+  }
+}
