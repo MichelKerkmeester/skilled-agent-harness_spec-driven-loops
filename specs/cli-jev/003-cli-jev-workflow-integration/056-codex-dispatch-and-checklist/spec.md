@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-10-05 |
 | **Branch** | `worktrees/085-jev-feature-improvement-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 56 of 56 |
+| **Phase** | 56 of 57 |
 | **Predecessor** | 055-alignment-and-hook-parity |
-| **Successor** | None |
+| **Successor** | 057-changelog-and-readme-refresh |
 | **Handoff Criteria** | Codex task dispatch carries a probed verdict, every Codex shell hook fires under 0.160, and the JavaScript checklist matches its style guide |
 <!-- /ANCHOR:metadata -->
 
@@ -173,7 +173,7 @@ Codex runs every repo shell hook again, its task-dispatch cell states what a pro
 - An unknown tool name, including `apply_patch` for the dispatch adapters, approves with no output.
 
 ### State Transitions
-- A hook entry whose matcher changed stays skipped by Codex until the operator approves it again.
+- A hook entry with no approval is skipped by Codex. A changed matcher likely needs approving again, since each approval is stored as a hash.
 <!-- /ANCHOR:edge-cases -->
 
 ---
