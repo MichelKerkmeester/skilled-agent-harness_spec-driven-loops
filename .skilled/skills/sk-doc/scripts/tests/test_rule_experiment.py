@@ -127,3 +127,24 @@ def test_quota_failures_are_not_recorded_and_stop_the_run(tmp_path: Path, monkey
 
     assert out.read_text() == ""
     assert len(calls) < 20
+
+
+def test_opencode_stream_scores_router_read_before_the_edit(tmp_path: Path) -> None:
+    run_dir = str(tmp_path / "run")
+
+    def tool(name, **arguments):
+        return json.dumps({"type": "tool_use", "part": {"tool": name, "state": {"input": arguments}}})
+
+    stream = tmp_path / "run.opencode.jsonl"
+    stream.write_text("\n".join([
+        tool("read", filePath=f"{run_dir}/REPO RULES.md"),
+        tool("read", filePath=f"{run_dir}/.skilled/repo-rules/communication.md"),
+        tool("edit", filePath=f"{run_dir}/src/orbit/cache.py"),
+        json.dumps({"type": "text", "part": {"text": TABLE_REPLY}}),
+    ]) + "\n")
+    record = {"exit": 0, "transcript": str(stream), "run_dir": run_dir, "executor": "deepseek-oc"}
+
+    scored = rx.score_run(record, {})
+
+    assert scored["wrote"] and scored["gate5_ok"] and scored["communication_delivered"]
+    assert scored["checks"]["table"] is True

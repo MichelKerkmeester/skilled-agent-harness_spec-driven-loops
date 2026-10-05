@@ -60,6 +60,8 @@ RUN_TIMEOUT = 900
 EXECUTORS = {
     "deepseek": ["devin", "-p", "--model", "deepseek-v4-1-flash-max", "--permission-mode", "dangerous"],
     "swe": ["devin", "-p", "--model", "swe-2-max", "--permission-mode", "dangerous"],
+    "deepseek-oc": ["opencode", "run", "-m", "opencode-go/deepseek-v4.1-flash", "--variant", "max", "--format", "json",
+                    "--auto"],
     "luna": ["codex", "exec", "--model", "gpt-6-luna", "-c", 'model_reasoning_effort="max"',
              "-c", 'service_tier="fast"', "-c", "approval_policy=never", "--sandbox", "workspace-write"],
 }
@@ -151,12 +153,19 @@ def run_one(executor: str, template: str, run_dir: str, prompt: Dict, suffix: st
         export = run_dir + ".devin.json"
         cmd = EXECUTORS[executor] + ["--export", export, "--", text]
         record["transcript"] = export
+    elif EXECUTORS[executor][0] == "opencode":
+        # The JSON event stream on stdout is the transcript.
+        record["transcript"] = run_dir + ".opencode.jsonl"
+        cmd = EXECUTORS[executor] + ["--dir", run_dir, text]
     else:
         cmd = EXECUTORS[executor] + [text]
     try:
         proc = subprocess.run(cmd, cwd=run_dir, env=env, stdin=subprocess.DEVNULL, capture_output=True,
                               text=True, timeout=RUN_TIMEOUT)
         record["exit"] = proc.returncode
+        if EXECUTORS[executor][0] == "opencode":
+            with open(record["transcript"], "w") as handle:
+                handle.write(proc.stdout)
         if proc.returncode != 0:
             record["error"] = (proc.stderr or proc.stdout)[-400:]
         if EXECUTORS[executor][0] == "codex":
@@ -285,6 +294,38 @@ def codex_events(path: str, run_dir: str) -> List[Tuple]:
     return events
 
 
+def opencode_events(path: str, run_dir: str) -> List[Tuple]:
+    events = []
+    for line in open(path, errors="ignore"):
+        try:
+            obj = json.loads(line)
+        except ValueError:
+            continue
+        part = obj.get("part") or {}
+        if obj.get("type") == "tool_use":
+            tool = part.get("tool")
+            arguments = (part.get("state") or {}).get("input") or {}
+            if tool == "read":
+                for ref in RULE_REF.findall(arguments.get("filePath", "")):
+                    events.append(("read", ref))
+            elif tool == "bash":
+                command = arguments.get("command", "")
+                if MRC.READ_VERB.search(command):
+                    for ref in RULE_REF.findall(command):
+                        events.append(("read", ref))
+            elif tool in ("edit", "write", "multiedit"):
+                events.append(("write", relative(arguments.get("filePath", ""), run_dir)))
+            elif tool == "patch":
+                for target in PATCH_PATH.findall(str(arguments)):
+                    events.append(("write", relative(target, run_dir)))
+        elif obj.get("type") == "text" and part.get("text"):
+            events.append(("reply", part["text"]))
+    return events
+
+
+TRANSCRIPT_PARSERS = {"devin": devin_events, "codex": codex_events, "opencode": opencode_events}
+
+
 def rule_key(ref: str) -> Tuple[str, bool]:
     """(rule file name, whether the reference is to its card)."""
     if ref.replace("\\ ", " ") == ROUTER:
@@ -301,7 +342,7 @@ def score_run(record: Dict, arm_spec: Dict) -> Optional[Dict]:
     if record.get("exit") != 0 or not path or not os.path.exists(path):
         return None
     run_dir = record["run_dir"]
-    events = devin_events(path, run_dir) if EXECUTORS[record["executor"]][0] == "devin" else codex_events(path, run_dir)
+    events = TRANSCRIPT_PARSERS[EXECUTORS[record["executor"]][0]](path, run_dir)
     resident = set(arm_spec.get("resident", []))
     delivered, seen_files, first_write_ok, wrote = set(resident), set(), None, False
     cards_read, full_after_card, reply = set(), set(), None
