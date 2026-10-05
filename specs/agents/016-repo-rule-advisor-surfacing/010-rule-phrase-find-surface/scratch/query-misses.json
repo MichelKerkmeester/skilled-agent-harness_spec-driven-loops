@@ -1,0 +1,158 @@
+[
+ {
+  "rule": "answer-the-actual-request.md",
+  "query": "unnecessary disclaimer",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "answer-the-actual-request.md",
+  "query": "refused the request",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "blast-radius.md",
+  "query": "irreversible change",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "blast-radius.md",
+  "query": "rollback plan",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "communication-decisions.md",
+  "query": "recommend one option",
+  "finds_rule": false,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication-decisions.md",
+  "query": "too many options",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "communication-handoff.md",
+  "query": "next steps",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication-handoff.md",
+  "query": "end of turn",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication-prose.md",
+  "query": "em dash",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication-prose.md",
+  "query": "plain words",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication.md",
+  "query": "no tables",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "communication.md",
+  "query": "reply too long",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "delegation-and-orchestration.md",
+  "query": "sub-agent result",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "delegation-and-orchestration.md",
+  "query": "delegate to another model",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "evidence-and-proof.md",
+  "query": "tests pass",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "evidence-and-proof.md",
+  "query": "verify before claiming done",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "prevent-overengineering.md",
+  "query": "over-engineering",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "prevent-overengineering.md",
+  "query": "future proof",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "root-cause-and-debugging.md",
+  "query": "flaky test",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "root-cause-and-debugging.md",
+  "query": "root cause",
+  "finds_rule": true,
+  "files_hit": 2
+ },
+ {
+  "rule": "scope-discipline.md",
+  "query": "out of scope",
+  "finds_rule": true,
+  "files_hit": 1
+ },
+ {
+  "rule": "scope-discipline.md",
+  "query": "unrelated change",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "skill-hub-routing.md",
+  "query": "mode not routed",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "skill-hub-routing.md",
+  "query": "hub registry",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "uncertainty-and-honesty.md",
+  "query": "not sure",
+  "finds_rule": false,
+  "files_hit": 0
+ },
+ {
+  "rule": "uncertainty-and-honesty.md",
+  "query": "made up a path",
+  "finds_rule": false,
+  "files_hit": 0
+ }
+]

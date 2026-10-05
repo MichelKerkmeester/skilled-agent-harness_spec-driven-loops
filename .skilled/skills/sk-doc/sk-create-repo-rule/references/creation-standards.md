@@ -71,11 +71,13 @@ reader who has the problem and does not know the rule exists.
 
 **Two hard constraints:**
 
-- **No phrase may appear in two rules.** The set carries 194 phrases across the 11 files
-  in the rules directory (`.skilled/repo-rules/`) with zero collisions; a duplicate
+- **No phrase may appear in two rules.** The set carries 255 phrases across the 13 files
+  in the rules directory (`.skilled/repo-rules/`) with zero collisions. A duplicate
   makes both rules unfindable by it.
-- **Aim for 15-20.** The observed range is 16-20. Fewer leaves the rule hard to reach;
-  many more usually means section titles crept back in.
+- **One phrase per distinct symptom, with no count target.** The rules carry 16 to 29.
+  Too few leaves a rule hard to reach. A long list usually means section titles crept
+  back in, so check that each phrase is something a person types when they have the
+  problem.
 
 ---
 

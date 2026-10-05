@@ -48,7 +48,8 @@
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      "scratch/query-misses.json"
     ],
     "entities": [
       {
@@ -103,6 +104,12 @@
         "name": "check-repo-rules.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "query-misses.json",
+        "kind": "config",
+        "path": "scratch/query-misses.json",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A rule's `triggerphrases` are the words a ripgrep search can find it by",
     "created_at": "2026-10-04T21:40:04Z",
-    "last_save_at": "2026-10-04T21:54:52.796Z",
+    "last_save_at": "2026-10-05T07:36:05.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8f2fde6821641232749e92804ad9dc2a929ac7d0e05a16c2acbdf8ea401fd9e",
+    "source_fingerprint": "sha256:5dcd5451190e8d2946b40aad9c5f71b6abf77a0395e3649decc74693b36dda2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "153eb740a6125c973dc87eb2af8b3eca3f551ccc9410552e4baadb5bd3448655",
       "plan.md": "50ae9143ce334a782111dfb11f33ba86a62d9ff554710d03264a319dd8eb71a1",
-      "tasks.md": "d78ab6a71b83040ac21b4537052d79b61fd0edacf24bed771f5798dcf7a6173f",
+      "tasks.md": "4d5cb40ebe1f144523b4ee009a581e35c22c36e0b1727832141cd2dd5f32cfc1",
       "implementation-summary.md": "5ed43d2dd39fdb7806bf14544f30d0017b0ad8fd206e05cd082e50fb2843ea1a"
     },
     "last_active_at": null
