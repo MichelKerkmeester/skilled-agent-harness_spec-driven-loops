@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e00d8dca81031ea805a995616adca3b5c520ba24a3a3528ae9b891ed81085f1a",
+  "corpusHash": "9ace25dcae64ab264e8cb8dcdbf5633018cfa7462594432060c5c0f31b674170",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23580,
+  "includedPathCount": 23635,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7760,6 +7760,8 @@
     ".skilled/skills/system-skill-advisor/runtime/tests/python/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/schemas/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/scorer/README.md",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tools/README.md",
     ".skilled/skills/system-skill-advisor/runtime/types/README.md",
@@ -8640,6 +8642,10 @@
     "specs/cli-external-orchestration/079-claude-code-native-dispatch/plan.md",
     "specs/cli-external-orchestration/079-claude-code-native-dispatch/spec.md",
     "specs/cli-external-orchestration/079-claude-code-native-dispatch/tasks.md",
+    "specs/cli-external-orchestration/080-pi-extension-brace-expansion/implementation-summary.md",
+    "specs/cli-external-orchestration/080-pi-extension-brace-expansion/plan.md",
+    "specs/cli-external-orchestration/080-pi-extension-brace-expansion/spec.md",
+    "specs/cli-external-orchestration/080-pi-extension-brace-expansion/tasks.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -23307,6 +23313,50 @@
     "specs/system-speckit/048-doctor-command-audit/003-update/goal.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/implementation-summary.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/goal.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/implementation-summary.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/spec.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/tasks.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/plan.md",
+    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/tasks.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-strategy.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/iterations/iteration-001.md",
@@ -23535,6 +23585,10 @@
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23585,6 +23639,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/tasks.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/decision-record.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/goal.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/implementation-summary.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/measurement-protocol.md",
@@ -23610,7 +23665,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "69ae95ab9f1ffe5727da76b5b293a558c5a8db6b15951291f58994d6450283e4",
+  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24514,6 +24569,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/079-claude-code-native-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/080-pi-extension-brace-expansion/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29146,6 +29205,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/scratch",
       "reason": "excluded directory"
     },
     {

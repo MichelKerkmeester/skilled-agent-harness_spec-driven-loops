@@ -1,5 +1,5 @@
 {
-  "manifestHash": "69ae95ab9f1ffe5727da76b5b293a558c5a8db6b15951291f58994d6450283e4",
+  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35563,6 +35563,9 @@
     "doctor install guidance": [
       "doctor install guidance"
     ],
+    "doctor manual testing results": [
+      "doctor manual testing results"
+    ],
     "doctor mcp code mode": [
       "doctor mcp code mode"
     ],
@@ -35702,6 +35705,9 @@
     "doctor playbook mcp tasks": [
       "doctor-playbook-mcp tasks"
     ],
+    "doctor playbook results": [
+      "doctor playbook results"
+    ],
     "doctor playbook sed": [
       "doctor playbook sed"
     ],
@@ -35839,6 +35845,18 @@
     ],
     "doctor runtime mirrors yaml": [
       "doctor-runtime-mirrors.yaml"
+    ],
+    "doctor scenario runs": [
+      "doctor scenario runs"
+    ],
+    "doctor scenario runs plan": [
+      "doctor scenario runs plan"
+    ],
+    "doctor scenario runs summary": [
+      "doctor scenario runs summary"
+    ],
+    "doctor scenario runs tasks": [
+      "doctor scenario runs tasks"
     ],
     "doctor scenarios test environment": [
       "doctor scenarios test environment"
@@ -46377,6 +46395,9 @@
     ],
     "guardrail negative controls": [
       "guardrail negative controls"
+    ],
+    "guessed row panel": [
+      "guessed row panel"
     ],
     "guidance reconciliation complete": [
       "guidance reconciliation complete"
@@ -63498,6 +63519,9 @@
     ],
     "operator fix deep review findings for doctor update orchestrator changelog": [
       "operator fix deep review findings for doctor update orchestrator changelog"
+    ],
+    "operator label amendment": [
+      "operator label amendment"
     ],
     "operator label gate": [
       "operator label gate"

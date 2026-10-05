@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs",
+  "description": "Phase 25: doctor-scenario-runs",
+  "keywords": [
+    "phase",
+    "doctor-scenario-runs"
+  ],
+  "lastUpdated": "2026-10-04T20:16:33.219Z",
+  "specId": "025",
+  "folderSlug": "doctor-scenario-runs",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
