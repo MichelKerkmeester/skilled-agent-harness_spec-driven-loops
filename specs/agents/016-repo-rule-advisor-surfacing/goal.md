@@ -117,6 +117,8 @@ and findings belong here.
 | Phases 009 and 010 added | Done | Phase-add: map rows, binding rows and child goals for 009-rule-delivery-debugging and 010-rule-phrase-find-surface. Criterion 1 now names ten phase folders and criterion 6 says first scored run instead of block 1 |
 | 007 and 008 status | In Progress | 007 preregistration committed in edba53daeb and the 600-run experiment is running. 008 arm C dropped under REQ-005 (26,778 B + 7,677 B = 34,455 B), generator and check 11 committed, preregistration pending |
 | D1 amendment | Done | operator asked to run 007 and 008 now; D1 lets both run together in isolated environments, live adoption order unchanged under D6 |
+| 007 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 2 adopts the short no-table wording, short minus current +0.0 points (-3.4 to +3.4) over 625 runs, 0 of 108 tables per arm once communication.md was read. Preregistration edba53daeb predates the first scored run. Deviations 1 to 4 in results/deviations.md. Live wording waits on the 006 window (D6) |
+| 008 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 1 adopts cards at Gate 5 over 318 runs. Primary -4.0 points (-15.5 to +7.6), Gate 5 miss +2.2 (-3.3 to +7.9), 42,064 against 59,620 rule bytes per run. Preregistration 3990bc9fa5 predates the first scored run. Deviations 1 to 4 in results/deviations.md. Adoption waits on the 006 window and checks 2 and 10 accepting card links |
 
 ### Deviations and findings
 

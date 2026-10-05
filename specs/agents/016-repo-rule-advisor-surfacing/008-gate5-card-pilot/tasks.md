@@ -33,7 +33,7 @@ contextType: "implementation"
 
 - [x] T001 Confirm `check-repo-rules.cjs` ignores a `cards/` subdirectory (count parity reads 13 files with 13 cards present)
 - [x] T002 Check the arm C size condition against the post-003 `AGENTS.md` (26,778 B plus 7,677 B is 34,455 B, arm C dropped)
-- [ ] T003 Compute run counts and sample size, then commit `preregistration.md`
+- [x] T003 Compute run counts and sample size, then commit `preregistration.md` (`3990bc9fa5` at 2026-10-04 23:58:14, earliest scored transcript 23:58:29)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,7 +45,7 @@ contextType: "implementation"
 - [x] T005 Add check 11 (`check-repo-rules.cjs`, `edba53daeb`)
 - [x] T006 Write pytest for determinism and drift (`test_build_rule_cards.py`, 4 passed)
 - [x] T007 Prepare the arm `cards` router variant (`experiment/arms.json`)
-- [ ] T008 Run both arms in isolated environments, interleaved in a seeded order
+- [x] T008 Run both arms in isolated environments, interleaved in a seeded order (318 scored runs, 162 cards and 156 full, 0 unscorable: Luna 235, SWE-2 Max 23, DeepSeek through OpenCode Go 30, DeepSeek through Cline 30, under `results/deviations.md` 1 to 4)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,9 +53,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Analyze per arm and apply the decision rule (`results/`)
-- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests
-- [ ] T011 Run the checker and the phase 003 guard on the final state
+- [x] T009 Analyze per arm and apply the decision rule (`results/decision.md`: rule 1, adopt cards. Primary -4.0 points, -15.5 to +7.6. Gate 5 miss +2.2, -3.3 to +7.9. Bytes 42,064 against 59,620. Committed in `6ffe5e5514`)
+- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests (open: cards won and 007 has decided. Checks 2 and 10 and the router change wait on the 006 post-change window)
+- [ ] T011 Run the checker and the phase 003 guard on the final state (open: runs after the T010 adoption)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -116,8 +116,8 @@ contextType: "implementation"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] Generator deterministic and check 11 catches drift
-- [ ] CHK-021 [P0] Pre-registration committed before the first scored run
-- [ ] CHK-022 [P0] Each arm at sample size
+- [x] CHK-021 [P0] Pre-registration committed before the first scored run (`3990bc9fa5` at 23:58:14, first transcript 23:58:29)
+- [ ] CHK-022 [P0] Each arm at sample size (open: deviation 3 cut the schedule, so the arms hold 162 and 156 runs against 180 per arm per executor)
 - [x] CHK-023 [P1] Arm C size condition recorded
 - [ ] CHK-024 [P1] No unused card artifacts remain
 <!-- /ANCHOR:testing -->
@@ -162,11 +162,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 3/7 |
-| P1 Items | 6 | 1/6 |
+| P0 Items | 8 | 4/8 |
+| P1 Items | 7 | 1/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-10-05, partial. Adoption items stay open
 <!-- /ANCHOR:summary -->
 
 ---
