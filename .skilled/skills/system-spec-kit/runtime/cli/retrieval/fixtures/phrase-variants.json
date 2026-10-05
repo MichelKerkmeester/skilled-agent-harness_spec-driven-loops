@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ef8a901803e7f3b10bc7a78d1edaf79e9d5949d901ba1262c515e5c9cd840b49",
+  "manifestHash": "23fba71937f2182aafafe47861191f7a96e73635963558701c3847dbcfb84ec2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8484,6 +8484,9 @@
     ],
     "advisor daemon framing": [
       "advisor daemon framing"
+    ],
+    "advisor daemon predates build": [
+      "advisor daemon predates build"
     ],
     "advisor daemon probe tests": [
       "advisor daemon probe tests"
@@ -87466,6 +87469,9 @@
     "skill advisor cross session reconnect": [
       "skill advisor cross session reconnect"
     ],
+    "skill advisor daemon restart after rebuild": [
+      "skill advisor daemon restart after rebuild"
+    ],
     "skill advisor database": [
       "skill advisor database"
     ],
@@ -92131,6 +92137,18 @@
     ],
     "stale audit p0 closure": [
       "stale audit P0 closure"
+    ],
+    "stale build daemon recycle": [
+      "stale build daemon recycle"
+    ],
+    "stale build daemon recycle plan": [
+      "stale build daemon recycle plan"
+    ],
+    "stale build daemon recycle summary": [
+      "stale build daemon recycle summary"
+    ],
+    "stale build daemon recycle tasks": [
+      "stale build daemon recycle tasks"
     ],
     "stale card references removed": [
       "stale card references removed"

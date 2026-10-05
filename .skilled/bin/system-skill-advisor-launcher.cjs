@@ -537,7 +537,7 @@ async function reapOwnerBeforeRespawn(ownerPid, expectedExecutablePath = null) {
     }
   }
 
-  log(`confirmed-dead socket; reaping recorded skill-advisor daemon pid ${ownerPid} before respawn`);
+  log(`reaping recorded skill-advisor daemon pid ${ownerPid} before respawn`);
   try {
     process.kill(ownerPid, 'SIGTERM');
   } catch (error) {
@@ -709,7 +709,7 @@ function reportLeaseHeld(leaseResult) {
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}\n`);
 }
 
-function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
+function writeLeaseHeldDiagnosticLine(leaseResult, suffix = '') {
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
@@ -733,7 +733,28 @@ function scheduleBootstrapReap(pid) {
   }
 }
 
-async function respawnAfterDeadSocket(leaseResult, decision) {
+// A daemon loads its code once at launch, so a build that lands afterwards leaves
+// it serving the old code to every session that bridges to it until it restarts.
+// Only a launched daemon counts: its lease carries a childPid and a startedAt
+// stamped after the launcher's own build, so a launcher still bootstrapping is
+// never mistaken for a stale one.
+function launchedDaemonPredatesBuild(leaseResult) {
+  const lease = readLeaseFile(leaseResult.legacyPath || leasePath());
+  if (!lease || !Number.isInteger(lease.childPid) || lease.childPid <= 0) return false;
+  const launchedAtMs = Date.parse(lease.startedAt ?? '');
+  if (!Number.isFinite(launchedAtMs)) return false;
+  try {
+    return fs.statSync(serverEntrypoint()).mtimeMs > launchedAtMs;
+  } catch {
+    return false;
+  }
+}
+
+// The stale-build recycle runs ahead of a bridge to a live daemon, so it passes
+// diagnostics: false. A skipped recycle then falls back to that bridge, and a
+// LEASE_HELD_BY line on stdout would corrupt the session stream it carries.
+async function respawnAfterDeadSocket(leaseResult, decision, { diagnostics = true } = {}) {
+  const writeLeaseHeldDiagnostic = diagnostics ? writeLeaseHeldDiagnosticLine : () => {};
   if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
     writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-disabled)');
     return { action: 'report', reason: 'respawn-disabled', socketPath: decision.socketPath };
@@ -819,6 +840,16 @@ function leaseResultForOwnerLease(ownerLease) {
 }
 
 async function bridgeOrReportLeaseHeld(leaseResult) {
+  if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED !== '1' && launchedDaemonPredatesBuild(leaseResult)) {
+    log(`skill-advisor daemon for owner pid ${leaseResult.ownerPid} was launched before the current build; recycling it`);
+    const recycled = await respawnAfterDeadSocket(
+      leaseResult,
+      { action: 'respawn', reason: 'stale-build', socketPath: leaseResult.socketPath },
+      { diagnostics: false },
+    );
+    if (recycled.action === 'respawn') return recycled;
+    log(`stale-build recycle skipped (${recycled.reason}); bridging to the running daemon`);
+  }
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
   const decision = await maybeBridgeLeaseHolder({
     serviceName: 'system-skill-advisor',
@@ -1568,6 +1599,7 @@ module.exports = {
   createChildEnv,
   isModelServerEnabled,
   latestSourceMtimeMs,
+  launchedDaemonPredatesBuild,
   modelServerSetting,
   ownerLeasePath,
   pinModelServerToAdvisorDatabase,

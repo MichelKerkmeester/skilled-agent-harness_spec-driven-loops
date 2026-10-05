@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6765,
-    "ok": 13391,
+    "ok": 13395,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23725,
+  "documentsScanned": 23729,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ef8a901803e7f3b10bc7a78d1edaf79e9d5949d901ba1262c515e5c9cd840b49",
+  "manifestHash": "23fba71937f2182aafafe47861191f7a96e73635963558701c3847dbcfb84ec2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33800,
+      "ok": 33806,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -68940,6 +68940,10 @@
     },
     {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/034-stale-build-daemon-recycle/scratch",
       "reason": "excluded directory"
     },
     {

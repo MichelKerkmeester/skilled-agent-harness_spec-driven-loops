@@ -48,6 +48,7 @@ The `system-skill-advisor-launcher.cjs` script enforces single-writer semantics 
 
 - If a live owner holds the lease: the launcher tries to bridge this client to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
 - If the socket is dead or refused while the owner can be reclaimed: the launcher enters the guarded respawn path instead of treating `LEASE_HELD_BY` as the normal outcome.
+- If the live owner's daemon was launched before the current build, its launcher lease records a `childPid` and a `startedAt` older than `dist/runtime/advisor-server.js`. The launcher recycles that daemon through the same guarded respawn path before bridging, and bridges to it as before when the recycle is skipped, writing no `LEASE_HELD_BY` line. The advisor CLI connects to a live daemon's socket directly, so it makes the same check and starts a launcher to do the recycle. `SPECKIT_BRIDGE_RESPAWN_DISABLED=1` turns the recycle off.
 - If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
 - If `held === false`: the launcher continues normal bootstrap.
 
