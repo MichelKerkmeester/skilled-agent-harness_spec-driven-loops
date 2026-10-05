@@ -100,7 +100,7 @@ Reports the dead file-and-line citations in the tracked skill docs, where the ta
 
 #### Current Reality
 
-`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` runs one backend and needs `--out <dir>` so every call is recorded. Doc validation also runs it as a non-blocking advisory: `validate_document.py` ends its human report with `cite-drift advisory:` lines for the validated document's citations when a Jev credential is stored, never changes its exit code, and skips the check when `SKDOC_CITE_DRIFT_CHECK=0`.
+`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` runs one backend and needs `--out <dir>` so every call is recorded; the Jev arm and the advisory live in `classifier-cite-drift-scan.mjs` beside it. Doc validation also runs it as a non-blocking advisory: `validate_document.py` ends its human report with `cite-drift advisory:` lines for the validated document's citations when a Jev credential is stored, never changes its exit code, and skips the check when `SKDOC_CITE_DRIFT_CHECK=0`.
 
 #### Source Files
 
