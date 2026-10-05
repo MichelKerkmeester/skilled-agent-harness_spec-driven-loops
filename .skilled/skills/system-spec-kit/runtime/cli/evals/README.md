@@ -39,7 +39,6 @@ runtime/cli/evals/
 +-- check-source-dist-alignment.ts            # Orphaned dist artifact detection
 +-- import-policy-rules.ts                    # Shared import policy rules
 +-- import-policy-allowlist.json              # Managed import exceptions
-+-- score-alignment-suggestion.ts             # Offline alignment folder suggestion measurement
 `-- README.md
 ```
 
@@ -70,7 +69,6 @@ Restricted import surfaces:
 | `check-source-dist-alignment.ts` | Maps each runtime-critical `dist/**/*.js` back to its source `.ts` and flags orphans left by deleted or renamed sources. |
 | `import-policy-rules.ts` | Shared rule definitions used by the import policy checks. |
 | `import-policy-allowlist.json` | Stores temporary approved exceptions with owner and expiry metadata. |
-| `score-alignment-suggestion.ts` | Measures offline whether a classifier picking one of the listed spec folders beats the plain baseline, with zero model calls by default and a `--jev` switch for live scoring. |
 
 ---
 

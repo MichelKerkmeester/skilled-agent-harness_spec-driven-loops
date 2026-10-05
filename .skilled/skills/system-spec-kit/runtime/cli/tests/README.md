@@ -80,8 +80,6 @@ bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh
 bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
 (cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run \
   --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
-(cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run \
-  --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts)
 python3 .skilled/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
 node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs
 ```
