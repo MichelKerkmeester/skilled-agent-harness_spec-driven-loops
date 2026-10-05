@@ -1,4 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Reviewer Scorer
+// ───────────────────────────────────────────────────────────────────
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const os = require('os');
@@ -8,10 +15,20 @@ const { spawnSync } = require('node:child_process');
 
 const dispatcher = require('../dispatch-model.cjs');
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../../lib/profile-resolve.cjs');
+const { featureReady, featureSwitch } = require('../../../../../cli-classifier/shared/scripts/jev-features.mjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
 
 const VERDICTS = new Set(['pass', 'fail', 'block', 'abstain']);
 const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = {};
@@ -115,6 +132,10 @@ function applyCase(fixture, testCase) {
   return merged;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PROMPT AND VERDICT
+// ─────────────────────────────────────────────────────────────────────────────
+
 function buildReviewerPrompt(fixtureCase) {
   const inputText = inputToText(fixtureCase.input);
   const input = fixtureCase.input && typeof fixtureCase.input === 'object' ? fixtureCase.input : {};
@@ -152,6 +173,10 @@ function findingPassed(output, finding) {
   return required.every((token) => text.includes(String(token).toLowerCase()));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. MODEL DISPATCH
+// ─────────────────────────────────────────────────────────────────────────────
+
 function dispatchPrompt(prompt, opts) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'reviewer-scorer-'));
   const promptFile = path.join(dir, 'prompt.txt');
@@ -182,26 +207,29 @@ function classifyWithGrader(output, opts) {
     if (typeof opts.jevChoice === 'function') {
       value = opts.jevChoice(String(output || ''), opts);
     } else {
+      // score-verdict-fallback requires this file at load, so the measured
+      // question is pulled in lazily rather than at module load.
+      const { QUESTION, OPTION_PAIRS } = require('./score-verdict-fallback.cjs');
       const provider = opts.provider || process.env.JEV_PROVIDER || 'official';
-      const prompt = 'Classify the reviewer output into exactly one verdict: PASS, FAIL, BLOCK, or ABSTAIN. Use ABSTAIN when it does not state a decision.';
-      const result = spawnSync('jev', [
-        'choice', '--provider', provider, '-q', prompt,
-        '-o', 'pass=The reviewer approves the change',
-        '-o', 'fail=The reviewer rejects the change and names what must change',
-        '-o', 'block=The reviewer cannot give a verdict because a blocker remains',
-        '-o', 'abstain=The reviewer output does not state a decision',
-      ], {
+      const argv = ['choice', '--provider', provider, '-q', QUESTION];
+      for (const [key, description] of OPTION_PAIRS) argv.push('-o', key + '=' + description);
+      const result = spawnSync(opts.jevPath || 'jev', argv, {
         input: String(output || ''),
         encoding: 'utf8',
         timeout: opts.timeout_ms || 90000,
         env: opts.env || process.env,
       });
       if (!result.error && result.status === 0) {
+        let parsed;
         try {
-          value = JSON.parse(result.stdout).answers?.answer?.choice;
+          parsed = JSON.parse(result.stdout);
         } catch {
-          value = null;
+          // A body that does not parse leaves the choice unresolved.
         }
+        const choice = parsed?.answers?.answer?.choice;
+        // Only an offered option key is a verdict; a case variant or near-miss
+        // would otherwise be lowered into a verdict the question never asked for.
+        if (typeof choice === 'string' && OPTION_PAIRS.some(([key]) => key === choice)) value = choice;
       }
     }
     return { verdict: normalizeVerdict(value), method: 'jev-grader' };
@@ -218,6 +246,10 @@ function classifyWithGrader(output, opts) {
   const extracted = extractVerdict(graded);
   return { verdict: extracted.verdict, method: extracted.verdict ? 'llm-grader' : 'none' };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. FIXTURE SCORING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function scoreReviewerOutput(output, fixtureCase, opts) {
   let extracted = extractVerdict(output);
@@ -294,20 +326,45 @@ function scoreReviewerFixture(fixture, opts) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. BENCHMARK RUN
+// ─────────────────────────────────────────────────────────────────────────────
+
 function runReviewerBenchmark(opts) {
   if (!opts.profile) throw new Error('reviewer-scorer: --profile is required');
+  const env = opts.env || process.env;
+  const graderRequested = opts.grader || 'auto';
+  // Auto asks Jev only when the feature gate and a stored credential allow it,
+  // and otherwise keeps the no-op baseline an unconfigured machine already had.
+  const gate = graderRequested === 'auto' ? featureReady('verdict-fallback', env) : null;
+  // An explicit request is still a Jev path, so the off switches outrank it;
+  // unlike auto it needs no credential probe, which keeps an injected choice usable.
+  if (graderRequested === 'jev') {
+    const switchState = featureSwitch('verdict-fallback', env);
+    if (!switchState.enabled) throw new Error(`reviewer-scorer: jev grader is switched off (${switchState.reason})`);
+  }
+  const grader = graderRequested === 'auto' ? (gate.ready ? 'jev' : 'noop') : graderRequested;
+  const graderReason = gate === null ? 'explicit' : gate.reason;
+  const scoringOptions = {
+    ...opts,
+    grader,
+    jevPath: gate ? gate.path : undefined,
+    provider: gate ? gate.provider : opts.provider,
+  };
   const loaded = loadProfile(opts.profile, opts.profilesDir || DEFAULT_PROFILES_DIR);
   const profile = loaded.data;
-  if (opts.grader === 'jev' && !(Array.isArray(profile.optInGraders) && profile.optInGraders.includes('jev'))) {
+  if (graderRequested === 'jev' && !(Array.isArray(profile.optInGraders) && profile.optInGraders.includes('jev'))) {
     throw new Error('reviewer-scorer: jev grader is not opted in by this profile');
   }
-  const reviewer = loadReviewerFixtures(profile, loaded.path, opts.fixtureDir, opts.grader);
-  const rows = reviewer.fixtures.map((entry) => scoreReviewerFixture(entry.fixture, opts));
+  const reviewer = loadReviewerFixtures(profile, loaded.path, opts.fixtureDir, graderRequested);
+  const rows = reviewer.fixtures.map((entry) => scoreReviewerFixture(entry.fixture, scoringOptions));
   const aggregateScore = rows.length ? Math.round(rows.reduce((sum, row) => sum + row.score, 0) / rows.length) : 0;
   return {
     status: 'benchmark-complete',
     scoringMethod: 'reviewer',
-    grader: opts.grader || 'noop',
+    grader,
+    graderRequested,
+    graderReason,
     profileId: profile.profileId || profile.id || opts.profile,
     fixtureDir: reviewer.fixtureDir,
     aggregateScore,
@@ -326,6 +383,10 @@ function runReviewerBenchmark(opts) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const enabled = process.env.SPECKIT_REVIEWER_BENCHMARKS === '1' || process.env.SPECKIT_REVIEWER_BENCHMARKS === 'true';
@@ -335,7 +396,7 @@ function main() {
   }
   const outputPath = args.output || (args['outputs-dir'] ? path.join(args['outputs-dir'], 'reviewer-report.json') : null);
   if (!outputPath) {
-    process.stderr.write('usage: reviewer-scorer.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--grader noop|mock|llm|jev]\n');
+    process.stderr.write('usage: reviewer-scorer.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--grader noop|mock|llm|jev|auto]\n');
     process.exit(2);
   }
   const report = runReviewerBenchmark({
@@ -345,7 +406,7 @@ function main() {
     fixtureDir: args['fixture-dir'],
     outputPath,
     stateLogPath: args['state-log'],
-    grader: args.grader || 'noop',
+    grader: args.grader || 'auto',
     executor: args.executor,
     model: args.model,
     variant: args.variant,
@@ -362,7 +423,9 @@ function main() {
       type: 'benchmark_run',
       mode: 'model-benchmark',
       scoringMethod: 'reviewer',
-      grader: args.grader || 'noop',
+      grader: report.grader,
+      graderRequested: report.graderRequested,
+      graderReason: report.graderReason,
       profileId: report.profileId,
       report: outputPath,
       aggregateScore: report.aggregateScore,
@@ -388,6 +451,10 @@ if (require.main === module) {
     process.exit(1);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   isReviewerFixture,

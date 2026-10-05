@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ loop-host — mode-switching entry point for deep-improvement runs         ║
+// ║ COMPONENT: loop-host — mode switch for deep-improvement runs             ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Route a run to its agent-improvement or benchmark path.         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -20,7 +22,7 @@
  *   model-benchmark:
  *     node loop-host.cjs --mode=model-benchmark --profile=<path-or-id> --outputs-dir=<path> \
  *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>] \
- *        [--scorer=<pattern|5dim>] [--grader=<noop|mock|llm>]
+ *        [--scorer=<pattern|5dim>] [--grader=<auto|noop|mock|llm|jev>]
  * Unknown --mode values warn to stderr and fall back to agent-improvement.
  */
 

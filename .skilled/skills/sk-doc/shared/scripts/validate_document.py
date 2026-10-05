@@ -24,7 +24,8 @@ Citation drift advisory:
     The human report ends with any `cite-drift advisory:` lines that
     cite-drift-scan.mjs --advise prints for the document's file-and-line
     citations. They never change the exit code, and --json and
-    --blocking-only skip them. SKDOC_CITE_DRIFT_CHECK=0 skips the check;
+    --blocking-only skip them. JEV_FEATURE_CITE_DRIFT=0 and JEV_FEATURES=0
+    skip the check, as does the older SKDOC_CITE_DRIFT_CHECK=0;
     SKDOC_CITE_DRIFT_OUT=<dir> records its model calls in <dir>/calls.jsonl.
 
 Examples:
@@ -1774,7 +1775,10 @@ def validate_document(
 # The advisory runs on the human report only: every batch caller in the
 # repository reads --json, and the check makes model calls.
 CITE_DRIFT_SCRIPT = Path(__file__).resolve().parent / 'cite-drift-scan.mjs'
-CITE_DRIFT_OPT_OUT = 'SKDOC_CITE_DRIFT_CHECK'
+# The shared master switch, the feature's own switch and the older name all
+# stop the advisory before node is spawned.
+CITE_DRIFT_SWITCHES = ('JEV_FEATURES', 'JEV_FEATURE_CITE_DRIFT', 'SKDOC_CITE_DRIFT_CHECK')
+CITE_DRIFT_OFF_VALUES = ('0', 'false', 'no', 'off')
 CITE_DRIFT_OUT = 'SKDOC_CITE_DRIFT_OUT'
 CITE_DRIFT_PREFIX = 'cite-drift advisory:'
 CITE_DRIFT_TIMEOUT_S = 90
@@ -1790,7 +1794,8 @@ def print_cite_drift_advisory(file_path: str) -> None:
     Args:
         file_path: The document path as the caller gave it.
     """
-    if os.environ.get(CITE_DRIFT_OPT_OUT) == '0':
+    switches = (os.environ.get(name, '') for name in CITE_DRIFT_SWITCHES)
+    if any(value.strip().lower() in CITE_DRIFT_OFF_VALUES for value in switches):
         return
     node = shutil.which('node')
     if node is None or not CITE_DRIFT_SCRIPT.is_file():

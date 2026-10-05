@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Help and MCP Surface Probe
+# ───────────────────────────────────────────────────────────────
+# Captures the subcommand help surfaces, a valid `run` payload with the store
+# pointed away, and the MCP tool list over stdio. Kept as the raw evidence of
+# the post-migration re-verification report beside this file.
 # Second probe pass, re-run from the migrated hub home: subcommand help surfaces, a
 # valid `run` payload, and the MCP tool list over stdio. Store pointed away, so no
 # authenticated call is attempted.

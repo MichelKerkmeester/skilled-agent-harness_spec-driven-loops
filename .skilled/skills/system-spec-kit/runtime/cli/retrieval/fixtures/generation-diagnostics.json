@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6711,
-    "ok": 13137,
+    "missing-frontmatter": 6744,
+    "ok": 13331,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23417,
+  "documentsScanned": 23644,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
+  "manifestHash": "d9ef1a7766089f070381064ace32b89d6f7affa0d0a41e490ae65ba1fbee8bf4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33536,
+      "ok": 33725,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -72,7 +72,25 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28186,7 +28204,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28320,6 +28350,12 @@
       "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -29448,12 +29484,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/judgment-pass-not-covered-by-the-scanner.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -33682,6 +33712,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/scripts/README.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -34854,12 +34896,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -35016,6 +35052,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sk-git-worktree-convention.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -35023,6 +35065,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-dist-alignment-validation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35328,6 +35376,108 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/answer-the-actual-request.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/blast-radius.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-decisions.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-handoff.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-prose.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/delegation-and-orchestration.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/evidence-and-proof.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/prevent-overengineering.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/root-cause-and-debugging.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/scope-discipline.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/skill-hub-routing.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/uncertainty-and-honesty.ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -35605,6 +35755,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/cli-jev/004-cli-classifier-quality-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/research/research.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -65021,6 +65189,24 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -65299,6 +65485,18 @@
       "line": 2,
       "path": "specs/system-speckit/049-doctor-audit-followups/019-doctor-test-environment-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -65943,10 +66141,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/description/fixtures",
       "reason": "excluded directory"
     },
@@ -66048,6 +66242,46 @@
     },
     {
       "path": "specs/agents/015-global-claude-md-agents-symlink/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
       "reason": "excluded directory"
     },
     {
@@ -66160,6 +66394,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/079-claude-code-native-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/080-pi-extension-brace-expansion/scratch",
       "reason": "excluded directory"
     },
     {
@@ -66576,6 +66814,14 @@
     },
     {
       "path": "specs/cli-jev/005-cli-classifier-quality-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70784,6 +71030,62 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
       "reason": "excluded directory"
     },
     {

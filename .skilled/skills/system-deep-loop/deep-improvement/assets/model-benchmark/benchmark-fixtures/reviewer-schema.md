@@ -85,7 +85,7 @@ Reviewer output should use a typed JSON verdict:
 {"verdict":"FAIL","findings":[]}
 ```
 
-Accepted typed values are `PASS`, `FAIL`, `BLOCK`, and `ABSTAIN` in any case. A typed field takes precedence; an invalid typed value stays unresolved. For legacy plain-text output, the parser accepts a complete verdict line, including markdown emphasis, a heading marker, a `Final verdict` label, or a short parenthetical qualifier. If no verdict is found, `--grader llm` or an explicitly opted-in `--grader jev` can classify the prose. The `jev` grader can return `ABSTAIN` when the output states no decision; malformed or unknown choices remain unresolved.
+Accepted typed values are `PASS`, `FAIL`, `BLOCK`, and `ABSTAIN` in any case. A typed field takes precedence; an invalid typed value stays unresolved. For legacy plain-text output, the parser accepts a complete verdict line, including markdown emphasis, a heading marker, a `Final verdict` label, or a short parenthetical qualifier. If no verdict is found, the default `--grader auto` asks Jev when a Jev credential is stored and `JEV_FEATURE_VERDICT_FALLBACK` is not off, and `--grader llm` or an explicitly opted-in `--grader jev` can classify the prose too. The `jev` grader can return `ABSTAIN` when the output states no decision; malformed or unknown choices remain unresolved.
 
 On mismatch, the Lane B report surfaces one consequence line per fixture:
 

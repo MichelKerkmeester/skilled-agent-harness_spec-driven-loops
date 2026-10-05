@@ -64,9 +64,11 @@ Provisioning a worktree leaves it able to run both suites, and a checkout that h
 - A failure message naming the provision command in both suites.
 - `provision` with no argument provisioning the worktree it runs in. Added during the phase: the first real run showed it provisioned the primary checkout instead, which defeats running it inside a worktree.
 - Running provision in this worktree.
+- Follow-up 2026-10-05: build outputs for spec-kit's `runtime` and `runtime/cli`, which moved in from out of scope once the reason given there turned out not to hold.
+- Follow-up 2026-10-05: a suite check that every listed package with a build script and an untracked `main` names its build output.
 
 ### Out of Scope
-- Listing build outputs for spec-kit's own packages. Their compiled output is checked for freshness by `validate.sh`, which already fails with its own message.
+- ~~Listing build outputs for spec-kit's own packages. Their compiled output is checked for freshness by `validate.sh`, which already fails with its own message.~~ Reversed 2026-10-05: `repair-derived` and the continuity writer read those outputs with no freshness check, so a fresh worktree failed with only "exit 1: Node.js v26.8.2".
 - The launch-wrapper worktrees, which share the source checkout's builds.
 
 ### Files to Change
@@ -75,7 +77,7 @@ Provisioning a worktree leaves it able to run both suites, and a checkout that h
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modify | Optional build output per line; projection package added |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modify | Build a package whose listed output is missing; default to the current worktree |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Provisioning tests with npm stubbed |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Provisioning tests with npm stubbed; follow-up check that buildable listed packages name their output |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modify | Name the fix when a plugin's build output is missing |
 | `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` | Modify | Check for the advisor build before importing the core |
 <!-- /ANCHOR:scope -->
@@ -99,6 +101,8 @@ Provisioning a worktree leaves it able to run both suites, and a checkout that h
 |----|-------------|---------------------|
 | REQ-004 | An unprovisioned checkout says how to fix itself. | Each suite's failure names `worktree-naming.sh provision`. |
 | REQ-005 | `provision` with no argument provisions the worktree it runs in. | Run from a linked worktree, it builds there and writes nothing at the primary checkout. |
+| REQ-007 | A buildable package listed without its build output fails the suite. | The check passes on the current list and fails on the list before the REQ-006 fix, naming the runtime and CLI packages. |
+| REQ-006 | A fresh worktree gets spec-kit's runtime and CLI builds. | With both `dist` folders removed, provision builds `runtime/dist/api/index.js` and `runtime/cli/dist/continuity/generate-context.js`, and `repair-derived` runs. |
 <!-- /ANCHOR:requirements -->
 
 ---

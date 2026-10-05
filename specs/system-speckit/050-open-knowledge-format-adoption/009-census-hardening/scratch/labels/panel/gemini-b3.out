@@ -1,0 +1,12 @@
+```json
+{"row": 77, "label": "intended", "path": "specs/system-speckit/031-memory-reindex-embed-performance/implementation-summary.md"}
+{"row": 79, "label": "not_intended", "path": ""}
+{"row": 81, "label": "not_intended", "path": ""}
+{"row": 83, "label": "not_intended", "path": ""}
+{"row": 86, "label": "cant_tell", "path": ""}
+{"row": 87, "label": "cant_tell", "path": ""}
+{"row": 89, "label": "not_intended", "path": ""}
+{"row": 90, "label": "intended", "path": "specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md"}
+{"row": 91, "label": "intended", "path": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/spec.md"}
+{"row": 93, "label": "cant_tell", "path": ""}
+```

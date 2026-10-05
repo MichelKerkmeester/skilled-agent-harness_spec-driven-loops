@@ -77,29 +77,33 @@ def test_the_file_parser_matches_the_hooks_resolver(tmp_path):
 
 
 # The docs say to copy the example and uncomment the lines you want, so every
-# switch line must turn its switch on as written, trailing comment and all.
+# switch line must take effect as written, trailing comment and all. Most lines
+# turn a switch on, while a kill switch such as JEV_FEATURES=0 sets the value
+# that turns its feature off, so each line is held to the value it shows.
 def test_every_example_line_works_once_uncommented(tmp_path):
     example = REPO_ROOT / ".skilled" / "hooks" / "hook-flags.env.example"
-    switch_line = re.compile(r"^# ([A-Z][A-Z0-9_]*)=")
-    names, lines = [], []
+    switch_line = re.compile(r"^# ([A-Z][A-Z0-9_]*)=(\S+)")
+    written, lines = {}, []
     for line in example.read_text(encoding="utf-8").splitlines():
         match = switch_line.match(line)
         if match:
-            names.append(match.group(1))
+            written[match.group(1)] = match.group(2)
             line = line[2:]
         lines.append(line)
-    assert {"SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION", "SYSTEM_HOOKS_DISABLED"} <= set(names)
+    assert {"SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION", "SYSTEM_HOOKS_DISABLED"} <= set(written)
     flags = tmp_path / "hook-flags.env"
     flags.write_text("\n".join(lines) + "\n", encoding="utf-8")
     assert validation_switch.skip_source({"HOOK_FLAGS_CONFIG": str(flags)}) == str(flags)
     node = subprocess.run(
         ["node", "-e",
          "const h = require(process.argv[1]); const c = h.loadConfigFile(process.argv[2]);"
-         " process.stdout.write(JSON.stringify(process.argv.slice(3).filter((n) => !h.isFlagOn(n, {}, c))))",
-         str(HOOK_FLAGS_CJS), str(flags), *names],
+         " const w = JSON.parse(process.argv[3]);"
+         " process.stdout.write(JSON.stringify(Object.keys(w).filter((n) => c[n] !== w[n]"
+         " || (w[n] !== '0' && !h.isFlagOn(n, {}, c)))))",
+         str(HOOK_FLAGS_CJS), str(flags), json.dumps(written)],
         capture_output=True, text=True, check=True,
     )
-    assert json.loads(node.stdout) == [], "these example lines stay off once uncommented"
+    assert json.loads(node.stdout) == [], "these example lines do not take effect as written once uncommented"
 
 
 # ---------------------------------------------------------------------------

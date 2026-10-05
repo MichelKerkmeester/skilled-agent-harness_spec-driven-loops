@@ -60,6 +60,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `sk-vision` | `SYSTEM_SK_VISION_DISABLED` | none | enabled | inject | wired |
 | `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | cleanup / check | wired |
 | `git-commit-hooks` | `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
+| `injection-screen` | `SYSTEM_INJECTION_SCREEN_DISABLED` | `JEV_FEATURE_INJECTION_SCREEN=0` and `JEV_FEATURES=0` (Jev feature switches, read the other way round) | enabled when a Jev credential is stored | inject (advisory) | wired |
 
 `SYSTEM_SPEC_GATE_ENFORCE` is a separate opt-in control for spec-gate denial, not a kill-switch. `SPECKIT_DIST_AUTO_REBUILD` controls whether a stale dist is rebuilt; it does not disable the freshness check. The `git-commit-hooks` switch is an emergency off switch for the pre-commit chain; with the switch unset, mass-deletion and comment-hygiene checks remain active.
 
@@ -128,6 +129,9 @@ hooks/
 |   +-- codex/    post-edit-quality.cjs
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/)
++-- injection-screen/                # Jev screen of WebFetch text for instructions aimed at an agent
+|   +-- lib/screen-fetched-text.mjs, screen-fetched-text.test.mjs
+|   `-- claude/   injection-screen-posttooluse.mjs, injection-screen-posttooluse.test.mjs
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
 |   +-- claude/   task-dispatch-guard.cjs, fable-subagent-guard.mjs
@@ -137,9 +141,6 @@ hooks/
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin
-    +-- lib/count-pi-goal-nudges.mjs, count-pi-goal-nudges.test.mjs   # Pi census of recorded goal-verify-nudge records
-    +-- lib/build-verifier-fixture.cjs, build-verifier-fixture.test.cjs   # unlabeled verifier rows for the operator to label
-    +-- lib/score-verifier-labeled-set.cjs, score-verifier-labeled-set.test.cjs   # offline zero-call verifier scorer
     +-- bin/goal.cjs                 # scoped management (bind, resent, log, packet), diagnostics, legacy quarantine
     +-- cursor/   goal-inject.mjs
     +-- devin/    goal-inject.mjs

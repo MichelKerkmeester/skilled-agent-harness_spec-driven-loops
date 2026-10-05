@@ -39,7 +39,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 
 ### When NOT to Use
 
-- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation. Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model. To pin an effort level, use an agent definition whose frontmatter sets `model` and `effort`, such as `~/.claude/agents/opus-xhigh.md` or `sonnet-xhigh.md`.
+- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation. Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model, and it takes no effort setting. A subagent runs at the session's effort level unless its agent definition sets `effort` (`low`, `medium`, `high`, `xhigh` or `max`), so a definition is needed only for a level different from the session's, such as `~/.claude/agents/opus-xhigh.md`. A new or edited definition loads within seconds, with no restart. Source: the `effort` row of the frontmatter table at https://code.claude.com/docs/en/sub-agents; where this summary and that page differ, the page wins.
 - Simple, quick tasks where CLI overhead is not worth it.
 - Tasks requiring interactive terminal UI (use `claude` directly instead).
 - Context already loaded and understood by the calling AI.
@@ -57,7 +57,7 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
 # Verify Claude Code CLI is available before routing
 command -v claude || echo "Not installed. Run: npm install -g @anthropic-ai/claude-code"
 
-# SELF-INVOCATION GUARD: inside Claude Code, never shell out to claude. Dispatch a native subagent (Agent tool), pinning model and effort through an agent definition.
+# SELF-INVOCATION GUARD: inside Claude Code, never shell out to claude. Dispatch a native subagent (Agent tool); it inherits the session's effort, and an agent definition's `effort` field sets a different one.
 [ -n "$CLAUDECODE" ] && echo "ERROR: Already inside Claude Code session. Do not self-invoke."
 ```
 

@@ -26,8 +26,19 @@ export interface SanitizedBoundaryValue {
 // ───────────────────────────────────────────────────────────────
 
 const MAX_VALUE_CHARS = 160;
-const INSTRUCTION_SHAPE_PATTERN =
-  /\b(ignore|override|forget|bypass|disable|execute|run|call|tool|system|developer|assistant|previous instructions|all instructions)\b/i;
+// Match instruction phrasing, never a lone word: skill names and routing
+// phrases such as "system-spec-kit", "run lighthouse" or "call tool chain"
+// carry the same words an injected instruction would.
+const INSTRUCTION_SHAPE_PATTERN = new RegExp(
+  [
+    String.raw`\b(ignore|disregard|override|forget|bypass)\b.{0,48}\b(instructions?|rules?|policy|policies|system|developer|guardrails?)\b`,
+    String.raw`\b(previous|prior|above|all)\s+(instructions?|rules?)\b`,
+    String.raw`\b(system|developer|assistant)\s+(prompt|message|instructions?)\b`,
+    String.raw`\b(prompt injection|jailbreak|do not obey|reveal secrets?)\b`,
+    String.raw`\b(call|invoke|execute|run)\s+(the\s+|a\s+|this\s+|that\s+)?tools?\b(?![\s-]*(chains?|chaining|calls?|flows?|context|integration|orchestration|bridge)\b)`,
+  ].join('|'),
+  'i',
+);
 const MARKUP_INSTRUCTION_PATTERN = /<!--|-->|```|<script\b|<\/script>|^\s*(system|instruction|developer|assistant)\s*:/i;
 
 // ───────────────────────────────────────────────────────────────

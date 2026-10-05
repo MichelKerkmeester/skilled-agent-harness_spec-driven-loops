@@ -67,7 +67,7 @@ contextType: "general"
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (operator labels pending)
+- [x] Manual verification passed (disputed rows settled by the panel, ADR-001)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -119,7 +119,7 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (7/8; AC-004 waits for operator labels)
+- [x] CHK-020 [P0] All acceptance criteria met (7 met, AC-004 superseded by ADR-001)
 - [x] CHK-021 [P0] Manual testing complete
 - [x] CHK-022 [P1] Edge cases tested (multi-byte doc, spaced prose negative)
 - [x] CHK-023 [P1] Error scenarios validated (rebuild outside a repo returns 2)
@@ -136,7 +136,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (spaced negative case; a spaced path counts only when the whole name is tracked)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (four classes x protocol sizes, listed in the summary)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (not applicable: no process-wide state read)
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (nothing is committed under D4, so no fix SHA exists yet)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (scanner fix `d1c1ef772d`, on main)
 <!-- /ANCHOR:fix-completeness -->
 
 ---

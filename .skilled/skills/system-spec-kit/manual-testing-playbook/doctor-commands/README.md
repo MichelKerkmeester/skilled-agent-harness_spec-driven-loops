@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.2.0.0
+version: 2.3.0.0
 ---
 
 # Doctor Commands
@@ -39,6 +39,7 @@ Scenarios that change state run in one of two long-lived local worktrees instead
 
 - **Before a scenario:** run `git -C .worktrees/.doctor-test-environment fetch origin` and `git -C .worktrees/.doctor-test-environment merge --ff-only origin/main`, then confirm `git status --porcelain` prints nothing.
 - **Dependencies:** the worktree is created without dependencies. A scenario that needs a built runtime runs `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .worktrees/.doctor-test-environment` once first.
+- **Advisor state:** an advisor rebuild, which DOC-348 and DOC-362 both run, leaves `advisor_recommend` reporting `stale` with reason `advisor_rebuild` until the next trusted scan. Before DOC-364, run `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --json '{}'` in the environment, or every router-reach probe fails as `probe-error`.
 - **After a scenario:** restore every file it changed with `git checkout -- <path>`, remove any file it added, and confirm `git status --porcelain` prints nothing.
 - **Exceptions:** DOC-370 runs on a disposable clone, because a linked worktree shares the main checkout's `.git/config` and `git config --local` would change the real repository. DOC-331 to DOC-333 keep their own graph setup.
 - **Recreate:** `bash .skilled/skills/sk-git/scripts/worktree-naming.sh create doctor-test-environment origin/main --no-provision`, then point the `.doctor-test-environment` symlink at the new numbered directory.

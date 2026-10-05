@@ -109,22 +109,24 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001-okf-deep-research | Done | research/research.md, AC-001 to AC-006 Met |
-| 002 to 007 | Pending |  |
+| 002 to 007 | Pending (superseded by the rows below) |  |
 | 002-baseline-and-decisions | In Progress | everything but operator approval of D1-D4 done; validate --strict PASSED |
 | 002-baseline-and-decisions | Done | decision-record.md D1-D4 approved, condition carried into 003-007 |
-| phase 003 | implementation done, open on commit | strict PASSED, 6 of 7 AC met |
+| phase 003 | implementation done, open on commit (superseded 2026-10-05 below) | strict PASSED, 6 of 7 AC met |
 | phase 004 | implementation done, AC-006 open | strict PASSED, 6 of 7 AC met |
 | phase 005 | Done | SOURCE_TAGS warn rule built; 7 of 7 AC met; strict PASSED; CLI 1660 passed |
 | phase 006 | Done, not built | ADR-001 no-go: 3 of 13 targets carry markers; rule B recorded as the way back |
-| phase 007 | Docs done, open on commit | six changelogs and skill versions, catalogs and playbooks, command docs; AC-004 waits for the commit |
+| phase 007 | Docs done, open on commit (superseded 2026-10-05 below) | six changelogs and skill versions, catalogs and playbooks, command docs; AC-004 waits for the commit |
 | root criterion 1 | Done | validate.sh --strict --recursive exit 0, parent and seven phases PASSED, 0 errors 0 warnings |
 | phase 008 contextType | Complete | matrix 180/180 both warnings, corpus 0 of 22,754, generators 0/90, cold writers contextType 8/30 (14.2-44.4%) |
-| phase 009 census | 7/8 AC | REPO RULES.md:88 resolves (439 rows); moved 98/100 (93.0-99.4%), past end 100/100, gone 100/100; 214.9 s vs 735.6 s; rebuild sha identical; kappa 0.31, 40 rows wait for operator |
+| phase 009 census | 7/8 AC (superseded 2026-10-05 below) | REPO RULES.md:88 resolves (439 rows); moved 98/100 (93.0-99.4%), past end 100/100, gone 100/100; 214.9 s vs 735.6 s; rebuild sha identical; kappa 0.31, 40 rows wait for operator |
 | phase 010 SOURCE_TAGS | 6/7 AC | 754 false warnings removed; moved 49/50 (89.5-99.6%), past end 44/44, gone 50/50; planted recall 100%; checkouts 38 commits apart, 27 diffs all from files deleted on main; 2/20 packets over 20% run time |
 | criterion 1 | Met 2026-10-04 | validate --strict --recursive: 10x RESULT: PASSED, 0 errors, 0 warnings |
 | criterion 7 | Open | census and rule resolve REPO RULES.md:88; identical warnings need both checkouts at one commit |
 | criterion 7 | Met 2026-10-04 | REPO RULES.md:88 resolves in census (4 rows) and rule (vitest e2e, 5 planted controls); at 93a83a466b0b a temp detached worktree and the main checkout give identical output, baseline differs by 366; temp worktree removed |
 | phase 011 value list move | Complete, 8/8 AC | list moved to sk-create-frontmatter/assets; every check identical to its baseline; validate --strict --recursive 11x RESULT: PASSED |
+| phases 003 and 007 | Complete 2026-10-05 | the commits each criterion waited on are on main: 003 AC-006 by `cca919c5a4` (33 to 12), 007 AC-004 by the docs commits |
+| phase 009 census | Complete 2026-10-05 | ADR-001: SWE 2, GLM 5.3 Flash and Gemini 3.8 Flash settled 33 of 40 disputed rows; guessed class 80.6% intended (71.5-87.4%) over 93 settled rows, a panel verdict; AC-004 superseded |
 
 ### Deviations and findings
 
@@ -134,4 +136,5 @@ and findings belong here.
 | Slice over 4,000 after the 011 binding row | Cut per sk-create-goal budget-and-handoff section 3, steps 5 and 6: D3 and three criteria shortened in both copies, none dropped; 4,082 to 3,985 characters; prior text in 011/scratch/baseline/parent-goal-before-trim.md |
 | Two docs said strict fails on warnings | Fixed in phase 007; a warning never fails `--strict`, which is what keeps the two new rules warn-only in practice |
 | Phase 003 rule had no automated test | Added in phase 007, three cases |
+| Re-verification 2026-10-05 by Sonnet 5.5 | All eight checks on the panel data, gate and main confirmed. Doc fixes: phase 003's count is 31 to 12 outside scratch folders, 33 to 15 with them, and commit `cca919c5a4` pairs 33 with 12; the phase table and parent status now read Complete; 009 citation line numbers, decision-record metadata and one run description corrected |
 <!-- /ANCHOR:log -->

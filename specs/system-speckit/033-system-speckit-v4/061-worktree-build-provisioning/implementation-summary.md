@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning"
-    last_updated_at: "2026-09-24T06:42:42Z"
-    last_updated_by: "generate-context"
-    recent_action: "Made worktree provisioning build what the suites import"
+    last_updated_at: "2026-10-05T09:40:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Named spec-kit's runtime and CLI build outputs in the provision list"
     next_safe_action: "Continue with the v4 parent data repairs phase"
     blockers: []
     key_files:
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 061-worktree-build-provisioning |
-| **Completed** | 2026-09-24 |
+| **Completed** | 2026-09-24; follow-up 2026-10-05 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -67,9 +67,9 @@ The plugin purity suite and the pi-extension suite now fail with `Run: bash .ski
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Optional build output per line; projection package added |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Optional build output per line; projection package added. Follow-up: build outputs for spec-kit's `runtime` and `runtime/cli` |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modified | Build step; default to the current worktree |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Provisioning tests with npm stubbed, including a linked worktree |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Provisioning tests with npm stubbed, including a linked worktree. Follow-up: fails when a listed package with a build script and an untracked `main` names no output |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modified | Name the fix for a missing plugin build |
 | `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` | Modified | Check for the advisor build before the imports load |
 <!-- /ANCHOR:what-built -->
@@ -92,6 +92,7 @@ A GPT-6 Luna executor made the script, list and test changes from a brief. The o
 | Name the build output in the list rather than guess it | Packages keep their output in different places; guessing would build the wrong package or none |
 | Count a zero-exit build without its output as failed | A build that exits 0 having written nothing is the exact failure provisioning exists to catch |
 | Default provision to the current worktree | Its documented use is to run inside a worktree made another way; the allocator keeps its clone-wide default |
+| Follow-up: list spec-kit's runtime and CLI outputs after all | The out-of-scope reason covered `validate.sh` only. In worktree 089, made by `worktree-naming.sh create`, `repair-derived` failed because `@spec-kit/runtime/dist/api/index.js` was missing, and the continuity writer's `dist/continuity/generate-context.js` was missing too. Each build pulls in `shared` through its project references, so `shared` needs no output of its own |
 | Fail the suites with the command rather than skip them | A skipped suite hides a broken checkout; a named failure tells the reader what to run |
 <!-- /ANCHOR:decisions -->
 
@@ -109,6 +110,11 @@ A GPT-6 Luna executor made the script, list and test changes from a brief. The o
 | Both suites after provisioning | PASS, 10 of 10 |
 | `tsc -p runtime/tsconfig.tests.json` | Same 91 errors with and without this phase's edits |
 | `validate.sh --strict` on this phase | PASS, `RESULT: PASSED` |
+| Follow-up: provision with spec-kit's `shared/dist` and `runtime/dist` removed, before the fix | `0 installed, 0 built, 9 already present, 0 failed`; both outputs missing; `repair-derived` reports `failed=1` |
+| Follow-up: the same, after the fix | `0 installed, 2 built, 9 already present, 0 failed`; both outputs present; `repair-derived` reports `failed=0`; a second run builds 0 |
+| Follow-up: `worktree-naming.test.sh` | PASS, 83 of 83 |
+| Follow-up: the suite with the output check | PASS, 85 of 85 |
+| Follow-up: the same suite against the list before the fix | FAIL, 84 of 85: "every buildable listed package names its build output" names `.skilled/skills/system-spec-kit/runtime` and `.skilled/skills/system-spec-kit/runtime/cli` |
 <!-- /ANCHOR:verification -->
 
 ---

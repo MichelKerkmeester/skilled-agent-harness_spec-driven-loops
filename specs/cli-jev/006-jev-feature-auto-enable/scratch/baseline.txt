@@ -1,0 +1,15 @@
+transport+shared+bench: ℹ pass 98 ℹ fail 0 
+032 cite-drift: ℹ pass 50 ℹ fail 0 
+035 injection: ℹ pass 57 ℹ fail 0 
+020+021 clarify+leaf-route: ℹ pass 58 ℹ fail 0 
+003 goal verifier: ℹ pass 12 ℹ fail 0 
+sk-create-goal: ℹ pass 32 ℹ fail 0 
+034 reader lens: ALL PASS
+readme manifest: SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+025+024 deep-improvement:  Test Files 2 passed (2)  Tests 82 passed (82) 
+017+022 spec-kit cli:  Test Files 2 passed (2)  Tests 79 passed (79) 
+advisor parity:  Test Files 6 passed (6)  Tests 54 passed (54) 
+deep-review scripts: ℹ pass 1 ℹ fail 0 
+model-benchmark all:  Test Files 16 passed (16)  Tests 260 passed (260) 
+cite-drift advisory pytest: 7 passed in 1.90s
+hook-flags: ℹ pass 20 ℹ fail 0 

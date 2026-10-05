@@ -46,12 +46,15 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
       ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
       "scratch/census-rows.mjs",
       "scratch/space-fix-delta.jsonl",
       "scratch/labels/operator-rows.md",
+      "scratch/labels/panel/panel-scored.json",
+      "scratch/labels/panel/runs.log",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
       "scratch/sample-and-check.py",
       "scratch/labels/agreement.json",
@@ -86,6 +89,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -125,6 +134,18 @@
         "source": "derived"
       },
       {
+        "name": "panel-scored.json",
+        "kind": "config",
+        "path": "scratch/labels/panel/panel-scored.json",
+        "source": "derived"
+      },
+      {
+        "name": "runs.log",
+        "kind": "file",
+        "path": "scratch/labels/panel/runs.log",
+        "source": "derived"
+      },
+      {
         "name": "cite-drift-redirects.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
@@ -155,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -185,27 +200,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Write",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The census classified 140,287 citations and showed 27,320 as moved, but its accuracy per class rests on 8 moved rows checked by hand",
     "created_at": "2026-10-04T12:00:33Z",
-    "last_save_at": "2026-10-04T16:23:21.532Z",
+    "last_save_at": "2026-10-05T04:54:21.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +217,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b7d45b5d995b6619487f66d7b283977b581c40e59967d4b419e6afb7b4655fa",
+    "source_fingerprint": "sha256:55af1fef5cbffa11fa164729ebde203681934aaefdb1d041bb7c4974a79fa5fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07922ce64a999f3850bb98f94927fd9066bf99e94144cd55a7bfc8154fd50c92",
-      "plan.md": "b00b47f89e7e9497c8d31191ab0cc95ebc07c575b606128db59f1d8ac6b436de",
-      "tasks.md": "cb6c7b5d656ed3f31c517f8e05ca9c3c115bdd92b339b92ea7d7681cc80ccad6",
-      "implementation-summary.md": "438ab6101c01a5c6fccf7b9bb9be83712f305fe533ecd951ad1c7fb1e25f1ee0"
+      "spec.md": "91708c81eeccb6c7079adacd771f643ebae98a849c8a0e72aeae4a5fd34cd28c",
+      "plan.md": "a95433993899a662d0860ca390aa37313c6a237efe51b9e9816bf80b3040dede",
+      "tasks.md": "e3cb877b306626c8b04c95e6bb27ba6f4aa669a01560eb63a0ff66c288376f5a",
+      "decision-record.md": "bc774d53649d6cd1d4ac9b0f80eb5aead3b6b1caa0292166d7143ee0d4750297",
+      "implementation-summary.md": "6d91816ece9f9f04c4bdc7f6fda2118988e2797262081223e536ff693360c339"
     },
     "last_active_at": null
   }

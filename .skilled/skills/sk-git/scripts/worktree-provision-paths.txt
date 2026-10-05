@@ -18,11 +18,14 @@
 .skilled
 
 # Spec-kit, its shared library, and the two builds that the validation
-# orchestrator and the spec CLI are compiled into.
+# orchestrator and the spec CLI are compiled into. Each build pulls in the
+# shared library through its project references. Without the runtime output,
+# the metadata re-derive behind repair-derived cannot import @spec-kit/runtime;
+# without the CLI output, the continuity writer is missing.
 .skilled/skills/system-spec-kit
 .skilled/skills/system-spec-kit/shared
-.skilled/skills/system-spec-kit/runtime
-.skilled/skills/system-spec-kit/runtime/cli
+.skilled/skills/system-spec-kit/runtime  dist/api/index.js
+.skilled/skills/system-spec-kit/runtime/cli  dist/continuity/generate-context.js
 
 # The advisor daemon and CLI front door. The spec-gate hook core imports its
 # built policy plan directly.

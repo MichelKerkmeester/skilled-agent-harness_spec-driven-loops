@@ -125,7 +125,7 @@ Main flow:
 |---|---|---|
 | `dispatch({ prompt_file, executor, model, ... })` | Function | Dispatches a prompt to an executor and returns `{ ok, exit_code, stdout, stderr, attempts, paused? }`. |
 | `node dispatch-model.cjs [--executor=...] [--model=...] [--mock] <prompt-file>` | CLI | Runs the dispatcher and prints a JSON envelope plus raw stdout and stderr. |
-| `node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--scorer pattern\|5dim] [--grader noop\|mock\|llm]` | CLI | Scores fixture outputs and writes the benchmark report. |
+| `node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--scorer pattern\|5dim] [--grader auto\|noop\|mock\|llm\|jev]` | CLI | Scores fixture outputs and writes the benchmark report. `auto`, the default, grades D4 with Jev when a credential is stored. |
 
 ---
 

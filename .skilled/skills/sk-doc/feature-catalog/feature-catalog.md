@@ -9,7 +9,6 @@ trigger_phrases:
   - "changelog entry frontmatter check"
   - "goal criteria lint"
   - "clarify default measurement"
-  - "hvr reader-needed lens"
   - "citation drift census across doc families"
   - "shared frontmatter value warning"
 last_updated: "2026-10-04"
@@ -149,19 +148,5 @@ Warns, never blocks, when a document's contextType or importance_tier is outside
 #### Source Files
 
 See [`document-validation/shared-frontmatter-value-warning.md`](document-validation/shared-frontmatter-value-warning.md) for the two keys, the silent cases and source anchors.
-
-### HVR Reader-Needed Lens
-
-#### Description
-
-Measures offline how two no-call comparators and a flag-nothing floor read three reader-needed Human Voice Rules tells, against the operator's labels.
-
-#### Current Reality
-
-`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. The lens calls no backend: its only child process is the local scanner, and no switch names a model.
-
-#### Source Files
-
-See [`document-validation/hvr-reader-needed-lens.md`](document-validation/hvr-reader-needed-lens.md) for the census, the label draw and source anchors.
 
 Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

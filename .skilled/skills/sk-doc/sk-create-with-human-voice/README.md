@@ -82,8 +82,6 @@ every run so a clean mechanical result is never mistaken for a clean document.
 **Step 4: After editing, scan again and report both numbers.** A rewrite that only reports
 its final score has proved nothing.
 
-`scripts/hvr_reader_lens.py` measures how well the two no-call comparators spot the tells a reader has to settle. It makes no model call, and reports each comparator against the operator's labels.
-
 ---
 
 ## 4. HOW IT WORKS

@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout"
     last_updated_at: "2026-10-04T13:15:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Wrote the criteria and their evidence"
-    next_safe_action: "Operator decides the commit, which closes AC-004"
+    recent_action: "All six criteria met"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given every doc this program edited, When the sk-doc validators run, Then each passes | Changelogs, catalog and playbook files, command docs and strict-mode docs all validate (implementation-summary.md:123-130) | Met | - |
 | AC-002 | REQ-002 | Given the whole packet, When `validate.sh --strict --recursive` runs, Then it prints `RESULT: PASSED` | The parent and all seven phases pass with 0 errors and 0 warnings (implementation-summary.md:134) | Met | - |
 | AC-003 | REQ-003 | Given phase 006 was removed, When the skill and command docs are searched, Then none describes the anchor citation form | A search for the anchor form across skill and command docs finds nothing; the closure record names it as not built (implementation-summary.md:69) | Met | - |
-| AC-004 | REQ-004 | Given an edited skill doc, When the program closes, Then it has a bumped four-part version and a changelog entry | Six changelogs and skill versions in, version check exit 0 (implementation-summary.md:125); each doc's fourth digit counts its commits and waits for the commit root D4 holds (implementation-summary.md:142) | Unmet | - |
+| AC-004 | REQ-004 | Given an edited skill doc, When the program closes, Then it has a bumped four-part version and a changelog entry | Six changelogs and skill versions in, version check exit 0 (implementation-summary.md:125); each doc's fourth digit counts its commits. Pushed to main 2026-10-04: `cca919c5a4` maps the spec-doc values and states 33 before and 12 after; `52de4c67f7` and `5b64ec8213` set each edited doc's derived version; `frontmatter-version.mjs verify` on the 23 versioned docs this program edited: ok=23; `check-frontmatter-versions.sh` 2,994 ok, 8 without frontmatter | Met | - |
 | AC-005 | REQ-005 | Given the program closes, When the closure record is read, Then it lists each deferred item and why | The closure record (implementation-summary.md:63-73) | Met | - |
 | AC-006 | REQ-006 | Given each changed command, When its doc is read, Then it names the check it runs or the value it accepts | Seven command docs validate with their new paragraphs (implementation-summary.md:129) | Met | - |
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Five of six criteria are met. AC-004 waits for the commit that root decision D4 leaves to the operator, because each edited doc's fourth version digit counts its commits.
+All six criteria are met. AC-004 closed when the operator-approved commits reached main on 2026-10-04 and each edited doc took its derived version.
 <!-- /ANCHOR:closure -->

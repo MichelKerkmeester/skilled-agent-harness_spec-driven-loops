@@ -82,6 +82,64 @@ function stubDir(bodies: Record<string, string>): string {
   return dir;
 }
 
+// The jev stub answers credential status as the test sets it and logs every
+// call, so a test can prove whether the choice question was asked.
+function jevStubEnv(stubDirectory: string | null, extra: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    HOOK_FLAGS_CONFIG: path.join(tempDir('vf-flags-missing-'), 'hook-flags.env'),
+    ...extra,
+  };
+  env.PATH = stubDirectory === null
+    ? tempDir('vf-empty-path-')
+    : `${stubDirectory}${path.delimiter}${process.env.PATH || ''}`;
+  return env;
+}
+
+function jevStubLog(stubDirectory: string): string[] {
+  const logPath = path.join(stubDirectory, 'jev.log');
+  if (!fs.existsSync(logPath)) return [];
+  return fs.readFileSync(logPath, 'utf8').split('\n').filter((line) => line.length > 0);
+}
+
+// A reviewer profile whose only case is prose the deterministic pattern misses,
+// so the jev grader is the only resolver that can score it.
+function writeMissProfile(extra: Record<string, unknown> = {}): string {
+  const fixtures = tempDir('vf-miss-fixtures-');
+  fs.writeFileSync(
+    path.join(fixtures, 'reviewer-miss.json'),
+    JSON.stringify({
+      id: 'reviewer-miss',
+      kind: 'reviewer-prompt',
+      prompt_template: 'Review the provided change and return a typed verdict.',
+      expectedVerdict: 'pass',
+      tests: [{ name: 'informal approval', reviewer_output: 'Looks fine to ship.', expectedVerdict: 'pass' }],
+    }),
+    'utf8',
+  );
+  const profile = path.join(tempDir('vf-miss-profile-'), 'profile.json');
+  fs.writeFileSync(
+    profile,
+    JSON.stringify({ profileId: 'vf-miss', fixtureDir: fixtures, fixtures: ['reviewer-miss'], ...extra }),
+    'utf8',
+  );
+  return profile;
+}
+
+const READY_JEV_STUB = [
+  'case "$1" in',
+  '  auth) exit 0 ;;',
+  '  choice) echo \'{"answers":{"answer":{"choice":"fail"}}}\' ;;',
+  'esac',
+].join('\n');
+
+const UPPER_CASE_JEV_STUB = [
+  'case "$1" in',
+  '  auth) exit 0 ;;',
+  '  choice) echo \'{"answers":{"answer":{"choice":"PASS"}}}\' ;;',
+  'esac',
+].join('\n');
+
 function fakePiBin(answerSource: string): string {
   const root = tempDir('fakepi-');
   fs.mkdirSync(path.join(root, 'bin'));
@@ -242,6 +300,101 @@ describe('reviewer-scorer verdict parsing and grader', () => {
     expect(noopRun.totals.fixtures).toBe(4);
     expect(noopRun.aggregateScore).toBe(100);
     expect(noopRun.recommendation).toBe('benchmark-pass');
+  });
+});
+
+describe('reviewer-scorer grader auto resolution', () => {
+  it('asks Jev the measured question by default when a credential is stored', () => {
+    const profile = writeMissProfile();
+    const stubs = stubDir({ jev: READY_JEV_STUB });
+
+    const withoutJev = reviewerScorer.runReviewerBenchmark({ profile, env: jevStubEnv(null) });
+    const graded = reviewerScorer.runReviewerBenchmark({ profile, env: jevStubEnv(stubs) });
+
+    expect(withoutJev.rows[0].per_test[0].verdictMethod).toBe('none');
+    expect(graded.grader).toBe('jev');
+    expect(graded.graderRequested).toBe('auto');
+    expect(graded.graderReason).toBe('ready');
+    expect(graded.rows[0].per_test[0]).toMatchObject({ extractedVerdict: 'fail', verdictMethod: 'jev-grader' });
+
+    const choiceLines = jevStubLog(stubs).filter((line) => line.startsWith('choice '));
+    expect(choiceLines).toHaveLength(1);
+    expect(choiceLines[0]).toContain(`-q ${vf.QUESTION}`);
+    const optionIndexes: number[] = vf.OPTION_PAIRS.map(
+      ([key, description]: [string, string]) => choiceLines[0].indexOf(`-o ${key}=${description}`),
+    );
+    expect(optionIndexes).not.toContain(-1);
+    expect(optionIndexes).toEqual([...optionIndexes].sort((a, b) => a - b));
+  });
+
+  it('an explicit jev request obeys the off switches without spawning the CLI', () => {
+    const profile = writeMissProfile({ optInGraders: ['jev'] });
+    const stubs = stubDir({ jev: READY_JEV_STUB });
+
+    expect(() => reviewerScorer.runReviewerBenchmark({
+      profile,
+      grader: 'jev',
+      env: jevStubEnv(stubs, { JEV_FEATURES: '0' }),
+    })).toThrow('reviewer-scorer: jev grader is switched off (off: JEV_FEATURES)');
+    expect(jevStubLog(stubs)).toEqual([]);
+  });
+
+  it('treats a case-variant Jev choice as unresolved', () => {
+    const profile = writeMissProfile();
+    const stubs = stubDir({ jev: UPPER_CASE_JEV_STUB });
+
+    const graded = reviewerScorer.runReviewerBenchmark({ profile, env: jevStubEnv(stubs) });
+
+    expect(graded.grader).toBe('jev');
+    expect(graded.rows[0].per_test[0]).toMatchObject({ extractedVerdict: null, verdictMethod: 'jev-grader' });
+    expect(jevStubLog(stubs).filter((line) => line.startsWith('choice '))).toHaveLength(1);
+  });
+
+  it('stays on the no-op baseline when the feature switch is off', () => {
+    const profile = writeMissProfile();
+    const stubs = stubDir({ jev: READY_JEV_STUB });
+
+    const ownSwitch = reviewerScorer.runReviewerBenchmark({
+      profile,
+      env: jevStubEnv(stubs, { JEV_FEATURE_VERDICT_FALLBACK: '0' }),
+    });
+    const masterSwitch = reviewerScorer.runReviewerBenchmark({
+      profile,
+      env: jevStubEnv(stubs, { JEV_FEATURES: '0' }),
+    });
+
+    expect(ownSwitch.grader).toBe('noop');
+    expect(ownSwitch.graderReason).toBe('off: JEV_FEATURE_VERDICT_FALLBACK');
+    expect(ownSwitch.rows[0].per_test[0].verdictMethod).toBe('none');
+    expect(masterSwitch.grader).toBe('noop');
+    expect(masterSwitch.graderReason).toBe('off: JEV_FEATURES');
+    expect(masterSwitch.rows[0].per_test[0].verdictMethod).toBe('none');
+    expect(jevStubLog(stubs)).toEqual([]);
+  });
+
+  it('scores exactly like an explicit noop when no jev is on PATH', () => {
+    const profile = writeMissProfile();
+    const autoRun = reviewerScorer.runReviewerBenchmark({ profile, env: jevStubEnv(null) });
+    const noopRun = reviewerScorer.runReviewerBenchmark({ profile, grader: 'noop', env: jevStubEnv(null) });
+
+    expect(autoRun.grader).toBe('noop');
+    expect(autoRun.graderRequested).toBe('auto');
+    expect(autoRun.graderReason).toBe('jev not on PATH');
+    expect(autoRun.rows).toEqual(noopRun.rows);
+    expect(autoRun.totals).toEqual(noopRun.totals);
+  });
+
+  it('makes no call when the grader is explicitly noop', () => {
+    const profile = writeMissProfile();
+    const stubs = stubDir({ jev: READY_JEV_STUB });
+
+    const run = reviewerScorer.runReviewerBenchmark({ profile, grader: 'noop', env: jevStubEnv(stubs) });
+
+    expect(run.grader).toBe('noop');
+    expect(run.graderRequested).toBe('noop');
+    expect(run.graderReason).toBe('explicit');
+    expect(run.rows[0].per_test[0].verdictMethod).toBe('none');
+    expect(jevStubLog(stubs)).toEqual([]);
   });
 });
 
