@@ -11,7 +11,8 @@
     "cli-external-orchestration/076-mimo-v2-6-cutover",
     "cli-external-orchestration/077-gpt-6-luna-sol-cutover",
     "cli-external-orchestration/078-layer-3-own-paths-baseline",
-    "cli-external-orchestration/079-claude-code-native-dispatch"
+    "cli-external-orchestration/079-claude-code-native-dispatch",
+    "cli-external-orchestration/080-pi-extension-brace-expansion"
   ],
   "manual": {
     "depends_on": [],
