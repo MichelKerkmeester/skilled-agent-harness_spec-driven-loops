@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity",
+  "description": "Phase 55: alignment-and-hook-parity",
+  "keywords": [
+    "phase",
+    "alignment-and-hook-parity"
+  ],
+  "lastUpdated": "2026-10-05T09:05:05.138Z",
+  "specId": "055",
+  "folderSlug": "alignment-and-hook-parity",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
