@@ -23,7 +23,12 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { spawnClassifierCall } from '../../../../cli-classifier/shared/scripts/jev-transport.mjs';
-import { bootstrapLine, clusterBootstrapInterval as clusterBootstrapItems, decidedSubsetLine, marginSlack, marginSlackLine, outDirectoryHoldsRun, pinRowSet as pinRows, probabilityAwarePick } from '../../../../cli-classifier/shared/scripts/scorer-report.mjs';
+import {
+  beatsStrongestPolicy, binomialTailHalf, bootstrapLine, classFloor, classFloorLines,
+  clusterBootstrapInterval as clusterBootstrapItems, decidedSubsetLine, marginSlack,
+  marginSlackLine, outDirectoryHoldsRun, pinRowSet as pinRows, powerLine,
+  probabilityAwarePick, strongestPolicyLine,
+} from '../../../../cli-classifier/shared/scripts/scorer-report.mjs';
 
 import { DEFAULT_REPO_ROOT } from './generate-trigger-index.mjs';
 import { compareCodeUnits, normalizeTriggerText } from './lib/normalize.mjs';
@@ -60,8 +65,9 @@ export const NONE_DESCRIPTION = 'None of these tracks';
 export const ORDERS = 3;
 export const SHORTLIST_SIZE = 5;
 export const MARGIN_LINE = 'margin: 0.10';
-export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, '
-  + 'margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M';
+export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, '
+  + 'margin 10*(A-B) >= M, sign test p < 0.05, strongest policy A > S, class floor A_c >= B_c, '
+  + 'flips 10*F <= 3*M';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TEST SET
@@ -866,8 +872,10 @@ export function modalPick(answers) {
 }
 
 /**
- * First failed condition decides, in this order: coverage, margin, sign
- * test, flips. Every outcome carries p, the sign test's exact tail.
+ * First failed condition decides, in this order: coverage, kill, margin, sign
+ * test, strongest policy, class floor, flips. A strongest or floor result
+ * that is absent skips its gate. Every outcome carries p, the sign test's
+ * exact tail.
  *
  * @param {{
  *   K: number,
@@ -876,21 +884,48 @@ export function modalPick(answers) {
  *   B: number,
  *   W: number,
  *   L: number,
- *   F: number
+ *   F: number,
+ *   strongest?: { pass: boolean, name: string | null, right: number } | null,
+ *   floor?: { pass: boolean, classes: Array<object>, failing: string[] } | null
  * }} counts
  * @returns {{
- *   outcome: 'keep' | 'stop',
- *   reason: 'coverage' | 'margin' | 'sign test' | 'flips' | null,
+ *   outcome: 'keep' | 'kill' | 'stop',
+ *   reason: 'coverage' | 'margin' | 'sign test' | 'strongest policy' | 'class floor' | 'flips' | null,
  *   p: number
  * }}
  */
-export function decideVerdict({ K, M, A, B, W, L, F }) {
+export function decideVerdict({ K, M, A, B, W, L, F, strongest = null, floor = null }) {
   const sign = signTestP(W, L);
   if (!(10 * M >= 9 * K)) return { outcome: 'stop', reason: 'coverage', p: sign.p };
+  const kill = binomialTailHalf(W + L, L);
+  if (W + L > 0 && 20n * kill.num <= kill.den) return { outcome: 'kill', reason: null, p: sign.p };
   if (!(10 * (A - B) >= M)) return { outcome: 'stop', reason: 'margin', p: sign.p };
   if (!sign.below) return { outcome: 'stop', reason: 'sign test', p: sign.p };
+  if (strongest !== null && !strongest.pass) {
+    return { outcome: 'stop', reason: 'strongest policy', p: sign.p };
+  }
+  if (floor !== null && !floor.pass) return { outcome: 'stop', reason: 'class floor', p: sign.p };
   if (!(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', p: sign.p };
   return { outcome: 'keep', reason: null, p: sign.p };
+}
+
+/**
+ * One verdict line: the outcome, the counts and the exact p, with the
+ * caller's suffix appended when it has one.
+ *
+ * @param {string} backend Column name, printed on the line.
+ * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number }} counts
+ * @param {{ outcome: 'keep' | 'kill' | 'stop', reason: string | null, p: number }} verdict
+ * @param {string} [suffix] Appended to the line when non-empty.
+ * @returns {string} The verdict line.
+ */
+function verdictLine(backend, counts, verdict, suffix) {
+  const label = verdict.outcome === 'stop' ? `stop (${verdict.reason})` : verdict.outcome;
+  let line = `verdict ${backend}: ${label}`
+    + ` K=${counts.K} M=${counts.M} A=${counts.A} B=${counts.B}`
+    + ` W=${counts.W} L=${counts.L} F=${counts.F} p=${formatP(verdict.p)}`;
+  if (typeof suffix === 'string' && suffix !== '') line += ` ${suffix}`;
+  return line;
 }
 
 /**
@@ -905,13 +940,17 @@ export function formatP(p) {
  * One column's counts and verdict. A row is measured only when its record
  * holds exactly one answer per order and every answer is a string; every
  * other row stays unmeasured. An unstable or abstained pick is wrong for
- * the backend, and the votes a pick lacks add to the flip count.
+ * the backend, and the votes a pick lacks add to the flip count. The simple
+ * policies the strongest-policy gate compares against are counted on those
+ * same measured rows with the row's own track as gold, so an unmeasured row
+ * cannot raise the bar.
  *
  * @param {string} backend Backend name, printed on both lines.
  * @param {Array<{ id: string, track: string }>} rows Kept rows.
  * @param {Map<string, Array<string | null>>} records Row id to submitted keys in call order.
  * @param {Map<string, string | null>} baselinePicks Row id to the baseline pick.
  * @param {string} [suffix] Appended to the verdict line when non-empty.
+ * @param {Map<string, { lookup: string | null, ripgrep: string | null }>} [rowPicks] Row id to that row's lookup and ripgrep picks; omitted skips the strongest-policy gate.
  * @returns {{
  *   backend: string,
  *   K: number,
@@ -926,12 +965,14 @@ export function formatP(p) {
  *   F: number,
  *   p: number,
  *   flipRate: number,
- *   outcome: 'keep' | 'stop',
- *   reason: 'coverage' | 'margin' | 'sign test' | 'flips' | null,
+ *   outcome: 'keep' | 'kill' | 'stop',
+ *   reason: 'coverage' | 'margin' | 'sign test' | 'strongest policy' | 'class floor' | 'flips' | null,
+ *   strongest: { pass: boolean, name: string | null, right: number } | undefined,
+ *   floor: { pass: boolean, classes: Array<{ cls: string, n: number, jev: number, baseline: number }>, failing: string[] },
  *   line: string
  * }}
  */
-export function summarizeColumn(backend, rows, records, baselinePicks, suffix) {
+export function summarizeColumn(backend, rows, records, baselinePicks, suffix, rowPicks) {
   const K = rows.length;
   let M = 0;
   let unstable = 0;
@@ -941,6 +982,12 @@ export function summarizeColumn(backend, rows, records, baselinePicks, suffix) {
   let W = 0;
   let L = 0;
   let F = 0;
+  let lookupRight = 0;
+  let ripgrepRight = 0;
+  /** @type {Map<string, number>} */
+  const goldCounts = new Map();
+  /** @type {Array<{ cls: string, jevRight: boolean, baselineRight: boolean }>} */
+  const classRows = [];
   for (const row of rows) {
     const answers = records.get(row.id);
     if (!Array.isArray(answers) || answers.length !== ORDERS) continue;
@@ -956,12 +1003,27 @@ export function summarizeColumn(backend, rows, records, baselinePicks, suffix) {
     if (baselineRight) B += 1;
     if (backendRight && !baselineRight) W += 1;
     if (baselineRight && !backendRight) L += 1;
+    const picks = rowPicks?.get(row.id);
+    if (picks?.lookup === row.track) lookupRight += 1;
+    if (picks?.ripgrep === row.track) ripgrepRight += 1;
+    goldCounts.set(row.track, (goldCounts.get(row.track) ?? 0) + 1);
+    classRows.push({ cls: row.track, jevRight: backendRight, baselineRight });
   }
 
-  const verdict = decideVerdict({ K, M, A, B, W, L, F });
-  let line = `verdict ${backend}: ${verdict.outcome === 'keep' ? 'keep' : `stop (${verdict.reason})`}`
-    + ` K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p=${formatP(verdict.p)}`;
-  if (typeof suffix === 'string' && suffix !== '') line += ` ${suffix}`;
+  let majority = 0;
+  for (const count of goldCounts.values()) {
+    if (count > majority) majority = count;
+  }
+  const policies = {
+    lookup: lookupRight,
+    ripgrep: ripgrepRight,
+    'always-none': goldCounts.get(NONE_KEY) ?? 0,
+    majority,
+  };
+  const strongest = typeof rowPicks === 'undefined' ? undefined : beatsStrongestPolicy(A, policies);
+  const floor = classFloor(classRows);
+  const verdict = decideVerdict({ K, M, A, B, W, L, F, strongest, floor });
+  const line = verdictLine(backend, { K, M, A, B, W, L, F }, verdict, suffix);
 
   return {
     backend,
@@ -979,6 +1041,8 @@ export function summarizeColumn(backend, rows, records, baselinePicks, suffix) {
     flipRate: M === 0 ? 0 : F / (ORDERS * M),
     outcome: verdict.outcome,
     reason: verdict.reason,
+    strongest,
+    floor,
     line,
   };
 }
@@ -1222,7 +1286,24 @@ function probabilityPick(records) {
   return probabilityAwarePick(records.map((record) => ({ pick: recordedPick(record), pickProb: record?.pickProb, noneProb: record?.noneProb })), NONE_KEY);
 }
 
-function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, orderCount) {
+/**
+ * One alternative arm's counts and verdict, scored on the picks the arm
+ * selects. A row counts only when the selected pick is a string and every
+ * recorded answer is a string; flips count only when the arm sees all three
+ * orders. The simple policies the strongest-policy gate compares against are
+ * counted on those same rows with the row's own track as gold, so a row the
+ * arm leaves out cannot raise the bar.
+ *
+ * @param {string} backend Arm name, printed on its verdict line.
+ * @param {Array<{ id: string, track: string }>} rows Kept rows.
+ * @param {Map<string, string | null>} selectedPicks Row id to the pick the arm selects.
+ * @param {Map<string, string | null>} baselinePicks Row id to the baseline pick.
+ * @param {Map<string, Map<number, Record<string, unknown>>>} byRow Recorded calls by row id and order.
+ * @param {number} orderCount Orders the arm sees.
+ * @param {Map<string, { lookup: string | null, ripgrep: string | null }>} [rowPicks] Row id to that row's lookup and ripgrep picks; omitted skips the strongest-policy gate.
+ * @returns {object} Counts, the outcome and reason unions, the gates and the verdict line.
+ */
+function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, orderCount, rowPicks) {
   const K = rows.length;
   let M = 0;
   let unstable = 0;
@@ -1234,6 +1315,12 @@ function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, or
   let F = 0;
   let decidedCount = 0;
   let decidedCorrect = 0;
+  let lookupRight = 0;
+  let ripgrepRight = 0;
+  /** @type {Map<string, number>} */
+  const goldCounts = new Map();
+  /** @type {Array<{ cls: string, jevRight: boolean, baselineRight: boolean }>} */
+  const classRows = [];
   for (const row of rows) {
     const pick = selectedPicks.get(row.id);
     if (typeof pick !== 'string') continue;
@@ -1252,15 +1339,31 @@ function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, or
     if (baselineRight) B += 1;
     if (backendRight && !baselineRight) W += 1;
     if (baselineRight && !backendRight) L += 1;
+    const picks = rowPicks?.get(row.id);
+    if (picks?.lookup === row.track) lookupRight += 1;
+    if (picks?.ripgrep === row.track) ripgrepRight += 1;
+    goldCounts.set(row.track, (goldCounts.get(row.track) ?? 0) + 1);
+    classRows.push({ cls: row.track, jevRight: backendRight, baselineRight });
     if (pick !== NONE_KEY) {
       decidedCount += 1;
       if (backendRight) decidedCorrect += 1;
     }
   }
 
-  const verdict = decideVerdict({ K, M, A, B, W, L, F });
-  const line = `verdict ${backend}: ${verdict.outcome === 'keep' ? 'keep' : `stop (${verdict.reason})`}`
-    + ` K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p=${formatP(verdict.p)}`;
+  let majority = 0;
+  for (const count of goldCounts.values()) {
+    if (count > majority) majority = count;
+  }
+  const policies = {
+    lookup: lookupRight,
+    ripgrep: ripgrepRight,
+    'always-none': goldCounts.get(NONE_KEY) ?? 0,
+    majority,
+  };
+  const strongest = typeof rowPicks === 'undefined' ? undefined : beatsStrongestPolicy(A, policies);
+  const floor = classFloor(classRows);
+  const verdict = decideVerdict({ K, M, A, B, W, L, F, strongest, floor });
+  const line = verdictLine(backend, { K, M, A, B, W, L, F }, verdict);
   return {
     backend,
     K,
@@ -1277,6 +1380,8 @@ function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, or
     flipRate: M === 0 ? 0 : F / (orderCount * M),
     outcome: verdict.outcome,
     reason: verdict.reason,
+    strongest,
+    floor,
     line,
     decidedCount,
     decidedCorrect,
@@ -1311,7 +1416,7 @@ export function clusterBootstrapInterval(rows, picks, baselinePicks) {
 /**
  * Derive alternative arms and diagnostics from recorded calls.
  *
- * @param {{ rows: Array<{ id: string, track: string }>, probes: Array<{ id: string }>, baselinePicks: Map<string, string | null>, options: { pairs: Array<[string, string]> } }} plan
+ * @param {{ rows: Array<{ id: string, track: string }>, probes: Array<{ id: string }>, baselinePicks: Map<string, string | null>, options: { pairs: Array<[string, string]> }, rowPicks: Map<string, { lookup: string | null, ripgrep: string | null }> }} plan
  * @param {Array<Record<string, unknown>>} records Recorded calls.
  * @param {{ jevVersion: string, provider: string, model: string }} modelTuple
  * @returns {{ column: object, latency: { p50: number | null, p95: number | null }, probePicks: Map<string, string | null>, probabilityAware: object, oneCall: object, shortlist: object, perTrack: Record<string, object>, bootstrap: object, modelTuple: object }}
@@ -1322,7 +1427,7 @@ export function analyzeRecordedCalls(plan, records, modelTuple) {
   const rowAnswers = new Map(plan.rows.map((row) => [row.id, picksForRow(testByRow, row.id)]));
   const suffix = `jev_version=${modelTuple.jevVersion.replace(/^jev /, '')}`
     + ` provider=${modelTuple.provider} model=${modelTuple.model}`;
-  const column = summarizeColumn('jev', plan.rows, rowAnswers, plan.baselinePicks, suffix);
+  const column = summarizeColumn('jev', plan.rows, rowAnswers, plan.baselinePicks, suffix, plan.rowPicks);
   const wallTimes = records
     .map((record) => record.wallMs)
     .filter((value) => typeof value === 'number' && Number.isFinite(value));
@@ -1337,9 +1442,10 @@ export function analyzeRecordedCalls(plan, records, modelTuple) {
   const oneCallPicks = new Map(plan.rows.map((row) => [row.id, recordedPick(testByRow.get(row.id)?.get(0))]));
   const probabilityAware = summarizePickArm(
     'probability-aware', plan.rows, probabilityPicks, plan.baselinePicks, testByRow, ORDERS,
+    plan.rowPicks,
   );
   const oneCall = summarizePickArm(
-    'one-call', plan.rows, oneCallPicks, plan.baselinePicks, testByRow, 1,
+    'one-call', plan.rows, oneCallPicks, plan.baselinePicks, testByRow, 1, plan.rowPicks,
   );
   const perTrack = {};
   for (const row of plan.rows) {
@@ -1379,13 +1485,28 @@ export function analyzeRecordedCalls(plan, records, modelTuple) {
   };
 }
 
+/**
+ * One arm's verdict block: its verdict line, the strongest-policy line, the
+ * class-floor lines and the sign-test power line over its decided pairs.
+ *
+ * @param {object} summary Column or alternative-arm summary.
+ * @param {(line: string) => void} out Line writer.
+ */
+function armVerdictLines(summary, out) {
+  out(summary.line);
+  out(strongestPolicyLine(summary.backend, summary.A, summary.strongest));
+  for (const line of classFloorLines(summary.backend, summary.floor)) out(line);
+  const pairs = summary.W + summary.L;
+  out(powerLine(summary.backend, { pairs, winRate: pairs === 0 ? null : summary.W / pairs }));
+}
+
 function recordedAnalysisLines(analysis, out) {
   out(columnLine(analysis.column, analysis.latency));
-  out(analysis.column.line);
-  out(analysis.probabilityAware.line);
+  armVerdictLines(analysis.column, out);
+  armVerdictLines(analysis.probabilityAware, out);
   out(decidedSubsetLine('probability-aware', analysis.probabilityAware));
   out(marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
-  out(analysis.oneCall.line);
+  armVerdictLines(analysis.oneCall, out);
   out(`shortlist arm: candidates=${analysis.shortlist.candidateTracks}`
     + ` calls_per_row=${analysis.shortlist.callsPerRow} accuracy=not-measured reason=${analysis.shortlist.reason}`);
   for (const [track, bucket] of Object.entries(analysis.perTrack)) {
@@ -1573,8 +1694,10 @@ export function jevGate(ctx) {
  *   rows: Array<{ id: string, track: string, question: string }>,
  *   probes: Array<{ id: string, question: string }>,
  *   options: { pairs: Array<[string, string]>, keys: string[] },
- *   baselinePicks: Map<string, string | null>
- * }} plan Rows, gold-bearing probes, the option set and the baseline picks.
+ *   baselinePicks: Map<string, string | null>,
+ *   rowPicks: Map<string, { lookup: string | null, ripgrep: string | null }>
+ * }} plan Rows, gold-bearing probes, the option set, the baseline picks and
+ *   the per-row lookup and ripgrep picks.
  * @param {{ path: string, provider: string }} gate Passing jevGate result.
  * @param {{
  *   out: (line: string) => void,
@@ -1600,8 +1723,8 @@ export function jevGate(ctx) {
  *       F: number,
  *       p: number,
  *       flipRate: number,
- *       outcome: 'keep' | 'stop',
- *       reason: 'coverage' | 'margin' | 'sign test' | 'flips' | null,
+ *       outcome: 'keep' | 'kill' | 'stop',
+ *       reason: 'coverage' | 'margin' | 'sign test' | 'strongest policy' | 'class floor' | 'flips' | null,
  *       line: string,
  *       latency: { p50: number | null, p95: number | null },
  *       jevVersion: string,
@@ -2014,11 +2137,13 @@ export async function main(argv, deps = {}) {
     row.id,
     picks[index][summary.method],
   ]));
+  const rowPicks = new Map(testSet.rows.map((row, index) => [row.id, picks[index]]));
   const armPlan = {
     rows: testSet.rows,
     probes: probes.filter((probe) => probe.gold.length > 0),
     options,
     baselinePicks,
+    rowPicks,
   };
 
   out(`index manifestHash: ${loaded.manifestHash}`);
