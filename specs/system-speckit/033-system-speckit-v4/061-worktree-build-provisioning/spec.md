@@ -64,9 +64,10 @@ Provisioning a worktree leaves it able to run both suites, and a checkout that h
 - A failure message naming the provision command in both suites.
 - `provision` with no argument provisioning the worktree it runs in. Added during the phase: the first real run showed it provisioned the primary checkout instead, which defeats running it inside a worktree.
 - Running provision in this worktree.
+- Follow-up 2026-10-05: build outputs for spec-kit's `runtime` and `runtime/cli`, which moved in from out of scope once the reason given there turned out not to hold.
 
 ### Out of Scope
-- Listing build outputs for spec-kit's own packages. Their compiled output is checked for freshness by `validate.sh`, which already fails with its own message.
+- ~~Listing build outputs for spec-kit's own packages. Their compiled output is checked for freshness by `validate.sh`, which already fails with its own message.~~ Reversed 2026-10-05: `repair-derived` and the continuity writer read those outputs with no freshness check, so a fresh worktree failed with only "exit 1: Node.js v26.8.2".
 - The launch-wrapper worktrees, which share the source checkout's builds.
 
 ### Files to Change
@@ -99,6 +100,7 @@ Provisioning a worktree leaves it able to run both suites, and a checkout that h
 |----|-------------|---------------------|
 | REQ-004 | An unprovisioned checkout says how to fix itself. | Each suite's failure names `worktree-naming.sh provision`. |
 | REQ-005 | `provision` with no argument provisions the worktree it runs in. | Run from a linked worktree, it builds there and writes nothing at the primary checkout. |
+| REQ-006 | A fresh worktree gets spec-kit's runtime and CLI builds. | With both `dist` folders removed, provision builds `runtime/dist/api/index.js` and `runtime/cli/dist/continuity/generate-context.js`, and `repair-derived` runs. |
 <!-- /ANCHOR:requirements -->
 
 ---
