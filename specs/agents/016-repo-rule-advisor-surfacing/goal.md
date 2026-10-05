@@ -120,6 +120,7 @@ and findings belong here.
 | Stage 1 criteria met | Done | Verified 2026-10-05: recursive validate 11/11 PASSED, both research verdicts exist, rule canary in rule-canary-sync.yml with the last anchor before byte 16,384 and AGENTS.md 26,778 B, check-repo-rules 11/11 at 94,609 B (ADR-002), analyzer pytest 9/9 with baseline 70f36c299b an ancestor of 023e4915c1, preregistrations edba53daeb and 3990bc9fa5 before first scored runs with results/decision.md in both, no rejected-arm artifact |
 | Goal revised for stage 2 | Done | Operator asked for a new goal after stage 1 on 2026-10-05. Objective, decisions and criteria now cover live adoption, 009 and 010. Old D2 and D5 are fulfilled and old D6 is carried by the new D2 |
 | 008 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 1 adopts cards at Gate 5 over 318 runs. Primary -4.0 points (-15.5 to +7.6), Gate 5 miss +2.2 (-3.3 to +7.9), 42,064 against 59,620 rule bytes per run. Preregistration 3990bc9fa5 predates the first scored run. Deviations 1 to 4 in results/deviations.md. Adoption waits on the 006 window and checks 2 and 10 accepting card links |
+| Sample-size waivers | Done | 007 decision-record.md ADR-001 and 008 decision-record.md ADR-002 waive the pre-registered sample sizes the shortened schedules missed; 008 AC-003 Waived |
 
 ### Deviations and findings
 
