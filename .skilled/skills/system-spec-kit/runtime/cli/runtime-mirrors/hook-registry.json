@@ -396,7 +396,7 @@
       },
       "pi": {
         "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "reason": "Guards Claude Code's own Agent-tool model override and fork dispatch, which Pi's subagent tool does not share"
       }
     },
     {
@@ -428,11 +428,36 @@
             "timeout": 3,
             "fallback": "envelope"
           }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 8,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".skilled/bin/git-live-follow.sh",
+            "args": "--start",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 7,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".skilled/bin/git-live-follow.sh",
+            "args": "--start",
+            "timeout": 3,
+            "fallback": "none"
+          }
         ]
       },
       "pi": {
-        "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "extension": "session-start-advisories.ts"
       }
     },
     {
@@ -578,11 +603,34 @@
             "timeout": 3,
             "fallback": "background"
           }
+        ],
+        "cursor": [
+          {
+            "event": "sessionStart",
+            "group": 0,
+            "slot": 7,
+            "matcher": null,
+            "runner": "bash",
+            "script": ".skilled/bin/git-primary-reconcile.sh",
+            "timeout": 10,
+            "fallback": "background"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 6,
+            "matcher": "",
+            "runner": "bash",
+            "script": ".skilled/bin/git-primary-reconcile.sh",
+            "timeout": 3,
+            "fallback": "background"
+          }
         ]
       },
       "pi": {
-        "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "extension": "session-start-advisories.ts"
       }
     },
     {
@@ -639,15 +687,26 @@
             "slot": 0,
             "matcher": "WebFetch",
             "runner": "node",
-            "script": ".skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs",
+            "script": ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
             "timeout": 30,
             "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PostToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": "^webfetch$",
+            "runner": "node",
+            "script": ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs",
+            "timeout": 30,
+            "fallback": "none"
           }
         ]
       },
       "pi": {
-        "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "extension": "classifier-injection-screen.ts"
       }
     },
     {
@@ -866,7 +925,7 @@
       },
       "pi": {
         "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "reason": "Cursor's single postToolUse proxy for post-edit quality and the dispatch audit, which Pi registers directly as post-edit-quality.ts and dispatch-audit.ts"
       }
     },
     {
@@ -888,7 +947,7 @@
       },
       "pi": {
         "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "reason": "Cursor's preCompact recovery inject; Pi injects on session_compact in session-compact-context.ts"
       }
     },
     {
@@ -969,7 +1028,7 @@
       },
       "pi": {
         "extension": null,
-        "reason": "No Pi counterpart is registered"
+        "reason": "Cursor's sessionEnd persistence; Pi persists on session_shutdown in session-stop-context.ts"
       }
     },
     {
@@ -1405,6 +1464,9 @@
             "fallback": "envelope"
           }
         ]
+      },
+      "pi": {
+        "extension": "sk-vision.ts"
       }
     }
   ]

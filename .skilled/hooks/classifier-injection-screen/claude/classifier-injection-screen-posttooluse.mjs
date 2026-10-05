@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PostToolUse Injection Screen
+// ───────────────────────────────────────────────────────────────────
+// PostToolUse(WebFetch) injection screen for Claude Code.
+//
+// Fetched web text is untrusted input, and a page can try to issue orders to
+// the agent that reads it. This adapter takes the text Claude just fetched,
+// screens it with the measured question, and adds one advisory line naming how
+// many sections read as instructions and where the strongest one sits.
+//
+// ADVISORY ONLY -- it never blocks, never denies and never exits non-zero; the
+// fetch result reaches the model either way. FAILS OPEN -- a missing payload, a
+// parse error, an absent jev CLI or a failed screen exits 0 with no output, so a
+// bug here can never break a real fetch.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+import process from 'node:process';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
+import { fetchedText, screenAdvisory } from '../lib/classifier-injection-advisory.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function done() {
+  // No output + exit 0 -> the fetch result reaches the model unchanged.
+  process.exit(0);
+}
+
+async function readStdin() {
+  const chunks = [];
+  for await (const chunk of process.stdin) chunks.push(chunk);
+  return Buffer.concat(chunks).toString('utf8');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function main() {
+  if (!isHookEnabled('injection-screen')) return done(); // kill-switch: full no-op
+
+  let payload;
+  try {
+    payload = JSON.parse(await readStdin());
+  } catch {
+    return done(); // no/invalid payload -> fail open
+  }
+
+  if (String(payload?.tool_name ?? '') !== 'WebFetch') return done();
+
+  const advisory = await screenAdvisory(fetchedText(payload?.tool_response), { env: process.env });
+  if (advisory === null) return done();
+
+  // The advisory must reach the runtime whole, so its write callback owns the
+  // exit instead of racing process.exit against the flush.
+  process.stdout.write(`${JSON.stringify({
+    hookSpecificOutput: {
+      hookEventName: 'PostToolUse',
+      additionalContext: advisory,
+    },
+  })}\n`, () => process.exit(0));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
+
+main().catch(() => done());

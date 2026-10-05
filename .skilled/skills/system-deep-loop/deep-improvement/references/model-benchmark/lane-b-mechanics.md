@@ -52,7 +52,7 @@ Lane B benchmarks a model or prompt framework instead of mutating an agent file,
 
 ## 4. SCORER SELECTION
 
-`run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
+`run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader auto` (default) grades D4 with the Jev cascade in `scorer/classifier-score-model-variant.cjs` when a Jev credential is stored and `JEV_FEATURE_HALLUCINATION_GRADER` is not off, and resolves to the deterministic `noop` otherwise. `--grader noop` forces the deterministic path, `--grader mock` or `--grader llm` select the stub or real grader, and `--grader jev` runs the cascade and exits 2 without a credential.
 
 ---
 

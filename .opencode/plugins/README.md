@@ -25,6 +25,7 @@ Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch vi
 
 | File | Concern | Hook surface | Responsibility |
 |---|---|---|---|
+| `classifier-injection-screen.js` | `injection-screen` | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | Screens fetched `webfetch` text for instructions aimed at the agent. Buffers one advisory per session and drains it on the next transform — the model call that reads the fetch result; never writes stdout/stderr. |
 | `cli-dispatch-audit.js` | `dispatch` | `tool.execute.after` for Bash | Records redacted dispatch telemetry after completed CLI calls. Recognizes an `opencode` invocation and appends a bounded audit record. |
 | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
@@ -50,6 +51,7 @@ Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch vi
 ```text
 plugins/
 +-- README.md                              # this index
++-- classifier-injection-screen.js
 +-- cli-dispatch-audit.js
 +-- codex-hooks-watchdog.js
 +-- mcp-route-guard.js
@@ -120,8 +122,8 @@ Plugin factories register some subset of:
 
 - `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
 - `tool.execute.before`: pre-tool evaluation (spec-gate enforce, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
-- `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
-- `experimental.chat.system.transform`: per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
+- `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run, injection screen).
+- `experimental.chat.system.transform`: per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness, injection-screen drain).
 - `event`: lifecycle handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `server.instance.disposed`/`global.disposed`).
 
 ---
@@ -148,5 +150,5 @@ Expected result: no syntax errors across every plugin (resolves imports against 
 
 - [`tests/README.md`](./tests/README.md): the plugin regression suites.
 - [`tests/helpers/README.md`](./tests/helpers/README.md): the shared test helpers.
-- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`).
+- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`, `injection-screen`).
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.

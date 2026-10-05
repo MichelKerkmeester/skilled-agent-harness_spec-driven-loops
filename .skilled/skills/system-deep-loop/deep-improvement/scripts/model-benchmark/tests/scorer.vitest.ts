@@ -41,6 +41,22 @@ const scorer = require(path.join(
   };
   DEFAULT_RUBRIC: { dims: Array<{ id: string; weight: number }> };
 };
+const jevGrader = require(path.join(
+  WORKSPACE_ROOT,
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/classifier-score-model-variant.cjs',
+)) as {
+  buildJevGrader: (options?: Record<string, unknown>) => (
+    f: unknown,
+    o: string,
+    opts: unknown,
+  ) => Promise<{
+    score: number | null;
+    confidence: number | null;
+    parse_status: string;
+    measured?: boolean;
+    evidence?: unknown[];
+  }>;
+};
 
 const d4 = require(path.join(
   WORKSPACE_ROOT,
@@ -229,7 +245,7 @@ describe('jev grader (cascade)', () => {
 
   it('clears a row the deterministic check scores 1 without calling jev', async () => {
     const stub = writeStub([]);
-    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const grader = jevGrader.buildJevGrader({ jev: { path: stub, provider: 'official' }, env });
     const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 1, passed: true } });
     expect(res.score).toBe(1.0);
     expect(res.parse_status).toBe('cascade-clear');
@@ -242,7 +258,7 @@ describe('jev grader (cascade)', () => {
       '{"answers":{"answer":{"noul":0.8}}}',
       '{"answers":{"answer":{"noul":0.1}}}',
     ]);
-    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const grader = jevGrader.buildJevGrader({ jev: { path: stub, provider: 'official' }, env });
     const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
     expect(res.score).toBe(0.0);
     expect(res.parse_status).toBe('jev');
@@ -259,7 +275,7 @@ describe('jev grader (cascade)', () => {
       '{"answers":{"answer":{"noul":0.8}}}',
       'not json',
     ]);
-    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const grader = jevGrader.buildJevGrader({ jev: { path: stub, provider: 'official' }, env });
     const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
     expect(res.score).toBeNull();
     expect(res.parse_status).toBe('unmeasured');
@@ -272,7 +288,7 @@ describe('jev grader (cascade)', () => {
       'echo \'{"answers":{"answer":{"noul":0.1}}}\'',
       'exit 0',
     ]);
-    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env, backoffMs: 1 });
+    const grader = jevGrader.buildJevGrader({ jev: { path: stub, provider: 'official' }, env, backoffMs: 1 });
 
     const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
 

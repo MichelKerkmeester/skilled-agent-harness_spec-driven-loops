@@ -789,7 +789,7 @@ class RepoGuardsTests(unittest.TestCase):
     def test_session_advisories_carry_every_guard_that_spoke(self):
         self.assertEqual(
             [name for name, _, _ in self.plugin.SESSION_START_GUARDS],
-            ["worktree-guard", "dist-freshness", "git-hooks-check", "git-primary-reconcile"],
+            ["worktree-guard", "dist-freshness", "git-hooks-check", "git-primary-reconcile", "git-live-follow"],
         )
         for _, script, _ in self.plugin.SESSION_START_GUARDS:
             self.assertTrue(script.is_file(), script)
@@ -971,6 +971,68 @@ class RepoGuardsTests(unittest.TestCase):
                 self.plugin.transform_tool_result("vision_analyze", {"question": "what failed?"}, "native analysis")
             )
         core.assert_not_called()
+
+    def test_injection_screen_advisory_reaches_the_fetched_page_result(self):
+        seen = {}
+
+        def fake_core(script, payload, timeout=None):
+            seen["script"] = script
+            seen["payload"] = payload
+            seen["timeout"] = timeout
+            return {"hookSpecificOutput": {"additionalContext": "Jev injection screen: 2 of 2 sections read as instructions"}}
+
+        result = json.dumps({
+            "results": [
+                {"url": "https://example.test", "title": "Example", "content": "First page text.", "error": None},
+                {"url": "https://broken.test", "title": "Broken", "content": None, "error": "timeout"},
+                {"url": "https://second.test", "title": "Second", "content": "Second page text.", "error": None},
+            ]
+        })
+        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
+            out = self.plugin.transform_tool_result("web_extract", {"urls": ["https://example.test"]}, result)
+        self.assertEqual(out, f"{result}\n\nJev injection screen: 2 of 2 sections read as instructions")
+        self.assertEqual(seen["script"], self.plugin.INJECTION_SCREEN)
+        self.assertTrue(self.plugin.INJECTION_SCREEN.is_file(), self.plugin.INJECTION_SCREEN)
+        # The adapter screens the fetch tool of its own runtime, so the payload is built in that shape.
+        self.assertEqual(
+            seen["payload"],
+            {"tool_name": "webfetch", "tool_response": {"content": "First page text.\n\nSecond page text."}},
+        )
+        self.assertEqual(seen["timeout"], self.plugin.INJECTION_SCREEN_TIMEOUT_SECONDS)
+
+        # A screen that stays silent leaves the result untouched.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
+            self.assertIsNone(self.plugin.transform_tool_result("web_extract", {}, result))
+
+    def test_a_web_extract_result_without_text_never_reaches_the_screen(self):
+        with mock.patch.object(self.plugin, "_run_core") as core:
+            self.assertIsNone(
+                self.plugin.transform_tool_result("web_extract", {}, json.dumps({"results": []}))
+            )
+            empty = json.dumps({"results": [{"url": "https://example.test", "content": "", "error": "timeout"}]})
+            self.assertIsNone(self.plugin.transform_tool_result("web_extract", {}, empty))
+            self.assertIsNone(self.plugin.transform_tool_result("web_extract", {}, "no json here"))
+            self.assertIsNone(
+                self.plugin.transform_tool_result("web_extract", {}, json.dumps({"results": "text"}))
+            )
+            # Another tool name never reaches the screen either.
+            self.assertIsNone(self.plugin.transform_tool_result("read_file", {"path": "README.md"}, "read"))
+        core.assert_not_called()
+
+    def test_a_switched_off_screen_never_starts_the_adapter(self):
+        page = json.dumps({"results": [{"url": "https://example.test", "content": "Page text.", "error": None}]})
+        for name, value in (
+            ("SYSTEM_INJECTION_SCREEN_DISABLED", "1"),
+            ("SYSTEM_HOOKS_DISABLED", "true"),
+            ("JEV_FEATURE_INJECTION_SCREEN", "0"),
+            ("JEV_FEATURES", "off"),
+        ):
+            with self.subTest(name=name), mock.patch.dict(os.environ, {name: value}), mock.patch.object(
+                self.plugin, "_run_core"
+            ) as core:
+                self.assertIsNone(self.plugin.transform_tool_result("web_extract", {}, page))
+                core.assert_not_called()
+
     def test_every_hook_fails_open(self):
         with mock.patch.object(self.plugin, "_run_core", side_effect=RuntimeError("boom")):
             self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "devin -p x"}))
@@ -982,6 +1044,9 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.transform_tool_result("vision_analyze", {"image_url": "x.png"}, "seen"))
             self.assertIsNone(self.plugin.transform_tool_result("acme_add_row", {"row": 1}, "added"))
             self.assertIsNone(self.plugin.transform_tool_result("delegate_task", {"goal": "x"}, "delegated"))
+            self.assertIsNone(
+                self.plugin.transform_tool_result("web_extract", {}, json.dumps({"results": [{"content": "page"}]}))
+            )
             self.assertIsNone(self.plugin.pre_verify("s", "done"))
             self.assertEqual(self.ctx.sections["repo-guards-session-context"]({}), "")
         with mock.patch.object(self.plugin.subprocess, "run", side_effect=OSError("no node")), \

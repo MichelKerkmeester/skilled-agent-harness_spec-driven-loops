@@ -103,22 +103,6 @@ See [`tooling-and-scripts/code-standards-alignment.md`](tooling-and-scripts/code
 
 ---
 
-### Alignment suggestion measurement
-
-#### Description
-
-Measures, with zero model calls on the default run, whether a classifier picking one listed spec folder would beat the plain baseline when a save's alignment score falls below 50, then prints one verdict per opt-in arm.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` runs offline: its default run makes zero model calls and never starts `jev`. Today it stops at its label gate because no operator labels exist yet.
-
-#### Source Files
-
-See [`tooling-and-scripts/alignment-suggestion-measurement.md`](tooling-and-scripts/alignment-suggestion-measurement.md) for full implementation and test file listings.
-
----
-
 ### Completion-verdict freshness validation
 
 #### Description
@@ -784,22 +768,6 @@ The continuity ladder is `handover.md` -> `_memory.continuity` -> packet-first s
 #### Source Files
 
 See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery-spec-kit-resume.md) for full implementation and test file listings.
-
----
-
-### Track narrowing measurement
-
-#### Description
-
-Measures offline whether one classifier choice that names a packet's spec track beats ripgrep and the trigger-index lookup, under a keep rule fixed before any model call.
-
-#### Current Reality
-
-`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--jev` adds a model column behind that backend's own check, and the script changes no lookup, index or recipe.
-
-#### Source Files
-
-See [`retrieval/track-narrowing-measurement.md`](retrieval/track-narrowing-measurement.md) for full implementation and test file listings.
 
 ---
 

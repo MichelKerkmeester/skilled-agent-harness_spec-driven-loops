@@ -36,6 +36,16 @@
         "command": "node .skilled/hooks/goal/cursor/goal-inject.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=goal-inject.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
         "type": "command",
         "timeout": 10
+      },
+      {
+        "command": "bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "bash .skilled/bin/git-live-follow.sh --start || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=sessionStart adapter=git-live-follow.sh\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "sessionEnd": [

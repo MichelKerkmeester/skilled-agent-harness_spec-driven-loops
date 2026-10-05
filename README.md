@@ -853,7 +853,7 @@ When a decision needs a number rather than prose, this hub asks a classifier for
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
 - **Four features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
   - Citation drift advisory in `validate_document.py`: flags a `file:line` citation whose code no longer shows the claim (35 of 40 right against 13)
-  - Injection screen on Claude Code WebFetch results: one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
+  - Injection screen on fetched web text (Claude Code, Devin, OpenCode, Pi, Hermes): one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
   - Reviewer verdict fallback in the model benchmark: reads a verdict the parser misses (24 of 24 against 8)
   - Hallucination grader for the benchmark's D4 dimension: asks only about outputs the deterministic check flags (55 of 56 against 47)
 - **Off with one line.** `JEV_FEATURES=0` stops all four, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. See `.env.example` section 17

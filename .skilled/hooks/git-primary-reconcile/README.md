@@ -1,6 +1,6 @@
 ---
 title: "Git Primary Reconcile: Live-Checkout Convergence"
-description: "SessionStart primitive that converges the primary checkout onto its live branch, fast-forwarding when behind and rebase-publishing local commits when ahead, across Claude, Codex, Pi, and the OpenCode session-start plugin."
+description: "SessionStart primitive that converges the primary checkout onto its live branch, fast-forwarding when behind and rebase-publishing local commits when ahead, across Claude, Codex, Cursor, Devin, Pi, and the OpenCode session-start plugin."
 trigger_phrases:
   - "primary checkout reconcile"
   - "live branch reconcile"
@@ -19,7 +19,7 @@ contextType: "reference"
 
 It acts only in the main checkout, only on the resolved live branch, and only when tracked files are clean. It never loses a commit: a rebase conflict is aborted back to the exact pre-rebase HEAD, a pre-existing rebase is refused rather than touched, and a blocked push leaves local commits preserved but unpublished. Every internal failure is non-fatal (exit 0) so session start always continues.
 
-One real script backs the wired runtimes. Claude, Codex, and Pi carry relative symlinks into `.skilled/bin/`; OpenCode launches the same script from its session-start plugin (see [`session-cleanup/`](../session-cleanup/README.md)).
+One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi carry relative symlinks into `.skilled/bin/`; OpenCode launches the same script from its session-start plugin (see [`session-cleanup/`](../session-cleanup/README.md)).
 
 ---
 
@@ -67,9 +67,9 @@ Every outcome is recorded as a tab-separated line in `<common-dir>/git-primary-r
 | **Claude** | `claude/git-primary-reconcile.sh` (symlink → `../../../bin/git-primary-reconcile.sh`) | SessionStart hook chain | Stderr status lines (`ADVANCE` / `PUBLISH` / `BLOCK` / `SKIP`); log line in the common dir; always exits 0 |
 | **Codex** | `codex/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
 | **Pi** | `pi/git-primary-reconcile.sh` (symlink) | SessionStart hook chain | Same |
+| **Cursor** | `cursor/git-primary-reconcile.sh` (symlink) | SessionStart hook chain, detached in the background | Backgrounded with output discarded; log line in the common dir; always exits 0 |
+| **Devin** | `devin/git-primary-reconcile.sh` (symlink) | SessionStart hook chain, detached in the background | Same |
 | **OpenCode** | launched by `.skilled/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
-| **Cursor** | — | — | Not applicable. No Cursor symlink is wired for this concern. |
-| **Devin** | — | — | Not applicable. No Devin symlink is wired for this concern. |
 
 One real file backs the wired runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.
 
@@ -82,6 +82,8 @@ git-primary-reconcile/
 +-- README.md
 +-- claude/   git-primary-reconcile.sh (symlink -> ../../../bin/git-primary-reconcile.sh)
 +-- codex/    git-primary-reconcile.sh (symlink)
++-- cursor/   git-primary-reconcile.sh (symlink)
++-- devin/    git-primary-reconcile.sh (symlink)
 `-- pi/       git-primary-reconcile.sh (symlink)
 ```
 
