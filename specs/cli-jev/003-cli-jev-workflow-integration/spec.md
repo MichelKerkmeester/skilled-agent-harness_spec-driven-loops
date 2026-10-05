@@ -174,6 +174,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 50 | 050-pi-default-review/ | Make Pi the default Jev transport when it can answer, for choice and noul, then have a fresh Opus reviewer test, re-measure and fix the nine features with a measured gain or a near miss. Two child phases. | Complete |
 | 51 | 051-followups/ | Build the follow-ups the 050 review left: 032 as a non-blocking check, Pi model and usage on records, the input-wrapping test, the 025 capture, 017 R8, and retiring 026, 029 and 031. | Complete |
 | 52 | 052-unproven-feature-proof/ | Apply the 006 research to the three unproven features: one keep rule across their scorers with a strongest-policy bar and a class floor, a masked-state ablation for folder suggestion, a clarify census, and a proof plan per feature. | Complete |
+| 53 | 053-retire-unproven-features/ | Retire spec-track narrowing, clarify default and folder suggestion: delete their scorers, tests, catalog entries, playbook scenarios and keep-rule gates, and remove every other mention outside spec folders. | Complete |
 
 ### Phase Transition Rules
 
@@ -239,6 +240,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 049-jev-feature-improvement-build | 050-pi-default-review | 049 Complete and the operator asked for Pi as the default transport and a review of nine features | `validate.sh --strict --recursive` on 050 |
 | 050-pi-default-review | 051-followups | [Criteria TBD] | [Verification TBD] |
 | 051-followups | 052-unproven-feature-proof | 051 Complete and the operator asked to apply the 006 research and plan the proof tests | `validate.sh --strict` on 052 |
+| 052-unproven-feature-proof | 053-retire-unproven-features | 052 Complete and the operator retired the three unproven features | `validate.sh --strict` on 053 |
 <!-- /ANCHOR:phase-map -->
 
 ---
