@@ -137,13 +137,13 @@ describe('sa-014..sa-018 — lifecycle routing stress behavior', () => {
       })),
       ...Array.from({ length: 160 }, (_, index) => ({
         skillId: `future-${index}`,
-        sourcePath: `.skilled\\skill\\z_future\\future-${index}\\graph-metadata.json`,
+        sourcePath: `.skilled\\skill\\z-future\\future-${index}\\graph-metadata.json`,
       })),
     ];
     const routed = filterDefaultRoutable(entries);
     const corpusEligible = filterCorpusStatEligible(entries);
     const archivedPolicy = routePolicyForPath('.skilled/skills/z_archive/old/graph-metadata.json');
-    const futurePolicy = routePolicyForPath('.skilled\\skill\\z_future\\planned\\graph-metadata.json');
+    const futurePolicy = routePolicyForPath('.skilled\\skill\\z-future\\planned\\graph-metadata.json');
 
     expect(entries.every((entry) => routePolicyForPath(entry.sourcePath).structurallyIndexed)).toBe(true);
     expect(routed).toHaveLength(500);

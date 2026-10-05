@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e7af2b283a4cc83815a39e0031a1145c24b984507c57e19ca6b750f6e2b77d09",
+  "corpusHash": "d2b6cd86e13176c46325eef12ee908fae0d239cb21c0c04f329e0cda15d16b5b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23644,
+  "includedPathCount": 23689,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6122,6 +6122,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -6334,11 +6335,23 @@
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-generator-sync.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/executor-failure-triage.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/table-wording-run.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references/README.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/README.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/ROADMAP.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/caching-options.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/config-migration.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/dependencies.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/incident-2026-09.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/specs/fixture/001-maintenance/spec.md",
     ".skilled/skills/sk-doc/sk-create-skill/README.md",
     ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
@@ -8497,17 +8510,41 @@
     "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/plan.md",
     "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/spec.md",
     "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/decision-record.md",
     "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/goal.md",
     "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/implementation-summary.md",
     "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/preregistration.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/results/decision.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/results/deviations.md",
     "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/spec.md",
     "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/tasks.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/decision-record.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/goal.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/implementation-summary.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/preregistration.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/results/decision.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/results/deviations.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/spec.md",
     "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/preregistration-2.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/preregistration.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/results/decision.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/results/delivery-trace.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/results/deviations.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/tasks.md",
     "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-003-agents-md-delivery-prefix.md",
     "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-004-rule-delivery-instrumentation.md",
     "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-005-trigger-coverage-check.md",
@@ -11607,6 +11644,10 @@
     "specs/sk-doc/064-description-budget/plan.md",
     "specs/sk-doc/064-description-budget/spec.md",
     "specs/sk-doc/064-description-budget/tasks.md",
+    "specs/sk-doc/065-changelog-section-spacing/implementation-summary.md",
+    "specs/sk-doc/065-changelog-section-spacing/plan.md",
+    "specs/sk-doc/065-changelog-section-spacing/spec.md",
+    "specs/sk-doc/065-changelog-section-spacing/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -23598,6 +23639,10 @@
     "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23674,7 +23719,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d9ef1a7766089f070381064ace32b89d6f7affa0d0a41e490ae65ba1fbee8bf4",
+  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24462,6 +24507,14 @@
     },
     {
       "path": "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
       "reason": "excluded directory"
     },
     {
@@ -26098,6 +26151,10 @@
     },
     {
       "path": "specs/sk-doc/064-description-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-changelog-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29226,6 +29283,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
       "reason": "excluded directory"
     },
     {

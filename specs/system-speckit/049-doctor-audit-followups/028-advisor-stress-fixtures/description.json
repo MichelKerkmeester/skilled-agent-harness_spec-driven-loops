@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures",
+  "description": "Phase 28: advisor-stress-fixtures",
+  "keywords": [
+    "phase",
+    "advisor-stress-fixtures"
+  ],
+  "lastUpdated": "2026-10-05T10:06:04.997Z",
+  "specId": "028",
+  "folderSlug": "advisor-stress-fixtures",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
