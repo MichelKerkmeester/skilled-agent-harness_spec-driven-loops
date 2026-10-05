@@ -71,6 +71,9 @@ contextType: "implementation"
 - [x] T012 Check the test typecheck adds no errors
   - Evidence: `tsc -p runtime/tsconfig.tests.json` reports the same 91 errors with and without this phase's test edits.
 - [x] T013 Update documentation
+- [x] T014 Reproduce: with spec-kit's `dist` folders removed, provision builds nothing and `repair-derived` fails
+- [x] T015 Name the runtime and CLI build outputs (`sk-git/scripts/worktree-provision-paths.txt`)
+- [x] T016 Provision again: both outputs built, `repair-derived` runs, a second run builds nothing, the naming suite passes
   - Evidence: this phase's `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md`.
 <!-- /ANCHOR:phase-3 -->
 
