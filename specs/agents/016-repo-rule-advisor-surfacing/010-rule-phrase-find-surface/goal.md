@@ -57,8 +57,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The .skilled/repo-rules row in retrieval-conventions.md names phrases as the ripgrep find surface as well as the collision check
-- [ ] repo-rule-template.md and rule-anatomy.md state the same phrase guidance, with no conflicting count target
+- [x] The .skilled/repo-rules row in retrieval-conventions.md names phrases as the ripgrep find surface as well as the collision check
+- [x] repo-rule-template.md and rule-anatomy.md state the same phrase guidance, with no conflicting count target
 - [ ] rg -i 'flaky test' .skilled/repo-rules finds root-cause-and-debugging.md
 - [ ] check-repo-rules.cjs prints RESULT: PASSED and retrieval-coverage-parity.vitest.ts passes
 - [ ] git log shows the first rule-file commit of this phase after the 006 window result

@@ -43,7 +43,7 @@ description: "<One sentence. The binding rule, restated for someone who will not
 trigger_phrases:
   - "<the words someone types when they HAVE this problem — the temptation, the excuse, the symptom>"
   - "<not section titles; those are already greppable from the body>"
-  - "<aim for 15-20; no phrase should also appear in another rule>"
+  - "<one phrase per distinct symptom, with no count target; no phrase should also appear in another rule>"
 importance_tier: important
 contextType: reference
 version: 1.0.0.0
