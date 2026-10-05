@@ -78,7 +78,6 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
 | Parent hubs | `assets/parent-skill/parent-skill-*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
-| Routing measurement | `scripts/score-clarify-default.cjs` | Count how often compiled hubs answer `clarify` with zero model calls and write unlabeled clarify rows. `--score` stops below 30 labeled rows. Past that gate `--jev` asks a classifier for a default pick. |
 | Leaf-route replay | `scripts/leaf-route-replay.cjs` | Replay the committed stage-two keyword block of each hub's `ROUTER.md` against its gold scenarios with zero model calls. `--transcripts` recounts `ROUTER.md` reads and `--prose` compares the prose arm. |
 | Overflow detail | `references/README.md`, `references/{shared,skill,parent-skill}/`, `../shared/` | Load only for edge cases, exhaustive examples, or schema details beyond this SKILL.md. |
 
@@ -468,7 +467,6 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `assets/parent-skill/parent-skill-*` - parent hub templates.
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
-- `scripts/score-clarify-default.cjs` - zero-call clarify census and default-pick scorer. It stops below 30 labeled rows. `--jev` scores a pick only past that gate.
 - `scripts/leaf-route-replay.cjs` - zero-call stage-two keyword replay and read recount. It scores the `ROUTER.md` keyword block against the committed gold scenarios. `--transcripts` recounts reads and `--prose` compares the prose arm.
 - `../shared/references/core-standards.md` - shared markdown standards.
 - `../shared/references/validation.md` - shared validation workflow.
