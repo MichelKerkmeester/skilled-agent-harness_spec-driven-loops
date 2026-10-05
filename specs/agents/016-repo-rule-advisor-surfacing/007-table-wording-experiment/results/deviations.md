@@ -33,3 +33,9 @@ contextType: "implementation"
 **Why:** the full schedules would take most of a day under executor rate limits, and the operator chose a short top-up and a decision. Recorded on 2026-10-05, before the top-up runs and before the SWE-2 runs were scored.
 
 **Effect on the analysis:** the decision rule is applied as written to the pooled data. Every stratum is arm-balanced by the shuffled order. A rule the smaller sample cannot satisfy falls to its pre-registered fallback.
+
+## 4. DEEPSEEK THROUGH THE CLINE PROVIDER
+
+**What changed:** the same top-up of 60 runs also runs on DeepSeek V4.1 Flash through OpenCode's Cline provider (`-m cline-pass/cline-pass/deepseek-v4.1-flash --variant xhigh`), as its own stratum pooled into the decision like the others. Its top thinking tier is `xhigh`, since the provider has no `max` tier.
+
+**Why:** the operator asked to use the Cline provider as well. Recorded on 2026-10-05, before any Cline run.

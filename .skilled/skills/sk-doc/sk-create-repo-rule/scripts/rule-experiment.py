@@ -62,6 +62,8 @@ EXECUTORS = {
     "swe": ["devin", "-p", "--model", "swe-2-max", "--permission-mode", "dangerous"],
     "deepseek-oc": ["opencode", "run", "-m", "opencode-go/deepseek-v4.1-flash", "--variant", "max", "--format", "json",
                     "--auto"],
+    "deepseek-cline": ["opencode", "run", "-m", "cline-pass/cline-pass/deepseek-v4.1-flash", "--variant", "xhigh",
+                       "--format", "json", "--auto"],
     "luna": ["codex", "exec", "--model", "gpt-6-luna", "-c", 'model_reasoning_effort="max"',
              "-c", 'service_tier="fast"', "-c", "approval_policy=never", "--sandbox", "workspace-write"],
 }
