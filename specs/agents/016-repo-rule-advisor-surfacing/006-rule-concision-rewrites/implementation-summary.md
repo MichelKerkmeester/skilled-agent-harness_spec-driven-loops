@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Rule concision rewrites"
-description: "All 13 repo rules lost their apparatus in 13 commits, 11.7% of the corpus, with every norm kept and one approved norm added. The byte target and the post-change window are still open."
+description: "All 13 repo rules lost their apparatus in 13 commits, 11.7% of the corpus, with every norm kept and one approved norm added. The byte target is waived, and the post-change window was never measured."
 trigger_phrases:
   - "rule concision rewrites summary"
 importance_tier: "normal"
@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-04T22:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped 13 rule rewrites with ledgers and a second review"
-    next_safe_action: "Measure the post-change window with the 004 analyzer once sessions accumulate"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-rule-concision-rewrites |
-| **Completed** | In progress: rewrites shipped 2026-10-04 |
+| **Completed** | 2026-10-05, rewrites shipped 2026-10-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -100,7 +100,7 @@ Five workers rewrote the rules in parallel, each bound to the `sk-create-repo-ru
 | Added em dash or semicolon | 0 across the corpus diff |
 | AGENTS.md canary | `check-rule-copies.js` OK |
 | Byte target | Waived by ADR-002 at the measured 94,609 B (target at most 91,028 B) |
-| Post-change window | NOT YET MEASURED: opens at the last rule commit, 2026-10-04T22:20:44+02:00 |
+| Post-change window | Not measured: opened at the last rule commit, 2026-10-04T22:20:44+02:00, and closed early when the operator ended test rounds on 2026-10-05 |
 | Strict validation | See the parent's recursive `validate.sh --strict` run |
 <!-- /ANCHOR:verification -->
 
@@ -110,7 +110,7 @@ Five workers rewrote the rules in parallel, each bound to the `sk-create-repo-ru
 ## Known Limitations
 
 1. **The byte target is waived.** Reaching 91,028 B would need about 3.6 KB of operative text, so the operator waived it in `decision-record.md` ADR-002.
-2. **The post-change window needs time.** Sessions must accumulate after 2026-10-04T22:20:44+02:00 before the 004 analyzer can compare them with the baseline, and D6 holds 007 until then.
+2. **No post-change measurement.** The operator ended further test rounds on 2026-10-05, and the 007 wording, Gate 6 and the 010 phrases landed that day. `measure-rule-compliance.py` can still compare later sessions with the 004 baseline, since it splits replies by rule version.
 3. **Two inconsistencies found and left alone** in `delegation-and-orchestration.md`: §7 says `evidence-and-proof.md` "already refuses" a claim it never states, and §5 says to open one citation while the self-check says every citation.
 <!-- /ANCHOR:limitations -->
 

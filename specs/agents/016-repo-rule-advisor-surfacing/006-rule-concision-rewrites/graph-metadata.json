@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,6 +139,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Rule",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Rule statement is 57,847 of 107,092 bytes (54.0%)",
     "created_at": "2026-10-04T14:39:59Z",
-    "last_save_at": "2026-10-04T20:24:18.373Z",
+    "last_save_at": "2026-10-05T11:03:32.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:536bc2e01d4c48c32daa6ff0017c8367e5cb07ac86431e6319cec31dd2cdded3",
+    "source_fingerprint": "sha256:47697868604540386bd366437a5cc6b83d60e911378fca357606acb108e070f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2dfd483bdf5f7655edfbb5001774eaf4ddc395de53236b494816ca7695f20254",
+      "spec.md": "c334fb4cb4ca451ca82ffcff3fab1d008a51f40ceba4c8d7f33897257cfc7802",
       "plan.md": "317962ff0bbfa42677e29c1ca33a6aadec9f7f8be041d92d29f92d20f0e3aba9",
-      "tasks.md": "6543203eea5de7daf627c83e1a5a5a0c14fd9378bc553417371759fcdb1be5fc",
+      "tasks.md": "56c980c392a69aeb00af9a2de40559e8797755a59d16246b0ee78b4d9902516c",
       "decision-record.md": "4360894908ed1121c0376bf11678acf63f096c0f0a95bbd6f52ae6019a6f67c1",
-      "implementation-summary.md": "5b596ebf6ffa4c2758f0a01086fb5f696a751ec2837403fa2ef47eda017e373e"
+      "implementation-summary.md": "415c891c1172fbf32ad8d2d9b6ebf67f85024123c82e08c750610edd842cd72b"
     },
     "last_active_at": null
   }

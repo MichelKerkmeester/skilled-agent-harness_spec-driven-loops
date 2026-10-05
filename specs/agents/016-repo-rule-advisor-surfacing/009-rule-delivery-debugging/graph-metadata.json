@@ -39,17 +39,24 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "results/decision-2.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+      "results/deviations.md",
       ".codex/AGENTS.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
-      "results/delivery-trace.md"
+      "results/delivery-trace.md",
+      "results/adoption-ledger.md",
+      "results/final-scores.txt",
+      "results/control-arm-miss-rates.txt"
     ],
     "entities": [
       {
@@ -83,9 +90,33 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-2.md",
+        "kind": "doc",
+        "path": "results/decision-2.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-copies.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js",
+        "source": "derived"
+      },
+      {
+        "name": "deviations.md",
+        "kind": "doc",
+        "path": "results/deviations.md",
         "source": "derived"
       },
       {
@@ -104,6 +135,24 @@
         "name": "delivery-trace.md",
         "kind": "doc",
         "path": "results/delivery-trace.md",
+        "source": "derived"
+      },
+      {
+        "name": "adoption-ledger.md",
+        "kind": "doc",
+        "path": "results/adoption-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-scores.txt",
+        "kind": "file",
+        "path": "results/final-scores.txt",
+        "source": "derived"
+      },
+      {
+        "name": "control-arm-miss-rates.txt",
+        "kind": "file",
+        "path": "results/control-arm-miss-rates.txt",
         "source": "derived"
       },
       {
@@ -153,53 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Measure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Measure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Prompt",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` mandates two loads: Gate 5 opens `REPO RULES.md` before the first write, and the reply-rule line loads `communication.md` and `communication-prose.md` before a substantive reply",
     "created_at": "2026-10-04T21:40:03Z",
-    "last_save_at": "2026-10-05T10:36:30.304Z",
+    "last_save_at": "2026-10-05T11:03:32.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +215,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d7b9a5e2e05ec83419d8d3b211ed98e6ec31ef27b17dc324a3aac58acdf0984",
+    "source_fingerprint": "sha256:03c5cd11fb43c7b4a993b0581ac9d65c893f4a7aadc077592706a53110be4d74",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32bb698c9a77172f32d07a3627e852ae64840cf8c1fbdd9f1f0baf3081258277",
-      "plan.md": "efe70672986d56348e80f7f9dd1ebe8a7604784eb2d63e3de121de940c8a0f0f",
-      "tasks.md": "eedfbff48532c21de2a9c72d9a27c203e0c4e5fe1e398c2bf520db3d0c36031f",
-      "implementation-summary.md": "6f2a5a020a5f9b5c25c46751990d40cf663646c8bb8da7568e07e1d894d0c32e"
+      "spec.md": "4853778d17c3b0428a1ff9f9c36b6e476f7ff165673315e2d5787602811e3654",
+      "plan.md": "7fed6365a953e147509163c04aa2f2cd0400d3509f5e14e7772a3544ca032e79",
+      "tasks.md": "80d25ce7e9478d82efec38b0d85a5f7c7eee80976e5bcd492418ce7e4e34751b",
+      "decision-record.md": "08ef2ab1b4b96ca63d9121a181da85d421a931de675814137511ddf4eb4d1fbc",
+      "implementation-summary.md": "fa8f40d16656824665fb46be415807df5fd202af0362875cd5b8250d64525dc6"
     },
     "last_active_at": null
   }

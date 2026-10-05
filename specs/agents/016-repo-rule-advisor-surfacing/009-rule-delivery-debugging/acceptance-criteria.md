@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -54,14 +54,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the prompt sets and the adopted diff, When they are searched for instructions to read a rule, Then none is found | `grep` over `experiment/` prompt files and `git show` of the adoption commit | Unmet | - |
-| AC-002 | REQ-002 | Given the result files, When each rate is read, Then it carries a denominator and a Wilson 95% interval | `results/` | Unmet | - |
-| AC-003 | REQ-003 | Given the harness runs, When rates are reported, Then Gate 5 and reply-rule miss rates appear for each executor | `rule-experiment.py score` output in `results/` | Unmet | - |
-| AC-004 | REQ-004 | Given the missed runs, When the audit is read, Then each falls in one cause class and the class counts sum to the miss count | `results/` cause table | Unmet | - |
-| AC-005 | REQ-005 | Given the first scored arm run, When `git log` is read, Then `preregistration.md` was committed earlier | `git log` output | Unmet | - |
-| AC-006 | REQ-006 | Given a hook arm, When the pre-registration is read, Then the measured miss rate passed its stated threshold before the arm ran | `preregistration.md` and `results/` | Unmet | - |
-| AC-007 | REQ-007 | Given the adoption commit, When `git log` is read, Then it is later than the commits recording the 006 and 007 window results | `git log` output | Unmet | - |
-| AC-008 | REQ-008 | Given the plan, When its decision on varying the global instructions is read, Then it names one route and the reason | `plan.md` decision | Unmet | - |
+| AC-001 | REQ-001 | Given the prompt sets and the adopted diff, When they are searched for instructions to read a rule, Then none is found | `grep` over `experiment/` prompt files and `git show` of the adoption commit. Only the Gate 3 pre-answer matched; the adoption diff edits `AGENTS.md` | Met | - |
+| AC-002 | REQ-002 | Given the result files, When each rate is read, Then it carries a denominator and a Wilson 95% interval | `results/final-scores.txt`, `final-scores-2.txt`, `control-arm-miss-rates.txt` | Met | - |
+| AC-003 | REQ-003 | Given the harness runs, When rates are reported, Then Gate 5 and reply-rule miss rates appear for each executor | `rule-experiment.py score` output in `results/`, per executor in both final-scores files | Met | - |
+| AC-004 | REQ-004 | Given the missed runs, When the audit is read, Then each falls in one cause class and the class counts sum to the miss count | `results/control-arm-miss-rates.txt` cause table: 5 Gate 5 and 197 reply-rule misses, classes sum to both | Met | - |
+| AC-005 | REQ-005 | Given the first scored arm run, When `git log` is read, Then `preregistration.md` was committed earlier | `git log` output: 5750410dfd before the first transcript at 09:41:53, d321efd706 before 11:03:44 | Met | - |
+| AC-006 | REQ-006 | Given a hook arm, When the pre-registration is read, Then the measured miss rate passed its stated threshold before the arm ran | `results/decision-2.md`: no hook arm ran, Gate 6 misses 21.1%, under 30% | Met | - |
+| AC-007 | REQ-007 | Given the adoption commit, When `git log` is read, Then it is later than the commits recording the 006 and 007 window results | `git log` output | Superseded | ADR-001 |
+| AC-008 | REQ-008 | Given the plan, When its decision on varying the global instructions is read, Then it names one route and the reason | `plan.md` arm instructions (REQ-008): project-level copy | Met | - |
 
 ### Status values
 

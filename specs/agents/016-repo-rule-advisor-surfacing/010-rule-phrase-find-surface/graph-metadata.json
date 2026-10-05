@@ -38,18 +38,18 @@
       "noun"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/query-misses.json",
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
       ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
-      "scratch/query-misses.json"
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
     ],
     "entities": [
       {
@@ -83,6 +83,12 @@
         "source": "derived"
       },
       {
+        "name": "query-misses.json",
+        "kind": "config",
+        "path": "scratch/query-misses.json",
+        "source": "derived"
+      },
+      {
         "name": "retrieval-conventions.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
@@ -104,12 +110,6 @@
         "name": "check-repo-rules.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "query-misses.json",
-        "kind": "config",
-        "path": "scratch/query-misses.json",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A rule's `triggerphrases` are the words a ripgrep search can find it by",
     "created_at": "2026-10-04T21:40:04Z",
-    "last_save_at": "2026-10-05T07:36:05.914Z",
+    "last_save_at": "2026-10-05T11:03:31.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dcd5451190e8d2946b40aad9c5f71b6abf77a0395e3649decc74693b36dda2a",
+    "source_fingerprint": "sha256:2a3e400449b11adf0a1e8bbda49a663340ea1f0fbb386fd507e29423ed97f6fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "153eb740a6125c973dc87eb2af8b3eca3f551ccc9410552e4baadb5bd3448655",
+      "spec.md": "7ab0131d217149d2456e406f4d573644ebdc38f31af43d8c9b1a75c574ce36b6",
       "plan.md": "50ae9143ce334a782111dfb11f33ba86a62d9ff554710d03264a319dd8eb71a1",
-      "tasks.md": "4d5cb40ebe1f144523b4ee009a581e35c22c36e0b1727832141cd2dd5f32cfc1",
-      "implementation-summary.md": "5ed43d2dd39fdb7806bf14544f30d0017b0ad8fd206e05cd082e50fb2843ea1a"
+      "tasks.md": "35112c86dfdfaeb978898218d62eab967e8de53ec7365cc8ad1734818c1aacda",
+      "implementation-summary.md": "b2d8b3d5a17151b876f55cb694b7d5b3f54585192aa3a792854e467d4a357d40"
     },
     "last_active_at": null
   }

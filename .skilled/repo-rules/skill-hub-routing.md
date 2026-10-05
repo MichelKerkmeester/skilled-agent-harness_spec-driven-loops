@@ -19,9 +19,11 @@ trigger_phrases:
   - "advisor does not surface"
   - "routing class metadata"
   - "refactoring a skill"
+  - "mode not routed"
+  - "hub registry"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 
 # Rule: Skill hub routing

@@ -22,9 +22,11 @@ trigger_phrases:
   - "sub-agent"
   - "CLI executor"
   - "deep loop"
+  - "sub-agent result"
+  - "delegate to another model"
 importance_tier: important
 contextType: reference
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 # Rule: Delegation and orchestration

@@ -19,9 +19,10 @@ trigger_phrases:
   - "second attempt at the same fix"
   - "level up to the seam"
   - "stuck escalation format"
+  - "flaky test"
 importance_tier: important
 contextType: reference
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 # Rule: Root cause and debugging

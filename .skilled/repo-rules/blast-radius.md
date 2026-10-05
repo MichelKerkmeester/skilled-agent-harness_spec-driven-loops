@@ -18,9 +18,11 @@ trigger_phrases:
   - "reversible decisions are cheap"
   - "decision velocity"
   - "name the rollback first"
+  - "irreversible change"
+  - "rollback plan"
 importance_tier: important
 contextType: reference
-version: 1.0.1.3
+version: 1.0.1.4
 ---
 
 # Rule: Blast radius and reversibility

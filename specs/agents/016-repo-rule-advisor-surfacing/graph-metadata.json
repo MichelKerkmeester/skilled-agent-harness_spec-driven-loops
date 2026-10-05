@@ -62,7 +62,10 @@
       "008-gate5-card-pilot/goal.md",
       "009-rule-delivery-debugging/goal.md",
       "010-rule-phrase-find-surface/goal.md",
-      ".skilled/repo-rules/communication.md"
+      "006-rule-concision-rewrites/implementation-summary.md",
+      ".skilled/repo-rules/communication.md",
+      "007-table-wording-experiment/results/adoption-ledger.md",
+      "008-gate5-card-pilot/decision-record.md"
     ],
     "entities": [
       {
@@ -84,13 +87,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "adoption-ledger.md",
+        "kind": "doc",
+        "path": "007-table-wording-experiment/results/adoption-ledger.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -144,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -152,19 +167,19 @@
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-05T10:36:28.605Z",
+    "last_save_at": "2026-10-05T11:03:29.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:41c5532f6ee14450e315d30bf6f658e733df0456722c21d9bbfa11cf39357a17",
+    "source_fingerprint": "sha256:c09ec80b227be8c108458ff2290ddc39edd1ca4cf9a45d8b9c413e49f4cfeed0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6304b5efb11f71de43d6a7bb17f9217e492f156278a8eaf9fbd27982f7051ef4"
+      "spec.md": "535f069d6b72802ff41d494490ce286b3dca7489c587b8342b8e8b17d36be21e"
     },
-    "last_active_child_id": "agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
-    "last_active_at": "2026-10-05T07:20:16.385Z"
+    "last_active_child_id": "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
+    "last_active_at": "2026-10-05T10:38:45.444Z"
   }
 }

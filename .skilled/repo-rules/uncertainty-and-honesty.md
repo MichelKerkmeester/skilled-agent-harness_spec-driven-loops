@@ -18,9 +18,11 @@ trigger_phrases:
   - "two registers"
   - "when to qualify"
   - "hedge that changes nothing"
+  - "not sure"
+  - "made up a path"
 importance_tier: important
 contextType: reference
-version: 1.0.1.2
+version: 1.0.1.3
 ---
 
 # Rule: Uncertainty and honest reporting

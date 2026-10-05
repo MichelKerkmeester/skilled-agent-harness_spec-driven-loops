@@ -1,18 +1,23 @@
 {
+  "level": "1",
   "specFolder": "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
   "description": "Phase 10: rule-phrase-find-surface",
   "keywords": [
     "phase",
     "rule-phrase-find-surface"
   ],
-  "lastUpdated": "2026-10-04T21:40:05.755Z",
+  "lastUpdated": "2026-10-05T10:38:45.428Z",
   "specId": "010",
   "folderSlug": "rule-phrase-find-surface",
   "parentChain": [
     "agents",
     "016-repo-rule-advisor-surfacing"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "05-10-26_11-38__nothing-else-on-the-goal-can-move-today-all-four.md",
+    "05-10-26_11-38__everything-in-my-last-reply-still-holds-criteria.md",
+    "05-10-26_11-38__no-change-since-my-last-reply-criteria-2-3-4-and.md",
+    "05-10-26_11-38__still-blocked-with-nothing-new-to-do-i-m-not.md"
+  ]
 }

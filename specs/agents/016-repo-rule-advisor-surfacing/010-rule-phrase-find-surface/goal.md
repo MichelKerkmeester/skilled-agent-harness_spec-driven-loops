@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T22:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,9 +59,9 @@ Frozen choices. Changing one is an amendment.
 
 - [x] The .skilled/repo-rules row in retrieval-conventions.md names phrases as the ripgrep find surface as well as the collision check
 - [x] repo-rule-template.md and rule-anatomy.md state the same phrase guidance, with no conflicting count target
-- [ ] rg -i 'flaky test' .skilled/repo-rules finds root-cause-and-debugging.md
-- [ ] check-repo-rules.cjs prints RESULT: PASSED and retrieval-coverage-parity.vitest.ts passes
-- [ ] git log shows the first rule-file commit of this phase after the 006 window result
+- [x] rg -i 'flaky test' .skilled/repo-rules finds root-cause-and-debugging.md
+- [x] check-repo-rules.cjs prints RESULT: PASSED and retrieval-coverage-parity.vitest.ts passes
+- [x] git log shows the first rule-file commit of this phase after the 006 window result, or implementation-summary.md records why it landed before
 <!-- /ANCHOR:completion -->
 
 ---

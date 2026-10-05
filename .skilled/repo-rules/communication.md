@@ -27,9 +27,10 @@ trigger_phrases:
   - "farewell closer"
   - "tangent"
   - "offer once at the end"
+  - "reply too long"
 importance_tier: important
 contextType: reference
-version: 1.4.1.2
+version: 1.4.1.3
 ---
 
 # Rule: Communication
@@ -73,11 +74,9 @@ Every cut this file asks for has a floor, see [`communication-prose.md`](communi
 
 The failure this prevents: the answer is in there, and they did not find it.
 
-**No tables in a reply.** One or two facts go in a sentence. Parallel items go in a
-bulleted list. A table earns its place in a file someone returns to, never in a reply
-they read once. The one exception is the in-flight block in
-[`communication-handoff.md`](communication-handoff.md) §6: work still running is a reply
-the operator returns to while it runs.
+**No tables in a reply,** except the in-flight block in
+[`communication-handoff.md`](communication-handoff.md) §6. Use a sentence for one or two
+facts and bullets for parallel items.
 
 The failure this prevents: the reader parses a grid to learn what one sentence would
 have said.

@@ -22,9 +22,10 @@ trigger_phrases:
   - "pre-write pass"
   - "climbing sentence"
   - "fallback for a constraint that does not exist"
+  - "over-engineering"
 importance_tier: important
 contextType: reference
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 # Rule: Prevent overengineering

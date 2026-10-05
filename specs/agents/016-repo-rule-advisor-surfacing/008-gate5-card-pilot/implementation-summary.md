@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Gate 5 card pilot"
-description: "Decided, adoption pending. The pre-registered rule adopts rule cards at Gate 5: no large harm on prohibitions or Gate 5 misses, and 29% less rule text read per run. Cards go live after the 006 window and once checks 2 and 10 accept card links."
+description: "The pre-registered rule permits rule cards at Gate 5: no large harm on prohibitions or Gate 5 misses, and 29% less rule text read per run. The operator held them back from the live router (ADR-003)."
 trigger_phrases:
   - "gate 5 card pilot summary"
 importance_tier: "normal"
@@ -10,11 +10,9 @@ _memory:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Decided by rule 1: adopt cards at Gate 5 (6ffe5e5514)"
-    next_safe_action: "After the 006 window, make checks 2 and 10 accept card links, then land cards (T010)"
-    blockers:
-      - "Live adoption waits on the 006 post-change window measurement"
-      - "Checks 2 and 10 in check-repo-rules.cjs must accept card links before the router change lands"
+    recent_action: "Held the cards back from the live router (ADR-003)"
+    next_safe_action: "None; phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Should Gate 5 load cards with the full file on demand? Yes by the pre-registered rule: no large harm on the primary or Gate 5 miss rate, and fewer rule bytes per run"
@@ -47,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-gate5-card-pilot |
-| **Completed** | Decided 2026-10-05, adoption pending |
+| **Completed** | 2026-10-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -126,9 +124,9 @@ Planned with `/speckit:plan` in auto mode after a four-agent codebase exploratio
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Adoption pending.** The cards router lands only after the 006 post-change window is measured. Checks 2 and 10 must accept card links first, since check 2 fails on the card router and check 10 passes it vacuously. T010 and T011 stay open.
+1. **Cards held, not adopted.** Checks 2 and 10 accept card links (793e65ece5), but the router still loads full files. ADR-003 holds the cards because the saving is modest after fallback and the reply-rule signal leans against them. `build-rule-cards.cjs` rebuilds them on demand.
 2. **Sample short of the pre-registered size.** Deviation 3 cut the schedule, so the arms hold 162 and 156 runs against 180 per arm per executor. AC-003 stays Unmet. The decision rule was applied to the data collected, as deviation 3 states.
-3. **Small harms pass unseen.** The 15-point margin rules out a large harm only. The reply-rule miss rate leans against cards and should be tracked after adoption.
+3. **Small harms pass unseen.** The 15-point margin rules out a large harm only. The reply-rule miss rate leans against cards, and any later adoption should track it.
 <!-- /ANCHOR:limitations -->
 
 ---

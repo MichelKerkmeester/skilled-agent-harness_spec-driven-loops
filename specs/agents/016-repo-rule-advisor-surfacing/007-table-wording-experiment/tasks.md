@@ -54,7 +54,7 @@ contextType: "implementation"
 
 - [x] T008 Check with `git log` that the live rule files did not change during the run (`git log edba53daeb..6ffe5e5514` on `communication.md`, `AGENTS.md`, `REPO RULES.md` and `.skilled/repo-rules/` lists no commit)
 - [x] T009 Score and apply the decision rule (`results/decision.md`: rule 2, adopt the short wording, d = +0.0 points, 95% interval -3.4 to +3.4, committed in `6ffe5e5514`)
-- [ ] T010 Commit the chosen wording after the 006 window is measured (open: waits on the 006 post-change window)
+- [x] T010 Commit the chosen wording after the 006 window is measured (committed 2026-10-05 without the window, `decision-record.md` ADR-002; ledger `results/adoption-ledger.md`; `communication.md` 1.4.1.3)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +62,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

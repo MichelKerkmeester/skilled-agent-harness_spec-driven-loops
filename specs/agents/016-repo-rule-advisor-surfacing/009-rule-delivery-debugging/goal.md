@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T22:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] results/ reports the natural Gate 5 and reply-rule miss rates for DeepSeek and Luna, each with its denominator and Wilson 95% interval
-- [ ] results/ classes every missed run as not delivered, truncated, outranked or seen and skipped, and the class counts sum to the miss count
-- [ ] git log shows preregistration.md, with arms, metric, sample size and decision rule, committed before the first scored arm run
-- [ ] A search of the prompt sets and the adoption diff finds no instruction to read a rule
-- [ ] results/ records the decision made by the pre-registered rule, a null result included, and any adoption commit is later than the 006 and 007 window results
+- [x] results/ reports the natural Gate 5 and reply-rule miss rates for DeepSeek and Luna, each with its denominator and Wilson 95% interval
+- [x] results/ classes every missed run as not delivered, truncated, outranked or seen and skipped, and the class counts sum to the miss count
+- [x] git log shows preregistration.md, with arms, metric, sample size and decision rule, committed before the first scored arm run
+- [x] A search of the prompt sets and the adoption diff finds no instruction to read a rule
+- [x] results/ records the decision made by the pre-registered rule, a null result included, and any adoption commit is later than the 006 and 007 window results, or decision-record.md ADR-001 drops the wait
 <!-- /ANCHOR:completion -->
 
 ---

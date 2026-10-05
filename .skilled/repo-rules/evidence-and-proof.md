@@ -22,9 +22,11 @@ trigger_phrases:
   - "unconfirmed cause"
   - "suspected cause"
   - "cause then fix"
+  - "tests pass"
+  - "verify before claiming done"
 importance_tier: important
 contextType: reference
-version: 1.1.1.1
+version: 1.1.1.2
 ---
 
 # Rule: Evidence and proof

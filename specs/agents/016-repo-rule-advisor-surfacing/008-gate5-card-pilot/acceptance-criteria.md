@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot
 **Level:** 2
-**Status:** In Progress (decided, awaiting adoption)
+**Status:** Complete
 **Date:** 2026-10-05
 <!-- /ANCHOR:metadata -->
 

@@ -25,9 +25,11 @@ trigger_phrases:
   - "what does the reader already know"
   - "time estimate"
   - "how long will this take"
+  - "recommend one option"
+  - "too many options"
 importance_tier: important
 contextType: reference
-version: 1.3.0.2
+version: 1.3.0.3
 ---
 
 # Rule: Communication decisions

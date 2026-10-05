@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Table wording experiment"
-description: "Decided, adoption pending. The pre-registered rule adopts the short no-table wording: once communication.md was read, neither wording produced a table in 216 long replies. The wording goes live after the 006 window is measured."
+description: "The pre-registered rule adopted the short no-table wording: once communication.md was read, neither wording produced a table in 216 long replies. It went live on 2026-10-05."
 trigger_phrases:
   - "table wording experiment summary"
 importance_tier: "normal"
@@ -10,10 +10,9 @@ _memory:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Decided by rule 2: adopt the short wording (6ffe5e5514)"
-    next_safe_action: "Commit the short wording with its ledger entry after the 006 window (T010)"
-    blockers:
-      - "Live adoption waits on the 006 post-change window measurement"
+    recent_action: "Committed the short wording with its ledger entry"
+    next_safe_action: "None; phase complete"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "repo-rule-advisor-2026-10-04"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Does the short wording lower the table rate? No measurable difference. Both arms are 0 of 108 once the rule is read, so rule 2 adopts the shorter text"
@@ -45,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-table-wording-experiment |
-| **Completed** | Decided 2026-10-05, adoption pending |
+| **Completed** | 2026-10-05 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -67,7 +66,8 @@ Two arms built by `rule-experiment.py` from commit `edba53daeb` took 625 scored 
 | `spec.md`, `plan.md`, `tasks.md` | Created, then amended | Planning documents, amended for isolated environments |
 | `preregistration.md` | Created | Metric, sample, schedule and decision rule, committed in `edba53daeb` |
 | `experiment/arms.json`, `experiment/prompts.json` | Created | The two arms and the 30 prompts |
-| `results/` | Created | Run index, scored rows without reply text, final scores, deviations and the decision, committed in `6ffe5e5514` |
+| `results/` | Created | Run index, scored rows without reply text, final scores, deviations and the decision, committed in `6ffe5e5514`, plus the adoption ledger |
+| `.skilled/repo-rules/communication.md` | Modified | The short wording, version 1.4.1.3 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -113,7 +113,7 @@ Planned with `/speckit:plan` in auto mode after a four-agent codebase exploratio
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Adoption pending.** REQ-004 and T010 stay open until the 006 post-change window is measured. The short wording then lands with its ledger entry.
+1. **No window of its own.** The wording landed on 2026-10-05 with Gate 6 and the 010 phrases, before the 006 window closed (ADR-002).
 2. **Fewer delivered replies than planned.** 108 per arm read the rule, against about 190 projected, because delivery ran near 35%. The interval still sits inside the +5 margin.
 3. **Fixture, not live use.** The result covers five executor strata on a fixture project. Phase 009 measures live delivery.
 <!-- /ANCHOR:limitations -->
