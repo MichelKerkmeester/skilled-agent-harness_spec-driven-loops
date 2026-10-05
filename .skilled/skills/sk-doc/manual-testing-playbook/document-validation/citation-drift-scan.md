@@ -16,7 +16,7 @@ This scenario validates the citation drift scan for `SD-021`. It focuses on the 
 
 ### Why This Matters
 
-A skill doc that cites `file.ext:line` claims something about a line of another file, and the claim goes stale the moment that file moves or shrinks. `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` counts every such citation in the prose of the tracked skill docs, resolves each against the tracked files and prints the dead ones, where the target is missing on disk or the cited line sits past the file's last line. It makes zero model calls by default and it changes no citation, no validator and no cited file. `--jev` runs the backend and needs `--out <dir>` so every call is recorded. The scenario holds the switch to its own gate: the default run shows that nothing is called, and the `--jev` run shows that a missing credential is refused before any call.
+A skill doc that cites `file.ext:line` claims something about a line of another file, and the claim goes stale the moment that file moves or shrinks. `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` counts every such citation in the prose of the tracked skill docs, resolves each against the tracked files and prints the dead ones, where the target is missing on disk or the cited line sits past the file's last line. It makes zero model calls by default and it changes no citation, no validator and no cited file. `--jev` runs the backend from the sibling `classifier-cite-drift-scan.mjs` and needs `--out <dir>` so every call is recorded. The scenario holds the switch to its own gate: the default run shows that nothing is called, and the `--jev` run shows that a missing credential is refused before any call.
 
 ---
 
@@ -114,7 +114,8 @@ The advisory in doc validation stays silent without a credential. With the same 
 
 | File | Role |
 |---|---|
-| [`../../shared/scripts/cite-drift-scan.mjs`](../../shared/scripts/cite-drift-scan.mjs) | The counts, the resolution, the label gate and the backend gate |
+| [`../../shared/scripts/cite-drift-scan.mjs`](../../shared/scripts/cite-drift-scan.mjs) | The counts, the resolution, the label gate and the CLI entry point |
+| [`../../shared/scripts/classifier-cite-drift-scan.mjs`](../../shared/scripts/classifier-cite-drift-scan.mjs) | The backend gate and arm, the verdict and scoring helpers and the advisory check |
 | [`../../scripts/tests/test-cite-drift-scan.mjs`](../../scripts/tests/test-cite-drift-scan.mjs) | The extraction, resolution, gate and arm cases on a fixture repository with a stub backend |
 | [`../../shared/scripts/validate_document.py`](../../shared/scripts/validate_document.py) | Runs the advisory check at the end of its human report |
 | [`../../scripts/tests/test_cite_drift_advisory.py`](../../scripts/tests/test_cite_drift_advisory.py) | The advisory's exit code, silence without a credential and opt-out |

@@ -92,7 +92,7 @@ scripts/
 | `agent-improvement/trade-off-detector.cjs` | Cross-dimension regression detection with an insufficient-data guard. |
 | `model-benchmark/run-benchmark.cjs` | Fixture and integration scorer. `--scorer pattern` is the default and `--scorer 5dim` selects the `scorer/` subtree. |
 | `model-benchmark/dispatch-model.cjs` | Model-agnostic CLI dispatcher for Lane B. |
-| `model-benchmark/scorer/` | Five-dimension scorer with `score-model-variant.cjs`, `deterministic/`, `grader/`, and `lib/cache.cjs`. The runtime `cache/` is git-ignored. |
+| `model-benchmark/scorer/` | Five-dimension scorer with `score-model-variant.cjs`, `classifier-score-model-variant.cjs` (Jev cascade grader), `deterministic/`, `grader/`, and `lib/cache.cjs`. The runtime `cache/` is git-ignored. |
 | `lib/` | Shared CommonJS helpers: `typed-errors.cjs`, `promotion-gates.cjs`, `mirror-sync-verify.cjs`. |
 
 ---

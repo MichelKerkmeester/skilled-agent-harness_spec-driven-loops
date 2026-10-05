@@ -89,7 +89,9 @@ function renderProjectDirCommand(runtime, runtimeConfig, binding) {
 function renderCursorCommand(runtimeConfig, binding) {
   const base = invocation(binding);
   if (binding.fallback === 'none') return base;
-  if (binding.fallback !== 'envelope') throw new Error(`cursor supports none or envelope fallbacks, got "${binding.fallback}" on ${binding.script}`);
+  // Detached like the project-dir runtimes' background form, so a slow reconcile never holds up session start.
+  if (binding.fallback === 'background') return `${base} >/dev/null 2>&1 &`;
+  if (binding.fallback !== 'envelope') throw new Error(`cursor supports none, background or envelope fallbacks, got "${binding.fallback}" on ${binding.script}`);
   const adapter = path.posix.basename(binding.script);
   const message = binding.message ?? runtimeConfig.defaultMessage;
   const envelope = JSON.stringify({ permission: 'allow', agent_message: message, mkHookDrift: true });

@@ -1,0 +1,933 @@
+{
+  "sessionId": "2026-10-05T08:17:54Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Impossible date-shaped cutoff silently skips source-tag validation",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+      "line": 64,
+      "description": "Validate the complete override as a real calendar date before accepting it; fall back to CUTOFF_DEFAULT and report the existing note for impossible dates.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "The function is the single cutoff parser used by main; the following Created comparison controls the early-return for every scanned packet. The helper test covers malformed shape but not impossible dates.",
+      "affectedSurfaceHints": [
+        "SOURCE_TAGS helper",
+        "SOURCE_TAGS shell rule",
+        "spec packet research/review validation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Valid YAML inline comments are included in frontmatter enum values",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+      "line": 72,
+      "description": "Parse these frontmatter scalars with YAML comment semantics (or a shared scalar parser) so valid inline comments do not create a false warning or checker failure.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Direct reads show three independent readers retain trailing comment text before checking membership; the corresponding tests in check-frontmatter-values.vitest.ts, test_frontmatter_values.py, and skill-doc-frontmatter-checker.vitest.ts contain no inline-comment case.",
+      "affectedSurfaceHints": [
+        "skill advisor frontmatter checker",
+        "spec-kit FRONTMATTER_VALUES rule",
+        "sk-doc document validator"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Newline in a tracked Markdown path shifts batched Git replies",
+      "file": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      "line": 452,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Skill-doc checker applies case-sensitive frontmatter matching",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+      "line": 139,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "case_normalization_drift",
+      "citation_path_resolution",
+      "context_type_consumer_drift",
+      "feature_catalog_code_drift",
+      "git_batch_path_framing",
+      "invalid_date_override",
+      "playbook_capability_drift",
+      "shared_alias_contract",
+      "spec_code_drift",
+      "yaml_frontmatter_comment_semantics"
+    ],
+    "ruledOut": [
+      "alias_acceptance_drift",
+      "citation_path_resolution",
+      "context_type_consumer_drift",
+      "document_content_to_process_execution",
+      "document_derived_write_path_traversal",
+      "playbook_capability_drift",
+      "regex_redos",
+      "shared_alias_contract",
+      "shell_argument_injection",
+      "spec_code_drift"
+    ],
+    "deferred": [
+      "checklist_evidence_staleness",
+      "context_type_consumer_integration",
+      "cross_checker_test_parity",
+      "feature_catalog_code_drift"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "invalid_date_override": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "yaml_frontmatter_comment_semantics": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "citation_path_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "shared_alias_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "context_type_consumer_integration": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "git_batch_path_framing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shell_argument_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "document_content_to_process_execution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "regex_redos": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "document_derived_write_path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "feature_catalog_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "playbook_capability_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "context_type_consumer_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "checklist_evidence_staleness": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "case_normalization_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "alias_acceptance_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cross_checker_test_parity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts"
+      ],
+      "bugClass": "context_type_consumer_integration",
+      "disposition": "deferred",
+      "rationale": "This pass followed the prompt-named producers and their direct tests; broader caller behavior belongs to the later integration/traceability pass.",
+      "evidenceRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/plan.md:66",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15"
+      ],
+      "reason": "Review the three shared-value consumers in the follow-on pass."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57"
+      ],
+      "bugClass": "checklist_evidence_staleness",
+      "disposition": "deferred",
+      "rationale": "This pass was a static source review and did not reproduce historical evidence outputs.",
+      "evidenceRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57"
+      ],
+      "reason": "Replaying prior census studies, hashes or tests is a separate verification task."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-tag-resolution.md:19",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/shared-frontmatter-value-list.md:19"
+      ],
+      "bugClass": "feature_catalog_code_drift",
+      "disposition": "deferred",
+      "rationale": "The pre-existing cutoff edge was not duplicated, and the redirect table contents were not inspected.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-tag-resolution.md:19",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/shared-frontmatter-value-list.md:19",
+        ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-tag-resolution.md:48"
+      ],
+      "reason": "The existing cutoff edge remains under R1-P2-001; a direct redirect-data audit was not part of this pass."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-MAINT-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py",
+        ".skilled/skills/system-skill-advisor/runtime/tests/skill-doc-frontmatter-checker.vitest.ts",
+        ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts"
+      ],
+      "bugClass": "cross_checker_test_parity",
+      "disposition": "deferred",
+      "rationale": "The iteration limited file reads to eight; cross-suite test parity remains unverified.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/check-frontmatter-values.vitest.ts:39"
+      ],
+      "reason": "Inspect the Python, skill-doc checker, and shared context-types tests in a follow-up review."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs"
+      ],
+      "bugClass": "citation_path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The inspected order and explicit spaced-path regression case support the expected resolution path.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts:203"
+      ],
+      "reason": "No correctness defect found in the inspected spaced-path and redirect resolution direction."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts",
+        ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json"
+      ],
+      "bugClass": "shared_alias_contract",
+      "disposition": "ruled_out",
+      "rationale": "The asymmetry is intentional and pinned by the shared test.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:70",
+        ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts:33"
+      ],
+      "reason": "The document checker alias list and runtime legacy migration set have explicitly different contracts."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "shell_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The inspected boundaries preserve argv separation and use NUL framing for the Git check-ignore stdin batch.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh:29",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh:38",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:187",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1803",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1808"
+      ],
+      "reason": "No reviewed wrapper or subprocess constructs a shell command from document content or path text."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "document_content_to_process_execution",
+      "disposition": "ruled_out",
+      "rationale": "The only reviewed Python child process is started with a list and without shell=True; shell wrappers quote each argument.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1803",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1808",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh:29",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh:38"
+      ],
+      "reason": "No content-derived command string or eval/exec sink was identified in the scoped helpers."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "regex_redos",
+      "disposition": "ruled_out",
+      "rationale": "The searched regex surface does not compile or interpolate patterns from document content.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1634",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1635",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:54"
+      ],
+      "reason": "No regex path was found where untrusted content controls a pattern with catastrophic backtracking behavior."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "document_derived_write_path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No path derived from document contents reaches a reviewed write sink; callers explicitly opt into --rebuild-redirects, --out, or --fix.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:2206",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1422",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:2343",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1887"
+      ],
+      "reason": "Path traversal through untrusted document content was not present in the reviewed data flow."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:2"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new spec-to-code mismatch was observed in the inspected contracts.",
+      "evidenceRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:214",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:2"
+      ],
+      "reason": "Direct source inspection found no new mismatch."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md:15"
+      ],
+      "bugClass": "playbook_capability_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new playbook mismatch was found in inspected scenarios.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md:15",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27"
+      ],
+      "reason": "Direct source-to-scenario comparison found no new mismatch."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15"
+      ],
+      "bugClass": "context_type_consumer_drift",
+      "disposition": "ruled_out",
+      "rationale": "SL-005 is cleared because all three consumers import and use shared context-type exports.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15"
+      ],
+      "reason": "The proposed missing consumer integration is not present."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-MAINT-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts"
+      ],
+      "bugClass": "alias_acceptance_drift",
+      "disposition": "ruled_out",
+      "rationale": "Alias keys are drawn from the common data file; the TypeScript module explicitly separates general document aliases from the intentionally narrower legacy migration aliases.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:7",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:19",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:34",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs:47",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:75"
+      ],
+      "reason": "The inspected source comments and maps preserve the distinction between frontmatter acceptance and legacy migration."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs"
+      ],
+      "bugClass": "citation_path_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The inspected order and explicit spaced-path regression case support the expected resolution path.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts:203"
+      ],
+      "proof": "No correctness defect found in the inspected spaced-path and redirect resolution direction."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts",
+        ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json"
+      ],
+      "bugClass": "shared_alias_contract",
+      "disposition": "ruled_out",
+      "rationale": "The asymmetry is intentional and pinned by the shared test.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:70",
+        ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts:33"
+      ],
+      "proof": "The document checker alias list and runtime legacy migration set have explicitly different contracts."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "shell_argument_injection",
+      "disposition": "ruled_out",
+      "rationale": "The inspected boundaries preserve argv separation and use NUL framing for the Git check-ignore stdin batch.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh:29",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh:38",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:187",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1803",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1808"
+      ],
+      "proof": "No reviewed wrapper or subprocess constructs a shell command from document content or path text."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "document_content_to_process_execution",
+      "disposition": "ruled_out",
+      "rationale": "The only reviewed Python child process is started with a list and without shell=True; shell wrappers quote each argument.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1803",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1808",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh:29",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh:38"
+      ],
+      "proof": "No content-derived command string or eval/exec sink was identified in the scoped helpers."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "regex_redos",
+      "disposition": "ruled_out",
+      "rationale": "The searched regex surface does not compile or interpolate patterns from document content.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1634",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1635",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:54"
+      ],
+      "proof": "No regex path was found where untrusted content controls a pattern with catastrophic backtracking behavior."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-SEC-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+      ],
+      "bugClass": "document_derived_write_path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "No path derived from document contents reaches a reviewed write sink; callers explicitly opt into --rebuild-redirects, --out, or --fix.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:2206",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1422",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:2343",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py:1887"
+      ],
+      "proof": "Path traversal through untrusted document content was not present in the reviewed data flow."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:2"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new spec-to-code mismatch was observed in the inspected contracts.",
+      "evidenceRefs": [
+        "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md:57",
+        "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md:57",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:214",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:2"
+      ],
+      "proof": "Direct source inspection found no new mismatch."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md:15"
+      ],
+      "bugClass": "playbook_capability_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new playbook mismatch was found in inspected scenarios.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:15",
+        ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md:15",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md:15",
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:360",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs:230",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:27"
+      ],
+      "proof": "Direct source-to-scenario comparison found no new mismatch."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15"
+      ],
+      "bugClass": "context_type_consumer_drift",
+      "disposition": "ruled_out",
+      "rationale": "SL-005 is cleared because all three consumers import and use shared context-type exports.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:34",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:9",
+        ".skilled/skills/system-spec-kit/runtime/cli/extractors/session-extractor.ts:17",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:15"
+      ],
+      "proof": "The proposed missing consumer integration is not present."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-MAINT-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts"
+      ],
+      "bugClass": "alias_acceptance_drift",
+      "disposition": "ruled_out",
+      "rationale": "Alias keys are drawn from the common data file; the TypeScript module explicitly separates general document aliases from the intentionally narrower legacy migration aliases.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:7",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json:19",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs:34",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs:47",
+        ".skilled/skills/system-spec-kit/shared/context-types.ts:75"
+      ],
+      "proof": "The inspected source comments and maps preserve the distinction between frontmatter acceptance and legacy migration."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "case_normalization_drift",
+      "alias_acceptance_drift",
+      "cross_checker_test_parity"
+    ],
+    "covered": [
+      "case_normalization_drift"
+    ],
+    "ruledOut": [
+      "alias_acceptance_drift"
+    ],
+    "deferred": [
+      "cross_checker_test_parity"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

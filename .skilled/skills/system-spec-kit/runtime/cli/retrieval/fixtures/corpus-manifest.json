@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d2b6cd86e13176c46325eef12ee908fae0d239cb21c0c04f329e0cda15d16b5b",
+  "corpusHash": "55403e864ec9c1ca0415ac2f6d063acfcc0aedbc5e1ad07b05280a5ddc3ba061",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23689,
+  "includedPathCount": 23661,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -76,6 +76,7 @@
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/hooks/README.md",
+    ".skilled/hooks/classifier-injection-screen/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
     ".skilled/hooks/completion/README.md",
     ".skilled/hooks/coverage-rationale.md",
@@ -83,6 +84,7 @@
     ".skilled/hooks/dispatch/README.md",
     ".skilled/hooks/dist-freshness/README.md",
     ".skilled/hooks/git-hooks-check/README.md",
+    ".skilled/hooks/git-live-follow/README.md",
     ".skilled/hooks/git-primary-reconcile/README.md",
     ".skilled/hooks/git-worktree-guard/README.md",
     ".skilled/hooks/git/README.md",
@@ -90,7 +92,6 @@
     ".skilled/hooks/goal/goal-plugin.md",
     ".skilled/hooks/hook-install/README.md",
     ".skilled/hooks/injection-contract.md",
-    ".skilled/hooks/injection-screen/README.md",
     ".skilled/hooks/mcp-route-guard/README.md",
     ".skilled/hooks/permission-policy/README.md",
     ".skilled/hooks/post-edit-quality/README.md",
@@ -5967,7 +5968,6 @@
     ".skilled/skills/sk-doc/changelog/v2.2.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.6.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.0.0.md",
-    ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6007,7 +6007,6 @@
     ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
     ".skilled/skills/sk-doc/scripts/README.md",
-    ".skilled/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
     ".skilled/skills/sk-doc/scripts/tests/README.md",
     ".skilled/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
     ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/broken-links/README.md",
@@ -6376,7 +6375,6 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/author-a-two-axis-parent-hub.md",
-    ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-ready-separate-from-compiled-serving.md",
     ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md",
@@ -7774,8 +7772,6 @@
     ".skilled/skills/system-skill-advisor/runtime/tests/python/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/schemas/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/scorer/README.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tools/README.md",
     ".skilled/skills/system-skill-advisor/runtime/types/README.md",
@@ -8035,8 +8031,6 @@
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md",
     ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
@@ -8110,9 +8104,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/architecture-boundary-enforcement.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-compact-and-completion.md",
@@ -9211,6 +9203,26 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/review-report.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-jev/004-cli-classifier-quality-research/implementation-summary.md",
@@ -23355,50 +23367,6 @@
     "specs/system-speckit/048-doctor-command-audit/003-update/goal.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/implementation-summary.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/goal.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/implementation-summary.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/spec.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/tasks.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/plan.md",
-    "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/tasks.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-strategy.md",
     "specs/system-speckit/048-doctor-command-audit/003-update/research/iterations/iteration-001.md",
@@ -23643,6 +23611,10 @@
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23719,7 +23691,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
+  "manifestHash": "c7e7026d0153941dc4f5a099b93588ba520cc12a6f6fb5197c2cbd00f9b59c11",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23729,6 +23701,10 @@
     ".skilled/changelog/skilled"
   ],
   "skippedPaths": [
+    {
+      "path": ".skilled/hooks/classifier-injection-screen/opencode/classifier-injection-screen.js",
+      "reason": "symlink not followed"
+    },
     {
       "path": ".skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js",
       "reason": "symlink not followed"
@@ -23814,6 +23790,26 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/git-live-follow/claude/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-live-follow/codex/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-live-follow/cursor/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-live-follow/devin/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-live-follow/pi/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/git-message-gate/README.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -23851,6 +23847,14 @@
     },
     {
       "path": ".skilled/hooks/git-primary-reconcile/codex/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/cursor/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/devin/git-primary-reconcile.sh",
       "reason": "symlink not followed"
     },
     {
@@ -25035,6 +25039,22 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/053-retire-unproven-features/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/054-classifier-module-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/055-alignment-and-hook-parity/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29287,6 +29307,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/scratch",
       "reason": "excluded directory"
     },
     {

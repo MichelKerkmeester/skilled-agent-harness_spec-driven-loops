@@ -80,7 +80,7 @@ Do not stop to ask it now; ask it once when you are about to write, then continu
 - **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent` opens the gate; `evaluateMutation` composes `GATE_3_MUTATION_NOTICE`; `recordGate3NoticeDelivered` persists the once-per-session marker).
 - **Channel per runtime:** Claude/Codex/Devin `[SYS]` (`spec-gate-enforce.mjs` -> `additionalContext` on the first in-gate advise; a deny reason is `GATE_3_DENY_DETAIL`, which embeds the same notice). Cursor `[SYS]` (`agent_message` on advise, `user_message` on deny). OpenCode `[SYS]` (`system-spec-gate.js` pushes the deferral instruction through `experimental.chat.system.transform` once; its thrown deny reason carries `GATE_3_DENY_DETAIL`). Pi `[MSG]` only when the session has no UI (`spec-gate-classify.ts` appends the deferral instruction to the visible prompt); a dialog-capable Pi session gets an interactive dialog instead of any text, and its one blocked call carries the notice in the retry reason.
 
-### sk-vision Evidence (Devin only)
+### sk-vision Evidence (Devin / OpenCode / Pi)
 
 **Injects:** a `<SK-VISION EVIDENCE>` block carrying scene, caption and exact OCR for an image the prompt names, so a text-only model can answer about a picture it cannot see.
 
@@ -96,7 +96,7 @@ DEPLOY FAILED: exit code 137
 
 - **Trigger:** a user prompt naming an image path that resolves to a file on disk. A path that does not resolve produces nothing, deliberately, so a filename mentioned in passing never spins a local GPU.
 - **Owning module:** `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
-- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). No other runtime carries it. OpenCode and Pi reach the same runtime in-process through their own plugin and extension, and Cursor runs the CLI instead.
+- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). OpenCode and Pi carry the same runtime in process instead of through a hook: OpenCode's `sk-vision.js` plugin appends a text part to the user message on `chat.message` and exposes the 13 tools, and Pi's `sk-vision.ts` registers the same tools and appends the `<SK-VISION>` block onto the visible prompt on `input.images`. Cursor runs the CLI from its `/vision` command. Claude Code and Codex are not wired: both run vision-capable models that read images natively (the `Read` tool and `view_image`), so the runtime built for text-only models adds nothing there.
 - **Why Cursor is absent:** a live probe against build `2026.09.02-c22c1a3` confirmed Cursor does not deliver `beforeSubmitPrompt`, with a `sessionStart` positive control firing on the same runs. Injection is impossible there, so Cursor's `/vision` command and always-apply rule invoke `vision-runtime/dist/vision-cli.js` instead. The same probe is why the two spec-kit hooks registered on that event are dormant.
 - **Kill-switch:** `SYSTEM_SK_VISION_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. Fail-open on every path, including an unbuilt runtime.
 
@@ -181,9 +181,19 @@ Dispatch blocked by cli-opencode hard-rule(s):
 
 **Injects:** an allow/deny decision (with reason on deny) for a subagent/sub-task dispatch.
 
-- **Trigger:** a `run_subagent`/Task-tool dispatch.
+- **Trigger:** a `run_subagent`/Task-tool/`subagent` dispatch.
 - **Owning module:** `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
-- **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Not wired for Pi (no distinguishable pi-subagent tool name to match on, per phase 008's documented deferral).
+- **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Pi's `.pi/extensions/task-dispatch-guard.ts` is wired on the native `subagent` tool and returns the guard's text as an advisory reason, never a block (`~ partial`: direct `subagent` calls only; workflow-nested `runs.run` dispatches are not covered).
+
+### Injection Screen
+
+**Injects:** one advisory line naming how many sections of a just-fetched page read as instructions aimed at an agent, the strongest section's position and its probability.
+
+- **Trigger:** a completed fetch tool call: `WebFetch` (Claude Code), `webfetch` (Devin, OpenCode), `fetch_content` (Pi), `web_extract` (Hermes). The fetch result itself always reaches the model unchanged.
+- **Owning module:** `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs`, over `lib/classifier-screen-fetched-text.mjs`; each runtime adapter keeps only its own event, its fetch tool's name and its delivery channel.
+- **Channel per runtime:** Claude Code `[SYS]` (`PostToolUse` -> `hookSpecificOutput.additionalContext`). Devin `[SYS]` (matcher `^webfetch$` -> `additionalContext`). OpenCode `[SYS]` (`tool.execute.after` on `webfetch` buffers the line; the next `experimental.chat.system.transform` — the model call that reads the fetch result — drains it). Pi `[SYS]` (the advisory text block is appended to the `fetch_content` tool result). Hermes `[SYS]` (the `repo-guards` plugin runs the Devin adapter from `transform_tool_result` for `web_extract`).
+- **Why Cursor and Codex are absent:** Cursor's `postToolUse` payload for the `Fetch` tool carries only `url`, `status_code` and `content_length`, so no page text ever reaches a hook; Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a fetched page.
+- **Kill-switch:** `SYSTEM_INJECTION_SCREEN_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. The Jev feature switches also turn it off: `JEV_FEATURE_INJECTION_SCREEN=0` and `JEV_FEATURES=0`. It stays silent until `jev auth status` passes, and any error exits 0 with no output.
 
 ### Post-Edit Quality
 
@@ -198,7 +208,7 @@ Violations in src/foo.ts:
 
 - **Trigger:** a completed `edit`/`write` tool call.
 - **Owning module:** `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
-- **Channel, read this one carefully:** Claude Code's and Devin's own adapters (`claude-posttooluse.cjs`, `devin/post-edit-quality.cjs`) write this text to **plain stdout and always exit 0**, with no `hookSpecificOutput`/`systemMessage` field at all. Per Claude Code's documented `PostToolUse` contract, exit-0 stdout is "shown in transcript," the debug/verbose transcript view, not the normal conversation the assistant reasons over. **These two adapters' findings likely never reach the assistant's context at all in normal use**, unlike every other `[SYS]`-tagged hook in this document. This is confirmed for Claude Code from its own hook documentation. Devin's exact handling of plain (non-JSON) `PostToolUse` stdout is not independently verified in this repo. Pi's `post-edit-quality.ts` and OpenCode's `sk-code-post-edit-quality.js` both use their runtime's real context-injection channel instead (`ToolResultEventResult.content` for Pi, `experimental.chat.system.transform` for OpenCode), so only those two are confirmed to reach the model.
+- **Channel:** `[SYS]` on Claude and Devin: `claude-posttooluse.cjs` and `devin/post-edit-quality.cjs` return the findings in a `PostToolUse` envelope as `hookSpecificOutput.additionalContext`, and a clean edit stays silent. Pi's `post-edit-quality.ts` appends them to the tool result (`ToolResultEventResult.content`) and OpenCode's `sk-code-post-edit-quality.js` drains them on the next `experimental.chat.system.transform`. Codex's `post-edit-quality.cjs` still writes plain stdout, and its `PostToolUse` stdout handling is not independently verified in this repo; every other adapter's findings are confirmed to reach the assistant.
 
 ---
 
@@ -248,7 +258,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Session-Start Advisories (worktree/git-hooks/dist-staleness/codex-hooks checks)
 
-**Injects:** nothing into the model. Four warn-only CLI checks run at session start and write a one-line warning to **stderr only**, always exiting 0.
+**Injects:** nothing into the model. The warn-only CLI checks run at session start and write a one-line warning to **stderr only**, always exiting 0; the live-sync scripts also run there and act without touching the model.
 
 - **Channel:** `[LOG]`-equivalent. Visible to a human watching the terminal interactively, or in a runtime's own startup log, but never delivered to the assistant. Pi's bridge (`session-start-advisories.ts`) calls `ctx.ui.notify()`, which is a confirmed no-op in print/headless mode, so even the human-terminal visibility disappears for non-interactive dispatches.
 

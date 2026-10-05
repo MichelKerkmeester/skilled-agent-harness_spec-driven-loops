@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for Devin-specific hook adapters; runtime 
 
 ## 1. OVERVIEW
 
-`.devin/hooks/` contains 19 relative symlinks to Devin adapters owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and `task-dispatch-guard.cjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
+`.devin/hooks/` contains 25 relative symlinks to Devin adapters owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `task-dispatch-guard.cjs`, and `classifier-injection-screen-posttooluse.mjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
 
 The current registration is live under `devin -p` when events are top-level arrays with nested matcher groups. Six lifecycle events have fired in a corrected-schema session. `PermissionRequest` and `PostCompaction` remain unobserved because those events did not occur.
 
@@ -18,10 +18,10 @@ The current registration is live under `devin -p` when events are top-level arra
 
 | Group | Files |
 |-------|-------|
-| Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs`, `session-cleanup.sh` |
+| Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs`, `session-cleanup.sh`, `goal-inject.mjs` |
 | Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs` |
-| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs`, `permission-request-policy.mjs` |
-| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-preflight-advisory.mjs` |
+| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs`, `permission-request-policy.mjs`, `sk-vision.mjs`, `classifier-injection-screen-posttooluse.mjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `git-preflight-advisory.mjs`, `git-message-gate.mjs`, `git-live-follow.sh`, `git-primary-reconcile.sh` |
 
 The three `.js` links target the spec-kit runtime's compiled `runtime/dist/` output. A fresh checkout must build that package before those links resolve.
 
@@ -29,7 +29,7 @@ The three `.js` links target the spec-kit runtime's compiled `runtime/dist/` out
 
 ## 3. WIRING AND CAVEATS
 
-- `.devin/hooks.v1.json` is the runtime authority and contains 8 events, 11 matcher groups and 19 commands.
+- `.devin/hooks.v1.json` is the runtime authority and contains 8 events, 13 matcher groups and 27 commands.
 - `run_subagent` did not occur in the captured session, so `task-dispatch-guard.cjs` remains directly tested but not live-observed.
 - No external non-`mk_` MCP family is currently registered under Devin, so the route guard has no applicable live call yet.
 - No block-severity fixture exists, so the dispatch deny branch remains structurally tested rather than proven end to end.
@@ -60,4 +60,4 @@ Expected result: `8`.
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Canonical live evidence](../../specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md)
 - [Injection contract](../../.skilled/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.skilled/hooks/README.md): the five fully-portable guard cores this mirror points at outside `.skilled/skills/`
+- [Runtime hooks tree](../../.skilled/hooks/README.md): the six fully-portable guard cores this mirror points at outside `.skilled/skills/`

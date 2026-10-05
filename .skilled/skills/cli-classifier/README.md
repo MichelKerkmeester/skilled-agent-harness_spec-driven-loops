@@ -68,7 +68,7 @@ Once `jev auth status` passes, four features ask Jev on their own. Each one beat
 | Feature | Where it runs | Turn it off |
 |---|---|---|
 | Citation drift advisory | End of `validate_document.py`'s human report | `JEV_FEATURE_CITE_DRIFT=0` |
-| Injection screen | Claude Code, after each WebFetch | `JEV_FEATURE_INJECTION_SCREEN=0` |
+| Injection screen | Claude Code, Devin, OpenCode, Pi, and Hermes, after each fetched page | `JEV_FEATURE_INJECTION_SCREEN=0` |
 | Reviewer verdict fallback | `/deep:model-benchmark` reviewer runs under `--grader auto` | `JEV_FEATURE_VERDICT_FALLBACK=0` |
 | Hallucination grader | `/deep:model-benchmark` 5dim runs under `--grader auto` | `JEV_FEATURE_HALLUCINATION_GRADER=0` |
 

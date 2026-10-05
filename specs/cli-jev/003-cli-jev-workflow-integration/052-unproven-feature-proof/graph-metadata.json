@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/052-unproven-feature-proof",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unproven jev feature proof",
+      "masked-state ablation",
+      "strongest policy bar",
+      "class floor keep rule",
+      "unproven feature proof plan",
+      "jev proof test plan",
+      "masked-state decision rule",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "unproven",
+      "jev",
+      "feature",
+      "proof",
+      "masked-state",
+      "ablation",
+      "strongest",
+      "policy",
+      "bar",
+      "class",
+      "floor",
+      "keep"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "specs/cli-jev/006-jev-feature-auto-enable/research/research.md",
+      ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-report.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-report.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-features.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-alignment-suggestion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-alignment-suggestion.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-track narrowing kept once and stopped on its repeat",
+    "created_at": "2026-10-05T04:56:52Z",
+    "last_save_at": "2026-10-05T06:50:09.294Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:24368132893eeceb7dc168f6f935efa5f459052939191b3de5426d9c0a831e53",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e22d9f8b400a2343ae7f573be0ffed40cbddb7535d22721a34a6617959e69cd9",
+      "plan.md": "778f610ebd4dd4f06ebe5b7ab1caf36d356b7113b3e501ffa15cf40ac974673f",
+      "tasks.md": "2d8897480fe45d453437ca673d3146a51e187b6e2d1d7b67488d4e1d282ec9bc",
+      "implementation-summary.md": "17ebb8e663d77a29426eecd8eecbf38563bd16f4cac38a9d6ce772a6d979116f"
+    },
+    "last_active_at": null
+  }
+}

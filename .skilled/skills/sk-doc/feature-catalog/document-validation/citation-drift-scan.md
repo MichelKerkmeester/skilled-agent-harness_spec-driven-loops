@@ -18,7 +18,7 @@ version: 2.3.0.6
 
 Reports the dead file-and-line citations in the tracked skill docs, where the target is gone or the cited line sits past its end, so an author can repair the citation before a reader follows it.
 
-`cite-drift-scan.mjs` counts every `<path>.<ext>:<line>` citation in the prose of the tracked skill docs and resolves each one against the tracked files. It prints one count line per skill, a totals line and one `cite dead:` line per dead citation, then measures offline whether a Jev call flags a drifted citation better than two fixed comparators. Its default run makes zero model calls, and it changes no citation, no validator and no cited file. Doc validation also runs it as a non-blocking advisory on the document being validated, described at the end of section 2.
+`cite-drift-scan.mjs` counts every `<path>.<ext>:<line>` citation in the prose of the tracked skill docs and resolves each one against the tracked files. It prints one count line per skill, a totals line and one `cite dead:` line per dead citation, then measures offline, in `classifier-cite-drift-scan.mjs`, whether a Jev call flags a drifted citation better than two fixed comparators. Its default run makes zero model calls, and it changes no citation, no validator and no cited file. Doc validation also runs it as a non-blocking advisory on the document being validated, described at the end of section 2.
 
 ---
 
@@ -42,7 +42,8 @@ The check never changes the validator's exit code. It does not run with `--json`
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Script | Counts and resolves the citations, draws the label sample, runs the gate and the backend arm, and serves the advisory check |
+| `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Script | Counts and resolves the citations, draws the label sample, and keeps the CLI entry point the switches reach |
+| `.skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs` | Script | The Jev gate and arm, the scoring and verdict helpers, the backend process helpers and the advisory check; the host imports these and re-exports them |
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Script | Runs the advisory check at the end of its human report |
 
 ### Validation And Tests

@@ -10,7 +10,7 @@
       {
         "target": "system-spec-kit",
         "weight": 0.3,
-        "context": "Supplies typed classifier judgments to the spec-kit goal verifier and compaction arms through the configured transport"
+        "context": "Supplies the classifier verdict behind the injection screen hook that the spec-kit hook registry wires on each runtime"
       }
     ],
     "siblings": [
