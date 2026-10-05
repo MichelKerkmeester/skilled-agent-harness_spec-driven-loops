@@ -1,0 +1,3 @@
+WARN	specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-005.md:92	specs/.../037-pi-native-classifier-transport/spec.md:77	guessed	no file at that path; several tracked files share its name
+IGNORED	4
+CHECKED	217

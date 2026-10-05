@@ -11,7 +11,7 @@ trigger_phrases:
   - "retrofit diagnostics schema"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 2.7.0.7
 ---
 
 # Grep Convention for Spec Documents
@@ -62,8 +62,10 @@ One spelling is written. The retrofit may create a missing key only where the ta
 | `title` | scalar string | Created from the first H1 when one exists, else reported |
 | `description` | scalar string | Reported, never synthesized from body prose |
 | `trigger_phrases` | list of strings | Created as a valid empty list and reported. Never populated by a fallback |
-| `importance_tier` | scalar string | Reported |
-| `contextType` | scalar string | Reported |
+| `importance_tier` | scalar string from the shared value list | Reported |
+| `contextType` | scalar string from the shared value list | Reported |
+
+The value lists for `importance_tier` and `contextType`, with their aliases, live in sk-create-frontmatter's `assets/frontmatter-values.json`, which skill docs read too. A value outside it draws the `FRONTMATTER_VALUES` warning; it never fails a run. That file holds the document list a doc's frontmatter uses; the session list a save payload uses stays in `shared/context-types.ts`.
 
 ### Accepted Aliases
 
@@ -380,16 +382,15 @@ The split follows what a human still has to decide. An `alias-hit` is already fi
 
 ## 11. WHERE THE CONVENTION IS SILENT
 
-Two things stay open, and an implementer should treat them as questions rather than as gaps to fill by guessing.
+One thing stays open, and an implementer should treat it as a question rather than as a gap to fill by guessing.
 
 | Open item | What is undefined |
 |-----------|-------------------|
 | The marker budget | The source specification reports a document that exceeds "the marker budget" without setting a number of anchor markers per document. The phrase and list budgets in Section 3 are separate values and do not cover this one. Until a number exists, no marker-count check can fire |
-| Value sets for `importance_tier` and `contextType` | Both are fixed as scalar strings and neither is constrained to a vocabulary, so the validator checks shape and not value. The corpus has drifted accordingly: 10 distinct `importance_tier` values and 35 distinct `contextType` values across the active set, including `high`, `standard`, `useful`, `spec`, `tasks` and `handover` |
 
 One item is open by choice rather than by omission: Section 5 fixes the grammar of a typed anchor id and deliberately leaves the set of type prefixes unenumerated, so a packet can introduce a conforming prefix without amending this document.
 
-The second row is worth a decision rather than a shrug. A field with 35 values in a corpus of 22,000 documents is not a filter anyone can grep against with confidence, and the convention currently gives a retrofit no basis to normalize it.
+The value sets for `importance_tier` and `contextType` were open here until they moved to sk-create-frontmatter's `assets/frontmatter-values.json`; Section 2 now points at that list.
 
 ---
 

@@ -71,3 +71,5 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-spec
 ## 6. WORKFLOW SUMMARY
 
 The router binds the `/doctor:speckit` route from `_routes.yaml`, which runs `doctor-speckit-retrieval.yaml` under an always-interactive mode: it checks that the generated trigger index is fresh, that its lookup runs, and that the ripgrep retrieval recipes return results, then reports staleness and the regeneration command. All visible wording is owned by the presentation contract.
+
+It also offers the citation-drift census, read-only and with no model call: all docs, skill docs only, or skip. It summarises moved, gone and past-end citations per doc family and names each moved citation's new path. Unresolved `[SOURCE: path:line]` tags per lineage are listed by `/doctor:deep-loop`.

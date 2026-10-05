@@ -2,7 +2,7 @@
 name: sk-create-frontmatter
 description: Own the YAML frontmatter contract: which fields a document class carries, the description budget, and the 4-part version field.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 <!-- Keywords: create-frontmatter, frontmatter, YAML frontmatter, frontmatter block, trigger_phrases, importance_tier, contextType, description budget, 4-part version, X.Y.Z.W, frontmatter versioning, document class, frontmatter validation -->
@@ -229,6 +229,7 @@ conditional on the question being about `version`.
 
 - **sk-doc parent hub.** This packet is registered in `../mode-registry.json` and `../hub-router.json`. The advisor scores the hub on `../graph-metadata.json`, so every keyword trigger above is also a stage-one entry there. A trigger present in one of the three and absent from another routes on one stage only.
 - **Shared-tier enforcement.** `../shared/scripts/quick_validate.py` reads the description budget from `../shared/assets/skill-contract.json`, `../shared/scripts/frontmatter-version.mjs` implements the versioning standard, and `../shared/scripts/check-frontmatter-versions.sh` wraps its `gate` mode. This mode owns what they check, and never edits how.
+- **Value lists.** `assets/frontmatter-values.json` holds the `contextType` and `importance_tier` values and aliases. spec-kit's `shared/context-types.ts` and `FRONTMATTER_VALUES` rule, `../shared/scripts/validate_document.py` and the skill-advisor `check-skill-doc-frontmatter.mjs` read it by path, so moving or reshaping it breaks all four.
 - **Post-edit hook.** `.skilled/hooks/post-edit-quality/` resolves the corpus gate by literal path on every qualifying edit. That path is why the scripts stay in the shared tier.
 - **Templates that cite this contract.** `sk-create-skill`'s manifest, reference and asset templates, the feature-catalog and playbook templates, and the `/create:skill` and `/create:agent` workflow assets all point at `assets/frontmatter-templates.md`. A rule changed here changes what they emit.
 - **Doctor budget audit.** `/doctor:skill-advisor skill-budget` and `.skilled/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
@@ -240,6 +241,7 @@ conditional on the question being about `version`.
 - `README.md`: what the mode owns, the silent-budget and numstat-gate concepts, troubleshooting and the verification table.
 - `references/README.md`: the reference router. One conditional reference, the versioning standard.
 - `assets/frontmatter-templates.md`: the field reference and per-class templates, loaded on every path.
+- `assets/frontmatter-values.json`: the `contextType` and `importance_tier` value lists every checker reads.
 - `assets/fixtures/`: the two fixed inputs the description-budget scenarios read.
 - `manual-testing-playbook/manual-testing-playbook.md`: eleven operator scenarios across field resolution, budget and version derivation.
 - `changelog/`: the mode's shipped versions, one file per release.

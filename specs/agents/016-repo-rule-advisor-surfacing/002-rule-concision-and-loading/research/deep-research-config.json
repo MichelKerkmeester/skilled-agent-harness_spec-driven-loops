@@ -1,0 +1,56 @@
+{
+  "researchTopic": "Question: how should this repository's repo rules (.skilled/repo-rules/, 13 files, about 27k tokens) be written and loaded to change model behaviour, and at what context cost? First read prep/evidence-pack.md in the spec folder named below: measured token load and compliance baseline. Before every iteration read steer.md in your lineage directory and answer only its question. Cite file:line or a prep/ measurement for every claim. Mark unmeasured figures UNKNOWN. Read-only on the repository. Spec folder: specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading (pre-approved, Gate 3 answered).",
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-devin",
+          "model": "deepseek-v4-1-flash-max",
+          "label": "deepseek-v4-1-flash-max",
+          "iterations": 4,
+          "timeoutSeconds": 1800
+        },
+        {
+          "kind": "cli-devin",
+          "model": "swe-2-max",
+          "label": "swe-2-max",
+          "iterations": 3,
+          "timeoutSeconds": 1800
+        },
+        {
+          "kind": "cli-codex",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "label": "luna-compliance",
+          "iterations": 3,
+          "timeoutSeconds": 1800
+        },
+        {
+          "kind": "cli-codex",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "label": "luna-advocate",
+          "iterations": 2,
+          "timeoutSeconds": 1800
+        }
+      ],
+      "concurrency": 3
+    }
+  },
+  "createdAt": "2026-10-04T13:21:34.921Z",
+  "status": "initialized"
+}

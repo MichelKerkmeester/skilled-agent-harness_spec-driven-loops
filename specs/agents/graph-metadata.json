@@ -18,7 +18,8 @@
     "agents/012-agent-avoidance-anti-patterns",
     "agents/013-prompting-guide-alignment",
     "agents/014-agent-emphasis-register",
-    "agents/015-global-claude-md-agents-symlink"
+    "agents/015-global-claude-md-agents-symlink",
+    "agents/016-repo-rule-advisor-surfacing"
   ],
   "manual": {
     "depends_on": [],

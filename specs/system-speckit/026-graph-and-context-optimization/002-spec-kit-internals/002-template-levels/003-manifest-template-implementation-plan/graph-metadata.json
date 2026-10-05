@@ -47,20 +47,19 @@
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
-      "scripts/tests/workflow-invariance.vitest.ts",
-      "scripts/templates/inline-gate-renderer.ts",
-      "scripts/templates/inline-gate-renderer.sh",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      "scripts/tests/level-contract-resolver.vitest.ts",
-      "scripts/tests/inline-gate-renderer.vitest.ts",
-      "scripts/tests/scaffold-golden-snapshots.vitest.ts",
-      "scripts/spec/create.sh",
-      "scripts/spec/scaffold-debug-delegation.sh",
-      "scripts/spec/recommend-level.sh",
-      "scripts/spec/upgrade-level.sh",
-      "scripts/rules/check-files.sh",
-      "scripts/rules/check-level.sh",
-      "scripts/rules/check-template-source.sh"
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/debug.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/review.md",
+      "review/audit-D-response.md",
+      "review/audit-A-response.md",
+      "review/audit-B-response.md",
+      "review/audit-C-response.md",
+      ".opencode/skills/system-spec-kit/templates/README.md"
     ],
     "entities": [
       {
@@ -100,87 +99,75 @@
         "source": "derived"
       },
       {
-        "name": "workflow-invariance.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workflow-invariance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "inline-gate-renderer.ts",
-        "kind": "code",
-        "path": "scripts/templates/inline-gate-renderer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "inline-gate-renderer.sh",
-        "kind": "script",
-        "path": "scripts/templates/inline-gate-renderer.sh",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "level-contract-resolver.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/level-contract-resolver.vitest.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
-        "name": "inline-gate-renderer.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/inline-gate-renderer.vitest.ts",
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
-        "name": "scaffold-golden-snapshots.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/scaffold-golden-snapshots.vitest.ts",
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
         "source": "derived"
       },
       {
-        "name": "scaffold-debug-delegation.sh",
-        "kind": "script",
-        "path": "scripts/spec/scaffold-debug-delegation.sh",
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
-        "name": "recommend-level.sh",
-        "kind": "script",
-        "path": "scripts/spec/recommend-level.sh",
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": "scripts/spec/upgrade-level.sh",
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
         "source": "derived"
       },
       {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-files.sh",
+        "name": "audit-D-response.md",
+        "kind": "doc",
+        "path": "review/audit-D-response.md",
         "source": "derived"
       },
       {
-        "name": "check-level.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-level.sh",
+        "name": "audit-A-response.md",
+        "kind": "doc",
+        "path": "review/audit-A-response.md",
         "source": "derived"
       },
       {
-        "name": "check-template-source.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-template-source.sh",
+        "name": "audit-B-response.md",
+        "kind": "doc",
+        "path": "review/audit-B-response.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-C-response.md",
+        "kind": "doc",
+        "path": "review/audit-C-response.md",
         "source": "derived"
       },
       {
@@ -206,11 +193,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-08-30T15:39:29.289Z",
+    "last_save_at": "2026-10-04T09:20:45.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,15 +220,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:4bb23d172d41f64603d47d0c7b68d0cf7939b103e526b3f53acaa927f45c748e",
+    "source_fingerprint": "sha256:386797eb24cd9357b09655def25b014523edeaf98c1ee244cc48070766b8657a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2b6a55b69a9b86d8fa12a5100aa811e60d8c12a807fc1d7d2991c40ae20a344",
-      "plan.md": "7ad76bd753e275cc3f8f01988eb8a3225331786aa94eccf70f51af481bb52488",
-      "tasks.md": "aef93665c519c94b24d417a9b083595945c091c9c514e93e66a8ef65378e0058",
-      "decision-record.md": "e46899e7add5c5751c2498bf43baf1b00acc72c8c25d4be5b3fd7ea1d7fb9ae1",
-      "implementation-summary.md": "6b304fb01149e37a2bea15406dd76ebf723cf284d231c20603b1e8c3868166d9",
-      "resource-map.md": "c87d71c5571b0831952e1cb4f4f259de34e4b9dc3118d13e21880a9d125d976f"
+      "spec.md": "acb5d5478d68e7af2e8b7be4422a058e5d6998f7b603c10afa790fd1dceb8525",
+      "plan.md": "e3b8cf9cd0415cd132aa7681e90bb5e0c0ff0c5a8ba9a43c9b8e76d8bf503364",
+      "tasks.md": "eb151e734634bb8c6e9a807b9caf731331801490ebb68e38e0250aa4b291c8b0",
+      "decision-record.md": "26a1805f837a643ef6df5b486bae9edb44b68cd8aaaf2eb4737937bcfe49bc07",
+      "implementation-summary.md": "545c21181f8604f4baa978afd85fa400c58420fb0fdd3f8afd61fcbff1f9d18d",
+      "resource-map.md": "236928ec17c9a44fc313044a90ffff5fec18fb6fdbc4e2ddab9ce3aa99af89d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

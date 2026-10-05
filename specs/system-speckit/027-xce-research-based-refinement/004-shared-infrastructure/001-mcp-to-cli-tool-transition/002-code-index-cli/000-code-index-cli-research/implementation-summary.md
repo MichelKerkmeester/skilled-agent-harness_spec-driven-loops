@@ -6,7 +6,7 @@ trigger_phrases:
   - "code graph cli fallback result"
   - "mk_code_index cli result"
 importance_tier: "normal"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research"

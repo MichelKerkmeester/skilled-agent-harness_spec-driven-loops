@@ -4,7 +4,7 @@ description: "T### task list for the tests/goldens/shadow-eval sub-phase: golden
 trigger_phrases:
   - "027 phase 004 goldens shadow eval tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"

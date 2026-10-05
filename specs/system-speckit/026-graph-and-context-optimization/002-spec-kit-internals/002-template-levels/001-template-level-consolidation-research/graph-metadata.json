@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level1/`, `level2/`, `level3/`, `level3+/`)",
     "created_at": "2026-05-01T07:40:58Z",
-    "last_save_at": "2026-09-10T20:47:21.794Z",
+    "last_save_at": "2026-10-04T09:20:39.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:65133ae28b0b47cf982657ffe21bdd9e5c0696822df3d168d1d529b7b006b930",
+    "source_fingerprint": "sha256:c54deef02aeef4fc8f29a469ee4fd0566b5ce3f69f85eb39f92f88b71a7ad14c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6719fe82709a006618eeb5e91d4a8829dd6c2fba41bdb228867df100887b6e04",
-      "plan.md": "35707f0dbc1ef342cb8e971f6b94d672f2417507ac18654a4a920ffe75b8b8dc",
-      "tasks.md": "4f49e6c7e2e59f99812f94b6cdfb6e057c2fbf5777914cf49b3b585914152f87",
-      "decision-record.md": "365f5f2a0d1989f1d9617bce48d39b89fc30b64afcc0988fc3f04537d152183f",
-      "implementation-summary.md": "925a19585c0aed0d35d178ad127b2fb191214781940f8437ab28f48ca0f498da",
+      "spec.md": "e3af2ed42a3ebe7277b35fce3ab731f760c3dcfd61ff206482e09c722e945da5",
+      "plan.md": "52aa4c90ba2efe070b914079fb446ffd19432b0a59fa3239a683114511b49834",
+      "tasks.md": "aaeab61e46273e535ced0e76739a1e753dde47ff813ebaa486c0e3fbbc73103c",
+      "decision-record.md": "b122c87d7dd8119f037c2eeefa7a439bbe29a7e3310d65e139d6c0976ff4a3ef",
+      "implementation-summary.md": "88e29bf35677f6d097b7c7ea8dced6605a65ddc3664b00c21a1a15cbd96b4f86",
       "research/research.md": "c44c22da50de87943901d39777c27f56787b49cbbe67dbb4f4b963705778a85d"
     },
     "last_active_child_id": null,

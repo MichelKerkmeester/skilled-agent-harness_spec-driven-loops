@@ -31,7 +31,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 | 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
 | 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05, H10 and H12 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode, and SD-H12 retired with the intent it probed. |
-| 8 | Document Validation | `document-validation/` | SD-021 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` counts the `file.ext:line` citations in the prose of the tracked skill docs and prints the dead ones with zero model calls by default, while `--jev` measures one backend behind `--out <dir>`. |
+| 8 | Document Validation | `document-validation/` | SD-021 .. SD-023 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` counts the `file.ext:line` citations in the prose of the tracked skill docs and prints the dead ones with zero model calls by default, while `--jev` measures one backend behind `--out <dir>`; `--corpus` and `--moved` add the per-family census and the moved-citation listing; `validate_document.py` warns on a frontmatter value outside the shared list. |
 
 ---
 
@@ -87,6 +87,8 @@ All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, score
 
 ### 08 — Document Validation
 - **SD-021** — `document-validation/citation-drift-scan.md` — Citation drift scan with `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs`, zero model calls by default: the default run prints the count lines, the dead citations and the label-gate stop, and a `--jev` run with a stub backend is refused at the credential check and writes no file. `--jev` needs `--out <dir>`.
+- **SD-022** — `document-validation/citation-drift-census-across-doc-families.md` — Citation drift census across doc families: `cite-drift-scan.mjs --corpus skills` prints the family and totals lines ending `corpus=skills commit=<sha12>`, `--moved` adds one `cite moved:` line per moved citation and nothing else, and the working tree is unchanged afterwards.
+- **SD-023** — `document-validation/shared-frontmatter-value-warning.md` — Shared frontmatter value warning: `validate_document.py` adds one `frontmatter_value_outside_list` warning to a reference copy with `contextType: "architecture"` and no blocking error compared with the unedited copy.
 
 ---
 

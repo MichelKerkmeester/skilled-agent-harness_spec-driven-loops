@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/005-source-resolver",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/005-source-resolver",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "source tags rule plan",
+      "source tag cutoff",
+      "citation resolver reuse",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "source",
+      "tags"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "references/config/environment-variables.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scratch/p005-comparison.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags-helper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "environment-variables.md",
+        "kind": "doc",
+        "path": "references/config/environment-variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-deep-loop.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "p005-comparison.json",
+        "kind": "config",
+        "path": "scratch/p005-comparison.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "About 1,919 files use `[SOURCE:]` tags and 1,186 delta files hold structured `evidence` lists, yet nothing resolves the tags",
+    "created_at": "2026-10-04T08:04:52Z",
+    "last_save_at": "2026-10-04T12:06:07.335Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:799095083e51b3bd81a2aeba68fbfb9f0630896aa4d8257d1eee150dec8dafdc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0747c4222c3dec92b3818cc53dd4787cb2730a650d1ad1f4af265f03b8193ab0",
+      "plan.md": "6e993bd5d82196485a98820e1adb76e862b53bb9c15df15b575f812c0802b5b4",
+      "tasks.md": "20f81ab1d59235f1b41799be93595f008ff3f33639a4e730d2213be7dc214394",
+      "implementation-summary.md": "64a6b786529d8ba1eb21efc23718df80a2840a70a5bf811046c6a14f67f66fc8"
+    },
+    "last_active_at": null
+  }
+}

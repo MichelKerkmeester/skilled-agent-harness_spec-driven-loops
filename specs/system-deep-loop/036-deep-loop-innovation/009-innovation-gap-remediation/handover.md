@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement fail-closed gateway phase"
   - "036 gap analysis findings"
 importance_tier: "critical"
-contextType: "handover"
+contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation"
 _memory:
   continuity:

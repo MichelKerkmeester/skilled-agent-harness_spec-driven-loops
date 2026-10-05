@@ -10,7 +10,7 @@ trigger_phrases:
   - "feature catalog trio"
   - "testing playbook trio"
 importance_tier: "important"
-contextType: "phase-parent"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass"

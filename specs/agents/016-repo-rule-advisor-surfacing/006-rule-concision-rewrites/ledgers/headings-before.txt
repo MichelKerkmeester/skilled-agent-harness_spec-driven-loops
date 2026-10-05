@@ -1,0 +1,131 @@
+answer-the-actual-request.md: ## Fires when
+answer-the-actual-request.md: ## The rule
+answer-the-actual-request.md: ## 1. WARNINGS ANSWER THE ASK
+answer-the-actual-request.md: ## 2. NO SILENT REINTERPRETATION
+answer-the-actual-request.md: ## 3. INVENTED CONSTRAINTS
+answer-the-actual-request.md: ## 4. AN HONEST NO
+answer-the-actual-request.md: ## 5. ESTIMATES INFORM, NEVER GATE
+answer-the-actual-request.md: ## 6. THE FIRST ANSWER IS THE TRUE ONE
+answer-the-actual-request.md: ## 7. WHAT THIS RULE IS NOT
+answer-the-actual-request.md: ## 8. SELF-CHECK
+blast-radius.md: ## Fires when
+blast-radius.md: ## The rule
+blast-radius.md: ## 1. OPEN WITH A STAKES READ
+blast-radius.md: ## 2. THE REVERSIBILITY LADDER
+blast-radius.md: ## 3. THE ROLLBACK SENTENCE
+blast-radius.md: ## 4. WHO STILL SPEAKS THE OLD CONTRACT
+blast-radius.md: ## 5. PERSISTENCE BOUNDARIES
+blast-radius.md: ## 6. INSTALLING IS A MUTATION
+blast-radius.md: ## 7. SELF-CHECK
+communication-decisions.md: ## Fires when
+communication-decisions.md: ## The rule
+communication-decisions.md: ## 1. LEAD WITH THE RECOMMENDATION, BUT EARN IT
+communication-decisions.md: ## 2. RECOMMEND ONE APPROACH
+communication-decisions.md: ## 3. ASK THEN DO
+communication-decisions.md: ## 4. SAY WHERE YOU ARE GOING BEFORE A LONG STRETCH
+communication-decisions.md: ## 5. A SYNTHESIS IS NOT A FILE PATH
+communication-decisions.md: ## 6. WHAT THIS RULE IS NOT
+communication-decisions.md: ## 7. SELF-CHECK
+communication-handoff.md: ## Fires when
+communication-handoff.md: ## The rule
+communication-handoff.md: ## 1. THE HANDBACK IS A SEPARATE THING FROM THE STATUS
+communication-handoff.md: ## 2. WHAT COUNTS AS AN OPERATOR ACTION
+communication-handoff.md: ## 3. NOTHING TO DO IS ALSO AN ANSWER
+communication-handoff.md: ## 4. WHEN THE THING YOU NEED IS A DECISION
+communication-handoff.md: ## 5. THE QUESTION SURFACE IS PER RUNTIME
+communication-handoff.md: ## 6. WHAT IS STILL RUNNING, AND WHAT RESUMES YOU
+communication-handoff.md: ## 7. WHAT THIS RULE IS NOT
+communication-handoff.md: ## 8. SELF-CHECK
+communication-prose.md: ## Fires when
+communication-prose.md: ## The rule
+communication-prose.md: ## 1. SENTENCES AND PARAGRAPHS
+communication-prose.md: ## 2. WORDS
+communication-prose.md: ## 3. PUNCTUATION THE READER TRIPS ON
+communication-prose.md: ## 4. CONCISE IS NOT COMPRESSED
+communication-prose.md: ## 5. WHAT THIS RULE IS NOT
+communication-prose.md: ## 6. SELF-CHECK
+communication.md: ## Fires when
+communication.md: ## The rule
+communication.md: ## 1. THE REGISTER YOU ARE IN
+communication.md: ## 2. LENGTH
+communication.md: ## 3. CUT FILLER
+communication.md: ## 4. WHEN THE READER DID NOT FOLLOW
+communication.md: ## 5. THE FIRST LINE
+communication.md: ## 6. HOW THE REPLY MOVES
+communication.md: ## 7. NUMBERED STEPS
+communication.md: ## 8. THE VISIBLE ITEM CAP
+communication.md: ## 9. THE OUTCOME AND THE CLOSE
+communication.md: ## 10. TANGENTS
+communication.md: ## 11. WHAT THIS RULE IS NOT
+communication.md: ## 12. SELF-CHECK
+delegation-and-orchestration.md: ## Fires when
+delegation-and-orchestration.md: ## The rule
+delegation-and-orchestration.md: ## 1. THE POSTURE SWITCH
+delegation-and-orchestration.md: ## 2. BEFORE YOU DISPATCH
+delegation-and-orchestration.md: ## 3. A BRIEF CARRIES EVIDENCE, NOT PREFERENCE
+delegation-and-orchestration.md: ## 4. ONE MODEL IS ONE OPINION
+delegation-and-orchestration.md: ## 5. WHAT COMES BACK IS UNVERIFIED
+delegation-and-orchestration.md: ## 6. YOUR OWN OPINION IS ALSO ONE OPINION
+delegation-and-orchestration.md: ## 7. SCOPE TRAVELS WITH THE WORK
+delegation-and-orchestration.md: ## 8. WHAT THIS RULE IS NOT
+delegation-and-orchestration.md: ## 9. SELF-CHECK
+evidence-and-proof.md: ## Fires when
+evidence-and-proof.md: ## The rule
+evidence-and-proof.md: ## 1. THREE TIERS
+evidence-and-proof.md: ## 2. COMMAND EVIDENCE
+evidence-and-proof.md: ## 3. THE FOUR WAYS A GREEN RUN LIES
+evidence-and-proof.md: ## 4. THE NEGATIVE CONTROL
+evidence-and-proof.md: ## 5. BASELINES
+evidence-and-proof.md: ## 6. SHAPE-SPECIFIC PROOF
+evidence-and-proof.md: ## 7. A FINDING IS A HYPOTHESIS
+evidence-and-proof.md: ## 8. PROOF PLAN BEFORE IMPLEMENTATION
+evidence-and-proof.md: ## 9. FINAL-STATE PROOF
+evidence-and-proof.md: ## 10. CLOSE-OUT
+evidence-and-proof.md: ## 11. REASON FROM DATA, NOT FROM MEMORY
+evidence-and-proof.md: ## 12. SELF-CHECK
+prevent-overengineering.md: ## Fires when
+prevent-overengineering.md: ## The rule
+prevent-overengineering.md: ## 1. THE REVERSAL-COST ORDER
+prevent-overengineering.md: ## 2. THE PRE-WRITE PASS
+prevent-overengineering.md: ## 3. TWO SIGNALS `AGENTS.md` DOES NOT CARRY
+prevent-overengineering.md: ## 4. SPECIFIC RESTRAINTS
+prevent-overengineering.md: ## 5. WHAT THIS RULE IS NOT
+prevent-overengineering.md: ## 6. SELF-CHECK
+root-cause-and-debugging.md: ## Fires when
+root-cause-and-debugging.md: ## The rule
+root-cause-and-debugging.md: ## 1. THE LOOP
+root-cause-and-debugging.md: ## 2. SYMPTOM-FIX SMELLS
+root-cause-and-debugging.md: ## 3. WHEN AN ATTEMPT REPEATS
+root-cause-and-debugging.md: ## 4. NEVER MAKE A CHECK PASS BY WEAKENING IT
+root-cause-and-debugging.md: ## 5. "FLAKE" IS A CONCLUSION, NOT A STARTING HYPOTHESIS
+root-cause-and-debugging.md: ## 6. OWNERSHIP
+root-cause-and-debugging.md: ## 7. WHEN YOU ARE STUCK, ESCALATION FORMAT
+root-cause-and-debugging.md: ## 8. SELF-CHECK
+scope-discipline.md: ## Fires when
+scope-discipline.md: ## The rule
+scope-discipline.md: ## 1. THE THREE DRIFTS
+scope-discipline.md: ## 2. WHAT COUNTS AS "EXPLICITLY IN SCOPE"
+scope-discipline.md: ## 3. WHAT ALWAYS NEEDS A YES FIRST
+scope-discipline.md: ## 4. THE ADJACENT-DEFECT PROTOCOL
+scope-discipline.md: ## 5. DEVIATING FROM AN APPROVED PLAN
+scope-discipline.md: ## 6. AMENDMENT OVER ABSORPTION
+scope-discipline.md: ## 7. FINISHING
+scope-discipline.md: ## 8. PLAN BEFORE ACTING
+scope-discipline.md: ## 9. SELF-CHECK
+skill-hub-routing.md: ## Fires when
+skill-hub-routing.md: ## The rule
+skill-hub-routing.md: ## 1. THE TWO STAGES
+skill-hub-routing.md: ## 2. REGISTERED IS NOT ROUTED
+skill-hub-routing.md: ## 3. CHECK THE HUB YOU CHANGED
+skill-hub-routing.md: ## 4. KEEP THE ALIAS NARROW
+skill-hub-routing.md: ## 5. WHERE THE DETAIL LIVES
+skill-hub-routing.md: ## 6. SELF-CHECK
+uncertainty-and-honesty.md: ## Fires when
+uncertainty-and-honesty.md: ## The rule
+uncertainty-and-honesty.md: ## 1. CONFIDENCE BANDS
+uncertainty-and-honesty.md: ## 2. UNKNOWN IS A REAL ANSWER
+uncertainty-and-honesty.md: ## 3. TRUTH OVER AGREEMENT
+uncertainty-and-honesty.md: ## 4. CONTRADICTION HALT
+uncertainty-and-honesty.md: ## 5. CORRECTING YOURSELF
+uncertainty-and-honesty.md: ## 6. TWO REGISTERS, AND WHEN TO QUALIFY
+uncertainty-and-honesty.md: ## 7. SELF-CHECK

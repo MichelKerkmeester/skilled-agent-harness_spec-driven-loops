@@ -4,7 +4,7 @@ description: "T### task list for the schema + backfill sub-phase: derived table,
 trigger_phrases:
   - "027 phase 004 schema backfill tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill"

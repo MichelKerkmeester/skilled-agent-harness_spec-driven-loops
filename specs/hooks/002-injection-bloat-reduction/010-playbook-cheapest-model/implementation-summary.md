@@ -7,7 +7,7 @@ trigger_phrases:
   - "playbook cheapest model summary"
   - "cli playbook model swap result"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 parent: "hooks"
 _memory:
   continuity:

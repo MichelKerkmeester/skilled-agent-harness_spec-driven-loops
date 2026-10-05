@@ -1,0 +1,430 @@
+{
+  "protocol": "v1",
+  "rows": [
+    {
+      "model": "deepseek",
+      "n": 1,
+      "missing": false,
+      "fenced": false,
+      "contextType": "implementation",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 2,
+      "missing": false,
+      "fenced": true,
+      "contextType": "implementation",
+      "importance_tier": "normal",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 3,
+      "missing": false,
+      "fenced": false,
+      "contextType": "research",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 4,
+      "missing": false,
+      "fenced": false,
+      "contextType": "implementation",
+      "importance_tier": "normal",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 5,
+      "missing": false,
+      "fenced": false,
+      "contextType": "implementation",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 6,
+      "missing": false,
+      "fenced": false,
+      "contextType": "implementation",
+      "importance_tier": "high",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 7,
+      "missing": false,
+      "fenced": true,
+      "contextType": "documentation",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 8,
+      "missing": false,
+      "fenced": false,
+      "contextType": "development",
+      "importance_tier": "normal",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/deepseek/08.md\tcontextType \"development\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "deepseek",
+      "n": 9,
+      "missing": false,
+      "fenced": true,
+      "contextType": "implementation",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "deepseek",
+      "n": 10,
+      "missing": false,
+      "fenced": false,
+      "contextType": "decision",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "luna",
+      "n": 1,
+      "missing": false,
+      "fenced": false,
+      "contextType": "spec",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "luna",
+      "n": 2,
+      "missing": false,
+      "fenced": false,
+      "contextType": "spec",
+      "importance_tier": "normal",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "luna",
+      "n": 3,
+      "missing": false,
+      "fenced": false,
+      "contextType": "spec",
+      "importance_tier": "medium",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "luna",
+      "n": 4,
+      "missing": false,
+      "fenced": false,
+      "contextType": "process",
+      "importance_tier": "medium",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/04.md\tcontextType \"process\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "luna",
+      "n": 5,
+      "missing": false,
+      "fenced": false,
+      "contextType": "workflow",
+      "importance_tier": "medium",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/05.md\tcontextType \"workflow\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "luna",
+      "n": 6,
+      "missing": false,
+      "fenced": false,
+      "contextType": "spec",
+      "importance_tier": "high",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "luna",
+      "n": 7,
+      "missing": false,
+      "fenced": false,
+      "contextType": "guideline",
+      "importance_tier": "medium",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/07.md\tcontextType \"guideline\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "luna",
+      "n": 8,
+      "missing": false,
+      "fenced": false,
+      "contextType": "procedural",
+      "importance_tier": "medium",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/08.md\tcontextType \"procedural\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "luna",
+      "n": 9,
+      "missing": false,
+      "fenced": false,
+      "contextType": "design",
+      "importance_tier": "medium",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/luna/09.md\tcontextType \"design\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "luna",
+      "n": 10,
+      "missing": false,
+      "fenced": false,
+      "contextType": "decision",
+      "importance_tier": "high",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 1,
+      "missing": false,
+      "fenced": true,
+      "contextType": "implementation",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 2,
+      "missing": false,
+      "fenced": true,
+      "contextType": "feature",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 3,
+      "missing": false,
+      "fenced": true,
+      "contextType": "research",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 4,
+      "missing": false,
+      "fenced": true,
+      "contextType": "spec",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 5,
+      "missing": false,
+      "fenced": true,
+      "contextType": "planning",
+      "importance_tier": "high",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 6,
+      "missing": false,
+      "fenced": false,
+      "contextType": "spec",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 7,
+      "missing": false,
+      "fenced": false,
+      "contextType": "documentation",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 8,
+      "missing": false,
+      "fenced": false,
+      "contextType": "chore",
+      "importance_tier": "standard",
+      "w1_raw_warnings": [
+        "WARN\t/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch/model-writers/swe/08.md\tcontextType \"chore\" is not in the shared list; use one of implementation, research, planning, general"
+      ]
+    },
+    {
+      "model": "swe",
+      "n": 9,
+      "missing": false,
+      "fenced": true,
+      "contextType": "specification",
+      "importance_tier": "high",
+      "w1_raw_warnings": []
+    },
+    {
+      "model": "swe",
+      "n": 10,
+      "missing": false,
+      "fenced": true,
+      "contextType": "decision",
+      "importance_tier": "standard",
+      "w1_raw_warnings": []
+    }
+  ],
+  "summary": {
+    "deepseek": {
+      "docs": 10,
+      "present": 10,
+      "missing": 0,
+      "fenced": 3,
+      "w1_raw_warned_docs": 1,
+      "contextType": {
+        "off_list": 1,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.1,
+        "wilson95": [
+          0.0179,
+          0.4042
+        ],
+        "values": [
+          "decision",
+          "development",
+          "documentation",
+          "implementation",
+          "research"
+        ],
+        "off_values": [
+          "development"
+        ]
+      },
+      "importance_tier": {
+        "off_list": 0,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.2775
+        ],
+        "values": [
+          "high",
+          "medium",
+          "normal"
+        ],
+        "off_values": []
+      }
+    },
+    "luna": {
+      "docs": 10,
+      "present": 10,
+      "missing": 0,
+      "fenced": 0,
+      "w1_raw_warned_docs": 5,
+      "contextType": {
+        "off_list": 5,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.5,
+        "wilson95": [
+          0.2366,
+          0.7634
+        ],
+        "values": [
+          "decision",
+          "design",
+          "guideline",
+          "procedural",
+          "process",
+          "spec",
+          "workflow"
+        ],
+        "off_values": [
+          "design",
+          "guideline",
+          "procedural",
+          "process",
+          "workflow"
+        ]
+      },
+      "importance_tier": {
+        "off_list": 0,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.2775
+        ],
+        "values": [
+          "high",
+          "medium",
+          "normal"
+        ],
+        "off_values": []
+      }
+    },
+    "swe": {
+      "docs": 10,
+      "present": 10,
+      "missing": 0,
+      "fenced": 7,
+      "w1_raw_warned_docs": 1,
+      "contextType": {
+        "off_list": 2,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.2,
+        "wilson95": [
+          0.0567,
+          0.5098
+        ],
+        "values": [
+          "chore",
+          "decision",
+          "documentation",
+          "feature",
+          "implementation",
+          "planning",
+          "research",
+          "spec",
+          "specification"
+        ],
+        "off_values": [
+          "chore",
+          "feature"
+        ]
+      },
+      "importance_tier": {
+        "off_list": 0,
+        "key_absent": 0,
+        "n": 10,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.2775
+        ],
+        "values": [
+          "high",
+          "standard"
+        ],
+        "off_values": []
+      }
+    }
+  }
+}

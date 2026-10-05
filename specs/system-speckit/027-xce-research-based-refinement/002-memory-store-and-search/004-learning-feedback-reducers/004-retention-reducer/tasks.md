@@ -4,7 +4,7 @@ description: "Task list for learned retention and edge floor logic."
 trigger_phrases:
   - "009 retention reducer tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer"

@@ -1,0 +1,116 @@
+{
+  "lineage": "swe-2-max",
+  "sessionId": "fanout-swe-2-max-1791120151016-ksetij",
+  "loopType": "research",
+  "angle": "concision",
+  "researchQuestion": "Which sentences in a rule change behaviour, and what does shortening or removing each cost?",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsRun": 3,
+  "findings": [
+    {
+      "id": "f-iter001-parts",
+      "iteration": 1,
+      "label": "All 13 rules decomposed into the steer parts; every file reconciles to wc -c exactly, grand total 107,092 B = evidence-pack section 1",
+      "evidence": "iterations/iteration-001.md; scratch/classify-parts.py; scratch/parts-dump.txt",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter001-distribution",
+      "iteration": 1,
+      "label": "Rule-statement is 54.0% of corpus (57,847 B); self-check 10.2% (10,941); frontmatter 9.6% (10,246); failure-prevents 5.5% (5,909); fires-when 4.1% (4,414); examples only 1.2% (1,312)",
+      "evidence": "iterations/iteration-001.md totals row",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter002-card-measured",
+      "iteration": 2,
+      "label": "Card (frontmatter+fires-when+the-rule) = 960-1,809 B/file, 18,207 total, 17.0% of corpus; sibling claim confirmed within ~2%",
+      "evidence": "independent block-span measurement; steer.md:12",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter002-card-enforcement",
+      "iteration": 2,
+      "label": "Card drops every numbered-section norm: loses measured/operative enforcement in 6 enumerated files (comm-prose semicolon ban, comm table/filler bans, blast-radius tier table, uncertainty LOGIC-SYNC+never-invent, evidence receipt/command tests, root-cause loop); holds only for umbrella files (skill-hub, answer-the-actual-request); partial for 5",
+      "evidence": "communication-prose.md:109; blast-radius.md:59-63; uncertainty-and-honesty.md:66-68,100-102; evidence-and-proof.md:62-71; root-cause-and-debugging.md:51-60",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter002-selfcheck-carrier",
+      "iteration": 2,
+      "label": "Self-check is the outside-card part carrying enforcement: already a compressed restatement of every norm (489-1,648 B); card+checklist is a ready-made slim load",
+      "evidence": "communication.md:239-250; scratch/parts-dump.txt",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "f-iter002-patterns",
+      "iteration": 2,
+      "label": "10 compression patterns measured: P1 bare-vs-justified (n=2 labelled), P2 pointer dedup, P3 self-check fold (high risk), P4 boilerplate, P5 frontmatter relocation, P6 AGENTS.md restatement, P7 justification tails, P8 meta, P9 triplicate collapse, P10 enumeration punctuation",
+      "evidence": "iterations/iteration-002.md section 2",
+      "confidence": "high on bytes; low-medium on risk column"
+    },
+    {
+      "id": "f-iter002-targets",
+      "iteration": 2,
+      "label": "Modelled per-rule targets total ~77,000 B (~19,250 tokens, -28%) - later falsified as uniform; see f-iter003-floor",
+      "evidence": "iterations/iteration-002.md section 3",
+      "confidence": "medium (superseded)"
+    },
+    {
+      "id": "f-iter002-n1-confound",
+      "iteration": 2,
+      "label": "The bare-imperative contrast rests on two prohibitions with confounds (detection ambiguity for legit tables, different base rates); directional evidence only",
+      "evidence": "prep/evidence-pack.md:45-51",
+      "confidence": "high (as a caveat)"
+    },
+    {
+      "id": "f-iter003-comm-draft",
+      "iteration": 3,
+      "label": "communication.md draft: 11,458 -> 8,279 B (-27.8%); enforcement lost = three named edge clauses ~145 B (paragraph-step, count-line-is-not-an-item, reader-decides) + all failure-naming sentences",
+      "evidence": "drafts/communication.md; drafts/communication.ledger.md; wc -c",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter003-eap-draft",
+      "iteration": 3,
+      "label": "evidence-and-proof.md draft: 11,823 -> 10,465 B (-11.5%); enforcement loss ~zero - every tier, test, checklist and disclosure survives",
+      "evidence": "drafts/evidence-and-proof.md; drafts/evidence-and-proof.ledger.md; wc -c",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter003-floor",
+      "iteration": 3,
+      "label": "Compression floor tracks rule-statement share: e-and-p (64% normative) floors near -11%, communication (43%) reaches -28%; no uniform per-file rate",
+      "evidence": "draft ledgers vs iteration-002 model",
+      "confidence": "high"
+    },
+    {
+      "id": "f-iter003-slimcard-caveat",
+      "iteration": 3,
+      "label": "Card+checklist retains norm SHAPE not CONTENT: comm.md card+checklist ~3,030 B passes the audit items but drops the offender enumeration and re-render spec the checklist audits",
+      "evidence": "drafts/communication.ledger.md; iteration-002.md section 1",
+      "confidence": "medium-high"
+    },
+    {
+      "id": "f-iter003-failurelines-unknown",
+      "iteration": 3,
+      "label": "Whether failure-naming sentences carry model-side motivation is UNKNOWN; both drafts drop them all and are the test artifacts for that question",
+      "evidence": "draft ledgers",
+      "confidence": "n/a (UNKNOWN flagged)"
+    }
+  ],
+  "ruledOut": [
+    {"direction": "cutting tables / fires-when / headings", "reason": "tables are already the compressed form; fires-when is the load decision", "iteration": 2},
+    {"direction": "blanket meta-deletion", "reason": "the one-lens disclosure is a required epistemic marker", "iteration": 2},
+    {"direction": "cutting checklists to hit modelled targets", "reason": "both checklists are enforcement surfaces; modelled rate falsified by draft floor", "iteration": 3},
+    {"direction": "relocating trigger_phrases inside drafts", "reason": "a loading-side change; drafts keep the authoring contract", "iteration": 3}
+  ],
+  "artifacts": {
+    "iterations": ["iterations/iteration-001.md", "iterations/iteration-002.md", "iterations/iteration-003.md"],
+    "deltas": ["deltas/iter-001.jsonl", "deltas/iter-002.jsonl", "deltas/iter-003.jsonl"],
+    "drafts": ["drafts/communication.md", "drafts/communication.ledger.md", "drafts/evidence-and-proof.md", "drafts/evidence-and-proof.ledger.md"],
+    "tooling": ["scratch/classify-parts.py", "scratch/parts-dump.txt"],
+    "synthesis": ["research.md", "deep-research-dashboard.md", "resource-map.md", "findings-registry.json"]
+  }
+}

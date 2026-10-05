@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening",
+  "description": "Phase 10: source-tag-hardening",
+  "keywords": [
+    "phase",
+    "source-tag-hardening"
+  ],
+  "lastUpdated": "2026-10-04T12:00:35.308Z",
+  "specId": "010",
+  "folderSlug": "source-tag-hardening",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -4,7 +4,7 @@ description: "Task list for the shared feedback aggregation child packet."
 trigger_phrases:
   - "005 aggregator tasks"
 importance_tier: "normal"
-contextType: "task"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/001-aggregator"

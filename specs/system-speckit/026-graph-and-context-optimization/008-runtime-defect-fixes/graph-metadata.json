@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 028 CLI-transition research and gap audits surfaced four live defects in the three MCP systems' integration surfaces: the OpenCode code-graph plugin bridge crashed on import (three paths pointing at files that moved during skill extraction), Codex sessions ran Claude's hook scripts instead of the purpose-built Codex adapters, the Codex config carried a backwards DB-path note (calling the real default \"legacy\"), and the Gemini hook catalog pointed at the shim instead of the active implementation",
     "created_at": "2026-06-06T16:45:00Z",
-    "last_save_at": "2026-08-30T15:39:32.626Z",
+    "last_save_at": "2026-10-04T09:23:04.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d42b0f7ff35d94c03a57d98b80477e3eba62c94bf7e7095c033a9f349a06240",
+    "source_fingerprint": "sha256:073673c941973025f83d14394eb73e1111c9df6344e2f946bfa781ccf4a61943",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd70c0aee331c7e1e67cf620141ee16fefe582179e16bdb9cec12d63964b9d36",
       "plan.md": "7f51ab0029ea78933e4376bd29e93220205b50cc71e73716671be7e106b83134",
       "tasks.md": "df154d0426cdef175e2e5988eb716f42207fc728e8ccc1a48cd84a54ddb2ac17",
-      "implementation-summary.md": "76d28aede08ad452cab6e8755f8e61f2d790eaa2014ad0b28f552cd93e2ba83a"
+      "implementation-summary.md": "2d0a7c6098d055ef569b44d62f7f8809766fc3eda740504c7d4884d5c9b035a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

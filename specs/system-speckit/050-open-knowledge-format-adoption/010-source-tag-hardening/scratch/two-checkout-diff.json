@@ -1,0 +1,195 @@
+{
+ "main_only": 27,
+ "worktree_only": 0,
+ "rows": [
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/deepseek/iterations/iteration-004.md:21",
+   "citation": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:26",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/deepseek/iterations/iteration-004.md:21",
+   "citation": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/deepseek/iterations/iteration-004.md:21",
+   "citation": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:38",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/deepseek/research.md:68",
+   "citation": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/luna/iterations/iteration-003.md:7",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:6-8",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/luna/research.md:71",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:6-8",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:83",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:6-35",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:86",
+   "citation": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-001.md:69",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:118-124",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-002.md:80",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:278-284",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-003.md:66",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:25",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-003.md:67",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:1119-1124",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-004.md:53",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:1005",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-004.md:90",
+   "citation": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:37-57",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-004.md:105",
+   "citation": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs:313",
+   "main_class": "guessed",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek/iterations/iteration-005.md:49",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:25",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/iterations/iteration-002.md:14",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/iterations/iteration-002.md:14",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:1002-1011",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/iterations/iteration-002.md:14",
+   "citation": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:730-739",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/iterations/iteration-002.md:14",
+   "citation": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:1067-1074",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:29",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:108",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:126",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:143",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:155",
+   "citation": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:155",
+   "citation": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:730-739",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  },
+  {
+   "doc": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna/research.md:155",
+   "citation": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:1067-1074",
+   "main_class": "gone",
+   "target_tracked_worktree": true,
+   "target_tracked_main": false
+  }
+ ]
+}

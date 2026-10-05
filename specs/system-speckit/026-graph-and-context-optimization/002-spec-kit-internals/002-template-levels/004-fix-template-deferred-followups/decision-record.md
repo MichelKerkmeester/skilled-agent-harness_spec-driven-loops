@@ -6,7 +6,7 @@ trigger_phrases:
   - "validation orchestrator ADR"
   - "exit code taxonomy ADR"
 importance_tier: "important"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups"

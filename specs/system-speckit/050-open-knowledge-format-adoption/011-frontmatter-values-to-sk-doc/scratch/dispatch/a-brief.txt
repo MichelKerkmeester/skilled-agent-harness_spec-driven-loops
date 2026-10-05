@@ -1,0 +1,42 @@
+Role: you edit TypeScript in this repository. Make exactly the change below and nothing else.
+
+1. Create `.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json` with exactly this content:
+{
+  "contextType": {
+    "canonical": ["implementation", "research", "planning", "general"],
+    "aliases": {
+      "decision": "planning",
+      "discovery": "general",
+      "review": "research",
+      "reference": "general",
+      "documentation": "general",
+      "spec": "planning",
+      "specification": "planning",
+      "plan": "planning",
+      "tasks": "planning"
+    }
+  },
+  "importanceTier": {
+    "canonical": ["constitutional", "critical", "important", "normal", "temporary", "deprecated"],
+    "aliases": {
+      "high": "important",
+      "supporting": "normal",
+      "useful": "normal",
+      "medium": "normal",
+      "standard": "normal"
+    }
+  }
+}
+
+2. In `.skilled/skills/system-spec-kit/shared/context-types.ts`:
+- Remove `import frontmatterValues from './frontmatter-values.json' with { type: 'json' };`.
+- Read the file at run time instead: start at `path.dirname(fileURLToPath(import.meta.url))` and walk up parent folders until `<folder>/sk-doc/sk-create-frontmatter/assets/frontmatter-values.json` exists. Read it with `readFileSync` and `JSON.parse`. If no folder has it, throw `new Error('frontmatter value list not found: sk-doc/sk-create-frontmatter/assets/frontmatter-values.json')`. Follow the walk-up in `embeddings/providers/hf-local.ts` `systemSpecKitRoot()`.
+- Change the `FrontmatterValues` interface so `contextType` is a `FrontmatterValueList`, and change `VALUES.contextType.document.` to `VALUES.contextType.`.
+- Replace `SESSION_CONTEXT_TYPES` with a literal: `new Set(['implementation', 'research', 'debugging', 'review', 'planning', 'decision', 'architecture', 'configuration', 'documentation', 'general', 'discovery'])`.
+- Rewrite header comment lines 8 to 11 to say: the document values and the importance tiers live in sk-create-frontmatter's frontmatter-values.json so every checker reads one list; the session list stays here because it classifies saves.
+
+3. In `.skilled/skills/system-spec-kit/shared/tsconfig.json`, remove `"frontmatter-values.json"` from `include`.
+
+Do not edit or delete any other file.
+
+Check: in `.skilled/skills/system-spec-kit/shared`, `npm test` passes and `npx tsc --build` exits 0. Report both results.

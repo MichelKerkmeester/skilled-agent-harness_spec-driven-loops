@@ -9,7 +9,9 @@ trigger_phrases:
   - "changelog entry frontmatter check"
   - "goal criteria lint"
   - "clarify default measurement"
-last_updated: "2026-09-29"
+  - "citation drift census across doc families"
+  - "shared frontmatter value warning"
+last_updated: "2026-10-04"
 version: 2.2.0.12
 ---
 
@@ -118,5 +120,33 @@ Reports the dead file-and-line citations in the tracked skill docs, where the ta
 #### Source Files
 
 See [`document-validation/citation-drift-scan.md`](document-validation/citation-drift-scan.md) for the resolution order, the label sample and source anchors.
+
+### Citation Drift Census Across Doc Families
+
+#### Description
+
+Extends the citation drift scan to the spec docs as well as the skill docs, with per-family counts, moved citations resolved through a git-derived redirect table and file-name-only matches kept out of the in-range count.
+
+#### Current Reality
+
+`cite-drift-scan.mjs --corpus skills|specs|all` defaults to `skills`, skips any `z_archive` path and groups the spec docs by track, prints one `family` line per family and a totals line ending `corpus=<corpus> commit=<sha12>`, and adds the `moved_in_range`, `moved_past_end` and `basename_only` classes. The redirect table `cite-drift-redirects.json` keeps a directory-prefix rule only when at least 50 git rename records stand behind it with 95% agreement. `--moved` adds one `cite moved:` line per moved citation with its new path; without it the output is unchanged. The default run makes zero model calls, reads no credential and writes no file.
+
+#### Source Files
+
+See [`document-validation/citation-drift-census-across-doc-families.md`](document-validation/citation-drift-census-across-doc-families.md) for the corpus choice, the moved classes, the redirect table and source anchors.
+
+### Shared Frontmatter Value Warning
+
+#### Description
+
+Warns, never blocks, when a document's contextType or importance_tier is outside the shared value list that system-spec-kit owns, so skill docs and spec docs are judged by the same list.
+
+#### Current Reality
+
+`validate_document.py` reads sk-create-frontmatter's `assets/frontmatter-values.json` and adds a `frontmatter_value_outside_list` warning, never an error, for a `contextType` or `importance_tier` outside the list, for every document type. Aliases are legal, and a checkout without the list stays silent.
+
+#### Source Files
+
+See [`document-validation/shared-frontmatter-value-warning.md`](document-validation/shared-frontmatter-value-warning.md) for the two keys, the silent cases and source anchors.
 
 Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

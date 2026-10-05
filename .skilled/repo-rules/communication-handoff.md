@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.1
+version: 1.6.0.2
 ---
 
 # Rule: Communication handoff
@@ -61,32 +61,23 @@ action that does not happen.
 
 ## 1. THE HANDBACK IS A SEPARATE THING FROM THE STATUS
 
-`AGENTS.md` §10 and [`evidence-and-proof.md`](evidence-and-proof.md) §10 already require an
-honest status: what ran, what is inferred, what only the operator can verify, and whether the
-work is edited, committed, pushed or dirty. That is a report about what happened.
+The status `AGENTS.md` §10 and [`evidence-and-proof.md`](evidence-and-proof.md) §10 require
+reports what happened. The handback reports what happens next, and it is a different document.
 
-The handback is a report about what happens next, and it is a different document. A status
-that ends at "what only you can verify" has told the operator that something is theirs without
-telling them what to do about it.
-
-**Restate the state when the reader must re-orient.** The cadence is triggered, not
-timed. It fires when the direction of the work changes, when two attempts at the same
-fix have failed or when the work resumes after a gap. The restatement says what is
-done, what is open and what changed, and carries the operator's standing constraints and
-decisions in their own words, since a paraphrased "do not" is the first thing a resume
-loses. It replaces the previous stated state. It does not summarize the reply.
+**Restate the state when the reader must re-orient.** It fires when the direction of the
+work changes, when two attempts at the same fix have failed or when the work resumes after
+a gap. The restatement says what is done, what is open and what changed, and carries the
+operator's standing constraints and decisions in their own words. It replaces the previous
+stated state. It does not summarize the reply.
 
 The failure this prevents: a reader who returns mid task and trusts a stated state that
 the turns since have superseded.
 
-**Position it last.** The handback is the part read under time pressure, and a reader who
-stops halfway through a reply should still have hit it.
+**Position it last**, so a reader who stops halfway through a reply has still hit it.
 
 The close of the turn is a contract with two clauses. Completed work is shown, as the
-changed file, the passing check or the output, so the claim is provable in the reply.
-When a command ran, name the command and its exit status or result before any
-interpretation of it, because a result with no command behind it is a claim.
-What happens next is exactly one concrete action, in the form that lets the operator do
+changed file, the passing check or the output. When a command ran, name the command and
+its exit status or result before any interpretation of it. What happens next is exactly one concrete action, in the form that lets the operator do
 it, or the one line that says nothing is.
 
 The failure this prevents: a close out the operator reads, agrees with and acts on
@@ -106,17 +97,14 @@ Only things the operator does, and only things that are actually theirs.
 | Running something you cannot run | Work you left undone and are reframing as theirs |
 | Reviewing a change before it ships | A summary of what you just did |
 
-Padding the list with your own remaining work is the common failure, and it is worse than a
-short list, because it trains the operator to skim the one list they need to read.
+Padding the list with your own remaining work is the common failure: it trains the operator
+to skim the one list they need to read.
 
 ---
 
 ## 3. NOTHING TO DO IS ALSO AN ANSWER
 
 When nothing is blocked on the operator, say that in one line and stop.
-
-An empty handback and an omitted handback look identical to a reader, and they mean opposite
-things. One says the work is clear, the other says you did not check.
 
 The failure this prevents: an operator who reads every reply twice looking for the thing they
 were supposed to notice.
@@ -125,9 +113,6 @@ were supposed to notice.
 
 ## 4. WHEN THE THING YOU NEED IS A DECISION
 
-A question in prose competes with everything else in the reply and usually loses. When what
-you need is a choice between named alternatives, present it as a choice.
-
 **Ask as a structured choice when all three hold:**
 
 - The alternatives are nameable, not open-ended.
@@ -135,12 +120,10 @@ you need is a choice between named alternatives, present it as a choice.
   [`communication-decisions.md`](communication-decisions.md) §3.
 - You cannot resolve it from the request, the code, or a sensible default.
 
-**Otherwise put it in prose and keep going.** A structured choice for something you could have
-decided yourself hands the work back rather than doing it, and `AGENTS.md` §3 already refuses
-"should I continue?" for a step that is clear and in scope.
+**Otherwise put it in prose and keep going.** `AGENTS.md` §3 already refuses "should I
+continue?" for a step that is clear and in scope.
 
-Recommend one option and say why. A choice offered without a recommendation is the analysis
-handed over instead of finished.
+Recommend one option and say why.
 
 The failure this prevents: two of them. A question nobody answers because it was a sentence in
 a paragraph, and a menu that appears for something the operator expected you to handle.
@@ -149,8 +132,8 @@ a paragraph, and a menu that appears for something the operator expected you to 
 
 ## 5. THE QUESTION SURFACE IS PER RUNTIME
 
-The posture above binds on every runtime. The surface that carries it varies, so resolve it at
-the runtime you are in rather than assuming one.
+The posture above binds on every runtime. Resolve the surface at the runtime you are in
+rather than assuming one.
 
 | Runtime | Surface | How this is known |
 |---|---|---|
@@ -161,9 +144,7 @@ the runtime you are in rather than assuming one.
 | Anything else | No native surface assumed | Use the fallback below |
 
 **A runtime with no such surface is not exempt.** It falls back to a numbered list of named
-options with the recommendation marked, which is the same obligation in the only form
-available. The fallback is never worse than a prose question, so there is no runtime where
-this section permits burying the ask in a paragraph.
+options with the recommendation marked.
 
 Do not invent a tool name to fill a gap in that table. An invented name fails silently, the
 question is never asked, and the turn ends looking complete. Where the row says unverified,
@@ -173,29 +154,18 @@ check first or use the fallback.
 
 ## 6. WHAT IS STILL RUNNING, AND WHAT RESUMES YOU
 
-A turn can end with nothing for the operator to do and still not be finished, because work
-you started is running where they cannot see it. Two things close that gap, and each is
-written only when it is true.
-
 **Name what is in flight.** Anything you started that is still running and not yet
 reportable: a background agent, a dispatched lane, a watcher, a long suite, a build. One
 item is a line. More than one is a small table, the item and the state it is actually in.
-That table is this rule's one carve-out from [`communication.md`](communication.md) §2,
-earned because the operator is tracking parallel work rather than reading a claim.
-
-A row that only says a thing exists has told the operator what they already assumed. The
-state is the payload: what it is doing now, how far in it is, what it is waiting on.
+That table is this rule's one carve-out from [`communication.md`](communication.md) §2.
+The state is the payload: what it is doing now, how far in it is, what it is waiting on.
 
 **Say what resumes you.** One line, of the shape "I will continue autonomously when …",
 naming the event that unblocks you: a lane returning, a suite going green, a watcher firing.
-From the outside, a turn waiting on the operator and a turn waiting on a machine look
-identical, and this line is the only thing that separates them.
 
 **Neither is ceremony.** A turn with nothing running writes no table and claims no resume
-condition, because an empty in-flight block is a status manufactured out of nothing. A turn
-that genuinely needs a decision says so and stops: claiming you will continue by yourself
-when you cannot is worse than claiming nothing, because the operator stops watching a lane
-that has already stalled.
+condition. A turn that genuinely needs a decision says so and stops, and never claims it
+will continue by itself.
 
 The failure this prevents: a turn that goes quiet while work is still running, leaving the
 operator unable to tell whether anything is happening or whether it is their move.
@@ -204,12 +174,10 @@ operator unable to tell whether anything is happening or whether it is their mov
 
 ## 7. WHAT THIS RULE IS NOT
 
-- **Not licence to ask more.** The bar in §4 is narrow on purpose. More questions is the
-  failure this rule is most likely to be misread into, and `AGENTS.md` §2 consolidates whatever
-  survives the bar into a single prompt.
+- **Not licence to ask more.** The bar in §4 is narrow on purpose, and `AGENTS.md` §2
+  consolidates whatever survives it into a single prompt.
 - **Not licence to stop early.** Naming what is left is never a substitute for finishing what
-  is yours. `AGENTS.md` §3 refuses partial work framed as a checkpoint, and a handback listing
-  your own unfinished work is that refusal wearing this rule as cover.
+  is yours, and `AGENTS.md` §3 refuses partial work framed as a checkpoint.
 - **Not a template.** No heading is required, no fixed wording. A reader who can act is the
   only test.
 

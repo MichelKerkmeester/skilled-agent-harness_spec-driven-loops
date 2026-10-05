@@ -8,7 +8,7 @@ trigger_phrases:
   - "cocoindex catalog"
   - "semantic search catalog"
 importance_tier: "important"
-contextType: "audit"
+contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-cocoindex-feature-catalog"

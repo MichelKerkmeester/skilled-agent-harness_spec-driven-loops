@@ -6,7 +6,7 @@ trigger_phrases:
   - "deferred P2"
   - "P2 backlog"
 importance_tier: "important"
-contextType: "deferred"
+contextType: "general"
 ---
 # Deferred P2 Items: 048 Remaining Remediation
 

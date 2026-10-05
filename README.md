@@ -409,12 +409,12 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Scripts and Validation
 
-`validate.sh` runs 40 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency.
+`validate.sh` runs 42 rules against a spec folder and reports what passes and what needs fixing. Rules check required files, template compliance, placeholder detection, anchor markers and cross-reference consistency. Two of them only warn and never fail a run: `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against the one value list in sk-create-frontmatter's `assets/frontmatter-values.json`, and `SOURCE_TAGS` checks that the `[SOURCE: path:line]` tags in research and review artifacts point at a file and line that exist.
 
 **Spec management scripts** in `.skilled/skills/system-spec-kit/runtime/cli/spec/`:
 
 - **`create.sh`** - create spec folders with level-appropriate templates. Use `--phase` for a parent with child phases
-- **`validate.sh`** - run 40 validation rules. Use `--recursive` for phase folders
+- **`validate.sh`** - run 42 validation rules. Use `--recursive` for phase folders
 - **`upgrade-level.sh`** - upgrade a spec folder to a higher level by injecting new sections
 - **`recommend-level.sh`** - analyze scope and risk to recommend the right documentation level
 - **`calculate-completeness.sh`** - calculate spec folder completeness as a percentage
@@ -774,7 +774,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
 - Owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes
-- Manages the manifest template source, 40 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
+- Manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **`system-skill-advisor`**
 
@@ -1204,6 +1204,7 @@ Eight commands cover the diagnostic surface, one per owner. The five routed ones
 
 - Checks that the generated trigger index is fresh, that its lookup runs and that the ripgrep recipes return results, then names the regeneration command when the index is stale
 - Reports `OK`, `STALE`, `ATTENTION` or `MISSING`. Weak trigger phrases are listed as advisories and never change the status
+- Offers the citation-drift census over all docs or skill docs only, read-only and with no model call, and summarises moved, gone and past-end citations per doc family with each moved citation's new path
 - An old target name such as `/doctor:speckit deep-loop` gets a notice naming the command that owns it now
 
 **`/doctor:skill-advisor <target>`** - skill advisor tuning, rebuild and audits
@@ -1213,6 +1214,8 @@ Eight commands cover the diagnostic surface, one per owner. The five routed ones
 - Interactive menu when no target is supplied. Examples: `/doctor:skill-advisor rebuild --dry-run`, `/doctor:skill-advisor router-reach --hub=sk-doc`
 
 **`/doctor:deep-loop [--scope=research|review|council|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
+
+- For research and review scopes, also lists the unresolved `[SOURCE: path:line]` tags per lineage
 
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 

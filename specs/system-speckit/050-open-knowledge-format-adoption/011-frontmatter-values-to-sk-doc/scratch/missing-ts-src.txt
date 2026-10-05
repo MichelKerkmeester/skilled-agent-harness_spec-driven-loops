@@ -1,0 +1,12 @@
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/.skilled/skills/system-spec-kit/shared/context-types.ts:44
+  throw new Error('frontmatter value list not found: sk-doc/sk-create-frontmatter/assets/frontmatter-values.json');
+        ^
+
+Error: frontmatter value list not found: sk-doc/sk-create-frontmatter/assets/frontmatter-values.json
+    at loadFrontmatterValues (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/.skilled/skills/system-spec-kit/shared/context-types.ts:44:9)
+    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/.skilled/skills/system-spec-kit/shared/context-types.ts:47:35)
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/086-okf-adoption-research/specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch/dump-exports.mjs:2:13)
+
+Node.js v26.8.2

@@ -1,0 +1,14 @@
+    5644 .skilled/repo-rules/answer-the-actual-request.md
+    7154 .skilled/repo-rules/blast-radius.md
+    8024 .skilled/repo-rules/communication-decisions.md
+   10803 .skilled/repo-rules/communication-handoff.md
+    6882 .skilled/repo-rules/communication-prose.md
+   11458 .skilled/repo-rules/communication.md
+   11712 .skilled/repo-rules/delegation-and-orchestration.md
+   11823 .skilled/repo-rules/evidence-and-proof.md
+    7374 .skilled/repo-rules/prevent-overengineering.md
+    6591 .skilled/repo-rules/root-cause-and-debugging.md
+    6725 .skilled/repo-rules/scope-discipline.md
+    6573 .skilled/repo-rules/skill-hub-routing.md
+    6329 .skilled/repo-rules/uncertainty-and-honesty.md
+  107092 total

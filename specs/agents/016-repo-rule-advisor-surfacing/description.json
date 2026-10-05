@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "agents/016-repo-rule-advisor-surfacing",
+  "description": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
+  "keywords": [
+    "repo",
+    "rules",
+    "skilled",
+    "repo-rules",
+    "reach",
+    "model",
+    "only",
+    "gate",
+    "reply-time",
+    "load",
+    "line",
+    "agents"
+  ],
+  "lastUpdated": "2026-10-04T14:51:02.162Z",
+  "specId": "016",
+  "folderSlug": "repo-rule-advisor-surfacing",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-10-26_15-51__planned-build-phases-003-to-008-from-the-002.md"
+  ]
+}

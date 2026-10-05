@@ -158,17 +158,17 @@
     ],
     "causal_summary": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix adapters)",
     "created_at": "2026-04-29T16:30:00.000Z",
-    "last_save_at": "2026-09-06T04:27:53.849Z",
+    "last_save_at": "2026-10-04T09:19:57.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:3405e07b9599e2a3097d9318f6de9684de9e9cdfef83e8f581708944129d768f",
+    "source_fingerprint": "sha256:e0ab5a54055b2c244125357d6cd9ccdc776ce21c1269e367a36b8d8855b30dc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43e8ccbbfd20c2497c11b072894742b4c53b688b8645f87cdace1945fc4c8376",
+      "spec.md": "c5d6e25c021bbe8be040d2ec9591bc564747f427ea5b0cdaff459e4dd63cbde3",
       "resource-map.md": "f69e9ed9d9655bd1de38f167ab72c5f5720ca2058ce2c10ce94266aec645627a"
     },
     "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",

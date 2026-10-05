@@ -7,7 +7,7 @@ trigger_phrases:
   - "P0 fixes implementation"
   - "release blocker remediation"
 importance_tier: "important"
-contextType: "synthesis"
+contextType: "research"
 ---
 # Synthesis: 046 Release Readiness Aggregate
 

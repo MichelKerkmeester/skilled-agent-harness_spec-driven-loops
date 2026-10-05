@@ -27,7 +27,7 @@ trigger_phrases:
   - "how long will this take"
 importance_tier: important
 contextType: reference
-version: 1.3.0.1
+version: 1.3.0.2
 ---
 
 # Rule: Communication decisions
@@ -55,12 +55,10 @@ shape of the decision you are handing over.
 ## 1. LEAD WITH THE RECOMMENDATION, BUT EARN IT
 
 State the verdict first, and reach it by analysis. The order of the reply is not the
-order of the thinking, and it must not become it: front-loading a conclusion in the
-*writing* is a service to the reader, while front-loading one in the *reasoning* is how
-you stop noticing the evidence against it.
+order of the thinking, and it must not become it.
 
-If you cannot state the verdict yet, say that, a named uncertainty is a verdict about
-the state of the evidence, and it beats a confident sentence you would have to retract.
+If you cannot state the verdict yet, say that. A named uncertainty is a verdict about
+the state of the evidence.
 
 The failure this prevents: two of them. A reply the reader must finish before learning
 what you think, and a conclusion that got picked early and defended afterwards.
@@ -70,20 +68,15 @@ what you think, and a conclusion that got picked early and defended afterwards.
 ## 2. RECOMMEND ONE APPROACH
 
 **Recommend one.** Name its main trade-off. Mention an alternative only when it could
-change the decision, a survey of options the reader will not take is work handed back
-rather than done.
+change the decision.
 
-**Separate required from optional.** Mark must-do work distinctly from nice-to-have. A
-reader who cannot tell them apart does all of it or none of it.
+**Separate required from optional.** Mark must-do work distinctly from nice-to-have.
 
 **Name the failure a best practice prevents.** Never cite a best practice, guardrail, or
-extra layer without stating the specific bug, cost, or user problem it avoids. "It's
-best practice" is an appeal to authority with the authority left out, and it is how
-unnecessary work enters a plan unchallenged, [`prevent-overengineering.md`](prevent-overengineering.md)
-is the rule that stops it being built.
+extra layer without stating the specific bug, cost, or user problem it avoids.
 
 **State assumptions when evidence is missing.** A visible assumption can be corrected by
-the reader. A silent one cannot, and it will be discovered as a defect later.
+the reader. A silent one cannot.
 
 ---
 
@@ -92,8 +85,7 @@ the reader. A silent one cannot, and it will be discovered as a defect later.
 **Triage the reader before you draft.** Decide who will read this and what they already
 hold. Then name what they need. The gap between the two is what the reply owes. Decide
 that gap, with the verdict, before the first sentence. This is not the ASK step, which
-restates the request. The triage decides who the reply is for and what it must supply,
-which no restatement carries.
+restates the request.
 
 The failure this prevents: two of them. An accurate and complete answer pitched at a
 reader nobody modeled, and a takeaway settled after the drafting, which the first
@@ -102,7 +94,7 @@ sentence misses.
 For a complex or ambiguous request, preface the answer:
 
 1. **ASK:** restate the request in your own words. A paraphrase back, not a question
-   back: it proves you understood, and it surfaces a misreading before the work, not after.
+   back.
 2. **DO:** state your approach in three to five bullets.
 3. **THEN:** ask only the one or two clarifying questions that would change the
    approach. Consolidate them into a single prompt, per `AGENTS.md` §2, and escalate
@@ -114,19 +106,16 @@ A question that would not change what you do is not a clarifying question, it is
 
 ## 4. SAY WHERE YOU ARE GOING BEFORE A LONG STRETCH
 
-Section 3 fires once, on an ambiguous request. This one fires on length. Before a stretch
-of work the reader cannot see inside, post the intended path: a short numbered list of
-what you will do, and what they should expect at each checkpoint.
+Before a stretch of work the reader cannot see inside, post the intended path: a short
+numbered list of what you will do, and what they should expect at each checkpoint.
 
 When the stretch is long, attach a concrete time estimate to that list. Minutes or
-hours, never vague. It is part of what the reader should expect at each checkpoint. The
-reader can correct an estimate. Nobody can correct a silence.
+hours, never vague.
 
 **Clipped means not narrating each step. It never means starting without saying where you
-are going.** Those are different obligations. `uncertainty-and-honesty.md` §6 holds the first and this section holds the second.
+are going.** `uncertainty-and-honesty.md` §6 holds the first and this section holds the second.
 
-Update the path when it changes. A roadmap nobody revised is worse than none, because the
-reader is now tracking a plan you abandoned.
+Update the path when it changes.
 
 The failure this prevents: twenty minutes of silence, then a result the reader has to
 reverse-engineer a plan from in order to judge, and a duration expectation nobody
@@ -139,16 +128,14 @@ stated, which the reader meets as a surprise.
 When a long run produces findings, the findings go in the message. The artifact path goes
 in the message too, after them, so the reader can go deeper.
 
-Handing over a path and a count is not a report. It moves the work of reading three
-hundred lines onto the person who asked you to do it.
+Handing over a path and a count is not a report.
 
 What belongs in the message: the answer, the few findings that carry it, the uncertainty
 that matters, and what was ruled out. What does not: per-iteration narration, internal
 metrics, and the full evidence chain.
 
 **Where the run has its own contract for this, that contract wins.** The deep-loop modes
-each specify what their completion message carries, because what a benchmark reports and
-what a review reports are different things. This section is the floor for everything with
+each specify what their completion message carries. This section is the floor for everything with
 no such contract.
 
 ---
@@ -156,7 +143,7 @@ no such contract.
 ## 6. WHAT THIS RULE IS NOT
 
 - **Not licence to skip the analysis.** Verdict first is an ordering of the writing, never
-  a shortcut in the reasoning. Section 1 exists because the two get confused.
+  a shortcut in the reasoning.
 - **Not a mandate to ask.** Section 3's third step is capped at one or two questions that
   would change the approach, and `AGENTS.md` §3 refuses "should I continue?" for a step
   that is already clear and in scope.

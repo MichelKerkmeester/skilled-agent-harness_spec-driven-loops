@@ -4,7 +4,7 @@ description: Lineage-local strategy for the read-only system-spec-kit code-stand
 trigger_phrases:
   - "system-spec-kit code standards audit"
   - "sk-code deviation inventory"
-importance_tier: planning
+importance_tier: normal
 contextType: planning
 version: 1.14.0.0
 ---

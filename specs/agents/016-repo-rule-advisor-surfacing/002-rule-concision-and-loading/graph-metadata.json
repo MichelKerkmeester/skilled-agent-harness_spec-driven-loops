@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "spec_folder": "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "parent_id": "agents/016-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rule concision",
+      "shorter repo rules",
+      "rules ignored after loading",
+      "gate 5 loading design",
+      "once per compaction rule hook",
+      "repo rule concision research plan",
+      "steered four lineage research",
+      "repo rule concision research tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "repo",
+      "rule",
+      "concision",
+      "shorter",
+      "rules",
+      "ignored",
+      "loading",
+      "gate",
+      "design",
+      "per",
+      "compaction",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "prep/evidence-pack.md",
+      "prep/measure-rule-compliance.py",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-pack.md",
+        "kind": "doc",
+        "path": "prep/evidence-pack.md",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": "prep/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Steered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Transcripts",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 13 repo rules total about 27k tokens and sessions read only a few of them",
+    "created_at": "2026-10-04T13:11:17Z",
+    "last_save_at": "2026-10-04T16:46:17.176Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:884902dd76753c4d81e51ec7c92c3b78638fe230fc492d0f2346fb71b91771f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c734c89f4476b46b51a9d9976bb15b424861eb19b9c6b2e495958dd740c2e48f",
+      "plan.md": "1ae67d42749c4e75c77874ffda8e881befd70b5c24d2198387768565c64a97b1",
+      "tasks.md": "0076a38df4c0fc6eb7038b52e15df56a8f6e349dbd13167afdf37545e45c1618",
+      "implementation-summary.md": "0a4a1e6fcf3259590732562b4172e102cce949f54bc47c3fa743c1f0cf7f8926",
+      "research/research.md": "afcead99609e9a9c0b7aae373e92921679edcfbc681056a75dcb92d760eef3b9"
+    },
+    "last_active_at": null
+  }
+}

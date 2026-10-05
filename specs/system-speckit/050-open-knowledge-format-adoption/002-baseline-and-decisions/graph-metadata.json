@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/census.py",
+      "scratch/sample_draw.py",
+      "scratch/agreement.py",
+      "scratch/census-5285608745.json",
+      "scratch/sample-rows.jsonl",
+      "scratch/labels-claude.jsonl",
+      "scratch/labels-deepseek.jsonl",
+      "scratch/agreement.json",
+      "shared/context-types.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "census.py",
+        "kind": "file",
+        "path": "scratch/census.py",
+        "source": "derived"
+      },
+      {
+        "name": "sample_draw.py",
+        "kind": "file",
+        "path": "scratch/sample_draw.py",
+        "source": "derived"
+      },
+      {
+        "name": "agreement.py",
+        "kind": "file",
+        "path": "scratch/agreement.py",
+        "source": "derived"
+      },
+      {
+        "name": "census-5285608745.json",
+        "kind": "config",
+        "path": "scratch/census-5285608745.json",
+        "source": "derived"
+      },
+      {
+        "name": "sample-rows.jsonl",
+        "kind": "file",
+        "path": "scratch/sample-rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "labels-claude.jsonl",
+        "kind": "file",
+        "path": "scratch/labels-claude.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "labels-deepseek.jsonl",
+        "kind": "file",
+        "path": "scratch/labels-deepseek.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "agreement.json",
+        "kind": "config",
+        "path": "scratch/agreement.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-types.ts",
+        "kind": "code",
+        "path": "shared/context-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 studied spec-packet docs only",
+    "created_at": "2026-10-04T08:04:50Z",
+    "last_save_at": "2026-10-04T20:03:22.120Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c20cbf7c8f72e0009b3c0d61c8fc2e7622611412f8630ec3e2e3105601e1cbba",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0f66998dc1ca5b82fb3ba39da4eeda6d8129787fd70956a865416f524400edc7",
+      "plan.md": "885c40b9d0559a60290402ce9630edf7918cce2b7a63de5ef221d3d6ad7765e7",
+      "tasks.md": "f7094a3599925db3f45a1e597f2d118cde6877d67906939317cf2ebf4210c2df",
+      "decision-record.md": "040ab1ec02694ef5c96ed23e75ad503a87ac265777f481933396169e81a97b9e",
+      "implementation-summary.md": "83ed54434cc30b448837b1d74c82f8b44ce62e1d74a860d9e8f3e3abbadbdce0"
+    },
+    "last_active_at": null
+  }
+}

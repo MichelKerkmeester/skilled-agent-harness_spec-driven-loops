@@ -43,8 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/trigger-goldens.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-goldens.vitest.ts",
-        "kind": "test",
-        "path": "tests/trigger-goldens.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union",
     "created_at": "2026-06-06T13:35:46Z",
-    "last_save_at": "2026-08-30T15:39:33.408Z",
+    "last_save_at": "2026-10-04T09:23:16.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab847f6d17012bb9e95f7f0710392512d125cf9012720e1ad5cbed8bfc20cf36",
+    "source_fingerprint": "sha256:f48ac0e765a6ce7f14f7e8c7d4f838199521118c526fad52610bb7b6010752f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e0afa9ab1c16c686abde35c14f29935c7818388b0b3cc1f0f5d3d7c7f861398",
       "plan.md": "9cd34ba941c72cf5f329e160522c2aa4e6293b961905f2ad9cfd8a35c224b24b",
-      "tasks.md": "7b1dd24ecff1102eea83bcc2e2abfabf438a5324de63e664f85486f3e413f819",
+      "tasks.md": "56ba4c8398d7e7ea97d013130163de715faecb311e9054fce819de949f790d92",
       "implementation-summary.md": "7a639f67d5e1b34c8ee5cae7e67542e31a607c9985115f6e110f07bd245870be"
     },
     "last_active_child_id": null,

@@ -6,7 +6,7 @@ trigger_phrases:
   - "integrity gate shipped"
   - "index salvage result"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"

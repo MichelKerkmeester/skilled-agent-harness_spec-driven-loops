@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 2.1.0.20
+version: 2.7.0.23
 ---
 
 # Spec Folder Write Recipe
@@ -92,7 +92,7 @@ Verification gate: confirm `description.json` and `graph-metadata.json` exist an
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict
 ```
 
-Must exit with 0 errors AND 0 warnings (warnings count as failures under `--strict`).
+Must print `RESULT: PASSED` with 0 errors. A warning does not fail `--strict`, so read each one and fix the ones that are real.
 
 Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation pattern), `TEMPLATE_HEADERS` (canonical phase header names required), `ANCHORS_VALID` (full 7/7/6/6 anchor count per doc-type).
 

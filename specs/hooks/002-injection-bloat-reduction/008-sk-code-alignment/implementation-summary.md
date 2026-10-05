@@ -8,7 +8,7 @@ trigger_phrases:
   - "readme freshness summary"
   - "injection bloat audit result"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 parent: "hooks"
 _memory:
   continuity:

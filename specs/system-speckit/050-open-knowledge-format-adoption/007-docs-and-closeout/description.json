@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout",
+  "description": "Phase 7: docs-and-closeout",
+  "keywords": [
+    "phase",
+    "docs-and-closeout"
+  ],
+  "lastUpdated": "2026-10-04T08:04:54.668Z",
+  "specId": "007",
+  "folderSlug": "docs-and-closeout",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
