@@ -122,6 +122,18 @@
         "source": "derived"
       },
       {
+        "name": "Rule Canary Sync",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Rules Corpus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -132,30 +144,18 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-04T20:24:16.551Z",
+    "last_save_at": "2026-10-04T20:46:43.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:113673c1a4c3978759e3a822816e3c733d4c42b6cf3419a6c6d5984bb3129928",
+    "source_fingerprint": "sha256:bc4b64ffe863e3a5bd938f0c015efc529780f3f3f960c0501451c2169d89a57a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93c3933f205e6210f14cae2c8b0ff358c046cc9ee02bbe3c0f53e90dc551d474"

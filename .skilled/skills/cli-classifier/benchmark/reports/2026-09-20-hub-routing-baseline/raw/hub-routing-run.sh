@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Hub-Routing Baseline Run
+# ───────────────────────────────────────────────────────────────
+# Runs the hub-routing corpus against the live compiled front door from the
+# migrated hub home, then records each route, the kill-switch control and the
+# judgment executed through the resolved packet. Kept as the raw evidence of the
+# hub-routing baseline report beside this file.
 # Hub-routing corpus run: CJ-001..CJ-003 (plus CJ-003's holdout phrasing) against the
 # live front door, from the migrated hub home.
 

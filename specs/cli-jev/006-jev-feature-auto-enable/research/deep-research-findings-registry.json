@@ -1,0 +1,796 @@
+{
+  "mergedFrom": [
+    "deepseek-v4-1-flash-max",
+    "luna-6-max-fast-pi"
+  ],
+  "lineageExecutors": {
+    "deepseek-v4-1-flash-max": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-1-flash-max",
+      "reasoningEffort": null
+    },
+    "luna-6-max-fast-pi": {
+      "kind": "cli-pi",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Q1: gate contract + four proven auto-on paths",
+      "resolution": "answered: FEATURES holds four entries; featureReady = switch-first then one bounded auth probe; four live paths share gate-first fail-open shape; no gate change needed for candidates",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "Q2: spec-track narrowing proof, power, hardening, integration, tests",
+      "resolution": "answered: repeat inconclusive (stop margin, CI spans zero); 80% power needs 217 decided pairs (~431 rows); relative-only rule needs floors; advisory Gate 1 shape; R1 binds",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "Q3: clarify default proof, power, seam, integration, tests",
+      "resolution": "answered: 3 of 365 census; 42 of 54 rows refused; power wall (69 discordant at 0.65); seam drops alternatives; shadow logging is the next step",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Q4: alignment suggestion proof, hardening, integration, tests",
+      "resolution": "answered: distractor control kills (W=0 L=30, state-anchored pick); fixture corpus cannot prove; masked-state ablation gates the decision",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "Q5: unified proof-or-retire standard, hardening and test plan, ranked next step per feature",
+      "resolution": "answered: seven-requirement standard; shared-kit amendment set; shadow->canary->live order; ranked next step per feature",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**P0 — Do not register or invoke candidate Jev paths until feature-specific proof passes.** The shared table currently contains only `cite-drift`, `injection-screen`, `verdict-fallback`, and `hallucination-grader`; an unset switch leaves a registered feature on, with global and per-feature opt-outs resolved before credentials, environment values taking precedence over persisted hook-flags values, and the cite-drift alias retained. Confirmation: before a later wiring change, add a focused registry/switch assertion for each proposed feature and verify unset, global-off, feature-off, persisted-off, and environment-override cases. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:33-55] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:63-105] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-149]",
+      "text": "**P0 — Do not register or invoke candidate Jev paths until feature-specific proof passes.** The shared table currently contains only `cite-drift`, `injection-screen`, `verdict-fallback`, and `hallucination-grader`; an unset switch leaves a registered feature on, with global and per-feature opt-outs resolved before credentials, environment values taking precedence over persisted hook-flags values, and the cite-drift alias retained. Confirmation: before a later wiring change, add a focused registry/switch assertion for each proposed feature and verify unset, global-off, feature-off, persisted-off, and environment-override cases. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:33-55] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:63-105] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-149]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**P0 — Do not treat the 54-row keep as a current-router result.** The 047 authored fixture kept Jev at 28/54 against the first alternative at 15/54, with 34 `none_of_these` labels. The improved scorer replays each supplied row against the current compiled router before scoring: 42/54 now route rather than clarify, leaving 12 labeled rows, below the 30-row gate, so the current scorer stops before any model arm. Confirmation: only score rows with a pinned router build, actual `action: clarify`, unchanged mode alternatives, and recorded label provenance; reject every row that fails replay. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:637-695] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1521-1561] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:25-30]",
+      "text": "**P0 — Do not treat the 54-row keep as a current-router result.** The 047 authored fixture kept Jev at 28/54 against the first alternative at 15/54, with 34 `none_of_these` labels. The improved scorer replays each supplied row against the current compiled router before scoring: 42/54 now route rather than clarify, leaving 12 labeled rows, below the 30-row gate, so the current scorer stops before any model arm. Confirmation: only score rows with a pinned router build, actual `action: clarify`, unchanged mode alternatives, and recorded label provenance; reject every row that fails replay. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:637-695] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1521-1561] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:25-30]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**P0 — Integrate future consumers through `featureReady` and retain an explicit baseline fallback; do not copy cite-drift's bespoke readiness path as the common pattern.** Injection-screen returns without altering the hook on disabled, invalid-payload, or unready paths; the reviewer scorer selects `noop` when its auto gate is not ready; and the 5-dimensional benchmark selects `noop` when its auto gate is unavailable. By contrast, cite-drift currently calls `featureSwitch` and performs its own pinned-version/auth check. The shared gate tests prove switch precedence and that an off feature does not spawn Jev, but those helper tests do not prove a new consumer's output is unchanged on provider error. **Confirm:** a candidate's opt-in shadow call must use `featureReady(name)`, preserve its exact old behavior for off/missing-credential/error/timeout/invalid-response cases, and have consumer-level tests for each applicable path; only a separately reviewed policy change should move it from shadow to canary/live. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:197-229] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-103,110] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:333-360] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-632] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1440-1449,1467-1475,1546-1556]",
+      "text": "**P0 — Integrate future consumers through `featureReady` and retain an explicit baseline fallback; do not copy cite-drift's bespoke readiness path as the common pattern.** Injection-screen returns without altering the hook on disabled, invalid-payload, or unready paths; the reviewer scorer selects `noop` when its auto gate is not ready; and the 5-dimensional benchmark selects `noop` when its auto gate is unavailable. By contrast, cite-drift currently calls `featureSwitch` and performs its own pinned-version/auth check. The shared gate tests prove switch precedence and that an off feature does not spawn Jev, but those helper tests do not prove a new consumer's output is unchanged on provider error. **Confirm:** a candidate's opt-in shadow call must use `featureReady(name)`, preserve its exact old behavior for off/missing-credential/error/timeout/invalid-response cases, and have consumer-level tests for each applicable path; only a separately reviewed policy change should move it from shadow to canary/live. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:197-229] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-103,110] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:333-360] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-632] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1440-1449,1467-1475,1546-1556]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**P0 — Keep 017, 020, and 022 out of the shared gate and out of any auto-on path.** `FEATURES` currently contains only `cite-drift`, `injection-screen`, `verdict-fallback`, and `hallucination-grader`; none of the three candidate names is registered. The helper defaults unset switches to on and `featureReady` performs the credential check only after a feature passes the switches. Consequently, registering an unproven candidate would make it eligible by default on credentialed installations; the table is not a neutral registry change. **Confirm:** add a candidate only after its evidence gate below passes and its consumer tests prove that disabled, unready, and failing Jev paths preserve the pre-Jev result. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:33-55,77-105,171-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-72,116-130,197-229]",
+      "text": "**P0 — Keep 017, 020, and 022 out of the shared gate and out of any auto-on path.** `FEATURES` currently contains only `cite-drift`, `injection-screen`, `verdict-fallback`, and `hallucination-grader`; none of the three candidate names is registered. The helper defaults unset switches to on and `featureReady` performs the credential check only after a feature passes the switches. Consequently, registering an unproven candidate would make it eligible by default on credentialed installations; the table is not a neutral registry change. **Confirm:** add a candidate only after its evidence gate below passes and its consumer tests prove that disabled, unready, and failing Jev paths preserve the pre-Jev result. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:33-55,77-105,171-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-72,116-130,197-229]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**P0 — Keep hard narrowing offline: the paired results are inconclusive, not a keep or a clean kill.** The initial packet-prose run kept Jev at 97/256 against ripgrep at 68/256, but the repeat stopped on margin at Jev 106/270 versus baseline 82/270; its cluster-bootstrap 95% accuracy-delta interval [-0.1185, 0.2760] spans zero. The repeat is a warning against shipping the earlier keep, not proof that Jev is worse. Confirmation: run the pre-registered, powered test on a separate time-held-out set of real Gate 1 requests and require the full floors in Finding 2. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:49-57] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:90-105] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/goal.md:82-90]",
+      "text": "**P0 — Keep hard narrowing offline: the paired results are inconclusive, not a keep or a clean kill.** The initial packet-prose run kept Jev at 97/256 against ripgrep at 68/256, but the repeat stopped on margin at Jev 106/270 versus baseline 82/270; its cluster-bootstrap 95% accuracy-delta interval [-0.1185, 0.2760] spans zero. The repeat is a warning against shipping the earlier keep, not proof that Jev is worse. Confirmation: run the pre-registered, powered test on a separate time-held-out set of real Gate 1 requests and require the full floors in Finding 2. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:49-57] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:90-105] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/goal.md:82-90]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**P0 — Keep the measured keep and confidence-gated result offline; neither clears the negative control or authorizes serving.** The same run says every row is an `other` save (content=0, folder=0), target baseline is correct on 0/40, the automatically selected top comparator is correct on 30/40, and the primary keep rests on 11 discordant rows. The confidence-gated arm repeats the same 39/30 verdict while reducing calls from 120 to 70; it is a cost result, not evidence that the state-copying failure is fixed. The feature packet explicitly excludes serving: a keep serves nothing, and a live suggestion requires the save owner, a later phase, and operator approval. **Confirm:** do not add a live call site from this measurement; reconsider only after the masked-state control and prospective evidence below pass, followed by separate save-flow and fail-open tests. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:1-12,36-54] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:123-130,206-208]",
+      "text": "**P0 — Keep the measured keep and confidence-gated result offline; neither clears the negative control or authorizes serving.** The same run says every row is an `other` save (content=0, folder=0), target baseline is correct on 0/40, the automatically selected top comparator is correct on 30/40, and the primary keep rests on 11 discordant rows. The confidence-gated arm repeats the same 39/30 verdict while reducing calls from 120 to 70; it is a cost result, not evidence that the state-copying failure is fixed. The feature packet explicitly excludes serving: a keep serves nothing, and a live suggestion requires the save owner, a later phase, and operator approval. **Confirm:** do not add a live call site from this measurement; reconsider only after the masked-state control and prospective evidence below pass, followed by separate save-flow and fail-open tests. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:1-12,36-54] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:123-130,206-208]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**P0 — Measure real eligible volume and collect shadow labels before paying for more model rows.** Feature 020's committed-corpus spec records 2 mode-alternative clarifications in 359 prompts and zero gold-in-alternatives. A later read-only census reports 3 total clarifications in 365 prompts: 2 mode clarifications plus 1 checklist clarification; the denominator changed and the 3rd item is not a mode suggestion. Both say the real-use rate remains unmeasured without transcripts. At 2 eligible mode clarifications per 365 prompts, exact 80%-power estimates require 69 discordant pairs at a 0.65 win rate (about 32,000 committed prompts at the fixture's discordance rate), making shadow collection with user picks as labels the practical next step. Confirmation: count actual `action: clarify` events by hub from consented, redacted session metadata, record accepted/overridden picks as labels, and publish counts before another Jev run. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:72-90] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:18-23] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:32-45] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:417-433]",
+      "text": "**P0 — Measure real eligible volume and collect shadow labels before paying for more model rows.** Feature 020's committed-corpus spec records 2 mode-alternative clarifications in 359 prompts and zero gold-in-alternatives. A later read-only census reports 3 total clarifications in 365 prompts: 2 mode clarifications plus 1 checklist clarification; the denominator changed and the 3rd item is not a mode suggestion. Both say the real-use rate remains unmeasured without transcripts. At 2 eligible mode clarifications per 365 prompts, exact 80%-power estimates require 69 discordant pairs at a 0.65 win rate (about 32,000 committed prompts at the fixture's discordance rate), making shadow collection with user picks as labels the practical next step. Confirmation: count actual `action: clarify` events by hub from consented, redacted session metadata, record accepted/overridden picks as labels, and publish counts before another Jev run. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:72-90] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:18-23] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:32-45] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:417-433]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**P0 — Pre-register an external-validity and power gate before another model run.** Use a consented, redacted, time-separated sample of actual Gate 1 queries, with independent label provenance, `none`/cross-track cases, and enough observations per track to estimate both traffic-weighted utility and worst-track recall. Predeclare alpha, minimum detectable effect, power, an absolute accuracy floor, and a per-track recall floor against ripgrep and the strongest safe fallback. At the repeat's 0.588 decided-pair win rate, the exact-binomial calculation needs about 217 decided pairs (roughly 431 rows at the current 50.4% decided rate) for 80% power; the 270-row repeat had only 0.399 power at its observed effect. Confirmation: publish the power line and split/power inputs before unblinding, then report paired estimates and a cluster-aware interval by track. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:94] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-002.md:24-38] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:887-894]",
+      "text": "**P0 — Pre-register an external-validity and power gate before another model run.** Use a consented, redacted, time-separated sample of actual Gate 1 queries, with independent label provenance, `none`/cross-track cases, and enough observations per track to estimate both traffic-weighted utility and worst-track recall. Predeclare alpha, minimum detectable effect, power, an absolute accuracy floor, and a per-track recall floor against ripgrep and the strongest safe fallback. At the repeat's 0.588 decided-pair win rate, the exact-binomial calculation needs about 217 decided pairs (roughly 431 rows at the current 50.4% decided rate) for 80% power; the 270-row repeat had only 0.399 power at its observed effect. Confirmation: publish the power line and split/power inputs before unblinding, then report paired estimates and a cluster-aware interval by track. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:94] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-002.md:24-38] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:887-894]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**P0 — Preserve switch-first, fail-closed readiness and fail-open caller behavior.** `featureReady` returns immediately when a switch is off; otherwise readiness checks for `jev` and runs a bounded `auth status` probe. Existing helper tests assert a disabled feature does not spawn Jev, while the injection hook returns its no-op result on invalid input and when the gate is not ready. Confirmation: use a stub executable/call log to prove zero calls when disabled and the exact legacy behavior when Jev is missing, unauthenticated, timed out, or throws. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:139-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:159-229] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-93] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:106-110]",
+      "text": "**P0 — Preserve switch-first, fail-closed readiness and fail-open caller behavior.** `featureReady` returns immediately when a switch is off; otherwise readiness checks for `jev` and runs a bounded `auth status` probe. Existing helper tests assert a disabled feature does not spawn Jev, while the injection hook returns its no-op result on invalid input and when the gate is not ready. Confirmation: use a stub executable/call log to prove zero calls when disabled and the exact legacy behavior when Jev is missing, unauthenticated, timed out, or throws. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:139-185] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:159-229] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-93] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:106-110]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**P0 — The distractor-state control invalidates the current question shape as a live predictor; it does not yet prove the whole feature should be retired.** The primary run keeps Jev at K=40, A=39 versus B=30, W=10/L=1, but its negative control kills at K=40, A=0/B=30, W=0/L=30; all 30 discordant control rows are losses. In those rows the model pick follows the folder named by the rotated state rather than the row's label. The scorer constructs that treatment by replacing each row's state with the next row's session state. This is direct evidence of state anchoring, not a small accuracy regression. **Confirm:** retain the current question only if a predeclared masked-state ablation passes while the same pinned rows, options, order, labels, and scorer identity are held fixed; if it still kills, retire this question shape. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:10-12,52-85] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1697-1704]",
+      "text": "**P0 — The distractor-state control invalidates the current question shape as a live predictor; it does not yet prove the whole feature should be retired.** The primary run keeps Jev at K=40, A=39 versus B=30, W=10/L=1, but its negative control kills at K=40, A=0/B=30, W=0/L=30; all 30 discordant control rows are losses. In those rows the model pick follows the folder named by the rotated state rather than the row's label. The scorer constructs that treatment by replacing each row's state with the next row's session state. This is direct evidence of state anchoring, not a small accuracy regression. **Confirm:** retain the current question only if a predeclared masked-state ablation passes while the same pinned rows, options, order, labels, and scorer identity are held fixed; if it still kills, retire this question shape. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:10-12,52-85] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1697-1704]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**P1 — A deployment-quality keep needs prospective real-save rows, independently sourced destinations, a frozen comparator, and power planned before evaluation.** The measured corpus is 40/40 `other` saves, with zero content- or folder-save cases; the run reports `comparator=auto`. The scorer's automatic comparator chooses target versus top alternative using the labeled rows themselves, so a future test-set result should not select its comparator from that same evaluation set. The 30-label minimum is only a gate, while the verdict's coverage, exact kill/sign tests, margin, and flip constraints are separate conditions. **Confirm:** collect consented low-alignment saves with final destination and save-path type, retain row/state/label provenance, obtain labels independently of Jev, split development from a time-separated holdout, freeze the strongest safe baseline before holdout scoring, and derive the needed discordant-pair count from a pre-registered minimum useful win rate and exact-binomial power target. Do not treat the present 11 discordant rows as a powered real-traffic test. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:1-12] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1631-1638] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:111-120,184-204]",
+      "text": "**P1 — A deployment-quality keep needs prospective real-save rows, independently sourced destinations, a frozen comparator, and power planned before evaluation.** The measured corpus is 40/40 `other` saves, with zero content- or folder-save cases; the run reports `comparator=auto`. The scorer's automatic comparator chooses target versus top alternative using the labeled rows themselves, so a future test-set result should not select its comparator from that same evaluation set. The 30-label minimum is only a gate, while the verdict's coverage, exact kill/sign tests, margin, and flip constraints are separate conditions. **Confirm:** collect consented low-alignment saves with final destination and save-path type, retain row/state/label provenance, obtain labels independently of Jev, split development from a time-separated holdout, freeze the strongest safe baseline before holdout scoring, and derive the needed discordant-pair count from a pre-registered minimum useful win rate and exact-binomial power target. Do not treat the present 11 discordant rows as a powered real-traffic test. [SOURCE: /Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:1-12] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1631-1638] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:111-120,184-204]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**P1 — Add tests for the masking transformation and its causal contrast; the current suite only checks that a distractor verdict is produced.** The scorer test exercises the general controls, checks that a distractor-state verdict exists, and asserts its output line, but there is no masked-state arm or assertion that masking removes folder-name leakage while preserving unrelated state. **Confirm:** add a deterministic test with synthetic states containing folder identifiers and unrelated content; assert all identifiers are masked, unrelated text and options are unchanged, and the result report distinguishes original, distractor, and masked arms. Keep the existing pinned-corpus/report/scorer checks and per-row discordance diagnostics. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts:840-892] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935,1697-1704]",
+      "text": "**P1 — Add tests for the masking transformation and its causal contrast; the current suite only checks that a distractor verdict is produced.** The scorer test exercises the general controls, checks that a distractor-state verdict exists, and asserts its output line, but there is no masked-state arm or assertion that masking removes folder-name leakage while preserving unrelated state. **Confirm:** add a deterministic test with synthetic states containing folder identifiers and unrelated content; assert all identifiers are masked, unrelated text and options are unchanged, and the result report distinguishes original, distractor, and masked arms. Keep the existing pinned-corpus/report/scorer checks and per-row discordance diagnostics. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts:840-892] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935,1697-1704]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**P1 — Apply a common proof-or-retire gate before any feature advances: real, time-separated usage; independent labels; a predeclared strongest-safe baseline; adequate power; absolute and class-specific floors; and passing negative controls.** A `keep` from an authored or proxy fixture cannot answer external validity. A `stop` for too few eligible rows, margin, coverage, or missing labels is unresolved evidence, not a kill; a feature-specific `kill` on a valid prespecified control can close the tested question or backend. Integration follows shadow → canary → live, with fail-open behavior and tests at each consumer boundary. **Confirm:** publish corpus and split hashes, row and label provenance, comparator, alpha/MDE/power, overall and class floors, abstention policy, confidence intervals, and all negative-control outcomes before reading the holdout result; require user-confirmation and fallback-path tests before enabling any user-visible action. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-002.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-003.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-004.md:15-23] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "text": "**P1 — Apply a common proof-or-retire gate before any feature advances: real, time-separated usage; independent labels; a predeclared strongest-safe baseline; adequate power; absolute and class-specific floors; and passing negative controls.** A `keep` from an authored or proxy fixture cannot answer external validity. A `stop` for too few eligible rows, margin, coverage, or missing labels is unresolved evidence, not a kill; a feature-specific `kill` on a valid prespecified control can close the tested question or backend. Integration follows shadow → canary → live, with fail-open behavior and tests at each consumer boundary. **Confirm:** publish corpus and split hashes, row and label provenance, comparator, alpha/MDE/power, overall and class floors, abstention policy, confidence intervals, and all negative-control outcomes before reading the holdout result; require user-confirmation and fallback-path tests before enabling any user-visible action. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-002.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-003.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-004.md:15-23] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**P1 — Improve accuracy from observed confusion, not by tuning on the current proxy.** The scorer builds questions from packet descriptions and hash-caps them at 20 rows per track; prior research reports 256 kept of 1,727 usable descriptions, and a small paraphrase probe favored ripgrep 8 to 2. On the repeat, probability-aware aggregation fell to A=102 versus modal A=106 and one-call scored A=103; the shortlist arm was not measured. Do not adopt those arms or edit descriptions based on one favorable sample. Confirmation: diagnose per-track confusion and abstention first, then compare any revised question/options on the same frozen real-request holdout and a second untouched time slice. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:43-50] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:330-365] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:55-69] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/goal.md:83] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-002.md:47-52]",
+      "text": "**P1 — Improve accuracy from observed confusion, not by tuning on the current proxy.** The scorer builds questions from packet descriptions and hash-caps them at 20 rows per track; prior research reports 256 kept of 1,727 usable descriptions, and a small paraphrase probe favored ripgrep 8 to 2. On the repeat, probability-aware aggregation fell to A=102 versus modal A=106 and one-call scored A=103; the shortlist arm was not measured. Do not adopt those arms or edit descriptions based on one favorable sample. Confirmation: diagnose per-track confusion and abstention first, then compare any revised question/options on the same frozen real-request holdout and a second untouched time slice. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:43-50] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:330-365] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:55-69] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/goal.md:83] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-002.md:47-52]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**P1 — Keep helper contract tests separate from future consumer-path tests.** The shared tests cover default-on semantics, master/per-feature/alias switches, config fallback and environment precedence, missing credentials/CLI, readiness, and the disabled/no-spawn edge. Those checks validate the helper, but they do not alone prove any of the three candidate call sites preserve user-visible baseline behavior. Confirmation: retain the helper suite and add feature-specific tests only after evidence authorizes a shadow/canary consumer; inject the gate/transport and assert unchanged output on every non-ready path. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-149] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:159-229] [INFERENCE: the cited test cases exercise the shared helper, while the candidates are not among the four registered names at .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55]",
+      "text": "**P1 — Keep helper contract tests separate from future consumer-path tests.** The shared tests cover default-on semantics, master/per-feature/alias switches, config fallback and environment precedence, missing credentials/CLI, readiness, and the disabled/no-spawn edge. Those checks validate the helper, but they do not alone prove any of the three candidate call sites preserve user-visible baseline behavior. Confirmation: retain the helper suite and add feature-specific tests only after evidence authorizes a shadow/canary consumer; inject the gate/transport and assert unchanged output on every non-ready path. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:56-149] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:159-229] [INFERENCE: the cited test cases exercise the shared helper, while the candidates are not among the four registered names at .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**P1 — Keep the landed reproducibility hardening, but do not mistake it for population validity.** The 049 scorer pins row/question/option and model identity, refuses reuse of a populated output directory, replays recorded rows, reports dropped rows, and computes a whole-track bootstrap; tests cover deterministic bootstrap, pinning, no-overwrite, replay and changed-row drops. These make a run auditable but do not turn packet prose or path-derived labels into real-request evidence. If a later holdout passes, first integrate as a gated, fail-open shadow path that preserves broad search on `none`, low confidence or provider failure; promote only after shadow metrics and live-path tests pass. Confirmation: rerun the scorer suite, independently reproduce the pinned report from its call log, and verify helper-off/missing-auth paths preserve the pre-Jev retrieval result. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1111-1141] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1372-1396] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:631-657] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:868-987] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/spec.md:74-85] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "text": "**P1 — Keep the landed reproducibility hardening, but do not mistake it for population validity.** The 049 scorer pins row/question/option and model identity, refuses reuse of a populated output directory, replays recorded rows, reports dropped rows, and computes a whole-track bootstrap; tests cover deterministic bootstrap, pinning, no-overwrite, replay and changed-row drops. These make a run auditable but do not turn packet prose or path-derived labels into real-request evidence. If a later holdout passes, first integrate as a gated, fail-open shadow path that preserves broad search on `none`, low confidence or provider failure; promote only after shadow metrics and live-path tests pass. Confirmation: rerun the scorer suite, independently reproduce the pinned report from its call log, and verify helper-off/missing-auth paths preserve the pre-Jev retrieval result. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1111-1141] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1372-1396] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:631-657] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:868-987] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/spec.md:74-85] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**P1 — No served suggestion fits the current normalized route contract.** The compiled engine exposes clarify alternatives to the scorer, but `compiledRoute` returns only hub/action/selection/targets/policy hash/generation, and the front door prints that normalized shape; feature 020 explicitly leaves serving and an alternatives event/contract change out of scope. After proof, an additive suggestion could be shown only beside a genuine mode `clarify`, validated against its exact alternatives and the same hub/policy hash/generation, and left for user confirmation; `none_of_these`, timeout, missing auth, malformed output or generation drift must preserve the plain clarify. Confirmation: routing-owner contract tests prove the alternatives/suggestion binding, while stubbed feature-gate and failure tests prove the legacy clarify is unchanged when disabled or unavailable; start with shadow, then canary, and only then consider live. [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:94-108] [SOURCE: .skilled/bin/compiled-route.cjs:26-51] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:212-213] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:54-73] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "text": "**P1 — No served suggestion fits the current normalized route contract.** The compiled engine exposes clarify alternatives to the scorer, but `compiledRoute` returns only hub/action/selection/targets/policy hash/generation, and the front door prints that normalized shape; feature 020 explicitly leaves serving and an alternatives event/contract change out of scope. After proof, an additive suggestion could be shown only beside a genuine mode `clarify`, validated against its exact alternatives and the same hub/policy hash/generation, and left for user confirmation; `none_of_these`, timeout, missing auth, malformed output or generation drift must preserve the plain clarify. Confirmation: routing-owner contract tests prove the alternatives/suggestion binding, while stubbed feature-gate and failure tests prove the legacy clarify is unchanged when disabled or unavailable; start with shadow, then canary, and only then consider live. [SOURCE: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:94-108] [SOURCE: .skilled/bin/compiled-route.cjs:26-51] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:212-213] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:54-73] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:171-185]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**P1 — Rank the next evidence actions by what currently blocks a decision: 022 masked-state ablation first, 020 real-clarification shadow labels second, 017 powered real-request holdout third.** For 022 the current control is a state-anchoring kill and a same-row masked contrast can determine whether this question is salvageable; only then consider real saves. For 020 the 54-row authored keep collapses to 12 replay-eligible labels, below its gate, while committed prompts rarely produce mode clarifications; measure real event volume and collect user picks before another model arm. For 017 the 270-row repeat remains inconclusive (106 vs. 82 with a 95% interval spanning zero); pre-register floors and collect about 431 rows at the reported decided rate for 80% power before any deployment reconsideration. **Confirm:** each action must produce its feature-specific artifact—masked versus distractor contrast, consented event census plus shadow-choice labels, or a pinned real Gate 1 holdout and prospective power report—before it can move to the next rollout stage. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-004.md:15-23] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-003.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-002.md:13-16]",
+      "text": "**P1 — Rank the next evidence actions by what currently blocks a decision: 022 masked-state ablation first, 020 real-clarification shadow labels second, 017 powered real-request holdout third.** For 022 the current control is a state-anchoring kill and a same-row masked contrast can determine whether this question is salvageable; only then consider real saves. For 020 the 54-row authored keep collapses to 12 replay-eligible labels, below its gate, while committed prompts rarely produce mode clarifications; measure real event volume and collect user picks before another model arm. For 017 the 270-row repeat remains inconclusive (106 vs. 82 with a 95% interval spanning zero); pre-register floors and collect about 431 rows at the reported decided rate for 80% power before any deployment reconsideration. **Confirm:** each action must produce its feature-specific artifact—masked versus distractor contrast, consented event census plus shadow-choice labels, or a pinned real Gate 1 holdout and prospective power report—before it can move to the next rollout stage. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-004.md:15-23] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-003.md:13-16] [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/luna-6-max-fast-pi/iterations/iteration-002.md:13-16]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**P1 — Reuse the existing consumer seams rather than creating a parallel gate.** Citation-drift runs only for in-range citations after its feature switch and credential/version gate; injection-screen gates only the `WebFetch` hook path; reviewer fallback maps `auto` to Jev only when the gate is ready and otherwise keeps `noop`; the benchmark D4 grader invokes its gate only for the 5-dimension scorer in auto mode. Confirmation: an integration review should identify the exact eligible event/operation, the unchanged baseline result, the gate call, and the report or advisory surface for each future consumer. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1440-1449] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1546-1559] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-103] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:333-360] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-632]",
+      "text": "**P1 — Reuse the existing consumer seams rather than creating a parallel gate.** Citation-drift runs only for in-range citations after its feature switch and credential/version gate; injection-screen gates only the `WebFetch` hook path; reviewer fallback maps `auto` to Jev only when the gate is ready and otherwise keeps `noop`; the benchmark D4 grader invokes its gate only for the 5-dimension scorer in auto mode. Confirmation: an integration review should identify the exact eligible event/operation, the unchanged baseline result, the gate call, and the report or advisory surface for each future consumer. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1440-1449] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1546-1559] [SOURCE: .skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:75-103] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:333-360] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-632]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**P1 — Run a true masking ablation, not an instruction-only prompt tweak.** The rows writer supplies the session summary as `state`, and the fixed question asks which folder the save should go to. The existing negative control rotates complete summaries between rows. A decisive follow-up should compare the original state, the existing next-row distractor, and a current-row state with folder identifiers replaced by neutral tokens while preserving the remaining prose and keeping option descriptions unchanged. If the masked-current-state arm retains the useful signal while the distractor arm fails, that clears this specific lexical leakage concern but does not establish production value. If masking makes the current arm fail, the question is dependent on folder names in state and should be retired or redesigned before any real-save corpus expansion. **Confirm:** record per-row picks for each arm, verify the masking transformation removes all numbered folder identifiers without changing the option set or label, and apply the already-fixed verdict rule without tuning it after seeing results. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:111-120,184-204] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935,1650-1651,1697-1704]",
+      "text": "**P1 — Run a true masking ablation, not an instruction-only prompt tweak.** The rows writer supplies the session summary as `state`, and the fixed question asks which folder the save should go to. The existing negative control rotates complete summaries between rows. A decisive follow-up should compare the original state, the existing next-row distractor, and a current-row state with folder identifiers replaced by neutral tokens while preserving the remaining prose and keeping option descriptions unchanged. If the masked-current-state arm retains the useful signal while the distractor arm fails, that clears this specific lexical leakage concern but does not establish production value. If masking makes the current arm fail, the question is dependent on folder names in state and should be retired or redesigned before any real-save corpus expansion. **Confirm:** record per-row picks for each arm, verify the masking transformation removes all numbered folder identifiers without changing the option set or label, and apply the already-fixed verdict rule without tuning it after seeing results. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:111-120,184-204] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935,1650-1651,1697-1704]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**P1 — Separate named-mode skill from abstention, and require the strongest simple baseline.** Twelve of Jev's 17 wins on the fixture are `none_of_these` answers; Jev names a mode correctly on 16/20 named-mode rows versus 15/20 for the first alternative, while always-none scores 34/54 versus Jev's 28/54 overall. The scorer now exposes hub/class results and the strongest baseline, but the keep rule still compares the first alternative rather than requiring a win over always-none; the 21 fixture discordant pairs also miss the power requirement. Confirmation: report named-mode accuracy, false-default rate, abstention precision/recall, coverage and confusion per hub; pre-register absolute/class floors and require improvement over the strongest safe policy on a powered, held-out shadow set. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:32-45] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:732-760] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:704-722] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:150-166]",
+      "text": "**P1 — Separate named-mode skill from abstention, and require the strongest simple baseline.** Twelve of Jev's 17 wins on the fixture are `none_of_these` answers; Jev names a mode correctly on 16/20 named-mode rows versus 15/20 for the first alternative, while always-none scores 34/54 versus Jev's 28/54 overall. The scorer now exposes hub/class results and the strongest baseline, but the keep rule still compares the first alternative rather than requiring a win over always-none; the 21 fixture discordant pairs also miss the power requirement. Confirmation: report named-mode accuracy, false-default rate, abstention precision/recall, coverage and confusion per hub; pre-register absolute/class floors and require improvement over the strongest safe policy on a powered, held-out shadow set. [SOURCE: specs/cli-jev/006-jev-feature-auto-enable/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-003.md:32-45] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:732-760] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:704-722] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:150-166]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**P1 — Use one validity standard, but retain feature-specific measurement and verdicts.** All three candidate scorers import the shared `scorer-report.mjs` support and expose related row gates and paired keep-rule ingredients, yet their decision logic is local: feature 017's published rule is keep-or-stop on coverage, margin, sign, and flips; feature 020 has its own replay eligibility, 30-row label gate, and clarify/abstention classes; feature 022 has its own label gate, state-control arm, and explicit kill branch. A shared reporting helper therefore does not make their corpora, labels, eligible events, or a `keep` semantically interchangeable. **Confirm:** each report must retain feature-specific eligible denominators and classes, pinned row/model/router/scorer identity, label provenance, per-class performance and abstention, and the exact feature's predeclared baseline and verdict rule. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:26,55-64,816-894] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:25,45-51,637-695,1558-1573] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:59,525,745-758,1622-1627]",
+      "text": "**P1 — Use one validity standard, but retain feature-specific measurement and verdicts.** All three candidate scorers import the shared `scorer-report.mjs` support and expose related row gates and paired keep-rule ingredients, yet their decision logic is local: feature 017's published rule is keep-or-stop on coverage, margin, sign, and flips; feature 020 has its own replay eligibility, 30-row label gate, and clarify/abstention classes; feature 022 has its own label gate, state-control arm, and explicit kill branch. A shared reporting helper therefore does not make their corpora, labels, eligible events, or a `keep` semantically interchangeable. **Confirm:** each report must retain feature-specific eligible denominators and classes, pinned row/model/router/scorer identity, label provenance, per-class performance and abstention, and the exact feature's predeclared baseline and verdict rule. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:26,55-64,816-894] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:25,45-51,637-695,1558-1573] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:59,525,745-758,1622-1627]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/luna-6-max-fast-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna-6-max-fast-pi"
+      ]
+    },
+    {
+      "id": "f-iter001-001",
+      "severity": "P0",
+      "label": "The gate registers exactly four features (cite-drift, injection-screen, verdict-fallback, hallucination-grader); the three candidates have no FEATURES entry, no JEV_FEATURE_ name and no live call site. Earning a live path means adding a FEATURES entry, a live call site that asks featureReady first, and docs; the gate itself needs no change.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55",
+        ".env.example:451-455",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:433-437",
+        ".skilled/hooks/hook-flags.env.example:50-54"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "severity": "P0",
+      "label": "The gate contract is switch-first then one bounded readiness probe: featureSwitch resolves master JEV_FEATURES, the feature env, then aliases (env wins per key over the hook-flags file; only 0/false/no/off switch off); jevReady walks PATH in-process then runs one bounded jev auth status --provider call (10s timeout, output discarded); featureReady composes them. A disabled feature never spawns, proven by the stub-CLI test asserting an empty log.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:71-106,149-165,181-186",
+        ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:197-206"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "severity": "P0",
+      "label": "The four proven live paths share one integration shape: gate first, fail open to the pre-Jev behavior, never block. cite-drift gates runAdvise with featureSwitch plus a version-pinned private adviseGate; injection-screen returns done() when not ready; verdict-fallback resolves auto to jev or noop and records the gate reason; hallucination-grader resolves auto on the 5dim path only and hard-fails an explicit --grader jev without readiness.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1467-1476,1547",
+        ".skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs:90-104",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:299-306",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:610-633"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "severity": "P0",
+      "label": "The 017 keep did not repeat: the 270-row repeat printed stop (margin) K=270 M=270 A=106 B=82 W=80 L=56 F=48 p=0.02409 with bootstrap accuracy_delta_95_ci=[-0.1185,0.2760] clusters=16; the margin gate needed 27 rows and the gain was 24, while the sign test passed. The baseline rose 68/256 to 82/270 and Jev 97/256 to 106/270. The repeat is inconclusive, not a kill.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev.stdout.txt",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:94,103"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "severity": "P0",
+      "label": "Exact binomial power against the margin gate: at the repeat's observed decided-pair win rate 0.588 (80 of 136), 80% power needs 217 decided pairs (~431 rows at the current 50.4% decided rate); at the current 136 decided pairs the MDE is 0.634 (~37 rows / 13.7pp); the repeat as run had 0.399 power at its own effect. A pre-registered power line (n, alpha, MDE) belongs in the report before a third run is read as decisive.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev.stdout.txt",
+        "computed: exact binomial tail sum P(2W-n_d>=27), W~Bin(n_d,0.588)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "severity": "P0",
+      "label": "The frozen keep rule is relative-only (coverage 10*M>=9*K, margin 10*(A-B)>=M, sign test p<0.05, flips 10*F<=3*M) with no absolute accuracy floor and no per-track floor; A=106/270 (39.3%) would keep if the margin passed. Proving a live win needs operator-set absolute and per-track recall floors.",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:62-64,883-892"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "severity": "P0",
+      "label": "Today's read-only census (zero model calls) gives 3 clarifications in 365 committed prompts: clarify_mode=2 plus clarify_checklist=1, all in canary sources; the served surface is 2 mode clarifications in 365 (0.55%). The topic's 3-of-359 holds in substance with the denominator moved. The census ends real clarify rate: not measured because --transcripts was not run.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:417-429",
+        "command: score-clarify-default.cjs census (365 prompts, total clarify=3)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-002",
+      "severity": "P0",
+      "label": "The replay refusal is live: --score on the 54-row fixture printed 42 replay-refused (route) rows, then rows: 54 labeled=12 operator=12 committed_gold=0, then stop: fewer than 30 labeled rows (12 labeled), exit 0. The refusal runs before any model call and matches the 049 record (12 of 54 at HEAD). The fixture keep is historical; the current build cannot reach the keep rule.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:45,632-695,1532-1560",
+        "command: score-clarify-default.cjs --score ~/.skilled/.labels/020-rows.jsonl",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/goal.md:83"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-003",
+      "severity": "P0",
+      "label": "The power wall: one-sided sign-test 80% power needs 158 discordant pairs at a 0.60 win rate, 69 at 0.65, 37 at 0.70; the fixture held 21. At the fixture's 21/54 discordant rate, 69 pairs need ~177 clarify rows, i.e. ~32,000 committed prompts at today's 2-per-365 mode rate. The keep rule compares against the first alternative while always-none scores 34/54 against Jev's 28; the strongest simple policy is printed but not required to be beaten. A live-win proof needs shadow-collected real rows plus class floors and a strongest-policy bar.",
+      "iteration": 3,
+      "sources": [
+        "command: exact binomial sign-test power from fixture counts (W=17 L=4 of 54)",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research/research/research.md:53",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1570-1596"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-001",
+      "severity": "P0",
+      "label": "The distractor-state control kills the verdict: with each row's state rotated to the next row's, the recorded run prints verdict jev: kill K=40 M=40 A=0 B=30 W=0 L=30 F=0 p=0.0000 and W+L=30 interval95=[0.000,0.114]; all 30 discordant rows are losses where the model picked the folder named in the rotated state. The judgment is state-anchored, not content-anchored — a P0 robustness failure of the question shape.",
+      "iteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:53-54",
+        ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:750-752,931-937"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-002",
+      "severity": "P0",
+      "label": "The keep survives only with path-resolved descriptions and the original state: re-measure keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top (311 calls, 102 s), recall 40/40, baseline target=0 top=30 comparator=auto. The ten wins are rows whose label is neither target nor top — real recoveries the distractor control then invalidates as a live predictor.",
+      "iteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:3-10",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/implementation-summary.md:94"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-003",
+      "severity": "P0",
+      "label": "The corpus is a fixture by construction (target wrong 0/40; labels one arbiter read; comparator=auto chosen on the scored labels) and 11 discordant rows cannot prove a live win (80% power needs 69 at a 0.65 win rate). Proving needs real low-match saves with final destination and label provenance, a pre-declared comparator, a holdout, and either >=69 discordant pairs or an explicit screen-only acceptance.",
+      "iteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:3-8",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md:51,73-75",
+        "computed: sign-test power (iteration 3 script, same rule family)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-001",
+      "severity": "P0",
+      "label": "The unified proof-or-retire standard has seven requirements (real-traffic corpus + pinned digests; independent labels with provenance; keep rule with absolute and class floors plus a strongest-policy bar; pre-registered power; negative controls pass; fail-open live shape; tests). None of the three features meets all seven today; retirement with evidence is a legitimate terminal state.",
+      "iteration": 5,
+      "sources": [
+        "iterations/iteration-001..004.md (this lineage)",
+        "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13-14"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-002",
+      "severity": "P0",
+      "label": "The keep-rule family diverges: clarify and alignment carry the kill branch (kill P(X>=L)<=0.05) while track narrowing does not (a significant loss only fails its sign test); no rule has an absolute floor, a per-track/class floor, or requires beating the strongest simple policy. The shared scorer-report.mjs kit is the right amendment site: one kit change plus three rule lines reaches all three scorers.",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:63-64",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:51",
+        ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1650"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-003",
+      "severity": "P0",
+      "label": "Ranked next step per feature. Track narrowing (P0): pre-register power + floors, build the real Gate 1 holdout (~217 decided pairs / ~431 rows at the current decided rate), then a third run under the amended rule; R1 binds. Clarify default (P0): run --transcripts to measure the real rate, shadow-log with user picks as labels, require strongest-policy bar and class floors, and extend the routing contract before any suggestion. Alignment (P1): mask folder names from the state and rerun the distractor control; retire the question if it still kills, else rebuild the corpus from real saves.",
+      "iteration": 5,
+      "sources": [
+        "iterations/iteration-002..004.md (this lineage)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-004",
+      "severity": "P1",
+      "label": "The auto-on resolution records provenance: auto resolves once before any work to jev only when the gate is ready, otherwise noop, and the resolved grader plus gate reason are recorded so a shifted score is attributable; --grader noop restores the old score.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:606-612,624-629",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:301-305",
+        "specs/cli-jev/006-jev-feature-auto-enable/spec.md:128"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-005",
+      "severity": "P1",
+      "label": "The test pattern for a gated feature is a stub-CLI fixture: a temp jev script recording argv, injected env/config, the full switch matrix (unset, master, feature, alias, config fallback, env-over-config), readiness pass/fail/no-CLI, a disabled-feature no-spawn proof, frozen FEATURES, and CommonJS reach with zero warnings. New feature tests can reuse this fixture shape and should target the candidate's own question constants, record shape and fallback behavior.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:28-45,56-153,159-191,197-206,235-260"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "severity": "P1",
+      "label": "Probability-aware aggregation did not repeat its 017 gain: on the repeat it scored A=102 vs the modal 106 (decided-subset 102/203=0.5025, margin slack -7.0 rows, p=0.05018); the one-call arm scored 103. The three-order protocol buys stability, not accuracy, and the free-row claim is corpus-dependent; the shortlist arm remains unmeasured.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev.stdout.txt",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:65"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "severity": "P1",
+      "label": "The 049 trust upgrades landed and show in the repeat record: rowSetSha256 + per-row questionSha256 + optionSetSha256 and the model tuple {jev 0.6.2, official, jev-1.13.0} are pinned; --out reuse is refused; --replay scores exactly the recorded rows and reports drops; the cluster bootstrap (16 clusters, 1000 replicates) runs in-report. The remaining trust gap is labels and population, not instrumentation.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev-20261003/report.json",
+        ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs:71,88,181",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md:90-96"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "severity": "P1",
+      "label": "Transfer warning persists and clusters are heterogeneous: paraphrase probes favor ripgrep 9/14 to Jev 2/14; per-track accuracy ranges from sk-git 14/19 to sk-design 3/20 (16 of 20 abstained); total abstained=55 (20.4%), with three tracks holding 31 of them. Any live path must be miss-only with fail-open, and sk-design-like clusters need description diagnosis first.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-004",
+      "severity": "P1",
+      "label": "The 049 trust upgrades landed: report.json records rows/labels/options/scorer digests and build identity; class and hub results print with first/second/always-none/strongest baselines; label approver and decision reference are accepted; the early stop (two agreeing orders, third only on disagreement) matched all 54 recorded modal picks in 118 calls against 163. Tests grew 22 to 31.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:353-357,1625-1653",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/implementation-summary.md:93-96"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-005",
+      "severity": "P1",
+      "label": "The seam is confirmed dropped: the engine decision carries decision.clarify.alternatives (the scorer and census read it directly), but the normalized runtime route returns only {hubId, action, selectionKind, targets, effectivePolicyHash, generation} with targets empty on clarify, and resolveRoute serves only that identity-bound shape. A served suggestion needs a routing-owner contract extension first; gold_in_alternatives=0 in every census cell shows the alternatives rarely even contain the gold.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:143-144,662",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108",
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:106-127"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-004",
+      "severity": "P1",
+      "label": "f022-001 still loses with both options described: Jev picks 007-classifier-deep-research at 0.48, 0.58 and 0.43 against the label 001-deep-research. The path-resolved describer fix removed the undescribed-option defect but did not convert the one loss; the row should be adjudicated, not chased.",
+      "iteration": 4,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/implementation-summary.md:93,103"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-005",
+      "severity": "P1",
+      "label": "The trust upgrades landed: kill branch (kill P(X>=L)<=0.05), W+L Wilson interval, discordant rows, corpus/report/scorer pins, label-swap control (W+L=10 [0.722,1.000]; wins sit on rows whose label is neither target nor top), distractor-state arm, and a confidence-gated arm keeping the same verdict at 70 choice calls vs 120. Tests grew 35 to 43.",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1477-1486,1649-1650,1681-1704",
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:24,36-54",
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/implementation-summary.md:92"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-008",
+      "severity": "P1",
+      "label": "Ranked next step: build the same 40-row arm with folder names masked out of the state (or an explicit instruction to ignore state folder names) and rerun the distractor-state control; if the kill persists, retire the current question shape with that evidence; if it survives, the feature earns a real-save corpus. One arm run plus a small scorer change gates everything else.",
+      "iteration": 4,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:53-54",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md:63,112"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-004",
+      "severity": "P1",
+      "label": "The shared kit is the reuse path: all three scorers import scorer-report.mjs (pins, margin slack, decided subset, cluster bootstrap, intervals, out-dir guard); alignment added the newest controls (label-swap, distractor-state) and the kill branch, clarify the replay refusal and early stop, track narrowing the cluster bootstrap and per-track tables. Port the alignment controls to track narrowing and keep clarify's replay refusal as its strong control.",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs:33,71,88,107,144,165,181",
+        ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:525,1681-1704"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-005",
+      "severity": "P1",
+      "label": "Integration order is shadow then canary then live behind the unchanged gate: add FEATURES entries (track-narrowing, clarify-default, alignment-suggestion with JEV_FEATURE_* names), a call site asking featureReady first, fail-open fallbacks and provenance recording; precedents are cite-drift (advisory + version-pinned gate), injection-screen (advisory hook, always exits 0) and the two auto graders. Per-feature blockers before any call site: track (corpus + floors), clarify (seam + base rate), alignment (state-anchoring).",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55",
+        "iterations/iteration-001.md,003.md,004.md (this lineage)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter001-006",
+      "severity": "P2",
+      "label": "cite-drift diverges from the shared readiness check: it uses featureSwitch plus its own adviseGate that additionally requires an exact jev --version match; jevReady has no version pin. Two live-path shapes exist (shared readiness for injection-screen and both graders; version-pinned private readiness for cite-drift), and a version-sensitive candidate can follow the cite-drift precedent.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:25,1467-1476",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:149-165"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-007",
+      "severity": "P2",
+      "label": "Cost is latency: p50 325 ms and p95 389 ms per call over 852 planned calls per arm, ~953,885 estimated input tokens (mostly the 17-option block); the one-call arm is within 3 rows of the modal arm (103 vs 106). A live path should serve one call on ambiguous/miss rows only inside a few-hundred-ms budget, keeping three orders offline.",
+      "iteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/.skilled/.labels/runs/049-002-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter002-008",
+      "severity": "P2",
+      "label": "Integration shape: add 'track-narrowing' with env JEV_FEATURE_TRACK_NARROWING to FEATURES and a Gate 1 advisory call site at lookup-trigger-index.mjs:132 that asks featureReady only when the lexical lookup misses or ties, prints an advisory, and fails open to broad search (the cite-drift advisory shape). Prior R1 (keep hard narrowing offline until a real-request holdout passes) is unchanged and strengthened by the repeat.",
+      "iteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:132",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md:102"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-006",
+      "severity": "P2",
+      "label": "Integration shape: add 'clarify-default' with env JEV_FEATURE_CLARIFY_DEFAULT to FEATURES and an advisory call site beside action: clarify that suggests one alternative, never replaces the clarification, and fails open on none_of_these, timeout, error, missing credentials or a generation mismatch. Prerequisites: a named reader and scope amendment, shadow logging first (T1), and a payload decision.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research/research/research.md:93-108"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter003-007",
+      "severity": "P2",
+      "label": "Tests to cover beyond the landed refusal/replay/digest/early-stop cases: a shadow-log capture test (user pick as label), a normalized-route alternatives contract test, class-floor assertions (named-mode accuracy plus abstention precision/recall), a strongest-policy-bar verdict case, and a --transcripts end-to-end clarify-rate test (the path exists but was never run).",
+      "iteration": 3,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/implementation-summary.md:63,93",
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:417-429"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-006",
+      "severity": "P2",
+      "label": "Integration shape: add 'alignment-suggestion' with env JEV_FEATURE_ALIGNMENT_SUGGESTION to FEATURES and an interactive, flag-gated save-flow suggestion that asks featureReady first, shows one folder with a reason, and lets the existing selection step authorize any switch; never override the below-20% hard block; CLI-explicit saves keep their folder; consent + timeout + kill switch; a 047 D6 amendment is required.",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:38-55",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md:91-103"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter004-007",
+      "severity": "P2",
+      "label": "Tests to cover beyond the landed 43 cases: a masked-state variant test (state with folder names removed), a real-save corpus validation fixture with final destinations, label-provenance assertions, an f022-001 adjudication record, and interactive-flow integration tests with a stub jev (fail-open, timeout, consent). The masked-state ablation is the highest-value new test because it probes the distractor failure directly.",
+      "iteration": 4,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/implementation-summary.md:63",
+        ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:931-937"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-006",
+      "severity": "P2",
+      "label": "Cross-feature test plan: the stub-CLI fixture plus recorded-run replays are the shared pattern; add track narrowing absolute/per-track floor and paraphrase-threshold cases; clarify shadow-capture, normalized-route alternatives contract, strongest-policy-bar and transcripts rate tests; alignment masked-state ablation, real-save corpus validation, label-provenance and interactive fail-open/timeout/consent tests. All offline.",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs:28-260",
+        "iterations/iteration-002..004.md (this lineage)"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    },
+    {
+      "id": "f-iter005-007",
+      "severity": "P2",
+      "label": "Base rates cap the value: clarify serves 2 mode clarifications in 365 committed prompts, alignment fires on rare low-match saves (2 events in the committed census with no alternatives), track narrowing would serve only lexical misses. A retirement backed by a negative control or a powered non-result is a legitimate cost-saving terminal state; prove only where a bounded experiment can move the decision.",
+      "iteration": 5,
+      "sources": [
+        "command: score-clarify-default.cjs census (clarify=3 of 365)",
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md:103"
+      ],
+      "_lineages": [
+        "deepseek-v4-1-flash-max"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 58,
+    "sourceFindings": 58,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.25,
+    "coverageBySources": {}
+  }
+}

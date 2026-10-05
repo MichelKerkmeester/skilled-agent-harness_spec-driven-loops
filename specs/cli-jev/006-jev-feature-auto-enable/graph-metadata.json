@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/006-jev-feature-auto-enable",
+  "spec_folder": "cli-jev/006-jev-feature-auto-enable",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev feature auto enable",
+      "jev features env switches",
+      "JEV_FEATURES",
+      "injection screen hook",
+      "jev auto grader",
+      "jev feature auto enable plan",
+      "jev-features helper",
+      "auto grader plan",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "jev",
+      "feature",
+      "auto",
+      "enable",
+      "features",
+      "env",
+      "switches",
+      "injection",
+      "screen",
+      "hook",
+      "grader",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+      ".claude/settings.json",
+      ".skilled/changelog/skilled/v4.0.0.3.md",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
+      ".skilled/commands/deep/model-benchmark.md",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/hooks/README.md",
+      "scratch/baseline.txt",
+      "specs/cli-jev/006-jev-feature-auto-enable/research/resource-map.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-features.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.3.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.3.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-features.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "reviewer-scorer.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-model-variant.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/model-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four Jev features have a measured keep verdict: the citation drift check (032), the injection screen (035, 84 against 68 of 90), the reviewer verdict fallback (025, 24 against 8 of 24) and the hallucination grader (024, 55 against 47 of 56)",
+    "created_at": "2026-10-04T20:12:18Z",
+    "last_save_at": "2026-10-04T22:20:44.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:cc644caa76c6c6f2d6ed322ac18d960fe11e7f187eb03a13d3af0d4a0ce6d476",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "70dc04a3482b53886b1206f4b3ef7ceb823ac8291c19b7862944bc55a38591ea",
+      "plan.md": "6ac801ed45bfb2d06d4314ebdb99a992ef97a2ce3a53790306dea2c4e230aab8",
+      "tasks.md": "afe98834fafc805de9fed43f7e320e404c64b31a0d0112e4a0845023ecefde22",
+      "implementation-summary.md": "148c46263b217010f55bd920d6084d6c1618ed0f1d7441c80fe6065d159f813e",
+      "research/research.md": "4a88894274199834b989b7e6a3c140aa50faf908d1a700010e15033d58a6f495"
+    },
+    "last_active_at": null
+  }
+}

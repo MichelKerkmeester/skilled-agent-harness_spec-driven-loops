@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: CLI Probe Matrix
+# ───────────────────────────────────────────────────────────────
+# Runs the CLI matrix from the migrated hub home with the provider variables
+# cleared and an empty credential store, including the sentinel leak control.
+# Kept as the raw evidence of the post-migration re-verification report beside
+# this file.
 # Live probe matrix, re-run from the migrated hub home.
 #
 # Two isolations reproduce the no-key contract now that a credential exists in the

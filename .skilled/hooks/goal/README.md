@@ -92,16 +92,10 @@ OpenCode's real plugin cannot live in this tree because its loader globs `.openc
 ```text
 goal/
 +-- lib/
-|   +-- build-verifier-fixture.cjs          # unlabeled verifier rows from Pi sessions and any Claude transcripts the operator names
-|   +-- build-verifier-fixture.test.cjs     # row fields, skipped nudges, row selection, refusal to overwrite
-|   +-- count-pi-goal-nudges.mjs            # Pi census of recorded goal-verify-nudge records: counts, categories and dates, no text
-|   +-- count-pi-goal-nudges.test.mjs       # per-reason counts, unknown record type, no message text in the output
 |   +-- goal-core.cjs                       # scope validation, opaque paths, atomic state, lifecycle, packet binding, rendering, verifier, legacy quarantine
 |   +-- goal-core.test.cjs                  # core, lifecycle, concurrency, legacy, hardening, packet, CLI contract coverage
 |   +-- goal-slice.cjs                      # packet goal.md projections: frontmatter split, durable and chat slices, objective slice, hash
-|   +-- goal-slice.test.cjs                 # no-leak, slice boundary, nested versus singular, hash stability, unbound paths
-|   +-- score-verifier-labeled-set.cjs      # offline scorer: three zero-call verifier arms, clamp defects, stop and gate lines
-|   `-- score-verifier-labeled-set.test.cjs # loader, normalization, report and stop lines, CLI with stub model binaries
+|   `-- goal-slice.test.cjs                 # no-leak, slice boundary, nested versus singular, hash stability, unbound paths
 +-- bin/
 |   +-- goal.cjs                   # manage CLI: stable envelope + explicit scope/legacy actions
 |   `-- goal.test.cjs              # CLI binding, privacy, concurrency, legacy action coverage
@@ -119,15 +113,11 @@ goal/
 |---|---|
 | `lib/goal-core.cjs` | Scope validation (`resolveGoalScope`), opaque SHA-256 path resolution, atomic state I/O (temp + fsync + rename, mode 0600/0700, cross-process locks), the goal lifecycle (`set`/`show`/`clear`/`complete`/`pause`/`resume`/`history`), packet binding (`bindGoal`/`unbindGoal`/`noteResent`/`resendPending`/`appendGoalLog`/`describePacketGoal`), `renderGoalBrief` (byte-compatible `[active_goal]` block, rendered from the packet when bound) and `renderResendReminder`, `buildGoalPrompt` (RICCE skeleton), `verifyGoalHeuristic`, diagnostics (`doctor`/`health`), and legacy quarantine (`legacy-inspect`/`legacy-migrate`/`legacy-archive`). Reads fail open; mutations raise stable `GoalError` codes. |
 | `lib/goal-slice.cjs` | The one definition of where a goal document's frontmatter ends and its durable slice begins. Produces the measured slice, the chat slice, the objective slice and the slice hash; reads a packet's goal inside the workspace and nowhere else. Imported by the core and by the OpenCode plugin. |
-| `lib/count-pi-goal-nudges.mjs` | Pi census of the goal verifier's recorded use. It walks a Pi session directory and counts `goal-verify-nudge` records per session file by verdict and reason category, with first and last dates. Its first line states the counting method. It prints no message text, and an unknown record type stops it with a named error. |
-| `lib/build-verifier-fixture.cjs` | Builds unlabeled rows for the verifier scorer. Each Pi row pairs a recorded nudge with the turn text behind it. Each Claude row pairs a native `goal_status` result, kept as a pre-label, with the assistant text before it, and Claude rows come only from a transcript directory the operator names. Every `label` stays empty for the operator. The output holds conversation text, so it is written with mode `0600`, never overwrites a file and stays untracked. |
-| `lib/score-verifier-labeled-set.cjs` | Offline scorer for a labeled row file. It runs three zero-call arms on identical rows: the OpenCode plugin heuristic on the as-ingested text, a tail-window arm on the raw last 1,200 characters and goal-core parity. It prints a confusion table per arm, the false `not_met` rows by heuristic check, the clamp-defect count and a stop or gate line. It stops under 30 labeled rows and spawns no model binary. |
 | `bin/goal.cjs` | Stable `STATUS=`/`ACTION=` command envelope and explicit scope/legacy actions. Never writes goal state directly: every mutation goes through the shared core. |
 | `pi/goal-context.ts` | Pi native lifecycle binding. Registers `/goal-pi`, injects on `input`, restores on `session_start`, verifies on `turn_end`. Dynamic-imports the core (supports both canonical and discovery-symlink paths). |
 | `cursor/goal-inject.mjs` | Cursor `sessionStart`-only injection. Reads the active goal, renders the brief and the resend reminder, returns them as `agent_message`. Fails open unconditionally. |
 | `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
 | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy, and legacy action coverage. |
-| `lib/count-pi-goal-nudges.test.mjs`, `lib/build-verifier-fixture.test.cjs`, `lib/score-verifier-labeled-set.test.cjs` | Census, row builder and scorer coverage on synthetic fixtures. No test reads a real session. |
 
 `.skilled/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch, the state directory, `lib/goal-slice.cjs` and the core's `appendPacketLog`, and imports nothing else from this tree.
 
@@ -152,7 +142,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | The core imports Node builtins, `../../shared/hook-flags.cjs` and `./goal-slice.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor and Devin via `createRequire`; Pi via dynamic `import`). The OpenCode plugin imports `goal-slice.cjs` and the core's `appendPacketLog` only. Only the offline scorer, `lib/score-verifier-labeled-set.cjs`, imports the plugin, to run its heuristic as shipped through `__test`. |
+| Imports | The core imports Node builtins, `../../shared/hook-flags.cjs` and `./goal-slice.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor and Devin via `createRequire`; Pi via dynamic `import`). The OpenCode plugin imports `goal-slice.cjs` and the core's `appendPacketLog` only. |
 | Scope | Every read or mutation resolves a composite `workspace + runtime + native session id` scope. No default session, no process-global current-goal pointer. Missing identity → no goal on read, stable error on mutation. A packet is shared content; which packet a session is bound to is per-session state. |
 | Directive | The bound packet's `goal.md` is the source. Tooling writes only its log, below the durable slice, and only through the locked append. Decisions, binding rows and criteria are the operator's to change through `/create:goal` (`sk-create-goal`), and every change is resent in chat as the chat slice that section 4 of that mode's `references/budget-and-handoff.md` defines. |
 | State | Atomic writes (temp + fsync + rename), mode 0600 files / 0700 dirs, cross-process filesystem locks. Record locks live in the session's state dir; packet-log locks live under the workspace's default state root, keyed on the packet's real path and never redirected by `OPENCODE_GOAL_STATE_DIR`, so an alias and its target, and two sessions with different record stores, all contend on one lock. Raw identities never appear in filenames or aggregate diagnostics. |
@@ -167,9 +157,6 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 node --test \
   .skilled/hooks/goal/lib/goal-slice.test.cjs \
   .skilled/hooks/goal/lib/goal-core.test.cjs \
-  .skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs \
-  .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs \
-  .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs \
   .skilled/hooks/goal/bin/goal.test.cjs \
   .skilled/hooks/goal/pi/goal-pi.test.mjs \
   .skilled/hooks/goal/cursor/goal-cursor.test.mjs \
@@ -177,12 +164,6 @@ node --test \
 ```
 
 Expected result: all tests pass.
-
-```bash
-node .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs --dir ~/.pi/agent/sessions
-```
-
-Expected result: a `method:` line first, one `session:` line per session file that holds a nudge and a `totals:` line, with no message text. The census only reads.
 
 ```bash
 node --test .skilled/plugins/tests/opencode-goal-*.test.cjs

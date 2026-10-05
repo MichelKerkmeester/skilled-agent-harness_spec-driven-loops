@@ -56,7 +56,6 @@ route here: `apply`, which edits, and `score`, which reports and does not.
 - `references/scoring-and-verification.md` - pass order, precedence arithmetic, bands, and the re-scan.
 - `assets/voice-report-template.md` - the shape of the result.
 - `scripts/hvr_scan.py` - the mechanical pass. Parses the standard at run time.
-- `scripts/hvr_reader_lens.py` - the offline reader-needed lens, making zero model calls, drawing the operator's labels sample and reporting the two comparators against those labels, leaving `hvr_scan.py` unchanged.
 - `references/hvr-rules.md` - the base, what a reply loads. Referenced, never copied.
 - `references/hvr-publish-supplement.md` - the supplement, what a published document adds. Loaded after the base when a document is scored or published.
 

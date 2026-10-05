@@ -1,3 +1,0 @@
-{"parentUuid":null,"isSidechain":false,"uuid":"00000000-0000-4000-8000-000400000001","sessionId":"00000000-0000-4000-8000-000400000000","timestamp":"2026-09-01T10:00:01.000Z","entrypoint":"cli","type":"user","message":{"role":"user","content":"CANARY-u1 hello"}}
-{"type":"user","message":{"role":"user","content":"CANARY-broken
-{"parentUuid":"00000000-0000-4000-8000-000400000002","isSidechain":false,"uuid":"00000000-0000-4000-8000-000400000003","sessionId":"00000000-0000-4000-8000-000400000000","timestamp":"2026-09-01T10:00:03.000Z","entrypoint":"cli","type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"CANARY-a1 after"}]}}

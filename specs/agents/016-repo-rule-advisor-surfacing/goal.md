@@ -110,6 +110,7 @@ and findings belong here.
 | Phases 001 and 002 | Complete per the phase map | spec.md Phase Documentation Map. Criteria left unticked until an evaluator confirms them |
 | D2 amendment | Done | operator chose to fold a simple-terms clause for communication.md into 006; D2 and 006 D1 amended, 006 REQ-007 and AC-006 added |
 | Byte criterion amendment | Done | operator waived the 91,028 B target; criterion names 006 ADR-002 |
+| CI rule canary | Done | pushed c83421238f; Rule Canary Sync and Repo Rules Corpus passed, last delivery-prefix anchor ends at byte 16345 |
 
 ### Deviations and findings
 

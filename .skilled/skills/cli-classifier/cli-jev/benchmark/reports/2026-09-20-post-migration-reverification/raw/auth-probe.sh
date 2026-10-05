@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Authenticated Surface Probe
+# ───────────────────────────────────────────────────────────────
+# Probes the authenticated surface from the migrated hub home: auth status and
+# test plus the judgment verbs against the stored credential, with no provider
+# key variable set in the environment. Kept as the raw evidence of the
+# post-migration re-verification report beside this file.
 # Authenticated half, re-run from the migrated hub home: the credential lives in the
 # store, no provider key variable is set in the environment.
 #

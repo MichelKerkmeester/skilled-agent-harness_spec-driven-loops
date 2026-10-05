@@ -63,7 +63,7 @@ node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/r
 
 # Model-benchmark mode (benchmarks a model/prompt, not an agent file; default path unchanged)
 node .skilled/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
-# Opt-in 5-dimension scorer (default is --scorer pattern); grader noop|mock|llm
+# Opt-in 5-dimension scorer (default is --scorer pattern); grader auto|noop|mock|llm|jev (auto uses Jev when a key is stored)
 node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs --profile .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs --scorer 5dim --grader noop
 ```
 
