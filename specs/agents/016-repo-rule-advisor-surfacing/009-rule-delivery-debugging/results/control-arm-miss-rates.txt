@@ -1,0 +1,23 @@
+Natural miss rates in the 007 and 008 control arms, scored from results/scored-runs.jsonl.
+Environment: no project-level AGENTS.md (see delivery-trace.md). Wilson 95% intervals.
+
+Reply-rule miss: long replies whose run did not read communication.md and communication-prose.md before the reply (007 arm current).
+  luna            64.4% of 149 [56.5-71.7]
+  swe             61.9% of 97 [51.9-70.9]
+  deepseek-oc     53.6% of 28 [35.8-70.5]
+  deepseek-cline  92.6% of 27 [76.6-97.9]
+  deepseek        50.0% of 2 [9.5-90.5]
+
+Gate 5 miss: runs that wrote a file before reading REPO RULES.md (008 arm full).
+  luna            4.5% of 110 [2.0-10.2]
+  swe             0.0% of 10 [0.0-27.8]
+  deepseek-oc     0.0% of 8 [0.0-32.4]
+  deepseek-cline  0.0% of 8 [0.0-32.4]
+
+Missed runs by cause (delivery-trace.md section 2). Truncated: 0, since Devin's mandates sit inside its 16,384-byte cut. Outranked would need a delivered instruction telling the model to skip
+the load. None was identified, so Devin misses are classed seen and skipped. This audit did not test for softer competition, such as a
+system prompt that favours short answers. Luna and OpenCode misses are not delivered, because their environments carry neither mandate.
+  gate5/not delivered: 5
+  gate5/seen and skipped: 0
+  reply/not delivered: 136
+  reply/seen and skipped: 61

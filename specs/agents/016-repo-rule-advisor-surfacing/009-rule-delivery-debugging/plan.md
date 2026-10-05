@@ -89,6 +89,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ---
 
+**Arm instructions (REQ-008).** Arms vary the instructions through a project-level copy of the repository `AGENTS.md` in each environment, not a copied global. Codex and OpenCode load a project `AGENTS.md` live, and the 007 and 008 environments, which had none, delivered neither mandate to them (`results/delivery-trace.md`). The global files stay untouched.
+
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 

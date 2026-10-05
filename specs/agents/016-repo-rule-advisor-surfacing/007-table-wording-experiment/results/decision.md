@@ -28,3 +28,7 @@ Live adoption waits until the 006 post-change window has been measured, as `prer
 ## 3. WHAT IT MEANS
 
 The rule works when it is read, in either wording. The table rate is decided by whether the rule is delivered, which is the question phase 009 takes up, not by how the rule is worded.
+
+## 4. LIMITS
+
+The test environments carried no project-level `AGENTS.md`, so only the Devin strata received the AGENTS.md mandates. Luna and the OpenCode strata found the rules by listing the directory (`009-rule-delivery-debugging/results/delivery-trace.md`). Both arms shared that environment, so the arm comparison stands, but the delivery rates here do not predict delivery in a live session, where the root `AGENTS.md` loads.

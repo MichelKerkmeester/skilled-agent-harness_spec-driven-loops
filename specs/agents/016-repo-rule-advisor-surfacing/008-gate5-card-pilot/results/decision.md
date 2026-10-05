@@ -32,3 +32,7 @@ Live adoption waits until the 006 post-change window has been measured. Before t
 
 - **Reply rules missed more often:** cards minus full +6.5 points, -4.3 to +17.2. A secondary metric that does not enter the rule, but its interval leans against cards. The live measurement after adoption should track it.
 - **Fallback:** after reading a card, the model opened the full rule file in 55.9% of runs (Luna 65.6%, DeepSeek 27 to 29%, SWE-2 0 of 7). That is why the byte saving is 29% and not the 80% the card sizes alone would give.
+
+## 4. LIMITS
+
+The test environments carried no project-level `AGENTS.md`, so only the Devin strata received the AGENTS.md mandates. Luna and the OpenCode strata found the rules by listing the directory (`009-rule-delivery-debugging/results/delivery-trace.md`). Both arms shared that environment, so the arm comparison stands, but the delivery rates here do not predict delivery in a live session, where the root `AGENTS.md` loads.
