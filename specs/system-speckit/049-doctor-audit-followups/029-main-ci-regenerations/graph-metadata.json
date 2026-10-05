@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/029-main-ci-regenerations",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/029-main-ci-regenerations",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "main ci regenerations",
+      "hermes skill copy drift",
+      "stale compiled command contract",
+      "main ci regenerations plan",
+      "main ci regenerations tasks",
+      "main ci regenerations summary"
+    ],
+    "key_topics": [
+      "main",
+      "regenerations",
+      "hermes",
+      "skill",
+      "copy",
+      "drift",
+      "stale",
+      "compiled",
+      "command",
+      "contract",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".hermes/skills/sk-create-changelog/SKILL.md",
+      ".hermes/skills/sk-create-repo-rule/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Tree Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runtime Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Regenerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Reproduce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A changelog formatting commit edited two sk-doc packet SKILL.md files without regenerating their Hermes copies",
+    "created_at": "2026-10-05T10:55:33Z",
+    "last_save_at": "2026-10-05T10:55:37.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:52cefc5a7a6ff173434334ce697af04d193123696d55976de9aec20976638479",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "07cc537a6355bb8cf004b11a215f30b1b2c7b7bb97a46532a3b4d35f47022e80",
+      "plan.md": "af1746f62a4247a6e8ada5a5356aff5f93ea323f7c6955d4e7a97de9a1c356f9",
+      "tasks.md": "6f6f9a425c18ba686e18655bcfa58cf2cb8d13c88e7ddf9827989e4fcaa599c4",
+      "implementation-summary.md": "d9746f2af892a2c8887b7df9612d4d17b65c2f912acae666d4555a718907cec5"
+    },
+    "last_active_at": null
+  }
+}

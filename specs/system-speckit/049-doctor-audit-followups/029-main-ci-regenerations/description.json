@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/029-main-ci-regenerations",
+  "description": "Phase 29: main-ci-regenerations",
+  "keywords": [
+    "phase",
+    "main-ci-regenerations"
+  ],
+  "lastUpdated": "2026-10-05T10:55:34.592Z",
+  "specId": "029",
+  "folderSlug": "main-ci-regenerations",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

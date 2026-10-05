@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6756,
-    "ok": 13364,
+    "ok": 13368,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23689,
+  "documentsScanned": 23693,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
+  "manifestHash": "7dbc5a5cd6f12e8c71e3425aed0599e40876432d1663254aeaaad6f01c9f8d7f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33775,
+      "ok": 33781,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -71130,6 +71130,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/scratch",
       "reason": "excluded directory"
     },
     {

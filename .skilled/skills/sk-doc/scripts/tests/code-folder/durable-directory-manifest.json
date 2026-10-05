@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 810,
+  "derived_count": 811,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -481,6 +481,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/scripts",
     ".skilled/skills/sk-doc/sk-create-repo-rule",
     ".skilled/skills/sk-doc/sk-create-repo-rule/references",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture",
     ".skilled/skills/sk-doc/sk-create-skill",
     ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill",
     ".skilled/skills/sk-doc/sk-create-skill/references",
