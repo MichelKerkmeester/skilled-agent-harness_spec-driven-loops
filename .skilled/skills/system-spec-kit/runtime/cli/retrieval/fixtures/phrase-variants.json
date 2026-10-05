@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d9ef1a7766089f070381064ace32b89d6f7affa0d0a41e490ae65ba1fbee8bf4",
+  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7454,9 +7454,6 @@
     "ab shipped search levers": [
       "ab shipped search levers"
     ],
-    "abab rule experiment": [
-      "abab rule experiment"
-    ],
     "ablation accuracy": [
       "ablation accuracy"
     ],
@@ -9157,6 +9154,18 @@
     ],
     "advisor status truthfulness": [
       "advisor status truthfulness"
+    ],
+    "advisor stress fixtures plan": [
+      "advisor stress fixtures plan"
+    ],
+    "advisor stress fixtures summary": [
+      "advisor stress fixtures summary"
+    ],
+    "advisor stress fixtures tasks": [
+      "advisor stress fixtures tasks"
+    ],
+    "advisor stress test fixtures": [
+      "advisor stress test fixtures"
     ],
     "advisor suggested order": [
       "advisor suggested order"
@@ -14743,6 +14752,15 @@
     "card field renderer parameter classes": [
       "card field renderer parameter classes"
     ],
+    "card pilot decision": [
+      "card pilot decision"
+    ],
+    "card pilot deviations": [
+      "card pilot deviations"
+    ],
+    "card pilot preregistration": [
+      "card pilot preregistration"
+    ],
     "card plus self check": [
       "card plus self-check"
     ],
@@ -15470,6 +15488,9 @@
     "changelog narrative format": [
       "changelog narrative format"
     ],
+    "changelog nbsp separators": [
+      "changelog nbsp separators"
+    ],
     "changelog omission rules": [
       "changelog omission rules"
     ],
@@ -15533,11 +15554,20 @@
     "changelog search metadata validation": [
       "changelog search metadata validation"
     ],
+    "changelog section spacing": [
+      "changelog section spacing"
+    ],
     "changelog shape checker": [
       "changelog shape checker"
     ],
     "changelog shipped vs planned mislabel fix": [
       "changelog shipped vs planned mislabel fix"
+    ],
+    "changelog spacing plan": [
+      "changelog spacing plan"
+    ],
+    "changelog spacing tasks": [
+      "changelog spacing tasks"
     ],
     "changelog stale counts": [
       "changelog stale counts"
@@ -43594,11 +43624,17 @@
     "gate 5 backstop advisory": [
       "gate 5 backstop advisory"
     ],
+    "gate 5 card decision rule": [
+      "gate 5 card decision rule"
+    ],
     "gate 5 card pilot": [
       "gate 5 card pilot"
     ],
     "gate 5 card pilot plan": [
       "gate 5 card pilot plan"
+    ],
+    "gate 5 card pilot sample waiver": [
+      "gate 5 card pilot sample waiver"
     ],
     "gate 5 card pilot summary": [
       "gate 5 card pilot summary"
@@ -43606,8 +43642,17 @@
     "gate 5 card pilot tasks": [
       "gate 5 card pilot tasks"
     ],
+    "gate 5 cards adopted": [
+      "gate 5 cards adopted"
+    ],
+    "gate 5 guard follow up": [
+      "gate 5 guard follow-up"
+    ],
     "gate 5 loading design": [
       "gate 5 loading design"
+    ],
+    "gate 5 miss cause": [
+      "gate 5 miss cause"
     ],
     "gate 5 miss rate": [
       "gate 5 miss rate"
@@ -43617,6 +43662,12 @@
     ],
     "gate 5 rule loading": [
       "gate 5 rule loading"
+    ],
+    "gate 6 guard unresolved": [
+      "gate 6 guard unresolved"
+    ],
+    "gate 6 replication preregistration": [
+      "gate 6 replication preregistration"
     ],
     "gate 7": [
       "gate 7"
@@ -49884,6 +49935,12 @@
     "isolated continuity artifacts": [
       "isolated continuity artifacts"
     ],
+    "isolated environment mandate delivery": [
+      "isolated environment mandate delivery"
+    ],
+    "isolated rule experiment": [
+      "isolated rule experiment"
+    ],
     "isolated true": [
       "--isolated=true"
     ],
@@ -54156,6 +54213,12 @@
     ],
     "manage webhooks": [
       "manage webhooks"
+    ],
+    "mandated rule load fix plan": [
+      "mandated rule load fix plan"
+    ],
+    "mandated rule load skipped": [
+      "mandated rule load skipped"
     ],
     "mandatory checklist headings": [
       "mandatory checklist headings"
@@ -61195,6 +61258,9 @@
     ],
     "no table rule wording plan": [
       "no table rule wording plan"
+    ],
+    "no table wording decision rule": [
+      "no table wording decision rule"
     ],
     "no tsx template fallback": [
       "no-tsx template fallback"
@@ -68338,6 +68404,9 @@
     "plain language routing aliases": [
       "plain-language routing aliases"
     ],
+    "plain noun rule phrases": [
+      "plain noun rule phrases"
+    ],
     "plan": [
       "plan"
     ],
@@ -68778,6 +68847,9 @@
     ],
     "plugin bridge mjs smoke": [
       "plugin bridge mjs smoke"
+    ],
+    "plugin bridge stress stdin request": [
+      "plugin bridge stress stdin request"
     ],
     "plugin bridge test fixture cleanup": [
       "plugin bridge test fixture cleanup"
@@ -74180,6 +74252,9 @@
     "release notes evidence": [
       "release notes evidence"
     ],
+    "release notes spacing": [
+      "release notes spacing"
+    ],
     "release notes split lanes": [
       "release notes split lanes"
     ],
@@ -74935,6 +75010,15 @@
     "reply harness rerun": [
       "reply harness rerun"
     ],
+    "reply rule gate decision": [
+      "reply rule gate decision"
+    ],
+    "reply rule gate preregistration": [
+      "reply rule gate preregistration"
+    ],
+    "reply rule miss by executor": [
+      "reply rule miss by executor"
+    ],
     "reply rule miss rate": [
       "reply rule miss rate"
     ],
@@ -75051,6 +75135,9 @@
     ],
     "repo rule template": [
       "repo rule template"
+    ],
+    "repo rule trigger phrases ripgrep": [
+      "repo rule trigger phrases ripgrep"
     ],
     "repo rules md scaffold": [
       "REPO RULES.md scaffold"
@@ -76459,6 +76546,9 @@
     ],
     "resource maps cycle": [
       "resource maps cycle"
+    ],
+    "respace skilled releases": [
+      "respace skilled releases"
     ],
     "respawn lock idle eviction reap root": [
       "respawn lock idle eviction reap root"
@@ -78741,6 +78831,24 @@
     "rule count 39 registry": [
       "rule count 39 registry"
     ],
+    "rule delivery debugging": [
+      "rule delivery debugging"
+    ],
+    "rule delivery debugging plan": [
+      "rule delivery debugging plan"
+    ],
+    "rule delivery debugging summary": [
+      "rule delivery debugging summary"
+    ],
+    "rule delivery debugging tasks": [
+      "rule delivery debugging tasks"
+    ],
+    "rule delivery decision rule": [
+      "rule delivery decision rule"
+    ],
+    "rule delivery deviations": [
+      "rule delivery deviations"
+    ],
     "rule delivery instrumentation": [
       "rule delivery instrumentation"
     ],
@@ -78753,6 +78861,9 @@
     "rule delivery instrumentation tasks": [
       "rule delivery instrumentation tasks"
     ],
+    "rule delivery trace": [
+      "rule delivery trace"
+    ],
     "rule file example and repair": [
       "rule file example and repair"
     ],
@@ -78764,6 +78875,21 @@
     ],
     "rule loading research outcome": [
       "rule loading research outcome"
+    ],
+    "rule phrase count target": [
+      "rule phrase count target"
+    ],
+    "rule phrase find surface": [
+      "rule phrase find surface"
+    ],
+    "rule phrase find surface plan": [
+      "rule phrase find surface plan"
+    ],
+    "rule phrase find surface summary": [
+      "rule phrase find surface summary"
+    ],
+    "rule phrase find surface tasks": [
+      "rule phrase find surface tasks"
     ],
     "rule precedence first match wins": [
       "rule precedence first match wins"
@@ -83138,6 +83264,9 @@
     "short low signal query escalation": [
       "short low-signal query escalation"
     ],
+    "short no table wording adopted": [
+      "short no table wording adopted"
+    ],
     "short registry reconstruction criteria": [
       "short registry reconstruction criteria"
     ],
@@ -84890,6 +85019,9 @@
     "sk create changelog 1 3 2 0": [
       "sk-create-changelog 1.3.2.0"
     ],
+    "sk create changelog 1 3 3 0": [
+      "sk-create-changelog 1.3.3.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -84925,6 +85057,9 @@
     ],
     "sk create changelog v1 3 2 0": [
       "sk-create-changelog v1.3.2.0"
+    ],
+    "sk create changelog v1 3 3 0": [
+      "sk-create-changelog v1.3.3.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -95117,17 +95252,29 @@
     "table status fallback tasks": [
       "table status fallback tasks"
     ],
+    "table wording decision": [
+      "table wording decision"
+    ],
+    "table wording deviations": [
+      "table wording deviations"
+    ],
     "table wording experiment": [
       "table wording experiment"
     ],
     "table wording experiment plan": [
       "table wording experiment plan"
     ],
+    "table wording experiment sample waiver": [
+      "table wording experiment sample waiver"
+    ],
     "table wording experiment summary": [
       "table wording experiment summary"
     ],
     "table wording experiment tasks": [
       "table wording experiment tasks"
+    ],
+    "table wording preregistration": [
+      "table wording preregistration"
     ],
     "tag color configuration": [
       "tag color configuration"
@@ -101989,6 +102136,9 @@
     ],
     "z future skills": [
       "z_future skills"
+    ],
+    "z future stress fixture": [
+      "z-future stress fixture"
     ],
     "z future z archive scan exclude": [
       "z_future z_archive scan exclude"

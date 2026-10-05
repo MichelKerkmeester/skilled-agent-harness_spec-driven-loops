@@ -30,7 +30,8 @@
     "system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment",
     "system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs",
     "system-speckit/049-doctor-audit-followups/026-doctor-run-followups",
-    "system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape"
+    "system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape",
+    "system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures"
   ],
   "manual": {
     "depends_on": [],
@@ -194,16 +195,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-05T09:14:04.687Z",
+    "last_save_at": "2026-10-05T10:06:20.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:61b03d43e5396cc24b7dd2acd136329b9a79262d72b052357c6bd43649c5a136",
+    "source_fingerprint": "sha256:aabe4553a6933315f37bd42ed3e3374ac3845ef08ed8248f39ba32b306a665c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea855db6fe73eccf38005fcdd6fe823a1a8474d98674109d981a7c4e22f591be"
+      "spec.md": "3576017750b99c0fd9bb1c3526dfd510e9bee212fcbc4556a7565399dc658adc"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
     "last_active_at": "2026-10-04T08:38:47.405Z"

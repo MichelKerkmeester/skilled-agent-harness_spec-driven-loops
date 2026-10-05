@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6744,
-    "ok": 13331,
+    "missing-frontmatter": 6756,
+    "ok": 13364,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23644,
+  "documentsScanned": 23689,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d9ef1a7766089f070381064ace32b89d6f7affa0d0a41e490ae65ba1fbee8bf4",
+  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33725,
+      "ok": 33775,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -29347,6 +29347,78 @@
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-generator-sync.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/executor-failure-triage.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/experiment-environment-build.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/table-wording-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/ROADMAP.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/caching-options.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/config-migration.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/dependencies.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/docs/incident-2026-09.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment-fixture/specs/fixture/001-maintenance/spec.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -66281,6 +66353,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
       "reason": "excluded directory"
     },
@@ -67914,6 +67994,10 @@
     },
     {
       "path": "specs/sk-doc/064-description-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-changelog-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71042,6 +71126,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
       "reason": "excluded directory"
     },
     {

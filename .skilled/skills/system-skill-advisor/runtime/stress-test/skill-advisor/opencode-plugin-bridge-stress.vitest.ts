@@ -63,6 +63,13 @@ function cliArgvAt(index: number): readonly string[] {
   return (mockedBridge.spawn.mock.calls[index]?.[1] as readonly string[] | undefined) ?? [];
 }
 
+// The plugin writes its advisor request to the child's stdin, never to argv.
+function cliRequestAt(index: number): string {
+  const child = mockedBridge.spawn.mock.results[index]?.value as { stdin?: { end?: ReturnType<typeof vi.fn> } } | undefined;
+  const request = child?.stdin?.end?.mock.calls[0]?.[0];
+  return typeof request === 'string' ? request : '';
+}
+
 describe('sa-034 — OpenCode plugin stress', () => {
   // Env keys mutated by these tests; snapshot before each, restore after.
   let restoreEnv: (() => void) | null = null;
@@ -138,8 +145,8 @@ describe('sa-034 — OpenCode plugin stress', () => {
     mockedBridge.spawn.mockImplementation(() => makeChild(cliResponse([
       { skillId: 'system-spec-kit', confidence: 0.91, uncertainty: 0.18 },
     ])));
-    // The CLI argv carries a fixed overhead (CLI path, flags, serialized options)
-    // of roughly 276 bytes, so the prompt budget must clear that to be binding at all.
+    // The byte budget covers the whole stdin request, whose fixed part (the JSON
+    // envelope and serialized options) must fit before any prompt character does.
     const maxPromptBytes = 700;
     const hooks = await makePlugin({
       maxPromptBytes,
@@ -153,14 +160,13 @@ describe('sa-034 — OpenCode plugin stress', () => {
 
     expect(output.system[0]).toHaveLength(64);
     expect(output.system[0]).toContain('Advisor:');
-    const argv = cliArgvAt(0);
-    const optionsIndex = argv.indexOf('--options');
-    const requestOptions = JSON.parse(argv[optionsIndex + 1] ?? '{}') as Record<string, unknown>;
-    expect(requestOptions.confidenceThreshold).toBe(0.8);
-    const promptArg = argv[argv.indexOf('--prompt') + 1] ?? '';
-    expect(Buffer.byteLength(promptArg, 'utf8')).toBeLessThan(Buffer.byteLength(prompt, 'utf8'));
-    const invocationBytes = argv.reduce((total, arg) => total + Buffer.byteLength(arg, 'utf8') + 1, 0);
-    expect(invocationBytes).toBeLessThanOrEqual(maxPromptBytes);
+    expect(cliArgvAt(0).join(' ')).not.toContain('implement stress tests');
+    const request = cliRequestAt(0);
+    const parsed = JSON.parse(request) as { prompt: string; options: Record<string, unknown> };
+    expect(parsed.options.confidenceThreshold).toBe(0.8);
+    expect(parsed.prompt.length).toBeGreaterThan(0);
+    expect(Buffer.byteLength(parsed.prompt, 'utf8')).toBeLessThan(Buffer.byteLength(prompt, 'utf8'));
+    expect(Buffer.byteLength(request, 'utf8')).toBeLessThanOrEqual(maxPromptBytes);
   });
 
   it('honors disabled env aliases without invoking the advisor', async () => {
