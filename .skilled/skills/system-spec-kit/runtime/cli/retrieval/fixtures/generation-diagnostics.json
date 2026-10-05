@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6743,
-    "ok": 13323,
+    "missing-frontmatter": 6744,
+    "ok": 13327,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23635,
+  "documentsScanned": 23640,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
+  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33713,
+      "ok": 33719,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -28350,6 +28350,12 @@
       "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -71028,6 +71034,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/scratch",
       "reason": "excluded directory"
     },
     {
