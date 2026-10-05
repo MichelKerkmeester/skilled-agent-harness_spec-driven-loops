@@ -28,7 +28,6 @@ trigger_phrases:
 | `init_skill.py` | Scaffolds a skill directory. |
 | `package_skill.py` | Validates and packages a skill directory. |
 | `regenerate-skill-derived.cjs` | Regenerates derived skill data. |
-| `score-clarify-default.cjs` | Counts compiled-routing clarify answers with zero model calls and scores labeled clarify rows behind a 30-row gate. |
 | `leaf-route-replay.cjs` | Replays the stage-two `ROUTER.md` keyword block with zero model calls, recounts `ROUTER.md` reads behind `--transcripts` and compares the prose arm behind `--prose`. |
 | `validate-compiled-routing-scenarios.cjs` | Validates compiled-routing scenario content. |
 | `validate-playbook-topology.cjs` | Validates manual playbook topology. |

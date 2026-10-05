@@ -86,17 +86,6 @@ The parent-hub path starts by confirming the target really is one advisor-routab
 
 `--compiled-routing legacy` and `--compiled-routing ready` produce genuinely different on-disk artifacts for the same hub shape. The authoring workflow asks which one you want rather than silently picking. Legacy leaves the router directive in place with no canonical manifest, which is backward compatible with every existing call. Ready mints a canonical manifest with `compiled-route-manifest.cjs mint`, then verifies it is fresh and only reports `compiled-ready` when both steps succeed. A failed mint or a stale manifest falls back to legacy rather than ever hand-authoring a manifest or a digest. Either way, a ready manifest stays inert onboarding evidence: it never activates compiled serving or changes the repository default on its own.
 
-### Measuring Clarify Defaults
-
-When a compiled hub cannot choose between near-tied modes, it answers `clarify` with a short list of alternatives and suggests no default. [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) measures whether a classifier could suggest one. With no switch it makes no model call. It replays the committed canary cases, hub playbook scenarios and routing-corpus prompts through each hub's compiled engine and counts `clarify` against the other outcomes per hub and source. `--rows-out <file>` writes each clarify row whose alternatives are modes, with an empty `label` for you to fill. `--transcripts <dir>` counts real front-door answers in a folder you name without printing any text.
-
-```bash
-node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --report <dir> --rows-out <file>
-node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --score <file>
-```
-
-`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
-
 ### Replaying Stage-Two Leaf Routes
 
 When a hub's `ROUTER.md` keyword block scores a request, the winning intents pick the leaf routes. [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) measures how well those picks match the committed gold scenarios. With no switch it makes no model call. It scores each hub's predicted leaf routes against the gold routes and prints one `hub=` line per hub plus a `total` line. `--transcripts <dir>` counts real `ROUTER.md` reads in a folder you name without printing any text. `--prose <file>` compares the keyword arm against a prose arm and prints one `replay verdict:` line that keeps, drops or stops.
@@ -164,7 +153,6 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
-| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 35` and `fail 0` |
 | Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 22` and `fail 0` |
 
 ---
@@ -181,5 +169,4 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`references/skill/upgrading-a-skill-to-v4.md`](./references/skill/upgrading-a-skill-to-v4.md) | Adopter guide: reconcile a customized skill to the v4 parent-hub format |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
-| [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) | Zero-call clarify census and default-pick scorer |
 | [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) | Zero-call Stage-Two leaf-route replay, router-read recount and prose comparison |
