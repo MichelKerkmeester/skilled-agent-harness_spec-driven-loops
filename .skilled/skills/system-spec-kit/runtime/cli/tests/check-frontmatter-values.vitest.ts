@@ -45,6 +45,13 @@ describe('FRONTMATTER_VALUES shell rule', () => {
     expect(runRule(folder)).toEqual(['pass', 'Frontmatter values are in the shared list']);
   });
 
+  it('reads a value that carries a YAML inline comment as the value alone', () => {
+    const folder = packet({
+      'spec.md': doc('planning # why this type', '"important" # pinned'),
+    });
+    expect(runRule(folder)).toEqual(['pass', 'Frontmatter values are in the shared list']);
+  });
+
   it('warns, never fails, on a value outside the list and names the canonical values', () => {
     const folder = packet({
       'spec.md': doc('"planning"', '"normal"'),

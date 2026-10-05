@@ -67,6 +67,18 @@ describe('check-skill-doc-frontmatter shared value list', () => {
     expect(result.out).toContain('violations=0');
   });
 
+  it('reads values the way the other shared-list readers do: any case, YAML comment dropped', () => {
+    const root = makeTree({
+      'mixed-case.md': docBlock('Planning', 'HIGH'),
+      'commented.md': docBlock('planning', 'normal')
+        .replace('contextType: "planning"', 'contextType: review # why this type')
+        .replace('importance_tier: "normal"', 'importance_tier: "normal" # pinned'),
+    });
+    const result = runChecker(root);
+    expect(result.code).toBe(0);
+    expect(result.out).toContain('violations=0');
+  });
+
   it('fails a value outside the shared list', () => {
     const root = makeTree({ 'outlier.md': docBlock('architecture', 'normal') });
     const result = runChecker(root);

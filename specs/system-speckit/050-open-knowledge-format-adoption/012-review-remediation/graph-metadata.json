@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/050-open-knowledge-format-adoption/012-review-remediation",
+  "spec_folder": "system-speckit/050-open-knowledge-format-adoption/012-review-remediation",
+  "parent_id": "system-speckit/050-open-knowledge-format-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "050 review remediation",
+      "frontmatter value comment parsing",
+      "source tag cutoff date",
+      "census newline pathname",
+      "050 review remediation plan",
+      "frontmatter scalar comment rule",
+      "cutoff calendar date check",
+      "census line feed path",
+      "050 review remediation tasks",
+      "review finding fixes",
+      "fail before pass after",
+      "050 review remediation summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "frontmatter",
+      "value",
+      "comment",
+      "parsing",
+      "source",
+      "tag",
+      "cutoff",
+      "date",
+      "census",
+      "newline"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/check-frontmatter-values.vitest.ts",
+      ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-doc-frontmatter-checker.vitest.ts",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags-helper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-values-helper.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "check-skill-doc-frontmatter.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/check-source-tags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-values.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/check-frontmatter-values.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_frontmatter_values.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-doc-frontmatter-checker.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-doc-frontmatter-checker.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Knowledge Format",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review found four small defects in the packet's tooling",
+    "created_at": "2026-10-05T15:21:04Z",
+    "last_save_at": "2026-10-05T15:53:18.233Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dd7c08c54fe63bc52c19d9b1303e47bfb24d8d5e068eabbb1cafb372847ae75e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "227f96064a4b15507b6278fcae7ddef4a86b73e61881c712a2a78fb759ad1c2f",
+      "plan.md": "04e5ebc683e6bcc5adfa7423bc40eaefe2529e917e1b1967908882bad381087a",
+      "tasks.md": "f315805c99ac1605d9eabb100e72cd392e157efb699efafd6034fae94ea723f3",
+      "implementation-summary.md": "a5de5a8d898e0b30e9f5fcc6a547f6a7513caf4437751e6ac5cb9472ffcf6253"
+    },
+    "last_active_at": null
+  }
+}

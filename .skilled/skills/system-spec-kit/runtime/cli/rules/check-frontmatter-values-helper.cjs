@@ -45,6 +45,19 @@ function loadAccepted() {
 // ───────────────────────────────────────────────────────────────
 
 /**
+ * One YAML scalar as written after the key: a quoted value keeps everything
+ * between its quotes, and an unquoted value ends where ` #` starts a comment.
+ * @param {string} raw
+ * @returns {string}
+ */
+function scalarValue(raw) {
+  const value = raw.trim();
+  const quoted = value.match(/^(["'])(.*?)\1(?:\s+#.*)?$/);
+  if (quoted) return quoted[2].trim();
+  return value.replace(/(?:^|\s+)#.*$/, '').trim();
+}
+
+/**
  * Top-level scalar values of the leading frontmatter block, lowercased and unquoted.
  * @param {string} text
  * @returns {Map<string, string>}
@@ -56,7 +69,7 @@ function frontmatterScalars(text) {
   for (const line of match[1].split(/\r?\n/)) {
     const field = line.match(/^(contextType|importance_tier):\s*(.*?)\s*$/);
     if (!field) continue;
-    scalars.set(field[1], field[2].replace(/^(["'])(.*)\1$/, '$2').trim().toLowerCase());
+    scalars.set(field[1], scalarValue(field[2]).toLowerCase());
   }
   return scalars;
 }

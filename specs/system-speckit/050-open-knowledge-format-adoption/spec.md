@@ -120,6 +120,7 @@ Audit trail only; per-phase detail lives in each child's `plan.md`.
 | 9 | 009-census-hardening/ | Fix paths with spaces, measure accuracy per class on random samples, batch the git reads, add a rename-table rebuild | Complete |
 | 10 | 010-source-tag-hardening/ | Read whole tag paths, treat ignored folders the same everywhere, measure accuracy and what planted bad tags it catches | Complete |
 | 11 | 011-frontmatter-values-to-sk-doc/ | Move the document values and tiers into `sk-create-frontmatter`, keep the session list in spec-kit, repoint the four readers | Complete |
+| 12 | 012-review-remediation/ | Fix the four P2 advisories from the packet's deep review: an impossible cutoff date, YAML comments and case in the value readers, newline paths in the census | Complete |
 
 Order: 002 first. Then 003 and 004 can run in parallel. 005 needs the 004 resolver. 007 closes the adoption. 008 and 009 can run in parallel, and 010 follows 009 because both use the scanner's citation parser. 011 follows 008, whose corpus sweep it reruns after the move.
 
@@ -143,6 +144,7 @@ Order: 002 first. Then 003 and 004 can run in parallel. 005 needs the 004 resolv
 | 007-docs-and-closeout | 009-census-hardening | The census reproduces at its pinned commit | `census.txt` sha256 matches a rerun |
 | 009-census-hardening | 010-source-tag-hardening | The shared citation parser keeps paths that contain spaces | Scanner tests pass with that case |
 | 008-context-type-hardening | 011-frontmatter-values-to-sk-doc | The shared list and both checkers have a measured corpus result | `008/scratch/corpus-result.json` |
+| 011-frontmatter-values-to-sk-doc | 012-review-remediation | The four readers load one shared value list | Each new reader test passes on the fix and fails on the old code |
 <!-- /ANCHOR:phase-map -->
 
 ---

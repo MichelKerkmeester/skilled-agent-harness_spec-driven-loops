@@ -452,16 +452,20 @@ const PREFETCH_CHUNK_PATHS = 1000;
  * readCommittedText stores for each: the UTF-8 text under `${commit}:${path}`,
  * or null when the commit does not hold the path. Git names each requested
  * object on one stdin line and answers `<oid> <type> <size>`, the raw bytes
- * and a newline, or `<name> missing`; repo paths hold no newline, so lines
- * cannot collide. A failed chunk is fatal, never retried per document.
+ * and a newline, or `<name> missing`. A path with a line feed would split into
+ * two requests and shift every later reply onto the wrong path, so such a path
+ * is left out of the batch and readCommittedText reads it on its own, where the
+ * path travels as one argument. A failed chunk is fatal, never retried per
+ * document.
  * @param {string} repoRoot
  * @param {string} commit
  * @param {string[]} filePaths Repo-relative paths to read at `commit`.
  * @param {Map<string, string|null>} readCache
  */
 function prefetchCommitted(repoRoot, commit, filePaths, readCache) {
-  for (let start = 0; start < filePaths.length; start += PREFETCH_CHUNK_PATHS) {
-    const chunk = filePaths.slice(start, start + PREFETCH_CHUNK_PATHS);
+  const batchable = filePaths.filter((filePath) => !filePath.includes('\n'));
+  for (let start = 0; start < batchable.length; start += PREFETCH_CHUNK_PATHS) {
+    const chunk = batchable.slice(start, start + PREFETCH_CHUNK_PATHS);
     const result = spawnSync('git', ['-C', repoRoot, 'cat-file', '--batch'], {
       input: `${chunk.map((filePath) => `${commit}:${filePath}`).join('\n')}\n`,
       stdio: ['pipe', 'pipe', 'pipe'],
