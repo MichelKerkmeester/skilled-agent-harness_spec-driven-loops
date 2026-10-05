@@ -108,9 +108,10 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 
 > Codex runs a project hook only after the operator approves that exact entry.
 > The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
-> `trusted_hash`, and an entry with no approval, or one whose matcher changed after
-> approval, is skipped without a warning. After a `hooks.json` change, open `/hooks`
-> in an interactive Codex session and approve the changed entries.
+> `trusted_hash`, and an entry with no approval is skipped without a warning. Because
+> the approval is a hash, a changed entry is likely to need approving again. After a
+> `hooks.json` change, open `/hooks` in an interactive Codex session and approve every
+> entry it lists as needing review.
 
 > Codex has no task-dispatch guard. Its `spawn_agent` call reaches PreToolUse as
 > `collaborationspawn_agent`, but the hook payload carries the spawn `message`
