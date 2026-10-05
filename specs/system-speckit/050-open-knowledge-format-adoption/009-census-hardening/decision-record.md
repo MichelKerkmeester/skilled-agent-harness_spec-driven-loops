@@ -10,19 +10,20 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/050-open-knowledge-format-adoption/009-census-hardening"
-    last_updated_at: "2026-10-04T20:40:00Z"
+    last_updated_at: "2026-10-05T07:20:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Recorded the panel amendment before any panel label exists"
-    next_safe_action: "Run the panel and score the guessed class"
+    recent_action: "Recorded the panel run and its departures"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - "measurement-protocol.md"
       - "scratch/labels/operator-rows.md"
+      - "scratch/labels/panel/runs.log"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,7 +55,7 @@ Section 4 sends the 40 guessed rows that Luna 6 and DeepSeek V4.1 Flash dispute 
 
 ### Constraints
 
-- This record is written before any panel label exists.
+- This record is written before any panel label exists: the session log has it written at 2026-10-04T20:24:11Z, and the first panel call starts at 20:24:34Z, the first line of `scratch/labels/panel/runs.log`.
 - The panel sees the same evidence the operator file shows: the citing line with two lines either side, the citation and the candidate paths. It never sees the earlier labels.
 <!-- /ANCHOR:adr-001-context -->
 
@@ -70,7 +71,7 @@ Section 4 sends the 40 guessed rows that Luna 6 and DeepSeek V4.1 Flash dispute 
 - Each answers `intended`, `not_intended` or `cant_tell` per row, plus the path for an ambiguous row answered `intended`, in batches of 10, from an empty folder with no repository access.
 - Two or three matching labels settle a row. For an `intended` majority on an ambiguous row, the path must match too. Anything else stays unsettled and is reported as such.
 - A failed or unparseable answer counts as no vote, never as a label.
-- Two departures from the batches above, both made before any vote was scored. Gemini hit its output-token limit on batch 1, so that batch ran as one half of 5 rows and then 5 single rows. GLM on cli-pi answered batch 1 and one half-batch, then gave no output for 10 to 30 minutes on five calls, each stopped by its own process id. At the operator's direction its remaining 25 rows moved to cli-devin with the same model, `glm-5-3-flash-max`. Calls of 5 rows each hit the output-token limit, so it ran one row per call; 4 rows came back before Devin's daily quota ran out. The operator then sent the last 21 rows through cli-pi on LLM Gateway, `llmgateway/glm-5.3-flash` at max, one row per call. A row that failed was retried once. `panel/runs.log` records every call.
+- Two departures from the batches above, both made before any vote was scored. Gemini hit its output-token limit on batch 1, so that batch ran as one half of 5 rows and then 5 single rows. GLM on cli-pi answered batch 1 and one half-batch, then gave no output for 10 to 30 minutes on four calls, each stopped by its own process id; a fifth was stopped at 7 minutes to change route. At the operator's direction its remaining 25 rows moved to cli-devin with the same model, `glm-5-3-flash-max`. Calls of 5 rows each hit the output-token limit, so it ran one row per call; 4 rows came back before Devin's daily quota ran out. The operator then sent the last 21 rows through cli-pi on LLM Gateway, `llmgateway/glm-5.3-flash` at max, one row per call. A row that failed was retried once. `panel/runs.log` records every call.
 - The guessed class is then reported as an intended share with a Wilson 95% interval over settled rows, labeled a panel verdict, with the unsettled count beside it. Section 5 sets no threshold for this class, so no pass or fail follows.
 <!-- /ANCHOR:adr-001-decision -->
 

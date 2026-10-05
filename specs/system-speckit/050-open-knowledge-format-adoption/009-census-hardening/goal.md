@@ -78,7 +78,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | spec, plan, tasks and acceptance criteria written |
+| Phase opened | Done | spec, plan, tasks and acceptance criteria written |
 | phase 009-census-hardening measurement | Complete 2026-10-05 | guessed class 80.6% (71.5–87.4%) over 93 settled rows, panel verdict; see implementation-summary.md |
 
 ### Deviations and findings

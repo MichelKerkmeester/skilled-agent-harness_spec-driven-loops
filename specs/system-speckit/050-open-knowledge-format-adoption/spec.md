@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-04 |
 | **Branch** | `worktrees/086-okf-adoption-research` |
 | **Parent Spec** | `../spec.md` |
@@ -112,13 +112,13 @@ Audit trail only; per-phase detail lives in each child's `plan.md`.
 |-------|--------|-------|--------|
 | 1 | 001-okf-deep-research/ | Ten-iteration deep research on current spec-kit versus OKF, with online source discovery | Complete |
 | 2 | 002-baseline-and-decisions/ | Freeze numbers, close the sk-doc research gap, record decisions D1 to D4 | Complete |
-| 3 | 003-context-type-unification/ | R5: one `contextType` list across spec-kit and sk-doc, outliers mapped | In Progress |
+| 3 | 003-context-type-unification/ | R5: one `contextType` list across spec-kit and sk-doc, outliers mapped | Complete |
 | 4 | 004-citation-drift-detection/ | R9: extend the citation scanner to spec and research docs, report only | Complete |
 | 5 | 005-source-resolver/ | R1 reshaped: warn-only check on `[SOURCE:]` tags in new research and review docs | Complete |
-| 7 | 007-docs-and-closeout/ | Contracts, catalogs, changelogs in both skills and final verification | In Progress |
-| 8 | 008-context-type-hardening/ | Measure the shared list forward: off-list rates in generated and model-written docs, what the warning catches and its false alarms | Pending |
-| 9 | 009-census-hardening/ | Fix paths with spaces, measure accuracy per class on random samples, batch the git reads, add a rename-table rebuild | Pending |
-| 10 | 010-source-tag-hardening/ | Read whole tag paths, treat ignored folders the same everywhere, measure accuracy and what planted bad tags it catches | Pending |
+| 7 | 007-docs-and-closeout/ | Contracts, catalogs, changelogs in both skills and final verification | Complete |
+| 8 | 008-context-type-hardening/ | Measure the shared list forward: off-list rates in generated and model-written docs, what the warning catches and its false alarms | Complete |
+| 9 | 009-census-hardening/ | Fix paths with spaces, measure accuracy per class on random samples, batch the git reads, add a rename-table rebuild | Complete |
+| 10 | 010-source-tag-hardening/ | Read whole tag paths, treat ignored folders the same everywhere, measure accuracy and what planted bad tags it catches | Complete |
 | 11 | 011-frontmatter-values-to-sk-doc/ | Move the document values and tiers into `sk-create-frontmatter`, keep the session list in spec-kit, repoint the four readers | Complete |
 
 Order: 002 first. Then 003 and 004 can run in parallel. 005 needs the 004 resolver. 007 closes the adoption. 008 and 009 can run in parallel, and 010 follows 009 because both use the scanner's citation parser. 011 follows 008, whose corpus sweep it reruns after the move.
