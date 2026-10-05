@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Hub-Routing Phrasings Run
+# ───────────────────────────────────────────────────────────────
+# Re-runs the hub-routing corpus after the jev-dispatch class gained its verb and
+# preposition phrasings: CJ-001 with its six advertised phrasings, CJ-002, CJ-003
+# with its holdout, out-of-domain replays and the compiled-route guard. Kept as
+# the raw evidence of the hub-routing phrasings report beside this file.
 # Hub-routing corpus run after the jev-dispatch class gained its verb and preposition
 # phrasings: CJ-001 with its six advertised phrasings, CJ-002, CJ-003 with its holdout,
 # and out-of-domain replays aimed at the new phrasings. Routing only, so no provider

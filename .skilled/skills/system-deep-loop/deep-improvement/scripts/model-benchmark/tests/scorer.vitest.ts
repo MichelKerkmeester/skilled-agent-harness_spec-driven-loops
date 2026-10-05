@@ -21,7 +21,17 @@ const scorer = require(path.join(
     deterministic: Record<string, { score: number }>;
     grader: { score: number; parse_status: string };
   }>;
-  buildGraderFn: (kind: string) => (f: unknown, o: string, opts: unknown) => Promise<{ score: number; parse_status: string }>;
+  buildGraderFn: (kind: string, options?: Record<string, unknown>) => (
+    f: unknown,
+    o: string,
+    opts: unknown,
+  ) => Promise<{
+    score: number | null;
+    confidence: number | null;
+    parse_status: string;
+    measured?: boolean;
+    evidence?: unknown[];
+  }>;
   scoreAcceptanceDeterministic: (
     acceptance: Array<Record<string, unknown>>,
     cwdAbs: string,
@@ -31,6 +41,11 @@ const scorer = require(path.join(
   };
   DEFAULT_RUBRIC: { dims: Array<{ id: string; weight: number }> };
 };
+
+const d4 = require(path.join(
+  WORKSPACE_ROOT,
+  '.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs',
+)) as { QUESTION: string };
 
 let cwd: string;
 const OUTPUT = [
@@ -157,7 +172,113 @@ describe('buildGraderFn factory', () => {
     expect(typeof res.score).toBe('number');
     expect(res.score).toBeGreaterThan(0);
   });
-  it('throws for a grader kind outside noop, mock and llm', () => {
-    expect(() => scorer.buildGraderFn('jev')).toThrow(/unknown grader kind 'jev'/);
+  it('throws for a grader kind outside noop, mock, llm and jev', () => {
+    expect(() => scorer.buildGraderFn('bogus')).toThrow(/unknown grader kind 'bogus'/);
+  });
+});
+
+describe('jev grader (cascade)', () => {
+  const tempDirs: string[] = [];
+  let stubs = '';
+  let env: NodeJS.ProcessEnv = process.env;
+
+  function writeJevScript(bodyLines: string[]): string {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jev-grader-'));
+    tempDirs.push(dir);
+    stubs = dir;
+    env = {
+      ...process.env,
+      JEV_TRANSPORT: 'jev',
+      HOOK_FLAGS_CONFIG: path.join(dir, 'missing-hook-flags.json'),
+    };
+    const file = path.join(dir, 'jev');
+    fs.writeFileSync(
+      file,
+      [
+        '#!/bin/sh',
+        'D=$(dirname "$0")',
+        'echo "$*" >> "$D/jev.log"',
+        'N=$(cat "$D/count" 2>/dev/null || echo 0)',
+        'echo $((N+1)) > "$D/count"',
+        ...bodyLines,
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+    fs.chmodSync(file, 0o755);
+    return file;
+  }
+
+  function writeStub(answers: string[]): string {
+    const cases = answers
+      .map((answer, index) => `  ${index}) echo '${answer.replace(/'/g, "'\\''")}';;`)
+      .join('\n');
+    return writeJevScript(['case "$N" in', cases, '  *) exit 1;;', 'esac', 'exit 0']);
+  }
+
+  function jevLog(): string[] {
+    const log = path.join(stubs, 'jev.log');
+    if (!fs.existsSync(log)) return [];
+    const text = fs.readFileSync(log, 'utf8').trim();
+    return text.length === 0 ? [] : text.split('\n');
+  }
+
+  afterEach(() => {
+    for (const dir of tempDirs.splice(0)) fs.rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('clears a row the deterministic check scores 1 without calling jev', async () => {
+    const stub = writeStub([]);
+    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 1, passed: true } });
+    expect(res.score).toBe(1.0);
+    expect(res.parse_status).toBe('cascade-clear');
+    expect(fs.existsSync(path.join(stubs, 'jev.log'))).toBe(false);
+  });
+
+  it('flags a hallucinating row when two of three reruns say yes', async () => {
+    const stub = writeStub([
+      '{"answers":{"answer":{"noul":0.9}}}',
+      '{"answers":{"answer":{"noul":0.8}}}',
+      '{"answers":{"answer":{"noul":0.1}}}',
+    ]);
+    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
+    expect(res.score).toBe(0.0);
+    expect(res.parse_status).toBe('jev');
+    expect(res.confidence).toBeCloseTo(2 / 3, 5);
+    expect(res.evidence).toEqual([0.9, 0.8, 0.1]);
+    const calls = jevLog();
+    expect(calls).toHaveLength(3);
+    for (const call of calls) expect(call).toContain(`noul --provider official -q ${d4.QUESTION}`);
+  });
+
+  it('stays unmeasured when a rerun returns no number', async () => {
+    const stub = writeStub([
+      '{"answers":{"answer":{"noul":0.9}}}',
+      '{"answers":{"answer":{"noul":0.8}}}',
+      'not json',
+    ]);
+    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env });
+    const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
+    expect(res.score).toBeNull();
+    expect(res.parse_status).toBe('unmeasured');
+    expect(res.measured).toBe(false);
+  });
+
+  it('retries a rerun that exits 4 once, then keeps the row measured', async () => {
+    const stub = writeJevScript([
+      'if [ "$N" = 0 ]; then exit 4; fi',
+      'echo \'{"answers":{"answer":{"noul":0.1}}}\'',
+      'exit 0',
+    ]);
+    const grader = scorer.buildGraderFn('jev', { jev: { path: stub, provider: 'official' }, env, backoffMs: 1 });
+
+    const res = await grader({ id: 'fx', task: 'Write add.' }, 'output text', { hallucinationCheck: { score: 0, passed: false } });
+
+    expect(res.parse_status).toBe('jev');
+    expect(res.score).toBe(1.0);
+    expect(res.evidence).toEqual([0.1, 0.1, 0.1]);
+    expect(jevLog()).toHaveLength(4);
   });
 });

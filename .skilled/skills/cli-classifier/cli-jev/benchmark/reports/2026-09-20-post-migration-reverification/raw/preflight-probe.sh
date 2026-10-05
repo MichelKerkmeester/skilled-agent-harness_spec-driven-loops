@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Dispatch Preflight Probe
+# ───────────────────────────────────────────────────────────────
+# Feeds one Claude-shaped tool call per case to the dispatch preflight lint and
+# prints the lint decision with its exit status. Kept as the raw evidence of the
+# post-migration re-verification report beside this file.
 # Live dispatch-gate probes from the migrated hub home.
 #
 # Each probe feeds one Claude-shaped tool call to the preflight lint and prints the

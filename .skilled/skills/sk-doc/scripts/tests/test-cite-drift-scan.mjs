@@ -23,7 +23,7 @@ function cleanEnv() {
   for (const key of [
     'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY',
     'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
-    'JEV_PROVIDER',
+    'JEV_PROVIDER', 'JEV_FEATURES', 'JEV_FEATURE_CITE_DRIFT', 'SKDOC_CITE_DRIFT_CHECK',
   ]) {
     delete env[key];
   }
@@ -1209,6 +1209,7 @@ const armEnv = (root, extra = {}) => ({
   ...cleanEnv(),
   PATH: `${path.join(root, 'bin')}${path.delimiter}${process.env.PATH ?? ''}`,
   STUB_LOG: path.join(root, 'stub.log'),
+  HOOK_FLAGS_CONFIG: path.join(root, 'no-hook-flags.json'),
   ...extra,
   JEV_TRANSPORT: 'jev',
 });
@@ -1753,6 +1754,36 @@ test('advise opt-out skips everything', async () => {
   const outDir = path.join(root, 'advise-out');
   try {
     const env = armEnv(root, { [ADVISE_OPT_OUT_ENV]: '0' });
+    const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC), '--out', outDir], root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines, []);
+    assert.deepEqual(readStubLog(root), []);
+    assert.ok(!fs.existsSync(outDir));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise stops when the shared master switch is off', async () => {
+  const { root } = makeFixture();
+  const outDir = path.join(root, 'advise-out');
+  try {
+    const env = armEnv(root, { JEV_FEATURES: '0' });
+    const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC), '--out', outDir], root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines, []);
+    assert.deepEqual(readStubLog(root), []);
+    assert.ok(!fs.existsSync(outDir));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise still honors the older opt-out name', async () => {
+  const { root } = makeFixture();
+  const outDir = path.join(root, 'advise-out');
+  try {
+    const env = armEnv(root, { SKDOC_CITE_DRIFT_CHECK: '0' });
     const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC), '--out', outDir], root, env);
     assert.equal(run.code, 0);
     assert.deepEqual(run.lines, []);

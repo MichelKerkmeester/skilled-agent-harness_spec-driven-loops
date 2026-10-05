@@ -1,5 +1,5 @@
 {
-  "count": 1006,
+  "count": 1012,
   "mode": "readme",
   "results": [
     {
@@ -290,6 +290,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/commands/doctor/scripts/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/commands/scripts/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -322,9 +332,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/codex-watchdog/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -372,9 +390,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-hooks-check/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -402,9 +428,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-primary-reconcile/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -412,9 +446,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/git-worktree-guard/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -442,6 +484,24 @@
       "document_type": "readme",
       "file": ".skilled/hooks/hook-install/README.md",
       "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/injection-screen/README.md",
+      "return_code": 0,
       "total_issues": 0,
       "valid": true,
       "warnings": []
@@ -462,9 +522,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/permission-policy/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -482,9 +550,17 @@
       "document_type": "readme",
       "file": ".skilled/hooks/session-cleanup/README.md",
       "return_code": 0,
-      "total_issues": 0,
+      "total_issues": 1,
       "valid": true,
-      "warnings": []
+      "warnings": [
+        {
+          "auto_fixable": false,
+          "fix_hint": "Use one of constitutional, critical, important, normal, temporary, deprecated, or an alias listed in frontmatter-values.json",
+          "message": "importance_tier \"reference\" is not in the shared list",
+          "severity": "warning",
+          "type": "frontmatter_value_outside_list"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,
@@ -730,6 +806,26 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -751,6 +847,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/cli-jev/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4207,6 +4313,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/mcp-code-mode/manual-testing-playbook/doctor-commands/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -6775,6 +6891,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-git/manual-testing-playbook/doctor-commands/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-git/scripts/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7583,6 +7709,16 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-deep-loop/manual-testing-playbook/doctor-commands/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -10120,16 +10256,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

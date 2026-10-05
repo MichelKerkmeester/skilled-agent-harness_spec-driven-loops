@@ -629,6 +629,28 @@
       }
     },
     {
+      "id": "injection-screen",
+      "concern": "Screen fetched web text for instructions aimed at an AI agent",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PostToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": "WebFetch",
+            "runner": "node",
+            "script": ".skilled/hooks/injection-screen/claude/injection-screen-posttooluse.mjs",
+            "timeout": 30,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": null,
+        "reason": "No Pi counterpart is registered"
+      }
+    },
+    {
       "id": "install-codex-hooks",
       "concern": "Report drift between the Codex hook installer and the installed hooks",
       "bindings": {

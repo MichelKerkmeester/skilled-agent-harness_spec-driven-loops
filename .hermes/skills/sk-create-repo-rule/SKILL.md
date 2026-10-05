@@ -173,7 +173,7 @@ cheap refusal path stays available even when the operation is unclear.
 4. **Fill `assets/repo-rule-template.md`.** Ten fixed elements, open numbered body, aim under 160 lines.
 5. **Run `references/creation-standards.md` against the draft.** Structure is checkable and is not the bar; a rule can pass every assertion and be worth nobody's context.
 6. **Wire it**: a trigger row and an index row in the router, and a pointer from the `AGENTS.md` section it governs.
-7. **Verify by running the checker**, not by eye: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`. It asserts count parity across the rule files and both router tables, row coverage with link resolution, trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule links, fires-when sections and that every index summary matches its rule's own description, and exits non-zero on any failure. A hand check of the same properties is how every one of them drifted before the checker existed. What it cannot judge is whether the rule is worth loading at all, which is `references/creation-standards.md` and still needs a reader.
+7. **Verify by running the checker**, not by eye: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`. It asserts count parity across the rule files and both router tables, row coverage with link resolution, trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule links, fires-when sections, that every index summary matches its rule's own description and that every Fires-when bullet has a counterpart in its router row, and exits non-zero on any failure. A hand check of the same properties is how every one of them drifted before the checker existed. What it cannot judge is whether the rule is worth loading at all, which is `references/creation-standards.md` and still needs a reader.
 
 ### Revise
 
@@ -181,6 +181,13 @@ Run the decision tests again first — a rule that no longer passes them should 
 not patched. Then edit, and if the change alters *when* the rule fires, change the trigger
 row in the same edit or the router lies silently. Bump `version`. Full ordering and the
 `version` convention: `references/agents-md-integration.md` §4.
+
+To learn whether a revision changed behaviour, measure instead of guessing:
+`python3 .skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py`.
+It reads local Claude Code and Codex transcripts and reports, per runtime, delivery
+receipts by channel and compaction window, the Gate 5 and reply-rule miss rates, and each
+reply prohibition split by the rule's git blob version, every rate with its denominator and
+a Wilson 95% interval. It prints aggregates only, never transcript text.
 
 ### Retire
 

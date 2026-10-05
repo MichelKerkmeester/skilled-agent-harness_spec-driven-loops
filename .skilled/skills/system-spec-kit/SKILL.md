@@ -568,7 +568,6 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Gate 1 trigger lookup | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (exit `0` hit, `1` no-hit, `2` broken) |
 | Regenerate trigger index | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Free-text retrieval | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, scoped by the trailing positional path |
-| Compaction recall census | `node .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs --transcripts <dir> --newest-compacted 15 --out <file outside the repo>` makes no model call, prints counts and one `stop:` line and changes no transcript |
 | Alignment suggestion measurement | `cd .skilled/skills/system-spec-kit/runtime/cli && npx tsx evals/score-alignment-suggestion.ts` makes no model call and prints below-50 alignment counts per save path; `--score <rows>` prints `stop: fewer than 30 labeled rows` until the operator labels 30, and `--jev` with `--out <dir outside the repo>` adds a verdict column behind that backend's own check |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |

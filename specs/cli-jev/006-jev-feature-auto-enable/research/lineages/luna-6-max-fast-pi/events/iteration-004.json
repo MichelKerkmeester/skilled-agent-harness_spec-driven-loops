@@ -1,0 +1,44 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "runId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "sessionId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "lineageId": "fanout-luna-6-max-fast-pi-1791148943815-gjfbtn",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "run": 4,
+  "status": "complete",
+  "focus": "Alignment-folder suggestion evidence, state leakage, and the masked-state ablation",
+  "findingsCount": 5,
+  "newInfoRatio": 0.5,
+  "noveltyJustification": "The iteration rechecked the known distractor-state result against the pinned output, current treatment construction, baseline-selection logic, and test assertions. It adds implementation-level confirmation and a controlled masked-state protocol, but no new real-save sample or independent label evidence.",
+  "keyQuestions": [
+    "What evidence, controls, hardening, integration, and tests would settle alignment folder suggestion?"
+  ],
+  "answeredQuestions": [
+    "What evidence, controls, hardening, integration, and tests would settle alignment folder suggestion?"
+  ],
+  "ruledOut": [
+    "Treating the fixture keep as evidence of content- or folder-save improvement when all 40 rows are other saves.",
+    "Treating the confidence-gated call reduction as correction of the state-copying failure.",
+    "Treating an instruction to ignore folder names as equivalent to masking those names in the input.",
+    "Serving from a scorer keep despite the feature packet's explicit no-serving boundary."
+  ],
+  "toolsUsed": ["Read", "Bash"],
+  "sourcesQueried": [
+    "/Users/michelkerkmeester/.skilled/.labels/runs/049-008-jev.stdout.txt:1-12,36-85",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:111-130,184-208",
+    ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:930-935,1631-1638,1640-1651,1697-1704",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts:840-892"
+  ],
+  "timestamp": "2026-10-04T22:04:55.000Z",
+  "edgeCase": "negative-control-state-leakage",
+  "graphEvents": [],
+  "executor": {
+    "kind": "cli-pi",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max"
+  }
+}

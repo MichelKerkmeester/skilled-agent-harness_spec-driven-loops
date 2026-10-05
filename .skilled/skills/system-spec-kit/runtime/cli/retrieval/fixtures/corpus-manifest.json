@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d7b0c6b07f994f749eecfe83f633d33b5ee09f51d1917627514e4bee9914f506",
+  "corpusHash": "e00d8dca81031ea805a995616adca3b5c520ba24a3a3528ae9b891ed81085f1a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23417,
+  "includedPathCount": 23580,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -90,6 +90,7 @@
     ".skilled/hooks/goal/goal-plugin.md",
     ".skilled/hooks/hook-install/README.md",
     ".skilled/hooks/injection-contract.md",
+    ".skilled/hooks/injection-screen/README.md",
     ".skilled/hooks/mcp-route-guard/README.md",
     ".skilled/hooks/permission-policy/README.md",
     ".skilled/hooks/post-edit-quality/README.md",
@@ -112,7 +113,9 @@
     ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/README.md",
     ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
     ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/README.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-10-03--injection-screen--jev-pi-default/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
@@ -130,6 +133,7 @@
     ".skilled/skills/cli-classifier/cli-jev/benchmark/README.md",
     ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/raw/README.md",
     ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/README.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.0.0.md",
@@ -5962,11 +5966,13 @@
     ".skilled/skills/sk-doc/changelog/v2.2.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.6.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
-    ".skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/shared-frontmatter-value-warning.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
@@ -5975,7 +5981,9 @@
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
+    ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-census-across-doc-families.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md",
+    ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/shared-frontmatter-value-warning.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/changelog-natural.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/doc-quality-natural.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/holdout/ind-changelog.md",
@@ -6208,6 +6216,7 @@
     ".skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/silent-discovery-drop.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-an-over-budget-description.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/description-budget/trim-that-loses-routing-tokens.md",
@@ -6391,7 +6400,6 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scoring-and-rescan/score-does-not-edit.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/hard-blocker-terms.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/judgment-pass-not-covered-by-the-scanner.md",
-    ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/word-sense-is-a-candidate.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md",
@@ -7076,6 +7084,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.14.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.1.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
@@ -7219,6 +7228,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.1.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md",
@@ -7580,6 +7590,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.2.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.14.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -7994,6 +8005,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.6.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.6.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.6.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.7.0.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -8013,7 +8025,6 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-standards-alignment.md",
-    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verdict-freshness-validation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md",
@@ -8032,9 +8043,11 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/shared-frontmatter-value-list.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sk-git-worktree-convention.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/source-tag-resolution.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
@@ -8091,7 +8104,6 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-trusted-gate-refusal.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md",
-    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
@@ -8118,8 +8130,10 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/shared-frontmatter-value-list.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sk-git-worktree-convention.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-dist-alignment-validation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/source-tag-resolution.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
@@ -8246,7 +8260,6 @@
     ".skilled/skills/system-spec-kit/runtime/lib/utils/README.md",
     ".skilled/skills/system-spec-kit/runtime/lib/validation/README.md",
     ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
-    ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/substrate/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/README.md",
@@ -8427,6 +8440,76 @@
     "specs/agents/015-global-claude-md-agents-symlink/plan.md",
     "specs/agents/015-global-claude-md-agents-symlink/spec.md",
     "specs/agents/015-global-claude-md-agents-symlink/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/fanout-attribution.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/research.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/resource-map.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/fanout-attribution.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/research.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/resource-map.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/decision-record.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/answer-the-actual-request.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/blast-radius.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-decisions.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-handoff.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-prose.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/delegation-and-orchestration.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/evidence-and-proof.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/prevent-overengineering.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/root-cause-and-debugging.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/scope-discipline.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/skill-hub-routing.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/uncertainty-and-honesty.ledger.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/acceptance-criteria.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/implementation-summary.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/plan.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/spec.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/tasks.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-003-agents-md-delivery-prefix.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-004-rule-delivery-instrumentation.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-005-trigger-coverage-check.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/goal.md",
+    "specs/agents/016-repo-rule-advisor-surfacing/spec.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -9097,6 +9180,14 @@
     "specs/cli-jev/005-cli-classifier-quality-fixes/plan.md",
     "specs/cli-jev/005-cli-classifier-quality-fixes/spec.md",
     "specs/cli-jev/005-cli-classifier-quality-fixes/tasks.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/acceptance-criteria.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/implementation-summary.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/plan.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/research/fanout-attribution.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/research/research.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/research/resource-map.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/spec.md",
+    "specs/cli-jev/006-jev-feature-auto-enable/tasks.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -23444,10 +23535,82 @@
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/tasks.md",
-    "specs/system-speckit/049-doctor-audit-followups/spec.md"
+    "specs/system-speckit/049-doctor-audit-followups/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/fanout-attribution.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/research.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/baseline.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/decision-record.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/decision-record.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/measurement-protocol.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/measurement-protocol.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/decision-record.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/measurement-protocol.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/acceptance-criteria.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/decision-record.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/implementation-summary.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/plan.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/spec.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/tasks.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/goal.md",
+    "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
+  "manifestHash": "69ae95ab9f1ffe5727da76b5b293a558c5a8db6b15951291f58994d6450283e4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24098,10 +24261,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/description/fixtures",
       "reason": "excluded directory"
     },
@@ -24203,6 +24362,46 @@
     },
     {
       "path": "specs/agents/015-global-claude-md-agents-symlink/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
       "reason": "excluded directory"
     },
     {
@@ -24731,6 +24930,14 @@
     },
     {
       "path": "specs/cli-jev/005-cli-classifier-quality-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/006-jev-feature-auto-enable/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28939,6 +29146,50 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/002-baseline-and-decisions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/003-context-type-unification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/004-citation-drift-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/005-source-resolver/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/007-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/008-context-type-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/009-census-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/010-source-tag-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/050-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
       "reason": "excluded directory"
     },
     {

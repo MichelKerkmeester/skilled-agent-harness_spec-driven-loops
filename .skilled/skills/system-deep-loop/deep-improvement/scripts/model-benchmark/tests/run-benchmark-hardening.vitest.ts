@@ -19,6 +19,7 @@ const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/scripts');
 const RUN_BENCHMARK = path.join(SCRIPTS, 'model-benchmark/run-benchmark.cjs');
 const MATERIALIZE = path.join(SCRIPTS, 'shared/materialize-benchmark-fixtures.cjs');
+const SCORER_CLI = path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs');
 const DEFAULT_PROFILE = path.join(WORKSPACE_ROOT, '.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json');
 
 let work: string;
@@ -28,11 +29,11 @@ function writeJson(filePath: string, value: unknown) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function runBenchmark(profile: string, outDir: string, reportPath: string, extraArgs: string[]) {
+function runBenchmark(profile: string, outDir: string, reportPath: string, extraArgs: string[], env?: NodeJS.ProcessEnv) {
   return spawnSync(
     'node',
     [RUN_BENCHMARK, '--profile', profile, '--outputs-dir', outDir, '--output', reportPath, ...extraArgs],
-    { encoding: 'utf8', cwd: WORKSPACE_ROOT },
+    { encoding: 'utf8', cwd: WORKSPACE_ROOT, ...(env ? { env } : {}) },
   );
 }
 
@@ -267,10 +268,78 @@ describe('unknown grader kind', () => {
   it('exits 2 before loading the profile, naming the value and printing the usage line', () => {
     const outDir = path.join(work, 'outputs');
     const report = path.join(outDir, 'report.json');
-    const r = runBenchmark(path.join(work, 'no-such-profile.json'), outDir, report, ['--scorer', '5dim', '--grader', 'jev']);
+    const r = runBenchmark(path.join(work, 'no-such-profile.json'), outDir, report, ['--scorer', '5dim', '--grader', 'bogus']);
     expect(r.status).toBe(2);
-    expect(r.stderr).toContain("unknown --grader 'jev'");
+    expect(r.stderr).toContain("unknown --grader 'bogus'");
+    expect(r.stderr).toContain('noop, mock, llm, jev or auto');
     expect(r.stderr).toContain('Usage: node run-benchmark.cjs --profile');
     expect(fs.existsSync(report)).toBe(false);
+  });
+});
+
+describe('grader auto resolution', () => {
+  function jevStub(exitCode: number): { dir: string; log: string } {
+    const dir = path.join(work, 'bin');
+    fs.mkdirSync(dir, { recursive: true });
+    const log = path.join(work, 'jev.log');
+    const file = path.join(dir, 'jev');
+    fs.writeFileSync(file, `#!/bin/sh\necho "$*" >> ${JSON.stringify(log)}\nexit ${exitCode}\n`, { mode: 0o755 });
+    return { dir, log };
+  }
+
+  function stubEnv(dir: string): NodeJS.ProcessEnv {
+    return {
+      ...process.env,
+      PATH: `${dir}${path.delimiter}${process.env.PATH}`,
+      JEV_TRANSPORT: 'jev',
+      HOOK_FLAGS_CONFIG: path.join(work, 'missing-hook-flags.json'),
+    };
+  }
+
+  it('auto with the pattern scorer resolves to noop without spawning jev', () => {
+    const fx = path.join(work, 'fx');
+    const report = path.join(work, 'report.json');
+    const { dir, log } = jevStub(0);
+    spawnSync('node', [MATERIALIZE, '--profile', DEFAULT_PROFILE, '--outputs-dir', fx], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+    const r = runBenchmark(DEFAULT_PROFILE, fx, report, [], stubEnv(dir));
+    expect(r.status).toBe(0);
+    const data = JSON.parse(fs.readFileSync(report, 'utf8'));
+    expect(data.grader).toBe('noop');
+    expect(data.graderRequested).toBe('auto');
+    expect(typeof data.graderReason).toBe('string');
+    expect(fs.existsSync(log)).toBe(false);
+  });
+
+  it('explicit jev exits 2 when no credential is stored', () => {
+    const outDir = path.join(work, 'outputs');
+    const report = path.join(outDir, 'report.json');
+    const { dir } = jevStub(1);
+    const r = runBenchmark(path.join(work, 'no-such-profile.json'), outDir, report, ['--scorer', '5dim', '--grader', 'jev'], stubEnv(dir));
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain('run-benchmark: --grader jev needs jev on PATH with a stored credential');
+    expect(fs.existsSync(report)).toBe(false);
+  });
+
+  it('auto with the 5dim scorer resolves to jev when the credential gate is ready', () => {
+    const fx = path.join(work, 'fx');
+    const report = path.join(work, 'report.json');
+    const { dir } = jevStub(0);
+    spawnSync('node', [MATERIALIZE, '--profile', DEFAULT_PROFILE, '--outputs-dir', fx], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+    const r = runBenchmark(DEFAULT_PROFILE, fx, report, ['--scorer=5dim'], stubEnv(dir));
+    expect(r.status).toBe(0);
+    const data = JSON.parse(fs.readFileSync(report, 'utf8'));
+    expect(data.grader).toBe('jev');
+    expect(data.graderRequested).toBe('auto');
+    expect(data.graderReason).toBe('ready');
+    // The default fixtures claim no flags or symbols, so the deterministic check
+    // clears every row and the grader answers without a CLI call: a measured D4
+    // and the cascade parse status prove grading ran. The run report carries
+    // neither, so the scorer's own CLI is asked for each row's status.
+    for (const row of data.rows) {
+      expect(row.dimensions.D4).toBe(1);
+      const scored = spawnSync('node', [SCORER_CLI, row.outputPath, fx, '--grader=jev'], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+      expect(scored.status).toBe(0);
+      expect(JSON.parse(scored.stdout).grader.parse_status).toBe('cascade-clear');
+    }
   });
 });

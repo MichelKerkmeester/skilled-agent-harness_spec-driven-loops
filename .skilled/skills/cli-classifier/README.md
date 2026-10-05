@@ -61,6 +61,19 @@ jev auth status --provider official </dev/null
 
 Without `jev`, the hub reports mode `cli-jev` as unavailable instead of guessing a judgment. `cli-jev/references/providers-and-models.md` lists the four providers and their keys.
 
+### Features That Run When a Key Is Stored
+
+Once `jev auth status` passes, four features ask Jev on their own. Each one beat the best rule without a model in a measured run, and each asks the question it was measured with. `shared/scripts/jev-features.mjs` decides whether one runs.
+
+| Feature | Where it runs | Turn it off |
+|---|---|---|
+| Citation drift advisory | End of `validate_document.py`'s human report | `JEV_FEATURE_CITE_DRIFT=0` |
+| Injection screen | Claude Code, after each WebFetch | `JEV_FEATURE_INJECTION_SCREEN=0` |
+| Reviewer verdict fallback | `/deep:model-benchmark` reviewer runs under `--grader auto` | `JEV_FEATURE_VERDICT_FALLBACK=0` |
+| Hallucination grader | `/deep:model-benchmark` 5dim runs under `--grader auto` | `JEV_FEATURE_HALLUCINATION_GRADER=0` |
+
+`JEV_FEATURES=0` turns all four off. A switch is read from the environment first and then from `.skilled/hooks/hook-flags.env`. None of them blocks work, and a failed call leaves the path as it would be without Jev.
+
 ---
 
 ## 3. MODES AND PACKETS
