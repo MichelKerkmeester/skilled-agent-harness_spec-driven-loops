@@ -32,6 +32,8 @@ const DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor';
 // cold start is well inside it, and the stall this replaces came from waiting out the
 // tool timeout on a daemon that never accepted a connection — not from waiting at all.
 const COLD_START_WAIT_MS = 5_000;
+// The launcher's lease, which records when the running daemon was launched.
+const LAUNCHER_LEASE_FILE_NAME = '.system-skill-advisor-launcher.json';
 const ADVISOR_VALIDATE_MAX_ATTEMPTS = 3;
 const ADVISOR_VALIDATE_RETRY_BASE_DELAY_MS = 250;
 const RESERVED_COMMANDS = new Set(['list-tools', 'completion']);
@@ -1284,6 +1286,40 @@ function callerMeta(trusted: boolean): Record<string, unknown> {
   };
 }
 
+// A daemon loads its code once at launch, so after a rebuild a live daemon still answers
+// with the old code. Only a launched daemon counts: the lease carries a childPid once
+// the launcher has started it, stamped after the launcher's own build.
+function liveDaemonPredatesBuild(paths: RepoPaths): boolean {
+  try {
+    const lease = JSON.parse(readFileSync(path.join(paths.dbDir, LAUNCHER_LEASE_FILE_NAME), 'utf8')) as {
+      childPid?: unknown;
+      startedAt?: unknown;
+    };
+    if (!Number.isInteger(lease.childPid) || (lease.childPid as number) <= 0) return false;
+    const launchedAtMs = Date.parse(typeof lease.startedAt === 'string' ? lease.startedAt : '');
+    if (!Number.isFinite(launchedAtMs)) return false;
+    const entrypoint = path.join(path.dirname(paths.packageJsonPath), 'dist', 'runtime', 'advisor-server.js');
+    return statSync(entrypoint).mtimeMs > launchedAtMs;
+  } catch {
+    return false;
+  }
+}
+
+// A launcher started next to a stale daemon recycles it. The call waits for the lease to
+// show the replacement rather than connecting to the daemon being retired. A launcher
+// that exits with the old daemon still in place skipped the recycle, so the call uses
+// that daemon as it always did.
+async function waitForStaleDaemonRecycle(paths: RepoPaths, timeoutMs: number, launcher: ChildProcess): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  let launcherExited = false;
+  launcher.once('error', () => { launcherExited = true; });
+  launcher.once('exit', () => { launcherExited = true; });
+  while (Date.now() <= deadline && liveDaemonPredatesBuild(paths)) {
+    if (launcherExited) return;
+    await sleep(100);
+  }
+}
+
 // The deep probe doubles as the daemon's handshake, and its failure reason splits the
 // two cases the cold-start budget must tell apart. A timeout means the daemon took the
 // connection and stayed silent, the one failure still worth waiting out on the caller's
@@ -1304,7 +1340,12 @@ async function ensureDaemonReady(
   hasLocalFallback: boolean,
 ): Promise<void> {
   const initialProbe = await bridge.probeDaemon(socketPath, { timeoutMs: Math.min(timeoutMs, 5000), deepProbe: true });
-  if (initialProbe.status === 'alive') return;
+  if (initialProbe.status === 'alive') {
+    if (warmOnly || !liveDaemonPredatesBuild(paths)) return;
+    await waitForStaleDaemonRecycle(paths, timeoutMs, spawnLauncher(paths));
+    await waitForDaemon(socketPath, bridge, timeoutMs);
+    return;
+  }
   if (warmOnly) {
     throw new CliRetryableError(`backend unavailable: ${initialProbe.reason ?? initialProbe.status}`);
   }
@@ -1591,6 +1632,7 @@ export const __testing = {
   exitCodeForError,
   findRepoPaths,
   invokeWithRetry,
+  liveDaemonPredatesBuild,
   renderCompletion,
   renderToolList,
   resolvePropertyName,
