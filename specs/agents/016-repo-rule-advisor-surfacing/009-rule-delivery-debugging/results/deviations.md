@@ -15,3 +15,11 @@ contextType: "implementation"
 **Why:** Codex hit its usage limit as the replication started, with a reset at 13:03, and the operator earlier chose not to keep spending the Codex allowance on these experiments. Recorded on 2026-10-05 at 11:05, before any Cline run of the replication. No Luna run of the replication was recorded, because the harness drops quota failures.
 
 **Effect on the analysis:** the pooled decision combines DeepSeek through OpenCode Go and DeepSeek through Cline. The decision rule is unchanged.
+
+## 2. OPENCODE GO STOPPED SHORT
+
+**What changed:** the OpenCode Go lane of `preregistration-2.md` stopped at 58 of its 90 runs, 29 per arm, and the decision uses the 148 runs collected across both lanes, 74 per arm.
+
+**Why:** OpenCode Go returned "Go usage limit exceeded". OpenCode retries that error silently, so 12 runs ran to the 900-second timeout before the lane was stopped. Those runs are dropped as executor failures. Recorded on 2026-10-05, before any replication run was scored.
+
+**Effect on the analysis:** the decision rule is applied as written to the runs collected. The shuffled schedule kept the arms balanced.
