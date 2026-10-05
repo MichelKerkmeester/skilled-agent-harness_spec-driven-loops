@@ -1,14 +1,11 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: classifier-injection-screen OpenCode Plugin                   ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Screens text a webfetch returned for instructions aimed at      ║
-// ║          the agent. Like the post-edit plugin, it buffers the advisory   ║
-// ║          per session and drains it into the next system transform, the   ║
-// ║          model call that reads the fetched text, rather than rewriting   ║
-// ║          the tool result. Never writes stdout/stderr (OpenCode paints    ║
-// ║          those onto the TUI prompt line); every path fails open and      ║
-// ║          silent.                                                         ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Classifier Injection Screen OpenCode Plugin
+// ───────────────────────────────────────────────────────────────────
+// Screens the text a webfetch returned for instructions aimed at the agent.
+// Like the post-edit plugin, it buffers the advisory per session and drains it
+// into the next system transform, the model call that reads the fetched text,
+// rather than rewriting the tool result. It never writes stdout or stderr,
+// which OpenCode paints onto the TUI prompt line, and every path fails open.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -52,7 +49,7 @@ function sessionIdOf(input) {
  * @param {{ screenAdvisory?: Function } | undefined} [options] - Optional screen seam.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
-export default async function MkInjectionScreenPlugin(_ctx, options = {}) {
+export default async function injectionScreenPlugin(_ctx, options = {}) {
   const screen = typeof options?.screenAdvisory === 'function' ? options.screenAdvisory : screenAdvisory;
   const pendingBySession = new Map();
 
@@ -102,7 +99,7 @@ export default async function MkInjectionScreenPlugin(_ctx, options = {}) {
 // Test surface hung off the default export (never a separate named export --
 // OpenCode loads every export as its own plugin and a stray one silently
 // drops this entire file).
-MkInjectionScreenPlugin.__test = {
+injectionScreenPlugin.__test = {
   SCREEN_TOOL,
   MAX_PENDING_ADVISORIES,
   MAX_SESSIONS,
