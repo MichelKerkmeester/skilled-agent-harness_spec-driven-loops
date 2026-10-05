@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/080-pi-extension-brace-expansion",
+  "description": "Bump brace-expansion in two Pi extension lockfiles to close four Dependabot alerts",
+  "keywords": [
+    "bump",
+    "brace-expansion",
+    "two",
+    "extension",
+    "lockfiles",
+    "close",
+    "four",
+    "dependabot",
+    "alerts"
+  ],
+  "lastUpdated": "2026-10-05T07:28:02.740Z",
+  "specId": "080",
+  "folderSlug": "pi-extension-brace-expansion",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
