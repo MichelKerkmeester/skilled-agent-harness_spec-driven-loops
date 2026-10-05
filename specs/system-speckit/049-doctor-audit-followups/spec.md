@@ -149,6 +149,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 23 | 023-release-update-symlink-parent/ | Report a release path below a local symlink as a `symlink-parent` conflict in `/doctor:update` instead of aborting, and drop the fixture workaround | Complete |
 | 24 | 024-doctor-docs-alignment/ | Align the root and skill READMEs with the doctor commands and bring the v4.0.0.3 changelog up to date | Complete |
 | 25 | 025-doctor-scenario-runs/ | Run all 36 doctor scenarios with DeepSeek in the two environments and record the results | Complete |
+| 26 | 026-doctor-run-followups/ | Turn the red sk-doc script test green and stamp the sanitizer version on the curated skill metadata that passes the sanitizer unchanged | Complete |
 
 ### Phase Transition Rules
 
@@ -185,6 +186,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 022-doctor-playbook-environment-migration | 023-release-update-symlink-parent | The update scenarios run on the fixture | An unscoped fixture check finishes with no workaround commit |
 | 023-release-update-symlink-parent | 024-doctor-docs-alignment | The engine fix is pushed | Every doc claim about the doctor commands matches the command files |
 | 024-doctor-docs-alignment | 025-doctor-scenario-runs | The docs match the commands | Every scenario has a recorded verdict with evidence |
+| 025-doctor-scenario-runs | 026-doctor-run-followups | Every scenario has a verdict | The sk-doc script tests pass and the graph validator warns only where the sanitizer would change a label |
 <!-- /ANCHOR:phase-map -->
 
 ---

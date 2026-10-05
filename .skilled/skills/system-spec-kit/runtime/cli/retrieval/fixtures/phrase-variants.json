@@ -1,5 +1,5 @@
 {
-  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
+  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35837,6 +35837,18 @@
     "doctor rows new adapters": [
       "doctor rows new adapters"
     ],
+    "doctor run followups": [
+      "doctor run followups"
+    ],
+    "doctor run followups plan": [
+      "doctor run followups plan"
+    ],
+    "doctor run followups summary": [
+      "doctor run followups summary"
+    ],
+    "doctor run followups tasks": [
+      "doctor run followups tasks"
+    ],
     "doctor runtime mirrors audit": [
       "doctor runtime-mirrors audit"
     ],
@@ -47654,6 +47666,9 @@
     ],
     "hook flags either root name": [
       "hook flags either root name"
+    ],
+    "hook flags example kill switch test": [
+      "hook flags example kill switch test"
     ],
     "hook flags guard implementation": [
       "hook-flags guard implementation"
@@ -79823,6 +79838,9 @@
     ],
     "sandboxed child tsx checks": [
       "sandboxed child tsx checks"
+    ],
+    "sanitizer version stamp": [
+      "sanitizer version stamp"
     ],
     "sanitizeskilllabel": [
       "sanitizeSkillLabel"

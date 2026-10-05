@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9ace25dcae64ab264e8cb8dcdbf5633018cfa7462594432060c5c0f31b674170",
+  "corpusHash": "09f333e618df8d820466a33fd63ef7c3a08650389f651e9ad2501ffcb501fc29",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23635,
+  "includedPathCount": 23640,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6007,6 +6007,7 @@
     ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
     ".skilled/skills/sk-doc/scripts/README.md",
+    ".skilled/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
     ".skilled/skills/sk-doc/scripts/tests/README.md",
     ".skilled/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
     ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/broken-links/README.md",
@@ -23589,6 +23590,10 @@
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23665,7 +23670,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
+  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29209,6 +29214,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/scratch",
       "reason": "excluded directory"
     },
     {

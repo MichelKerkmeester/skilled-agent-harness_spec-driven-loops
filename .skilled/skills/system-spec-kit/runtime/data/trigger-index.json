@@ -1,5 +1,5 @@
 {
-  "manifestHash": "eb408bbb96ad935bc3cdec960e966348815f9b29f04209ae563a7f29aa844413",
+  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13315,6 +13315,10 @@
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/025-doctor-scenario-runs/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -21671,16 +21675,16 @@
       13220,
       13229,
       13234,
-      13306,
-      13312,
-      13320,
-      13326,
-      13333,
-      13339,
-      13345,
-      13352,
-      13360,
-      13368
+      13310,
+      13316,
+      13324,
+      13330,
+      13337,
+      13343,
+      13349,
+      13356,
+      13364,
+      13372
     ],
     "ac traceability table": [
       10387,
@@ -22066,16 +22070,16 @@
       13209,
       13229,
       13234,
-      13306,
-      13312,
-      13320,
-      13326,
-      13333,
-      13339,
-      13345,
-      13352,
-      13360,
-      13368
+      13310,
+      13316,
+      13324,
+      13330,
+      13337,
+      13343,
+      13349,
+      13356,
+      13364,
+      13372
     ],
     "acceptance criteria closure gate": [
       12123,
@@ -25004,7 +25008,7 @@
       2277
     ],
     "anchor citation threshold": [
-      13314
+      13318
     ],
     "anchor generator": [
       2385
@@ -25023,7 +25027,7 @@
       9592
     ],
     "anchor phase removed": [
-      13327
+      13331
     ],
     "anchor prefix matching": [
       2230
@@ -26041,14 +26045,14 @@
       13175,
       13181,
       13187,
-      13309,
-      13317,
-      13323,
-      13330,
-      13349,
-      13357,
-      13365,
-      13372
+      13313,
+      13321,
+      13327,
+      13334,
+      13353,
+      13361,
+      13369,
+      13376
     ],
     "architecture diagram": [
       1100,
@@ -30352,13 +30356,13 @@
       12361
     ],
     "census hardening": [
-      13358
+      13362
     ],
     "census hardening summary": [
-      13355
+      13359
     ],
     "census measurement protocol": [
-      13356
+      13360
     ],
     "census path and config drift repair": [
       6058
@@ -30389,7 +30393,7 @@
       12535
     ],
     "census timing protocol": [
-      13356
+      13360
     ],
     "certificate semantic binding": [
       6115,
@@ -30483,7 +30487,7 @@
       12887
     ],
     "changelog and version bumps": [
-      13342
+      13346
     ],
     "changelog audit 026": [
       7748
@@ -32186,16 +32190,16 @@
       283
     ],
     "citation accuracy per class": [
-      13358
+      13362
     ],
     "citation accuracy protocol": [
-      13356
+      13360
     ],
     "citation accuracy result": [
-      13355
+      13359
     ],
     "citation breakage census": [
-      13313
+      13317
     ],
     "citation census": [
       12083
@@ -32213,7 +32217,7 @@
       3006
     ],
     "citation drift census": [
-      13329
+      13333
     ],
     "citation drift census across doc families": [
       1260,
@@ -32283,7 +32287,7 @@
       11724
     ],
     "citation resolver reuse": [
-      13336
+      13340
     ],
     "citation retrofit coverage floor": [
       12629,
@@ -32309,7 +32313,7 @@
       1261
     ],
     "cite drift redirect table": [
-      13329
+      13333
     ],
     "cite drift redirects json": [
       1260
@@ -36013,16 +36017,16 @@
       13220,
       13229,
       13234,
-      13306,
-      13312,
-      13320,
-      13326,
-      13333,
-      13339,
-      13345,
-      13352,
-      13360,
-      13368
+      13310,
+      13316,
+      13324,
+      13330,
+      13337,
+      13343,
+      13349,
+      13356,
+      13364,
+      13372
     ],
     "closure gate blocks evidence": [
       12063
@@ -36049,8 +36053,8 @@
       12150
     ],
     "closure record": [
-      13341,
-      13342
+      13345,
+      13346
     ],
     "closure rows with evidence": [
       12286
@@ -40063,17 +40067,17 @@
       13179,
       13185,
       13190,
-      13307,
-      13315,
-      13321,
-      13328,
-      13334,
-      13340,
-      13346,
-      13354,
-      13362,
-      13370,
-      13375
+      13311,
+      13319,
+      13325,
+      13332,
+      13338,
+      13344,
+      13350,
+      13358,
+      13366,
+      13374,
+      13379
     ],
     "completion criteria copied": [
       12190,
@@ -41142,13 +41146,13 @@
       8210
     ],
     "context type hardening": [
-      13350
+      13354
     ],
     "context type hardening summary": [
-      13347
+      13351
     ],
     "context type measurement protocol": [
-      13348
+      13352
     ],
     "context vectors provider shard convention": [
       8352
@@ -41182,16 +41186,16 @@
       9616
     ],
     "contexttype census": [
-      13313
+      13317
     ],
     "contexttype policy": [
-      13314
+      13318
     ],
     "contexttype policy amendment": [
-      13369
+      13373
     ],
     "contexttype unification": [
-      13322
+      13326
     ],
     "contexttype value list": [
       2313
@@ -41561,8 +41565,8 @@
       13194,
       13199,
       13205,
-      13308,
-      13316
+      13312,
+      13320
     ],
     "continue post review closeout": [
       3367
@@ -45421,11 +45425,11 @@
       12630,
       13193,
       13204,
-      13314,
-      13327,
-      13353,
-      13361,
-      13369
+      13318,
+      13331,
+      13357,
+      13365,
+      13373
     ],
     "decision record adr summary": [
       5389
@@ -52319,10 +52323,10 @@
       861
     ],
     "docs closeout": [
-      13341
+      13345
     ],
     "docs closeout plan": [
-      13342
+      13346
     ],
     "docs drift findings": [
       7823
@@ -52386,7 +52390,7 @@
       12331
     ],
     "doctor audit followups": [
-      13305
+      13309
     ],
     "doctor baseline verification": [
       12247
@@ -52684,7 +52688,7 @@
     ],
     "doctor gates drift": [
       13207,
-      13305
+      13309
     ],
     "doctor git command": [
       13237
@@ -53015,6 +53019,18 @@
     ],
     "doctor rows new adapters": [
       12363
+    ],
+    "doctor run followups": [
+      13307
+    ],
+    "doctor run followups plan": [
+      13306
+    ],
+    "doctor run followups summary": [
+      13305
+    ],
+    "doctor run followups tasks": [
+      13308
     ],
     "doctor runtime mirrors audit": [
       13158
@@ -54430,17 +54446,17 @@
       13179,
       13185,
       13190,
-      13307,
-      13315,
-      13321,
-      13328,
-      13334,
-      13340,
-      13346,
-      13354,
-      13362,
-      13370,
-      13375
+      13311,
+      13319,
+      13325,
+      13332,
+      13338,
+      13344,
+      13350,
+      13358,
+      13366,
+      13374,
+      13379
     ],
     "durable fan in failure plan": [
       5704
@@ -58957,12 +58973,12 @@
       13043,
       13047,
       13051,
-      13310,
-      13318,
-      13324,
-      13331,
-      13337,
-      13343
+      13314,
+      13322,
+      13328,
+      13335,
+      13341,
+      13347
     ],
     "feature specification 028 drift remediation": [
       11120
@@ -61354,11 +61370,11 @@
       1370
     ],
     "frontmatter value list owner": [
-      13369,
-      13373
+      13373,
+      13377
     ],
     "frontmatter value measurement": [
-      13350
+      13354
     ],
     "frontmatter value outside list": [
       1262
@@ -61370,16 +61386,16 @@
       2313
     ],
     "frontmatter values move": [
-      13373
+      13377
     ],
     "frontmatter values move summary": [
-      13371
+      13375
     ],
     "frontmatter values rule": [
       2313
     ],
     "frontmatter values warn rule": [
-      13322
+      13326
     ],
     "frontmatter variant taxonomy": [
       2351
@@ -63142,17 +63158,17 @@
       13179,
       13185,
       13190,
-      13307,
-      13315,
-      13321,
-      13328,
-      13334,
-      13340,
-      13346,
-      13354,
-      13362,
-      13370,
-      13375
+      13311,
+      13319,
+      13325,
+      13332,
+      13338,
+      13344,
+      13350,
+      13358,
+      13366,
+      13374,
+      13379
     ],
     "goal binding gaps": [
       5149
@@ -65126,7 +65142,7 @@
       3324
     ],
     "guessed row panel": [
-      13353
+      13357
     ],
     "guidance reconciliation complete": [
       10338
@@ -66431,6 +66447,9 @@
     "hook flags either root name": [
       12843
     ],
+    "hook flags example kill switch test": [
+      13307
+    ],
     "hook flags guard implementation": [
       3590
     ],
@@ -67390,10 +67409,10 @@
       1030
     ],
     "ignored folder consistency": [
-      13366
+      13370
     ],
     "ignored folder result": [
-      13363
+      13367
     ],
     "ignored paths exemption plan": [
       2888
@@ -68025,16 +68044,16 @@
       13195,
       13200,
       13206,
-      13309,
-      13317,
-      13323,
-      13330,
-      13336,
-      13342,
-      13349,
-      13357,
-      13365,
-      13372
+      13313,
+      13321,
+      13327,
+      13334,
+      13340,
+      13346,
+      13353,
+      13361,
+      13369,
+      13376
     ],
     "implementation status": [
       4090,
@@ -68488,12 +68507,12 @@
       13194,
       13199,
       13205,
-      13308,
-      13316,
-      13322,
-      13329,
-      13335,
-      13341
+      13312,
+      13320,
+      13326,
+      13333,
+      13339,
+      13345
     ],
     "implementation summary attestation point": [
       12308
@@ -68887,16 +68906,16 @@
       13242,
       13248,
       13252,
-      13311,
-      13319,
-      13325,
-      13332,
-      13338,
-      13344,
-      13351,
-      13359,
-      13367,
-      13374
+      13315,
+      13323,
+      13329,
+      13336,
+      13342,
+      13348,
+      13355,
+      13363,
+      13371,
+      13378
     ],
     "implementation testing verification phases": [
       833
@@ -69911,7 +69930,7 @@
       2574
     ],
     "invented source line warning": [
-      13335
+      13339
     ],
     "inventory a notion workspace": [
       706
@@ -79494,7 +79513,7 @@
       424
     ],
     "missing value file behavior": [
-      13371
+      13375
     ],
     "missing vector hygiene implementation": [
       8977
@@ -80650,7 +80669,7 @@
       1292
     ],
     "model writer off list rate": [
-      13347
+      13351
     ],
     "modelcontextprotocol sdk cannot find module": [
       8175,
@@ -80876,7 +80895,7 @@
       1260
     ],
     "moved gone past end citations": [
-      13329
+      13333
     ],
     "mps auto detect cocoindex": [
       9870
@@ -83303,13 +83322,13 @@
       9957
     ],
     "off list rate": [
-      13350
+      13354
     ],
     "off list rate protocol": [
-      13348
+      13352
     ],
     "off list rate result": [
-      13347
+      13351
     ],
     "off switches section plan": [
       12997
@@ -83472,13 +83491,13 @@
       5935
     ],
     "okf adoption": [
-      13376
+      13380
     ],
     "okf baseline": [
-      13313
+      13317
     ],
     "okf deep research": [
-      13376
+      13380
     ],
     "oklch color clustering": [
       1199
@@ -83800,7 +83819,7 @@
       2360
     ],
     "open knowledge format": [
-      13376
+      13380
     ],
     "open the changed png": [
       849
@@ -84456,7 +84475,7 @@
       10182
     ],
     "operator label amendment": [
-      13353
+      13357
     ],
     "operator label gate": [
       3065
@@ -86276,17 +86295,17 @@
       13179,
       13185,
       13190,
-      13307,
-      13315,
-      13321,
-      13328,
-      13334,
-      13340,
-      13346,
-      13354,
-      13362,
-      13370,
-      13375
+      13311,
+      13319,
+      13325,
+      13332,
+      13338,
+      13344,
+      13350,
+      13358,
+      13366,
+      13374,
+      13379
     ],
     "packet goal authoring boundary": [
       5152
@@ -87054,7 +87073,7 @@
       2452
     ],
     "paths with spaces": [
-      13358
+      13362
     ],
     "pattern evidence contract fixture": [
       1291
@@ -90084,19 +90103,19 @@
       1652
     ],
     "planted bad tags": [
-      13366
+      13370
     ],
     "planted matrix protocol": [
-      13348
+      13352
     ],
     "planted matrix result": [
-      13347
+      13351
     ],
     "planted recall result": [
-      13363
+      13367
     ],
     "planted tag recall": [
-      13364
+      13368
     ],
     "plateau detection": [
       1716
@@ -91780,12 +91799,12 @@
       13043,
       13047,
       13051,
-      13310,
-      13318,
-      13324,
-      13331,
-      13337,
-      13343
+      13314,
+      13322,
+      13328,
+      13335,
+      13341,
+      13347
     ],
     "procedural benchmark gate task": [
       11243
@@ -94665,8 +94684,8 @@
       2154
     ],
     "redirect table rebuild": [
-      13355,
-      13358
+      13359,
+      13362
     ],
     "redirect to": [
       2073
@@ -96073,7 +96092,7 @@
       12300
     ],
     "release changelogs": [
-      13341
+      13345
     ],
     "release cleanup": [
       1617
@@ -96402,7 +96421,7 @@
       13224
     ],
     "release update signals": [
-      13305
+      13309
     ],
     "release update symlink parent": [
       13295
@@ -97747,12 +97766,12 @@
       13043,
       13047,
       13051,
-      13310,
-      13318,
-      13324,
-      13331,
-      13337,
-      13343
+      13314,
+      13322,
+      13328,
+      13335,
+      13341,
+      13347
     ],
     "requirements rules and checklist": [
       1063
@@ -101671,7 +101690,7 @@
       850
     ],
     "run time overage accepted": [
-      13361
+      13365
     ],
     "run time parser sweep": [
       4903
@@ -102610,6 +102629,9 @@
     ],
     "sandboxed child tsx checks": [
       201
+    ],
+    "sanitizer version stamp": [
+      13307
     ],
     "sanitizeskilllabel": [
       2045,
@@ -104861,7 +104883,7 @@
       470
     ],
     "session context types literal": [
-      13373
+      13377
     ],
     "session continuity priming": [
       67
@@ -104931,7 +104953,7 @@
       12024
     ],
     "session list literal": [
-      13371
+      13375
     ],
     "session log": [
       8243
@@ -105587,7 +105609,7 @@
     "shared frontmatter value list": [
       2275,
       2313,
-      13322
+      13326
     ],
     "shared frontmatter value warning": [
       1262,
@@ -108061,7 +108083,7 @@
       1370
     ],
     "sk create frontmatter value list": [
-      13373
+      13377
     ],
     "sk create goal": [
       5230
@@ -108809,7 +108831,7 @@
       1263
     ],
     "sk doc frontmatter addendum": [
-      13313
+      13317
     ],
     "sk doc frontmatter alignment": [
       10340
@@ -112632,32 +112654,32 @@
       12798
     ],
     "source tag accuracy": [
-      13366
+      13370
     ],
     "source tag accuracy protocol": [
-      13364
+      13368
     ],
     "source tag cutoff": [
-      13335,
-      13336
+      13339,
+      13340
     ],
     "source tag hardening": [
-      13366
+      13370
     ],
     "source tag hardening summary": [
-      13363
+      13367
     ],
     "source tag measurement protocol": [
-      13364
+      13368
     ],
     "source tag resolution": [
       2317
     ],
     "source tag resolver": [
-      13314
+      13318
     ],
     "source tag run time guard": [
-      13361
+      13365
     ],
     "source tag warning": [
       2275
@@ -112667,10 +112689,10 @@
     ],
     "source tags rule": [
       2317,
-      13335
+      13339
     ],
     "source tags rule plan": [
-      13336
+      13340
     ],
     "source to target map": [
       12668
@@ -112692,7 +112714,7 @@
       4944
     ],
     "spaced path fix": [
-      13355
+      13359
     ],
     "spacing and type scale": [
       1175
@@ -113435,7 +113457,7 @@
       13055
     ],
     "spec kit frontmatter improvements": [
-      13376
+      13380
     ],
     "spec kit greenfield": [
       7903
@@ -113934,7 +113956,7 @@
       2378
     ],
     "spec kit search improvements": [
-      13376
+      13380
     ],
     "spec kit shared file dependency edge": [
       12374
@@ -117198,12 +117220,12 @@
       13043,
       13047,
       13051,
-      13310,
-      13318,
-      13324,
-      13331,
-      13337,
-      13343
+      13314,
+      13322,
+      13328,
+      13335,
+      13341,
+      13347
     ],
     "success criteria section": [
       1329,
@@ -119361,16 +119383,16 @@
       13242,
       13248,
       13252,
-      13311,
-      13319,
-      13325,
-      13332,
-      13338,
-      13344,
-      13351,
-      13359,
-      13367,
-      13374
+      13315,
+      13323,
+      13329,
+      13336,
+      13342,
+      13348,
+      13355,
+      13363,
+      13371,
+      13378
     ],
     "task cache removal": [
       506
@@ -119729,16 +119751,16 @@
       13242,
       13248,
       13252,
-      13311,
-      13319,
-      13325,
-      13332,
-      13338,
-      13344,
-      13351,
-      13359,
-      13367,
-      13374
+      13315,
+      13323,
+      13329,
+      13336,
+      13342,
+      13348,
+      13355,
+      13363,
+      13371,
+      13378
     ],
     "task detail without network": [
       526
@@ -120327,14 +120349,14 @@
       13175,
       13181,
       13187,
-      13309,
-      13317,
-      13323,
-      13330,
-      13349,
-      13357,
-      13365,
-      13372
+      13313,
+      13321,
+      13327,
+      13334,
+      13353,
+      13361,
+      13369,
+      13376
     ],
     "telemetry and process verification harness": [
       8787,
@@ -121630,14 +121652,14 @@
       13175,
       13181,
       13187,
-      13309,
-      13317,
-      13323,
-      13330,
-      13349,
-      13357,
-      13365,
-      13372
+      13313,
+      13321,
+      13327,
+      13334,
+      13353,
+      13361,
+      13369,
+      13376
     ],
     "tests that cannot fail": [
       955
@@ -121863,7 +121885,7 @@
       9752
     ],
     "threshold proposal retired": [
-      13327
+      13331
     ],
     "tie break arm plan": [
       2951
@@ -122861,7 +122883,7 @@
     ],
     "trigger index freshness": [
       13196,
-      13305
+      13309
     ],
     "trigger index generator": [
       2390,
@@ -123280,7 +123302,7 @@
       1165
     ],
     "two checkout comparison": [
-      13363
+      13367
     ],
     "two data folders collapsed": [
       12346
@@ -125258,8 +125280,8 @@
       13194,
       13199,
       13205,
-      13308,
-      13316
+      13312,
+      13320
     ],
     "validation first workflow": [
       1411
@@ -125507,7 +125529,7 @@
       1236
     ],
     "value list owner change": [
-      13371
+      13375
     ],
     "value of computation allocation": [
       5755
@@ -126226,16 +126248,16 @@
       13242,
       13248,
       13252,
-      13311,
-      13319,
-      13325,
-      13332,
-      13338,
-      13344,
-      13351,
-      13359,
-      13367,
-      13374
+      13315,
+      13323,
+      13329,
+      13336,
+      13342,
+      13348,
+      13355,
+      13363,
+      13371,
+      13378
     ],
     "verification class blind to failure class": [
       7069
@@ -127138,16 +127160,16 @@
       13220,
       13229,
       13234,
-      13306,
-      13312,
-      13320,
-      13326,
-      13333,
-      13339,
-      13345,
-      13352,
-      13360,
-      13368
+      13310,
+      13316,
+      13324,
+      13330,
+      13337,
+      13343,
+      13349,
+      13356,
+      13364,
+      13372
     ],
     "wal autocheckpoint 256": [
       9326,
@@ -127222,7 +127244,7 @@
       8355
     ],
     "warning recall matrix": [
-      13350
+      13354
     ],
     "warnings enforcement path restore": [
       12142
@@ -128120,8 +128142,8 @@
       13194,
       13199,
       13205,
-      13308,
-      13316
+      13312,
+      13320
     ],
     "what shipped acceptance closure": [
       12504
