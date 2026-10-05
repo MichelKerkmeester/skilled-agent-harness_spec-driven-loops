@@ -109,6 +109,6 @@
     "causal_summary": "cli-classifier is the single public skill identity for typed classifier judgments, with the hosted Jev transport as its only mode today. The hub routes through mode-registry.json and hub-router.json to cli-jev, which bridges the Jev CLI and MCP surface and returns a probability, option key, ordered position or batch of keyed answers. Future classifier backends join as new modes with their own packets. Write, Edit and Task are forbidden and mutatesWorkspace is false, so a transport selects while a workflow acts. The advisor sees one hub and resolves transports by hub membership because each transport uses routingClass metadata.",
     "created_at": "2026-09-28T12:00:00Z",
     "last_updated_at": "2026-10-04T20:00:00Z",
-    "sanitizer_version": "sanitizeSkillLabel:v1"
+    "sanitizer_version": "sanitizeSkillLabel:v2"
   }
 }

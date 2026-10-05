@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6744,
-    "ok": 13327,
+    "ok": 13331,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23640,
+  "documentsScanned": 23644,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "02bfecf7ca8ac7d6e10909b1faaccfb3ddc175bbd9ce0633f0df6f02e52685b3",
+  "manifestHash": "7a52f80717fd83a8ccc2a767d91b9bd4869fbf25eb2409bf8f9695972a977462",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33719,
+      "ok": 33725,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -71038,6 +71038,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/026-doctor-run-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
       "reason": "excluded directory"
     },
     {
