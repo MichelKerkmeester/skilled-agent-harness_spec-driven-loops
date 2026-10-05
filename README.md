@@ -734,7 +734,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 
 - **`advisor_recommend`** - recommends skills for a prompt with lane breakdown, lifecycle redirects and a freshness trust signal. Returns the workspace root and the effective thresholds it used
 - **`advisor_rebuild`** - rebuilds the advisor skill graph when `advisor_status` reports stale, absent or unavailable state. `force:true` rebuilds even when live
-- **`advisor_status`** - reports freshness, generation, lane weights, skill count, last scan time and a trust state that reads `unavailable` when the daemon is down
+- **`advisor_status`** - reports freshness, generation, lane weights, skill count, last scan time and a trust state that reads `unavailable` when the daemon is down. It counts skill roots only and reports `indexStaleness`, which flags any stored source hash that no longer matches the file on disk
 - **`advisor_validate`** - runs measurement slices: corpus accuracy, holdout, parity, safety, latency. Surfaces the workspace root, effective thresholds, threshold semantics (aggregate vs runtime) and prompt-safe outcome counts (accepted / corrected / ignored)
 - **`skill_graph_scan`** - indexes skill metadata into the advisor-owned skill graph surface
 - **`skill_graph_query`** - queries skill graph relationships such as dependencies, families, hubs, conflicts and subgraphs
@@ -752,7 +752,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone). The legacy `SPECKIT_`-prefixed names still work
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default
 - **CLI front door**: the same nine commands over the warm daemon for hooks, cron and shell diagnostics. Mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`
-- **Launcher resilience**: an owner lease, a reconnecting session proxy and dead-socket respawn under a bootstrap lock. A hung daemon is reaped and replaced instead of stranding the session or spawning a second writer
+- **Launcher resilience**: an owner lease, a reconnecting session proxy and dead-socket respawn under a bootstrap lock. A hung daemon is reaped and replaced instead of stranding the session or spawning a second writer. A daemon launched before the current build is replaced on the next call, so a rebuild takes effect without a manual restart. `SPECKIT_BRIDGE_RESPAWN_DISABLED=1` turns that off
 
 #### Affordance Evidence
 
@@ -1341,12 +1341,14 @@ The Skill Advisor is deliberately not one. It runs as a resident daemon behind `
 
 14 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
 
+Code Mode reads each key under its manual's name: the manual name with every underscore doubled, an underscore, then the variable the config references. `.env.example` lists every key in that form, and `get_required_keys_for_tool` names the keys a tool expects.
+
 - **`chrome_devtools_1`** (MCP/stdio) - browser automation (instance 1). No env var needed
 - **`chrome_devtools_2`** (MCP/stdio) - browser automation (instance 2). No env var needed
-- **`clickup_official`** (MCP/stdio) - official ClickUp MCP (`@clickup/mcp-server`). Requires `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill
-- **`figma`** (MCP/stdio) - design files, components, exports. Requires `FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`
-- **`github`** (MCP/stdio) - issues, pull requests, commits. Requires `GITHUB_PERSONAL_ACCESS_TOKEN`
-- **`webflow`** (MCP/stdio) - sites, CMS collections. Requires `WEBFLOW_TOKEN`
+- **`clickup_official`** (MCP/stdio) - official ClickUp MCP (`@clickup/mcp-server`). Requires `clickup__official_CLICKUP_API_KEY` + `clickup__official_CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill
+- **`figma`** (MCP/stdio) - design files, components, exports. Requires `figma_FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`
+- **`github`** (MCP/stdio) - issues, pull requests, commits. Requires `github_GITHUB_PERSONAL_ACCESS_TOKEN`
+- **`webflow`** (MCP/stdio) - sites, CMS collections. Requires `webflow_WEBFLOW_TOKEN`
 - **`aside`**, **`mobbin`**, **`notion`**, **`obsidian`**, **`refero`** (MCP/stdio) - each backs the `mcp-tooling` mode of the same name
 - **`magicpath`** (CLI) - backs the `mcp-magicpath` mode
 - **`magnific`** and **`gitkraken`** (MCP/stdio) - registered with no mode packet of their own
@@ -1370,6 +1372,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 
 - Every launch-wrapper session commits in its own isolated worktree and auto-publishes each commit to a shared live branch
 - The main checkout auto-follows that branch, so the IDE always shows the combined state of every concurrent session's committed work
+- A worktree made with `.skilled/skills/sk-git/scripts/worktree-naming.sh create` is provisioned on creation: its dependencies install and spec-kit's runtime and CLI build, so validation and the continuity writer run in it at once. `worktree-naming.sh provision` does the same for a worktree made another way
 
 **Switches**
 
