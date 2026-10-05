@@ -199,7 +199,6 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 431 | skill-advisor CLI trusted-gate refusal | [431](tooling-and-scripts/cli-trusted-gate-refusal.md) | [skill-advisor-cli-daemon-backed-surface](../feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md) |
 | 428 | CLI warm-only no-spawn behavior | [428](tooling-and-scripts/cli-warm-only-no-spawn.md) | [cli-runtime-warm-only-fallbacks](../feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) |
 | 089 | Code standards alignment | [089](tooling-and-scripts/code-standards-alignment.md) | [code-standards-alignment](../feature-catalog/tooling-and-scripts/code-standards-alignment.md) |
-| 461 | Alignment suggestion measurement | [461](tooling-and-scripts/alignment-suggestion-measurement.md) | [alignment-suggestion-measurement](../feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md) |
 | 233 | Completion verification workflow | [233](tooling-and-scripts/completion-verification-workflow.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
 | 240 | Core workflow infrastructure | [240](tooling-and-scripts/core-workflow-infrastructure.md) | [core-workflow-infrastructure](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
 | DBG-SCAF-001 | Debug-delegation scaffold generator | [DBG-SCAF-001](tooling-and-scripts/debug-delegation-scaffold-generator.md) | [debug-delegation-scaffold-generator](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |
@@ -316,7 +315,6 @@ Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-c
 |---|---|---|---|
 | 453 | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [speckit-autopilot-lifecycle](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
 | 190 | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [session-recovery-spec-kit-resume](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
-| 459 | Track narrowing measurement | [459](retrieval/track-narrowing-measurement.md) | [track-narrowing-measurement](../feature-catalog/retrieval/track-narrowing-measurement.md) |
 | 270 | Resource map template | [270](context-preservation/resource-map-template.md) | [resource-map-template](../feature-catalog/context-preservation/resource-map-template.md) |
 
 ---
