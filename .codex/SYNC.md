@@ -30,7 +30,6 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 | `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
 | `hooks.json` | **hand-authored** | — | read by Codex from this checkout; never copied to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
-| `AGENTS.md` | file symlink to `../AGENTS.md` | root `AGENTS.md` | No. `~/.codex/AGENTS.md` symlinks to this link, so Codex reads the root file, Gate 1 included |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook` | No |
 
 There is no `.codex/commands/` — prompts serve that role. There is no `.codex/skills/`.

@@ -3,8 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 // The generator must write the pointer block from the root AGENTS.md line,
 // report a clean tree under --check, and report drift when the block is edited
-// by hand or removed, without touching the text around the block. It must never
-// write into .codex/AGENTS.md, which is a symlink to the root AGENTS.md.
+// by hand or removed, without touching the text around the block.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +13,6 @@ import { afterAll, describe, expect, it } from 'vitest';
 
 const SCRIPT = path.resolve(__dirname, '..', 'runtime-mirrors', 'sync-gate1-pointers.cjs');
 const GATE_LINE = '1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context.';
-const NODETERM = '<!-- nodeterm:demo:start -->\n# Demo\nowned by nodeterm\n<!-- nodeterm:demo:end -->\n';
 const CURSOR_RULE = '---\nalwaysApply: true\n---\n\n# Routing\n\n- pointer one\n';
 
 function run(root: string, ...args: string[]): { status: number | null; stdout: string; stderr: string } {
@@ -23,10 +21,8 @@ function run(root: string, ...args: string[]): { status: number | null; stdout: 
 }
 
 function seed(root: string): void {
-  fs.mkdirSync(path.join(root, '.codex'), { recursive: true });
   fs.mkdirSync(path.join(root, '.cursor', 'rules'), { recursive: true });
   fs.writeFileSync(path.join(root, 'AGENTS.md'), `# Root\n\n#### GATE 1\n${GATE_LINE}\n`);
-  fs.writeFileSync(path.join(root, '.codex', 'AGENTS.md'), NODETERM);
   fs.writeFileSync(path.join(root, '.cursor', 'rules', 'skill-routing.md'), CURSOR_RULE);
 }
 
@@ -47,8 +43,6 @@ describe('sync-gate1-pointers.cjs', () => {
     expect(text).toContain('lookup-trigger-index.mjs --json -- "<prompt>"');
     // The text that was there before the block is untouched.
     expect(text.startsWith(CURSOR_RULE)).toBe(true);
-    // Writing through the Codex symlink would put a second Gate 1 block into the root AGENTS.md.
-    expect(fs.readFileSync(path.join(root, '.codex', 'AGENTS.md'), 'utf8')).toBe(NODETERM);
 
     const after = run(root, '--check');
     expect(after.status, after.stderr).toBe(0);
