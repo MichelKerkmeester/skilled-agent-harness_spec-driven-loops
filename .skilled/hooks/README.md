@@ -265,13 +265,13 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 
 | Concern | Runtimes | Real home |
 |---|---|---|
-| `git-worktree-guard` | claude, codex, cursor, devin | `.skilled/bin/worktree-guard.sh` |
-| `git-hooks-check` | claude, codex, cursor, devin | `.skilled/bin/check-git-hooks.sh` |
-| `git-primary-reconcile` | claude, codex, cursor, devin, pi + opencode plugin | `.skilled/bin/git-primary-reconcile.sh` |
-| `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi + opencode plugin | `.skilled/bin/git-live-follow.sh` |
-| `session-cleanup` | claude, codex, cursor, devin + opencode plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
+| `git-worktree-guard` | claude, codex, cursor, devin + hermes plugin | `.skilled/bin/worktree-guard.sh` |
+| `git-hooks-check` | claude, codex, cursor, devin + hermes plugin | `.skilled/bin/check-git-hooks.sh` |
+| `git-primary-reconcile` | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-primary-reconcile.sh` |
+| `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-live-follow.sh` |
+| `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
 | `hook-install` | claude, cursor, devin (Codex's user-global file is the cleanup target) | `.skilled/bin/install-codex-hooks.mjs` |
-| `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
-| `sk-vision` | devin + opencode plugin + pi extension; cursor runs the CLI from `/vision`; claude and codex read images natively | `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` |
+| `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin + hermes plugin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
+| `sk-vision` | devin + opencode plugin + pi extension + hermes plugin; cursor runs the CLI from `/vision`; claude and codex read images natively | `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` |
 
 Each runtime's `session-lifecycle/` and `skill-advisor/` subfolders also carry the deployed `.js` entrypoint alongside its `.ts` source: a relative symlink into `system-spec-kit`'s built `dist/hooks/`, so the actually-executed file is browsable too. Those dist symlinks resolve after a build, exactly like the deployed `.<runtime>/hooks/*.js` symlinks the runtimes already use.
