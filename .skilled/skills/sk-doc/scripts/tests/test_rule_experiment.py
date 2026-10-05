@@ -115,7 +115,8 @@ def test_quota_failures_are_not_recorded_and_stop_the_run(tmp_path: Path, monkey
 
     def quota_run(executor, template, run_dir, prompt, suffix):
         calls.append(prompt["id"])
-        return {"run_dir": run_dir, "exit": 1, "error": "ERROR: You've hit your usage limit.", "seconds": 0.1}
+        return {"run_dir": run_dir, "exit": 1, "seconds": 0.1,
+                "error": "Your limit will reset in 43 minutes (at 05:11 UTC). \"cognition.ai/errorKind\": \"unavailable\""}
 
     monkeypatch.setattr(rx, "run_one", quota_run)
     out = tmp_path / "runs.jsonl"
