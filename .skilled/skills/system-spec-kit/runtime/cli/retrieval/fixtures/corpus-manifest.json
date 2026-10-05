@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d2b6cd86e13176c46325eef12ee908fae0d239cb21c0c04f329e0cda15d16b5b",
+  "corpusHash": "927bc2207ddac025386c97584190c3888d7793966dd3c17adeb1d3751a257056",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23689,
+  "includedPathCount": 23693,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23643,6 +23643,10 @@
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -23719,7 +23723,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
+  "manifestHash": "7dbc5a5cd6f12e8c71e3425aed0599e40876432d1663254aeaaad6f01c9f8d7f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29287,6 +29291,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/029-main-ci-regenerations/scratch",
       "reason": "excluded directory"
     },
     {

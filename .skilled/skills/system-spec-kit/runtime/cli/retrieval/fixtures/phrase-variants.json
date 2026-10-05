@@ -1,5 +1,5 @@
 {
-  "manifestHash": "11fe166cfc34ea9d79c3825fc3111ce846d5034f578dcd25b275dbff15941001",
+  "manifestHash": "7dbc5a5cd6f12e8c71e3425aed0599e40876432d1663254aeaaad6f01c9f8d7f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -47291,6 +47291,9 @@
     "hermes shell hooks": [
       "hermes shell hooks"
     ],
+    "hermes skill copy drift": [
+      "hermes skill copy drift"
+    ],
     "hermes skills hooks mcp": [
       "hermes skills hooks mcp"
     ],
@@ -53994,6 +53997,18 @@
     ],
     "magicpath write surface": [
       "magicpath write surface"
+    ],
+    "main ci regenerations": [
+      "main ci regenerations"
+    ],
+    "main ci regenerations plan": [
+      "main ci regenerations plan"
+    ],
+    "main ci regenerations summary": [
+      "main ci regenerations summary"
+    ],
+    "main ci regenerations tasks": [
+      "main ci regenerations tasks"
     ],
     "main fast forward to new tree": [
       "main fast-forward to new tree"
@@ -92077,6 +92092,9 @@
     ],
     "stale claims review 026": [
       "stale claims review 026"
+    ],
+    "stale compiled command contract": [
+      "stale compiled command contract"
     ],
     "stale compiled dist": [
       "stale compiled dist"
