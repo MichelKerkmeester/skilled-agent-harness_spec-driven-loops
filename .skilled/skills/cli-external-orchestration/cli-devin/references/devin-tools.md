@@ -374,7 +374,7 @@ devin list --format json
 | **Code search** | `Grep` (ripgrep) | `grep` tool | Both ripgrep-powered |
 | **File discovery** | `Glob` | `glob` tool | Functionally equivalent |
 | **Shell commands** | `Bash` | `exec` tool | Both require appropriate permissions |
-| **Web fetch** | `WebFetch` | `fetch` tool | Similar capabilities |
+| **Web fetch** | `WebFetch` | `fetch` tool (the hook payload names it `webfetch`) | Similar capabilities |
 | **Subagent delegation** | Not native | `run_subagent` tool | Devin-exclusive native subagents |
 | **Cloud handoff** | Not built-in | `/handoff` command | Devin-exclusive |
 | **Multi-model** | Single model | Multiple providers | Devin supports Opus, Sonnet, GPT, SWE, Codex, Gemini, etc. |
