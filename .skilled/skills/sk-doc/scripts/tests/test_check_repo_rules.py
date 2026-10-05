@@ -82,3 +82,21 @@ def test_root_without_a_router_is_an_error(tmp_path: Path) -> None:
 
     assert result.returncode == 2
     assert "no REPO RULES.md" in result.stderr
+
+
+def test_trigger_row_linking_a_card_credits_its_rule(tmp_path: Path) -> None:
+    root = make_tree(tmp_path)
+    rule = root / ".skilled" / "repo-rules" / "alpha.md"
+    rule.write_text(rule.read_text() + "\n## 2. SELF-CHECK\n\n- [ ] The deploy was careful.\n\n---\n")
+    builder = CHECKER.parent / "build-rule-cards.cjs"
+    subprocess.run(["node", str(builder), "--root", str(root)], check=True, capture_output=True)
+    router = root / "REPO RULES.md"
+    router.write_text(router.read_text().replace(
+        "| [`alpha.md`](.skilled/repo-rules/alpha.md) | Deploys |",
+        "| [`alpha.md`](.skilled/repo-rules/cards/alpha.md) | Deploys |"))
+
+    result = run(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "row coverage" in result.stdout and "all links resolve" in result.stdout
+    assert "bullets=2 every bullet has a router counterpart" in result.stdout
