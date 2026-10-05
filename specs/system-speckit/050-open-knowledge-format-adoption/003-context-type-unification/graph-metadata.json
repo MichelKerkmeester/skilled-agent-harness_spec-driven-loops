@@ -47,8 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "shared/frontmatter-values.json",
-      ".skilled/skills/system-spec-kit/shared/frontmatter-values.json",
       ".skilled/skills/system-spec-kit/shared/context-types.ts",
       ".skilled/skills/system-spec-kit/shared/tsconfig.json",
       ".skilled/skills/system-spec-kit/shared/tests/context-types.test.ts",
@@ -60,7 +58,9 @@
       "runtime/cli/lib/validator-registry.json",
       ".skilled/skills/system-spec-kit/README.md",
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-      ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py"
+      ".skilled/skills/sk-doc/scripts/tests/test_frontmatter_values.py",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs"
     ],
     "entities": [
       {
@@ -97,12 +97,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-values.json",
-        "kind": "config",
-        "path": "shared/frontmatter-values.json",
         "source": "derived"
       },
       {
@@ -178,13 +172,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "check-skill-doc-frontmatter.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two aliases (`decision` to `planning`, `discovery` to `general`), and the `sk-doc` contract lists the same four",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-04T10:54:20.239Z",
+    "last_save_at": "2026-10-05T04:39:28.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f949d7f0a4811dae67480c531b09bdce403d9ef2c45b28d2c3cf0f8faa26df02",
+    "source_fingerprint": "sha256:2816a98db8f750bd30e19f6a06240d483966fd73deaa4097a41d9b277d046da4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49faf563bf614a4409fbe1c6c88ffe80a33f441bc0e70f82c9dd08515836c756",
+      "spec.md": "675d1369c3b9e7fcb23d0902d380b9f51bc0c917d7531fe736436fed473586ca",
       "plan.md": "d127595c8eb37df89ff4115686da86da51fc4eeaf9d0c1bbe9916db997a98bd7",
       "tasks.md": "57232d61181d524eb743049ce61fd6a21384ff92c1f94801777e5a949c209386",
-      "implementation-summary.md": "ab0704287d09b790c18941d9f048c1463d195a9cdc4c5ade8f06a48037de994b"
+      "implementation-summary.md": "3e6d5ffa92c8284362cbca3002d6d9983965f756cf1b4182300e0de8e7c4335e"
     },
     "last_active_at": null
   }

@@ -125,6 +125,8 @@ and findings belong here.
 | criterion 7 | Open | census and rule resolve REPO RULES.md:88; identical warnings need both checkouts at one commit |
 | criterion 7 | Met 2026-10-04 | REPO RULES.md:88 resolves in census (4 rows) and rule (vitest e2e, 5 planted controls); at 93a83a466b0b a temp detached worktree and the main checkout give identical output, baseline differs by 366; temp worktree removed |
 | phase 011 value list move | Complete, 8/8 AC | list moved to sk-create-frontmatter/assets; every check identical to its baseline; validate --strict --recursive 11x RESULT: PASSED |
+| phases 003 and 007 | Complete 2026-10-05 | the commits each criterion waited on are on main: 003 AC-006 by `cca919c5a4` (33 to 12), 007 AC-004 by the docs commits |
+| phase 009 census | Complete 2026-10-05 | ADR-001: SWE 2, GLM 5.3 Flash and Gemini 3.8 Flash settled 33 of 40 disputed rows; guessed class 80.6% intended (71.5-87.4%) over 93 settled rows, a panel verdict; AC-004 superseded |
 
 ### Deviations and findings
 

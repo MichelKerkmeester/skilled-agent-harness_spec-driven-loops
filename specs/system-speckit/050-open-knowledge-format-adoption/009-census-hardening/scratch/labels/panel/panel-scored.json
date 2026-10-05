@@ -1,0 +1,436 @@
+{
+  "votes_cast": {
+    "swe": 40,
+    "glm": 40,
+    "gemini": 40
+  },
+  "disputed_rows": 40,
+  "verdict_counts": {
+    "intended": 15,
+    "not_intended": 12,
+    "cant_tell": 6,
+    "unsettled": 7
+  },
+  "pairwise_agreement": {
+    "swe-glm": {
+      "both": 40,
+      "agree": 18
+    },
+    "swe-gemini": {
+      "both": 40,
+      "agree": 12
+    },
+    "glm-gemini": {
+      "both": 40,
+      "agree": 18
+    }
+  },
+  "by_phase": {
+    "c9-": {
+      "n": 100,
+      "settled": 93,
+      "unsettled": 7,
+      "intended": 75,
+      "intended_share_settled": 0.8065,
+      "wilson95_settled": [
+        0.7147,
+        0.8739
+      ],
+      "intended_share_all": 0.75,
+      "wilson95_all": [
+        0.657,
+        0.8245
+      ],
+      "counts": {
+        "intended": 75,
+        "not_intended": 13,
+        "cant_tell": 5,
+        "unsettled": 7
+      }
+    },
+    "t10": {
+      "n": 50,
+      "settled": 30,
+      "unsettled": 20,
+      "intended": 11,
+      "intended_share_settled": 0.3667,
+      "wilson95_settled": [
+        0.2187,
+        0.5449
+      ],
+      "intended_share_all": 0.22,
+      "wilson95_all": [
+        0.1275,
+        0.3524
+      ],
+      "counts": {
+        "cant_tell": 4,
+        "intended": 11,
+        "not_intended": 15,
+        "unsettled": 20
+      }
+    }
+  },
+  "verdicts": {
+    "47": {
+      "label": "intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "51": {
+      "label": "intended",
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "cant_tell"
+      }
+    },
+    "52": {
+      "label": "intended",
+      "path": ".skilled/commands/speckit/resume.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "54": {
+      "label": "intended",
+      "path": ".skilled/skills/sk-communication/SKILL.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "55": {
+      "label": "intended",
+      "path": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/020-archive-renumber-010-044-to-001-023/implementation-summary.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "intended"
+      }
+    },
+    "56": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "cant_tell",
+        "glm": "not_intended",
+        "gemini": "cant_tell"
+      }
+    },
+    "58": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "59": {
+      "label": "intended",
+      "path": ".skilled/repo-rules/prevent-overengineering.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "intended"
+      }
+    },
+    "60": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "61": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "65": {
+      "label": "intended",
+      "path": ".skilled/repo-rules/delegation-and-orchestration.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "intended"
+      }
+    },
+    "68": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "cant_tell",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "71": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "73": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "75": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "76": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "not_intended"
+      }
+    },
+    "77": {
+      "label": "intended",
+      "path": "specs/system-speckit/031-memory-reindex-embed-performance/implementation-summary.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "intended"
+      }
+    },
+    "79": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "80": {
+      "label": "intended",
+      "path": "specs/system-speckit/027-xce-research-based-refinement/research/001-xce-adoption-matrix/sub-packet-proposals.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "intended"
+      }
+    },
+    "81": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "83": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "not_intended"
+      }
+    },
+    "86": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "cant_tell",
+        "glm": "intended",
+        "gemini": "cant_tell"
+      }
+    },
+    "87": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "cant_tell"
+      }
+    },
+    "89": {
+      "label": "intended",
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/spec.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "90": {
+      "label": "intended",
+      "path": "specs/sk-communication/001-sk-communication-creation/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "intended"
+      }
+    },
+    "91": {
+      "label": "intended",
+      "path": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/spec.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "intended"
+      }
+    },
+    "92": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "not_intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "93": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "cant_tell",
+        "gemini": "cant_tell"
+      }
+    },
+    "95": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "97": {
+      "label": "intended",
+      "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability/implementation-summary.md",
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "98": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "99": {
+      "label": "unsettled",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    },
+    "100": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "cant_tell",
+        "glm": "cant_tell",
+        "gemini": "not_intended"
+      }
+    },
+    "101": {
+      "label": "cant_tell",
+      "path": null,
+      "votes": {
+        "swe": "cant_tell",
+        "glm": "intended",
+        "gemini": "cant_tell"
+      }
+    },
+    "102": {
+      "label": "intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "intended"
+      }
+    },
+    "103": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "105": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "106": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "107": {
+      "label": "not_intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "not_intended",
+        "gemini": "not_intended"
+      }
+    },
+    "109": {
+      "label": "intended",
+      "path": null,
+      "votes": {
+        "swe": "intended",
+        "glm": "intended",
+        "gemini": "not_intended"
+      }
+    }
+  }
+}

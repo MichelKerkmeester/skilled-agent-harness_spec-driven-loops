@@ -1,0 +1,3 @@
+{"row": 75, "label": "not_intended", "path": ""}
+
+Reasoning: the citing text uses phase-directory shorthand twice — "Phase 007's own sweep rules" sourced to `007-docs-and-residue-sweep/spec.md` and "008 acceptance-criteria.md" in the same residue-sweep context. Both point into the `system-skill-advisor` spec family (the doc's own topic), so "008" means a `specs/system-skill-advisor/008-*/acceptance-criteria.md` phase file. The only visible 008 candidate, `specs/agents/008-orchestrate-external-cli-delegation/acceptance-criteria.md`, belongs to a different spec family (agents), so it is not the file the author meant.

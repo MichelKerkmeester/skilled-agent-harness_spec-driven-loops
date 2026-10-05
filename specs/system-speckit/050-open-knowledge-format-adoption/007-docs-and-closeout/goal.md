@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-04T09:20:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Added the operator UX and command-surface criterion"
-    next_safe_action: "Execute against the completion criteria"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-04-speckit-050"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] the sk-create-frontmatter contract text and the spec-kit key table state the shipped contextType and importance_tier rules
 - [x] validation-rules.md documents each shipped rule and none that was recorded as not built
-- [ ] every skill doc edited in this program has a bumped four-part version and a changelog entry, and check-frontmatter-versions.sh exits 0
+- [x] every skill doc edited in this program has a bumped four-part version and a changelog entry, and check-frontmatter-versions.sh exits 0
 - [x] validate.sh --strict --recursive on the packet prints RESULT: PASSED
 - [x] the closure record lists each deferred item and why
 - [x] the doc of every changed /create:*, /speckit:*, /deep:* and /doctor command names the check it now runs or the value it now emits
