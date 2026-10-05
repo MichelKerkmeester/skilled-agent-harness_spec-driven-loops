@@ -47,6 +47,7 @@ const CONTEXT_LIST = SHARED_VALUES.contextType;
 const IMPORTANCE_TIERS = new Set([...TIER_LIST.canonical, ...Object.keys(TIER_LIST.aliases)]);
 const CONTEXT_TYPES = new Set([...CONTEXT_LIST.canonical, ...Object.keys(CONTEXT_LIST.aliases)]);
 const DETAILED_FIELDS = ['trigger_phrases', 'importance_tier', 'contextType'];
+const ENUM_FIELDS = new Set(['importance_tier', 'contextType']);
 const DOC_SUBDIRS = ['references', 'assets'];
 
 // ───────────────────────────────────────────────────────────────────
@@ -79,6 +80,16 @@ function cleanScalar(raw) {
     value = value.slice(1, -1).trim();
   }
   return value;
+}
+
+// The shared-list fields compare the way the other readers of
+// frontmatter-values.json compare them: a ` #` YAML comment is not part of the
+// value, and case does not matter.
+function enumScalar(raw) {
+  const value = raw.trim();
+  const quoted = /^(["'])(.*?)\1(?:\s+#.*)?$/.exec(value);
+  const bare = quoted ? quoted[2] : value.replace(/(?:^|\s+)#.*$/, '');
+  return bare.trim().toLowerCase();
 }
 
 function parseFrontmatter(content) {
@@ -118,7 +129,7 @@ function parseFrontmatter(content) {
         fields.trigger_phrases = items;
       }
     } else {
-      fields[key] = cleanScalar(rest);
+      fields[key] = ENUM_FIELDS.has(key) ? enumScalar(rest) : cleanScalar(rest);
     }
   }
   return fields;

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/050-open-knowledge-format-adoption/012-review-remediation",
+  "description": "Phase 12: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-10-05T15:53:18.233Z",
+  "specId": "012",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "system-speckit",
+    "050-open-knowledge-format-adoption"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "05-10-26_16-34__fixed-the-four-p2-findings-from-the-packet-050.md",
+    "05-10-26_16-53__fixed-the-four-p2-findings-from-the-packet-050.md"
+  ]
+}

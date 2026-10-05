@@ -1613,6 +1613,19 @@ def _load_frontmatter_values() -> Optional[Dict[str, Any]]:
         return None
 
 
+def _frontmatter_scalar(raw: str) -> str:
+    """One YAML scalar as written after the key.
+
+    A quoted value keeps everything between its quotes, and an unquoted value
+    ends where ` #` starts a comment, so `planning # note` reads as `planning`.
+    """
+    value = raw.strip()
+    quoted = re.match(r'^(["\'])(.*?)\1(?:\s+#.*)?$', value)
+    if quoted:
+        return quoted.group(2).strip()
+    return re.sub(r'(?:^|\s+)#.*$', '', value).strip()
+
+
 def validate_frontmatter_values(content: str, values: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Warn when contextType or importance_tier is outside the shared list.
 
@@ -1635,7 +1648,7 @@ def validate_frontmatter_values(content: str, values: Optional[Dict[str, Any]]) 
         found = re.search(rf'^{field}:[ \t]*(.+?)[ \t]*$', match.group(1), re.MULTILINE)
         if not found:
             continue
-        value = _strip_matching_quotes(found.group(1)).strip().lower()
+        value = _frontmatter_scalar(found.group(1)).lower()
         accepted = set(lists[list_key]['canonical']) | set(lists[list_key]['aliases'])
         if value and value not in accepted:
             canonical = ', '.join(lists[list_key]['canonical'])

@@ -43,6 +43,8 @@ def main() -> int:
         ('canonical values pass', doc('planning', 'normal'), []),
         ('aliases pass', doc('review', 'high'), []),
         ('quoted alias passes', doc('"Reference"', 'supporting'), []),
+        ('inline YAML comments are not part of the value',
+         '---\ncontextType: planning # why\nimportance_tier: "normal" # pinned\n---\n# Example\n', []),
         ('contextType outside the list warns', doc('architecture', 'normal'), ['contextType']),
         ('importance_tier outside the list warns', doc('general', 'planning'), ['importance_tier']),
         ('no frontmatter stays silent', '# Example\n\nBody.\n', []),

@@ -12,7 +12,7 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { sourceTagCitations } from '../rules/check-source-tags-helper.mjs';
+import { CUTOFF_DEFAULT, cutoffDate, sourceTagCitations } from '../rules/check-source-tags-helper.mjs';
 
 const RULES = path.resolve(import.meta.dirname, '..', 'rules');
 const HELPER = path.join(RULES, 'check-source-tags-helper.mjs');
@@ -198,6 +198,15 @@ describe('SOURCE_TAGS helper', () => {
     const root = makeRepo('2026-10-04');
     write(root, { [`${PACKET}/research/research.md`]: 'Old [SOURCE: src/real.ts:999].\n' });
     expect(helper(root, { SPECKIT_SOURCE_TAG_CUTOFF: 'soon' })[0]).toMatch(/^SKIP\t/);
+  });
+
+  it('falls back to the default cutoff on a date-shaped day that does not exist', () => {
+    for (const impossible of ['9999-99-99', '2026-02-30']) {
+      const { cutoff, note } = cutoffDate({ SPECKIT_SOURCE_TAG_CUTOFF: impossible });
+      expect(cutoff).toBe(CUTOFF_DEFAULT);
+      expect(note).toContain(impossible);
+    }
+    expect(cutoffDate({ SPECKIT_SOURCE_TAG_CUTOFF: '2028-02-29' })).toEqual({ cutoff: '2028-02-29', note: null });
   });
 
   it('resolves a tracked file whose name has a space, end to end', () => {

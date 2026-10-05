@@ -734,6 +734,36 @@ test('census prefetch stores the same text git show returns', () => {
   }
 });
 
+test('census reads a document whose name holds a line feed under its own path', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'cite-drift-newline-'));
+  try {
+    const docs = {
+      '.skilled/skills/alpha-skill/a\nb.md': '# Split name\nThe window `src/inside.ts:3` still holds.\n',
+      '.skilled/skills/alpha-skill/z.md': '# Later doc\nNo citation here.\n',
+    };
+    for (const [rel, text] of Object.entries({ ...docs, 'src/inside.ts': TEN_LINES })) {
+      const full = path.join(root, rel);
+      fs.mkdirSync(path.dirname(full), { recursive: true });
+      fs.writeFileSync(full, text);
+    }
+    runGit(root, 'init', '-q');
+    runGit(root, 'add', '-A');
+    runGit(root, 'commit', '-q', '-m', 'newline fixture');
+
+    const commit = headCommit(root);
+    const readCache = new Map();
+    const census = buildCensus(root, listTrackedFiles(root), readCache, { redirects: [] });
+
+    assert.equal(census.total.citations, 1);
+    assert.equal(census.total.in_range, 1);
+    for (const [doc, text] of Object.entries(docs)) {
+      assert.equal(readCache.get(`${commit}:${doc}`), text);
+    }
+  } finally {
+    cleanup(root);
+  }
+});
+
 test('draw reproducible', async () => {
   const root = makeDrawFixture();
   const first = path.join(os.tmpdir(), `cite-drift-draw-${process.pid}-a.jsonl`);

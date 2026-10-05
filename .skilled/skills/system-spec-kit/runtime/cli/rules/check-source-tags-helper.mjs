@@ -52,8 +52,22 @@ const IGNORABLE_STATUSES = new Set(['unresolved', 'refused', 'basename_only', 'a
 // ───────────────────────────────────────────────────────────────
 
 /**
+ * Whether a YYYY-MM-DD string names a real day; Date rolls 2026-02-30 into
+ * March, so a round trip that changes any part means the day does not exist.
+ * @param {string} candidate
+ * @returns {boolean}
+ */
+function isCalendarDate(candidate) {
+  const [year, month, day] = candidate.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
+
+/**
  * Cutoff from SPECKIT_SOURCE_TAG_CUTOFF. A malformed value falls back to the
  * default instead of being compared as a string, which could skip every packet.
+ * Date-shaped is not enough: `9999-99-99` matches the shape and would still
+ * sort after every real date, so the value must also name a real calendar day.
  * @param {Record<string, string|undefined>} env
  * @returns {{ cutoff: string, note: string|null }}
  */
@@ -61,7 +75,7 @@ export function cutoffDate(env) {
   const raw = env.SPECKIT_SOURCE_TAG_CUTOFF;
   if (raw === undefined || raw === '') return { cutoff: CUTOFF_DEFAULT, note: null };
   const candidate = raw.slice(0, 10);
-  if (/^\d{4}-\d{2}-\d{2}$/.test(candidate)) return { cutoff: candidate, note: null };
+  if (/^\d{4}-\d{2}-\d{2}$/.test(candidate) && isCalendarDate(candidate)) return { cutoff: candidate, note: null };
   return { cutoff: CUTOFF_DEFAULT, note: `SPECKIT_SOURCE_TAG_CUTOFF='${raw}' is not an ISO date; using ${CUTOFF_DEFAULT}` };
 }
 
