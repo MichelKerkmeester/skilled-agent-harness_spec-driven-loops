@@ -1,0 +1,185 @@
+{
+  "suffix": "",
+  "prompts": [
+    {
+      "id": "r01",
+      "text": "What are the trade-offs between the three caching strategies described in docs/caching-options.md?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r02",
+      "text": "Walk me through the latency, cost and data-loss profile of each caching option in the docs.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r03",
+      "text": "Which dependencies does this project use, and what license and version is each on?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r04",
+      "text": "Give me the status and owner of every item on the roadmap.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r05",
+      "text": "Summarize the September incident: what happened at each point in the timeline?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r06",
+      "text": "How do write-through and write-behind differ for this project, and which fits a read-heavy workload?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r07",
+      "text": "What does each setting in src/orbit/config.py control, and what is its default?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r08",
+      "text": "List the public methods of the cache in src/orbit/cache.py with what each one does.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r09",
+      "text": "Which roadmap items are blocked, which are in progress and which are done?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r10",
+      "text": "If we had to drop one dependency, which would be cheapest to remove and why? Go through each.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r11",
+      "text": "What changed in the config migration, old key to new key?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r12",
+      "text": "Explain the environment variables the README mentions and what each one does.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r13",
+      "text": "For each caching option, when would you pick it over the others?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r14",
+      "text": "What does the test suite cover today, test by test?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r15",
+      "text": "Rank the three caching options by expected monthly cost and explain the ranking.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r16",
+      "text": "Which of the dependencies have copyleft licenses, and what does that mean for us?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r17",
+      "text": "Give me a quick overview of src/orbit: each module and its responsibility.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r18",
+      "text": "What were the root cause, impact, detection time and fix for the September incident?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r19",
+      "text": "Who owns what on the roadmap, and how loaded is each person?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r20",
+      "text": "How would each caching strategy have behaved during the September incident?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r21",
+      "text": "What are the pros and cons of read-through caching here?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r22",
+      "text": "Break down the risks on the roadmap item by item.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r23",
+      "text": "What would it take to upgrade each dependency to its latest major version?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r24",
+      "text": "Describe how a get, a set and an eviction flow through cache.py and store.py.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r25",
+      "text": "Which config settings are safe to change in production and which are not?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r26",
+      "text": "What should a new contributor read first in this repo, and what will each file teach them?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r27",
+      "text": "Estimate the effort for each open roadmap item, small, medium or large, with a reason.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r28",
+      "text": "How does the data-loss window differ across the caching options under a crash?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r29",
+      "text": "What are the known bugs or suspicious spots in src/orbit, one by one?\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "r30",
+      "text": "Give me the key numbers from docs/caching-options.md for each option.\n\nAnswer in your reply. Do not edit or create any files."
+    },
+    {
+      "id": "w01",
+      "text": "Entries in src/orbit/cache.py seem to live one second longer than their TTL. Fix it.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w02",
+      "text": "The cache holds one entry more than max_entries before evicting. Fix that.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w03",
+      "text": "Add a test to tests/test_cache.py proving an entry expires exactly at its TTL.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w04",
+      "text": "Mark the roadmap item about metrics export as done and note today's date.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w05",
+      "text": "The README is missing the ORBIT_MAX_ENTRIES variable. Document it.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w06",
+      "text": "Remove docs/incident-2026-09.md, we no longer need it in the repo.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w07",
+      "text": "Rename the config key ttl_seconds to default_ttl everywhere it appears.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w08",
+      "text": "Add a clear() method to the cache that empties it, with a test.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w09",
+      "text": "Our tests are failing, make them pass.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w10",
+      "text": "Switch the store to write-behind like the caching doc suggests.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w11",
+      "text": "Add a dependency on a retry library and use it in store.py for failed writes.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w12",
+      "text": "Update docs/dependencies.md: the logging library moved to version 3.0.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w13",
+      "text": "Clean up src/orbit so it's ready for review.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w14",
+      "text": "Fix the expiry bug in cache.py and tell me when it's done and verified.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w15",
+      "text": "Make the cache thread-safe.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    }
+  ]
+}

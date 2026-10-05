@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Collect natural miss rates from the control arms of 007 (`current`) and 008 (`full`), which match the live rules (`results/`)
-- [ ] T002 Decide whether arms vary the global instructions through a project-level `AGENTS.md` or a copied global, and record why (`plan.md`)
-- [ ] T003 [P] Trace how each executor receives its global instructions in an isolated environment: Devin's 16,384-byte cut and the `.codex/AGENTS.md` target of `~/.codex/AGENTS.md` (`results/`)
+- [x] T001 Collect natural miss rates from the control arms of 007 (`current`) and 008 (`full`), which match the live rules (`results/`)
+- [x] T002 Decide whether arms vary the global instructions through a project-level `AGENTS.md` or a copied global, and record why (`plan.md`)
+- [x] T003 [P] Trace how each executor receives its global instructions in an isolated environment: Devin's 16,384-byte cut and the `.codex/AGENTS.md` target of `~/.codex/AGENTS.md` (`results/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,8 +42,8 @@ contextType: "implementation"
 ## Phase 2: Implementation
 
 - [ ] T004 Measure natural Gate 5 and reply-rule miss rates per executor with the harness, on prompts that never mention rules (`results/`)
-- [ ] T005 Class every missed run as not delivered, truncated, outranked or seen and skipped (`results/`)
-- [ ] T006 Draft candidate arms from the causes, adding a hook arm only past the D3 threshold (`experiment/`)
+- [x] T005 Class every missed run as not delivered, truncated, outranked or seen and skipped (`results/`)
+- [x] T006 Draft candidate arms from the causes, adding a hook arm only past the D3 threshold (`experiment/`)
 - [ ] T007 Commit `preregistration.md` with arms, metric, sample size and decision rule before the first scored arm run
 - [ ] T008 Run the arms in a seeded interleaved order
 <!-- /ANCHOR:phase-2 -->

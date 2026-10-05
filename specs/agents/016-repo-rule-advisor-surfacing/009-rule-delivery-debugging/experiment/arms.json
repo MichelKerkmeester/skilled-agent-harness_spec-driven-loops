@@ -1,0 +1,36 @@
+{
+  "experiment": "009-reply-rule-delivery",
+  "arms": [
+    {
+      "name": "baseline",
+      "edits": [
+        {
+          "file": "AGENTS.md",
+          "content_from": "AGENTS.md"
+        }
+      ]
+    },
+    {
+      "name": "gate6",
+      "edits": [
+        {
+          "file": "AGENTS.md",
+          "content_from": "AGENTS.md"
+        },
+        {
+          "file": "AGENTS.md",
+          "replace": [
+            [
+              "#### CONSOLIDATED QUESTION PROTOCOL",
+              "#### GATE 6: REPLY RULES LOAD [HARD] BLOCK\nTrigger: before EVERY substantive reply, read-only turns included. Gate 5 fires on a write and never reaches a reply.\n1. LOAD `communication.md` and `communication-prose.md` from `.skilled/repo-rules/`.\n2. Also LOAD `communication-decisions.md` before a recommendation or a long stretch, `communication-handoff.md` before ending a turn, and `answer-the-actual-request.md` before warning about, narrowing, declining or pricing a request.\n- A file already in context is not re-read.\n\n#### CONSOLIDATED QUESTION PROTOCOL"
+            ],
+            [
+              "- Before any substantive reply load `communication.md` and `communication-prose.md`, before a recommendation or long stretch `communication-decisions.md`, before ending a turn `communication-handoff.md`, and before warning about, narrowing, declining or pricing a request `answer-the-actual-request.md`, all in `.skilled/repo-rules/`. These five fire on a reply rather than on a write, so Gate 5 never reaches them.",
+              "- Reply rules load under Gate 6 in §2."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -48,7 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       ".codex/AGENTS.md",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py"
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
+      "results/delivery-trace.md"
     ],
     "entities": [
       {
@@ -97,6 +98,12 @@
         "name": "rule-experiment.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/rule-experiment.py",
+        "source": "derived"
+      },
+      {
+        "name": "delivery-trace.md",
+        "kind": "doc",
+        "path": "results/delivery-trace.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` mandates two loads: Gate 5 opens `REPO RULES.md` before the first write, and the reply-rule line loads `communication.md` and `communication-prose.md` before a substantive reply",
     "created_at": "2026-10-04T21:40:03Z",
-    "last_save_at": "2026-10-04T21:54:52.906Z",
+    "last_save_at": "2026-10-05T07:41:16.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17f313fc251f68b5fa616c18cb5ae76ce9f3b4ab2022968e1ab79e312dd19008",
+    "source_fingerprint": "sha256:360d5181366237144ac473818c2201990546d54940a777d1080816bb9c004711",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32bb698c9a77172f32d07a3627e852ae64840cf8c1fbdd9f1f0baf3081258277",
-      "plan.md": "d5905c71f4198a54e970e4a157aa2b58cd0d4e28172079ca855a62d2e5871ec9",
-      "tasks.md": "bec260b53c6710fda0cefe247e7d2255281c5f62a129ea55cf0664485de48b78",
+      "plan.md": "efe70672986d56348e80f7f9dd1ebe8a7604784eb2d63e3de121de940c8a0f0f",
+      "tasks.md": "03e880f4803e87ecb2f436c0020d9d1a3ef2496ceebdea32728e9317d4daecb8",
       "implementation-summary.md": "6f2a5a020a5f9b5c25c46751990d40cf663646c8bb8da7568e07e1d894d0c32e"
     },
     "last_active_at": null
