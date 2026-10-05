@@ -88,11 +88,11 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 
 | Event · matcher | Guard | Adapter |
 |---|---|---|
-| PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
+| PreToolUse · `exec\|Bash\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
 | UserPromptSubmit | spec-gate classify (state only, no emit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
-| PreToolUse · `exec` | dispatch preflight lint (deny-capable) | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` |
+| PreToolUse · `exec\|Bash` | dispatch preflight lint (deny-capable) | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` |
 | PostToolUse · `apply_patch\|edit` | post-edit quality | `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` |
-| PostToolUse · `exec` | dispatch audit (observe) | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` |
+| PostToolUse · `exec\|Bash` | dispatch audit (observe) | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` |
 | Stop | completion-evidence sentinel (advisory) | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` |
 | PreToolUse · `mcp__.*` | mcp route guard (dormant until an external MCP family registers) | `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs` |
 
@@ -100,6 +100,22 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 > `*** Add/Update/Delete File:` header), not a `file_path` field — filePath-driven
 > adapters parse the path from the patch body. A Stop hook's stdout is parsed as a
 > response envelope, so neutral shell scripts wired to Stop must not emit stdout.
+
+> Codex 0.160 renamed its shell tool from `exec` to `Bash`, and a matcher of
+> `exec` alone no longer fires for a shell call. Every shell matcher names both.
+> The same release hands PostToolUse the shell output as one string where older
+> builds handed `{stdout, stderr}`, so the audit adapter reads either shape.
+
+> Codex runs a project hook only after the operator approves that exact entry.
+> The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
+> `trusted_hash`, and an entry with no approval, or one whose matcher changed after
+> approval, is skipped without a warning. After a `hooks.json` change, open `/hooks`
+> in an interactive Codex session and approve the changed entries.
+
+> Codex has no task-dispatch guard. Its `spawn_agent` call reaches PreToolUse as
+> `collaborationspawn_agent`, but the hook payload carries the spawn `message`
+> encrypted (`gAAAAA...`) beside `task_name` and `fork_turns`, so the guard has no
+> prompt or target to check.
 
 Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
 The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs

@@ -3,7 +3,7 @@
 // MODULE: Codex PreToolUse Dispatch Preflight
 // ───────────────────────────────────────────────────────────────────
 // STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
-// PreToolUse `exec` matcher group.
+// PreToolUse `exec|Bash` matcher group.
 // PreToolUse(exec) preflight for CLI dispatch under Codex CLI -- the Codex sibling
 // of the Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and
@@ -26,6 +26,9 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Codex names its shell tool `exec` up to 0.15x and `Bash` from 0.160 on.
+const CODEX_SHELL_TOOLS = new Set(['exec', 'bash']);
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -51,7 +54,7 @@ async function main() {
     return approve(); // no/invalid payload -> fail open
   }
 
-  if (String(payload?.tool_name || '').toLowerCase() !== 'exec') return approve();
+  if (!CODEX_SHELL_TOOLS.has(String(payload?.tool_name || '').toLowerCase())) return approve();
   const command = payload?.tool_input?.command;
   if (typeof command !== 'string' || command.length === 0) return approve();
 

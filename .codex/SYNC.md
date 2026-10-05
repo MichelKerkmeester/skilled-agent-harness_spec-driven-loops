@@ -90,7 +90,7 @@ developer_instructions = '''
 
 `sandbox_mode` is **derived and lossy**: OpenCode's 13–15-key `permission:` map collapses into one of two values, keyed on whether write/edit/bash are allowed. `model` and `model_reasoning_effort` have no source at all — they come from a table inside the generator. Neither can be recovered by reading the TOML back.
 
-`hooks.json` is PascalCase with nested `{matcher, hooks: [...]}` groups, and is the only runtime whose commands carry a `|| printf '{"hookSpecificOutput":…}'` fallback so a missing adapter degrades to a message instead of a hard failure. It has **no `SessionEnd`** — cleanup folds into `Stop`. Tool vocabulary is `exec` / `apply_patch` / `edit`, unanchored.
+`hooks.json` is PascalCase with nested `{matcher, hooks: [...]}` groups, and is the only runtime whose commands carry a `|| printf '{"hookSpecificOutput":…}'` fallback so a missing adapter degrades to a message instead of a hard failure. It has **no `SessionEnd`** — cleanup folds into `Stop`. Tool vocabulary is `exec` / `apply_patch` / `edit`, unanchored. Codex 0.160 renamed the shell tool to `Bash` and an `exec` matcher no longer fires for it, so every shell matcher names both `exec|Bash`.
 
 ---
 

@@ -91,8 +91,8 @@ async function main() {
     return approve();
   }
 
-  // Claude delivers shell commands as tool_name "Bash"; Codex/Devin deliver the same payload
-  // shape as "exec"; Cursor delivers its shell surface as "Shell". One hook serves all three,
+  // Claude and Codex from 0.160 deliver shell commands as tool_name "Bash"; older Codex and
+  // Devin deliver the same payload shape as "exec"; Cursor delivers its shell surface as "Shell". One hook serves all three,
   // because a second copy would be a second thing to drift. The command field is identical
   // across every runtime, so only the tool label and the project-dir source vary below.
   const tool = String(payload?.tool_name || '').toLowerCase();

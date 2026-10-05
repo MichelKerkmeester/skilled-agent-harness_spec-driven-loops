@@ -3,7 +3,7 @@
 // MODULE: Codex PostToolUse Dispatch Audit
 // ───────────────────────────────────────────────────────────────────
 // STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
-// PostToolUse `exec` matcher group.
+// PostToolUse `exec|Bash` matcher group.
 // PostToolUse(exec) CLI dispatch audit trail for Codex CLI -- the Codex sibling of
 // the Claude dispatch-audit hook. Observes a completed exec call, recognizes an
 // `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends one
@@ -33,6 +33,9 @@ import {
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Codex names its shell tool `exec` up to 0.15x and `Bash` from 0.160 on.
+const CODEX_SHELL_TOOLS = new Set(['exec', 'bash']);
+
 function done() {
   // No output + exit 0 -> pure observation, nothing for Codex to act on.
   process.exit(0);
@@ -57,7 +60,7 @@ async function main() {
     return done(); // no/invalid payload -> fail open
   }
 
-  if (String(payload?.tool_name || '').toLowerCase() !== 'exec') return done();
+  if (!CODEX_SHELL_TOOLS.has(String(payload?.tool_name || '').toLowerCase())) return done();
   if (isAuditDisabled(process.env)) return done();
 
   const toolInput = payload?.tool_input || {};
@@ -70,12 +73,14 @@ async function main() {
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
   const logPath = join(projectDir, DEFAULT_LOG_RELATIVE_PATH);
 
-  const toolResponse = payload?.tool_response && typeof payload.tool_response === 'object'
-    ? payload.tool_response
-    : {};
-  const outputText = [toolResponse.stdout, toolResponse.stderr]
-    .filter((part) => typeof part === 'string')
-    .join('\n') || undefined;
+  // Older Codex hands back `{stdout, stderr}`; 0.160 and later hand back the
+  // command's output as one string.
+  const rawResponse = payload?.tool_response;
+  const toolResponse = rawResponse && typeof rawResponse === 'object' ? rawResponse : {};
+  const outputText = (typeof rawResponse === 'string' && rawResponse.length > 0 ? rawResponse : undefined)
+    ?? ([toolResponse.stdout, toolResponse.stderr]
+      .filter((part) => typeof part === 'string')
+      .join('\n') || undefined);
 
   const meta = extractDispatchMeta(command, { outputText, metadataObj: toolResponse });
   const line = buildAuditLine({
