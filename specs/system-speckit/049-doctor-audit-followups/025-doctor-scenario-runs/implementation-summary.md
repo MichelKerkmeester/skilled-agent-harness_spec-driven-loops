@@ -92,6 +92,7 @@ Thirty-six Pi sessions with DeepSeek v4.1 flash at max thinking through opencode
 | Check | Result |
 |-------|--------|
 | Scenario verdicts | 35 PASS, 1 FAIL (DOC-362) |
+| DOC-362 rerun after the sanitizer fix in phase 027 | PASS, so all 36 scenarios now pass |
 | Environment status after each run | Empty in all 42 runs, reruns included |
 | Pilot against an independent run | Unit statuses and class counts identical |
 | `ci-skill-root-metadata` after the manifest fix | 14 of 14 |

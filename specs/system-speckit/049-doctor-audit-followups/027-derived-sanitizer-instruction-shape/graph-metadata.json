@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sanitizer's instruction filter rejected any label containing words such as `system`, `developer`, `tool` or `run`",
     "created_at": "2026-10-05T09:13:11Z",
-    "last_save_at": "2026-10-05T09:14:01.707Z",
+    "last_save_at": "2026-10-05T09:30:32.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24bcf7fb0980117ca264620ff2119e8ee49cf631a43266bd14c8b54dc4cbf531",
+    "source_fingerprint": "sha256:2062f623e2e6438676e8e107913f5004ab328cbb10d2257808847cbb445d0816",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "de3e8724f89a64b90c41234a43e030ababfa13047f2eac473cd7c2a41f5a9875",
       "plan.md": "4f819c6ea837fdf8c1f4092694c6c27c83ffbbcf78f485fe2056b3e6a86681c9",
       "tasks.md": "a592295bd7ddc34357701f8d40be36853ab5d54766576d8ddb2e4f75af5ab762",
-      "implementation-summary.md": "b2efe0e076cd916b1e4c50738a8641591d5c59955e053088d2425ce0d03426be"
+      "implementation-summary.md": "13b849792248b301767e8bdb76aa500e266eb984329704b4014d95858f941738"
     },
     "last_active_at": null
   }
