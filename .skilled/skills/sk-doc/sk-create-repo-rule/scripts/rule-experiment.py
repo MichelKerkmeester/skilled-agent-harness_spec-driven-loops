@@ -51,7 +51,7 @@ RULE_REF = re.compile(r"(REPO RULES\.md|REPO\\ RULES\.md|repo-rules/(?:cards/)?[
 PATCH_PATH = re.compile(r"\*\*\* (?:Update|Add|Delete) File: ([^\\\n\"]+)")
 RATE_METRICS = ["table_unasked", "table_unasked_rule_delivered", "communication_delivered", "any_prohibition",
                 "gate5_miss", "reply_rules_miss", "fallback"]
-QUOTA = re.compile(r"usage limit|quota has been exhausted|resource_exhausted", re.I)
+QUOTA = re.compile(r"usage limit|quota has been exhausted|resource_exhausted|limit will reset|rate limit", re.I)
 QUOTA_STOP = 3
 SKILL_LINK = re.compile(r"\]\((\.\./skills/[^)#\s]+)")
 SESSION_ID = re.compile(r"^session id: ([0-9a-f-]{36})", re.M)
