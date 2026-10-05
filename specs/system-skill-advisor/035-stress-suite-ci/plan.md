@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | Local run of the workflow command, gate-inputs check, first CI run |
 
 ### Overview
-The job installs the `.skilled` package for the plugin, the spec-kit workspace and its shared build for the test setup, and the advisor runtime, then runs the stress script with the stress config.
+The job installs the `.skilled` package for the plugin, the spec-kit workspace and its shared build for the test setup, and the advisor runtime with its build, then runs the stress script with the stress config.
 <!-- /ANCHOR:summary -->
 
 ---
