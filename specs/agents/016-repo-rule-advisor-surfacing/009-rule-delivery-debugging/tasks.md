@@ -54,7 +54,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T009 Score the arms and apply the decision rule (`results/`)
-- [ ] T010 Confirm no prompt set and no adopted diff contains rule-reading instructions
+- [x] T010 Confirm no prompt set and no adopted diff contains rule-reading instructions (the only rule-like text in `prompts.json` and `prompts-write.json` is the Gate 3 pre-answer; the adopted diff edits `AGENTS.md`, not a prompt)
 - [ ] T011 Adopt the winner live after the 006 and 007 windows are measured, then run `check-rule-copies.js` and `check-repo-rules.cjs`
 <!-- /ANCHOR:phase-3 -->
 

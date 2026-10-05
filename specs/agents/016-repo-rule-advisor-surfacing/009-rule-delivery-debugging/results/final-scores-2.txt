@@ -1,0 +1,31 @@
+== pooled/baseline: runs=74 long=73 unscorable=0
+   table (unasked) 0.0% of 73 [0.0-5.0] | with communication.md delivered 0.0% of 37 [0.0-9.4] | delivery 50.7% of 73 [39.5-61.8]
+   empty_opener 0.0% of 73 [0.0-5.0] | label_first_line 0.0% of 73 [0.0-5.0] | em_dash 50.7% of 73 [39.5-61.8] | semicolon 61.6% of 73 [50.2-71.9]
+   gate5 miss 0.0% of 38 [0.0-9.2] | reply-rules miss 58.9% of 73 [47.4-69.5] | fallback n/a | mean rule bytes 53667
+== pooled/gate6: runs=74 long=71 unscorable=0
+   table (unasked) 0.0% of 71 [0.0-5.1] | with communication.md delivered 0.0% of 62 [0.0-5.8] | delivery 87.3% of 71 [77.6-93.2]
+   empty_opener 0.0% of 71 [0.0-5.1] | label_first_line 0.0% of 71 [0.0-5.1] | em_dash 14.1% of 71 [7.8-24.0] | semicolon 39.4% of 71 [28.9-51.1]
+   gate5 miss 0.0% of 43 [0.0-8.2] | reply-rules miss 21.1% of 71 [13.2-32.0] | fallback n/a | mean rule bytes 62617
+== reply_rules_miss: pooled/gate6 - pooled/baseline -37.8 pts [-51.0 to -22.0]
+== gate5_miss: pooled/gate6 - pooled/baseline +0.0 pts [-9.2 to +8.2]
+== any_prohibition: pooled/gate6 - pooled/baseline -26.2 pts [-40.6 to -10.0]
+== deepseek-cline/baseline: runs=45 long=45 unscorable=0
+   table (unasked) 0.0% of 45 [0.0-7.9] | with communication.md delivered 0.0% of 10 [0.0-27.8] | delivery 22.2% of 45 [12.5-36.3]
+   empty_opener 0.0% of 45 [0.0-7.9] | label_first_line 0.0% of 45 [0.0-7.9] | em_dash 77.8% of 45 [63.7-87.5] | semicolon 80.0% of 45 [66.2-89.1]
+   gate5 miss 0.0% of 24 [0.0-13.8] | reply-rules miss 86.7% of 45 [73.8-93.7] | fallback n/a | mean rule bytes 43041
+== deepseek-cline/gate6: runs=45 long=43 unscorable=0
+   table (unasked) 0.0% of 43 [0.0-8.2] | with communication.md delivered 0.0% of 34 [0.0-10.2] | delivery 79.1% of 43 [64.8-88.6]
+   empty_opener 0.0% of 43 [0.0-8.2] | label_first_line 0.0% of 43 [0.0-8.2] | em_dash 23.3% of 43 [13.2-37.7] | semicolon 44.2% of 43 [30.4-58.9]
+   gate5 miss 0.0% of 25 [0.0-13.3] | reply-rules miss 34.9% of 43 [22.4-49.8] | fallback n/a | mean rule bytes 57233
+== deepseek-oc/baseline: runs=29 long=28 unscorable=0
+   table (unasked) 0.0% of 28 [0.0-12.1] | with communication.md delivered 0.0% of 27 [0.0-12.5] | delivery 96.4% of 28 [82.3-99.4]
+   empty_opener 0.0% of 28 [0.0-12.1] | label_first_line 0.0% of 28 [0.0-12.1] | em_dash 7.1% of 28 [2.0-22.6] | semicolon 32.1% of 28 [17.9-50.7]
+   gate5 miss 0.0% of 14 [0.0-21.5] | reply-rules miss 14.3% of 28 [5.7-31.5] | fallback n/a | mean rule bytes 70157
+== deepseek-oc/gate6: runs=29 long=28 unscorable=0
+   table (unasked) 0.0% of 28 [0.0-12.1] | with communication.md delivered 0.0% of 28 [0.0-12.1] | delivery 100.0% of 28 [87.9-100.0]
+   empty_opener 0.0% of 28 [0.0-12.1] | label_first_line 0.0% of 28 [0.0-12.1] | em_dash 0.0% of 28 [0.0-12.1] | semicolon 32.1% of 28 [17.9-50.7]
+   gate5 miss 0.0% of 18 [0.0-17.6] | reply-rules miss 0.0% of 28 [0.0-12.1] | fallback n/a | mean rule bytes 70972
+== reply_rules_miss: deepseek-cline/gate6 - deepseek-cline/baseline -51.8 pts [-66.1 to -32.1]
+== reply_rules_miss: deepseek-oc/gate6 - deepseek-oc/baseline -14.3 pts [-31.5 to +0.5]
+== gate5_miss: deepseek-cline/gate6 - deepseek-cline/baseline +0.0 pts [-13.8 to +13.3]
+== gate5_miss: deepseek-oc/gate6 - deepseek-oc/baseline +0.0 pts [-21.5 to +17.6]
