@@ -41,10 +41,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build both arm environments from commit `edba53daeb`
-- [ ] T005 Run DeepSeek, 300 runs in the seed-16 order
-- [ ] T006 Run Luna, 300 runs in the seed-16 order
-- [ ] T007 Count unscorable runs separately
+- [x] T004 Build both arm environments from commit `edba53daeb` (every scored run copied a fresh arm environment, see `results/runs/`)
+- [x] T005 Run the second executor in the seed-16 order (the seat moved under `results/deviations.md` 1 to 4: DeepSeek through Devin 5 runs, SWE-2 Max 200, DeepSeek through OpenCode Go 60, DeepSeek through Cline 60)
+- [x] T006 Run Luna, 300 runs in the seed-16 order (150 current and 150 short in `results/final-scores.txt`)
+- [x] T007 Count unscorable runs separately (0 unscorable in either arm, `results/final-scores.txt`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +52,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Check with `git log` that the live rule files did not change during the run
-- [ ] T009 Score and apply the decision rule (`results/`)
-- [ ] T010 Commit the chosen wording after the 006 window is measured
+- [x] T008 Check with `git log` that the live rule files did not change during the run (`git log edba53daeb..6ffe5e5514` on `communication.md`, `AGENTS.md`, `REPO RULES.md` and `.skilled/repo-rules/` lists no commit)
+- [x] T009 Score and apply the decision rule (`results/decision.md`: rule 2, adopt the short wording, d = +0.0 points, 95% interval -3.4 to +3.4, committed in `6ffe5e5514`)
+- [ ] T010 Commit the chosen wording after the 006 window is measured (open: waits on the 006 post-change window)
 <!-- /ANCHOR:phase-3 -->
 
 ---

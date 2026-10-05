@@ -47,7 +47,10 @@
       "implementation-summary.md",
       "experiment/arms.json",
       "experiment/prompts.json",
-      ".skilled/repo-rules/communication.md"
+      "results/final-scores.txt",
+      ".skilled/repo-rules/communication.md",
+      "results/deviations.md",
+      "results/decision.md"
     ],
     "entities": [
       {
@@ -93,9 +96,27 @@
         "source": "derived"
       },
       {
+        "name": "final-scores.txt",
+        "kind": "file",
+        "path": "results/final-scores.txt",
+        "source": "derived"
+      },
+      {
         "name": "communication.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "deviations.md",
+        "kind": "doc",
+        "path": "results/deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision.md",
+        "kind": "doc",
+        "path": "results/decision.md",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Run Luna",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Long replies carry a table 17.4% of the time before a `communication.md` read, 20.3% after it and 11.6% in sessions that never read it (`002-rule-concision-and-loading/prep/evidence-pack.md` §3)",
     "created_at": "2026-10-04T14:40:00Z",
-    "last_save_at": "2026-10-04T21:54:52.840Z",
+    "last_save_at": "2026-10-05T07:17:24.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4715790f973eb9b6645ab9d094cfd914004e22d526cce61c9562f06db6ad117d",
+    "source_fingerprint": "sha256:9e523780afa6b9bea16ed04dfca453ea769b5fcb72dd76b1a98ed88a7bb8b980",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c266af331669199264e2851ed4a891341a399a938771d221ea29e100eb42e05d",
+      "spec.md": "c6dfa7f04ec3e3e6b2724fa947e8bb507d2388842b77049ad599f128685758cc",
       "plan.md": "94d680067ec20ba0b9821f21a6478a7a4115de3434216b9c70ab6e388ce3f4bd",
-      "tasks.md": "ad67ef3161c5c5eeada33c9038e2cc12be84de17bed16475cf7d660cf9a54fcf",
-      "implementation-summary.md": "7d0b2248e8623e00b13363d730368cc67dea3127f4819e8d3d7d7364c9e08c69"
+      "tasks.md": "c9b6092b228a72f542c2d779196a19c320bab540e031fb2f6691d03866931364",
+      "implementation-summary.md": "5cbaba30dc31bf112bc7fc8f5309eb6494905e7d7ca71c55664292ea3c31a4af"
     },
     "last_active_at": null
   }
