@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c75f03e8cb49376a1ae04aa6243a22faadb7fc985cfdddaeef7b9588aa0d4a25",
+  "manifestHash": "eca4866fdeb5124c3982a852b595104675f16ae76ac862426a655ea773a60476",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22414,6 +22414,9 @@
     "codex background execution": [
       "codex background execution"
     ],
+    "codex branch event dir": [
+      "codex branch event dir"
+    ],
     "codex built in features": [
       "codex built-in features"
     ],
@@ -34797,6 +34800,15 @@
     "dispatch evidence tasks": [
       "dispatch evidence tasks"
     ],
+    "dispatch failed reason": [
+      "dispatch failed reason"
+    ],
+    "dispatch failed receipt": [
+      "dispatch failed receipt"
+    ],
+    "dispatch failed verifier tasks": [
+      "dispatch failed verifier tasks"
+    ],
     "dispatch failure emission": [
       "dispatch-failure emission"
     ],
@@ -34865,6 +34877,9 @@
     ],
     "dispatch receipt resume projection": [
       "dispatch receipt resume projection"
+    ],
+    "dispatch receipt verifier": [
+      "dispatch receipt verifier"
     ],
     "dispatch research iteration": [
       "dispatch research iteration"
@@ -38801,6 +38816,15 @@
     ],
     "evaluator first agent improvement": [
       "evaluator-first agent improvement"
+    ],
+    "event dir binding guard": [
+      "event dir binding guard"
+    ],
+    "event dir guard": [
+      "event dir guard"
+    ],
+    "event dir guard tasks": [
+      "event dir guard tasks"
     ],
     "event for event shadow harness": [
       "event-for-event shadow harness"
@@ -53625,11 +53649,23 @@
     "lock guarded jsonl append": [
       "lock-guarded jsonl append"
     ],
+    "lock nonce dispatch summary": [
+      "lock nonce dispatch summary"
+    ],
+    "lock nonce dispatch tasks": [
+      "lock nonce dispatch tasks"
+    ],
     "lock nonce release": [
       "lock nonce release"
     ],
+    "lock nonce release plan": [
+      "lock nonce release plan"
+    ],
     "lock ownership task list": [
       "lock ownership task list"
+    ],
+    "lock release nonce": [
+      "lock release nonce"
     ],
     "lockfile audit fix": [
       "lockfile audit fix"
@@ -72464,6 +72500,9 @@
     ],
     "recall trust spine tasks": [
       "recall trust spine tasks"
+    ],
+    "receipt attempt archive": [
+      "receipt attempt archive"
     ],
     "receipt effect candidate report": [
       "receipt effect candidate report"
@@ -100196,6 +100235,9 @@
     ],
     "verify integrity content hash": [
       "verify_integrity content hash"
+    ],
+    "verify iteration dispatch failure": [
+      "verify iteration dispatch failure"
     ],
     "verify mcp connection": [
       "verify mcp connection"

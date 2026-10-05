@@ -103,6 +103,29 @@ describe('executor-audit dispatch receipts', () => {
     expect(verifyReceipt(completion, completion.mac, key)).toBe(true);
   });
 
+  it('keeps an earlier attempt\'s receipts when a retry reuses the dispatch id', () => {
+    const dispatchId = 'review-i3-g1';
+    const dispatch = (exitCode: number) => runAuditedExecutorCommand({
+      command: NODE,
+      args: ['-e', `process.exit(${exitCode})`],
+      cwd: dir,
+      timeoutSeconds: 10,
+      stateLogPath,
+      executor: makeExecutor(),
+      iteration: 3,
+      guardContext: { env: cleanGuardEnv(), ancestryCmdlines: [], statePaths: [] },
+      receiptDir,
+      dispatchId,
+    });
+    dispatch(7);
+    dispatch(0);
+
+    const read = (name: string) => JSON.parse(readFileSync(join(receiptDir, name), 'utf8'));
+    expect(read(`dispatch-${dispatchId}.attempt-1.completion.json`).facts.exitStatus).toBe(7);
+    expect(existsSync(join(receiptDir, `dispatch-${dispatchId}.attempt-1.intent.json`))).toBe(true);
+    expect(read(`dispatch-${dispatchId}.completion.json`).facts.exitStatus).toBe(0);
+  });
+
   it('does not write receipts when receiptDir is omitted (opt-in, backward compatible)', () => {
     runAuditedExecutorCommand({
       command: NODE,
