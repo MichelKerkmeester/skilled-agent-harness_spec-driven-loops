@@ -30,6 +30,7 @@ import {
   clusterBootstrapInterval,
   classifyDescription,
   columnLine,
+  decideVerdict,
   headroomLines,
   isInsideFolder,
   loadProbes,
@@ -508,6 +509,7 @@ describe('score-track-narrowing verdict', () => {
     tracks: string[],
     answers: Array<Array<string | null> | undefined>,
     baseline: Array<string | null>,
+    picks?: Array<{ lookup: string | null, ripgrep: string | null }>,
   ) {
     const rows = tracks.map((track, index) => ({ id: `r${index}`, track }));
     const records = new Map<string, Array<string | null>>();
@@ -517,7 +519,10 @@ describe('score-track-narrowing verdict', () => {
     const baselinePicks = new Map<string, string | null>(
       baseline.map((pick, index): [string, string | null] => [`r${index}`, pick]),
     );
-    return summarizeColumn('jev', rows, records, baselinePicks, 'model=stub-model');
+    const rowPicks = picks === undefined ? undefined : new Map(
+      picks.map((pick, index): [string, { lookup: string | null, ripgrep: string | null }] => [`r${index}`, pick]),
+    );
+    return summarizeColumn('jev', rows, records, baselinePicks, 'model=stub-model', rowPicks);
   }
 
   it('prints keep on stub answers that clear all four conditions', () => {
@@ -611,6 +616,39 @@ describe('score-track-narrowing verdict', () => {
     expect(modalPick(['a', 'a', 'b'])).toEqual({ pick: 'a', top: 2 });
   });
 
+  it('kills a six-loss tail and spares a four-loss tail', () => {
+    const killed = decideVerdict({ K: 6, M: 6, A: 0, B: 6, W: 0, L: 6, F: 0 });
+    expect(killed).toEqual({ outcome: 'kill', reason: null, p: 1 });
+
+    // The four-loss tail is 0.0625, above the five-percent guard, so margin decides.
+    const spared = decideVerdict({ K: 4, M: 4, A: 0, B: 4, W: 0, L: 4, F: 0 });
+    expect(spared.outcome).toBe('stop');
+    expect(spared.reason).toBe('margin');
+  });
+
+  it('stops on the strongest policy, on the class floor, and on the stronger of the two', () => {
+    const counts = { K: 20, M: 20, A: 15, B: 5, W: 10, L: 1, F: 0 };
+    const strongestPass = { pass: true, name: 'lookup', right: 14 };
+    const strongestFail = { pass: false, name: 'lookup', right: 15 };
+    const floorPass = { pass: true, classes: [], failing: [] };
+    const floorFail = { pass: false, classes: [], failing: ['beta'] };
+
+    const strongestStop = decideVerdict({ ...counts, strongest: strongestFail, floor: floorPass });
+    expect(strongestStop.outcome).toBe('stop');
+    expect(strongestStop.reason).toBe('strongest policy');
+
+    const floorStop = decideVerdict({ ...counts, strongest: strongestPass, floor: floorFail });
+    expect(floorStop.outcome).toBe('stop');
+    expect(floorStop.reason).toBe('class floor');
+
+    const bothFail = decideVerdict({ ...counts, strongest: strongestFail, floor: floorFail });
+    expect(bothFail.reason).toBe('strongest policy');
+
+    const kept = decideVerdict({ ...counts, strongest: strongestPass, floor: floorPass });
+    expect(kept.outcome).toBe('keep');
+    expect(kept.reason).toBeNull();
+  });
+
   it('reports nearest-rank latency and the column line', () => {
     expect(nearestRank([10, 30, 20, 40], 0.5)).toBe(20);
     expect(nearestRank([10, 20, 30, 40], 0.95)).toBe(40);
@@ -624,6 +662,58 @@ describe('score-track-narrowing verdict', () => {
     expect(columnLine(summary, { p50: 12, p95: null })).toBe(
       'column jev: rows=6 measured=6 unmeasured=0 unstable=0 abstained=0 '
       + 'flip_rate=0.0000 latency_p50_ms=12 latency_p95_ms=none',
+    );
+  });
+
+  it('counts the strongest policy on the measured rows of a column', () => {
+    const tracks = [
+      ...Array.from({ length: 10 }, () => 'a'),
+      ...Array.from({ length: 10 }, () => 'b'),
+      'a',
+    ];
+    const answers: Array<Array<string | null> | undefined> = [
+      ...Array.from({ length: 20 }, (): string[] => ['a', 'a', 'a']),
+      undefined,
+    ];
+    // The unmeasured row's own picks are right, so counting it would raise the
+    // lookup bar to 21; only the 20 measured rows may set the bar.
+    const picks: Array<{ lookup: string | null, ripgrep: string | null }> = [
+      ...tracks.slice(0, 20).map((track) => ({ lookup: track, ripgrep: track })),
+      { lookup: 'a', ripgrep: 'a' },
+    ];
+    const summary = col(tracks, answers, Array.from({ length: 21 }, () => null), picks);
+
+    expect(summary.M).toBe(20);
+    expect(summary.unmeasured).toBe(1);
+    expect(summary.strongest).toEqual({ pass: false, name: 'lookup', right: 20 });
+    expect(summary.reason).toBe('strongest policy');
+    expect(summary.line.startsWith(
+      'verdict jev: stop (strongest policy) K=21 M=20 A=10 B=0 W=10 L=0 F=0 p=',
+    )).toBe(true);
+  });
+
+  it('stops on the strongest policy when the model ties the majority bar', () => {
+    const tracks = [
+      ...Array.from({ length: 12 }, () => 'a'),
+      ...Array.from({ length: 8 }, () => 'b'),
+    ];
+    const picks = Array.from(
+      { length: 20 },
+      (): { lookup: string | null, ripgrep: string | null } => ({ lookup: null, ripgrep: null }),
+    );
+    const summary = col(
+      tracks,
+      Array.from({ length: 20 }, (): string[] => ['a', 'a', 'a']),
+      Array.from({ length: 20 }, () => null),
+      picks,
+    );
+
+    expect(summary.A).toBe(12);
+    expect(summary.B).toBe(0);
+    expect(summary.strongest).toEqual({ pass: false, name: 'majority', right: 12 });
+    expect(summary.reason).toBe('strongest policy');
+    expect(summary.line).toBe(
+      'verdict jev: stop (strongest policy) K=20 M=20 A=12 B=0 W=12 L=0 F=0 p=0.0002441 model=stub-model',
     );
   });
 });
@@ -1007,6 +1097,64 @@ describe('score-track-narrowing recorded replay', () => {
     expect(run.code).toBe(0);
     const verdictLine = run.lines.find((line) => line.startsWith('verdict jev:'));
     expect(verdictLine ?? '').toMatch(/provider=official model=typesafe\/jev-latest$/);
+  });
+
+  it('stops at the class floor when the model wins overall but loses one track', async () => {
+    const root = tempDir('score-track-narrowing-floor-');
+    track(root, 'alpha-track', 'Alpha fixture track for the measurement');
+    track(root, 'beta', 'Beta fixture track for the measurement');
+    for (let number = 1; number <= 10; number += 1) {
+      const nn = String(number).padStart(2, '0');
+      packet(root, `specs/alpha-track/${nn}-a`, `quartz lantern sample number ${number} glows`);
+      packet(root, `specs/beta/${nn}-b`, `ember harbor sample number ${number} drifts`);
+    }
+    doc(root, 'specs/beta/100-docs/spec.md', ['ember harbor sweep']);
+    write(root, 'probes.json', JSON.stringify({ paraphrase: { rows: [] } }));
+    indexFor(root);
+
+    const rows = buildTestSet(root, { hubNames: [] }).rows;
+    const lostBeta = rows.find((row) => row.track === 'beta');
+    if (!lostBeta) throw new Error('floor fixture must hold a beta row');
+    const records: Record<string, unknown>[] = [];
+    for (const row of rows) {
+      for (let order = 0; order < ORDERS; order += 1) {
+        records.push({
+          backend: 'jev',
+          kind: 'test',
+          rowId: row.id,
+          order,
+          attempt: 1,
+          wallMs: 10,
+          exitCode: 0,
+          pick: row.id === lostBeta.id ? 'alpha-track' : row.track,
+          pickProb: 0.8,
+          noneProb: 0.05,
+          status: 'measured',
+          jevVersion: 'jev 0.6.2',
+          provider: 'official',
+          model: 'floor-model',
+        });
+      }
+    }
+    const callsPath = path.join(root, 'calls.jsonl');
+    fs.writeFileSync(callsPath, `${records.map((record) => JSON.stringify(record)).join('\n')}\n`);
+
+    const run = await runMain(['--replay', callsPath], {
+      repoRoot: root,
+      indexPath: path.join(root, 'out', 'idx.json'),
+      probesPath: path.join(root, 'probes.json'),
+      hubNames: [],
+      env: { ...process.env, PATH: '/no-executable' },
+    });
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      'verdict jev: stop (class floor) K=20 M=20 A=19 B=10 W=10 L=1 F=0 p=0.005859 jev_version=0.6.2 provider=official model=floor-model',
+    );
+    expect(run.lines).toContain('class floor jev beta: n=10 jev=9 baseline=10');
+    expect(run.lines).toContain('class floor jev: failing=beta');
+    expect(run.lines).toContain('strongest policy jev: policy=majority right=10 jev=19 pass=yes');
+    expect(run.lines.some((line) => line.startsWith('power jev: pairs=11 win_rate=0.9091'))).toBe(true);
   });
 });
 
