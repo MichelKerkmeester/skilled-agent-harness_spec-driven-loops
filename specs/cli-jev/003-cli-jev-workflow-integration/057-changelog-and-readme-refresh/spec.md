@@ -70,7 +70,7 @@ A reader of either file learns what the classifier and hooks really do on each r
 ## 3. SCOPE
 
 ### In Scope
-- The changelog's injection screen, Pi route and off-switch sentences, two new hook items and two upgrade notes
+- The changelog's Pi route sentence, a Codex shell-hooks item and two upgrade notes, added on top of the version another session landed on main
 - The README's classifier, OpenCode plugin, Pi extension, hook-core, Codex approval, off-switch and live-sync lines
 - The Codex approval wording in the cli-codex hook contract and the phase 56 docs, cut back to what the probe confirmed
 - Follow-up drift the audits found: the README command count and its six missing commands, a Hermes plugin subsection, the hooks README rows Hermes runs, the `.env.example` header and the Hermes plugin manifest description
