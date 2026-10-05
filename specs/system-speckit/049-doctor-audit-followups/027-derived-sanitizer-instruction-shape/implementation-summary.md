@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/049-doctor-audit-followups/027-derived-sanitizer-instruction-shape"
     last_updated_at: "2026-10-05T11:30:00Z"
     last_updated_by: "derived-sanitizer-instruction-shape"
-    recent_action: "Narrowed the sanitizer filter and stamped all 14 skills"
-    next_safe_action: "Rerun DOC-362 to confirm it passes"
+    recent_action: "Narrowed the sanitizer filter, stamped all 14 skills and reran DOC-362 to PASS"
+    next_safe_action: "None; DOC-362 passes on main"
     blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts"
@@ -96,6 +96,7 @@ Graph validation first still reported 14 warnings reading v2 predates v1. The lo
 | Derived regenerator dry run | 0 changes |
 | `ci-skill-root-metadata` | 14 of 14 |
 | Graph validation | 0 warnings, 0 errors, 14 nodes, 57 edges |
+| DOC-362 rerun with DeepSeek in the test environment at `8a386d9df6` | PASS in 499 seconds, environment left clean |
 <!-- /ANCHOR:verification -->
 
 ---
