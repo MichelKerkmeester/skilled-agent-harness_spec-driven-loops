@@ -12,7 +12,8 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { ADVISE_OPT_OUT_ENV, buildCensus, corpusDocs, decideVerdict, deriveRedirects, extractCitations, flagByIdentifierOverlap, headCommit, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, runJevArm, sha256Hex, USAGE, verdictLine } from '../../shared/scripts/cite-drift-scan.mjs';
+import { ADVISE_OPT_OUT_ENV, decideVerdict, flagByIdentifierOverlap, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/classifier-cite-drift-scan.mjs';
+import { buildCensus, corpusDocs, deriveRedirects, extractCitations, headCommit, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, USAGE } from '../../shared/scripts/cite-drift-scan.mjs';
 
 const ALPHA_DOC = '.skilled/skills/alpha-skill/SKILL.md';
 const ALPHA_SKILL_ROOT = '.skilled/skills/alpha-skill';
