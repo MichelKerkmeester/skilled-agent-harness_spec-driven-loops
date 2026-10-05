@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Nothing confirmed that the doctor commands behave the way their scenarios say, because no scenario had ever been run end to end",
     "created_at": "2026-10-04T20:16:32Z",
-    "last_save_at": "2026-10-05T09:30:30.001Z",
+    "last_save_at": "2026-10-05T15:42:09.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1ac1ec9d83c2f288c262b1bf4ca9ac8fdb28267e0fb0042e469bdd18e438f23",
+    "source_fingerprint": "sha256:b22560b6076ec550cc7d8afd560c39f5c0578da864941780a76f60de63b347bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "114eb143ca2720373c4d8d0cc52b754728447f676d69a826ac4b89128e083137",
       "plan.md": "4b615d4f5afaf39dfb9b5c5551679585f1586576e41bee80083b3136f4220931",
       "tasks.md": "c9c8b2e1e6b3fbd0ff74d169804b0f389de4dc5d2507ee7f68e71372dd45fd0a",
-      "implementation-summary.md": "a3fe44af721c60ba1d6a843d2511039493180f37edffec775e13118a4da6b745"
+      "implementation-summary.md": "400dc513985a168666decc0877ed606f999edd4757528289bc346627cee0f938"
     },
     "last_active_at": null
   }

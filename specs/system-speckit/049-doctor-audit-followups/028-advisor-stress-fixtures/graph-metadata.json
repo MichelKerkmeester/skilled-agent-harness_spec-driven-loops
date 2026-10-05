@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The kebab-case migration renamed the code's future-folder check from `/zfuture/` to `/z-future/` but left `sa-016` building `zfuture` paths, so 160 future skills read as active",
     "created_at": "2026-10-05T10:06:04Z",
-    "last_save_at": "2026-10-05T10:06:18.009Z",
+    "last_save_at": "2026-10-05T15:42:16.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16609952b27c26e9a943eb2b39bc6558d985928c46de9167b6c365a6267a0fca",
+    "source_fingerprint": "sha256:ca84b5f7c8580a39f3ee718a2639ad655b700543867d49758ecb9b4f205c8390",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba00baa94487f6d45c5d89c4c49d40c0a64119b87b0cf3b41f83b3f1deaf817b",
       "plan.md": "6e5187715900e88d60404571532491c25386d23b167d435051c8dee256b7b95a",
       "tasks.md": "ce9ec4eb1030cfdd153dead00c000a3a94e8feb2301fdf47af191d0a206afb5d",
-      "implementation-summary.md": "b35a47654265f4d78befa3bc94d9097918af64fa12502a4a493d916e31f50985"
+      "implementation-summary.md": "96e622a2e70f8e68aa61422090878581e44e192f91132e1bdf5209853138d14b"
     },
     "last_active_at": null
   }
