@@ -152,14 +152,14 @@
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-05T07:33:23.370Z",
+    "last_save_at": "2026-10-05T09:01:07.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:453ddebbacbe8870cd818bc639b2df9a0aad3872d5d5afacdd4d9507b485ee4b",
+    "source_fingerprint": "sha256:37240d4c6ab9985ad0ad63966df137266cbf1a49c8627366827e9fd27ac2b55b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6304b5efb11f71de43d6a7bb17f9217e492f156278a8eaf9fbd27982f7051ef4"

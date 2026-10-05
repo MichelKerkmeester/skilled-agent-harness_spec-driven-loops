@@ -41,11 +41,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Measure natural Gate 5 and reply-rule miss rates per executor with the harness, on prompts that never mention rules (`results/`)
+- [x] T004 Measure natural Gate 5 and reply-rule miss rates per executor with the harness, on prompts that never mention rules (`results/`)
 - [x] T005 Class every missed run as not delivered, truncated, outranked or seen and skipped (`results/`)
 - [x] T006 Draft candidate arms from the causes, adding a hook arm only past the D3 threshold (`experiment/`)
-- [ ] T007 Commit `preregistration.md` with arms, metric, sample size and decision rule before the first scored arm run
-- [ ] T008 Run the arms in a seeded interleaved order
+- [x] T007 Commit `preregistration.md` with arms, metric, sample size and decision rule before the first scored arm run
+- [x] T008 Run the arms in a seeded interleaved order
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,7 +53,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Score the arms and apply the decision rule (`results/`)
+- [x] T009 Score the arms and apply the decision rule (`results/`)
 - [ ] T010 Confirm no prompt set and no adopted diff contains rule-reading instructions
 - [ ] T011 Adopt the winner live after the 006 and 007 windows are measured, then run `check-rule-copies.js` and `check-repo-rules.cjs`
 <!-- /ANCHOR:phase-3 -->

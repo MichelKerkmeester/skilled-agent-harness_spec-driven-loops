@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`AGENTS.md` mandates two loads: Gate 5 opens `REPO RULES.md` before the first write, and the reply-rule line loads `communication.md` and `communication-prose.md` before a substantive reply",
     "created_at": "2026-10-04T21:40:03Z",
-    "last_save_at": "2026-10-05T07:41:16.630Z",
+    "last_save_at": "2026-10-05T09:01:03.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:360d5181366237144ac473818c2201990546d54940a777d1080816bb9c004711",
+    "source_fingerprint": "sha256:063ba3b514086032ddf327486963f6b2f6ac6e0238736d0b8be6f35d40ad71e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32bb698c9a77172f32d07a3627e852ae64840cf8c1fbdd9f1f0baf3081258277",
       "plan.md": "efe70672986d56348e80f7f9dd1ebe8a7604784eb2d63e3de121de940c8a0f0f",
-      "tasks.md": "03e880f4803e87ecb2f436c0020d9d1a3ef2496ceebdea32728e9317d4daecb8",
+      "tasks.md": "453845c105326d7ea8cfe2271efbf82d44d69e0f875b13c7e744bd5242098b93",
       "implementation-summary.md": "6f2a5a020a5f9b5c25c46751990d40cf663646c8bb8da7568e07e1d894d0c32e"
     },
     "last_active_at": null

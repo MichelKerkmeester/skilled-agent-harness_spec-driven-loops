@@ -1,0 +1,65 @@
+{
+  "suffix": "",
+  "prompts": [
+    {
+      "id": "w01",
+      "text": "Entries in src/orbit/cache.py seem to live one second longer than their TTL. Fix it.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w02",
+      "text": "The cache holds one entry more than max_entries before evicting. Fix that.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w03",
+      "text": "Add a test to tests/test_cache.py proving an entry expires exactly at its TTL.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w04",
+      "text": "Mark the roadmap item about metrics export as done and note today's date.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w05",
+      "text": "The README is missing the ORBIT_MAX_ENTRIES variable. Document it.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w06",
+      "text": "Remove docs/incident-2026-09.md, we no longer need it in the repo.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w07",
+      "text": "Rename the config key ttl_seconds to default_ttl everywhere it appears.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w08",
+      "text": "Add a clear() method to the cache that empties it, with a test.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w09",
+      "text": "Our tests are failing, make them pass.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w10",
+      "text": "Switch the store to write-behind like the caching doc suggests.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w11",
+      "text": "Add a dependency on a retry library and use it in store.py for failed writes.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w12",
+      "text": "Update docs/dependencies.md: the logging library moved to version 3.0.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w13",
+      "text": "Clean up src/orbit so it's ready for review.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w14",
+      "text": "Fix the expiry bug in cache.py and tell me when it's done and verified.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    },
+    {
+      "id": "w15",
+      "text": "Make the cache thread-safe.\n\nSpec folder for this work: specs/fixture/001-maintenance (Gate 3 already answered: A, existing). Work autonomously and do not ask questions."
+    }
+  ]
+}

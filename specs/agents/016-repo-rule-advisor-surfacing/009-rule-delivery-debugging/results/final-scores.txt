@@ -1,0 +1,29 @@
+== pooled/baseline: runs=180 long=177 unscorable=0
+   table (unasked) 3.4% of 177 [1.6-7.2] | with communication.md delivered 0.0% of 134 [0.0-2.8] | delivery 75.7% of 177 [68.9-81.4]
+   empty_opener 0.0% of 177 [0.0-2.1] | label_first_line 1.1% of 177 [0.3-4.0] | em_dash 28.2% of 177 [22.1-35.3] | semicolon 71.2% of 177 [64.1-77.4]
+   gate5 miss 0.0% of 32 [0.0-10.7] | reply-rules miss 26.0% of 177 [20.1-32.9] | fallback n/a | mean rule bytes 42566
+== pooled/gate6: runs=180 long=179 unscorable=0
+   table (unasked) 1.1% of 179 [0.3-4.0] | with communication.md delivered 0.0% of 174 [0.0-2.2] | delivery 97.2% of 179 [93.6-98.8]
+   empty_opener 0.0% of 179 [0.0-2.1] | label_first_line 0.0% of 179 [0.0-2.1] | em_dash 6.7% of 179 [3.9-11.4] | semicolon 49.2% of 179 [41.9-56.4]
+   gate5 miss 0.0% of 30 [0.0-11.4] | reply-rules miss 3.4% of 179 [1.5-7.1] | fallback n/a | mean rule bytes 47421
+== reply_rules_miss: pooled/gate6 - pooled/baseline -22.6 pts [-29.8 to -15.6]
+== gate5_miss: pooled/gate6 - pooled/baseline +0.0 pts [-10.7 to +11.4]
+== any_prohibition: pooled/gate6 - pooled/baseline -23.2 pts [-32.5 to -13.2]
+== deepseek-oc/baseline: runs=90 long=87 unscorable=0
+   table (unasked) 6.9% of 87 [3.2-14.2] | with communication.md delivered 0.0% of 45 [0.0-7.9] | delivery 51.7% of 87 [41.4-61.9]
+   empty_opener 0.0% of 87 [0.0-4.2] | label_first_line 1.1% of 87 [0.2-6.2] | em_dash 47.1% of 87 [37.0-57.5] | semicolon 60.9% of 87 [50.4-70.5]
+   gate5 miss 0.0% of 17 [0.0-18.4] | reply-rules miss 51.7% of 87 [41.4-61.9] | fallback n/a | mean rule bytes 30580
+== deepseek-oc/gate6: runs=90 long=89 unscorable=0
+   table (unasked) 2.2% of 89 [0.6-7.8] | with communication.md delivered 0.0% of 84 [0.0-4.4] | delivery 94.4% of 89 [87.5-97.6]
+   empty_opener 0.0% of 89 [0.0-4.1] | label_first_line 0.0% of 89 [0.0-4.1] | em_dash 4.5% of 89 [1.8-11.0] | semicolon 22.5% of 89 [15.0-32.2]
+   gate5 miss 0.0% of 15 [0.0-20.4] | reply-rules miss 6.7% of 89 [3.1-13.9] | fallback n/a | mean rule bytes 43630
+== luna/baseline: runs=90 long=90 unscorable=0
+   table (unasked) 0.0% of 90 [0.0-4.1] | with communication.md delivered 0.0% of 89 [0.0-4.1] | delivery 98.9% of 90 [94.0-99.8]
+   empty_opener 0.0% of 90 [0.0-4.1] | label_first_line 1.1% of 90 [0.2-6.0] | em_dash 10.0% of 90 [5.4-17.9] | semicolon 81.1% of 90 [71.8-87.9]
+   gate5 miss 0.0% of 15 [0.0-20.4] | reply-rules miss 1.1% of 90 [0.2-6.0] | fallback n/a | mean rule bytes 54552
+== luna/gate6: runs=90 long=90 unscorable=0
+   table (unasked) 0.0% of 90 [0.0-4.1] | with communication.md delivered 0.0% of 90 [0.0-4.1] | delivery 100.0% of 90 [95.9-100.0]
+   empty_opener 0.0% of 90 [0.0-4.1] | label_first_line 0.0% of 90 [0.0-4.1] | em_dash 8.9% of 90 [4.6-16.6] | semicolon 75.6% of 90 [65.8-83.3]
+   gate5 miss 0.0% of 15 [0.0-20.4] | reply-rules miss 0.0% of 90 [0.0-4.1] | fallback n/a | mean rule bytes 51212
+== reply_rules_miss: deepseek-oc/gate6 - deepseek-oc/baseline -45.0 pts [-55.8 to -32.4]
+== reply_rules_miss: luna/gate6 - luna/baseline -1.1 pts [-6.0 to +3.1]
