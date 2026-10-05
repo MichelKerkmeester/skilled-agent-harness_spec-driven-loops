@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "agents/016-repo-rule-advisor-surfacing"
-    last_updated_at: "2026-10-04T22:30:00Z"
+    last_updated_at: "2026-10-05T10:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Amended D6 and added phases 009 and 010"
+    recent_action: "Revised the goal for stage 2: live adoption, 009 and 010"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Decide from repository evidence what should surface repo rules, how to write them shorter without losing what enforces them and how AGENTS.md, Gate 5 or a hook should load them, then apply that verdict to the rule corpus and its loaders.
+**Objective:** Put the decided repo-rule changes live one measured window at a time, make every executor load the rules AGENTS.md mandates without prompt instructions, and make each rule findable by the words agents search with.
 
 ### Decisions
 
@@ -44,12 +44,11 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Each phase passes validate.sh --strict before its successor starts. 004, 005 and the isolated 007 and 008 runs may overlap. |
-| D2 | Build phases 003 to 008 apply the 002 verdict and nothing beyond it, except the operator's simple-terms clause for communication.md in 006. |
+| D1 | Each phase passes validate.sh --strict before its successor starts. Isolated test-environment runs may overlap any phase. |
+| D2 | Live rule and loader changes land one at a time in the order 007 wording, 008 cards, 009 winner. Each lands only after the previous live change, starting with 006, has a measured window of at least seven days. |
 | D3 | No once-per-compaction rule hook is built until a measured miss rate justifies one. |
 | D4 | Rule trigger_phrases stay in rule frontmatter, with no sidecar. |
-| D5 | The 004 baseline is committed before 006 changes any rule. |
-| D6 | Measurement windows never overlap on the live repository. 007 and 008 run in isolated test environments that leave live rule files unchanged. A winner goes live only after the 006 window is measured, and 007 decides before an 008 winner is adopted. |
+| D5 | No fix for a skipped rule load adds rule-reading instructions to user prompts. |
 
 <!-- /ANCHOR:directive -->
 
@@ -87,12 +86,12 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `validate.sh --recursive --strict` on this packet prints RESULT: PASSED for this packet and all ten phase folders
-- [ ] `001-advisor-surfacing/research/research.md` and `002-rule-concision-and-loading/research/research.md` both exist, and each states one verdict
-- [ ] `check-rule-copies.js` runs in the `rule-canary` CI workflow and reports every must-carry `AGENTS.md` anchor ending before byte 16,384, with `AGENTS.md` at or under 32,768 bytes
-- [ ] `check-repo-rules.cjs` prints RESULT: PASSED with no failed check, and `wc -c` puts the 13 rule files in `.skilled/repo-rules/` at or below 91,028 bytes, a target 006 ADR-002 waives at the measured 94,609
-- [ ] `measure-rule-compliance.py` sits in `sk-create-repo-rule/scripts/` with a passing pytest suite, and `git log` shows its baseline under `004-rule-delivery-instrumentation/baselines/` committed before the first 006 rule commit
-- [ ] `007-table-wording-experiment` and `008-gate5-card-pilot` each commit `preregistration.md` before their first scored run and record in `results/` a decision made by that pre-registered rule
-- [ ] After the 008 decision, `git status` and a file listing show no artifact of a rejected card arm
+- [ ] `006-rule-concision-rewrites/results/` holds a `measure-rule-compliance.py` report covering at least seven days after 2026-10-04 22:20, compared with the 004 baseline
+- [ ] `.skilled/repo-rules/communication.md` contains "No tables in a reply, except the in-flight block", committed with a ledger entry after the 006 window report
+- [ ] `.skilled/repo-rules/cards/` holds 13 cards, all 13 trigger-table links in `REPO RULES.md` point into `cards/`, and `check-repo-rules.cjs` prints RESULT: PASSED with no failed check
+- [ ] `009-rule-delivery-debugging/results/` records a decision made by its `preregistration.md` decision rule, with Gate 5 and reply-rule miss rates per executor and Wilson intervals
+- [ ] `rg -i 'flaky test' .skilled/repo-rules` finds `root-cause-and-debugging.md`, and `repo-rule-template.md` and `rule-anatomy.md` give one phrase-count rule, with no conflicting number
+- [ ] A decision record in each of `007-table-wording-experiment/` and `008-gate5-card-pilot/` waives its `preregistration.md` sample size
 <!-- /ANCHOR:completion -->
 
 ---
@@ -118,6 +117,8 @@ and findings belong here.
 | 007 and 008 status | In Progress | 007 preregistration committed in edba53daeb and the 600-run experiment is running. 008 arm C dropped under REQ-005 (26,778 B + 7,677 B = 34,455 B), generator and check 11 committed, preregistration pending |
 | D1 amendment | Done | operator asked to run 007 and 008 now; D1 lets both run together in isolated environments, live adoption order unchanged under D6 |
 | 007 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 2 adopts the short no-table wording, short minus current +0.0 points (-3.4 to +3.4) over 625 runs, 0 of 108 tables per arm once communication.md was read. Preregistration edba53daeb predates the first scored run. Deviations 1 to 4 in results/deviations.md. Live wording waits on the 006 window (D6) |
+| Stage 1 criteria met | Done | Verified 2026-10-05: recursive validate 11/11 PASSED, both research verdicts exist, rule canary in rule-canary-sync.yml with the last anchor before byte 16,384 and AGENTS.md 26,778 B, check-repo-rules 11/11 at 94,609 B (ADR-002), analyzer pytest 9/9 with baseline 70f36c299b an ancestor of 023e4915c1, preregistrations edba53daeb and 3990bc9fa5 before first scored runs with results/decision.md in both, no rejected-arm artifact |
+| Goal revised for stage 2 | Done | Operator asked for a new goal after stage 1 on 2026-10-05. Objective, decisions and criteria now cover live adoption, 009 and 010. Old D2 and D5 are fulfilled and old D6 is carried by the new D2 |
 | 008 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 1 adopts cards at Gate 5 over 318 runs. Primary -4.0 points (-15.5 to +7.6), Gate 5 miss +2.2 (-3.3 to +7.9), 42,064 against 59,620 rule bytes per run. Preregistration 3990bc9fa5 predates the first scored run. Deviations 1 to 4 in results/deviations.md. Adoption waits on the 006 window and checks 2 and 10 accepting card links |
 
 ### Deviations and findings

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Long replies carry a table 17.4% of the time before a `communication.md` read, 20.3% after it and 11.6% in sessions that never read it (`002-rule-concision-and-loading/prep/evidence-pack.md` §3)",
     "created_at": "2026-10-04T14:40:00Z",
-    "last_save_at": "2026-10-05T07:17:24.570Z",
+    "last_save_at": "2026-10-05T07:29:45.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e523780afa6b9bea16ed04dfca453ea769b5fcb72dd76b1a98ed88a7bb8b980",
+    "source_fingerprint": "sha256:f55e2f0c15ac9b933ff03ac8f461a6fea449825defa9bcf57963545a1ecf62c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6dfa7f04ec3e3e6b2724fa947e8bb507d2388842b77049ad599f128685758cc",
