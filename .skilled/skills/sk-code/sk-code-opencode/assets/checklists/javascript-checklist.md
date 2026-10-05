@@ -44,17 +44,20 @@ These items MUST be fixed before any commit.
 ### Box Header
 
 ```markdown
-[ ] File has box header with component identification
+[ ] File has the module header naming the module
 ```
 
-**Required format** (the plain-name box from the style guide — the two-row
-COMPONENT/PURPOSE variant is retired; no shipped file uses it, and two competing
-templates meant neither could be checked):
+**Required format** (the `MODULE:` divider header from the style guide, the same
+form TypeScript files use, with 67 box-drawing characters per divider):
 ```javascript
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ [module-name] — [one-line description]                                    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: [Module Name]
+// ───────────────────────────────────────────────────────────────────
 ```
+
+A shebang may precede the header. A new file never takes the older 78-character
+`╔═╗` box or the two-row `COMPONENT:`/`PURPOSE:` header. Files that already carry
+either one keep it until they are next rewritten.
 
 ### 'use strict'
 
