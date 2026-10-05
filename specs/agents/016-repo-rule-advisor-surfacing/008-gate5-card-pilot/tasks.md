@@ -54,7 +54,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T009 Analyze per arm and apply the decision rule (`results/decision.md`: rule 1, adopt cards. Primary -4.0 points, -15.5 to +7.6. Gate 5 miss +2.2, -3.3 to +7.9. Bytes 42,064 against 59,620. Committed in `6ffe5e5514`)
-- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests (open: cards won and 007 has decided. Checks 2 and 10 and the router change wait on the 006 post-change window)
+- [ ] T010 If arm `cards` wins, make checks 2 and 10 accept card links, then adopt it after the 006 window and the 007 decision. Otherwise remove the generator, check 11 and its tests (checker half done 2026-10-05: `ruleLinkDir` credits a rule through its card, and the cards router passes 11/11 with check 10 counting 61 bullets. The router change waits on the 006 and 007 live windows under parent D2)
 - [ ] T011 Run the checker and the phase 003 guard on the final state (open: runs after the T010 adoption)
 <!-- /ANCHOR:phase-3 -->
 

@@ -84,7 +84,7 @@ function resolveRulesDir(root) {
 }
 
 // A router row belongs to the corpus when its link resolves into a rules
-// directory, whichever layout this checkout uses and whichever spelling the row
+// directory or its cards subdirectory, whichever layout this checkout uses and whichever spelling the row
 // carries. Resolving instead of matching a prefix keeps rows recognized while a
 // corpus is mid-move, when the rows may still name the public path and that
 // path is a link into the canonical one.
@@ -102,7 +102,9 @@ function ruleLinkDir(context, target) {
     } catch {
       continue;
     }
-    if (path.dirname(resolved) === dirAbsolute) return candidate;
+    // A rule's card shares its file name, so a link to the card credits the rule.
+    const parent = path.dirname(resolved);
+    if (parent === dirAbsolute || parent === path.join(dirAbsolute, CARDS_DIR)) return candidate;
   }
   return null;
 }

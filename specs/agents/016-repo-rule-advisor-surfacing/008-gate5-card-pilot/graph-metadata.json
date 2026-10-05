@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A plain card drops the operative bans in 6 of 13 rules",
     "created_at": "2026-10-04T14:40:01Z",
-    "last_save_at": "2026-10-05T07:33:02.466Z",
+    "last_save_at": "2026-10-05T07:45:09.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +216,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51cebe22a031212eb78a2b5798229588619c86d92ad9f8703b02706539d3e02b",
+    "source_fingerprint": "sha256:a4889f2d983670a3e30a80ca62a910184f3c2524646595233fb17e58f220a521",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a515904de63c1f8274873aaf05c636e48b850784ac491cad9ea4174120b46a31",
       "plan.md": "4221202ace47c62fe74a6bbc7a6abf7488cc5a623878ec30e69a94fd4ed295ee",
-      "tasks.md": "6dfcffaea859fb443dc6bdff77981ecb5035007ab84cbdd1f7e1e732cc14a246",
+      "tasks.md": "b2e4689b1ced9a5955d9f0e25c0ed2ea599f0e8ec16742b10d0b713bf6d90369",
       "decision-record.md": "6a96e4ad3cd420412758c145ccf53d2ed53dc02feea017ffba9543da7661e3a5",
       "implementation-summary.md": "bdd2e6254b12ad3b6d3d27c518e0d33b1735e67563c0c97ea40e7fda62ac24c0"
     },
