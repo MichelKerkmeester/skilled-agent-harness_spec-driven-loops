@@ -59,6 +59,7 @@ RUN_TIMEOUT = 900
 
 EXECUTORS = {
     "deepseek": ["devin", "-p", "--model", "deepseek-v4-1-flash-max", "--permission-mode", "dangerous"],
+    "swe": ["devin", "-p", "--model", "swe-2-max", "--permission-mode", "dangerous"],
     "luna": ["codex", "exec", "--model", "gpt-6-luna", "-c", 'model_reasoning_effort="max"',
              "-c", 'service_tier="fast"', "-c", "approval_policy=never", "--sandbox", "workspace-write"],
 }
@@ -146,7 +147,7 @@ def run_one(executor: str, template: str, run_dir: str, prompt: Dict, suffix: st
     env = dict(os.environ, AI_SESSION_CHILD="1", SYSTEM_SPEC_GATE_ENFORCE="0")
     started = time.time()
     record = {"run_dir": run_dir}
-    if executor == "deepseek":
+    if EXECUTORS[executor][0] == "devin":
         export = run_dir + ".devin.json"
         cmd = EXECUTORS[executor] + ["--export", export, "--", text]
         record["transcript"] = export
@@ -158,7 +159,7 @@ def run_one(executor: str, template: str, run_dir: str, prompt: Dict, suffix: st
         record["exit"] = proc.returncode
         if proc.returncode != 0:
             record["error"] = (proc.stderr or proc.stdout)[-400:]
-        if executor == "luna":
+        if EXECUTORS[executor][0] == "codex":
             match = SESSION_ID.search(proc.stdout + proc.stderr)
             found = glob.glob(os.path.expanduser(f"~/.codex/sessions/**/rollout-*{match.group(1)}.jsonl"),
                               recursive=True) if match else []
@@ -300,7 +301,7 @@ def score_run(record: Dict, arm_spec: Dict) -> Optional[Dict]:
     if record.get("exit") != 0 or not path or not os.path.exists(path):
         return None
     run_dir = record["run_dir"]
-    events = devin_events(path, run_dir) if record["executor"] == "deepseek" else codex_events(path, run_dir)
+    events = devin_events(path, run_dir) if EXECUTORS[record["executor"]][0] == "devin" else codex_events(path, run_dir)
     resident = set(arm_spec.get("resident", []))
     delivered, seen_files, first_write_ok, wrote = set(resident), set(), None, False
     cards_read, full_after_card, reply = set(), set(), None
