@@ -548,7 +548,7 @@ workflow:
   step_5_quality_validation:
     purpose: Verify the generated changelog meets format and quality standards
     activities:
-      - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, --- only between H2 sections)"
+      - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, an &nbsp; line before every H2, nothing between H4 items and no --- rule in the body)"
       - "Run VERSION CHECKS (sequential, 4-segment, no duplicates)"
       - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
       - "Auto-fix minor issues if possible"
@@ -618,7 +618,8 @@ workflow:
             Strip it through its closing "---" line, plus any blank lines after it
           IF the next line starts with "# " (the editorial title H1):
             Strip that line and any immediately following blank lines, because GitHub release bodies never duplicate the release title with a leading H1
-          Append a blank line and then the footer line:
+          Keep the entry's spacing: an &nbsp; line before every H2 and nothing between H4 items
+          Append a blank line, an &nbsp; line, a blank line and then the footer line:
             Full changelog: `.skilled/changelog/skilled/v{next_version}.md`
           Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
       - "Compose the exact commands: `git tag -a {release_tag} -m \"{tag_message}\"`, `git push origin {release_tag}`, `gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}`"

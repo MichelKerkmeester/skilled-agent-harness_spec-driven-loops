@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/065-changelog-section-spacing",
+  "description": "Changelog section spacing: nbsp between top-level sections, none between items",
+  "keywords": [
+    "changelog",
+    "section",
+    "spacing",
+    "nbsp",
+    "between",
+    "top-level",
+    "sections",
+    "none",
+    "items"
+  ],
+  "lastUpdated": "2026-10-05T09:56:58.850Z",
+  "specId": "065",
+  "folderSlug": "changelog-section-spacing",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

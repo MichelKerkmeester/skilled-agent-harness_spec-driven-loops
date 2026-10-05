@@ -47,10 +47,14 @@ contextType: "general"
 
 > Spec folder: `specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment` (Level 2)
 
+&nbsp;
+
 ## What's New at a Glance
 
 - **A change lands in the changelog of the mode it belongs to.** A change inside one mode's packet goes to that mode's link, and anything else under the hub goes to `parent`.
 - **The next version follows the hub's own history.** The version reader reads the resolved link, so it no longer comes back empty.
+
+&nbsp;
 
 ## Upgrade
 
@@ -62,6 +66,7 @@ No migration required.
 - The summary says what changed and why in two sentences, with no file paths or counts.
 - Each glance bullet adds something the summary did not say: where a mode's change lands, and where the next version comes from.
 - The source also recorded two new playbook scenarios, a README and command-doc catch-up and a note that identity phrases keep the skill's name. None of them changes what a user of the workflow sees, so the entry leaves them in the spec packet.
+- An `&nbsp;` line sits before each H2, the glance section and the Upgrade line alike.
 - The Upgrade line is only the action. The published entry added a sentence that repeated the first bullet, and the lean version drops it.
 
 ---
@@ -71,6 +76,8 @@ No migration required.
 For 10 or more changes, a major bump or a breaking change. The excerpt condenses one topical section in the exemplar's style, without quoting it.
 
 ```markdown
+&nbsp;
+
 ## Retrieval
 
 Retrieval became something you can reason about instead of something you debug.
@@ -79,13 +86,11 @@ Retrieval became something you can reason about instead of something you debug.
 
 The SQLite database, the embedder and the daemon were decommissioned end to end. A trigger index generated from every document's frontmatter replaced them. A lookup script reads it with no daemon, and ripgrep recipes cover free text. A miss is now a clean no-hit rather than a degraded guess.
 
-&nbsp;
-
 #### Smaller Templates, Same Output
 
 The spec, plan and task templates consolidated into one shared core with level-gated addenda. A Level 1 research doc renders at 175 lines instead of 944, and what the templates produce is identical.
 
----
+&nbsp;
 
 ## Upgrade Notes
 
@@ -98,7 +103,7 @@ The spec, plan and task templates consolidated into one shared core with level-g
 - The H2 names the domain it changes (Retrieval), not a change type such as `New Features`.
 - The section intro says what neither item says, so nothing is stated twice.
 - Each H4 heading states the fact or the gain in four or five words, and each item runs one paragraph: what was there, what replaced it and why it matters.
-- `&nbsp;` separates the items, and `---` appears only between H2 sections.
+- An `&nbsp;` line sits before each H2, nothing separates the H4 items and no `---` rule appears.
 - The Upgrade Notes carry only the actions, with the names the reader must change. Why the engine left belongs to the section above.
 
 ---

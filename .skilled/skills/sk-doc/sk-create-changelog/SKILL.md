@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global or packet-local changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -272,14 +272,16 @@ The voice, structure, omission and length rules live in `assets/changelog-templa
 1. Write for a smart person who is not a developer, and lead with why the release matters.
 2. Keep what the reader would notice or act on. Drop file inventories, test counts, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
 3. Say each fact once, in the section whose job it is.
-4. Bold lead-in sentences on glance bullets, H4 item headings of 2-7 words (10 at most), `&nbsp;` between H4 items, `---` only between H2 sections and inline `**Breaking:**` markers.
+4. Bold lead-in sentences on glance bullets, H4 item headings of 2-7 words (10 at most), an `&nbsp;` line before every H2 (the opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no `---` rule in the body and inline `**Breaking:**` markers.
 5. No Oxford commas, em dashes or semicolons, per the Human Voice Rules.
 
 ### Release Notes
 
-For GitHub release notes, use the changelog content with any YAML frontmatter and the editorial title H1 removed, then append:
+For GitHub release notes, use the changelog content with any YAML frontmatter and the editorial title H1 removed, keeping its spacing, then append an `&nbsp;` line and the pointer:
 
 ```text
+&nbsp;
+
 Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
@@ -310,7 +312,7 @@ Voice gate, run on the draft before writing:
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <draft-file>
 ```
 
-The scan must report zero hard blockers (banned punctuation or words). Deductions below that threshold are acceptable. If the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Structural checks complement it: bold lead-ins on glance bullets, `&nbsp;` between H4 items, `---` only between H2 sections, no `**Problem:**`/`**Fix:**` labels and inline `**Breaking:**` markers.
+The scan must report zero hard blockers (banned punctuation or words). Deductions below that threshold are acceptable. If the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Structural checks complement it: bold lead-ins on glance bullets, an `&nbsp;` line before every H2, nothing between H4 items, no `---` rule in the body, no `**Problem:**`/`**Fix:**` labels and inline `**Breaking:**` markers.
 
 Nested changelog checks:
 

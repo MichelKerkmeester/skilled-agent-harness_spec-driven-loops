@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.1.0.28
+version: 1.1.0.29
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -50,16 +50,20 @@ contextType: "general"
 
 > Spec folder: `{path}` (Level {N})
 
+&nbsp;
+
 ## What's New at a Glance
 
 - **{The change, as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
+
+&nbsp;
 
 ## Upgrade
 
 {The action the reader must take, or "No migration required."}
 ```
 
-Include the spec-folder line only when the release has a spec folder. Add a `## Why This Release` section of 2-4 sentences after the summary only when the summary does not already say why.
+Include the spec-folder line only when the release has a spec folder. Add a `## Why This Release` section of 2-4 sentences after the summary only when the summary does not already say why, with an `&nbsp;` line before it like every other H2.
 
 ### Expanded Format (10+ changes, major or breaking)
 
@@ -70,15 +74,19 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 > Spec folder: `{path}` (Level {N})
 
+&nbsp;
+
 ## Why This Release
 
 {Why the release exists: the gap it closes or the gain it buys, in one to three short paragraphs or bold lead-in gain bullets.}
+
+&nbsp;
 
 ## What's New at a Glance
 
 - **{The theme, as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
 
----
+&nbsp;
 
 ## {Topical Domain}
 
@@ -88,13 +96,11 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 {One or two paragraphs for most items, seven at most: what was broken, what changed and why it matters. Start where the glance bullet stopped.}
 
-&nbsp;
-
 #### {Next heading}
 
 **Breaking:** {What breaks and exactly what to do about it.}
 
----
+&nbsp;
 
 ## Upgrade Notes
 
@@ -109,7 +115,7 @@ Include the spec-folder line only when the release has a spec folder.
 
 - **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the exemplar names `Spec Kit` and `Safer Git`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need one to five domains. A release the exemplar's size may need more when each one earns its section.
 - **`{Benefit-led heading}` (H4).** 2-7 words for most headings and 10 at most, stating the gain or the fact. Good: `Specs Move to the Top Level`. Bad: `Improved validation logic`, a numbered item or a sentence-length title.
-- **Separators.** `&nbsp;` goes between H4 items within one H2, and `---` only between H2 sections. Neither goes between an H2 (or its intro) and its first H4.
+- **Separators.** An `&nbsp;` line, a forced blank line, goes before every H2: between the opening and Why This Release, between Why This Release and What's New at a Glance, and between every later section. Nothing separates the H4 items inside one H2, and no `---` rule appears anywhere in the entry body.
 - **Upgrade Notes.** Use the Adopt, Repoint and Drop lead-ins only when the release has all three kinds of work. Otherwise write plain bullets or a short paragraph, and "No upgrade needed." when there is nothing to do.
 
 ---
@@ -225,11 +231,15 @@ Count the changes in the release.
 
 ## 6. GITHUB RELEASE NOTES FORMAT
 
-The release body is the changelog content with any YAML frontmatter and the editorial title H1 removed, because GitHub shows the release title on its own. The release step in the command YAMLs strips both before it runs `gh release create`, then appends:
+The release body is the changelog content with any YAML frontmatter and the editorial title H1 removed, because GitHub shows the release title on its own. It keeps the entry's spacing, an `&nbsp;` line before every H2 and nothing between H4 items. The release step in the command YAMLs strips both before it runs `gh release create`, then appends an `&nbsp;` line and the pointer:
 
 ```text
+&nbsp;
+
 Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
+
+The release title is the tag, an em dash and the editorial title, `v{VERSION} — {Editorial Title}`, and the tag is annotated with the message `v{VERSION}: {Editorial Title}`.
 
 ---
 

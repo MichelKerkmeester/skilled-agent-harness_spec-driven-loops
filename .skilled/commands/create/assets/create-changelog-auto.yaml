@@ -608,7 +608,7 @@ workflow:
           [ ] At-a-glance section present with bold lead-in bullets
           [ ] Expanded: Why This Release, topical H2 sections with H4 items, Upgrade Notes
           [ ] No Files Changed / Test Impact / Schema Changes default sections
-          [ ] --- only between H2 sections; &nbsp; between H4 items within a section
+          [ ] An &nbsp; line before every H2 (opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no --- rule in the body
       - |
         VERSION CHECKS:
           [ ] Version is strictly greater than latest_existing_version
@@ -686,7 +686,8 @@ workflow:
             Strip it through its closing "---" line, plus any blank lines after it
           IF the next line starts with "# " (the editorial title H1):
             Strip that line and any immediately following blank lines
-          Append a blank line and then the footer line:
+          Keep the entry's spacing: an &nbsp; line before every H2 and nothing between H4 items
+          Append a blank line, an &nbsp; line, a blank line and then the footer line:
             Full changelog: `.skilled/changelog/skilled/v{next_version}.md`
           Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
       - "Run: git tag -a {release_tag} -m \"{tag_message}\""
