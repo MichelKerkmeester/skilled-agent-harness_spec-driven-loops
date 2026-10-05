@@ -59,6 +59,15 @@ test('unset_switches_leave_every_feature_enabled', () => {
   }
 });
 
+test('registry_holds_exactly_the_four_proven_features', () => {
+  assert.deepEqual(Object.keys(F.FEATURES).sort(), [
+    'cite-drift',
+    'hallucination-grader',
+    'injection-screen',
+    'verdict-fallback',
+  ]);
+});
+
 test('master_switch_off_disables_every_feature', () => {
   for (const value of ['0', 'false', 'NO', 'off']) {
     for (const name of Object.keys(F.FEATURES)) {
