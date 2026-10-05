@@ -43,6 +43,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
 | `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
+| `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Does not gate. |
@@ -56,7 +57,7 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
 | `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-doc-rename-harness.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
+| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-doc-rename-harness.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed; on push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate |
