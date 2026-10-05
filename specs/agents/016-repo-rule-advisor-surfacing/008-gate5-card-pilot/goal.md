@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] pytest shows the card generator is deterministic, and a drift fixture with a rule edited without regenerating its card makes check 11 fail naming the card
 - [x] git log shows preregistration.md committed before the first scored run
-- [ ] results/ shows each arm's long-reply count meeting the pre-registered size
+- [x] results/ shows each arm's long-reply count meeting the pre-registered size, or decision-record.md ADR-002 waives it
 - [ ] results/ and implementation-summary.md record the decision-rule outcome with the five prohibition checks, the fallback rate, delivered rule bytes per window and the Gate 5 and §8 miss rates per arm, each with denominator and interval
 - [x] experiment/arms.json records arm C dropped because the post-003 AGENTS.md plus the five reply-rule cards exceeds 32,768 bytes
 - [x] git status and a file listing show no generator, cards or check 11 if arm cards is rejected

@@ -46,6 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "experiment/arms.json",
       "experiment/prompts.json",
@@ -84,6 +85,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A plain card drops the operative bans in 6 of 13 rules",
     "created_at": "2026-10-04T14:40:01Z",
-    "last_save_at": "2026-10-05T07:17:24.671Z",
+    "last_save_at": "2026-10-05T07:33:02.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35bc3eda7cda8e04a87e981bd621a7d0626556c15eb7dbfa99ee0b02878d2f06",
+    "source_fingerprint": "sha256:51cebe22a031212eb78a2b5798229588619c86d92ad9f8703b02706539d3e02b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a515904de63c1f8274873aaf05c636e48b850784ac491cad9ea4174120b46a31",
       "plan.md": "4221202ace47c62fe74a6bbc7a6abf7488cc5a623878ec30e69a94fd4ed295ee",
       "tasks.md": "6dfcffaea859fb443dc6bdff77981ecb5035007ab84cbdd1f7e1e732cc14a246",
+      "decision-record.md": "6a96e4ad3cd420412758c145ccf53d2ed53dc02feea017ffba9543da7661e3a5",
       "implementation-summary.md": "bdd2e6254b12ad3b6d3d27c518e0d33b1735e67563c0c97ea40e7fda62ac24c0"
     },
     "last_active_at": null

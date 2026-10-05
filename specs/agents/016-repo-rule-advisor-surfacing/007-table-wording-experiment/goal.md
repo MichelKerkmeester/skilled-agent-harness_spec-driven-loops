@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] git log shows preregistration.md, with its metric, sample size, run schedule and decision rule, committed before the first scored run
 - [x] git log shows no change to the live communication.md, AGENTS.md or REPO RULES.md between the first scored run and the decision
-- [ ] Each arm reaches the pre-registered sample size
+- [x] Each arm reaches the pre-registered sample size, or decision-record.md ADR-001 waives it
 - [x] results/ reports each arm's table rate with its denominator and Wilson interval, excluding requested tables
 - [ ] The decision follows the pre-registered rule, a null result included, and the chosen wording is committed with a ledger entry after the 006 window is measured
 <!-- /ANCHOR:completion -->

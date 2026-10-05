@@ -21,6 +21,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "table wording experiment sample waiver",
       "table wording experiment summary"
     ],
     "key_topics": [
@@ -44,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "experiment/arms.json",
       "experiment/prompts.json",
@@ -75,6 +77,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -190,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Long replies carry a table 17.4% of the time before a `communication.md` read, 20.3% after it and 11.6% in sessions that never read it (`002-rule-concision-and-loading/prep/evidence-pack.md` §3)",
     "created_at": "2026-10-04T14:40:00Z",
-    "last_save_at": "2026-10-05T07:29:45.278Z",
+    "last_save_at": "2026-10-05T07:33:02.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +210,16 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f55e2f0c15ac9b933ff03ac8f461a6fea449825defa9bcf57963545a1ecf62c9",
+    "source_fingerprint": "sha256:24e874d6b5e02e285030a5f5e451c39584a4f9a633e4d8fed04e751b991b5a50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6dfa7f04ec3e3e6b2724fa947e8bb507d2388842b77049ad599f128685758cc",
       "plan.md": "94d680067ec20ba0b9821f21a6478a7a4115de3434216b9c70ab6e388ce3f4bd",
       "tasks.md": "c9b6092b228a72f542c2d779196a19c320bab540e031fb2f6691d03866931364",
+      "decision-record.md": "f5e4a471daa72abdf4903c323447d6308dd25b6242408baca1c2b3133b3318c5",
       "implementation-summary.md": "5cbaba30dc31bf112bc7fc8f5309eb6494905e7d7ca71c55664292ea3c31a4af"
     },
     "last_active_at": null
