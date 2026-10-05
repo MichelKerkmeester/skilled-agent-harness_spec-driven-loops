@@ -1,5 +1,5 @@
 {
-  "manifestHash": "eca4866fdeb5124c3982a852b595104675f16ae76ac862426a655ea773a60476",
+  "manifestHash": "43aeb8cf8f3955e911fafd255b6251f1482ebe30d2569bcfc81376d9d13c2a23",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15403,6 +15403,9 @@
     "changelog count dispositions": [
       "changelog count dispositions"
     ],
+    "changelog coverage since v4 0 0 2": [
+      "changelog coverage since v4.0.0.2"
+    ],
     "changelog creation examples": [
       "changelog creation examples"
     ],
@@ -15632,8 +15635,20 @@
     "changelog update plan": [
       "changelog update plan"
     ],
+    "changelog v4 0 0 3 reality check": [
+      "changelog v4.0.0.3 reality check"
+    ],
     "changelog v4 style": [
       "changelog v4 style"
+    ],
+    "changelog v4003 reality check plan": [
+      "changelog v4003 reality check plan"
+    ],
+    "changelog v4003 reality check summary": [
+      "changelog v4003 reality check summary"
+    ],
+    "changelog v4003 reality check tasks": [
+      "changelog v4003 reality check tasks"
     ],
     "changelog verification gate": [
       "changelog verification gate"
@@ -99196,6 +99211,9 @@
     ],
     "v4 0 0 3 release notes": [
       "v4.0.0.3 release notes"
+    ],
+    "v4 0 0 3 release notes accuracy": [
+      "v4.0.0.3 release notes accuracy"
     ],
     "v4 0 0 3 research plan": [
       "v4.0.0.3 research plan"
