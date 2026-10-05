@@ -104,7 +104,7 @@ From request to documented result:
                               │
                               ▼
          ┌──────────────────────────────────────────┐
-         │       GATE SYSTEM (5 mandatory gates)    │
+         │       GATE SYSTEM (6 mandatory gates)    │
          │                                          │
          │  Gate 1: Context     Gate 2: Skills      │
          │  Surface relevant    Auto-load the right │
@@ -115,6 +115,7 @@ From request to documented result:
          │                                          │
          │  Gate 4: Workflow tiebreakers             │
          │  Gate 5: Repo rules load (HARD BLOCK)    │
+         │  Gate 6: Reply rules load (HARD BLOCK)   │
          └──────────────────────┬───────────────────┘
                                 │
                  ┌──────────────┴──────────────┐
@@ -143,7 +144,7 @@ From request to documented result:
          ┌──────────────────────────────────────────┐
          │     SPEC KIT (documentation framework)   │
          │  specs/<track>/###-feature/ - scratch/   │
-         │  4 levels - template set - 40 rules      │
+         │  4 levels - template set - 42 rules      │
          │  trigger index │ ripgrep retrieval       │
          └──────────────────────────────────────────┘
 ```
@@ -229,7 +230,7 @@ Come back tomorrow and `/speckit:resume` reads it back.
 This repo ships as a public template.
 
 - Only `sk-code` carries stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking
-- The other 14 shipped skills, such as `system-spec-kit`, `sk-doc`, `sk-git` and `system-deep-loop`, are codebase-agnostic out of the box
+- The other 13 shipped skills, such as `system-spec-kit`, `sk-doc`, `sk-git` and `system-deep-loop`, are codebase-agnostic out of the box
 - Most teams add their own skills on top. Drop them into `.skilled/skills/<your-skill>/` and the advisor picks them up automatically
 
 See the [customization guide](#customizing-for-your-stack) for the full map and step-by-step adaptation guide.
@@ -453,7 +454,7 @@ specs/<track>/022-big-feature/     # Parent spec folder
 
 #### Gate System
 
-5 mandatory gates run before any file change. Four more rules sit under the post-execution gates: final-state verification, completion verification, the memory save rule and the always-on goal posture rule.
+Six mandatory gates run before acting. Gates 1 to 5 run before any file change, and Gate 6 runs before every substantive reply, read-only turns included. Gates 5 and 6 load the 13 rule files in `.skilled/repo-rules/`: `REPO RULES.md` routes the write rules, and Gate 6 names the five reply rules. Four more rules sit under the post-execution gates: final-state verification, completion verification, the memory save rule and the always-on goal posture rule.
 
 ```
   User message arrives
@@ -491,6 +492,12 @@ specs/<track>/022-big-feature/     # Parent spec folder
   ┌─────────────────────────────────────────────┐
   │  Gate 5: Repo Rules Load (HARD BLOCK)       │
   │  REPO RULES.md routes the first write        │
+  └──────────────────┬──────────────────────────┘
+                     │
+                     ▼
+  ┌─────────────────────────────────────────────┐
+  │  Gate 6: Reply Rules Load (HARD BLOCK)      │
+  │  communication rules load before a reply    │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼
@@ -1236,7 +1243,7 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Eight commands cover the diagnostic surface, one per owner. The five routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Eight commands cover the diagnostic surface, one per owner. The six routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1457,7 +1464,7 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 &nbsp;
 ### Core Configuration Files
 
-- **`AGENTS.md`** - gate definitions, behavior rules, agent routing and capability reference. The canonical contract for all runtimes. Claude Code reads it directly, so the repository ships no `CLAUDE.md`
+- **`AGENTS.md`** - gate definitions, behavior rules, agent routing and capability reference. The canonical contract for all runtimes. Claude Code reads it directly, so the repository ships no `CLAUDE.md`, and Codex loads it as project instructions, so `.codex/` carries no copy either
 - **`opencode.json`** - permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only
