@@ -4,7 +4,8 @@
 // ───────────────────────────────────────────────────────────────────
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
-const CODEX_TOOL_MAP = { exec: 'bash', apply_patch: 'write', edit: 'edit' };
+// Codex names its shell tool `exec` up to 0.15x and `Bash` from 0.160 on.
+const CODEX_TOOL_MAP = { exec: 'bash', bash: 'bash', apply_patch: 'write', edit: 'edit' };
 
 function pathsFromPatch(patchText) {
   if (typeof patchText !== 'string') return [];

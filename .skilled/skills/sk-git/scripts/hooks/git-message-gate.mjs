@@ -13,7 +13,7 @@
 // CI check still stand behind it; refusing what it cannot read would block legitimate work while
 // adding no guarantee. There is no suppression switch.
 //
-// One file serves Claude (`Bash`), Codex and Devin (`exec`) and Cursor (`Shell`). Cursor takes a
+// One file serves Claude and Codex 0.160+ (`Bash`), older Codex and Devin (`exec`) and Cursor (`Shell`). Cursor takes a
 // different deny envelope, chosen from the payload shape.
 
 // ─────────────────────────────────────────────────────────────────────────────

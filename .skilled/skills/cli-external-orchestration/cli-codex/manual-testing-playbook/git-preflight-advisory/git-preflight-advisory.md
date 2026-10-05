@@ -45,7 +45,7 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Cod
 ### Recommended Orchestration Process
 
 1. Restate the user request and confirm the scenario ID.
-2. Confirm `.codex/hooks.json` registers the shared hook under `PreToolUse` matcher `exec`.
+2. Confirm `.codex/hooks.json` registers the shared hook under `PreToolUse` matcher `exec|Bash`.
 3. Create a disposable scratch repo with hooks detached.
 4. Pipe the `exec` trap payload through the shared hook and capture the advisory.
 5. Repeat with `SKGIT_ADVISORY=0` and confirm silence.
@@ -59,7 +59,7 @@ below: registration grep, scratch-repo setup, the shared-hook dispatch, and the 
 
 ### Expected
 
-Step 1: the registration line is present under `PreToolUse` matcher `exec`. Step 3: JSON
+Step 1: the registration line is present under `PreToolUse` matcher `exec|Bash`. Step 3: JSON
 `hookSpecificOutput.additionalContext` contains `⚠ sk-git advisory` and
 `[commit-scope-drops-untracked]`, with no denial field. Step 4: zero stdout.
 
@@ -81,13 +81,13 @@ transcript from every command in the table below.
 
 1. Inspect the step 3 JSON for the rule id; if absent, confirm the payload uses `tool_name: exec`
    with a `cwd` pointing at the scratch repo.
-2. Confirm the hook is registered for the `exec` matcher in `.codex/hooks.json`.
+2. Confirm the hook is registered for the `exec|Bash` matcher in `.codex/hooks.json`.
 3. If the environment lacks the shared hook file, record the SKIP with that exact missing-file
    blocker rather than guessing a result.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| CX-029 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under Codex PreToolUse exec, stays silent on an ordinary commit, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory under a Codex PreToolUse exec payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: grep -n "git-preflight-advisory.mjs" .codex/hooks.json` (confirm registration under PreToolUse exec) -> 2. `bash: repo=$(mktemp -d "/tmp/cx-029.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.skilled/skills/sk-git" && cp .skilled/skills/sk-git/SKILL.md "$repo/.skilled/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 3. `bash: printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 4. `bash: printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| SKGIT_ADVISORY=0 node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Step 1: registration line present under `PreToolUse` matcher `exec`; Step 3: JSON `hookSpecificOutput.additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no denial field; Step 4: zero stdout | `.codex/hooks.json` excerpt, captured advisory JSON, silence confirmation, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND Step 4 prints nothing; FAIL if the command is blocked or no advisory appears on the trap shape | Inspect the Step 3 JSON for the rule id; if absent, confirm the payload uses `tool_name: exec` with a `cwd` pointing at the scratch repo; confirm the hook is registered for the `exec` matcher |
+|| CX-029 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under Codex PreToolUse exec, stays silent on an ordinary commit, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory under a Codex PreToolUse exec payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: grep -n "git-preflight-advisory.mjs" .codex/hooks.json` (confirm registration under PreToolUse exec\|Bash) -> 2. `bash: repo=$(mktemp -d "/tmp/cx-029.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.skilled/skills/sk-git" && cp .skilled/skills/sk-git/SKILL.md "$repo/.skilled/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 3. `bash: printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 4. `bash: printf '%s' '{"tool_name":"exec","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| SKGIT_ADVISORY=0 node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Step 1: registration line present under `PreToolUse` matcher `exec\|Bash`; Step 3: JSON `hookSpecificOutput.additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no denial field; Step 4: zero stdout | `.codex/hooks.json` excerpt, captured advisory JSON, silence confirmation, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND Step 4 prints nothing; FAIL if the command is blocked or no advisory appears on the trap shape | Inspect the Step 3 JSON for the rule id; if absent, confirm the payload uses `tool_name: exec` with a `cwd` pointing at the scratch repo; confirm the hook is registered for the `exec\|Bash` matcher |
 
 ### Optional Supplemental Checks
 
@@ -109,7 +109,7 @@ transcript from every command in the table below.
 
 || File | Role |
 ||---|---|
-|| `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook the Codex `exec` matcher invokes |
+|| `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook the Codex `exec\|Bash` matcher invokes |
 || `../../../../../skills/sk-git/SKILL.md` | The 17 rules in the `hard-rules.json` sidecar the hook reads |
 || `.codex/hooks.json` | `PreToolUse` matcher `exec` registration of the shared hook |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |

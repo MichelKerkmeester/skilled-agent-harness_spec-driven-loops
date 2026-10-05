@@ -326,3 +326,19 @@ test('Codex apply_patch still resolves a patch header for enforcement', () => {
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('Codex 0.160 Bash shell calls reach the gate like the older exec name', () => {
+  for (const toolName of ['exec', 'Bash']) {
+    const { root } = makeWorkspace();
+    try {
+      const sessionID = `shell-${toolName}`;
+      openGate(root, sessionID);
+      // A shell call may mutate, so an open gate advises once but never denies it.
+      assertHasAdditionalContext(runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID, toolName, {
+        command: 'touch src/app.js',
+      }), { [guardCore.ENFORCE_ENV]: '1' }), 'PreToolUse');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+});

@@ -257,7 +257,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered |, by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `task-dispatch` | ✓ covered | unverified: codex-cli 0.160 fires `PreToolUse` on `spawn_agent`, but its session log stores the spawn message encrypted with no agent type, and the hook payload has not been captured; no adapter | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered |
+| `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered |
 
 ### Additional centralized hooks
 

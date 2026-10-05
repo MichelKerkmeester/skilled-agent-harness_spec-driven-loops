@@ -62,7 +62,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "exec",
+        "matcher": "exec|Bash",
         "hooks": [
           {
             "type": "command",
@@ -82,7 +82,7 @@
         ]
       },
       {
-        "matcher": "exec|apply_patch|edit",
+        "matcher": "exec|Bash|apply_patch|edit",
         "hooks": [
           {
             "type": "command",
@@ -114,7 +114,7 @@
         ]
       },
       {
-        "matcher": "exec",
+        "matcher": "exec|Bash",
         "hooks": [
           {
             "type": "command",
