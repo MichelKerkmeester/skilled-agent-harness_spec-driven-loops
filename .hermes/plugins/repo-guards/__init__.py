@@ -232,6 +232,11 @@ VISION_CORE_TIMEOUT_SECONDS = 25
 # The injection screen answers through classifier calls over the fetched text, which take longer
 # than the verdict cores but well under the vision core's model call.
 INJECTION_SCREEN_TIMEOUT_SECONDS = 30
+# The adapter honors these too, but checking them here spares a switched-off session the parse of
+# every fetched page and a child process per fetch. The hook-flags file stays the adapter's to read.
+INJECTION_SCREEN_DISABLE_ENVS = ("SYSTEM_INJECTION_SCREEN_DISABLED", "SYSTEM_HOOKS_DISABLED", "MK_HOOKS_DISABLED")
+INJECTION_SCREEN_FEATURE_ENVS = ("JEV_FEATURES", "JEV_FEATURE_INJECTION_SCREEN")
+FEATURE_OFF_VALUES = {"0", "false", "off", "no"}
 
 
 def _run_core(
@@ -361,6 +366,16 @@ def _extracted_text(result: Any) -> Optional[str]:
     return "\n\n".join(parts) if parts else None
 
 
+def _injection_screen_enabled() -> bool:
+    """Whether the injection screen is on as far as the environment says: a hook kill switch or a
+    Jev feature switch set off turns it off."""
+    if any(_truthy_env(name) for name in INJECTION_SCREEN_DISABLE_ENVS):
+        return False
+    return not any(
+        os.environ.get(name, "").strip().lower() in FEATURE_OFF_VALUES for name in INJECTION_SCREEN_FEATURE_ENVS
+    )
+
+
 def _injection_advisory(result: Any) -> Optional[str]:
     """The injection screen's warning for the text one `web_extract` call fetched, or None.
 
@@ -369,6 +384,8 @@ def _injection_advisory(result: Any) -> Optional[str]:
     fetch tool name it screens for is the shape this payload is built in; a result that carries
     no text never reaches it.
     """
+    if not _injection_screen_enabled():
+        return None
     text = _extracted_text(result)
     if text is None:
         return None

@@ -1019,6 +1019,20 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.transform_tool_result("read_file", {"path": "README.md"}, "read"))
         core.assert_not_called()
 
+    def test_a_switched_off_screen_never_starts_the_adapter(self):
+        page = json.dumps({"results": [{"url": "https://example.test", "content": "Page text.", "error": None}]})
+        for name, value in (
+            ("SYSTEM_INJECTION_SCREEN_DISABLED", "1"),
+            ("SYSTEM_HOOKS_DISABLED", "true"),
+            ("JEV_FEATURE_INJECTION_SCREEN", "0"),
+            ("JEV_FEATURES", "off"),
+        ):
+            with self.subTest(name=name), mock.patch.dict(os.environ, {name: value}), mock.patch.object(
+                self.plugin, "_run_core"
+            ) as core:
+                self.assertIsNone(self.plugin.transform_tool_result("web_extract", {}, page))
+                core.assert_not_called()
+
     def test_every_hook_fails_open(self):
         with mock.patch.object(self.plugin, "_run_core", side_effect=RuntimeError("boom")):
             self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "devin -p x"}))

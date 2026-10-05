@@ -23,7 +23,7 @@ The coverage is uneven because the six runtimes have different event surfaces an
 
 A concern gets an adapter on a runtime only when three things line up: the runtime **fires an event** the concern needs, the concern **isn't already handled** by another adapter there, and the runtime's extension model **wires it as its own entry** rather than bundling it.
 
-**Most visible asymmetry is the third one — a factoring difference between three extension models, not a capability gap.** A runtime that "lacks" a concern is usually running the same logic, just folded into a different adapter. The rare *real* capability gaps (Codex has no permission or agent-spawn event) are flagged as such below.
+**Most visible asymmetry is the third one — a factoring difference between three extension models, not a capability gap.** A runtime that "lacks" a concern is usually running the same logic, just folded into a different adapter. The rare *real* capability gaps (Codex has no permission event, and an unread agent-spawn payload) are flagged as such below.
 
 To scan: read the **bold line** under each concern in Section 3 for the core reason; the sentence after it is the evidence. The per-cell grid lives in [`README.md`](./README.md).
 
@@ -74,8 +74,8 @@ Per the module: *"host lifecycle hooks advance durable policy state independentl
 Codex fires **no** permission event at all (real capability gap); Claude *has* `PermissionRequest` but already gates mutations via `PreToolUse` deny in `spec-gate-enforce`, so a second adapter would duplicate it.
 
 ### `task-dispatch` — folder on **all but codex**
-**Codex fires no confirmed agent-spawn event, so there is nothing to intercept.**
-Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`; Codex's `PreToolUse` only covers known tools like `exec`. (Pi is `~ partial` — direct `subagent` calls only.)
+**Codex now fires `PreToolUse` on its `spawn_agent` tool, but what the guard needs from that payload is unconfirmed.**
+Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`. In codex-cli 0.160 the user-global match-all hooks fire once per tool call, `spawn_agent` and `wait_agent` included, yet the session log stores the spawn `message` encrypted and records no agent type, so the guard's prompt and target checks may have nothing to read. A project hook did not capture the payload in three live attempts, so no adapter is wired until one does. (Pi is `~ partial` — direct `subagent` calls only.)
 
 The Claude-only `fable-subagent-guard.mjs` stays single-runtime by design: it guards Claude Code's own Agent-tool model override and its `fork` sub-agent type, both of which inherit the parent's Fable model; no other runtime has those semantics to guard.
 

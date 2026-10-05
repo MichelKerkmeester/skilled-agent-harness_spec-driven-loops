@@ -100,5 +100,9 @@ describe('sync-hook-registrations.cjs', () => {
     const binding = { event: 'sessionStart', group: 0, slot: 0, matcher: null, runner: 'bash', script: '.skilled/bin/git-primary-reconcile.sh', timeout: 10, fallback: 'background' };
     expect(renderCursorCommand({ defaultMessage: 'unused' }, binding)).toBe('bash .skilled/bin/git-primary-reconcile.sh >/dev/null 2>&1 &');
     expect(() => renderCursorCommand({ defaultMessage: 'unused' }, { ...binding, fallback: 'echo' })).toThrow(/none, background or envelope/u);
+    const registry = JSON.parse(fs.readFileSync(REGISTRY, 'utf8')) as { hooks: Array<{ id: string; bindings: Record<string, Array<Record<string, unknown>>> }> };
+    const reconcile = registry.hooks.find((hook) => hook.id === 'git-primary-reconcile')?.bindings.cursor?.[0];
+    expect(reconcile, 'registry cursor binding for git-primary-reconcile').toBeDefined();
+    expect(renderCursorCommand({ defaultMessage: 'unused' }, reconcile!)).toMatch(/ >\/dev\/null 2>&1 &$/u);
   });
 });
