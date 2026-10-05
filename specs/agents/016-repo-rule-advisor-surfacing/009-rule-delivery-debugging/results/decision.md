@@ -29,4 +29,4 @@ The guard failed on resolution, not on an observed harm. The pre-registration di
 
 ## 3. WHAT IT MEANS
 
-With the project `AGENTS.md` loaded, Luna follows the reply-rule bullet and DeepSeek skips it in half its replies. Written as a numbered gate, the same instruction reaches DeepSeek in 93% of replies. Whether to adopt it waits on `preregistration-2.md`.
+With the project `AGENTS.md` loaded, Luna follows the reply-rule bullet and DeepSeek skips it in half its replies. Written as a numbered gate, the same instruction reaches DeepSeek in 93% of replies. Whether to adopt it waits on `preregistration-2.md`, which `decision-2.md` settles: adopt Gate 6.

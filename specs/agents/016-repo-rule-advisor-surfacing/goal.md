@@ -121,7 +121,7 @@ and findings belong here.
 | Goal revised for stage 2 | Done | Operator asked for a new goal after stage 1 on 2026-10-05. Objective, decisions and criteria now cover live adoption, 009 and 010. Old D2 and D5 are fulfilled and old D6 is carried by the new D2 |
 | 008 decision | Decided, adoption pending | 6ffe5e5514: pre-registered rule 1 adopts cards at Gate 5 over 318 runs. Primary -4.0 points (-15.5 to +7.6), Gate 5 miss +2.2 (-3.3 to +7.9), 42,064 against 59,620 rule bytes per run. Preregistration 3990bc9fa5 predates the first scored run. Deviations 1 to 4 in results/deviations.md. Adoption waits on the 006 window and checks 2 and 10 accepting card links |
 | Sample-size waivers | Done | 007 decision-record.md ADR-001 and 008 decision-record.md ADR-002 waive the pre-registered sample sizes the shortened schedules missed; 008 AC-003 Waived |
-| 009 decision | Bullet kept, replication preregistered | rule 2 of preregistration.md: Gate 6 cut reply-rule misses -22.6 points (-29.8 to -15.6) over 360 runs, but the Gate 5 guard was unresolved at 0 of 32 vs 0 of 30 (upper +11.4 > +10). preregistration-2.md replicates on write tasks sized for the guard |
+| 009 decision | Gate 6 adopted, live adoption pending | preregistration-2.md rule 1 over 148 write-task runs, 74 per arm (results/decision-2.md): Gate 5 miss 0 of 38 vs 0 of 43, +0.0 points (-9.2 to +8.2); reply-rule miss 58.9% to 21.1%, -37.8 points (-51.0 to -22.0). Supersedes the first run's bullet-kept result, which failed on guard resolution. Lands after the 008 cards' window, with operator approval for the AGENTS.md edit |
 
 ### Deviations and findings
 
