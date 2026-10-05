@@ -1,0 +1,48 @@
+== pooled/cards: runs=162 long=132 unscorable=0
+   table (unasked) 0.0% of 132 [0.0-2.8] | with communication.md delivered 0.0% of 98 [0.0-3.8] | delivery 74.2% of 132 [66.2-80.9]
+   empty_opener 0.0% of 132 [0.0-2.8] | label_first_line 0.0% of 132 [0.0-2.8] | em_dash 15.9% of 132 [10.6-23.1] | semicolon 56.8% of 132 [48.3-65.0]
+   gate5 miss 5.9% of 136 [3.0-11.2] | reply-rules miss 32.6% of 132 [25.2-41.0] | fallback 55.9% of 118 [46.9-64.6] | mean rule bytes 42064
+== pooled/full: runs=156 long=138 unscorable=0
+   table (unasked) 0.0% of 138 [0.0-2.7] | with communication.md delivered 0.0% of 113 [0.0-3.3] | delivery 81.9% of 138 [74.6-87.4]
+   empty_opener 0.0% of 138 [0.0-2.7] | label_first_line 0.0% of 138 [0.0-2.7] | em_dash 13.8% of 138 [9.0-20.5] | semicolon 58.7% of 138 [50.4-66.6]
+   gate5 miss 3.7% of 136 [1.6-8.3] | reply-rules miss 26.1% of 138 [19.5-34.0] | fallback n/a | mean rule bytes 59620
+== table_unasked_rule_delivered: pooled/cards - pooled/full +0.0 pts [-3.3 to +3.8]
+== any_prohibition: pooled/cards - pooled/full -4.0 pts [-15.5 to +7.6]
+== gate5_miss: pooled/cards - pooled/full +2.2 pts [-3.3 to +7.9]
+== reply_rules_miss: pooled/cards - pooled/full +6.5 pts [-4.3 to +17.2]
+== deepseek-cline/cards: runs=15 long=15 unscorable=0
+   table (unasked) 0.0% of 15 [0.0-20.4] | with communication.md delivered 0.0% of 1 [0.0-79.3] | delivery 6.7% of 15 [1.2-29.8]
+   empty_opener 0.0% of 15 [0.0-20.4] | label_first_line 0.0% of 15 [0.0-20.4] | em_dash 86.7% of 15 [62.1-96.3] | semicolon 100.0% of 15 [79.6-100.0]
+   gate5 miss 0.0% of 7 [0.0-35.4] | reply-rules miss 93.3% of 15 [70.2-98.8] | fallback 28.6% of 7 [8.2-64.1] | mean rule bytes 30791
+== deepseek-cline/full: runs=15 long=15 unscorable=0
+   table (unasked) 0.0% of 15 [0.0-20.4] | with communication.md delivered 0.0% of 5 [0.0-43.4] | delivery 33.3% of 15 [15.2-58.3]
+   empty_opener 0.0% of 15 [0.0-20.4] | label_first_line 0.0% of 15 [0.0-20.4] | em_dash 60.0% of 15 [35.7-80.2] | semicolon 66.7% of 15 [41.7-84.8]
+   gate5 miss 0.0% of 8 [0.0-32.4] | reply-rules miss 86.7% of 15 [62.1-96.3] | fallback n/a | mean rule bytes 47373
+== deepseek-oc/cards: runs=15 long=14 unscorable=0
+   table (unasked) 0.0% of 14 [0.0-21.5] | with communication.md delivered 0.0% of 12 [0.0-24.3] | delivery 85.7% of 14 [60.1-96.0]
+   empty_opener 0.0% of 14 [0.0-21.5] | label_first_line 0.0% of 14 [0.0-21.5] | em_dash 28.6% of 14 [11.7-54.6] | semicolon 42.9% of 14 [21.4-67.4]
+   gate5 miss 0.0% of 7 [0.0-35.4] | reply-rules miss 35.7% of 14 [16.3-61.2] | fallback 27.3% of 11 [9.7-56.6] | mean rule bytes 43437
+== deepseek-oc/full: runs=15 long=15 unscorable=0
+   table (unasked) 0.0% of 15 [0.0-20.4] | with communication.md delivered 0.0% of 14 [0.0-21.5] | delivery 93.3% of 15 [70.2-98.8]
+   empty_opener 0.0% of 15 [0.0-20.4] | label_first_line 0.0% of 15 [0.0-20.4] | em_dash 26.7% of 15 [10.9-52.0] | semicolon 53.3% of 15 [30.1-75.2]
+   gate5 miss 0.0% of 8 [0.0-32.4] | reply-rules miss 26.7% of 15 [10.9-52.0] | fallback n/a | mean rule bytes 72523
+== luna/cards: runs=120 long=91 unscorable=0
+   table (unasked) 0.0% of 91 [0.0-4.1] | with communication.md delivered 0.0% of 73 [0.0-5.0] | delivery 80.2% of 91 [70.9-87.1]
+   empty_opener 0.0% of 91 [0.0-4.1] | label_first_line 0.0% of 91 [0.0-4.1] | em_dash 0.0% of 91 [0.0-4.1] | semicolon 52.7% of 91 [42.6-62.7]
+   gate5 miss 7.0% of 114 [3.6-13.2] | reply-rules miss 25.3% of 91 [17.5-35.1] | fallback 65.6% of 93 [55.5-74.5] | mean rule bytes 42745
+== luna/full: runs=115 long=97 unscorable=0
+   table (unasked) 0.0% of 97 [0.0-3.8] | with communication.md delivered 0.0% of 84 [0.0-4.4] | delivery 86.6% of 97 [78.4-92.0]
+   empty_opener 0.0% of 97 [0.0-3.8] | label_first_line 0.0% of 97 [0.0-3.8] | em_dash 2.1% of 97 [0.6-7.2] | semicolon 56.7% of 97 [46.8-66.1]
+   gate5 miss 4.5% of 110 [2.0-10.2] | reply-rules miss 18.6% of 97 [12.1-27.4] | fallback n/a | mean rule bytes 59106
+== swe/cards: runs=12 long=12 unscorable=0
+   table (unasked) 0.0% of 12 [0.0-24.3] | with communication.md delivered 0.0% of 12 [0.0-24.3] | delivery 100.0% of 12 [75.7-100.0]
+   empty_opener 0.0% of 12 [0.0-24.3] | label_first_line 0.0% of 12 [0.0-24.3] | em_dash 33.3% of 12 [13.8-60.9] | semicolon 50.0% of 12 [25.4-74.6]
+   gate5 miss 0.0% of 8 [0.0-32.4] | reply-rules miss 8.3% of 12 [1.5-35.4] | fallback 0.0% of 7 [0.0-35.4] | mean rule bytes 47627
+== swe/full: runs=11 long=11 unscorable=0
+   table (unasked) 0.0% of 11 [0.0-25.9] | with communication.md delivered 0.0% of 10 [0.0-27.8] | delivery 90.9% of 11 [62.3-98.4]
+   empty_opener 0.0% of 11 [0.0-25.9] | label_first_line 0.0% of 11 [0.0-25.9] | em_dash 36.4% of 11 [15.2-64.6] | semicolon 72.7% of 11 [43.4-90.3]
+   gate5 miss 0.0% of 10 [0.0-27.8] | reply-rules miss 9.1% of 11 [1.6-37.7] | fallback n/a | mean rule bytes 64104
+== any_prohibition: deepseek-cline/cards - deepseek-cline/full +13.3 pts [-9.2 to +37.9]
+== any_prohibition: deepseek-oc/cards - deepseek-oc/full -10.5 pts [-41.1 to +23.3]
+== any_prohibition: luna/cards - luna/full -4.0 pts [-17.8 to +10.1]
+== any_prohibition: swe/cards - swe/full -23.5 pts [-52.9 to +13.5]
