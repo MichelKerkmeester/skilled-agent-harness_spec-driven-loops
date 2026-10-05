@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A changelog formatting commit edited two sk-doc packet SKILL.md files without regenerating their Hermes copies",
     "created_at": "2026-10-05T10:55:33Z",
-    "last_save_at": "2026-10-05T10:55:37.538Z",
+    "last_save_at": "2026-10-05T15:42:18.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52cefc5a7a6ff173434334ce697af04d193123696d55976de9aec20976638479",
+    "source_fingerprint": "sha256:199f4aeb97fbd56258c042c726ce7014775211eb7f5524842a9504b610c4f848",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "07cc537a6355bb8cf004b11a215f30b1b2c7b7bb97a46532a3b4d35f47022e80",
       "plan.md": "af1746f62a4247a6e8ada5a5356aff5f93ea323f7c6955d4e7a97de9a1c356f9",
       "tasks.md": "6f6f9a425c18ba686e18655bcfa58cf2cb8d13c88e7ddf9827989e4fcaa599c4",
-      "implementation-summary.md": "d9746f2af892a2c8887b7df9612d4d17b65c2f912acae666d4555a718907cec5"
+      "implementation-summary.md": "55e6c1723f97203b091674ed27bff4ef7bf4a8e83d76ba3cc987afb4ca99054c"
     },
     "last_active_at": null
   }
