@@ -15,3 +15,13 @@ contextType: "implementation"
 **Why:** Devin's daily usage quota blocked DeepSeek before any scored run, and the operator chose SWE-2 Max, a free model on the same CLI. Recorded on 2026-10-05, before any SWE-2 run.
 
 **Effect on the analysis:** the pooled metrics combine Luna's 235 runs and SWE-2's 360. Both arms are interleaved in one shuffled order, so the Luna stop leaves the arms balanced, at 115 full and 120 cards runs. The decision rule is unchanged.
+
+## 2. DEEPSEEK THROUGH OPENCODE GO
+
+**What changed:** DeepSeek V4.1 Flash at max through OpenCode Go (`opencode run -m opencode-go/deepseek-v4.1-flash --variant max`) replaces SWE-2 Max as the second executor, on the full pre-registered schedule of 360 runs. This returns the second seat to the model the pre-registration named, through a different CLI.
+
+**Why:** Devin rate-limited SWE-2 Max after 23 scored runs here, and the operator chose DeepSeek through OpenCode Go. Recorded on 2026-10-05, before any OpenCode run.
+
+**Effect on the analysis:** the pooled decision combines Luna and DeepSeek through OpenCode. The SWE-2 runs and the 5 earlier DeepSeek runs through Devin are reported as their own strata and left out of the decision. The decision rule is unchanged.
+
+**Dispatch notes:** runs pass `--auto` so headless edits are approved, like Devin's dangerous mode. Each run directory is a disposable copy with its own fresh git repository, so a stray write cannot reach the real repository. No agent persona is added to the prompt, because the executor's own behaviour is what the experiment measures.
