@@ -848,7 +848,7 @@ Describe the job and it hands the dispatch to the right one.
 
 **`cli-classifier`** - typed judgments from Typesafe's Jev classifier
 
-When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else. Calls go to Pi's native classifier first and fall back to the `jev` CLI, and every answer records which route gave it.
+When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else. Yes-or-no and choice questions go to Pi's native classifier first and fall back to the `jev` CLI. Scores and batches go straight to the CLI, and every answer records which route gave it.
 
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
 - **Four features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
@@ -856,7 +856,7 @@ When a decision needs a number rather than prose, this hub asks a classifier for
   - Injection screen on fetched web text (Claude Code, Devin, OpenCode, Pi, Hermes): one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
   - Reviewer verdict fallback in the model benchmark: reads a verdict the parser misses (24 of 24 against 8)
   - Hallucination grader for the benchmark's D4 dimension: asks only about outputs the deterministic check flags (55 of 56 against 47)
-- **Off with one line.** `JEV_FEATURES=0` stops all four, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. See `.env.example` section 17
+- **Off with one line.** `JEV_FEATURES=0` stops all four, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. `JEV_PROVIDER` picks the provider whose key counts and `JEV_TRANSPORT=jev` keeps every call on the CLI. See `.env.example` section 17
 - **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
 
 &nbsp;
@@ -1018,9 +1018,9 @@ JavaScript entrypoints under `.skilled/plugins/`, discovered by a flat glob over
 
 - **Gate enforcement:** `system-spec-gate.js`, `system-completion-sentinel.js`, `system-speckit-completion.js`
 - **Advisor and routing:** `system-skill-advisor.js` for the prompt-time brief, `mcp-route-guard.js` (advises when a native MCP call should use Code Mode)
-- **Quality and guards:** `sk-code-post-edit-quality.js`, `sk-git-preflight-advisory.js`, `system-deep-loop-guard.js`, `system-dist-freshness-guard.js`, `codex-hooks-watchdog.js`, `cli-dispatch-audit.js`
+- **Quality and guards:** `sk-code-post-edit-quality.js`, `sk-git-preflight-advisory.js`, `sk-git-message-gate.js`, `system-deep-loop-guard.js`, `system-dist-freshness-guard.js`, `codex-hooks-watchdog.js`, `cli-dispatch-audit.js`, `classifier-injection-screen.js`
 - **Lifecycle and surfaces:** `opencode-goal.js`, `session-cleanup.js`, `sk-vision.js`
-- Twelve plugins honor a per-concern kill-switch via `hook-flags.cjs` plus the master `SYSTEM_HOOKS_DISABLED`. The Spec Kit completion and sk-vision plugins carry their own switch. None writes to stdout, and the goal and vision plugins write to stderr only when their debug variable is set
+- Thirteen plugins honor a per-concern kill-switch via `hook-flags.cjs` plus the master `SYSTEM_HOOKS_DISABLED`. The Spec Kit completion and sk-vision plugins carry their own switch, and the git message gate has none. None writes to stdout, and the goal and vision plugins write to stderr only when their debug variable is set
 
 &nbsp;
 #### Pi Extensions
@@ -1040,7 +1040,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 Other entries in `.pi/extensions/`:
 
 - **`pi-fast-mode-w-subagent-support`** - fast mode with subagent support
-- **Symlinked guard bridges:** `spec-gate-classify.ts` / `spec-gate-enforce.ts`, `session-start-context.ts` / `session-stop-context.ts` / `session-compact-context.ts`, `prompt-advisor.ts`, `mcp-route-guard.ts`, `post-edit-quality.ts`, `dispatch-preflight-lint.ts` / `dispatch-audit.ts`, `goal-context.ts`, `sk-vision.ts`, `task-dispatch-guard.ts`, `completion-evidence.ts`, `git-preflight-advisory.ts`, `session-start-advisories.ts`
+- **Symlinked guard bridges:** `spec-gate-classify.ts` / `spec-gate-enforce.ts`, `session-start-context.ts` / `session-stop-context.ts` / `session-compact-context.ts`, `prompt-advisor.ts`, `mcp-route-guard.ts`, `post-edit-quality.ts`, `dispatch-preflight-lint.ts` / `dispatch-audit.ts`, `goal-context.ts`, `sk-vision.ts`, `task-dispatch-guard.ts`, `completion-evidence.ts`, `git-preflight-advisory.ts`, `git-message-gate.ts`, `classifier-injection-screen.ts`, `session-start-advisories.ts`
 - **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`
 
 &nbsp;
@@ -1048,9 +1048,11 @@ Other entries in `.pi/extensions/`:
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-- `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `permission-policy`, `post-edit-quality`
-- `git`, `git-hooks-check`, `git-preflight`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
-- `session-cleanup`, `session-lifecycle`, `sk-vision`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`
+- `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
+- `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
+- `session-cleanup`, `session-lifecycle`, `sk-vision`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
+
+The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
 ---
 
@@ -1328,9 +1330,9 @@ The repo runs a live-sync loop around the worktree-per-session model.
 
 **Switches**
 
-- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically
+- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi and Hermes sessions
 - `SYSTEM_LIVE_SYNC_DISABLED=1` disables the whole loop
-- `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower
+- `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
 - See `sk-git/references/continuous-integration.md` for the full model
 
 ---
@@ -1392,7 +1394,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`cli-classifier`** - ✅ codebase-agnostic
 
-- Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first, the `jev` CLI as fallback) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features
+- Parent hub for typed-judgment transports: routes to `cli-jev` (Pi's classifier first for yes-or-no and choice questions, the `jev` CLI otherwise) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Needs the `jev` CLI on PATH (`uv tool install jev-cli`) and a key stored with `jev auth set --provider official`, which also turns on its four measured features
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 
@@ -1427,14 +1429,14 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 &nbsp;
 ### Off Switches
 
-The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches and the two validation switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
+The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
 
 ```bash
 cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then uncomment the switches you want on
 ```
 
-- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
 - **Git hooks.** The per-gate bypasses such as `SPECKIT_SKIP_COMMENT_HYGIENE=1` are read from the environment only and cover one command. `speckit.hooks.<key>` set to `off` in git config keeps one gate off for good, and `/doctor:git hooks` lists the keys. [Git Hooks](#git-hooks) covers turning the hooks off entirely
 - **The full list.** [`.env.example`](.env.example) lists the switches with their defaults. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
