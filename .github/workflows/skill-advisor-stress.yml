@@ -1,0 +1,65 @@
+name: Skill Advisor Stress Tests
+
+# The advisor's stress suite only runs when SPECKIT_RUN_STRESS is set, and no
+# workflow set it, so two of its tests failed for months against code that had
+# moved on before anyone ran the suite. It takes about half a minute.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-skill-advisor/runtime/**'
+      - '.skilled/skills/system-skill-advisor/runtime/**'
+      - '.opencode/bin/system-skill-advisor-launcher.cjs'
+      - '.skilled/bin/system-skill-advisor-launcher.cjs'
+      - '.opencode/bin/lib/launcher-*.cjs'
+      - '.skilled/bin/lib/launcher-*.cjs'
+      - '.opencode/plugins/system-skill-advisor.js'
+      - '.skilled/plugins/system-skill-advisor.js'
+      - '.opencode/skills/system-spec-kit/runtime/tests/_support/**'
+      - '.skilled/skills/system-spec-kit/runtime/tests/_support/**'
+      - '.github/workflows/skill-advisor-stress.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/skills/system-skill-advisor/runtime/**'
+      - '.skilled/skills/system-skill-advisor/runtime/**'
+      - '.opencode/bin/system-skill-advisor-launcher.cjs'
+      - '.skilled/bin/system-skill-advisor-launcher.cjs'
+      - '.opencode/bin/lib/launcher-*.cjs'
+      - '.skilled/bin/lib/launcher-*.cjs'
+      - '.opencode/plugins/system-skill-advisor.js'
+      - '.skilled/plugins/system-skill-advisor.js'
+      - '.opencode/skills/system-spec-kit/runtime/tests/_support/**'
+      - '.skilled/skills/system-spec-kit/runtime/tests/_support/**'
+      - '.github/workflows/skill-advisor-stress.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  skill-advisor-stress:
+    name: Skill advisor stress suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      # The suite loads the spec-kit test setup file and the built shared package,
+      # and the plugin stress test imports the OpenCode plugin, whose dependencies
+      # live in the .skilled package.
+      - name: Install the advisor runtime and what its stress suite loads
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled ci
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+
+      - name: Run the stress suite
+        working-directory: .opencode/skills/system-skill-advisor/runtime
+        run: npm run test:stress -- --config vitest.stress.config.ts

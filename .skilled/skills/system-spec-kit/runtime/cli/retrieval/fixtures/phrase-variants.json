@@ -1,5 +1,5 @@
 {
-  "manifestHash": "23fba71937f2182aafafe47861191f7a96e73635963558701c3847dbcfb84ec2",
+  "manifestHash": "794b63e9f56cdbbbd1d54febee096246afe38c88e1747b8fa7d49be4061628fc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9166,6 +9166,9 @@
     ],
     "advisor stress fixtures tasks": [
       "advisor stress fixtures tasks"
+    ],
+    "advisor stress suite workflow": [
+      "advisor stress suite workflow"
     ],
     "advisor stress test fixtures": [
       "advisor stress test fixtures"
@@ -87854,6 +87857,9 @@
     "skill advisor standards alignment": [
       "skill advisor standards alignment"
     ],
+    "skill advisor stress ci": [
+      "skill advisor stress ci"
+    ],
     "skill advisor stress coverage": [
       "skill_advisor stress coverage"
     ],
@@ -91741,6 +91747,9 @@
     "speckit router references": [
       "speckit router references"
     ],
+    "speckit run stress ci": [
+      "speckit run stress ci"
+    ],
     "speckit save planner mode": [
       "speckit_save_planner_mode"
     ],
@@ -93153,6 +93162,15 @@
     ],
     "stress substrate canonical gate": [
       "stress substrate canonical gate"
+    ],
+    "stress suite ci plan": [
+      "stress suite ci plan"
+    ],
+    "stress suite ci summary": [
+      "stress suite ci summary"
+    ],
+    "stress suite ci tasks": [
+      "stress suite ci tasks"
     ],
     "stress suite p1 p2 closure": [
       "stress suite p1 p2 closure"

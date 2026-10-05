@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6d9afc2d35f85ae4a7cd40cb3a1f1cef11ec53ab037f419904cbfc5eb80281bc",
+  "corpusHash": "c28228d72da7b488e4d5c7f1c178b67bda700bf8520cae0172cf67ee9e8de0da",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23729,
+  "includedPathCount": 23733,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14292,6 +14292,10 @@
     "specs/system-skill-advisor/034-stale-build-daemon-recycle/plan.md",
     "specs/system-skill-advisor/034-stale-build-daemon-recycle/spec.md",
     "specs/system-skill-advisor/034-stale-build-daemon-recycle/tasks.md",
+    "specs/system-skill-advisor/035-stress-suite-ci/implementation-summary.md",
+    "specs/system-skill-advisor/035-stress-suite-ci/plan.md",
+    "specs/system-skill-advisor/035-stress-suite-ci/spec.md",
+    "specs/system-skill-advisor/035-stress-suite-ci/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -23759,7 +23763,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "23fba71937f2182aafafe47861191f7a96e73635963558701c3847dbcfb84ec2",
+  "manifestHash": "794b63e9f56cdbbbd1d54febee096246afe38c88e1747b8fa7d49be4061628fc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27087,6 +27091,10 @@
     },
     {
       "path": "specs/system-skill-advisor/034-stale-build-daemon-recycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/035-stress-suite-ci/scratch",
       "reason": "excluded directory"
     },
     {

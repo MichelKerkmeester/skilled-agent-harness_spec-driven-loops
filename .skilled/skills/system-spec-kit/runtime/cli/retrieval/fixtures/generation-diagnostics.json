@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6765,
-    "ok": 13395,
+    "ok": 13399,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23729,
+  "documentsScanned": 23733,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "23fba71937f2182aafafe47861191f7a96e73635963558701c3847dbcfb84ec2",
+  "manifestHash": "794b63e9f56cdbbbd1d54febee096246afe38c88e1747b8fa7d49be4061628fc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33806,
+      "ok": 33812,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -68944,6 +68944,10 @@
     },
     {
       "path": "specs/system-skill-advisor/034-stale-build-daemon-recycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/035-stress-suite-ci/scratch",
       "reason": "excluded directory"
     },
     {
