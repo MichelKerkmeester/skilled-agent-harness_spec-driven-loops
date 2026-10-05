@@ -7,7 +7,7 @@ not a packet, carries no `graph-metadata.json`, and never appears in `mode-regis
 
 It ships two helpers under `scripts/`. `jev-transport.mjs` answers a jev `choice` or `noul` question
 through Pi's classifier runtime or the `jev` CLI, and `scorer-report.mjs` holds the report pieces the
-classifier scorers share. Scorers in sk-doc, system-deep-loop, system-spec-kit and this hub's
+classifier scorers share. Callers in sk-doc, system-deep-loop and this hub's
 `benchmark/` import them. `scripts/README.md` describes both modules.
 
 ---
