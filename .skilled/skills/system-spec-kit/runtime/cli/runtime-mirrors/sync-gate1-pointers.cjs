@@ -5,7 +5,7 @@
 // ───────────────────────────────────────────────────────────────────
 // The Gate 1 trigger-index lookup instruction lives once, in the root
 // AGENTS.md. Claude reads that file directly, Pi loads it from the working
-// directory and Codex's global instruction file is a symlink to it. The Cursor
+// directory and Codex loads it as project instructions. The Cursor
 // rule that Cursor and Devin share is read on its own, so it carries a pointer
 // block generated from the root line rather than a hand-kept copy. Write mode
 // rewrites the block in place; --check reports drift and writes nothing.
