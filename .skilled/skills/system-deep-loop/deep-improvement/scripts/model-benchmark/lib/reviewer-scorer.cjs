@@ -11,11 +11,10 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
-const { spawnSync } = require('node:child_process');
 
 const dispatcher = require('../dispatch-model.cjs');
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../../lib/profile-resolve.cjs');
-const { featureReady, featureSwitch } = require('../../../../../cli-classifier/shared/scripts/jev-features.mjs');
+const { classifyVerdictWithJev, normalizeVerdict, resolveReviewerGrader } = require('./classifier-reviewer-scorer.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -23,7 +22,6 @@ const { featureReady, featureSwitch } = require('../../../../../cli-classifier/s
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
 
-const VERDICTS = new Set(['pass', 'fail', 'block', 'abstain']);
 const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -55,11 +53,6 @@ function writeJson(filePath, value) {
 function appendJsonl(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.appendFileSync(filePath, JSON.stringify(value) + '\n', 'utf8');
-}
-
-function normalizeVerdict(value) {
-  const verdict = String(value || '').trim().toLowerCase();
-  return VERDICTS.has(verdict) ? verdict : null;
 }
 
 function isReviewerFixture(fixture) {
@@ -202,38 +195,7 @@ function dispatchPrompt(prompt, opts) {
 }
 
 function classifyWithGrader(output, opts) {
-  if (opts.grader === 'jev') {
-    let value = null;
-    if (typeof opts.jevChoice === 'function') {
-      value = opts.jevChoice(String(output || ''), opts);
-    } else {
-      // score-verdict-fallback requires this file at load, so the measured
-      // question is pulled in lazily rather than at module load.
-      const { QUESTION, OPTION_PAIRS } = require('./score-verdict-fallback.cjs');
-      const provider = opts.provider || process.env.JEV_PROVIDER || 'official';
-      const argv = ['choice', '--provider', provider, '-q', QUESTION];
-      for (const [key, description] of OPTION_PAIRS) argv.push('-o', key + '=' + description);
-      const result = spawnSync(opts.jevPath || 'jev', argv, {
-        input: String(output || ''),
-        encoding: 'utf8',
-        timeout: opts.timeout_ms || 90000,
-        env: opts.env || process.env,
-      });
-      if (!result.error && result.status === 0) {
-        let parsed;
-        try {
-          parsed = JSON.parse(result.stdout);
-        } catch {
-          // A body that does not parse leaves the choice unresolved.
-        }
-        const choice = parsed?.answers?.answer?.choice;
-        // Only an offered option key is a verdict; a case variant or near-miss
-        // would otherwise be lowered into a verdict the question never asked for.
-        if (typeof choice === 'string' && OPTION_PAIRS.some(([key]) => key === choice)) value = choice;
-      }
-    }
-    return { verdict: normalizeVerdict(value), method: 'jev-grader' };
-  }
+  if (opts.grader === 'jev') return classifyVerdictWithJev(output, opts);
   if (opts.grader !== 'llm') return { verdict: null, method: 'none' };
   const prompt = [
     'Classify the reviewer output into exactly one verdict: PASS, FAIL, or BLOCK.',
@@ -334,17 +296,7 @@ function runReviewerBenchmark(opts) {
   if (!opts.profile) throw new Error('reviewer-scorer: --profile is required');
   const env = opts.env || process.env;
   const graderRequested = opts.grader || 'auto';
-  // Auto asks Jev only when the feature gate and a stored credential allow it,
-  // and otherwise keeps the no-op baseline an unconfigured machine already had.
-  const gate = graderRequested === 'auto' ? featureReady('verdict-fallback', env) : null;
-  // An explicit request is still a Jev path, so the off switches outrank it;
-  // unlike auto it needs no credential probe, which keeps an injected choice usable.
-  if (graderRequested === 'jev') {
-    const switchState = featureSwitch('verdict-fallback', env);
-    if (!switchState.enabled) throw new Error(`reviewer-scorer: jev grader is switched off (${switchState.reason})`);
-  }
-  const grader = graderRequested === 'auto' ? (gate.ready ? 'jev' : 'noop') : graderRequested;
-  const graderReason = gate === null ? 'explicit' : gate.reason;
+  const { grader, graderReason, gate } = resolveReviewerGrader(graderRequested, env);
   const scoringOptions = {
     ...opts,
     grader,

@@ -17,7 +17,7 @@ version: 1.19.0.0
 
 Measures offline how well a Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
 
-The reviewer scorer takes its verdict from a one-line pattern and falls back to its `llm` grader when the pattern finds none. This script measures whether a Jev answer to one fixed question earns that fallback before one is wired in. It writes nothing outside the operator's `--out` directory, and by default it makes no model call and writes no file.
+The reviewer scorer takes its verdict from a one-line pattern and falls back to its `llm` grader when the pattern finds none. This script measures whether a Jev answer to one fixed question earns that fallback; the runtime fallback now lives in `lib/classifier-reviewer-scorer.cjs`. It writes nothing outside the operator's `--out` directory, and by default it makes no model call and writes no file.
 
 ---
 
@@ -55,6 +55,7 @@ Each row holds `id`, `sha256`, `kind`, `source`, `copies`, `bytes`, `regexVerdic
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Script | Runs the fixture and outputs census, the two baselines, the label gate and the opt-in Jev arm. |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/capture-reviewer-outputs.cjs` | Script | Collects real deep-review outputs into an unlabeled, deduplicated JSONL file with the regex verdict per row and a one-line census. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/classifier-reviewer-scorer.cjs` | Runtime classifier | Runs the wired-in fallback at scoring time: the opted-in Jev verdict classifier and the `verdict-fallback` grader resolution. |
 
 ### Validation And Tests
 
