@@ -35,8 +35,10 @@ contextType: "general"
 ### Problem Statement
 The guard in `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` refuses self-invocation and says only "use native capabilities". It never says that native means an Agent-tool subagent, or that an effort level is pinned through an agent definition. A session needing Sonnet 5.5 at xhigh therefore checked the CLI route first, which the guard had already ruled out.
 
+The first fix overcorrected. It said an effort level is pinned through an agent definition and never said that a subagent runs at the session's effort when its definition sets none. On 2026-10-05 a session asked for "Sonnet 5.5 high" found no `sonnet-high` definition, concluded that level was unavailable and told the operator so, when the subagent would have run at the session's effort anyway. Claude Code's subagents page settles it: `effort` is optional, "Default: inherits from session", and a new or edited definition loads within seconds with no restart.
+
 ### Purpose
-A Claude Code session reading the guard knows to dispatch a native subagent and how to pin its model and effort.
+A Claude Code session reading the guard knows to dispatch a native subagent, that it inherits the session's effort, and that a definition's `effort` field is only for a different level. A test fails if the guidance loses either point.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -48,6 +50,8 @@ A Claude Code session reading the guard knows to dispatch a native subagent and 
 - Extend the "You ARE Claude Code already" bullet with the native route.
 - Reword the guard comment in the prerequisite block.
 - Reword the `$CLAUDECODE` dispatch rule to route to a native subagent.
+- State that a subagent inherits the session's effort, cite the subagents page, and regenerate the Hermes copy.
+- Add a doc test that fails when either copy of the guidance drops the inheritance rule.
 
 ### Out of Scope
 - The guard logic itself - its detection is correct, only the guidance was missing.
@@ -57,7 +61,9 @@ A Claude Code session reading the guard knows to dispatch a native subagent and 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` | Modify | Three guidance lines |
+| `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` | Modify | Three guidance lines; the bullet and guard comment state effort inheritance |
+| `.hermes/skills/cli-claude-code/SKILL.md` | Regenerate | `sync-skills-hermes.cjs` copy of the skill |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/claude-code-native-dispatch-docs.vitest.ts` | Create | Doc test over both copies |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -76,6 +82,8 @@ A Claude Code session reading the guard knows to dispatch a native subagent and 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | Skill routing gates still pass | `parent-skill-check.cjs` and the compiled route guard exit 0 |
+| REQ-003 | The guidance says a subagent inherits the session's effort and that a definition sets only a different level, citing the subagents page | The bullet and guard comment in both copies say so |
+| REQ-004 | A test catches the guidance losing the inheritance rule | The doc test fails on the old wording and passes on the new |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -85,6 +93,7 @@ A Claude Code session reading the guard knows to dispatch a native subagent and 
 
 - **SC-001**: No remaining guard line ends at "use native capabilities" without saying how.
 - **SC-002**: The packet validates strict with `RESULT: PASSED`.
+- **SC-003**: No guard line implies a definition is required to run a subagent at the session's effort.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -94,7 +103,7 @@ A Claude Code session reading the guard knows to dispatch a native subagent and 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Agent definitions in `~/.claude/agents/` | A pinned effort needs a matching definition | Name the definition pattern so a session can add one |
+| Dependency | Agent definitions in `~/.claude/agents/` | Only a level different from the session's needs a definition | State the inheritance first, then the definition pattern |
 | Risk | The routing manifest hashes the skill text | Low | The pre-commit route remint re-mints it, and the route guard runs before commit |
 <!-- /ANCHOR:risks -->
 
