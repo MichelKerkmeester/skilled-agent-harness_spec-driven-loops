@@ -143,6 +143,18 @@ describe('scorePhrase', () => {
   });
 });
 
+describe('judgeTriggerPhrase', () => {
+  it('rejects the spec template phrases as template-default', () => {
+    expect(judgeTriggerPhrase('feature specification')).toEqual({
+      negativeClass: 'template-default',
+      reason: `"feature specification" is one of the spec template's placeholder trigger phrases, which name no topic.`,
+    });
+    for (const phrase of ['problem statement', 'requirements and scope', 'success criteria']) {
+      expect(judgeTriggerPhrase(phrase)?.negativeClass, phrase).toBe('template-default');
+    }
+  });
+});
+
 describe('artifact encoding', () => {
   it('interns each owning path once and addresses it by integer id', () => {
     const root = makeTempDir('speckit-trigger-encoding-');

@@ -16,6 +16,20 @@ export const GENERIC_TRIGGER_WORDS = Object.freeze(new Set([
 ]));
 
 /**
+ * The four placeholder phrases the spec templates ship. They name the shape of
+ * a specification rather than its topic, so a packet that keeps them can never
+ * be found by what it is about. Kept separate from GENERIC_TRIGGER_WORDS
+ * because naming the producer is what lets a reader tell an author's word from
+ * a template's placeholder.
+ */
+export const TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
+  'feature specification',
+  'problem statement',
+  'requirements and scope',
+  'success criteria',
+]));
+
+/**
  * The two phrases `ensureMinTriggerPhrases` falls back to when a document
  * yields nothing else. They are generic words too, but they are reported under
  * their own reason because naming the producer is what lets a reader tell an
@@ -69,6 +83,13 @@ export function judgeTriggerPhrase(phrase, context = {}) {
     return {
       negativeClass: 'editor-fallback',
       reason: `"${normalized}" is a terminal fallback phrase of the frontmatter editor's ensureMinTriggerPhrases, not an author choice`,
+    };
+  }
+
+  if (TEMPLATE_DEFAULT_PHRASES.has(normalized)) {
+    return {
+      negativeClass: 'template-default',
+      reason: `"${normalized}" is one of the spec template's placeholder trigger phrases, which name no topic.`,
     };
   }
 

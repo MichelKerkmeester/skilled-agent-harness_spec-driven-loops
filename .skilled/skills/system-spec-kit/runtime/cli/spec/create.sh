@@ -388,6 +388,41 @@ escape_template_value() {
     printf '%s' "$value"
 }
 
+# The core spec template ships four placeholder trigger phrases that name no
+# topic, so a packet that keeps them can never be found by what it is about.
+# Replace exactly that block with the packet's own slug phrase and, when the
+# description adds something different, one phrase cut from it.
+replace_template_default_trigger_phrases() {
+    local folder_path="$1"
+    local packet_name="$2"
+    local description="$3"
+    local spec_file="$folder_path/spec.md"
+    [[ -f "$spec_file" ]] || return 0
+    grep -qF '  - "feature specification"' "$spec_file" || return 0
+
+    local slug_phrase="${packet_name#[0-9][0-9][0-9]-}"
+    slug_phrase="${slug_phrase//-/ }"
+
+    local description_phrase
+    description_phrase="$(printf '%s' "$description" \
+        | tr '[:upper:]' '[:lower:]' \
+        | tr -c 'a-z0-9' ' ' \
+        | awk '{ for (i = 1; i <= NF && i <= 8; i++) printf "%s%s", (i > 1 ? " " : ""), $i }')"
+    if [[ -z "$description_phrase" || "$description_phrase" == "$slug_phrase" ]]; then
+        description_phrase=""
+    fi
+
+    local replacement="  - \"${slug_phrase}\""
+    if [[ -n "$description_phrase" ]]; then
+        replacement="${replacement}"$'\n'"  - \"${description_phrase}\""
+    fi
+
+    TRIGGER_REPLACEMENT="$replacement" perl -0pi -e '
+        my $block = qq{  - "feature specification"\n  - "problem statement"\n  - "requirements and scope"\n  - "success criteria"\n};
+        s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+    ' "$spec_file"
+}
+
 requested_lazy_addon_docs() {
     local contract_json="$1"
     node - "$contract_json" <<'NODE'
@@ -785,6 +820,7 @@ EOF
     done <<< "$child_contract_docs"
 
     finalize_scaffold_templates "$child_path" "$child_name" "Phase one for $feature_name" "1"
+    replace_template_default_trigger_phrases "$child_path" "$child_name" "Phase one for $feature_name"
     if [[ -f "$child_path/spec.md" ]] && ! grep -q '\.\./spec\.md' "$child_path/spec.md" 2>/dev/null; then
         printf '\n<!-- Parent Spec: ../spec.md -->\n' >> "$child_path/spec.md"
     fi
@@ -989,6 +1025,7 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
         CREATED_FILES+=("$created_path")
     done <<< "$level_contract_docs"
     finalize_scaffold_templates "$SUBFOLDER_PATH" "$SUBFOLDER_NAME" "$FEATURE_DESCRIPTION"
+    replace_template_default_trigger_phrases "$SUBFOLDER_PATH" "$SUBFOLDER_NAME" "$FEATURE_DESCRIPTION"
 
     if $JSON_MODE; then
         files_json=""
@@ -1526,6 +1563,7 @@ EOF
         _child_spec="$_child_path/spec.md"
         if [[ -f "$_child_spec" ]]; then
             finalize_scaffold_templates "$_child_path" "$_child_folder" "Phase ${_phase_number}: ${_child_folder#*-}"
+            replace_template_default_trigger_phrases "$_child_path" "$_child_folder" "Phase ${_phase_number}: ${_child_folder#*-}"
 
             # Determine predecessor and successor
             if [[ $_i -eq 1 ]]; then
@@ -1731,6 +1769,7 @@ while IFS= read -r created_path; do
     CREATED_FILES+=("$created_path")
 done <<< "$batch_created_files"
 finalize_scaffold_templates "$FEATURE_DIR" "$BRANCH_NAME" "$FEATURE_DESCRIPTION"
+replace_template_default_trigger_phrases "$FEATURE_DIR" "$BRANCH_NAME" "$FEATURE_DESCRIPTION"
 
 create_graph_metadata_file "$FEATURE_DIR" "$FEATURE_DESCRIPTION" "planned"
 

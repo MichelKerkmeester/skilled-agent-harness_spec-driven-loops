@@ -121,6 +121,30 @@ describe('create.sh numbering of an appended phase', () => {
   });
 });
 
+// The four trigger phrases the spec template ships name no topic, so a packet
+// that keeps them cannot be found by what it is about. A scaffold seeds phrases
+// from the folder slug and the description instead.
+describe('create.sh seeds trigger phrases', () => {
+  it('replaces the template defaults with the packet slug and description', () => {
+    const folder = create(['--short-name', 'seeded-phrases', 'Seed trigger phrases for new packets']);
+    const spec = fs.readFileSync(path.join(workspace, 'specs', folder, 'spec.md'), 'utf8');
+
+    expect(spec).toContain('  - "seeded phrases"');
+    expect(spec).toContain('  - "seed trigger phrases for new packets"');
+    expect(spec).not.toContain('  - "feature specification"');
+    expect(spec).not.toContain('  - "problem statement"');
+    expect(spec).not.toContain('  - "requirements and scope"');
+    expect(spec).not.toContain('  - "success criteria"');
+  });
+
+  it('turns punctuation in the description into word breaks', () => {
+    const folder = create(['--short-name', 'punctuated-phrase', 'Fix the write-recipe step, once.']);
+    const spec = fs.readFileSync(path.join(workspace, 'specs', folder, 'spec.md'), 'utf8');
+
+    expect(spec).toContain('  - "fix the write recipe step once"');
+  });
+});
+
 // The fixture commit runs no hooks: a global core.hooksPath would otherwise
 // apply the host repository's commit gates to this throwaway one.
 function commit() {
