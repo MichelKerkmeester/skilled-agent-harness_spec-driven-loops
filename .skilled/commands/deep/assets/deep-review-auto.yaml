@@ -804,7 +804,7 @@ workflow:
           - graph_blockers_csv: "Comma-separated graph blocker summary"
           - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
           - recovery_strategy_code: "Slug form of recovery_strategy for the ledger code fields"
-          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate, with at least one fail row when decision == BLOCKED"
+          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate (convergenceGate, dimensionCoverageGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate), with at least one fail row when decision == BLOCKED"
           - active_total_count: "p0_count + p1_count + p2_count, the active findings total"
 
       step_emit_blocked_stop:

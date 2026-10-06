@@ -28,7 +28,8 @@ describe('review-depth convergence v2 fixtures', () => {
       expect(workflow).toContain('graphlessFallbackGate');
       expect(workflow).toContain('at least one `searchLedger` row exists for each entry');
       expect(workflow).toContain('Fail automatically when graphCoverageMode is `unavailable_blocked`');
-      expect(workflow).toContain('"graphlessFallbackGate":{"pass":{graphless_fallback_gate_pass}');
+      expect(workflow).toContain('"gateResults":{gate_results_array_json}');
+      expect(workflow).toMatch(/gate_results_array_json: "One \{gateId,status,reasonCode,evidenceDigest\} row per legal-stop gate \([^)]*graphlessFallbackGate[^)]*\)/);
     }
   });
 });
