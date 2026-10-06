@@ -831,17 +831,20 @@ function adviseGate(env, timeoutMs) {
 }
 
 /**
- * In-range citations in the prose of the given documents, read from the
- * working tree, each with its resolved target. A document outside the
- * repository resolves its citations from the repository root.
+ * The prose citations of the given documents that resolve in range, each with
+ * its resolved target, plus a count of those that resolve anywhere else. A
+ * document outside the repository resolves its citations from the repository
+ * root. A moved, past-end, refused or unresolved citation never counts as in
+ * range, so it is counted instead of dropped and the summary can disclose it.
  * @param {string[]} docs Document paths as the caller gave them.
  * @param {string} repoRoot
  * @param {Set<string>} tracked
  * @param {{ extractCitations: Function, resolveCitation: Function }} helpers Citation scanner the host injects.
- * @returns {Array<object>}
+ * @returns {{ inRange: Array<object>, notInRange: number }}
  */
 function adviseCitations(docs, repoRoot, tracked, { extractCitations, resolveCitation }) {
-  const found = [];
+  const inRange = [];
+  let notInRange = 0;
   for (const doc of docs) {
     const absolute = path.resolve(doc);
     let text;
@@ -859,10 +862,11 @@ function adviseCitations(docs, repoRoot, tracked, { extractCitations, resolveCit
       : null;
     for (const citation of extractCitations(text, docPath)) {
       const { status, path: resolved } = resolveCitation(citation, { tracked, repoRoot, skillRoot });
-      if (status === 'in_range' && resolved !== null) found.push({ ...citation, path: resolved });
+      if (status === 'in_range' && resolved !== null) inRange.push({ ...citation, path: resolved });
+      else notInRange += 1;
     }
   }
-  return found;
+  return { inRange, notInRange };
 }
 
 /**
@@ -892,7 +896,8 @@ function adviseWindow(repoRoot, target, line) {
  * sits in the adaptive band, and a flag when the lowest score falls below the
  * threshold. The claim is the citing line, as in the measured labels. Prints
  * one line per flagged citation and a summary line, each under ADVISE_PREFIX,
- * and nothing at all when no citation is in range or the gate fails.
+ * the summary naming the citations that resolved out of range. Nothing is
+ * printed when the documents hold no citation at all or the gate fails.
  * @param {string[]} docs Document paths as the caller gave them.
  * @param {{ repoRoot: string, out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, callLog: { append: (record: object) => void }, extractCitations: Function, resolveCitation: Function, listTrackedFiles: Function, classify?: Function }} ctx
  *   Line writer, environment, per-call timeout, the call log, the citation
@@ -902,13 +907,14 @@ function adviseWindow(repoRoot, target, line) {
  */
 export async function runAdvise(docs, ctx) {
   if (!featureSwitch('cite-drift', ctx.env).enabled) return 0;
-  let citations;
+  let found;
   try {
-    citations = adviseCitations(docs, ctx.repoRoot, ctx.listTrackedFiles(ctx.repoRoot), ctx);
+    found = adviseCitations(docs, ctx.repoRoot, ctx.listTrackedFiles(ctx.repoRoot), ctx);
   } catch {
     return 0;
   }
-  if (citations.length === 0) return 0;
+  const { inRange, notInRange } = found;
+  if (inRange.length === 0 && notInRange === 0) return 0;
   const gate = adviseGate(ctx.env, ctx.timeoutMs);
   if (gate === null) return 0;
 
@@ -917,7 +923,7 @@ export async function runAdvise(docs, ctx) {
   const flagged = [];
   let checked = 0;
   let stopped = false;
-  for (const citation of citations.slice(0, ADVISE_MAX_CITATIONS)) {
+  for (const citation of inRange.slice(0, ADVISE_MAX_CITATIONS)) {
     if (stopped) break;
     const windowText = adviseWindow(ctx.repoRoot, citation.path, citation.targetLine);
     if (windowText === '') continue;
@@ -980,6 +986,6 @@ export async function runAdvise(docs, ctx) {
   for (const { citation, lowest } of flagged) {
     ctx.out(`${ADVISE_PREFIX} ${citation.doc}:${citation.line} cites ${citation.path}:${citation.targetLine}, whose window may no longer show the claim (p_yes=${lowest.toFixed(2)})`);
   }
-  ctx.out(`${ADVISE_PREFIX} checked=${checked} flagged=${flagged.length} unchecked=${citations.length - checked} (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`);
+  ctx.out(`${ADVISE_PREFIX} checked=${checked} flagged=${flagged.length} unchecked=${inRange.length - checked} not_in_range=${notInRange} (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`);
   return 0;
 }
