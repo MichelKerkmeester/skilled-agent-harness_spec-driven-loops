@@ -42,7 +42,11 @@ import {
 // without bound. After excessive backtracking V8 can hand a match to its linear-time engine, so a
 // bad pattern costs milliseconds instead of hanging every commit. It is set here, in the process
 // the hooks start, and not in the library, which host processes import.
-v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks');
+try {
+  v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks');
+} catch {
+  // Without the flag V8 has no linear-time fallback; validation still runs.
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ARGUMENTS

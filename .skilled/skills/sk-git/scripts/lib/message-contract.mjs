@@ -381,7 +381,7 @@ function isForbiddenAttribution(line, attribution) {
  * what keeps the explanation and the enforcement from drifting apart.
  */
 export function commitRuleIds(contract) {
-  const ids = ['message.empty', 'subject.format'];
+  const ids = ['message.empty', 'message.too-long', 'subject.format'];
   const s = contract.subject || {};
   const b = contract.body || {};
   const t = contract.trailers || {};
@@ -424,7 +424,10 @@ export function validateCommit(raw, contract, ctx = {}) {
   const warn = (id, message) => warnings.push({ id, message });
 
   let message = ctx.alreadyClean ? String(raw).replace(/\s+$/, '') : stripCommitMessage(raw, ctx.commentChar, ctx.cleanup);
-  if (message.length > MAX_INPUT_CHARS) message = message.slice(0, MAX_INPUT_CHARS);
+  if (message.length > MAX_INPUT_CHARS) {
+    err('message.too-long', `Commit message is ${message.length} characters; maximum is ${MAX_INPUT_CHARS}.`);
+    return { errors, warnings, passthrough: false };
+  }
 
   if (ctx.stage === 'pre-stamp' && contract.attribution) {
     // The stamper removes only the forbidden keys, and never the subject line. A trailer that
@@ -613,7 +616,7 @@ export function validateCommit(raw, contract, ctx = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function prRuleIds(contract) {
-  const ids = ['pr.empty'];
+  const ids = ['pr.empty', 'pr.too-long'];
   if (contract.requiredSections?.length) ids.push('pr.section-missing');
   if (contract.requiredSections?.length && contract.requireSectionContent) ids.push('pr.section-empty');
   if (contract.placeholderPattern) ids.push('pr.placeholder');
@@ -624,7 +627,11 @@ export function prRuleIds(contract) {
 export function validatePrBody(raw, contract) {
   const errors = [];
   const err = (id, message) => errors.push({ id, message });
-  const body = String(raw ?? '').replace(/\r\n/g, '\n').slice(0, MAX_INPUT_CHARS);
+  const body = String(raw ?? '').replace(/\r\n/g, '\n');
+  if (body.length > MAX_INPUT_CHARS) {
+    err('pr.too-long', `PR description is ${body.length} characters; maximum is ${MAX_INPUT_CHARS}.`);
+    return { errors, warnings: [] };
+  }
 
   if (body.trim() === '') {
     err('pr.empty', 'PR description is empty.');

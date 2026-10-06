@@ -25,6 +25,7 @@ import {
   extractContract,
   lengthLiteralErrors,
   loadContract,
+  prRuleIds,
   rangeContext,
   resolveContractDir,
   stripCommitMessage,
@@ -215,6 +216,13 @@ test('comment lines go only where git drops them', () => {
   assert.deepEqual(ids(validateCommit(typed, COMMIT)), [], 'a # body line under -m is a body');
 });
 
+test('a commit message at the input cap validates and one character more reports the cap', () => {
+  const prefix = 'feat(sk-git): add a thing\n\nExplains why. ';
+  const padded = (length) => `${prefix}${'x'.repeat(length - prefix.length)}`;
+  assert.deepEqual(ids(validateCommit(padded(200_000), COMMIT)), []);
+  assert.ok(ids(validateCommit(padded(200_001), COMMIT)).includes('message.too-long'));
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. PR AND BRANCH RULES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -227,6 +235,18 @@ test('PR descriptions need filled required sections and no attribution', () => {
   assert.ok(ids(validatePrBody(`${good}\n## Related Issues\n\nCloses #<issue-number>\n`, PR)).includes('pr.placeholder'));
   assert.ok(ids(validatePrBody(`${good}\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n`, PR)).includes('pr.attribution'));
   assert.deepEqual(ids(validatePrBody(`${good}\n\`\`\`markdown\n## Summary\n<placeholder>\n\`\`\`\n`, PR)), [], 'fenced examples are not checked');
+});
+
+test('a PR body at the input cap validates and one character more reports the cap', () => {
+  const prefix = '## Summary\n\n- Adds a thing\n\n## Test Plan\n\n- [x] Ran the suite\n\n';
+  const padded = (length) => `${prefix}${'x'.repeat(length - prefix.length)}`;
+  assert.deepEqual(ids(validatePrBody(padded(200_000), PR)), []);
+  assert.ok(ids(validatePrBody(padded(200_001), PR)).includes('pr.too-long'));
+});
+
+test('the shipped contracts advertise the input cap rule ids', () => {
+  assert.ok(commitRuleIds(COMMIT).includes('message.too-long'));
+  assert.ok(prRuleIds(PR).includes('pr.too-long'));
 });
 
 test('branch names follow the grammar and worktree directories pair with them', () => {

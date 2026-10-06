@@ -383,7 +383,11 @@ function deny(payload, reason) {
 async function main() {
   // Same reason as validate-message.mjs: a contract pattern can backtrack without bound. Only
   // the standalone hook process sets it; importers of evaluateCommand keep their own flags.
-  v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks');
+  try {
+    v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks');
+  } catch {
+    // Without the flag V8 has no linear-time fallback; the gate still runs.
+  }
   let payload;
   try {
     payload = JSON.parse(await readStdin());

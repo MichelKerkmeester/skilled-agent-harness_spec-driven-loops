@@ -188,6 +188,7 @@ Each rule has an id, and every block message names the id it failed:
 | Rule id | What it checks |
 |---------|----------------|
 | `message.empty` | The message has content after comments are stripped |
+| `message.too-long` | The message is at most 200,000 characters |
 | `subject.format` | The subject is `type(scope)[!]: summary` with a listed type and a scope matching `scopePattern` |
 | `subject.scope-numeric` | The scope is a subsystem name, not a bare number |
 | `subject.scope-alias` | The scope uses a canonical name, not a listed alias |
