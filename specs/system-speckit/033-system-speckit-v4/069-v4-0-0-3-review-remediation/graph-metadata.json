@@ -39,7 +39,7 @@
       "lock"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "On the default convergence policy, every `/deep:review` iteration writes `type:\"event\"` rows that `append-mode-event.cjs` rejects with exit 1",
     "created_at": "2026-10-06T10:15:27Z",
-    "last_save_at": "2026-10-06T11:22:38.812Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-06T17:42:01.409Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:10886a64b3a2bf0c64def9381e61c374a02516c90b5cd77f397f41ec70c1476c",
+    "source_fingerprint": "sha256:31423df2493686ac800550b186e65bd8f5f43facc36de4aefc6abf4d206a3bf0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be3fad2ae4ddb553fbbbad685455d3b713e695818c7726135174fedbb9978e00",
-      "plan.md": "3645a59e9a315064c0116fb0b209ccb8417acf5c43d72ae9b8a6da0c69be21fd",
-      "tasks.md": "42cf846d3a47e015a480dfb83677dffb0522e446e9d9edd0e8771fd10933f954",
+      "spec.md": "29a8b19e5aff0e5b1dd5028468b560514e9cfc09530af0279f1f93568cbff892",
+      "plan.md": "2b9dfcd8211a04aac87b111436d5ec72055b4f7a63d92580a33bcc01697ce513",
+      "tasks.md": "ecdc3a4396f76441822a080dc3c2d33c73fe69d6f97b92ab05b90d494f3edad4",
       "decision-record.md": "56cd001859a41bbb41615fb81f7c43ae5b7d3b46944350bfb2ce463e54af4fa3",
-      "implementation-summary.md": "5c48bddacb0effb3f5ef50d5e3d6f6a617ab3448975ef2d3de6efae7a94b7c78",
+      "implementation-summary.md": "25632b57d3eb4aa4d880e69310998a3f702da06ddcf7ee9f47cd2632addbdcb8",
       "research/research.md": "312413b0cfc6284d56bcff8c9b1f07ca52b1476a346053c2334bd95844b876f3"
     },
     "last_active_at": null

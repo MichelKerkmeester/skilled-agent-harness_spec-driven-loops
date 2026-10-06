@@ -41,7 +41,7 @@ The v4.0.0.3 deep review (phase 68) found three blocking defects, all carried fr
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-06 |
 | **Branch** | `worktrees/090-deep-review-okf-adoption` |
 | **Parent Spec** | ../spec.md |

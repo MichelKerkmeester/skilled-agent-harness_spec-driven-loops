@@ -472,7 +472,7 @@ Commits land in the phase order frozen by goal decision D2. Work inside a wave r
 
 ### Agent Dispatch Contract
 
-**Executor (operator decision, 2026-10-06):** every implementer runs as DeepSeek V4.1 Flash at max effort through `cli-pi`, with the `opencode-go` provider (`opencode-go/deepseek-v4.1-flash`). The fallback is `cline-pass/deepseek-v4.1-flash` at `xhigh`. The integrator reads `cli-pi/SKILL.md` before composing a dispatch. Briefs stay short and literal, and they point the agent at its work package in this file instead of pasting it. Each implementer gets this brief:
+**Executor (operator decision, 2026-10-06):** every implementer runs as DeepSeek V4.1 Flash at max effort through `cli-pi`, with the `opencode-go` provider (`opencode-go/deepseek-v4.1-flash`). The fallback is `cline-pass/deepseek-v4.1-flash` at `xhigh`. The integrator reads `cli-pi/SKILL.md` before composing a dispatch. Briefs stay short and literal, and they point the agent at its work package in this file instead of pasting it. Per `cli-pi/SKILL.md` ALWAYS rule 12, a work package goes out as a chain of single-change briefs (one test or one edit each, naming the file, the change and the check), and the integrator checks each diff before sending the next. Each brief opens with the child-dispatch preamble and carries this contract:
 
 ```
 NON-INTERACTIVE WORKER. Nobody can answer you; never end a turn with a question.
