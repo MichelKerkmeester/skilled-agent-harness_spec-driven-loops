@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
+  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11931,9 +11931,6 @@
     "authored case digest guarantee": [
       "authored case digest guarantee"
     ],
-    "authored compiled routing source": [
-      "authored compiled-routing source"
-    ],
     "authored continuity snapshot": [
       "authored continuity snapshot"
     ],
@@ -11942,15 +11939,6 @@
     ],
     "authored routing manifest path": [
       "authored routing manifest path"
-    ],
-    "authored routing source plan": [
-      "authored routing source plan"
-    ],
-    "authored routing source summary": [
-      "authored routing source summary"
-    ],
-    "authored routing source tasks": [
-      "authored routing source tasks"
     ],
     "authored write surface quality": [
       "authored write surface quality"
@@ -23701,9 +23689,6 @@
     "compiled route front door": [
       "compiled route front door"
     ],
-    "compiled route layout pin": [
-      "compiled route layout pin"
-    ],
     "compiled route manifest refresh": [
       "compiled route manifest refresh"
     ],
@@ -23790,15 +23775,6 @@
     ],
     "compiled routing shapes": [
       "compiled-routing shapes"
-    ],
-    "compiled routing source home": [
-      "compiled routing source home"
-    ],
-    "compiled routing source maintenance": [
-      "compiled routing source maintenance"
-    ],
-    "compiled routing source verification": [
-      "compiled routing source verification"
     ],
     "compiled routing testing strategy": [
       "compiled routing testing strategy"
@@ -78720,9 +78696,6 @@
     "route native advisor brief": [
       "route native Advisor brief"
     ],
-    "route re mint authored manifest": [
-      "route re-mint authored manifest"
-    ],
     "route remint plan": [
       "route remint plan"
     ],
@@ -78824,18 +78797,6 @@
     ],
     "router presentation split": [
       "router presentation split"
-    ],
-    "router program authored copy": [
-      "router program authored copy"
-    ],
-    "router program custodian plan": [
-      "router program custodian plan"
-    ],
-    "router program custodian record": [
-      "router program custodian record"
-    ],
-    "router program custodian tasks": [
-      "router program custodian tasks"
     ],
     "router promotion checklist": [
       "router promotion checklist"

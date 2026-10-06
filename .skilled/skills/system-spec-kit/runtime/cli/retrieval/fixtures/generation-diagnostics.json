@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6762,
-    "ok": 13397,
+    "missing-frontmatter": 6759,
+    "ok": 13393,
     "valid-empty-list": 3516
   },
-  "documentsScanned": 23729,
+  "documentsScanned": 23722,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
+  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33895,
+      "ok": 33882,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -38393,24 +38393,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/compiled/PolicyCardV1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/compiled/PolicyCardV1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/research/gate-a-measurement.md",
       "reason": "no opening frontmatter delimiter"
@@ -67825,10 +67807,6 @@
     },
     {
       "path": "specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/019-skill-routing-refactor/scratch",
       "reason": "excluded directory"
     },
     {

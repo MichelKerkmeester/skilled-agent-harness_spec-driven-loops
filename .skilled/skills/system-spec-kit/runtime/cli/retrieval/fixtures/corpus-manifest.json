@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a5a12ada5910905a7992accb3ea1504fdfd2eedc50df5948eda6aa6f54e48128",
+  "corpusHash": "9729df57c05e1fcb0995486b1ca0a154cdaca73369554c8f21a7f2251af1a12c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23729,
+  "includedPathCount": 23722,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11284,13 +11284,6 @@
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/tasks.md",
     "specs/sk-design/020-chart-and-diagram-review/spec.md",
     "specs/sk-design/020-chart-and-diagram-review/synthesis.md",
-    "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/compiled/PolicyCardV1.md",
-    "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md",
-    "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/compiled/PolicyCardV1.md",
-    "specs/sk-doc/019-skill-routing-refactor/implementation-summary.md",
-    "specs/sk-doc/019-skill-routing-refactor/plan.md",
-    "specs/sk-doc/019-skill-routing-refactor/spec.md",
-    "specs/sk-doc/019-skill-routing-refactor/tasks.md",
     "specs/sk-doc/049-sk-create-frontmatter/001-inventory-and-contract/acceptance-criteria.md",
     "specs/sk-doc/049-sk-create-frontmatter/001-inventory-and-contract/implementation-summary.md",
     "specs/sk-doc/049-sk-create-frontmatter/001-inventory-and-contract/inventory/consumer-inventory.md",
@@ -23759,7 +23752,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
+  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25979,10 +25972,6 @@
     },
     {
       "path": "specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/019-skill-routing-refactor/scratch",
       "reason": "excluded directory"
     },
     {
