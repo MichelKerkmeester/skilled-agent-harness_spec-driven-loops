@@ -1602,15 +1602,33 @@ FRONTMATTER_VALUES_PATH = (
     Path(__file__).resolve().parents[2] / 'sk-create-frontmatter' / 'assets' / 'frontmatter-values.json'
 )
 _FRONTMATTER_VALUE_KEYS = (('contextType', 'contextType'), ('importance_tier', 'importanceTier'))
+_FRONTMATTER_VALUES_UNREADABLE = object()
 
 
-def _load_frontmatter_values() -> Optional[Dict[str, Any]]:
-    """Read the shared value list, or None when this checkout does not carry it."""
+def _load_frontmatter_values() -> Any:
+    """Read the shared value list; None when absent, a sentinel when unreadable.
+
+    A checkout that never carried the file stays silent. One that carries an
+    unparseable or wrongly shaped file degrades to a single advisory warning,
+    so a broken list cannot turn the validator into a traceback.
+    """
     try:
         with open(FRONTMATTER_VALUES_PATH, 'r', encoding='utf-8') as handle:
-            return json.load(handle)
+            values = json.load(handle)
     except FileNotFoundError:
         return None
+    except (OSError, ValueError):
+        return _FRONTMATTER_VALUES_UNREADABLE
+
+    shape_ok = isinstance(values, dict) and all(
+        isinstance(values.get(list_key), dict)
+        and isinstance(values[list_key].get('canonical'), list)
+        and isinstance(values[list_key].get('aliases'), (list, dict))
+        for _, list_key in _FRONTMATTER_VALUE_KEYS
+    )
+    if not shape_ok:
+        return _FRONTMATTER_VALUES_UNREADABLE
+    return values
 
 
 def _frontmatter_scalar(raw: str) -> str:
@@ -1626,14 +1644,23 @@ def _frontmatter_scalar(raw: str) -> str:
     return re.sub(r'(?:^|\s+)#.*$', '', value).strip()
 
 
-def validate_frontmatter_values(content: str, values: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def validate_frontmatter_values(content: str, values: Any) -> List[Dict[str, Any]]:
     """Warn when contextType or importance_tier is outside the shared list.
 
     Aliases are legal. A missing or empty value is left to the presence checks,
-    so only a present value outside the list is reported.
+    so only a present value outside the list is reported. A list that exists but
+    cannot be read yields one warning and skips the comparison.
     """
     if values is None:
         return []
+    if values is _FRONTMATTER_VALUES_UNREADABLE:
+        return [{
+            'type': 'frontmatter_values_unreadable',
+            'severity': 'warning',
+            'message': f'Shared frontmatter value list {FRONTMATTER_VALUES_PATH} is unreadable, so no values were compared',
+            'fix_hint': f'Restore {FRONTMATTER_VALUES_PATH} or remove it if this checkout should not carry the shared list',
+            'auto_fixable': False,
+        }]
     text = content[1:] if content.startswith('﻿') else content
     head = text[_skip_leading_trivia(text):]
     match = re.match(r'^---[ \t]*\r?\n(.*?)\r?\n---', head, re.DOTALL)
