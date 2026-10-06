@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The sk-git skill says never to run `git add -A`, `git add .` or a broad `git add <folder>` while the tree holds unrelated changes, and to stage explicit paths instead (`commit-workflows.md`, \"Step 7: Scoped-Staging Discipline\")",
     "created_at": "2026-09-29T07:19:57Z",
-    "last_save_at": "2026-09-29T07:25:17.056Z",
+    "last_save_at": "2026-10-06T18:50:06.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a1fd86f389ee1253ff53e3abfc9b382dbd67d8654b066e9ee559f25d2cfe2be",
+    "source_fingerprint": "sha256:d473860bb37be8c0cc309ee40dd260769f8472a3e5bfb6f81be5ae940983529d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9da5db092a299303bfab2983b68220caf0c1484ded080c86eb08566fa7d426b4",
+      "spec.md": "cd2e235a6f30df3287d38acece280431b074b212c6d88a664fe08a5bf0e8f977",
       "plan.md": "8885625f4d22a29430fc8a546ca2b8c2b40a1a3fdefbbe8a922f737b3d9e6592",
       "tasks.md": "f4181032bc186369ef57f2ff5aedbfbe456aaedc2d0ee670e4ac6387a6eb2657",
       "implementation-summary.md": "427575e8f854ef9061cdb46771e42e3e36105893eebbc904a56f8d54ad1bc758"

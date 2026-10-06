@@ -77,7 +77,7 @@ A deep-research run, including each fan-out lineage, opens through the append ga
 - An end-to-end test runs the shipped init step, then appends an iteration through the gateway
 
 ### Out of Scope
-- The deep-review twin - packet `system-deep-loop/039-review-state-init-and-dispatch` fixed it
+- The deep-review twin - packet `system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch` fixed it
 - Runs opened before this change - their written config row still blocks projection, and a restart opens them cleanly
 - The fan-out runner's retry labels and the merge's field names - child 012 owns them
 

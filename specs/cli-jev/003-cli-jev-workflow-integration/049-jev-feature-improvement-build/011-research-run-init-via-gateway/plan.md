@@ -87,7 +87,7 @@ Each fix gets a case in the existing suite, and one real run checks the end-to-e
 ## 6. DEPENDENCIES
 
 - the deviations table in `048-jev-feature-improvement-research/goal.md`
-- Packet `system-deep-loop/039-review-state-init-and-dispatch` as the pattern
+- Packet `system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch` as the pattern
 <!-- /ANCHOR:dependencies -->
 
 ---

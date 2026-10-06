@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures",
+  "description": "Phase 1: lock-nonce-and-dispatch-failures",
+  "keywords": [
+    "phase",
+    "lock-nonce-and-dispatch-failures"
+  ],
+  "lastUpdated": "2026-10-05T17:53:00.049Z",
+  "specId": "001",
+  "folderSlug": "lock-nonce-and-dispatch-failures",
+  "parentChain": [
+    "system-deep-loop",
+    "038-review-and-cli-lineage",
+    "002-review-state-init-and-dispatch"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-10-26_18-52__fixed-three-deep-review-workflow-defects-lock.md"
+  ]
+}

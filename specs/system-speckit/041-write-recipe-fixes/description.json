@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/041-write-recipe-fixes",
+  "description": "Write recipe fixes: backfill flag, commit step, workspace bullet, post-checks and verification gate",
+  "keywords": [
+    "write",
+    "recipe",
+    "fixes",
+    "backfill",
+    "flag",
+    "commit",
+    "step",
+    "workspace",
+    "bullet",
+    "post-checks",
+    "verification",
+    "gate",
+    "spec",
+    "folder"
+  ],
+  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "specId": "041",
+  "folderSlug": "write-recipe-fixes",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

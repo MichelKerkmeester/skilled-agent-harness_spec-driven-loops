@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks",
+  "description": "Reword the status and push rows of the spec folder write recipe post-checks",
+  "keywords": [
+    "reword",
+    "status",
+    "push",
+    "rows",
+    "spec",
+    "folder",
+    "write",
+    "recipe",
+    "post-checks"
+  ],
+  "lastUpdated": "2026-09-29T07:01:31.174Z",
+  "specId": "004",
+  "folderSlug": "fix-write-recipe-post-checks",
+  "parentChain": [
+    "system-speckit",
+    "041-write-recipe-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -46,7 +46,7 @@ contextType: "general"
 - [x] T003 Read `claim` and `summary` in the merge and warn on unreadable finding rows
 - [x] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built
 - [x] T005 Add the field name, contradiction rule and verbatim lineage-path rule to the iteration prompt pack, with render assertions
-- [x] T006 Keep the runner edits clear of the uncommitted `system-deep-loop/040-cli-pi-opencode-go-route` region of `fanout-run.cjs` and its test, so both changes merge cleanly
+- [x] T006 Keep the runner edits clear of the uncommitted `system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route` region of `fanout-run.cjs` and its test, so both changes merge cleanly
 <!-- /ANCHOR:phase-2 -->
 
 ---

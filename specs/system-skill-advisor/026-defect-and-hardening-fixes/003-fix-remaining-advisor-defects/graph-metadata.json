@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects",
+  "spec_folder": "system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects",
+  "parent_id": "system-skill-advisor/026-defect-and-hardening-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/pi/directive-dedup.test.ts",
+      ".skilled/hooks/vitest.config.ts",
+      "dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".github/workflows/routing-registry-drift.yml",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/bin/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-dedup.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/dispatch/pi/directive-dedup.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-fixtures.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-pi-extension.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Registry Drift Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 dedup fix half-landed",
+    "created_at": "2026-09-22T12:49:47Z",
+    "last_save_at": "2026-10-06T18:48:25.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:82ca2a542eea4131d2dfd805e325c2d5ace13d3342811922f50b4ce7cd6abfa5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2026a5623519c5982e8eb9a4a00ee0e90dd488f0f37d23e4ca8881f68f051ec2",
+      "plan.md": "dc7b661b29b59c20b00d5e95e2b6b7d2a726bcd5af31be6ab7fd814401f03dfd",
+      "tasks.md": "b53414ec2cbff834cbd1bf464d501e5606ed5877d68ade6e6e7608f8b52169af",
+      "implementation-summary.md": "f4d066767960e09ca2e15457746dd352301a63491e936b76dc3d9408fec40c92"
+    },
+    "last_active_at": null
+  }
+}

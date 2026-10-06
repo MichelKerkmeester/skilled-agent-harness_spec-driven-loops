@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase-aware archive",
+      "archive a phase",
+      "restore phase to parent",
+      "packet home"
+    ],
+    "key_topics": [
+      "phase-aware",
+      "archive",
+      "phase",
+      "restore",
+      "parent",
+      "packet",
+      "home",
+      "kept",
+      "track",
+      "inside",
+      "still",
+      "went"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+      "runtime/cli/spec/README.md",
+      "runtime/cli/tests/archive-track.vitest.ts",
+      "runtime/cli/spec/archive.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "archive-track.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Archive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After packet 038, `archive.sh` kept a track packet inside its track, but a phase still went to the root `specs/zarchive/`",
+    "created_at": "2026-09-24T15:09:38Z",
+    "last_save_at": "2026-10-06T18:48:09.249Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:340829fad32242c3e198cd366bea72fbacea9c3d6de992a721947750a19b7af4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa4ceb30320f31ced9c838f0c67ca3dd7aca17a12aad3c145ed01918b79f4d73",
+      "plan.md": "15fee94a71d89301242452a23568c2d970803908589e773111a97ca24bd637f4",
+      "tasks.md": "59d4fa767f2e248225c3523791d63e91a6d7cb72531aa76d5755cb8a34545d65",
+      "implementation-summary.md": "2d5be662458b9573bd4dcac0a70b78414330fa8b46205cb22637733d91305e27"
+    },
+    "last_active_at": null
+  }
+}

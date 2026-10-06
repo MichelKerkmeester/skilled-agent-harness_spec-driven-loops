@@ -122,7 +122,7 @@ The audit ran first: line-numbered source reads, an inventory of every named pat
 6. **The route validator warnings are informational.** `--scope` collides with the skill-advisor target and `--dir` with fable-mode; both are allowed by the validator.
 7. **Three doctor script tests fail on fixtures, unchanged by this batch.** The `parent-skill-check-*.test.cjs` files cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree and fail exactly as the pre-batch baseline did.
 
-**Follow-up status.** Items 1, 2 and 4 are resolved by `specs/system-deep-loop/041-read-only-and-research-bookkeeping`: status, query and convergence take `--read-only`, the database opens are read-only, and read-only probes against the repository database left it byte-identical. Item 7 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Items 3, 5 and 6 are observations, not defects.
+**Follow-up status.** Items 1, 2 and 4 are resolved by `specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping`: status, query and convergence take `--read-only`, the database opens are read-only, and read-only probes against the repository database left it byte-identical. Item 7 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Items 3, 5 and 6 are observations, not defects.
 <!-- /ANCHOR:limitations -->
 
 ---

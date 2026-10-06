@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-review-and-cli-lineage",
+  "spec_folder": "system-deep-loop/038-review-and-cli-lineage",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record",
+    "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch",
+    "system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route",
+    "system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping",
+    "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop review gateway",
+      "review state init and dispatch",
+      "cli pi opencode go route",
+      "read only research bookkeeping",
+      "cli lineage findings contract"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "review",
+      "gateway",
+      "state",
+      "init",
+      "dispatch",
+      "cli",
+      "opencode",
+      "route",
+      "read",
+      "only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review and deep-research loops disagreed with their own gateway",
+    "created_at": "2026-10-02T00:00:00Z",
+    "last_save_at": "2026-10-06T18:48:42.285Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d070e2a804ed073fcf7d26c523b29665cdfc804499c197d66931f412bb3183e6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d0e808b9075cb176b7df09ecc69ccc7784c5a2c9b1bf6bff70f4c3e47ff5882d"
+    },
+    "last_active_child_id": "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract",
+    "last_active_at": "2026-10-06T19:00:00Z"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/038-review-and-cli-lineage",
+  "description": "Deep-loop review and CLI lineage: gateway, state init, opencode-go route, bookkeeping and findings contract",
+  "keywords": [
+    "deep-loop",
+    "review",
+    "lineage",
+    "gateway",
+    "state",
+    "init",
+    "opencode-go",
+    "route",
+    "bookkeeping",
+    "findings",
+    "contract",
+    "deep-review",
+    "deep-research",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "specId": "038",
+  "folderSlug": "review-and-cli-lineage",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

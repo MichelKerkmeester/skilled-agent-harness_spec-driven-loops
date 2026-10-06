@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs",
-      ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs"
+      ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "git-rule-checks.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "completion-evidence-sentinel.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-git advisory hook warned that `git add -- $A/...` matched no files when the files existed",
     "created_at": "2026-09-23T19:09:39Z",
-    "last_save_at": "2026-09-23T20:03:22.202Z",
+    "last_save_at": "2026-10-06T18:50:11.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e4e21e895f86c8c0de44eae22ee894f7a0b308eb4ee386606fc52bec4e89dba",
+    "source_fingerprint": "sha256:b7700c0becad200d4904d10c0e33cf5cefcfa1367733ca0987addfc8da41f235",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89a7489312073f42e9468ddb004f292ea441a726008304bd0bcdb0487d6b6144",
       "plan.md": "f1c9f3c3e680a053ebecc88909850bec6b0b7c0fd3df48ebbb2b7799c0447d86",
       "tasks.md": "83de3672f0fda18542f408996f1f800bf6a40300ed6759a4b64cfe3b1c22e21e",
-      "implementation-summary.md": "98ca584cc0b0dddc793b4cdc457292461d1caef170a59666726d41af0034f05b"
+      "implementation-summary.md": "aad7f281d984b0f7c0c955be55c207cc86495dbc69819e10259ebb60cdd263cd"
     },
     "last_active_at": null
   }

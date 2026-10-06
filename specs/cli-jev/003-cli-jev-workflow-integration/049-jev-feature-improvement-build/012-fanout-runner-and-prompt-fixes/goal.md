@@ -83,7 +83,7 @@ and findings belong here.
 | Cross-family review (2026-10-03) | Done | Luna on cli-codex: 2 P1 on REQ-003. The absolute lineage path moved to the runner as REQ-004 (spec amended), and `prompt-pack.vitest.ts` now asserts all three instructions, each phrase new and unique in the template |
 | Tests (2026-10-03) | Done | `fanout-merge.vitest.ts`, `deep-research-run-open.vitest.ts` and `check-contract-drift.vitest.ts` 78 passed; `prompt-pack.vitest.ts` 11 passed; contract drift OK |
 | Re-merge proof (2026-10-03) | Done | 048/008 copied to scratch with the original `claim` delta rows: 53 findings, `synthesis-closeout` exit 0 (`synthesis_complete`). HEAD merge: 26 findings, reconstruction gap 27, closeout exit 2 |
-| Runner part | Superseded | REQ-002 and REQ-004 change `fanout-run.cjs`, which carries the uncommitted `system-deep-loop/040-cli-pi-opencode-go-route` edit in the primary checkout. Build after 040 lands |
+| Runner part | Superseded | REQ-002 and REQ-004 change `fanout-run.cjs`, which carries the uncommitted `system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route` edit in the primary checkout. Build after 040 lands |
 
 ### Deviations and findings
 

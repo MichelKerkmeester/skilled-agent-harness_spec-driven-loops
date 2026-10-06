@@ -54,7 +54,7 @@ A deep-research run now opens through the append gateway, so its first iteration
 
 ### Phase 1: research-run-init-via-gateway
 
-Both deep-research workflows used to start the state log with a flat config row written beside the ledger. The projection guard refuses any projection that drops that row's keys, so every run failed at its first gateway append. The init step now builds a `deep_research.run_initialized` event from the run's config and appends it through `append-mode-event.cjs`, which writes the projected config row itself. The stem census marks `run_initialized` as spoken by both workflows, and fan-out lineages open through the same step. This mirrors what packet `system-deep-loop/039-review-state-init-and-dispatch` did for deep-review.
+Both deep-research workflows used to start the state log with a flat config row written beside the ledger. The projection guard refuses any projection that drops that row's keys, so every run failed at its first gateway append. The init step now builds a `deep_research.run_initialized` event from the run's config and appends it through `append-mode-event.cjs`, which writes the projected config row itself. The stem census marks `run_initialized` as spoken by both workflows, and fan-out lineages open through the same step. This mirrors what packet `system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch` did for deep-review.
 
 ### Files Changed
 

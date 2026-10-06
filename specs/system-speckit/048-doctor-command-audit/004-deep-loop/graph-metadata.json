@@ -47,7 +47,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/doctor-run.log",
       ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
@@ -89,12 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit deep-loop` checks deep-loop state, coverage graphs and convergence",
     "created_at": "2026-10-02T16:10:14Z",
-    "last_save_at": "2026-10-03T11:48:56.173Z",
+    "last_save_at": "2026-10-06T18:50:17.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:784a4e637269e5e6ca078c9ad148669a487ac295875adf59258a806af257ff0d",
+    "source_fingerprint": "sha256:0517050b20bd7821fe990a01e02aa40e9236e6b4b22b360c49b81164dbdbba6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4493ebd1ce410538355383e451d76dd4a90d342541bcc13b4260a11f2b144759",
       "plan.md": "9be0233f74b8b05d320959b3412a447ac5c3cd7eb69d8269d4e89f396b510a8f",
       "tasks.md": "d4b7184326b3d9fe0e32f02253a4c2daf90000780e55ed066257f384dae5126d",
-      "implementation-summary.md": "3a88795419a1de8b51680f04c4523e1ad161788d06e5c7cc37f466ec7147ebc3"
+      "implementation-summary.md": "3ca339f5f789c4fed25008e384294fa4cd97c014c9cbf69b12f5750cc5c0ca88"
     },
     "last_active_at": null
   }

@@ -59,7 +59,7 @@ Every worked example in sk-git that runs in a shared tree stages by explicit pat
 - The `git status --short` checks elsewhere in sk-git, which read state and stage nothing.
 - The cli-opencode wording that asks for a clean or committed tree before dispatch. It is a safety rule born of a deletion incident, so it needs the operator's decision and not an unrequested rewrite.
 - `git reset HEAD .` in the same cheat sheet. It unstages every path instead of staging one, so it cannot put a peer's file into the author's commit, which is the defect fixed here.
-- The write-recipe gate in `system-spec-kit`, which ships in packet `system-speckit/045-fix-write-recipe-verification-gate`.
+- The write-recipe gate in `system-spec-kit`, which ships in packet `system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate`.
 
 ### Files to Change
 

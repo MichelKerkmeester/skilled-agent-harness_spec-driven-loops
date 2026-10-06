@@ -50,7 +50,6 @@
       "implementation-summary.md",
       "research/research.md",
       "scratch/reality-check.md",
-      "scratch/doctor-run.log",
       "scratch/design.md",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/update.md",
@@ -60,7 +59,8 @@
       ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/README.txt"
+      ".skilled/commands/README.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
     ],
     "entities": [
       {
@@ -115,12 +115,6 @@
         "name": "reality-check.md",
         "kind": "doc",
         "path": "scratch/reality-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-run.log",
-        "kind": "file",
-        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` was a database rebuild",
     "created_at": "2026-10-02T16:10:13Z",
-    "last_save_at": "2026-10-03T11:48:56.205Z",
+    "last_save_at": "2026-10-06T18:50:14.679Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0b12fdf2bf0f32ce8f5fac44c7de33003216b3a1f91596b39125f507c4f54f2a",
+    "source_fingerprint": "sha256:6e79afcb799068535e6f2195d7dec1f28ba72fbe09b3bc530e95b199ca86d456",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68c58bd6a488146e10c3d87168a0a0a8f804119878fa11145b4287f857b9f055",
       "plan.md": "85277519f5fc3c032eb42fb7969a7255ab25ee37cb0502bfafd88139526d8efe",
       "tasks.md": "28ca1e8b1f96931a481028624750ed5c66da458561872b0bf0e86c43ca249a14",
       "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",
-      "implementation-summary.md": "8994bef7d30e28f482b709a6089c3dfe601af677ae238531f31542dcbb5c8413",
+      "implementation-summary.md": "2792f0cea2351825e516aa9f1ab4b04222523b8b7999e29713ea630a82ca6cae",
       "research/research.md": "d609708f8552bde5e29460b5dceee485eb41353ad26d490612ac2a59f6cb3e8b"
     },
     "last_active_at": null

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/041-write-recipe-fixes",
+  "spec_folder": "system-speckit/041-write-recipe-fixes",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag",
+    "system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step",
+    "system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet",
+    "system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks",
+    "system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "write recipe fixes",
+      "spec folder write recipe",
+      "write recipe commit step",
+      "write recipe verification gate",
+      "graph metadata backfill command"
+    ],
+    "key_topics": [
+      "write",
+      "recipe",
+      "spec",
+      "folder",
+      "commit",
+      "step",
+      "verification",
+      "gate",
+      "graph",
+      "metadata",
+      "backfill",
+      "command"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Correct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec folder write recipe is the checklist an author follows to write and commit a spec folder",
+    "created_at": "2026-09-29T00:00:00Z",
+    "last_save_at": "2026-10-06T18:48:21.524Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:65b323e5da1b1a6bd950d8aa993ce52d29e84fa9c2679a1b382410cea84632f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0b0dca76b84ff1df7d54a0ad51ac01aa58065fb1b29b7c3e7710551b575708c8"
+    },
+    "last_active_child_id": "system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate",
+    "last_active_at": "2026-10-06T19:00:00Z"
+  }
+}

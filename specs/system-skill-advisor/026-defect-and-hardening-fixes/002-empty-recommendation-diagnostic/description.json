@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic",
+  "description": "The advisor hook reports one of three outcomes",
+  "keywords": [
+    "advisor",
+    "hook",
+    "reports",
+    "one",
+    "three",
+    "outcomes"
+  ],
+  "lastUpdated": "2026-09-12T12:42:01.465Z",
+  "specId": "002",
+  "folderSlug": "empty-recommendation-diagnostic",
+  "parentChain": [
+    "system-skill-advisor",
+    "026-defect-and-hardening-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

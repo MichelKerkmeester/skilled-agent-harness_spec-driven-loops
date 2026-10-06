@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch",
+  "spec_folder": "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch",
+  "parent_id": "system-deep-loop/038-review-and-cli-lineage",
+  "children_ids": [
+    "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review run open",
+      "attribution collapse",
+      "run initialized gateway",
+      "child dispatch retry",
+      "review run open plan",
+      "run initialized gateway plan",
+      "dispatch retry plan",
+      "attribution collapse fix",
+      "review run open tasks",
+      "dispatch retry tasks",
+      "run initialized census task",
+      "attribution collapse tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "run",
+      "open",
+      "attribution",
+      "collapse",
+      "initialized",
+      "gateway",
+      "child",
+      "dispatch",
+      "retry",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-run-open.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-policy-yaml-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "child-dispatch-preamble.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both deep-review workflows open a run by writing a config row straight into `deep-review-state.jsonl`, and no ledger event records it",
+    "created_at": "2026-10-02T16:37:15Z",
+    "last_save_at": "2026-10-06T18:48:35.944Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f48cf1c0e00addfdf62b0c03137e7b4947b4a9a8dcb3f909985f859912a680f0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f11f037be23ef8649eb090a4bd1c6d85f18b11e7a5e3cdfc9255dd388bda2520",
+      "plan.md": "42c01949c96d76ed9df54aab71e3504a4e019c3bf44ce335f1ea6c15626d85d0",
+      "tasks.md": "1271fc47c5517e6bb6b6e5cd64f1e84cd692af88c96fed81433e0ef77cce97fb",
+      "implementation-summary.md": "2ed4553a474975067c662d44db2ea6ce096e8e0f9bc37d37c6bb9610d673d984"
+    },
+    "last_active_child_id": "system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures",
+    "last_active_at": "2026-10-05T17:53:00.071Z"
+  }
+}

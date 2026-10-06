@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/004-track-aware-archive",
+  "description": "Keep a track packet inside its own track when archive.sh archives or restores it, and refresh the track list",
+  "keywords": [
+    "keep",
+    "track",
+    "packet",
+    "inside",
+    "own",
+    "archive",
+    "archives",
+    "restores",
+    "refresh",
+    "list"
+  ],
+  "lastUpdated": "2026-09-24T14:01:48.795Z",
+  "specId": "004",
+  "folderSlug": "track-aware-archive",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

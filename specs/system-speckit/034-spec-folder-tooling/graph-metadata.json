@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling",
+  "spec_folder": "system-speckit/034-spec-folder-tooling",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root",
+    "system-speckit/034-spec-folder-tooling/002-root-numbering-without-track",
+    "system-speckit/034-spec-folder-tooling/003-track-root-children",
+    "system-speckit/034-spec-folder-tooling/004-track-aware-archive",
+    "system-speckit/034-spec-folder-tooling/005-phase-aware-archive"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec folder tooling",
+      "create.sh canonical specs root",
+      "track root children",
+      "track aware archive",
+      "phase aware archive"
+    ],
+    "key_topics": [
+      "spec",
+      "folder",
+      "tooling",
+      "canonical",
+      "specs",
+      "root",
+      "track",
+      "children",
+      "aware",
+      "archive",
+      "phase",
+      "scripts"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
+    "created_at": "2026-09-23T00:00:00Z",
+    "last_save_at": "2026-10-06T18:48:11.792Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7e98db9c1a2b902a59a3c4b3235b3dcf6ef2bca67bd8a20929940a2cc6e637a9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4c866d678ea6262a73795c163bd1ee1ae87b735b4d23490bf30a6f2b41355f6f"
+    },
+    "last_active_child_id": "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
+    "last_active_at": "2026-10-06T19:00:00Z"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/034-spec-folder-tooling",
+  "description": "Spec folder tooling: canonical root, numbering, track roots and archive",
+  "keywords": [
+    "spec",
+    "folder",
+    "tooling",
+    "canonical",
+    "root",
+    "numbering",
+    "track",
+    "roots",
+    "archive",
+    "create.sh",
+    "archive.sh",
+    "lists",
+    "keep",
+    "packets"
+  ],
+  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "specId": "034",
+  "folderSlug": "spec-folder-tooling",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

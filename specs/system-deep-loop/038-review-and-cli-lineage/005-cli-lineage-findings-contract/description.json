@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract",
+  "description": "Give CLI deep-loop lineages the findings output contract and gate it per iteration",
+  "keywords": [
+    "give",
+    "cli",
+    "deep-loop",
+    "lineages",
+    "findings",
+    "output",
+    "contract",
+    "gate",
+    "per",
+    "iteration"
+  ],
+  "lastUpdated": "2026-10-04T13:23:40.649Z",
+  "specId": "005",
+  "folderSlug": "cli-lineage-findings-contract",
+  "parentChain": [
+    "system-deep-loop",
+    "038-review-and-cli-lineage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

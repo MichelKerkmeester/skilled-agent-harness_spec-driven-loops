@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures",
+  "description": "Five advisor suites failed, and they were carried as \"pre-existing\" across the whole decommission without anyone asking what they were",
+  "keywords": [
+    "five",
+    "advisor",
+    "suites",
+    "failed",
+    "carried",
+    "pre-existing",
+    "across",
+    "whole",
+    "decommission",
+    "without",
+    "anyone",
+    "asking"
+  ],
+  "lastUpdated": "2026-09-12T09:48:06.916Z",
+  "specId": "001",
+  "folderSlug": "pre-existing-suite-failures",
+  "parentChain": [
+    "system-skill-advisor",
+    "026-defect-and-hardening-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

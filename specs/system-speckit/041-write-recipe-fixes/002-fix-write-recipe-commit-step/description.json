@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step",
+  "description": "Fix the commit and push step of the spec folder write recipe",
+  "keywords": [
+    "commit",
+    "push",
+    "step",
+    "spec",
+    "folder",
+    "write",
+    "recipe"
+  ],
+  "lastUpdated": "2026-09-29T06:08:24.891Z",
+  "specId": "002",
+  "folderSlug": "fix-write-recipe-commit-step",
+  "parentChain": [
+    "system-speckit",
+    "041-write-recipe-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
