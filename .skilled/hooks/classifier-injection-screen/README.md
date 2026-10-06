@@ -28,7 +28,7 @@ One shared library backs every adapter. Claude Code screens `WebFetch` at `PostT
 | Sections | Split at headings outside code fences. A section under 5 lines joins the next one, and one over 60 lines is cut into 60-line pieces |
 | Calls | Two `noul` calls per section in parallel, with a third only when the two land on opposite sides of 0.60 |
 | Flag | The mean of the readable answers reaches 0.60. A pair that splits across the line stays unmeasured unless its third answer is readable |
-| Bounds | At most 12 sections, 4 at a time, inside a 20-second budget. Sections past either limit count as unchecked |
+| Bounds | At most 12 sections, each at most 8,000 UTF-16 code units, 4 at a time, inside a 20-second budget. Text past 96,000 code units is not read. Everything past a limit counts as unchecked |
 | Failure | An unreadable answer counts as unmeasured, never as a flag. Any error exits 0 with no output |
 
 The question, the flag threshold (`FLAG_AT`), the confirm-call count and the section helpers come from `cli-classifier/benchmark/injection-screen/score-injection-screen.mjs`, imported through `lib/classifier-screen-fetched-text.mjs`, so the live hook and the measurement cannot drift apart.

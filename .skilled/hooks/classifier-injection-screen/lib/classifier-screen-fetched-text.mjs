@@ -37,9 +37,13 @@ import { spawnClassifierCall } from '../../../skills/cli-classifier/shared/scrip
 // ───────────────────────────────────────────────────────────────────
 
 // One hook run keeps its calls and its latency bounded: at most this many
-// sections are screened at all, and at most this many screen at once.
+// sections are screened at all, at most this many screen at once, and the text
+// one piece carries is capped in UTF-16 code units. The text past the total cap
+// is counted as unchecked rather than silently dropped.
 const MAX_SCREENED_SECTIONS = 12;
 const MAX_CONCURRENT_SECTIONS = 4;
+const MAX_SECTION_CHARS = 8000;
+const MAX_SCREENED_CHARS = MAX_SECTION_CHARS * MAX_SCREENED_SECTIONS;
 
 const TOP_OF_PAGE = '(top of page)';
 
@@ -115,6 +119,23 @@ function prepareSections(text) {
   return sections;
 }
 
+// A piece whose text outgrows the per-section cap is cut into consecutive
+// slices that each keep the piece's heading, so no screened stdin passes the
+// cap and the flag report can still name where the text came from.
+function sliceLongSections(sections) {
+  const pieces = [];
+  for (const section of sections) {
+    if (section.text.length <= MAX_SECTION_CHARS) {
+      pieces.push(section);
+      continue;
+    }
+    for (let offset = 0; offset < section.text.length; offset += MAX_SECTION_CHARS) {
+      pieces.push({ heading: section.heading, text: section.text.slice(offset, offset + MAX_SECTION_CHARS) });
+    }
+  }
+  return pieces;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. ANSWER READING
 // ───────────────────────────────────────────────────────────────────
@@ -181,9 +202,11 @@ async function measureSection(section, options, deadline) {
  * section is measured with at least JEV_CONFIRM_CALLS readable probabilities
  * and flagged when their mean reaches FLAG_AT, and a pair that splits across
  * the flag line counts as unmeasured unless its third answer is readable.
- * Sections beyond MAX_SCREENED_SECTIONS, and any whose turn comes after the
- * budget, stay unchecked; sections whose calls produce too few readable
- * answers count as unmeasured.
+ * Text past MAX_SCREENED_CHARS is never read, and a piece longer than
+ * MAX_SECTION_CHARS is sliced before it is scheduled. The dropped span, every
+ * piece beyond MAX_SCREENED_SECTIONS, and any whose turn comes after the
+ * budget stay unchecked. Sections whose calls produce too few readable answers
+ * count as unmeasured.
  *
  * @param {string} text Fetched text to screen.
  * @param {{
@@ -204,9 +227,14 @@ export async function screenText(text, { env, gate, classify = spawnClassifierCa
   if (typeof text !== 'string' || text.trim() === '') return result;
 
   const environment = env ?? process.env;
-  const sections = prepareSections(text);
+  // The dropped span never reaches the classifier. It is reported as though it
+  // held pieces of the largest screened size, so the advisory says how much of
+  // the page went unread instead of hiding it.
+  const capped = text.length > MAX_SCREENED_CHARS ? text.slice(0, MAX_SCREENED_CHARS) : text;
+  result.unchecked = Math.ceil((text.length - capped.length) / MAX_SECTION_CHARS);
+  const sections = sliceLongSections(prepareSections(capped));
   const scheduled = sections.slice(0, MAX_SCREENED_SECTIONS);
-  result.unchecked = sections.length - scheduled.length;
+  result.unchecked += sections.length - scheduled.length;
 
   const deadline = Date.now() + Math.max(0, budgetMs);
   const checkedOrdinals = [];
