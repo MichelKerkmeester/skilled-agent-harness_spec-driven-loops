@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "5bebd78b7859a07a292b1cf83ed9812dfc3df385b18d8981c99106e99dcf628c",
+      "sha256": "727e72479f6541aa297d8843589946a94bebcb9920adeda0c95d6a38d9735704",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "a9bb9345f1d5b4eda13a1fc328d71b56da4a479079e33c0473ce6b976f677265",
+      "sha256": "90e140299ff4667c9ee2edb70adfa260272a84ddb3c6a89db4efa4b31fc0d130",
       "section": "full"
     },
     {
