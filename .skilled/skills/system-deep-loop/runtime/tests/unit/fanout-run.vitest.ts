@@ -186,6 +186,16 @@ function writeNoArtifactStubBinary(binDir: string, name: string): string {
   return stubPath;
 }
 
+function writePendingQuestionStubBinary(binDir: string, name: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    '#!/bin/sh\necho "LOGIC-SYNC REQUIRED: the spec contradicts the implementation"\nexit 0\n',
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
 function writeProjectionRefusalStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(
@@ -1029,7 +1039,9 @@ describe('fanout-run.cjs — native convergence threshold defaults', () => {
       null,
       { stopPolicy: 'max-iterations' },
     );
-    expect(prompt).toContain('Copy that directory path verbatim into every write');
+    expect(prompt).toContain(
+      'Use the repository-relative form .opencode/specs/system-speckit/999-fixture/review/lineages/fixture in every tool call',
+    );
     expect(prompt).toContain('stopReason "maxIterationsReached"');
 
     const convergence = buildLoopPrompt(
@@ -2339,13 +2351,15 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     }
   });
 
-  it('names the lineage steer.md by absolute path for a CLI lineage only', () => {
+  it('names the lineage steer.md by repository-relative path for a CLI lineage only', () => {
     const lineageDir = 'specs/test-fanout-steer/research/lineages/seat';
     const cliPrompt = buildLoopPrompt(
       'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
       { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' }, 'test research topic',
     );
-    expect(cliPrompt).toContain(`Before each iteration, read ${resolve(process.cwd(), lineageDir, 'steer.md')} when it exists.`);
+    expect(cliPrompt).toContain(
+      `Before init, before each iteration, and before resolving any conflict, read ${lineageDir}/steer.md when it exists.`,
+    );
     const nativePrompt = buildLoopPrompt(
       'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
       { kind: 'native', label: 'seat' } as never, 'test research topic',
@@ -2361,6 +2375,62 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
       'fanout-context-run-123',
       { kind: 'cli-opencode', label: 'context-seat', model: 'opencode-go/glm-5.1' },
     )).toThrow(/context fan-out is deprecated/);
+  });
+});
+
+describe('fanout-run.cjs — buildLoopPrompt child-dispatch preamble and path form', () => {
+  const { buildLoopPrompt } = requireCjs(fanoutRunScript) as {
+    buildLoopPrompt: (
+      loopType: 'research' | 'review',
+      specFolder: string,
+      lineageDir: string,
+      sessionId: string,
+      lineage: { kind: string; label: string; model?: string },
+      researchTopic?: string,
+      options?: { stopPolicy?: string },
+    ) => string;
+  };
+
+  it('opens with the child-dispatch preamble, naming AI_SESSION_CHILD=1 and not SYSTEM_SPEC_GATE_ENFORCE=0', () => {
+    const prompt = buildLoopPrompt(
+      'research',
+      'specs/test-fanout-preamble',
+      'specs/test-fanout-preamble/research/lineages/seat',
+      'fanout-research-run-123',
+      { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' },
+      'preamble test topic',
+    );
+
+    expect(
+      prompt.startsWith('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'),
+    ).toBe(true);
+    expect(prompt).toContain('AI_SESSION_CHILD=1 is set');
+    expect(prompt).not.toContain('SYSTEM_SPEC_GATE_ENFORCE=0');
+  });
+
+  it('falls back to the absolute path outside cwd', () => {
+    const relativeOutsideDir = join(
+      '..',
+      'fanout-run-prompt-outside-cwd',
+      'research',
+      'lineages',
+      'seat',
+    );
+    const absoluteOutsideDir = resolve(process.cwd(), relativeOutsideDir);
+    const prompt = buildLoopPrompt(
+      'research',
+      'specs/test-fanout-absolute-fallback',
+      relativeOutsideDir,
+      'fanout-research-run-123',
+      { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' },
+      'absolute fallback topic',
+    );
+
+    expect(prompt).toContain(`Your write authority is already bound to ${absoluteOutsideDir}.`);
+    expect(prompt).toContain(
+      `Write EVERY file you create or modify inside ${absoluteOutsideDir} and nowhere else`,
+    );
+    expect(prompt).not.toContain(`bound to ${relativeOutsideDir}`);
   });
 });
 
@@ -3067,6 +3137,79 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toEqual([
       expect.objectContaining({ label: 'noart', retry_count: 1, failure_class: 'salvage_miss' }),
+    ]);
+  });
+
+  it('classifies an exit-0 question as needs_input without retry', async () => {
+    // A lineage that exits cleanly on a question must surface for an operator answer
+    // instead of being salvaged or retried: a retry replays the same question.
+    const binDir = makeTempDir('fanout-run-needs-input-bin-');
+    const baseDir = makeTempDir('fanout-run-needs-input-base-');
+    writePendingQuestionStubBinary(binDir, 'opencode');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'question', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 5,
+    });
+
+    const hermetic = useHermeticEnv('needs-input');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-needs-input',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    const summary = JSON.parse(
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+    ) as { failed?: number; succeeded?: number; all_failed?: boolean };
+    expect(summary.failed).toBe(1);
+    expect(summary.succeeded).toBe(0);
+    expect(summary.all_failed).toBe(true);
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        status?: string;
+        retry_attempts?: number;
+        error?: { failure_class?: string; retryable?: boolean; reason?: string };
+      }>;
+    };
+    expect(payload.results?.[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 0,
+      error: {
+        failure_class: 'needs_input',
+        retryable: false,
+        reason: 'needs_input',
+      },
+    });
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toHaveLength(0);
+    expect(ledgerLines.filter((event) => event.event === 'needs_input')).toEqual([
+      expect.objectContaining({
+        status: 'needs_input',
+        label: 'question',
+        attempt: 1,
+        question: 'LOGIC-SYNC REQUIRED: the spec contradicts the implementation',
+      }),
     ]);
   });
 
@@ -4542,6 +4685,61 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     expect(stdout).toContain(
       `config.fanout_lineage_artifact_dir: ${resolve(realpathSync(baseDir), 'lineages', 'relative-base')}`,
     );
+  });
+
+  it('reuses the stored session id of a resumed lineage', async () => {
+    const label = 'resumed';
+    const baseDir = makeTempDir('fanout-run-stored-session-echo-base-');
+    const lineageDir = join(baseDir, 'lineages', label);
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      JSON.stringify({ lineage: { sessionId: 'dr-resumed-789' }, status: 'initialized' }),
+    );
+
+    const { stdout } = await runOpencodeEcho({ label }, 'research', baseDir);
+
+    expect(stdout).toContain('session_id: dr-resumed-789');
+    expect(stdout).not.toContain(`session_id: fanout-${label}-`);
+  });
+});
+
+describe('fanout-run.cjs — readStoredLineageSessionId', () => {
+  const { readStoredLineageSessionId } = requireCjs(fanoutRunScript) as {
+    readStoredLineageSessionId: (loopType: 'research' | 'review', lineageDir: string) => string | null;
+  };
+
+  it('reads the stored session id from a review lineage config', () => {
+    const lineageDir = makeTempDir('fanout-run-stored-session-review-');
+    writeFileSync(
+      join(lineageDir, 'deep-review-config.json'),
+      JSON.stringify({ sessionId: 'rvw-stored-123', status: 'initialized' }),
+    );
+
+    expect(readStoredLineageSessionId('review', lineageDir)).toBe('rvw-stored-123');
+  });
+
+  it('reads the stored session id from a research lineage config', () => {
+    const lineageDir = makeTempDir('fanout-run-stored-session-research-');
+    writeFileSync(
+      join(lineageDir, 'deep-research-config.json'),
+      JSON.stringify({ lineage: { sessionId: 'dr-stored-456' }, status: 'initialized' }),
+    );
+
+    expect(readStoredLineageSessionId('research', lineageDir)).toBe('dr-stored-456');
+  });
+
+  it('returns null for a complete or malformed lineage config', () => {
+    const completeDir = makeTempDir('fanout-run-stored-session-complete-');
+    writeFileSync(
+      join(completeDir, 'deep-review-config.json'),
+      JSON.stringify({ sessionId: 'rvw-stored-123', status: 'complete' }),
+    );
+    expect(readStoredLineageSessionId('review', completeDir)).toBeNull();
+
+    const malformedDir = makeTempDir('fanout-run-stored-session-malformed-');
+    writeFileSync(join(malformedDir, 'deep-research-config.json'), '{ "lineage": ');
+    expect(readStoredLineageSessionId('research', malformedDir)).toBeNull();
   });
 });
 

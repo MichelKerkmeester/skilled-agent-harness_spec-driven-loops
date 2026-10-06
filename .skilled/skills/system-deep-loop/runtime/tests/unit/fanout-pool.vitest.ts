@@ -40,7 +40,7 @@ const {
       error?: {
         message: string;
         code?: string;
-        failure_class?: 'timeout' | 'exit' | 'salvage_miss' | 'artifact_miss' | 'projection_refusal';
+        failure_class?: 'timeout' | 'exit' | 'salvage_miss' | 'artifact_miss' | 'projection_refusal' | 'needs_input';
         retry_verdict?: 'transient' | 'fatal';
         retryable?: boolean;
         aborted?: boolean;
@@ -57,13 +57,13 @@ const {
       all_failed: boolean;
       completed_with_containment_advisory: number;
       gauges: { lag: number; pending: number; failed: number };
-      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; needs_input: number };
     };
   }>;
   buildPoolSummary: (results: Array<Record<string, unknown>>) => {
     summary: {
       completed_with_containment_advisory: number;
-      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number; needs_input: number };
     };
   };
   createWavePlannerInterface: () => {
@@ -211,7 +211,7 @@ describe('runCappedPool', () => {
       all_failed: false,
       completed_with_containment_advisory: 0,
       gauges: { lag: 0, pending: 0, failed: 0 },
-      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0, artifact_miss: 0, projection_refusal: 0 },
+      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0, artifact_miss: 0, projection_refusal: 0, needs_input: 0 },
     });
   });
 
@@ -681,6 +681,7 @@ describe('runCappedPool', () => {
       salvage_miss: 1,
       artifact_miss: 0,
       projection_refusal: 0,
+      needs_input: 0,
     });
   });
 
@@ -731,7 +732,41 @@ describe('runCappedPool', () => {
       salvage_miss: 0,
       artifact_miss: 0,
       projection_refusal: 1,
+      needs_input: 0,
     });
+  });
+
+  it('does not retry a needs_input lineage and rolls it up', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    let calls = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'question' }],
+      concurrency: 1,
+      maxRetries: 2,
+      worker: async () => {
+        calls += 1;
+        const error = new Error('operator input required') as Error & { needsInput?: boolean };
+        error.needsInput = true;
+        throw error;
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(calls).toBe(1);
+    expect(result.results[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 0,
+      error: { failure_class: 'needs_input', retry_verdict: 'fatal', retryable: false },
+    });
+    expect(result.summary.failure_classes).toEqual({
+      timeout: 0,
+      exit: 0,
+      salvage_miss: 0,
+      artifact_miss: 0,
+      projection_refusal: 0,
+      needs_input: 1,
+    });
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toEqual([]);
   });
 
   it('retries a transient lineage alone and flips it to succeeded when the retry passes', async () => {
@@ -931,6 +966,7 @@ describe('status ledger helpers', () => {
       salvage_miss: 0,
       artifact_miss: 0,
       projection_refusal: 0,
+      needs_input: 0,
     });
   });
 
@@ -945,6 +981,7 @@ describe('status ledger helpers', () => {
       salvage_miss: 0,
       artifact_miss: 1,
       projection_refusal: 0,
+      needs_input: 0,
     });
   });
 
