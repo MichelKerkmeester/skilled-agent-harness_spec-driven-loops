@@ -383,9 +383,27 @@ run_validation() {
             # artifacts such as research/ or review/, not a phase. An empty one
             # is a phase that was never scaffolded, so it is validated and fails.
             if ! $CHILD_MANIFEST_ACTIVE; then
-                if [[ ! -f "$phase_dir/spec.md" && ! -f "$phase_dir/description.json" ]] \
-                    && [[ -n "$(ls -A "$phase_dir")" ]]; then
-                    continue
+                local child_has_packet_doc=false
+                local child_entry
+                for child_entry in "$phase_dir"/*.md; do
+                    if [[ -f "$child_entry" ]]; then
+                        child_has_packet_doc=true
+                        break
+                    fi
+                done
+                if [[ -f "$phase_dir/graph-metadata.json" ]]; then
+                    child_has_packet_doc=true
+                fi
+                if ! $child_has_packet_doc; then
+                    local child_entries
+                    child_entries=$(ls -A "$phase_dir" 2>/dev/null | tr '\n' ',') || child_entries=""
+                    child_entries="${child_entries%,}"
+                    if [[ -n "$child_entries" ]]; then
+                        if ! $QUIET_MODE; then
+                            echo "Skipped $phase_dir: no packet docs (holds: $child_entries)" >&2
+                        fi
+                        continue
+                    fi
                 fi
             fi
             local child_rc=0
