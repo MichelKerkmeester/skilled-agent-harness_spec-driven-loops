@@ -68,6 +68,7 @@ Two traps sit in the middle tier and behave like the bottom one:
 
 - **Overwriting or deleting an untracked or ignored file** is irreversible; git holds no
   copy. Look at the target before writing over it or removing it, always.
+  This does not cover runtime lock or state files a running workflow creates and regenerates itself, such as `.deep-review.lock`.
 - **Sending is publishing.** Content that reaches an external service may be cached,
   logged, or indexed even if you delete it a second later.
 

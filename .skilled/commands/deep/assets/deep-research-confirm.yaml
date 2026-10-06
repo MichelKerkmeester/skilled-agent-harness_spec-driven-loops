@@ -1730,6 +1730,7 @@ workflow:
         set_field: { status: "complete" }
 
       step_stage_artifact_dir:
+        skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
         dry_run_boundary: "state-mutation"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_stage_artifact_dir","detail":"The research artifact directory would be staged in the git index.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
