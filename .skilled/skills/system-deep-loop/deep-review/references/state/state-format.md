@@ -24,7 +24,7 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
 
 | File | Format | Mutability |
 |------|--------|------------|
-| `deep-review-config.json` | JSON | Immutable after init |
+| `deep-review-config.json` | JSON | Immutable after init, except the terminal `status: complete` flip |
 | `deep-review-state.jsonl` | JSON Lines | Append-only |
 | `deep-review-findings-registry.json` | JSON | Auto-generated reducer state |
 | `deep-review-strategy.md` | Markdown | Updated each iteration |
@@ -150,7 +150,7 @@ Created during initialization. Not modified after creation.
 
 | Level | Meaning |
 |-------|---------|
-| immutable | Cannot be modified after creation |
+| immutable | Cannot be modified after creation (config: the terminal `status: complete` flip is the one permitted write) |
 | append-only | New content added at end only |
 | mutable | Can be read, edited, overwritten |
 | write-once | Created once, never modified |
