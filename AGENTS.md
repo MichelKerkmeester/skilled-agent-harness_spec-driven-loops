@@ -46,20 +46,6 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 **⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, `.skilled/bin/skill-advisor.cjs`), you MUST pass all applicable gates below.**
 
-#### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
-**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone. A read-only word next to a write trigger does not disqualify it.
-
-- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary and is authoritative for runtimes that call it; the sentence above is the human-readable form for runtimes that do not.
-- **Options (stable labels):**
-  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
-  - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure. **Reply with a new folder path.**
-  - **C) Related** - Use another existing packet, a specific child under an existing phase parent, or a related standard packet decomposed into phases when it meets both phase-qualification thresholds. **Reply with the folder or child path.**
-  - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
-- **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two thresholds a phased packet must meet independently.
-- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; a route that writes anything is bound by this gate like any other mutation.
-- **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
-- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
-
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "<prompt>"` → Surface relevant context. It reads the committed index; exit 1 with no rows is a clean no-hit
@@ -84,6 +70,20 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
 - Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §6 exemption class.
+
+#### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
+**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone. A read-only word next to a write trigger does not disqualify it.
+
+- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary and is authoritative for runtimes that call it; the sentence above is the human-readable form for runtimes that do not.
+- **Options (stable labels):**
+  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
+  - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure. **Reply with a new folder path.**
+  - **C) Related** - Use another existing packet, a specific child under an existing phase parent, or a related standard packet decomposed into phases when it meets both phase-qualification thresholds. **Reply with the folder or child path.**
+  - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
+- **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two thresholds a phased packet must meet independently.
+- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; a route that writes anything is bound by this gate like any other mutation.
+- **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
+- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing and the deep-loop state discipline are Gate 2's and the deep-mode `SKILL.md` invariants' own. Two tiebreakers live here because they fire before the skill that owns them loads:
