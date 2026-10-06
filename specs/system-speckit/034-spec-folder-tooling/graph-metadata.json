@@ -89,16 +89,16 @@
     ],
     "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
     "created_at": "2026-09-23T00:00:00Z",
-    "last_save_at": "2026-10-06T20:32:48.605Z",
+    "last_save_at": "2026-10-06T21:24:26.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fb0b718ab67814fb053659f071669d31716eb0250b8ed991146cb5a6cfaf0e8f",
+    "source_fingerprint": "sha256:3cdf67ad7814577279fcfa1f7a1048f6027bce027968210d58611ddc9ec871a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c874f6934c3e837f8c7c83ace8cddf3bee42ef8ec02a21a3ebb461a32ddbcea0"
+      "spec.md": "e2904be1a4cd2475aa47fc9358fd97993f804a97211c78b1ed180d2a24edabf9"
     },
     "last_active_child_id": "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
     "last_active_at": "2026-10-06T19:00:00Z"

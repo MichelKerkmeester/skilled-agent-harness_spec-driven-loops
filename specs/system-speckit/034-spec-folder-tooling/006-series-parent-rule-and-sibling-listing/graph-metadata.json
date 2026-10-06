@@ -39,13 +39,20 @@
       "trigger"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "references/structure/phase-definitions.md",
+      "references/structure/sub-folder-versioning.md",
+      "references/workflows/quick-reference.md",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/retrieval/lib/phrase-judge.mjs",
+      "runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".opencode/package.json",
       ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
       ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
       ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
@@ -53,14 +60,7 @@
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
       ".skilled/commands/speckit/assets/speckit-complete.yaml",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
-      "references/structure/phase-definitions.md",
-      "references/structure/sub-folder-versioning.md",
-      "references/structure/phase-system.md",
-      "references/workflows/quick-reference.md",
-      "runtime/cli/spec/create.sh",
-      "runtime/cli/retrieval/lib/phrase-judge.mjs"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
     ],
     "entities": [
       {
@@ -96,25 +96,49 @@
       {
         "name": "phase-definitions.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "path": "references/structure/phase-definitions.md",
         "source": "derived"
       },
       {
         "name": "sub-folder-versioning.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
+        "path": "references/structure/sub-folder-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
         "name": "phase-system.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
         "source": "derived"
       },
       {
@@ -136,25 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "phrase-judge.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-09-29 five Level 1 packets were opened in one day, each fixing one line of the same write recipe, and 21 packets across three tracks had to be grouped by hand on 2026-10-06",
     "created_at": "2026-10-06T20:29:10Z",
-    "last_save_at": "2026-10-06T20:32:48.218Z",
+    "last_save_at": "2026-10-06T21:25:14.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46d78fa405bf666f1d0fe840b2a2ff8dca053260ee520d5c5839ba3fdef1312e",
+    "source_fingerprint": "sha256:8f6cba136f2d82578febd87244db65686461069b66fe867948c8b29d28e40ea6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a1c31b847835cd740f44afb666f3ff92fb22cbfb6895b927122b1f6035f6c76",
+      "spec.md": "e1ba7f18b824105b2465a0a7a6f37dd5cb5570e005a3e1bfa7e12b37b082329a",
       "plan.md": "63873224ae39c496e59683c7cca377fbd1a6265c861c7aadd10e8e4a4d4563de",
-      "tasks.md": "ae14e4f392153ceb51d3be1f2ed2c1f923c7c5624994329b15ba62b7ddf714fe",
-      "implementation-summary.md": "a040f9f40fd6c8e36455fd2e252a391509f67e4bfb84a25136e8508bdc384174"
+      "tasks.md": "fed736cdf283a1df115c55aec9ee3779598e1d5ab24f676acbac151835f5110f",
+      "implementation-summary.md": "ab730540482f3aa287d0dd07c19533192332ba0e93cbeeb35667799382fa3e7f"
     },
     "last_active_at": null
   }
