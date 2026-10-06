@@ -1,21 +1,35 @@
 {
   "level": "3+",
   "specFolder": "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation",
-  "description": "Phase 69: v4-0-0-3-review-remediation",
+  "description": "On the default convergence policy, every `/deep:review` iteration writes `type:\"event\"` rows that `append-mode-event.cjs` rejects with exit 1",
   "keywords": [
-    "phase",
-    "v4-0-0-3-review-remediation"
+    "default",
+    "convergence",
+    "policy",
+    "every",
+    "deep",
+    "review",
+    "iteration",
+    "writes",
+    "type",
+    "event",
+    "rows",
+    "append-mode-event",
+    "cjs",
+    "rejects",
+    "exit"
   ],
-  "lastUpdated": "2026-10-06T11:01:51.369Z",
+  "lastUpdated": "2026-10-06T17:42:01.409Z",
   "specId": "069",
   "folderSlug": "v4-0-0-3-review-remediation",
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "06-10-26_11-31__planned-remediation-of-21-review-findings-r-01-r.md",
-    "06-10-26_12-01__raised-069-to-level-3-approval-workflow.md"
+    "06-10-26_12-01__raised-069-to-level-3-approval-workflow.md",
+    "06-10-26_18-42__implemented-all-22-v4-0-0-3-review-findings-and.md"
   ]
 }
