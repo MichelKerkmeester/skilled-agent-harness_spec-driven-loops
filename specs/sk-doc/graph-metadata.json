@@ -4,7 +4,6 @@
   "spec_folder": "sk-doc",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor",
     "sk-doc/049-sk-create-frontmatter",
     "sk-doc/050-sk-doc-playbook-coverage",
     "sk-doc/052-routing-completeness",
