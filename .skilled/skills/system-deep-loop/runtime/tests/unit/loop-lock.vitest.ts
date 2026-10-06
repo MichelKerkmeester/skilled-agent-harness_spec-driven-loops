@@ -58,7 +58,12 @@ function lockData(overrides: Partial<LoopLockData> = {}): LoopLockData {
 /**
  * Writes a lock file in the public on-disk snake_case format.
  */
-function writeSerializedLock(lockPath: string, data: LockDataWithNonce, includeAcquireNonce = true): void {
+function writeSerializedLock(
+  lockPath: string,
+  data: LockDataWithNonce,
+  includeAcquireNonce = true,
+  ownerKind?: 'process' | 'transient',
+): void {
   const serialized: Record<string, unknown> = {
     owner_pid: data.ownerPid,
     started_at_iso: data.startedAtIso,
@@ -69,6 +74,9 @@ function writeSerializedLock(lockPath: string, data: LockDataWithNonce, includeA
     phase: data.phase,
     last_activity_iso: data.lastActivityIso,
   };
+  if (ownerKind !== undefined) {
+    serialized.owner_kind = ownerKind;
+  }
   if (includeAcquireNonce && typeof data.acquireNonce === 'string') {
     serialized.acquire_nonce = data.acquireNonce;
   }
@@ -396,6 +404,34 @@ describe('loop-lock', () => {
         },
       });
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe('new-packet');
+    });
+  });
+
+  it('a process-owned lock with a dead owner is still stale', () => {
+    withTempLock((lockPath) => {
+      const dead = knownDeadPid();
+      writeSerializedLock(lockPath, lockData({ ownerPid: dead, packetId: 'process-owned' }), true, 'process');
+
+      const result = acquireLoopLock(lockPath, lockData({ packetId: 'process-replacement' }));
+
+      expect(result).toMatchObject({
+        acquired: true,
+        reclaimed: { ownerPid: dead, packetId: 'process-owned' },
+      });
+    });
+  });
+
+  it('a record without owner_kind reads as process-owned', () => {
+    withTempLock((lockPath) => {
+      const dead = knownDeadPid();
+      writeSerializedLock(lockPath, lockData({ ownerPid: dead, packetId: 'legacy-owner' }), false);
+
+      const result = acquireLoopLock(lockPath, lockData({ packetId: 'legacy-replacement' }));
+
+      expect(result).toMatchObject({
+        acquired: true,
+        reclaimed: { ownerPid: dead, packetId: 'legacy-owner' },
+      });
     });
   });
 
