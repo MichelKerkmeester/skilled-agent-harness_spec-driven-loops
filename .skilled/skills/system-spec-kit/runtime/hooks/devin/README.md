@@ -57,10 +57,10 @@ This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (
 | File | Purpose | Status |
 |------|---------|--------|
 | `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` and opens the session gate. Emits **nothing**: the question is delivered at the first mutation. | **Live**, gate opens on the turn; delivery now happens at enforce time. |
-| `spec-gate-enforce.mjs` | `PreToolUse(^exec$\|^edit$)` hook. Calls `evaluateMutation()` directly; deny emits `permissionDecision: "deny"`, and the first in-gate advise adds the once-per-session mutation notice (marker recorded post-envelope). | **Live for observed tool paths**: deny branch unobserved end to end. |
+| `spec-gate-enforce.mjs` | `PreToolUse(^exec$\|^(edit\|write)$)` hook. Calls `evaluateMutation()` directly; deny emits `permissionDecision: "deny"`, and the first in-gate advise adds the once-per-session mutation notice (marker recorded post-envelope). | **Live for observed tool paths**: deny branch unobserved end to end. |
 | `permission-request-policy.mjs` | `PermissionRequest` hook. Combines the spec-gate mutation policy with the dispatch hard-rule engine (`.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`) to answer Devin permission prompts for write tools. | Registered; `PermissionRequest` unobserved in the live probe. |
 
-`.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit`, `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^edit$` matchers), and `permission-request-policy.mjs` to `PermissionRequest`.
+`.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit`, `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^(edit|write)$` matchers), and `permission-request-policy.mjs` to `PermissionRequest`.
 
 ---
 

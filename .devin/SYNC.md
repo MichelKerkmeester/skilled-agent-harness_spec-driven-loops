@@ -85,7 +85,7 @@ So Devin inherits the repo's Cursor rule plus root `CLAUDE.md`/`AGENTS.md`. That
 
 ### Hooks and permission modes
 
-`hooks.v1.json` puts the **eight event names at the top level** with no `hooks` wrapper; version lives in the filename. Entries are nested `{matcher, hooks: [...]}` and matchers are **anchored regex** (`^exec$`, `^edit$`, `^run_subagent$`). It is the only runtime with `PermissionRequest` and `PostCompaction`.
+`hooks.v1.json` puts the **eight event names at the top level** with no `hooks` wrapper; version lives in the filename. Entries are nested `{matcher, hooks: [...]}` and matchers are **anchored regex** (`^exec$`, `^(edit|write)$`, `^run_subagent$`). It is the only runtime with `PermissionRequest` and `PostCompaction`.
 
 Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-edits`, `dangerous` (aliases `yolo`, `bypass`) and `autonomous` (requires `--sandbox`). `--help` also advertises `smart`, which the binary **rejects** — a real doc/runtime mismatch.
 

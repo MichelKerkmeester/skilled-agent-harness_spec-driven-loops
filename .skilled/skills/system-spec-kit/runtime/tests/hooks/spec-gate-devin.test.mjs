@@ -193,6 +193,23 @@ test('enforce denies an edit when the gate is open and enforce is on', () => {
   }
 });
 
+test('enforce denies a write when the gate is open and enforce is on', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'denied-write-session';
+    runHook(CLASSIFY_HOOK_PATH, root, classifyPayload(root, sessionID), {
+      [guardCore.ENFORCE_ENV]: '1',
+    });
+
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID, 'write'), {
+      [guardCore.ENFORCE_ENV]: '1',
+    });
+    assertDeny(enforce);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('enforce advises once at the first mutation, then stays silent', () => {
   const { root } = makeWorkspace();
   try {
@@ -210,6 +227,28 @@ test('enforce advises once at the first mutation, then stays silent', () => {
     // The delivery marker is what ends the repetition: a second mutation in
     // the same session has nothing left to say.
     assertNoOutput(runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID)));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('enforce advises at the first write', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'advise-write-session';
+    runHook(CLASSIFY_HOOK_PATH, root, classifyPayload(root, sessionID));
+
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID, 'write'));
+    assert.equal(enforce.status, 0, enforce.stderr);
+    const parsed = JSON.parse(enforce.stdout);
+    assert.equal(parsed.hookSpecificOutput.hookEventName, 'PreToolUse');
+    assert.ok(parsed.hookSpecificOutput.additionalContext.includes('SPEC FOLDER QUESTION'));
+    // No permissionDecision field -> advisory only, not a deny.
+    assert.equal(parsed.hookSpecificOutput.permissionDecision, undefined);
+
+    // The delivery marker is what ends the repetition: a second mutation in
+    // the same session has nothing left to say.
+    assertNoOutput(runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID, 'write')));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

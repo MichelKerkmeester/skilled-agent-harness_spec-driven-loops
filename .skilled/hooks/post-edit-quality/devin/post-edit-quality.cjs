@@ -26,8 +26,8 @@ const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Devin file-write tool -- proposed name (research §10), unconfirmed live.
-const DEVIN_EDIT_TOOLS = new Set(['edit']);
+// Devin's file-mutating tools: edit patches a file, write creates or overwrites one.
+const DEVIN_EDIT_TOOLS = new Set(['edit', 'write']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

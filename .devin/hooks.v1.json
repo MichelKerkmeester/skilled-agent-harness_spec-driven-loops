@@ -100,7 +100,7 @@
       ]
     },
     {
-      "matcher": "^edit$",
+      "matcher": "^(edit|write)$",
       "hooks": [
         {
           "type": "command",
@@ -132,7 +132,7 @@
   ],
   "PostToolUse": [
     {
-      "matcher": "^edit$",
+      "matcher": "^(edit|write)$",
       "hooks": [
         {
           "type": "command",
