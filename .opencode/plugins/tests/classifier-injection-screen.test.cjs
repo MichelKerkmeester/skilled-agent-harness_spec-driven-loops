@@ -132,6 +132,45 @@ test('OpenCode plugin: buffered advisories stay with their session and never lea
   assert.deepEqual(forA.system, ['advisory:a']);
 });
 
+test('OpenCode plugin: a transform without a sessionID drains the only pending session', async () => {
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+    screenAdvisory: async () => ADVISORY,
+  });
+
+  const consoleCalls = await runTrapped(async () => {
+    await hooks['tool.execute.after'](afterInput('session-a'), webfetchOutput('page body'));
+
+    const output = { system: [] };
+    await hooks['experimental.chat.system.transform']({}, output);
+    assert.deepEqual(output.system, [ADVISORY], 'the sole waiting session must hand its advisory to a sessionless transform');
+
+    const drained = { system: [] };
+    await hooks['experimental.chat.system.transform']({}, drained);
+    assert.deepEqual(drained.system, [], 'a drained advisory must not surface twice');
+  });
+
+  assert.deepEqual(consoleCalls, [], 'the plugin must never write to stdout/stderr');
+});
+
+test('OpenCode plugin: a sessionless transform drains nothing while several sessions wait', async () => {
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: process.cwd() }, {
+    screenAdvisory: async (text) => `advisory:${text}`,
+  });
+
+  await hooks['tool.execute.after'](afterInput('session-a'), webfetchOutput('a'));
+  await hooks['tool.execute.after'](afterInput('session-b'), webfetchOutput('b'));
+
+  const sessionless = { system: [] };
+  await hooks['experimental.chat.system.transform']({}, sessionless);
+  assert.deepEqual(sessionless.system, [], 'two waiting sessions leave no single buffer to adopt');
+
+  const forB = { system: [] };
+  await hooks['experimental.chat.system.transform']({ sessionID: 'session-b' }, forB);
+  assert.deepEqual(forB.system, ['advisory:b'], 'each advisory must stay with its own session');
+});
+
 test('OpenCode plugin: the per-session buffer stays bounded and keeps the newest advisories', async () => {
   const pluginModule = await loadPlugin();
   const max = pluginModule.default.__test.MAX_PENDING_ADVISORIES;

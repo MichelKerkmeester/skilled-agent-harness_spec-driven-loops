@@ -33,8 +33,11 @@ const UNKNOWN_SESSION = '__unknown-session__';
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The transform's typed input makes the id optional and names it differently
+// across OpenCode versions (sessionID, sessionId, session.id,
+// properties.sessionID), so all four spellings resolve to one key.
 function sessionIdOf(input) {
-  const value = input?.sessionID;
+  const value = input?.sessionID ?? input?.sessionId ?? input?.session?.id ?? input?.properties?.sessionID;
   return typeof value === 'string' && value ? value : UNKNOWN_SESSION;
 }
 
@@ -83,8 +86,19 @@ export default async function injectionScreenPlugin(_ctx, options = {}) {
       try {
         if (!isHookEnabled('injection-screen')) return;
         if (!output || typeof output !== 'object') return;
-        const sessionId = sessionIdOf(input);
-        const pending = pendingBySession.get(sessionId);
+        let sessionId = sessionIdOf(input);
+        let pending = pendingBySession.get(sessionId);
+        if ((!pending || pending.length === 0) && sessionId === UNKNOWN_SESSION && pendingBySession.size === 1) {
+          // A sessionless transform cannot name its buffer, so it adopts the
+          // only session with advisories waiting. With several waiting there
+          // is no way to choose, and the advisories stay put.
+          const ownerId = pendingBySession.keys().next().value;
+          const candidate = pendingBySession.get(ownerId);
+          if (candidate && candidate.length > 0) {
+            sessionId = ownerId;
+            pending = candidate;
+          }
+        }
         if (!pending || pending.length === 0) return;
         output.system = Array.isArray(output.system) ? output.system : [];
         output.system.push(...pending);
