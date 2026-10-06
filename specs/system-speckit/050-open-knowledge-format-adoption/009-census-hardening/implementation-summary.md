@@ -24,7 +24,7 @@ _memory:
       - "decision-record.md"
       - "scratch/timing/timing.log"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6d91816ece9f9f04c4bdc7f6fda2118988e2797262081223e536ff693360c339"
       session_id: "e4486fa5-248b-49a4-8970-229354aab7a1"
       parent_session_id: null
     completion_pct: 100
