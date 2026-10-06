@@ -165,7 +165,7 @@ workflow:
       step_acquire_lock:
         action: "Acquire the advisory lock before any init writes to prevent cross-session races on the shared JSONL"
         command: "Open {state_paths.lock_file} with exclusive non-blocking advisory locking semantics; fail closed on contention."
-        note: "macOS/BSD locking here is advisory. Stale-lock override is confirm-only or explicit recovery-only. Sessions within the same orchestrator process are serialized by design; this guard targets separate terminal invocations racing on the same spec folder."
+        note: "A stale lock is reclaimed without confirmation when its recorded holder process is no longer alive; the lock is runtime state this workflow creates, not an operator file."
         # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
         on_halt:
           action: "Release {state_paths.lock_file} before any terminal halt branch returns control"

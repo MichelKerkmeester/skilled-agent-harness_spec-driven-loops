@@ -66,7 +66,7 @@ The workflow remains four-phase:
 - Locking is advisory, not mandatory.
 - macOS and BSD follow POSIX advisory lock semantics for `flock()` and `fcntl()` style coordination.
 - Lock contention is fail-closed. A second live writer does not merge or override.
-- Stale-lock override is confirm-only or explicit recovery-only.
+- Acquire reclaims a stale lock itself and reports the old holder under `reclaimed`. A lock is stale when its heartbeat is older than twice its TTL, or when its owning process is known to be dead. No confirmation step exists in either mode: log a `reclaimed` holder and continue.
 
 ### Required Audit Behavior
 - Successful acquisition records the resolved lock path and session lineage.
