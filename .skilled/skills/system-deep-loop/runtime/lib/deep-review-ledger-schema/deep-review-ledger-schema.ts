@@ -108,9 +108,23 @@ interface EnumFieldRule {
 
 type DataFieldRule = DataFieldKind | EnumFieldRule;
 
+// An optional field stays absent on rows written before the schema knew it, and
+// still has to satisfy its rule whenever a producer does carry it.
+interface OptionalFieldRule {
+  readonly optional: true;
+  readonly rule: DataFieldRule;
+}
+
+type DeclaredDataFieldRule = DataFieldRule | OptionalFieldRule;
+
 const enumRule = <TValues extends readonly string[]>(...values: TValues): EnumFieldRule => ({
   kind: 'enum',
   values,
+});
+
+const optionalFieldRule = (rule: DataFieldRule): OptionalFieldRule => ({
+  optional: true,
+  rule,
 });
 
 const COMPATIBILITY_RULE = enumRule(
@@ -318,6 +332,8 @@ const DATA_FIELD_RULES = Object.freeze({
     stopCandidate: 'boolean',
     graphDecision: enumRule('blocked', 'continue', 'converged', 'unavailable'),
     graphDigest: 'digest',
+    signals: optionalFieldRule('json'),
+    blockers: optionalFieldRule('json'),
   },
   'deep_review.blocked_stop_recorded': {
     blockedGateIds: 'identifier-array',
@@ -327,6 +343,9 @@ const DATA_FIELD_RULES = Object.freeze({
     targetDimensionId: 'identifier',
     originatingConvergenceEventId: 'identifier',
     appendPosition: 'uint32',
+    gateDetail: optionalFieldRule('json'),
+    graphBlockerDetail: optionalFieldRule('json'),
+    recoveryHint: optionalFieldRule('prose'),
   },
   'deep_review.pause_recorded': {
     normalizedStopReason: 'code',
@@ -483,7 +502,7 @@ const DATA_FIELD_RULES = Object.freeze({
     record: 'json',
   },
 } as const satisfies Readonly<
-  Record<DeepReviewEventStem, Readonly<Record<string, DataFieldRule>>>
+  Record<DeepReviewEventStem, Readonly<Record<string, DeclaredDataFieldRule>>>
 >);
 
 const SCOPE_FIELDS = Object.freeze({
@@ -868,13 +887,27 @@ function fingerprintsEqual(left: unknown, right: unknown): boolean {
       === sha256Bytes(canonicalBytes(right as JsonObject));
 }
 
+function isOptionalFieldRule(rule: DeclaredDataFieldRule): rule is OptionalFieldRule {
+  return typeof rule === 'object' && 'optional' in rule;
+}
+
 function isData(stem: DeepReviewEventStem, value: unknown): boolean {
   if (!isObject(value) || hasForbiddenMutableField(value)) return false;
   const rules = DATA_FIELD_RULES[stem];
-  const fields = Object.keys(rules);
-  if (!hasExactFields(value, fields)) return false;
-  if (!Object.entries(rules).every(([field, rule]) => (
-    isFieldValue(rule, value[field])
+  const declared = Object.entries(rules);
+  const requiredFields = declared
+    .filter(([, rule]) => !isOptionalFieldRule(rule))
+    .map(([field]) => field);
+  const optionalFields = declared
+    .filter(([, rule]) => isOptionalFieldRule(rule))
+    .map(([field]) => field);
+  const actualFields = Object.keys(value);
+  const allowedFields = new Set([...requiredFields, ...optionalFields]);
+  if (!requiredFields.every((field) => actualFields.includes(field))
+    || !actualFields.every((field) => allowedFields.has(field))) return false;
+  if (!declared.every(([field, rule]) => (
+    !(field in value)
+    || isFieldValue(isOptionalFieldRule(rule) ? rule.rule : rule, value[field])
   ))) return false;
 
   if (stem === 'deep_review.dimension_pass_started'

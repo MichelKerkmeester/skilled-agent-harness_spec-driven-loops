@@ -14,6 +14,7 @@ import { requireProjectableManifestEntry } from './legacy-projection-manifest.js
 import type {
   EventReadResult,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 import type {
   LegacyProjectionContract,
@@ -41,6 +42,11 @@ export interface CreateDeepReviewStateProjectionContractOptions {
   readonly relativePath?: string;
   readonly baseSha?: string;
 }
+
+// Ledger identifiers end in the numeric ordinal they carry (`rev-1-i3`); the
+// legacy rows store the ordinal as a number wherever a reducer's finite-number
+// guard decides whether the value counts.
+const num = (value: unknown): number => Number(/(\d+)$/.exec(String(value))?.[1]);
 
 // ───────────────────────────────────────────────────────────────────
 // 2. FACTORY
@@ -131,6 +137,8 @@ export function createDeepReviewStateProjectionContract(
           sessionId: typeof scope.runId === 'string' ? scope.runId : '',
           parentSessionId: typeof data.sourceSessionId === 'string' ? data.sourceSessionId : '',
           generation: typeof scope.generation === 'number' ? scope.generation : 1,
+          lineageMode: 'resume',
+          continuedFromRun: num(data.continuedFromRunId),
           reason: typeof data.resumeReason === 'string' ? data.resumeReason : 'resumed',
           timestamp: occurredAt,
         };
@@ -141,6 +149,7 @@ export function createDeepReviewStateProjectionContract(
           sessionId: typeof scope.runId === 'string' ? scope.runId : '',
           parentSessionId: typeof data.archivedLineageId === 'string' ? data.archivedLineageId : '',
           generation: typeof scope.generation === 'number' ? scope.generation : 1,
+          lineageMode: 'restart',
           reason: typeof data.restartReason === 'string' ? data.restartReason : 'restarted',
           timestamp: occurredAt,
         };
@@ -170,13 +179,20 @@ export function createDeepReviewStateProjectionContract(
         };
       } else if (stem === 'deep_review.graph_convergence_evaluated') {
         const iter = typeof scope.iterationId === 'string' ? scope.iterationId : '';
+        const decisionCode = typeof data.graphDecision === 'string' ? data.graphDecision
+          : (typeof data.decision === 'string' ? data.decision : 'continue');
         row = {
           type: 'event',
           event: 'graph_convergence',
           iteration: iter,
-          run: iter,
-          decision: typeof data.graphDecision === 'string' ? data.graphDecision
-            : (typeof data.decision === 'string' ? data.decision : 'continue'),
+          run: num(scope.iterationId),
+          decision: decisionCode === 'converged' || decisionCode === 'STOP_ALLOWED'
+            ? 'STOP_ALLOWED'
+            : (decisionCode === 'blocked' || decisionCode === 'STOP_BLOCKED'
+              ? 'STOP_BLOCKED'
+              : 'CONTINUE'),
+          signals: (data.signals ?? data.rawSignals) as JsonValue,
+          blockers: (data.blockers ?? data.blockerIds) as JsonValue,
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_review.blocked_stop_recorded') {
@@ -185,10 +201,34 @@ export function createDeepReviewStateProjectionContract(
           type: 'event',
           event: 'blocked_stop',
           iteration: iter,
-          run: iter,
+          run: num(scope.iterationId),
           blockedBy: Array.isArray(data.blockedGateIds) ? data.blockedGateIds : [],
           stopReason: typeof data.recoveryStrategy === 'string' ? data.recoveryStrategy : 'blocked',
-          recoveryStrategy: typeof data.recoveryStrategy === 'string' ? data.recoveryStrategy : '',
+          gateResults: (data.gateDetail ?? data.gateResults ?? {}) as JsonValue,
+          graphBlockerDetail: (data.graphBlockerDetail ?? []) as JsonValue,
+          recoveryStrategy: typeof data.recoveryHint === 'string' ? data.recoveryHint
+            : (typeof data.recoveryStrategy === 'string' ? data.recoveryStrategy : ''),
+          timestamp: occurredAt,
+        };
+      } else if (stem === 'deep_review.pause_recorded') {
+        row = {
+          type: 'event',
+          event: 'userPaused',
+          stopReason: typeof data.normalizedStopReason === 'string' ? data.normalizedStopReason : 'userPaused',
+          reason: typeof data.sentinelCause === 'string' ? data.sentinelCause : '',
+          sessionId: typeof scope.runId === 'string' ? scope.runId : '',
+          generation: typeof scope.generation === 'number' ? scope.generation : 1,
+          timestamp: occurredAt,
+        };
+      } else if (stem === 'deep_review.recovery_started') {
+        row = {
+          type: 'event',
+          event: 'stuckRecovery',
+          stopReason: typeof data.normalizedStopReason === 'string' ? data.normalizedStopReason : 'stuckRecovery',
+          fromIteration: num(data.fromIterationId),
+          strategy: typeof data.strategy === 'string' ? data.strategy : '',
+          targetDimension: typeof data.targetDimensionId === 'string' ? data.targetDimensionId : '',
+          outcome: 'pending',
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_review.synthesis_started') {

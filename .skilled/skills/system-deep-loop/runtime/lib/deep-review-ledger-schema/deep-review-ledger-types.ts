@@ -5,6 +5,7 @@
 import type {
   EventEnvelope,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 import type { ReplayFingerprintDescriptor } from '../replay-fingerprint/index.js';
 
@@ -358,12 +359,16 @@ export interface ConvergenceEvaluatedData extends JsonObject {
   readonly stopCandidate: boolean;
 }
 
-export interface GraphConvergenceEvaluatedData extends ConvergenceEvaluatedData {
+// Optional members keep rows that predate a field valid to read, write and
+// validate; when such a member is present, the schema still checks its shape.
+export type GraphConvergenceEvaluatedData = ConvergenceEvaluatedData & {
   readonly graphDecision: 'blocked' | 'continue' | 'converged' | 'unavailable';
   readonly graphDigest: Digest;
-}
+  readonly signals?: JsonObject;
+  readonly blockers?: JsonValue[];
+};
 
-export interface BlockedStopRecordedData extends JsonObject {
+export type BlockedStopRecordedData = JsonObject & {
   readonly blockedGateIds: string[];
   readonly gateResults: GateResult[];
   readonly activeFindingCounts: FindingCounts;
@@ -371,7 +376,10 @@ export interface BlockedStopRecordedData extends JsonObject {
   readonly targetDimensionId: DimensionId;
   readonly originatingConvergenceEventId: string;
   readonly appendPosition: Uint32;
-}
+  readonly gateDetail?: JsonObject;
+  readonly graphBlockerDetail?: JsonValue[];
+  readonly recoveryHint?: string;
+};
 
 export interface PauseRecordedData extends JsonObject {
   readonly normalizedStopReason: string;
@@ -593,8 +601,8 @@ export type DeepReviewStemProducerStatus =
 
 export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
-  'deep_review.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
+  'deep_review.run_resumed': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.scope_resolved': { status: 'reserved', reason: 'No writer emits it today: scope lives in workflow step text. A scope step would speak it once selected and omitted targets are appended with their digests.' },
   'deep_review.dimension_ordered': { status: 'reserved', reason: 'No writer emits it today: dimension order is computed in the workflow. An ordering step would speak it once the order and its policy version are appended.' },
   'deep_review.protocol_plan_recorded': { status: 'reserved', reason: 'No writer emits it today: the protocol plan is an operator-facing asset. A plan step would speak it once protocol selection and its contract digest are appended.' },
@@ -608,10 +616,10 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.finding_state_changed': { status: 'reserved', reason: 'No writer emits it today: state changes are reducer-derived. A state step would speak it once registry transitions are appended under the gateway.' },
   'deep_review.review_depth_recorded': { status: 'reserved', reason: 'No writer emits it today: depth accounting is derived from the report. A depth step would speak it once coverage and ruled-out classes are appended as proof.' },
   'deep_review.convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: convergence is recomputed by the reducer from flat rows. A convergence step would speak it once the decision is appended rather than inferred.' },
-  'deep_review.graph_convergence_evaluated': { status: 'reserved', reason: 'No writer emits it today: graph convergence folds from flat graph events. A graph step would speak it once the graph decision and digest are appended.' },
-  'deep_review.blocked_stop_recorded': { status: 'reserved', reason: 'No writer emits it today: blocked stops are flat events the reducer reads. A stop step would speak it once the blocked gates are appended through the gateway.' },
-  'deep_review.pause_recorded': { status: 'reserved', reason: 'No writer emits it today: a pause is a sentinel file. The pause step would speak it once the stop reason and lineage ref are appended as an event.' },
-  'deep_review.recovery_started': { status: 'reserved', reason: 'No writer emits it today: recovery runs through the detached-dispatch branch. A recovery step would speak it once a resumed-from-stop run appends its originating pause.' },
+  'deep_review.graph_convergence_evaluated': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.blocked_stop_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.pause_recorded': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.recovery_started': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.synthesis_started': { status: 'reserved', reason: 'No writer emits it today: synthesis is a workflow phase. The synthesis step would speak it once the report phase opens with its finalized event range.' },
   'deep_review.review_report_committed': { status: 'reserved', reason: 'No writer emits it today: reports are written as files. The synthesis step would speak it once the report digest and section manifest are appended.' },
   'deep_review.continuity_save_requested': { status: 'reserved', reason: 'No writer emits it today: continuity saves route through the save command. The save step would speak it once a request is appended for replay.' },
