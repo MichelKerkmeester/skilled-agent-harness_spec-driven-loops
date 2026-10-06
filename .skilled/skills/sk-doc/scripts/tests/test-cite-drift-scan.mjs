@@ -12,7 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { ADVISE_OPT_OUT_ENV, decideVerdict, flagByIdentifierOverlap, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/classifier-cite-drift-scan.mjs';
+import { ADVISE_OPT_OUT_ENV, decideVerdict, flagByIdentifierOverlap, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, runAdvise, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/classifier-cite-drift-scan.mjs';
 import { buildCensus, corpusDocs, deriveRedirects, extractCitations, headCommit, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, USAGE } from '../../shared/scripts/cite-drift-scan.mjs';
 
 const ALPHA_DOC = '.skilled/skills/alpha-skill/SKILL.md';
@@ -1739,7 +1739,7 @@ test('advise flags a drifted citation, appends its calls and builds no census', 
     assert.deepEqual(run.errors, []);
     assert.deepEqual(run.lines, [
       `cite-drift advisory: ${ALPHA_DOC}:2 cites src/inside.ts:3, whose window may no longer show the claim (p_yes=0.10)`,
-      `cite-drift advisory: checked=1 flagged=1 unchecked=0 (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`,
+      `cite-drift advisory: checked=1 flagged=1 unchecked=0 not_in_range=0 (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`,
     ]);
     await runWithEnv(argv, root, env);
     const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
@@ -1761,6 +1761,42 @@ test('advise reruns a borderline score and flags on the lowest', async () => {
     assert.equal(run.code, 0);
     assert.equal(run.lines[0], `cite-drift advisory: ${ALPHA_DOC}:2 cites src/inside.ts:3, whose window may no longer show the claim (p_yes=0.40)`);
     assert.equal(readStubLog(root).filter((line) => line.startsWith('jev\tnoul')).length, 3);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise reports moved and past-end citations as not in range', async () => {
+  const { root } = makeFixture();
+  try {
+    const env = armEnv(root);
+    // The advisory loads no rename table, so a moved citation reaches it as a
+    // status the host resolver alone can name; the stub stands in for one
+    // moved citation and one cited past the end of its file.
+    const citations = [
+      { doc: ALPHA_DOC, line: 2, sentence: 'A moved target.', claim: 'A moved target.', target: 'old-src/inside.ts', targetLine: 3, targetLineEnd: null, lead: '' },
+      { doc: ALPHA_DOC, line: 3, sentence: 'A past-end target.', claim: 'A past-end target.', target: 'src/inside.ts', targetLine: 999, targetLineEnd: null, lead: '' },
+    ];
+    const statuses = { 'old-src/inside.ts': 'moved_in_range', 'src/inside.ts': 'past_end' };
+    const lines = [];
+    const code = await runAdvise([path.join(root, ALPHA_DOC)], {
+      repoRoot: root,
+      out: (line) => lines.push(line),
+      env,
+      timeoutMs: 90000,
+      callLog: { append() {} },
+      extractCitations: () => citations,
+      resolveCitation: (citation) => ({ status: statuses[citation.target], path: 'src/inside.ts', endLine: citation.targetLine }),
+      listTrackedFiles: () => new Set([ALPHA_DOC, 'src/inside.ts']),
+      classify: async () => {
+        throw new Error('no model call expected');
+      },
+    });
+    assert.equal(code, 0);
+    assert.deepEqual(lines, [
+      `cite-drift advisory: checked=0 flagged=0 unchecked=0 not_in_range=2 (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`,
+    ]);
+    assert.deepEqual(readStubLog(root), ['jev\t--version', 'jev\tauth status --provider official']);
   } finally {
     cleanup(root);
   }
