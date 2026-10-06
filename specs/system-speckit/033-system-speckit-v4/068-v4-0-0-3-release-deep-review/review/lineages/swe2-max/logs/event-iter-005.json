@@ -1,0 +1,65 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "run": 5,
+  "status": "complete",
+  "focus": "traceability — spec↔code claims: contract digests, version authority, feature-catalog constants, gates.tsv, packet-047 file claims, SOURCE_TAGS/FRONTMATTER_VALUES wiring",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+    "specs/system-speckit/047-plugin-scanner-readiness/spec.md",
+    ".gitignore",
+    "SECURITY.md",
+    ".github/workflows/",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/code-task-scorer.cjs",
+    ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.md",
+    ".skilled/commands/deep/review.md",
+    ".skilled/commands/deep/research.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+    ".skilled/skills/sk-doc/leaf-manifest.json",
+    ".skilled/skills/sk-doc/leaf-aliases.json",
+    ".skilled/skills/sk-doc/leaf-scopes.json",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+    ".skilled/skills/system-spec-kit/runtime/data/compiled-routing/serving-closure.manifest.json",
+    ".skilled/commands/README.txt",
+    ".skilled/commands/speckit/plan.md",
+    ".skilled/commands/speckit/implement.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/steer.md"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingDetails": [
+    {
+      "id": "sw2m-P2-009",
+      "severity": "P2",
+      "title": "frontmatter-values.json has two consumers with asymmetric failure semantics: spec-kit helper degrades to warn, sk-doc validate_document.py hard-crashes",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.9,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "confirmed check-frontmatter-values.sh maps helper exit-2 to warn while validate_document.py propagates JSONDecodeError/KeyError; extends sw2m-P2-005's blast radius across the runtime boundary"
+      }
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": "packet-047 all six claims verified; contract digests recomputed byte-equal; version authority 2.3.0.0 consistent across 5 artifacts; leaf-manifest aliases resolve via diskPath; SOURCE_TAGS+FRONTMATTER_VALUES registered warn-only as documented",
+    "checklist_evidence": "finding carries file:line and failure scenario; a second candidate (source-tag cutoff exempting this packet) was verified false and withdrawn",
+    "feature_catalog_code": "citation-drift doc constants (60/40/0.10/5/jev-0.6.2/20-cap/60s) all match code"
+  },
+  "newFindingsRatio": 1,
+  "lineageMode": "new",
+  "generation": 1,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "durationMs": 0,
+  "timestamp": "2026-10-06T05:16:28.000Z"
+}

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "description": "v4.0.0.3 was released after 633 commits across about 45 spec packets",
+  "keywords": [
+    "released",
+    "commits",
+    "across",
+    "about",
+    "spec",
+    "packets"
+  ],
+  "lastUpdated": "2026-10-06T04:15:50.101Z",
+  "specId": "068",
+  "folderSlug": "v4-0-0-3-release-deep-review",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

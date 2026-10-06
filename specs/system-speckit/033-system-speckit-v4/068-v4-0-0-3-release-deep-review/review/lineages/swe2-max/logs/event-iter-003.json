@@ -1,0 +1,80 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "mode": "review",
+  "run": 3,
+  "status": "complete",
+  "focus": "correctness — sk-doc shared scripts (validate_document + cite-drift) + system-spec-kit shared/test surface",
+  "dimensions": ["correctness"],
+  "filesReviewed": [
+    ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+    ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+    ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs",
+    ".skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+    ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+    ".skilled/skills/sk-doc/scripts/validate_document.py",
+    ".skilled/skills/sk-doc/SKILL.md",
+    ".skilled/skills/system-spec-kit/shared/tests/auto-select.test.ts",
+    ".skilled/skills/system-spec-kit/shared/tests/registry.test.ts",
+    ".skilled/skills/system-spec-kit/shared/tsconfig.json",
+    ".github/workflows/repo-rules-corpus.yml",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/steer.md"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 3 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 3 },
+  "findingDetails": [
+    {
+      "id": "sw2m-P2-004",
+      "severity": "P2",
+      "title": "check-repo-rules.cjs stemmer diverges on its own documented example; coverage under-count can false-fail the CI gate",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.85,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "ran the stemmer on the comment's example pairs and ran check-repo-rules.cjs live — current corpus passes at threshold 0.3; the defect is false-negative risk on future edits, not a live failure"
+      }
+    },
+    {
+      "id": "sw2m-P2-005",
+      "severity": "P2",
+      "title": "validate_document.py dereferences the shared frontmatter-values map unguarded; a malformed asset crashes every validation",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.9,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "confirmed FileNotFoundError is the only caught exception and that values['contextType']/['canonical']/['aliases'] index unguarded at 1643-1652; verified the asset currently well-formed"
+      }
+    },
+    {
+      "id": "sw2m-P2-006",
+      "severity": "P2",
+      "title": "citation-drift advisory silently excludes moved/renamed citations from both the check pool and the unchecked count",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.85,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "read adviseCitations filter (in_range only) and the unchecked=citations.length-checked formula; confirmed via test name 'advise without an in-range citation never spawns jev' that exclusion is deliberate scope, but silent-zero reporting is undocumented"
+      }
+    }
+  ],
+  "traceabilityChecks": {
+    "checklist_evidence": "file:line + concrete failure scenario present for all findings; stemmer behavior verified empirically",
+    "spec_code": "validate_document.py opt-out env names traced to jev-features.mjs switch names; advisory never-blocks contract verified against exit-code path",
+    "skill_agent": "census/advise/draw modes traced end-to-end; 64/64 unit tests pass on node:test"
+  },
+  "newFindingsRatio": 1,
+  "lineageMode": "new",
+  "generation": 1,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "durationMs": 0,
+  "timestamp": "2026-10-06T04:51:18.000Z"
+}

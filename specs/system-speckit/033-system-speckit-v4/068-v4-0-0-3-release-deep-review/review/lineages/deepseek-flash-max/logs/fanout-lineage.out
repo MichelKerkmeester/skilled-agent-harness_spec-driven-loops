@@ -1,0 +1,10 @@
+The lineage is complete and verified end to end.
+
+**Final state** (`review/lineages/deepseek-flash-max/`):
+- 15 iterations on disk and in the state log (1..15, route-proof on every record), each with a paired delta and gateway receipt; final lines all `Review verdict: …`
+- Terminal synthesis event: `synthesis_complete`, `stopReason: maxIterationsReached`, verdict `CONDITIONAL` (0 P0, 2 P1, 6 P2)
+- Findings registry (8 active), dashboard, strategy (final), and `review-report.md` with the 10 report sections
+- P1s (both replayed as active at the cap): salvage writes the gateway-owned state log directly (`fanout-salvage.cjs:170`); stale-lock reclaim can hand two runs the same lock (`loop-lock.ts:298`)
+- All writes confined to the lineage directory; verification ran through the append gateway, `verify-iteration.cjs` (exit 0 every iteration), the reducer, and `synthesis-closeout.cjs` (exit 0)
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

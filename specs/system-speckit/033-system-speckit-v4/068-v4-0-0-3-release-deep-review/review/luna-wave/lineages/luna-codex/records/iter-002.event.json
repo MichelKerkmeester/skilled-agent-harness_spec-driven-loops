@@ -1,0 +1,244 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": 2,
+  "status": "complete",
+  "focus": "Security — classifier transport and hook process boundary",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages/luna-codex/steer.md:1",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:91",
+    ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:288",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+    ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455",
+    ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:90",
+    ".skilled/hooks/shared/hook-flags.cjs:99",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:91",
+    ".skilled/hooks/classifier-injection-screen/README.md:18",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:131"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "id": "LUNA-CODEX-02-P2-001",
+      "severity": "P2",
+      "title": "Page byte size is unbounded before screening timeout",
+      "dimension": "security",
+      "file": ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:106",
+      "evidence": "prepareSections splits the full input and derives sections by line ranges; screenText starts its deadline only after preparation, then submits each complete section as classifier stdin.",
+      "impact": "A very large newline-free or minified fetched response can trigger large allocations and repeated classifier payloads before the hook budget applies, causing a local stall or memory exhaustion.",
+      "recommendation": "Apply a UTF-8 byte cap before splitting and before any classifier dispatch; retain truncation/unchecked status and cover a very long single-line response.",
+      "findingClass": "resource_exhaustion",
+      "scopeProof": "The source is included in the supplied goal-file-manifest.txt at line 251.",
+      "affectedSurfaceHints": [
+        "Claude WebFetch adapter",
+        "Devin webfetch adapter",
+        "OpenCode webfetch plugin",
+        "Pi fetch_content extension",
+        "Hermes web_extract bridge"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 6,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "newFindingsRatio": 1,
+  "noveltyJustification": "One new P2 finding contributes weight 1 of total new severity weight 1.",
+  "sessionId": "fanout-luna-codex-1791264733860-t333md",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-10-06T06:47:02Z",
+  "durationMs": 505000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "warn",
+    "reason": "The release target covers 1,997 files; this pass inspected the hook/classifier transport slice and leaves broader manifest security for later passes.",
+    "evidenceRefs": [
+      "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal-file-manifest.txt:251",
+      "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages/luna-codex/steer.md:7"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/hooks/classifier-injection-screen/**",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      ".skilled/hooks/shared/hook-flags.cjs"
+    ],
+    "selectionReason": "Followed fetched text from hook input through feature gate and child-process transport, focusing on untrusted input size, shell boundaries, logs and switches.",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_grep",
+      "producer_consumer_trace",
+      "negative_test_inspection"
+    ],
+    "omittedHighRiskTargets": [
+      ".github/workflows/**",
+      "other manifest-wide security paths outside the classifier hook slice"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:106",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "payload_resource_exhaustion",
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "covered": [
+      "payload_resource_exhaustion",
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "ruledOut": [
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
+      ],
+      "bugClass": "payload_resource_exhaustion",
+      "hypothesis": "A page with few lines but extreme line length can bypass the line-count bound and consume unbounded resources before screening.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "prepareSections, splitSections, toLines, screenText and classifier stdin",
+          "result": "Input is split by newline and sections are capped only by line count. Full preparation precedes the deadline; complete section text is sent to the classifier.",
+          "evidenceRefs": [
+            ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:106",
+            ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:202",
+            ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:288",
+            ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:331",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "A large newline-free fetched response bypasses all byte bounds and is prepared before the classifier deadline.",
+      "linkedFindingId": "LUNA-CODEX-02-P2-001"
+    },
+    {
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
+      ],
+      "bugClass": "shell_command_injection",
+      "hypothesis": "Fetched text may be reinterpreted as shell syntax when sent to the classifier.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "classifier call arguments and child spawn",
+          "result": "Arguments are an argv array and fetched content is written to stdin; no shell command is composed from the page text.",
+          "evidenceRefs": [
+            ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:473"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "Traced untrusted text to child input and inspected spawn call shape.",
+      "ruledOutReason": "No shell interpolation path was found in this call chain."
+    },
+    {
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs"
+      ],
+      "bugClass": "secret_logging",
+      "hypothesis": "Credential or fetched page content may be written to hook logs during readiness or classification.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "screen report callback, jev auth status and child stdio",
+          "result": "Screen report callback is a no-op; auth output is piped and readiness returns only status; adapter emits a static advisory.",
+          "evidenceRefs": [
+            ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:153",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:149",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:156",
+            ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:60"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "Read credential readiness and hook output paths.",
+      "ruledOutReason": "No credential value or fetched body is written to the adapter’s output/log path."
+    },
+    {
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs"
+      ],
+      "bugClass": "feature_switch_bypass",
+      "hypothesis": "An operator off-switch may be ignored and the screen still invoked.",
+      "searchActions": [
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "shared hook flag to featureReady to screenText",
+          "result": "Adapter checks the hook concern before reading input; featureReady checks master and feature switches before auth/classifier calls.",
+          "evidenceRefs": [
+            ".skilled/hooks/shared/hook-flags.cjs:151",
+            ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:46",
+            ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:181"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "rationale": "Followed hook-level and Jev feature-level switches to the classifier call.",
+      "ruledOutReason": "No bypass found in the shared adapter path."
+    }
+  ]
+}

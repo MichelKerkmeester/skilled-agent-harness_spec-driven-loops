@@ -1,0 +1,8 @@
+**I have not started iteration 4 or changed any files.** The lineage has three recorded iterations, and its `.deep-review.lock` is stale: the status check reported `alive:false` for PID 58874. `git check-ignore` confirms `.gitignore:400` ignores the lock, and `git ls-files` confirms it is untracked.
+
+The workflow requires acquiring the lock before session classification (`deep-review-auto.yaml`, lines 295–299). Reclaiming it would replace an ignored, untracked file. `blast-radius.md` §2, line 65, classifies that as irreversible; §3, line 91, requires a written rollback and an explicit yes. To undo a reclaim, release the new lock using the captured owner PID and nonce with `loop-lock.cjs release`.
+
+**A)** Authorize reclaiming the stale lock and continuing the lineage.  
+**B)** Leave it untouched and halt.
+
+Reply **A** or **B**.

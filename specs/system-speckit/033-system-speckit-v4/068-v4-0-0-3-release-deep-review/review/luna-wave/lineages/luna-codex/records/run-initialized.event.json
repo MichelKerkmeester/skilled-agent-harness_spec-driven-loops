@@ -1,0 +1,22 @@
+{
+  "stem": "deep_review.run_initialized",
+  "scope": {
+    "runId": "fanout-luna-codex-1791264733860-t333md",
+    "sessionId": "fanout-luna-codex-1791264733860-t333md",
+    "generation": 1
+  },
+  "data": {
+    "target": {
+      "targetId": "review-target",
+      "targetType": "directory",
+      "artifactRef": "deep-review-config.json#reviewTarget",
+      "sourceDigest": "d057e6a77bec5dd509a1d6fa611f2d5168d28d5c4047c884e19c14a9b173cbb7",
+      "contentDigest": "4314b7eb0f57802260c02b34b27cff3986add36d61f6fc9b0823c4e501013cd8"
+    },
+    "lineageMode": "fresh",
+    "maxIterations": 10,
+    "convergencePolicyVersion": "convergence-policy@default",
+    "reviewModeContractDigest": "fe7554b77f2856d7764c76bd3b6f3ad0290cf99a9d80f3b8ed917780d0fb273e",
+    "initialReleaseReadinessState": "not-assessed"
+  }
+}

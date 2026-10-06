@@ -1,0 +1,497 @@
+{
+  "sessionId": "fanout-luna-codex-1791264733860-t333md",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "LUNA-CODEX-02-P2-001",
+      "severity": "P2",
+      "title": "Page byte size is unbounded before screening timeout",
+      "file": ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+      "line": 106,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "adapter_registration",
+      "bounded_failure",
+      "feature_switch_bypass",
+      "payload_resource_exhaustion",
+      "payload_shape",
+      "secret_logging",
+      "session_isolation",
+      "shell_command_injection"
+    ],
+    "ruledOut": [
+      "adapter_registration",
+      "bounded_failure",
+      "feature_switch_bypass",
+      "payload_shape",
+      "secret_logging",
+      "session_isolation",
+      "shell_command_injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "adapter_registration": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "payload_shape": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "session_isolation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "bounded_failure": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "payload_resource_exhaustion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shell_command_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_logging": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "feature_switch_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".claude/settings.json",
+        ".devin/hooks.v1.json",
+        ".opencode/plugins/classifier-injection-screen.js"
+      ],
+      "bugClass": "adapter_registration",
+      "disposition": "ruled_out",
+      "rationale": "Compared registry entries, runtime hook configuration and implementation tool names.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:680",
+        ".claude/settings.json:220",
+        ".devin/hooks.v1.json:155",
+        ".opencode/plugins/classifier-injection-screen.js:70"
+      ],
+      "reason": "No registration, path, or tool-name mismatch found in inspected runtime bindings."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
+        ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs",
+        ".hermes/plugins/repo-guards/__init__.py"
+      ],
+      "bugClass": "payload_shape",
+      "disposition": "ruled_out",
+      "rationale": "Traced each adapter input result shape into the shared extractor.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:27",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:45",
+        ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs:60",
+        ".hermes/plugins/repo-guards/__init__.py:379"
+      ],
+      "reason": "No unsupported or cross-wired payload shape found in the inspected paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/classifier-injection-screen.js",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs"
+      ],
+      "bugClass": "session_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed queue lifecycle and associated regression cases.",
+      "evidenceRefs": [
+        ".opencode/plugins/classifier-injection-screen.js:36",
+        ".opencode/plugins/classifier-injection-screen.js:56",
+        ".opencode/plugins/classifier-injection-screen.js:82",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:74",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:117",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:135"
+      ],
+      "reason": "No cross-session or duplicate-delivery defect found; tests were not executed."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs"
+      ],
+      "bugClass": "bounded_failure",
+      "disposition": "ruled_out",
+      "rationale": "Checked error classification and budget/section bounds against implementation and read-only test cases.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:125",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:202",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:215",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:69",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:88",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:111",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:155"
+      ],
+      "reason": "No partial-result-as-flag or unbounded scheduling path found in inspected code."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
+      ],
+      "bugClass": "shell_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Traced untrusted text to child input and inspected spawn call shape.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:473"
+      ],
+      "reason": "No shell interpolation path was found in this call chain."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs"
+      ],
+      "bugClass": "secret_logging",
+      "disposition": "ruled_out",
+      "rationale": "Read credential readiness and hook output paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:153",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:149",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:156",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:60"
+      ],
+      "reason": "No credential value or fetched body is written to the adapter’s output/log path."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs"
+      ],
+      "bugClass": "feature_switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Followed hook-level and Jev feature-level switches to the classifier call.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:151",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:46",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:181"
+      ],
+      "reason": "No bypass found in the shared adapter path."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".claude/settings.json",
+        ".devin/hooks.v1.json",
+        ".opencode/plugins/classifier-injection-screen.js"
+      ],
+      "bugClass": "adapter_registration",
+      "disposition": "ruled_out",
+      "rationale": "Compared registry entries, runtime hook configuration and implementation tool names.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:680",
+        ".claude/settings.json:220",
+        ".devin/hooks.v1.json:155",
+        ".opencode/plugins/classifier-injection-screen.js:70"
+      ],
+      "proof": "No registration, path, or tool-name mismatch found in inspected runtime bindings."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs",
+        ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs",
+        ".hermes/plugins/repo-guards/__init__.py"
+      ],
+      "bugClass": "payload_shape",
+      "disposition": "ruled_out",
+      "rationale": "Traced each adapter input result shape into the shared extractor.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:27",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:45",
+        ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs:60",
+        ".hermes/plugins/repo-guards/__init__.py:379"
+      ],
+      "proof": "No unsupported or cross-wired payload shape found in the inspected paths."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/classifier-injection-screen.js",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs"
+      ],
+      "bugClass": "session_isolation",
+      "disposition": "ruled_out",
+      "rationale": "Reviewed queue lifecycle and associated regression cases.",
+      "evidenceRefs": [
+        ".opencode/plugins/classifier-injection-screen.js:36",
+        ".opencode/plugins/classifier-injection-screen.js:56",
+        ".opencode/plugins/classifier-injection-screen.js:82",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:74",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:117",
+        ".opencode/plugins/tests/classifier-injection-screen.test.cjs:135"
+      ],
+      "proof": "No cross-session or duplicate-delivery defect found; tests were not executed."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs"
+      ],
+      "bugClass": "bounded_failure",
+      "disposition": "ruled_out",
+      "rationale": "Checked error classification and budget/section bounds against implementation and read-only test cases.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:125",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:202",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:215",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:69",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:88",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:111",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:155"
+      ],
+      "proof": "No partial-result-as-flag or unbounded scheduling path found in inspected code."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
+      ],
+      "bugClass": "shell_command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Traced untrusted text to child input and inspected spawn call shape.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:147",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:455",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:473"
+      ],
+      "proof": "No shell interpolation path was found in this call chain."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs"
+      ],
+      "bugClass": "secret_logging",
+      "disposition": "ruled_out",
+      "rationale": "Read credential readiness and hook output paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:153",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:149",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:156",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:60"
+      ],
+      "proof": "No credential value or fetched body is written to the adapter’s output/log path."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs"
+      ],
+      "bugClass": "feature_switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "Followed hook-level and Jev feature-level switches to the classifier call.",
+      "evidenceRefs": [
+        ".skilled/hooks/shared/hook-flags.cjs:151",
+        ".skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs:46",
+        ".skilled/skills/cli-classifier/shared/scripts/jev-features.mjs:181"
+      ],
+      "proof": "No bypass found in the shared adapter path."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "payload_resource_exhaustion",
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "covered": [
+      "payload_resource_exhaustion",
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "ruledOut": [
+      "shell_command_injection",
+      "secret_logging",
+      "feature_switch_bypass"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

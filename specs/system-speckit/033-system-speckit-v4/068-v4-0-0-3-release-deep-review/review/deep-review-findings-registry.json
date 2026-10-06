@@ -1,0 +1,890 @@
+{
+  "mergedFrom": [
+    "deepseek-flash-max",
+    "luna-max",
+    "swe2-max"
+  ],
+  "lineageExecutors": {
+    "deepseek-flash-max": {
+      "kind": "cli-pi",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna-max": {
+      "kind": "cli-pi",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "swe2-max": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F002--8c28d2f81313",
+      "severity": "P2",
+      "title": "Auto-resume lifecycle event has no declared gateway-compatible shape",
+      "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "line": 332,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--8c28d2f81313",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--fb1576c65ff0",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-004",
+      "severity": "P2",
+      "title": "check-repo-rules.cjs stemmer diverges on its own documented example; coverage under-count can false-fail the CI gate",
+      "file": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      "line": 38,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-006",
+      "severity": "P2",
+      "title": "citation-drift advisory silently excludes moved/renamed citations from both the check pool and the unchecked count",
+      "file": ".skilled/skills/sk-doc/shared/scripts/classifier-cite-drift-scan.mjs",
+      "line": 862,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P1-002",
+      "severity": "P1",
+      "title": "deep_review.recovery_baseline staged to mktemp EVENT_DIR in opencode dispatch branch but never drained to the ledger",
+      "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "line": 1299,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P1-005",
+      "severity": "P1",
+      "title": "Devin hooks.v1.json + DEVIN_TOOL_MAP omit the write tool; whole-file writes bypass spec-gate enforce and post-edit-quality",
+      "file": ".devin/hooks.v1.json",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "F001--a706e0212eb9",
+      "severity": "P1",
+      "title": "Fan-out salvage appends to the lineage state log directly instead of through the append gateway",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+      "line": 170,
+      "description": "The fan-out salvage sweep writes deep-review-state.jsonl directly, bypassing the append gateway, so its event is not ledger-backed, is erased by the next gateway projection refresh, and reads as a gateway-bypass violation under ledger authority.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Read the full salvage path, the raw writer it calls, the projection refresh that owns the same file, the guard that detects divergence, and the merge consumer that reads the event.",
+      "affectedSurfaceHints": [
+        "scripts/fanout-salvage.cjs",
+        "scripts/fanout-run.cjs",
+        "lib/deep-loop/jsonl-repair.ts",
+        "lib/legacy-projections/shadow-projection-store.ts",
+        "scripts/fanout-merge.cjs",
+        "scripts/check-direct-append.cjs"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--a706e0212eb9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--eae43c1ecf3e",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-009",
+      "severity": "P2",
+      "title": "frontmatter-values.json has two consumers with asymmetric failure semantics: spec-kit helper degrades to warn, sk-doc validate_document.py hard-crashes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-frontmatter-values-helper.cjs",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P1-003",
+      "severity": "P1",
+      "title": "git-message-gate.mjs bundled short-flag forms (-am/-sm/-qm/-aF) bypass PreToolUse commit-message validation entirely",
+      "file": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      "line": 172,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P1-004",
+      "severity": "P1",
+      "title": "git-rule-checks.mjs advisory parser has the same bundled-flag blind spot; message text lands in paths and can trigger false pathspec advisories",
+      "file": ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs",
+      "line": 97,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-007",
+      "severity": "P2",
+      "title": "goal verifier tail-windows evidence to last 1200 chars; mid-transcript blockers invisible to the met/not-met verdict",
+      "file": ".skilled/hooks/goal/lib/goal-core.cjs",
+      "line": 592,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-008",
+      "severity": "P2",
+      "title": "injection-screen UNKNOWN_SESSION bucket strands advisories or attributes them to an unrelated session",
+      "file": ".opencode/plugins/classifier-injection-screen.js",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Nine fan-out playbook scenarios name a test path that does not exist, so their exact command sequence cannot produce the result they demand",
+      "file": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-salvage-recovery.md",
+      "line": 52,
+      "description": "Replace the nine commands with the correct deep-loop base, matching the control scenarios.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Enumerated every offending occurrence, resolved the relative path, confirmed the missing directory and the present tests, read two correct-form controls.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/",
+        ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 13,
+      "lastSeen": 13,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 13,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "F001--eae43c1ecf3e",
+      "severity": "P1",
+      "title": "Oversized commit messages can hide forbidden trailers from every gate",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 427,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--eae43c1ecf3e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--a706e0212eb9",
+          "peerLineages": [
+            "deepseek-flash-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Recursive validation silently skips a numbered child that has content but neither spec.md nor description.json",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      "line": 385,
+      "description": "Narrow the skip predicate or print the skipped numbered children in the report so a parent run cannot pass over an invalid child silently.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Read the recursive loop and its skip predicate end to end, then walked the spec tree for children matched by the predicate; all observed matches are artifact-only directories.",
+      "affectedSurfaceHints": [
+        "spec/validate.sh",
+        "rules/check-ac-coverage.sh"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P1-001",
+      "severity": "P1",
+      "title": "Review-mode gateway rejects all legacy type:event append rows — graph_convergence/blocked_stop/pause/lineage telemetry never reaches state_log",
+      "file": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      "line": 396,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-002",
+      "severity": "P2",
+      "title": "SKILL.md NEVER rule 6 (config read-only after init) vs step_update_config_status status:complete wording gap (lead pre-ruled: do it)",
+      "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "line": 2322,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-001",
+      "severity": "P2",
+      "title": "state_write_protocol contract asserts event rows are canonical ledger events while directives emit legacy shape",
+      "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "line": 114,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "The completion-evidence sentinel source contains a raw NUL byte, making the file binary to search and diff tooling",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+      "line": 318,
+      "description": "Write the separator as the escape sequence in both files so the source stays ASCII; the runtime hash input is unchanged.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Scanned every source-like file under the four focus trees for NUL bytes (two hits), read both sites in place, confirmed rg/diff/file behavior.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+        ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/rubric-guard.cjs"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "The deep-review contract calls the config read-only after init while its own workflow flips the config status at the terminal step",
+      "file": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      "line": 392,
+      "description": "Scope the NEVER to review parameters (immutable after init) and name the terminal status flip as the workflow's own step.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Read both sides at their exact lines; the lead ruling names the same two sides.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        ".skilled/commands/deep/assets/deep-review-auto.yaml"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "The shipped tree lets the 033-system-speckit-v4 phase folder resolve to error under its own generated-metadata integrity gate",
+      "file": "specs/system-speckit/033-system-speckit-v4/graph-metadata.json",
+      "line": null,
+      "description": "Re-derive the folder's graph metadata with the known generate-description/backfill pair as part of the release tail.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Executed the repo's checker and resolver, compared blobs across the tag, and swept 279 packets.",
+      "affectedSurfaceHints": [
+        "specs/system-speckit/033-system-speckit-v4/graph-metadata.json",
+        "specs/system-deep-loop/z_archive/010-deep-context-gathering/graph-metadata.json",
+        "runtime/lib/validation/generated-metadata-integrity.ts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "The v4.0.0.3 release shipped with a trigger index stale for its own changelog entry",
+      "file": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "line": null,
+      "description": "Regenerate the trigger index from the tagged content as part of the release tail, and rebuild it in the same commit as any changelog phrase change so --check stays green.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Compared the tagged index blob with HEAD's, listed index and changelog commits in range, ran --check (exit 1) and both phrase lookups.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        ".skilled/changelog/skilled/v4.0.0.3.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ]
+    },
+    {
+      "findingId": "F002--fb1576c65ff0",
+      "severity": "P1",
+      "title": "Two processes can both reclaim the same stale loop lock and both hold the packet lock",
+      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      "line": 298,
+      "description": "tryReclaimStaleLoopLock can replace a fresh lock published by another reclaimer, so two concurrent acquirers can both return acquired:true and both write the same review packet.",
+      "findingClass": "race-condition",
+      "deltaStatus": null,
+      "scopeProof": "Read the full lock library, the CLI that calls it, the fence-capability consumer, the concurrency unit test, and the workflow acquire/release steps; the reclaim rename is the only unverified mutation in the lifecycle.",
+      "affectedSurfaceHints": [
+        "lib/deep-loop/loop-lock.ts",
+        "scripts/loop-lock.cjs",
+        "commands/deep/assets/deep-review-auto.yaml",
+        "tests/unit/loop-lock.vitest.ts"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-flash-max"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--fb1576c65ff0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--8c28d2f81313",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-003",
+      "severity": "P2",
+      "title": "v8.setFlagsFromString before try/catch in main(): unsupported flag silently disables the whole gate via generic catch",
+      "file": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      "line": 380,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    },
+    {
+      "findingId": "sw2m-P2-005",
+      "severity": "P2",
+      "title": "validate_document.py dereferences the shared frontmatter-values map unguarded; a malformed asset crashes every validation",
+      "file": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      "line": 1607,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe2-max"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 8,
+    "P2": 16
+  },
+  "openFindingsCount": 24,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 8,
+  "activeP2": 16
+}

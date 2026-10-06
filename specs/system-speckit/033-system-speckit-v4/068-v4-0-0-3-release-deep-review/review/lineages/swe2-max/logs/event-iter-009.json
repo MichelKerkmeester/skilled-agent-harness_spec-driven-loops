@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "mode": "review",
+  "run": 9,
+  "status": "complete",
+  "focus": "maintainability — sk-code-webflow renumber completeness + sk-design validator doc contract + hub routing fix evidence",
+  "dimensions": ["maintainability"],
+  "filesReviewed": [
+    ".skilled/skills/sk-design/SKILL.md",
+    ".skilled/skills/sk-design/description.json",
+    ".skilled/skills/sk-design/changelog/v2.0.0.0.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/references/validate/phantom-hex-detection.md",
+    ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts",
+    ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+    ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/raw/admission.json",
+    ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/raw/mode-routing-run.sh",
+    ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md",
+    ".skilled/skills/sk-code/sk-code-webflow/references/",
+    ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs",
+    ".skilled/skills/sk-prompt/README.md",
+    ".skilled/bin/compiled-route.cjs",
+    ".skilled/bin/compiled-route-admission.cjs",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/steer.md"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingDetails": [],
+  "traceabilityChecks": {
+    "spec_code": "validator docs now match code exactly (isValidationPass = zero hard failures; claimsScore<80 advisory); stale-doc correction verified against validate.ts:699-765 which predates the range",
+    "checklist_evidence": "benchmark evidence trail coherent: captured drift -> routing fix -> live admission pass (ok:true, 4/4); webflow renumber verified complete (zero v3/v4 remnants)",
+    "skill_contract": "SKILL.md rule 6 rewrite verified live: compiled-route serves sk-design as single selection with policy hash"
+  },
+  "newFindingsRatio": 0,
+  "lineageMode": "new",
+  "generation": 1,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "durationMs": 0,
+  "timestamp": "2026-10-06T05:39:00.000Z"
+}
