@@ -521,3 +521,10 @@ describe('sweepStaleSentinelState (throttled, adapter-invoked, fail-open state m
     });
   });
 });
+
+describe('completion-evidence-sentinel source hygiene', () => {
+  it('source file carries no raw NUL byte', () => {
+    const source = readFileSync(join(import.meta.dirname, '..', 'hooks', 'lib', 'completion-evidence-sentinel.cjs'));
+    expect(source.includes(0)).toBe(false);
+  });
+});

@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -97,5 +98,11 @@ describe('rubric-guard (T2: the optimizer must not write its own ruler)', () => 
     const verdict = rg.rubricMutated(target, cand);
     expect(verdict.mutated).toBe(true);
     expect(verdict.candidateRegions).toContain('Quality Gate Exceptions');
+  });
+});
+
+describe('rubric-guard source hygiene', () => {
+  it('source file carries no raw NUL byte', () => {
+    expect(readFileSync(path.join(SHARED, 'rubric-guard.cjs')).includes(0)).toBe(false);
   });
 });
