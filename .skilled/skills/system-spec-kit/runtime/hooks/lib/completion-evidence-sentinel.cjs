@@ -315,7 +315,7 @@ function dedupKeyForSpecFolder(specFolder) {
 }
 
 function fingerprintFor(specFolder, claimText) {
-  return `sha256:${createHash('sha256').update(`${specFolder} ${claimText}`).digest('hex')}`;
+  return `sha256:${createHash('sha256').update(`${specFolder}\u0000${claimText}`).digest('hex')}`;
 }
 
 function readDedupStore(stateDir) {
