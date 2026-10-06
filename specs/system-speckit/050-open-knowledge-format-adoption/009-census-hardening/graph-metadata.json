@@ -208,8 +208,8 @@
     ],
     "causal_summary": "The census classified 140,287 citations and showed 27,320 as moved, but its accuracy per class rests on 8 moved rows checked by hand",
     "created_at": "2026-10-04T12:00:33Z",
-    "last_save_at": "2026-10-05T04:54:21.449Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-06T04:47:45.373Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55af1fef5cbffa11fa164729ebde203681934aaefdb1d041bb7c4974a79fa5fb",
+    "source_fingerprint": "sha256:c2808d6a3ca3458fc3ca21f7b3ced0bce4eb0c48f5a7e44a423d6bbc1661a40a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91708c81eeccb6c7079adacd771f643ebae98a849c8a0e72aeae4a5fd34cd28c",
       "plan.md": "a95433993899a662d0860ca390aa37313c6a237efe51b9e9816bf80b3040dede",
       "tasks.md": "e3cb877b306626c8b04c95e6bb27ba6f4aa669a01560eb63a0ff66c288376f5a",
       "decision-record.md": "bc774d53649d6cd1d4ac9b0f80eb5aead3b6b1caa0292166d7143ee0d4750297",
-      "implementation-summary.md": "6d91816ece9f9f04c4bdc7f6fda2118988e2797262081223e536ff693360c339"
+      "implementation-summary.md": "803ddee6d0480bc81ac86cde372e5b3a4c8abce0f7e55b59f30c636bd2fd1b74"
     },
     "last_active_at": null
   }
