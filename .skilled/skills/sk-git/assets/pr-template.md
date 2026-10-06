@@ -548,6 +548,7 @@ is not checked.
 | Rule id | What it checks |
 |---------|----------------|
 | `pr.empty` | The description is not empty |
+| `pr.too-long` | The description is at most 200,000 characters |
 | `pr.section-missing` | Each required `## Summary` and `## Test Plan` heading is present |
 | `pr.section-empty` | Each required section has content under it |
 | `pr.placeholder` | No line is still an unfilled `<placeholder>` from this template |
