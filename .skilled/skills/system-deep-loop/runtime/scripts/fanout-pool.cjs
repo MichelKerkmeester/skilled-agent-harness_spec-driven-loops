@@ -123,6 +123,7 @@ function buildFailureClassRollup(results) {
     salvage_miss: 0,
     artifact_miss: 0,
     projection_refusal: 0,
+    needs_input: 0,
   };
   for (const result of results) {
     if (!result || result.status !== 'rejected') {

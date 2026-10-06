@@ -28,11 +28,16 @@ const LINEAGE_FAILURE_CLASSES = Object.freeze({
   SALVAGE_MISS: 'salvage_miss',
   ARTIFACT_MISS: 'artifact_miss',
   PROJECTION_REFUSAL: 'projection_refusal',
+  NEEDS_INPUT: 'needs_input',
 });
 const LINEAGE_RETRY_VERDICTS = Object.freeze({
   TRANSIENT: 'transient',
   FATAL: 'fatal',
 });
+// A worker that exits cleanly after asking a question is not an artifact gap:
+// its transcript ends on a decision the operator still owes, so the lineage
+// must be surfaced rather than salvaged or retried.
+const PENDING_QUESTION_PATTERN = /LOGIC-SYNC REQUIRED|Which truth prevails\?|\bReply\s+\*{0,2}[A-D]\*{0,2}(?=\s|[,.:)]|$)|\bneed your (?:choice|approval|confirmation|decision)\b|\b(?:Shall|Should|May) I (?:proceed|continue)\b/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -162,6 +167,35 @@ function normalizeSalvageSummary(value) {
 }
 
 /**
+ * Detect a pending operator question at the tail of a worker transcript. A
+ * lineage can exit cleanly on a question (logic-sync halt, reply menu), which
+ * the classifier must surface instead of salvaging or retrying.
+ *
+ * @param {string} text - Captured worker transcript.
+ * @returns {{question:string}|null} The pending question (last non-empty line,
+ *   cut to 300 characters), or null when no question is pending.
+ */
+function detectPendingQuestion(text) {
+  if (typeof text !== 'string' || text.trim() === '') return null;
+  // The completion marker is authoritative: a finished lineage never owes the
+  // dispatcher an answer, whatever an earlier iteration asked.
+  if (text.includes('FANOUT_LINEAGE_COMPLETE:')) return null;
+
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+  if (lines.length === 0) return null;
+
+  const lastLine = lines[lines.length - 1];
+  const asked = lines.slice(-12).some((line) => PENDING_QUESTION_PATTERN.test(line))
+    || lastLine.endsWith('?');
+  if (!asked) return null;
+
+  return { question: lastLine.slice(0, 300) };
+}
+
+/**
  * Classify a lineage failure using bounded process, salvage, and gateway signals.
  *
  * @param {Error|Object} error - Error object from a failed lineage worker.
@@ -172,12 +206,17 @@ function classifyLineageFailure(error) {
   const exitCode = error && typeof error === 'object' ? readFiniteInteger(error.exitCode) : null;
   const salvage = error && typeof error === 'object' ? normalizeSalvageSummary(error.salvage) : null;
   const projectionRefusal = Boolean(error && typeof error === 'object' && error.projectionRefused === true);
+  const needsInput = Boolean(error && typeof error === 'object' && error.needsInput === true);
 
   let failureClass = LINEAGE_FAILURE_CLASSES.EXIT;
   if (timedOut) {
     failureClass = LINEAGE_FAILURE_CLASSES.TIMEOUT;
   } else if (projectionRefusal) {
     failureClass = LINEAGE_FAILURE_CLASSES.PROJECTION_REFUSAL;
+  } else if (needsInput) {
+    // A clean exit that ends on a question replays the same question on retry,
+    // so it is terminal until the operator answers.
+    failureClass = LINEAGE_FAILURE_CLASSES.NEEDS_INPUT;
   } else if (salvage && salvage.failed > 0 && salvage.salvaged === 0) {
     failureClass = LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
   } else if (salvage && salvage.failed > 0) {
@@ -514,8 +553,10 @@ module.exports = {
   acquireWriterLock,
   classifyExitCode,
   classifyLineageFailure,
+  detectPendingQuestion,
   installSignalHandlers,
   maybeThrowTestFault,
+  PENDING_QUESTION_PATTERN,
   sleepSync,
   validateNamespaceValue,
 };

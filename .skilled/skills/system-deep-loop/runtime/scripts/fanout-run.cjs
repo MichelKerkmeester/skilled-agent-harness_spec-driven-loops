@@ -18,6 +18,7 @@ const { createHash } = require('node:crypto');
 
 const {
   classifyExitCode,
+  detectPendingQuestion,
   maybeThrowTestFault,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
@@ -366,6 +367,10 @@ const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
 };
+const LINEAGE_CONFIG_BY_LOOP_TYPE = {
+  research: 'deep-research-config.json',
+  review: 'deep-review-config.json',
+};
 const ACTIVE_FANOUT_LOOP_TYPES = new Set(['research', 'review']);
 const DEPRECATED_CONTEXT_FANOUT_MESSAGE = 'loopType must be "research" or "review"; context fan-out is deprecated. Use @context for one-shot retrieval, /deep:research or /deep:review bounded snapshots for iterative work, or /speckit:plan for implementation planning.';
 
@@ -563,6 +568,31 @@ function holdsLiveLoopLock(dir, isStaleLoopLock) {
     if (!isStale) return true;
   }
   return false;
+}
+
+/**
+ * The session id a lineage's config stored at init, or null when there is none to reuse.
+ *
+ * A resumed run writes its state under the session id its config already names, so minting a
+ * fresh id on every dispatch would strand the prior run's records under a name nothing reads
+ * back. A complete config is deliberately not reused: that run is over, and the next dispatch
+ * of the same label starts a new session rather than continuing a finished one.
+ */
+function readStoredLineageSessionId(loopType, lineageDir) {
+  const configName = LINEAGE_CONFIG_BY_LOOP_TYPE[loopType];
+  if (!configName) return null;
+  let config;
+  try {
+    config = JSON.parse(fs.readFileSync(path.join(lineageDir, configName), 'utf8'));
+  } catch {
+    return null;
+  }
+  if (!config || typeof config !== 'object' || config.status === 'complete') return null;
+  const storedId = loopType === 'review'
+    ? config.sessionId
+    : config.lineage?.sessionId ?? config.sessionId;
+  if (typeof storedId !== 'string' || storedId.trim() === '') return null;
+  return storedId;
 }
 
 /**
@@ -1446,6 +1476,17 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     loopType === 'review'
       ? '.skilled/skills/system-deep-loop/deep-review/SKILL.md'
       : '.skilled/skills/system-deep-loop/deep-research/SKILL.md';
+  // The child copies one directory path into every tool call; a repo-relative form drops the
+  // home prefix that a retyped absolute path most often corrupts. A cursor leaf runs in a
+  // neutral workspace outside the repository, where only the absolute form resolves.
+  const absoluteLineageDir = path.resolve(process.cwd(), lineageDir);
+  const relativeLineageDir = path.relative(process.cwd(), absoluteLineageDir);
+  const lineageDirStaysInsideCwd = relativeLineageDir !== ''
+    && !relativeLineageDir.startsWith('..')
+    && !path.isAbsolute(relativeLineageDir);
+  const promptDir = lineage.kind === 'cli-cursor' || !lineageDirStaysInsideCwd
+    ? absoluteLineageDir
+    : relativeLineageDir;
   const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
   const detachedIntro = lineage.kind === 'cli-opencode'
     ? [
@@ -1553,6 +1594,11 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         ]
       : [];
   return [
+    `GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.`,
+    `You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.`,
+    `Your write authority is already bound to ${promptDir}. The dispatcher's answer to every other stop-and-ask rule (Halt Conditions, Logic-Sync, stop-for-yes): follow the workflow within this prompt's write limits, record the conflict in the current iteration, and continue. Never end a turn with a question or A/B/C/D options.`,
+    `A failed call means re-check the path and retry; halt only after three failures on the same call. The lineage is complete only when its files exist on disk and the completion line below is printed.`,
+    ``,
     `You are orchestrating the ${agentName} workflow YAML as a detached fan-out lineage.`,
     ...detachedIntro,
     ``,
@@ -1566,24 +1612,24 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `command; bind artifact_dir directly to the override value.`,
     ``,
     `Run phase_init, phase_main_loop (${stopClause}), and phase_synthesis.`,
-    `Write EVERY file you create or modify inside ${lineageDir} and nowhere else — that directory is`,
-    `your entire write surface. Its absolute path is ${path.resolve(process.cwd(), lineageDir)}; the`,
+    `Write EVERY file you create or modify inside ${promptDir} and nowhere else — that directory is`,
+    `your entire write surface. Its absolute path is ${absoluteLineageDir}; the`,
     `relative form is resolved from the repository root, so a path that drops the leading`,
     `directories (for example one starting with review/ or research/) lands OUTSIDE the lineage and`,
     `fails it. You may read anywhere, but do NOT modify, create, or delete any file`,
-    `outside ${lineageDir}, and do NOT run any command that writes outside it: in particular do NOT`,
+    `outside ${promptDir}, and do NOT run any command that writes outside it: in particular do NOT`,
     `run generate-context.js, validate.sh (especially --recursive), or any git write/checkout/commit`,
     `command. Producing findings does not mean running the repo's tooling — a single out-of-scope`,
     `write fails this whole lineage.`,
-    `Copy that directory path verbatim into every write; never retype it or rebuild it from the`,
-    `packet or track name, because one changed character lands the write outside the lineage.`,
+    `Use the repository-relative form ${promptDir} in every tool call, copied character for character; never type the absolute home prefix or rebuild the path from the packet or track name.`,
+    `A "file not found" on a path you just wrote means the path was mistyped: re-copy ${promptDir} and retry.`,
     // A CLI lineage runs every iteration from this one prompt, so a lead's review file reaches
     // later iterations only when the prompt names it. Native lineages receive a different input.
     ...(lineage.kind !== 'native'
       ? [
-          `Before each iteration, read ${path.resolve(process.cwd(), lineageDir, 'steer.md')} when it exists.`,
-          `It is a lead's review of earlier iterations: weigh it, but it never overrides your angle or the workflow`,
-          `contract and grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
+          `Before init, before each iteration, and before resolving any conflict, read ${path.join(promptDir, 'steer.md')} when it exists.`,
+          `It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.`,
+          `It grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
         ]
       : []),
     ...(hasIterationCap && stopPolicy === 'max-iterations'
@@ -3357,7 +3403,7 @@ async function main() {
       fs.mkdirSync(lineageDir, { recursive: true });
       fs.mkdirSync(stateDir, { recursive: true });
 
-      const sessionId = `fanout-${lineage.label}-${runId}`;
+      const sessionId = readStoredLineageSessionId(loopType, lineageDir) || `fanout-${lineage.label}-${runId}`;
       const promptLineageDir = path.resolve(process.cwd(), lineageDir);
       const prompt = buildLoopPrompt(loopType, specFolder, promptLineageDir, sessionId, lineage, researchTopic, {
         convergenceThreshold,
@@ -3751,6 +3797,11 @@ async function main() {
       const savedStderr = typeof result.stderr === 'string' ? result.stderr : '';
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.err'), savedStderr, 'utf8');
 
+      // A lineage can exit cleanly on a question the operator still owes an answer to. That
+      // failure is terminal until answered, so the exit-0 gates below mark it needs_input
+      // instead of letting the salvage branches label it a retryable artifact gap.
+      const pendingQuestion = detectPendingQuestion(savedStdout);
+
       // Recover missing iteration files from captured stdout when possible. Runs
       // BEFORE the failure throw below so iteration recovery is never lost.
       const salvage = runSalvageSweep(lineageDir, loopType, savedStdout);
@@ -3811,6 +3862,19 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: Math.max(1, salvage.failed) };
         failure.missingArtifacts = missingArtifacts;
+        if (pendingQuestion) {
+          failure.needsInput = true;
+          failure.reason = 'needs_input';
+          appendFanoutStatusLedger(ledgerPath, {
+            event: 'needs_input',
+            status: 'needs_input',
+            label: lineage.label,
+            attempt,
+            run_id: runId,
+            question: pendingQuestion.question,
+            at: new Date().toISOString(),
+          });
+        }
         attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
@@ -3842,6 +3906,19 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: salvage.failed };
         failure.missingArtifacts = [];
+        if (pendingQuestion) {
+          failure.needsInput = true;
+          failure.reason = 'needs_input';
+          appendFanoutStatusLedger(ledgerPath, {
+            event: 'needs_input',
+            status: 'needs_input',
+            label: lineage.label,
+            attempt,
+            run_id: runId,
+            question: pendingQuestion.question,
+            at: new Date().toISOString(),
+          });
+        }
         attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
@@ -4002,6 +4079,7 @@ module.exports = {
   decorateSlotAccountingEvent,
   discoverForeignLiveRunDirs,
   resolveTopLevelPacketDir,
+  readStoredLineageSessionId,
   startLineageProgressHeartbeat,
   startLineageStallWatchdog,
   statusForLedgerEvent,
