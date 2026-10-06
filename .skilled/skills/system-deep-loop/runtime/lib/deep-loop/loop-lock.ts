@@ -25,6 +25,7 @@ export interface LoopLockData {
   packetId: string;
   runtimeKind: ExecutorKind | 'main';
   acquireNonce?: string;
+  ownerKind?: 'process' | 'transient';
   phase?: string;
   lastActivityIso?: string;
 }
@@ -91,6 +92,7 @@ type SerializedLoopLockData = {
   packet_id: string;
   runtime_kind: ExecutorKind | 'main';
   acquire_nonce?: string;
+  owner_kind?: 'process' | 'transient';
   phase?: string;
   last_activity_iso?: string;
 };
@@ -112,6 +114,9 @@ function normalizeLoopLockData(data: LoopLockData): LoopLockData {
   const acquireNonce = typeof data.acquireNonce === 'string' && data.acquireNonce.length > 0
     ? data.acquireNonce
     : undefined;
+  const ownerKind = data.ownerKind === 'process' || data.ownerKind === 'transient'
+    ? data.ownerKind
+    : undefined;
 
   const normalized: LoopLockData = {
     ownerPid: data.ownerPid,
@@ -125,6 +130,9 @@ function normalizeLoopLockData(data: LoopLockData): LoopLockData {
   };
   if (acquireNonce !== undefined) {
     normalized.acquireNonce = acquireNonce;
+  }
+  if (ownerKind !== undefined) {
+    normalized.ownerKind = ownerKind;
   }
   return normalized;
 }
@@ -185,6 +193,9 @@ function serializeLock(data: LoopLockData): SerializedLoopLockData {
   if (normalized.acquireNonce !== undefined) {
     serialized.acquire_nonce = normalized.acquireNonce;
   }
+  if (normalized.ownerKind !== undefined) {
+    serialized.owner_kind = normalized.ownerKind;
+  }
   return serialized;
 }
 
@@ -202,6 +213,7 @@ function deserializeLock(raw: unknown): LoopLockData | null {
     typeof candidate.packet_id !== 'string' ||
     typeof candidate.runtime_kind !== 'string' ||
     (candidate.acquire_nonce !== undefined && typeof candidate.acquire_nonce !== 'string') ||
+    (candidate.owner_kind !== undefined && typeof candidate.owner_kind !== 'string') ||
     (candidate.phase !== undefined && typeof candidate.phase !== 'string') ||
     (candidate.last_activity_iso !== undefined && typeof candidate.last_activity_iso !== 'string')
   ) {
@@ -219,6 +231,7 @@ function deserializeLock(raw: unknown): LoopLockData | null {
     packetId: candidate.packet_id,
     runtimeKind: candidate.runtime_kind as ExecutorKind | 'main',
     acquireNonce: candidate.acquire_nonce,
+    ownerKind: candidate.owner_kind,
     phase: candidate.phase,
     lastActivityIso: candidate.last_activity_iso,
   });
@@ -612,8 +625,10 @@ export function processAlive(pid: number): boolean {
 /**
  * Determine whether a loop lock has expired or the owner process is dead.
  *
- * A lock is stale if the owner PID no longer exists or the heartbeat
- * has exceeded twice the TTL.
+ * A lock is stale if the heartbeat has exceeded twice the TTL. Process-owned
+ * records are also stale when the owner PID no longer exists; transient
+ * records have no reliable owner process to probe, so only heartbeat age
+ * expires them.
  *
  * @param data - The loop lock data to check.
  * @param now - Reference timestamp (defaults to now).
@@ -623,8 +638,9 @@ export function isStaleLoopLock(data: LoopLockData, now: Date = new Date()): boo
   const heartbeatMs = Date.parse(data.lastHeartbeatIso);
   const ttlMs = Number.isFinite(data.ttlMs) ? data.ttlMs : 0;
   const expired = !Number.isFinite(heartbeatMs) || now.getTime() - heartbeatMs > ttlMs * 2;
+  const ownerDead = data.ownerKind === 'transient' ? false : !processAlive(data.ownerPid);
 
-  return expired || !processAlive(data.ownerPid);
+  return expired || ownerDead;
 }
 
 /**

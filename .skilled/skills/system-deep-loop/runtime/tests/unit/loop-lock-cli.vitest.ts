@@ -5,7 +5,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
@@ -100,6 +100,34 @@ describe('loop-lock CLI adapter mirrors the library', () => {
       ownerPid: process.pid, startedAtIso: now, ttlMs: 300_000, lastHeartbeatIso: now, packetId: 'pkt-lib', runtimeKind: 'main',
     });
     expect(libResult.acquired).toBe(false);
+  });
+
+  it('a second CLI acquire does not reclaim a fresh lock acquired without an owner pid', () => {
+    const lockPath = tempLock();
+    const first = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A']);
+    expect(first.json).toMatchObject({ command: 'acquire', acquired: true });
+
+    const second = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-B']);
+    expect(second.json).toMatchObject({ command: 'acquire', acquired: false });
+    expect((second.json.holder as { packetId: string }).packetId).toBe('pkt-A');
+    expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe('pkt-A');
+  });
+
+  it('a transient lock whose heartbeat is older than twice its TTL is reclaimed', () => {
+    const lockPath = tempLock();
+    const first = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A', '--ttl-ms', '50']);
+    expect(first.json).toMatchObject({ command: 'acquire', acquired: true });
+
+    // Age the heartbeat past the 2x TTL window so the reclaim is driven by
+    // heartbeat age rather than the finished CLI process's pid.
+    const aged = JSON.parse(readFileSync(lockPath, 'utf8'));
+    aged.last_heartbeat_iso = new Date(Date.now() - 5_000).toISOString();
+    writeFileSync(lockPath, `${JSON.stringify(aged, null, 2)}\n`, 'utf8');
+
+    const second = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-B']);
+    expect(second.json).toMatchObject({ command: 'acquire', acquired: true });
+    expect(second.json).toHaveProperty('reclaimed');
+    expect((second.json.reclaimed as { packetId: string }).packetId).toBe('pkt-A');
   });
 
   it('refresh and release honor owner-pid gating like the library', () => {

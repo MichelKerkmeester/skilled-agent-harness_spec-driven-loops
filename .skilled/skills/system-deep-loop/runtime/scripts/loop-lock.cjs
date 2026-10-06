@@ -117,7 +117,7 @@ function readDiskLock(lockPath) {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
     return null;
   }
-  return {
+  const holder = {
     ownerPid: raw.owner_pid,
     startedAtIso: raw.started_at_iso,
     ttlMs: raw.ttl_ms,
@@ -125,6 +125,10 @@ function readDiskLock(lockPath) {
     packetId: raw.packet_id,
     runtimeKind: raw.runtime_kind,
   };
+  if (typeof raw.owner_kind === 'string') {
+    holder.ownerKind = raw.owner_kind;
+  }
+  return holder;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -153,14 +157,21 @@ async function main() {
       : 'main';
     const ownerPid = resolveOwnerPid(flags);
     const now = new Date().toISOString();
-    const result = lib.acquireLoopLock(lockPath, {
+    const lockData = {
       ownerPid,
       startedAtIso: now,
       ttlMs,
       lastHeartbeatIso: now,
       packetId,
       runtimeKind,
-    });
+    };
+    // A lock acquired through a short-lived CLI process has no owner pid that
+    // outlives the command, so it is marked transient and expires on heartbeat
+    // age instead of pid liveness.
+    if (flags.ownerPid === undefined) {
+      lockData.ownerKind = 'transient';
+    }
+    const result = lib.acquireLoopLock(lockPath, lockData);
     jsonOut({ command: 'acquire', ...result });
     return;
   }
@@ -169,12 +180,12 @@ async function main() {
     const lockPath = requireString(flags, 'lockPath');
     const holder = fs.existsSync(lockPath) ? readDiskLock(lockPath) : null;
     if (!holder) {
-      jsonOut({ command: 'status', exists: false, stale: false, alive: false, holder: null });
+      jsonOut({ command: 'status', exists: false, stale: false, alive: false, owner_kind: null, holder: null });
       return;
     }
     const stale = lib.isStaleLoopLock(holder);
     const alive = lib.processAlive(holder.ownerPid);
-    jsonOut({ command: 'status', exists: true, held: !stale, stale, alive, holder });
+    jsonOut({ command: 'status', exists: true, held: !stale, stale, alive, owner_kind: holder.ownerKind ?? 'process', holder });
     return;
   }
 
