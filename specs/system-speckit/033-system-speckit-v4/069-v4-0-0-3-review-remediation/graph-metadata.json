@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation",
+  "spec_folder": "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4.0.0.3 review remediation",
+      "review gateway event rows",
+      "devin write tool spec gate",
+      "stale lock reclaim race",
+      "luna lineage halt fixes",
+      "v4.0.0.3 remediation plan",
+      "review finding fix plan",
+      "lineage prompt fix plan",
+      "v4.0.0.3 remediation tasks",
+      "review finding fix tasks",
+      "verification checklist",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "gateway",
+      "event",
+      "rows",
+      "devin",
+      "write",
+      "tool",
+      "spec",
+      "gate",
+      "stale",
+      "lock"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".devin/hooks.v1.json",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-salvage.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On the default convergence policy, every `/deep:review` iteration writes `type:\"event\"` rows that `append-mode-event.cjs` rejects with exit 1",
+    "created_at": "2026-10-06T10:15:27Z",
+    "last_save_at": "2026-10-06T11:22:38.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:10886a64b3a2bf0c64def9381e61c374a02516c90b5cd77f397f41ec70c1476c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be3fad2ae4ddb553fbbbad685455d3b713e695818c7726135174fedbb9978e00",
+      "plan.md": "3645a59e9a315064c0116fb0b209ccb8417acf5c43d72ae9b8a6da0c69be21fd",
+      "tasks.md": "42cf846d3a47e015a480dfb83677dffb0522e446e9d9edd0e8771fd10933f954",
+      "decision-record.md": "56cd001859a41bbb41615fb81f7c43ae5b7d3b46944350bfb2ce463e54af4fa3",
+      "implementation-summary.md": "5c48bddacb0effb3f5ef50d5e3d6f6a617ab3448975ef2d3de6efae7a94b7c78",
+      "research/research.md": "312413b0cfc6284d56bcff8c9b1f07ca52b1476a346053c2334bd95844b876f3"
+    },
+    "last_active_at": null
+  }
+}
