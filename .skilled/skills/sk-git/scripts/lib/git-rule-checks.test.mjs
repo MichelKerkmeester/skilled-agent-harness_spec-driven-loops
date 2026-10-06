@@ -107,6 +107,12 @@ test('a directory-scoped commit silently drops untracked files inside that scope
   assert.equal(check('commit-scope-drops-untracked', 'git commit -a -m x', dir), false);
 });
 
+test('a bundled -am commit still counts as a whole-tree commit when untracked files exist', () => {
+  const dir = repo();
+  fs.writeFileSync(path.join(dir, 'untracked-flag.txt'), 'new\n');
+  assert.equal(check('commit-scope-drops-untracked', 'git commit -am x', dir), false);
+});
+
 test('naming an untracked file directly needs no advisory because git refuses it', () => {
   const dir = repo();
   fs.writeFileSync(path.join(dir, 'untracked.txt'), 'new\n');
@@ -321,6 +327,30 @@ test('parser separates flags from pathspec across invocation shapes', () => {
   assert.equal(parseGitCommand('git -C /repo status').effectiveDir, '/repo', 'the -C target becomes the effective directory');
   assert.equal(parseGitCommand('FOO=1 git add x').sub, 'add');
   assert.equal(parseGitCommand('echo not-git'), null);
+});
+
+test('bundled commit flags split into their flags and never leave a message in the pathspec', () => {
+  const bundled = parseGitCommand('git commit -am "wip"');
+  assert.deepEqual(bundled.flags, ['-a', '-m']);
+  assert.deepEqual(bundled.paths, []);
+
+  const signed = parseGitCommand('git commit -s -m "wip"');
+  assert.deepEqual(signed.flags, ['-s', '-m']);
+  assert.deepEqual(signed.paths, []);
+
+  const scoped = parseGitCommand('git commit -om "wip" src');
+  assert.deepEqual(scoped.flags, ['-o', '-m']);
+  assert.deepEqual(scoped.paths, ['src']);
+});
+
+test('short-flag clusters outside commit keep their shape', () => {
+  const clean = parseGitCommand('git clean -fdx');
+  assert.deepEqual(clean.flags, ['-fdx']);
+  assert.deepEqual(clean.paths, []);
+
+  const merge = parseGitCommand('git merge -Xours main');
+  assert.deepEqual(merge.flags, ['-Xours']);
+  assert.deepEqual(merge.paths, ['main']);
 });
 
 test('a pathspec behind a shell expansion never reads as matching nothing', () => {

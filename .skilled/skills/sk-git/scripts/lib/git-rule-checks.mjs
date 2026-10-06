@@ -42,9 +42,33 @@ const VALUE_FLAGS = new Set([
   '-s', '--strategy', '-X', '--strategy-option', '--source', '-b', '-B', '--orphan', '-u',
 ]);
 
-// `-u` takes a value for `push` (upstream) but is a bare flag for `add` (update). Subcommand
-// decides, so the ambiguous ones are listed per subcommand rather than globally.
-const BARE_IN_SUBCOMMAND = { add: new Set(['-u']), restore: new Set(['-s']) };
+// One token consumes an argument for one subcommand and nothing for another: `-u` is an upstream
+// for `push` but a bare toggle for `add`, and `-s` takes a source for `restore` but only signs
+// off a `commit`. Subcommand decides, so the ambiguous ones are listed per subcommand rather than
+// globally, and a listed flag never swallows the token after it.
+const BARE_IN_SUBCOMMAND = {
+  add: new Set(['-u']),
+  restore: new Set(['-s']),
+  commit: new Set(['-s', '-u']),
+};
+
+// `git commit` is the only subcommand whose flags are routinely typed as a cluster, so splitting
+// one needs a per-option arity: `-am` is `-a` plus a value-taking `-m`, while other letters
+// consume nothing. A single global list cannot say that, because the same letter differs per
+// subcommand. Options absent from this table are bare.
+export const COMMIT_OPTION_ARITY = new Map([
+  ['-m', 'value'], ['--message', 'value'],
+  ['-F', 'value'], ['--file', 'value'],
+  ['-C', 'value'], ['--reuse-message', 'value'],
+  ['-c', 'value'], ['--reedit-message', 'value'],
+  ['-t', 'value'], ['--template', 'value'],
+  ['--author', 'value'], ['--date', 'value'], ['--cleanup', 'value'],
+  ['--fixup', 'value'], ['--squash', 'value'], ['--trailer', 'value'],
+  ['--pathspec-from-file', 'value'],
+  // `-S[<keyid>]` and `-u[<mode>]` accept an attached value only, so a following token is never
+  // theirs to consume.
+  ['-S', 'optional'], ['-u', 'optional'],
+]);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. COMMAND PARSING
@@ -57,6 +81,60 @@ const BARE_IN_SUBCOMMAND = { add: new Set(['-u']), restore: new Set(['-s']) };
 /** Strip one pair of surrounding quotes from a shell token. */
 function unquote(token) {
   return typeof token === 'string' ? token.replace(/^["']|["']$/g, '') : '';
+}
+
+/**
+ * Split a short-flag cluster into one flag per token so `-am msg` reads like `-a -m msg`.
+ *
+ * Git accepts a value-bearing short flag last in a cluster, attached or separated. Left whole,
+ * that value stays glued to the flag and the token after it is read as a pathspec, so every
+ * path-sensitive check reasons about a word from the commit message. A value is copied through
+ * verbatim and never expanded, so a message that itself looks like a flag stays a message.
+ *
+ * @param {string[]} args - Unquoted argv tokens.
+ * @param {Map<string, 'value'|'optional'>} arity - Option name to the argv it consumes.
+ * @returns {string[]} Tokens with short-flag clusters split.
+ */
+export function expandShortFlags(args, arity) {
+  const out = [];
+  for (let i = 0; i < args.length; i += 1) {
+    const token = args[i];
+    if (token === '--') {
+      // Everything behind the separator is a pathspec, even when it spells a flag.
+      out.push(...args.slice(i));
+      break;
+    }
+    if (!/^-[A-Za-z]/.test(token)) {
+      out.push(token);
+      if (!token.includes('=') && arity.get(token) === 'value' && i + 1 < args.length) {
+        i += 1;
+        out.push(args[i]);
+      }
+      continue;
+    }
+    for (let j = 1; j < token.length; j += 1) {
+      const flag = `-${token[j]}`;
+      const kind = arity.get(flag);
+      if (kind === 'value') {
+        // The value is what follows, attached or separate, and is never re-read as a flag.
+        out.push(flag);
+        if (j + 1 < token.length) {
+          out.push(token.slice(j + 1));
+        } else if (i + 1 < args.length) {
+          i += 1;
+          out.push(args[i]);
+        }
+        break;
+      }
+      if (kind === 'optional') {
+        // An optional value is meaningful only attached; a separate token belongs to the next flag.
+        out.push(`-${token.slice(j)}`);
+        break;
+      }
+      out.push(flag);
+    }
+  }
+  return out;
 }
 
 /**
@@ -94,15 +172,17 @@ export function parseGitCommand(command, sessionCwd = process.cwd()) {
   const sub = m[2];
   const rest = (m[3] || '').trim();
 
-  const tokens = rest.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
+  const tokens = (rest.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || []).map(unquote);
+  // Cluster splitting is commit-only: other checks match their clusters whole on purpose
+  // (`clean -fdx`, `merge -Xours`), so expanding them would break the shape those checks key on.
+  const expanded = sub === 'commit' ? expandShortFlags(tokens, COMMIT_OPTION_ARITY) : tokens;
   const flags = [];
   const paths = [];
   let afterSeparator = false;
   let skipNext = false;
   const bare = BARE_IN_SUBCOMMAND[sub] || new Set();
 
-  for (const raw of tokens) {
-    const t = raw.replace(/^["']|["']$/g, '');
+  for (const t of expanded) {
     if (skipNext) { skipNext = false; continue; }
     if (t === '--') { afterSeparator = true; continue; }
     if (!afterSeparator && t.startsWith('-')) {

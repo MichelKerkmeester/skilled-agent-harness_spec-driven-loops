@@ -26,6 +26,11 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 import {
+  COMMIT_OPTION_ARITY,
+  expandShortFlags,
+} from '../lib/git-rule-checks.mjs';
+
+import {
   ContractError,
   loadContract,
   validateBranch,
@@ -181,22 +186,23 @@ function optionValue(args, i, short, long) {
 function commitMessage(args, dir) {
   const parts = [];
   let fromFile = null;
-  for (let i = 0; i < args.length;) {
-    const m = optionValue(args, i, '-m', '--message');
+  const words = expandShortFlags(args, COMMIT_OPTION_ARITY);
+  for (let i = 0; i < words.length;) {
+    const m = optionValue(words, i, '-m', '--message');
     if (m) {
       if (m.value === undefined) return null;
       parts.push(m.value);
       i = m.next;
       continue;
     }
-    const f = optionValue(args, i, '-F', '--file');
+    const f = optionValue(words, i, '-F', '--file');
     if (f) {
       if (f.value === undefined || f.value === '-') return null;
       fromFile = path.resolve(dir, f.value);
       i = f.next;
       continue;
     }
-    if (/^(-C|-c|--reuse-message|--reedit-message|--fixup|--squash)(=|$)/.test(args[i])) return null;
+    if (/^(-C|-c|--reuse-message|--reedit-message|--fixup|--squash)(=|$)/.test(words[i])) return null;
     i += 1;
   }
   if (fromFile) {

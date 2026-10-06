@@ -364,6 +364,32 @@ test('the gate refuses a bad inline commit message and allows a good one', () =>
   assert.match(evaluateCommand(`cd ${dir} && git add . && git commit -m "feat(sk-git): add a thing"`, '/'), /body\.required/);
 });
 
+test('a bundled short-flag cluster cannot carry a bad subject past the gate', () => {
+  const dir = tempRepo();
+  const messageFile = path.join(dir, 'message.txt');
+  fs.writeFileSync(messageFile, 'wip\n');
+  const bundled = [
+    'git commit -am "wip"',
+    'git commit -sm "wip"',
+    'git commit -qm "wip"',
+    'git commit -asm "wip"',
+    `git commit -aF "${messageFile}"`,
+  ];
+  for (const command of bundled) {
+    assert.match(evaluateCommand(command, dir), /subject\.format/, command);
+  }
+});
+
+test('a bundled commit flag keeps a conventional subject beside its separate body', () => {
+  const dir = tempRepo();
+  assert.equal(evaluateCommand('git commit -am "feat(sk-git): add a thing" -m "Explains why."', dir), null);
+});
+
+test('a short value flag never expands the token that is its value', () => {
+  const dir = tempRepo();
+  assert.match(evaluateCommand('git commit -m -am', dir), /subject\.format/);
+});
+
 test('the gate reads heredoc messages the way agents write them', () => {
   const dir = tempRepo();
   const ok = `git commit -m "$(cat <<'EOF'\nfeat(sk-git): add a thing\n\nExplains why.\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)"`;
