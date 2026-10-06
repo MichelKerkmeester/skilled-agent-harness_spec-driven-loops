@@ -5,7 +5,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -527,6 +527,97 @@ describe('loop-lock', () => {
     } finally {
       vi.doUnmock('node:fs');
       vi.resetModules();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  type ReclaimRaceOutcome = {
+    first: LoopLockAcquireResult | null;
+    second: LoopLockAcquireResult;
+  };
+
+  /**
+   * Runs two reclaimers over an already-stale lock so the second claim rename
+   * lands after the first reclaimer has published its own record.
+   *
+   * Reclaimer A is driven to completion from inside B's claim rename: that is the
+   * exact instant after B's stale read in which A replaces the file B observed.
+   * The window is otherwise unreachable without real concurrent processes.
+   */
+  async function runStaleReclaimRace(lockPath: string): Promise<ReclaimRaceOutcome> {
+    let loopLock: typeof import('../../lib/deep-loop/loop-lock.js') | null = null;
+    let firstRan = false;
+    let first: LoopLockAcquireResult | null = null;
+
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        renameSync(from: Parameters<typeof readFileSync>[0], to: Parameters<typeof readFileSync>[0]) {
+          const isClaimRename = typeof from === 'string' && typeof to === 'string'
+            && from === lockPath && to.includes('.reclaiming.');
+          if (isClaimRename && !firstRan) {
+            firstRan = true;
+            first = loopLock?.acquireLoopLock(lockPath, lockData({ packetId: 'first-reclaimer' })) ?? null;
+          }
+          actual.renameSync(from as string, to as string);
+        },
+      };
+    });
+
+    try {
+      loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const second = loopLock.acquireLoopLock(lockPath, lockData({ packetId: 'second-reclaimer' }));
+      return { first, second };
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+    }
+  }
+
+  it('a late reclaimer restores, untouched, a lock another reclaimer published after its stale read', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    writeSerializedLock(lockPath, lockData({ ownerPid: knownDeadPid(), packetId: 'stale-holder' }));
+
+    try {
+      const { first, second } = await runStaleReclaimRace(lockPath);
+
+      expect(first).toMatchObject({ acquired: true, lock: { packetId: 'first-reclaimer' } });
+      const firstAcquired = first;
+      if (!firstAcquired?.acquired) throw new Error('Expected the first reclaimer to acquire the stale lock');
+
+      // B claimed a record it never observed, so it must hand that record back
+      // instead of deleting another live owner's lock.
+      expect(second).toMatchObject({ acquired: false, holder: { packetId: 'first-reclaimer' } });
+
+      const onDisk = JSON.parse(readFileSync(lockPath, 'utf8')) as { acquire_nonce?: string; packet_id?: string };
+      expect(onDisk.packet_id).toBe('first-reclaimer');
+      expect(onDisk.acquire_nonce).toBe(firstAcquired.lock.acquireNonce);
+      expect(readdirSync(tempDir).filter((name) => name.includes('.reclaiming.'))).toEqual([]);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('the corrupt-file reclaim branch also restores a valid lock it did not observe', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    writeFileSync(lockPath, 'not json', 'utf8');
+
+    try {
+      const { first, second } = await runStaleReclaimRace(lockPath);
+
+      expect(first).toMatchObject({ acquired: true, lock: { packetId: 'first-reclaimer' } });
+
+      // This branch has no observed record to compare against, so it must still
+      // detect that the file it moved aside carries a live owner's record.
+      expect(second).toMatchObject({ acquired: false });
+
+      const onDisk = JSON.parse(readFileSync(lockPath, 'utf8')) as { packet_id?: string };
+      expect(onDisk.packet_id).toBe('first-reclaimer');
+    } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });

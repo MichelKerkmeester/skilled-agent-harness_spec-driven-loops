@@ -286,16 +286,43 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
 }
 
 /**
+ * Determine whether two observers are looking at the same lock record.
+ *
+ * Both null means the path held no parsable record for either observer, so
+ * there is nothing a reclaimer could wrongly delete. Otherwise the owner
+ * pid, the acquire nonce and the last heartbeat must all agree: those three
+ * fields are what changes when a path is re-published, so any difference
+ * means the record was replaced between the read and the claim.
+ */
+function sameLockHolder(a: LoopLockData | null, b: LoopLockData | null): boolean {
+  if (!a || !b) {
+    return a === b;
+  }
+
+  return (
+    a.ownerPid === b.ownerPid &&
+    a.acquireNonce === b.acquireNonce &&
+    a.lastHeartbeatIso === b.lastHeartbeatIso
+  );
+}
+
+/**
  * Atomically claim a stale lock so exactly one reclaimer can replace it.
  *
  * rename() of a single inode succeeds for only the first caller; every
  * other concurrent reclaimer finds the source already gone (ENOENT) and
- * loses the race. The winner moves the stale file aside, then takes the
- * now-vacant path via the same O_EXCL create the fresh path uses, so two
- * reclaimers can never both end up holding the lock. A plain temp+rename
- * write would be last-writer-wins and let both believe they acquired.
+ * loses the race. The winner moves the file aside, reads back the record
+ * it moved, and replaces it only when that record is still the one it
+ * observed as stale: a reclaimer whose stale read raced a fresh publish
+ * would otherwise rename the fresh record aside and delete it, letting
+ * both callers believe they acquired. A plain temp+rename write would be
+ * last-writer-wins and has the same flaw.
  */
-function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean {
+function tryReclaimStaleLoopLock(
+  lockPath: string,
+  data: LoopLockData,
+  observedHolder: LoopLockData | null,
+): boolean {
   const reclaimPath = makeClaimPath(lockPath, 'reclaiming');
   try {
     renameSync(lockPath, reclaimPath);
@@ -307,10 +334,42 @@ function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean 
     throw error;
   }
 
+  // The rename may have moved a record published after the stale read, so
+  // hand it back instead of deleting a lock this reclaimer never observed.
+  if (!sameLockHolder(readLoopLock(reclaimPath), observedHolder)) {
+    restoreReclaimedLoopLock(lockPath, reclaimPath);
+    return false;
+  }
+
   try {
     return writeLoopLockExclusive(lockPath, data);
   } finally {
     rmSync(reclaimPath, { force: true });
+  }
+}
+
+/**
+ * Put a reclaimed record back at the lock path without overwriting.
+ *
+ * link() fails with EEXIST rather than replacing whatever is there, so a
+ * record a third acquirer published after the rename cannot be silently
+ * destroyed; a rename back would replace it. EEXIST means that acquirer
+ * now owns the path and the moved copy is discarded, while any other
+ * failure rethrows and keeps the claim file so the moved record survives.
+ */
+function restoreReclaimedLoopLock(lockPath: string, reclaimPath: string): void {
+  try {
+    linkSync(reclaimPath, lockPath);
+  } catch (error: unknown) {
+    if (errorCode(error) !== 'EEXIST') {
+      throw error;
+    }
+  }
+
+  rmSync(reclaimPath, { force: true });
+  try {
+    fsyncPath(dirname(lockPath));
+  } catch {
   }
 }
 
@@ -465,13 +524,13 @@ function acquireLoopLockFileOnly(lockPath: string, data: LoopLockData): LoopLock
       }
       return failedAcquire(readLoopLock(lockPath));
     }
-    if (tryReclaimStaleLoopLock(lockPath, lock)) {
+    if (tryReclaimStaleLoopLock(lockPath, lock, null)) {
       return { acquired: true, lock };
     }
     return failedAcquire(readLoopLock(lockPath));
   }
 
-  if (tryReclaimStaleLoopLock(lockPath, lock)) {
+  if (tryReclaimStaleLoopLock(lockPath, lock, holder)) {
     return { acquired: true, lock, reclaimed: holder };
   }
   return failedAcquire(readLoopLock(lockPath));
