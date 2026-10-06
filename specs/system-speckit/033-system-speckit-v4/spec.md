@@ -175,6 +175,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 66 | 066-pre-v4-spec-upgrade/ | One deterministic command brings spec folders written under v3.x to a full `validate.sh --strict` pass with no authored LLM edits. As upgraded, 2 of 170 active v3.0 packets and 0 of 1,007 active v3.6 packets pass | in progress |
 | 67 | 067-root-docs-and-git-hook-disclosure/ | CONTRIBUTING names Skilled and the current clone URL. The README says what the git hooks block and links every off switch from one section. Every git hook block message names its bypass | complete |
 | 68 | 068-v4-0-0-3-release-deep-review/ | [Phase 68 scope] | Pending |
+| 69 | 069-v4-0-0-3-review-remediation/ | [Phase 69 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -207,6 +208,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 050-ci-cleanup-pi-proof | 066-pre-v4-spec-upgrade | 050 is Complete. 066 measures legacy packets against `validate.sh --strict` as it stands, so its counts are rerun whenever a later phase changes what strict checks | 066 validates strict, its harness reports 170 of 170 (v3.0) and 1,007 of 1,007 (v3.6) active packets passing after one run, and a second run changes no file |
 | 066-pre-v4-spec-upgrade | 067-root-docs-and-git-hook-disclosure | 066 is Complete and 067 shares no files with it | 067 validates strict, the commit-msg suite passes 19 of 19 and the pre-commit suite passes 55 of 55 |
 | 067-root-docs-and-git-hook-disclosure | 068-v4-0-0-3-release-deep-review | [Criteria TBD] | [Verification TBD] |
+| 068-v4-0-0-3-release-deep-review | 069-v4-0-0-3-review-remediation | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

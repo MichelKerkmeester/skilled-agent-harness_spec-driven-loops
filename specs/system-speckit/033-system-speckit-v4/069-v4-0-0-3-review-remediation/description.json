@@ -1,0 +1,21 @@
+{
+  "level": "3+",
+  "specFolder": "system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation",
+  "description": "Phase 69: v4-0-0-3-review-remediation",
+  "keywords": [
+    "phase",
+    "v4-0-0-3-review-remediation"
+  ],
+  "lastUpdated": "2026-10-06T11:01:51.369Z",
+  "specId": "069",
+  "folderSlug": "v4-0-0-3-review-remediation",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-10-26_11-31__planned-remediation-of-21-review-findings-r-01-r.md",
+    "06-10-26_12-01__raised-069-to-level-3-approval-workflow.md"
+  ]
+}
