@@ -25,7 +25,7 @@ contextType: "general"
 **Status:** Complete
 **Started:** 2026-09-23
 **Last updated:** 2026-09-24
-**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history before this move.
+**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history after the commit message rewrite that repointed the old folder names.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 
 Each entry is a packet's first commit. The outcome names what the packet left behind.
 
-**2026-09-23:** `001-create-canonical-specs-root` (was `034-create-canonical-specs-root`) started. 1 commit, first `dfab15c18a` and last `dfab15c18a` on 2026-09-23. Outcome: create.sh writes new packets under the canonical specs root, and --track numbers from it.
+**2026-09-23:** `001-create-canonical-specs-root` (was `034-create-canonical-specs-root`) started. 1 commit, first `efc110a31e` and last `efc110a31e` on 2026-09-23. Outcome: create.sh writes new packets under the canonical specs root, and --track numbers from it.
 
-**2026-09-24:** `002-root-numbering-without-track` (was `036-root-numbering-without-track`) started. 1 commit, first `f8c74ebaad` and last `f8c74ebaad` on 2026-09-24. Outcome: create.sh numbers a new packet at the specs root from the highest number in use.
+**2026-09-24:** `002-root-numbering-without-track` (was `036-root-numbering-without-track`) started. 1 commit, first `4e4d50e52d` and last `4e4d50e52d` on 2026-09-24. Outcome: create.sh numbers a new packet at the specs root from the highest number in use.
 
-**2026-09-24:** `003-track-root-children` (was `037-track-root-children`) started. 4 commits, first `55694d408a` and last `3f94c5108c` on 2026-09-24. Outcome: Each track root lists the packets it holds, and a push that breaks that is blocked.
+**2026-09-24:** `003-track-root-children` (was `037-track-root-children`) started. 4 commits, first `e3f42d0ecb` and last `cf2b8ae7ea` on 2026-09-24. Outcome: Each track root lists the packets it holds, and a push that breaks that is blocked.
 
-**2026-09-24:** `004-track-aware-archive` (was `038-track-aware-archive`) started. 2 commits, first `3f94c5108c` and last `fbdaa8225f` on 2026-09-24. Outcome: archive.sh keeps a track packet inside its track and refreshes the track list.
+**2026-09-24:** `004-track-aware-archive` (was `038-track-aware-archive`) started. 2 commits, first `cf2b8ae7ea` and last `8036f130e1` on 2026-09-24. Outcome: archive.sh keeps a track packet inside its track and refreshes the track list.
 
-**2026-09-24:** `005-phase-aware-archive` (was `039-phase-aware-archive`) started. 1 commit, first `fbdaa8225f` and last `fbdaa8225f` on 2026-09-24. Outcome: archive.sh moves a phase into its parent's z_archive and restores it there, and leaves the parent's phase list to the reviewed prune.
+**2026-09-24:** `005-phase-aware-archive` (was `039-phase-aware-archive`) started. 1 commit, first `8036f130e1` and last `8036f130e1` on 2026-09-24. Outcome: archive.sh moves a phase into its parent's z_archive and restores it there, and leaves the parent's phase list to the reviewed prune.
 <!-- /ANCHOR:timeline -->
 
 ---

@@ -25,7 +25,7 @@ contextType: "general"
 **Status:** Complete
 **Started:** 2026-09-29
 **Last updated:** 2026-09-29
-**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history before this move.
+**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history after the commit message rewrite that repointed the old folder names.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 
 Each entry is a packet's first commit. The outcome names what the packet left behind.
 
-**2026-09-29:** `001-fix-write-recipe-backfill-flag` (was `041-fix-write-recipe-backfill-flag`) started. 1 commit, first `3dc74de19e` and last `3dc74de19e` on 2026-09-29. Outcome: Step 5 of the recipe passes the packet folder to the backfill instead of exiting 1.
+**2026-09-29:** `001-fix-write-recipe-backfill-flag` (was `041-fix-write-recipe-backfill-flag`) started. 1 commit, first `4e5e7ad283` and last `4e5e7ad283` on 2026-09-29. Outcome: Step 5 of the recipe passes the packet folder to the backfill instead of exiting 1.
 
-**2026-09-29:** `002-fix-write-recipe-commit-step` (was `042-fix-write-recipe-commit-step`) started. 1 commit, first `cabdb6c2ed` and last `cabdb6c2ed` on 2026-09-29. Outcome: Step 7 follows the commit hook instead of asking for a trailer the hook refuses.
+**2026-09-29:** `002-fix-write-recipe-commit-step` (was `042-fix-write-recipe-commit-step`) started. 1 commit, first `91f292ceec` and last `91f292ceec` on 2026-09-29. Outcome: Step 7 follows the commit hook instead of asking for a trailer the hook refuses.
 
-**2026-09-29:** `003-fix-write-recipe-workspace-bullet` (was `043-fix-write-recipe-workspace-bullet`) started. 1 commit, first `556813b164` and last `556813b164` on 2026-09-29. Outcome: The Step 7 workspace bullet defers to the sk-git workspace rule instead of fixing main.
+**2026-09-29:** `003-fix-write-recipe-workspace-bullet` (was `043-fix-write-recipe-workspace-bullet`) started. 1 commit, first `5ce7cbf9da` and last `5ce7cbf9da` on 2026-09-29. Outcome: The Step 7 workspace bullet defers to the sk-git workspace rule instead of fixing main.
 
-**2026-09-29:** `004-fix-write-recipe-post-checks` (was `044-fix-write-recipe-post-checks`) started. 1 commit, first `d48994e0cb` and last `d48994e0cb` on 2026-09-29. Outcome: The status and push rows no longer assume a clean tree or a push to main.
+**2026-09-29:** `004-fix-write-recipe-post-checks` (was `044-fix-write-recipe-post-checks`) started. 1 commit, first `2343979238` and last `2343979238` on 2026-09-29. Outcome: The status and push rows no longer assume a clean tree or a push to main.
 
-**2026-09-29:** `005-fix-write-recipe-verification-gate` (was `045-fix-write-recipe-verification-gate`) started. 1 commit, first `fe05f03453` and last `fe05f03453` on 2026-09-29. Outcome: The Step 7 verification gate checks the staged set instead of the whole working tree.
+**2026-09-29:** `005-fix-write-recipe-verification-gate` (was `045-fix-write-recipe-verification-gate`) started. 1 commit, first `5ca79707c9` and last `5ca79707c9` on 2026-09-29. Outcome: The Step 7 verification gate checks the staged set instead of the whole working tree.
 <!-- /ANCHOR:timeline -->
 
 ---

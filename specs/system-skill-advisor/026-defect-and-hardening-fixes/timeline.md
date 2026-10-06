@@ -25,7 +25,7 @@ contextType: "general"
 **Status:** Complete
 **Started:** 2026-09-12
 **Last updated:** 2026-10-05
-**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history before this move.
+**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history after the commit message rewrite that repointed the old folder names.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,17 +35,17 @@ contextType: "general"
 
 Each entry is a packet's first commit. The outcome names what the packet left behind.
 
-**2026-09-12:** `001-pre-existing-suite-failures` (was `026-pre-existing-suite-failures`) started. 3 commits, first `89df0ba0750` and last `099990cf343` on 2026-09-20. Outcome: The five suites carried as pre-existing failures are explained and fixed.
+**2026-09-12:** `001-pre-existing-suite-failures` (was `026-pre-existing-suite-failures`) started. 3 commits, first `46465c91d93` and last `0661a0f821c` on 2026-09-20. Outcome: The five suites carried as pre-existing failures are explained and fixed.
 
-**2026-09-12:** `002-empty-recommendation-diagnostic` (was `027-empty-recommendation-diagnostic`) started. 2 commits, first `8a13dc6b78f` and last `bc441a1d448` on 2026-09-12. Outcome: The hook diagnostics separate an empty recommendation from an unreachable advisor.
+**2026-09-12:** `002-empty-recommendation-diagnostic` (was `027-empty-recommendation-diagnostic`) started. 2 commits, first `14c81494ce1` and last `a58a9a175f5` on 2026-09-12. Outcome: The hook diagnostics separate an empty recommendation from an unreachable advisor.
 
-**2026-09-23:** `003-fix-remaining-advisor-defects` (was `029-fix-remaining-advisor-defects`) started. 4 commits, first `89569a7f81` and last `d4ffc18aca` on 2026-09-23. Outcome: The Pi directive delivery path returns a decision instead of throwing, along with the other remaining defects.
+**2026-09-23:** `003-fix-remaining-advisor-defects` (was `029-fix-remaining-advisor-defects`) started. 4 commits, first `01c3ed4b89` and last `f8706cc782` on 2026-09-23. Outcome: The Pi directive delivery path returns a decision instead of throwing, along with the other remaining defects.
 
-**2026-10-01:** `004-fresh-clone-bootstrap` (was `032-fresh-clone-bootstrap`) started. 1 commit, first `0d2937d661` and last `0d2937d661` on 2026-10-01. Outcome: A clean clone builds the advisor launcher.
+**2026-10-01:** `004-fresh-clone-bootstrap` (was `032-fresh-clone-bootstrap`) started. 1 commit, first `73af81cfb3` and last `73af81cfb3` on 2026-10-01. Outcome: A clean clone builds the advisor launcher.
 
-**2026-10-05:** `005-stale-build-daemon-recycle` (was `034-stale-build-daemon-recycle`) started. 1 commit, first `1c88e16439` and last `1c88e16439` on 2026-10-05. Outcome: The CLI and launcher recycle a live daemon that predates the current build.
+**2026-10-05:** `005-stale-build-daemon-recycle` (was `034-stale-build-daemon-recycle`) started. 1 commit, first `e6703ce780` and last `e6703ce780` on 2026-10-05. Outcome: The CLI and launcher recycle a live daemon that predates the current build.
 
-**2026-10-05:** `006-stress-suite-ci` (was `035-stress-suite-ci`) started. 2 commits, first `7c65ed8811` and last `3d4458cb16` on 2026-10-05. Outcome: A workflow runs the stress suite in CI.
+**2026-10-05:** `006-stress-suite-ci` (was `035-stress-suite-ci`) started. 2 commits, first `2994452811` and last `85d197efec` on 2026-10-05. Outcome: A workflow runs the stress suite in CI.
 <!-- /ANCHOR:timeline -->
 
 ---

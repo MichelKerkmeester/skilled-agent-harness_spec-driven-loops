@@ -25,7 +25,7 @@ contextType: "general"
 **Status:** In Progress
 **Started:** 2026-10-02
 **Last updated:** 2026-10-05
-**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history before this move.
+**Owner:** the spec-kit maintainers. Dates and hashes come from `git log` over each packet's former path, so the hashes are the ones in history after the commit message rewrite that repointed the old folder names.
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -35,15 +35,15 @@ contextType: "general"
 
 Each entry is a packet's first commit. The outcome names what the packet left behind.
 
-**2026-10-02:** `001-review-gateway-iteration-record` (was `038-review-gateway-iteration-record`) started. 1 commit, first `90e914852b` and last `90e914852b` on 2026-10-02. Outcome: The review iteration record the agent sends is accepted by the append gateway.
+**2026-10-02:** `001-review-gateway-iteration-record` (was `038-review-gateway-iteration-record`) started. 1 commit, first `272ce3cb19` and last `272ce3cb19` on 2026-10-02. Outcome: The review iteration record the agent sends is accepted by the append gateway.
 
-**2026-10-02:** `002-review-state-init-and-dispatch` (was `039-review-state-init-and-dispatch`) started. 4 commits, first `7354017b96` and last `2a6a2ca295` on 2026-10-05. Outcome: Deep-review state-log init goes through the gateway, and the child-dispatch retry rule is fixed.
+**2026-10-02:** `002-review-state-init-and-dispatch` (was `039-review-state-init-and-dispatch`) started. 4 commits, first `ae1de657cd` and last `0748d2e638` on 2026-10-05. Outcome: Deep-review state-log init goes through the gateway, and the child-dispatch retry rule is fixed.
 
-**2026-10-03:** `003-cli-pi-opencode-go-route` (was `040-cli-pi-opencode-go-route`) started. 2 commits, first `7d1d84cbf2` and last `0fab2163e3` on 2026-10-03. Outcome: Not built yet, the packet is still a draft.
+**2026-10-03:** `003-cli-pi-opencode-go-route` (was `040-cli-pi-opencode-go-route`) started. 2 commits, first `f54c51c0be` and last `e2530f6f85` on 2026-10-03. Outcome: Not built yet, the packet is still a draft.
 
-**2026-10-03:** `004-read-only-and-research-bookkeeping` (was `041-read-only-and-research-bookkeeping`) started. 1 commit, first `7b418c9d4f` and last `7b418c9d4f` on 2026-10-03. Outcome: Status, query and convergence take --read-only and open the database read-only.
+**2026-10-03:** `004-read-only-and-research-bookkeeping` (was `041-read-only-and-research-bookkeeping`) started. 1 commit, first `6a01bc965c` and last `6a01bc965c` on 2026-10-03. Outcome: Status, query and convergence take --read-only and open the database read-only.
 
-**2026-10-04:** `005-cli-lineage-findings-contract` (was `042-cli-lineage-findings-contract`) started. 2 commits, first `6fe821b1a9` and last `6813a7a7af` on 2026-10-04. Outcome: The findings contract addresses the closeout failure where a lineage enumerated fewer findings than it claimed.
+**2026-10-04:** `005-cli-lineage-findings-contract` (was `042-cli-lineage-findings-contract`) started. 2 commits, first `61cea042e0` and last `d4539b2714` on 2026-10-04. Outcome: The findings contract addresses the closeout failure where a lineage enumerated fewer findings than it claimed.
 <!-- /ANCHOR:timeline -->
 
 ---
