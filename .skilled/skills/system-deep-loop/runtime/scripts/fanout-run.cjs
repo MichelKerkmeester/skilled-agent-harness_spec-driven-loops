@@ -552,10 +552,11 @@ function holdsLiveLoopLock(dir, isStaleLoopLock) {
     }
     if (!record || typeof record !== 'object') continue;
     // The lock is persisted in snake_case; the liveness rule reads the camelCase view of the
-    // three fields it judges on. Mapped here rather than re-derived, so staleness stays the
+    // four fields it judges on. Mapped here rather than re-derived, so staleness stays the
     // single definition in loop-lock and cannot drift from what the acquirer enforces.
     const isStale = isStaleLoopLock({
       ownerPid: record.owner_pid,
+      ownerKind: record.owner_kind,
       ttlMs: record.ttl_ms,
       lastHeartbeatIso: record.last_heartbeat_iso,
     });

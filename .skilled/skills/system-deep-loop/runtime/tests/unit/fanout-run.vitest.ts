@@ -5106,3 +5106,51 @@ describe('fanout-run.cjs — the empty-registry advisory reads the registry shap
     expect(ledgerLines.filter((event) => event.event === 'lineage_registry_empty')).toHaveLength(0);
   });
 });
+
+describe('fanout-run.cjs — foreign live-run lock discovery', () => {
+  const { discoverForeignLiveRunDirs } = requireCjs(fanoutRunScript) as {
+    discoverForeignLiveRunDirs: (input: {
+      specFolder: string;
+      baseArtifactDir: string;
+    }) => Promise<string[]>;
+  };
+
+  /**
+   * A pid no live process owns. The probe mirrors the lock library's own liveness
+   * check: ESRCH is the proof the slot is free, and any other outcome keeps scanning.
+   */
+  function knownDeadPid(): number {
+    for (let pid = 999_999; pid > 900_000; pid -= 1) {
+      try {
+        process.kill(pid, 0);
+      } catch (error: unknown) {
+        if (error && typeof error === 'object' && 'code' in error && error.code === 'ESRCH') return pid;
+      }
+    }
+    throw new Error('Could not find a known-dead pid for the transient lock test');
+  }
+
+  it('holdsLiveLoopLock sees a fresh transient-owner lock as live', async () => {
+    const root = makeTempDir('fanout-run-transient-lock-');
+    const packetDir = join(root, 'specs', 'track', '030-packet');
+    const specFolder = join(packetDir, '001-phase-a');
+    const baseArtifactDir = join(specFolder, 'research');
+    const ownRunDir = join(baseArtifactDir, 'lineages', 'luna-max');
+    const foreignRunDir = join(packetDir, '002-phase-b', 'research', 'lineages', 'luna-max');
+    mkdirSync(ownRunDir, { recursive: true });
+    mkdirSync(foreignRunDir, { recursive: true });
+
+    // A transient dispatcher can be gone while the run it drives is still alive, so the
+    // dead pid must not outweigh the fresh heartbeat.
+    writeFileSync(join(foreignRunDir, '.deep-research.lock'), `${JSON.stringify({
+      owner_pid: knownDeadPid(),
+      owner_kind: 'transient',
+      ttl_ms: 300_000,
+      last_heartbeat_iso: new Date().toISOString(),
+    }, null, 2)}\n`);
+
+    const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(foreign).toHaveLength(1);
+    expect(foreign[0]?.endsWith(join('002-phase-b', 'research', 'lineages', 'luna-max'))).toBe(true);
+  });
+});
