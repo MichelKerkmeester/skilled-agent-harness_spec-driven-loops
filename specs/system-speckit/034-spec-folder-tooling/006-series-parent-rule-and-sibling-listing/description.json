@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+  "description": "Phase 6: series-parent-rule-and-sibling-listing",
+  "keywords": [
+    "phase",
+    "series-parent-rule-and-sibling-listing"
+  ],
+  "lastUpdated": "2026-10-06T20:29:11.246Z",
+  "specId": "006",
+  "folderSlug": "series-parent-rule-and-sibling-listing",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

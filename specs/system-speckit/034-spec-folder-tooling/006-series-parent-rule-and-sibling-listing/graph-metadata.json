@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "series parent rule",
+      "group related small packets",
+      "recent packets in this track",
+      "template default trigger phrases",
+      "same artifact different change",
+      "series parent rule plan",
+      "create.sh sibling listing plan",
+      "seeded trigger phrases plan",
+      "series parent rule tasks",
+      "sibling listing tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "series",
+      "parent",
+      "rule",
+      "group",
+      "related",
+      "small",
+      "packets",
+      "recent",
+      "track",
+      "template",
+      "default",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
+      ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+      "references/structure/phase-definitions.md",
+      "references/structure/sub-folder-versioning.md",
+      "references/structure/phase-system.md",
+      "references/workflows/quick-reference.md",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/retrieval/lib/phrase-judge.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "sub-folder-versioning.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-system.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-judge.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-09-29 five Level 1 packets were opened in one day, each fixing one line of the same write recipe, and 21 packets across three tracks had to be grouped by hand on 2026-10-06",
+    "created_at": "2026-10-06T20:29:10Z",
+    "last_save_at": "2026-10-06T20:32:48.218Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:46d78fa405bf666f1d0fe840b2a2ff8dca053260ee520d5c5839ba3fdef1312e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4a1c31b847835cd740f44afb666f3ff92fb22cbfb6895b927122b1f6035f6c76",
+      "plan.md": "63873224ae39c496e59683c7cca377fbd1a6265c861c7aadd10e8e4a4d4563de",
+      "tasks.md": "ae14e4f392153ceb51d3be1f2ed2c1f923c7c5624994329b15ba62b7ddf714fe",
+      "implementation-summary.md": "a040f9f40fd6c8e36455fd2e252a391509f67e4bfb84a25136e8508bdc384174"
+    },
+    "last_active_at": null
+  }
+}
