@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
+  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9975,6 +9975,9 @@
     "agents md bloat audit plan": [
       "agents.md bloat audit plan"
     ],
+    "agents md byte budget": [
+      "agents md byte budget"
+    ],
     "agents md byte guard": [
       "agents md byte guard"
     ],
@@ -16721,6 +16724,9 @@
     ],
     "child dispatch envelope": [
       "child dispatch envelope"
+    ],
+    "child dispatch exemption decision": [
+      "child dispatch exemption decision"
     ],
     "child dispatch preamble": [
       "child dispatch preamble"
@@ -32190,6 +32196,15 @@
     "deep review fan out dashboard": [
       "deep review fan-out dashboard"
     ],
+    "deep review fan out plan": [
+      "deep review fan-out plan"
+    ],
+    "deep review fan out results": [
+      "deep review fan-out results"
+    ],
+    "deep review fan out tasks": [
+      "deep review fan-out tasks"
+    ],
     "deep review fanout dispatch task": [
       "deep-review fanout dispatch task"
     ],
@@ -34374,6 +34389,9 @@
     "devin wrapper": [
       "devin-wrapper"
     ],
+    "devin write tool spec gate": [
+      "devin write tool spec gate"
+    ],
     "devpass deepseek route plan": [
       "devpass deepseek route plan"
     ],
@@ -35474,9 +35492,6 @@
     ],
     "doctor command security hardening": [
       "doctor command security hardening"
-    ],
-    "doctor command split": [
-      "doctor command split"
     ],
     "doctor command surface": [
       "doctor command surface"
@@ -41677,6 +41692,9 @@
     ],
     "finding set stability": [
       "finding-set stability"
+    ],
+    "finding to commit map": [
+      "finding to commit map"
     ],
     "findings completeness mapping table": [
       "findings completeness mapping table"
@@ -52855,6 +52873,9 @@
     "lineage path verbatim": [
       "lineage path verbatim"
     ],
+    "lineage prompt fix plan": [
+      "lineage prompt fix plan"
+    ],
     "lineage pruning rule plan": [
       "lineage pruning rule plan"
     ],
@@ -53879,6 +53900,12 @@
     ],
     "luna eligible through cli codex only": [
       "luna eligible through cli-codex only"
+    ],
+    "luna halt analysis": [
+      "luna halt analysis"
+    ],
+    "luna lineage halt fixes": [
+      "luna lineage halt fixes"
     ],
     "luna max lineage": [
       "luna-max lineage"
@@ -60594,6 +60621,9 @@
     ],
     "multi client reconnect transparency": [
       "multi-client reconnect transparency"
+    ],
+    "multi executor deep review": [
+      "multi-executor deep review"
     ],
     "multi executor research": [
       "multi-executor research"
@@ -74408,6 +74438,9 @@
     "release daemon on shutdown": [
       "release daemon on shutdown"
     ],
+    "release deep review": [
+      "release deep review"
+    ],
     "release doc research lane": [
       "release doc research lane"
     ],
@@ -74507,6 +74540,12 @@
     ],
     "release readiness workflow": [
       "release-readiness workflow"
+    ],
+    "release review lineages": [
+      "release review lineages"
+    ],
+    "release review verdict": [
+      "release review verdict"
     ],
     "release update customization": [
       "release update customization"
@@ -74658,6 +74697,9 @@
     "remediation execution plan": [
       "remediation execution plan"
     ],
+    "remediation explorer findings": [
+      "remediation explorer findings"
+    ],
     "remediation fixes verification report": [
       "remediation fixes verification report"
     ],
@@ -74711,6 +74753,9 @@
     ],
     "remediation plan research findings": [
       "remediation plan research findings"
+    ],
+    "remediation planning status": [
+      "remediation planning status"
     ],
     "remediation priority": [
       "remediation priority"
@@ -77663,8 +77708,17 @@
     "review drift remediation tasks": [
       "review drift remediation tasks"
     ],
+    "review event routing decision": [
+      "review event routing decision"
+    ],
     "review executor behavior scenarios": [
       "review executor behavior scenarios"
+    ],
+    "review finding fix plan": [
+      "review finding fix plan"
+    ],
+    "review finding fix tasks": [
+      "review finding fix tasks"
     ],
     "review finding fixes": [
       "review finding fixes"
@@ -77695,6 +77749,9 @@
     ],
     "review folders under spec tree root": [
       "review folders under spec-tree root"
+    ],
+    "review gateway event rows": [
+      "review gateway event rows"
     ],
     "review gateway iteration acceptance": [
       "review gateway iteration acceptance"
@@ -78002,6 +78059,12 @@
     ],
     "review synthesis phase": [
       "review synthesis phase"
+    ],
+    "review synthesis plan": [
+      "review synthesis plan"
+    ],
+    "review synthesis tasks": [
+      "review synthesis tasks"
     ],
     "review this ui code": [
       "review this ui code"
@@ -92462,6 +92525,12 @@
     "stale lock detection": [
       "stale-lock detection"
     ],
+    "stale lock reclaim decision": [
+      "stale lock reclaim decision"
+    ],
+    "stale lock reclaim race": [
+      "stale lock reclaim race"
+    ],
     "stale lock recovery": [
       "stale-lock recovery"
     ],
@@ -99212,6 +99281,9 @@
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
+    "v4 0 0 2 to v4 0 0 3 review": [
+      "v4.0.0.2 to v4.0.0.3 review"
+    ],
     "v4 0 0 3 changelog classifier refresh": [
       "v4.0.0.3 changelog classifier refresh"
     ],
@@ -99233,6 +99305,9 @@
     "v4 0 0 3 changelog update summary": [
       "v4.0.0.3 changelog update summary"
     ],
+    "v4 0 0 3 deep review": [
+      "v4.0.0.3 deep review"
+    ],
     "v4 0 0 3 entry edit plan": [
       "v4.0.0.3 entry edit plan"
     ],
@@ -99242,8 +99317,32 @@
     "v4 0 0 3 release notes accuracy": [
       "v4.0.0.3 release notes accuracy"
     ],
+    "v4 0 0 3 remediation plan": [
+      "v4.0.0.3 remediation plan"
+    ],
+    "v4 0 0 3 remediation research": [
+      "v4.0.0.3 remediation research"
+    ],
+    "v4 0 0 3 remediation summary": [
+      "v4.0.0.3 remediation summary"
+    ],
+    "v4 0 0 3 remediation tasks": [
+      "v4.0.0.3 remediation tasks"
+    ],
     "v4 0 0 3 research plan": [
       "v4.0.0.3 research plan"
+    ],
+    "v4 0 0 3 review plan": [
+      "v4.0.0.3 review plan"
+    ],
+    "v4 0 0 3 review remediation": [
+      "v4.0.0.3 review remediation"
+    ],
+    "v4 0 0 3 review summary": [
+      "v4.0.0.3 review summary"
+    ],
+    "v4 0 0 3 review tasks": [
+      "v4.0.0.3 review tasks"
     ],
     "v4 changelog": [
       "v4 changelog"

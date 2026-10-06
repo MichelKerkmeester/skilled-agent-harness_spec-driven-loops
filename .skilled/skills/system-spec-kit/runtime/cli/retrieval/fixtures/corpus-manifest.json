@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1a533b28a04e3a086078abae55fb039e95119618ea1c9accde1f6bd1ad135dcd",
+  "corpusHash": "a5a12ada5910905a7992accb3ea1504fdfd2eedc50df5948eda6aa6f54e48128",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23711,
+  "includedPathCount": 23729,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23313,6 +23313,24 @@
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/plan.md",
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/spec.md",
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/fanout-attribution.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/fanout-attribution.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/decision-record.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-066-pre-v4-spec-upgrade.md",
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-067-root-docs-and-git-hook-disclosure.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
@@ -23741,7 +23759,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
+  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29149,6 +29167,22 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {

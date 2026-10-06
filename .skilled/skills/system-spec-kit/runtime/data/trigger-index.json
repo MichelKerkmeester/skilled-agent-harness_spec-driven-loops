@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
+  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13082,6 +13082,20 @@
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/plan.md",
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/spec.md",
     "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/decision-record.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-066-pre-v4-spec-upgrade.md",
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-067-root-docs-and-git-hook-disclosure.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
@@ -20746,16 +20760,16 @@
       5076
     ],
     "050 review remediation": [
-      13432
+      13446
     ],
     "050 review remediation plan": [
-      13431
+      13445
     ],
     "050 review remediation summary": [
-      13430
+      13444
     ],
     "050 review remediation tasks": [
-      13433
+      13447
     ],
     "051 closeout reconciliation": [
       6396
@@ -21075,7 +21089,7 @@
       7907
     ],
     "4000 character goal": [
-      13103
+      13117
     ],
     "401 415 post wave validation": [
       8303
@@ -21738,24 +21752,26 @@
       12985,
       12990,
       13061,
-      13125,
-      13223,
-      13229,
-      13234,
-      13240,
-      13251,
-      13260,
+      13072,
+      13078,
+      13139,
+      13237,
+      13243,
+      13248,
+      13254,
       13265,
-      13361,
-      13367,
+      13274,
+      13279,
       13375,
       13381,
-      13388,
-      13394,
-      13400,
-      13407,
-      13415,
-      13423
+      13389,
+      13395,
+      13402,
+      13408,
+      13414,
+      13421,
+      13429,
+      13437
     ],
     "ac traceability table": [
       10459,
@@ -22139,24 +22155,26 @@
       12990,
       13001,
       13061,
-      13088,
-      13125,
-      13223,
-      13229,
-      13234,
-      13240,
-      13260,
-      13265,
-      13361,
-      13367,
+      13072,
+      13078,
+      13102,
+      13139,
+      13237,
+      13243,
+      13248,
+      13254,
+      13274,
+      13279,
       13375,
       13381,
-      13388,
-      13394,
-      13400,
-      13407,
-      13415,
-      13423
+      13389,
+      13395,
+      13402,
+      13408,
+      13414,
+      13421,
+      13429,
+      13437
     ],
     "acceptance criteria closure gate": [
       12195,
@@ -22199,7 +22217,7 @@
       12210
     ],
     "acceptance packet correction": [
-      13224
+      13238
     ],
     "acceptance receipt binding evidence": [
       6196
@@ -23767,19 +23785,19 @@
       7262
     ],
     "advisor stress fixtures plan": [
-      13345
+      13359
     ],
     "advisor stress fixtures summary": [
-      13344
+      13358
     ],
     "advisor stress fixtures tasks": [
-      13347
+      13361
     ],
     "advisor stress suite workflow": [
       7269
     ],
     "advisor stress test fixtures": [
-      13346
+      13360
     ],
     "advisor suggested order": [
       2969
@@ -24594,6 +24612,9 @@
     "agents md bloat audit plan": [
       2496
     ],
+    "agents md byte budget": [
+      13083
+    ],
     "agents md byte guard": [
       2608
     ],
@@ -25095,7 +25116,7 @@
       2278
     ],
     "anchor citation threshold": [
-      13369
+      13383
     ],
     "anchor generator": [
       2384
@@ -25114,7 +25135,7 @@
       9664
     ],
     "anchor phase removed": [
-      13382
+      13396
     ],
     "anchor prefix matching": [
       2231
@@ -26108,33 +26129,33 @@
       12987,
       12992,
       13018,
-      13106,
-      13110,
-      13114,
-      13118,
-      13122,
-      13137,
-      13143,
-      13150,
-      13158,
+      13120,
+      13124,
+      13128,
+      13132,
+      13136,
+      13151,
+      13157,
       13164,
-      13170,
-      13176,
-      13182,
-      13188,
-      13194,
-      13200,
-      13206,
-      13212,
-      13218,
-      13364,
-      13372,
+      13172,
+      13178,
+      13184,
+      13190,
+      13196,
+      13202,
+      13208,
+      13214,
+      13220,
+      13226,
+      13232,
       13378,
-      13385,
-      13404,
-      13412,
-      13420,
-      13427
+      13386,
+      13392,
+      13399,
+      13418,
+      13426,
+      13434,
+      13441
     ],
     "architecture diagram": [
       1101,
@@ -26183,10 +26204,10 @@
       692
     ],
     "archive a phase": [
-      13097,
-      13098,
-      13099,
-      13100
+      13111,
+      13112,
+      13113,
+      13114
     ],
     "archive container graph node": [
       11742
@@ -26225,10 +26246,10 @@
       11743
     ],
     "archive sh track": [
-      13093,
-      13094,
-      13095,
-      13096
+      13107,
+      13108,
+      13109,
+      13110
     ],
     "archived backup restore": [
       1719
@@ -27330,7 +27351,7 @@
       2034
     ],
     "awesome ai plugins listing": [
-      13132
+      13146
     ],
     "b1 b2 b3 b4 b5 b6 batch remediation": [
       10017
@@ -27447,7 +27468,7 @@
       11353
     ],
     "backgrounded reconcile drift marker": [
-      13354
+      13368
     ],
     "backlog age gauge approach": [
       11321
@@ -27520,13 +27541,13 @@
       9857
     ],
     "base manifest recording": [
-      13232
+      13246
     ],
     "base plus supplement": [
       4392
     ],
     "base recording": [
-      13231
+      13245
     ],
     "based": [
       10434
@@ -29179,7 +29200,7 @@
       5732
     ],
     "byte identical regeneration": [
-      13227
+      13241
     ],
     "byte identical render gate": [
       12093
@@ -30453,22 +30474,22 @@
       12433
     ],
     "census hardening": [
-      13413
+      13427
     ],
     "census hardening summary": [
-      13410
+      13424
     ],
     "census line feed path": [
-      13431
+      13445
     ],
     "census measurement protocol": [
-      13411
+      13425
     ],
     "census newline fix": [
-      13430
+      13444
     ],
     "census newline pathname": [
-      13432
+      13446
     ],
     "census path and config drift repair": [
       6118
@@ -30499,7 +30520,7 @@
       12607
     ],
     "census timing protocol": [
-      13411
+      13425
     ],
     "certificate semantic binding": [
       6175,
@@ -30593,7 +30614,7 @@
       12959
     ],
     "changelog and version bumps": [
-      13397
+      13411
     ],
     "changelog audit 026": [
       7820
@@ -30620,7 +30641,7 @@
       12979
     ],
     "changelog coverage since v4 0 0 2": [
-      13358
+      13372
     ],
     "changelog creation examples": [
       1321,
@@ -30630,10 +30651,10 @@
       4984
     ],
     "changelog doctor git hooks findings": [
-      13274
+      13288
     ],
     "changelog doctor git hooks gap": [
-      13278
+      13292
     ],
     "changelog draft drift": [
       12726
@@ -30758,7 +30779,7 @@
       1314
     ],
     "changelog research plan": [
-      13275
+      13289
     ],
     "changelog retrofit checklist": [
       5297
@@ -30859,22 +30880,22 @@
       1252
     ],
     "changelog update plan": [
-      13281
+      13295
     ],
     "changelog v4 0 0 3 reality check": [
-      13358
+      13372
     ],
     "changelog v4 style": [
       5113
     ],
     "changelog v4003 reality check plan": [
-      13357
+      13371
     ],
     "changelog v4003 reality check summary": [
-      13356
+      13370
     ],
     "changelog v4003 reality check tasks": [
-      13359
+      13373
     ],
     "changelog verification gate": [
       7819,
@@ -31980,6 +32001,9 @@
     "child dispatch envelope": [
       241
     ],
+    "child dispatch exemption decision": [
+      13079
+    ],
     "child dispatch preamble": [
       369
     ],
@@ -32324,16 +32348,16 @@
       284
     ],
     "citation accuracy per class": [
-      13413
+      13427
     ],
     "citation accuracy protocol": [
-      13411
+      13425
     ],
     "citation accuracy result": [
-      13410
+      13424
     ],
     "citation breakage census": [
-      13368
+      13382
     ],
     "citation census": [
       12155
@@ -32351,7 +32375,7 @@
       3033
     ],
     "citation drift census": [
-      13384
+      13398
     ],
     "citation drift census across doc families": [
       1260,
@@ -32421,7 +32445,7 @@
       11796
     ],
     "citation resolver reuse": [
-      13391
+      13405
     ],
     "citation retrofit coverage floor": [
       12701,
@@ -32447,7 +32471,7 @@
       1261
     ],
     "cite drift redirect table": [
-      13384
+      13398
     ],
     "cite drift redirects json": [
       1260
@@ -36159,24 +36183,26 @@
       12990,
       13001,
       13061,
-      13125,
-      13223,
-      13229,
-      13234,
-      13240,
-      13251,
-      13260,
+      13072,
+      13078,
+      13139,
+      13237,
+      13243,
+      13248,
+      13254,
       13265,
-      13361,
-      13367,
+      13274,
+      13279,
       13375,
       13381,
-      13388,
-      13394,
-      13400,
-      13407,
-      13415,
-      13423
+      13389,
+      13395,
+      13402,
+      13408,
+      13414,
+      13421,
+      13429,
+      13437
     ],
     "closure gate blocks evidence": [
       12135
@@ -36203,8 +36229,8 @@
       12222
     ],
     "closure record": [
-      13396,
-      13397
+      13410,
+      13411
     ],
     "closure rows with evidence": [
       12358
@@ -38811,13 +38837,13 @@
       5091
     ],
     "command contract commands filter": [
-      13257
+      13271
     ],
     "command contract continuity key": [
       12411
     ],
     "command contract merged workflow": [
-      13258
+      13272
     ],
     "command contract plan": [
       5090
@@ -40214,32 +40240,34 @@
       12811,
       12816,
       12823,
-      13135,
-      13141,
-      13148,
-      13156,
+      13073,
+      13080,
+      13149,
+      13155,
       13162,
-      13168,
-      13174,
-      13180,
-      13186,
-      13192,
-      13198,
-      13204,
-      13210,
-      13216,
-      13221,
-      13362,
-      13370,
+      13170,
+      13176,
+      13182,
+      13188,
+      13194,
+      13200,
+      13206,
+      13212,
+      13218,
+      13224,
+      13230,
+      13235,
       13376,
-      13383,
-      13389,
-      13395,
-      13401,
+      13384,
+      13390,
+      13397,
+      13403,
       13409,
-      13417,
-      13425,
-      13434
+      13415,
+      13423,
+      13431,
+      13439,
+      13448
     ],
     "completion criteria copied": [
       12262,
@@ -41308,13 +41336,13 @@
       8282
     ],
     "context type hardening": [
-      13405
+      13419
     ],
     "context type hardening summary": [
-      13402
+      13416
     ],
     "context type measurement protocol": [
-      13403
+      13417
     ],
     "context vectors provider shard convention": [
       8424
@@ -41348,16 +41376,16 @@
       9688
     ],
     "contexttype census": [
-      13368
+      13382
     ],
     "contexttype policy": [
-      13369
+      13383
     ],
     "contexttype policy amendment": [
-      13424
+      13438
     ],
     "contexttype unification": [
-      13377
+      13391
     ],
     "contexttype value list": [
       2312
@@ -41704,32 +41732,32 @@
       12981,
       12986,
       13017,
-      13105,
-      13109,
-      13113,
-      13117,
-      13121,
-      13126,
-      13130,
-      13136,
-      13142,
-      13149,
-      13157,
+      13119,
+      13123,
+      13127,
+      13131,
+      13135,
+      13140,
+      13144,
+      13150,
+      13156,
       13163,
-      13169,
-      13175,
-      13181,
-      13187,
-      13193,
-      13199,
-      13205,
-      13211,
-      13217,
+      13171,
+      13177,
+      13183,
+      13189,
+      13195,
+      13201,
+      13207,
+      13213,
+      13219,
       13225,
-      13230,
-      13236,
-      13363,
-      13371
+      13231,
+      13239,
+      13244,
+      13250,
+      13377,
+      13385
     ],
     "continue post review closeout": [
       3423
@@ -41818,7 +41846,7 @@
       5721
     ],
     "continuity key files handoff": [
-      13224
+      13238
     ],
     "continuity memory runtime": [
       9939
@@ -42202,7 +42230,7 @@
       9120
     ],
     "copied tree support decision": [
-      13253
+      13267
     ],
     "copilot advisor brief": [
       9262
@@ -43449,10 +43477,10 @@
       12022
     ],
     "create sh canonical specs root": [
-      13076,
-      13077,
-      13078,
-      13079
+      13090,
+      13091,
+      13092,
+      13093
     ],
     "create sh canonical tasks": [
       12023
@@ -43500,19 +43528,19 @@
       2923
     ],
     "create sh root numbering": [
-      13084,
-      13085,
-      13086,
-      13087
+      13098,
+      13099,
+      13100,
+      13101
     ],
     "create sh upgrade level sh": [
       2320
     ],
     "create sh writes to opencode specs": [
-      13076,
-      13077,
-      13078,
-      13079
+      13090,
+      13091,
+      13092,
+      13093
     ],
     "create skill": [
       1239,
@@ -44520,16 +44548,16 @@
       216
     ],
     "cursor reconcile hook test exemption": [
-      13354
+      13368
     ],
     "cursor reconcile test exemption plan": [
-      13353
+      13367
     ],
     "cursor reconcile test exemption summary": [
-      13352
+      13366
     ],
     "cursor reconcile test exemption tasks": [
-      13355
+      13369
     ],
     "cursor runtime adapter seam": [
       4254
@@ -44614,10 +44642,10 @@
       1585
     ],
     "cutoff calendar date check": [
-      13431
+      13445
     ],
     "cutoff date fix": [
-      13430
+      13444
     ],
     "cutover certificate implementation plan": [
       6113
@@ -45483,10 +45511,10 @@
       11032
     ],
     "dead spec kit test files": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "dead tokenbudget parameter": [
       11859,
@@ -45607,13 +45635,13 @@
       12167,
       12677,
       12702,
-      13224,
-      13235,
-      13369,
-      13382,
-      13408,
-      13416,
-      13424
+      13238,
+      13249,
+      13383,
+      13396,
+      13422,
+      13430,
+      13438
     ],
     "decision record adr summary": [
       5449
@@ -48540,7 +48568,7 @@
       8846
     ],
     "deep research executor switch": [
-      13246
+      13260
     ],
     "deep research fan out cli devin": [
       2675
@@ -48900,8 +48928,8 @@
       11494,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "deep research strategy md": [
       1821
@@ -49250,6 +49278,15 @@
     ],
     "deep review fan out dashboard": [
       7182
+    ],
+    "deep review fan out plan": [
+      13075
+    ],
+    "deep review fan out results": [
+      13074
+    ],
+    "deep review fan out tasks": [
+      13077
     ],
     "deep review fanout dispatch task": [
       6550
@@ -49613,7 +49650,7 @@
     ],
     "deep review strategy": [
       6715,
-      13435
+      13449
     ],
     "deep review strategy 018 directive lifecycle": [
       3426
@@ -50206,7 +50243,7 @@
       12155
     ],
     "delete doctor rebuild": [
-      13263
+      13277
     ],
     "delete folder": [
       587
@@ -50629,16 +50666,16 @@
       12176
     ],
     "derived sanitizer instruction shape": [
-      13342
+      13356
     ],
     "derived sanitizer instruction shape plan": [
-      13341
+      13355
     ],
     "derived sanitizer instruction shape summary": [
-      13340
+      13354
     ],
     "derived sanitizer instruction shape tasks": [
-      13343
+      13357
     ],
     "derived skill metadata": [
       2158
@@ -50720,7 +50757,7 @@
       5316
     ],
     "description budget packet": [
-      13235
+      13249
     ],
     "description depends on": [
       10492
@@ -51537,6 +51574,9 @@
       4249,
       4250,
       4251
+    ],
+    "devin write tool spec gate": [
+      13084
     ],
     "devpass deepseek route plan": [
       6409
@@ -52532,10 +52572,10 @@
       862
     ],
     "docs closeout": [
-      13396
+      13410
     ],
     "docs closeout plan": [
-      13397
+      13411
     ],
     "docs drift findings": [
       7895
@@ -52599,7 +52639,7 @@
       12403
     ],
     "doctor audit followups": [
-      13360
+      13374
     ],
     "doctor baseline verification": [
       12319
@@ -52612,7 +52652,7 @@
       9301
     ],
     "doctor changelog research": [
-      13277
+      13291
     ],
     "doctor cocoindex": [
       9282,
@@ -52642,7 +52682,7 @@
       10274
     ],
     "doctor command audit": [
-      13222
+      13236
     ],
     "doctor command authoring plan": [
       9280
@@ -52654,7 +52694,7 @@
       9292
     ],
     "doctor command pointers in skill readmes": [
-      13286
+      13300
     ],
     "doctor command presentation": [
       10771
@@ -52675,7 +52715,7 @@
       10264
     ],
     "doctor command relevance": [
-      13222
+      13236
     ],
     "doctor command resources": [
       9297
@@ -52685,9 +52725,6 @@
     ],
     "doctor command security hardening": [
       10254
-    ],
-    "doctor command split": [
-      46
     ],
     "doctor command surface": [
       9301
@@ -52726,7 +52763,7 @@
       10758
     ],
     "doctor commands release notes": [
-      13282
+      13296
     ],
     "doctor commands router rewire": [
       10765
@@ -52762,16 +52799,16 @@
       11543
     ],
     "doctor contract fixes": [
-      13314
+      13328
     ],
     "doctor contract fixes plan": [
-      13313
+      13327
     ],
     "doctor contract fixes summary": [
-      13312
+      13326
     ],
     "doctor contract fixes tasks": [
-      13315
+      13329
     ],
     "doctor cutover phase 2": [
       9294
@@ -52788,19 +52825,19 @@
       9301
     ],
     "doctor deep loop audit": [
-      13159
+      13173
     ],
     "doctor deep loop audit acceptance": [
-      13155
+      13169
     ],
     "doctor deep loop command": [
-      13263
+      13277
     ],
     "doctor deep loop scenarios": [
-      13298
+      13312
     ],
     "doctor deep loop yaml": [
-      13159
+      13173
     ],
     "doctor degraded adapters route": [
       12402
@@ -52810,28 +52847,28 @@
       11069
     ],
     "doctor docs alignment": [
-      13330
+      13344
     ],
     "doctor docs alignment plan": [
-      13329
+      13343
     ],
     "doctor docs alignment summary": [
-      13328
+      13342
     ],
     "doctor docs alignment tasks": [
-      13331
+      13345
     ],
     "doctor docs and ci fix": [
-      13286
+      13300
     ],
     "doctor docs and ci fix plan": [
-      13285
+      13299
     ],
     "doctor docs and ci fix summary": [
-      13284
+      13298
     ],
     "doctor docs and ci fix tasks": [
-      13287
+      13301
     ],
     "doctor dq route summary": [
       11542
@@ -52843,10 +52880,10 @@
       5090
     ],
     "doctor embeddings audit": [
-      13165
+      13179
     ],
     "doctor embeddings audit acceptance": [
-      13161
+      13175
     ],
     "doctor embeddings cold start timeout implementation plan": [
       9095
@@ -52858,45 +52895,45 @@
       10034
     ],
     "doctor embeddings yaml": [
-      13165
+      13179
     ],
     "doctor env": [
-      13219
+      13233
     ],
     "doctor env command": [
-      13219,
-      13222
+      13233,
+      13236
     ],
     "doctor env command acceptance": [
-      13215
+      13229
     ],
     "doctor fable mode audit": [
-      13171
+      13185
     ],
     "doctor fable mode audit acceptance": [
-      13167
+      13181
     ],
     "doctor fable mode yaml": [
-      13171
+      13185
     ],
     "doctor false pass fixes": [
-      13243
+      13257
     ],
     "doctor gates drift": [
-      13238,
-      13360
+      13252,
+      13374
     ],
     "doctor git command": [
-      13268
+      13282
     ],
     "doctor git hooks standards scenarios": [
-      13302
+      13316
     ],
     "doctor git plan": [
-      13267
+      13281
     ],
     "doctor git summary": [
-      13266
+      13280
     ],
     "doctor hard cutover": [
       10256
@@ -52926,34 +52963,34 @@
       414
     ],
     "doctor manual testing results": [
-      13334
+      13348
     ],
     "doctor mcp code mode": [
-      13222
+      13236
     ],
     "doctor mcp debug audit": [
-      13144
+      13158
     ],
     "doctor mcp debug audit acceptance": [
-      13140
+      13154
     ],
     "doctor mcp debug relevance": [
-      13144
+      13158
     ],
     "doctor mcp debug yaml": [
-      13144
+      13158
     ],
     "doctor mcp install audit": [
-      13138
+      13152
     ],
     "doctor mcp install audit acceptance": [
-      13134
+      13148
     ],
     "doctor mcp install debug scenarios": [
-      13306
+      13320
     ],
     "doctor mcp install relevance": [
-      13138
+      13152
     ],
     "doctor mcp install review": [
       7303,
@@ -52963,10 +53000,10 @@
       7307
     ],
     "doctor mcp install yaml": [
-      13138
+      13152
     ],
     "doctor mcp unknown flag": [
-      13314
+      13328
     ],
     "doctor memory": [
       9282,
@@ -52995,121 +53032,121 @@
       10274
     ],
     "doctor ownership split": [
-      13263
+      13277
     ],
     "doctor ownership split plan": [
-      13262
+      13276
     ],
     "doctor ownership split summary": [
-      13261
+      13275
     ],
     "doctor parent skill audit": [
-      13177
+      13191
     ],
     "doctor parent skill audit acceptance": [
-      13173
+      13187
     ],
     "doctor parent skill yaml": [
-      13177
+      13191
     ],
     "doctor playbook deep loop": [
-      13298
+      13312
     ],
     "doctor playbook deep loop plan": [
-      13297
+      13311
     ],
     "doctor playbook deep loop shipped": [
-      13296
+      13310
     ],
     "doctor playbook deep loop summary": [
-      13296
+      13310
     ],
     "doctor playbook deep loop tasks": [
-      13299
+      13313
     ],
     "doctor playbook environment migration": [
-      13322
+      13336
     ],
     "doctor playbook environment migration plan": [
-      13321
+      13335
     ],
     "doctor playbook environment migration summary": [
-      13320
+      13334
     ],
     "doctor playbook environment migration tasks": [
-      13323
+      13337
     ],
     "doctor playbook git": [
-      13302
+      13316
     ],
     "doctor playbook git plan": [
-      13301
+      13315
     ],
     "doctor playbook git shipped": [
-      13300
+      13314
     ],
     "doctor playbook git summary": [
-      13300
+      13314
     ],
     "doctor playbook git tasks": [
-      13303
+      13317
     ],
     "doctor playbook invocation rewrite": [
       10256
     ],
     "doctor playbook mcp": [
-      13306
+      13320
     ],
     "doctor playbook mcp plan": [
-      13305
+      13319
     ],
     "doctor playbook mcp shipped": [
-      13304
+      13318
     ],
     "doctor playbook mcp summary": [
-      13304
+      13318
     ],
     "doctor playbook mcp tasks": [
-      13307
+      13321
     ],
     "doctor playbook results": [
-      13334
+      13348
     ],
     "doctor playbook sed": [
       9294
     ],
     "doctor playbook skill advisor": [
-      13294
+      13308
     ],
     "doctor playbook skill advisor plan": [
-      13293
+      13307
     ],
     "doctor playbook skill advisor shipped": [
-      13292
+      13306
     ],
     "doctor playbook skill advisor summary": [
-      13292
+      13306
     ],
     "doctor playbook skill advisor tasks": [
-      13295
+      13309
     ],
     "doctor playbook spec kit": [
-      13290
+      13304
     ],
     "doctor playbook spec kit plan": [
-      13289
+      13303
     ],
     "doctor playbook spec kit shipped": [
-      13288
+      13302
     ],
     "doctor playbook spec kit summary": [
-      13288
+      13302
     ],
     "doctor playbook spec kit tasks": [
-      13291
+      13305
     ],
     "doctor pointers shipped": [
-      13284
+      13298
     ],
     "doctor pollution signal": [
       12553
@@ -53121,10 +53158,10 @@
       10263
     ],
     "doctor rebuild split": [
-      13152
+      13166
     ],
     "doctor release notes shipped": [
-      13280
+      13294
     ],
     "doctor removal tasks": [
       12321
@@ -53139,7 +53176,7 @@
       12609
     ],
     "doctor route command owner": [
-      13262
+      13276
     ],
     "doctor route degraded adapters": [
       12400
@@ -53169,19 +53206,19 @@
       10256
     ],
     "doctor router gates": [
-      13272
+      13286
     ],
     "doctor router gates plan": [
-      13271
+      13285
     ],
     "doctor router gates summary": [
-      13270
+      13284
     ],
     "doctor router implementation plan": [
       9289
     ],
     "doctor router input gate": [
-      13272
+      13286
     ],
     "doctor router phase 1": [
       9290,
@@ -53191,13 +53228,13 @@
       9288
     ],
     "doctor router reach audit": [
-      13183
+      13197
     ],
     "doctor router reach audit acceptance": [
-      13179
+      13193
     ],
     "doctor router reach yaml": [
-      13183
+      13197
     ],
     "doctor router task graph": [
       9291
@@ -53206,70 +53243,70 @@
       12435
     ],
     "doctor run followups": [
-      13338
+      13352
     ],
     "doctor run followups plan": [
-      13337
+      13351
     ],
     "doctor run followups summary": [
-      13336
+      13350
     ],
     "doctor run followups tasks": [
-      13339
+      13353
     ],
     "doctor runtime mirrors audit": [
-      13189
+      13203
     ],
     "doctor runtime mirrors audit acceptance": [
-      13185
+      13199
     ],
     "doctor runtime mirrors yaml": [
-      13189
+      13203
     ],
     "doctor scenario runs": [
-      13334
+      13348
     ],
     "doctor scenario runs plan": [
-      13333
+      13347
     ],
     "doctor scenario runs summary": [
-      13332
+      13346
     ],
     "doctor scenario runs tasks": [
-      13335
+      13349
     ],
     "doctor scenarios test environment": [
-      13322
+      13336
     ],
     "doctor script tests": [
-      13243
+      13257
     ],
     "doctor scripts conformance": [
-      13243
+      13257
     ],
     "doctor scripts conformance plan": [
-      13242
+      13256
     ],
     "doctor scripts conformance summary": [
-      13241
+      13255
     ],
     "doctor scripts dead code": [
-      13243
+      13257
     ],
     "doctor scripts refactor plan": [
-      13242
+      13256
     ],
     "doctor scripts tasks": [
-      13244
+      13258
     ],
     "doctor scripts verification": [
-      13244
+      13258
     ],
     "doctor scripts verification evidence": [
-      13241
+      13255
     ],
     "doctor scripts yaml dependency": [
-      13286
+      13300
     ],
     "doctor sequential thinking removal": [
       12318
@@ -53284,89 +53321,89 @@
       9732
     ],
     "doctor skill advisor audit": [
-      13195
+      13209
     ],
     "doctor skill advisor audit acceptance": [
-      13191
+      13205
     ],
     "doctor skill advisor command": [
       9825,
-      13263
+      13277
     ],
     "doctor skill advisor rebuild shipped": [
-      13261
+      13275
     ],
     "doctor skill advisor scenarios": [
-      13294
+      13308
     ],
     "doctor skill advisor yaml": [
-      13195
+      13209
     ],
     "doctor skill budget audit": [
-      13201
+      13215
     ],
     "doctor skill budget audit acceptance": [
-      13197
+      13211
     ],
     "doctor skill budget yaml": [
-      13201
+      13215
     ],
     "doctor skill graph freshness audit": [
-      13207
+      13221
     ],
     "doctor skill graph freshness audit acceptance": [
-      13203
+      13217
     ],
     "doctor skill graph freshness yaml": [
-      13207
+      13221
     ],
     "doctor speckit deep loop relevance": [
-      13159
+      13173
     ],
     "doctor speckit embeddings relevance": [
-      13165
+      13179
     ],
     "doctor speckit fable mode relevance": [
-      13171
+      13185
     ],
     "doctor speckit parent skill relevance": [
-      13177
+      13191
     ],
     "doctor speckit phrase quality advisory": [
-      13314
+      13328
     ],
     "doctor speckit retrieval audit": [
-      13213
+      13227
     ],
     "doctor speckit retrieval audit acceptance": [
-      13209
+      13223
     ],
     "doctor speckit retrieval rename": [
       12411
     ],
     "doctor speckit retrieval yaml": [
-      13213
+      13227
     ],
     "doctor speckit router reach relevance": [
-      13183
+      13197
     ],
     "doctor speckit runtime mirrors relevance": [
-      13189
+      13203
     ],
     "doctor speckit scenarios": [
-      13290
+      13304
     ],
     "doctor speckit skill advisor relevance": [
-      13195
+      13209
     ],
     "doctor speckit skill budget relevance": [
-      13201
+      13215
     ],
     "doctor speckit skill graph freshness relevance": [
-      13207
+      13221
     ],
     "doctor speckit speckit retrieval relevance": [
-      13213
+      13227
     ],
     "doctor startup questions": [
       10771
@@ -53375,82 +53412,83 @@
       9278
     ],
     "doctor test environment research": [
-      13310
+      13324
     ],
     "doctor test environment research plan": [
-      13309
+      13323
     ],
     "doctor test environment research summary": [
-      13308
+      13322
     ],
     "doctor test environment research tasks": [
-      13311
+      13325
     ],
     "doctor test environment worktree": [
-      13318
+      13332
     ],
     "doctor test environments": [
-      13318
+      13332
     ],
     "doctor test environments plan": [
-      13317
+      13331
     ],
     "doctor test environments summary": [
-      13316
+      13330
     ],
     "doctor test environments tasks": [
-      13319
+      13333
     ],
     "doctor test runner": [
-      13242
+      13256
     ],
     "doctor test runner shipped": [
-      13241
+      13255
     ],
     "doctor test runner tasks": [
-      13244
+      13258
     ],
     "doctor update": [
       9301
     ],
     "doctor update acceptance criteria": [
-      13251
+      13265
     ],
     "doctor update audit": [
-      13153
+      13167
     ],
     "doctor update audit acceptance": [
-      13146
+      13160
     ],
     "doctor update command": [
+      46,
       9282
     ],
     "doctor update copied tree": [
-      13254
+      13268
     ],
     "doctor update decisions": [
       9277
     ],
     "doctor update fix plan": [
-      13253
+      13267
     ],
     "doctor update fix tasks": [
-      13255
+      13269
     ],
     "doctor update fixes": [
-      13254
+      13268
     ],
     "doctor update fixes summary": [
-      13252
+      13266
     ],
     "doctor update fixture scenarios": [
-      13322
+      13336
     ],
     "doctor update handover": [
       9278
     ],
     "doctor update manual test": [
-      13290
+      13304
     ],
     "doctor update orchestrator": [
       9301
@@ -53472,76 +53510,76 @@
       9297
     ],
     "doctor update perfection": [
-      13249
+      13263
     ],
     "doctor update perfection findings": [
-      13245
+      13259
     ],
     "doctor update perfection research": [
-      13248
+      13262
     ],
     "doctor update redesign": [
-      13151
+      13165
     ],
     "doctor update redesign research": [
-      13152
+      13166
     ],
     "doctor update relevance": [
-      13153
+      13167
     ],
     "doctor update remediation ranking": [
-      13248
+      13262
     ],
     "doctor update research": [
-      13249
+      13263
     ],
     "doctor update research plan": [
-      13246
+      13260
     ],
     "doctor update research summary": [
-      13245
+      13259
     ],
     "doctor update research tasks": [
-      13250
+      13264
     ],
     "doctor update scaffold": [
       10253
     ],
     "doctor update split decision": [
-      13147
+      13161
     ],
     "doctor update stale apply lock": [
-      13248
+      13262
     ],
     "doctor update stale lock": [
-      13254
+      13268
     ],
     "doctor update symlinked folder": [
-      13326
+      13340
     ],
     "doctor update tasks": [
       9283
     ],
     "doctor update test fixture": [
-      13318
+      13332
     ],
     "doctor update test worktree": [
-      13310
+      13324
     ],
     "doctor update v3 3 hardening handover": [
       9296
     ],
     "doctor update verification checklist": [
-      13255
+      13269
     ],
     "doctor update verification evidence": [
-      13252
+      13266
     ],
     "doctor update yaml": [
-      13153
+      13167
     ],
     "doctor update yaml superseded": [
-      13147
+      13161
     ],
     "doctor vs code mcp wiring false warning": [
       9577
@@ -54226,9 +54264,9 @@
       11425
     ],
     "duplicate packet number 001": [
-      13084,
-      13086,
-      13087
+      13098,
+      13100,
+      13101
     ],
     "duplicate review skip behavior": [
       965
@@ -54607,32 +54645,34 @@
       12811,
       12816,
       12823,
-      13135,
-      13141,
-      13148,
-      13156,
+      13073,
+      13080,
+      13149,
+      13155,
       13162,
-      13168,
-      13174,
-      13180,
-      13186,
-      13192,
-      13198,
-      13204,
-      13210,
-      13216,
-      13221,
-      13362,
-      13370,
+      13170,
+      13176,
+      13182,
+      13188,
+      13194,
+      13200,
+      13206,
+      13212,
+      13218,
+      13224,
+      13230,
+      13235,
       13376,
-      13383,
-      13389,
-      13395,
-      13401,
+      13384,
+      13390,
+      13397,
+      13403,
       13409,
-      13417,
-      13425,
-      13434
+      13415,
+      13423,
+      13431,
+      13439,
+      13448
     ],
     "durable fan in failure plan": [
       5764
@@ -55783,10 +55823,10 @@
       4962
     ],
     "empty phase child skipped": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "empty recommendation reported as outage": [
       7149
@@ -56245,7 +56285,7 @@
       12602
     ],
     "env reference count": [
-      13238
+      13252
     ],
     "env reference date refresh 022": [
       10094
@@ -56870,7 +56910,7 @@
       4391
     ],
     "execfilesync migration": [
-      13131
+      13145
     ],
     "execute cdp with parameters": [
       486
@@ -57098,8 +57138,8 @@
       4637,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "exhausted review approaches": [
       1839,
@@ -57376,7 +57416,7 @@
       2310
     ],
     "extract structure allowed tools commands": [
-      13272
+      13286
     ],
     "extract structure script obsidian": [
       862
@@ -57414,10 +57454,10 @@
       11688
     ],
     "extractor command allowed tools fix": [
-      13270
+      13284
     ],
     "extractor command exemption plan": [
-      13271
+      13285
     ],
     "extracttriggersfromcontent cap": [
       11501,
@@ -57987,7 +58027,7 @@
       9841
     ],
     "fail before pass after": [
-      13433
+      13447
     ],
     "fail cleared re review pass": [
       11818
@@ -59156,17 +59196,17 @@
       12839,
       12983,
       13019,
-      13107,
-      13111,
-      13115,
-      13119,
-      13123,
-      13365,
-      13373,
+      13121,
+      13125,
+      13129,
+      13133,
+      13137,
       13379,
-      13386,
-      13392,
-      13398
+      13387,
+      13393,
+      13400,
+      13406,
+      13412
     ],
     "feature specification 028 drift remediation": [
       11192
@@ -59781,6 +59821,9 @@
     "finding set stability": [
       1879
     ],
+    "finding to commit map": [
+      13081
+    ],
     "findings completeness mapping table": [
       11481
     ],
@@ -60333,7 +60376,7 @@
       12643
     ],
     "fixture resolution": [
-      13237
+      13251
     ],
     "fixture runner output": [
       1731
@@ -60680,7 +60723,7 @@
       2349
     ],
     "folder token fallback": [
-      13226
+      13240
     ],
     "folder utilities": [
       2394
@@ -61527,7 +61570,7 @@
       4957
     ],
     "frontmatter scalar comment rule": [
-      13431
+      13445
     ],
     "frontmatter shared versus owned": [
       4960
@@ -61561,17 +61604,17 @@
       1371
     ],
     "frontmatter value comment fix": [
-      13430
+      13444
     ],
     "frontmatter value comment parsing": [
-      13432
+      13446
     ],
     "frontmatter value list owner": [
-      13424,
-      13428
+      13438,
+      13442
     ],
     "frontmatter value measurement": [
-      13405
+      13419
     ],
     "frontmatter value outside list": [
       1262
@@ -61583,16 +61626,16 @@
       2312
     ],
     "frontmatter values move": [
-      13428
+      13442
     ],
     "frontmatter values move summary": [
-      13426
+      13440
     ],
     "frontmatter values rule": [
       2312
     ],
     "frontmatter values warn rule": [
-      13377
+      13391
     ],
     "frontmatter variant taxonomy": [
       2350
@@ -62082,7 +62125,7 @@
       6863
     ],
     "gate config helper plan": [
-      13267
+      13281
     ],
     "gate d resume perf hard coded path": [
       7796,
@@ -62290,10 +62333,10 @@
       1715
     ],
     "generate command routers clean": [
-      13256
+      13270
     ],
     "generate command routers path drift": [
-      13258
+      13272
     ],
     "generate context": [
       2379,
@@ -62355,13 +62398,13 @@
       1206
     ],
     "generated class": [
-      13231
+      13245
     ],
     "generated command bridge projection": [
       2172
     ],
     "generated file classification": [
-      13232
+      13246
     ],
     "generated file voice edit": [
       1477
@@ -62666,7 +62709,7 @@
       13068
     ],
     "git hook changelog coverage": [
-      13277
+      13291
     ],
     "git hook drift": [
       55
@@ -62698,10 +62741,10 @@
       3726
     ],
     "git hook gate settings": [
-      13268
+      13282
     ],
     "git hook gate settings shipped": [
-      13266
+      13280
     ],
     "git hook lock directory recovery": [
       11326
@@ -63371,32 +63414,34 @@
       12805,
       12811,
       12816,
-      13135,
-      13141,
-      13148,
-      13156,
+      13073,
+      13080,
+      13149,
+      13155,
       13162,
-      13168,
-      13174,
-      13180,
-      13186,
-      13192,
-      13198,
-      13204,
-      13210,
-      13216,
-      13221,
-      13362,
-      13370,
+      13170,
+      13176,
+      13182,
+      13188,
+      13194,
+      13200,
+      13206,
+      13212,
+      13218,
+      13224,
+      13230,
+      13235,
       13376,
-      13383,
-      13389,
-      13395,
-      13401,
+      13384,
+      13390,
+      13397,
+      13403,
       13409,
-      13417,
-      13425,
-      13434
+      13415,
+      13423,
+      13431,
+      13439,
+      13448
     ],
     "goal binding gaps": [
       5205
@@ -63669,9 +63714,9 @@
     "goal durable budget": [
       1386,
       5204,
-      13101,
-      13102,
-      13103
+      13115,
+      13116,
+      13117
     ],
     "goal durable budget 4000": [
       12769,
@@ -64346,10 +64391,10 @@
       2878
     ],
     "goal warning tier": [
-      13101,
-      13102,
-      13103,
-      13104
+      13115,
+      13116,
+      13117,
+      13118
     ],
     "goal without phases": [
       1378
@@ -65313,7 +65358,7 @@
       6322
     ],
     "guard manifest": [
-      13237
+      13251
     ],
     "guard order disjoint": [
       12080
@@ -65370,7 +65415,7 @@
       3380
     ],
     "guessed row panel": [
-      13408
+      13422
     ],
     "guidance reconciliation complete": [
       10410
@@ -65382,7 +65427,7 @@
       402
     ],
     "guided env setup": [
-      13219
+      13233
     ],
     "guided run wrapper": [
       1233
@@ -66219,7 +66264,7 @@
       275
     ],
     "hermes skill copy drift": [
-      13350
+      13364
     ],
     "hermes skills hooks mcp": [
       2679
@@ -66504,8 +66549,8 @@
       10111
     ],
     "highest branch number": [
-      13085,
-      13086
+      13099,
+      13100
     ],
     "highest priority review dimension": [
       1873
@@ -66526,7 +66571,7 @@
       1038
     ],
     "hol plugin scanner": [
-      13132
+      13146
     ],
     "home config cutover": [
       12894
@@ -66558,7 +66603,7 @@
       12618
     ],
     "hook adapter path parity cursor": [
-      13354
+      13368
     ],
     "hook adapter port": [
       12715
@@ -66681,7 +66726,7 @@
       12915
     ],
     "hook flags example kill switch test": [
-      13338
+      13352
     ],
     "hook flags guard implementation": [
       3646
@@ -67646,10 +67691,10 @@
       1031
     ],
     "ignored folder consistency": [
-      13421
+      13435
     ],
     "ignored folder result": [
-      13418
+      13432
     ],
     "ignored paths exemption plan": [
       2915
@@ -68254,38 +68299,38 @@
       12987,
       12992,
       13018,
-      13106,
-      13110,
-      13114,
-      13118,
-      13122,
-      13137,
-      13143,
-      13150,
-      13158,
+      13120,
+      13124,
+      13128,
+      13132,
+      13136,
+      13151,
+      13157,
       13164,
-      13170,
-      13176,
-      13182,
-      13188,
-      13194,
-      13200,
-      13206,
-      13212,
-      13218,
+      13172,
+      13178,
+      13184,
+      13190,
+      13196,
+      13202,
+      13208,
+      13214,
+      13220,
       13226,
-      13231,
-      13237,
-      13364,
-      13372,
+      13232,
+      13240,
+      13245,
+      13251,
       13378,
-      13385,
-      13391,
-      13397,
-      13404,
-      13412,
-      13420,
-      13427
+      13386,
+      13392,
+      13399,
+      13405,
+      13411,
+      13418,
+      13426,
+      13434,
+      13441
     ],
     "implementation status": [
       4146,
@@ -68716,36 +68761,36 @@
       13049,
       13053,
       13057,
-      13105,
-      13109,
-      13113,
-      13117,
-      13121,
-      13126,
-      13130,
-      13136,
-      13142,
-      13149,
-      13157,
+      13119,
+      13123,
+      13127,
+      13131,
+      13135,
+      13140,
+      13144,
+      13150,
+      13156,
       13163,
-      13169,
-      13175,
-      13181,
-      13187,
-      13193,
-      13199,
-      13205,
-      13211,
-      13217,
+      13171,
+      13177,
+      13183,
+      13189,
+      13195,
+      13201,
+      13207,
+      13213,
+      13219,
       13225,
-      13230,
-      13236,
-      13363,
-      13371,
+      13231,
+      13239,
+      13244,
+      13250,
       13377,
-      13384,
-      13390,
-      13396
+      13385,
+      13391,
+      13398,
+      13404,
+      13410
     ],
     "implementation summary attestation point": [
       12380
@@ -69109,45 +69154,45 @@
       12989,
       12994,
       13020,
-      13108,
-      13112,
-      13116,
-      13120,
-      13124,
-      13129,
-      13139,
-      13145,
-      13154,
-      13160,
-      13166,
-      13172,
-      13178,
-      13184,
-      13190,
-      13196,
-      13202,
-      13208,
-      13214,
-      13220,
+      13122,
+      13126,
+      13130,
+      13134,
+      13138,
+      13143,
+      13153,
+      13159,
+      13168,
+      13174,
+      13180,
+      13186,
+      13192,
+      13198,
+      13204,
+      13210,
+      13216,
+      13222,
       13228,
-      13233,
-      13239,
-      13259,
-      13264,
-      13269,
+      13234,
+      13242,
+      13247,
+      13253,
       13273,
-      13279,
+      13278,
       13283,
-      13366,
-      13374,
+      13287,
+      13293,
+      13297,
       13380,
-      13387,
-      13393,
-      13399,
-      13406,
-      13414,
-      13422,
-      13429
+      13388,
+      13394,
+      13401,
+      13407,
+      13413,
+      13420,
+      13428,
+      13436,
+      13443
     ],
     "implementation testing verification phases": [
       834
@@ -70168,7 +70213,7 @@
       2573
     ],
     "invented source line warning": [
-      13390
+      13404
     ],
     "inventory a notion workspace": [
       707
@@ -72884,8 +72929,8 @@
       9718
     ],
     "level contract fallback": [
-      13080,
-      13082
+      13094,
+      13096
     ],
     "level contract headings": [
       2362
@@ -73215,6 +73260,9 @@
     ],
     "lineage path verbatim": [
       6565
+    ],
+    "lineage prompt fix plan": [
+      13082
     ],
     "lineage pruning rule plan": [
       6320
@@ -74296,6 +74344,12 @@
     "luna eligible through cli codex only": [
       5517
     ],
+    "luna halt analysis": [
+      13074
+    ],
+    "luna lineage halt fixes": [
+      13084
+    ],
     "luna max lineage": [
       12353
     ],
@@ -74605,16 +74659,16 @@
       654
     ],
     "main ci regenerations": [
-      13350
+      13364
     ],
     "main ci regenerations plan": [
-      13349
+      13363
     ],
     "main ci regenerations summary": [
-      13348
+      13362
     ],
     "main ci regenerations tasks": [
-      13351
+      13365
     ],
     "main fast forward to new tree": [
       12378
@@ -75029,10 +75083,10 @@
       3397
     ],
     "manual playbook runner retired": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "manual playbook scenario count fix": [
       9602
@@ -77865,7 +77919,7 @@
       12372
     ],
     "memory decommission history": [
-      13074
+      13088
     ],
     "memory decommission inventory": [
       12354
@@ -77889,7 +77943,7 @@
       12349
     ],
     "memory decommission timeline": [
-      13075
+      13089
     ],
     "memory delete causal cleanup": [
       10488
@@ -78539,10 +78593,10 @@
       8043
     ],
     "memory quality test never collected": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "memory rebuild complete": [
       8127
@@ -79811,7 +79865,7 @@
       425
     ],
     "missing value file behavior": [
-      13426
+      13440
     ],
     "missing vector hygiene implementation": [
       9049
@@ -80967,7 +81021,7 @@
       1292
     ],
     "model writer off list rate": [
-      13402
+      13416
     ],
     "modelcontextprotocol sdk cannot find module": [
       8247,
@@ -81193,7 +81247,7 @@
       1260
     ],
     "moved gone past end citations": [
-      13384
+      13398
     ],
     "mps auto detect cocoindex": [
       9942
@@ -81261,6 +81315,9 @@
     ],
     "multi client reconnect transparency": [
       10048
+    ],
+    "multi executor deep review": [
+      13076
     ],
     "multi executor research": [
       1803
@@ -81384,7 +81441,7 @@
       377
     ],
     "mutation class coverage": [
-      13238
+      13252
     ],
     "mutation class enum discipline": [
       11505,
@@ -82330,8 +82387,8 @@
       2632
     ],
     "no tsx template fallback": [
-      13080,
-      13082
+      13094,
+      13096
     ],
     "noaa loop harness plan": [
       6960
@@ -83623,13 +83680,13 @@
       10029
     ],
     "off list rate": [
-      13405
+      13419
     ],
     "off list rate protocol": [
-      13403
+      13417
     ],
     "off list rate result": [
-      13402
+      13416
     ],
     "off switches section plan": [
       13069
@@ -83792,13 +83849,13 @@
       5995
     ],
     "okf adoption": [
-      13436
+      13450
     ],
     "okf baseline": [
-      13368
+      13382
     ],
     "okf deep research": [
-      13436
+      13450
     ],
     "oklch color clustering": [
       1200
@@ -84120,7 +84177,7 @@
       2359
     ],
     "open knowledge format": [
-      13436
+      13450
     ],
     "open the changed png": [
       850
@@ -84776,7 +84833,7 @@
       10254
     ],
     "operator label amendment": [
-      13408
+      13422
     ],
     "operator label gate": [
       3092
@@ -86576,32 +86633,34 @@
       12811,
       12816,
       12823,
-      13135,
-      13141,
-      13148,
-      13156,
+      13073,
+      13080,
+      13149,
+      13155,
       13162,
-      13168,
-      13174,
-      13180,
-      13186,
-      13192,
-      13198,
-      13204,
-      13210,
-      13216,
-      13221,
-      13362,
-      13370,
+      13170,
+      13176,
+      13182,
+      13188,
+      13194,
+      13200,
+      13206,
+      13212,
+      13218,
+      13224,
+      13230,
+      13235,
       13376,
-      13383,
-      13389,
-      13395,
-      13401,
+      13384,
+      13390,
+      13397,
+      13403,
       13409,
-      13417,
-      13425,
-      13434
+      13415,
+      13423,
+      13431,
+      13439,
+      13448
     ],
     "packet goal authoring boundary": [
       5208
@@ -86621,9 +86680,9 @@
       12758
     ],
     "packet home": [
-      13097,
-      13098,
-      13099
+      13111,
+      13112,
+      13113
     ],
     "packet id audit": [
       7429,
@@ -86671,7 +86730,7 @@
       2839
     ],
     "packet numbering without track": [
-      13086
+      13100
     ],
     "packet pointer handover check": [
       12398
@@ -86871,10 +86930,10 @@
       12270
     ],
     "parent goal limit": [
-      13101,
-      13102,
-      13103,
-      13104
+      13115,
+      13116,
+      13117,
+      13118
     ],
     "parent goal resend": [
       12784,
@@ -86987,7 +87046,7 @@
       3929
     ],
     "parent skill fixtures": [
-      13238
+      13252
     ],
     "parent skill hub template": [
       1436
@@ -87369,7 +87428,7 @@
       2451
     ],
     "paths with spaces": [
-      13413
+      13427
     ],
     "pattern evidence contract fixture": [
       1291
@@ -88632,10 +88691,10 @@
       1376
     ],
     "phase aware archive": [
-      13097,
-      13098,
-      13099,
-      13100
+      13111,
+      13112,
+      13113,
+      13114
     ],
     "phase b handoff": [
       9279
@@ -88832,10 +88891,10 @@
       13048
     ],
     "phase map rows never filled": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "phase map sync normalization": [
       13033,
@@ -88885,7 +88944,7 @@
       9318,
       10463,
       12611,
-      13074
+      13088
     ],
     "phase parent 049": [
       7802
@@ -90402,19 +90461,19 @@
       1653
     ],
     "planted bad tags": [
-      13421
+      13435
     ],
     "planted matrix protocol": [
-      13403
+      13417
     ],
     "planted matrix result": [
-      13402
+      13416
     ],
     "planted recall result": [
-      13418
+      13432
     ],
     "planted tag recall": [
-      13419
+      13433
     ],
     "plateau detection": [
       1717
@@ -90763,7 +90822,7 @@
       7788
     ],
     "plugin bridge stress stdin request": [
-      13346
+      13360
     ],
     "plugin bridge test fixture cleanup": [
       9794
@@ -90823,13 +90882,13 @@
       726
     ],
     "plugin scanner readiness": [
-      13132
+      13146
     ],
     "plugin scanner readiness plan": [
-      13131
+      13145
     ],
     "plugin scanner readiness tasks": [
-      13133
+      13147
     ],
     "plugin transform dedup lifecycle": [
       7182
@@ -91660,7 +91719,7 @@
       551
     ],
     "prefill consent decision": [
-      13253
+      13267
     ],
     "prefix break per session": [
       3790
@@ -91728,7 +91787,7 @@
       3783
     ],
     "prerelease policy": [
-      13232
+      13246
     ],
     "presentation adherence research": [
       10778,
@@ -92096,17 +92155,17 @@
       12839,
       12983,
       13019,
-      13107,
-      13111,
-      13115,
-      13119,
-      13123,
-      13365,
-      13373,
+      13121,
+      13125,
+      13129,
+      13133,
+      13137,
       13379,
-      13386,
-      13392,
-      13398
+      13387,
+      13393,
+      13400,
+      13406,
+      13412
     ],
     "procedural benchmark gate task": [
       11315
@@ -92944,7 +93003,7 @@
       2092
     ],
     "provenance fingerprint prefilter": [
-      13232
+      13246
     ],
     "provenance injection": [
       10588
@@ -94990,8 +95049,8 @@
       2155
     ],
     "redirect table rebuild": [
-      13410,
-      13413
+      13424,
+      13427
     ],
     "redirect to": [
       2074
@@ -95414,10 +95473,10 @@
     ],
     "refresh track roots": [
       2325,
-      13089,
-      13090,
-      13091,
-      13092
+      13103,
+      13104,
+      13105,
+      13106
     ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       8053
@@ -95861,7 +95920,7 @@
       12559
     ],
     "release alignment proposal": [
-      13151
+      13165
     ],
     "release alignment remediation": [
       10927
@@ -96380,8 +96439,8 @@
       9617
     ],
     "release aware doctor update": [
-      13151,
-      13152
+      13165,
+      13166
     ],
     "release blocker remediation": [
       7310,
@@ -96398,7 +96457,7 @@
       12372
     ],
     "release changelogs": [
-      13396
+      13410
     ],
     "release cleanup": [
       1618
@@ -96593,6 +96652,9 @@
     "release daemon on shutdown": [
       9463
     ],
+    "release deep review": [
+      13076
+    ],
     "release doc research lane": [
       12960
     ],
@@ -96606,7 +96668,7 @@
       12958
     ],
     "release engine changes": [
-      13231
+      13245
     ],
     "release gate complete": [
       4262
@@ -96705,47 +96767,53 @@
       7277,
       7278
     ],
+    "release review lineages": [
+      13075
+    ],
+    "release review verdict": [
+      13074
+    ],
     "release update customization": [
-      13232
+      13246
     ],
     "release update engine audit": [
-      13248
+      13262
     ],
     "release update engine defects": [
-      13245
+      13259
     ],
     "release update engine fixes": [
-      13254
+      13268
     ],
     "release update engine fixes shipped": [
-      13252
+      13266
     ],
     "release update engine plan": [
-      13253
+      13267
     ],
     "release update engine research": [
-      13249
+      13263
     ],
     "release update engine tasks": [
-      13255
+      13269
     ],
     "release update signals": [
-      13360
+      13374
     ],
     "release update symlink parent": [
-      13326
+      13340
     ],
     "release update symlink parent plan": [
-      13325
+      13339
     ],
     "release update symlink parent summary": [
-      13324
+      13338
     ],
     "release update symlink parent tasks": [
-      13327
+      13341
     ],
     "release updater over rebuild": [
-      13147
+      13161
     ],
     "release yml github actions": [
       863
@@ -96865,6 +96933,9 @@
       12462,
       12467
     ],
+    "remediation explorer findings": [
+      13083
+    ],
     "remediation fixes verification report": [
       11164
     ],
@@ -96939,6 +97010,9 @@
     ],
     "remediation plan research findings": [
       7138
+    ],
+    "remediation planning status": [
+      13081
     ],
     "remediation priority": [
       8036,
@@ -98091,17 +98165,17 @@
       12839,
       12983,
       13019,
-      13107,
-      13111,
-      13115,
-      13119,
-      13123,
-      13365,
-      13373,
+      13121,
+      13125,
+      13129,
+      13133,
+      13137,
       13379,
-      13386,
-      13392,
-      13398
+      13387,
+      13393,
+      13400,
+      13406,
+      13412
     ],
     "requirements rules and checklist": [
       1064
@@ -98898,8 +98972,8 @@
       4637,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "research spec conflict detection": [
       1831
@@ -98923,8 +98997,8 @@
       4637,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "research stop contract": [
       1826
@@ -98941,8 +99015,8 @@
       4637,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "research stuck count": [
       1825
@@ -99425,7 +99499,7 @@
       12201
     ],
     "restore phase to parent": [
-      13099
+      13113
     ],
     "restore staged": [
       12745
@@ -99437,9 +99511,9 @@
       24
     ],
     "restore to track": [
-      13093,
-      13094,
-      13095
+      13107,
+      13108,
+      13109
     ],
     "restraint routing": [
       2505,
@@ -99641,10 +99715,10 @@
       6122
     ],
     "retire memory era tests": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "retire memory learn": [
       12151
@@ -99797,7 +99871,7 @@
       11794
     ],
     "retrieval conventions symlink": [
-      13227
+      13241
     ],
     "retrieval coverage alignment": [
       12390,
@@ -100310,11 +100384,20 @@
     "review drift remediation tasks": [
       6554
     ],
+    "review event routing decision": [
+      13079
+    ],
     "review executor behavior scenarios": [
       1842
     ],
+    "review finding fix plan": [
+      13082
+    ],
+    "review finding fix tasks": [
+      13085
+    ],
     "review finding fixes": [
-      13433
+      13447
     ],
     "review finding residue": [
       3039
@@ -100342,6 +100425,9 @@
     ],
     "review folders under spec tree root": [
       1857
+    ],
+    "review gateway event rows": [
+      13084
     ],
     "review gateway iteration acceptance": [
       6969
@@ -100664,6 +100750,12 @@
     "review synthesis phase": [
       1897
     ],
+    "review synthesis plan": [
+      13075
+    ],
+    "review synthesis tasks": [
+      13077
+    ],
     "review this ui code": [
       1189
     ],
@@ -100920,7 +101012,7 @@
       12479
     ],
     "ripgrep version pin": [
-      13227
+      13241
     ],
     "risky followup remediation": [
       6692
@@ -101200,7 +101292,7 @@
       8348
     ],
     "root readme doctor commands": [
-      13330
+      13344
     ],
     "root readme drift fixed": [
       7232
@@ -101387,7 +101479,7 @@
       2021
     ],
     "route validate activities": [
-      13238
+      13252
     ],
     "route validate contract": [
       11535
@@ -101411,7 +101503,7 @@
       9291
     ],
     "route validator activities": [
-      13237
+      13251
     ],
     "router active criteria": [
       3081,
@@ -101891,8 +101983,8 @@
       4637,
       12035,
       12961,
-      13247,
-      13276
+      13261,
+      13290
     ],
     "ruledout array": [
       1812
@@ -102071,7 +102163,7 @@
       851
     ],
     "run time overage accepted": [
-      13416
+      13430
     ],
     "run time parser sweep": [
       4959
@@ -103012,17 +103104,17 @@
       202
     ],
     "sanitizer drops routing labels": [
-      13342
+      13356
     ],
     "sanitizer version stamp": [
-      13338
+      13352
     ],
     "sanitizeskilllabel": [
       2046,
       2093
     ],
     "sanitizeskilllabel v2": [
-      13342
+      13356
     ],
     "saturation threshold enforcement": [
       1925
@@ -103282,8 +103374,8 @@
       12644
     ],
     "scaffold prunes remote tracking refs": [
-      13084,
-      13086
+      13098,
+      13100
     ],
     "scaffold real default status": [
       12222
@@ -103310,7 +103402,7 @@
       12915
     ],
     "scaffold without fetch": [
-      13085
+      13099
     ],
     "scan classifies regular file": [
       12280
@@ -103649,7 +103741,7 @@
       1522
     ],
     "scoped test gate": [
-      13127
+      13141
     ],
     "score 0 partial miss shape": [
       2916
@@ -105261,7 +105353,7 @@
       471
     ],
     "session context types literal": [
-      13428
+      13442
     ],
     "session continuity priming": [
       68
@@ -105331,7 +105423,7 @@
       12096
     ],
     "session list literal": [
-      13426
+      13440
     ],
     "session log": [
       8315
@@ -105987,7 +106079,7 @@
     "shared frontmatter value list": [
       2276,
       2312,
-      13377
+      13391
     ],
     "shared frontmatter value warning": [
       1262,
@@ -107704,7 +107796,7 @@
       6735
     ],
     "sk code opencode section dividers spec kit": [
-      13128
+      13142
     ],
     "sk code opencode standards audit": [
       9545
@@ -108470,7 +108562,7 @@
       1371
     ],
     "sk create frontmatter value list": [
-      13428
+      13442
     ],
     "sk create goal": [
       5286
@@ -109215,7 +109307,7 @@
       1263
     ],
     "sk doc frontmatter addendum": [
-      13368
+      13382
     ],
     "sk doc frontmatter alignment": [
       10412
@@ -109554,7 +109646,7 @@
       1485
     ],
     "sk git standards override": [
-      13268
+      13282
     ],
     "sk git v1 0 0 0": [
       1487
@@ -109632,7 +109724,7 @@
       2313
     ],
     "sk prefix secret false positive": [
-      13132
+      13146
     ],
     "sk prompt 1 0 0 0": [
       1546
@@ -111543,7 +111635,7 @@
       2026
     ],
     "skill budget handoff": [
-      13235
+      13249
     ],
     "skill changelog retrofit": [
       5201
@@ -111570,10 +111662,10 @@
       1453
     ],
     "skill customization alignment proposal": [
-      13152
+      13166
     ],
     "skill customization detection": [
-      13151
+      13165
     ],
     "skill description trim": [
       5316
@@ -113044,35 +113136,35 @@
       12870
     ],
     "source tag accuracy": [
-      13421
+      13435
     ],
     "source tag accuracy protocol": [
-      13419
+      13433
     ],
     "source tag cutoff": [
-      13390,
-      13391
+      13404,
+      13405
     ],
     "source tag cutoff date": [
-      13432
+      13446
     ],
     "source tag hardening": [
-      13421
+      13435
     ],
     "source tag hardening summary": [
-      13418
+      13432
     ],
     "source tag measurement protocol": [
-      13419
+      13433
     ],
     "source tag resolution": [
       2316
     ],
     "source tag resolver": [
-      13369
+      13383
     ],
     "source tag run time guard": [
-      13416
+      13430
     ],
     "source tag warning": [
       2276
@@ -113082,10 +113174,10 @@
     ],
     "source tags rule": [
       2316,
-      13390
+      13404
     ],
     "source tags rule plan": [
-      13391
+      13405
     ],
     "source to target map": [
       12740
@@ -113107,7 +113199,7 @@
       5000
     ],
     "spaced path fix": [
-      13410
+      13424
     ],
     "spacing and type scale": [
       1176
@@ -113783,7 +113875,7 @@
       9800
     ],
     "spec kit code readme gaps": [
-      13128
+      13142
     ],
     "spec kit code standards audit": [
       12458
@@ -113847,10 +113939,10 @@
       9798
     ],
     "spec kit folder merges": [
-      13127
+      13141
     ],
     "spec kit frontmatter improvements": [
-      13436
+      13450
     ],
     "spec kit greenfield": [
       7975
@@ -114321,14 +114413,14 @@
     ],
     "spec kit runtime alignment": [
       2274,
-      13127,
-      13128
+      13141,
+      13142
     ],
     "spec kit runtime api surface": [
       12376
     ],
     "spec kit runtime folder depth": [
-      13128
+      13142
     ],
     "spec kit runtime npm name": [
       12375
@@ -114349,7 +114441,7 @@
       2377
     ],
     "spec kit search improvements": [
-      13436
+      13450
     ],
     "spec kit shared file dependency edge": [
       12446
@@ -114435,10 +114527,10 @@
       2400
     ],
     "spec kit v4 chronology": [
-      13075
+      13089
     ],
     "spec kit v4 timeline": [
-      13074
+      13088
     ],
     "spec kit version migration": [
       9282,
@@ -114674,10 +114766,10 @@
       12176
     ],
     "spec packet lands in opencode specs": [
-      13076,
-      13077,
-      13078,
-      13079
+      13090,
+      13091,
+      13092,
+      13093
     ],
     "spec packet merge gate": [
       12237
@@ -115050,7 +115142,7 @@
       263
     ],
     "speckit hooks git config": [
-      13268
+      13282
     ],
     "speckit index spec docs default corrected": [
       2223
@@ -115306,13 +115398,13 @@
       10966
     ],
     "speckit router contract drift": [
-      13258
+      13272
     ],
     "speckit router contract drift plan": [
-      13257
+      13271
     ],
     "speckit router contract drift summary": [
-      13256
+      13270
     ],
     "speckit router references": [
       11067
@@ -115357,7 +115449,7 @@
       3782
     ],
     "speckit skip prepush track gate": [
-      13091
+      13105
     ],
     "speckit soft delete tombstones default off": [
       10549,
@@ -115768,7 +115860,7 @@
       9573
     ],
     "stale compiled command contract": [
-      13350
+      13364
     ],
     "stale compiled dist": [
       2330
@@ -115924,6 +116016,12 @@
     "stale lock detection": [
       1972
     ],
+    "stale lock reclaim decision": [
+      13079
+    ],
+    "stale lock reclaim race": [
+      13084
+    ],
     "stale lock recovery": [
       1501
     ],
@@ -116014,7 +116112,7 @@
       12991
     ],
     "stale trigger index": [
-      13227
+      13241
     ],
     "stale versus legitimate references": [
       7988
@@ -116041,7 +116139,7 @@
       11575
     ],
     "staleness evidence": [
-      13226
+      13240
     ],
     "staleness maintenance queue": [
       11592,
@@ -117635,17 +117733,17 @@
       12839,
       12983,
       13019,
-      13107,
-      13111,
-      13115,
-      13119,
-      13123,
-      13365,
-      13373,
+      13121,
+      13125,
+      13129,
+      13133,
+      13137,
       13379,
-      13386,
-      13392,
-      13398
+      13387,
+      13393,
+      13400,
+      13406,
+      13412
     ],
     "success criteria section": [
       1330,
@@ -118064,7 +118162,7 @@
     ],
     "sweep track roots": [
       2325,
-      13091
+      13105
     ],
     "sweep verification checklist": [
       12645
@@ -118101,7 +118199,7 @@
       13023
     ],
     "symlink parent conflict": [
-      13326
+      13340
     ],
     "symlink refusal scope": [
       12277
@@ -119263,16 +119361,16 @@
       11879
     ],
     "system speckit v4": [
-      13074
+      13088
     ],
     "system speckit v4 pre v4 spec upgrade changelog": [
-      13072
+      13086
     ],
     "system speckit v4 root docs and git hook disclosure changelog": [
-      13073
+      13087
     ],
     "system speckit v4 timeline": [
-      13075
+      13089
     ],
     "system to embedder mapping": [
       8759,
@@ -119782,45 +119880,45 @@
       12989,
       12994,
       13020,
-      13108,
-      13112,
-      13116,
-      13120,
-      13124,
-      13129,
-      13139,
-      13145,
-      13154,
-      13160,
-      13166,
-      13172,
-      13178,
-      13184,
-      13190,
-      13196,
-      13202,
-      13208,
-      13214,
-      13220,
+      13122,
+      13126,
+      13130,
+      13134,
+      13138,
+      13143,
+      13153,
+      13159,
+      13168,
+      13174,
+      13180,
+      13186,
+      13192,
+      13198,
+      13204,
+      13210,
+      13216,
+      13222,
       13228,
-      13233,
-      13239,
-      13259,
-      13264,
-      13269,
+      13234,
+      13242,
+      13247,
+      13253,
       13273,
-      13279,
+      13278,
       13283,
-      13366,
-      13374,
+      13287,
+      13293,
+      13297,
       13380,
-      13387,
-      13393,
-      13399,
-      13406,
-      13414,
-      13422,
-      13429
+      13388,
+      13394,
+      13401,
+      13407,
+      13413,
+      13420,
+      13428,
+      13436,
+      13443
     ],
     "task cache removal": [
       507
@@ -120149,45 +120247,45 @@
       12989,
       12994,
       13020,
-      13108,
-      13112,
-      13116,
-      13120,
-      13124,
-      13129,
-      13139,
-      13145,
-      13154,
-      13160,
-      13166,
-      13172,
-      13178,
-      13184,
-      13190,
-      13196,
-      13202,
-      13208,
-      13214,
-      13220,
+      13122,
+      13126,
+      13130,
+      13134,
+      13138,
+      13143,
+      13153,
+      13159,
+      13168,
+      13174,
+      13180,
+      13186,
+      13192,
+      13198,
+      13204,
+      13210,
+      13216,
+      13222,
       13228,
-      13233,
-      13239,
-      13259,
-      13264,
-      13269,
+      13234,
+      13242,
+      13247,
+      13253,
       13273,
-      13279,
+      13278,
       13283,
-      13366,
-      13374,
+      13287,
+      13293,
+      13297,
       13380,
-      13387,
-      13393,
-      13399,
-      13406,
-      13414,
-      13422,
-      13429
+      13388,
+      13394,
+      13401,
+      13407,
+      13413,
+      13420,
+      13428,
+      13436,
+      13443
     ],
     "task detail without network": [
       527
@@ -120752,33 +120850,33 @@
       12987,
       12992,
       13018,
-      13106,
-      13110,
-      13114,
-      13118,
-      13122,
-      13137,
-      13143,
-      13150,
-      13158,
+      13120,
+      13124,
+      13128,
+      13132,
+      13136,
+      13151,
+      13157,
       13164,
-      13170,
-      13176,
-      13182,
-      13188,
-      13194,
-      13200,
-      13206,
-      13212,
-      13218,
-      13364,
-      13372,
+      13172,
+      13178,
+      13184,
+      13190,
+      13196,
+      13202,
+      13208,
+      13214,
+      13220,
+      13226,
+      13232,
       13378,
-      13385,
-      13404,
-      13412,
-      13420,
-      13427
+      13386,
+      13392,
+      13399,
+      13418,
+      13426,
+      13434,
+      13441
     ],
     "telemetry and process verification harness": [
       8859,
@@ -121347,7 +121445,7 @@
       12106
     ],
     "template reduction history": [
-      13074
+      13088
     ],
     "template reduction requirements": [
       12086
@@ -121491,7 +121589,7 @@
       11288
     ],
     "temporary git index scan": [
-      13131
+      13145
     ],
     "ten agent specialization": [
       841
@@ -121654,10 +121752,10 @@
       10080
     ],
     "test phase validation cannot load": [
-      13080,
-      13081,
-      13082,
-      13083
+      13094,
+      13095,
+      13096,
+      13097
     ],
     "test plan checkboxes": [
       1483
@@ -122050,33 +122148,33 @@
       12987,
       12992,
       13018,
-      13106,
-      13110,
-      13114,
-      13118,
-      13122,
-      13137,
-      13143,
-      13150,
-      13158,
+      13120,
+      13124,
+      13128,
+      13132,
+      13136,
+      13151,
+      13157,
       13164,
-      13170,
-      13176,
-      13182,
-      13188,
-      13194,
-      13200,
-      13206,
-      13212,
-      13218,
-      13364,
-      13372,
+      13172,
+      13178,
+      13184,
+      13190,
+      13196,
+      13202,
+      13208,
+      13214,
+      13220,
+      13226,
+      13232,
       13378,
-      13385,
-      13404,
-      13412,
-      13420,
-      13427
+      13386,
+      13392,
+      13399,
+      13418,
+      13426,
+      13434,
+      13441
     ],
     "tests that cannot fail": [
       956
@@ -122302,7 +122400,7 @@
       9824
     ],
     "threshold proposal retired": [
-      13382
+      13396
     ],
     "tie break arm plan": [
       2978
@@ -122842,10 +122940,10 @@
       11465
     ],
     "track aware archive": [
-      13093,
-      13094,
-      13095,
-      13096
+      13107,
+      13108,
+      13109,
+      13110
     ],
     "track b code remediation": [
       10925
@@ -122898,10 +122996,10 @@
       12075
     ],
     "track numbering restarts at 001": [
-      13076,
-      13077,
-      13078,
-      13079
+      13090,
+      13091,
+      13092,
+      13093
     ],
     "track prefix identity heal": [
       11425
@@ -122911,25 +123009,25 @@
     ],
     "track root children ids": [
       2325,
-      13088,
-      13089,
-      13090,
-      13091,
-      13092
+      13102,
+      13103,
+      13104,
+      13105,
+      13106
     ],
     "track root drift": [
-      13091
+      13105
     ],
     "track root pointer store only": [
       13039
     ],
     "track root pre push gate": [
       2325,
-      13088,
-      13089,
-      13090,
-      13091,
-      13092
+      13102,
+      13103,
+      13104,
+      13105,
+      13106
     ],
     "track root store only evidence": [
       13037
@@ -122956,7 +123054,7 @@
       547
     ],
     "track z archive": [
-      13095
+      13109
     ],
     "tracker shows status across periods": [
       1094
@@ -123294,8 +123392,8 @@
       2917
     ],
     "trigger index freshness": [
-      13227,
-      13360
+      13241,
+      13374
     ],
     "trigger index generator": [
       2389,
@@ -123338,7 +123436,7 @@
       6319
     ],
     "trigger index regeneration": [
-      13226
+      13240
     ],
     "trigger index regeneration task": [
       2917
@@ -123714,7 +123812,7 @@
       1166
     ],
     "two checkout comparison": [
-      13418
+      13432
     ],
     "two data folders collapsed": [
       12418
@@ -124369,7 +124467,7 @@
       12220
     ],
     "untrack packet context": [
-      13132
+      13146
     ],
     "untrusted output boundary source kind render escaper": [
       11495
@@ -124964,38 +125062,68 @@
     "v4 0 0 2 release notes": [
       45
     ],
+    "v4 0 0 2 to v4 0 0 3 review": [
+      13076
+    ],
     "v4 0 0 3 changelog classifier refresh": [
       3316
     ],
     "v4 0 0 3 changelog doctor": [
-      13330
+      13344
     ],
     "v4 0 0 3 changelog gaps": [
-      13277
+      13291
     ],
     "v4 0 0 3 changelog research": [
-      13278
+      13292
     ],
     "v4 0 0 3 changelog research summary": [
-      13274
+      13288
     ],
     "v4 0 0 3 changelog update": [
-      13282
+      13296
     ],
     "v4 0 0 3 changelog update summary": [
-      13280
+      13294
+    ],
+    "v4 0 0 3 deep review": [
+      13076
     ],
     "v4 0 0 3 entry edit plan": [
-      13281
+      13295
     ],
     "v4 0 0 3 release notes": [
       46
     ],
     "v4 0 0 3 release notes accuracy": [
-      13358
+      13372
+    ],
+    "v4 0 0 3 remediation plan": [
+      13082
+    ],
+    "v4 0 0 3 remediation research": [
+      13083
+    ],
+    "v4 0 0 3 remediation summary": [
+      13081
+    ],
+    "v4 0 0 3 remediation tasks": [
+      13085
     ],
     "v4 0 0 3 research plan": [
-      13275
+      13289
+    ],
+    "v4 0 0 3 review plan": [
+      13075
+    ],
+    "v4 0 0 3 review remediation": [
+      13084
+    ],
+    "v4 0 0 3 review summary": [
+      13074
+    ],
+    "v4 0 0 3 review tasks": [
+      13077
     ],
     "v4 changelog": [
       43
@@ -125061,7 +125189,7 @@
       1315
     ],
     "v4 packet order": [
-      13075
+      13089
     ],
     "v4 parent data repairs": [
       13045,
@@ -125681,32 +125809,32 @@
       12981,
       12986,
       13017,
-      13105,
-      13109,
-      13113,
-      13117,
-      13121,
-      13126,
-      13130,
-      13136,
-      13142,
-      13149,
-      13157,
+      13119,
+      13123,
+      13127,
+      13131,
+      13135,
+      13140,
+      13144,
+      13150,
+      13156,
       13163,
-      13169,
-      13175,
-      13181,
-      13187,
-      13193,
-      13199,
-      13205,
-      13211,
-      13217,
+      13171,
+      13177,
+      13183,
+      13189,
+      13195,
+      13201,
+      13207,
+      13213,
+      13219,
       13225,
-      13230,
-      13236,
-      13363,
-      13371
+      13231,
+      13239,
+      13244,
+      13250,
+      13377,
+      13385
     ],
     "validation first workflow": [
       1412
@@ -125954,7 +126082,7 @@
       1237
     ],
     "value list owner change": [
-      13426
+      13440
     ],
     "value of computation allocation": [
       5815
@@ -126642,46 +126770,48 @@
       12989,
       12994,
       13020,
-      13108,
-      13112,
-      13116,
-      13120,
-      13124,
-      13129,
-      13133,
-      13139,
-      13145,
-      13154,
-      13160,
-      13166,
-      13172,
-      13178,
-      13184,
-      13190,
-      13196,
-      13202,
-      13208,
-      13214,
-      13220,
+      13077,
+      13085,
+      13122,
+      13126,
+      13130,
+      13134,
+      13138,
+      13143,
+      13147,
+      13153,
+      13159,
+      13168,
+      13174,
+      13180,
+      13186,
+      13192,
+      13198,
+      13204,
+      13210,
+      13216,
+      13222,
       13228,
-      13233,
-      13239,
-      13259,
-      13264,
-      13269,
+      13234,
+      13242,
+      13247,
+      13253,
       13273,
-      13279,
+      13278,
       13283,
-      13366,
-      13374,
+      13287,
+      13293,
+      13297,
       13380,
-      13387,
-      13393,
-      13399,
-      13406,
-      13414,
-      13422,
-      13429
+      13388,
+      13394,
+      13401,
+      13407,
+      13413,
+      13420,
+      13428,
+      13436,
+      13443
     ],
     "verification class blind to failure class": [
       7133
@@ -127585,24 +127715,26 @@
       12985,
       12990,
       13061,
-      13125,
-      13223,
-      13229,
-      13234,
-      13240,
-      13251,
-      13260,
+      13072,
+      13078,
+      13139,
+      13237,
+      13243,
+      13248,
+      13254,
       13265,
-      13361,
-      13367,
+      13274,
+      13279,
       13375,
       13381,
-      13388,
-      13394,
-      13400,
-      13407,
-      13415,
-      13423
+      13389,
+      13395,
+      13402,
+      13408,
+      13414,
+      13421,
+      13429,
+      13437
     ],
     "wal autocheckpoint 256": [
       9398,
@@ -127677,7 +127809,7 @@
       8427
     ],
     "warning recall matrix": [
-      13405
+      13419
     ],
     "warnings enforcement path restore": [
       12214
@@ -128552,32 +128684,32 @@
       12981,
       12986,
       13017,
-      13105,
-      13109,
-      13113,
-      13117,
-      13121,
-      13126,
-      13130,
-      13136,
-      13142,
-      13149,
-      13157,
+      13119,
+      13123,
+      13127,
+      13131,
+      13135,
+      13140,
+      13144,
+      13150,
+      13156,
       13163,
-      13169,
-      13175,
-      13181,
-      13187,
-      13193,
-      13199,
-      13205,
-      13211,
-      13217,
+      13171,
+      13177,
+      13183,
+      13189,
+      13195,
+      13201,
+      13207,
+      13213,
+      13219,
       13225,
-      13230,
-      13236,
-      13363,
-      13371
+      13231,
+      13239,
+      13244,
+      13250,
+      13377,
+      13385
     ],
     "what shipped acceptance closure": [
       12576
@@ -128796,7 +128928,7 @@
       2021
     ],
     "which spec was worked on first": [
-      13075
+      13089
     ],
     "which system uses cocoindex or mk spec memory": [
       9988
@@ -129737,7 +129869,7 @@
       2107
     ],
     "z future stress fixture": [
-      13346
+      13360
     ],
     "z future z archive scan exclude": [
       10152
