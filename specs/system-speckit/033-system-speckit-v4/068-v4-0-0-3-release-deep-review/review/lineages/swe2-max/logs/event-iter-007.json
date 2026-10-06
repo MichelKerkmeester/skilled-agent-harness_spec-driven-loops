@@ -1,0 +1,43 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "mode": "review",
+  "run": 7,
+  "status": "complete",
+  "focus": "maintainability — repo-rules corpus tightening + AGENTS.md reorder + README rewrite: cross-reference survival, section-number consistency",
+  "dimensions": ["maintainability"],
+  "filesReviewed": [
+    ".skilled/repo-rules/blast-radius.md",
+    ".skilled/repo-rules/communication-decisions.md",
+    ".skilled/repo-rules/communication-handoff.md",
+    ".skilled/repo-rules/answer-the-actual-request.md",
+    ".skilled/repo-rules/evidence-and-proof.md",
+    ".skilled/repo-rules/communication.md",
+    ".skilled/repo-rules/scope-discipline.md",
+    ".skilled/repo-rules/uncertainty-and-honesty.md",
+    ".skilled/repo-rules/prevent-overengineering.md",
+    ".skilled/repo-rules/root-cause-and-debugging.md",
+    ".skilled/repo-rules/delegation-and-orchestration.md",
+    ".skilled/repo-rules/skill-hub-routing.md",
+    ".skilled/repo-rules/communication-prose.md",
+    "AGENTS.md",
+    "REPO RULES.md",
+    "README.md",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/steer.md"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingDetails": [],
+  "traceabilityChecks": {
+    "spec_code": "all sampled AGENTS.md §N citations resolve to correct content after number-preserving reorder; repo-rules internal §N citations verified against current heading tables",
+    "checklist_evidence": "no new findings; reference graph verified intact across 13-file tightening diff",
+    "spec_doc": "README rewrite tracked the diff exactly (counts moved with the surfaces they describe); REPO RULES.md enrichment-only"
+  },
+  "newFindingsRatio": 0,
+  "lineageMode": "new",
+  "generation": 1,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "durationMs": 0,
+  "timestamp": "2026-10-06T05:33:00.000Z"
+}

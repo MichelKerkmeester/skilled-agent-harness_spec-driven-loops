@@ -1,0 +1,49 @@
+{
+  "topic": "v4.0.0.3 release deep review — swe2-max lineage (sk-* skills, non-doctor commands, agents + mirrors, repo-rules, root docs)",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "reviewTargetType": "spec-folder",
+  "reviewRange": "v4.0.0.2..v4.0.0.3",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "convergenceMode": "default",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "executionMode": "AUTONOMOUS",
+  "executor": { "kind": "cli-devin", "model": "swe-2-max", "label": "swe2-max" },
+  "scopeManifest": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal-file-manifest.txt",
+  "focusArea": ".skilled/skills/sk-* and other sk-* skills, .skilled/commands/ other than doctor, .skilled/agents/ and runtime agent mirrors, .skilled/repo-rules/, root AGENTS.md and README.md, docs-vs-code agreement",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  },
+  "createdAt": "2026-10-06T04:21:48.000Z",
+  "status": "complete"
+}

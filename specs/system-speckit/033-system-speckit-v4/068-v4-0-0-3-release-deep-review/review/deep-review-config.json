@@ -1,0 +1,55 @@
+{
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "timeoutSeconds": 1800,
+        "label": "luna-max",
+        "iterations": 10
+      },
+      {
+        "kind": "cli-pi",
+        "model": "opencode-go/deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "timeoutSeconds": 1800,
+        "label": "deepseek-flash-max",
+        "iterations": 15
+      },
+      {
+        "kind": "cli-devin",
+        "model": "swe-2-max",
+        "timeoutSeconds": 1800,
+        "label": "swe2-max",
+        "iterations": 10
+      }
+    ],
+    "concurrency": 3
+  },
+  "scopeManifest": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal-file-manifest.txt",
+  "reviewRange": "v4.0.0.2..v4.0.0.3",
+  "createdAt": "2026-10-06T04:13:59.411Z",
+  "status": "running"
+}

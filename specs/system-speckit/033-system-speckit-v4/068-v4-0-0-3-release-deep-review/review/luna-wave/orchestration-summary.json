@@ -1,0 +1,64 @@
+{
+  "run_id": "1791271123156-s6514k",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave",
+  "total_cli_lineages": 2,
+  "stopped": true,
+  "stopped_signal": "SIGTERM",
+  "stopped_at_iso": "2026-10-06T07:36:17.314Z",
+  "status": "partial",
+  "total": 2,
+  "succeeded": 0,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 2,
+    "pending": 0,
+    "failed": 0
+  },
+  "results": [
+    {
+      "label": "luna-codex",
+      "status": "running",
+      "started_at_iso": "2026-10-06T07:34:48.961Z",
+      "completed_at_iso": "2026-10-06T07:34:48.960Z",
+      "duration_ms": 965798,
+      "error": {
+        "name": "Error",
+        "message": "lineage luna-codex exited 0 but did not produce expected artifact: specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages/luna-codex/review-report.md",
+        "failure_class": "salvage_miss",
+        "retry_verdict": "transient",
+        "retryable": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "salvage": {
+          "salvaged": 0,
+          "failed": 1
+        }
+      },
+      "updated_at_iso": "2026-10-06T07:34:48.961Z"
+    },
+    {
+      "label": "luna-opencode",
+      "status": "running",
+      "started_at_iso": "2026-10-06T07:27:31.797Z",
+      "completed_at_iso": "2026-10-06T07:27:31.796Z",
+      "duration_ms": 524716,
+      "error": {
+        "name": "Error",
+        "message": "lineage luna-opencode exited 0 but did not produce expected artifact: specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages/luna-opencode/review-report.md",
+        "failure_class": "salvage_miss",
+        "retry_verdict": "transient",
+        "retryable": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "salvage": {
+          "salvaged": 0,
+          "failed": 1
+        }
+      },
+      "updated_at_iso": "2026-10-06T07:27:31.796Z"
+    }
+  ]
+}

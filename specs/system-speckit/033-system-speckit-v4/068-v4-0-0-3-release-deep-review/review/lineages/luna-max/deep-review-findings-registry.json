@@ -1,0 +1,532 @@
+{
+  "sessionId": "fanout-luna-max-1791260058145-vgna23",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Oversized commit messages can hide forbidden trailers from every gate",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 427,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "Auto-resume lifecycle event has no declared gateway-compatible shape",
+      "file": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      "line": 332,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Oversized commit messages can hide forbidden trailers from every gate",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 427,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Oversized commit messages can hide forbidden trailers from every gate",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 427,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8333,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "oversized_input",
+      "resume_event_schema"
+    ],
+    "ruledOut": [
+      "path_traversal",
+      "per_lineage_iteration_cap",
+      "rename_apply",
+      "rollback_integrity",
+      "shared_gate_consistency"
+    ],
+    "deferred": [
+      "checklist_evidence"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "rollback_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "rename_apply": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "oversized_input": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shared_gate_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "resume_event_schema": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "per_lineage_iteration_cap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "deferred",
+      "rationale": "The route smoke was recorded as setup progress, but its external response transcript is not retained in the packet; closure evidence can be checked at final synthesis.",
+      "evidenceRefs": [
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal.md:82-83",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md:106"
+      ],
+      "reason": "Reconcile the T003/CHK-003 smoke evidence at packet closure without treating this in-progress summary as a code failure."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The static guards and the focused regression case did not expose a path escape in the reviewed branch.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:218-258"
+      ],
+      "reason": "No confirmed bypass was found; concurrency races were not exercised because tests were not run."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "bugClass": "rollback_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The visible write sequence preserves the required rollback-before-mutation ordering.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:1817-1941",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2178-2197"
+      ],
+      "reason": "No ordering defect was confirmed by direct read."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs"
+      ],
+      "bugClass": "rename_apply",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed rename path and test agree on removal of the old path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:681-701",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs:541-590"
+      ],
+      "reason": "No confirmed stale-path defect was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        ".skilled/scripts/git-hooks/commit-msg",
+        ".skilled/scripts/git-hooks/pre-push",
+        ".github/workflows/message-contract.yml"
+      ],
+      "bugClass": "shared_gate_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No independent validator bypasses or strengthens the truncated shared check in these inspected callers.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:147-169",
+        ".skilled/scripts/git-hooks/commit-msg:76-79",
+        ".skilled/scripts/git-hooks/pre-push:247-249",
+        ".github/workflows/message-contract.yml:61,79"
+      ],
+      "reason": "The entry points converge on one shared validator."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/deep-review-config.json",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/luna-max/deep-review-config.json"
+      ],
+      "bugClass": "per_lineage_iteration_cap",
+      "disposition": "ruled_out",
+      "rationale": "Iteration caps differ by design and the fan-out runner carries each lineage's own cap.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1506-1529",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1012-1063",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/luna-max/deep-review-config.json:17-20",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/deepseek-flash-max/deep-review-config.json:13-17",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/deep-review-config.json:14-18"
+      ],
+      "reason": "The prompt and stop-policy validator both consume lineage.iterations rather than the root maximum."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The static guards and the focused regression case did not expose a path escape in the reviewed branch.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:218-258"
+      ],
+      "proof": "No confirmed bypass was found; concurrency races were not exercised because tests were not run."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs"
+      ],
+      "bugClass": "rollback_integrity",
+      "disposition": "ruled_out",
+      "rationale": "The visible write sequence preserves the required rollback-before-mutation ordering.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:1817-1941",
+        ".skilled/commands/doctor/scripts/release-update.cjs:2178-2197"
+      ],
+      "proof": "No ordering defect was confirmed by direct read."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs"
+      ],
+      "bugClass": "rename_apply",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed rename path and test agree on removal of the old path.",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/release-update.cjs:681-701",
+        ".skilled/commands/doctor/scripts/tests/release-update.test.cjs:541-590"
+      ],
+      "proof": "No confirmed stale-path defect was found."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        ".skilled/scripts/git-hooks/commit-msg",
+        ".skilled/scripts/git-hooks/pre-push",
+        ".github/workflows/message-contract.yml"
+      ],
+      "bugClass": "shared_gate_consistency",
+      "disposition": "ruled_out",
+      "rationale": "No independent validator bypasses or strengthens the truncated shared check in these inspected callers.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/scripts/validate-message.mjs:147-169",
+        ".skilled/scripts/git-hooks/commit-msg:76-79",
+        ".skilled/scripts/git-hooks/pre-push:247-249",
+        ".github/workflows/message-contract.yml:61,79"
+      ],
+      "proof": "The entry points converge on one shared validator."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/deep-review-config.json",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/luna-max/deep-review-config.json"
+      ],
+      "bugClass": "per_lineage_iteration_cap",
+      "disposition": "ruled_out",
+      "rationale": "Iteration caps differ by design and the fan-out runner carries each lineage's own cap.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1506-1529",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1012-1063",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/luna-max/deep-review-config.json:17-20",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/deepseek-flash-max/deep-review-config.json:13-17",
+        "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/deep-review-config.json:14-18"
+      ],
+      "proof": "The prompt and stop-policy validator both consume lineage.iterations rather than the root maximum."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "resume_event_schema",
+      "per_lineage_iteration_cap",
+      "checklist_evidence"
+    ],
+    "covered": [
+      "resume_event_schema"
+    ],
+    "ruledOut": [
+      "per_lineage_iteration_cap"
+    ],
+    "deferred": [
+      "checklist_evidence"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "blocked": 0,
+          "fail": 0,
+          "partial": 2,
+          "pass": 3
+        },
+        "evidence": [
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/spec.md:107-116",
+          ".skilled/commands/deep/assets/deep-review-auto.yaml:332",
+          ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:355-463",
+          ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:596"
+        ],
+        "findingRefs": [
+          "F002"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Per-lineage caps and stop policy align. The resume-event handoff is incomplete, while merged-report and final-validation requirements remain pending as the fan-out runs."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "blocked": 0,
+          "fail": 0,
+          "partial": 2,
+          "pass": 8
+        },
+        "evidence": [
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md:37-51",
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md:104-118",
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/tasks.md:147-167",
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal.md:82-83",
+          "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/orchestration-status.log:1-3,27"
+        ],
+        "findingRefs": [],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "summary": "Setup and launch claims have packet evidence. The route-smoke result is summarized as PONG without a raw response transcript in this packet. The containment advisory does not attribute the listed untracked paths to a lineage."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

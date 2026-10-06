@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"swe2-max","sessionId":"swe2-max"},"data":{"mode":"review","totalIterations":10,"activeP0":0,"activeP1":5,"activeP2":9,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"converged","stopReason":"maxIterationsReached"}}

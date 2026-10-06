@@ -1,0 +1,50 @@
+{
+  "topic": "Review v4.0.0.2..v4.0.0.3 release changes in the luna-max lineage",
+  "sessionId": "fanout-luna-max-1791260058145-vgna23",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "reviewTargetType": "spec-folder",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "reviewRange": "v4.0.0.2..v4.0.0.3",
+  "scopeManifest": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/goal-file-manifest.txt",
+  "reviewScopeFileCount": 1997,
+  "resource_map_present": false,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {"convergenceMode": "default", "divergent": {}},
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "resource_map": {"emit": false},
+  "createdAt": "2026-10-06T04:31:39Z",
+  "status": "initialized",
+  "fileProtection": {
+    "deep-review-config.json": "immutable after init except workflow terminal status",
+    "deep-review-state.jsonl": "append-only gateway projection",
+    "deep-review-findings-registry.json": "lineage-local derived state",
+    "deep-review-strategy.md": "mutable",
+    "iterations/iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "review-report.md": "synthesis output"
+  }
+}

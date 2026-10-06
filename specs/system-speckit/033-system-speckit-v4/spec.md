@@ -174,6 +174,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 65 | 065-cli-hermes-pi-dispatch-rules/ | cli-hermes's and cli-pi's rule that sends dispatches to the shared runtime covers only research and review lineages, and a one-shot dispatch runs the CLI directly with the child environment | complete |
 | 66 | 066-pre-v4-spec-upgrade/ | One deterministic command brings spec folders written under v3.x to a full `validate.sh --strict` pass with no authored LLM edits. As upgraded, 2 of 170 active v3.0 packets and 0 of 1,007 active v3.6 packets pass | in progress |
 | 67 | 067-root-docs-and-git-hook-disclosure/ | CONTRIBUTING names Skilled and the current clone URL. The README says what the git hooks block and links every off switch from one section. Every git hook block message names its bypass | complete |
+| 68 | 068-v4-0-0-3-release-deep-review/ | [Phase 68 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -205,6 +206,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 053-legacy-template-default-detection | 055-advisory-false-alarms | 053 is Planned and 055 shares no files with it, so 055 does not wait for 053 | 055 validates strict, the sk-git suites pass 33 of 33 and the sentinel suite passes 24 of 24 |
 | 050-ci-cleanup-pi-proof | 066-pre-v4-spec-upgrade | 050 is Complete. 066 measures legacy packets against `validate.sh --strict` as it stands, so its counts are rerun whenever a later phase changes what strict checks | 066 validates strict, its harness reports 170 of 170 (v3.0) and 1,007 of 1,007 (v3.6) active packets passing after one run, and a second run changes no file |
 | 066-pre-v4-spec-upgrade | 067-root-docs-and-git-hook-disclosure | 066 is Complete and 067 shares no files with it | 067 validates strict, the commit-msg suite passes 19 of 19 and the pre-commit suite passes 55 of 55 |
+| 067-root-docs-and-git-hook-disclosure | 068-v4-0-0-3-release-deep-review | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

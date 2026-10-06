@@ -1,0 +1,90 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "mode": "review",
+  "run": 4,
+  "status": "complete",
+  "focus": "security — hooks/plugins/scripts enforcement surface (injection screen, message gate, dispatch guard, completion sentinel, gate killswitches)",
+  "dimensions": ["security"],
+  "filesReviewed": [
+    ".opencode/plugins/classifier-injection-screen.js",
+    ".opencode/plugins/sk-git-message-gate.js",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+    ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+    ".skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs",
+    ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+    ".devin/hooks.v1.json",
+    ".cursor/hooks.json",
+    ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+    ".skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+    ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+    ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+    ".skilled/hooks/git/pre-commit",
+    ".skilled/scripts/git-hooks/pre-commit",
+    ".skilled/scripts/git-hooks/commit-msg",
+    ".skilled/scripts/git-hooks/lib/gate-config.sh",
+    ".skilled/scripts/git-hooks/lib/gates.tsv",
+    ".skilled/bin/system-skill-advisor-launcher.cjs",
+    ".skilled/hooks/goal/lib/goal-core.cjs",
+    ".skilled/hooks/hook-flags.env.example",
+    ".hermes/plugins/repo-guards/__init__.py",
+    ".github/workflows/dispatch-enforcement-guard.yml",
+    "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages/swe2-max/steer.md"
+  ],
+  "findingsCount": 3,
+  "findingsSummary": { "P0": 0, "P1": 1, "P2": 2 },
+  "findingsNew": { "P0": 0, "P1": 1, "P2": 2 },
+  "findingDetails": [
+    {
+      "id": "sw2m-P1-005",
+      "severity": "P1",
+      "title": "Devin hooks.v1.json + DEVIN_TOOL_MAP omit the write tool; whole-file writes bypass spec-gate enforce and post-edit-quality",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P1",
+        "confidence": 0.85,
+        "downgradeTrigger": "downgrades to P2 if the Devin runtime never emits tool_name 'write' (maps whole-file writes through edit internally)",
+        "counterevidenceSought": "compared cursor spec-gate-enforce (maps Write→write, no matcher) against devin (matcher ^edit$, map lacks write); confirmed this runtime exposes a distinct write tool"
+      }
+    },
+    {
+      "id": "sw2m-P2-007",
+      "severity": "P2",
+      "title": "goal verifier tail-windows evidence to last 1200 chars; mid-transcript blockers invisible to the met/not-met verdict",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.8,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "verified clampText handles Infinity correctly and the lookbehind regex excludes only true zero-count forms; the blindness is the window itself, documented but still a verdict-integrity regression on long transcripts"
+      }
+    },
+    {
+      "id": "sw2m-P2-008",
+      "severity": "P2",
+      "title": "injection-screen UNKNOWN_SESSION bucket strands advisories or attributes them to an unrelated session",
+      "claimAdjudication": {
+        "transition": "candidate-to-finding",
+        "adjudicationOutcome": "accepted",
+        "finalSeverity": "P2",
+        "confidence": 0.7,
+        "downgradeTrigger": "none",
+        "counterevidenceSought": "checked sessionIdOf bucketing and drain-once transform; bounded because advisory text is a fixed template — the harm is silent non-delivery, not content injection"
+      }
+    }
+  ],
+  "traceabilityChecks": {
+    "checklist_evidence": "file:line + concrete failure scenario for all findings; write-tool gap traced through matcher, tool map and cursor twin",
+    "spec_code": "hard-rules.json migration verified byte-identical for cli-hermes; KNOWN_CHECKS guard confirmed running in dispatch-enforcement-guard.yml",
+    "skill_agent": "advisory template interpolation audited — fetched content never reaches system prompt; all adapters fail open"
+  },
+  "newFindingsRatio": 1,
+  "lineageMode": "new",
+  "generation": 1,
+  "sessionId": "fanout-swe2-max-1791260058145-vgna23",
+  "durationMs": 0,
+  "timestamp": "2026-10-06T05:03:16.000Z"
+}

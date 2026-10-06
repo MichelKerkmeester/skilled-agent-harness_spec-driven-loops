@@ -1,0 +1,64 @@
+{
+  "mergedFrom": [
+    "luna-codex",
+    "luna-opencode"
+  ],
+  "lineageExecutors": {
+    "luna-codex": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "luna-opencode": {
+      "kind": "cli-opencode",
+      "model": "openai/gpt-6-luna-fast",
+      "reasoningEffort": "max"
+    }
+  },
+  "mergedVerdict": "PASS",
+  "openFindings": [
+    {
+      "findingId": "LUNA-CODEX-02-P2-001",
+      "severity": "P2",
+      "title": "Page byte size is unbounded before screening timeout",
+      "file": ".skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs",
+      "line": 106,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-codex"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 0,
+  "activeP2": 1
+}
