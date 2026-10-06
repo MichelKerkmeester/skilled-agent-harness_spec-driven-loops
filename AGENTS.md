@@ -58,11 +58,11 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two thresholds a phased packet must meet independently.
 - **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; a route that writes anything is bound by this gate like any other mutation.
 - **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
-- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker already bound to a lineage directory. Gate 3 is PRE-RESOLVED: treat that directory as the answer, do not emit the question and do not wait. Interactive sessions always ask.
+- **Autonomous child-dispatch exemption.** `SYSTEM_SPEC_GATE_ENFORCE=0` or `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
-1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon, and exit 1 with no rows is a clean no-hit
+1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "<prompt>"` → Surface relevant context. It reads the committed index; exit 1 with no rows is a clean no-hit
 2. Classify intent: Research or Implementation
 3. Parse the request and judge confidence against the Confidence Thresholds below — that table is the single scale; do not carry a second one.
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.
@@ -107,7 +107,7 @@ Trigger: before EVERY substantive reply, read-only turns included. Gate 5 fires 
 - A file already in context is not re-read.
 
 #### CONSOLIDATED QUESTION PROTOCOL
-Consolidate multiple questions into a SINGLE prompt — never split across messages. Gate 3 is still asked first; any other question waits until you have read what could answer it, and comes before the work its answer would change. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
+Consolidate multiple questions into a SINGLE prompt. Gate 3 is still asked first; any other question waits until you have read what could answer it, and comes before the work its answer would change. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip Gate 3, or realized it was skipped, on a turn where it fires and neither a session answer nor the child-dispatch exemption covers it → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D) → WAIT. Any other skipped gate: run it before the next tool call.
@@ -175,7 +175,7 @@ Trigger: a session bound to a spec packet, on every turn.
 #### Blast-Radius Management
 
 - **Open non-trivial work with a stakes read**, low-blast and reversible or high-blast and what it touches, and size the effort to it.
-- **Name the rollback, stop for yes** — before an irreversible action or any install, write how to undo and wait for confirmation. Irreversible is the bottom tier of the [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) ladder, such as a send, a deploy or publish, a push outside the allowlist or deleting or overwriting an untracked file. This wait is mandatory and no rule file relaxes it.
+- **Name the rollback, stop for yes** — before an irreversible action or any install, write how to undo and wait for confirmation. Irreversible is the bottom tier of the [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) ladder, such as a send, a deploy or publish, a push outside the allowlist or deleting or overwriting an untracked file. This wait is mandatory and no rule file relaxes it. A §2 bound child is exempt.
 
 #### Execution Behavior
 
@@ -185,7 +185,7 @@ Trigger: a session bound to a spec packet, on every turn.
 - **Recheck your work when something changes**: a new fact, a failed check or a risk still open. Catch your own mistakes before asking for help.
 - **Plan before acting** on multi-step work: name the files, the tools and the observable check before the first edit.
 - **Do not stop early.** No "natural checkpoint" or "future work" on incomplete work when a safe path forward exists.
-- **Do not ask permission to continue an already-approved, in-scope step.** This never waives a mandatory wait: Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push go-ahead and the blast-radius stop-for-yes all still block.
+- **Do not ask permission to continue an already-approved, in-scope step.** This never waives a mandatory wait: Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push go-ahead and the blast-radius stop-for-yes all still block. The §2 child-dispatch exemption is the one exception.
 - **Stop local retries after three failed fixes for the same symptom**, then escalate per §7. That count governs the debugging loop. §7's two-attempt bound governs confidence, not retries.
 
 ### Quality & Restraint
