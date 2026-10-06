@@ -167,6 +167,8 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
         source: 'fanout_lineage_stdout',
         bytes_recovered: recoveredText.length,
       };
+      // Advisory row only: nothing reads it to make a decision.
+      // A later rewrite of the projection can drop it.
       mergeJsonlUnderLock(stateLogPath, [eventRecord]);
       salvaged += 1;
     } else {
