@@ -77,6 +77,32 @@ def test_removing_a_router_item_fails_check_ten_with_rule_bullet_and_line(tmp_pa
     assert "deploy a service" not in line.lower()
 
 
+def test_moved_bullet_meets_moving_router_item(tmp_path: Path) -> None:
+    root = make_tree(tmp_path, trigger_items="Deploy a service · moving a service")
+    rule = root / ".skilled" / "repo-rules" / "alpha.md"
+    rule.write_text(RULE.replace(
+        "- You notice a stale comment outside the files in scope.",
+        "- A file was moved."))
+
+    result = run(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "10/11 PASS fires-when coverage" in result.stdout
+
+
+def test_moved_bullet_meets_move_router_item(tmp_path: Path) -> None:
+    root = make_tree(tmp_path, trigger_items="Deploy a service · move the file")
+    rule = root / ".skilled" / "repo-rules" / "alpha.md"
+    rule.write_text(RULE.replace(
+        "- You notice a stale comment outside the files in scope.",
+        "- The file was moved without approval."))
+
+    result = run(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "10/11 PASS fires-when coverage" in result.stdout
+
+
 def test_root_without_a_router_is_an_error(tmp_path: Path) -> None:
     result = run(tmp_path)
 

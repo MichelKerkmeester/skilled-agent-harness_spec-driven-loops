@@ -42,6 +42,7 @@ const STOP_WORDS = new Set(('a an the to of or and in on at by for with from as 
   'you your it its one two about into than when what how there their not will was has have can do does did own off out')
   .split(' '));
 const SUFFIXES = ['ations', 'ation', 'ions', 'ion', 'ings', 'ing', 'ers', 'er', 'ed', 'es', 's', 'e'];
+const SHORT_STEM_SUFFIXES = new Set(['ed', 'ing']);
 const REQUIRED_KEYS = [
   'title',
   'description',
@@ -221,14 +222,23 @@ function splitRouterSections(lines) {
   return sections;
 }
 
-// Content words, crudely stemmed, so "fails" and "failure" can meet.
+// Content words, crudely stemmed. The stem floor is four letters, except after
+// SHORT_STEM_SUFFIXES, where a three-letter stem still names the act: "moved"
+// and "moving" both leave "mov". A three-letter stem also keeps its silent-e
+// form ("move") so the stem still meets its base word. "fails" and "failure"
+// meet through wordsMeet's prefix rule, not through this stemming.
 function contentWords(text) {
   const words = new Set();
   const plain = text.replace(/\]\([^)]*\)/gu, ']').toLowerCase();
   for (const word of plain.match(/[a-z]+/gu) || []) {
     if (word.length < 3 || STOP_WORDS.has(word)) continue;
-    const suffix = SUFFIXES.find((candidate) => word.endsWith(candidate) && word.length - candidate.length >= 4);
-    words.add(suffix === undefined ? word : word.slice(0, -suffix.length));
+    const suffix = SUFFIXES.find((candidate) => word.endsWith(candidate)
+      && word.length - candidate.length >= (SHORT_STEM_SUFFIXES.has(candidate) ? 3 : 4));
+    const stem = suffix === undefined ? word : word.slice(0, -suffix.length);
+    words.add(stem);
+    if (suffix !== undefined && SHORT_STEM_SUFFIXES.has(suffix) && stem.length === 3) {
+      words.add(`${stem}e`);
+    }
   }
   return words;
 }
