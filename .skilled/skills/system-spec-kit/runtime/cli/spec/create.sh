@@ -1073,11 +1073,55 @@ fi
 # ───────────────────────────────────────────────────────────────
 # 3b. SHARED: Branch Name Generation & Git Branch Creation
 # ───────────────────────────────────────────────────────────────
+# A new top-level packet is the cheapest moment to notice a recent sibling that
+# already covers the same artifact: joining it, or a series parent, beats a
+# standalone packet that needs a retrofit. Phase children and sub-folders never
+# reach this function. Everything goes to stderr so a --json payload on stdout
+# stays parseable, and no failure here may stop the scaffold.
+list_recent_track_packets() {
+    [[ -d "$SPECS_DIR" ]] || return 0
+    command -v node >/dev/null 2>&1 || return 0
+    local specs_label="$SPECS_DIR"
+    specs_label="${specs_label#"$REPO_ROOT"/}"
+    node -e '
+const fs = require("fs");
+const path = require("path");
+const specsDir = process.argv[1];
+const specsLabel = process.argv[2];
+const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
+const rows = [];
+for (const name of fs.readdirSync(specsDir)) {
+  if (!/^[0-9]{3}-/.test(name)) continue;
+  const folder = path.join(specsDir, name);
+  let createdAt;
+  let description = "";
+  try {
+    const metadata = JSON.parse(fs.readFileSync(path.join(folder, "graph-metadata.json"), "utf8"));
+    createdAt = metadata && metadata.derived && metadata.derived.created_at;
+    const identity = JSON.parse(fs.readFileSync(path.join(folder, "description.json"), "utf8"));
+    if (identity && typeof identity.description === "string") description = identity.description;
+  } catch {
+    continue;
+  }
+  if (typeof createdAt !== "string" || createdAt === "") continue;
+  const timestamp = Date.parse(createdAt);
+  if (Number.isNaN(timestamp) || timestamp < cutoff) continue;
+  rows.push({ name, timestamp, date: createdAt.slice(0, 10), description: description.replace(/\s+/g, " ").slice(0, 100) });
+}
+rows.sort((a, b) => b.timestamp - a.timestamp);
+if (rows.length === 0) process.exit(0);
+const lines = ["[speckit] Recent packets in " + specsLabel + ", last 14 days:"];
+for (const row of rows.slice(0, 10)) lines.push("  " + row.name + "  " + row.date + "  " + row.description);
+lines.push("[speckit] If the new work is a different change to the same artifact as one of these, join or create a series parent instead of a new packet: references/structure/phase-definitions.md, section 2.");
+process.stderr.write(lines.join("\n") + "\n");
+' "$SPECS_DIR" "$specs_label" || return 0
+}
+
 # Extracted to avoid duplication between phase mode and normal mode.
 # Sets: BRANCH_SUFFIX, BRANCH_NUMBER, FEATURE_NUM, BRANCH_NAME
 # Creates git branch unless SKIP_BRANCH=true or no git.
-
 resolve_branch_name() {
+    list_recent_track_packets
     if [[ -n "$SHORT_NAME" ]]; then
         BRANCH_SUFFIX=$(slugify_token "$SHORT_NAME")
     else
