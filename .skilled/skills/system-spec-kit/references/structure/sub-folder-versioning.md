@@ -180,12 +180,14 @@ Sub-folder versioning and phases serve distinct purposes:
 | **Purpose** | Sequential iterations of the same work | Parallel decomposition of different work streams |
 | **Relationship** | Each version builds on or replaces the previous | Each phase addresses a distinct part of the whole |
 | **Naming** | `001-original/`, `002-iteration/` | `001-foundation/`, `002-api-layer/` |
-| **Trigger** | Option A reuse with existing content | Complexity score >= 25 AND level >= 3 |
+| **Trigger** | Option A reuse with existing content | Complexity score >= 25 AND level >= 3, or a series parent (`phase-definitions.md` §2) |
 | **Workflow** | One active version at a time | Multiple phases may be active simultaneously |
 | **Parent spec** | Optional (root docs may exist) | Required (Phase Documentation Map in parent spec.md) |
 | **Back-reference** | Not required | Child spec.md references parent via `parent:` metadata |
 
 **Key distinction:** Versions are **temporal** (this work, then that work). Phases are **spatial** (this part and that part, potentially in parallel).
+
+**Version or series parent?** Use a sub-folder version when the follow-up iterates on the packet's own work and the packet's slug still describes it. Use a series parent (`phase-definitions.md` §2) when the follow-up is a different change to the same artifact, because the first packet's slug names only its own change.
 
 Both systems use the same `###-name/` naming convention for child folders and both keep independent canonical continuity (`implementation-summary.md` `_memory.continuity`) per child.
 

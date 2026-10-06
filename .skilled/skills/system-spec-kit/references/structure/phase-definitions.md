@@ -63,6 +63,22 @@ Phase decomposition is suggested when BOTH conditions are met:
 
 If only one condition is met, the specification proceeds as a standard (non-phased) spec folder.
 
+### Series Parent: The Second Qualification Path
+
+The thresholds above decide whether one large piece of work splits into phases. A series parent groups separate small pieces of work instead, and it qualifies without those thresholds.
+
+A series parent qualifies when all three hold:
+
+1. **Same artifact.** The new work changes the same named file, script, command or contract as an existing standard packet.
+2. **Same track.** Both packets live in the same track under `specs/<track>/`.
+3. **A different change.** The new work is not a correction of the existing packet's own change. A correction continues that packet with Option A, even when the packet is complete.
+
+Create the series parent at the second packet, not later, so each child's commit history stays on one path for as long as possible. Its slug names the artifact, for example `041-write-recipe-fixes`, and its `spec.md` names the artifact and the condition that closes the series. It keeps the lean trio plus an optional `timeline.md` and gets no `goal.md` by default.
+
+To create one, scaffold the parent with `create.sh --phase`, move the existing packet in as child `001` with `git mv`, and repoint its identity: `specFolder`, `specId` and `parentChain` in `description.json`, `parent_id` in `graph-metadata.json`, and the `Spec Folder` row of `implementation-summary.md`. Run `repair-derived.cjs --apply` on every packet whose docs changed and `refresh-track-roots.mjs --apply` on the track, then add the new work as child `002` with `create.sh --phase --parent`.
+
+A series parent is not a bucket. Work that changes a different artifact gets its own packet, even in the same track.
+
 ### Phased-Packet Preference
 
 **Governance rule:** "AI's should always prefer multi-phased specs over separate single spec folders, unless the task is small or new from current work."
@@ -70,7 +86,8 @@ If only one condition is met, the specification proceeds as a standard (non-phas
 This is a routing preference, not an override of phase qualification:
 
 - When related work has a phase complexity score >= 25 AND documentation level >= 3, the AI MUST recommend one coordinated phased packet instead of separate top-level single-spec folders.
-- When only one or neither threshold is met, the work MUST remain a standard non-phased spec. Related standard work should reuse or update an existing packet when its scope fits.
+- When only one or neither threshold is met, the work MUST remain a standard non-phased spec unless it qualifies for a series parent. Related standard work should reuse or update an existing packet when its scope fits.
+- When new work qualifies for a series parent, the AI MUST recommend Option C with that series parent instead of a new top-level sibling packet.
 - New or unrelated work may start a new top-level packet. The new packet must still be evaluated independently: create it as a phased packet when both thresholds are met, otherwise create it as a standard packet.
 - A small task does not justify creating a new sibling packet when it fits an active existing packet. Continue in the applicable existing packet or phase child instead.
 
@@ -202,12 +219,12 @@ Phase folders use the same status values as regular spec folders:
 When the current work is already inside a phase parent:
 
 1. Use Option A when the requested work fits the current active, draft, or paused child phase.
-2. Prefer Option D when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map. When the parent has a `goal.md`, give the new phase its child goal and binding row with `/create:goal <parent> phase-add`.
+2. Prefer Option C when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map. When the parent has a `goal.md`, give the new phase its child goal and binding row with `/create:goal <parent> phase-add`.
 3. Use Option C when another related existing packet is a better scope match.
 4. Use Option B only when the work is new or unrelated to the phase parent's purpose, requirements, and Phase Documentation Map.
-5. Option E remains an explicit documentation opt-out and is never the default.
+5. Option D (Skip) remains an explicit documentation opt-out and is never the default.
 
-The phase-qualification thresholds govern whether a standard packet may become a phase parent. An already-established phase parent does not need to requalify for every later child, but every new child must remain inside the parent's documented scope and use the documentation level appropriate to that child. A standard non-phased packet may not gain phase children unless both qualification thresholds are met.
+The phase-qualification thresholds govern whether a standard packet may become a phase parent. An already-established phase parent does not need to requalify for every later child, but every new child must remain inside the parent's documented scope and use the documentation level appropriate to that child. A standard non-phased packet may not gain phase children unless both qualification thresholds are met, or the work qualifies for a series parent (§2), which takes the standard packet in as its first child.
 
 ### Cross-Phase Dependencies
 

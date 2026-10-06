@@ -124,18 +124,12 @@ If the runtime does not surface command menus clearly, use this compact command 
 **Nested changelog generator**
 - `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write` - publish a packet-local changelog for a root spec or phase child
 
-### Find Next Spec Number
-
-```bash
-ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
-```
-
-Add 1 to the result to get your next number.
-
 ### Create Spec Folder
 
+Use `create.sh`. It numbers the packet from the highest number in use, and before it does, it lists the recent packets in the same track:
+
 ```bash
-mkdir -p specs/###-short-name/
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --track <track> --level <N> "<short description>"
 ```
 
 ### Template Composition (Maintainer)
@@ -246,8 +240,9 @@ Before making ANY file changes, verify:
 ✅ The work is related to one coordinated outcome
 ✅ Phase complexity score >= 25 AND documentation level >= 3
 ✅ The work contains distinct workstreams that would otherwise become separate top-level single-spec folders
+✅ The work is a different change to the same artifact as an existing packet in the same track (a series parent, `phase-definitions.md` §2)
 
-The phased-packet preference does not override qualification. If only one or neither threshold is met, continue or update a standard non-phased packet.
+The phased-packet preference does not override qualification. If only one or neither threshold is met and no series parent qualifies, continue or update a standard non-phased packet.
 
 ### CREATE New Top-Level Work When:
 
@@ -274,7 +269,7 @@ When Gate 3 applies, always present all four stable labels and ask the user to c
 **Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, or a related standard packet decomposed into phases when it meets both phase thresholds.
 **Option D:** Skip spec documentation after the required warning or under an existing exemption.
 
-**Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
+**Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet, including a series parent; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
 
 **AI Agent Rule:** Recommend the best-fit option using this priority, but NEVER select it autonomously. The user must choose A/B/C/D.
 
@@ -413,7 +408,7 @@ Then verify placeholders are fully resolved:
 
 ---
 
-## 13. SKIP OPTION (OPTION E) USAGE
+## 13. SKIP OPTION (OPTION D) USAGE
 
 ### When Appropriate ✅
 
@@ -532,7 +527,7 @@ The pointer is maintained automatically by the generator: a save into a child po
 
 ### Phase Quick Reference
 
-**Detection:** Complexity score >= 25 AND level >= 3
+**Detection:** Complexity score >= 25 AND level >= 3, or a series parent for a different change to the same artifact
 
 **Scoring dimensions:** Architectural (10) + Files>15 (10) + LOC>800 (10) + Risk>=2 (10) + Extreme scale (10)
 
@@ -591,7 +586,7 @@ specs/###-parent/
 - Template files (.skilled/skills/system-spec-kit/templates/*.md)
 - Build files (package.json, requirements.txt)
 
-**No exceptions** (unless user explicitly selects Option E)
+**No exceptions** (unless user explicitly selects Option D)
 
 ---
 

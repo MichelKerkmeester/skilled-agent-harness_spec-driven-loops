@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-series-parent-rule-and-sibling-listing"
+    packet_pointer: "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing"
     last_updated_at: "2026-10-06T20:29:11Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

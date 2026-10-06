@@ -33,6 +33,8 @@ Phase decomposition is suggested when **both** conditions are met:
 
 If only one condition is met, the specification proceeds as a standard (non-phased) spec folder.
 
+A series parent is the one exception. It groups separate small packets that change the same artifact in the same track, and it qualifies without these thresholds. See `phase-definitions.md` §2.
+
 ---
 
 ## 3. COMPLEXITY SCORING (5 DIMENSIONS)
