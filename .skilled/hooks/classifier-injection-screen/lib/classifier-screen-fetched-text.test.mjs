@@ -117,6 +117,16 @@ test('twenty sections screen twelve and leave eight unchecked', async () => {
   assert.equal(stub.calls.length, 24);
 });
 
+test('one huge single-line page is capped per section and in total', async () => {
+  const stub = scripted(Array.from({ length: 24 }, () => body(0.1)));
+  const result = await screenText('a'.repeat(1_000_000), { env: {}, gate: GATE, classify: stub.classify });
+
+  const longest = Math.max(...stub.calls.map((call) => call.stdin.length));
+  assert.ok(longest <= 8000, `maximum stdin ${longest}`);
+  assert.deepEqual(result, { checked: 12, flagged: [], unchecked: 113, unmeasured: 0 });
+  assert.equal(stub.calls.length, 24);
+});
+
 test('a short section merges into the next and the last short section into the previous', async () => {
   const text = ['# A', 'a1', '# B', 'b1', 'b2', 'b3', 'b4', 'b5', '# C', 'c1'].join('\n');
   const stub = scripted([body(0.1), body(0.1)]);
