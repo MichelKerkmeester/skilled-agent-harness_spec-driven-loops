@@ -69,8 +69,12 @@ const ALLOWLIST_BASENAMES = new Set([
 const SCANNABLE = new Set(['.cjs', '.mjs', '.js', '.ts', '.tsx']);
 
 // The compiled-routing spec tree, matched even when a path is split across
-// segments (the exact shape of the coupling this guard removed).
-const COMPILED_ROUTING_SPEC_FRAGMENT = 'specs/sk-doc/019-skill-routing-refactor';
+// segments (the exact shape of the coupling this guard removed). The packet
+// moved under z_archive, so both its old and its current location count.
+const COMPILED_ROUTING_SPEC_FRAGMENTS = [
+  'specs/sk-doc/019-skill-routing-refactor',
+  'specs/sk-doc/z_archive/019-skill-routing-refactor',
+];
 
 const IMPORT_PATTERNS = [
   /\brequire\(\s*['"]([^'"]+)['"]\s*\)/g,
@@ -129,8 +133,8 @@ function scanFile(file, unreadable = []) {
     }
     // Catch a spec-tree path reconstructed from a string literal even when it is
     // fed to a dynamic require via a variable (the original coupling's shape).
-    if (line.includes(COMPILED_ROUTING_SPEC_FRAGMENT) || line.includes('.opencode/specs') || line.includes('.skilled/specs')) {
-      if (/\b(require|import)\b/.test(line) || /['"][^'"]*specs\/sk-doc\/019-skill-routing-refactor/.test(line)) {
+    if (COMPILED_ROUTING_SPEC_FRAGMENTS.some((fragment) => line.includes(fragment)) || line.includes('.opencode/specs') || line.includes('.skilled/specs')) {
+      if (/\b(require|import)\b/.test(line) || /['"][^'"]*specs\/sk-doc\/(?:z_archive\/)?019-skill-routing-refactor/.test(line)) {
         violations.push({ file, line: index + 1, target: line.trim().slice(0, 120), reason: 'compiled-routing spec-tree path literal in runtime code' });
       }
     }
