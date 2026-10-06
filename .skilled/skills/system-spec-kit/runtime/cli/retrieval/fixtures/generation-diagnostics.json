@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6759,
-    "ok": 13383,
-    "valid-empty-list": 3515
+    "missing-frontmatter": 6762,
+    "ok": 13397,
+    "valid-empty-list": 3516
   },
-  "documentsScanned": 23711,
+  "documentsScanned": 23729,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4096bb48791bc0f242db6c1520340c7bfba679f77a80567ff0d596812e086799",
+  "manifestHash": "bad8439a9b907f630eb22c0f4f236cce6e71a9cdacee45964303b1f7f07a67ed",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33862,
+      "ok": 33895,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -65224,6 +65224,31 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-halt-analysis.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -70988,6 +71013,22 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/review/luna-wave/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/068-v4-0-0-3-release-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/069-v4-0-0-3-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
