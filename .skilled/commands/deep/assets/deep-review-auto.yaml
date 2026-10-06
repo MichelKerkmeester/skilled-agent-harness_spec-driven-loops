@@ -1490,6 +1490,18 @@ workflow:
               }),
             );
             EOF
+            NODE_STATUS=$?
+            for eventFile in "$EVENT_DIR"/*.json; do
+              [ -e "$eventFile" ] || continue
+              node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
+              GATEWAY_STATUS=$?
+              if [ "$GATEWAY_STATUS" -ne 0 ]; then
+                rm -rf "$EVENT_DIR"
+                exit "$GATEWAY_STATUS"
+              fi
+            done
+            rm -rf "$EVENT_DIR"
+            exit "$NODE_STATUS"
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
