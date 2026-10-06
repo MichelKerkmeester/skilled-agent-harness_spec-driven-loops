@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────────
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
-const DEVIN_TOOL_MAP = { exec: 'bash', edit: 'edit' };
+const DEVIN_TOOL_MAP = { exec: 'bash', edit: 'edit', write: 'write' };
 
 function filePathFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return null;

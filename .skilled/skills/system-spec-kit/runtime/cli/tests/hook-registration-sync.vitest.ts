@@ -105,4 +105,28 @@ describe('sync-hook-registrations.cjs', () => {
     expect(reconcile, 'registry cursor binding for git-primary-reconcile').toBeDefined();
     expect(renderCursorCommand({ defaultMessage: 'unused' }, reconcile!)).toMatch(/ >\/dev\/null 2>&1 &$/u);
   });
+
+  it('Devin edit-path bindings also match write', () => {
+    const registry = JSON.parse(fs.readFileSync(REGISTRY, 'utf8')) as {
+      hooks: Array<{ id: string; bindings: Record<string, Array<{ matcher?: string | null; script?: string }>> }>;
+    };
+    const editPathScripts = [
+      'post-edit-quality/devin/post-edit-quality.cjs',
+      'hooks/devin/spec-gate-enforce.mjs',
+    ];
+    const checked: string[] = [];
+    for (const hook of registry.hooks) {
+      for (const binding of hook.bindings.devin ?? []) {
+        const { matcher: rawMatcher, script } = binding;
+        if (!rawMatcher || !script) continue;
+        if (!editPathScripts.some((suffix) => script.endsWith(suffix))) continue;
+        const matcher = new RegExp(rawMatcher);
+        if (!matcher.test('edit')) continue;
+        checked.push(`${hook.id}:${rawMatcher}`);
+        expect(matcher.test('write'), `${hook.id} ${rawMatcher} should match write`).toBe(true);
+        expect(matcher.test('rewrite'), `${hook.id} ${rawMatcher} should not match rewrite`).toBe(false);
+      }
+    }
+    expect(checked.length, 'edit-path Devin bindings whose matcher matches "edit"').toBeGreaterThanOrEqual(2);
+  });
 });
