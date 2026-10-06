@@ -2368,6 +2368,7 @@ workflow:
         set_field: { status: "complete" }
 
       step_stage_artifact_dir:
+        skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
         command: "git add {state_paths.artifact_dir}"
         note: "Staging the whole artifact_dir keeps the iteration trail (iterations/, deltas/, state.jsonl, strategy, findings-registry, and the report) together; the operator keeps commit authority and can `git restore --staged {path}` before committing. Failure is non-fatal -- log warning and continue."

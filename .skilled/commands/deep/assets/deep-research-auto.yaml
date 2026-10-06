@@ -2310,6 +2310,7 @@ workflow:
           - status_ledger_terminal: "A fan-out-shaped status row with label single and event completed, failed, or stopped"
 
       step_stage_artifact_dir:
+        skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
         command: 'git add -- "{state_paths.packet_dir}" ":(exclude){state_paths.packet_dir}/.deep-research.lock" ":(exclude){state_paths.packet_dir}/.deep-research-pause" ":(exclude){state_paths.packet_dir}/.deep-research-run-now" ":(exclude){state_paths.packet_dir}/.legacy-projection-watermarks"'
         note: "Skill-owned contract fix (028): without this stage step, operators who do `git add research-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal: log warning and continue. The exclude pathspecs keep the live lock file, the pause and run-now sentinels, and the legacy projection watermark directory out of the index; locks-and-fencing-v1, ledgers, deltas, iterations and the state log stay staged."
