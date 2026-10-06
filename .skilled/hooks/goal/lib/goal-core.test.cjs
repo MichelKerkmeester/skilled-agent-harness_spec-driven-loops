@@ -712,6 +712,27 @@ test('verifyGoalHeuristic returns not-met when the tail of a long transcript car
   assert.equal(result.verdict, 'not-met');
 });
 
+test('verifyGoalHeuristic does not return met when the assistant stated a blocker before a conclusive tail', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: FIXTURE_GOAL,
+    transcriptText: 'The P0 widget shipping test failed with an error. '
+      + 'x '.repeat(1500)
+      + ' The widget shipping work is done and tests passed for the widget shipping change.',
+  });
+  assert.equal(result.verdict, 'unclear');
+  assert.equal(result.reason, 'Earlier assistant text includes blocking language the closing summary does not settle');
+});
+
+test('verifyGoalHeuristic ignores blocking language that appears only outside the assistant text', () => {
+  const closing = ' The widget shipping work is done and tests passed for the widget shipping change.';
+  const result = core.verifyGoalHeuristic({
+    goal: FIXTURE_GOAL,
+    transcriptText: 'The P0 widget shipping test failed with an error. ' + 'x '.repeat(1500) + closing,
+    assistantText: closing,
+  });
+  assert.equal(result.verdict, 'met');
+});
+
 test('verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis', () => {
   const result = core.verifyGoalHeuristic({
     goal: FIXTURE_GOAL,

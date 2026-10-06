@@ -596,11 +596,14 @@ function verifierResult(verdict, reason, evidence, confidence) {
  * conclusive while still describing a blocker, so ambiguous or mixed
  * evidence always stays open (`not-met`/`unclear`) rather than `met`.
  * It judges the tail of the evidence because the completion proof comes
- * last, and a cut there would read as truncation. Only the last
- * `DEFAULT_MAX_EVIDENCE_CHARS` characters are judged, so a blocker stated
- * earlier in a longer transcript is never seen by this verifier.
+ * last, and a cut there would read as truncation.
+ * The assistant's own text before that tail is also scanned for blocking
+ * language, so a blocker it stated early cannot be buried by a confident
+ * closing summary. Tool output is not scanned there: a failure a tool
+ * printed and the turn then fixed is not an open blocker. Callers that
+ * cannot separate the two pass the transcript alone, which is then scanned whole.
  */
-function verifyGoalHeuristic({ goal, transcriptText } = {}) {
+function verifyGoalHeuristic({ goal, transcriptText, assistantText } = {}) {
   const fullEvidence = sanitizeInlineText(transcriptText || '', Infinity);
   const safeEvidence = fullEvidence.length > DEFAULT_MAX_EVIDENCE_CHARS
     ? fullEvidence.slice(-DEFAULT_MAX_EVIDENCE_CHARS).trimStart()
@@ -612,6 +615,16 @@ function verifyGoalHeuristic({ goal, transcriptText } = {}) {
   }
   if (VERIFIER_BLOCKING_PATTERN.test(safeEvidence)) {
     return verifierResult('not-met', 'Evidence includes blocking or incomplete-work language', safeEvidence, 0);
+  }
+  const ownText = sanitizeInlineText(
+    typeof assistantText === 'string' ? assistantText : (transcriptText || ''),
+    Infinity,
+  );
+  const earlierOwnText = ownText.length > DEFAULT_MAX_EVIDENCE_CHARS
+    ? ownText.slice(0, ownText.length - DEFAULT_MAX_EVIDENCE_CHARS)
+    : '';
+  if (earlierOwnText && VERIFIER_BLOCKING_PATTERN.test(earlierOwnText)) {
+    return verifierResult('unclear', 'Earlier assistant text includes blocking language the closing summary does not settle', safeEvidence, 0);
   }
   if (/\.\.\.$/.test(safeEvidence) || /\btruncated\b/i.test(safeEvidence)) {
     return verifierResult('unclear', 'Evidence appears truncated before it proves completion', safeEvidence, 0);
