@@ -51,7 +51,7 @@ const LEGACY_LAYOUT = LAYOUTS[LAYOUTS.length - 1];
 // the repository root. It is named once here so the pre-commit hook, the guard and the sync
 // tool all move together when that packet moves.
 const AUTHORED_PROGRAM_DIR = path.join(
-  'specs', 'sk-doc', '019-skill-routing-refactor', '015-router-unification-program',
+  'specs', 'sk-doc', 'z_archive', '019-skill-routing-refactor', '015-router-unification-program',
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
