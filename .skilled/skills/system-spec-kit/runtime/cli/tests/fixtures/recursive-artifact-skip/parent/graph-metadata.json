@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-10-06T00:00:00.000Z",
+  "specFolder": "recursive-artifact-skip/parent",
+  "status": "in_progress",
+  "derived": {
+    "status": "in_progress",
+    "last_active_child_id": "001-alive"
+  },
+  "entities": [],
+  "relationships": [],
+  "packets": []
+}

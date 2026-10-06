@@ -1,0 +1,11 @@
+{
+  "specFolder": "recursive-artifact-skip/parent",
+  "description": "Fixture parent for recursive artifact skip behavior.",
+  "keywords": [
+    "recursive",
+    "artifact",
+    "skip"
+  ],
+  "lastUpdated": "2026-10-06T00:00:00.000Z",
+  "level": "1"
+}
