@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
+  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26700,6 +26700,9 @@
     "create sh root numbering": [
       "create.sh root numbering"
     ],
+    "create sh sibling listing plan": [
+      "create.sh sibling listing plan"
+    ],
     "create sh upgrade level sh": [
       "create.sh upgrade-level.sh"
     ],
@@ -46581,6 +46584,9 @@
     ],
     "group a flag plumbing": [
       "group-a flag plumbing"
+    ],
+    "group related small packets": [
+      "group related small packets"
     ],
     "grouped bars": [
       "grouped bars"
@@ -72631,6 +72637,9 @@
     "recency load bearing ranking": [
       "recency load-bearing ranking"
     ],
+    "recent packets in this track": [
+      "recent packets in this track"
+    ],
     "reciprocal contradicts edges dormant": [
       "reciprocal contradicts edges dormant"
     ],
@@ -80242,6 +80251,9 @@
     "salvaged from stdout event": [
       "salvaged_from_stdout event"
     ],
+    "same artifact different change": [
+      "same artifact different change"
+    ],
     "same class producer inventory": [
       "same class producer inventory"
     ],
@@ -82001,6 +82013,9 @@
     "seeded corpus evaluation": [
       "seeded corpus evaluation"
     ],
+    "seeded trigger phrases plan": [
+      "seeded trigger phrases plan"
+    ],
     "segment group plus to star": [
       "segment group plus to star"
     ],
@@ -82348,6 +82363,18 @@
     ],
     "series mapping check": [
       "series mapping check"
+    ],
+    "series parent rule": [
+      "series parent rule"
+    ],
+    "series parent rule plan": [
+      "series parent rule plan"
+    ],
+    "series parent rule shipped": [
+      "series parent rule shipped"
+    ],
+    "series parent rule tasks": [
+      "series parent rule tasks"
     ],
     "server adopted dimension": [
       "server-adopted dimension"
@@ -83681,6 +83708,12 @@
     ],
     "sibling depth relative path": [
       "sibling depth relative path"
+    ],
+    "sibling listing shipped": [
+      "sibling listing shipped"
+    ],
+    "sibling listing tasks": [
+      "sibling listing tasks"
     ],
     "sibling relative path rewrite": [
       "sibling relative path rewrite"
@@ -96019,6 +96052,9 @@
     ],
     "template default text in finished packets": [
       "template default text in finished packets"
+    ],
+    "template default trigger phrases": [
+      "template default trigger phrases"
     ],
     "template driven commit enforcement": [
       "template-driven commit enforcement"

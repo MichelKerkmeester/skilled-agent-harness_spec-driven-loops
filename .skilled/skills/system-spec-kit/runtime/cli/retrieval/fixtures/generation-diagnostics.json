@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6759,
-    "ok": 13401,
+    "ok": 13406,
     "valid-empty-list": 3516
   },
-  "documentsScanned": 23730,
+  "documentsScanned": 23735,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
+  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -37,17 +37,19 @@
       "numeric-only": 40,
       "prose-sentence": 10,
       "single-token": 373,
-      "stop-word-only": 9
+      "stop-word-only": 9,
+      "template-default": 199
     },
     "phrases": {
       "editor-fallback": 2,
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33913,
+      "ok": 33921,
       "prose-sentence": 19,
       "single-token": 166,
-      "stop-word-only": 1
+      "stop-word-only": 1,
+      "template-default": 4
     }
   },
   "rows": [
@@ -71027,6 +71029,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/scratch",
       "reason": "excluded directory"
     },
     {

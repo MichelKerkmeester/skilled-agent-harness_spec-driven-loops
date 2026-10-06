@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc585220ddd61f08dd1f43bcf2c204771a90f20e74ded6bbd664c1cde3d6392f",
+  "corpusHash": "3985ad3d7bd10ab253e29cea6e3171dbc18b5e15e8e6c84588e42745596bcf0c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23730,
+  "includedPathCount": 23735,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23353,6 +23353,11 @@
     "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -23760,7 +23765,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
+  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29200,6 +29205,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/scratch",
       "reason": "excluded directory"
     },
     {
