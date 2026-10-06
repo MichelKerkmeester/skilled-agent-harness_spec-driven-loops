@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9729df57c05e1fcb0995486b1ca0a154cdaca73369554c8f21a7f2251af1a12c",
+  "corpusHash": "dc585220ddd61f08dd1f43bcf2c204771a90f20e74ded6bbd664c1cde3d6392f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23722,
+  "includedPathCount": 23730,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13748,33 +13748,35 @@
     "specs/system-deep-loop/037-graph-engineering/research/research.md",
     "specs/system-deep-loop/037-graph-engineering/research/resource-map.md",
     "specs/system-deep-loop/037-graph-engineering/spec.md",
-    "specs/system-deep-loop/038-review-gateway-iteration-record/acceptance-criteria.md",
-    "specs/system-deep-loop/038-review-gateway-iteration-record/implementation-summary.md",
-    "specs/system-deep-loop/038-review-gateway-iteration-record/plan.md",
-    "specs/system-deep-loop/038-review-gateway-iteration-record/spec.md",
-    "specs/system-deep-loop/038-review-gateway-iteration-record/tasks.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/implementation-summary.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/plan.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/spec.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/tasks.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/implementation-summary.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/plan.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/spec.md",
-    "specs/system-deep-loop/039-review-state-init-and-dispatch/tasks.md",
-    "specs/system-deep-loop/040-cli-pi-opencode-go-route/implementation-summary.md",
-    "specs/system-deep-loop/040-cli-pi-opencode-go-route/plan.md",
-    "specs/system-deep-loop/040-cli-pi-opencode-go-route/spec.md",
-    "specs/system-deep-loop/040-cli-pi-opencode-go-route/tasks.md",
-    "specs/system-deep-loop/041-read-only-and-research-bookkeeping/acceptance-criteria.md",
-    "specs/system-deep-loop/041-read-only-and-research-bookkeeping/implementation-summary.md",
-    "specs/system-deep-loop/041-read-only-and-research-bookkeeping/plan.md",
-    "specs/system-deep-loop/041-read-only-and-research-bookkeeping/spec.md",
-    "specs/system-deep-loop/041-read-only-and-research-bookkeeping/tasks.md",
-    "specs/system-deep-loop/042-cli-lineage-findings-contract/acceptance-criteria.md",
-    "specs/system-deep-loop/042-cli-lineage-findings-contract/implementation-summary.md",
-    "specs/system-deep-loop/042-cli-lineage-findings-contract/plan.md",
-    "specs/system-deep-loop/042-cli-lineage-findings-contract/spec.md",
-    "specs/system-deep-loop/042-cli-lineage-findings-contract/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/timeline.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -13932,22 +13934,36 @@
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/tasks.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/spec.md",
-    "specs/system-skill-advisor/026-pre-existing-suite-failures/implementation-summary.md",
-    "specs/system-skill-advisor/026-pre-existing-suite-failures/plan.md",
-    "specs/system-skill-advisor/026-pre-existing-suite-failures/spec.md",
-    "specs/system-skill-advisor/026-pre-existing-suite-failures/tasks.md",
-    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/implementation-summary.md",
-    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/plan.md",
-    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/spec.md",
-    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/001-pre-existing-suite-failures/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/002-empty-recommendation-diagnostic/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/implementation-summary.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/plan.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/tasks.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/spec.md",
+    "specs/system-skill-advisor/026-defect-and-hardening-fixes/timeline.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/implementation-summary.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/plan.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/spec.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/tasks.md",
-    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/implementation-summary.md",
-    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/plan.md",
-    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/spec.md",
-    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/implementation-summary.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/plan.md",
@@ -14271,10 +14287,6 @@
     "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode/plan.md",
     "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode/spec.md",
     "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode/tasks.md",
-    "specs/system-skill-advisor/032-fresh-clone-bootstrap/implementation-summary.md",
-    "specs/system-skill-advisor/032-fresh-clone-bootstrap/plan.md",
-    "specs/system-skill-advisor/032-fresh-clone-bootstrap/spec.md",
-    "specs/system-skill-advisor/032-fresh-clone-bootstrap/tasks.md",
     "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/acceptance-criteria.md",
     "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/implementation-summary.md",
     "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/plan.md",
@@ -14291,14 +14303,6 @@
     "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/spec.md",
     "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/tasks.md",
     "specs/system-skill-advisor/033-advisor-status-truthfulness/spec.md",
-    "specs/system-skill-advisor/034-stale-build-daemon-recycle/implementation-summary.md",
-    "specs/system-skill-advisor/034-stale-build-daemon-recycle/plan.md",
-    "specs/system-skill-advisor/034-stale-build-daemon-recycle/spec.md",
-    "specs/system-skill-advisor/034-stale-build-daemon-recycle/tasks.md",
-    "specs/system-skill-advisor/035-stress-suite-ci/implementation-summary.md",
-    "specs/system-skill-advisor/035-stress-suite-ci/plan.md",
-    "specs/system-skill-advisor/035-stress-suite-ci/spec.md",
-    "specs/system-skill-advisor/035-stress-suite-ci/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -23328,55 +23332,59 @@
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-067-root-docs-and-git-hook-disclosure.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
-    "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
-    "specs/system-speckit/034-create-canonical-specs-root/plan.md",
-    "specs/system-speckit/034-create-canonical-specs-root/spec.md",
-    "specs/system-speckit/034-create-canonical-specs-root/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
     "specs/system-speckit/035-retire-memory-era-tests/plan.md",
     "specs/system-speckit/035-retire-memory-era-tests/spec.md",
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md",
-    "specs/system-speckit/036-root-numbering-without-track/implementation-summary.md",
-    "specs/system-speckit/036-root-numbering-without-track/plan.md",
-    "specs/system-speckit/036-root-numbering-without-track/spec.md",
-    "specs/system-speckit/036-root-numbering-without-track/tasks.md",
-    "specs/system-speckit/037-track-root-children/acceptance-criteria.md",
-    "specs/system-speckit/037-track-root-children/implementation-summary.md",
-    "specs/system-speckit/037-track-root-children/plan.md",
-    "specs/system-speckit/037-track-root-children/spec.md",
-    "specs/system-speckit/037-track-root-children/tasks.md",
-    "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
-    "specs/system-speckit/038-track-aware-archive/plan.md",
-    "specs/system-speckit/038-track-aware-archive/spec.md",
-    "specs/system-speckit/038-track-aware-archive/tasks.md",
-    "specs/system-speckit/039-phase-aware-archive/implementation-summary.md",
-    "specs/system-speckit/039-phase-aware-archive/plan.md",
-    "specs/system-speckit/039-phase-aware-archive/spec.md",
-    "specs/system-speckit/039-phase-aware-archive/tasks.md",
     "specs/system-speckit/040-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/040-goal-parent-single-limit/plan.md",
     "specs/system-speckit/040-goal-parent-single-limit/spec.md",
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md",
-    "specs/system-speckit/041-fix-write-recipe-backfill-flag/implementation-summary.md",
-    "specs/system-speckit/041-fix-write-recipe-backfill-flag/plan.md",
-    "specs/system-speckit/041-fix-write-recipe-backfill-flag/spec.md",
-    "specs/system-speckit/041-fix-write-recipe-backfill-flag/tasks.md",
-    "specs/system-speckit/042-fix-write-recipe-commit-step/implementation-summary.md",
-    "specs/system-speckit/042-fix-write-recipe-commit-step/plan.md",
-    "specs/system-speckit/042-fix-write-recipe-commit-step/spec.md",
-    "specs/system-speckit/042-fix-write-recipe-commit-step/tasks.md",
-    "specs/system-speckit/043-fix-write-recipe-workspace-bullet/implementation-summary.md",
-    "specs/system-speckit/043-fix-write-recipe-workspace-bullet/plan.md",
-    "specs/system-speckit/043-fix-write-recipe-workspace-bullet/spec.md",
-    "specs/system-speckit/043-fix-write-recipe-workspace-bullet/tasks.md",
-    "specs/system-speckit/044-fix-write-recipe-post-checks/implementation-summary.md",
-    "specs/system-speckit/044-fix-write-recipe-post-checks/plan.md",
-    "specs/system-speckit/044-fix-write-recipe-post-checks/spec.md",
-    "specs/system-speckit/044-fix-write-recipe-post-checks/tasks.md",
-    "specs/system-speckit/045-fix-write-recipe-verification-gate/implementation-summary.md",
-    "specs/system-speckit/045-fix-write-recipe-verification-gate/plan.md",
-    "specs/system-speckit/045-fix-write-recipe-verification-gate/spec.md",
-    "specs/system-speckit/045-fix-write-recipe-verification-gate/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/implementation-summary.md",
+    "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/plan.md",
+    "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/tasks.md",
+    "specs/system-speckit/041-write-recipe-fixes/spec.md",
+    "specs/system-speckit/041-write-recipe-fixes/timeline.md",
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/acceptance-criteria.md",
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/implementation-summary.md",
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/plan.md",
@@ -23752,7 +23760,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
+  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26859,27 +26867,27 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/038-review-gateway-iteration-record/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/040-cli-pi-opencode-go-route/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/041-read-only-and-research-bookkeeping/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/042-cli-lineage-findings-contract/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/scratch",
       "reason": "excluded directory"
     },
     {
@@ -26991,11 +26999,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/028-restore-pi-advisor-brief/scratch",
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/029-fix-remaining-advisor-defects/scratch",
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/028-restore-pi-advisor-brief/scratch",
       "reason": "excluded directory"
     },
     {
@@ -27071,10 +27091,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/032-fresh-clone-bootstrap/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/scratch",
       "reason": "excluded directory"
     },
@@ -27084,14 +27100,6 @@
     },
     {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/034-stale-build-daemon-recycle/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/035-stress-suite-ci/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29175,7 +29183,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/034-create-canonical-specs-root/scratch",
+      "path": "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29183,43 +29207,27 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-root-numbering-without-track/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/037-track-root-children/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/038-track-aware-archive/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/039-phase-aware-archive/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/040-goal-parent-single-limit/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/041-fix-write-recipe-backfill-flag/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-fix-write-recipe-commit-step/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/043-fix-write-recipe-workspace-bullet/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/044-fix-write-recipe-post-checks/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-fix-write-recipe-verification-gate/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6759,
-    "ok": 13393,
+    "ok": 13401,
     "valid-empty-list": 3516
   },
-  "documentsScanned": 23722,
+  "documentsScanned": 23730,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
+  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33882,
+      "ok": 33913,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -68694,27 +68694,27 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/038-review-gateway-iteration-record/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/001-review-gateway-iteration-record/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/001-lock-nonce-and-dispatch-failures/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/002-review-state-init-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/040-cli-pi-opencode-go-route/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/041-read-only-and-research-bookkeeping/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/042-cli-lineage-findings-contract/scratch",
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/005-cli-lineage-findings-contract/scratch",
       "reason": "excluded directory"
     },
     {
@@ -68826,11 +68826,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/028-restore-pi-advisor-brief/scratch",
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/003-fix-remaining-advisor-defects/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/029-fix-remaining-advisor-defects/scratch",
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/004-fresh-clone-bootstrap/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/005-stale-build-daemon-recycle/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/028-restore-pi-advisor-brief/scratch",
       "reason": "excluded directory"
     },
     {
@@ -68906,10 +68918,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/032-fresh-clone-bootstrap/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/scratch",
       "reason": "excluded directory"
     },
@@ -68919,14 +68927,6 @@
     },
     {
       "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/034-stale-build-daemon-recycle/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/035-stress-suite-ci/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71010,7 +71010,23 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/034-create-canonical-specs-root/scratch",
+      "path": "specs/system-speckit/034-spec-folder-tooling/001-create-canonical-specs-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/002-root-numbering-without-track/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/003-track-root-children/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/004-track-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/005-phase-aware-archive/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71018,43 +71034,27 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-root-numbering-without-track/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/037-track-root-children/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/038-track-aware-archive/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/039-phase-aware-archive/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-speckit/040-goal-parent-single-limit/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/041-fix-write-recipe-backfill-flag/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/001-fix-write-recipe-backfill-flag/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-fix-write-recipe-commit-step/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/002-fix-write-recipe-commit-step/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/043-fix-write-recipe-workspace-bullet/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/003-fix-write-recipe-workspace-bullet/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/044-fix-write-recipe-post-checks/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/004-fix-write-recipe-post-checks/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/045-fix-write-recipe-verification-gate/scratch",
+      "path": "specs/system-speckit/041-write-recipe-fixes/005-fix-write-recipe-verification-gate/scratch",
       "reason": "excluded directory"
     },
     {

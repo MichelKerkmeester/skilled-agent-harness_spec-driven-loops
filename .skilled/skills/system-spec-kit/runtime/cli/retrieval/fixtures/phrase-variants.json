@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f0ea4e12fbe13012f1de386120976bf7f192cb8e696fd2a8350379247a40ade8",
+  "manifestHash": "ec52a1201e7f62695221c01429ac0e6e6ccdc2d053c9802daf52a51ccdbf3607",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5238,6 +5238,9 @@
     "026 coverage matrix": [
       "026 coverage matrix"
     ],
+    "026 defect and hardening fixes number map": [
+      "026-defect-and-hardening-fixes number map"
+    ],
     "026 docs sync": [
       "026 docs sync"
     ],
@@ -6608,6 +6611,9 @@
     "034 query expansion tasks": [
       "034 query expansion tasks"
     ],
+    "034 spec folder tooling number map": [
+      "034-spec-folder-tooling number map"
+    ],
     "035 backstop sessionstart": [
       "035 backstop sessionstart"
     ],
@@ -6758,6 +6764,9 @@
     "038 embedding error propagation tasks": [
       "038 embedding error propagation tasks"
     ],
+    "038 review and cli lineage number map": [
+      "038-review-and-cli-lineage number map"
+    ],
     "039 token aware chunking": [
       "039 token-aware chunking"
     ],
@@ -6817,6 +6826,9 @@
     ],
     "041 tasks": [
       "041 tasks"
+    ],
+    "041 write recipe fixes number map": [
+      "041-write-recipe-fixes number map"
     ],
     "042 cocoindex refresh split": [
       "042 cocoindex refresh split"
@@ -8524,6 +8536,12 @@
     "advisor decoupling": [
       "advisor decoupling"
     ],
+    "advisor defect fixes": [
+      "advisor defect fixes"
+    ],
+    "advisor defect fixes timeline": [
+      "advisor defect fixes timeline"
+    ],
     "advisor diagnostics emitted bytes": [
       "advisor diagnostics emitted bytes"
     ],
@@ -9179,6 +9197,9 @@
     "advisor stress fixtures tasks": [
       "advisor stress fixtures tasks"
     ],
+    "advisor stress suite ci": [
+      "advisor stress suite ci"
+    ],
     "advisor stress suite workflow": [
       "advisor stress suite workflow"
     ],
@@ -9205,6 +9226,12 @@
     ],
     "advisor suite drift tasks": [
       "advisor suite drift tasks"
+    ],
+    "advisor suite failures": [
+      "advisor suite failures"
+    ],
+    "advisor suite failures timeline": [
+      "advisor suite failures timeline"
     ],
     "advisor suite fully green": [
       "advisor suite fully green"
@@ -19818,6 +19845,12 @@
     "cli pi one change per brief": [
       "cli-pi one change per brief"
     ],
+    "cli pi opencode go route": [
+      "cli pi opencode go route"
+    ],
+    "cli pi opencode go route timeline": [
+      "cli pi opencode go route timeline"
+    ],
     "cli pi self dispatch": [
       "cli-pi self dispatch",
       "cli-pi self-dispatch"
@@ -26616,6 +26649,9 @@
     "create sh canonical specs root": [
       "create.sh canonical specs root"
     ],
+    "create sh canonical specs root timeline": [
+      "create.sh canonical specs root timeline"
+    ],
     "create sh canonical tasks": [
       "create.sh canonical tasks"
     ],
@@ -30838,6 +30874,12 @@
     ],
     "deep loop revalidation plan": [
       "deep-loop revalidation plan"
+    ],
+    "deep loop review gateway": [
+      "deep loop review gateway"
+    ],
+    "deep loop review gateway timeline": [
+      "deep loop review gateway timeline"
     ],
     "deep loop rollback drills": [
       "deep-loop rollback drills"
@@ -38106,6 +38148,12 @@
     "empty phase child skipped": [
       "empty phase child skipped"
     ],
+    "empty recommendation diagnostic": [
+      "empty recommendation diagnostic"
+    ],
+    "empty recommendation diagnostic timeline": [
+      "empty recommendation diagnostic timeline"
+    ],
     "empty recommendation reported as outage": [
       "empty recommendation reported as outage"
     ],
@@ -42966,6 +43014,9 @@
     "fresh": [
       "fresh"
     ],
+    "fresh clone bootstrap": [
+      "fresh clone bootstrap"
+    ],
     "fresh completion verdict return": [
       "fresh_completion verdict return"
     ],
@@ -46203,6 +46254,9 @@
     ],
     "graph metadata backfill": [
       "graph metadata backfill"
+    ],
+    "graph metadata backfill command": [
+      "graph metadata backfill command"
     ],
     "graph metadata child drift": [
       "graph-metadata child drift"
@@ -67170,6 +67224,7 @@
       "phase-add child goal"
     ],
     "phase aware archive": [
+      "phase aware archive",
       "phase-aware archive"
     ],
     "phase b handoff": [
@@ -71852,6 +71907,9 @@
     ],
     "read only recall diagnostic health doctor": [
       "read-only recall diagnostic health doctor"
+    ],
+    "read only research bookkeeping": [
+      "read only research bookkeeping"
     ],
     "read only review pivot": [
       "read-only review pivot"
@@ -78002,6 +78060,12 @@
     ],
     "review source tags checked": [
       "review source tags checked"
+    ],
+    "review state init and dispatch": [
+      "review state init and dispatch"
+    ],
+    "review state init and dispatch timeline": [
+      "review state init and dispatch timeline"
     ],
     "review state reconstruction": [
       "review state reconstruction"
@@ -90336,6 +90400,12 @@
     "spec folder state classification": [
       "spec folder state classification"
     ],
+    "spec folder tooling": [
+      "spec folder tooling"
+    ],
+    "spec folder tooling timeline": [
+      "spec folder tooling timeline"
+    ],
     "spec folder upgrades": [
       "spec folder upgrades"
     ],
@@ -90349,6 +90419,9 @@
     ],
     "spec folder write recipe system spec kit": [
       "spec_folder_write_recipe system-spec-kit"
+    ],
+    "spec folder write recipe timeline": [
+      "spec folder write recipe timeline"
     ],
     "spec gate": [
       "spec gate"
@@ -97244,6 +97317,7 @@
       "track access cache hits"
     ],
     "track aware archive": [
+      "track aware archive",
       "track-aware archive"
     ],
     "track b code remediation": [
@@ -97300,8 +97374,14 @@
     "track research strategy": [
       "track research strategy"
     ],
+    "track root children": [
+      "track root children"
+    ],
     "track root children ids": [
       "track root children_ids"
+    ],
+    "track root children timeline": [
+      "track root children timeline"
     ],
     "track root drift": [
       "track root drift"
@@ -102238,6 +102318,21 @@
     ],
     "write proves the file scanned": [
       "write proves the file scanned"
+    ],
+    "write recipe commit step": [
+      "write recipe commit step"
+    ],
+    "write recipe commit step timeline": [
+      "write recipe commit step timeline"
+    ],
+    "write recipe fixes": [
+      "write recipe fixes"
+    ],
+    "write recipe fixes timeline": [
+      "write recipe fixes timeline"
+    ],
+    "write recipe verification gate": [
+      "write recipe verification gate"
     ],
     "write safety and guards plan": [
       "write-safety-and-guards plan"
