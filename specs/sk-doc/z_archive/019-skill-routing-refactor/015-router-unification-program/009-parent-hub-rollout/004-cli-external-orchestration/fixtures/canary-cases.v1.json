@@ -196,6 +196,32 @@
         "expectedResources": []
       },
       "legacyExact": false
+    },
+    {
+      "id": "jev-transport-single",
+      "prompt": "use jev choice to pick a queue",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-jev"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-jev"
+        ],
+        "expectedResources": []
+      },
+      "legacyExact": false
+    },
+    {
+      "id": "jev-alias-narrowness",
+      "prompt": "describe the json value in this file",
+      "expectedAction": "defer",
+      "gold": {
+        "expectedIntents": [],
+        "expectedResources": []
+      },
+      "legacyExact": false
     }
   ],
   "advisorCases": [
