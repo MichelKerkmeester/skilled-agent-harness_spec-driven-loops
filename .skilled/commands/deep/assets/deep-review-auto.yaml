@@ -98,7 +98,11 @@ state_write_protocol:
   mechanism: "append-gateway"
   command: "node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode review --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
-  refusal_handling: "halt on exit 2; never fall back to a direct file write"
+  refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
+  pinned_bookkeeping:
+    events: [config_warning, lock_released, pivot_confirm_accepted, manualStop, pivot_override_accepted]
+    directive: "bookkeeping_log"
+    handling: "These rows are workflow bookkeeping that the review ledger schema pins to the legacy path: they have no lossless review-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
     The directives below specify WHAT to record; this block specifies the mechanism. The gateway
     authorizes the write against the mode's durable authority record, serialises it behind the
@@ -324,12 +328,13 @@ workflow:
           invalid-state: "Any partial, missing, or contradictory combination"
         outputs:
           - session_state: "fresh | resume | completed-session | invalid-state"
+          - prior_tail_digest: "sha256 of the state log bytes when resuming or restarting an existing lineage"
         lifecycle_routing:
           - "If lineage_mode == restart and session_state is resume or completed-session, execute on_restart before on_resume or on_completed_session."
           - "If lineage_mode == auto or lineage_mode == resume, preserve the existing resume/completed/fresh behavior."
         on_resume:
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
-          append_jsonl: '{"type":"event","event":"resumed","mode":"review","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
+          append_jsonl: '{"stem":"deep_review.run_resumed","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","sourceSessionId":"{session_id}","resumeReason":"Auto-resume: state artifacts are complete and consistent; continue the same lineage.","continuedFromRunId":"{session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
           skip_to: phase_loop
         on_restart:
           action: "Archive the current review packet under the root-level review-archive/ tree and start a new lineage segment with a fresh sessionId and generation+1."
@@ -338,7 +343,6 @@ workflow:
             lineage_mode: "restart"
             parent_session_id: "{prior_session_id}"
             generation: "{prior_generation + 1}"
-          append_jsonl: '{"type":"event","event":"restarted","mode":"review","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
           skip_to: step_create_config
         note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-review/references/protocol/loop-protocol.md §Lifecycle Branches for the one-session contract."
         on_completed_session:
@@ -506,6 +510,11 @@ workflow:
           exit "$STATUS"
         output: "{state_paths.state_log}"
 
+      step_record_restarted_run:
+        skip_when: "lineage_mode != 'restart'"
+        action: "Record the restarted lineage after the run-open row so the restart marker never precedes deep_review.run_initialized"
+        append_jsonl: '{"stem":"deep_review.run_restarted","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{prior_session_id}","restartReason":"Restart requested: the prior review packet was archived and a new lineage segment opened.","continuedFromRunId":"{prior_session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
+
       step_create_findings_registry:
         action: "Initialize reducer-owned review findings registry"
         content: '{"sessionId":"{session_id_init}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
@@ -622,7 +631,7 @@ workflow:
       step_validate_convergence_config:
         action: "Validate convergence mode when loading config"
         if_convergence_mode_invalid:
-          append_jsonl: '{"type":"event","event":"config_warning","mode":"review","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          bookkeeping_log: '{"type":"event","event":"config_warning","mode":"review","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
           log: "Unsupported convergenceMode; using default convergence behavior."
 
       step_graph_convergence:
@@ -638,13 +647,25 @@ workflow:
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
         bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}"'
         note: "Invoke the runtime script directly. Review-side graph convergence must run before the inline review stop vote."
-        append_jsonl: '{"type":"event","event":"graph_convergence","mode":"review","run":{current_iteration},"decision":"{graph_decision}","signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+        append_jsonl: '{"stem":"deep_review.graph_convergence_evaluated","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"rawSignals":{graph_raw_signals_json},"weightedSignals":{graph_raw_signals_json},"dimensionCoverageDigest":"{dimension_coverage_digest}","protocolCoverageDigest":"{protocol_coverage_digest}","findingStability":"{finding_stability}","p0p1ResolutionState":"{p0p1_resolution_state}","evidenceDensity":{evidence_density},"hotspotSaturation":{hotspot_saturation},"decision":"{graph_decision_code}","policyFingerprint":"{policy_fingerprint}","blockerIds":{graph_blocker_ids_json},"stopCandidate":{stop_candidate},"graphDecision":"{graph_decision_code}","graphDigest":"{graph_digest}","signals":{graph_signals_json},"blockers":{graph_blockers_json}},"eventId":"graph-{session_id}-g{generation}-i{current_iteration}"}'
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
+          - graph_decision_code: "CONTINUE maps to continue, STOP_ALLOWED to converged, STOP_BLOCKED to blocked"
           - graph_signals_json: "JSON object returned by convergence.cjs"
+          - graph_raw_signals_json: "Exact-field convergence-signals JSON built from the convergence.cjs signals; observationDigest is the sha256 of graph_signals_json"
           - graph_blockers_json: "JSON array of graph blockers when present, else []"
+          - graph_blocker_ids_json: "JSON array of blocker type values; use [\"graph_blocker\"] when the decision is blocked and the list is empty"
           - graph_blockers_csv: "Comma-separated blocker summary when graph blocks STOP, else empty string"
           - graph_stop_blocked: "Boolean true when graph_decision == STOP_BLOCKED"
+          - dimension_coverage_digest: "sha256 (64 lowercase hex) of the canonical JSON of the registry dimensionCoverage map"
+          - protocol_coverage_digest: "sha256 (64 lowercase hex) of the canonical JSON of the protocol coverage object in graph_signals_json, or of {} when absent"
+          - finding_stability: "stable when findingStabilityRatio >= convergenceThreshold, unstable when below, unknown when the signal is missing"
+          - p0p1_resolution_state: "resolved when active P0 + P1 findings are 0, blocked when above 0, unknown when counts are unavailable"
+          - evidence_density: "evidenceDensityRatio from graph_signals_json, capped at 1"
+          - hotspot_saturation: "hotspotSaturationRatio from graph_signals_json, between 0 and 1"
+          - policy_fingerprint: "sha256 (64 lowercase hex) of the canonical JSON {convergenceThreshold, stopPolicy, convergenceMode} from the review config"
+          - stop_candidate: "true when graph_decision == STOP_ALLOWED, else false"
+          - graph_digest: "sha256 (64 lowercase hex) of graph_signals_json"
 
       step_check_convergence:
         action: "Evaluate graph-assisted review stop conditions and the legal-stop decision tree"
@@ -777,11 +798,14 @@ workflow:
           - graph_blockers_json: "JSON array of graph blockers"
           - graph_blockers_csv: "Comma-separated graph blocker summary"
           - recovery_strategy: "One-line hint describing the next review action when decision == BLOCKED or STUCK_RECOVERY"
+          - recovery_strategy_code: "Slug form of recovery_strategy for the ledger code fields"
+          - gate_results_array_json: "One {gateId,status,reasonCode,evidenceDigest} row per legal-stop gate, with at least one fail row when decision == BLOCKED"
+          - active_total_count: "p0_count + p1_count + p2_count, the active findings total"
 
       step_emit_blocked_stop:
         action: "Persist blocked-stop evidence whenever the review legal-stop decision tree vetoes STOP"
         if_blocked:
-          append_jsonl: '{"type":"event","event":"blocked_stop","mode":"review","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergenceGate":{"pass":{convergence_gate_pass},"score":{convergence_gate_score}},"dimensionCoverageGate":{"pass":{dimension_coverage_gate_pass},"covered":{dimension_coverage_gate_covered_json},"missing":{dimension_coverage_gate_missing_json}},"p0ResolutionGate":{"pass":{p0_resolution_gate_pass},"activeP0":{active_p0_count}},"evidenceDensityGate":{"pass":{evidence_density_gate_pass},"avgEvidencePerFinding":{avg_evidence_per_finding}},"hotspotSaturationGate":{"pass":{hotspot_saturation_gate_pass}},"claimAdjudicationGate":{"pass":{claim_adjudication_gate_pass},"activeP0P1":{claim_adjudication_active_count}},"fixCompletenessReplayGate":{"pass":{fix_completeness_replay_gate_pass},"securitySensitive":{security_sensitive_fix_scope},"requiredRows":{fix_completeness_replay_required_rows},"passingRows":{fix_completeness_replay_passing_rows}},"candidateCoverageGate":{"pass":{candidate_coverage_gate_pass},"searchDebt":{candidate_coverage_search_debt_json},"missing":{candidate_coverage_missing_json}},"graphlessFallbackGate":{"pass":{graphless_fallback_gate_pass},"mode":"{graphless_fallback_mode}","missing":{graphless_fallback_missing_json},"unavailabilityReason":"{graphless_fallback_unavailability_reason}"}},"graphBlockerDetail":{graph_blockers_json},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          append_jsonl: '{"stem":"deep_review.blocked_stop_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"blockedGateIds":{blocked_by_json},"gateResults":{gate_results_array_json},"activeFindingCounts":{"candidates":{active_total_count},"adjudicated":{active_total_count},"p0":{p0_count},"p1":{p1_count},"p2":{p2_count}},"recoveryStrategy":"{recovery_strategy_code}","targetDimensionId":"{next_dimension}","originatingConvergenceEventId":"graph-{session_id}-g{generation}-i{current_iteration}","appendPosition":{current_iteration},"gateDetail":{gate_results_array_json},"graphBlockerDetail":{graph_blockers_json},"recoveryHint":"{recovery_strategy}"}}'
           log: "Blocked STOP persisted for review loop. Failed gates: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
         if_not_blocked:
           proceed: true
@@ -1007,7 +1031,7 @@ workflow:
       step_normalize_pause_events:
         action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused"
         if_pending_pause_event:
-          append_jsonl: '{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"{pending_stop_detail}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          append_jsonl: '{"stem":"deep_review.pause_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"normalizedStopReason":"userPaused","sentinelCause":"sentinel-file-detected","fromIterationId":"iteration-{current_iteration}","strategy":"await-operator-resume","targetDimensionId":"{next_dimension}","outcome":"paused","lineageRef":"{session_id}","priorTailDigest":"{prior_tail_digest}"}}'
           message: "Review paused. Delete review/.deep-review-pause to resume."
           reset:
             pending_stop_event: null
@@ -1015,13 +1039,15 @@ workflow:
             pending_stop_detail: null
           halt: true
         if_pending_stuck_recovery:
-          append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"review","stopReason":"stuckRecovery","fromIteration":{current_iteration},"strategy":"{recovery_strategy}","targetDimension":"{least_explored}","outcome":"pending","reason":"{pending_stop_detail}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          append_jsonl: '{"stem":"deep_review.recovery_started","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}","dimensionId":"{least_explored}"},"data":{"normalizedStopReason":"stuckRecovery","recoveryCause":"repeated-no-progress","fromIterationId":"iteration-{current_iteration}","strategy":"{recovery_strategy_code}","targetDimensionId":"{least_explored}","outcome":"recovery-started","lineageRef":"{session_id}","priorTailDigest":"{prior_tail_digest}","originatingPauseEventId":"none"}}'
           reset:
             pending_stop_event: null
             pending_stop_reason: null
             pending_stop_detail: null
         if_no_pending_event:
           proceed: true
+        outputs:
+          - prior_tail_digest: "sha256 (64 lowercase hex) of the state log bytes at the moment the pause or recovery row is emitted"
 
       step_generate_state_summary:
         action: "Generate compact state summary for dispatch context (~200 tokens)"
@@ -2367,7 +2393,7 @@ workflow:
       step_release_lock:
         action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-        append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
+        bookkeeping_log: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
   # ═══════════════════════════════════════════════════════════════
   # COMPLETION

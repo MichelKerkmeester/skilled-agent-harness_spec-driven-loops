@@ -995,6 +995,63 @@ describe('deep-review typed ledger schema', () => {
     }, registry)).not.toThrow();
   });
 
+  it('accepts additive graph signals and blockers on the review convergence row', () => {
+    const registry = createDeepReviewEventRegistry();
+    const input = eventInput(
+      'deep_review.graph_convergence_evaluated',
+      17,
+      '0'.repeat(64),
+    );
+    const signals = { score: 0.62, coverageRatio: 0.9 };
+    const blockers = [{ type: 'coverage-gap', description: 'One dimension lacks coverage evidence.' }];
+
+    const event = prepareDeepReviewEvent({
+      ...input,
+      data: { ...input.data, signals, blockers },
+    }, registry);
+    expect(event.envelope.payload.data).toMatchObject({ signals, blockers });
+
+    // An optional carrier is still scanned: a mutable body smuggled inside it
+    // fails validation exactly as it would at the top level of data.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        signals: { rawOutput: 'mutable analyzer output' },
+      },
+    }, registry)).toThrow();
+  });
+
+  it('accepts additive gate and recovery detail on the blocked-stop row', () => {
+    const registry = createDeepReviewEventRegistry();
+    const input = eventInput('deep_review.blocked_stop_recorded', 18, '0'.repeat(64));
+    const gateDetail = {
+      convergenceGate: { pass: false, score: 0.4 },
+      evidenceDensityGate: { pass: false, avgEvidencePerFinding: 0.2 },
+    };
+    const graphBlockerDetail = [{ type: 'graph_blocker', count: 2 }];
+    const recoveryHint = 'Re-run the evidence gate with a second independent analyzer.';
+
+    const event = prepareDeepReviewEvent({
+      ...input,
+      data: { ...input.data, gateDetail, graphBlockerDetail, recoveryHint },
+    }, registry);
+    expect(event.envelope.payload.data).toMatchObject({
+      gateDetail,
+      graphBlockerDetail,
+      recoveryHint,
+    });
+
+    // A prose field stays prose even when the producer may omit it.
+    expect(() => prepareDeepReviewEvent({
+      ...input,
+      data: {
+        ...input.data,
+        recoveryHint: 42,
+      } as unknown as DeepReviewPayloadMap['deep_review.blocked_stop_recorded'],
+    }, registry)).toThrow();
+  });
+
   it('validates the complete semantic-fingerprint lineage vocabulary', () => {
     const registry = createDeepReviewEventRegistry();
     for (const lineageRelation of [
