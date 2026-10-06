@@ -47,7 +47,7 @@ type GoalCore = {
   resolveRepoRoot(startDir: string): string;
   renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string; workspace?: string }): string;
   renderResendReminder(goal: GoalRecord | null, workspace: string, options?: { recordCommand?: string }): string;
-  verifyGoalHeuristic(input: { goal: GoalRecord; transcriptText: string }): { verdict: string; reason: string };
+  verifyGoalHeuristic(input: { goal: GoalRecord; transcriptText: string; assistantText?: string }): { verdict: string; reason: string };
   readGoalRecord(options: GoalOptions): GoalRecord | null;
   recordTurn(input: object, options: GoalOptions): GoalRecord | null;
 };
@@ -245,7 +245,8 @@ export default function goalContext(pi: ExtensionAPI): void {
       if (!goal || goal.status !== "active") return;
 
       const transcriptText = extractTurnEndText(event);
-      const verdict = core.verifyGoalHeuristic({ goal, transcriptText });
+      const assistantText = extractContentText((event.message as { content?: unknown } | undefined)?.content);
+      const verdict = core.verifyGoalHeuristic({ goal, transcriptText, assistantText });
       core.recordTurn({}, options);
 
       if (verdict.verdict !== "met") {
