@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3985ad3d7bd10ab253e29cea6e3171dbc18b5e15e8e6c84588e42745596bcf0c",
+  "corpusHash": "05f282701980681b54820171a3e7eaa105572ed8462875f02c7cc02e6711fc7e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23735,
+  "includedPathCount": 23743,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8546,6 +8546,14 @@
     "specs/agents/016-repo-rule-advisor-surfacing/changelog/changelog-016-005-trigger-coverage-check.md",
     "specs/agents/016-repo-rule-advisor-surfacing/goal.md",
     "specs/agents/016-repo-rule-advisor-surfacing/spec.md",
+    "specs/agents/017-thinking-discipline/implementation-summary.md",
+    "specs/agents/017-thinking-discipline/plan.md",
+    "specs/agents/017-thinking-discipline/research/research.md",
+    "specs/agents/017-thinking-discipline/research/reviews/claude-opus-5.5-high.md",
+    "specs/agents/017-thinking-discipline/research/reviews/deepseek-v4.1-flash-max.md",
+    "specs/agents/017-thinking-discipline/research/reviews/gpt-6-luna-max-fast.md",
+    "specs/agents/017-thinking-discipline/spec.md",
+    "specs/agents/017-thinking-discipline/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -23765,7 +23773,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
+  "manifestHash": "7ddd7d71fe607ba7483201a598e0102303f5c55d6ead2e4b87610d37158c274b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24597,6 +24605,10 @@
     },
     {
       "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/017-thinking-discipline/scratch",
       "reason": "excluded directory"
     },
     {

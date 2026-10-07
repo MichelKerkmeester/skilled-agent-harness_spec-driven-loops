@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6759,
-    "ok": 13406,
+    "missing-frontmatter": 6762,
+    "ok": 13411,
     "valid-empty-list": 3516
   },
-  "documentsScanned": 23735,
+  "documentsScanned": 23743,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
+  "manifestHash": "7ddd7d71fe607ba7483201a598e0102303f5c55d6ead2e4b87610d37158c274b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33921,
+      "ok": 33927,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1,
@@ -35516,6 +35516,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/agents/017-thinking-discipline/research/reviews/claude-opus-5.5-high.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/017-thinking-discipline/research/reviews/deepseek-v4.1-flash-max.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/017-thinking-discipline/research/reviews/gpt-6-luna-max-fast.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -66421,6 +66439,10 @@
     },
     {
       "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/017-thinking-discipline/scratch",
       "reason": "excluded directory"
     },
     {

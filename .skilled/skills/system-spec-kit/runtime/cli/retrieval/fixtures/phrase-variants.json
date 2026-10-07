@@ -1,5 +1,5 @@
 {
-  "manifestHash": "db7a86ecec75397f6ac89cc2c6745b5bf389ec0827666bcfa92049b5792a91c0",
+  "manifestHash": "7ddd7d71fe607ba7483201a598e0102303f5c55d6ead2e4b87610d37158c274b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11618,6 +11618,9 @@
     ],
     "assertrollbackhashguard task": [
       "assertRollbackHashGuard task"
+    ],
+    "assess a proposed thinking discipline against agents md": [
+      "assess a proposed thinking discipline against agents md"
     ],
     "assess request quality corroboration": [
       "assess request quality corroboration"
@@ -75085,6 +75088,9 @@
     "renumber tasks": [
       "renumber tasks"
     ],
+    "reopen a settled conclusion": [
+      "reopen a settled conclusion"
+    ],
     "reopenactivedatabase coordinator": [
       "reopenActiveDatabase coordinator"
     ],
@@ -82747,6 +82753,12 @@
     ],
     "settings parity regex": [
       "settings parity regex"
+    ],
+    "settled and reopened": [
+      "settled and reopened"
+    ],
+    "settled and reopened decision tests": [
+      "settled and reopened decision tests"
     ],
     "setup a handover": [
       "Setup A handover"
@@ -96703,6 +96715,12 @@
     ],
     "thin wrapper validation": [
       "thin wrapper validation"
+    ],
+    "thinking discipline": [
+      "thinking discipline"
+    ],
+    "thinking discipline coverage map": [
+      "thinking discipline coverage map"
     ],
     "thinking effort lever": [
       "thinking effort lever"
