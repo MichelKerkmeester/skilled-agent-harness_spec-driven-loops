@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f37f26e40ec66e39b024801a18a2bafdc40712e7c78b4fd01b91651579753ccc",
+  "corpusHash": "bf1b276dc10dfac33903ff32abb8539262d8232a4b1896ea81940ddaa88836b3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23837,
+  "includedPathCount": 23874,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8689,6 +8689,10 @@
     "specs/cli-external-orchestration/080-pi-extension-brace-expansion/plan.md",
     "specs/cli-external-orchestration/080-pi-extension-brace-expansion/spec.md",
     "specs/cli-external-orchestration/080-pi-extension-brace-expansion/tasks.md",
+    "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/implementation-summary.md",
+    "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/plan.md",
+    "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/spec.md",
+    "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/tasks.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -15372,26 +15376,44 @@
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/probe-report-codex2.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/probe-report.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/review/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/fanout-attribution.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/spec.md",
@@ -16631,11 +16653,13 @@
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/research/deep-research-dashboard.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/research/deep-research-strategy.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/research/iterations/iteration-001.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/research/iterations/iteration-002.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix/spec.md",
@@ -23460,6 +23484,19 @@
     "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/fanout-attribution.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/resource-map.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -23867,7 +23904,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fee916326f4564616216b943d0aabd58e4d50ca25c043c630021c1873c9554f9",
+  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24819,6 +24856,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/080-pi-extension-brace-expansion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29339,6 +29380,18 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/scratch",
       "reason": "excluded directory"
     },
     {

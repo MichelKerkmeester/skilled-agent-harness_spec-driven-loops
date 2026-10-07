@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fee916326f4564616216b943d0aabd58e4d50ca25c043c630021c1873c9554f9",
+  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5257,6 +5257,12 @@
     "026 integrity audit": [
       "026 integrity audit"
     ],
+    "026 integrity review plan": [
+      "026 integrity review plan"
+    ],
+    "026 integrity review tasks": [
+      "026 integrity review tasks"
+    ],
     "026 last active child pointer": [
       "026 last active child pointer"
     ],
@@ -5604,6 +5610,12 @@
     ],
     "027 launch audit": [
       "027 launch audit"
+    ],
+    "027 launch state review plan": [
+      "027 launch state review plan"
+    ],
+    "027 launch state review tasks": [
+      "027 launch state review tasks"
     ],
     "027 memory context research": [
       "027 memory context research"
@@ -11478,6 +11490,9 @@
     "archived opt in": [
       "archived opt-in"
     ],
+    "archived packet validation repair": [
+      "archived packet validation repair"
+    ],
     "archived tier changelog": [
       "archived tier changelog"
     ],
@@ -12128,6 +12143,12 @@
     ],
     "audit root cause research": [
       "audit root cause research"
+    ],
+    "audit root cause research plan": [
+      "audit root cause research plan"
+    ],
+    "audit root cause research tasks": [
+      "audit root cause research tasks"
     ],
     "audit tasks": [
       "audit tasks"
@@ -13808,6 +13829,9 @@
     ],
     "bootstrap precedence chain embedder": [
       "bootstrap precedence chain embedder"
+    ],
+    "bootstrap restart required removed": [
+      "bootstrap restart required removed"
     ],
     "born findable changelog entries": [
       "born findable changelog entries"
@@ -15513,6 +15537,12 @@
     "causal memory graph": [
       "causal memory graph"
     ],
+    "causal read path audit plan": [
+      "causal read path audit plan"
+    ],
+    "causal read path audit tasks": [
+      "causal read path audit tasks"
+    ],
     "causal relation auto edges": [
       "causal relation auto edges"
     ],
@@ -15754,6 +15784,18 @@
     "changelog accuracy": [
       "changelog accuracy"
     ],
+    "changelog accuracy audit plan": [
+      "changelog accuracy audit plan"
+    ],
+    "changelog accuracy audit tasks": [
+      "changelog accuracy audit tasks"
+    ],
+    "changelog accuracy reaudit": [
+      "changelog accuracy reaudit"
+    ],
+    "changelog accuracy research record": [
+      "changelog accuracy research record"
+    ],
     "changelog alignment acceptance criteria": [
       "changelog alignment acceptance criteria"
     ],
@@ -15846,6 +15888,9 @@
     ],
     "changelog drift audit": [
       "changelog drift audit"
+    ],
+    "changelog drift re audit": [
+      "changelog drift re-audit"
     ],
     "changelog enrichment steps": [
       "changelog enrichment steps"
@@ -17982,6 +18027,18 @@
     "claude": [
       "claude"
     ],
+    "claude 5 5 roster and effort levels": [
+      "claude 5 5 roster and effort levels"
+    ],
+    "claude 5 5 roster and effort levels implementation summary": [
+      "claude 5 5 roster and effort levels implementation summary"
+    ],
+    "claude 5 5 roster and effort levels plan": [
+      "claude 5 5 roster and effort levels plan"
+    ],
+    "claude 5 5 roster and effort levels tasks": [
+      "claude 5 5 roster and effort levels tasks"
+    ],
     "claude advisor hook": [
       "claude advisor hook"
     ],
@@ -18044,6 +18101,9 @@
     ],
     "claude code doc contract tasks": [
       "claude code doc contract tasks"
+    ],
+    "claude code effort levels low medium high xhigh max": [
+      "claude code effort levels low medium high xhigh max"
     ],
     "claude code effort thinking lever": [
       "claude code effort thinking lever"
@@ -18614,6 +18674,9 @@
     ],
     "cli claude code frontmatter tasks": [
       "cli-claude-code frontmatter tasks"
+    ],
+    "cli claude code model roster": [
+      "cli claude code model roster"
     ],
     "cli claude code reference frontmatter": [
       "cli-claude-code reference frontmatter"
@@ -22455,6 +22518,12 @@
     "code graph skill advisor review": [
       "code-graph skill-advisor review"
     ],
+    "code graph skill advisor review plan": [
+      "code graph skill advisor review plan"
+    ],
+    "code graph skill advisor review tasks": [
+      "code graph skill advisor review tasks"
+    ],
     "code graph skill advisor stress gaps": [
       "code_graph skill_advisor stress gaps"
     ],
@@ -25567,6 +25636,12 @@
     "constitutional self edit guard ann tie stability": [
       "constitutional self-edit guard ann tie-stability"
     ],
+    "constitutional standards drift plan": [
+      "constitutional standards drift plan"
+    ],
+    "constitutional standards drift tasks": [
+      "constitutional standards drift tasks"
+    ],
     "constitutional templates cleanup phase": [
       "constitutional templates cleanup phase"
     ],
@@ -26786,6 +26861,21 @@
     ],
     "corpus wide restyle plan": [
       "corpus wide restyle plan"
+    ],
+    "corpus wide validation repair": [
+      "corpus wide validation repair"
+    ],
+    "corpus wide validation repair acceptance criteria": [
+      "corpus wide validation repair acceptance criteria"
+    ],
+    "corpus wide validation repair implementation summary": [
+      "corpus wide validation repair implementation summary"
+    ],
+    "corpus wide validation repair plan": [
+      "corpus wide validation repair plan"
+    ],
+    "corpus wide validation repair tasks": [
+      "corpus wide validation repair tasks"
     ],
     "corpus workflow blocks changes": [
       "corpus workflow blocks changes"
@@ -32630,6 +32720,9 @@
     "deep research ascii identifiers": [
       "deep research ASCII identifiers"
     ],
+    "deep research audit verification tasks": [
+      "deep research audit verification tasks"
+    ],
     "deep research authority": [
       "deep research authority"
     ],
@@ -32861,6 +32954,9 @@
     ],
     "deep research loop graphify": [
       "deep-research loop graphify"
+    ],
+    "deep research loop plan": [
+      "deep research loop plan"
     ],
     "deep research mcp implementation summary": [
       "deep research mcp implementation summary"
@@ -33879,6 +33975,12 @@
     ],
     "deep review strategy template": [
       "deep review strategy template"
+    ],
+    "deep review synthesis research plan": [
+      "deep review synthesis research plan"
+    ],
+    "deep review synthesis research tasks": [
+      "deep review synthesis research tasks"
     ],
     "deep review tamper evident read": [
       "deep review tamper-evident read"
@@ -36952,6 +37054,18 @@
     "doctor binding gate and fail closed original selection": [
       "doctor binding gate and fail-closed original selection"
     ],
+    "doctor bootstrap symlink fix": [
+      "doctor bootstrap symlink fix"
+    ],
+    "doctor bootstrap symlink restart loop": [
+      "doctor bootstrap symlink restart loop"
+    ],
+    "doctor bootstrap symlink summary": [
+      "doctor bootstrap symlink summary"
+    ],
+    "doctor bootstrap task list": [
+      "doctor bootstrap task list"
+    ],
     "doctor causal graph": [
       "/doctor causal-graph",
       "doctor causal-graph"
@@ -37491,6 +37605,9 @@
     "doctor removal tasks": [
       "doctor removal tasks"
     ],
+    "doctor restart loop plan": [
+      "doctor restart loop plan"
+    ],
     "doctor retrieval signals": [
       "doctor retrieval signals"
     ],
@@ -37526,6 +37643,12 @@
     ],
     "doctor router and manifest driven dispatch": [
       "doctor router and manifest-driven dispatch"
+    ],
+    "doctor router consolidation decision record": [
+      "doctor router consolidation decision record"
+    ],
+    "doctor router cutover decision record": [
+      "doctor router cutover decision record"
     ],
     "doctor router cutover from legacy files": [
       "doctor router cutover from legacy files"
@@ -37580,6 +37703,9 @@
     ],
     "doctor run followups tasks": [
       "doctor run followups tasks"
+    ],
+    "doctor runtime bootstrap verification": [
+      "doctor runtime bootstrap verification"
     ],
     "doctor runtime mirrors audit": [
       "doctor runtime-mirrors audit"
@@ -37868,6 +37994,9 @@
     ],
     "doctor update research tasks": [
       "doctor update research tasks"
+    ],
+    "doctor update restart required": [
+      "doctor update restart required"
     ],
     "doctor update scaffold": [
       "doctor update scaffold"
@@ -39040,9 +39169,6 @@
     "embedded style reference tasks": [
       "embedded style reference tasks"
     ],
-    "embedder": [
-      "embedder"
-    ],
     "embedder adapter architecture": [
       "embedder adapter architecture"
     ],
@@ -39057,6 +39183,21 @@
     ],
     "embedder auto resolution fix": [
       "embedder auto resolution fix"
+    ],
+    "embedder auto resolution fix decision record": [
+      "embedder auto resolution fix decision record"
+    ],
+    "embedder auto resolution fix handover": [
+      "embedder auto resolution fix handover"
+    ],
+    "embedder auto resolution fix plan": [
+      "embedder auto resolution fix plan"
+    ],
+    "embedder auto resolution fix summary": [
+      "embedder auto resolution fix summary"
+    ],
+    "embedder auto resolution fix tasks": [
+      "embedder auto resolution fix tasks"
     ],
     "embedder auto select": [
       "embedder auto-select"
@@ -41072,6 +41213,9 @@
     "executor fallback router typed reroute": [
       "executor fallback-router typed reroute"
     ],
+    "executor gap register plan": [
+      "executor gap register plan"
+    ],
     "executor identity provenance": [
       "executor identity provenance"
     ],
@@ -41093,8 +41237,17 @@
     "executor kind routing tasks": [
       "executor kind routing tasks"
     ],
+    "executor matrix audit checklist": [
+      "executor matrix audit checklist"
+    ],
+    "executor matrix audit plan": [
+      "executor matrix audit plan"
+    ],
     "executor matrix audit progress": [
       "executor matrix audit progress"
+    ],
+    "executor matrix audit tasks": [
+      "executor matrix audit tasks"
     ],
     "executor override approach": [
       "executor override approach"
@@ -41107,6 +41260,9 @@
     ],
     "executor selection contract moved": [
       "executor selection contract moved"
+    ],
+    "executor support matrix freeze": [
+      "executor support matrix freeze"
     ],
     "executor wiring and cli codex read only audit leaf changelog": [
       "executor wiring and cli codex read only audit leaf changelog"
@@ -41967,9 +42123,6 @@
     "fact preservation extraction": [
       "fact preservation extraction"
     ],
-    "factory": [
-      "factory"
-    ],
     "factory adr 012 shard fallback": [
       "factory adr-012 shard fallback"
     ],
@@ -41981,6 +42134,9 @@
     ],
     "factory egress guard tasks": [
       "factory egress guard tasks"
+    ],
+    "factory metadata probe": [
+      "factory metadata probe"
     ],
     "factory node sqlite metadata read": [
       "factory node:sqlite metadata read"
@@ -42555,8 +42711,20 @@
     "fanout pair replay tasks": [
       "fanout pair replay tasks"
     ],
+    "fanout parity closeout checklist": [
+      "fanout parity closeout checklist"
+    ],
+    "fanout parity closeout summary": [
+      "fanout parity closeout summary"
+    ],
     "fanout parity docs closeout": [
       "fanout parity docs closeout"
+    ],
+    "fanout parity docs closeout plan": [
+      "fanout parity docs closeout plan"
+    ],
+    "fanout parity docs closeout tasks": [
+      "fanout parity docs closeout tasks"
     ],
     "fanout parity packet complete": [
       "fanout parity packet complete"
@@ -42848,6 +43016,12 @@
     ],
     "feature catalog registered validated": [
       "feature catalog registered validated"
+    ],
+    "feature catalog review plan": [
+      "feature catalog review plan"
+    ],
+    "feature catalog review tasks": [
+      "feature catalog review tasks"
     ],
     "feature catalog roadmap drift": [
       "feature catalog roadmap drift"
@@ -48117,6 +48291,12 @@
     "governance rollout layer tasks": [
       "governance rollout layer tasks"
     ],
+    "governance skdoc skcode drift review plan": [
+      "governance skdoc skcode drift review plan"
+    ],
+    "governance skdoc skcode drift review tasks": [
+      "governance skdoc skcode drift review tasks"
+    ],
     "governed exception issuer verification": [
       "governed exception issuer verification"
     ],
@@ -49170,6 +49350,9 @@
     "hard cutover no aliases": [
       "hard cutover no aliases"
     ],
+    "hard delete legacy command files": [
+      "hard delete legacy command files"
+    ],
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
     ],
@@ -49235,6 +49418,12 @@
     ],
     "hardcoded default audit deep research": [
       "hardcoded-default audit deep-research"
+    ],
+    "hardcoded default audit plan": [
+      "hardcoded default audit plan"
+    ],
+    "hardcoded default audit tasks": [
+      "hardcoded default audit tasks"
     ],
     "hardcoded default remediation 005": [
       "hardcoded default remediation 005"
@@ -52459,6 +52648,12 @@
     "interconnected mcp audit": [
       "interconnected mcp audit"
     ],
+    "interconnected mcps review plan": [
+      "interconnected mcps review plan"
+    ],
+    "interconnected mcps review tasks": [
+      "interconnected mcps review tasks"
+    ],
     "interface feels cheap": [
       "interface feels cheap"
     ],
@@ -54803,6 +54998,9 @@
     "learning feedback loop repair": [
       "learning feedback loop repair"
     ],
+    "learning feedback loop repair decision": [
+      "learning feedback loop repair decision"
+    ],
     "learning feedback loop repair plan": [
       "learning feedback loop repair plan"
     ],
@@ -55046,6 +55244,9 @@
     "legacy default detection tasks": [
       "legacy default detection tasks"
     ],
+    "legacy directory migration branches": [
+      "legacy directory migration branches"
+    ],
     "legacy doctor delete tasks": [
       "legacy doctor delete tasks"
     ],
@@ -55150,6 +55351,9 @@
     ],
     "legacy removal summary": [
       "legacy removal summary"
+    ],
+    "legacy skill compatibility symlink": [
+      "legacy skill compatibility symlink"
     ],
     "legacy spec folder migration": [
       "legacy spec folder migration"
@@ -58007,6 +58211,12 @@
     "mcp core review": [
       "mcp core review"
     ],
+    "mcp core review plan": [
+      "mcp core review plan"
+    ],
+    "mcp core review tasks": [
+      "mcp core review tasks"
+    ],
     "mcp daemon disposal flap": [
       "mcp daemon disposal flap"
     ],
@@ -58564,6 +58774,12 @@
     "mcp retrieval review": [
       "mcp retrieval review"
     ],
+    "mcp retrieval review plan": [
+      "mcp retrieval review plan"
+    ],
+    "mcp retrieval review tasks": [
+      "mcp retrieval review tasks"
+    ],
     "mcp route guard": [
       "mcp route guard",
       "mcp-route-guard"
@@ -58714,6 +58930,12 @@
     ],
     "mcp session cleanup": [
       "mcp session cleanup"
+    ],
+    "mcp session index schema review plan": [
+      "mcp session index schema review plan"
+    ],
+    "mcp session index schema review tasks": [
+      "mcp session index schema review tasks"
     ],
     "mcp session review": [
       "mcp session review"
@@ -61486,6 +61708,12 @@
     ],
     "memory write correctness tasks": [
       "memory write correctness tasks"
+    ],
+    "memory write path audit plan": [
+      "memory write path audit plan"
+    ],
+    "memory write path audit tasks": [
+      "memory write path audit tasks"
     ],
     "memory write safety": [
       "memory write safety"
@@ -64560,8 +64788,14 @@
     "node sqlite": [
       "node:sqlite"
     ],
+    "node sqlite factory fix": [
+      "node:sqlite factory fix"
+    ],
     "node sqlite factory metadata read": [
       "node sqlite factory metadata read"
+    ],
+    "node sqlite vs better sqlite3": [
+      "node sqlite vs better sqlite3"
     ],
     "node type treatment": [
       "node type treatment"
@@ -67111,6 +67345,9 @@
     ],
     "option b fts5 guardrails": [
       "option b fts5 guardrails"
+    ],
+    "option c consolidation boundary": [
+      "option c consolidation boundary"
     ],
     "optional local extra": [
       "optional local extra"
@@ -70095,11 +70332,17 @@
     "phase 126 tasks": [
       "phase 126 tasks"
     ],
+    "phase 13 corpus wide validation repair": [
+      "phase 13 corpus wide validation repair"
+    ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
     ],
     "phase 14 results": [
       "phase 14 results"
+    ],
+    "phase 14 spec auto healing research": [
+      "phase 14 spec auto healing research"
     ],
     "phase 14 tasks": [
       "phase 14 tasks"
@@ -70660,6 +70903,12 @@
     ],
     "phase parent readiness": [
       "phase parent readiness"
+    ],
+    "phase parent readiness plan": [
+      "phase parent readiness plan"
+    ],
+    "phase parent readiness tasks": [
+      "phase parent readiness tasks"
     ],
     "phase parent reference readme sync": [
       "phase parent reference readme sync"
@@ -73088,6 +73337,9 @@
     ],
     "pre spawn refusal": [
       "pre-spawn refusal"
+    ],
+    "pre v4 spec folder migration": [
+      "pre-v4 spec folder migration"
     ],
     "pre v4 spec upgrade": [
       "pre-v4 spec upgrade"
@@ -80497,6 +80749,9 @@
     "restart durability tests": [
       "restart durability tests"
     ],
+    "restart loop fix shipped": [
+      "restart loop fix shipped"
+    ],
     "restatement cadence": [
       "restatement cadence"
     ],
@@ -86438,9 +86693,6 @@
     ],
     "serving prior snapshot": [
       "serving prior snapshot"
-    ],
-    "session": [
-      "session"
     ],
     "session activity signal": [
       "session activity signal"
@@ -94348,6 +94600,21 @@
     "spec anchoring output": [
       "spec anchoring output"
     ],
+    "spec auto healing research": [
+      "spec auto healing research"
+    ],
+    "spec auto healing research acceptance criteria": [
+      "spec auto healing research acceptance criteria"
+    ],
+    "spec auto healing research implementation summary": [
+      "spec auto healing research implementation summary"
+    ],
+    "spec auto healing research plan": [
+      "spec auto healing research plan"
+    ],
+    "spec auto healing research tasks": [
+      "spec auto healing research tasks"
+    ],
     "spec check protocol": [
       "spec check protocol"
     ],
@@ -94359,6 +94626,9 @@
     ],
     "spec corpus golden": [
       "spec corpus golden"
+    ],
+    "spec corpus healing tooling": [
+      "spec corpus healing tooling"
     ],
     "spec corpus quality": [
       "spec corpus quality"
@@ -98812,6 +99082,9 @@
     "symlink attack temp file fix": [
       "symlink attack temp file fix"
     ],
+    "symlink branch removal checklist": [
+      "symlink branch removal checklist"
+    ],
     "symlink contained paths": [
       "symlink contained paths"
     ],
@@ -101124,6 +101397,12 @@
     "testing playbook prompt voice": [
       "testing playbook prompt voice"
     ],
+    "testing playbook review plan": [
+      "testing playbook review plan"
+    ],
+    "testing playbook review tasks": [
+      "testing playbook review tasks"
+    ],
     "testing playbook scaffold": [
       "testing playbook scaffold"
     ],
@@ -101973,6 +102252,12 @@
     "tool schema parity review": [
       "tool schema parity review"
     ],
+    "tool schema parity review plan": [
+      "tool schema parity review plan"
+    ],
+    "tool schema parity review tasks": [
+      "tool schema parity review tasks"
+    ],
     "tool schema tasks": [
       "tool schema tasks"
     ],
@@ -102110,6 +102395,9 @@
     ],
     "track access cache hits": [
       "track access cache hits"
+    ],
+    "track access production enablement decision": [
+      "track access production enablement decision"
     ],
     "track and packet migration": [
       "track and packet migration"

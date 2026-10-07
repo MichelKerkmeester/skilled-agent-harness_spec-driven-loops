@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6825,
-    "ok": 13446,
-    "valid-empty-list": 3512
+    "missing-frontmatter": 6818,
+    "ok": 13493,
+    "valid-empty-list": 3509
   },
-  "documentsScanned": 23837,
+  "documentsScanned": 23874,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,27 +27,27 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fee916326f4564616216b943d0aabd58e4d50ca25c043c630021c1873c9554f9",
+  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
-      "editor-fallback": 2,
-      "folder-token-fallback": 53,
-      "generic-workflow-word": 78,
+      "editor-fallback": 1,
+      "folder-token-fallback": 50,
+      "generic-workflow-word": 77,
       "numeric-only": 40,
       "prose-sentence": 10,
-      "single-token": 373,
+      "single-token": 369,
       "stop-word-only": 9,
       "template-default": 20
     },
     "phrases": {
-      "editor-fallback": 2,
-      "folder-token-fallback": 34,
+      "editor-fallback": 1,
+      "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35642,
+      "ok": 35741,
       "prose-sentence": 19,
-      "single-token": 165,
+      "single-token": 164,
       "stop-word-only": 1,
       "template-default": 17
     }
@@ -40371,30 +40371,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/tasks.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/tasks.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -46324,12 +46300,6 @@
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit/spec.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -54074,12 +54044,6 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/decision-record.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/review/deep-review-strategy.md",
@@ -55814,44 +55778,6 @@
       "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set/dispatch/track-polish.prompt.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 5,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/implementation-summary.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/plan.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/spec.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/tasks.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -60927,13 +60853,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 6,
-      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/research/deep-dive-report.md",
       "rawKey": "trigger_phrases",
@@ -65601,6 +65520,24 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -66909,6 +66846,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/080-pi-extension-brace-expansion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71429,6 +71370,18 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/scratch",
       "reason": "excluded directory"
     },
     {
