@@ -9,7 +9,8 @@
     "system-speckit/034-spec-folder-tooling/003-track-root-children",
     "system-speckit/034-spec-folder-tooling/004-track-aware-archive",
     "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
-    "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing"
+    "system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+    "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "scripts"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -89,18 +90,18 @@
     ],
     "causal_summary": "The scripts that create, number and archive spec packets disagreed with where packets live",
     "created_at": "2026-09-23T00:00:00Z",
-    "last_save_at": "2026-10-06T21:24:26.334Z",
+    "last_save_at": "2026-10-07T09:16:53.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3cdf67ad7814577279fcfa1f7a1048f6027bce027968210d58611ddc9ec871a1",
+    "source_fingerprint": "sha256:acd4ce6726b3fc2b2dd7cc2c04855d6f4f25de6556682e5b9ffa04fcfb65636f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2904be1a4cd2475aa47fc9358fd97993f804a97211c78b1ed180d2a24edabf9"
+      "spec.md": "99c67d4e9c6cf136403d0f578a5d01fe8a2846a3395e4866e674be6469523ce8"
     },
-    "last_active_child_id": "system-speckit/034-spec-folder-tooling/005-phase-aware-archive",
-    "last_active_at": "2026-10-06T19:00:00Z"
+    "last_active_child_id": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
+    "last_active_at": "2026-10-07T07:55:17.883Z"
   }
 }

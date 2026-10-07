@@ -1,0 +1,144 @@
+{
+  "topic": "Review: specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+  "sessionId": "2026-10-07T05:11:34.566Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
+  "createdAt": "2026-10-07T05:11:34.566Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1800,
+    "configDir": null,
+    "governor": null,
+    "agentPersona": null,
+    "liveTools": {
+      "webSearch": "inherit",
+      "mcpServers": []
+    }
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "reviewScopeFiles": [
+    ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+    ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
+    ".skilled/skills/system-spec-kit/references/structure/phase-system.md",
+    ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+    ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+    ".skilled/skills/system-spec-kit/SKILL.md",
+    "AGENTS.md",
+    ".skilled/commands/speckit/assets/speckit-plan.yaml",
+    ".skilled/commands/speckit/assets/speckit-complete.yaml",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/implementation-summary.md"
+  ],
+  "resource_map_present": false,
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

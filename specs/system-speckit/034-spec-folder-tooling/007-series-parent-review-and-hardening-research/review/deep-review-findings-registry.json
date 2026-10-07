@@ -1,0 +1,778 @@
+{
+  "sessionId": "2026-10-07T05:11:34.566Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Series-parent creation recipe names a scaffold command that produces the wrong structure, and an append command that fails",
+      "file": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "REQ-002 no-doc-still-says-Option-E is not met: skill README still teaches Option E",
+      "file": ".skilled/skills/system-spec-kit/README.md",
+      "line": 178,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P1",
+      "title": "REQ-003 every-doc-restating-thresholds is not met: two reference docs restate both thresholds with no series-parent exception",
+      "file": ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "REQ-003 third missed doc: phase-system knowledge node restates both thresholds without the series-parent exception",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "quick-reference section 9 Option C description omits the series parent that AGENTS.md includes",
+      "file": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+      "line": 269,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "New judge class template-default missing from the retrieval conventions class list",
+      "file": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "line": 249,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "tasks.md Verification Summary still holds literal template placeholders",
+      "file": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/tasks.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "stderr listing prints repo-controlled strings without stripping control characters",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 1109,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "AC continuity block contradicts its Status Complete",
+      "file": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/acceptance-criteria.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "AC-004 sub-folder silence clause has no test evidence",
+      "file": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/acceptance-criteria.md",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-004",
+      "severity": "P2",
+      "title": "template phrase list duplicated across create.sh and phrase-judge.mjs",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "line": 401,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "006 spec.md scope tables omit spec-folder-authoring-checklist.md, which the packet actually modified",
+      "file": "specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 8
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.833,
+  "graphConvergenceScore": 0.863,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 15,
+      "description": "Dimension coverage (57%) is below threshold (80%). 15 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5714285714285714,
+    "evidenceDensity": 0.8,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.863
+  },
+  "candidateCoverage": {
+    "covered": [
+      "doc_code_drift",
+      "injection",
+      "misleading_instruction",
+      "stale_label",
+      "traceability_gap"
+    ],
+    "ruledOut": [
+      "boundary_condition",
+      "doc_code_drift",
+      "injection",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "misleading_instruction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_label": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "traceability_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "boundary_condition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1081"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1082",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1112",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:146"
+      ],
+      "reason": "Guards, cutoff and cap verified by direct read; window and silence assertions present in the committed test."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:395"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:403",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:420"
+      ],
+      "reason": "Sanitized charset plus non-interpolated environment substitution removes the injection surface."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1123"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1286",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1768",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:158"
+      ],
+      "reason": "Single node invocation per run; listing writes only to stderr; stdout purity asserted."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:395-424"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no reachable injection",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:407-410",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:420-423"
+      ],
+      "reason": "sanitized charset plus non-interpolated env substitution; matches iteration-1 SL-005"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1091-1114"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:617",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:1503"
+      ],
+      "reason": "field is produced by the scaffold stub and preserved by the parser; 006/007 metadata carry it"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1086-1117"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1116"
+      ],
+      "reason": "stderr-only, non-interpolated reads; stdout purity asserted"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1081"
+      ],
+      "bugClass": "boundary_condition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1082",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1112",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:146"
+      ],
+      "proof": "Guards, cutoff and cap verified by direct read; window and silence assertions present in the committed test."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:395"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:403",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:420"
+      ],
+      "proof": "Sanitized charset plus non-interpolated environment substitution removes the injection surface."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1123"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1286",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1768",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:158"
+      ],
+      "proof": "Single node invocation per run; listing writes only to stderr; stdout purity asserted."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:395-424"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no reachable injection",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:407-410",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:420-423"
+      ],
+      "proof": "sanitized charset plus non-interpolated env substitution; matches iteration-1 SL-005"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-206",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:78",
+        ".skilled/skills/system-spec-kit/README.md:178",
+        ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md:83"
+      ],
+      "bugClass": "stale_label",
+      "disposition": "not_applicable",
+      "rationale": "no new finding id for already-registered defects",
+      "evidenceRefs": [
+        "specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/iterations/iteration-001.md:207"
+      ],
+      "proof": "prior-run findings; re-confirmed active and recorded in this iteration narrative, not re-filed"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1091-1114"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:617",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts:1503"
+      ],
+      "proof": "field is produced by the scaffold stub and preserved by the parser; 006/007 metadata carry it"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:21-70",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts:21-55"
+      ],
+      "bugClass": "logic_duplication",
+      "disposition": "not_applicable",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts:21-41"
+      ],
+      "proof": "two copies only; abstraction deferred per the two-is-not-a-pattern restraint"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-305",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1086-1117"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1116"
+      ],
+      "proof": "stderr-only, non-interpolated reads; stdout purity asserted"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-306",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js:104-105"
+      ],
+      "bugClass": "stale_label",
+      "disposition": "not_applicable",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js:104-105"
+      ],
+      "proof": "recorded as corroborating context for R1-P1-002; the gate does not require the stale label, and a separate finding would duplicate the registered label drift"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_label",
+      "traceability_gap",
+      "doc_code_drift",
+      "injection"
+    ],
+    "covered": [
+      "stale_label",
+      "traceability_gap",
+      "doc_code_drift"
+    ],
+    "ruledOut": [
+      "injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

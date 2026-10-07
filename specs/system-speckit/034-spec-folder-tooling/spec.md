@@ -116,6 +116,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 4 | `004-track-aware-archive/` | Archive and restore a packet inside its own track | Complete |
 | 5 | `005-phase-aware-archive/` | Archive and restore a phase inside its parent | Complete |
 | 6 | `006-series-parent-rule-and-sibling-listing/` | Name the series parent and list recent packets before a new one | Complete |
+| 7 | 007-series-parent-review-and-hardening-research/ | [Phase 7 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -133,6 +134,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `003-track-root-children` | `004-track-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `004-track-aware-archive` | `005-phase-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `005-phase-aware-archive` | `006-series-parent-rule-and-sibling-listing` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| 006-series-parent-rule-and-sibling-listing | 007-series-parent-review-and-hardening-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research",
+  "parent_id": "system-speckit/034-spec-folder-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "series parent review and hardening research",
+      "phase 7 series parent review and hardening research",
+      "harden the series parent rule",
+      "series parent review plan",
+      "series parent hardening research plan",
+      "series parent review tasks",
+      "series parent hardening research tasks",
+      "series parent review verdict",
+      "series parent hardening recommendations",
+      "series parent hardening",
+      "recent packets listing hardening",
+      "seeded trigger phrase drift"
+    ],
+    "key_topics": [
+      "series",
+      "parent",
+      "review",
+      "hardening",
+      "research",
+      "phase",
+      "harden",
+      "rule",
+      "plan",
+      "tasks",
+      "verdict",
+      "recommendations"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "review/review-report.md",
+      "review/deep-review-config.json",
+      "research/deep-research-config.json",
+      "templates/core/spec.md.tmpl",
+      "runtime/hooks/pi/spec-gate-enforce.ts",
+      ".github/workflows/advisory-checks.yml",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+      ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      "references/workflows/quick-reference.md",
+      "references/structure/folder-routing.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.ts",
+        "kind": "code",
+        "path": "runtime/hooks/pi/spec-gate-enforce.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": "runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-routing.md",
+        "kind": "doc",
+        "path": "references/structure/folder-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 6 was built by DeepSeek workers and checked by one orchestrator, so it has had one review lens",
+    "created_at": "2026-10-07T05:07:13Z",
+    "last_save_at": "2026-10-07T07:56:20.972Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e061217c373f6e79c46300332f1e3164486f49ade60be612d48e88fddf6ccdf3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "35e027ff2035b8a7a8b906b570b83524005b531ab9a87ae9c487c25f6a88c2a7",
+      "plan.md": "51471b36cf7a16973c83de4edff21977c59a07ec631dfac18254afacd5f21191",
+      "tasks.md": "8908712db9f2e48be07f507869bcdb8630960cdad0f1c12ad30abe18db851234",
+      "implementation-summary.md": "06280b09060f534e2128d8edd77df76e04f260fa29465f477030f2f4574b8392",
+      "research/research.md": "ad9cf359b724990c4de788cae241fd533772cd1d917f151a11d31510e2aa5680"
+    },
+    "last_active_at": null
+  }
+}

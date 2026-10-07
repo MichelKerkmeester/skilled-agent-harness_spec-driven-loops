@@ -1,0 +1,516 @@
+{
+  "sessionId": "2026-10-07T05:19:14.761Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 7,
+    "totalQuestions": 7,
+    "timestamp": "2026-10-07T07:53:24.773Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-at-the-moment-an-agent-decides-where-new-work-goes-gate-3-prompt-text-gate-3-",
+      "inboxId": null,
+      "text": "Q1: At the moment an agent decides where new work goes (Gate 3 prompt text, gate-3-classifier.ts, the Gate 3 runtime hook, /speckit:plan setup), does anything surface the series parent rule or the sibling packets, and where are the gaps that still let a related singleton be created?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-which-existing-mechanisms-already-compute-relatedness-gate-3-classifier-folde",
+      "inboxId": null,
+      "text": "Q2: Which existing mechanisms already compute relatedness (gate-3-classifier, folder-routing, the trigger index and lookup, the skill advisor, recommend-level.sh, graph-metadata) and which could detect a same-artifact sibling mechanically instead of relying on the agent to read stderr?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-how-reliable-and-actionable-is-the-create-sh-recent-packets-listing-14-day-wi",
+      "inboxId": null,
+      "text": "Q3: How reliable and actionable is the create.sh recent-packets listing (14-day window, created_at source, stderr in non-interactive runs, noise, no same-artifact matching), and what concrete changes would harden it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-can-the-series-parent-rule-be-gamed-into-a-catch-all-bucket-or-misapplied-a-c",
+      "inboxId": null,
+      "text": "Q4: Can the series parent rule be gamed into a catch-all bucket or misapplied (a correction treated as a new change, cross-track grouping, artifact drift), and what guardrails in validators or metadata would prevent that?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-how-should-existing-singleton-clusters-be-detected-and-proposed-for-retroacti",
+      "inboxId": null,
+      "text": "Q5: How should existing singleton clusters be detected and proposed for retroactive grouping (census tooling, a validator advisory, a proposal step in a speckit command) without noisy false positives or unsafe renumbering?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-are-the-seeded-trigger-phrases-and-the-template-default-judge-class-robust-ph",
+      "inboxId": null,
+      "text": "Q6: Are the seeded trigger phrases and the template-default judge class robust (phase-child scaffolds, punctuation, non-English text, very short descriptions), and what backfill path for the older specs is safe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-q7-which-ux-changes-across-gate-3-wording-the-speckit-commands-and-create-sh-out",
+      "inboxId": null,
+      "text": "Q7: Which UX changes across Gate 3 wording, the speckit commands and create.sh output would make grouping the default choice while keeping the operator in control?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-at-the-moment-an-agent-decides-where-new-work-goes-gate-3-prompt-text-gate-3-",
+      "inboxId": null,
+      "text": "Q1: At the moment an agent decides where new work goes (Gate 3 prompt text, gate-3-classifier.ts, the Gate 3 runtime hook, /speckit:plan setup), does anything surface the series parent rule or the sibling packets, and where are the gaps that still let a related singleton be created?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-which-existing-mechanisms-already-compute-relatedness-gate-3-classifier-folde",
+      "inboxId": null,
+      "text": "Q2: Which existing mechanisms already compute relatedness (gate-3-classifier, folder-routing, the trigger index and lookup, the skill advisor, recommend-level.sh, graph-metadata) and which could detect a same-artifact sibling mechanically instead of relying on the agent to read stderr?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-q3-how-reliable-and-actionable-is-the-create-sh-recent-packets-listing-14-day-wi",
+      "inboxId": null,
+      "text": "Q3: How reliable and actionable is the create.sh recent-packets listing (14-day window, created_at source, stderr in non-interactive runs, noise, no same-artifact matching), and what concrete changes would harden it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-can-the-series-parent-rule-be-gamed-into-a-catch-all-bucket-or-misapplied-a-c",
+      "inboxId": null,
+      "text": "Q4: Can the series parent rule be gamed into a catch-all bucket or misapplied (a correction treated as a new change, cross-track grouping, artifact drift), and what guardrails in validators or metadata would prevent that?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-how-should-existing-singleton-clusters-be-detected-and-proposed-for-retroacti",
+      "inboxId": null,
+      "text": "Q5: How should existing singleton clusters be detected and proposed for retroactive grouping (census tooling, a validator advisory, a proposal step in a speckit command) without noisy false positives or unsafe renumbering?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-q6-are-the-seeded-trigger-phrases-and-the-template-default-judge-class-robust-ph",
+      "inboxId": null,
+      "text": "Q6: Are the seeded trigger phrases and the template-default judge class robust (phase-child scaffolds, punctuation, non-English text, very short descriptions), and what backfill path for the older specs is safe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-q7-which-ux-changes-across-gate-3-wording-the-speckit-commands-and-create-sh-out",
+      "inboxId": null,
+      "text": "Q7: Which UX changes across Gate 3 wording, the speckit commands and create.sh output would make grouping the default choice while keeping the operator in control?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "**Q4:** Guardrails against gaming/misapplying the series parent rule (catch-all bucket, correction-vs-new-change, cross-track grouping, artifact drift).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6:** Robustness of seeded trigger phrases / template-default judge class and safe backfill for older specs.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7:** UX changes across Gate 3 wording, speckit commands and create.sh output — now with the byte-pinning constraint (f-iter001-006) and the two-canon drift (f-iter001-007) as hard pre-conditions.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5:** Detecting and proposing retroactive grouping of existing singleton clusters without false positives or unsafe renumbering.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3:** create.sh recent-packets reliability and hardening (14-day window, `created_at` source, stderr in non-interactive runs, noise, no same-artifact matching) — this iteration adds concrete defect candidates: invisible packets without `derived.created_at`, top-level-only scan, 10-row recency cap, and no matching step.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6:** Are the seeded trigger phrases and the template-default judge class robust (phase-child scaffolds, punctuation, non-English text, very short descriptions), and what backfill path for the older specs is safe?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5:** How should existing singleton clusters be detected and proposed for retroactive grouping (census tooling, a validator advisory, a proposal step in a speckit command) without noisy false positives or unsafe renumbering?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4:** Can the series parent rule be gamed into a catch-all bucket or misapplied (a correction treated as a new change, cross-track grouping, artifact drift), and what guardrails in validators or metadata would prevent that?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7:** Which UX changes across Gate 3 wording, the speckit commands and create.sh output would make grouping the default choice while keeping the operator in control? — carry the byte-pinning constraint (f-iter001-006), the two-canon drift (f-iter001-007), and this iteration's hardening shortlist as pre-conditions.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the seven strategy questions remain open; Q1–Q7 are all answered. Under the max-iterations stop policy, iterations 7–10 broaden rather than stop: counterevidence probes and challenges to earlier findings.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None tracked. Iteration 8 should fold in the review's WS1-WS4 remediation list and test whether the scoped mode neutralizes the scaffold-text containment clusters (see Next Focus).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None tracked. Candidate probes for iteration 9: (a) challenge f-iter008-001's implication that a Gate 1 scope can simply be adopted — find whether any Gate 1 path can carry a scope without violating the byte-pinned delivery receipts (f-iter001-006) or the frozen runtime arrays (f-iter003-002); (b) verify the ~12 absent-carrier bound by reading the generator's exclusion and purge rules; (c) test f-iter008-002's \"no conflict\" verdict against the fail-loud-versus-advisory-only wording at the seeder call site.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None tracked. Candidate probes for iteration 10 (final): (a) read the template source's placeholder block and confirm it matches the perl block byte-for-byte — the baseline any fail-loud guard would compare against; (b) find whether any CI workflow runs `generate-trigger-index.mjs --check` (the mechanical side of the cadence question); (c) check whether `create-track-refresh.vitest.ts` pins the lister's advisory-only returns, so a seeder fail-loud change cannot collide with it.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None tracked. All seven strategy questions are closed; this was the tenth and final iteration.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-speckit-plan-complete-confirmations-inherit-the-bare-c-related-and-their-yamls-n",
+      "text": "`/speckit:plan`/`complete` confirmations inherit the bare \"C) Related\" and their YAMLs never carry the rule (f-003).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-agents-md-option-b-is-gated-on-unrelated-to-suitable-existing-packets-source-age",
+      "text": "AGENTS.md Option B is gated on \"unrelated to suitable existing packets\" [SOURCE: AGENTS.md:80], but no surface tells the agent what \"suitable existing packets\" exist.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-nothing-computes-same-artifact-sameness-the-closest-primitives-are-phrase-resemb",
+      "text": "Nothing computes same-artifact sameness; the closest primitives are phrase resemblance, track membership, and folder-name alignment (f-005).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-classifier-cannot-object-it-validates-the-chosen-answer-structurally-f-002",
+      "text": "The classifier cannot object: it validates the chosen answer structurally (f-002).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-dialog-menu-at-the-first-write-the-highest-attention-human-in-the-loop-momen",
+      "text": "The dialog/menu at the first write (the highest-attention human-in-the-loop moment) omits the series-parent rule and sibling data (f-001).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-sibling-listing-arrives-at-scaffold-time-after-the-choice-filtered-to-14-day",
+      "text": "The sibling listing arrives at scaffold time, after the choice, filtered to 14 days, top-level folders, and `derived.created_at`-bearing packets (f-004).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-add-a-recent-packets-array-to-the-json-payload-and-a-no-recent-opt-out-keeping-s",
+      "text": "Add a `recent_packets` array to the `--json` payload and a `--no-recent` opt-out, keeping stderr for humans; never merge the listing into stdout for non-JSON mode changes.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-extend-create-track-refresh-vitest-ts-with-fixtures-for-items-1-3-4-5-and-the-ze",
+      "text": "Extend `create-track-refresh.vitest.ts` with fixtures for items 1, 3, 4, 5 and the zero-row contract.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-make-the-two-file-reads-independent-capture-derived-created-at-first-treat-a-mis",
+      "text": "Make the two file reads independent: capture `derived.created_at` first, treat a missing `description.json` as an empty description instead of a skip, and fall back to filesystem mtime when metadata is absent or invalid.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-pass-the-new-work-s-description-short-name-into-the-lister-and-rank-rows-by-toke",
+      "text": "Pass the new work's description/short-name into the lister and rank rows by token overlap (the trigger-index phrase scorer already exists per f-iter001-005); mark the best matches and print an explicit \"no close matches\" line where today there is silence.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-preserve-the-advisory-only-invariant-see-inv-iter002-001-the-lister-must-keep-re",
+      "text": "Preserve the advisory-only invariant (see inv-iter002-001): the lister must keep returning 0 on every failure and must never fail a scaffold.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-preserve-the-cap-but-report-it-n-more-in-root-plus-the-count-of-folders-checked-",
+      "text": "Preserve the cap but report it: \"+N more in <root>\" plus the count of folders checked and the count excluded by the window.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-use-max-created-at-last-save-at-for-the-window-and-print-the-signal-used",
+      "text": "Use `max(created_at, last_save_at)` for the window, and print the signal used.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-widen-the-candidate-set-include-direct-children-of-top-level-siblings-phase-chil",
+      "text": "Widen the candidate set: include direct children of top-level siblings (phase children), and when no `--track` is set do not silently ignore other tracks.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-stance-difference-not-a-conflict-the-review-defers-backfilling-the-195-template-",
+      "text": "**Stance difference, not a conflict:** the review defers backfilling the ~195 template-phrase carriers [SOURCE: specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/review-report.md:101], while this run recommends an operator-run dry-run-first backfill (f-iter006-004). f-iter008-001 narrows the disagreement without resolving it: scoping removes cross-packet noise but cannot fix self-matches, so the backfill retains its remaining justification.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-ws1-recipe-fix-r1-p1-001-verified-independently-this-iteration-the-recipe-says-s",
+      "text": "**WS1 (recipe fix, R1-P1-001)** — verified independently this iteration. The recipe says \"scaffold the parent with `create.sh --phase`\" [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:78]; that mode defaults to three placeholder children (`PHASE_COUNT=3` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:62]), the `phase-parent` level exists as its own branch [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:98], and the final step (\"add the new work as child 002 with `create.sh --phase --parent`\") carries neither path nor phase names [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:78]. The review's defect stands; this run had only imported it via f-iter007-006. WS1 is a pre-condition for any runnable-recipe claim.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-ws2-same-class-doc-sweep-aligns-with-this-run-s-canon-drift-and-class-visibility",
+      "text": "**WS2 (same-class doc sweep)** — aligns with this run's canon-drift and class-visibility findings (f-iter003-001, f-iter006-003, f-iter007-003); R1-P2-002 names the same `template-default` class gap this run reported. Two pre-conditions carry: WS2 edits cannot press on the byte-pinned Gate 3 question (f-iter001-006), and doc edits alone cannot add dynamic sibling evidence to the frozen runtime string arrays (f-iter003-002).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-ws3-listing-and-seeding-hardening-r2-p2-004-is-the-same-three-literal-coupling-t",
+      "text": "**WS3 (listing and seeding hardening)** — R2-P2-004 is the same three-literal coupling this run found (judge set [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:25], shell guard [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:401]); R2-P2-001 (control-byte sanitization) and R2-P2-003 (sub-folder listing test) are net-new adds. This run adds the registry's hardening items (independent reads, `max(created_at, last_save_at)`, widened candidate set, token-overlap ranking, cap reporting, `recent_packets` JSON, advisory-only invariant). Union is a superset. The one wording-level constraint: the review's \"guard that fails loudly on drift\" [SOURCE: specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/review/review-report.md:57] must be satisfied by a test-time or warning channel, because the listing and seeding paths are scaffold-coupled and this run's inv-iter002-001 pins the advisory-only \"return 0 on every failure, never fail a scaffold\" behavior.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-ws4-packet-record-reconciliation-no-overlap-with-this-run-no-conflict",
+      "text": "**WS4 (packet record reconciliation)** — no overlap with this run; no conflict.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-update-the-feature-specification-for-the-auth-work-scoped-to-packet-007-0-docume",
+      "text": "`update the feature specification for the auth work` scoped to packet 007 → 0 documents, rc 1.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-self-scope-run-against-the-first-unbackfilled-carrier-found-specs-sk-communicati",
+      "text": "Self-scope run against the first unbackfilled carrier found (`specs/sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair`) → **1 document, rc 0**: that packet's own `spec.md` at 0.88.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-the-same-prompt-scoped-to-the-backfilled-packet-007-series-parent-review-and-har",
+      "text": "The same prompt scoped to the backfilled packet `007-series-parent-review-and-hardening-research` → **0 documents, rc 1** (clean no-hit).",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-the-same-prompt-scoped-to-the-whole-track-specs-system-speckit-034-spec-folder-t",
+      "text": "The same prompt scoped to the whole track `specs/system-speckit/034-spec-folder-tooling` → **2 documents, rc 0**, both in-track AC files (`003-track-root-children`, `006-series-parent-rule-and-sibling-listing`) at 0.88.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-unscoped-review-the-acceptance-criteria-before-closeout-20-documents-rc-0-top-hi",
+      "text": "Unscoped `review the acceptance criteria before closeout` → **20 documents, rc 0**, top hits at 0.88 including the three `templates/examples/level-*/acceptance-criteria.md` fixtures and packet AC files across unrelated tracks.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-consequence-combined-with-f-iter009-001-staleness-is-manifest-level-phrase-owner",
+      "text": "Consequence, combined with f-iter009-001 (staleness is manifest-level; phrase owner sets are in sync): drift is visible on every PR and never repaired or blocked. The actionable choice: promote this step to gating (it already fails closed for a missing generator), or pair the report with a maintainer-run regeneration lane.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-direction-not-implemented-seed-the-parent-s-two-placeholders-from-the-packet-nam",
+      "text": "Direction (not implemented): seed the parent's two placeholders from the packet name/description at render time, or add the bracket literals to the judge's template-default class. Either change must update the golden snapshot intentionally.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-live-evidence-two-packets-carry-the-placeholder-source-specs-sk-design-019-sk-de",
+      "text": "Live evidence: two packets carry the placeholder [SOURCE: specs/sk-design/019-sk-design-diagram-upgrade/spec.md:5] [SOURCE: specs/sk-design/020-chart-and-diagram-review/spec.md:5], and the committed index contains the normalized phrase (`trigger phrase 1`) [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:123581]. The judge's template-default class holds only the four core phrases (established in obs-iter009-001), so the bracket placeholders surface as legitimate search phrases rather than being suppressed.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-no-other-workflow-references-the-generator-ripgrep-across-github-workflows-and-t",
+      "text": "No other workflow references the generator (ripgrep across `.github/workflows/`), and `trigger-index.vitest.ts` covers parser, encoding, scoring and the judge's template-default rejection [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts:147] but has no manifest-freshness assertion.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-not-pinned-the-lister-s-own-failure-returns-d-specs-dir-return-0-source-skilled-",
+      "text": "Not pinned: the lister's own failure returns `[[ -d \"$SPECS_DIR\" ]] || return 0` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1082], the node-missing return [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1083], and `node ... || return 0` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1117]; the seeder is exercised by no test.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-pinned-lister-stderr-format-speckit-recent-packets-in-specs-tools-last-14-days-a",
+      "text": "Pinned: lister stderr format `[speckit] Recent packets in specs/tools, last 14 days:` and the row shape [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:155], the 14-day window [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:173], silence on a phase-child append [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:160], single-JSON stdout [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:157], status 0 [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:154]; refresh path: warn-and-continue on unreadable metadata [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:115], warn on missing writer [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:125], no-touch when `--track` is absent [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:135].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-seeder-semantics-check-block-built-with-qq-matched-as-a-literal-mirroring-q-bloc",
+      "text": "Seeder-semantics check (block built with `qq{}`, matched as a literal, mirroring `\\Q$block\\E`): `core/spec.md.tmpl => MATCH`; phase-parent, research and review packet-type templates => NO-MATCH. The core block is exactly the perl literal — four lines, two-space indent, contiguous [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:16].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-the-phase-parent-never-reaches-the-substitution-the-guard-tests-only-feature-spe",
+      "text": "The phase parent never reaches the substitution: the guard tests only ` - \"feature specification\"` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:401], which only the core template carries; the lean phase-parent template has `[Trigger phrase 1]`/`[Trigger phrase 2]` [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:6] and is the parent's scaffold source [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1363]. No `Trigger phrase` replacer exists anywhere in the CLI tree (repo-wide ripgrep; only template, snapshot and fixture references), and the golden snapshot pins the retained placeholders in rendered output [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap:3242].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-the-step-fails-closed-only-when-the-generator-file-is-missing-source-github-work",
+      "text": "The step fails closed only when the generator file is missing [SOURCE: .github/workflows/advisory-checks.yml:62], then reports drift via `node \"$GENERATOR\" --check || echo ...` [SOURCE: .github/workflows/advisory-checks.yml:68]. The workflows README describes it as \"Reports without gating\" [SOURCE: .github/workflows/README.md:26].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-triggers-push-main-skilled-every-pull-request-no-path-filter-workflow-dispatch-s",
+      "text": "Triggers: push `[main, 'skilled/**']`, every `pull_request` (no path filter), `workflow_dispatch` [SOURCE: .github/workflows/advisory-checks.yml:3]; the workflow header states the design intent — \"continue-on-error keeps the job green: a red X nobody is expected to act on is how a gate becomes background noise\" [SOURCE: .github/workflows/advisory-checks.yml:14].",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-verdict-on-f-iter009-003-the-fail-loud-boundary-survives-with-two-refinements-i-",
+      "text": "Verdict on f-iter009-003: the fail-loud boundary survives with two refinements — (i) a deterministic seeder drift guard that stays silent on healthy fixtures cannot collide with this suite, because the fixtures scaffold from the real templates [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts:38] and every pinned expectation keeps status 0 and the listing format; (ii) a fail-loud change to the *refresh* path, or any change to the listing format, does collide and must update the pins; a phase-parent seeding change collides with the golden snapshot [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-golden-snapshots.vitest.ts:73].",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 7,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 35,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.55,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/091-consolidate-small-packets/specs/system-speckit/034-spec-folder-tooling/007-series-parent-review-and-hardening-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
