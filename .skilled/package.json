@@ -4,7 +4,7 @@
     "@opencode-ai/plugin": "1.18.34"
   },
   "devDependencies": {
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "vitest": "^5.0.3",
