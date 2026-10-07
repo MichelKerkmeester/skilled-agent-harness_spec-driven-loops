@@ -119,7 +119,8 @@ The committed index catches up with the corpus without anyone running the genera
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Branch protection rejects the bot's push | Med | The job reports the failure. The operator grants `contents: write` or a bypass |
+| Risk | The `main` ruleset rejects a push made with the default token, because the required commit-message check never runs for it and the Actions app cannot be a bypass actor on a personal-account repository | High | The job pushes with the `TRIGGER_INDEX_PUSH_TOKEN` secret, a fine-grained token owned by the admin, whose role bypasses the ruleset. Without the secret it falls back to the default token and fails with an error that names the secret |
+| Risk | A push made with that token starts the workflow again under the token owner's name | Low | The job skips when the head commit's subject is the rebuild subject |
 | Risk | A rebuild commit lands between a developer's pull and push | Low | The commit touches one generated file, so a rebase resolves it |
 <!-- /ANCHOR:risks -->
 
@@ -128,7 +129,7 @@ The committed index catches up with the corpus without anyone running the genera
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether branch protection on `main` allows the GitHub Actions bot to push. Only the operator can check this in the repository settings.
+- None. The operator chose a fine-grained token over a GitHub App or a local hook. Creating the token and setting the `TRIGGER_INDEX_PUSH_TOKEN` secret is the operator's step.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -69,7 +69,7 @@ One repair job in its own workflow file. The job delegates generation to the exi
 
 ### Data Flow
 
-A push to `main` or `skilled/**`, or a manual dispatch, starts the job when the actor is not the bot. The job runs the generator, compares the committed index with `git diff`, and commits and pushes the index with the bot identity only when there is a change. A push that branch protection rejects fails the job with an error line that names branch protection.
+A push to `main` or `skilled/**`, or a manual dispatch, starts the job unless the head commit is a rebuild commit. The job checks out with the `TRIGGER_INDEX_PUSH_TOKEN` secret, runs the generator, compares the committed index with `git diff`, and commits and pushes the index only when there is a change. A rejected push fails the job with an error line that names the secret.
 <!-- /ANCHOR:architecture -->
 
 
@@ -86,7 +86,7 @@ The work follows `tasks.md`. Setup recorded the scope, implementation created th
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-There is no unit test for a workflow file. The local check is a YAML parse of the new file, which passed. `actionlint` is not installed, so no schema check ran. A live run needs a push, which has not happened, and no `bash -n` run over the commit step's shell block is recorded.
+There is no unit test for a workflow file. The local check is a YAML parse of the new file, which passed. `actionlint` is not installed, so no schema check ran. A live run needs a push, which has not happened. `bash -n` over the commit step's shell block exits 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -97,7 +97,7 @@ There is no unit test for a workflow file. The local check is a YAML parse of th
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `generate-trigger-index.mjs` and its `--check` mode | Internal | Green | The job cannot rebuild the index or prove it current |
-| Branch protection that allows the Actions bot to push | External | Unknown | The job fails and prints an error line that names branch protection |
+| The `TRIGGER_INDEX_PUSH_TOKEN` secret, set by the operator | External | Not set | The default token cannot pass the `main` ruleset, so the job fails and prints an error line that names the secret |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -44,7 +44,9 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T003 Create the rebuild workflow with the trigger surface, pushes to `main` and `skilled/**` plus manual dispatch, and `contents: write` (`.github/workflows/trigger-index-rebuild.yml`)
-- [x] T004 Add the race and loop guards, a concurrency group per ref and a skip when the actor is `github-actions[bot]` (`.github/workflows/trigger-index-rebuild.yml`)
+- [x] T004 Add the race and loop guards, a concurrency group per ref and a skip when the head commit's subject is the rebuild subject (`.github/workflows/trigger-index-rebuild.yml`)
+- [x] T012 Check out with the `TRIGGER_INDEX_PUSH_TOKEN` secret, falling back to the default token, and give the rebuild commit a body so it passes the commit-message check (`.github/workflows/trigger-index-rebuild.yml`)
+- [ ] T013 [B] Operator creates a fine-grained token for this repository with Contents read and write, and runs `gh secret set TRIGGER_INDEX_PUSH_TOKEN`
 - [x] T005 Pin the checkout and setup-node actions and Node 20 the way the advisory workflow does (`.github/workflows/trigger-index-rebuild.yml`)
 - [x] T006 Run the generator, commit only `runtime/data/trigger-index.json` when `git diff` shows a change, and print an error that names branch protection when the push fails (`.github/workflows/trigger-index-rebuild.yml`)
 - [x] T007 Point the advisory drift message at the rebuild workflow (`.github/workflows/advisory-checks.yml`)
@@ -57,7 +59,7 @@ contextType: "general"
 
 - [x] T008 Parse the new workflow as YAML (passed)
 - [ ] T009 [B] Run `actionlint` over the workflow (not installed in this environment)
-- [ ] T010 [B] Check the commit step's shell block with `bash -n` (no run is recorded)
+- [x] T010 Check the commit step's shell block with `bash -n` (exit 0 on the 16-line block extracted from the parsed YAML)
 - [ ] T011 [B] Confirm the first live run commits the index and makes `--check` pass (a live run needs a push, which has not happened)
 <!-- /ANCHOR:phase-3 -->
 

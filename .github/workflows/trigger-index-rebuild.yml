@@ -18,14 +18,18 @@ concurrency:
 jobs:
   rebuild:
     name: Rebuild the trigger index
-    # A rebuild commit is authored by the bot; skip so it cannot trigger itself
-    # into an endless repair loop on the next push.
-    if: github.actor != 'github-actions[bot]'
+    # The rebuild pushes with a personal token, so its own push starts this
+    # workflow again under the token owner's name. Skip on the rebuild commit's
+    # subject so it cannot trigger itself into a repair loop.
+    if: "${{ !startsWith(github.event.head_commit.message, 'chore(system-spec-kit): rebuild the trigger index') }}"
     runs-on: ubuntu-latest
     steps:
+      # The default token cannot pass the required commit-message check on
+      # main; a fine-grained token owned by a ruleset bypass actor can.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
+          token: ${{ secrets.TRIGGER_INDEX_PUSH_TOKEN || github.token }}
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -46,8 +50,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$INDEX"
-          git commit -m "chore(system-spec-kit): rebuild the trigger index"
+          git commit -m "chore(system-spec-kit): rebuild the trigger index" \
+            -m "The pushed corpus changed the committed trigger index, so this job rebuilt it."
           if ! git push; then
-            echo "::error::Failed to push the trigger index rebuild. Branch protection on this branch is the likely cause; allow the bot to push or exempt this path."
+            echo "::error::Failed to push the trigger index rebuild. The branch ruleset is the likely cause; set the TRIGGER_INDEX_PUSH_TOKEN secret to a fine-grained token with Contents write, owned by a ruleset bypass actor."
             exit 1
           fi
