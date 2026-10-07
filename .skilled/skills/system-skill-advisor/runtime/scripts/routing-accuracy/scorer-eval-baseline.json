@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-09-23",
-  "capturedAtSha": "2dbaa8fd66",
+  "capturedAt": "2026-10-07",
+  "capturedAtSha": "74390765e60",
   "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
   "holdoutSha256": "sha256:b56a730b1ee3edb8216e16e0dbd6fe403a358e34296ef69730a184fc903d4944",
   "ambiguitySha256": "sha256:07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d",
