@@ -37,15 +37,17 @@ The 7-framework selection table, the task-to-framework map, the pre-planning-den
 
 ## 3. CLAUDE CODE MODEL OVERRIDES
 
-No per-model overrides today — Haiku is an unverified stub.
+No per-model prompt overrides today. Every model below takes all five `--effort` levels (`low`, `medium`, `high`, `xhigh`, `max`); the roster and when to use each effort live in [providers-and-models.md](../references/providers-and-models.md).
 
 **Model defaults for this executor:**
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model claude-sonnet-4-6` — balanced performance/cost default |
-| "Use Opus extended thinking" | `--model claude-opus-5-5 --effort high` — deep reasoning |
-| "Fast / cheap" | `--model claude-haiku-4-5-20251001` — unverified stub; use only when explicitly requested |
+| (nothing specified) | `--model claude-sonnet-5-5`, the balanced performance and cost default |
+| "Use Opus extended thinking" | `--model claude-opus-5-5 --effort high`, deep reasoning |
+| A named effort ("at xhigh", "max effort") | Append `--effort <level>` to the resolved model |
+| "Fast / cheap" | `--model claude-haiku-5-5`; use only when explicitly requested |
+| "Use Fable" | `--model claude-fable-5-1`; the CLI has no Fable 5.5 yet |
 
 ---
 

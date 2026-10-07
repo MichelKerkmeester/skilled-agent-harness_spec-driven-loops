@@ -137,7 +137,7 @@ claude "Start by reviewing the auth module"
 | Flag | Short | Purpose | Example |
 |------|-------|---------|---------|
 | `--print` | `-p` | Non-interactive mode | `claude -p "Review this code"` |
-| `--model` | | Model selection | `--model claude-sonnet-4-6` |
+| `--model` | | Model selection | `--model claude-sonnet-5-5` |
 | `--output-format` | | Output format | `--output-format text` |
 | `--permission-mode` | | Permission level | `--permission-mode plan` |
 | `--agent` | | Route to agent | `--agent review` |
@@ -175,9 +175,14 @@ claude "Start by reviewing the auth module"
 
 | Level | Flag | Behavior |
 |-------|------|----------|
-| **Default** | (no flag) | Standard reasoning depth |
-| **High** | `--effort high` | Extended thinking with deep chain-of-thought |
-| **Low** | `--effort low` | Faster, less detailed responses |
+| **Default** | (no flag) | The effort the child's settings give it, else the model's built-in default |
+| **Low** | `--effort low` | Fastest, least detailed: classification, formatting, mechanical edits |
+| **Medium** | `--effort medium` | Routine edits and short reviews |
+| **High** | `--effort high` | Extended thinking for standard code generation, reviews and debugging |
+| **Extra high** | `--effort xhigh` | Architecture, hard trade-offs, subtle root causes |
+| **Max** | `--effort max` | The hardest problems, where cost is secondary; pair with `--max-budget-usd` |
+
+Every model in the roster below takes all five levels. When to use each one → [providers-and-models.md](./providers-and-models.md) §4.
 
 ### Other Flags
 
@@ -201,11 +206,12 @@ claude "Start by reviewing the auth module"
 
 | Model | ID | Strengths | Cost | Best For |
 |-------|----|-----------|------|----------|
-| **Opus 5.5** | `claude-opus-5-5` | Current flagship — deepest reasoning, highest quality; the deep-reasoning override, paired with `--effort high` | Highest | Architecture decisions, complex trade-offs, extended thinking |
-| **Sonnet 5** | `claude-sonnet-5` | Current balanced (Claude 5 family) | Medium | General tasks, code generation, reviews |
-| **Fable 5.1** | `claude-fable-5-1` | Claude 5 family | — | Current-generation Claude 5 dispatch |
-| **Sonnet 4.6** | `claude-sonnet-4-6` | Prior-generation balanced | Medium | General tasks, code generation, reviews — **current skill default** |
-| **Haiku 4.5** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
+| **Sonnet 5.5** | `claude-sonnet-5-5` | Balanced; the **skill default** | Medium | General tasks, code generation, reviews |
+| **Opus 5.5** | `claude-opus-5-5` | Deepest Opus reasoning; the deep-reasoning override, paired with `--effort high` | High | Architecture decisions, complex trade-offs, extended thinking |
+| **Haiku 5.5** | `claude-haiku-5-5` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
+| **Fable 5.1** | `claude-fable-5-1` | The current Fable; the CLI's `best` alias | UNKNOWN | Work routed to the Fable family by name |
+
+All four take `--effort low`, `medium`, `high`, `xhigh` and `max`. Claude Code 2.1.293 has no Fable 5.5: it rejects `claude-fable-5-5`, and `--model fable` resolves to `claude-fable-5-1`.
 
 ---
 
@@ -373,8 +379,12 @@ claude -p "prompt" --output-format text 2>&1
 
 # Model selection
 claude -p "prompt" --model claude-opus-5-5 --output-format text 2>&1
-claude -p "prompt" --model claude-sonnet-4-6 --output-format text 2>&1
-claude -p "prompt" --model claude-haiku-4-5-20251001 --output-format text 2>&1
+claude -p "prompt" --model claude-sonnet-5-5 --output-format text 2>&1
+claude -p "prompt" --model claude-haiku-5-5 --output-format text 2>&1
+claude -p "prompt" --model claude-fable-5-1 --output-format text 2>&1
+
+# Effort (every roster model takes all five levels)
+claude -p "prompt" --model claude-opus-5-5 --effort xhigh --output-format text 2>&1
 
 # Permission modes
 claude -p "prompt" --permission-mode plan --output-format text 2>&1          # read-only

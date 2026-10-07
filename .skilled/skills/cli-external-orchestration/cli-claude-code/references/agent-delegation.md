@@ -286,7 +286,7 @@ SAVE CONTINUITY      → `/speckit:save`
 | Quick code review | `review` | sonnet (default) | `--permission-mode plan` |
 | Deep security audit | `review` | `claude-opus-5-5` | `--permission-mode plan --effort high` |
 | Architecture planning | `ai-council` | `claude-opus-5-5` | `--permission-mode plan --effort high` |
-| Fast codebase scan | `context` | `claude-haiku-4-5-20251001` | `--permission-mode plan` |
+| Fast codebase scan | `context` | `claude-haiku-5-5` | `--permission-mode plan` |
 | Research + write | `deep-research` | sonnet (default) | (default) |
 | Emergency debugging | `debug` | `claude-opus-5-5` | `--effort high` |
 

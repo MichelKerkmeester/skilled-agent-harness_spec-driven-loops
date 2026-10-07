@@ -36,14 +36,14 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 | `-p "prompt"` | Non-interactive mode (required for cross-AI delegation) |
 | `--output-format text` | Plain text output (default, recommended) |
 | `--output-format json` | JSON output with metadata |
-| `--model claude-sonnet-4-6` | Model selection (sonnet = default) |
+| `--model claude-sonnet-5-5` | Model selection (sonnet = default) |
 | `--model claude-opus-5-5` | Deep reasoning model |
-| `--model claude-haiku-4-5-20251001` | Fast/cheap model |
+| `--model claude-haiku-5-5` | Fast/cheap model |
 | `--permission-mode plan` | Read-only safe mode |
 | `--json-schema '{...}'` | Schema-validated JSON output |
 | `--max-budget-usd N` | Cost cap |
 | `--agent NAME` | Agent routing |
-| `--effort high` | Extended thinking |
+| `--effort <level>` | Thinking effort: `low`, `medium`, `high`, `xhigh` or `max` |
 | `@./path` | Include file content in prompt |
 
 ---
@@ -58,7 +58,7 @@ Generate a complete single-file component or module.
 
 ```bash
 claude -p "Create a [language] [type] for [description]. Requirements: [requirements]. Follow the patterns in @./[reference-file]. Output complete code with imports, types, error handling." \
-  --model claude-sonnet-4-6 --output-format text 2>&1
+  --model claude-sonnet-5-5 --output-format text 2>&1
 ```
 <!-- pinned default model -->
 
@@ -66,7 +66,7 @@ claude -p "Create a [language] [type] for [description]. Requirements: [requirem
 
 ```bash
 claude -p "Create a TypeScript middleware for rate limiting. Requirements: sliding window algorithm, per-user limits, Redis-backed storage, configurable thresholds. Follow the patterns in @./src/middleware/auth.ts. Output complete code with imports, types, error handling." \
-  --model claude-sonnet-4-6 --output-format text 2>&1
+  --model claude-sonnet-5-5 --output-format text 2>&1
 ```
 
 ### Multi-File Feature
@@ -424,14 +424,14 @@ Framework: RCAF
 
 ```bash
 claude -p "Classify each of these items into categories [categories]: [items]" \
-  --model claude-haiku-4-5-20251001 --output-format text 2>&1
+  --model claude-haiku-5-5 --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Classify each of these error messages into categories (syntax/runtime/logic/config/network): 1. TypeError: undefined is not a function 2. ECONNREFUSED 127.0.0.1:5432 3. Missing semicolon at line 42 4. ENV_VAR not set 5. Maximum call stack exceeded" \
-  --model claude-haiku-4-5-20251001 --output-format text 2>&1
+  --model claude-haiku-5-5 --output-format text 2>&1
 ```
 
 ### Session Handover

@@ -184,7 +184,7 @@ echo "$CLAUDE_AUTH" | grep -qi "authenticated\|logged in\|oauth\|setup-token" &&
 
 | State | CLAUDE_OAUTH_OK | Action |
 |-------|-----------------|--------|
-| OAuth ready | 1 | Proceed with `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text` |
+| OAuth ready | 1 | Proceed with `claude -p "<prompt>" --model claude-sonnet-5-5 --output-format text` |
 | Not authenticated | 0 | **ASK user** to run `claude auth login` — surface the command, do NOT dispatch. Never substitute an API key or a different model. |
 
 **User prompt template — not authenticated:**
@@ -200,13 +200,13 @@ Run one, then confirm — the skill will retry the original dispatch:
 
 ### Default Invocation (Skill Default)
 
-**Default model + flags + agent**: `claude-sonnet-4-6` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`.
+**Default model + flags + agent**: `claude-sonnet-5-5` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`.
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **Opus**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
 ```bash
 claude -p "<prompt>" \
-  --model claude-sonnet-4-6 \
+  --model claude-sonnet-5-5 \
   --output-format text \
   2>&1
 ```
@@ -215,15 +215,16 @@ claude -p "<prompt>" \
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model claude-sonnet-4-6 --output-format text` |
+| (nothing specified) | `--model claude-sonnet-5-5 --output-format text` |
 | "Use Opus extended thinking" | `--model claude-opus-5-5 --effort high` |
+| A named effort ("at xhigh", "max effort") | Append `--effort <level>`: `low`, `medium`, `high`, `xhigh` or `max` |
 | "JSON schema output" | Append `--json-schema '<schema>' --output-format json` |
 | "Cost-capped" | Append `--max-budget-usd 1.00` |
 | "Plan mode" | Append `--permission-mode plan` (read-only) |
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5-1` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
+`claude-sonnet-5-5` is the skill default. Reach for `claude-opus-5-5` for deep reasoning and complex architecture (pair it with `--effort high`), `claude-haiku-5-5` for fast, lightweight work when the caller asks for it, or `claude-fable-5-1` for the Fable family. Claude Code 2.1.293 has no Fable 5.5 and rejects `claude-fable-5-5`. Every roster model takes all five `--effort` levels: `low`, `medium`, `high`, `xhigh` and `max`. Full roster, roles, defaults and when to use each effort → [references/providers-and-models.md](references/providers-and-models.md).
 
 ### Claude Code Agent Delegation
 
@@ -260,7 +261,7 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 2. Use `--permission-mode plan` for review/analysis/exploration (no file writes); `--output-format text` unless JSON is specifically needed.
 3. Validate output before applying — correctness, completeness, alignment, syntax checks if code generated.
 4. Capture stderr (`2>&1`) to catch errors and warnings.
-5. Specify `--model` explicitly: default `claude-sonnet-4-6` unless task needs Opus (deep reasoning). Use Haiku only when explicitly requested or after adoption.
+5. Specify `--model` explicitly: default `claude-sonnet-5-5` unless task needs Opus (deep reasoning). Use Haiku only when explicitly requested or after adoption.
 6. Route to the appropriate `--agent <name>` when the task matches a specialization (see Section 3 routing table).
 7. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 interactively.
 8. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 2-tier rule canonical in `../../sk-prompt/assets/cli-prompt-quality-card.md`:

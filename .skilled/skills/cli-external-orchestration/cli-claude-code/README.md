@@ -40,7 +40,7 @@ This skill standardizes the dispatch and guards against self-invocation, so the 
 
 cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
 
-The default dispatch is `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text`. Deep-reasoning work overrides to `claude-opus-5-5 --effort high`.
+The default dispatch is `claude -p "<prompt>" --model claude-sonnet-5-5 --output-format text`. Deep-reasoning work overrides to `claude-opus-5-5 --effort high`. The roster is Sonnet 5.5, Opus 5.5, Haiku 5.5 and Fable 5.1 (the CLI has no Fable 5.5 yet), and each takes all five `--effort` levels: `low`, `medium`, `high`, `xhigh` and `max`.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders and session continuity. cli-claude-code dispatches to Claude Code and hands the result back to the caller.
 
@@ -79,7 +79,7 @@ If nothing prints, install it with `npm install -g @anthropic-ai/claude-code`.
 
 ```bash
 claude -p "Explain the dependency injection in src/app.ts" \
-  --model claude-sonnet-4-6 \
+  --model claude-sonnet-5-5 \
   --output-format text \
   2>&1
 ```
@@ -236,7 +236,7 @@ A: You can. This skill exists for when an external AI assistant (OpenCode, Copil
 
 **Q: Sonnet or Opus?**
 
-A: Default to `claude-sonnet-4-6`, which balances speed and cost for most tasks. Switch to `claude-opus-5-5` with `--effort high` when the task needs deep chain-of-thought reasoning, like architecture trade-offs or subtle bug root causes.
+A: Default to `claude-sonnet-5-5`, which balances speed and cost for most tasks. Switch to `claude-opus-5-5` with `--effort high` when the task needs deep chain-of-thought reasoning, like architecture trade-offs or subtle bug root causes.
 
 **Q: When do I use `--permission-mode plan` versus the default?**
 

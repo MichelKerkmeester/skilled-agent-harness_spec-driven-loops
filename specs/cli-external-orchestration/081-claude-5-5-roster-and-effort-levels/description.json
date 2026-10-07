@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/081-claude-5-5-roster-and-effort-levels",
+  "description": "Claude 5.5 roster and effort levels for cli-claude-code and Claude Code settings",
+  "keywords": [
+    "claude",
+    "roster",
+    "effort",
+    "levels",
+    "cli-claude-code",
+    "code",
+    "settings"
+  ],
+  "lastUpdated": "2026-10-07T18:49:48.307Z",
+  "specId": "081",
+  "folderSlug": "claude-5-5-roster-and-effort-levels",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

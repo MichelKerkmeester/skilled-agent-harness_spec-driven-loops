@@ -40,19 +40,20 @@ This file enumerates the model/effort facts and the dispatch envelope. It does N
 
 ## 2. PROVIDERS & MODELS
 
-cli-claude-code is single-provider: **Anthropic**. The model string passed to `--model` is always a `claude-*` id. The roster below is complete — pin the exact id the target CLI accepts.
+cli-claude-code is single-provider: **Anthropic**. The model string passed to `--model` is always a `claude-*` id. The roster below is complete. Pin the exact id; the CLI also accepts the aliases `opus`, `sonnet`, `haiku` and `fable`, which resolve to the newest id in each family.
 
 ### Anthropic
 
-| Model id | Default? | Notes (tier / use case) |
-|----------|----------|-------------------------|
-| `claude-opus-5-5` | — | Current flagship Opus — deepest reasoning, highest quality; architecture, complex trade-offs, extended thinking (`--effort high`) |
-| `claude-sonnet-5` | — | Current-generation balanced (Claude 5 family) — general tasks, code generation, reviews |
-| `claude-fable-5-1` | — | Current-generation Claude 5 family dispatch |
-| `claude-sonnet-4-6` | **Default** | Prior-generation balanced — **current skill default** for most tasks |
-| `claude-haiku-4-5-20251001` | — | Fastest, most cost-effective — classification, formatting, simple queries, batch ops; use only when explicitly requested |
+| Model id | Default? | Role | Efforts |
+|----------|----------|------|---------|
+| `claude-sonnet-5-5` | **Default** | Sonnet 5.5, balanced: general tasks, code generation, reviews | all five |
+| `claude-opus-5-5` | no | Opus 5.5, deepest Opus reasoning: architecture, complex trade-offs, subtle root causes | all five |
+| `claude-haiku-5-5` | no | Haiku 5.5, fastest and cheapest: classification, formatting, simple queries, batch work. Use when the caller asks for it | all five |
+| `claude-fable-5-1` | no | Fable 5.1, the current Fable. The CLI's model catalog names `fable` as its `best` alias | all five |
 
-> The default pin is `claude-sonnet-4-6`. `claude-opus-5-5` / `claude-sonnet-5` / `claude-fable-5-1` are the current Claude generation and are selectable via `--model` where the calling environment supports them — name a current-generation id explicitly when you want it.
+> **No Fable 5.5 yet.** Claude Code 2.1.293 rejects `claude-fable-5-5` with `unrecognized_model`, and its `fable` alias resolves to `claude-fable-5-1`. Pin `claude-fable-5-1`, or pass `--model fable` to get whichever Fable the installed CLI knows. Recheck with `claude -p --model claude-fable-5-5 --effort low "Reply with OK" </dev/null 2>&1` after a CLI update.
+
+**Replaced ids.** The previous default `claude-sonnet-4-6` and the earlier `claude-sonnet-5` give way to `claude-sonnet-5-5`, and `claude-haiku-4-5-20251001` gives way to `claude-haiku-5-5`. The old ids were not probed when this roster was refreshed, so pin one only after confirming it answers.
 
 ---
 
@@ -62,30 +63,36 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `claude-sonnet-4-6` |
-| Default effort | (none — standard reasoning depth) |
+| Default model | `claude-sonnet-5-5` |
+| Default effort | none passed; the child resolves it (see §4) |
 | Default format | `--output-format text` |
 
 ```bash
 claude -p "<prompt>" \
-  --model claude-sonnet-4-6 \
+  --model claude-sonnet-5-5 \
   --output-format text \
   2>&1
 ```
 
-Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login` — it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
+Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`, and raise the effort to `xhigh` or `max` when `high` is not enough. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login`; it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
+
+**Why Sonnet 5.5 is the default.** It answered a live probe, it is what the `sonnet` alias resolves to, and it keeps the default in the same balanced family as before, so a caller that names no model gets the same cost and depth profile on the current generation. Opus and Fable stay opt-in for work that needs more depth.
 
 ---
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-claude-code expresses reasoning depth through the **`--effort`** flag (extended-thinking tiers). Default skill behavior omits the flag (standard depth).
+cli-claude-code expresses reasoning depth through the **`--effort`** flag. Every model in §2 takes all five levels: `low`, `medium`, `high`, `xhigh` and `max`. Claude Code 2.1.293 lists those five values in `claude --help`, and its model catalog marks each roster model with the `effort`, `xhigh_effort` and `max_effort` capabilities.
 
-| Level | Flag | Behavior |
-|-------|------|----------|
-| Default | (no flag) | Standard reasoning depth |
-| High | `--effort high` | Extended thinking with deep chain-of-thought — pair with Opus for architecture / complex trade-offs |
-| Low | `--effort low` | Faster, less detailed responses |
+| Level | Flag | When to use it |
+|-------|------|----------------|
+| Low | `--effort low` | Classification, formatting, quick lookups, mechanical edits. Fastest and cheapest |
+| Medium | `--effort medium` | Routine edits and short reviews. The built-in default of the 5.5 models |
+| High | `--effort high` | Standard code generation, reviews and debugging. The usual pairing with Opus |
+| Extra high | `--effort xhigh` | Architecture, hard trade-offs, subtle root causes, deep reviews |
+| Max | `--effort max` | The hardest problems, where cost is secondary. Pair it with `--max-budget-usd` |
+
+**When the flag is omitted.** The child takes the effort its loaded settings give it, a top-level `effortLevel` or a per-model entry under `modelSettings`, and otherwise the model's built-in default. Those settings set a model's default only. They never remove a level, so `--effort` always reaches all five. Pass `--effort` whenever the depth matters, so the result does not depend on the machine's settings.
 
 ---
 
@@ -96,7 +103,7 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
-  --model claude-sonnet-4-6 --output-format text 2>&1
+  --model claude-sonnet-5-5 --output-format text 2>&1
 ```
 
 - `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall on an interactive Gate-3 answer, and marks the run as an orchestrated sub-session so the worktree wrapper exec's in place rather than allocating its own worktree. See [../SKILL.md](../SKILL.md) §4 Rule 13.

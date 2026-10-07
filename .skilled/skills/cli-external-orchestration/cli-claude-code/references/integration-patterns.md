@@ -111,7 +111,7 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste 
 
 ### Considerations
 
-- Use `claude-opus-5-5` with `--effort high` for maximum reasoning depth
+- Use `claude-opus-5-5` with `--effort high`, and raise it to `xhigh` or `max` for maximum reasoning depth
 - Use `--permission-mode plan` when analysis doesn't need file writes
 - Opus is expensive — reserve for genuinely complex decisions
 - Sonnet with `--effort high` is a good middle ground for moderately complex tasks
@@ -203,8 +203,8 @@ wait $CLAUDE_PID
 
 | Task Complexity | Model | Flag | Cost Tier |
 |----------------|-------|------|-----------|
-| Trivial (classify, format) | Haiku | `--model claude-haiku-4-5-20251001` | Low |
-| Standard (review, generate) | Sonnet | `--model claude-sonnet-4-6` | Medium |
+| Trivial (classify, format) | Haiku | `--model claude-haiku-5-5` | Low |
+| Standard (review, generate) | Sonnet | `--model claude-sonnet-5-5` | Medium |
 | Complex (architecture, debug) | Opus | `--model claude-opus-5-5 --effort high` | High |
 
 ### Implementation
@@ -212,7 +212,7 @@ wait $CLAUDE_PID
 ```bash
 # Tier 1: Haiku for fast, cheap tasks
 claude -p "Classify these error messages by type: [errors]" \
-  --model claude-haiku-4-5-20251001 --output-format text 2>&1
+  --model claude-haiku-5-5 --output-format text 2>&1
 
 # Tier 2: Sonnet for standard tasks (default)
 claude -p "Review @src/auth.ts for security issues" \
@@ -228,7 +228,7 @@ claude -p "Design the data migration strategy for moving from MongoDB to Postgre
 ```bash
 # Quick triage with Haiku, then deep dive with Opus on critical items
 TRIAGE=$(claude -p "List the 3 most critical security issues in @src/auth/" \
-  --model claude-haiku-4-5-20251001 --output-format text 2>&1)
+  --model claude-haiku-5-5 --output-format text 2>&1)
 
 DEEP_ANALYSIS=$(claude -p "Deep analysis of these security issues: $TRIAGE" \
   --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1)

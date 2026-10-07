@@ -200,13 +200,13 @@ Expected signals: Command exits 0. Stdout contains a coherent natural-language e
 
 #### Description
 
-Verify that omitting `--model` defaults to Sonnet (`claude-sonnet-5`) and an explicit `--model claude-sonnet-5` produces equivalent behavior.
+Verify that omitting `--model` defaults to Sonnet (`claude-sonnet-5-5`) and an explicit `--model claude-sonnet-5-5` produces equivalent behavior.
 
 #### Scenario Contract
 
 Prompt: Compare default Claude Code output with explicit Sonnet on the same refactor prompt and verify both responses are equivalent.
 
-Expected signals: Both invocations exit 0. Both responses describe the same refactor approach with comparable depth. JSON output (when requested) reports `claude-sonnet-5` as the model. Cost metadata is in the same order of magnitude.
+Expected signals: Both invocations exit 0. Both responses describe the same refactor approach with comparable depth. JSON output (when requested) reports `claude-sonnet-5-5` as the model. Cost metadata is in the same order of magnitude.
 
 #### Test Execution
 
@@ -308,7 +308,7 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `--model claude-sonnet-5 --effort high` produces deeper, more detailed chain-of-thought analysis than the Sonnet default for a multi-dimensional architecture trade-off prompt.
+Verify `--model claude-opus-5-5 --effort high` produces deeper, more detailed chain-of-thought analysis than the Sonnet default for a multi-dimensional architecture trade-off prompt.
 
 #### Scenario Contract
 
@@ -324,7 +324,7 @@ Expected signals: Response weighs at least 4 trade-off dimensions explicitly. Pr
 
 #### Description
 
-Verify Sonnet (`claude-sonnet-5`) handles a standard code review prompt with reasonable depth and cost without requiring `--effort high`.
+Verify Sonnet (`claude-sonnet-5-5`) handles a standard code review prompt with reasonable depth and cost without requiring `--effort high`.
 
 #### Scenario Contract
 
@@ -340,7 +340,7 @@ Expected signals: Response either flags concrete issues with line references OR 
 
 #### Description
 
-Verify Haiku (`claude-haiku-4-5-20251001`) handles batch classification of a small list of error messages quickly and cheaply, completing within seconds rather than tens of seconds.
+Verify Haiku (`claude-haiku-5-5`) handles batch classification of a small list of error messages quickly and cheaply, completing within seconds rather than tens of seconds.
 
 #### Scenario Contract
 
@@ -410,11 +410,11 @@ Expected signals: Each checklist item (XSS, CSRF, injection, auth bypass, hardco
 
 #### Description
 
-Verify `--agent ai-council --model claude-sonnet-5 --permission-mode plan` produces multiple distinct strategies scored across at least 3 dimensions for a complex planning task.
+Verify `--agent ai-council --model claude-sonnet-5-5 --permission-mode plan` produces multiple distinct strategies scored across at least 3 dimensions for a complex planning task.
 
 #### Scenario Contract
 
-Prompt: As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent ai-council --model claude-sonnet-5 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent ai-council --model claude-sonnet-5-5 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Response presents at least 3 distinct strategies. Each strategy scored across at least 3 dimensions (risk/effort/timeline/rollback). Explicit recommendation with rationale. Uses `--effort high` style depth (multi-paragraph reasoning per strategy).
 
