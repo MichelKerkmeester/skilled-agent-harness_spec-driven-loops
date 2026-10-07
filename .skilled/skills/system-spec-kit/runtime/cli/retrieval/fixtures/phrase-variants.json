@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ddd7d71fe607ba7483201a598e0102303f5c55d6ead2e4b87610d37158c274b",
+  "manifestHash": "9b671f3554bab879bbb54a6a0f22ae97236d9ac82a6d2c25a1f750bef048313e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82370,6 +82370,9 @@
     "series mapping check": [
       "series mapping check"
     ],
+    "series parent packet": [
+      "series parent packet"
+    ],
     "series parent rule": [
       "series parent rule"
     ],
@@ -82759,6 +82762,9 @@
     ],
     "settled and reopened decision tests": [
       "settled and reopened decision tests"
+    ],
+    "settled and reopened rule": [
+      "settled and reopened rule"
     ],
     "setup a handover": [
       "Setup A handover"
@@ -89461,6 +89467,9 @@
     ],
     "skilled v4 0 0 3": [
       "skilled v4.0.0.3"
+    ],
+    "skilled v4 0 0 4": [
+      "skilled v4.0.0.4"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -99438,6 +99447,9 @@
     ],
     "v4 0 0 3 review tasks": [
       "v4.0.0.3 review tasks"
+    ],
+    "v4 0 0 4 release notes": [
+      "v4.0.0.4 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
