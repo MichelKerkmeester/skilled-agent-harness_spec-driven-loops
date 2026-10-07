@@ -1,0 +1,1616 @@
+{
+  "mergedFrom": [
+    "codex-luna-6-max-fast",
+    "devin-swe-2-max",
+    "pi-deepseek-flash-max"
+  ],
+  "lineageExecutors": {
+    "codex-luna-6-max-fast": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "devin-swe-2-max": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    },
+    "pi-deepseek-flash-max": {
+      "kind": "cli-pi",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "q-anchor-contract",
+      "text": "Should ANCHORS_VALID implement the documented no-nesting rule, or should validation-rules.md drop it?",
+      "origin": "analyst-strategy",
+      "status": "open",
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q-archive-both-writers",
+      "text": "Does the archive post-move step need both repair-derived and migrate-generated-json to settle METADATA_DISK_PATH_CONSISTENCY end to end?",
+      "origin": "analyst-strategy",
+      "status": "open",
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q-status-prose-exception",
+      "text": "Does the never-change-prose contract permit aligning implementation-summary status to spec.md, or must the conflict stay reported?",
+      "origin": "analyst-strategy",
+      "status": "open",
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-one-off-repair-fixes-should-become-permanent-idempotent-tooling-and-where-",
+      "inboxId": null,
+      "text": "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "question-2-what-causes-each-validation-failure-class-at-the-source-and-how-do-we-stop-new-i",
+      "inboxId": null,
+      "text": "What causes each validation failure class at the source, and how do we stop new instances?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "question-3-how-should-an-older-or-pre-v4-repo-be-detected-and-migrated-or-healed-safely-and",
+      "inboxId": null,
+      "text": "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "question-4-what-should-be-hardened-in-this-branch-s-own-changes-the-ci-rebuild-job-the-clea",
+      "inboxId": null,
+      "text": "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "question-5-which-checks-belong-in-ci-or-pre-commit-so-drift-is-caught-early-and-cheaply",
+      "inboxId": null,
+      "text": "Which checks belong in CI or pre-commit so drift is caught early and cheaply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "q1",
+      "text": "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+      "answeredAtIteration": 15,
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "What causes each validation failure class at the source, and how do we stop new instances?",
+      "answeredAtIteration": 15,
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+      "answeredAtIteration": 15,
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+      "answeredAtIteration": 15,
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "Which checks belong in CI or pre-commit so drift is caught early and cheaply?",
+      "answeredAtIteration": 15,
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-confirmed-the-branch-history-covers-series-parent-rules-and-gate-3-wording-templ",
+      "text": "**CONFIRMED** The branch history covers series-parent rules and Gate 3 wording, template trigger-phrase cleanup and corpus updates, trigger-index CI push, strict-validation repairs, and phase 012 closeout. The two Claude roster commits are adjacent work in the same range. The actual ordered `git log` output matched the ten commits listed in the brief. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:39] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:49]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:39]",
+        "`specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md:41]",
+        "`specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md:48]",
+        "`specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md` (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+        "`/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt` and `detail3.txt`; headings were counted with `rg -c '^### '`."
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-1-2-confirmed-the-working-tree-phase-013-spec-reports-a-baseline-of-2-046-failing-pa",
+      "text": "**CONFIRMED** The working-tree phase 013 spec reports a baseline of 2,046 failing packets out of 4,371, split into 1,935 archived and 111 live. I have not independently reproduced these baseline counts yet. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:39]",
+        "`specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md:41]",
+        "`specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md:48]",
+        "`specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md` (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+        "`/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt` and `detail3.txt`; headings were counted with `rg -c '^### '`."
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-1-3-confirmed-phase-013-scopes-repairs-to-archive-phrases-derivable-metadata-structu",
+      "text": "**CONFIRMED** Phase 013 scopes repairs to archive phrases, derivable metadata, structural anchors/frontmatter, generic phrases, links, and required documents reconstructed from the packet's own specification and git history. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:71] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:39]",
+        "`specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md:41]",
+        "`specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md:48]",
+        "`specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md` (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+        "`/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt` and `detail3.txt`; headings were counted with `rg -c '^### '`."
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-1-4-confirmed-the-phase-013-safety-contract-separates-structure-only-changes-from-do",
+      "text": "**CONFIRMED** The phase 013 safety contract separates structure-only changes from document reconstruction: existing meaning must stay fixed, reconstructed docs need a dated note and explicit unknowns, and scripted changes must be idempotent with dry run before apply. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:79] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:102] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:151]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:39]",
+        "`specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/006-series-parent-rule-and-sibling-listing/spec.md:41]",
+        "`specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md` [SOURCE: specs/system-speckit/034-spec-folder-tooling/009-gate-3-menu-series-parent/implementation-summary.md:48]",
+        "`specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md` (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+        "`/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt` and `detail3.txt`; headings were counted with `rg -c '^### '`."
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-10-1-confirmed-doctor-update-check-allows-no-checkout-writes-its-only-mutation-except",
+      "text": "**CONFIRMED** /doctor:update check allows no checkout writes; its only mutation exception fetches release commits into Git storage and FETCH_HEAD. This gives the check workflow room for a read-only compatibility scan, but not an automatic migration. [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65] [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:67] [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:73]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:95]",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65]",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:137]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2391]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-10-2-confirmed-the-release-engine-inventories-committed-and-indexed-files-under-skill",
+      "text": "**CONFIRMED** The release engine inventories committed and indexed files under .skilled, owns paths below .skilled units, and requires every release write to appear in the exact dry-run plan. Its rollback rejects paths outside the release plan's units. A specs/ tree move or corpus repair cannot safely be included in the current release apply transaction or its rollback. [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:343] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:1725] [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:83] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2389]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:95]",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65]",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:137]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2391]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-10-3-confirmed-the-release-apply-flow-previews-its-complete-write-set-checks-a-digest",
+      "text": "**CONFIRMED** The release apply flow previews its complete write set, checks a digest, writes rollback.json before the first target file, and limits rollback to release records and paths inside the plan's units. **INFERRED** The least surprising integration is for doctor update check to show a read-only compatibility result and offer a separate, explicitly approved migration transaction after current tooling is installed; verify by testing the future workflow against a dirty specs tree and a partial migration rollback. [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:112] [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:124] [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:137] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2140] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2184] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2391]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:95]",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65]",
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml [SOURCE: .skilled/commands/doctor/assets/doctor-update-apply.yaml:137]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338]",
+        ".skilled/commands/doctor/scripts/release-update.cjs [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2391]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-11-1-confirmed-the-healer-s-three-literal-trigger-phrase-lists-exactly-match-the-curr",
+      "text": "**CONFIRMED** The healer's three literal trigger-phrase lists exactly match the current plan, tasks, and implementation-summary templates. The cleanup instead reads each default list from its template at runtime, so the current values agree, but the healer and shell seeder still duplicate the values as separate maintenance sources. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:45] [SOURCE: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl:18] [SOURCE: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl:16] [SOURCE: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:16] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:123]",
+      "addedAtIteration": 11,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:99]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:45]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:123]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-11-2-confirmed-for-an-exact-default-block-phrase-cleanup-replaces-it-with-a-packet-sp",
+      "text": "**CONFIRMED** For an exact default block, phrase cleanup replaces it with a packet-specific seed; for a partial list containing custom phrases, it removes only the default entries and preserves the custom ones. The cleanup excludes archives by default and requires --include-archive to opt in. Thus its normal successful path does not empty these lists. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:125] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:183] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:326] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:381]",
+      "addedAtIteration": 11,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:99]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:45]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:123]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-11-3-confirmed-mechanism-inferred-interaction-risk-if-a-plan-tasks-or-implementation-",
+      "text": "**CONFIRMED mechanism, INFERRED interaction risk** If a plan, tasks, or implementation-summary trigger list is already empty, the cleanup has no default entries to replace, while heal-spec-docs restores the hard-coded template list. upgrade-legacy invokes that healer with --apply. So the healer can reintroduce generic phrases into an already-cleaned or intentionally empty legacy packet, although the normal phrase-cleanup path seeds a nonempty packet-specific phrase first. Confirm by checking affected empty-list packets in a dry-run migration. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:129] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:134] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392]",
+      "addedAtIteration": 11,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:99]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:45]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs:123]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-12-1-confirmed-in-phase-mode-create-sh-writes-a-graph-stub-for-the-new-parent-before-",
+      "text": "**CONFIRMED** In --phase mode, create.sh writes a graph stub for the new parent before children and a stub for each child before its documents, then exits at line 1919. The ordinary root route later runs graph backfill on the parent and each child at lines 2006-2021. The supplied phase-child graph still has empty trigger_phrases and key_topics, and the phase parent's children_ids stub starts empty; the phase route's full post-create validation is opt-in. In --level phase-parent mode, the normal parent is backfilled, but its validation child is scaffolded after that backfill and has no corresponding derivation call. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:760] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:766] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1584] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1741] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1911] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2006] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2017] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2028] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:991] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:13] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:19]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:100]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919]",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:623]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:157]",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:5]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-12-2-confirmed-ordinary-root-creation-and-phase-children-call-the-dynamic-trigger-see",
+      "text": "**CONFIRMED** Ordinary root creation and phase children call the dynamic trigger seeder, but the new phase-parent template is filled by inline substitutions: its phrases become the packet slug and the generic phrase phase parent. The phase-parent document does not pass through replace_template_default_trigger_phrases, so seeding policy is split between the shared function and a special case. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:394] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:455] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:986] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1554] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1555] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1191] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1776] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1982] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:5]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:100]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919]",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:623]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:157]",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:5]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-12-3-confirmed-the-phase-mode-path-refreshes-its-track-root-but-does-not-refresh-the-",
+      "text": "**CONFIRMED** The phase-mode path refreshes its track root but does not refresh the phase parent's own children_ids. The graph child-drift rule reports missing on-disk phase children as a warning by default when enforcement is enabled, and as a passing advisory when disabled. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1830] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:157] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:164]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:100]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919]",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:623]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:157]",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:5]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-13-1-confirmed-push-events-run-the-rebuild-on-main-and-skilled-workflow-dispatch-has-",
+      "text": "**CONFIRMED** Push events run the rebuild on `main` and `skilled/**`; `workflow_dispatch` has no branch filter in this workflow. The job grants `contents: write`, passes the fine-grained secret or `github.token` to checkout, then runs the repository's generator before its commit-and-push step. Checkout v7.0.1 persists its token in local Git config by default and removes it after the job, so the token is available while the generator runs; the subject-prefix guard only excludes the workflow's own rebuild commit. [SOURCE: .github/workflows/trigger-index-rebuild.yml:6] [SOURCE: .github/workflows/trigger-index-rebuild.yml:11] [SOURCE: .github/workflows/trigger-index-rebuild.yml:21] [SOURCE: .github/workflows/trigger-index-rebuild.yml:29] [SOURCE: .github/workflows/trigger-index-rebuild.yml:38] [SOURCE: https://github.com/actions/checkout/blob/v7.0.1/README.md]",
+      "addedAtIteration": 13,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:101]",
+        ".github/workflows/trigger-index-rebuild.yml [SOURCE: .github/workflows/trigger-index-rebuild.yml:6]",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:413]",
+        ".github/workflows/advisory-checks.yml [SOURCE: .github/workflows/advisory-checks.yml:54]",
+        ".github/workflows/changed-packet-validation.yml [SOURCE: .github/workflows/changed-packet-validation.yml:89]",
+        ".github/workflows/strict-pass-freshness-report.yml [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:158]",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73]",
+        ".skilled/commands/speckit/assets/speckit-complete-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:71]",
+        ".skilled/commands/create/assets/create-feature-catalog-presentation.txt [SOURCE: .skilled/commands/create/assets/create-feature-catalog-presentation.txt:90]",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:147]",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:70]",
+        "actions/checkout v7.0.1 documentation [SOURCE: https://github.com/actions/checkout/blob/v7.0.1/README.md]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-13-2-confirmed-the-generator-publishes-four-tracked-artifacts-on-a-successful-build-d",
+      "text": "**CONFIRMED** The generator publishes four tracked artifacts on a successful build: diagnostics, index, corpus manifest, and phrase variants. The rebuild workflow compares and stages only `trigger-index.json`; the advisory `--check` contract also compares the index only. Changes in the three sidecars can therefore be generated without being pushed or reported as drift by that check. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:429] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:452] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:454] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:35] [SOURCE: .github/workflows/trigger-index-rebuild.yml:44] [SOURCE: .github/workflows/trigger-index-rebuild.yml:52]",
+      "addedAtIteration": 13,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:101]",
+        ".github/workflows/trigger-index-rebuild.yml [SOURCE: .github/workflows/trigger-index-rebuild.yml:6]",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:413]",
+        ".github/workflows/advisory-checks.yml [SOURCE: .github/workflows/advisory-checks.yml:54]",
+        ".github/workflows/changed-packet-validation.yml [SOURCE: .github/workflows/changed-packet-validation.yml:89]",
+        ".github/workflows/strict-pass-freshness-report.yml [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:158]",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73]",
+        ".skilled/commands/speckit/assets/speckit-complete-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:71]",
+        ".skilled/commands/create/assets/create-feature-catalog-presentation.txt [SOURCE: .skilled/commands/create/assets/create-feature-catalog-presentation.txt:90]",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:147]",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:70]",
+        "actions/checkout v7.0.1 documentation [SOURCE: https://github.com/actions/checkout/blob/v7.0.1/README.md]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-13-3-confirmed-canonical-gate-3-wording-and-the-series-parent-definition-require-the-",
+      "text": "**CONFIRMED** Canonical Gate 3 wording and the series-parent definition require the same artifact and the same track, but several short command menus describe only a different change to the same artifact. The omission appears in the Speckit plan and complete menus, feature-catalog menu, and deep-research menu. This makes the prompt contract incomplete; the risk that users choose a series parent across tracks is INFERRED and would be confirmed by a route-contract check or usability review. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:158] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:70] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:73] [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73] [SOURCE: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:71] [SOURCE: .skilled/commands/create/assets/create-feature-catalog-presentation.txt:90] [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:147]",
+      "addedAtIteration": 13,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:101]",
+        ".github/workflows/trigger-index-rebuild.yml [SOURCE: .github/workflows/trigger-index-rebuild.yml:6]",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:413]",
+        ".github/workflows/advisory-checks.yml [SOURCE: .github/workflows/advisory-checks.yml:54]",
+        ".github/workflows/changed-packet-validation.yml [SOURCE: .github/workflows/changed-packet-validation.yml:89]",
+        ".github/workflows/strict-pass-freshness-report.yml [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:158]",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73]",
+        ".skilled/commands/speckit/assets/speckit-complete-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:71]",
+        ".skilled/commands/create/assets/create-feature-catalog-presentation.txt [SOURCE: .skilled/commands/create/assets/create-feature-catalog-presentation.txt:90]",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:147]",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:70]",
+        "actions/checkout v7.0.1 documentation [SOURCE: https://github.com/actions/checkout/blob/v7.0.1/README.md]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-13-4-confirmed-the-existing-pre-commit-hook-gates-staged-paths-and-re-mints-derived-p",
+      "text": "**CONFIRMED** The existing pre-commit hook gates staged paths and re-mints derived packet metadata for staged spec-document changes; changed-packet validation is the blocking PR and integration-branch gate, while the full-corpus strict-pass sweep is scheduled or manual and report-only. Trigger-index freshness currently runs in `advisory-checks.yml` with `continue-on-error`, so drift is visible but does not block. This supports keeping staged, narrow checks in pre-commit, changed-packet and artifact freshness checks in CI, and whole-corpus reporting outside the commit loop; no timing data was collected, so relative runtime cost remains unmeasured. [SOURCE: .opencode/scripts/git-hooks/pre-commit:535] [SOURCE: .opencode/scripts/git-hooks/pre-commit:548] [SOURCE: .github/workflows/changed-packet-validation.yml:3] [SOURCE: .github/workflows/changed-packet-validation.yml:89] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:3] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13] [SOURCE: .github/workflows/advisory-checks.yml:54] [SOURCE: .github/workflows/advisory-checks.yml:55]",
+      "addedAtIteration": 13,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:101]",
+        ".github/workflows/trigger-index-rebuild.yml [SOURCE: .github/workflows/trigger-index-rebuild.yml:6]",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:413]",
+        ".github/workflows/advisory-checks.yml [SOURCE: .github/workflows/advisory-checks.yml:54]",
+        ".github/workflows/changed-packet-validation.yml [SOURCE: .github/workflows/changed-packet-validation.yml:89]",
+        ".github/workflows/strict-pass-freshness-report.yml [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:158]",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73]",
+        ".skilled/commands/speckit/assets/speckit-complete-presentation.txt [SOURCE: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:71]",
+        ".skilled/commands/create/assets/create-feature-catalog-presentation.txt [SOURCE: .skilled/commands/create/assets/create-feature-catalog-presentation.txt:90]",
+        ".skilled/commands/deep/assets/deep-research-presentation.txt [SOURCE: .skilled/commands/deep/assets/deep-research-presentation.txt:147]",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:70]",
+        "actions/checkout v7.0.1 documentation [SOURCE: https://github.com/actions/checkout/blob/v7.0.1/README.md]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-14-1-logic-sync-required-confirmed-validatefolder-calls-the-native-validateanchorinte",
+      "text": "**LOGIC-SYNC REQUIRED: CONFIRMED** `validateFolder` calls the native `validateAnchorIntegrity`, and the registry dispatcher skips a duplicate shell rule for a native rule. The implementation checks for no anchors, duplicate opening IDs, and whether each opening ID appears somewhere among closes and vice versa; it does not check close order, duplicate closes, nesting, expected template IDs, or section order. The registry promises syntax, pairing, order, and uniqueness; `validation-rules.md` requires non-nesting and includes memory docs in scope; fixtures expect missing required anchors and reordered anchors to fail. The template contract separately describes required-ID and header-order checks. Whether the existing fixture suite currently fails is INFERRED and would be confirmed by running its focused validator cases, which this research pass did not run. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:704] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:716] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:728] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1056] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1070] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1073] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:393] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh:1019] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:244] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:260]",
+      "addedAtIteration": 14,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:103]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:260]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh:1019]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:378]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".opencode/scripts/git-hooks/README.md [SOURCE: .opencode/scripts/git-hooks/README.md:110]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-14-2-confirmed-the-one-off-duplicate-anchor-script-s-default-dry-run-still-writes-a-l",
+      "text": "**CONFIRMED** The one-off duplicate-anchor script's default dry run still writes a `-leftovers.tsv` file, `--apply` serializes every changed document with LF line endings, and generated numeric suffixes are not checked against existing anchor IDs. It edits only marker lines, but marker boundaries carry retrieval and merge semantics, so that is a structural meaning change even when prose words stay unchanged. A rename collision can leave a duplicate suffixed ID after a deterministic second run; idempotence alone does not prove the repair reached a valid state. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:59] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:72] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:78] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:83] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:687] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:692]",
+      "addedAtIteration": 14,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:103]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:260]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh:1019]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:378]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".opencode/scripts/git-hooks/README.md [SOURCE: .opencode/scripts/git-hooks/README.md:110]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-14-3-inferred-upgrade-legacy-apply-can-leave-a-partially-migrated-corpus-if-one-of-it",
+      "text": "**INFERRED** `upgrade-legacy --apply` can leave a partially migrated corpus if one of its sequential in-place steps fails: it writes missing frontmatter, runs the healer, then derived repair and generated-JSON migration before it records residual findings, and the inspected path has no transaction rollback. Re-running may converge, but convergence is not reversal. Confirm rollback behavior with a failure injected after the first write in a disposable fixture; this pass did not run that test. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:352] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:378] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:381] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:404] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:410] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:491]",
+      "addedAtIteration": 14,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:103]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:260]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh:1019]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:378]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".opencode/scripts/git-hooks/README.md [SOURCE: .opencode/scripts/git-hooks/README.md:110]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-14-4-confirmed-the-earlier-r13-04-wording-that-grouped-pre-commit-work-with-read-only",
+      "text": "**CONFIRMED** The earlier R13-04 wording that grouped pre-commit work with read-only checks was too broad: the staged-doc gate runs the graph backfiller and stages derived metadata. Only the validation and freshness checks proposed for CI are read-only; the existing local remint is a mutating generated-file operation. The R3-01 anchor-template edit also changes structural boundaries even though it leaves natural-language prose unchanged. [SOURCE: .opencode/scripts/git-hooks/pre-commit:535] [SOURCE: .opencode/scripts/git-hooks/pre-commit:543] [SOURCE: .opencode/scripts/git-hooks/pre-commit:548] [SOURCE: .opencode/scripts/git-hooks/README.md:110] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:687] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:692]",
+      "addedAtIteration": 14,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:103]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:260]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh:1019]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:378]",
+        ".opencode/scripts/git-hooks/pre-commit [SOURCE: .opencode/scripts/git-hooks/pre-commit:535]",
+        ".opencode/scripts/git-hooks/README.md [SOURCE: .opencode/scripts/git-hooks/README.md:110]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-15-1-confirmed-permanent-repairs-should-have-separate-owners-disk-derived-paths-and-g",
+      "text": "**CONFIRMED:** Permanent repairs should have separate owners: disk-derived paths and graph facts in `repair-derived.cjs`; exact template defaults and missing prescribed metadata in `heal-spec-docs.cjs`; trigger phrases from one shared packet-specific seeder; and duplicate-anchor edits in a preview-first structural repair mode. A unique exact Git blob can restore a missing document, while reconstructed prose requires review and a dated note. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md:135] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:129] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:59] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:102]",
+      "addedAtIteration": 15,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".opencode/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-15-2-confirmed-new-failures-are-introduced-at-their-producers-archive-moves-leave-pat",
+      "text": "**CONFIRMED:** New failures are introduced at their producers: archive moves leave path metadata stale; phase `create.sh` routes exit before the root graph finalizer; the Level 2 phase scaffold has an overbroad `questions` anchor; and native anchor validation is weaker than its registry, guide, and fixture contract. Prevent recurrence at archive/restore sync, every create route's finalizer, independent rendered-template checks, and a version-aware validator contract. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:276] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:693] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:109] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:390]",
+      "addedAtIteration": 15,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".opencode/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-15-3-confirmed-the-legacy-upgrader-detects-the-v3-opencode-specs-layout-but-stops-at-",
+      "text": "**CONFIRMED:** The legacy upgrader detects the v3 `.opencode/specs` layout but stops at manual move instructions; `/doctor:update check` is read-only and its release engine owns `.skilled` paths. The safe fit is a read-only compatibility preflight followed by a separately approved migration plan and transactional apply with a path map and before-images. Detection must use layout and verifiable content, not assume markerless documents' history. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:151] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:157] [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:40]",
+      "addedAtIteration": 15,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".opencode/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-15-4-confirmed-branch-hardening-needs-four-corrections-constrain-the-rebuild-workflow",
+      "text": "**CONFIRMED:** Branch hardening needs four corrections: constrain the rebuild workflow's persisted write token to the push step and branch; check or stage all four generator outputs; align cleanup and healer phrase defaults so an emptied field is not repopulated with generic defaults; and include the canonical same-track condition in every short Gate 3 menu. Phase creation also needs the common graph finalizer. [SOURCE: .github/workflows/trigger-index-rebuild.yml:9] [SOURCE: .github/workflows/trigger-index-rebuild.yml:39] [SOURCE: .github/workflows/trigger-index-rebuild.yml:52] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:429] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:454] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs:306] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:129] [SOURCE: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:73] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:73]",
+      "addedAtIteration": 15,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".opencode/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-15-5-confirmed-put-cheap-changed-file-and-staged-packet-checks-in-local-hooks-and-pr-",
+      "text": "**CONFIRMED:** Put cheap changed-file and staged-packet checks in local hooks and PR CI, keep deterministic graph remint documented as a local write that stages derived metadata, and keep corpus-wide strict validation in scheduled/reporting work until its runtime and baseline are measured. The rebuild workflow should make freshness of every generated sidecar observable. [SOURCE: .opencode/scripts/git-hooks/pre-commit:535] [SOURCE: .opencode/scripts/git-hooks/pre-commit:543] [SOURCE: .github/workflows/changed-packet-validation.yml:85] [SOURCE: .github/workflows/changed-packet-validation.yml:99] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:94] [SOURCE: .github/workflows/trigger-index-rebuild.yml:52]",
+      "addedAtIteration": 15,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        ".skilled/commands/doctor/scripts/release-update.cjs",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".opencode/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml",
+        ".github/workflows/strict-pass-freshness-report.yml",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-1-confirmed-the-phase-013-count-reconciles-2-046-failing-packets-plus-37-non-packe",
+      "text": "**CONFIRMED** The phase 013 count reconciles: 2,046 failing packets plus 37 non-packet folders produces 2,083 report headings, matching the heading count from the baseline scan. This supports the report denominator, while rule totals remain occurrence counts. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:302]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:368]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:60]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-2-confirmed-the-largest-re-counted-rule-totals-are-metadata-disk-path-consistency-",
+      "text": "**CONFIRMED** The largest re-counted rule totals are METADATA_DISK_PATH_CONSISTENCY 2,898, ANCHORS_VALID 510, SPEC_DOC_INTEGRITY 417, SPEC_DOC_SUFFICIENCY 261, GRAPH_METADATA_CHILD_IDENTITY 260, GREP_CONVENTION 195, LEVEL_MATCH and FILE_EXISTS 180 each, GENERATED_METADATA_INTEGRITY 119, TEMPLATE_SOURCE 99, and FRONTMATTER_VALID 95. These are rule occurrences, not distinct packets. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:10] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:302]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:368]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:60]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-3-confirmed-a-level-2-folder-with-missing-plan-md-and-tasks-md-triggers-both-file-",
+      "text": "**CONFIRMED** A Level 2 folder with missing plan.md and tasks.md triggers both FILE_EXISTS and LEVEL_MATCH for the same defect; the registry assigns FILE_EXISTS to check-files.sh and LEVEL_MATCH to check-level-match.sh. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:4080] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:4083] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:251]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:302]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:368]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:60]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-2-4-confirmed-example-reports-tie-failures-to-specific-source-classes-archived-metad",
+      "text": "**CONFIRMED** Example reports tie failures to specific source classes: archived metadata fields retain pre-archive paths; duplicate anchors and orphaned closing anchors are structural; a moved markdown file can lose frontmatter and a relative link can point to a missing target; template-source markers are checked independently. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:10] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:2] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:18] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:334] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:344]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:302]",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:368]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:90]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:60]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-3-1-confirmed-the-supplied-level-2-scaffold-sample-opens-anchor-questions-at-line-12",
+      "text": "**CONFIRMED** The supplied Level 2 scaffold sample opens `ANCHOR:questions` at line 128, then wraps the NFR, edge-case, and complexity sections at lines 132-179 before closing the questions anchor after `OPEN QUESTIONS` at line 187. The template contract describes those L2 addenda as separate sections and maps the questions anchor to the open-questions heading. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:132] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:150] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:170] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:183] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:187] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:121]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:1]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119]",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:67]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-3-2-confirmed-the-source-defect-is-in-the-current-core-template-the-questions-opener",
+      "text": "**CONFIRMED** The source defect is in the current core template: the questions opener precedes the NFR and other addenda, while its matching close follows the open-questions content. `parseAnchoredSections()` finds the first matching close and advances past the whole span, so nested `nfr`, `edge-cases`, and `complexity` anchors are not parsed as separate sections; the structure test then expects only the core anchor list derived from that template. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:190] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:234] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:265] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:399] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:487] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:493] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:566] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:79]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:1]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119]",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:67]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-3-3-confirmed-create-sh-renders-the-contract-selected-templates-and-finalizes-their-",
+      "text": "**CONFIRMED** `create.sh` renders the contract-selected templates and finalizes their placeholders, but full post-create validation is gated behind `SPECKIT_POST_VALIDATE=1` and documented as too expensive for default scaffolds. The template defect can therefore reach newly created packets unless a separate source-level check catches it. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1190] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1225] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1227]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:1]",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184]",
+        ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119]",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462]",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:67]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-1-confirmed-the-archive-writer-copies-a-packet-into-z-archive-renames-the-copy-del",
+      "text": "**CONFIRMED** The archive writer copies a packet into `z_archive`, renames the copy, deletes the source, and then refreshes the track root; restore moves the packet back and also only refreshes the track root. The path validator derives identity from the current real path and compares it with `description.specFolder`, graph fields, and continuity `packet_pointer`; phase 013 attributes most archived failures to pre-archive paths. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:276] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:290] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:294] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:403] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:406] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:42] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:99] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:102] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:276]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:42]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:279]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md:135]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-2-confirmed-logic-sync-required-the-archive-policies-conflict-repair-derived-cjs-d",
+      "text": "**CONFIRMED, LOGIC-SYNC REQUIRED** The archive policies conflict: `repair-derived.cjs` defines `z_archive` as a frozen tree and omits it during root discovery, while phase 013's stated target is strict validation for every live and archived packet. Those policies cannot both hold if archived packets are validated against their current disk paths. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:386] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:406] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md:135] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:63] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:73]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:276]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:42]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:279]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md:135]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-4-3-confirmed-the-phase-013-one-off-fix-specfolder-mjs-derives-and-writes-only-descr",
+      "text": "**CONFIRMED** The phase 013 one-off `fix-specfolder.mjs` derives and writes only `description.json.specFolder`; the validator checks that field plus `graph-metadata.spec_folder`, `graph-metadata.packet_id`, and continuity pointers. `repair-derived.cjs` updates summary folder labels and frontmatter packet pointers, then re-derives graph metadata, but its default discovery skips archives and it does not directly repair `description.specFolder`. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:13] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:16] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:18] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:99] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:102] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:279] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:302] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:324] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:389]",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:60]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:276]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:42]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:279]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md:135]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-specfolder.mjs:13]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-1-confirmed-template-source-checks-only-whether-the-marker-string-appears-within-t",
+      "text": "**CONFIRMED** `TEMPLATE_SOURCE` checks only whether the marker string appears within the first 60 lines of each existing contract document; it does not compare the marker version. The migration guide says v2.1 markers remain supported indefinitely, so an older marker version alone is not a validation failure; the baseline example fails because `resource-map.md` has no marker. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:56] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:63] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:46] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:17]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:55]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:56]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:165]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:35]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:790]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:17]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-2-confirmed-create-sh-only-relocates-a-template-source-marker-when-one-already-exi",
+      "text": "**CONFIRMED** `create.sh` only relocates a template-source marker when one already exists; it returns successfully when absent. The current core spec template includes a v2.2 marker, but a markerless source template is not repaired or rejected by this helper, and full post-create validation is opt-in. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:790] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:794] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:795] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:35] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1225]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:55]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:56]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:165]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:35]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:790]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:17]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-5-3-confirmed-check-template-staleness-sh-reports-a-missing-marker-as-none-but-its-a",
+      "text": "**CONFIRMED** `check-template-staleness.sh` reports a missing marker as `none`, but its auto-upgrade branch runs only for a present, stale version; it updates an existing version comment and does not add one to a markerless document. That avoids inventing historical provenance, but leaves markerless legacy documents unresolved by automation. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:165] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:169] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:171] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:181] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:40]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:55]",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:56]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:165]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:35]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:790]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:17]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-6-1-confirmed-the-one-off-duplicate-anchor-script-is-dry-run-by-default-and-changes-",
+      "text": "**CONFIRMED** The one-off duplicate-anchor script is dry-run by default and changes only whole marker lines, but it deletes later pairs when adjacency and overlap suggest a stray template copy, suffix-renames non-overlapping duplicates, and leaves other overlaps for review. Renaming an anchor may affect links or retrieval references, so applying this heuristic fleet-wide without an inbound-reference check is an inferred risk. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:3] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:7] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:50] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:64] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:72]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:58]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:117]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-6-2-confirmed-repair-derived-cjs-limits-itself-to-fields-recomputable-from-repositor",
+      "text": "**CONFIRMED** `repair-derived.cjs` limits itself to fields recomputable from repository state and does not allow-list `ANCHORS_VALID`; `heal-spec-docs.cjs` is the existing dry-run-first document healer, but its discovery also skips `z_archive`. A marker-only anchor repair belongs in a conservative document-healing path, not in the derived-metadata allow-list, and archive coverage needs an explicit policy. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:7] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:75] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:19] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:40] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:168]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:58]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:117]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-6-3-confirmed-heal-spec-docs-cjs-adds-a-v2-2-source-marker-when-all-listed-anchor-id",
+      "text": "**CONFIRMED** `heal-spec-docs.cjs` adds a `v2.2` source marker when all listed anchor IDs are present, but `matchesSignature()` checks only `every()` over a set of opening IDs. It does not check exact anchor membership, ordering, paired closes, or version-specific evidence, so a document with a similar shape could be assigned provenance that the document does not establish. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:60] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:74] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:80] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:148] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:154]",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:58]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:1]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:117]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-7-1-confirmed-mechanism-inferred-risk-the-one-off-add-fm-fields-mjs-copies-importanc",
+      "text": "**CONFIRMED mechanism, INFERRED risk** The one-off `add-fm-fields.mjs` copies `importance_tier` and `contextType` from sibling `spec.md` when available, otherwise it uses the fixed fallback `normal` and `implementation`; it writes immediately with no dry-run switch. Current templates vary by document class, for example `goal.md` uses `important` and `planning`, so copying the spec's values or the generic fallback can misclassify a goal document. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:2] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:7] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:44] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:48] [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:10] [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:11]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:7]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:99]",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:10]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-7-2-confirmed-heal-spec-docs-cjs-intentionally-restores-only-empty-fields-whose-lite",
+      "text": "**CONFIRMED** `heal-spec-docs.cjs` intentionally restores only empty fields whose literal values are in `TEMPLATE_DEFAULTS`; a wholly absent field is deliberately out of scope. Its defaults currently list `trigger_phrases` for three core docs, and the main loop only processes existing `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` files. It neither fills absent metadata keys nor creates missing documents. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:42] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:99] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:129] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:137] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:200] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:202]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:7]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:99]",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:10]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-7-3-confirmed-phase-013-permits-reconstruction-of-missing-required-documents-from-th",
+      "text": "**CONFIRMED** Phase 013 permits reconstruction of missing required documents from the packet's own `spec.md` and Git history, with a dated reconstruction note and unknowns marked as not recorded; it explicitly forbids changing what an existing document says. That supports exact historical restoration, but not automatic prose invention when history is absent or ambiguous. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:79] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:102]",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:53]",
+        "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:7]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:99]",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:10]",
+        "specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md (working tree) [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-8-1-confirmed-the-legacy-upgrader-resolves-roots-to-real-paths-and-explicitly-detect",
+      "text": "**CONFIRMED** The legacy upgrader resolves roots to real paths and explicitly detects a tree whose real home is .opencode/specs. It exits before writes and prints manual move and compatibility-symlink commands; the README describes this as the v3.x layout. This is a structural layout check, not a version-marker check, and the path move remains a user task today. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:131] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:151] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:157] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:37]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:151]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/commands/doctor/update.md [SOURCE: .skilled/commands/doctor/update.md:35]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-8-2-confirmed-the-packet-upgrader-is-dry-by-default-refuses-an-apply-when-any-packet",
+      "text": "**CONFIRMED** The packet upgrader is dry by default, refuses an apply when any packet could not be validated, repairs only failing active packets, and leaves archived packets unrewritten. It adds absent frontmatter keys without replacing existing values, then runs document and derived-metadata repair before recording residual findings in upgrade-baseline.json. The baseline turns only recorded findings into warnings, so this last step needs a visible report and deliberate acceptance. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:12] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:307] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:491] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:493] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:486] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:37]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:151]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/commands/doctor/update.md [SOURCE: .skilled/commands/doctor/update.md:35]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-8-3-confirmed-the-migration-guide-requires-indefinite-read-support-for-v2-1-template",
+      "text": "**CONFIRMED** The migration guide requires indefinite read support for v2.1 template markers and current-version markers for new writes, and says not to rewrite old packets only to normalize markers. The doctor update router exposes release check, align, apply, rollback, and record-base actions; it has no spec-layout or corpus-migration action. Therefore marker age alone is not sufficient evidence to migrate a repository. [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:27] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:40] [SOURCE: .skilled/commands/doctor/update.md:10] [SOURCE: .skilled/commands/doctor/update.md:35] [SOURCE: .skilled/commands/doctor/update.md:68]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:37]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:151]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:113]",
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24]",
+        ".skilled/commands/doctor/update.md [SOURCE: .skilled/commands/doctor/update.md:35]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-9-1-confirmed-the-frontmatter-migration-fills-only-managed-keys-that-are-absent-when",
+      "text": "**CONFIRMED** The frontmatter migration fills only managed keys that are absent; when keys already exist, it splices only the new keys into the existing block, and malformed blocks are left unchanged. This protects authored existing values and body text for ordinary spec documents, but does not establish that newly supplied values are historical. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:313] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:325] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:344] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:350]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:44]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:313]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:935]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:988]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-9-2-confirmed-mechanism-inferred-risk-the-shared-builder-can-create-absent-title-and",
+      "text": "**CONFIRMED mechanism, INFERRED risk** The shared builder can create absent title and description values from headings, the first meaningful sentence, or the filename, and can generate trigger phrases from title tokens and document type. Missing importance and context values fall back to document-type defaults. These are deterministic indexing metadata, not recovered historical values; the check that would confirm suitability is exact comparison with a prior Git blob or a uniquely identified source template. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:935] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:957] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:985] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1026] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1216]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:44]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:313]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:935]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:988]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "finding-9-3-confirmed-after-repair-upgrade-legacy-records-residual-findings-in-upgrade-basel",
+      "text": "**CONFIRMED** After repair, upgrade-legacy records residual findings in upgrade-baseline.json; the validator changes a fully covered matching error to a warning, while unlisted details remain errors. Identical findings are not rewritten, and the baseline includes recordedBy and recordedAt. This is a validation-policy change, not a prose edit, so the dry-run report should show each exact error-to-warning transition. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:442] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:449] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:454] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:988] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1011]",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:44]",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:313]",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:935]",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:988]"
+      ],
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "f-anchor-check-divergence",
+      "statement": "ANCHORS_VALID checks pairing and duplicates only; the documented no-nesting rule is not implemented, so the template nesting does not fail validation.",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-archive-no-rederive",
+      "statement": "archive.sh and restore_spec move packets and refresh only the track root; the moved packet's recorded paths keep pre-move values, the producer of the 2,898-occurrence path-drift class.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-containment-double-count",
+      "statement": "Corpus counts must exclude containment copies and research lineages; a raw find inflated the archived count from 2,281 to 8,198.",
+      "iteration": 10,
+      "sources": [
+        "find counts over specs/**/z_archive",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-phrase-triplication",
+      "statement": "The 20 template-default phrases live in the templates, phrase-judge.mjs and create.sh; Gate 3 menu wording is inlined despite exported constants across a 34-file copy surface.",
+      "iteration": 11,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-pipeline-ownership",
+      "statement": "upgrade-legacy.mjs already runs a staged migration (fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json) with dry-run default and an upgrade-baseline.json grandfather ledger; specFolder and frontmatter-field one-offs are already owned.",
+      "iteration": 6,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-pre-v4-eras",
+      "statement": "Pre-v4 is a bundle of eras measured in this corpus: resource-map v1.1 headers (224), three implementation-summary header spellings, 74 archived packets without description.json, 77 without graph-metadata.json.",
+      "iteration": 10,
+      "sources": [
+        "rg and find counts over specs/**"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-rebuild-sidecars",
+      "statement": "The trigger-index workflow stages only the index while the generator writes four outputs; no post-commit check exists.",
+      "iteration": 11,
+      "sources": [
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    },
+    {
+      "id": "f-syn-001",
+      "label": "Two confirmed wrong-with-green-checks defects: rebuild job commits 1 of 4 tracked artifacts (silent sidecar drift) and spec.md.tmpl emits a conditional double /ANCHOR:questions close",
+      "iteration": 15,
+      "sources": [
+        ".github/workflows/trigger-index-rebuild.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-002",
+      "label": "Every hardening need already has a shipped mechanism covering most of it: upgrade-legacy orchestrates, repair-derived re-derives, heal-spec-docs fills defaults, upgrade-baseline records debt; gaps are coverage seams",
+      "iteration": 15,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-003",
+      "label": "upgrade-legacy.mjs is orphaned from /doctor:update - zero references anywhere in the doctor-update stack; the apply post-apply battery is the natural slot",
+      "iteration": 8,
+      "sources": [
+        ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-004",
+      "label": "repair-derived.cjs does not repair description.json specFolder, and that field is load-bearing: completion-state.cjs resolves it including an .opencode/specs fallback",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs",
+        "fix-specfolder.mjs (scratchpad)"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-005",
+      "label": "ANCHORS_VALID rejects same-id re-open, stack-mismatch close, and leftover opens - the template defect is the second /ANCHOR:questions at line 425 behind a different level gate",
+      "iteration": 14,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-006",
+      "label": "METADATA_DISK_PATH_CONSISTENCY is the dominant baseline class (2,898 findings): archive.sh refreshes parent/track metadata but never rewrites a moved packet's own recorded paths",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "scratchpad all-baseline.tsv"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-007",
+      "label": "The 43 phase-013 manual lanes are one identical 9-rule playbook over 474 residual folders: four rules are mechanical and belong in heal-spec-docs; reconstruction must be verify-then-keep",
+      "iteration": 7,
+      "sources": [
+        "scratchpad fix-lanes/batch-01.task",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-008",
+      "label": "changed-packet-validation.yml compares pass/fail verdicts only - a packet that worsens while remaining failed at base passes silently",
+      "iteration": 13,
+      "sources": [
+        ".github/workflows/changed-packet-validation.yml"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-009",
+      "label": "strict-pass-freshness-report.yml never passes --baseline though the sweep tool implements regression/new-failure/known-failure statuses - the ratchet is inert",
+      "iteration": 12,
+      "sources": [
+        ".github/workflows/strict-pass-freshness-report.yml",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-010",
+      "label": "MIGRATION.md establishes the healing contract: indefinite legacy marker reads, current-version writes, never rewrite old packets to normalize marker style",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/MIGRATION.md",
+        ".skilled/skills/system-spec-kit/templates/CONTRACT.md"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-011",
+      "label": "Nine add-on templates ship trigger_phrases that the cleanup/census pair never touches - coverage seam, not missing capability",
+      "iteration": 11,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        ".skilled/skills/system-spec-kit/templates/addons/"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-012",
+      "label": "Gate 3 wording diverges: GATE_3_CHOICE_* constants exist but the question menu and mutation notice carry separate inline text",
+      "iteration": 11,
+      "sources": [
+        "git show 4af470d1531",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec-gate-core.mjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-013",
+      "label": "Old-layout detection already exists in the corpus walker (.opencode/specs alias-fold) and the v3 upgrade command refuses to write into .opencode/specs until moved",
+      "iteration": 9,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "git show 6024a0813cd"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-014",
+      "label": "Archive semantics are dual: repair-derived freezes z_archive while upgrade-legacy --include-archive inspects and baselines archives without repairing - contract must be documented",
+      "iteration": 8,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-syn-015",
+      "label": "fail-closed pre-commit validation would block all spec commits on machines lacking the built validator dist - gate on dist presence/freshness instead",
+      "iteration": 14,
+      "sources": [
+        ".skilled/scripts/git-hooks/pre-commit",
+        ".github/workflows/changed-packet-validation.yml"
+      ],
+      "_lineages": [
+        "devin-swe-2-max"
+      ]
+    },
+    {
+      "id": "f-template-anchor-nesting",
+      "statement": "templates/core/spec.md.tmpl opens ANCHOR:questions at line 184 and closes it at 399 (Level 1/2/3) and 425 (Level 3+), nesting nfr, edge-cases and complexity inside it in every rendered Level 2/3 spec.md.",
+      "iteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt"
+      ],
+      "_lineages": [
+        "pi-deepseek-flash-max"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c12b5267ac8e",
+      "text": "Treating the Claude 5.5 roster commits as direct spec-folder tooling changes. The commit paths are Claude runtime and roster files; retain them in the branch ledger but do not analyze them as causes of spec validation failures. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:49]",
+      "contentHash": "c12b5267ac8e",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-7621800e57c0",
+      "text": "Adding specs/ migration writes to the current release-update apply plan and relying on release rollback. The current updater inventories .skilled and rejects rollback paths outside its release units. [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:338] [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:2391]",
+      "contentHash": "7621800e57c0",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-a8f674bbf450",
+      "text": "Running a spec migration from doctor update check. Its contract allows no checkout writes and check has no persisted run record. [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:65] [SOURCE: .skilled/commands/doctor/assets/doctor-update-check.yaml:77]",
+      "contentHash": "a8f674bbf450",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-148b1405c2c4",
+      "text": "Automatically reseeding archives during archive or restore while the phase 013 live-and-archived repair scope conflicts with the upgrader's frozen-snapshot contract. Record the conflict and keep archive mutation opt-in until one policy is selected. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:12] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:59]",
+      "contentHash": "148b1405c2c4",
+      "addedAtIteration": 11,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-c33c80017351",
+      "text": "Treating the phrase-cleanup tool as the sole source of empty-list behavior. A later legacy upgrade runs heal-spec-docs and can restore literal defaults to any already-empty supported field. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs:129] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:392]",
+      "contentHash": "c33c80017351",
+      "addedAtIteration": 11,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-08c9c8a5b461",
+      "text": "Treating track-root refresh as a replacement for updating the phase parent's children_ids. The phase-mode call refreshes the track, and the validation rule separately compares a phase parent's children_ids with its on-disk phase children. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1830] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh:157]",
+      "contentHash": "08c9c8a5b461",
+      "addedAtIteration": 12,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e7c27caa013e",
+      "text": "Relying on --phase output to satisfy the same graph-metadata state as a normal root scaffold. The phase route exits before the normal route's backfill block, and the supplied graph sample shows empty derived values. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1919] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2006] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt:13]",
+      "contentHash": "e7c27caa013e",
+      "addedAtIteration": 12,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e00fc945cb59",
+      "text": "Treating the push branch filter as a restriction on manual dispatch. The workflow lists branches under `push` only; `workflow_dispatch` has no branch pattern of its own. [SOURCE: .github/workflows/trigger-index-rebuild.yml:6] [SOURCE: .github/workflows/trigger-index-rebuild.yml:9]",
+      "contentHash": "e00fc945cb59",
+      "addedAtIteration": 13,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-f23762d27d56",
+      "text": "Putting a whole-corpus strict validation sweep in every local pre-commit. The current hook explicitly scopes checks around the staged change, while a separate scheduled workflow owns the whole-corpus report. No local runtime measurement was collected. [SOURCE: .opencode/scripts/git-hooks/pre-commit:4] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:3] [SOURCE: .github/workflows/strict-pass-freshness-report.yml:13]",
+      "contentHash": "f23762d27d56",
+      "addedAtIteration": 13,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-10b8ad4dc60b",
+      "text": "Treating marker-only edits as semantically neutral. Anchors define retrieval and generated-content boundaries, so a marker change can alter document structure even when natural-language prose stays untouched. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:687] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:692]",
+      "contentHash": "10b8ad4dc60b",
+      "addedAtIteration": 14,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-561a46091b15",
+      "text": "Treating the registry's current ANCHORS_VALID description or the tests' expected failures as proof that the runtime enforces required anchor IDs and order. The called native implementation only checks the marker lists and the registry dispatcher suppresses a second rule for that ID. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:716] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:728] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1073]",
+      "contentHash": "561a46091b15",
+      "addedAtIteration": 14,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-ed53bafce2a3",
+      "text": "Treating a successful second apply as proof of rollback. The legacy upgrader's stepwise writes can converge after partial application, but no rollback record is visible in the inspected path. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:381] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:410]",
+      "contentHash": "ed53bafce2a3",
+      "addedAtIteration": 14,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-346b50588445",
+      "text": "Running full-corpus strict validation in every local pre-commit: it is not supported by measured runtime evidence and would duplicate scheduled reporting.",
+      "contentHash": "346b50588445",
+      "addedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-754c3b02f7be",
+      "text": "Widening `repair-derived.cjs` to repair anchors or authored prose: those operations have structural or semantic effects and need separate evidence and undo.",
+      "contentHash": "754c3b02f7be",
+      "addedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-75703b5b3976",
+      "text": "Treating markerless historical documents as current-template documents: marker absence does not prove creation version or author intent.",
+      "contentHash": "75703b5b3976",
+      "addedAtIteration": 15,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-b5e656dec53e",
+      "text": "Summing all per-rule counts to estimate distinct failing packets. One missing Level 2 document pair is reported under both FILE_EXISTS and LEVEL_MATCH. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:4080] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/all-detail.txt:4083]",
+      "contentHash": "b5e656dec53e",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e8f114c42041",
+      "text": "Fixing only existing packet copies or adding a one-time corpus repair. That leaves the current template source emitting the same malformed section boundary for future packets. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1184]",
+      "contentHash": "e8f114c42041",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-53634431249c",
+      "text": "Treating `description.json.specFolder` repair by itself as a complete path repair. The validator checks graph metadata and continuity pointers as well, so one field cannot clear the full mismatch class. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:99] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency-helper.cjs:102]",
+      "contentHash": "53634431249c",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-8f964bc5fb2a",
+      "text": "Automatically assigning the current version to a markerless legacy document. The absent marker does not establish which template, if any, produced the file. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh:167] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:40]",
+      "contentHash": "8f964bc5fb2a",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-c728fb47027c",
+      "text": "Treating every older marker version as a validation failure. The migration contract explicitly keeps v2.1 marker support indefinitely and current validation checks presence only. [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:56]",
+      "contentHash": "c728fb47027c",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-8c6bae1ba015",
+      "text": "Adding every anchor-related validation failure to `repair-derived.cjs`'s allow-list. That tool's boundary is repository facts that can be recomputed; duplicate and overlapping anchor choices can affect structure and references without enough evidence to infer intent. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:7] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59] [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs:64]",
+      "contentHash": "8c6bae1ba015",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-3b61b795f6b4",
+      "text": "Filling missing plans, tasks, or summaries from generic current templates as if they recorded completed work. The packet spec requires history-backed reconstruction and an explicit note for reconstructed documents. [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:76] [SOURCE: specs/system-speckit/034-spec-folder-tooling/013-corpus-wide-validation-repair/spec.md:102]",
+      "contentHash": "3b61b795f6b4",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-e2ad127ad1fc",
+      "text": "Copying frontmatter classification from `spec.md` into every sibling document without a document-type check. The goal template demonstrates that values differ across document classes. [SOURCE: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/add-fm-fields.mjs:44] [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:10] [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:11]",
+      "contentHash": "e2ad127ad1fc",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-c275506ce115",
+      "text": "Using an old or absent template-source marker by itself as proof that the whole repository needs migration. The documented policy keeps legacy markers readable indefinitely and treats marker normalization as unnecessary churn. [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:24] [SOURCE: .skilled/skills/system-spec-kit/templates/MIGRATION.md:40]",
+      "contentHash": "c275506ce115",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-cd4636cd3d27",
+      "text": "Treating builder-generated title, description, trigger phrases, or default classification as recovered historical metadata. The source derives them from present content and document type, not a historical template record. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:935] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:985] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/frontmatter-migration.ts:1056]",
+      "contentHash": "cd4636cd3d27",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    },
+    {
+      "id": "ruled-out-d004db2d75a2",
+      "text": "Treating every legacy validation finding as a pass without showing the baseline entries. The validator requires exact finding coverage and leaves unmatched details as errors. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:988] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1001]",
+      "contentHash": "d004db2d75a2",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "codex-luna-6-max-fast"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 45,
+    "openQuestions": 3,
+    "resolvedQuestions": 10,
+    "keyFindings": 74,
+    "sourceFindings": 160,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.317,
+    "coverageBySources": {}
+  }
+}

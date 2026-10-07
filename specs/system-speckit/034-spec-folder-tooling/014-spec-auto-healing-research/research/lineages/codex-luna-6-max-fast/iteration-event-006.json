@@ -1,0 +1,39 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "run": 6,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 3,
+  "newInfoRatio": 1,
+  "status": "complete",
+  "focus": "Anchor repair boundaries",
+  "noveltyJustification": "This pass compared the one-off duplicate-anchor heuristic with the permanent repair boundary and found that the existing document healer can infer a specific template version from an insufficient anchor-presence check.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Add every ANCHORS_VALID failure to repair-derived's allow-list."
+  ],
+  "focusTrack": "anchor-repair-safety",
+  "edgeCase": "Anchor presence does not establish ordering, pairing, non-overlap, or an exact historical template version.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md"
+  ],
+  "timestamp": "2026-10-07T21:28:13Z"
+}

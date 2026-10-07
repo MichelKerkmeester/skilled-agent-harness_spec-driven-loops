@@ -1,0 +1,128 @@
+{
+  "openQuestions": [
+    {
+      "id": "q-anchor-contract",
+      "text": "Should ANCHORS_VALID implement the documented no-nesting rule, or should validation-rules.md drop it?",
+      "origin": "analyst-strategy",
+      "status": "open"
+    },
+    {
+      "id": "q-archive-both-writers",
+      "text": "Does the archive post-move step need both repair-derived and migrate-generated-json to settle METADATA_DISK_PATH_CONSISTENCY end to end?",
+      "origin": "analyst-strategy",
+      "status": "open"
+    },
+    {
+      "id": "q-status-prose-exception",
+      "text": "Does the never-change-prose contract permit aligning implementation-summary status to spec.md, or must the conflict stay reported?",
+      "origin": "analyst-strategy",
+      "status": "open"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+      "answeredAtIteration": 15
+    },
+    {
+      "id": "q2",
+      "text": "What causes each validation failure class at the source, and how do we stop new instances?",
+      "answeredAtIteration": 15
+    },
+    {
+      "id": "q3",
+      "text": "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+      "answeredAtIteration": 15
+    },
+    {
+      "id": "q4",
+      "text": "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+      "answeredAtIteration": 15
+    },
+    {
+      "id": "q5",
+      "text": "Which checks belong in CI or pre-commit so drift is caught early and cheaply?",
+      "answeredAtIteration": 15
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-template-anchor-nesting",
+      "statement": "templates/core/spec.md.tmpl opens ANCHOR:questions at line 184 and closes it at 399 (Level 1/2/3) and 425 (Level 3+), nesting nfr, edge-cases and complexity inside it in every rendered Level 2/3 spec.md.",
+      "iteration": 4,
+      "sources": [".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl", "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt"]
+    },
+    {
+      "id": "f-anchor-check-divergence",
+      "statement": "ANCHORS_VALID checks pairing and duplicates only; the documented no-nesting rule is not implemented, so the template nesting does not fail validation.",
+      "iteration": 14,
+      "sources": [".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts", ".skilled/skills/system-spec-kit/references/validation/validation-rules.md"]
+    },
+    {
+      "id": "f-archive-no-rederive",
+      "statement": "archive.sh and restore_spec move packets and refresh only the track root; the moved packet's recorded paths keep pre-move values, the producer of the 2,898-occurrence path-drift class.",
+      "iteration": 3,
+      "sources": [".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"]
+    },
+    {
+      "id": "f-pipeline-ownership",
+      "statement": "upgrade-legacy.mjs already runs a staged migration (fill-frontmatter, heal-spec-docs, repair-derived, migrate-generated-json) with dry-run default and an upgrade-baseline.json grandfather ledger; specFolder and frontmatter-field one-offs are already owned.",
+      "iteration": 6,
+      "sources": [".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs"]
+    },
+    {
+      "id": "f-rebuild-sidecars",
+      "statement": "The trigger-index workflow stages only the index while the generator writes four outputs; no post-commit check exists.",
+      "iteration": 11,
+      "sources": [".github/workflows/trigger-index-rebuild.yml", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"]
+    },
+    {
+      "id": "f-phrase-triplication",
+      "statement": "The 20 template-default phrases live in the templates, phrase-judge.mjs and create.sh; Gate 3 menu wording is inlined despite exported constants across a 34-file copy surface.",
+      "iteration": 11,
+      "sources": [".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh", ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs"]
+    },
+    {
+      "id": "f-pre-v4-eras",
+      "statement": "Pre-v4 is a bundle of eras measured in this corpus: resource-map v1.1 headers (224), three implementation-summary header spellings, 74 archived packets without description.json, 77 without graph-metadata.json.",
+      "iteration": 10,
+      "sources": ["rg and find counts over specs/**"]
+    },
+    {
+      "id": "f-containment-double-count",
+      "statement": "Corpus counts must exclude containment copies and research lineages; a raw find inflated the archived count from 2,281 to 8,198.",
+      "iteration": 10,
+      "sources": ["find counts over specs/**/z_archive", ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs"]
+    }
+  ],
+  "ruledOutDirections": [
+    "A single repo version detector",
+    "A second migration pipeline beside upgrade-legacy.mjs",
+    "Auto-reconstruction of missing documents",
+    "Auto-fixing never-recorded rules via the baseline",
+    "Extending the release engine unit model to specs/",
+    "Treating /doctor:speckit as the heal home",
+    "Unifying GREP_CONVENTION and ANCHORS_VALID anchor checks",
+    "Writing a new path-repair tool",
+    "Deleting author phrases to satisfy the judge",
+    "Corpus-wide sweep in pre-commit",
+    "Making the weekly freshness report a gate",
+    "Treating anchor defects as author error"
+  ],
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 3,
+    "resolvedQuestions": 5,
+    "keyFindings": 8,
+    "convergenceScore": 0,
+    "stopReason": "maxIterationsReached",
+    "coverageBySources": {
+      "spec-kit tooling": 18,
+      "spec corpus and reports": 8,
+      "CI workflows and hooks": 5,
+      "doctor surface": 5,
+      "templates": 4
+    }
+  }
+}

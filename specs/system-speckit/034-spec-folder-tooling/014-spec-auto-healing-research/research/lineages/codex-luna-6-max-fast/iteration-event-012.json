@@ -1,0 +1,40 @@
+{
+  "type": "iteration",
+  "iteration": 12,
+  "run": 12,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 3,
+  "newInfoRatio": 1,
+  "status": "complete",
+  "focus": "Phase scaffold graph derivation and seeding",
+  "noveltyJustification": "This pass traced the early exit in --phase mode, confirmed the phase-child graph sample still has empty derived fields, and found that phase-parent scaffolds bypass the shared phrase seeder.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Assume --phase and normal root scaffolds produce equivalent graph metadata, or that track-root refresh updates phase-parent children_ids."
+  ],
+  "focusTrack": "phase-scaffold-control-flow",
+  "edgeCase": "The ordinary phase-parent route backfills the parent before it adds a separate validation child, while --phase skips backfill for both parent and phase children.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/rules/check-graph-metadata-child-drift.sh",
+    ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/graph-metadata.json.txt"
+  ],
+  "timestamp": "2026-10-07T21:40:42Z"
+}

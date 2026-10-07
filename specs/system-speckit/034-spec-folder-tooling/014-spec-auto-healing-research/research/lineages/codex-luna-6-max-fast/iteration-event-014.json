@@ -1,0 +1,51 @@
+{
+  "type": "iteration",
+  "iteration": 14,
+  "run": 14,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 4,
+  "newInfoRatio": 0.95,
+  "status": "complete",
+  "focus": "Anchor contract and repair-safety adversarial pass",
+  "noveltyJustification": "The runtime's native ANCHORS_VALID implementation contradicts the registry, guide, and fixture expectations, while the one-off repair and legacy apply paths reveal dry-run side effects and rollback gaps that change the safe recommendation.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "ruledOut": [
+    "Treat the registry or fixture expectations as proof that runtime ANCHORS_VALID enforces required anchor IDs and order.",
+    "Treat marker-only edits as semantically neutral.",
+    "Treat successful re-application after partial migration as proof the migration is reversible."
+  ],
+  "focusTrack": "validator-contract-repair-safety",
+  "edgeCase": "The current native validator can pass marker sets whose IDs are present but whose marker ordering, nesting, or required template set violates the documented contract.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+    ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+    ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/tests/test-validation-extended.sh",
+    "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/fix-dup-anchors.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+    ".opencode/scripts/git-hooks/pre-commit",
+    ".opencode/scripts/git-hooks/README.md"
+  ],
+  "timestamp": "2026-10-07T21:49:37Z"
+}

@@ -1,0 +1,52 @@
+{
+  "type": "iteration",
+  "iteration": 13,
+  "run": 13,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 4,
+  "newInfoRatio": 1,
+  "status": "complete",
+  "focus": "Trigger-index workflow, CI placement, and Gate 3 wording",
+  "noveltyJustification": "This pass verified the checkout token's default persistence against the pinned action documentation, found three generated sidecars omitted from the rebuild and freshness gates, and confirmed short Gate 3 menus omit a canonical same-track qualification.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "ruledOut": [
+    "Treat the push branch filter as a restriction on manual dispatch.",
+    "Put a whole-corpus strict validation sweep in every local pre-commit."
+  ],
+  "focusTrack": "trigger-index-ci-and-menu-parity",
+  "edgeCase": "The push trigger filters main and skilled/** but workflow_dispatch has no branch filter, and checkout's persisted token is present during generator execution.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock", "Web"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    ".github/workflows/trigger-index-rebuild.yml",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+    ".github/workflows/advisory-checks.yml",
+    ".github/workflows/changed-packet-validation.yml",
+    ".github/workflows/strict-pass-freshness-report.yml",
+    ".opencode/scripts/git-hooks/pre-commit",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+    ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+    ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+    ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+    ".skilled/commands/create/assets/create-feature-catalog-presentation.txt",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt",
+    "https://github.com/actions/checkout/blob/v7.0.1/README.md"
+  ],
+  "timestamp": "2026-10-07T21:44:51Z"
+}

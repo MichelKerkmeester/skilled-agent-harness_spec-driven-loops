@@ -1,0 +1,57 @@
+{
+  "type": "iteration",
+  "iteration": 15,
+  "run": 15,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 5,
+  "newInfoRatio": 0.05,
+  "status": "complete",
+  "focus": "Ranked synthesis across the five questions",
+  "noveltyJustification": "This iteration ranks all five required answers into an operational sequence and reconciles repair ownership, pre-v4 migration, archive policy, branch hardening, and CI placement using the evidence from prior iterations.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "ruledOut": [
+    "Widen repair-derived to edit anchors or authored prose",
+    "Treat markerless documents as current-template documents",
+    "Run a full-corpus strict validator in every local pre-commit"
+  ],
+  "focusTrack": "ranked-five-question-synthesis",
+  "edgeCase": "The archive path policy remains contradictory between frozen-snapshot repair documentation and the phase 013 strict-pass target for archived packets.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/README-repair-derived.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+    ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+    ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+    ".github/workflows/trigger-index-rebuild.yml",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+    ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+    ".opencode/scripts/git-hooks/pre-commit",
+    ".github/workflows/changed-packet-validation.yml",
+    ".github/workflows/strict-pass-freshness-report.yml"
+  ],
+  "timestamp": "2026-10-07T21:54:06Z"
+}

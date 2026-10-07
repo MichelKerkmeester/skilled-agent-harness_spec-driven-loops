@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
+  "description": "A baseline over all 4,371 packets found 2,046 failing strict validation, most of them archived packets whose recorded paths went stale when they were",
+  "keywords": [
+    "baseline",
+    "packets",
+    "found",
+    "failing",
+    "strict",
+    "validation",
+    "them",
+    "archived",
+    "whose",
+    "recorded",
+    "paths",
+    "went",
+    "stale"
+  ],
+  "lastUpdated": "2026-10-07T22:28:09.710Z",
+  "specId": "014",
+  "folderSlug": "spec-auto-healing-research",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

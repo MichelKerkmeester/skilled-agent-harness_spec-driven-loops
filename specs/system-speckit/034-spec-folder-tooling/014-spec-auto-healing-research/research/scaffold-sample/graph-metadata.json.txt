@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md"],
+    "entities": [],
+    "causal_summary": "Phase 14: spec-auto-healing-research",
+    "created_at": "2026-10-07T20:43:21Z",
+    "last_save_at": "2026-10-07T20:43:21Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md"]
+  }
+}

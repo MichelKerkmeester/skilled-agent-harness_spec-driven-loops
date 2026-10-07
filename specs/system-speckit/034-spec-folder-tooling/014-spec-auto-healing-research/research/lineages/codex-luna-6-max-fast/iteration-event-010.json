@@ -1,0 +1,41 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "run": 10,
+  "runId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "sessionId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "lineageId": "fanout-codex-luna-6-max-fast-1791406414802-qayl99",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "findingsCount": 3,
+  "newInfoRatio": 1,
+  "status": "complete",
+  "focus": "Release update and migration transaction boundaries",
+  "noveltyJustification": "This pass confirmed that release updates deliberately constrain plans and rollback to .skilled, so corpus migration needs a separate transaction even if doctor update discovers and routes to it.",
+  "keyQuestions": [
+    "Which one-off repair fixes should become permanent idempotent tooling, and where should each live?",
+    "What causes each validation failure class at the source, and how do we stop new instances?",
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?",
+    "What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?",
+    "Which checks belong in CI or pre-commit so drift is caught early and cheaply?"
+  ],
+  "answeredQuestions": [
+    "How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?"
+  ],
+  "ruledOut": [
+    "Put specs/ migration paths into release-update apply and rollback."
+  ],
+  "focusTrack": "release-update-migration-separation",
+  "edgeCase": "A user can have both pending release-managed changes under .skilled and a failing or old-format specs tree with local uncommitted documents.",
+  "toolsUsed": ["Bash", "Grep", "Read", "Clock"],
+  "sourcesQueried": [
+    "specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md",
+    ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+    ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+    ".skilled/commands/doctor/scripts/release-update.cjs",
+    ".skilled/commands/doctor/update.md"
+  ],
+  "timestamp": "2026-10-07T21:35:41Z"
+}

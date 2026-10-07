@@ -1,0 +1,54 @@
+# Iteration 3: Template anchor boundaries and scaffold validation
+
+## Focus
+Trace the Level 2 phase-child anchor defect from the generated scaffold sample back through the core template, template-contract parser, and create path.
+
+## Actions Taken
+- Read the lead's steer file before this iteration, then inspected the supplied scaffold sample and the template compliance contract. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:1] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:103]
+- Read the Level 2 core template, template-structure parser and tests, inline renderer entrypoint, and create.sh copy and post-create validation paths. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:67] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178]
+
+## Findings
+1. **CONFIRMED** The supplied Level 2 scaffold sample opens `ANCHOR:questions` at line 128, then wraps the NFR, edge-case, and complexity sections at lines 132-179 before closing the questions anchor after `OPEN QUESTIONS` at line 187. The template contract describes those L2 addenda as separate sections and maps the questions anchor to the open-questions heading. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:132] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:150] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:170] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:183] [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:187] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:121]
+2. **CONFIRMED** The source defect is in the current core template: the questions opener precedes the NFR and other addenda, while its matching close follows the open-questions content. `parseAnchoredSections()` finds the first matching close and advances past the whole span, so nested `nfr`, `edge-cases`, and `complexity` anchors are not parsed as separate sections; the structure test then expects only the core anchor list derived from that template. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:190] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:234] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:265] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:399] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:487] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:493] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:566] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:79]
+3. **CONFIRMED** `create.sh` renders the contract-selected templates and finalizes their placeholders, but full post-create validation is gated behind `SPECKIT_POST_VALIDATE=1` and documented as too expensive for default scaffolds. The template defect can therefore reach newly created packets unless a separate source-level check catches it. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1190] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1225] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1227]
+
+## Recommendations
+| ID | recommendation | question answered | where it lives (file path) | effort | risk | files touched | evidence | standing |
+|---|---|---|---|---|---|---|---|---|
+| R3-01 | Move the `questions` markers so they wrap only the open-questions section, with each L2 addendum marker scoped to its own section. Re-rendering the corrected template is idempotent; reverse by reverting the marker-only template diff; it changes no document prose or meaning. | Q2 | .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl | S | Med: consumers may segment these sections differently, although body text stays unchanged | core/spec.md.tmpl | The scaffold sample and contract disagree about the questions anchor's span; the source template has the same bounds. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:399] | CONFIRMED |
+| R3-02 | Add an independent rendered-template regression check for each supported level that verifies anchor pairing and that each required anchor encloses its designated heading; do not derive the expected boundary and observed boundary from the same template parse. Repeated runs are read-only and idempotent; reverse by removing the test; it does not alter generated prose. | Q2, Q5 | .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts | M | Low: a stale expectation can block template changes until intentionally updated | template-structure.vitest.ts | Current tests compare rendered output to a contract derived from that template, while the parser skips nested anchors and the default create path makes full validation opt-in. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:90] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1225] | INFERRED |
+
+## Ruled Out
+- Fixing only existing packet copies or adding a one-time corpus repair. That leaves the current template source emitting the same malformed section boundary for future packets. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1184]
+
+## Questions Answered
+- Q2 is partially answered: one current anchor failure source is the Level 2 core template and a contract parser that accepts the template-derived boundary without checking the intended section span. Other failure classes remain for later passes.
+
+## Questions Remaining
+- Q1: Which one-off repair fixes should become permanent idempotent tooling, and where should each live?
+- Q2: What causes each validation failure class at the source, and how do we stop new instances?
+- Q3: How should an older or pre-v4 repo be detected and migrated or healed safely, and how does that fit /doctor:update?
+- Q4: What should be hardened in this branch's own changes: the CI rebuild job, the cleanup tools, the seeder, the Gate 3 wording and the token push?
+- Q5: Which checks belong in CI or pre-commit so drift is caught early and cheaply?
+
+## Sources Consulted
+- specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/lineages/codex-luna-6-max-fast/steer.md:1]
+- specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128]
+- .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184]
+- .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md [SOURCE: .skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md:119]
+- .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:462]
+- .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:66]
+- .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh:67]
+- .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1178]
+
+## Assessment
+- New information ratio: 1.0.
+- Questions addressed: Q2 and Q5.
+- Questions answered: none; Q2 remains partially answered.
+
+## Reflection
+- The defect is reproducible from source inspection alone: the generated sample and source template show the same outer question-anchor span, and the parser's first-close scan consumes nested anchors. [SOURCE: specs/system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research/research/scaffold-sample/spec.md.txt:128] [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:184] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/template-structure.js:475]
+- A test that validates only template-derived anchor order can pass while section boundaries remain wrong. The proposed independent boundary assertion is inferred; a future failing fixture or a test run after implementation would confirm the guard. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:90]
+
+## Recommended Next Focus
+Trace archive and metadata repair paths to their source writers, then determine which fixes belong in permanent idempotent tooling rather than in one-off corpus scripts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1184] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:302]

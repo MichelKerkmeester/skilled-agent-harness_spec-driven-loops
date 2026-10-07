@@ -1,0 +1,3 @@
+All iterations ran, the terminal synthesis is recorded with `stopReason: "maxIterationsReached"`, and every artifact verified on disk: 15 iteration files (1..15) and deltas, the state log with 15 canonical iteration records plus the synthesis event, `research.md` (ranked table closing all five questions), the strategy, registry, resource map, and a completed config. No write landed outside the lineage directory.
+
+FANOUT_LINEAGE_COMPLETE:pi-deepseek-flash-max

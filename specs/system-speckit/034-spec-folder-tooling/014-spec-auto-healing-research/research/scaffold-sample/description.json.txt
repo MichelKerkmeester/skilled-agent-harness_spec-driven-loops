@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/034-spec-folder-tooling/014-spec-auto-healing-research",
+  "description": "Phase 14: spec-auto-healing-research",
+  "keywords": [
+    "phase",
+    "spec-auto-healing-research"
+  ],
+  "lastUpdated": "2026-10-07T20:43:22.412Z",
+  "specId": "014",
+  "folderSlug": "spec-auto-healing-research",
+  "parentChain": [
+    "system-speckit",
+    "034-spec-folder-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
