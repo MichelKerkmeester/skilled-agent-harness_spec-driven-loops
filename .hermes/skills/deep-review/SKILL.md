@@ -394,7 +394,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle.
 4. **Ask the user**, Autonomous execution. The agent makes best-judgment decisions without pausing.
 5. **Skip convergence checks**, Every iteration must be evaluated against convergence criteria before the next dispatch.
-6. **Modify config after init**, `deep-review-config.json` is read-only after initialization.
+6. **Modify config after init**, review parameters in `deep-review-config.json` are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write.
 7. **Modify files under review**, The review loop is observation-only. No code changes during audit.
 8. **Use WebFetch**, Review is code-only. No external resource fetching is permitted.
 9. **Implement fixes during review**, Report findings only. Implementation is a separate follow-up step.
