@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/006-shared/005-scripts",
-  "spec_folder": "sk-design/014-template-conformance/006-shared/005-scripts",
-  "parent_id": "sk-design/014-template-conformance/006-shared",
+  "packet_id": "sk-design/z_archive/014-template-conformance/006-shared/005-scripts",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/006-shared/005-scripts",
+  "parent_id": "sk-design/z_archive/014-template-conformance/006-shared",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "sk-design shared scripts conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "sk-design",
@@ -26,10 +25,10 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
-      "skills"
+      "skills",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/scripts/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored scripts/ template)`",
     "created_at": "2026-07-27T14:59:52.668Z",
-    "last_save_at": "2026-08-30T15:39:13.306Z",
+    "last_save_at": "2026-10-07T18:12:19.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcf74b5542445927bde92e552668442d3353db77b716e6ec8131d29eaaaba289",
+    "source_fingerprint": "sha256:aba0b937b08fdf2db13c022c5a8177a129c7657aa1303080649f66f8792f32a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bc7cb8afde55d513e19e5bc0cf7d1191472e4c8bfcefc4a467e3bf430c5149b",
-      "plan.md": "b425876833232970173c377f704696dc8dc1d0296a660ced35e9ae5f13f69dcf",
-      "tasks.md": "0a0e8a9f0e89de0fa916624c8c97fdcde46014f963973090cfcde251a374f9e1",
-      "implementation-summary.md": "3c307a97997354d17fe7462ffb4fb4855c40df6089aedc1cab44ad4c42dddd92"
+      "spec.md": "caa0be03e05881a9de6c86b0ea82e1ad4c2b3da45b79078013a09101b432298a",
+      "plan.md": "555fb5044da96799f86f8d1a186f5a32e7a1ecd3cb801939627bac0949b5b771",
+      "tasks.md": "044281d8e729cf2e2d47d9bf733a46f3de422cc471e925dd07750a734e005b2a",
+      "implementation-summary.md": "8c8dd66b0003fbdb980726ab13c8a99d6bb0be638421492bb4417a99f8502151"
     },
     "last_active_child_id": null,
     "last_active_at": null

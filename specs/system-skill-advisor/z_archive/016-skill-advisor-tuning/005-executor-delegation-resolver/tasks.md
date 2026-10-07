@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "system-skill-advisor"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/005-executor-delegation-resolver"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/005-executor-delegation-resolver"
     last_updated_at: "2026-07-06T21:30:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "All tasks complete and verified"

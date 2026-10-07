@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/004-research-adoption"
     last_updated_at: "2026-08-31T05:37:24Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Verified, dispositioned and implemented the ranked recommendations"

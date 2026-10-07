@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog"
     last_updated_at: "2026-06-28T14:02:05Z"
     last_updated_by: "spec-author"
     recent_action: "Authored spec.md from research.md §5.1"

@@ -32,6 +32,7 @@ _memory:
 
 > **Status:** COMPLETE. Research synthesis and handoff are finalized.
 
+<!-- ANCHOR:what-built -->
 ## Summary
 
 [060/003-followup-research] synthesized 10 cli-copilot gpt-5.5 iterations into the canonical `research/research.md`.
@@ -44,7 +45,9 @@ _memory:
 - 062 packet sketch: auto/confirm YAML parity, benchmark profile/fixture/materializer (**static skill assets** under `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/`), `run-benchmark.cjs` wiring, nested `legal_stop_evaluated.details.gateResults`, stop enum truth, RT-028/RT-032 reconciliation
 - Other meta-agents flagged: `@deep-research` and `@deep-review` share the command-loop leaf pattern with `@improve-agent`; `@write`, `@prompt-improver`, `@debug`, `@context`, and `@review` are body-level; `@code` is body-level with caller gate; `@orchestrate` is primary orchestrator body
 - Reusable rubric template: entry-point fidelity, ordered artifact/journal truth, producer/consumer compatibility, governance/stop semantics, sandbox containment, evaluator asset completeness, verdict-mode honesty, scenario layer partition, cross-playbook oracle check, release-surface honesty, evidence source authority
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:metadata -->
 ## Metrics
 
 | Metric | Value |
@@ -55,7 +58,10 @@ _memory:
 | Meta-agents classified | 10 |
 | Required output sections produced | 11 |
 | Completion percent | 100 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:decisions -->
 ## Key Outcome
 
 R1's 0/2/4 score is a methodology finding, not a blanket product failure. The stress suite used a prepended leaf-body Call B for evidence owned by the command/orchestrator layer. The next packet should test the owning layer, then 062 should repair executable producer/consumer gaps before any product GREEN claim.
+<!-- /ANCHOR:decisions -->

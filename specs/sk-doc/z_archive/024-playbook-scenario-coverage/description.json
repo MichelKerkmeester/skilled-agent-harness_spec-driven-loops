@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/024-playbook-scenario-coverage",
+  "specFolder": "sk-doc/z_archive/024-playbook-scenario-coverage",
   "description": "The 11 hub `manual-testing-playbook/` trees are not one corpus",
   "keywords": [
     "hub",

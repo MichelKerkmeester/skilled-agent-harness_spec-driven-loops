@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/007-procedure-card-template-alignment"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Completed Path B conformance, reconciled docs, ran strict validation"

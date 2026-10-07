@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `007-deep-commands-relocation` |
+| **Spec Folder** | 002-commands-relocation |
 | **Completed** | [pending — WAVE 5] |
 | **Level** | 3 |
 | **Actual Effort** | WAVE 0: ~5 min (scaffold). WAVEs 1-5: pending. |

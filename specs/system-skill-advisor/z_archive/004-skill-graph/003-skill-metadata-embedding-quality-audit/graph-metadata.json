@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30)",
     "created_at": "2026-05-14T00:30:00Z",
-    "last_save_at": "2026-08-30T15:39:26.326Z",
+    "last_save_at": "2026-10-07T18:15:31.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:30:00Z",
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aea9ff04425c040c5a8e3ebcf8b3299e41325e73bb0169e2230f07344e2fa4ca",
+    "source_fingerprint": "sha256:9fa17bf8e42b4b990f24525ab132313bba16103951cfe0c1e9baba09771484a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2ffb53c949b00dd8f58c9f171032d9ce61199f7ecaf270ab311bd148d0a8f7f",
-      "plan.md": "acf1c0ff9ff59dcbff1bc85910b12186e1ef34b06ca1aaa12cb1bf7a0290a98c",
-      "tasks.md": "ee8df21a8ff347643185707386c4f714382f57e14477cf27d3c535cadf8f0836",
-      "implementation-summary.md": "4ba4561154e377b59bc70957b08cba24e569e3b57eeaae603371ae3dd302fc29"
+      "spec.md": "bcc03e4bf530e3bd801666f7af7d4813fd11585d171f448c160fa84b40f0e6e5",
+      "plan.md": "93517b3f23d5263282924b75e9a7d42c549e53c5300fe7d0d4f4f4c6513c4fe9",
+      "tasks.md": "8d88b883a2065c9974fd48fc83878120198fa77be23dcf713ff1312f7bf5ffb1",
+      "implementation-summary.md": "4b6471d966fb5a327ee002abdc8926a2e0bb44bf020f603c3e56f04a00cfa728"
     },
     "last_active_child_id": null,
     "last_active_at": null

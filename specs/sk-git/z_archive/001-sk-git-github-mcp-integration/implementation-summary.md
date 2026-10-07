@@ -4,7 +4,6 @@ description: "Structural closeout for GitHub MCP guidance normalization inside t
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "002"
   - "git"
 importance_tier: "normal"

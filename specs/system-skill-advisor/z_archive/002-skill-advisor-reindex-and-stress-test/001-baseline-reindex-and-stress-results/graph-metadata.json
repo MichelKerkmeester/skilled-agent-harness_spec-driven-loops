@@ -4,8 +4,6 @@
   "spec_folder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
   "parent_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test",
   "children_ids": [
-    "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
-    "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
     "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
     "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests"
   ],
@@ -58,8 +56,7 @@
       "001-skill-reindex/implementation-summary.md",
       "002-skill-router-stress-tests/test-report.md",
       "001-skill-reindex/graph-metadata.json",
-      "001-skill-reindex/tasks.md",
-      ".claude/settings.local.json"
+      "001-skill-reindex/tasks.md"
     ],
     "entities": [
       {
@@ -114,12 +111,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "001-skill-reindex/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -205,11 +196,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Move original `001-skill-reindex` under baseline phase",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
     "created_at": "2026-05-18T07:49:27.126Z",
-    "last_save_at": "2026-08-30T15:39:26.217Z",
+    "last_save_at": "2026-10-07T18:15:26.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +217,14 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:ae10960b0ef9eb01e502b67172ec468880393488618dde43647db287f0da4f04",
+    "source_fingerprint": "sha256:2f94260c4b92317658e2f1495017f9e69d504e3c112ee23d5959073a1b2a0a68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cd2571cb2c5a31955b04004ecd84c7ed4079e4c3ba9b58ece32d6d68f9cc1a8",
-      "plan.md": "b1ed9efa2e8eeaf4676b7cc3c3e1ef8cf4d34bb5eede8a2c5ac8c788cf2d389d",
-      "tasks.md": "6f09f249babf7fc8846648fb4677de8ac69a9eaa54f933af707bd672e582e16c",
-      "implementation-summary.md": "95ae654ddffb2d76f2ff04da4966297374f10e012574e14822ad754040131d0d",
-      "handover.md": "8d53c40e67f8c0c0dd89be4d60648270ab1f98fde6791289201223207c55f51b",
+      "spec.md": "a31373ba048bedcad0ae62549e2bb6b7e7eaa3115e5c1b6099450377a6d1ec1c",
+      "plan.md": "1be288a79d8e1434c6ceaf1a2e145f96f7d8d65bf83522688157ff6aa71ed0be",
+      "tasks.md": "3cd807e072f879669d51b101a306eec180f4ec1e92fcf505f2cab5edc124ec48",
+      "implementation-summary.md": "ec0237af4359760b3b32d3f87917ced1cdff43fcc5623547d6a21b6acfdca170",
+      "handover.md": "020ab8b193c9ce35b0b74165837bc97684f03efc0a4f90cba3b5fb8d07c4e776",
       "resource-map.md": "a80ee0be1ff93fa437d27f029b76c615190b5bfab321258875be37570e87c8ef"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",

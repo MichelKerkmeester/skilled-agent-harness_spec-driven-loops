@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/042-pi-remote-experience-parity",
+  "specFolder": "cli-external-orchestration/z_archive/042-pi-remote-experience-parity",
   "description": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume,",
   "keywords": [
     "remote",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
-  "spec_folder": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
     "created_at": "2026-07-07T20:30:08.079Z",
-    "last_save_at": "2026-09-11T16:42:00.724Z",
+    "last_save_at": "2026-10-07T18:12:33.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:732cbeaf70bcdea95ef51c8ad34fc28e0dc0d17cff214feb21eb1e6d76aaf4bd",
+    "source_fingerprint": "sha256:ba107930e571008149765c5a668a9bb7a3c6dc4097056270764d8ab985f0d1c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c8fd4c01580c20e95cefb3c61398d7ce8ebbfed0923b77e7427e2e3e675df27d",
-      "plan.md": "d5e6687b69f0ef3680789bb31db5711bc5c840efdda1da50e0d1db99d88d1603",
-      "tasks.md": "71b4a92e6c3df0adb4129571f4686aff69fe459b256b54d7efa737d85389a7c8",
+      "spec.md": "eaf22e6057b9f9937d23ba77eac8ca0462c7b3e51b83b2dad271e9dc9530793b",
+      "plan.md": "6bd7f9e03b3e832d52cddcee2005b6999b28b8a12f6842e6ffd8399027d42cca",
+      "tasks.md": "d50334c5a0526ec28a631663c5cedb3ac09f31d08d95cb4066669f50562b0bc2",
       "decision-record.md": "96b7a8b637a29e2054bccbf8fcb5d46bae358120fbd66558bbe5a4473534a985",
-      "implementation-summary.md": "af837735dae7e3bbb57517dc88aea6932081e2df5b0ec1f2713a08d63e85b6a2"
+      "implementation-summary.md": "92c8db6930246693fe05ea9377202590b3e06e8472edf460e76e685f26c98131"
     },
     "last_active_child_id": null,
     "last_active_at": null

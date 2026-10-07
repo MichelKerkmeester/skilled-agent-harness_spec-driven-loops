@@ -11,7 +11,7 @@ contextType: "tasks"
 parent: "sk-code"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/036-agent-template-conformance"
+    packet_pointer: "sk-doc/z_archive/036-agent-template-conformance"
     last_updated_at: "2026-08-29T10:24:54Z"
     last_updated_by: "claude"
     recent_action: "Completed the audit and fix tasks; verified 212/212 paths and 12/12 TOML parses"

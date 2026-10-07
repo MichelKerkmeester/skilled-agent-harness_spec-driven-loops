@@ -16,5 +16,6 @@
     "003-deep-loop-command-flow-stress-tests"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T12:35:00Z",
-    "last_save_at": "2026-08-30T15:39:14.443Z",
+    "last_save_at": "2026-10-07T18:12:33.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6baf35e2d124b3ec947c327fed3a84451fc83228b5c789a98d789a3a0c06f628",
+    "source_fingerprint": "sha256:79a91821a25dbfa5cc512870d5de18b7fac605bad77ca1242ea29bcc74534949",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71d6907ea3ba5a6bc8fcb164333f7ea56369f0345c9a33a393e7048335bdb831",
-      "plan.md": "d0d67e5e650e10c24e111ebc64671f62475965e9bb20d17cf5e9b10346608a6a",
-      "tasks.md": "fd357d9c1c9e63197c47c0eededa2b40f7f2ef0f0947fe36be921a1d5beb68f5",
-      "implementation-summary.md": "c7d1cc6f1d88623a2116e6755e1324da78d98767436074242c264d41342ebd98"
+      "spec.md": "7d4e91fb679eb7d75399b8f42f890a0c7ddb3c442c601572a14d2812ac7a47e8",
+      "plan.md": "6c3184b56a138a3cae12f9c5f506885669d74000670b0acd5464a5d5c5df0e5b",
+      "tasks.md": "dd1c619bf800d08d98d8c9d3f6cc57104c5769539ab1058f2165bbd5af7f9891",
+      "implementation-summary.md": "1ae59127c7d8bfb6e7d45c4e157e793e5a8d8e8e93ef7b09878cbb612c9f0737"
     },
     "last_active_child_id": null,
     "last_active_at": null

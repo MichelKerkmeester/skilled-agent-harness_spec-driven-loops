@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered. Keep the stable serving root while synchronizing the current authored internal topology atomically and preserving routing parity.",
     "created_at": "2026-07-25T10:26:07Z",
-    "last_save_at": "2026-08-30T15:39:15.368Z",
+    "last_save_at": "2026-10-07T18:13:22.397Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1e566ed8f5bbb155cda9f10be1c7813fd46a8af0dfca48a7d5e799e295b29f5",
+    "source_fingerprint": "sha256:8d196ee39fa3401fc18372d1f10750b16e37c3f47e1ed2966b0b02e8ea67a1a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3bbafc566c4de85a688a60bd9d08e1e889d6d3a8ffdbefc6e7a43c013c122592",
-      "plan.md": "704db87e0df331d8ee470d054e4eec7de0e6512d9462c33723af9d2738e56c92",
-      "tasks.md": "929415ade41d8ec98aeb37cd305d4ffc6c1893f8daee2ad5727f8d3dd34e98d2",
+      "spec.md": "def1944887710d1db1936f1c52edca086a68d315c567c5a9f15c5e38170ef0a3",
+      "plan.md": "75ad408488e0c05d57eeb6fc098417db3c5081e595a930d6ad5f04a4ee1a0d6b",
+      "tasks.md": "78a1c7cd88e2ddfa9da6b30cc667c668633281a1a92d91d546f2884ab3c2513d",
       "decision-record.md": "1ec97eb2defc24578235f8f79093b6bfbab2d75ad315216554130eb04e88e6e0",
-      "implementation-summary.md": "5e3b85a9f504f3718f3acb21c9e5823e969ec3c6814791b79b6ee05c601f4f90"
+      "implementation-summary.md": "ff4faca7c539d577125b057e8d31581ecf534fb30b1d0a944844f3abe28faea9"
     },
     "last_active_child_id": null,
     "last_active_at": null

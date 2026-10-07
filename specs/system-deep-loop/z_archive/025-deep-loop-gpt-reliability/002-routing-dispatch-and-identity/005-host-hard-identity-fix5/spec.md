@@ -11,7 +11,7 @@ contextType: "implementation"
 predecessor_research: "../001-deep-agent-router-and-orchestration/research/research.md"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5"
     last_updated_at: "2026-07-01T17:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed by phase 013 gate evaluation -- see decision-record.md Final Resolution"

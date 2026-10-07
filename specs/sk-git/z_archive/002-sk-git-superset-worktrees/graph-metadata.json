@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-git skill's worktree workflow is designed for manual, single-user operation",
     "created_at": "2026-07-15T04:22:51.655Z",
-    "last_save_at": "2026-08-30T15:39:18.754Z",
+    "last_save_at": "2026-10-07T19:23:51.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +204,11 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e1145c62c185eb06af7e7f0483a1f7302c117a81444ded258e94488f17df99aa",
+    "source_fingerprint": "sha256:54f55fed51b1cad63e3b0a6490d0cda85187d9203cf3ecfe6d8555d8d7328a39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a9724cec3acf80aec3f7a78c1ce34539aabead49508110bdf843f0c20c73dd85",
-      "plan.md": "72b5cc342806d7c60a146db0371a49cf993a27e4157b966a3efd4f299d4b330d",
+      "plan.md": "05eae808de6cc02fca6bf7061b502f4856e39d88302bb15cdfcd9dccdd84cb20",
       "tasks.md": "72d0d56443d1e683a7582321277ce9d3ca897932d18cae2c685d4d0f930bed41",
       "decision-record.md": "e46174e93ad0b9143ff6a3ffa8fe415af8c62b49b3ce641455af4283737be6b1"
     },

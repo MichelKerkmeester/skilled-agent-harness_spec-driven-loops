@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
   "description": "Move prompt-improve and prompt-models to sk-prompt-improve and sk-prompt-models across directories, routing keys, gold and consumers, holding the Lane",
   "keywords": [
     "move",

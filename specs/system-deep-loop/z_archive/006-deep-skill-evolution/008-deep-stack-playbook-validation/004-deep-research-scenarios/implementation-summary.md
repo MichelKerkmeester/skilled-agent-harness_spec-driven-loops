@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/004-deep-research-scenarios |
+| **Spec Folder** | 004-deep-research-scenarios |
 | **Completed** | PENDING — scaffold only; verdicts filled post-run |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

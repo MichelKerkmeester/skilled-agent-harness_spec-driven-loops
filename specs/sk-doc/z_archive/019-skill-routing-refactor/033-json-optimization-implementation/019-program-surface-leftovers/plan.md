@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers"
     last_updated_at: "2026-07-30T11:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Closed four program-surface leftovers"

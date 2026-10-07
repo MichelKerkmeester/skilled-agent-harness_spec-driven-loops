@@ -1,3 +1,7 @@
+---
+title: "FSRS Algorithm Research: Complete Technical Analysis"
+---
+
 # FSRS Algorithm Research: Complete Technical Analysis
 
 > **Research ID**: FSRS-2026-001

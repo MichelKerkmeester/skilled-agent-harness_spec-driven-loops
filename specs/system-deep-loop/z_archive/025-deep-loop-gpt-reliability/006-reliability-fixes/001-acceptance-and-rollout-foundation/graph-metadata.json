@@ -14,13 +14,12 @@
       "035 phase 001",
       "acceptance and rollout foundation",
       "benchmark harness rollout",
-      "plan",
+      "acceptance and rollout foundation plan",
       "035 001 plan",
-      "tasks",
+      "acceptance and rollout foundation tasks",
       "035 001 tasks",
-      "implementation",
-      "summary",
-      "031 006 001"
+      "acceptance and rollout foundation summary",
+      "reliability fixes rollout foundation"
     ],
     "key_topics": [
       "phase",
@@ -31,8 +30,8 @@
       "harness",
       "plan",
       "tasks",
-      "implementation",
       "summary",
+      "reliability",
       "packet",
       "unified"
     ],
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "Phase 001 of packet 035 (unified command-contract architecture). Closes F-014, F-025 and builds the rollout mechanism (plan-review GAP-47). Two jobs, both prerequisites for safely landing any rewrite: make the 033 behavior-benchmark trustworthy as the acceptance harness, and build the per-command feature-flag rollout kill-switch with a byte-identical pre-035 fallback. Absorbs plan-review gaps GAP-01/03/06/08/14/37/38/39/40/45/47/49.",
     "created_at": "2026-07-03T14:05:28.028Z",
-    "last_save_at": "2026-08-30T15:39:25.569Z",
+    "last_save_at": "2026-10-07T20:32:33.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0365ad1a8010136554097fe44856f4d162778ac065c5d989e256aeacd98dbe39",
+    "source_fingerprint": "sha256:185fd067ef87937b96083ff5843d26a445c03979b23c8858588774a726a07a9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a944957adfc0447810c8f56c381d3db5b673b0a71946260f1a45a09a5e75d502",
-      "plan.md": "4ec2c763b0ebc6c855c8a29222e4e772d8ee7443b3c0f0d902f28086d57b6246",
-      "tasks.md": "61b58d16cc4206b5c7f39ea3b1ee320917086bfd5b75e2dd0fd3dcac6bec7640",
-      "implementation-summary.md": "8f073e40f1128d71d3a5c032cf75d176deaba907d20cdd4f49d8bf44f4bf7454"
+      "spec.md": "0c752fb13955d0e520dd1ad8212ed996e645a36ef21e3a52be544ac0ca95045f",
+      "plan.md": "c09d2b11d56a949c0aa0a9c58a34174adff85ad3f9477bed9290a853701cf026",
+      "tasks.md": "e9d734f4d6e898986df6ca41958d83f88d7692ba9ae48e199c6a4ad9ae3ed639",
+      "implementation-summary.md": "224b0cc7712d415652c6d4b0533e75a1691e47efb40a6e32df03afa9ddb2eb22"
     },
     "last_active_child_id": null,
     "last_active_at": null

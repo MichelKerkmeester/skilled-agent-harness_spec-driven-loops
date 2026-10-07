@@ -174,7 +174,6 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -194,7 +193,6 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

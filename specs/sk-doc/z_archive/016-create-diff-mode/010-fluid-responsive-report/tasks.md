@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/010-fluid-responsive-report"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/010-fluid-responsive-report"
     last_updated_at: "2026-07-16T14:52:04Z"
     last_updated_by: "claude"
     recent_action: "Remediated deep-review P0/P1/P2 and folded design increments into docs"

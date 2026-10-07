@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/005-devin-model-registry-and-quota"
     last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Added the 7-model native-dispatch allowlist addendum, cross-referencing phase 002's enforcement"

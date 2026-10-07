@@ -2,14 +2,13 @@
 title: "Implementati [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/implementation-summary]"
 description: "The deep-research README now opens purpose-first with a one-line pitch and a problem-first overview, documents the research state layer, and versioned at 1.15.0.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "deep research readme rewrite"
   - "deep research mode readme summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research"
     last_updated_at: "2026-08-04T18:47:00Z"
     last_updated_by: "phase-executor-038"
     recent_action: "Phase documentation complete"

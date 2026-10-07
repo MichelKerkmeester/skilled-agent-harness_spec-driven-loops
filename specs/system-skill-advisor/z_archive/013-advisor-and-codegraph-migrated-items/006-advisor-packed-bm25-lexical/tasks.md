@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/006-advisor-packed-bm25-lexical"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/006-advisor-packed-bm25-lexical"
     last_updated_at: "2026-06-10T21:14:49Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed implementation and verification tasks"

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "description": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a",
   "keywords": [
     "phase",

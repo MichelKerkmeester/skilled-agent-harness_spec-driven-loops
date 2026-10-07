@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/004-procedures",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/004-procedures",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/004-procedures",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/004-procedures",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "`procedures/` holds 9 cards (39-44 lines each: `aesthetic-direction.md`, `component-system-inventory.md`, `deck-direction-spec.md`, `discovery-question-round.md`, `hierarchy-rhythm-review.md`, `prototype-flow-spec.md`, `tweakable-design-controls.md`, `variation-set.md`, `wireframe-exploration.md`), governed by `skill-procedure-template.md`",
     "created_at": "2026-07-27T14:56:08.290Z",
-    "last_save_at": "2026-08-30T15:39:13.013Z",
+    "last_save_at": "2026-10-07T18:12:30.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2032343230836883fd81987c3473caf33b6a05f59df3d00aeb78034da63bf78e",
+    "source_fingerprint": "sha256:18fc0608acd578fa9a8a2b37748907e5079c838781e11f8a272ac6105cac2094",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72b0c5771fe3a18382831d19bd5e6d77eca78d0b25d1b22eab279687212309ce",
-      "plan.md": "26b6ce939a175a8940356da692b6519b9f7d5429fae1031a1e7dc8d65f2a7f1c",
-      "tasks.md": "9a97c3dd38465cefa5c6210bfe7c5f87359c87dda1e146da68da64a74de82b6c",
-      "implementation-summary.md": "6b857f611b98367b5ce47a828a92a418871aa739c1212b6069634ae58ebfd163"
+      "spec.md": "335441ba8b1e867e80a5a9c2c501ea17a44589f3912ebb33de1ae66c8ae6d0a3",
+      "plan.md": "d75ddb2c84f105e24d755c01ef7ffabc622d03abb5c02348689fad40c785c281",
+      "tasks.md": "053065b3522492eefd6b1a75ef522a93ea7aa4f157261f56e9edcf94d088c805",
+      "implementation-summary.md": "0ab26421c95754caa3f276a8b2601e33c4742c7e951ec5120f7ddb97fa3f81bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

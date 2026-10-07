@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
     "created_at": "2026-07-07T13:00:00.167Z",
-    "last_save_at": "2026-09-11T16:41:54.374Z",
+    "last_save_at": "2026-10-07T18:12:15.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8288281d034222c4659d7091993980c45dd4d47d7f0364ca6398869a251fb548",
+    "source_fingerprint": "sha256:d2017c0b42846f8eb3eca8920a5f6b36c5cc2d79014fd52d37fda045c3f86131",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa5ca2b46a0d3179534459647c5ac6e9394f2b68d6bdf75ba7db917589ab9e12",
-      "plan.md": "1dfcff2656e5810ce7ef604e73e70fd75711ff055e2565780fc527c72889409f",
-      "tasks.md": "df04e02615551c1ff355b9ebb2b903fab63f90e1b2a2637205250f592d299fc7",
-      "implementation-summary.md": "fa72e8031570f144a6e82e6d69f3116d1ac41d026a837ec926223274b55a345a"
+      "spec.md": "459fde040f700cf2f79bb600fdf4a3854d5253e709ea5065b4fa1629ded42281",
+      "plan.md": "3cc21e4d6f38a70922910dc1ddaab33909bd6303acb205503b62195e79d85dc6",
+      "tasks.md": "3e7807e4e5dfa87dc86d31c8cbcba3d15972cf84d2f6159ad5b97890f8a90585",
+      "implementation-summary.md": "7ddb5763bf9eb62bad62cf8d5db6288c62747292c1e6d937c8e669000d3419a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

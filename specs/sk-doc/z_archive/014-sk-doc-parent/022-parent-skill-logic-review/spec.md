@@ -10,7 +10,7 @@ contextType: "research"
 parent: "sk-doc/014-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/022-parent-skill-logic-review"
     last_updated_at: "2026-07-07T15:48:20.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Dispatched Fable-5 xhigh review of the parent-hub pattern"

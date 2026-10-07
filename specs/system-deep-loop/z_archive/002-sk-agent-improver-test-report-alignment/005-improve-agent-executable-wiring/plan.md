@@ -23,6 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## 1. OVERVIEW
 
 Six stages, executed in dependency order per 060/003 research §9 hand-off. Total wall-time est: 1-2 hours autonomous via cli-codex.
@@ -35,7 +36,9 @@ Six stages, executed in dependency order per 060/003 research §9 hand-off. Tota
 | 4. Legal-stop nested shape + reducer consumer + stop-reason enum truth | YAML emits nested gateResults; reducer reads it; stop-reason reconciled | ~20 min |
 | 5. Native RT-028/RT-032 alignment + SKILL.md docs | RT scenarios pass; SKILL.md describes new state | ~15 min |
 | 6. CP-040..045 playbook signal-shape updates + tests | playbook expected-signals match new shape; tests pass | ~15 min |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## 2. STAGE 1 — SCAFFOLD
 
 1. Author 8 markdown files at packet root (this stage)
@@ -77,3 +80,4 @@ Six stages, executed in dependency order per 060/003 research §9 hand-off. Tota
 3. Update `implementation-summary.md` with per-REQ status
 4. Update `handover.md` with 061 ready-state pointer
 5. Optional REQ-201: if scope stays small, run a single CP-XXX scenario against the new wiring to confirm GREEN; otherwise defer to 061
+<!-- /ANCHOR:phases -->

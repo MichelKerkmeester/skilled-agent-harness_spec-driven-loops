@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/061-glm-5-3-flash-thinking-tier-per-route"
+    packet_pointer: "cli-external-orchestration/z_archive/061-glm-5-3-flash-thinking-tier-per-route"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Removed the xhigh pin; both guard suites green at 204/204"

@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "improvement/mirror-drift-report.md",
-      ".opencode/specs/descriptions.json"
+      "improvement/mirror-drift-report.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "mirror-drift-report.md",
         "kind": "doc",
         "path": "improvement/mirror-drift-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Start With",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo now has enough orchestration, state, and packaging infrastructure to attempt automatic agent iteration, but it does not yet have the one thing that makes such a loop trustworthy: a bounded evaluator contract tied to a single canonical mutation surface",
     "created_at": "2026-04-12T09:02:50.185Z",
-    "last_save_at": "2026-08-30T15:39:22.488Z",
+    "last_save_at": "2026-10-07T18:14:20.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff46aa26e9aed53dce17db0c16452c4ab72e26d5623d3302a84255d965f2b5da",
+    "source_fingerprint": "sha256:0f1999b8ad24e1da3e4f9f111f43e989740f7c0f63240e50ecd20f1deb4227e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1053c9984bb2e3e2c53cc7485464bb2763d687ade4f12689c30c11bfc21c27f3",
       "plan.md": "9e6d429ae3266976722d1dc68ae880586b7dd000ada91121d06319a39a37a508",
       "tasks.md": "d1018b327520c2c2fd01f8a3f93b2acd3af98973b30de2d9272ecd240e526391",
       "decision-record.md": "169896cc6a42fdcc1ca2fa69e6180a4b94e95e65fd430e1d5d0aa676973c2673",
-      "implementation-summary.md": "99a16ce51cc40625a8e2c48fcb72da00ea948082ca2d5936875636bcda0bb7c5"
+      "implementation-summary.md": "754a038058dccb0f278bfc7d653b2a0319b76858356068f15d348127abceb908"
     },
     "last_active_child_id": null,
     "last_active_at": null

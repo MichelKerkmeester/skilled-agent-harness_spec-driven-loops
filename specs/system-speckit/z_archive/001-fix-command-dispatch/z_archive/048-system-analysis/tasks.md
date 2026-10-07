@@ -2,13 +2,7 @@
 title: "Task Breakdown: SpecKit & [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/tasks]"
 description: "Legend"
 trigger_phrases:
-  - "task"
-  - "breakdown"
-  - "speckit"
-  - "memory"
-  - "system"
-  - "tasks"
-  - "048"
+  - "system analysis tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

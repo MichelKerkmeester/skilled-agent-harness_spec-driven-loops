@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The dual scoring systems have a ~15:1 magnitude mismatch — RRF fusion scores range ~[0, 0.07] while composite scores range ~[0, 1]",
     "created_at": "2026-04-12T09:02:50.226Z",
-    "last_save_at": "2026-08-30T15:39:38.033Z",
+    "last_save_at": "2026-10-07T20:27:08.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b1e2daab44fda3341a214abdf82efda4ef3bd88cceb8fe2562723b8aa9a825d",
+    "source_fingerprint": "sha256:882e002b00d9ef6fec59d5cd33ca3a35853d6cbe8f6bd61b9d0074bb4d90204c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df46c10398c1b1a718e648f99349854164b584a0a3eb4ab31ef52243086d5fb1",
-      "plan.md": "1a9866ed9b25a9cffe233dd2ed95c383719142ea5d6fb3a71f35b04c6323ca84",
-      "tasks.md": "cea2883b0c9ec28a4ecc4e67bae27faa6ffa983adeb960b2fc15637954c5b8a0",
+      "spec.md": "af21904144a2ae44c3465999ba262590ba45e49c4375da13caa245c2c08d4d8a",
+      "plan.md": "2ffc316992c50e46b2d9cecd64c595310a6aa5b58451b6c1309cb4b2f5722d12",
+      "tasks.md": "b4be480e59a8b44da857fe1f41a0fc79673d6566d9fd5c15f7c21bdcf1572a3e",
       "implementation-summary.md": "02bc0f83ec4bbba2926fd5ebed79370c4d933c410f897682ebaf67dba628c8e0"
     },
     "last_active_child_id": null,

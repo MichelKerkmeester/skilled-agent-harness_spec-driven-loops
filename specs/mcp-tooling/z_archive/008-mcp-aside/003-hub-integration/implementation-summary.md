@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/008-mcp-aside/003-hub-integration"
+    packet_pointer: "mcp-tooling/z_archive/008-mcp-aside/003-hub-integration"
     last_updated_at: "2026-07-16T14:20:00Z"
     last_updated_by: "claude"
     recent_action: "Registered mcp-aside-devtools across all hub surfaces"

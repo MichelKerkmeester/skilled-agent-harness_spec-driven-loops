@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/implementation-summary]"
 description: "Historical implementation summary for the 007 code-audit packet. This document records prior audit waves and must not be treated as current correctness evidence for the live 255-entry catalog."
 trigger_phrases:
-  - "implementation summary"
   - "code audit"
   - "feature catalog"
 importance_tier: "important"

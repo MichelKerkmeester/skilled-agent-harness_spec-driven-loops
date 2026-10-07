@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-08-30T15:39:16.530Z",
+    "last_save_at": "2026-10-07T18:13:27.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f380e783bcd531ebce9a739b88bc3b71e5e7a621e49157594c17380c0feaa5a0",
+    "source_fingerprint": "sha256:c3442b86b030ca9dece162e33591f36da46904287edb87ff96dfedcfe1625ddd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "268d1974ae14058e0b6c78f1996cee7bae0bd9261df27526ad8d22aa3c45a9a0",
-      "plan.md": "73892ca3c3f1d245e9034e38ba1abebf961370be5307636dfa621da3abc48e87",
-      "tasks.md": "f4eec21a9954fae4d1d380175a5537a3c8887f14f9557d1042524c3a7d4950c7"
+      "spec.md": "44148d5fb18628c7fafb5ed9eab4b9fab5fd445d890254c9c15afce38ebf9cb7",
+      "plan.md": "2f5900a14eb8e71daae2a72aab0b8d0294c19140b126cc375bf51746871a81db",
+      "tasks.md": "d43497a5764c8e59d76bd7ee50d4772a9242b17f931999293cd332539f1bde56"
     },
     "last_active_child_id": null,
     "last_active_at": null

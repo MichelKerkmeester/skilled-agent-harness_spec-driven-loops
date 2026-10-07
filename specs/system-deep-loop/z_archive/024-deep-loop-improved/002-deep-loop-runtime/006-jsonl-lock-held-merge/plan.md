@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge"
     last_updated_at: "2026-07-01T21:30:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold plan with shipped JSONL lock-held merge content from spec.md"

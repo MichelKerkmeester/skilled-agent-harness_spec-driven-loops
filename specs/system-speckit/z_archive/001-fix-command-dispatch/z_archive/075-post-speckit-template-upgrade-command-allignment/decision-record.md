@@ -15,6 +15,7 @@ contextType: "planning"
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Post-SpecKit Template Upgrade - Command Alignment
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Section Header Standardization Approach
 
 **Status**: PROPOSED
@@ -34,8 +35,11 @@ All 19 commands use `🔜 WHAT NEXT?` section header, but `🔜` is not in the a
 - "NEXT STEPS" is clearer than "WHAT NEXT?"
 - Avoids modifying the command_template.md standard
 
+<!-- /ANCHOR:adr-001 -->
+
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Mandatory Gate Addition Strategy
 
 **Status**: PROPOSED
@@ -55,8 +59,11 @@ All 19 commands use `🔜 WHAT NEXT?` section header, but `🔜` is not in the a
 - Prevents context inference errors
 - Matches template Section 8 requirements
 
+<!-- /ANCHOR:adr-002 -->
+
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Parallel Agent Dispatch Structure
 
 **Status**: ACCEPTED
@@ -83,8 +90,11 @@ Need to update 19 commands efficiently while maintaining quality.
 - Agent 4: search namespace (2 commands)
 - Agent 5: Cross-reference fixes + validation
 
+<!-- /ANCHOR:adr-003 -->
+
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: OUTPUT FORMATS Section Placement
 
 **Status**: PROPOSED
@@ -104,8 +114,11 @@ Some spec_kit commands lack explicit OUTPUT FORMATS sections, relying on YAML as
 - Follows debug.md and handover.md patterns
 - Consistent with template Section 17
 
+<!-- /ANCHOR:adr-004 -->
+
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Cross-Reference Error Fix Scope
 
 **Status**: ACCEPTED
@@ -125,8 +138,11 @@ Some spec_kit commands lack explicit OUTPUT FORMATS sections, relying on YAML as
 - Full audit already completed by Agent 10
 - Scope control for this spec
 
+<!-- /ANCHOR:adr-005 -->
+
 ---
 
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: Emoji Vocabulary Enforcement
 
 **Status**: PROPOSED
@@ -158,3 +174,5 @@ command_template.md Section 6 defines approved emojis, but no automated validati
 | ADR-004 | Add OUTPUT FORMATS inline | 4 spec_kit commands |
 | ADR-005 | Fix specific line only | /memory:database only |
 | ADR-006 | Manual enforcement | No automation changes |
+
+<!-- /ANCHOR:adr-006 -->

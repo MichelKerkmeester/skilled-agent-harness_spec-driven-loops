@@ -2,10 +2,8 @@
 title: "...--system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification/tasks]"
 description: "1. Find the memory file template section"
 trigger_phrases:
-  - "state"
-  - "simplification"
-  - "tasks"
-  - "001"
+  - "state simplification tasks"
+  - "state simplification task breakdown"
 importance_tier: "normal"
 contextType: "implementation"
 ---

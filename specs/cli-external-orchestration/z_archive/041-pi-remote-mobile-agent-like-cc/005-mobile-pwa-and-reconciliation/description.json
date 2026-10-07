@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+  "specFolder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
   "description": "Builds the installable foreground mobile experience for sessions, streaming work, reconnect reconciliation, explicit controls, and offline read-only",
   "keywords": [
     "installable",

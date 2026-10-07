@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/010-deep-loop-parent-skill-alignment",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
     "created_at": "2026-06-26T11:31:27.588Z",
-    "last_save_at": "2026-08-30T15:39:19.845Z",
+    "last_save_at": "2026-10-07T18:15:16.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a0c71c9b5be152e6a8d1c57906966c093c11be93718e2dbf15581179aa9798d",
+    "source_fingerprint": "sha256:166b7faf5e23d20bdd08922ceb9efa06f6dd576f263a24d0512bc03848005642",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5b4edb7faf2d2767e7ad426d6720b5984fb323bbfe22062567d4233941860bd",
-      "plan.md": "753810d8d288038e5ea91cf1c5d36c543ec2f45102864d1045afc5529ef5e830",
-      "tasks.md": "249b340ec19215723f04f1bd2d9cc4c8725d6951a4625c1d0ad1482859d45fff",
+      "spec.md": "3021a2a9b4ad2802ffdf1684acbaac3a4e4eb8e1cbccb56d96997ba63f113971",
+      "plan.md": "9f97a5d21b13dc9fdd7f81d339d42247c40bf469451ddaccc57546c396348e41",
+      "tasks.md": "d4baa12259de6d22f477e57ddd01be0662e01634534e46147451d849bfb8aaf4",
       "decision-record.md": "4929fc4fb36179a543dcc9654dbea67a965e87ddf46e58d459bc72bb7f53428d",
-      "implementation-summary.md": "e2af9f33b44fac2880624893921ae10c2bf1b13c9764e50109aa6eb27d43c73d"
+      "implementation-summary.md": "8313f581cbf237d7ad7f35cc9d65441c193f605b88b372b2c9e993bb5eeebbeb"
     },
     "last_active_child_id": null,
     "last_active_at": null

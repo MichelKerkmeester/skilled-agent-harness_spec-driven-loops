@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,42 +43,31 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/dispatch-log.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/implementation-summary.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-log.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/dispatch-log.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -186,7 +175,7 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` has never been exercised end-to-end against the real `cli-opencode` orchestrator for two specific behavioral guarantees: that `harden` and `polish` are excluded from `audit` transform-verb aliasing (`TV-005`), and that the four non-md-generator design modes correctly use `backendKind: reference-base` while the shared reference base itself is never invoked as a user-facing workflow (`SR-002`, `SR-003`)",
     "created_at": "2026-07-07T15:07:59.169Z",
-    "last_save_at": "2026-08-30T15:39:12.370Z",
+    "last_save_at": "2026-10-07T18:12:12.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:878fc6be920f3cf3a2618294997a663b658c8d76c7d07fc8c7c82a368b16b5fc",
+    "source_fingerprint": "sha256:8e6a5c75b0f6cd0444bb39765eb810c6814029eafbef6ed65b2602a50b754163",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "34b1da7a874834c48c75e149fdd8a1f572eb5016edd814986b5e45f2ebb0a806",
-      "plan.md": "c14889b1713c6d863e80a45f41ff093678ebbd43c1fc28a1b3f0491bd46fe617",
-      "tasks.md": "9d9dcd0d684287da202255b69db0237b3411e616e7e097b13eed295e8d4d32d7",
-      "implementation-summary.md": "e38bb50b5eccafc506e77d0708dea4778c80ea0b9ad8ba223284f91010008e05"
+      "spec.md": "9f8291cc89ebea5c4d4125544091f48aff21209e03109bb6006cfaedaeb4be8b",
+      "plan.md": "8fece053c833f89f42e971d411b3580371dbeabed2da92593d65255934991f0c",
+      "tasks.md": "20414b227341d540e9eaa613881c873047fb212964456c70748287d72b1cf0d7",
+      "implementation-summary.md": "c2a8e94627576edfdab47eb5b606fdd91ab3769f37409e0549341f54b9932b90"
     },
     "last_active_child_id": null,
     "last_active_at": null

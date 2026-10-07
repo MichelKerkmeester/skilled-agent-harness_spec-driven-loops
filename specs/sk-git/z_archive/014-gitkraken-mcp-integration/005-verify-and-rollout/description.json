@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration/005-verify-and-rollout",
   "description": "Phases 001-004 each verified their own scope in isolation",
   "keywords": [
     "phases",

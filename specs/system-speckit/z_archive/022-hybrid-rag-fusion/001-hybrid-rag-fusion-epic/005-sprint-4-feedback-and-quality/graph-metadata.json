@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuable signal",
     "created_at": "2026-04-12T09:02:50.228Z",
-    "last_save_at": "2026-08-30T15:39:38.052Z",
+    "last_save_at": "2026-10-07T20:27:13.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0098023ef0fc66f411b8158f9577437343d5304d983a20e45bb4b1dba6e62375",
+    "source_fingerprint": "sha256:2d63758daf98c6cbe32edd4b636ca790b3e67e932e7b937be4c06d4bb551c697",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ccbd3b1cbbc59cb3c699a9b11320b99346da79dd8a738e1377885a528dee419",
-      "plan.md": "48c6e6c403ef484561c02a3b5cbf927503bb2acdb02ede22ecbc4fe309daa674",
-      "tasks.md": "8e6b2a8029bb1ede73c668a771f9b09bd51c63d8ec653505cbb37862de2d871d",
+      "spec.md": "99e8aea212b31cc0485cde9934aed6c6a236cee542e0557c06eb95cf0671c020",
+      "plan.md": "49a2e84daa2dc48212d2d2f55caa15c26664e3f1a7332aa47b72d8251e7e3462",
+      "tasks.md": "79a85c503c1a6ab8efdca1fb710894cf3d26421a29fa25de5e8584cbe06f49ed",
       "implementation-summary.md": "a589a8692022b7b915b2fbc24a7b85b45e27fe0cd5b9fc60ab8454da53c1d5b9"
     },
     "last_active_child_id": null,

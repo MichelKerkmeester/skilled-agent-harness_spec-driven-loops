@@ -1,3 +1,9 @@
+---
+title: "Gemini Recheck Report — Anti-Signal Patches"
+trigger_phrases:
+  - "gemini recheck anti signal patches"
+  - "gemini runtime recheck"
+---
 # Gemini Recheck Report — Anti-Signal Patches
 
 **Date**: 2026-05-05

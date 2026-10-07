@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/006-pi-agent-bridge",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/006-pi-agent-bridge",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This repo's 13 real `.claude/agents/.md` role files (confirmed via `find .claude/agents -name '.md' | wc -l` = 13, not the 14 files this phase's driving brief assumed, and not the 12 the directory's own `README.txt` inventories — `README.txt` predates `deep-alignment.md` and is stale) encode Claude Code-specific runtime conventions — hard-block dispatch gates, an \"ILLEGAL NESTING\" no-sub-dispatch rule, hook-injected advisor-context prose, and MCP tool wildcards (`mcpmkspecmemory`, `mcpmkcodeindex`) in the `tools:` frontmatter field — that have no native Pi equivalent",
     "created_at": "2026-07-27T06:48:17.834Z",
-    "last_save_at": "2026-08-30T15:39:07.683Z",
+    "last_save_at": "2026-10-07T18:11:34.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c8a420e638f2a9c1870074da2906bd12fbf00b82e7b7389a0b541748c5500d4",
+    "source_fingerprint": "sha256:566c87de2a4943b0a97f4407283e117bab2363eb4e4a5ed6286f2fb72f58d344",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "730f0bbdd0bb4ea8410a7867b05060ad9e4f1dc7598cb753cf367e0b67979c0a",
-      "plan.md": "37118fc87a3d1f197b1efc78126b51e2ff0279f87099abccca5c80e22bb48144",
-      "tasks.md": "8aec33854a11f04297f82344f99a2c61cd84a09b2d8e35a1b504a76bc8a784fd",
-      "implementation-summary.md": "7e76441f1ff614864377d4c992fee494e3e4814f38ca69c2b044e2ff66da6b0f"
+      "spec.md": "2994f199cf0691104633d20882bf45205e4ac6b40a763689b3414dd3156e8614",
+      "plan.md": "d65fcddcb516b07d87a12bea223519aae8fc9015379bf8d1af26d97e88c2d221",
+      "tasks.md": "7879ed894495b7e8f9525505376a8183a723155702a382a110a239b550f986b8",
+      "implementation-summary.md": "2580f5a2bfd9b8986a5231301f45161c23798c36cebf4a87b71e322fc187ae40"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while `mk-code-index-launcher` and `mk-spec-memory-launcher` each held at one",
     "created_at": "2026-05-18T16:55:50.377Z",
-    "last_save_at": "2026-08-30T15:39:27.132Z",
+    "last_save_at": "2026-10-07T18:16:08.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64390ddec7a56208ea6d5baa83755679b9ac28e17523b9f7c00afb97bdf1f40e",
+    "source_fingerprint": "sha256:4d478dd619b9505d05a59e27cedbaeb3961a14e22fcd03ec00ddaa4332ff2f88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c039bcc658d34fa77a988e0137097a738045d00878dc01bf536649ddeaa9504e",
-      "plan.md": "ffde0c32826ec20c16c95987d5eec036395a3d3a129b93b3690c92038847701e",
-      "tasks.md": "1f5b52979fa2eb93bd97b2fc50f52a9c31ffbbd9d90a0640395250a7271668ca",
-      "implementation-summary.md": "5bbb58d41987608e22c87213df7839b1f398235a34fd44d95a44ad44f3b6c2a9"
+      "spec.md": "a28f3d13192294fa8bb169b6c090e808f2513dfd9b475a837acd7114117887e1",
+      "plan.md": "f2c8455d88ebcae7c95950448d77b30c24f6e0e26fb90219a2bf0965c83009fc",
+      "tasks.md": "f788543cd81578c1dda93f3198a850a989a7a28f7e199e0ae84ca7e4f0e44307",
+      "implementation-summary.md": "9214b976234567a779d4467d547544b737f7b53e8c8c48357521532cc672db7c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "skill benchmark excluded by design",
       "D1-inter advisor-invisible reporting",
       "D4-R fail closed scenario selection",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "skill benchmark applicability reporting plan",
+      "skill benchmark applicability reporting tasks",
+      "skill benchmark applicability reporting implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -188,7 +182,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-opencode reports two 'unscored' dimensions that read as gaps rather than structural N/A.",
     "created_at": "2026-07-11T14:10:05.865Z",
-    "last_save_at": "2026-09-11T04:37:56.830Z",
+    "last_save_at": "2026-10-07T18:15:14.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6404a7838f194564cf15056b2a547c20d2fcb9bd8148aa903a088198ee3642cb",
+    "source_fingerprint": "sha256:3061fa728945cbbe680cec8726b86a08bb8df5d9ce14c8ca3077ed2c70c7d4c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "383c9deda278fbbace6c1c46988259480e37e2e188f308142aa0d18e8807cf2a",
-      "plan.md": "f34557ca07452a434424e89e9eb6231b6ae8133735b27f0c9226b446ce112f73",
-      "tasks.md": "719cf9ccfb5cc7f636e9c8ad852281908d21469d2b256ff1a461344927cf58ba",
-      "implementation-summary.md": "199f0d6cfce188ae07091f62a8fcbad2ad754df745ea6caa90e2a11623239d3e"
+      "spec.md": "1b768c0686e2b0acd8b61518223614d8ffcab837ab80dda5e1cb7ae1694b3fc0",
+      "plan.md": "7f04cbfb428dec5ccee074b5f0af77d5bc7d5234effe3a9f4c763d565e8817bc",
+      "tasks.md": "65ed9417f17f54c80e272b7e000647e78df1bcf0f7af3b09f9d6bf8cced988bb",
+      "implementation-summary.md": "3eca20a0a0527a52d7778ef9a5723d74789c062c4291c4028e39d891be484e02"
     },
     "last_active_child_id": null,
     "last_active_at": null

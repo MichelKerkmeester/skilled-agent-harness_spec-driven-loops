@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -20,7 +20,6 @@
       "phase 1 tasks",
       "cli claude code readme tasks",
       "mode readme revisit tasks",
-      "implementation summary",
       "cli claude code readme",
       "mode readme rewrite summary"
     ],
@@ -35,8 +34,8 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "summary",
+      "cli-claude-code"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,9 +46,6 @@
       "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/tasks.md",
       ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +197,7 @@
     ],
     "causal_summary": "The cli-claude-code README at `.opencode/skills/cli-external-orchestration/cli-claude-code/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:39.087Z",
-    "last_save_at": "2026-08-30T15:39:17.594Z",
+    "last_save_at": "2026-10-07T18:14:18.981Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b1db8e72389f8df1f42714b225c922d0c113e8466cd218cdadc1260964b9aa2",
+    "source_fingerprint": "sha256:85aecf6ff15082cf2bfc443a871516e9ae497c10589144431f65e27d40dd61fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2081d19f472a3b8bcad3cac5c1ab0c65b8333ddd810c127d3729172dee379488",
-      "plan.md": "4e73302039f06f649c08811f4911a87dfa526cefe6aae68dfb064b81e63f908e",
-      "tasks.md": "93daeada6bdaabaeadb5e742f9a296e6da8db89d9c65c1a33d2f01dc044acdf5",
-      "implementation-summary.md": "b994ff40d1fd1c5c4ddc215ceb78a901bb67c883cb68048778182cc3c5ca8170"
+      "spec.md": "fce55c9b8600e653bd188a7ef9af38286e16bf2287815176d77ba46ccde3237a",
+      "plan.md": "cd7a16e4f31774820f68e0dc5cc2517c96ac53187b9e237d1f1d18f3be97214b",
+      "tasks.md": "13ff9ff4add97448524dcef0a744a8704bd957a1dffb9529094dd10154a2f585",
+      "implementation-summary.md": "792de46b72ed7f2fa8d07309f8824f6826ff9a18510c1ca04cba198acfd5529b"
     },
     "last_active_child_id": null,
     "last_active_at": null

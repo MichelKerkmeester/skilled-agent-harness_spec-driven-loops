@@ -11,25 +11,20 @@
   },
   "derived": {
     "trigger_phrases": [
-      "post",
-      "merge",
-      "refinement",
-      "phase",
-      "library",
-      "spec",
-      "037",
-      "plan",
-      "tasks"
+      "post merge refinement 2 spec",
+      "post merge refinement 2 plan",
+      "post merge refinement 2 tasks",
+      "post merge refinement 2 implementation summary"
     ],
     "key_topics": [
       "post",
       "merge",
       "refinement",
-      "phase",
-      "library",
       "spec",
       "plan",
       "tasks",
+      "implementation",
+      "summary",
       "split-brain",
       "issue",
       "two",
@@ -40,7 +35,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,6 +55,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -150,24 +152,50 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Library Unification Following",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "We have a \\\"Split-Brain\\\" issue with two versions of vector-index.js",
     "created_at": "2026-04-12T09:02:53.524Z",
-    "last_save_at": "2026-08-30T15:39:37.124Z",
+    "last_save_at": "2026-10-07T20:12:10.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8001a5bdbb3699e4218e27fd3d8061f57dcc9e1f40ab4b378b572ef1d64fd86f",
+    "source_fingerprint": "sha256:bbf90c84ed5f35e6fde0a677b8b31016a3c75709a0a8ebd08b1e2852b8f738a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "034a14f699d11af3771042c14fe18f5c1ac8244f0895a43024d892f86cf33487",
-      "plan.md": "51f1b435d4907db6653d0175eb741c8fac635779cdfab465519404a283c5fb27",
-      "tasks.md": "83d6880308a7b1fb61f91d3da808784a40433c445dccfb137ff4aa33714ed8c6"
+      "spec.md": "176fbdcd5957e62cca48d52bcc1136c8b8d3cef369797f7c783d77688d689e8b",
+      "plan.md": "95f4dde547e80e38ad88d132c78a0122ed3051c6b53f6fc3fef93b88055be65e",
+      "tasks.md": "2acb6190f0ccb9e19a2361ef8e5f5c67d2842daf4c32a902338b00990b16c563",
+      "implementation-summary.md": "8747dc3d90857b46239f3df06316a9ed30cf23e1f15e7b4a56acba6cc5caf852"
     },
     "last_active_child_id": null,
     "last_active_at": null

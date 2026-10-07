@@ -18,14 +18,18 @@ _memory:
     completion_pct: 40
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Copilot Wrapper Schema Fix
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:summary -->
 ## Approach
 
 Single-file JSON reapply. Reuse the exact wrapper shape that landed in `162a6cb16c`, because `6cd00aa51b` removed it later.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:ai-execution -->
 ## Steps
 
 1. Read `.claude/settings.local.json` to capture current state.
@@ -38,6 +42,7 @@ Single-file JSON reapply. Reuse the exact wrapper shape that landed in `162a6cb1
 4. Confirm the live file now matches the `162a6cb16c` landing shape again.
 5. Copilot-side smoke: user runs `copilot -p "hook schema smoke"` from a fresh shell, then inspect the new `~/.copilot/logs/process-*.log` for absence of the error string.
 6. Refresh `implementation-summary.md` with post-reapply evidence.
+<!-- /ANCHOR:ai-execution -->
 
 ## Validation
 
@@ -45,6 +50,8 @@ Single-file JSON reapply. Reuse the exact wrapper shape that landed in `162a6cb1
 - `~/.copilot/logs/process-*.log` (new session) has 0 matches for `"Neither 'bash' nor 'powershell'"`.
 - Claude Code continues to operate (this conversation is a live smoke — UserPromptSubmit hook is firing every turn via the managed brief).
 
+<!-- ANCHOR:rollback -->
 ## Rollback
 
 `git checkout -- .claude/settings.local.json` reverts the reapply if the smoke disproves the packet.
+<!-- /ANCHOR:rollback -->

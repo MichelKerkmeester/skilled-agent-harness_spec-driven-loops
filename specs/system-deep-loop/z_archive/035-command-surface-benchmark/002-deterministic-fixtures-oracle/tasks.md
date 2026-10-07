@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/002-deterministic-fixtures-oracle"
     last_updated_at: "2026-07-15T06:49:12Z"
     last_updated_by: "codex"
     recent_action: "Completed the independent oracle, deterministic fixture corpus, and frozen expectations"

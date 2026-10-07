@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/z_archive/049-cline-provider-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/049-cline-provider-roster",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
-    "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
-    "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build",
-    "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
-    "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
-    "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
-    "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
-    "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
-    "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/002-cline-support-pi-investigation",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/003-cline-pi-config-build",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/004-cline-cli-pi-roster",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/005-cline-pro-and-pi-default",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+    "cli-external-orchestration/z_archive/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -149,16 +149,16 @@
     ],
     "causal_summary": "The operator authenticated the Cline provider inside opencode (it registers as `cline-pass`, not `cline`), which exposes `cline-pass/cline-pass/deepseek-v4-flash`",
     "created_at": "2026-08-18T08:28:10Z",
-    "last_save_at": "2026-08-30T15:39:08.067Z",
+    "last_save_at": "2026-10-07T18:10:56.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ec6368af5045d9efb0009e8e7d7a4cbda93a14fcbce1ab8db37c55f59274f4d4",
+    "source_fingerprint": "sha256:fe0c0e451f7466cdf971cbf24bdbb123212d46590d877a73e81da21d9860e5d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4b6b759a8e975b4875d0c5e37ea52a1406723b99a12fbc13404c182f0f5a203"
+      "spec.md": "3f190be334f0fe8713cc607b5ad02189aed91da72507e2c3b6ad94286fbe3e90"
     },
     "last_active_child_id": "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
     "last_active_at": null

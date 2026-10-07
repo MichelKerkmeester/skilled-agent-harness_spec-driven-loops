@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement"
     last_updated_at: "2026-08-19T11:39:00Z"
     last_updated_by: "claude"
     recent_action: "All 5 phases complete; sweep 5/5 + recursive validate 5/5 Errors:0"

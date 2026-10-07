@@ -50,7 +50,6 @@
       ".claude/agents/deep-research.md",
       "scratch/improvement-proposals.md",
       ".claude/agents/orchestrate.md",
-      ".opencode/specs/descriptions.json",
       "research/deep-research-strategy.md",
       ".opencode/skills/sk-git/SKILL.md"
     ],
@@ -107,12 +106,6 @@
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".claude/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current `/speckit:research` workflow is single-pass only",
     "created_at": "2026-04-12T09:02:50.172Z",
-    "last_save_at": "2026-08-30T15:39:24.335Z",
+    "last_save_at": "2026-10-07T20:02:18.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7497e76a6ad78b7ecadae11ccf62b93263516549f82af712b68faa0d290f291b",
+    "source_fingerprint": "sha256:cb473abc609fb3f51366c216d4a1f6de454b215888d94d710c24e6e53b3be0a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a31cbdcba8ce8c3309a7afed1fc0dbf642124acf969b66237ffcb90a18e237e",
+      "spec.md": "71e749991f5747952dd892cb333cef9f4093960f99b2ed4491e5fcf9e31fbd65",
       "plan.md": "70424423be69790a216c45716654e577f823004d6a21a982fb8054c572b2bea0",
       "tasks.md": "29810c946a5d699bd10b3b941a9e44b09ad36a024c807ee6068bc1baf243cbd3",
-      "decision-record.md": "c1669ee1d741fb5cc7201e95cf0d922afcd23c9ec37c0c552731e97676ff4d1c",
-      "implementation-summary.md": "b740747efb3d0037e51677c90f499f10db3b7d251f7794f977649135cd974658",
+      "decision-record.md": "803e573004882a5f2a2982e60aad56220abae60d034c7033219cb77369c30ad5",
+      "implementation-summary.md": "cce0a7afbcc25c5d136ff0704a8d51db87e8cf17de5a9ba12b9939c8aae4f010",
       "research/research.md": "b3e5b161db34c6a06f95c959173a85cfa78386a7012952c6c27289139c04d2ec"
     },
     "last_active_child_id": null,

@@ -8,7 +8,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation"
     last_updated_at: "2026-07-29T02:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both lanes committed and gated; both hubs off BLOCKED"

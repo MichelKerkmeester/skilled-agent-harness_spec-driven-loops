@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation"
     last_updated_at: "2026-07-13T14:30:00Z"
     last_updated_by: "claude"
     recent_action: "Implemented and verified the bless-the-dialect edits"

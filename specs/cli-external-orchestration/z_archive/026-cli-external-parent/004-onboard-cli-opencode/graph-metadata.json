@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode",
-  "spec_folder": "cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode",
-  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "packet_id": "cli-external-orchestration/z_archive/026-cli-external-parent/004-onboard-cli-opencode",
+  "spec_folder": "cli-external-orchestration/z_archive/026-cli-external-parent/004-onboard-cli-opencode",
+  "parent_id": "cli-external-orchestration/z_archive/026-cli-external-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 003 created the parent-hub skeleton, but the `cli-opencode/` packet has no relocated implementation yet",
     "created_at": "2026-07-09T18:58:27Z",
-    "last_save_at": "2026-08-30T15:39:07.082Z",
+    "last_save_at": "2026-10-07T18:11:05.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:167582e8c7ad7b74a0e91bd73b457e53815d17fe8c9679fc2b057f1f0a0b9008",
+    "source_fingerprint": "sha256:436975e1b7453d7a1d3abad9404554d9baafdefc40369ffcb07600286194fae5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9422d6be1b068ac1c10ec5be0d9131c86fd848b450ced28f852505539a701145",
-      "plan.md": "492bc31f7bc93ca82a2ccd7a86efb96752eeb5c1306f18f7d15b14a6431ef2c0",
-      "tasks.md": "80c9941e58f6bb7d7ac94edb4a55c2796ce1f560eb0d2aab302351012c3073db"
+      "spec.md": "32a3f64ff3df80761b6162969a655ab2477aa7db34f2f0c65d0d15623acb8cf7",
+      "plan.md": "75ce383b4fcc9c0bd7da4d2e5c85e6390dac45e5bd9104a64760ae783d68eeb2",
+      "tasks.md": "e483934dd71bb52171f1ba84dfb0be472c513eb6f3f699fea7c274cee894b504"
     },
     "last_active_child_id": null,
     "last_active_at": null

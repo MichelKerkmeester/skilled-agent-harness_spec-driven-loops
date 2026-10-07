@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/006-command-and-hub-wiring"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/006-command-and-hub-wiring"
     last_updated_at: "2026-08-31T11:33:12Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Registered the mode across four registries and authored the command"

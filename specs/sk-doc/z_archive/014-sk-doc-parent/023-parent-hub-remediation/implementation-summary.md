@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/023-parent-hub-remediation"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/023-parent-hub-remediation"
     last_updated_at: "2026-07-07T19:45:00.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed WU1-4,6-9 (8/9); all pushed; 4/4 canon-clean; WU5 gated"

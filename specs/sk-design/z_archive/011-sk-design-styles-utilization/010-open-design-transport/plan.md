@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/010-open-design-transport"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/010-open-design-transport"
     last_updated_at: "2026-07-18T13:40:00Z"
     last_updated_by: "claude"
     recent_action: "Authored L2 scaffold for the Open Design transport grounding-receipt phase"

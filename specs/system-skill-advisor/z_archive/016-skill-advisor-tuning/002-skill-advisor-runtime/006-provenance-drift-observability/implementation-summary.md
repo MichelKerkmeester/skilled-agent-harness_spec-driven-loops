@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability"
     last_updated_at: "2026-07-06T16:57:19.326Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented default-off self-boost guard"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability |
+| **Spec Folder** | 006-provenance-drift-observability |
 | **Status** | In Progress |
 | **Completed** | This sub-phase concluded: SA-author-self-boost-guard shipped default-off behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`, SA-attested-baseline-drift-sweep and SA-skip-never-fabricate are deferred PENDING behind the durable calibration substrate gate (see What Was Built and Known Limitations for the breakdown) |
 | **Level** | 2 |

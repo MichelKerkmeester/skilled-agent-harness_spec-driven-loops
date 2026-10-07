@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "system-skill-advisor"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/006-graph-causal-visited-guard"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/006-graph-causal-visited-guard"
     last_updated_at: "2026-07-06T22:45:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Fix implemented; all scorer gates green; corpus-neutral"

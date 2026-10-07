@@ -188,7 +188,7 @@
     ],
     "causal_summary": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistinguishable from a clean one and silently corrupts the loop session on resume",
     "created_at": "2026-06-28T14:01:52Z",
-    "last_save_at": "2026-08-30T15:39:24.719Z",
+    "last_save_at": "2026-10-07T18:15:15.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4eb62f8ea58af697d3cbc18c7e3032141da52604876822b6546a30d867e31f6a",
+    "source_fingerprint": "sha256:175d3d91dd91207a8ba03967154c8073d672af156836cbe144fc3b638c562995",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f19ed37d2ddf51e5791b05f944bc0550bf7d9a93b11de851c2eafd31d51d78a",
-      "plan.md": "c41f52f5b860d5c233bcee2c5befd3548d8f7279703ce0e6e2595114b1d3317e",
-      "tasks.md": "dfb4f639e9d1951706e50de6cd2ade2c78b76167728a54800687730715e6cf17",
-      "implementation-summary.md": "fd0cc51b30327db54a8f510a7591dcf17d1a033871239ae04b6005f612a43c4b"
+      "spec.md": "b1a1af8eab7592a22e5fe42dfd992bbbf030ea28f5505aa23e8eed8bf882ab17",
+      "plan.md": "c157df199c451e4da9e4bc26f356913b52f21df5b364150e4f39ab1d26c2afce",
+      "tasks.md": "56379ee163ec4f9aab8e79754759e1b4efb65d3bfbb5328be7a049a41a5cfd2f",
+      "implementation-summary.md": "c0a0477f96e55f3e0d96d6b15335e44489c5ec471505bc26d1152cf499a115f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

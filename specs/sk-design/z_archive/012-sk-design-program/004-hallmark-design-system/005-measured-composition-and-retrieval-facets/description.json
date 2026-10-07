@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
   "description": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page",
   "keywords": [
     "shipped",

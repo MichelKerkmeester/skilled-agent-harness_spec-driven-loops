@@ -3,9 +3,8 @@ title: "Implementation Summary [system-spec-kit/z_archive/014-memory-index-txt-s
 description: "Archive normalization summary for Memory Index Txt Support."
 trigger_phrases:
   - "014-memory-index-txt-support"
-  - "implementation summary"
-  - "archive"
-  - "validation"
+  - "memory index txt support summary"
+  - "memory index txt support validation"
 importance_tier: "normal"
 contextType: "general"
 ---

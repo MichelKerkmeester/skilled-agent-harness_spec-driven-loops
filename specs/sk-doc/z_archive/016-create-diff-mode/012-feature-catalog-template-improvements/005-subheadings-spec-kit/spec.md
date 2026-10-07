@@ -3,14 +3,19 @@ title: "Phase 005: Sub-headings — system-spec-kit"
 description: "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target only files that need restructuring."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "subheadings spec kit spec"
+  - "how it works subheadings"
+  - "catalog section subheadings"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 005: Sub-headings — system-spec-kit
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,14 +28,19 @@ trigger_phrases: []
 | **Input** | `002-mechanical-sweep/output/long_sections_audit.csv` |
 | **Skill target** | system-spec-kit |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 Long HOW IT WORKS sections without navigation anchors are hard to scan. The 3-paragraph rule: any HOW IT WORKS section with >3 paragraphs MUST have H3 sub-headings. The phase 002 audit identifies all such files. This phase applies the restructuring.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### Input
@@ -64,9 +74,11 @@ For each flagged file:
 ```
 
 Agents may use different headings when none of the above fit the content.
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -75,11 +87,14 @@ Agents may use different headings when none of the above fit the content.
 | R-002 | Sub-headings don't alter prose | git diff shows only added `### ` lines, no changed prose |
 | R-003 | Groupings are logical | Each H3 group contains semantically related paragraphs |
 | R-004 | Short sections untouched | Files with ≤3 paragraphs are not modified |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - Zero files in spec-kit have HOW IT WORKS with >3 paragraphs and no H3 sub-headings
 - Prose content unchanged — only H3 headings added
 - Standard vocabulary used where it fits, custom headings used where standard doesn't fit
+<!-- /ANCHOR:success-criteria -->

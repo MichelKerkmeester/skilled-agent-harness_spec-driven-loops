@@ -12,7 +12,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash"
+    packet_pointer: "cli-external-orchestration/z_archive/069-llmgateway-deepseek-v4-1-flash"
     last_updated_at: "2026-09-11T10:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Second pass implemented and verified except two deferred live gates; all work uncommitted"

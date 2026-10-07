@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
-    "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
-    "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
-    "system-deep-loop/032-deep-alignment-mode/003-scaffold-mode-packet",
-    "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery",
-    "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
-    "system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
-    "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code",
-    "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report",
-    "system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover",
-    "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
-    "system-deep-loop/032-deep-alignment-mode/011-skdoc-doc-conformance",
-    "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
-    "system-deep-loop/032-deep-alignment-mode/013-review-remediation",
-    "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance",
-    "system-deep-loop/032-deep-alignment-mode/015-headless-model-matrix-hardening"
+    "system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/002-architecture-decision",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/003-scaffold-mode-packet",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/004-scoping-and-discovery",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/008-iterate-converge-report",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/009-command-agent-advisor-cutover",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/011-skdoc-doc-conformance",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/012-behavior-benchmark-capture",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/013-review-remediation",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance",
+    "system-deep-loop/z_archive/032-deep-alignment-mode/015-headless-model-matrix-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -135,16 +135,16 @@
     ],
     "causal_summary": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and branch-naming rules, `sk-design`'s DESIGN.md and token structure, `sk-code`'s per-surface implementation patterns — but nothing checks a given artifact against the named standard it claims to follow, with reality-drift verification, in a repeatable loop",
     "created_at": "2026-07-11T06:09:13.466Z",
-    "last_save_at": "2026-09-06T04:27:46.110Z",
+    "last_save_at": "2026-10-07T18:15:16.469Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0414083a5e3b182fe24e3eb1d8b56bd80d4c9e5cad2fd12c13ae607eea28488c",
+    "source_fingerprint": "sha256:df93f6f38e36db85753804c5e5785535be5d8080e7527b3ff0eb9dfd23f23c0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7345241c9ffe9a576d54fd26bfe0f6db7f75e6db4122bc6922465d0ed5121e39"
+      "spec.md": "02ff16b78326cf37b2d99fd9a7aa68bac07892a5648fb25732ca3014fc7da3ac"
     },
     "last_active_child_id": "system-deep-loop/059-deep-alignment-mode/014-skill-doc-template-conformance",
     "last_active_at": "2026-07-12T10:59:34.243Z"

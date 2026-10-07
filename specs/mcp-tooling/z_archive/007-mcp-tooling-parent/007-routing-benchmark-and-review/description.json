@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
   "description": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly",
   "keywords": [
     "fold-in",

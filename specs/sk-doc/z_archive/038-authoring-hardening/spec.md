@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/038-authoring-hardening"
+    packet_pointer: "sk-doc/z_archive/038-authoring-hardening"
     last_updated_at: "2026-08-29T12:40:00Z"
     last_updated_by: "claude"
     recent_action: "Grouped template gaps, validator false positives, and per-root enforcement"

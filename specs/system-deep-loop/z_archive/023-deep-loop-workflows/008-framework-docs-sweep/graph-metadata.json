@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep- (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-08-30T15:39:24.636Z",
+    "last_save_at": "2026-10-07T18:14:46.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:077ad7415bafd9e085d4f5465ae41e8276fb9e4894bcd749f16a8deca9d6eb38",
+    "source_fingerprint": "sha256:d727ace4ab33b8ec922cf12452d5278fd9b04e4ac146286c6f2dae8ea056028a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e3ad377731b9d7b4097793bc6b3c8cf2fc5040c3fe224595641d28e9f7a4f70",
-      "plan.md": "c47a5aa72e9a18544555896c6fd9bd5fe41a5df3901da9f172ce3cbf6120f2ad",
-      "tasks.md": "48a9bde95f7be11151fde5c1af9af0f90fb3059385c3fbaa039806b87392a163",
-      "implementation-summary.md": "b77c2bf3b31c10e0bafa2a43c4a9e8afb182994c58df29d5c2f8380d6ed6d35c"
+      "spec.md": "6debaca3833ac89a2855016f2569d7e4970a88c51565830547914824da116489",
+      "plan.md": "561764f8e9abacd332f17f84a602f1a1d9229525dbe46cb9967b8d1ef7107674",
+      "tasks.md": "84be83218cc456bbaf337bdc269d5f1ecdb8f165c3ff3c919c6763ee47ccd219",
+      "implementation-summary.md": "7dc30650c23ccfb466b73279b1df15d8a535b744c9f9e5573cdbc5a4e42a44e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -182,7 +182,6 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -201,7 +200,6 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

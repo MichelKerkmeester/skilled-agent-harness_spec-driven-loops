@@ -5,12 +5,6 @@
   "parent_id": "system-skill-advisor",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-skill-advisor/006-skill-advisor-routing-engine/001-memory-search-routing-tuning",
-    "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
-    "system-skill-advisor/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
-    "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
-    "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
-    "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
     "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/001-memory-search-routing-tuning",
     "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning",
     "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin",
@@ -96,7 +90,7 @@
     ],
     "causal_summary": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.710Z",
+    "last_save_at": "2026-10-07T18:15:29.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

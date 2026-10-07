@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
+  "specFolder": "sk-doc/z_archive/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
   "description": "These are the catalogs an agent reads to learn what a hub does, and their leaves are indexed in the `leaf-manifest.json`",
   "keywords": [
     "catalogs",

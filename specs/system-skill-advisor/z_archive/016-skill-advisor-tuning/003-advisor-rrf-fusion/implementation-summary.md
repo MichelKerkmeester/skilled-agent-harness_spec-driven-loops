@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/003-advisor-rrf-fusion"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/003-advisor-rrf-fusion"
     last_updated_at: "2026-07-06T17:16:00.338Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Re-benchmarked the widened set and authored the per-seam verdicts"

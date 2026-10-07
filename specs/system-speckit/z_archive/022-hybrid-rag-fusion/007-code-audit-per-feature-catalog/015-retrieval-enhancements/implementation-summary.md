@@ -2,7 +2,6 @@
 title: "...-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements/implementation-summary]"
 description: "9 features audited: 9 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "retrieval enhancements"
   - "code audit"
 importance_tier: "normal"
@@ -50,6 +49,9 @@ All 9 retrieval enhancement features were audited — dual-scope auto-surface, c
 
 1. 8 features confirmed with behavioral accuracy
 2. Contextual tree injection: source list ~60 files for a 3-4 file feature
+
+Per-feature findings are recorded in `spec.md` under the audit findings section.
+
 <!-- /ANCHOR:what-built -->
 
 ---

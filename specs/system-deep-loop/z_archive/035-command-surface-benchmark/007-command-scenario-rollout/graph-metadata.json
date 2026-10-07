@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,11 @@
       "DAB command suite",
       "behavioral baseline",
       "sixteen command scenarios",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "command scenario rollout plan",
+      "command scenario rollout tasks",
+      "command scenario rollout implementation",
+      "DAB-016 to 027 authoring",
+      "command benchmark baseline deferred"
     ],
     "key_topics": [
       "command",
@@ -34,9 +31,9 @@
       "baseline",
       "sixteen",
       "scenarios",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude capture.",
     "created_at": "2026-07-14T20:37:00.206Z",
-    "last_save_at": "2026-09-11T04:38:01.319Z",
+    "last_save_at": "2026-10-07T18:15:15.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afa6567b2c73d1961a3c395cc372c3462b35595505b611d952ea370b498a3a71",
+    "source_fingerprint": "sha256:6f26183c398ca369f3dcc6cb062aa2de366870bb6933d51888b148a7c89c7a1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ec9d8cded66db1be875fc53a4f50008fcc849656f63852aa156bb2001e9e84f",
-      "plan.md": "d8979fcd30a5070d42326ae2289f68c1466b44e95c7610e62d983db7b6f69ec4",
-      "tasks.md": "866c40dd2de90e96599d7eeb20fb250322cf262a2d6e25d9ca7ff6d1f9878468",
-      "implementation-summary.md": "4f03cd5ab9f171b0581b1967a27e9daa06d39d77cc6c35eb1c40a0efaf07cc0f"
+      "spec.md": "1b4426281591e5609a4fcb3ef39293af2942f740fabee0fe22573a42037bbda0",
+      "plan.md": "db124571bde2cb41dc1853dc0ec014cf8ae24991c85c696012664b004a1b277f",
+      "tasks.md": "0639a13b22cc9b3737e687025df6b4151bdcb95b23cd8de1cd4b25fe7ad5af35",
+      "implementation-summary.md": "bc74b68b51ab9912f1d13a07896f4e8d5d0ea1b17f1a0603b012fd88708e269f"
     },
     "last_active_child_id": null,
     "last_active_at": null

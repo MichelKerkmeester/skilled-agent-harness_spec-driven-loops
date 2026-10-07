@@ -7,7 +7,6 @@ trigger_phrases:
   - "026"
   - "graph"
   - "and"
-  - "implementation summary"
   - "011"
   - "copilot"
 importance_tier: "important"
@@ -22,10 +21,12 @@ _memory:
     completion_pct: 100
     status: "implemented"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Copilot Writer Wiring
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:what-built -->
 ## Current State
 
 Commit `162a6cb16c` replaced the packet-010 no-op wrapper commands with the actual Copilot writer invocations for `UserPromptSubmit` and `SessionStart`. Commit `6cd00aa51b` later removed those top-level fields while normalizing `.claude/settings.local.json`.
@@ -67,7 +68,9 @@ Current `.claude/settings.local.json` again contains the Copilot writer commands
 
 Packet 011 depended on packet 010 being reapplied first, and the two top-level writer commands are now restored on top of that wrapper shape.
 Packet 011 is therefore live again at the config layer: packet 010's wrapper fields are present, and the two top-level writer commands are back on the wrappers that need them.
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -77,6 +80,7 @@ Packet 011 is therefore live again at the config layer: packet 010's wrapper fie
 | `jq '.hooks.UserPromptSubmit[0] | {type, bash, timeoutSec}' .claude/settings.local.json` | **PASS** — current wrapper restores the top-level Copilot `user-prompt-submit.js` writer command. |
 | `jq '.hooks.SessionStart[0] | {type, bash, timeoutSec}' .claude/settings.local.json` | **PASS** — current wrapper restores the top-level Copilot `session-prime.js` writer command. |
 | Standalone writer probe evidence from 2026-04-22 | **HISTORICAL PASS** — confirms the dist writers worked when invoked directly, and the live wrapper wiring now points at those same dist entrypoints again. |
+<!-- /ANCHOR:verification -->
 
 ## Restored Shape
 
@@ -105,11 +109,13 @@ Packet 010 is reapplied, and packet 011 now restores these top-level commands:
      ],
 ```
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **Cross-runtime smoke still needs a fresh rerun.** The top-level writer commands are restored, but the parent parity packet should still rerun its smoke matrix before claiming full operational closure.
 2. **Historical probe evidence still matters.** The standalone probe proves the writer implementation itself worked when the wrapper pointed at it, and the live config now points at that same path again.
 3. **Packet 011 remains config-owned.** This packet restores the wrapper wiring only; any remaining parity gaps outside `.claude/settings.local.json` still belong to the wider `009` packet.
+<!-- /ANCHOR:limitations -->
 
 ## References
 

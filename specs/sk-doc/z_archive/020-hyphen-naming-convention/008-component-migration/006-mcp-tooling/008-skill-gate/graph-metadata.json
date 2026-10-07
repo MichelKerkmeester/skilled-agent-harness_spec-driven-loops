@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/spec.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -153,7 +152,7 @@
     ],
     "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact.",
     "created_at": "2026-07-14T15:17:47Z",
-    "last_save_at": "2026-08-30T15:39:16.647Z",
+    "last_save_at": "2026-10-07T18:13:16.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -161,12 +160,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f9b2f234089f196b543874e32986d365a029c0c734cc18e610af693a04935154",
+    "source_fingerprint": "sha256:32604e6278b49c67990d218358ce62377f268c6b3a119767cd96e6a9696bc133",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ccaa4ae6df4003a46e6a5ed0d8e5cb5243269e48923e596553fd4a54d58ea42f",
-      "plan.md": "c82d90b769cd19c412a8419293f82119af63a7cfb70f91c2f8ac05bebf8b98c2",
-      "tasks.md": "6141a40220a4d1f5ca1083824fc603a7b6129fa7692b1df8506202954c17f4f5"
+      "spec.md": "1bb9d94baf0aa292174ceb671135c907f9decde2347d6d9ac044be8f36e4e50b",
+      "plan.md": "9e46c88295c59da01226a8ab5d363a64f0b5de49e867a731b5decfafed1ffe33",
+      "tasks.md": "6da02a9318e33483d1fdbbc9a3688a41327cc9aceba15e33b5d77e62b6c8fb9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

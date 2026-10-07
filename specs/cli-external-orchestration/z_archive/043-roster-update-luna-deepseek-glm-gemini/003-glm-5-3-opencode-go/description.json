@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+  "specFolder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
   "description": "cli-opencode already serves `opencode-go/glm-5.3` live, but its catalog documents only DeepSeek Flash and Qwen under that gateway — the model is",
   "keywords": [
     "cli-opencode",

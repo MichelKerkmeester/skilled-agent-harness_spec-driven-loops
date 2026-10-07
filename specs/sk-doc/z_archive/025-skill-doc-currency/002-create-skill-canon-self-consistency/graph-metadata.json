@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency",
-  "spec_folder": "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency",
-  "parent_id": "sk-doc/025-skill-doc-currency",
+  "packet_id": "sk-doc/z_archive/025-skill-doc-currency/002-create-skill-canon-self-consistency",
+  "spec_folder": "sk-doc/z_archive/025-skill-doc-currency/002-create-skill-canon-self-consistency",
+  "parent_id": "sk-doc/z_archive/025-skill-doc-currency",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
     "created_at": "2026-07-30T19:29:16.753Z",
-    "last_save_at": "2026-08-30T15:39:17.386Z",
+    "last_save_at": "2026-10-07T21:19:41.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6413370df87e760c0d1e4c9f4c5266226211a6cdcc9d325785986136641eec6",
+    "source_fingerprint": "sha256:aaa0a478d4fe34fc36569a1aea109aeb91ba64c78a608aa9796ed59415df2e25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "609373a704cd3998ac066b7b3493e9abba7fe8a442aa713603c0c91a93c3775b",
-      "plan.md": "b19862ff491e5acd7b758ad24778167dd61551afde13e0c0c7958c31b6e2360d",
-      "tasks.md": "ddb0d3c21a55cbbfed986dccd0feb6f15c57702cdfcd2c1023e6783f15d3e920",
+      "spec.md": "6a34daf0d13bbabc23e9db7ce6f42c83cabcc6d3fba8a5d74215ba55696bc16b",
+      "plan.md": "2c2bc724c9b849f09d51dacd2ad9755cecf5285f3de2e05d11413a42cc54d90a",
+      "tasks.md": "5d5f7f3e229d21e8a7e757914ce0a240d8959decea671c2be46082abbcaefb05",
       "decision-record.md": "3e101aee69d74a62f980f86f1592af764b89432b9ab5c8b310c9eee00eb90ba8",
-      "implementation-summary.md": "f455aa53eba3d8a7661aecefa9c1d42c70769aa4043562d7749bd6815030fc99"
+      "implementation-summary.md": "4f0ec9395c098e7b2a473b69c215bc7d95753719fe4f1abb28cdeb81f4331e2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

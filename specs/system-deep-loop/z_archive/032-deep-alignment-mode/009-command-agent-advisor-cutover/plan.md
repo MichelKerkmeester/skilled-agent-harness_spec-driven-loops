@@ -11,7 +11,7 @@ contextType: "general"
 status: "implemented"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/009-command-agent-advisor-cutover"
     last_updated_at: "2026-07-11T17:12:19Z"
     last_updated_by: "claude"
     recent_action: "Executed implementation + verification plan; all gates green"

@@ -2,13 +2,13 @@
 title: "Tasks: Rollout Behavioral Benchmarks -- deep-ai-council + deep-improvement"
 description: "Task Format: T### [P?] Description (file path). All pending -- phase blocked on its predecessor."
 trigger_phrases:
-  - "tasks"
+  - "rollout council improvement tasks"
   - "council improvement behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
     last_updated_at: "2026-07-02T23:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "All tasks complete; 30 runs scored, scorecard published"

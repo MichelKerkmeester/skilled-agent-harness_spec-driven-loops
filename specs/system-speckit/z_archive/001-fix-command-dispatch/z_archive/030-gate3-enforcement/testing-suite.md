@@ -1,3 +1,12 @@
+---
+title: "Memory System Overhaul - Testing Suite [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/testing-suite]"
+description: "Testing suite that validates all changes made during the Memory System Overhaul, organized by component and priority."
+trigger_phrases:
+  - "memory system overhaul testing suite"
+  - "memory system overhaul validation"
+importance_tier: "normal"
+contextType: "general"
+---
 # Memory System Overhaul - Testing Suite
 
 ## Overview

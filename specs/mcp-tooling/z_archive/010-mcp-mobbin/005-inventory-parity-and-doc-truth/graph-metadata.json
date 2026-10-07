@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines across 15 files claim the manual is \"NOT registered\", call absence \"expected\", and fence registration to \"a later phase\"",
     "created_at": "2026-07-16T12:58:34Z",
-    "last_save_at": "2026-09-10T20:43:44.633Z",
+    "last_save_at": "2026-10-07T18:11:37.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b12368bb49934a7f48e87daaf5fc226931b8258664eedcae62ae4365a17b4ca5",
+    "source_fingerprint": "sha256:8b25cc5489edbe32687eac9eee9eff5e58473df8b3e4089caa732eda5a760ec4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b38bfcefd45c9e953f5116a1e4f2973127d20b4b90f73470168d7df112df9495",
-      "plan.md": "3ebe1b42800eab5532a55f49e6a41841fb50bf1bb724a1979d91bdc5d08a6712",
-      "tasks.md": "0d52144589a9a303c69c82bd12691b7a2bedbc33781acc0c9e965d9ce5064f4b",
-      "implementation-summary.md": "450223fc6fec68e21248e73b5b878fba67ea587b34a436b9df70c7e9d59b8562"
+      "spec.md": "3d192db56f592ab5f245aa8cc45e372be499d4f9ff4c76690c9f1c3dc399d41d",
+      "plan.md": "d155e97ede469d9652aabe9a37b784bc9de25be112bda8ab10c02078039464c5",
+      "tasks.md": "fbc76c9fb3ae2ab6cc26f11b3cfb3cb5ca2815ce45cc48af7bf60ba53c7534cb",
+      "implementation-summary.md": "469dd36652bac1bd3d1fb08664d04478e7daa58cf7bbb7d8fbb9dbe5a66ada17"
     },
     "last_active_child_id": null,
     "last_active_at": null

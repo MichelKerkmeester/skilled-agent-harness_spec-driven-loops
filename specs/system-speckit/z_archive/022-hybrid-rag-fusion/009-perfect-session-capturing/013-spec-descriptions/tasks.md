@@ -3,7 +3,6 @@ title: "Tasks: Spec [system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-c
 description: "Implementation tasks derived from plan.md phases."
 trigger_phrases:
   - "description tasks"
-  - "implementation tasks"
 importance_tier: "normal"
 contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"

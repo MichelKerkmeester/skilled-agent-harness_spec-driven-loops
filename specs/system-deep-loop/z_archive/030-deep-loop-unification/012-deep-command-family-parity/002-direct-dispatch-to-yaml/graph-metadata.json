@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
-  "parent_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,8 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/deep/skill-benchmark.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,12 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/skill-benchmark.md",
         "source": "derived"
       },
       {
@@ -183,11 +176,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family — no workflow YAML\" with an inline `§5 PRESENTATION BOUNDARY` instead of a presentation asset",
     "created_at": "2026-07-13T14:07:04.711Z",
-    "last_save_at": "2026-08-30T15:39:19.907Z",
+    "last_save_at": "2026-10-07T18:15:10.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84b9a370afd341cd9728524fcd91626ca05566765a7826e2cf86b5fd3f16fee3",
+    "source_fingerprint": "sha256:f0ff37e363e31554e7cce5250ed0993121c15ebd954569965d2f3f7a0e6bf8fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01d9fd38df165977a78bc27702c610c445cfca79e4ed2f0dfe98d7ecb28fd0b2",
-      "plan.md": "bf80503cba2ee86f2474eca71b09874ba50bfc309b037ef26e72395bb9e5bcb9",
-      "tasks.md": "63dc0eb76b7e6e3145f8c8c8b49b09022871400e0ab6cdac1d4670694023bb2a",
-      "implementation-summary.md": "a01a5efdb9a85b1bf491d9b7da200b70bc5dc3c474f3dfb9620078ce80f20036"
+      "spec.md": "80f77211bd9b59968b722fdc8c016e63037fad4b99bccbf32d9af2e1b4b53a91",
+      "plan.md": "4a31ac36129d62c0c8ce5b7c394b98435a69cb20c3687a33debc7d54d006a51d",
+      "tasks.md": "ebe78bd61737b8b00544cd1fceb3453892f682a8486171d5138fa34e2f42bc18",
+      "implementation-summary.md": "67155c0fc64fdee16f90d4844c9a047d592d2fb96870ac1e7a702b0970c41698"
     },
     "last_active_child_id": null,
     "last_active_at": null

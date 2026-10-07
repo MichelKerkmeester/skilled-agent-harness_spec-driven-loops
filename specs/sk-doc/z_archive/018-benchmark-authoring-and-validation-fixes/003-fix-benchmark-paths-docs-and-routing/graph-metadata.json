@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
-  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
-  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "packet_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
+  "spec_folder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
+  "parent_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is intentionally complete, but the code and docs around it carry real staleness and drift: three broken `shared` references in `SKILL.md`, a semantically stale `README.md`, a confirmed hyphen/underscore Lane B path defect where 70 committed references point at `benchmark-profiles`/`benchmark-fixtures` while the on-disk dirs are underscore, a `deep-alignment` behavior-benchmark index that contradicts its own captured baseline, and hub routing metadata that",
     "created_at": "2026-07-14T06:43:53.836Z",
-    "last_save_at": "2026-08-30T15:39:14.558Z",
+    "last_save_at": "2026-10-07T18:12:24.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df24550ee596baa503f8acf0acc42c6a9bae3c8a2700eff78d6ac68dcc0e3c37",
+    "source_fingerprint": "sha256:65985fbe5e2ba274c54f1daee6bc5b18237d46997510d52e487cdfddfd1c0ae3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9547ef43ff5ced34aed61761ca0b03bd92d654fe50906649e1d7b2ff4b5c586",
-      "plan.md": "f87a8c569fe4d88df1dcba8dff5318c741517eecc078bd07338b3f4bad82a9f2",
-      "tasks.md": "76b5a36738c1d11ac39fe0503bb69a2c2ccf8d87235527465047259036042a07",
-      "implementation-summary.md": "cf362d58a57c8987a6504caae25305d1189e097ffc6179df21991854fc337039"
+      "spec.md": "e3a586491cb4f31cfb45612625aa88bf2db3e6eb1db1bd74a8967485743a5dad",
+      "plan.md": "c54999909ae3fa813d126221696a64423e0ae57fa1d15faae2ca31968f4a95f5",
+      "tasks.md": "521c3bf14357b4958956adf2b6e467375ed7a08edf165aa4c37f8568983cafae",
+      "implementation-summary.md": "b997525b7c125fd4053bf16fa0bd775b18472f366012fe8604d61df2e024c58b"
     },
     "last_active_child_id": null,
     "last_active_at": null

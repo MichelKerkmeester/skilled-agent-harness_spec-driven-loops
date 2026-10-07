@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/015-pi-hook-coverage-parity",
   "description": "Phase 012 built 6 `.pi/extensions/.ts` files bridging the toolcall/toolresult/input-scoped guard cores (spec-gate, dispatch-preflight, dispatch-audit,",
   "keywords": [
     "phase",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,12 +45,6 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-doc/leaf-aliases.json",
@@ -81,42 +75,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-dispatch.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "live-executor.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
         "source": "derived"
       },
       {
@@ -202,11 +160,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Typed Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Holdout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan Section",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
     "created_at": "2026-07-16T14:14:43.463Z",
-    "last_save_at": "2026-09-11T16:42:04.375Z",
+    "last_save_at": "2026-10-07T18:13:22.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +209,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b0af504c74c4d901294bb05d4dae5674ca7c4d4e288897233acdc755212121da",
+    "source_fingerprint": "sha256:6bd0550319914d911e9ea8d0f6f06edbca4db025078bb66b07e5c3b8cf67595c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "98d537ecfbd3757ccd1ea0e0d2f6db51dbf41c37eacc587abf76d4e626b166f3",
-      "plan.md": "44535624356c66216461a2b424dd57ca12e4951d5312b8c0c68b529a51db799d",
-      "tasks.md": "c1d78d82c0f1ef52f4c1c0346766ce7f76bacf1b902c81f56daf5c439155d668",
+      "spec.md": "e51fbe0b662b5ee65f4ec68ae1159ebd5c6d93af7db97ac2befd6ccd1b974299",
+      "plan.md": "1ffcbebbf4a9e742b5209ff41276cda5941c6cd3405d6df33ca119413745b791",
+      "tasks.md": "32a08a1a247c14f512017dde9dad1e0cb23815281e8946991944c61c0bcd0cf5",
       "decision-record.md": "69cf2d53f93d254cd580e2fd646b8c0c30d07d09634d0e1d55ec499303f13494"
     },
     "last_active_child_id": null,

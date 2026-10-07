@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement",
-  "spec_folder": "sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/001-cmd-create-emoji-enforcement",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/001-cmd-create-emoji-enforcement",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `/create` command currently enforces emoji usage in documentation through validation logic and templates",
     "created_at": "2026-04-12T09:02:50.211Z",
-    "last_save_at": "2026-08-30T15:39:14.006Z",
+    "last_save_at": "2026-10-07T19:23:38.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:222e9465e41f6c7bb17862ed2316ff960c405f7188601d97ab1f149cc9b47336",
+    "source_fingerprint": "sha256:d2b4abe9065b143dfcdecd33439b76ecc7f34a65ed9a280d83ed65c6510354f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbb6be94e6e57eb8ab5f5fa158fa02b55958d0cd33c7ff758943d254008534e5",
-      "plan.md": "caaf90018036999bad0d14d0d80bd952af9d81fa3811d86943c4b0a5235e01a7",
+      "spec.md": "63ed7a4e092fc513cb3075268870f4df5417a0984f9ad0f0ff5df7ee82f80d13",
+      "plan.md": "36c5a1a4adf73f45411819ca061a7d11cf35cd14a97181f88b7d69e676b4c262",
       "tasks.md": "2e36dabeee46796f0edea6bcdda6358790963554257aa722b0b79bc1c39b7bab",
       "decision-record.md": "9c8080fd6d8e55cd6a2eb7bd1c848a0b55a1b7df9b82525c46b83f9b3674bbc0",
-      "implementation-summary.md": "17943f233c5c14bcab9f5ccc0f59b57c6510ae0eef2475c84e7e96e94ba78574"
+      "implementation-summary.md": "581bddb2b58dad38408afccde050051828a7ec3bfa43c2442320050f6af53a5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

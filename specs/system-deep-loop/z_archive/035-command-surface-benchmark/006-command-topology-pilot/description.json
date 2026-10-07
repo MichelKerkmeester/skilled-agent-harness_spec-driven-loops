@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/006-command-topology-pilot",
   "description": "Authors four pilot scenarios, one per command topology, and captures a Claude baseline plus one GPT driver to calibrate the upgraded evaluator before",
   "keywords": [
     "authors",

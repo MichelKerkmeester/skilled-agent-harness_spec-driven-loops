@@ -6,17 +6,21 @@ parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 trigger_phrases: []
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Handover — Remaining Post-Rename Items
 
+<!-- ANCHOR:handover-summary -->
 ## Current state (all shipped to `origin/skilled/v4.0.0.0`)
 
 - **Rename program (030)** + **LUNA review remediation (010)** — complete. R1-P1 (catalog parity + guard), R4-P2 (fail-closed freshness + tests), R3-P1 (current-state record) all closed; committed `7e51e56265`.
 - **Rename fallout (011)** — REQ-1 done: `sk-code-router-sync.vitest.ts` repointed to canonical `sk-*` names, suite 10/10; committed `de6290ed6d`.
 
 Two items remain. **Neither is a live bug** — both are safe to defer.
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## REMAINING 1 — Re-activate sk-doc compiled routing (operator-gated)
 
 **What:** the sk-doc compiled-routing manifest was never recompiled after the mode rename, so it drifts from the frozen route-gold (32 rows, verdict `BLOCKED-BY-COMPILED-DRIFT`).
@@ -61,9 +65,11 @@ The `hooks/pi/*.ts` files are theirs and out of scope here — do **not** fix th
 type/import errors (or excludes those files from the mcp-server tsconfig), run the build on **main/CI**
 (per sk-git's large-reorg rule), then re-run `validate.sh --strict` on packets 010 and 011 to clear the
 deferred strict-validation gate.
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## Housekeeping (optional)
 
 - Branch `sk-doc/0114-mode-sk-prefix-rename` is at `3d77decd9a`; its content is on origin as the
@@ -75,3 +81,4 @@ deferred strict-validation gate.
 
 Start from this packet's `implementation-summary.md` (REQ-2/REQ-3 sections) — it carries the same root
 causes and evidence. Nothing here blocks shipping; both items are deferred by design.
+<!-- /ANCHOR:session-notes -->

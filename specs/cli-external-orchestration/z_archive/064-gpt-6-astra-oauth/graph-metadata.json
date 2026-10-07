@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/064-gpt-6-astra-oauth",
-  "spec_folder": "cli-external-orchestration/064-gpt-6-astra-oauth",
+  "packet_id": "cli-external-orchestration/z_archive/064-gpt-6-astra-oauth",
+  "spec_folder": "cli-external-orchestration/z_archive/064-gpt-6-astra-oauth",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -22,7 +22,7 @@
       "tasks",
       "astra oauth",
       "astra oauth summary",
-      "implementation summary"
+      "astra verification evidence"
     ],
     "key_topics": [
       "gpt-6",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The operator asked for GPT-6 Astra at all thinking levels and in fast mode, through cli-pi, cli-opencode and cli-codex, over the official GPT provider only",
     "created_at": "2026-09-05T10:56:54.895Z",
-    "last_save_at": "2026-09-05T11:38:27.559Z",
+    "last_save_at": "2026-10-07T18:11:10.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39238ae7d1d8cffb58f2d2d4f2af44e19fa3903b5e4dbe44c60044391c5f7227",
+    "source_fingerprint": "sha256:a0f29f2394363d44777f222ce515d5f4470789fe109ea6b8dc66d8e3e59d6782",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cfec184d624ab3521ed1668890bd2dcacc3711e166bd4ff9332693fe236a5de",
-      "plan.md": "512e554abae472eaba4932143f6e0529bb8fa8e6ee2062a26b993f59ff80b6e9",
-      "tasks.md": "0762d1a33a80d90a71f09f567f63531d73df7084810de8d6c581f566aafb70c8",
-      "implementation-summary.md": "2dc1b7e2822868044c983d12180feea7df141a3f4dacbaa368b41f7543d947da"
+      "spec.md": "e1474951d4592ca7bbd211b8b81cbc735217a7e648cc50f1bcfa22ee5e756c5f",
+      "plan.md": "f191a340ace6d1da745f8149a59786f4cce4a0d67997416b4f3311634f0e20c6",
+      "tasks.md": "b7f02a83e9e8045f9d57a251ddfe85573c277b81a0bfb8d03490b1fb4faed809",
+      "implementation-summary.md": "0d1d81214f66cca722004bbd6237cb2755bb539053ada52758bf07e39b7f7a52"
     },
     "last_active_child_id": null,
     "last_active_at": null

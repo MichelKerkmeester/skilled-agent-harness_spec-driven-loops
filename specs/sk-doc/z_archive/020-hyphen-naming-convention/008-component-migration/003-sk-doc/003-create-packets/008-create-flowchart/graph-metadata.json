@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation. This phase renames those non-exempt resources to kebab-case and updates packet-local links while preserving validator behavior and flowchart notation.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-08-30T15:39:16.451Z",
+    "last_save_at": "2026-10-07T18:13:22.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:c3686ac2a0ca29a50cad028e0a5c49ca40e760bca4633df31f381cdfa964d5af",
+    "source_fingerprint": "sha256:1d43cf329ee9368f38a633a5e2df8af6bedd197203a6f43048dd1c5e31cf2c63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b65b13bade24ac30d6c729ed30f3a0b0883c682c903b63d9e671610b93fb9ff",
-      "plan.md": "dfae8de46c4e3b2ba879d7556953397a72d68ab20c238ec5499d167b48baace1",
-      "tasks.md": "aa7bb68ceb1b5362719f7097bb89afb563ac06272257dafe0aeb738a70d0f9fc"
+      "spec.md": "e45d9fbf94867340fceabeb056c96290c4f2aefcc508a43718ebbb26a572779e",
+      "plan.md": "27de16a69b3784d490cefd8bd1a154e2ab58c49fc3e41021a3541306b236b597",
+      "tasks.md": "dcb05cf7cd7d3efa4ebab78753911dc3cec162cfbd86457e38b1805126070478"
     },
     "last_active_child_id": null,
     "last_active_at": null

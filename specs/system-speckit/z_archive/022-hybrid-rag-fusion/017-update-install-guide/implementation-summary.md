@@ -4,7 +4,6 @@ description: "Summary of the install guide update."
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "017"
   - "update"
 importance_tier: "normal"

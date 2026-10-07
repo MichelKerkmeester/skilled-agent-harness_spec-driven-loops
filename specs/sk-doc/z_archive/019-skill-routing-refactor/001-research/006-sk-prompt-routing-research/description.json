@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
   "description": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
   "keywords": [
     "sk-prompt",

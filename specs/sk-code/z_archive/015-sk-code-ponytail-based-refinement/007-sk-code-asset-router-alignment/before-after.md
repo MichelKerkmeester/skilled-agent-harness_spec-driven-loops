@@ -9,15 +9,19 @@ importance_tier: "normal"
 contextType: "general"
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
 # Before / After — Phase 007: sk-code Asset-Template + Smart-Router Alignment
 
+<!-- ANCHOR:metadata -->
 > **Scope**: `sk-code/SKILL.md §2` router conformance + five `*_authoring.md` asset fixes + two reference label cleanups.
 > **Commits**: `dae3b6d4ed` (feature) and `74ed061d66` (version bump).
 > **Standard conformed to**: `sk-doc` `skill_asset_template.md`, `skill_smart_router.md`, `skill_md_template.md`.
 > This is a **supplementary** doc (no `_memory:` block, no template markers) so it is not structure-validated by `validate.sh --strict`.
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## At a Glance
 
 | # | Area | Before | After |
@@ -29,9 +33,11 @@ contextType: "general"
 | 5 | Version metadata | `SKILL.md version: 3.3.1.0`; `description.json version: 3.3.0.0`; latest changelog `v3.4.0.0` | `SKILL.md` + `description.json` both `3.5.0.0`; new changelog `v3.5.0.0.md` |
 
 **Design preserved**: the surface-first **two-axis** router (Code Surface → Intent) and the deferral of heavy `INTENT_SIGNALS` / `RESOURCE_MAP` pseudocode to `references/smart_routing.md` were **not** changed. No `STACK_FOLDERS` map edit, no Iron Law wording change, no routing-behavior change.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:comparison -->
 ## 1. Smart Router §2 — Resource Loading Levels (NEW, inline)
 
 The router had per-surface and authoring-time loads described in prose but no canonical loading-levels table; the three-tier model only existed inside `references/smart_routing.md`. The reader had to leave `SKILL.md` to see what loads when.
@@ -132,9 +138,11 @@ Labels now match their targets, duplicates removed, each link gained a one-line 
 
 ### After
 `SKILL.md` and `description.json` both `3.5.0.0`; new changelog `changelog/v3.5.0.0.md` documents the §2 conformance + checklist alignment + reference cleanup. SKILL version now equals the latest changelog (`v3.5.0.0`).
+<!-- /ANCHOR:comparison -->
 
 ---
 
+<!-- ANCHOR:notes-caveats -->
 ## Collateral Changes Carried in the Same Commit
 
 Two edits rode along in `dae3b6d4ed` that were **outside** 007's stated additive scope. Recorded here for transparency; both are reversible and lost no information.
@@ -143,9 +151,11 @@ Two edits rode along in `dae3b6d4ed` that were **outside** 007's stated additive
 |--------|--------|-------------|
 | Removed the `🎯 Template customization surface` callout from `SKILL.md §1` | It was a pointer paragraph duplicating the root **README §4 "Customizing for Your Stack"** (README.md:1305), which still carries the full customization map | No guidance lost — README §4 is the canonical home; the SKILL.md copy was redundant |
 | Added a `Baseline & blast-radius` paragraph after the Iron Law | Auto-inserted by the repo linter/hook; restates the CLAUDE.md "baseline before no-regressions" + "match effort to blast-radius" operating discipline | Kept — aligns with house operating discipline |
+<!-- /ANCHOR:notes-caveats -->
 
 ---
 
+<!-- ANCHOR:net-effect -->
 ## Verification (live re-run on `system-speckit/027`)
 
 | Check | Command | Result |
@@ -156,6 +166,7 @@ Two edits rode along in `dae3b6d4ed` that were **outside** 007's stated additive
 | STACK_FOLDERS still parseable | `verify_stack_folders.py` (prior run) | exit 0 |
 | Iron Law wording intact | `check-rule-copies.js` | exit 0 |
 | SKILL version == latest changelog | `grep version` vs `ls changelog/` | `3.5.0.0` == `v3.5.0.0.md` |
+<!-- /ANCHOR:net-effect -->
 
 ---
 

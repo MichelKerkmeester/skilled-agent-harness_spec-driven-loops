@@ -3,7 +3,7 @@
   "type": "phase",
   "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment/",
   "level": 3,
-  "specFolder": "sk-design/009-sk-design-claude-parity/007-procedure-card-template-alignment",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/007-procedure-card-template-alignment",
   "description": "Phase 003 invented a private procedure-card schema (`shared/procedurecardschema.md`) and fourteen cards without checking whether the pattern should",
   "keywords": [
     "phase",

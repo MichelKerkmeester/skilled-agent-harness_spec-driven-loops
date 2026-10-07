@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
+  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
   "description": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
   "keywords": [
     "cursor",

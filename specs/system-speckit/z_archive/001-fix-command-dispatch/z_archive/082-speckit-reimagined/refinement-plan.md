@@ -1,3 +1,14 @@
+---
+title: "SpecKit Reimagined: Refinement Implementation Plan"
+description: "Detailed refinement actions addressing documentation issues identified in the comprehensive review."
+trigger_phrases:
+  - "speckit reimagined refinement plan"
+  - "documentation refinement actions"
+  - "review issue remediation plan"
+importance_tier: "normal"
+contextType: "planning"
+---
+
 # 082 Refinement Implementation Plan
 
 > **Created:** 2026-02-01  

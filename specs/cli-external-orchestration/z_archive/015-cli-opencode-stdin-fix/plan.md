@@ -1,6 +1,11 @@
 ---
 title: "Plan — 097 cli-opencode stdin-redirect fix"
 description: "Step-by-step plan for adding </dev/null to all 4 YAML workflows + cli-opencode skill files + 2 stress scripts."
+trigger_phrases:
+  - "cli-opencode stdin redirect fix plan"
+  - "dev null dispatch hang plan"
+importance_tier: "important"
+contextType: "fix"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: 097 cli-opencode stdin-redirect fix
@@ -9,12 +14,15 @@ description: "Step-by-step plan for adding </dev/null to all 4 YAML workflows + 
 
 ---
 
+<!-- ANCHOR:summary -->
 ## OVERVIEW
 
 Mechanical edit packet. ~13 files touched. No new code logic, no schema changes, no behavioral semantics shift — only a 9-character shell redirect added to existing dispatch commands. Wall-clock target: 30 minutes.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## PHASES
 
 ### Phase 1: Patch 4 YAML workflow files (REQ-001)
@@ -85,12 +93,15 @@ If `barter/.opencode/skill/cli-opencode/SKILL.md` exists, apply the same ALWAYS 
 - Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/015-cli-opencode-stdin-fix --strict`.
 - Verify checklist.md items checked with file:line evidence.
 - Write implementation-summary.md.
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## DEPENDENCIES
 
 - None. Self-contained mechanical edit packet.
+<!-- /ANCHOR:dependencies -->
 
 ---
 
@@ -102,6 +113,7 @@ If `barter/.opencode/skill/cli-opencode/SKILL.md` exists, apply the same ALWAYS 
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## ROLLBACK PLAN
 
 If a YAML edit breaks workflow parsing or shell dispatch:
@@ -109,3 +121,4 @@ If a YAML edit breaks workflow parsing or shell dispatch:
 2. Re-apply manually with corrected `</dev/null` placement.
 
 The change is 1 line per YAML. Rollback is trivial.
+<!-- /ANCHOR:rollback -->

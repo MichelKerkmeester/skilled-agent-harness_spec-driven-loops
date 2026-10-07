@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
-  "spec_folder": "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/021-flatten-asset-subfolders",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/021-flatten-asset-subfolders",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Six sk-doc packets wrap their templates in a redundant single subfolder whose name just repeats the packet domain — e.g",
     "created_at": "2026-06-05T12:47:32.525Z",
-    "last_save_at": "2026-08-30T15:39:13.732Z",
+    "last_save_at": "2026-10-07T18:12:33.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08b53cd3f82256d3228f151cab6243fa9d0f04b109cd12633d5ab2ef8a97a537",
+    "source_fingerprint": "sha256:63d12511dc7b30906da1f02d7c800df005608250b19ee9b4689187bd4c73bd60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a20986d2b04d73fce419338dafb1d67e8a3d2e9a382ab1d25368990c8df7e556",
-      "plan.md": "749f8a11be9dbaa97fd014f9325e29c2f5ddcad970be4cda7668cde57d62fed5",
-      "tasks.md": "b454aae505b2b15842f17b6154a4eaf1917d4fe91118e1d341af5c4122dc1cee",
-      "implementation-summary.md": "86637adc5286d5b36b11ddadd5fce3c84df27ee6f2d238a992f6257d124f82ea"
+      "spec.md": "eafe0fe2e27549abf910b22c884dc79a76b99efd9993c6b386119184c672110c",
+      "plan.md": "aa2dc1a39151983dc274f19f55e9736888a7c9c5cce323ee0f337d5189549c21",
+      "tasks.md": "6d2204ce50ebeacca5dd4f22b4e58f505cec9cf71dab29fe345d92c49b51b8e5",
+      "implementation-summary.md": "6b0375c2502f0fce98e96889c9a59bfefcffa35d61d5e0af6a80a847e51b2bd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

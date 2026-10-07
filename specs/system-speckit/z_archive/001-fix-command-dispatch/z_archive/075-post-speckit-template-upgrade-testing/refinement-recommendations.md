@@ -1,3 +1,7 @@
+---
+title: "Refinement Recommendations: SpecKit Template Optimization"
+---
+
 # Refinement Recommendations: SpecKit Template Optimization
 
 > **Spec:** 074-speckit-template-optimization-refinement

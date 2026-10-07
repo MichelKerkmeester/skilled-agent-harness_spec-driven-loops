@@ -6,7 +6,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex"
     last_updated_at: "2026-05-03T08:22:11Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Live MCP replay passed after restart; 001 emits GO for 002"

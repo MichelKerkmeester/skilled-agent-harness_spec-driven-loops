@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/006-design-mode-consolidation",
-  "spec_folder": "sk-design/012-sk-design-program/006-design-mode-consolidation",
-  "parent_id": "sk-design/012-sk-design-program",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/006-design-mode-consolidation",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/006-design-mode-consolidation",
+  "parent_id": "sk-design/z_archive/012-sk-design-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-09-10T20:50:11.047Z",
+    "last_save_at": "2026-10-07T18:12:34.615Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,16 +218,16 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c8faebdd45f7b1724aeec9113fd63276a545b36e8e41dabee49520041ab4e07d",
+    "source_fingerprint": "sha256:9575fff14449fb28cbaf66dedd19fc5ff672d50834f043ee043d03b2865c6217",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f09a984bfb3dfa9a0480d4150482c20cfab33d355bb539a1f0d669daeeea33a",
-      "plan.md": "ca97b19f6628f2b9c21871a055f8be7a47ee0ec26cc79b59572402ccd9a5feec",
-      "tasks.md": "42b0e33a76af8003dbe50fb34f31f70cd3ecc3082b31ecd035b262a995125aae",
+      "spec.md": "94279ea42304fb4c0da8a121b3ab57e8bb4899912d7e5d2a41506ab2f2ffd7ae",
+      "plan.md": "c2695d1029018b20d2e88c4bfd9313b793cfa41d09c81d0a0aed8579168fc272",
+      "tasks.md": "8cc3fdea5f33d4fef8de1b9b6d8e0be3ba4c1b08119536256bcf68c9b12e37bd",
       "decision-record.md": "856e63422b21c36e780cd931e821915626ca9a2d339bf34fb3c54c706de68946",
-      "implementation-summary.md": "175e697f1f00dcb3854ad6c4a407e9625fdee842c280c7f1cbf3ebb4763de11f",
+      "implementation-summary.md": "daae1103e9cf7f357537f88dffab866ffc033dde020c71b2f21e9b8b2dd0ab86",
       "research/research.md": "2328551d69cdb968a8855cab3142a002492a764fd477dbd767d7dd19dd98f9fa",
-      "handover.md": "f81742d8e105e02774adc8e5fb88e0543729ad2a4fc8bd368e813eae09dbd942"
+      "handover.md": "e22e361c8517c4765ed6dc5d91709016b6eb5250952a2e6937f7751a9ab32aed"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,16 +2,14 @@
 title: "Implementation Plan: Phase 1: discovery-impact-map"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "sk improve prompt rename discovery plan"
+  - "sk improve prompt discovery impact map"
+  - "phase 001 discovery impact map plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map"
     last_updated_at: "2026-05-06T10:45:10Z"
     last_updated_by: "codex"
     recent_action: "Completed active reference inventory and edge-case audit"

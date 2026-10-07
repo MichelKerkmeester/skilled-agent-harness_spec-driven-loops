@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt"
     last_updated_at: "2026-08-04T13:24:03Z"
     last_updated_by: "008-sk-prompt"
     recent_action: "Marked tasks with evidence and validated"

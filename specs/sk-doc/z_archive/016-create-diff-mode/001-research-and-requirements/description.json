@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/016-create-diff-mode/001-research-and-requirements",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements",
   "description": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
   "keywords": [
     "people",

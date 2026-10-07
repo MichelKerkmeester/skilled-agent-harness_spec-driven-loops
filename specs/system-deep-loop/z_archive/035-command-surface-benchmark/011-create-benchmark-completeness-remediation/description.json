@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/011-create-benchmark-completeness-remediation",
   "description": "Remediate the create-benchmark authoring home against the Fable 5 + GPT-5.6 Sol Ultra dual review: fix the broken smart-router fallback, add a",
   "keywords": [
     "remediate",

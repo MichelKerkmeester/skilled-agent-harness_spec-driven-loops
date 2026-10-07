@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base",
   "description": "The sk-design `manualtestingplaybook` has never been exercised end-to-end against the real `cli-opencode` orchestrator for two specific behavioral",
   "keywords": [
     "sk-design",

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
   "description": "Independent GLM survivor audit, full four-hub gate reproduction, link set-diff against the frozen baseline, and packet documentation.",
   "keywords": [
     "independent",

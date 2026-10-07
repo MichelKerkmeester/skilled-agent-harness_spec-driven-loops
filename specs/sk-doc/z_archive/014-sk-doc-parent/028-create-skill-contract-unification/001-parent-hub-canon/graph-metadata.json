@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
-  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
-  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Bring the 7 parent hub SKILL.md files in this batch into full conformance with the parent-hub canon; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:25:49.673Z",
-    "last_save_at": "2026-08-30T15:39:13.883Z",
+    "last_save_at": "2026-10-07T18:12:30.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03a970e032b1643ed223cf7dd838037dfec879f63e800a8edb6464026e255ad9",
+    "source_fingerprint": "sha256:1ab57861e42c61440da27778ca9500c109a63934a3d14a60efde7f777d0d7317",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf5d37c9175891e0607daacb36037a684d4c894108ac1cb0e4dfeb7ccbbe0d07",
-      "plan.md": "796088024d8fb3601b6c5659756bd4e228099431056b17ab7e654c8570dac959",
-      "tasks.md": "6c4d9379dc57e780063eba916d2fca9c35be4c17af73c7c0dd0e8300e4606685",
-      "implementation-summary.md": "4a31fd140d647b451fb2bfcda3ad4d488267381ef472b206316f34962c08fc04"
+      "spec.md": "3be420bcee167888d42e68746dd2d717adad24a87a43e5bdb3b2f88bf3affaca",
+      "plan.md": "0be7ea3a8999c1e1a0e88327177af4493b210b7b40f2d129ddd444cd75499c59",
+      "tasks.md": "cc2eb196b3b3b9389f0a93d748f204f31dce9b71d14f2c1bb1a4ca7da2db0341",
+      "implementation-summary.md": "136db261a3efdd75ee20f9b07efadd8b7e4e2cf53beb7136a4dd1ec86f431a84"
     },
     "last_active_child_id": null,
     "last_active_at": null

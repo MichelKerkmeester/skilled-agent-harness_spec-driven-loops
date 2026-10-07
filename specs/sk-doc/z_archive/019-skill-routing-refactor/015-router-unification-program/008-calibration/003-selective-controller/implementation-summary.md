@@ -5,10 +5,7 @@ importance_tier: "critical"
 contextType: "implementation"
 status: "shadow-partial"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "selective controller implementation summary"
 ---
 # Implementation Summary
 

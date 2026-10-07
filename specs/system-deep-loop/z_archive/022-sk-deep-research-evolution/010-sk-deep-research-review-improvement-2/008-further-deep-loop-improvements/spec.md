@@ -2,7 +2,7 @@
 title: "Feature [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/spec]"
 description: "Completed Level 3 child-phase packet for the Phase 008 runtime-truth, graph-wiring, reducer-surfacing, fixture, and release-closeout work across sk-deep-research, sk-deep-review, sk-improve-agent, and the shared coverage-graph stack."
 trigger_phrases:
-  - "008"
+  - "further deep loop improvements spec"
   - "further deep-loop improvements"
   - "graph wiring"
   - "blocked stop surfacing"

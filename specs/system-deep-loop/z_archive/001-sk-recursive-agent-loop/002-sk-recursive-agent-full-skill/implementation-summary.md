@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-sk-improve-agent-full-skill |
+| **Spec Folder** | 002-sk-recursive-agent-full-skill |
 | **Completed** | 2026-04-03 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

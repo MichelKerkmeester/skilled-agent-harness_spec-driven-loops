@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement",
-  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement",
+  "packet_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
+  "spec_folder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory",
-    "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
-    "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement",
-    "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
-    "cli-external-orchestration/050-persona-injection-enforcement/005-verification"
+    "cli-external-orchestration/z_archive/050-persona-injection-enforcement/001-analysis-inventory",
+    "cli-external-orchestration/z_archive/050-persona-injection-enforcement/002-persona-injection-contract",
+    "cli-external-orchestration/z_archive/050-persona-injection-enforcement/003-cli-mode-enforcement",
+    "cli-external-orchestration/z_archive/050-persona-injection-enforcement/004-sk-prompt-alignment",
+    "cli-external-orchestration/z_archive/050-persona-injection-enforcement/005-verification"
   ],
   "manual": {
     "depends_on": [],
@@ -101,16 +101,16 @@
     ],
     "causal_summary": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor, cli-pi, cli-claude-code), it commonly sends only the task prompt to the dispatched model — without the target agent's persona/identity from the runtime agent directory (`.opencode/agents/.md`, `.claude/agents/.md`, etc.)",
     "created_at": "2026-08-19T06:31:08.040Z",
-    "last_save_at": "2026-08-30T15:39:08.146Z",
+    "last_save_at": "2026-10-07T18:10:57.750Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a2b0142289ebe70affdc6818d795d07852858434243ff9fcba68ddac9e5aadb5",
+    "source_fingerprint": "sha256:78181983fe222b8a71d486fada5b8f70f37b08c1e64c1b33db2e65019c161463",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ddcae5cc59fb9186bfe7a585c6000503828c7df69f678da278ae9db30dffeff2"
+      "spec.md": "717d2cbd9c891eceda4e025c748ff7ca2c15cfecd9433c4d7843eca10eeebca9"
     },
     "last_active_child_id": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
     "last_active_at": "2026-08-19T07:11:35.574Z"

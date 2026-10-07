@@ -1,9 +1,11 @@
 ---
 title: "Tasks: sk-design style database"
 description: "Task breakdown for the style database build."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/002-style-database/001-style-database"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/002-style-database/001-style-database"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -20,10 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "style database tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

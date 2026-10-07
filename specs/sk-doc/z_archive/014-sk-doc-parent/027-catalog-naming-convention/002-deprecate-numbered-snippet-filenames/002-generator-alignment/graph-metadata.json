@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
-  "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
-  "parent_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "align playbook generator slug filenames",
       "de-number playbook-generator.cjs",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "generator alignment plan",
+      "generator alignment tasks",
+      "generator alignment implementation summary"
     ],
     "key_topics": [
       "align",
@@ -33,10 +26,10 @@
       "de-number",
       "playbook-generator",
       "cjs",
-      "implementation",
+      "alignment",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -44,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "playbook-generator.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs",
         "source": "derived"
       },
       {
@@ -189,7 +175,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-snippet-filename deprecation. Fix playbook-generator.cjs so it emits descriptive-slug scenario filenames (with an optional stage: frontmatter field) instead of AG-NNN.md, and re-verify that the sk-doc convention docs (create-feature-catalog, create-manual-testing-playbook), their templates, and the four /create:* generator YAMLs already forbid numbered per-feature filenames. Small foundation phase — no folders renamed, no existing files touched here.",
     "created_at": "2026-07-11T14:47:54.283Z",
-    "last_save_at": "2026-09-11T16:42:01.151Z",
+    "last_save_at": "2026-10-07T18:12:22.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1aaf554a131d1ddfced60fd79ec17e5b2299b4b38dead95a5ad09ff7d4fc0cad",
+    "source_fingerprint": "sha256:dd50e2dd201fed4c25b55de251f1ab4dcd27ff8aa2af056cf53f8991af287ffa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd70eb3b4f0b7259a5024a66c596a68ad0a282943efc94ecd70fb722dc5f0019",
-      "plan.md": "91c3661f0fcb88edcf416edd5c4d070badb2c0cf135d82219f4d35667da3a293",
-      "tasks.md": "de145bc2f9002f1b4f6cbea2d6477e0891e09ed9b7f8d9b9085f9a8dfc9c4ce5",
-      "implementation-summary.md": "bceb54528d75a58c95d62d73136abc8db466e54d34e3d10d2cac651958ac6a0f"
+      "spec.md": "19858c0591fde960b6df454b22794215f6ed7546a07cee9eab3dc6a5d65a895f",
+      "plan.md": "038f668b6747f2f75a035983591d8a4a7b36bdb81bed51357f9306ca4b687289",
+      "tasks.md": "74a9283bee504535496137ac31bd56339c2ba7d04a856a26eea2bd323f4fc473",
+      "implementation-summary.md": "ce90c8a6ec9825c3419ec4b99c3e8c89fb6113a4f88df0ca0a49a65169a970c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

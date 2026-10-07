@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/032-split-doc-template-alignment",
-  "spec_folder": "sk-doc/032-split-doc-template-alignment",
+  "packet_id": "sk-doc/z_archive/032-split-doc-template-alignment",
+  "spec_folder": "sk-doc/z_archive/032-split-doc-template-alignment",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-09-11T16:42:12.113Z",
+    "last_save_at": "2026-10-07T18:14:18.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:604d8544d34d42a39f04235785dd661dfc0d46a279bb120ca537a93f5550525c",
+    "source_fingerprint": "sha256:34273ebccde017a6ba6caad257e09add7817184fc63092c2c0abfcca48a91fc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d310ce219d18f8734dcc4f713cdb2551868c3e31fc674a9e5bfb12540d7a9cc",
-      "plan.md": "287f6a96799ec4b6b3610c187859320ff86d87c787c457cdfcf9d17573d07e57",
-      "tasks.md": "7bd0243aa671693586df17dad27daaf5746eb5ca90c7bc0d75c5cc3d8a63e80f",
-      "implementation-summary.md": "a71ec8796bb8dcdeffb959df59f6b1b243997317395905042249bb6cc7df727d"
+      "spec.md": "ed1e4a337e83df7b9c363a5c441bb8dec92aa6c101fe52c78c7d076b3d6f86f7",
+      "plan.md": "9f76797d60329c4285d914b35defb3b6e8337514f6336821fb4af836e7abe352",
+      "tasks.md": "3ea19b837e8b87aebe35af014e0dc5ba5a529fbb3538dcec04e0498ae3dc38c3",
+      "implementation-summary.md": "d8d4aa6ee3a3aeb661d78009752d0d0f6f7145740b3fe7679759f93de3799b37"
     },
     "last_active_child_id": null,
     "last_active_at": null

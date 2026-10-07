@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
     last_updated_at: "2026-07-26T19:05:13Z"
     last_updated_by: "opencode"
     recent_action: "Reconciled hook truth, runtime mirrors, Cursor discovery and local Zed MCP settings"

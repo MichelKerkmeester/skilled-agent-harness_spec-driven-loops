@@ -213,7 +213,7 @@ contextType: "decision"
 
 ### ADR-001: Canonical Frontmatter Contract Before Reindex
 
-<!-- ANCHOR:adr-001-context -->
+<!-- ANCHOR:adr-001-context-2 -->
 ### Metadata
 
 | Field | Value |
@@ -232,7 +232,7 @@ We need one predictable metadata contract before rebuilding indexes. Legacy docu
 
 - Migration must be idempotent and safe to rerun.
 - Existing document content outside frontmatter must remain unchanged.
-<!-- /ANCHOR:adr-001-context -->
+<!-- /ANCHOR:adr-001-context-2 -->
 
 ---
 

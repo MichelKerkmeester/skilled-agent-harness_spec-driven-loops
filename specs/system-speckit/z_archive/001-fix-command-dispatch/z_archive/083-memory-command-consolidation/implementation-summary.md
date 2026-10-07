@@ -7,7 +7,6 @@ trigger_phrases:
   - "memory"
   - "command"
   - "consolidation"
-  - "implementation summary"
   - "083"
 importance_tier: "normal"
 contextType: "implementation"
@@ -233,7 +232,7 @@ $ grep -r "memory_drift_learn" .opencode/
 
 ---
 
-<!-- ANCHOR:verification -->
+<!-- ANCHOR:verification-2 -->
 ## Final Verification: 17-Agent Parallel Audit
 
 On 2025-02-03, a comprehensive verification audit was performed using 17 parallel agents to check all system-spec-kit documentation for any remaining legacy command references.
@@ -277,7 +276,7 @@ Each agent searched for these 7 legacy patterns:
 - `/memory:manage checkpoint` (replaces /memory:checkpoint)
 - `memory_context` (replaces memory_drift_context)
 
-<!-- /ANCHOR:verification -->
+<!-- /ANCHOR:verification-2 -->
 ---
 
 ## ADR: Memory Command Consolidation

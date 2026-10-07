@@ -154,7 +154,6 @@ Execute all 7 analysis scenarios from the manual testing playbook, producing pas
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Test Execution
@@ -165,7 +164,6 @@ Execute all 7 analysis scenarios from the manual testing playbook, producing pas
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Scenario-Specific

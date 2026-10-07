@@ -19,7 +19,7 @@
   "level": 3,
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/005-parity-benchmark-release-gate",
   "description": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop",
   "keywords": [
     "parity",

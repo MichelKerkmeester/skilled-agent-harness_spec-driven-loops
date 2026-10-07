@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/003-advisor-standards-alignment"
     last_updated_at: "2026-04-23T10:52:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed documentation/cosmetic standards alignment"

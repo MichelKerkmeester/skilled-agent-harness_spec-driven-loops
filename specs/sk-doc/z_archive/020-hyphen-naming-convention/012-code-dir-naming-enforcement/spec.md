@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
     last_updated_at: "2026-07-20T10:42:52Z"
     last_updated_by: "spec-author"
     recent_action: "Author the 012 code-dir naming-enforcement phase spec"

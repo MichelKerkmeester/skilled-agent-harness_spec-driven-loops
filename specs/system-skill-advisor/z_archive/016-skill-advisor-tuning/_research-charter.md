@@ -1,3 +1,13 @@
+---
+title: "Deep-Research Charter: skill-advisor scorer and parent-hub compatibility"
+description: "Read-only research charter ranking the angles for the skill-advisor scorer, its parent-hub compatibility and the pending reindex workstreams."
+trigger_phrases:
+  - "advisor scorer research charter"
+  - "parent hub compatibility research"
+importance_tier: "important"
+contextType: "research"
+---
+
 # Deep-Research Charter — skill-advisor scorer, parent-hub compatibility
 
 **HARD READ-ONLY.** Proposals and reports only. NEVER edit, write, or commit the advisor TS or Python under `mcp_server` — it is a live gated lane with another agent's staged changes. Write only to the research artifacts under this spec folder.

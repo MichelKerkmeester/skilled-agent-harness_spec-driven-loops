@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "database/context-index.sqlite"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Review",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has undergone a major template architecture upgrade to CORE+ADDENDUM v2.0",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-08-30T15:39:37.439Z",
+    "last_save_at": "2026-10-07T20:18:01.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f2a4245797ab215b8048b2ac2ba4e27affbeca2cc5c63bda8748395d407ff84",
+    "source_fingerprint": "sha256:c8a65ac2d748f52f47981a9f1dbaea52843d641cac0b32e18681ce71edd58631",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ccbb5a3d6ceb1098a7d3faac0038d2bb2472b09489ad55d6872589d5fafdd1b7",
-      "plan.md": "59a6241f5a5338ea0671821ab9f59586c93dc94645ad01899a32c0d0ce380ebd",
+      "spec.md": "1f90c4ebb524de7d3e8a675975c439e6b00c627015b78f4048aae477d28ab513",
+      "plan.md": "8e24ee9573030c6657cf6f19329dde8b8fe4254b33575ef3ccf6a8be24a71e19",
       "tasks.md": "57964ae38aadf7b13c23afce76ef468cd34b73f5ff90b23889ccb8c674ede630",
       "decision-record.md": "fe8317558ad5010090e914f1c8271d1e23cc916085b057b96763598650cce364",
-      "implementation-summary.md": "7f60ac7e8efc4ab9201cabdd397967262c8ac124e0277952ec82b7586829cf76"
+      "implementation-summary.md": "12488715dadd14b2524206f4999a510a75088c0cc97f4a15169ee7316b1bb090"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
-  "spec_folder": "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
-  "parent_id": "sk-doc/040-create-repo-rules",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/006-command-and-hub-wiring",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/006-command-and-hub-wiring",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The packet is complete and unreachable",
     "created_at": "2026-08-31T11:33:11Z",
-    "last_save_at": "2026-08-31T13:34:00.171Z",
+    "last_save_at": "2026-10-07T18:14:21.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aca29b0b9836cf24635b2369fb6756391109fc71c9c3c232231f9d9b6753fc9d",
+    "source_fingerprint": "sha256:7f21be3beabd9e27071afa7067b6a3580e2e7fd941bed00e68ef0c06938f0323",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47dd9c22cb7792b56f0e612428ed6171767188a78978656ed5884a153302295a",
       "plan.md": "07d00197a91c8203fc1540585c658232266b342f03c3249e064ba3a55a188d04",
       "tasks.md": "46c067856a95c962ac400f83e0f223dd1269bd536fe368ea936b109d0a252ff9",
-      "implementation-summary.md": "7898ac7cb0185e2637eefaf1ba590aa901e220dbc243c786992da164c12221bd"
+      "implementation-summary.md": "f1d9d7a823d6570376e8c538c76e534b183ffc817524ef3df4d26a0cb2922487"
     },
     "last_active_child_id": null,
     "last_active_at": null

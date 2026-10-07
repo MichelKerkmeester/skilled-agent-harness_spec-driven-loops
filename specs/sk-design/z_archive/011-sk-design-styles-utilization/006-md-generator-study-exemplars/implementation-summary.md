@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/006-md-generator-study-exemplars"
     last_updated_at: "2026-07-18T19:07:27Z"
     last_updated_by: "claude"
     recent_action: "Built and verified STUDY exemplars; 162/162 tests, injection-neutralized, real retry"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human entry point",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-08-30T15:39:14.411Z",
+    "last_save_at": "2026-10-07T18:12:32.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3080bd46d81017b528e28a14c03e73e3c98b113cf5f716182f1f0a195cf62200",
+    "source_fingerprint": "sha256:7d8a5a55fe20f0d3425e59ed002759881f4dd4cda52ba5a4de0b64a26d427462",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27b7de00d555d4140fdd2ab9fb78783a34287f903a5795ad468bcc2a6d04dc99",
-      "plan.md": "85e57d7d9162eb64940006b9740d09db51cdaf61a096453bc30afb492bf95717",
-      "tasks.md": "33cef99996b5038aef1571c5c73c4eef67c461f440c240f46579d5e71fd66aa2",
-      "implementation-summary.md": "7305d374d0b58a46c660069a51c945ab0251a86d8921c54b92b1932be170fd5d"
+      "spec.md": "202d384a75906d77d7b96b53e1345ae73cc6862a13771a412a1bc0f4194d4e8b",
+      "plan.md": "6b8b4bb236843dfec9d1789e6d47db777d7dec0df47d03cb6e529e9e5083d903",
+      "tasks.md": "f4070114a583109db78713e7f8f6c7bc668021afc367321e990209d4b637db4d",
+      "implementation-summary.md": "85be069a16ab8feb5f033e3e5b17bc6caa8d4191ac6c56cd86a7104f156e8e11"
     },
     "last_active_child_id": null,
     "last_active_at": null

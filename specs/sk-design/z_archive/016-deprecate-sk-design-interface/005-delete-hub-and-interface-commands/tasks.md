@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands"
     last_updated_at: "2026-08-19T12:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Deleted sk-design hub (328) + interface commands (8); survivor proven green first"

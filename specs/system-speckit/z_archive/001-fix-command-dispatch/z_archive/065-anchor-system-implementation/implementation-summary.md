@@ -2,12 +2,8 @@
 title: "...system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation/implementation-summary]"
 description: "Implemented the Anchor System backend logic, enabling targeted retrieval of specific memory sections. This feature allows AI agents to request only relevant context (e.g., \"summ..."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "anchor"
-  - "system"
-  - "implementation summary"
-  - "065"
+  - "anchor system implementation record"
+  - "targeted retrieval completion summary"
 importance_tier: "normal"
 contextType: "implementation"
 ---

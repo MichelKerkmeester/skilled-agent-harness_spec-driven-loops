@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/012-template-alignment",
+  "specFolder": "mcp-tooling/z_archive/012-template-alignment",
   "description": "The new `mcp-aside-devtools`, `mcp-refero`, and `mcp-mobbin` packet documentation had drifted from the canonical create-skill reference and asset",
   "keywords": [
     "new",

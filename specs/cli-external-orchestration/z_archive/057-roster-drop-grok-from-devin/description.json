@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/057-roster-drop-grok-from-devin",
+  "specFolder": "cli-external-orchestration/z_archive/057-roster-drop-grok-from-devin",
   "description": "The cli-devin allowlist advertised Grok 4.5 and 4.6 model ids (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`, `grok-4-6-high`, `grok-4-6-low`,",
   "keywords": [
     "cli-devin",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -153,7 +153,7 @@
     ],
     "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-08-30T15:39:16.634Z",
+    "last_save_at": "2026-10-07T18:13:19.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -161,12 +161,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:82f4c901a1848f8a544309510a3452352bc831e70eae5dfca0a65f71b0cb2e16",
+    "source_fingerprint": "sha256:ab5ced8b9df02b06428b8d8057cfcc385c3fdcd0d8e9b67d0f4be879aaae5375",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c1b371a977e20fc1e8649b0cf19ded97d7d8a6da1a358b66fa2320c725194a2",
-      "plan.md": "3e608255d1149b67c9250c67a0e7dd97376e4bb126237e8286d058c3dfe67680",
-      "tasks.md": "0d0d26acd363f2eba4193f1650db5b4d1d8dc44099002c907cb252ecd35afbcf"
+      "spec.md": "b873ff08a20ce0fe23f3eeb028f8ba63a93354099cd6e18669bc3c48b384871b",
+      "plan.md": "8d0c41daca98f7dd61c4f8da0ede409e31f4e6bcc59fd5df0d356f943abc3593",
+      "tasks.md": "7d576af01c58d1645a88f83bd0ba8572da8063a85d7995477b0b5a6dd32794b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

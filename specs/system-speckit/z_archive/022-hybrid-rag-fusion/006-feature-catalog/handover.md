@@ -21,15 +21,18 @@ _memory:
     key_files: ["handover.md"]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
+<!-- ANCHOR:handover-summary -->
 # Session Handover: Feature Catalog Audit & Remediation
 
 **Date**: 2026-03-08 (historical snapshot), addendum updated 2026-03-16
 **Spec Folder**: `system-spec-kit/022-hybrid-rag-fusion/006-feature-catalog`
 **Branch**: `main`
 **Session Duration**: ~2 hours (across context continuations)
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## What Was Done
 
 ### Phases A-D: COMPLETE
@@ -111,8 +114,11 @@ _memory:
 2. `slug-utils.ts` -> REMOVE (2 snippets)
 3. `check-architecture-boundaries.ts` -> REMOVE (1 snippet)
 
+<!-- /ANCHOR:context-transfer -->
+
 ---
 
+<!-- ANCHOR:next-session -->
 ## What Remains: Phase F (Remediation Execution)
 
 Phase F is defined in `tasks.md` (remaining open work is T100-T171; T128-T129 addendum follow-ups are now complete) and `scratch/remediation-manifest.md`.
@@ -179,8 +185,11 @@ Phase F is defined in `tasks.md` (remaining open work is T100-T171; T128-T129 ad
   generate-source-files.mjs            # Dep-graph + annotation helper
 ```
 
+<!-- /ANCHOR:next-session -->
+
 ---
 
+<!-- ANCHOR:session-notes -->
 ## Errors Encountered & Fixed
 
 1. **Script PROJECT_ROOT off by one level** — Fixed from 5 `../` to 6 `../` in launch-audit-agents.sh
@@ -216,3 +225,5 @@ Start with E1: Batch Fixes (P0) — the three invalid path corrections:
 
 Then proceed to F2: 18 feature rewrites (T110-T127). Addendum follow-up tasks T128-T129 are already complete and do not need rework.
 ```
+
+<!-- /ANCHOR:session-notes -->

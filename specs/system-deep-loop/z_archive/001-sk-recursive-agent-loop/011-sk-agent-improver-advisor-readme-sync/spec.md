@@ -19,6 +19,9 @@ _memory:
 ---
 # Spec: Skill Advisor Routing + README Sync
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
@@ -27,7 +30,9 @@ _memory:
 | Parent | 041-sk-improve-agent-loop |
 | Phase | 011 |
 | Estimated LOC | 60-80 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 After Phase 008-010, the skill advisor and skill README are outdated:
@@ -35,6 +40,7 @@ After Phase 008-010, the skill advisor and skill README are outdated:
 1. **Skill README** (`skill/README.md`): Lists sk-improve-agent at version 0.1.0.0 with old description. Should be 1.0.0.0 with 5D scoring, integration scanning, dynamic profiling.
 2. **Skill advisor** (`skill/skill-advisor/scripts/skill_advisor.py`): Missing routing for Phase 008+ capabilities — no entries for "5-dimension", "integration scan", "dynamic profile", "/deep:start-agent-improvement-loop", "evaluate agent", "score agent". Also missing COMMAND_BRIDGES for `/deep:start-agent-improvement-loop`, `/prompt`, and all `/create:*` commands.
 3. **Barter sync**: The Barter version at `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter/coder/.opencode/skills/skill-advisor/scripts/skill_advisor.py` needs the same COMMAND_BRIDGES additions (for `/prompt` and `/create:*` commands) even though it doesn't have sk-improve-agent.
+<!-- /ANCHOR:problem -->
 
 ## Solution
 
@@ -42,6 +48,7 @@ After Phase 008-010, the skill advisor and skill README are outdated:
 2. Add missing routing entries to skill advisor (INTENT_BOOSTERS, PHRASE_INTENT_BOOSTERS, COMMAND_BRIDGES)
 3. Sync COMMAND_BRIDGES to Barter advisor
 
+<!-- ANCHOR:scope -->
 ## Scope
 
 ### In Scope
@@ -55,7 +62,9 @@ After Phase 008-010, the skill advisor and skill README are outdated:
 - Barter skill/README.md (sk-improve-agent intentionally removed from Barter)
 - SKILL.md description update (separate concern)
 - New scripts or evaluation logic
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 | ID | Requirement | Acceptance Criteria |
@@ -65,9 +74,12 @@ After Phase 008-010, the skill advisor and skill README are outdated:
 | REQ-003 | Advisor routes /deep:start-agent-improvement-loop command | `skill_advisor.py "/deep:start-agent-improvement-loop"` returns sk-improve-agent >= 0.8 |
 | REQ-004 | COMMAND_BRIDGES includes /deep: and /create: commands | All slash commands have bridge entries |
 | REQ-005 | Barter advisor has same COMMAND_BRIDGES | Barter version has /prompt and /create:* bridges |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success Criteria
 
 - `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "evaluate agent with 5 dimensions" --threshold 0.8` returns sk-improve-agent
 - `python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/deep:start-agent-improvement-loop" --threshold 0.8` returns sk-improve-agent
 - skill/README.md shows `sk-improve-agent | 1.0.0.0`
+<!-- /ANCHOR:success-criteria -->

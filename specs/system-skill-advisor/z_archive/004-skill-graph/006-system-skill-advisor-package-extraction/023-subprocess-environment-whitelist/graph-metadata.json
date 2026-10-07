@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Packet 018 deferred subprocess env hardening because the launcher, plugin bridge, and Python shim inherited broad parent environments",
     "created_at": "2026-05-15T10:50:16Z",
-    "last_save_at": "2026-08-30T15:39:26.585Z",
+    "last_save_at": "2026-10-07T18:15:47.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c57fe0ec0c7ac97d1970c39f13495fad184c071aa5c38aad37cf1fb16f10e6d7",
+    "source_fingerprint": "sha256:bc0dd236f910ccd06b3c51a24b16459bd280294c88c65abdb5eea903bf432710",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e711fca0dcc0b0567a7ec5c5292811cdbfba093214a6b7dd32e31b739695a00",
-      "plan.md": "1745c06ba5dd91d1b40f353388a3896d25ca3ffe4f7400ec444f400813d317da",
-      "tasks.md": "faaea2054f74459a48bf6a7373d906728c7a877a96858bc6449ab8f9041f67b6",
-      "implementation-summary.md": "6ce5f427886a0566a4103b9efe5f519f3fa22977a53d7abe2b8e9fb18e4ab22d"
+      "spec.md": "46b8d3d1984e2410efd25b656938d7d0396ee83d6de32f8553218d65805e1bd2",
+      "plan.md": "b58b634440d1d82a62470cf685265cd9debdaa45f45ba512b5d7fa1a2a13aa5d",
+      "tasks.md": "b4f643bcd0cd393ce091fb66407662499deb7960d8258997451b8dbb68ededcb",
+      "implementation-summary.md": "9b13fc8d512424f3d86095c4865c62790a828001641b25a46f747d79f19e9ca0"
     },
     "last_active_child_id": null,
     "last_active_at": null

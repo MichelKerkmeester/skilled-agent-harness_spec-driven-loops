@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract"
+    packet_pointer: "mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract"
     last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
     recent_action: "Recorded the answers to this phase's open questions"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The original gap was that new parent hubs could not express a deliberate compiled state",
     "created_at": "2026-07-20T17:46:53.250Z",
-    "last_save_at": "2026-08-30T15:39:15.168Z",
+    "last_save_at": "2026-10-07T18:13:25.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b832d460dd72142fbc3cef53c5762247629a4e3d931d11cd195a3ab144a9e2e4",
+    "source_fingerprint": "sha256:92fdf91a9de7240b025f0cb034435736222e097acb5da21aefb50cf093508f07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "732808c810e575b2fff8db50691381e9a563dbf3f3ed3e0de4774607532d3192",
-      "plan.md": "d3ea1f3fd251093d3ac342a1b48ea99f9d88e2af36d67d23fb3ee25fe1a2b1b9",
-      "tasks.md": "cb1cbb7dedbf011ebda3dc3b1a809091db9028aadf52884e0187149884c57dac",
-      "implementation-summary.md": "ddc8762c3267f4ad230dfb37b325ec5d35f28c0051e79240ad255553fce20f18"
+      "spec.md": "644967cea0fcba99d9ca2d849bc54e2e412dccd3d3c6ecb3b42a945798613306",
+      "plan.md": "10e5808c7dc5126da683d09a214739c502da363fa5d581144f474f5508cfff6f",
+      "tasks.md": "e16d561fcc5a523cced95131b4990a8cf31ea1bc0c15564d7ad3f318ce1431f1",
+      "implementation-summary.md": "89428dc3797c2be13240f958da2d81dd5a7be95f09ab8f91e561507c9b18b834"
     },
     "last_active_child_id": null,
     "last_active_at": null

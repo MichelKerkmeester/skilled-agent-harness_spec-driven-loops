@@ -2,8 +2,8 @@
 title: "Tasks: Wave Executor [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "042.003"
-  - "tasks"
+  - "wave executor tasks"
+  - "wave executor task list"
   - "wave executor"
   - "segment planner"
 importance_tier: "important"

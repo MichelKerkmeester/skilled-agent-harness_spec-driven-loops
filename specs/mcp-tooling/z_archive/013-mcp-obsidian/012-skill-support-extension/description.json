@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/012-skill-support-extension",
   "description": "Phase 11 put health-md in every vault, but the `mcp-obsidian` mode knows nothing about it",
   "keywords": [
     "phase",

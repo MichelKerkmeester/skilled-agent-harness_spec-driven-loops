@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
   "description": "Gated design spike (O8, single-lineage hypothesis): design a way to project high-specificity per-mode vocabulary from",
   "keywords": [
     "gated",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,7 +41,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs"
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs"
     ],
     "entities": [
       {
@@ -75,9 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "post-tool-use.mjs",
+        "name": "spec-gate-enforce.mjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "All Cursor",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator asked directly: \"make sure all hook code aligns with sk-code code-opencode standards.\" `sk-code`'s `code-opencode` surface packet is the canonical evidence base for `.opencode/` system code (TypeScript/JavaScript/Python/shell/config standards, and — specifically relevant here — a dedicated `references/shared/hooks.md` covering \"runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability.\"",
     "created_at": "2026-07-24T17:25:17.654Z",
-    "last_save_at": "2026-08-30T15:39:07.528Z",
+    "last_save_at": "2026-10-07T18:11:40.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:484c3a794ef455ba833c4e8272e9bf6e3dcca8c8204144fb547f0276443cedf1",
+    "source_fingerprint": "sha256:c84549b0e10431fc62aec580744366f260ae9902c26ad5da41d06c65649dbe1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f81e5c235b2251740ad0eac181fa3e8e15a74d00e575fb8672998647bd41f54",
-      "plan.md": "1b4c43dadeb3206e2685f65597e9cba2c79bc51a8b2f8c577d13499ff8661363",
-      "tasks.md": "b23d66b19ca33359177cdc739d4ac4af2520619a87399a2677655eab8b8b2413",
-      "implementation-summary.md": "4e3bff997d1a065b21e227ed4fe1dd0c4638ad2fad0ee5b2752d30b97d2d2dec"
+      "spec.md": "e19ac63f4b315eab018fa3b3acbae3629bce33ff39efc740849cedb2412e15e4",
+      "plan.md": "9a8384f78fa7efa2e7f808be59ce7f9d7ee7436def7a2ae769a164f4aa7e6ec6",
+      "tasks.md": "100f3d5eb5ce07c36df2bb54ed05750dccce139ef319b4005dfc6eec1591f195",
+      "implementation-summary.md": "f7fc45c7c536d2a9f4a58e73b276c1be2500aad9fa4afa70ab31adcff827d576"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,8 @@
 title: "...tem-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/decision-record]"
 description: "Task 02 requires systematic audit/creation of system-spec-kit SKILL.md and reference documentation. The scope must be clearly defined to ensure complete coverage while avoiding ..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "task"
-  - "skill"
-  - "references"
-  - "decision record"
+  - "skill speckit alignment decisions"
+  - "skill reference scope decision"
 importance_tier: "important"
 contextType: "planning"
 ---

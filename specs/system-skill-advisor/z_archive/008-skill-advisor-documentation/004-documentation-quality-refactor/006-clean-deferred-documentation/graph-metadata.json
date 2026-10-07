@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Children 002-005 deferred a set of findings from the 001 research synthesis",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.948Z",
+    "last_save_at": "2026-10-07T18:15:38.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cccb559e65a5968d988e2bbe898082c542b942d735b6ffd31985fc6971242c07",
+    "source_fingerprint": "sha256:71c6934094f05a756bdd1d4034e665df7c671f9d6415fd1c78d0c65bd4efda6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0fc37267c8f426aee7563465468d9362c8e947a0611576799b6f17ec666cd89",
-      "plan.md": "6c1f30dd14db9487e93e7ee2464f1548011fe65d2b36df880a08fc503efa9fc3",
-      "tasks.md": "266ae8a088c7978b7c1f54984d53c5f1c66781e7e4dd73b802d7991e3f874922",
-      "implementation-summary.md": "222a4b749a82afbdc5aef16f0a4249f9be689da77a06c1661503867b0213933b"
+      "spec.md": "aa43bc51cbf3d2dd482ef786b67ae10380f5bbbabd0dfbf3c13804b22f8a1a1d",
+      "plan.md": "0b21788182799bb5b51768190f259d27e9e8ae3397497657886fd0b41d73dbfa",
+      "tasks.md": "9956ecdabe737893737a6f0a07169dda752df39063863bbe7da5b15d20395a65",
+      "implementation-summary.md": "d9b7b8c46e92c98d24e23fe1d545851bf420eca51e52b0ca2fc5e7cbac12bdee"
     },
     "last_active_child_id": null,
     "last_active_at": null

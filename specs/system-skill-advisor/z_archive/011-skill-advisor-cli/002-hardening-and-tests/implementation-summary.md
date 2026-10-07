@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/011-skill-advisor-cli/002-hardening-and-tests"
+    packet_pointer: "system-skill-advisor/z_archive/011-skill-advisor-cli/002-hardening-and-tests"
     last_updated_at: "2026-06-09T20:17:55Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Reconciled shipped hardening suites + passed tri-daemon drill"

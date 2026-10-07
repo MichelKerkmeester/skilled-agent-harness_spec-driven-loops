@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/007-docs-agents-governance-and-closeout"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
     recent_action: "cli-cursor added wherever siblings appear; whole packet 0/0"

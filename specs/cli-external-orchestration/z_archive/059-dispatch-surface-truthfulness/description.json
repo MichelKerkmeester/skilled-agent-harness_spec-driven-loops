@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/059-dispatch-surface-truthfulness",
+  "specFolder": "cli-external-orchestration/z_archive/059-dispatch-surface-truthfulness",
   "description": "A four-iteration review was dispatched and sat at 0.0% CPU for 7 hours 40 minutes, producing 39 bytes of output and no artifacts",
   "keywords": [
     "four-iteration",

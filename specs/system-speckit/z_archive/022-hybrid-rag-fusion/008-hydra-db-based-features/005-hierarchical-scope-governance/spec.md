@@ -71,10 +71,11 @@ This phase establishes the policy and lifecycle controls that keep memory state 
 - Retention and cascade deletion workflows
 - Audit evidence for policy and lifecycle actions
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -165,7 +166,7 @@ Make memory operations policy-aware, auditable, and safe across all relevant sco
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -184,7 +185,7 @@ Make memory operations policy-aware, auditable, and safe across all relevant sco
 - **NFR-O51**: Operators can explain allow/deny decisions.
 - **NFR-O52**: Rollback procedures are defined before broad rollout.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

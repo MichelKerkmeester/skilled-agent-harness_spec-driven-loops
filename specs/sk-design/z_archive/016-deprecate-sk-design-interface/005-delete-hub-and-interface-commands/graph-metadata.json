@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 005 deletes the sk-design judgment hub (.opencode/skills/sk-design/) and the /interface command namespace (.opencode/commands/interface/) after the extraction survivor is proven detached and green, honoring the extraction-before-deletion invariant.",
     "created_at": "2026-08-19T11:26:00.465Z",
-    "last_save_at": "2026-08-30T15:39:13.513Z",
+    "last_save_at": "2026-10-07T18:12:35.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a4386470bc6fd6c0de84c5dd554ae5fc32b43c8cf40714993360ec598381217",
+    "source_fingerprint": "sha256:a7f70d4ee01df9edad526dad3154a310597449d679045a4eb3be1f1e20e60646",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9cb2ed0250a0d1e36c722f7d6a7b274807b18901333e99e199e74a1b5bba0279",
-      "plan.md": "6a40f76bfb2ddd4125df4e1b4d753dd04480964874fde188316e7dff722da5d4",
-      "tasks.md": "323e7289f094ee78be6244a58e2f3d4218897ec70c19217444ef6698720cbd42",
-      "implementation-summary.md": "897cb3607496999b91a6d04dbf754dc9837ee11119a117e92ca8f3a876173dba"
+      "spec.md": "95156ed4eb4d6685d79b4a7599ba905fe22bd88e0cd8ecdb1d3399912125c507",
+      "plan.md": "0a04ab415480016807b2cf2f0e7c2652ee101ba9f717dd0487a921c11642befb",
+      "tasks.md": "8ab4d0311395ccbefe7cf6c0fff92d92a9ece07010be02c4772e66bf7e077b83",
+      "implementation-summary.md": "b216cca3bb42f7711c6851c9514bd3d7601c7969b77cdb6a025bb8b3fe308f7f"
     },
     "last_active_child_id": null,
     "last_active_at": null

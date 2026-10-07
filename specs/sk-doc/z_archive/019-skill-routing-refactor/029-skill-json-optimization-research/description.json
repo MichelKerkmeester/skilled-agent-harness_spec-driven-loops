@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research",
   "description": "Three-model, 15-iteration deep-research investigation (SOL-high / GLM-5.2-high / Grok-4.5-high, 5 iters each, all lineages concurrent, no early",
   "keywords": [
     "three-model",

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/003-assets"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/003-assets"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author assets audit spec"

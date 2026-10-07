@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/011-retirement-residue",
-  "spec_folder": "sk-design/014-template-conformance/011-retirement-residue",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/011-retirement-residue",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/011-retirement-residue",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,10 +45,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/install-guides/README.md",
       ".opencode/commands/README.txt",
-      "scripts/README.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -76,15 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install-guides/README.md",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "Two unrelated kinds of residue survived this session's earlier retirements",
     "created_at": "2026-07-27T16:52:21.024Z",
-    "last_save_at": "2026-09-11T16:41:57.472Z",
+    "last_save_at": "2026-10-07T18:12:24.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0c82ce4f7d96061b8c63af4dabbdf87202173fa3775beacf48e63cbc81e1e12",
+    "source_fingerprint": "sha256:c06dd992bd030b5d8187bd3f0b2a7c11d6570d60d6aa9b119d4fe43d7612fef4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66ea6bc72d864a3d43edafbebc9ffb3c940ce354c75be2bb5a3795c49000749b",
-      "plan.md": "c83e72f2a49b66280a5ece7d8752f2b24563914266513c558dd47643c6576f67",
-      "tasks.md": "c6ae39172352eeaffc95b44d6eba2f1256a32b377b10e5847ed5cba97b7d614d",
-      "implementation-summary.md": "d0b9e10cd33189abd21f22214ba6a59bd4045bab2e47df17be0e93de1ce125ab"
+      "spec.md": "1b1d71dabbd5314df538464a74d94f8cacae40b61e70888f2b075b76fd22c4fa",
+      "plan.md": "5495e3eb2d403ab4adf66924ec32e4ff5cfdd20d8ca127fe4b2be1bdba94996b",
+      "tasks.md": "fa0c7ad4e63c2c59bee9b91b453b397afef03b4d66761c187a739a982942d611",
+      "implementation-summary.md": "de46ffeaa6fa3dff672527a541c4df77364426b523a8c11b9f52907ea17cd328"
     },
     "last_active_child_id": null,
     "last_active_at": null

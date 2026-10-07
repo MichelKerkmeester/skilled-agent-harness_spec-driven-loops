@@ -201,7 +201,6 @@ Maximize graph channel contribution through centrality and community detection, 
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -220,7 +219,6 @@ Maximize graph channel contribution through centrality and community detection, 
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

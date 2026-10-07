@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move prompt-improve and prompt-models to sk-prompt-improve and sk-prompt-models across directories, routing keys, gold and consumers, holding the Lane C verdict at PASS 100.",
     "created_at": "2026-07-28T05:34:11.011Z",
-    "last_save_at": "2026-09-11T16:42:08.307Z",
+    "last_save_at": "2026-10-07T18:13:23.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5eba7ca8f19ba3851627f42d9ef970bb6ac0af98b687b223c134eb85c523df40",
+    "source_fingerprint": "sha256:ee8dd24b87324f89092ec64dd73b5016fbc6b1f5712b4858db7206055206a86b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40ee7f53d3a3060ba005197551cb3e4a88d990c0ee34a4f4bbc6c08b7c8e8da0",
       "plan.md": "b376baf0fe51e7f20dbaecb7903b769d7d14540ac60c76b31229d579b71fc3dc",
       "tasks.md": "0225463142f8854f7652f4f344ca6eda70ed93b0402fb5eca87f124e9c2fc155",
-      "implementation-summary.md": "7e04585f641e010e5ac931279e1822db8dd3d6e89f3fefab253f93888e07d106"
+      "implementation-summary.md": "5d932c15970595eb4400c6db01d94d6c4592bd93f66bb3f88a1d62607c2a9f5b"
     },
     "last_active_child_id": null,
     "last_active_at": null

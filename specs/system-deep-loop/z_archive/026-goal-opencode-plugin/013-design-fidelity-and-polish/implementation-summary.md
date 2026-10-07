@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/013-design-fidelity-and-polish"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/013-design-fidelity-and-polish"
     last_updated_at: "2026-07-01T12:57:57Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented final design-fidelity polish and recorded verification evidence"

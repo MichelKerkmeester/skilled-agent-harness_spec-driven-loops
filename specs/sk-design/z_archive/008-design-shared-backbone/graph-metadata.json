@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/008-design-shared-backbone",
-  "spec_folder": "sk-design/008-design-shared-backbone",
+  "packet_id": "sk-design/z_archive/008-design-shared-backbone",
+  "spec_folder": "sk-design/z_archive/008-design-shared-backbone",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet was absent from git and memory",
     "created_at": "2026-07-16T09:11:04.878Z",
-    "last_save_at": "2026-08-30T15:39:12.079Z",
+    "last_save_at": "2026-10-07T18:11:07.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,12 +171,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a750c81b114d79c99c247ac14a8e5e66105b4402b3635b0d8c945e5bad210c74",
+    "source_fingerprint": "sha256:26d6a68976e0f6e68f3043946d483f6798ebe95609b60265e7ebe9ab3f1c0e5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f37ed1f3c07bc634793f820301bd363c4580750b1e647a9d6f3f14dbb862832e",
-      "plan.md": "bf84ac6a6d816fc2752ff74fa65b526e2a8f901855ee5fbadb6fab017c04b720",
-      "tasks.md": "ea7cdfb50a49d99c13e8768488295ac4edddafc46eda78868a25b2f54ae650dc"
+      "spec.md": "b712da9b6ebf859ab4b8bdb04d25a25a9d0973b9a8a48fb20edf13cce4cdca08",
+      "plan.md": "233c3a6d0abade34b94640b83120a6d76826e8c1625659fb7d6974bd039b5a27",
+      "tasks.md": "79344e963823d38a23e149ab1d481f1af92e7335d739e7c84e2727681883255f"
     },
     "last_active_child_id": null,
     "last_active_at": null

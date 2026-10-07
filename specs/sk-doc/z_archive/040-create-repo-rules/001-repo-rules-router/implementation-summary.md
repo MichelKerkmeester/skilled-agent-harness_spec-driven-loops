@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/001-repo-rules-router"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router"
     last_updated_at: "2026-08-31T03:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped REPO RULES.md and six /repo-rules leaf documents"

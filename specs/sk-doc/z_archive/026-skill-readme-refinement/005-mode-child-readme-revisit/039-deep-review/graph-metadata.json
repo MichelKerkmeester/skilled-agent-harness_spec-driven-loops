@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,28 +48,25 @@
       ".opencode/skills/system-deep-loop/deep-review/README.md",
       ".opencode/skills/system-deep-loop/deep-review/changelog/v1.11.0.36.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/tasks.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The deep-review README at `.opencode/skills/system-deep-loop/deep-review/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:53.459Z",
-    "last_save_at": "2026-09-03T22:19:51.429Z",
+    "last_save_at": "2026-10-07T18:13:54.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25291031a10e633d1a721ba764d0987e3de4f790e31d4babd6c115714083902e",
+    "source_fingerprint": "sha256:4db5d771ef25c131a84cce0f52348d69d2e91f8eea3207e91640009ff34c025c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3bd72908d6bd6ba12bd6b9b3e0dacefbb91fa4f8e912c9efbedd2a495fb7579d",
-      "plan.md": "6ce2cf31a35c9f54d80ccc201c6c8a84009710ea117af297aae098c93d06d794",
-      "tasks.md": "184bfd31f4724c8eb068b266ac898dd75d4e3791436a12202624cc92fccc51fe",
-      "implementation-summary.md": "d8a32dfd1f8d82db94d3a4de9c9f9f63cb3c50000555493325e5f0c0e2d44a06"
+      "spec.md": "ee3fb1406df113f8c6b3e460febe3d18b4033663afe9451924908ab4c662f0a0",
+      "plan.md": "bc893b017dc14329c3a612140518e41d5f0aa831f4b3cdfa3a7ff94dc51f62bf",
+      "tasks.md": "4645e42d345f61b265fd36f6c01df6c36ce1959058b685fe49fdadcee67d226e",
+      "implementation-summary.md": "19142dd031f2aeb20b39ff78ebd7b95828c15b4215835c72b5daa005e4b26274"
     },
     "last_active_child_id": null,
     "last_active_at": null

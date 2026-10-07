@@ -156,7 +156,7 @@ Operational safety layer over the existing MCP server. Phase 1 does not introduc
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -170,7 +170,7 @@ Inventory -> Build/Flags/Checkpoint Hardening -> Verification -> Handoff to Phas
 | Checkpoint/schema validation | Inventory | Phase 2 lineage start |
 | Verification and docs sync | Build and flag hardening, checkpoint/schema validation | Phase 2 handoff |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -267,7 +267,7 @@ Inventory -> Build/Flags/Checkpoint Hardening -> Verification -> Handoff to Phas
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Baseline Safety Rails Before Data-Plane Evolution
@@ -282,7 +282,7 @@ Inventory -> Build/Flags/Checkpoint Hardening -> Verification -> Handoff to Phas
 - Improves trust in future rollout evidence.
 - Delays visible roadmap functionality slightly, but lowers risk sharply.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

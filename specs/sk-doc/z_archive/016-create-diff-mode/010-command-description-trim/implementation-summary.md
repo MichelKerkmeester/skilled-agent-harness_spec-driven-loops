@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/010-command-description-trim"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/010-command-description-trim"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 8 over-soft items trimmed; audit shows zero overSoft"

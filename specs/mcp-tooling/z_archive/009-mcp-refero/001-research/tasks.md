@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/009-mcp-refero/001-research"
+    packet_pointer: "mcp-tooling/z_archive/009-mcp-refero/001-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Marked all 10 research tasks complete with evidence"

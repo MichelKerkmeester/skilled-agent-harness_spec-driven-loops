@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/010-whole-repo-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/010-whole-repo-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-09-10T20:45:19.652Z",
+    "last_save_at": "2026-10-07T18:13:21.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d8d5e9546e995a6ee8ef07db3a7ae82cbca9abbbb0ae8438c89844614ad1c54c",
+    "source_fingerprint": "sha256:613ec95a6b34fb08d38f686f3bbb97837a50f015ac264c1b6504c0b5b18a0c3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdb60769ea1be4511b577657a4d635da3bf699aacdc2e106042dcf9506e7617f",
-      "plan.md": "3c9e5f117c8d9f0976505875361ad1c6c02321003512bf604d13087ac3bf6fb2",
-      "tasks.md": "268a18df42954561f3fd2cccac534e4eeff026039a3832196c180ab63952863f",
+      "spec.md": "65bd44f527949868bad487cb3157314aa386ff30db4de70a4cf034f25930888d",
+      "plan.md": "9b2f264f5e3e50256b8ebfffd9734160be6f81e88aa0835c09b24f904c6f0c18",
+      "tasks.md": "e6d095a3f5ffa60600ccb033d1b63c40c92d34ab964f0bf10062eca366ffd382",
       "decision-record.md": "a36a9c14259fb1c833f7599ac4a062ecf7adbdcdf5429816f4971110ebdfdeda"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/006-scripts",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/006-scripts",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/006-scripts",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/006-scripts",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`scripts/` holds `README.md`, three deterministic Python checkers (`baselinerhythmcheck.py`, `contrastcheck.py`, `namingdoccheck.py`), and `fixtures/naming-doc/{compliant.md,violating.md}` used as positive/negative examples for `namingdoccheck.py` itself",
     "created_at": "2026-07-27T14:56:08.594Z",
-    "last_save_at": "2026-08-30T15:39:13.028Z",
+    "last_save_at": "2026-10-07T18:12:16.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:310e17b3fb5fea4b3a105d0c9ed334cbc93dae9b91ce5266d94d3176fb16e7c4",
+    "source_fingerprint": "sha256:f73ea089cd95da33b521fbf909a700b6aba36693da9b1f7ef226940ae7989964",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "661b7539ae4e7b5f30212e980a156343f36dea02c6380870693ae3403bfaca71",
-      "plan.md": "07e4c7acaa992298e6ff047ba06ba7f4c5e6102f39c8de852ec2a6ace7716d09",
-      "tasks.md": "77b04bec9b101b42ede22f2b504a69e25db4f1590d35e8f8dde3d0c4bbecdcc7",
-      "implementation-summary.md": "ca39ed17a89ad5df3538863c22b691eca24de0fbb2c380824b4288d0e714e01b"
+      "spec.md": "dee97db4320ab1b2ab589051f62e6986e4fc4c1f5195a8b33b24656543af7102",
+      "plan.md": "d0c201b7f75731868c5f29d16958f6c27fcaae7a34c68a4067e0e368ecc3358d",
+      "tasks.md": "196797a74a594ea8276b8c111b749af05ae1dbaa6798ce6d51042c3c14d5b227",
+      "implementation-summary.md": "abe291b0bc36d2fbc67846441eda41117faad776ad3557fae369be7382d03371"
     },
     "last_active_child_id": null,
     "last_active_at": null

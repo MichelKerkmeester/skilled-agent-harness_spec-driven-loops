@@ -46,9 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -85,18 +83,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Law Over Exponential Decay",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current Spec Kit Memory system stores memories indefinitely with arbitrary exponential decay",
     "created_at": "2026-04-12T09:02:53.550Z",
-    "last_save_at": "2026-08-30T15:39:37.494Z",
+    "last_save_at": "2026-10-07T20:23:20.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ca791f7c4a251aa89755568ba8ac3654b850924f8e4e9498d5a77fa3d535e8c4",
+    "source_fingerprint": "sha256:582b7a659c412138133fc23512009d1ac3da16ddb8e7b19ab21651b016907014",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1475495a9dc2a84bb4dc7d66d5c436f0ce572089fcef51a2d4e0a2bdb95f1e9c",
-      "plan.md": "7b7b914f5a1d869968560a7d1cc9d4b1d73ef5cdffa008b853d21b62eae4ef1a",
+      "spec.md": "7529818456e5fee2b4f33dae35fd3603408771ae88776fe9db2ee0ad304df7a6",
+      "plan.md": "67ec9ac7d69b242d4dc315bdf515fd759dacfd592838d64b26a18862cbf563da",
       "tasks.md": "dd38d4249f9ab90da6bf1f3c283c0bd471aca861b52e63ba82bc5f93473bb4c7",
       "decision-record.md": "59322be2cd8c8744f6175f5f2530e1e3140a54c7f9f766799f19fa71254188a1",
-      "implementation-summary.md": "2ec747ec178d3eb3dc2fe19c216c84cd1fb138f9521f665c4940f4fc8b3616cf",
+      "implementation-summary.md": "0a455494dacf39368259255d6cb114f7c6f528ce7095081f1d3e3796317a84d7",
       "research/research.md": "f2c7ebd8eafb2f8422609a1c08daead31a481c55e07c1f594cb674c961cf632d"
     },
     "last_active_child_id": null,

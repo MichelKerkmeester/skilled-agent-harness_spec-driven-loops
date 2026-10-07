@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/027-program-deep-review",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/027-program-deep-review",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the complete skill-metadata program landed at c573706cfe, covering the H/S class contract, fleet gate, command-metadata standard, JSON templates, creation-journey fixes, doctrine sweep, and advisor ingestion-seam watcher.",
     "created_at": "2026-07-29T04:21:25.552Z",
-    "last_save_at": "2026-09-11T16:42:08.107Z",
+    "last_save_at": "2026-10-07T18:13:23.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:921bcdac89c16f52369301222fa9342ef8646121b54c377f4d8febecf05c2c9c",
+    "source_fingerprint": "sha256:17bde7c15cec5d8ca6a404b3c38168137709b1847f6d733754b7611dc4f8b09a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03f26b8342366eec68847e75ecaf2df6fbe414e3b487f0d68bdb4a0afa7f6623",
-      "plan.md": "ca083ae2f24031308cc7c4480c74aad8752e548d83f88df4a54372bc0a7e5ba7",
-      "tasks.md": "c67324450ab490fb1795f4d53b6c6eaaeb78a438f7e5f651bd31c741749967db",
-      "implementation-summary.md": "c2e3a0cf222f63cd2b0d0bdacfed56407076df8c932ab4e30b277b86c9a2c372"
+      "spec.md": "ab49836d474fe6ae4457ee8b70246cf8ab5bea5644d1f5a99ff4c8bd8a703bf1",
+      "plan.md": "53e116a240f659069d1c0b406fea004602cf7d954b827f4f1d51fc07119ad217",
+      "tasks.md": "f0331f1c3d455580539f5f873606957565557208275b37bd77138cbdc907e816",
+      "implementation-summary.md": "a9f8aaf80fc7afeaf043141c446e8e93b57f80a96b40d57115b63fb99cdcacb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

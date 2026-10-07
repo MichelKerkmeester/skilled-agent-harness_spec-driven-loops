@@ -1,6 +1,17 @@
+---
+title: "Implementation Summary — Mass-Deletion Guard"
+description: "Shared fail-open deletion guard shipped in the git hook chain: commit-side gate live, push-side backstop ready, 12/12 tracked tests passing."
+trigger_phrases:
+  - "mass deletion guard summary"
+  - "deletion guard implementation summary"
+  - "commit guard validation evidence"
+importance_tier: "important"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary — Mass-Deletion Guard
 
+<!-- ANCHOR:what-built -->
 ## Final state
 
 A shared fail-open guard refuses commits (and, where wired, pushes) that remove an
@@ -8,7 +19,9 @@ unusually large number of tracked files, unless the operator authorizes that one
 operation. It is the durable defense-in-depth against the stale-tree `git add -A`
 snapshot that erased 902 tracked files on 2026-08-13, and against runaway-agent
 mass deletions like the 44-file 2026-05-04 incident.
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:what-built-2 -->
 ## What shipped
 
 | File | Change |
@@ -23,13 +36,17 @@ mass deletions like the 44-file 2026-05-04 incident.
 - `SPECKIT_MASS_DELETION_THRESHOLD` — ceiling (default 100).
 - `SPECKIT_ALLOW_MASS_DELETION=1` — authorize one blocked operation.
 - Audit log: `<git-dir>/mass-deletion-guard.log`.
+<!-- /ANCHOR:what-built-2 -->
 
+<!-- ANCHOR:verification -->
 ## Validation evidence (confirmed)
 
 - `bash .opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh` → **12 passed, 0 failed** (exit 0).
 - `bash -n` clean on all three touched hook files.
 - The effective machine hooks path (`~/.config/git/hooks/pre-commit`, `core.hooksPath`) symlinks to the edited `.opencode/scripts/git-hooks/pre-commit`; `grep` confirmed it contains the `mass-deletion-guard.sh` gate — so the commit guard fires on this repo. (inferred-then-confirmed: guard logic proven in isolation; wiring proven by symlink+grep.)
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:limitations -->
 ## Constraint / known gap
 
 `core.hooksPath` on this machine is `~/.config/git/hooks`, which symlinks the
@@ -37,6 +54,7 @@ repo's `pre-commit` but not `pre-push`. The pre-push backstop is therefore
 **dormant here**; wiring `pre-push` into that dir would also activate the repo's
 currently-dormant naming/permission gates and could disrupt in-flight worktree
 pushes, so it was intentionally not wired. The push-side code ships ready.
+<!-- /ANCHOR:limitations -->
 
 ## Context
 

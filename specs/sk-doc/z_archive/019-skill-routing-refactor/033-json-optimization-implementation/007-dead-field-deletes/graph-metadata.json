@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -177,7 +177,7 @@
     ],
     "causal_summary": "Delete confirmed-orphan skill-metadata fields that do not affect routing (description.json extras, sk-code derived-block orphans, causal_summary disposition) and resolve two duplicate-authority fields (routerPolicy.tieBreak, advisorRouting.packetSkillName) found by the 029 skill/advisor JSON optimization research.",
     "created_at": "2026-07-29T08:00:22.136Z",
-    "last_save_at": "2026-08-30T15:39:15.894Z",
+    "last_save_at": "2026-10-07T18:13:30.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,13 +186,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d79eb939157fddfabfdd37a1b1d01e0f6b4578ed8941a82facc10fea9e4c113b",
+    "source_fingerprint": "sha256:823ba050914277082434adda037263949d920f7a8796221805b53d540d6c619b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62f570b9ed0e946f3ad14fd0a1338a1fc96eaa02b74c30b1999c07f96ceb6d4e",
-      "plan.md": "e76496e8a3cc8093be66358b4a94acb61e6608ea093f6063e57edc6dc78643fd",
-      "tasks.md": "e3694bbb24692f84eefb1b39a37828d33aa171bca40d7c74310567ceba9720d3",
-      "implementation-summary.md": "a4003056e0e819c5d1eaba084484ce311eb188e88d2456ab30a0abb895d13a99"
+      "spec.md": "31e1567913c1f06f6d31a593d531521d4a48ee50b7542bcf5e44d6a45787459e",
+      "plan.md": "b2f10e9e022032ae6d93bf4f721e496607f69d0cce37378385ac8206036cd9e0",
+      "tasks.md": "1a842f9ba2815c7f02988e815dbe64d73f4e8e889ad1360f08c97e56edcce147",
+      "implementation-summary.md": "646485cfcf1eecf91ddc97bd1971b19c950113bdcc688e5afa2e695b88c4d539"
     },
     "last_active_child_id": null,
     "last_active_at": null

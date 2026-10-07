@@ -2,13 +2,13 @@
 title: "Tasks: Command Pre-Route Headers"
 description: "Task list and evidence for phase 003 route-header implementation."
 trigger_phrases:
-  - "tasks"
+  - "command pre-route headers tasks"
   - "command-pre-route-headers"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers"
     last_updated_at: "2026-06-30T18:37:51Z"
     last_updated_by: "opencode-gpt"
     recent_action: "All route-header tasks complete and strict validation passed"

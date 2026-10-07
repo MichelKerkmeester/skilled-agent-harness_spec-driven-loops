@@ -11,7 +11,7 @@ contextType: "tasks"
 parent: "sk-doc/037-playbook-family-remediation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/037-playbook-family-remediation/001-sk-code-family"
+    packet_pointer: "sk-doc/z_archive/037-playbook-family-remediation/001-sk-code-family"
     last_updated_at: "2026-08-29T11:45:00Z"
     last_updated_by: "claude"
     recent_action: "Completed the sk-code family tasks; all seven roots re-measured at zero"

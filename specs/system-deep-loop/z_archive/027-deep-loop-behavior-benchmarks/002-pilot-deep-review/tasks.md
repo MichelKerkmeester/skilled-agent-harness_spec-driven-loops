@@ -2,13 +2,13 @@
 title: "Tasks: Pilot Behavioral Benchmark -- deep-review"
 description: "Task Format: T### [P?] Description (file path). All pending -- phase blocked on 001's exit gate."
 trigger_phrases:
-  - "tasks"
+  - "pilot deep review tasks"
   - "deep review behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 8 tasks complete; 24-run pilot scored, scorecard published"

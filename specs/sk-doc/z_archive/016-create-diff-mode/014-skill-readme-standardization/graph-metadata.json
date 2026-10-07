@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/013-mcp-click-up-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/021-system-code-graph-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/022-system-skill-advisor-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
-    "sk-doc/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme"
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/013-mcp-click-up-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/021-system-code-graph-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/022-system-skill-advisor-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
+    "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -99,16 +99,16 @@
     ],
     "causal_summary": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At a Glance\" table near the top, outcome-named section headers, sparse tables, honest trade-off notes, and a verification closer",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-09-06T04:27:45.058Z",
+    "last_save_at": "2026-10-07T18:12:32.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8a8964e2fca31929f2dea2fb9b8a640b7e11cbb36bfab01f0fa9c095d2a431a4",
+    "source_fingerprint": "sha256:de6856dc6d3a8366bac64514ece16b89be9e339a28b7d9a7f7566447749db7df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef1903340e749c3bbba70c5e96627a0e68c5c8eb4d0ffc78d918eb74124e3a18"
+      "spec.md": "42703d3ae7fb0423d7a6687748fdb6f2be87204b3d36a9309e5fa56d01a6d14c"
     },
     "last_active_child_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme",
     "last_active_at": "2026-06-07T17:38:46.456Z"

@@ -2,7 +2,6 @@
 title: "Implementation Plan: OpenCode Documentation Quality [system-spec-kit/z_archive/005-upgrade-speckit-docs/plan]"
 description: "Archive normalization plan for the OpenCode Documentation Quality Upgrade folder."
 trigger_phrases:
-  - "implementation plan"
   - "documentation quality upgrade"
   - "archive"
 importance_tier: "important"

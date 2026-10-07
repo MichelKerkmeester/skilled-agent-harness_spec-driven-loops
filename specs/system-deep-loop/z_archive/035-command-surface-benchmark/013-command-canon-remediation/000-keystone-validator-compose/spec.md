@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose"
     last_updated_at: "2026-07-16T08:00:35Z"
     last_updated_by: "claude"
     recent_action: "Authored keystone phase spec, plan, tasks, and scaffold docs"

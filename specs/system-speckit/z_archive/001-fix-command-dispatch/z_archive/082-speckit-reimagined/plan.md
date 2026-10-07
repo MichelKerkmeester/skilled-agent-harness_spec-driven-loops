@@ -227,7 +227,7 @@ Query → QueryExpansion → [Vector|BM25|Graph] parallel search
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -261,7 +261,7 @@ Phase 3 (Weeks 4+)
 | Causal Memory Graph | None | Learning from Corrections |
 | Intent-Aware Retrieval | Multi-Factor Decay | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -465,7 +465,7 @@ When errors occur during implementation, follow this decision tree:
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Protocol-Based DI over Full Hexagonal
@@ -500,7 +500,7 @@ When errors occur during implementation, follow this decision tree:
 **Alternatives Rejected**:
 - LadybugDB: Only beneficial at >10K nodes (per consolidated-analysis.md Q6)
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

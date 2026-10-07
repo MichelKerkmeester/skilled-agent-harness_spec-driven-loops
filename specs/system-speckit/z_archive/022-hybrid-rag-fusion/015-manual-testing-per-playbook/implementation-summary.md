@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 015-manual-testing-per-playbook |
 | **Completed** | 2026-03-22 |
 | **Level** | 2 |
-| **Status** | Complete |
+| **Status** | In Progress |
 <!-- /ANCHOR:metadata -->
 
 ---

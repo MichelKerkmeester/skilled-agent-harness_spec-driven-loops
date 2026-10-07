@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/002-architecture-decision",
-  "spec_folder": "sk-doc/014-sk-doc-parent/002-architecture-decision",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/002-architecture-decision",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/002-architecture-decision",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,12 @@
     "trigger_phrases": [
       "sk-doc architecture decision",
       "125 architecture decision",
-      "sk-doc parent phase 002"
+      "sk-doc parent phase 002",
+      "sk-doc architecture decision plan",
+      "sk-doc parent phase 002 plan",
+      "sk-doc architecture decision tasks",
+      "sk-doc parent phase 002 tasks",
+      "sk-doc parent hub facade map"
     ],
     "key_topics": [
       "sk-doc",
@@ -21,18 +26,20 @@
       "decision",
       "parent",
       "phase",
+      "plan",
+      "tasks",
+      "hub",
+      "facade",
+      "map",
       "monolith",
-      "parent-hub",
-      "conversion",
-      "feature",
-      "specification",
-      "registry",
-      "router"
+      "parent-hub"
     ],
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "decision-record.md"
     ],
     "entities": [
@@ -40,6 +47,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,6 +104,78 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Architecture Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -95,46 +186,26 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Next On",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "facade",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "canonical",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:33.690Z",
-    "last_save_at": "2026-09-20T04:34:28.241Z",
+    "last_save_at": "2026-10-07T19:54:53.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c160e8e73a0e05ee726754fef91a864f381a6d28a0c40e7fb89e9e958ae652e1",
+    "source_fingerprint": "sha256:899621a89475979fff6835d40a8b0f5776465d5ac1afaa81d5d1dfa3cb43ddd4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17185150943788b99be3e19fe63c44a2151ec999773ce3e94b6654b1a720d7ee",
-      "decision-record.md": "f8b8800e89cb31c37f1aab0acae7622c70bc01e12ae7d23a816bff8a3863fc52"
+      "spec.md": "caea9b42456379aacb52690199405095ad2a9afa0862470a729412f6754273a9",
+      "plan.md": "63a518d268fd2d453dd480b70f197919310a78820ba7950ff3903a2a0fff6dcc",
+      "tasks.md": "5dacdc5e87ad7dd394cf30d828b2c79b295b00f37c0f4385dd81d8e3d24996fe",
+      "decision-record.md": "0f2b57c39a1f2811e4da721c5846b9e6c1ff665acb557cbb55a9300962189c43"
     },
     "last_active_child_id": null,
     "last_active_at": null

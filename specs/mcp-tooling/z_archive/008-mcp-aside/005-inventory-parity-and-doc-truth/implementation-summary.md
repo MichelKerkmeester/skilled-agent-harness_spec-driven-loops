@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth"
+    packet_pointer: "mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth"
     last_updated_at: "2026-07-17T06:03:44Z"
     last_updated_by: "claude-agent"
     recent_action: "Completed phase; all gates green"

@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows"
     last_updated_at: "2026-07-01T22:35:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Rewrote target leaf plan and task docs"

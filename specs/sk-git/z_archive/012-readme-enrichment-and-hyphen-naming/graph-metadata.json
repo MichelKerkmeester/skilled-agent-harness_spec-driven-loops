@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/012-readme-enrichment-and-hyphen-naming",
-  "spec_folder": "sk-git/012-readme-enrichment-and-hyphen-naming",
+  "packet_id": "sk-git/z_archive/012-readme-enrichment-and-hyphen-naming",
+  "spec_folder": "sk-git/z_archive/012-readme-enrichment-and-hyphen-naming",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -46,9 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       "scripts/README.md",
-      "scripts/tests/README.md",
       ".github/workflows/README.md",
-      ".github/hooks/scripts/README.md",
       ".opencode/skills/sk-git/README.md",
       ".opencode/skills/sk-git/scripts/README.md",
       ".opencode/skills/sk-git/SKILL.md",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "Three gaps: (a) `README.md` is too thin to orient a reader on what sk-git uniquely does and why; (b) the executable surfaces (`scripts/`, `scripts/tests/`, `.github/workflows/`, `.github/hooks/scripts/`) have no code READMEs; (c) the skill's filesystem names are `snakecase`, out of step with the hyphen-case direction the repo is adopting",
     "created_at": "2026-07-15T04:22:48.908Z",
-    "last_save_at": "2026-08-30T15:39:18.504Z",
+    "last_save_at": "2026-10-07T18:14:00.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d3ab4176a20bc3de1d0bc99d989ce8079a335af0da23c16350a50adb3e9abf6",
+    "source_fingerprint": "sha256:f835b096befb8024c41cae4b370db570bdbe5f06a2fa3a985bd85db99d72fa02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9afc6f0045dac3430242175d8961c90cf3ce7719ff3f7151e835457d9bee8505",
-      "plan.md": "75861ec1b07e0d712d0d5f9e89a87a2786561848b8cb1a369fe0825bda5b1bee",
-      "tasks.md": "9b8e8ed2ed7c7ad760ba300ab7ab2364be05825be3920ab9dcb94d40c8d3eba5",
-      "implementation-summary.md": "177733ffc2c6de3f4466599abfa2923564a1a6bb2333d0efffd30282282e5e11"
+      "spec.md": "f54ff46a6ebcae83f9d07fc38c8d3c05377c890262b4bbc7d51823d23e52e0b9",
+      "plan.md": "eff404e559f8bbd0d8d9fab9a2a234cadc460287e33588096716490bf01ab1c8",
+      "tasks.md": "3fdf7db48f78b7d2ba9b8e765280fbecafc7071cab89f589fd251193a8cc8077",
+      "implementation-summary.md": "95984ebb6e2f488eeca058f8e74d22f962d41c8d993147c96fb884a55f8bb316"
     },
     "last_active_child_id": null,
     "last_active_at": null

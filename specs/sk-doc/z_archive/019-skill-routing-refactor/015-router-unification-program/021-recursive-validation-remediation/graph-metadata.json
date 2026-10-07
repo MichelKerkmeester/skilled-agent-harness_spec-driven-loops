@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The plan-named gate `validate.sh .../015-router-unification-program --recursive --strict` exited 2 and blocked publication of the completed `020-root-router-document-standard` phase",
     "created_at": "2026-08-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:15.451Z",
+    "last_save_at": "2026-10-07T18:13:14.181Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1024dca4f63f3841bff339605089a6118e438f8f182a990988ba5915f1fd718",
+    "source_fingerprint": "sha256:cc12de5b3ddf0c975ff3050d6d077e4336647a9936fbf7c756fd6aadb465aff0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b88ac55cef028eb39033cf8d6e4d6a583b7d9427464fde65ce87f3056bc836d",
-      "plan.md": "b1c264c69094bee2c8df0a9e494c23f2998b31eafbd37a4b9cc4e5d2868f0766",
-      "tasks.md": "0b2de95975fe7eca578c9e17ca48bec2cd44cbe68aec39c1f8b157f3fefef4ea",
-      "implementation-summary.md": "fe65d5ed5b7c8e6087f9bee5b35a963d08a7e6a824da58c9d64483270a46a5d5"
+      "spec.md": "e2f413d8e025226a7aa15095175315e776609747c85c12e95d752fca96231277",
+      "plan.md": "84c7b0cb1024e51abd3a84acc7e1846f9bf297e9bd835159efe526a5854f87d2",
+      "tasks.md": "c337501431108c1462651b82871d1e543ecd71191074a105ccbb6b32cdbf7524",
+      "implementation-summary.md": "1ac1121281da743367d41f7a8d17c182412719cc35338ef8e966d170afd592fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

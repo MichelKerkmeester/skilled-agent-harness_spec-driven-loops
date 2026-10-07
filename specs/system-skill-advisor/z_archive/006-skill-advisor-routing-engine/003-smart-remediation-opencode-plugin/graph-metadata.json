@@ -45,11 +45,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-code-mode/references/workflows.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
       ".opencode/skills/mcp-code-mode/SKILL.md",
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/tsconfig.json"
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
       {
@@ -83,27 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "check-smart-router.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-telemetry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-code-mode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tracks Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two research packets just shipped with 10+ concrete recommendations:",
     "created_at": "2026-04-19T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:26.735Z",
+    "last_save_at": "2026-10-07T18:15:41.320Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T00:00:00.000Z",
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9c4ee6de541f4ee82eaab3bb5ebf3d713566b53521264a82a7cf60d16fd344b",
+    "source_fingerprint": "sha256:357f82535e3a6cd30b454b676a8b12d122d9b5eac3a7996c6d81a66e6a93bf38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39e3615110c38cae754de32ad95ca1b17abaf000d1e43b8654c917c3b3082dbc",
-      "plan.md": "e2b8ed14b0c2bcea54b4fd7643a9af9e4abdd7c4234668a6b3d9e51d4d21ee2c",
-      "tasks.md": "35242bfe49074f18d1a2d99604c34b0e2aac703b5deea515efe091276cec09d1",
-      "implementation-summary.md": "4bbe9ab04301eecf72e9486ed8d941bd68f2c028fbce0a08e88da7c48b44afc7"
+      "spec.md": "4c7f57ea3147edfa9226bac27f5b0687460674206584257aefc713d7668c74f8",
+      "plan.md": "f45861f9fc8acc9366a660ca94a2fa28bb1916b3954cd76f2305a5b604ab4fe4",
+      "tasks.md": "5119539af12f9f3a321583990025598f593b0ad612125867a62f670dc65aaeaa",
+      "implementation-summary.md": "75648d9a71eb8cc549872e0dae83a036c41b274aa3c7cf83772696c8a469db61"
     },
     "last_active_child_id": null,
     "last_active_at": null

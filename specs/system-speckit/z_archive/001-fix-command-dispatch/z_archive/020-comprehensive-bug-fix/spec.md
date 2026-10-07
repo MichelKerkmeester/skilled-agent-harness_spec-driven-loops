@@ -11,7 +11,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 3 -->
 # Comprehensive Bug Fix: System-Spec-Kit & Spec_Kit Commands
 <!-- SPECKIT_TEMPLATE_SOURCE: spec.md | v1.0 -->
 
@@ -97,5 +97,5 @@ Deployed 10 agents to verify all fixes were correctly applied, plus 1 additional
 
 - [implementation-summary.md](./implementation-summary.md) - Detailed fix documentation
 - `checklist.md` - Verification checklist
-- [SKILL.md](/.opencode/skills/system-spec-kit/SKILL.md) - Updated skill documentation
-- [AGENTS.md](/AGENTS.md) - Updated gate documentation
+- [SKILL.md](.skilled/skills/system-spec-kit/SKILL.md) - Updated skill documentation
+- [AGENTS.md](AGENTS.md) - Updated gate documentation

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/001-readme-template-refinement",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/001-readme-template-refinement",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,29 +42,25 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/tasks.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -83,12 +79,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -192,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared standalone README template at `sk-create-skill/assets/skill/skill-readme-template.md` predates the mcp-obsidian pilot",
     "created_at": "2026-08-04T12:30:48.167Z",
-    "last_save_at": "2026-08-30T15:39:17.428Z",
+    "last_save_at": "2026-10-07T18:13:45.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3483ee21e4c8de32662debaf437dcf9237858bea36f971c645ed4baf88208089",
+    "source_fingerprint": "sha256:c63193d5f32b74389c8e1cb28a8f918b1ea18dea89d4a16626dc95ac4ac25e33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c206152eeb8e706d86f354c73dac0f4dcb6e35c926afe2693a91ff4f7917170",
-      "plan.md": "c9ac8bcf030089fb82c5279589c60a343d6eb0ef8c7bff59a6a81efd694eda48",
-      "tasks.md": "cad056070237ca7a14aa376822121757af75cb504c1cd9f5b0cfaee51055a76f",
-      "implementation-summary.md": "767083e6228e0d27b797d6577c500697f8c5ccdbc489f8eec7322f341c4ff3ab"
+      "spec.md": "6b95d026ca470a42cc04d4db8c45d6f6e4dd6161107bcad411c774e0990bf9ea",
+      "plan.md": "673d51650eb0f8a1cead0392a7b98bcca6c9744a332149b7584b30f92c919687",
+      "tasks.md": "0aafa1bdf89993d075d14b8f45206e7fa466182a689dc9285d00c3844520e87a",
+      "implementation-summary.md": "f6d8dd4ea7bfa4a860a402edb2a9d538a77194a024de537595311e849d215d68"
     },
     "last_active_child_id": null,
     "last_active_at": null

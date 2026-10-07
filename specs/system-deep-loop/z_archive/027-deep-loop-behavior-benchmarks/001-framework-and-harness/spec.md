@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/001-framework-and-harness"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/001-framework-and-harness"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase complete: framework + runner + fixtures shipped, exit gate passed"

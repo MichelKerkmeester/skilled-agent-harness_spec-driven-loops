@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/003-cline-pi-config-build"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/003-cline-pi-config-build"
     last_updated_at: "2026-08-18T13:09:28Z"
     last_updated_by: "claude"
     recent_action: "Plan authored; config wiring applied and verified live"

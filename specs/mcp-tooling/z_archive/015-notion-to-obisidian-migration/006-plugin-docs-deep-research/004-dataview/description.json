@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
   "description": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the",
   "keywords": [
     "shipped",

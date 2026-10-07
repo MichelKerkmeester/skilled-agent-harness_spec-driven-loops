@@ -179,7 +179,7 @@
     ],
     "causal_summary": "The native MCP tool scenarios NC-001..009 exercise `advisorrecommend`, `advisorstatus`, `advisorvalidate`, `advisorrebuild`, `skillgraphstatus/query/validate`",
     "created_at": "2026-05-26T20:10:25.890Z",
-    "last_save_at": "2026-08-30T15:39:27.005Z",
+    "last_save_at": "2026-10-07T18:16:05.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f450b935aa2b35797cbf50f0c80e81d39f627fce236d52973c5c68b8251adc0",
+    "source_fingerprint": "sha256:e50f50d7854ffd6dd9c6c6db2cf82852901b624f4ea56bfaa90c0c065666d2b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b83509fbc904369c60c1eb11869e227860f44479999a4353b4b3389c30faa66b",
-      "plan.md": "406e9db7dd49ed8277df8c6c7d03f517237fd43544d01e44b051c7eca73754d4",
-      "tasks.md": "9691f6df569a356b9cda7c7a1d459c0f80df9e614b76e64cfe837377c887a816",
-      "implementation-summary.md": "11fbba1432ff97a4c583809fb0762f883e44a83a621c389d565e2778d09897b0"
+      "spec.md": "84b01019d3bf6711d79de0668208879e6551a22f4ca56a8d3918aaacc47c1f0e",
+      "plan.md": "9b22cf8bb2887874e7e17fe816865f1655aa364f133be9d7c94d2b04cc47d777",
+      "tasks.md": "20509f26b4512dd76846a58f6242935cf85978aa14197fa24743f171518b2d2d",
+      "implementation-summary.md": "461a763441d104a199eb8682c2c8047f5612f03d5c745093bbfdfb51420ef108"
     },
     "last_active_child_id": null,
     "last_active_at": null

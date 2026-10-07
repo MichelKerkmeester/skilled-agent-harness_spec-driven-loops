@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The parent goal frames \"compiled routing as the effective default\" as a switch to flip",
     "created_at": "2026-07-20T18:11:31.092Z",
-    "last_save_at": "2026-08-30T15:39:15.159Z",
+    "last_save_at": "2026-10-07T18:13:25.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df92d33fc4805df61e83ec88fa064b03eb4bd198f3a717f84bed1b0c05a2ac6d",
+    "source_fingerprint": "sha256:eb8bffc86097312193cd1be5069aa323bdcb9b954ed66e5f3acf6495da48155a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c324938b6f08be931a8cc2123fd6fb325747e26ddfdc003aee50b9a6a1e47c9e",
-      "plan.md": "e91a23a76613f1e654571ffaa31f1affd992d8dbf497999399a6a7d146fafec5",
-      "tasks.md": "96019f603197e169d20f04f1b3f0f992e1c172113cc1004b8d252ba6d69fea65",
+      "spec.md": "e91b83df5923e9161e7ac46616e85c08d336e61cf4802e027629c11994367823",
+      "plan.md": "449f6cf4dbe6a184bd25277c4c9eb96a9a53510dada94d959a36764beba6e98c",
+      "tasks.md": "4cf193252b77160133676db8414b06de312b6d9b0da4a46df909d8b579df075b",
       "decision-record.md": "5c85bb9b6822d109c4f687283f965ba69265692a3c02f9447c70f063b6f6a966",
-      "implementation-summary.md": "a65433ca0d0137a478a721085e5adb0e37604d85b026bd2d09c92edc83ecb1eb"
+      "implementation-summary.md": "303132a6e32fe81fb1ae2c3ca438a24f245099087b1541938cba3b02f4f97ea6"
     },
     "last_active_child_id": null,
     "last_active_at": null

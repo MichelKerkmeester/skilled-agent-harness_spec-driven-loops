@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/010-review-remediation-and-alignment",
-  "spec_folder": "sk-git/010-review-remediation-and-alignment",
+  "packet_id": "sk-git/z_archive/010-review-remediation-and-alignment",
+  "spec_folder": "sk-git/z_archive/010-review-remediation-and-alignment",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The owner-first worktree tooling passed its own harnesses (31/9/8) but the harnesses never exercised adversarial inputs",
     "created_at": "2026-07-15T04:22:48.313Z",
-    "last_save_at": "2026-08-30T15:39:18.481Z",
+    "last_save_at": "2026-10-07T18:14:10.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4117b4f0c069c18a7c6f2a716ab7a2ca3c4f5f3d340cf2340a7d1240ca35d11",
+    "source_fingerprint": "sha256:778f4248095e1fac36a76878cb7267a906a842e39255bf9bd44f596dda09cfb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64ef0ab7b2fdcfd4a232e71b10a6e6d1acb58f70f6ce5eaec61d4f98d4ae5304",
-      "plan.md": "96b40e20e0e9bb76a7459f27a4a9ff4f63b5fbcfa5b5d33ddf1428679fd0734d",
-      "tasks.md": "76b985700aa087872af49d0de2dd06f16cc81588087274475db9df322f1bd157",
+      "spec.md": "4587f99e9801c4f78612fff77a9cf719a3cf2afdabfbab30634537f9c61683d3",
+      "plan.md": "c733864f1f2943f3bbc8979c19823bec14730dfecd77c0eb72cfd2361802bd0e",
+      "tasks.md": "279df83c12a89308f577ec636d7fa5f578c401a5893c4bc2812ecea5b52d14f9",
       "decision-record.md": "745f6fe89cbcfa55ae5ad739b828dfd46591804afaedb39515530b875dddd64e",
-      "implementation-summary.md": "97886bd91095d079c1884da9c01d02f28d8b55415d75efbaeeaad4713c7004af"
+      "implementation-summary.md": "b5647a89ccb033f96495f7eddf97217cf1b59611703c4b1c7d0bac1a9a7b3c77"
     },
     "last_active_child_id": null,
     "last_active_at": null

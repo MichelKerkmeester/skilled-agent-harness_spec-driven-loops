@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/028-cli-hub-rename",
+  "specFolder": "cli-external-orchestration/z_archive/028-cli-hub-rename",
   "description": "The external CLI router needed one canonical hub identity",
   "keywords": [
     "external",

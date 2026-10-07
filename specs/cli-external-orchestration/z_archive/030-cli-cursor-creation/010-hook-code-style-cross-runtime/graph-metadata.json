@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`)",
     "created_at": "2026-07-24T18:00:37.292Z",
-    "last_save_at": "2026-08-30T15:39:07.547Z",
+    "last_save_at": "2026-10-07T18:11:41.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b32d1596d158b93e31df1aae4e4af494815c9386ff92fce5e8eee9874d55662",
+    "source_fingerprint": "sha256:59400b04dba6488dc000aa4210f61fedeb4b21f6caf21df29837bdecf0af93b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f2df3ad55a7e793e5409f9005a8dfe5d010005ca8ee72673dd77e964c35b0aa",
-      "plan.md": "eb74d3a6a07c9e900344beec3e088fc779f05775594ec2893f5d6313be73fadc",
-      "tasks.md": "871932889bf5ede2af2c7b5bc209b81e27ff0e36a200790be3919cac6236a77f",
-      "implementation-summary.md": "58e0b3410e18c6e49ee5fcb72d5bd2caafe8f18a8e51a9b85cfee9ca04f5132f"
+      "spec.md": "87e7e503ecd9af5b4fede3433e29c02f754ad060f9b62349bad9c17936dcdcaa",
+      "plan.md": "88c1023f162b8b0d104fd0465ac83565942d826d46a2d07bdee1c255d46be83e",
+      "tasks.md": "d12927d543036e837df3f4a901175b9a42f8daf6fd9beb7cf6ce4f50e51e1c1b",
+      "implementation-summary.md": "c07b92b1bba39eb5ae5297770312c592c087ca62de967d428d126b1b5a5dcee7"
     },
     "last_active_child_id": null,
     "last_active_at": null

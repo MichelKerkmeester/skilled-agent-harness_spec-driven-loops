@@ -159,7 +159,6 @@ Mutation request executes handler logic, then shared post-mutation hooks run and
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -176,7 +175,6 @@ Phase 1 (Audit + Design) ──► Phase 2 (Automation + Guardrails) ──► P
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

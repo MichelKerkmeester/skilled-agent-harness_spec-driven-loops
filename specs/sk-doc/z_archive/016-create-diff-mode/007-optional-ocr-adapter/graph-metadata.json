@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/007-optional-ocr-adapter",
-  "spec_folder": "sk-doc/016-create-diff-mode/007-optional-ocr-adapter",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/007-optional-ocr-adapter",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/007-optional-ocr-adapter",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Scanned documents contain no reliable text layer, but OCR is expensive, error-prone, language-dependent, and easy to misrepresent",
     "created_at": "2026-07-15T09:47:26.152Z",
-    "last_save_at": "2026-08-30T15:39:14.202Z",
+    "last_save_at": "2026-10-07T18:12:14.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd09a7d24db89f3638c48b2d780c94e8f3024d233a50d24185a2fe803c6fa8f7",
+    "source_fingerprint": "sha256:12cc49b4f040de2b260d5ac4554f168650958ab3e4b041335f9850ded4c236d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8cf33cfbe0c2c0a90b232f4d9c4cc27f9d9c5c09cca1cbd071dab535171c312",
-      "plan.md": "d20f9011363e8669878cbc5a24e52d096296ddd2023b11036754579db5d7669b",
-      "tasks.md": "83fc38e9f20d239ec7812e924c14ee24a25e123212a19e95c81138a002b46302",
-      "implementation-summary.md": "1788aa53522ac45938e7b7ee86858dba2f79f91afe6380f6f55e55c7fb62402f"
+      "spec.md": "36b3ef608dd06fb7c6ce0d32a0317dd23681d897ae39857d4fb61c9fc947ea70",
+      "plan.md": "d43a674b9472a24bbac228810e25e93ac8f9024fd301a9cad5643155dcedea7f",
+      "tasks.md": "f6be4627f699f102cae390e241792673a21468070a881dd0980bd9ae840ac0ff",
+      "implementation-summary.md": "e18f4451d4d0c655e7b474024437292c239f1e7ecb20ccd0c8a0e36196458dd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

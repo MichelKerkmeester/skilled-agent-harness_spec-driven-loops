@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/006-active-continuation"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/006-active-continuation"
     last_updated_at: "2026-06-28T21:46:31Z"
     last_updated_by: "codex"
     recent_action: "Implemented default-off active continuation gates for the goal plugin"

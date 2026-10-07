@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
   "description": "sk-design's routing cannot be measured on the canonical typed-pair surface",
   "keywords": [
     "sk-design",

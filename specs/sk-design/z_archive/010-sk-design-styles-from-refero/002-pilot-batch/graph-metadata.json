@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
-  "spec_folder": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
-  "parent_id": "sk-design/010-sk-design-styles-from-refero",
+  "packet_id": "sk-design/z_archive/010-sk-design-styles-from-refero/002-pilot-batch",
+  "spec_folder": "sk-design/z_archive/010-sk-design-styles-from-refero/002-pilot-batch",
+  "parent_id": "sk-design/z_archive/010-sk-design-styles-from-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The harness is proven on three styles, but a decision to extract all 1,290 needs evidence at a representative scale: does the output hold across varied styles, how long does it take, and what does the storage footprint look like?",
     "created_at": "2026-07-18T06:30:48.677Z",
-    "last_save_at": "2026-08-30T15:39:12.472Z",
+    "last_save_at": "2026-10-07T18:12:31.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b59a0cab71efcf1179e298c8475f044f9db66b135248b554b671b0b383080980",
+    "source_fingerprint": "sha256:67fa5f3db127a93c19237fe8e907f8b9de03e764b7d978e80c558c6c67b81835",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6db45e284e2853c37f9097054e8187b625b068a521e36f09d324af9973dd8fd1",
-      "plan.md": "fa3c868360bbd0798c4d2061f05fa30241f31a23bb62cc05a78417538a12c3ed",
-      "tasks.md": "c7d5501bad571a152941f144f7b0cc7ff7acf8c83ff5ad15711fb44977015ba7",
-      "implementation-summary.md": "506c4cde35133dc33533cd154eb16f543aa73f3f48aafe1df70c6481487e2815"
+      "spec.md": "bd5e0bb44a8753b52677c44f0e7ae633ce06ca325b572f9fa473305421036bc3",
+      "plan.md": "8d7262603644e671aed0f3db082c75a00fdca5336a880b76f1609258545ddafc",
+      "tasks.md": "cef8dbdcbd9825191f393c190d4547b446296add7fe17fbc90f116e70031fee8",
+      "implementation-summary.md": "9f7eb4aab54402946b4ebddb6d7e934c593cb98eed5d6f55c772bc474cf0efc1"
     },
     "last_active_child_id": null,
     "last_active_at": null

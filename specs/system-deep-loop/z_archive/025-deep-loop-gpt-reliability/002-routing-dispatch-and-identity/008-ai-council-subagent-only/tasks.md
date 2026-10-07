@@ -2,13 +2,13 @@
 title: "Tasks: ai-council Subagent-Only Conversion"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
+  - "ai-council subagent conversion tasks"
   - "ai-council subagent only"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
     last_updated_at: "2026-07-01T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 9 tasks complete; validate.sh --strict passing"

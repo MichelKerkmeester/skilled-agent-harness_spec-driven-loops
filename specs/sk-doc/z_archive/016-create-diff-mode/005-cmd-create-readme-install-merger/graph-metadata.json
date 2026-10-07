@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/005-cmd-create-readme-install-merger",
-  "spec_folder": "sk-doc/016-create-diff-mode/005-cmd-create-readme-install-merger",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/005-cmd-create-readme-install-merger",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/005-cmd-create-readme-install-merger",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "input contract",
       "yaml architecture",
       "migration plan",
-      "task breakdown",
-      "merge tasks"
+      "merge tasks",
+      "create command unification"
     ],
     "key_topics": [
       "command",
@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/commands/create/README.txt"
+      ".opencode/commands/create/README.txt",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current command assets for `create:folderreadme` and `create:installguide` repeat the same orchestration structure: Phase 0 write-agent verification, a consolidated setup prompt, mode split (`:auto` and `:confirm`), and a six-step YAML workflow",
     "created_at": "2026-04-12T09:02:50.220Z",
-    "last_save_at": "2026-08-30T15:39:14.080Z",
+    "last_save_at": "2026-10-07T18:12:35.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f75215f4749afd92f7ac4d3ca82064d7b7b5a114163b1ed49db365902f2daa28",
+    "source_fingerprint": "sha256:4a6cf1c01171e96dfab97cdc32bc2402943ff49a7d84b284965044b385b2f03e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "59821992c352a69c280173d5b1e29927406b586a0bd12999afb9de9630984806",
       "plan.md": "54b2a50a94ae1927d83e8f42e2748bb2150f3ee26b8293b2b945a40b3ff8f29f",
-      "tasks.md": "a3822a01a4957a621ea299634858fb45b8e151ff2cc3727bbd9dc7d4cafafd20",
-      "implementation-summary.md": "f4960abf7ebd3af127e23cca6effcec6830c5ff793699649eddb242dbda61434"
+      "tasks.md": "936353c21d49034f1c2664d06989d667533d060ee2da80677d9f9e040ade288d",
+      "implementation-summary.md": "110fc5d3e8c7c9fb531cd66a23029b9beb04e0eafe84f4bcc9c6b3e280024bfe"
     },
     "last_active_child_id": null,
     "last_active_at": null

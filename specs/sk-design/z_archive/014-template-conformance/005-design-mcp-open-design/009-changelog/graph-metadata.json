@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/009-changelog",
-  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/009-changelog",
-  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "packet_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/009-changelog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/009-changelog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "design-mcp-open-design changelog conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -25,11 +24,11 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
       "skills",
-      "sk-design"
+      "sk-design",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -37,8 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
@@ -184,11 +176,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/changelog/` has not been audited against `.opencode/skills/sk-doc/shared/assets/changelog-template.md`",
     "created_at": "2026-07-27T15:02:59.935Z",
-    "last_save_at": "2026-08-30T15:39:13.263Z",
+    "last_save_at": "2026-10-07T18:12:34.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db8bf4944389c1b9a6bd4e57130e516aafa34b1f9b1e6140c3b294614ac0612e",
+    "source_fingerprint": "sha256:45970b9f35a0edc95bc5b7672479b9111e6d470fdeaef687d439b1131a9bc75f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b22143f2cbbd3d204f90728487fab11c13832ce3388d298e7ff4d7ebdaa7e6c6",
-      "plan.md": "3fe6e1a252f3ccb9f655a63234c88363bf3ea8ffa318d9895b6a4df0a2ff778c",
-      "tasks.md": "1f6bc6adddbcaa5c17090f27406ccd65c2b57b695a21942a98b3927e31f1a7fc",
-      "implementation-summary.md": "1068e9d1fced99d9cc32f9cac1b33964a7dedff17f4d0afc021c96ddf8a623a5"
+      "spec.md": "b3251045530e95a76ce317ea16bfb2b0cfbdbb5bc7d0241acedf635b7d38a168",
+      "plan.md": "d18b19de3639e6f6734a0ee67f90af2900f136a70e7eb3f6e3ba47299fc5a039",
+      "tasks.md": "23ac2892e9a8735c8bfe1687567939c6f5d02daf6acb49700d98327908e7d4e4",
+      "implementation-summary.md": "c3961a2e4cb460a812cf6dfdc8de5f8ceaca34b70189227193779b82dc4b4519"
     },
     "last_active_child_id": null,
     "last_active_at": null

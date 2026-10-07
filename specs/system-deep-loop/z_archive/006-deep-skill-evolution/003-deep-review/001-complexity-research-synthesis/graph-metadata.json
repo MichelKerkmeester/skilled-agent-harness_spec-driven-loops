@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The deep-review workflow should be the strongest bug-finding path for iterative audits, but user experience indicates focused deep-research loops can surface more defects when prompted to look for bugs",
     "created_at": "2026-05-22T05:50:19Z",
-    "last_save_at": "2026-08-30T15:39:23.136Z",
+    "last_save_at": "2026-10-07T18:14:22.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:74c339ca845e3d600720af7f0ae875d794865300b0a0aaeea65c372ef87b971d",
+    "source_fingerprint": "sha256:bb679b85078361c4754528cc604b9e093f861fcd94c6b58275bee6c89787e759",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "799957ca05115ff6e33d9e0a68892d464c5c493bb2d51938a701ba06abd181a0",
       "plan.md": "fad020b490c6853d7a3bc850f501c4e61197655e5e3ec5d19c7551c218de4e30",
       "tasks.md": "cad1b37ee612e8b1e227c67838fb2464cf32195ef0803104e25ab72abac307ef",
       "decision-record.md": "8e2c070825a35e9e9c584f8c874e163b71ae8ff0adbfb9cbd2fd0b36d7622afb",
-      "implementation-summary.md": "9bcb7908f28b1e9bed98c839c114874949f40685ea30881bf3002df0819739d1",
+      "implementation-summary.md": "82b98b31819e61bbd859381ca4f0e84abca15364b65b11225a34ea9085a5b0b3",
       "research/research.md": "96b71bced8f52519eb49c47731b27a3644d9f7b950adfea8688ca27774842b5a"
     },
     "last_active_child_id": null,

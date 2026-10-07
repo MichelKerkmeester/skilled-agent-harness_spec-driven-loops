@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer"
     last_updated_at: "2026-07-24T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Corrected the phase outcome after live firings under the documented schema"

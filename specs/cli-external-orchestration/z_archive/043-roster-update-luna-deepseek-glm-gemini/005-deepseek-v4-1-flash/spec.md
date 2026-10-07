@@ -2,10 +2,8 @@
 title: "Feature Specification: Phase 5: DeepSeek V4.1 Flash on Devin"
 description: "Devin serves a DeepSeek V4.1 Flash family that neither enforced allowlist carried, so a fan-out naming it was refused before a request was sent."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "deepseek v4 1 flash"
+  - "devin serves a deepseek v4 1 flash family"
 importance_tier: "normal"
 contextType: "general"
 ---

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/016-hub-routing-optimization",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/016-hub-routing-optimization",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/016-hub-routing-optimization",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/016-hub-routing-optimization",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,6 +44,9 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-code/hub-router.json"
@@ -76,13 +79,19 @@
       {
         "name": "mode-registry.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
         "name": "hub-router.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
         "source": "derived"
       },
       {
@@ -186,17 +195,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json` that `sk-design`'s equivalents lack: (1) a per-mode `\"command\"` field recording the bound slash command, documented in `advisorRoutingContract`; (2) a `\"hub-identity\"` vocabulary class wired into every mode's `routerSignals.classes` array",
     "created_at": "2026-07-06T19:50:05.020Z",
-    "last_save_at": "2026-08-30T15:39:12.267Z",
+    "last_save_at": "2026-10-07T18:11:39.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f01ea2376fae69fefcdb8f88f0c575ec66e022f110e52988b096abe0ec4c5ad9",
+    "source_fingerprint": "sha256:803a1e98b171aa15fe40c4688a7b1eba5cdff573e021e534e0071b1864e58dff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "208be12dccc441432f3a08ea58ef1cda4e8f761c26b4eedeeff04d8645610b41",
-      "plan.md": "c33bd30c1bde4eded0b19c0e441c2f2b766d2877079f683fec409170df6c2b5d",
-      "tasks.md": "c15e61a07dbf050901f2827672241677df27e20ca1f14c58375da0e3e5b33776",
-      "implementation-summary.md": "4574b89faf145c277c9fd3755c0ef96094d62d58310a19ed1b8f971a422dd8f3"
+      "spec.md": "2d80e84ac6ffd6da27d161c4c3d6d3f13e18a85b2ab3ac5b251e44b73e413a52",
+      "plan.md": "109e82b7a64156e29080b38fc90c802bc43d721c2b7ce1762bb09db4b3ce889b",
+      "tasks.md": "a307fc93ced5fea575bb4b941eeb6018b2996c5eb191dfa52b26b31cb6fa9976",
+      "implementation-summary.md": "da847e412b425c40f16ec473c280ba6b926f91af0d1ce028edb1ce4f6c61577c"
     },
     "last_active_child_id": null,
     "last_active_at": null

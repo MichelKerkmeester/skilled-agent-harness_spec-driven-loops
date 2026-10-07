@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Scaffolded conformance phase tasks (planned)"

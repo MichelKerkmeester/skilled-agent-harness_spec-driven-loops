@@ -1,3 +1,7 @@
+---
+title: "Files Touched: SpecKit Upgrade v1.0.7.0-v1.0.9.1"
+---
+
 # Files Touched: SpecKit Upgrade v1.0.7.0-v1.0.9.1
 
 > **Spec:** 077-speckit-upgrade-from-research

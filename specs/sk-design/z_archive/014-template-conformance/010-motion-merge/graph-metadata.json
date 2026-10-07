@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/010-motion-merge",
-  "spec_folder": "sk-design/014-template-conformance/010-motion-merge",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/010-motion-merge",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/010-motion-merge",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,8 +47,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/hub-router.json",
       "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c52071edb6^`) was a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
     "created_at": "2026-07-27T16:52:20.903Z",
-    "last_save_at": "2026-09-11T16:41:57.363Z",
+    "last_save_at": "2026-10-07T18:12:29.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14a0b14b759d0168afb587bfa8982757ebdbd01773300f671cf10b5091a05284",
+    "source_fingerprint": "sha256:23e0e27ca97b7a523693fdc3c065bb1b21b863d1d3b1c325c3bbebe025e6c25b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f157a8b3d090cc09354370ffa47c5cf728c82ee345841f604333380283ea41c7",
-      "plan.md": "d45ae0b149d2410cb4bf5e5ab79d47f5e1fdeea56925dd4f4800e6233ca452b0",
-      "tasks.md": "718a2ff1c4da3dc9cb440d5bfebd20274b3ba5f1fe6a583ce70ff13dfba20abc",
-      "implementation-summary.md": "1eeb3441ffc1fc1444a63aa1b41037b810747687e4627a9265657340191f8908"
+      "spec.md": "78b22c589aa58337a0d7628ec3f5c00f177775d7859f5a3807f78ce51a864770",
+      "plan.md": "4edc72eebf2aa8c0083e8045122f264d0b5b601a273e09d0b2edfe8e4bcca1e3",
+      "tasks.md": "a5d466f2168f2e888edf3e4602e5d0a1816ce948d9b64700b95469874f0c3f98",
+      "implementation-summary.md": "256e37ad062b49d4ad7fe6895fa8369724da5ff3bf645d4a95d8ae2b39eb3c83"
     },
     "last_active_child_id": null,
     "last_active_at": null

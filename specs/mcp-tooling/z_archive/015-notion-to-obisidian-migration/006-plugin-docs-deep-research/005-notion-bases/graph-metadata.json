@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
     "created_at": "2026-08-23T03:44:43.265Z",
-    "last_save_at": "2026-09-10T20:43:52.459Z",
+    "last_save_at": "2026-10-07T18:11:37.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:81bcf3ba7e4204176d04a8c0a0c30a4ea8848116184740b4a5c76a8663563b26",
+    "source_fingerprint": "sha256:80f502df549cbbd7a6b398e875e3c57290d23e3fdaf486954c1f9eba8aa0dc32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a1b2d986a3c2ad7f06fa48ada82c79acc61d2981817b1f9e780be7f027ac362",
-      "plan.md": "e6e2e4ef3a504466e3c5b8ddb9a761027a63e76085f6e28170f3b025f1ec11ea",
-      "tasks.md": "5ab7b85f9a89a808ce69689e16ef215c46fad601de639ca5d918c44f2c0abe6d",
+      "spec.md": "14d76af3d794d57bfb67585a1b87b0c400bfcefd8d547a7f748adc604d941672",
+      "plan.md": "ab21d8707a022ca1054f4c90d94f7e6ed0851f192341d084fcaa2c3cc71f50b6",
+      "tasks.md": "e27272a4904437fbe0392e3757130501811d7f4d88a19655f8f7ce9e7e31de1b",
       "research/research.md": "c3e1b2c56a71457ea3d42e372caedf531bce6cd0e466151119948ab2602d407b"
     },
     "last_active_child_id": null,

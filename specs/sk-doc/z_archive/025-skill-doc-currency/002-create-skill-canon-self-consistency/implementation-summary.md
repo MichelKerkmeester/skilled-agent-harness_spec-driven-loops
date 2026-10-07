@@ -10,7 +10,7 @@ contextType: "implementation"
 version: 1.0.0.0
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency/002-create-skill-canon-self-consistency"
     last_updated_at: "2026-08-02T08:12:30Z"
     last_updated_by: "skd025-002-build"
     recent_action: "Applied docs-only corrections and ran all required gates successfully"
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-create-skill-canon-self-consistency |
-| **Status** | In Progress |
+| **Status** | Planned |
 | **Level** | 3 |
 | **Updated** | 2026-08-02 |
 <!-- /ANCHOR:metadata -->

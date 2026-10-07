@@ -185,7 +185,6 @@ Two sequential sub-sprints: Sprint 6a (practical, no graph-scale dependency) →
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -213,7 +212,6 @@ Sprint 6b (Graph, GATED) ──────────────────�
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 ### Sprint 6a Effort

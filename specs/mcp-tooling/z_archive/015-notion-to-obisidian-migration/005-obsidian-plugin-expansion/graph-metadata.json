@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
     "created_at": "2026-08-22T06:59:23.392Z",
-    "last_save_at": "2026-08-30T15:39:10.403Z",
+    "last_save_at": "2026-10-07T18:11:36.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:676bb5670f0fea9de277da81c5639ab06f3ef650b64aa5fccf9b26256b78feb0",
+    "source_fingerprint": "sha256:7b8b2eee3c853a7506841b831a48431b70555d0a7317f810ba54651a4f87f030",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "58f2544ebe15295c8efb0ed163123ae7e5c613e20b0035b5899660747c6d208b",
-      "plan.md": "2342dc67093a163ef29884837c361f22329fea16447677d258e2e3e703ff1166",
-      "tasks.md": "435ff2adc415898edfa0d9c928dbcfc4199cc38e6c9534cf1683af74d05f53f2",
-      "implementation-summary.md": "c2aa7ea9885e4b4949ee453cb57812b9bc5e5041fa45fe2e0af131035c538a1f"
+      "spec.md": "fa204ae45534ac2161ef8acc76512b7a48fd6a2b61a0e8305234de172953234a",
+      "plan.md": "d6535b1b62f3fc8847a6056cd8558335c8edaac71aca8142f1347473eb799c78",
+      "tasks.md": "57db449887fa5205b186dc2678a692ec3fbba9fcaa15ceea51027ae925d5b8c3",
+      "implementation-summary.md": "bbbfeff607379b9bb54ce6d29fe49320ca61adc4f8c4f7778fe38db06fc57ff7"
     },
     "last_active_child_id": null,
     "last_active_at": null

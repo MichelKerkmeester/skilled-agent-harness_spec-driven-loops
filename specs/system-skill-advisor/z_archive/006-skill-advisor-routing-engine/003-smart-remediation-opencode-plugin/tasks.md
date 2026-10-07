@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/003-smart-remediation-opencode-plugin"
     last_updated_at: "2026-04-19T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 023 implementation and verification"

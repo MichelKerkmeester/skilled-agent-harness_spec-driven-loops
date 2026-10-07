@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
+  "specFolder": "cli-external-orchestration/z_archive/029-cli-devin-revival/001-devin-contract-pin",
   "description": "The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06",
   "keywords": [
     "archived",

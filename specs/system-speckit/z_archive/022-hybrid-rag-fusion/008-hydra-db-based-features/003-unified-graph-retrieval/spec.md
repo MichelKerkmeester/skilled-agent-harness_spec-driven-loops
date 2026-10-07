@@ -70,10 +70,11 @@ This phase pulls graph context into the main retrieval contract rather than leav
 - Deterministic tie-break and score-trace model
 - Graph-health telemetry and regression suite
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -168,7 +169,7 @@ Build a single deterministic graph-aware retrieval contract that uses causal, en
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -187,7 +188,7 @@ Build a single deterministic graph-aware retrieval contract that uses causal, en
 - **NFR-O31**: Maintainers can inspect graph contribution traces during debugging.
 - **NFR-O32**: Benchmarks and regression suites are easy to rerun locally.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

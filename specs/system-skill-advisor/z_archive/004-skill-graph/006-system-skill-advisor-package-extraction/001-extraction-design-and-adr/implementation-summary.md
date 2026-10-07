@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr"
     last_updated_at: "2026-05-14T07:35:00Z"
     last_updated_by: "codex"
     recent_action: "Wrote ADR-001 and extraction survey"

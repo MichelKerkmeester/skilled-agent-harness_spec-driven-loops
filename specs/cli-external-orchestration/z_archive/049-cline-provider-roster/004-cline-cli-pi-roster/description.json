@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster",
+  "specFolder": "cli-external-orchestration/z_archive/049-cline-provider-roster/004-cline-cli-pi-roster",
   "description": "Phase 3 made `cline-pass/deepseek-v4-flash` a live pi provider, but the cli-pi skill's provider roster (`references/providers-and-models.md`) still",
   "keywords": [
     "phase",

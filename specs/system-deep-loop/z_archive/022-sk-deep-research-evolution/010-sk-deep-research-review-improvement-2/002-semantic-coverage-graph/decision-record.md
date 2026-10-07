@@ -2,7 +2,7 @@
 title: "Deci [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/decision-record]"
 description: "Accepted architecture decision for the coverage-graph substrate that powers deep-loop convergence."
 trigger_phrases:
-  - "042.002"
+  - "semantic coverage graph decision record"
   - "decision record"
   - "semantic coverage graph"
 importance_tier: "important"

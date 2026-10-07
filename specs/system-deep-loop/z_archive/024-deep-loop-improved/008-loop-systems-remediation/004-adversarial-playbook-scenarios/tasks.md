@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios"
     last_updated_at: "2026-06-29T14:30:00Z"
     last_updated_by: "claude"
     recent_action: "Tracked the adversarial scenario authoring"

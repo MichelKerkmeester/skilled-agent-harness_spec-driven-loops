@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The generate-context.js pipeline has no observable signal for embedding health: the retry manager runs a background job every 5 minutes with circuit-breaker logic, but its RetryStats object (pending count, failed count, retry attempts, circuit breaker state) never reaches any MCP tool",
     "created_at": "2026-04-12T09:02:50.279Z",
-    "last_save_at": "2026-09-10T21:04:56.690Z",
+    "last_save_at": "2026-10-07T20:26:44.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e853fb4a42bc79adc32138d22d16fd315632fc8ecddf5cbfb44feae15189a55",
+    "source_fingerprint": "sha256:68ee4a3089e3c7ae607bf737e771a07bee84270c68f05bc96308622f976540f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d3c56e493051cbcca5159102da92f3e25c506e844f10f1d3daa060735bac565",
-      "plan.md": "acbb092d7d5b10e89ad0e1a40cc2e6af849907ba8bad087a3eab0f2a99d7baad",
+      "spec.md": "5b2afeae707ffce91a32bd6adb7d62c21cb2e13d7788964bd9410b3691ae4ab7",
+      "plan.md": "ddadb5d775b061eacc93020297507e473d642cb1420e4a36d14f713072ddb1d3",
       "tasks.md": "16bedb074d3243815876a68974d5e18acff53d31014e858b473e36625fdb5dc0",
       "decision-record.md": "8cf3effc1adf57e4541a490fae15c634f38eccb11bce30f36669189067eeca0a",
       "implementation-summary.md": "82331f9431ab9086b10561ff536fec7708343a539e9e4312c2dada16d20eb816"

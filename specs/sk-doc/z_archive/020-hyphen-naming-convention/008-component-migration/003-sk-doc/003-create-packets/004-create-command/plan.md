@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored create-command plan"

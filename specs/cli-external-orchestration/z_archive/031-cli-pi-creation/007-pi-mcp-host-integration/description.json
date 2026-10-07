@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/007-pi-mcp-host-integration",
   "description": "This repo runs 5 native MCP servers (`sequentialthinking`, `mk-spec-memory`, `mkskilladvisor`, `mkcodeindex`, `codemode`) that Claude Code and",
   "keywords": [
     "repo",

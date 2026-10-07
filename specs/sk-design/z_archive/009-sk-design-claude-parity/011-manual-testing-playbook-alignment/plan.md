@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 011 — Manual Testing Playbook Full Alignment"
 description: "Completed Level 2 implementation plan for the sk-design hub and five mode-packet manual testing playbook alignment pass."
 trigger_phrases:
-  - "implementation plan"
   - "manual testing playbook alignment"
   - "procedure card selection proof"
   - "hub manager intake coverage"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/011-manual-testing-playbook-alignment"
     last_updated_at: "2026-07-06T09:07:56Z"
     last_updated_by: "opencode-gpt-5-5"
     recent_action: "Implemented the manual testing playbook alignment pass."

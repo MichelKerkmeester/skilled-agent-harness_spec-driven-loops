@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/010-command-description-trim",
-  "spec_folder": "sk-doc/016-create-diff-mode/010-command-description-trim",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/010-command-description-trim",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/010-command-description-trim",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,9 +41,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/commands/create/changelog.md",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/commands/memory/search.md"
+      ".opencode/commands/create/changelog.md"
     ],
     "entities": [
       {
@@ -80,18 +78,6 @@
         "name": "changelog.md",
         "kind": "doc",
         "path": ".opencode/commands/create/changelog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -189,11 +175,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Final",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110)",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-08-30T15:39:14.254Z",
+    "last_save_at": "2026-10-07T18:12:12.546Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc5e8e1a94abc0b920ee149739ae89f851914257005f69e0b009edd3e88479b2",
+    "source_fingerprint": "sha256:1a29e2ba8beabc9e6e91692d7cd77fb938c128674df354b9c4ff0801e86872ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef87c2d913c34af225865780ae45485c2885cfe9b10e8d7a5f832aca68842797",
-      "plan.md": "08208c31fb2012f0fb3546551b4ed6301dbe3f584cb26afc398636e51611c035",
-      "tasks.md": "6f669dd4674c48bbe59999581d8c9afc016ff0db55275f284afd7d3fc76f1a7f",
-      "implementation-summary.md": "62deb8b84f6c6e0f25a36720e89a915ecd1e7b923063171e4369ac5de8f8080e"
+      "spec.md": "197ed76bba74d9ac09584fef31297291b287d933b0aa36c17210db48b1e65b85",
+      "plan.md": "3b7916b0b6b515bfbbc989866174681efc283e81cd93f8f4a05238b0c5c7bbb5",
+      "tasks.md": "8bcd449aac881e6d99af997e394f8b565e44c1483b2c6bd859b586aa4b164add",
+      "implementation-summary.md": "872e4c1b7ac648013102237b181a69ac5b2cd2606a49c0a0c7c29b2b8e50cfe2"
     },
     "last_active_child_id": null,
     "last_active_at": null

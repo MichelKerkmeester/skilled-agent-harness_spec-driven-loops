@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "mcp-tooling/011-routing-remediation",
+  "specFolder": "mcp-tooling/z_archive/011-routing-remediation",
   "description": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL,",
   "keywords": [
     "phase-007",

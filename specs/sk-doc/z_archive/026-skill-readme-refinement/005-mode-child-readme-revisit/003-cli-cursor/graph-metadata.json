@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "phase 003 tasks",
       "cli cursor readme tasks",
       "cli-cursor rewrite tasks",
-      "implementation summary",
-      "cli cursor readme summary"
+      "cli cursor readme summary",
+      "phase 003 summary"
     ],
     "key_topics": [
       "cli",
@@ -35,8 +35,8 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "summary",
+      "skill"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -48,28 +48,25 @@
       ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/changelog/v1.2.0.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The cli-cursor skill README at `.opencode/skills/cli-external-orchestration/cli-cursor/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:39.785Z",
-    "last_save_at": "2026-08-30T15:39:17.621Z",
+    "last_save_at": "2026-10-07T18:14:19.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b23a61b49d7cdd8f8ef2b56adf5a02d2a1c0210bb1131adcb838eb5594487f42",
+    "source_fingerprint": "sha256:7a0231c80db1ff8150021682e5d6d49fc7464c99c578c7909bd16abbce306677",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "536fa2f3a94c0ad21e945f4dcc32379b0bbb18d49abf6a36bd92c3b46c61c72f",
-      "plan.md": "2fede741e07d5cc6f121221c862fe286b13655d2c630b8056222c1ba00107934",
-      "tasks.md": "ebc925bac04b9c48c1d79b842ac7b2a9ca69ea4e4ba98b79eaed56b03ecfdacf",
-      "implementation-summary.md": "c9982c0d3b03866634760c441506ee813559c6898666d7dcd3be09c258eae352"
+      "spec.md": "e992c17798e2bfb7f70d5f950f8aa47c1a374ede3ac45e51980a315869a4f69e",
+      "plan.md": "c4717d972e1dd74c530ca4a35802da355f9ab78af1930d57ecd51ab5c6638d08",
+      "tasks.md": "983fbf5c7b8e7d561cc15515233ea8ecbb75a9429c202c9873c43866ad2202d1",
+      "implementation-summary.md": "52cd28838271fc09100fb70da75776ba191c6876d56a359efe81b4815a44856c"
     },
     "last_active_child_id": null,
     "last_active_at": null

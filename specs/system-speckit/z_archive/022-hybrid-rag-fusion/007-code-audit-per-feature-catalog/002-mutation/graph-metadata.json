@@ -15,8 +15,7 @@
       "mutation",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -26,11 +25,11 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
       "evolved",
-      "significantly"
+      "significantly",
+      "specification",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +189,7 @@
     ],
     "causal_summary": "The feature catalog for Mutation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.245Z",
-    "last_save_at": "2026-09-10T21:04:46.314Z",
+    "last_save_at": "2026-10-07T20:28:46.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a147c82149c2c6e70053e15a408111abeef8d211d695b8e0fa0117aa6545b06",
+    "source_fingerprint": "sha256:eeda297b49e0cb7c69bd15d3338b151eeb97a92f035b73b59edc13c99aa59a78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e940b7ec83a824a4a61d81d8c21794f3755a9d0578a7a4712c5fa9639e4dafa5",
-      "plan.md": "08d60b6ad8d08e4f2b4ced07358e97a96a8a67b294d55ab05cbdfa95e9ed914d",
+      "spec.md": "99243bcd47c1bc6f18acc4b1247a7b65e6ef8cc2c0644394b6a6f45440fd95de",
+      "plan.md": "43d18b40a30862ebdf6f068ca6e6cf2e5aa89062610b900131796f915f0d8fdd",
       "tasks.md": "71447d3713eaecb938962b62b5b5be779754043f2ca825e6e127fb05a7848889",
-      "implementation-summary.md": "3619a2ca52ad5387be2e5a68a261f3a4b0160fb0a80aec3ad86c847546f14d2e"
+      "implementation-summary.md": "519914540b5ff7eb2dea192c53b49f6ab4e5baa455f6f5c3793f80ab34edf5df"
     },
     "last_active_child_id": null,
     "last_active_at": null

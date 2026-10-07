@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The existing `check-prompt-quality-card-sync.sh` script compared file hashes across only 3 mirrors, missing two cli- cards (`cli-devin`, `cli-opencode`) entirely",
     "created_at": "2026-06-05T12:47:32.507Z",
-    "last_save_at": "2026-08-30T15:39:19.210Z",
+    "last_save_at": "2026-10-07T18:13:58.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3485b43f9728662bcc2750509e9f25852f2ee8a29c38b4661c91cb2cd2d0320",
+    "source_fingerprint": "sha256:b73ef32045519249d5e9993e52a47432fac475d8710d82af6cb43898d27fccc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40f051177bed4052a9ee1d3f7ca9cee4b5af4b34d4abb20ecf61d5eb7bf89157",
-      "plan.md": "d95777886d5a727b9f70a273b03fbbd0c49380274cb0c95a39f79ecb8f59f030",
-      "tasks.md": "e1ff15ebcffa5c88b8c3b455c953265d476fb625e888ebf38b3973f416bca3b8",
-      "implementation-summary.md": "9373b443ac39d0c3d130b0090928ee9f2b4880187cda207039b28071fb948f8c"
+      "spec.md": "83db45968fbdc30446eaad4fc67c1bfd57d10e332d565bf79b6cba5727ced6cd",
+      "plan.md": "6f8e721dac4f71c11b0ad44b95d4a84bd0844c744914ad125e6f69332bb3cfde",
+      "tasks.md": "bf8cc72cc66fe39538c281e557cdfe5f092a5ac0abe2d8ea6b393865a0ad5367",
+      "implementation-summary.md": "3204f71a9926a9d415e6f0788517397915f65ad18ec69907b9f7bf0ddb9f93d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

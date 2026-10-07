@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
     "created_at": "2026-07-27T06:48:17.288Z",
-    "last_save_at": "2026-08-30T15:39:07.622Z",
+    "last_save_at": "2026-10-07T18:11:08.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87a7ebeaae324132165f9815cd38bc11fb6e0b84df63cc0ec2146a7270ec7dec",
+    "source_fingerprint": "sha256:f32f18f5d4b946a53ed71d861ff0a74e016ff942cc28069e65db3bd1d38339dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c651b83a4290adc8b35080f54a579bab95d2a3787ab9cd88d824c3617b29507e",
-      "plan.md": "3a1457d481e91b3f7b7fe338c79b3bdb40414a1a5287ede29c820e326d18a426",
-      "tasks.md": "c2538e3d5cdface91388d5b8cb6836cebccab1f869826d9dc64bd9776c0a79a0",
-      "implementation-summary.md": "f92ffa6d9faf5f1052b44d86714803c02eb9bcfb1126fc73300ec6ae2083ca63"
+      "spec.md": "1ce9547ad0922aae036f33616a4e0d2d3bcf762a8de604b2d809610a916d527f",
+      "plan.md": "b5cbedfc49768366dfc1fe2cdf080976f17a9d582cbf1016dcff4a67ca7f8b47",
+      "tasks.md": "413f7d1c1d13cb3f02bdf7aa00598cea92630e0f6af8de0684e6dabdd4954d64",
+      "implementation-summary.md": "e6c031bc90b973175c227ed07b4031a7a2b375b07053d75eb82fc19cac5b241f"
     },
     "last_active_child_id": null,
     "last_active_at": null

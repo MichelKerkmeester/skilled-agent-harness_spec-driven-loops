@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/008-divergent-mode-dogfood",
   "description": "Packet `055-deep-loop-divergent-mode` shipped `convergenceMode: \"divergent\"` — an opt-in scope-expansion pivot where a legal STOP triggers a 3-seat",
   "keywords": [
     "packet",

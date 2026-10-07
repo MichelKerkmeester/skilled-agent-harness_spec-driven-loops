@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/002-hub-rename-and-runtime-nesting"
     last_updated_at: "2026-07-08T06:40:24.201Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "All stages executed and verified; ready to commit"

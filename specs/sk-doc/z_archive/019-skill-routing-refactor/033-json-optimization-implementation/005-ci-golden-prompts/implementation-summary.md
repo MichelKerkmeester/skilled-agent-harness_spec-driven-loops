@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts"
     last_updated_at: "2026-07-29T14:40:05Z"
     last_updated_by: "claude-code"
     recent_action: "Built + verified golden-prompt gate (10/10, 31/31 combined); wired as a separate CI job"

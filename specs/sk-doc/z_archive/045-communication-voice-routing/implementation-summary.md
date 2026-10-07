@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/045-communication-voice-routing"
+    packet_pointer: "sk-doc/z_archive/045-communication-voice-routing"
     last_updated_at: "2026-08-31T20:30:00Z"
     last_updated_by: "stream-6"
     recent_action: "Rerouted sk-communication and its two rewrite commands to the Human Voice Rules"

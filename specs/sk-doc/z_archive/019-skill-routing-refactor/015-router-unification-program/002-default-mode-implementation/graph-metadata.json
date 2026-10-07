@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
     "created_at": "2026-07-18T14:47:45.777Z",
-    "last_save_at": "2026-09-11T16:42:04.389Z",
+    "last_save_at": "2026-10-07T18:13:17.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d17d88253900221e36cfd9e996e083dc9f231454a221276cf85baee3c9ff7dc",
+    "source_fingerprint": "sha256:3a46d074a7c6c5e88bc4085692abdbc8072d419f718501b0ab17f00aaee738e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "016caa2e9189d2da5217ac0a9216d696ca62bc53bcf03b3692d531a68a47956c",
-      "plan.md": "57ab7852a17c433d9511ff4bdd29a7f9a8dde7d6bf130f30dd5446cb0b0418c1",
-      "tasks.md": "1c80ca33f001427da6ce5efab5f91ff33ba6210afa36942d821df5476d93ac68",
-      "implementation-summary.md": "48e8ac688ac9f3cfbb3c72fd2c6e4ec786a7f5c7b4baad3b38fd9f0975492625"
+      "spec.md": "fa3c07422862ea54a942c0cbdc9c1af72d0f95b6ec25cd6544ef71ea101d4634",
+      "plan.md": "963a547bf86e067555e97dba8180c481cd4485893591af088b5b0a224a61a86e",
+      "tasks.md": "d51190a071062dee51f18d8343f436775404f5074871f77b11b3a374bdd115a1",
+      "implementation-summary.md": "e7f6159699cd4a1e5e721e5153d054859f2dcc70f825830104a68cb342cdee8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

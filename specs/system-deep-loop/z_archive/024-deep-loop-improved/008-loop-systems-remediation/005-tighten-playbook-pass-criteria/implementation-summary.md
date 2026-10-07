@@ -2,14 +2,13 @@
 title: "Implementation Summary: Tighten Playbook Pass Criteria"
 description: "Completed Markdown-only remediation for high-risk manual testing pass criteria."
 trigger_phrases:
-  - "implementation summary"
   - "tighten playbook pass criteria"
   - "manual testing playbook"
 importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria"
     last_updated_at: "2026-06-29T13:09:46+02:00"
     last_updated_by: "codex"
     recent_action: "Completed implementation and verification for manual playbook pass criteria."

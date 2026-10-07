@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/013-git-review-remediation",
-  "spec_folder": "sk-git/013-git-review-remediation",
+  "packet_id": "sk-git/z_archive/013-git-review-remediation",
+  "spec_folder": "sk-git/z_archive/013-git-review-remediation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two open review items remain after packet 005:",
     "created_at": "2026-07-15T04:22:49.243Z",
-    "last_save_at": "2026-08-30T15:39:18.514Z",
+    "last_save_at": "2026-10-07T18:14:09.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7d33e319eea364631605c51859cbc9d774714501250a39ac60f1d91701a8bfd",
+    "source_fingerprint": "sha256:181c3501e994cdb769e803299354fe9add0a4538602b579ba7531a2153dea822",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "414f3b73ca2bedf5aff55fb6a141d4bf4ca12d4a7dbc1f29af192cab1fef2afb",
-      "plan.md": "a880ac820a1d8b3e7489d547c12ddfd394f7ee72978464b0291b8ea8e5ca9926",
-      "tasks.md": "50d157ec967a24a6512e3633d4733b609c30085ec98f960e57b73e14db7f0b75",
-      "implementation-summary.md": "e9265a719ee1c242e9eec591f36d470a9c1761a2c8343990e7433771df98703f"
+      "spec.md": "3d9cf5315ae3fbb76567746702580f5b0f1156518f450c0eaf1e051c267003fe",
+      "plan.md": "4a6b03638adfb0abbb9b64304672dd13f59466438270f5899ad80f79f5939291",
+      "tasks.md": "77c0dfe166401c8c08553d19fa0870bea07bfff202df3fdcc9d3a3f2e56163d7",
+      "implementation-summary.md": "c4247b6205a60ec55867a2fcde429b0f474f2496a3000f74a262a73a2f576dcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

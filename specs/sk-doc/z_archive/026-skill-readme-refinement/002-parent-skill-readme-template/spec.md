@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/002-parent-skill-readme-template"
     last_updated_at: "2026-08-04T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 2 docs (spec, plan, tasks, checklist) inside 026-skill-readme-refinement"

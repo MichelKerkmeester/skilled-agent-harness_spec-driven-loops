@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS harness (the extra TS failures are mostly TS abstaining where Python routes)",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:27.076Z",
+    "last_save_at": "2026-10-07T18:16:07.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a5f6a55f356902f2c5e04f73a8e4d23dc06816d8c1f64a03b84dd4f4afec3a3",
+    "source_fingerprint": "sha256:b135f3d4ed9b42795f06405302d82c8011ba84c05d4900fa2d1415ae9f92bd02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2e6813fc332c37ae95d9b5991580940471fb3b01a0d7d37efd5b5e35bcbca79",
-      "plan.md": "086e4c01b3f4d258c94117f9b00a797ea6b651bc9898bbf6e7046cd764a21d3b",
-      "tasks.md": "c829b120f3f0f51b7a3e32c79e5254798b02c314e7dc2e2610e0051c1c41d591",
-      "implementation-summary.md": "5b1e1905fdd60ce36296f418fa2cf980c6b58cfe527c513c65c5fc499d46977d"
+      "spec.md": "1e1cd777daaf8e4de4bed052f6a888d187076141e72eeb2b9a9278f05aac3979",
+      "plan.md": "9b10c357549a0b8f40cfb3a546cff700ee7a27cb61cd2be49d88c169b258e265",
+      "tasks.md": "076f10229bde5ee3d52116b29c58e3447c4b3a9fddfd2d599e5bfe1c287f6016",
+      "implementation-summary.md": "bf8c871cbad7fb0f127071d060bc9d46d629db383bfeff5adffb6429c1483e66"
     },
     "last_active_child_id": null,
     "last_active_at": null

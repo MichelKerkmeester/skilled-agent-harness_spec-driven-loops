@@ -152,7 +152,7 @@ Bounded adaptive-learning layer on top of a deterministic retrieval baseline. Sh
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -165,7 +165,7 @@ Phase 3 traces -> Signal capture -> Shadow evaluation -> Promotion rules -> Phas
 | Shadow evaluation | Signal design | Promotion decisions |
 | Promotion and rollback validation | Shadow evaluation | Later rollout confidence |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -263,7 +263,7 @@ Phase 3 traces -> Signal capture -> Shadow evaluation -> Promotion rules -> Phas
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-401: Start Adaptive Learning in Shadow Mode Only
@@ -278,7 +278,7 @@ Phase 3 traces -> Signal capture -> Shadow evaluation -> Promotion rules -> Phas
 - Safer rollout and clearer evidence.
 - Slower visible activation, but much lower regression risk.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

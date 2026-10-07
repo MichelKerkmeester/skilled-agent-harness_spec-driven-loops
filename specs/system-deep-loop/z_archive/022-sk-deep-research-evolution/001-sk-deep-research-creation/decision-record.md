@@ -276,8 +276,8 @@ AGR case study data shows diminishing returns past 15 iterations. We needed a se
 
 ---
 
-<!-- ANCHOR:adr-007 -->
 <!-- /ANCHOR:decision -->
+<!-- ANCHOR:adr-007 -->
 ## ADR-007: 3-Signal Composite Convergence (Drop CUSUM)
 
 ### Metadata

@@ -194,7 +194,6 @@ Give each spec folder its own `description.json` containing identity metadata (`
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## 7. L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -213,7 +212,6 @@ Give each spec folder its own `description.json` containing identity metadata (`
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## 8. L2: EDGE CASES
 
 - Blank/whitespace-only spec.md: description.json is valid with empty `description`, empty `keywords`, intact identity metadata

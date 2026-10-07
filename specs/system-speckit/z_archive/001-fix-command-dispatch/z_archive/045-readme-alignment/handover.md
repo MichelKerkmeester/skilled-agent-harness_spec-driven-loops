@@ -2,17 +2,14 @@
 title: "Session Handover [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/handover]"
 description: "1. Phase 1: Fix system-spec-kit/README.md (8 tasks - 3 P0, 4 P1, 1 P2)"
 trigger_phrases:
-  - "session"
-  - "handover"
-  - "document"
-  - "045"
-  - "readme"
+  - "readme alignment handover"
 importance_tier: "normal"
 contextType: "general"
 ---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 | Field               | Value                                  |
@@ -21,9 +18,11 @@ contextType: "general"
 | **To Session**      | Next implementation session            |
 | **Phase Completed** | PLANNING                               |
 | **Handover Time**   | 2025-12-26T23:45:00                    |
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Decisions Made
@@ -45,9 +44,11 @@ contextType: "general"
 | .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/plan.md | Created implementation plan | COMPLETE |
 | .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/tasks.md | Created 24 detailed tasks | COMPLETE |
 | .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/checklist.md | Created QA checklist | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
@@ -66,9 +67,11 @@ contextType: "general"
 - [x] Plan file: `plan.md` (5-phase approach)
 - [x] Tasks file: `tasks.md` (24 detailed tasks with line numbers)
 - [x] Checklist file: `checklist.md` (P0/P1/P2 prioritized items)
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
 Before handover, verify:
@@ -77,9 +80,11 @@ Before handover, verify:
 - [x] No breaking changes left mid-implementation
 - [x] Tests passing (N/A - documentation only)
 - [x] This handover document is complete
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
 ### Audit Summary
@@ -99,6 +104,7 @@ Before handover, verify:
 - Templates: 10 files exist
 - Scripts: 10 files exist
 - Library modules: 23 files exist
+<!-- /ANCHOR:session-notes -->
 
 ---
 

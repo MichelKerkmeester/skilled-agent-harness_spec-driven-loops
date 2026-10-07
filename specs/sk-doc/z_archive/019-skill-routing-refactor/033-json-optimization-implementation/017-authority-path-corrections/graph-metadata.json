@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Correct the dead create-skill authority paths, bring the skill-root metadata contract doc in line with the deliberate H-required-to-optional reversal the implementation already made, and label or exclude the tracked scratch artifact.",
     "created_at": "2026-07-30T08:10:27.710Z",
-    "last_save_at": "2026-08-30T15:39:15.977Z",
+    "last_save_at": "2026-10-07T18:13:24.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,13 +180,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f98f822dfe570bfc60a1c99ce03344cda5147b94638acfa6bb5cf70d70cfa8ac",
+    "source_fingerprint": "sha256:6589550abaff5a86b4470ee0436a9774c704c4de55c419f13f2df6e505b0d6d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51bdbe706840e7e9fc8134a39cbd89b27d697c7528261700f39fa0e7a3a46990",
-      "plan.md": "2115b0b17e720eb947cf8e6d75ad8010dceae9b102004c0fba341a6fc59637ad",
-      "tasks.md": "a7e6efca8ea644f7601e80a0ee5d084e32b408f8ecf65d184d50de1a8ef5d350",
-      "implementation-summary.md": "4b2cd9563bb0bae7cce9e26216f033fe586f9204d2c03801998f5e39bd79c3d4"
+      "spec.md": "b3ae0ba595b6e0e167413b4523f64c2d1041fe70e56343918b0a4a768df2d673",
+      "plan.md": "74b57d48e8bbaeac769e366a5e2fe7bb3ac3ae53afaca8b0de5e477da341617b",
+      "tasks.md": "0d66879a97d4db52c5befe03afd9104830f1bda909ba547df3a9834944c55639",
+      "implementation-summary.md": "9be255ac9d6a287a2bec46529f1efea55a5698a9aed53ede6d73fc63ad0194db"
     },
     "last_active_child_id": null,
     "last_active_at": null

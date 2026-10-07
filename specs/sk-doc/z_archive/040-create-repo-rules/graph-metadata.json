@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules",
-  "spec_folder": "sk-doc/040-create-repo-rules",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/040-create-repo-rules/001-repo-rules-router",
-    "sk-doc/040-create-repo-rules/002-inventory-and-skill-contract",
-    "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
-    "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails",
-    "sk-doc/040-create-repo-rules/005-agents-md-integration",
-    "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
-    "sk-doc/040-create-repo-rules/007-validation-and-changelog",
-    "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
-    "sk-doc/040-create-repo-rules/009-hub-routing-guardrails"
+    "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router",
+    "sk-doc/z_archive/040-create-repo-rules/002-inventory-and-skill-contract",
+    "sk-doc/z_archive/040-create-repo-rules/003-skill-scaffold-and-template",
+    "sk-doc/z_archive/040-create-repo-rules/004-creation-standards-and-guardrails",
+    "sk-doc/z_archive/040-create-repo-rules/005-agents-md-integration",
+    "sk-doc/z_archive/040-create-repo-rules/006-command-and-hub-wiring",
+    "sk-doc/z_archive/040-create-repo-rules/007-validation-and-changelog",
+    "sk-doc/z_archive/040-create-repo-rules/008-conformance-playbook-and-readme",
+    "sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails"
   ],
   "manual": {
     "depends_on": [],
@@ -117,16 +117,16 @@
     ],
     "causal_summary": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the always-loaded document into each rule that governs it",
     "created_at": "2026-08-31T11:33:07Z",
-    "last_save_at": "2026-08-31T16:07:09.056Z",
+    "last_save_at": "2026-10-07T18:14:18.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:59843392a56206adf6db7a4fd570ec2c586915f407f3ea2c65453e1763057558",
+    "source_fingerprint": "sha256:b46bbd8d86b2681a5ad429886c50b904c52320053d7b30e75c50b14641462e3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3f377a57ecee62a3ed659e9e37c33a0642b1311d956e90a41205912855351d6"
+      "spec.md": "ffb9bce92558efeacddbfffa8fdde5b038eec6341bde90827c92de44a65cab48"
     },
     "last_active_child_id": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
     "last_active_at": "2026-08-31T13:41:06.699Z"

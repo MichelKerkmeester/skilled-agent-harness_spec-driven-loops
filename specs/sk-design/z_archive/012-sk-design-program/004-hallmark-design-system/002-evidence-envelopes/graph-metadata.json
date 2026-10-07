@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
-  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
-  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,14 +14,8 @@
       "owned asset manifest",
       "motion character handoff",
       "measured motion section design.md",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "evidence envelopes plan",
+      "evidence envelopes tasks",
       "evidence envelopes implementation summary"
     ],
     "key_topics": [
@@ -34,9 +28,9 @@
       "measured",
       "section",
       "design",
-      "implementation",
-      "plan",
-      "technical"
+      "evidence",
+      "envelopes",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "sk-design modes currently have no shared evidence contracts for three gaps that two independent Hallmark adoption research syntheses converged on as their highest-confidence findings: (1) there is no provider-neutral schema for describing owned assets without hotlinking or bundling third-party binaries; (2) there is no semantic vocabulary connecting motion \"character\" intent to sk-design's existing timing/easing bands; (3) the `MotionSystem` detector already produces motion evidence, but the v3 DESIGN.md schema has no output section for it — the gap is output, not detection",
     "created_at": "2026-07-20T09:21:25.442Z",
-    "last_save_at": "2026-09-11T04:35:38.282Z",
+    "last_save_at": "2026-10-07T19:23:36.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f46d7f3919986e762514e4711b2656d6035f9b81452e36938c793d44c69ed7d4",
+    "source_fingerprint": "sha256:57ad816776f181df7592b27f5d8fe3621a4bef292eb2d8690a24659e3fdf6c87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "317def499a26a38329e5c11caab2a0d9b613e85203353aff6c1e4a5a96ccaa0a",
-      "plan.md": "1c2fa5d9787770b8cbed9a725f41ff6446884823eefe640ae9f03f2d26c04c39",
-      "tasks.md": "3fdb08a1f33aa975f3d3fc1fb9699249063890518dd742079950344f800c9a84",
-      "implementation-summary.md": "bfa54a8ff4038197084555c0597bc1a4920793b7a8c04f9e1553f89a7fc3ef01"
+      "spec.md": "e180d033f3acf6724d909bdde08295a3ad9d865d6442d8c96834b8caeab1eb8b",
+      "plan.md": "5a2d69bb31dfe3f92fa705333aa596cb1259e58a79e1a8295a53ae2eec228917",
+      "tasks.md": "6674aad5a3924f735ea1dc12be712b12e06fdaf0ad0d7c60b04267b1414d2f62",
+      "implementation-summary.md": "1ae576da3959e4a33de2167fe55ed089008a5f5e9f921d8440dff8d5e74d31f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

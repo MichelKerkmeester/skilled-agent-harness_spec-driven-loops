@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,11 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      "changelog/v3.8.0.0.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.8.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -58,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -83,12 +78,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.8.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v3.8.0.0.md",
         "source": "derived"
       },
       {
@@ -198,11 +187,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:38.721Z",
-    "last_save_at": "2026-09-10T20:45:25.879Z",
+    "last_save_at": "2026-10-07T18:13:43.883Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bca0d3ffce82823bf559d9d0abccbb2abf1b2eb2823102f01c7683a56290ec7f",
+    "source_fingerprint": "sha256:31a0e131c2c0e85a6d23f9941bb48070f4988721cd9c21cbb8397083a6eaa89a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef9622a08cda4ffcfaac7bb47cf33fa5ac17c810c10c69753c78a9e2640e32ea",
-      "plan.md": "9d05fa5b6ab3252c784520072861d6485183d47b077ca3f8df67c8baab1333b3",
-      "tasks.md": "bb880a3077752b8a42064eccad6e942d441c819f6bc2465ee0f4d79384c46aa3",
-      "implementation-summary.md": "fe2029108543f60157fbaf5c2b30ff8003f7e65da31eb3803a9681893abbffd8"
+      "spec.md": "c14fc7809b22885dfb46ab64107c1183883863c975401f4ff3cda674957e82db",
+      "plan.md": "0db4f504ba5bdf08ab5ba276a108cea8c83d629bd0f4c536a51ec15b7ee3ef5d",
+      "tasks.md": "ba3190e9eab727ed9486783e3db1abff1e4d6f132fe69292875840cf6ed8f865",
+      "implementation-summary.md": "53fe5be735c2c9459c78aa1a97c5e1b7108d6e1c28c543277216c54ea7b95adc"
     },
     "last_active_child_id": null,
     "last_active_at": null

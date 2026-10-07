@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Normalization is lossy at multiple pipeline boundaries",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-09-10T21:04:53.668Z",
+    "last_save_at": "2026-10-07T19:24:35.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70cd8f42864393062b1822fd77f9b47a6a04636e50d0a603b7ff35f53c237c13",
+    "source_fingerprint": "sha256:8240bb8edda633ebf6b5a49c9bad8c6295563806ca0bd34098988b8882a8ef8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "381f7cb7eb78785856e6656b3d94ba2c6c25a7c6bb9ab5114c9be279d9f917c6",
       "plan.md": "2292bc422da0d5e7fe1892926cc005e75f4fffacce12ab2d898b70940c2a8da9",
       "tasks.md": "b0338d075d52ce6e09589be99b0b58b031292df72ab63240de30bf9aa424dcb4",
-      "implementation-summary.md": "d1a9426b0b0d191308082324ba5a8b068295109539622c8ef61be15299b73382"
+      "implementation-summary.md": "962e68412d544ccdbd86ae27b8688b688d87a86a3e70ee60f011fd9a77034119"
     },
     "last_active_child_id": null,
     "last_active_at": null

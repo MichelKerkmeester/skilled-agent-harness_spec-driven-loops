@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract",
   "description": "Define a versioned, machine-readable command contract as the single source of behavioral truth for the six command families.",
   "keywords": [
     "define",

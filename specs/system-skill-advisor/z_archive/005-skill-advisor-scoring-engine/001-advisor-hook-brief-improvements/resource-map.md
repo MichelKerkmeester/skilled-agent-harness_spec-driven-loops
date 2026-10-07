@@ -21,6 +21,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v2.2 -->
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 - **Total references**: 49
@@ -31,17 +32,21 @@ _memory:
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` (exists on disk) · `MISSING` (referenced but absent) · `PLANNED` (intentional future path).
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:readmes -->
 ## 1. READMEs
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
 | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md` | Updated | OK | Skill-advisor package README. |
+<!-- /ANCHOR:readmes -->
 
 ---
 
+<!-- ANCHOR:skills -->
 ## 5. Skills
 
 | Path | Action | Status | Note |
@@ -62,9 +67,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts` | Analyzed | OK | Claude hook-state support. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Analyzed | OK | Shared payload helper. |
 | `.opencode/skills/system-spec-kit/mcp_server/code-graph/lib/code-graph-context.ts` | Analyzed | OK | Code-graph context helper cited by packet docs. |
+<!-- /ANCHOR:skills -->
 
 ---
 
+<!-- ANCHOR:specs -->
 ## 6. Specs
 
 | Path | Action | Status | Note |
@@ -92,9 +99,11 @@ _memory:
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/deep-research-config.json` | Cited | OK | Packet-02 research config. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/findings-registry.json` | Cited | OK | Packet-02 findings registry. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/deep-research-state.jsonl` | Cited | OK | Packet-02 research state. |
+<!-- /ANCHOR:specs -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 7. Scripts
 
 | Path | Action | Status | Note |
@@ -104,9 +113,11 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/scripts/skill_advisor.py` | Analyzed | OK | Fallback advisor CLI. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js` | Validated | OK | Built Codex hook artifact. |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/prompt-wrapper.js` | Validated | OK | Built Codex prompt-wrapper artifact. |
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:tests -->
 ## 8. Tests
 
 | Path | Action | Status | Note |
@@ -115,3 +126,4 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts` | Validated | OK | `advisor_validate` handler test. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/codex-user-prompt-submit-hook.vitest.ts` | Analyzed | OK | Codex hook test. |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/codex-prompt-wrapper.vitest.ts` | Analyzed | OK | Codex prompt-wrapper test. |
+<!-- /ANCHOR:tests -->

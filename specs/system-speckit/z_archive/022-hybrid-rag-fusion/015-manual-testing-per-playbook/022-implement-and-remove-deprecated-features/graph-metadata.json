@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph calibration, temporal contiguity, consumption logger) and 3 dead modules to remove entirely (channel attribution, fusion shadow V2, full-context ceiling eval)",
     "created_at": "2026-04-12T09:02:50.307Z",
-    "last_save_at": "2026-08-30T15:39:39.278Z",
+    "last_save_at": "2026-10-07T20:38:26.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +201,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff6c0c17987016e9fce5631285c09be7ca4be40736328c42d850f3ecc30c0ba0",
+    "source_fingerprint": "sha256:0fafb25250fd8837190333303928133395128bae4b4e93517188ff9164659488",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28f6349c0d5b0a98bdc4632be1f15fcb605f7e6c3a626934af7a98367745b0c2",
-      "plan.md": "2825b76b141dc6161e698aa81c7b35dde33794cf0d8a97ae3d739c643fb1e125",
+      "spec.md": "5d3f362cbe6248bd10c6d8ef5b505e8f2e1361e29d4d19a205bbe66d46a0c5fd",
+      "plan.md": "be2a53c9b0745672f46fe5bc46db044af07db03f784fd86a696817f49f1c730f",
       "tasks.md": "f19cb67f19ed62fc1068d1ef9b7e51adc5fce25aba624e978f4eb4fe56a2ab1c",
       "implementation-summary.md": "b6f5b1d240500fa8f0af3237ff6b4168901220ff2c1b0b084af368d84211b715"
     },

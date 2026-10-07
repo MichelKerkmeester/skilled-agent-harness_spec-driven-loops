@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/002-references",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/002-references",
   "description": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying",
   "keywords": [
     "references",

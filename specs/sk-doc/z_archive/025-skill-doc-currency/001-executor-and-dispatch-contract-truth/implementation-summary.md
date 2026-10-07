@@ -10,7 +10,7 @@ status: "In Progress"
 version: 1.0.0.0
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
     last_updated_at: "2026-08-02T00:00:00Z"
     last_updated_by: "skd025-001-build"
     recent_action: "Recorded documentation corrections and scoped verification receipts"

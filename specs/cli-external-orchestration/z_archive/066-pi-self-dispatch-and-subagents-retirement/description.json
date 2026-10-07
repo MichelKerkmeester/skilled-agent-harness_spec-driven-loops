@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
+  "specFolder": "cli-external-orchestration/z_archive/066-pi-self-dispatch-and-subagents-retirement",
   "description": "Two facts changed under the `cli-pi` packet and neither is reflected in it",
   "keywords": [
     "two",

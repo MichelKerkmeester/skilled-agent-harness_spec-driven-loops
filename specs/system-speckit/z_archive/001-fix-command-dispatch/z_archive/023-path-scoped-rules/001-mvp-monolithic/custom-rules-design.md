@@ -1,3 +1,12 @@
+---
+title: "Custom Rules Design Document [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic/custom-rules-design]"
+description: "Design document for the custom path-scoped rule definition format, extension points, implementation approaches and API design."
+trigger_phrases:
+  - "path scoped rules custom design"
+  - "custom rules design document"
+importance_tier: "normal"
+contextType: "planning"
+---
 # Custom Rules Design Document
 
 > **Status**: Design Document (Future Implementation)  

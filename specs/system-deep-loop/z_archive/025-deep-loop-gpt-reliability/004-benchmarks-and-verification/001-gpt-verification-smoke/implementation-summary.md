@@ -1,11 +1,14 @@
 ---
 title: "Implementation Summary: GPT First-Dispatch Verification Smoke"
 description: "Bounded GPT route probes passed route preservation; command-owned smokes failed before leaf dispatch."
+trigger_phrases:
+  - "gpt verification smoke summary"
+  - "gpt first-dispatch smoke results"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke"
     last_updated_at: "2026-06-30T21:05:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "User-approved nested command-owned GPT smokes attempted; gate failed before leaf dispatch"

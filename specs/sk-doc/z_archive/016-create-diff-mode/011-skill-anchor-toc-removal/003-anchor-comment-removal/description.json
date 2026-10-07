@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
   "description": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
   "keywords": [
     "in-scope",

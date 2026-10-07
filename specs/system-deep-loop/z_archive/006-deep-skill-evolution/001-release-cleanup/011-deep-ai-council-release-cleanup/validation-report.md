@@ -1,3 +1,14 @@
+---
+title: "Phase 4 Alignment Validation Report: deep-ai-council release cleanup"
+description: "Per-artifact sk-doc template conformance report for the deep-ai-council release cleanup: every in-scope artifact conforms, one accepted P2 SKILL.md section-order deviation is documented, and approval is pending before Phase 5."
+trigger_phrases:
+  - "deep-ai-council release cleanup validation"
+  - "deep-ai-council phase 4 alignment"
+  - "sk-doc conformance deviation log"
+importance_tier: "important"
+contextType: "implementation"
+---
+
 # Phase 4: Alignment Validation Report — deep-ai-council
 
 - **Packet**: `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council`

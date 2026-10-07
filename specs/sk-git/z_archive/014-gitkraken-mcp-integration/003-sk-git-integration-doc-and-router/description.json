@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
   "description": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing",
   "keywords": [
     "even",

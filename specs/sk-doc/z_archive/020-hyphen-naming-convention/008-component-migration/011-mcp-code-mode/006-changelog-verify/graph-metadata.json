@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The mcp-code-mode surface has a changelog through v1.0.8.0 and SKILL.md currently declares version 1.0.8.0, while the embedded npm lock metadata separately records 1.0.9. This verify-only phase checks that the completed rename set has an explicit matching changelog entry and version bump without performing any renames.",
     "created_at": "2026-07-14T15:18:24Z",
-    "last_save_at": "2026-08-30T15:39:16.952Z",
+    "last_save_at": "2026-10-07T18:13:25.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e854b896b54b5f9dad43960d1237229d7f3469e9a71f395e0fb1f9f3167bb90e",
+    "source_fingerprint": "sha256:62db9b530c8ce7150b3933d1d9a589d6231519a512fbd4d4478cb4513f14877d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04843860be82f72c49525eb95c3486c263691a4be5fbba0b98dd7f1098e6d293",
-      "plan.md": "9089f16f2541dc5567f3f0dfb15eeb95dab5454eee6957abc761f98477cc81cc",
-      "tasks.md": "142d51f319df3cfb1ccae3c782568cc56e5ce2076bbb6451ea06fbee0bcf79fa"
+      "spec.md": "0146d194efc9c80ed581b0c6b03b3b077df58f8a24b91cc3ce66be277d410148",
+      "plan.md": "4683b378aaa1efc95986d6984c11dfaabfef8a49aa652fc25801fbca49eaf611",
+      "tasks.md": "7fe9a23885c2581366900fd56e7088bcb5585a451f6509be6a296a18f13301b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

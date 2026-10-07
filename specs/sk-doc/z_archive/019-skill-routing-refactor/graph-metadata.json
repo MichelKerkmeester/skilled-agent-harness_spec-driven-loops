@@ -1,44 +1,44 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor",
-  "spec_folder": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/001-research",
-    "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
-    "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
-    "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
-    "sk-doc/019-skill-routing-refactor/005-router-standardization-and-regen",
-    "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
-    "sk-doc/019-skill-routing-refactor/007-create-skill-router-marker-gap",
-    "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
-    "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix",
-    "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
-    "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes",
-    "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
-    "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
-    "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
-    "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
-    "sk-doc/019-skill-routing-refactor/018-post-019-research",
-    "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
-    "sk-doc/019-skill-routing-refactor/020-compiled-routing-next-move",
-    "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
-    "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
-    "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates",
-    "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
-    "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
-    "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
-    "sk-doc/019-skill-routing-refactor/027-program-deep-review",
-    "sk-doc/019-skill-routing-refactor/028-p2-hardening",
-    "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
-    "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
-    "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
-    "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
-    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
-    "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness",
-    "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment"
+    "sk-doc/z_archive/019-skill-routing-refactor/001-research",
+    "sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map",
+    "sk-doc/z_archive/019-skill-routing-refactor/003-router-collision-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+    "sk-doc/z_archive/019-skill-routing-refactor/005-router-standardization-and-regen",
+    "sk-doc/z_archive/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
+    "sk-doc/z_archive/019-skill-routing-refactor/007-create-skill-router-marker-gap",
+    "sk-doc/z_archive/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
+    "sk-doc/z_archive/019-skill-routing-refactor/009-create-benchmark-routing-fix",
+    "sk-doc/z_archive/019-skill-routing-refactor/010-create-packet-routing-conformance",
+    "sk-doc/z_archive/019-skill-routing-refactor/011-sk-doc-routing-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
+    "sk-doc/z_archive/019-skill-routing-refactor/014-sk-code-router-alignment",
+    "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
+    "sk-doc/z_archive/019-skill-routing-refactor/017-post-019-alignment",
+    "sk-doc/z_archive/019-skill-routing-refactor/018-post-019-research",
+    "sk-doc/z_archive/019-skill-routing-refactor/019-routing-drift-remediation",
+    "sk-doc/z_archive/019-skill-routing-refactor/020-compiled-routing-next-move",
+    "sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification",
+    "sk-doc/z_archive/019-skill-routing-refactor/022-command-metadata-generalization",
+    "sk-doc/z_archive/019-skill-routing-refactor/023-skill-metadata-templates",
+    "sk-doc/z_archive/019-skill-routing-refactor/024-create-journey-gate-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+    "sk-doc/z_archive/019-skill-routing-refactor/026-advisor-ingestion-seam",
+    "sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review",
+    "sk-doc/z_archive/019-skill-routing-refactor/028-p2-hardening",
+    "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research",
+    "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+    "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
+    "sk-doc/z_archive/019-skill-routing-refactor/032-sk-design-recall-investigation",
+    "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
+    "sk-doc/z_archive/019-skill-routing-refactor/034-compiled-routing-fleet-freshness",
+    "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -50,9 +50,15 @@
       "019-skill-routing-refactor",
       "sk-doc skill routing refactor",
       "phase parent",
-      "post-019 handover",
-      "where did we leave the routing work",
-      "resume post-019 loops"
+      "authored routing source plan",
+      "router program custodian plan",
+      "compiled routing source maintenance",
+      "authored routing source tasks",
+      "router program custodian tasks",
+      "compiled routing source verification",
+      "authored routing source summary",
+      "router program custodian record",
+      "compiled routing source home"
     ],
     "key_topics": [
       "019-skill-routing-refactor",
@@ -62,18 +68,26 @@
       "refactor",
       "phase",
       "parent",
-      "post-019",
-      "handover",
-      "leave",
-      "work",
-      "resume"
+      "authored",
+      "source",
+      "plan",
+      "router",
+      "program"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "handover.md",
       "context-index.md",
+      ".skilled/bin/lib/compiled-route-layout.cjs",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/bin/check-no-spec-imports.cjs",
+      ".skilled/bin/compiled-route-guard.cjs",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/spec.md",
       "018-post-019-research/research/research.md",
       "017-post-019-alignment/alignment/alignment-report.md"
     ],
@@ -81,7 +95,25 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -94,6 +126,30 @@
         "name": "context-index.md",
         "kind": "doc",
         "path": "context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-layout.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-layout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
         "source": "derived"
       },
       {
@@ -139,56 +195,68 @@
         "source": "derived"
       },
       {
-        "name": "Drift Remediation",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Loop Runs",
+        "name": "Technical Context",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Handover Summary Four",
+        "name": "Overview Write",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Context Transfer",
+        "name": "Key Components",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "For Next Session",
+        "name": "Data Flow Hub",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Validation Checklist",
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-08-30T15:39:14.623Z",
+    "last_save_at": "2026-10-07T18:12:07.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:317e6ab79b6c76e2d54573da7163c8eeec6b04b477474010ba911779eaf2b5ef",
+    "source_fingerprint": "sha256:45b0668750ca9f58f46917b910824d8f0acd94982c04b5a9b1608ab178297892",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a",
-      "handover.md": "3f9835cd28f6ae607b6c2e20af141b9ae1ff5896e7f03c0c5127d072d89cfcd8"
+      "plan.md": "57cdfa5b4e58988e71d09c52da69729e699a3ba371659c78d36d7014e295f8fc",
+      "tasks.md": "3b0932d8b5724e96213e46973ba4e177257ac43b1cc0dbe9bf717bd761a2aacd",
+      "implementation-summary.md": "0047200860843fd582f803843dc6c04c0a5564f1106838d7e13ff4370348e50d",
+      "handover.md": "dbe8b7ae05bdb130c91508adef9253153b90bad3220177e148bb03f92c995f6b"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
     "last_active_at": null

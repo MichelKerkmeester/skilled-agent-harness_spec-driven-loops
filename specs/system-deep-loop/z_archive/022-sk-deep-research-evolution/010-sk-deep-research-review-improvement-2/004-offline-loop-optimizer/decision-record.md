@@ -2,7 +2,7 @@
 title: "Decis [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/decision-record]"
 description: "Accepted architecture decision for the offline replay optimizer and its advisory promotion boundary."
 trigger_phrases:
-  - "042.004"
+  - "offline loop optimizer decision record"
   - "decision record"
   - "offline loop optimizer"
 importance_tier: "important"

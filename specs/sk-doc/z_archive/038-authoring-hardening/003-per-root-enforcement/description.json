@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
+  "specFolder": "sk-doc/z_archive/038-authoring-hardening/003-per-root-enforcement",
   "description": "A fleet validator run could report success over playbook roots it never opened, so a sub-package could carry hundreds of violations behind a green",
   "keywords": [
     "fleet",

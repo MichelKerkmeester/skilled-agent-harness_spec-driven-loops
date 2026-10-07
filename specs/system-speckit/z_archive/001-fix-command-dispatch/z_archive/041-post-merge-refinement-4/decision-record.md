@@ -2,13 +2,8 @@
 title: "Decision [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/decision-record]"
 description: "This document captures key architectural and implementation decisions made during the Post-Merge Refinement 4 project."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "post"
-  - "merge"
-  - "refinement"
   - "decision record"
-  - "041"
+  - "post merge refinement 4 decision record"
 importance_tier: "important"
 contextType: "planning"
 ---

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-08-30T15:39:24.605Z",
+    "last_save_at": "2026-10-07T18:14:41.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b15ce32734ef517e7ce3a6d107f040c53b98e1c10a2e70cdc0b64ac6fd32913f",
+    "source_fingerprint": "sha256:827e9926c42d4f3a5b83cc5762cff5ef31895eaca9cd0415d68144dd82ec7fbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "051df3c897a67452a64773232119f180280427c8caa895dc286e83f648943a98",
-      "plan.md": "3a60905afb34021c01ecfbb89e986dda3b8c26e8e590b8ea3f6631e44b7d5fdf",
-      "tasks.md": "e593bdcc574b50b336b6bc042abbeb6965a53440112e3c0ce2b725c587b72c7c",
-      "implementation-summary.md": "0abf9cd3853b06c9f0e2e96e8b94fe589fd706b81310909770c573a8e168389d"
+      "spec.md": "010f3542025205b8388e1eda7e4d96f185c6dc7de9e2276e01febc6b4949a327",
+      "plan.md": "0405d688fc299a45b6ea1018ecf797b8020ebede0346f9db6740299bfeb63fc7",
+      "tasks.md": "4b84446b295d6b724a7458bff971fea9574cf840ab068456211f5f12a904f214",
+      "implementation-summary.md": "4c852f215e0a2ac725d29511ce4e52f45f9ee25489ad05dd246f104d130e4d0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

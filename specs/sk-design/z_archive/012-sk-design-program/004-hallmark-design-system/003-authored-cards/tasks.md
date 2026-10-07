@@ -1,9 +1,11 @@
 ---
 title: "Tasks: Authored Structural-Fingerprint Cards"
 description: "Completed task breakdown for the seven structural-fingerprint cards, load-on-demand index, and evidence-envelope diversification check."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
     last_updated_at: "2026-07-22T18:39:18Z"
 
     last_updated_by: "implementation-agent"
@@ -21,10 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "authored cards tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

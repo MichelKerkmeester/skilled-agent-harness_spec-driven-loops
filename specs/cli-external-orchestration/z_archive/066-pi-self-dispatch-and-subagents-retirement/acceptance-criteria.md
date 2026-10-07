@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Let a Pi session dispatch cli-pi, and retire the pi-subagents route"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "pi self dispatch and subagents retirement acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

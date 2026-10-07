@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T12:15:00+02:00"
     last_updated_by: "codex-gpt-5"
     recent_action: "Governing spec reconciled to the shipped packet-02-derived implementation"
@@ -21,12 +21,14 @@ _memory:
     answered_questions: []
     status: "complete"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 # Feature Specification: Skill-Advisor Hook Improvements
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -38,9 +40,11 @@ _memory:
 | **Parent** | `026-graph-and-context-optimization/007-hook-parity/` |
 | **Parent Spec** | `../spec.md` |
 | **Related** | `../004-advisor-hook-surface-integration/`, `../002-advisor-plugin-hardening/`, `../003-advisor-standards-alignment/`, `../../007-deep-review-remediation/006-integrity-parity-closure/applied/CF-019.md` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -60,9 +64,11 @@ Implement the packet-02 findings in one Level-2 packet by:
 5. Publishing aggregate-vs-runtime threshold semantics so operator tooling can distinguish validation gates from runtime routing.
 6. Persisting prompt-safe diagnostics in a bounded durable sink that validator analysis can read across processes.
 7. Capturing accepted/corrected/ignored outcome totals for validator feedback without persisting raw prompt text.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -97,9 +103,11 @@ Implement the packet-02 findings in one Level-2 packet by:
 | `026/009/006-skill-advisor-plugin-hardening/implementation-summary.md` | Prior 008 outcomes |
 | `026/009/009-skill-advisor-standards-alignment/implementation-summary.md` | Prior 009 outcomes |
 | `026/007/006-integrity-parity-closure/applied/CF-019.md` | Upstream parity fix consumed as implementation baseline |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers
@@ -116,20 +124,25 @@ Implement the packet-02 findings in one Level-2 packet by:
 |---|---|---|
 | REQ-004 | Focused verification covers the shipped runtime, MCP, and telemetry surfaces | Packet closeout includes targeted Vitest/smoke evidence for OpenCode parity, Codex parity, validator outputs, and durable telemetry behavior |
 | REQ-005 | Packet lineage remains internally consistent after implementation | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, and `checklist.md` all describe packet 014 as the implementation follow-through for packet-02 research |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Packet 014 closes the packet-02 implementation set for `014-F-001` through `014-F-007` inside this folder rather than deferring the actual code changes to an unnamed child packet.
 - **SC-002**: OpenCode, Codex, and public MCP surfaces describe one threshold/render/operator contract after implementation.
 - **SC-003**: The packet's governing spec and closeout docs consistently describe packet-02 research as upstream input and packet 014 as the implementation packet.
 - **SC-004**: Verification records focused Vitest and smoke evidence for the shipped surfaces, while honestly documenting any remaining packet-external build blockers.
+<!-- /ANCHOR:success-criteria -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 6. EXECUTION NOTE
 
 Packet 014 consumes the packet-02 research bundle at `../../research/002-advisor-hook-followup-research/` as its upstream implementation input and records the authorized execution in this folder's `plan.md`, `tasks.md`, `implementation-summary.md`, and `checklist.md`.
 
 Implementation execution followed the same direct `codex exec` pattern documented in `../../007-deep-review-remediation/006-integrity-parity-closure/decision-record.md#adr-001`, but the canonical implementation record for this work lives in packet `014-skill-advisor-hook-improvements/` rather than in a separate child packet.
+<!-- /ANCHOR:questions -->

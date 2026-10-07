@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.304Z",
-    "last_save_at": "2026-09-10T21:05:01.873Z",
+    "last_save_at": "2026-10-07T20:38:20.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a11d03140584ff05c36eeb36208ce160d780cdb9d7c7fd957579d73cec721a0",
+    "source_fingerprint": "sha256:8e491818aeb4a07ba0ba7d7e13a7b646415ab4256eba471465db2eae02d35821",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f470bdf3ae866156f78702b0bea123bf477fcf56f103b8eb2f247e07463273a8",
-      "plan.md": "8e53dd8b64a303ce4a57b726e0e05ed6dd9616cb4f6640d77139f77674fa1ecb",
+      "spec.md": "bbcb666c62f6ce61d7c573c8d87545178d6800962a0d458d18c1531ce1694db2",
+      "plan.md": "270de7371c45ac763a6000af09daff32c224ed5f88112fcefd0379963918d007",
       "tasks.md": "78b1d6e958e601bd84a453fa9bbf349429d1c825d47f61920e3544018c59a91d",
       "implementation-summary.md": "ac3c8c6c1660a3a0a869ef9697c78e1526d23163301255fa53710d80bc84018e"
     },

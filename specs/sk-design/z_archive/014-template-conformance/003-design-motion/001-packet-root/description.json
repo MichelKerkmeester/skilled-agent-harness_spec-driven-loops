@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/001-packet-root",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/001-packet-root",
   "description": "`design-motion`'s packet root carries exactly two markdown files, `SKILL.md` and `README.md`",
   "keywords": [
     "design-motion",

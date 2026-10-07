@@ -2,9 +2,7 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
+  - "research model benchmark implementation implementation summary"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

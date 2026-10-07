@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the measured count)",
     "created_at": "2026-07-27T14:56:08.891Z",
-    "last_save_at": "2026-09-11T16:41:57.098Z",
+    "last_save_at": "2026-10-07T18:12:31.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:106e5ad96f623e43f4c7b037c2363922d11bd22d1c2ef36c663b402c5152b0f0",
+    "source_fingerprint": "sha256:3a772e8faff12769b8de52150633b390a8abb15481eb06e90e73d6952e896094",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2837445f4973661e99e49164b13de3e77da0d54e71369dd7513ddd7ce4a35d76",
-      "plan.md": "2638f3a98dec7a1701020db2c12c2a13299d388ae002e9acd7e01d505e29f679",
-      "tasks.md": "bc82aa48fcde399c8d216fa48ccf6b993aed6cd26ce7e94192a3a5e711d372f8",
-      "implementation-summary.md": "727908f5df7b80fc57ba59d1bda2d8422444cc244eace366269cf6c04ee34fe7"
+      "spec.md": "5c428e34af389be661292b2b4f1d786d3b5df230d2360e046082a998a7c1d7f2",
+      "plan.md": "bd97d8dc28bcf9a119bfe542b9606a569b42262ff043548bb1b8ba87c5cfa1ad",
+      "tasks.md": "032b50911f4424cdf4b3ba7168ccf6e3d442b248fea7a2b2fed2a476f81f893d",
+      "implementation-summary.md": "4fb6cadd202cb402dfdb1cd33d8e20597385aec29edbfcbac6d1bbdd59a0c257"
     },
     "last_active_child_id": null,
     "last_active_at": null

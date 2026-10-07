@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/026-cli-external-parent"
+    packet_pointer: "cli-external-orchestration/z_archive/026-cli-external-parent"
     last_updated_at: "2026-07-10T05:03:42Z"
     last_updated_by: "claude"
     recent_action: "Marked phase 001 read-only explicitly in phase map (WS-B R5)"

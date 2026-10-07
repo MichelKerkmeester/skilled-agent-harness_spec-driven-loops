@@ -196,7 +196,7 @@ As a power user, I need CLI tools for detecting complexity and expanding templat
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -215,7 +215,7 @@ As a power user, I need CLI tools for detecting complexity and expanding templat
 - **NFR-O01**: All JavaScript tools MUST work with Node.js 16+
 - **NFR-O02**: Bash scripts MUST work on macOS and Linux
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -287,7 +287,7 @@ As a power user, I need CLI tools for detecting complexity and expanding templat
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -296,7 +296,7 @@ As a power user, I need CLI tools for detecting complexity and expanding templat
 - ML-based prediction - overkill for rule-based system
 - GUI configuration - CLI-first approach
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/053-cline-ox-alpha-cli-pi-roster"
     last_updated_at: "2026-08-24T10:18:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped x-ai/ox-alpha across config, docs, fan-out roster, and guard tests; live-verified (PONG)"

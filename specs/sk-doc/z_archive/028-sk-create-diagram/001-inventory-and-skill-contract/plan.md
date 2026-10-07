@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract"
     last_updated_at: "2026-08-12T05:53:36.000Z"
     last_updated_by: "claude"
     recent_action: "Completed inventory and recorded decisions"

@@ -133,7 +133,7 @@ Verify that all 2 Evaluation features are accurately documented in the feature c
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -142,7 +142,7 @@ Verify that all 2 Evaluation features are accurately documented in the feature c
 ### Reliability
 - **NFR-R01**: Findings must be reproducible by re-reading same sources
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -212,6 +212,7 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 
 ---
 
+<!-- /ANCHOR:complexity -->
 <!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
@@ -219,9 +220,8 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 - **Given** the listed source files for a feature, **when** maintainers spot-check them against the repo, **then** the packet either confirms them or records the drift.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
-<!-- /ANCHOR:complexity -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - ~~Source file list for `eval_run_ablation` should be trimmed — who owns the catalog update?~~ Resolved: Deep Review Update (2026-03-25) confirmed the catalog source list is now correctly scoped to 13 files.
@@ -234,5 +234,5 @@ Sprint grouping, metric summaries, trend analysis, `SPECKIT_DASHBOARD_LIMIT`, an
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 <!-- /ANCHOR:questions -->

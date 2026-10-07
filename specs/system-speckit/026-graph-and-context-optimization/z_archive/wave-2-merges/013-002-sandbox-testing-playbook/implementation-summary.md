@@ -51,7 +51,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook` |
+| **Spec Folder** | 013-002-sandbox-testing-playbook |
 | **Status** | COMPLETE (~95% — G3 + G4 minor issues deferred) |
 | **Level** | 3 |
 | **Phases delivered** | A (scaffold inline) + B (4 parallel cli-codex tracks) + C (root playbook inline) + D (cli-codex sandbox harness) + E (verification inline) |

@@ -1,3 +1,14 @@
+---
+title: "Known Limitations & Remediation Guide"
+description: "Known limitations and remediation guidance from the ecosystem audit of the system-spec-kit skill."
+trigger_phrases:
+  - "speckit ecosystem known limitations"
+  - "remediation guide findings"
+  - "ecosystem audit limitations"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Known Limitations & Remediation Guide
 
 <!-- SPECKIT_LEVEL: 3+ -->

@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout` |
+| **Spec Folder** | 009-verification-changelog-closeout |
 | **Parent Phase** | `skilled-agent-orchestration/116-deep-skill-evolution` |
 | **Level** | 2 |
 | **Completed** | 2026-05-22 |

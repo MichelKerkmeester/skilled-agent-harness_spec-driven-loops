@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/070-swe-2-model-cutover",
-  "spec_folder": "cli-external-orchestration/070-swe-2-model-cutover",
+  "packet_id": "cli-external-orchestration/z_archive/070-swe-2-model-cutover",
+  "spec_folder": "cli-external-orchestration/z_archive/070-swe-2-model-cutover",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The operator asked for a version bump",
     "created_at": "2026-09-12T04:13:31.248Z",
-    "last_save_at": "2026-09-12T04:17:50.345Z",
+    "last_save_at": "2026-10-07T18:11:33.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:938313abaf177f99528b94a520dbe4e0cba3043c3f3c1082612fdfc6e05dfff9",
+    "source_fingerprint": "sha256:fbab0e6ce8c2e7ea895adda2d234974f8dc896de2a78c30654dce4d01e815fb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "476fdab1db1a5ead8c2857db10585b95a886e2d4f7938c19a7157ca4212e8701",
       "plan.md": "e76e95b87035c28f4ba8139f20e28f497f699dafa70d7f13279c4c4822d372b1",
       "tasks.md": "38ca7ae74b6e6cbe4fb94f9563438111a1798d81aabaeef81b90f2c6477b778a",
-      "implementation-summary.md": "a4091e1cdccfb902ffa54fe5db891b579261a160f77a5f1cb2c100b2aed8ada0"
+      "implementation-summary.md": "15f101e7eaee13de454e55895896c979679a90c5eabe339bc2731343c3ffa1f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

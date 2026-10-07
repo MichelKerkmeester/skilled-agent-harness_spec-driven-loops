@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/002-semantic-routing-lane"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane"
     last_updated_at: "2026-05-15T00:00:00Z"
     last_updated_by: "opencode-deepseek"
     recent_action: "Restructured: children promoted to siblings 014-023, slot converted to initial leaf phase"

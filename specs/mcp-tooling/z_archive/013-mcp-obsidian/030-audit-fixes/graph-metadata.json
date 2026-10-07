@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,22 +10,35 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [
-      "three",
-      "defects",
-      "two",
-      "fresh-opus",
-      "bug",
-      "audits",
-      "mcp-obsidian",
-      "mode",
-      "skill",
-      "mcp-tooling",
-      "parent",
-      "integration"
+    "trigger_phrases": [
+      "mcp-obsidian post-audit fixes",
+      "playbook source closers",
+      "mcp-magnific scaffold removal",
+      "post-audit fixes plan",
+      "playbook closer dispatch",
+      "magnific removal plan",
+      "post-audit fixes tasks",
+      "playbook closer task record",
+      "magnific removal task list",
+      "post-audit fixes summary",
+      "hub version parity record",
+      "scaffold removal summary"
     ],
-    "importance_tier": "important",
+    "key_topics": [
+      "mcp-obsidian",
+      "post-audit",
+      "playbook",
+      "source",
+      "closers",
+      "mcp-magnific",
+      "scaffold",
+      "removal",
+      "plan",
+      "closer",
+      "dispatch",
+      "magnific"
+    ],
+    "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -120,15 +133,51 @@
         "source": "derived"
       },
       {
+        "name": "per-fix",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Approach",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Critical files",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "Tasks — mcp-obsidian + hub post-audit fixes",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "_memory:   continuity:     packet_pointer:",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -142,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Gate-3",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
     "created_at": "2026-08-06T13:47:25.994Z",
-    "last_save_at": "2026-09-20T04:34:18.542Z",
+    "last_save_at": "2026-10-07T21:21:34.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -161,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04b09949ca1ba2ec8a38923b49f25e73b713fa8398530b0709e4afda8eb1f442",
+    "source_fingerprint": "sha256:bf8249eb651ffcd22cb5ecd347ec8ea21ce0643a70bc7d77129326aa508564c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c92df506147deccf153aa0ad4fb0480eb428464a731e15992d1bf8004baff683",
-      "plan.md": "ffb315b8467fdb9f0694a8c020b7bdfd672419006150f11504edabe71a03d5d0",
-      "tasks.md": "77ad8b387ad8b9bdf113edb82b292870866d7acc148efe2a53101c641411d3a3",
-      "implementation-summary.md": "0104ba924cb690d23972ff5396c410323e430c6610b4524605a09df96dcef333"
+      "spec.md": "f108135e965fb51fdb9c61bc43fca7f0cded067b11ff9cd3163f950d1cb2f53a",
+      "plan.md": "25e7ea6a908cd59bc0e5b19d6ebf6aa39ee76e9f71b00de5e1645f3ded8c7141",
+      "tasks.md": "f51aca3a75fbbc59f9ede2dde97798256aa354217254e4387f1a123e34db7198",
+      "implementation-summary.md": "30b9ddfdcedf711529ddedd23737f8e9ccba0316b104f3e203efc0aff59c9a16"
     },
     "last_active_child_id": null,
     "last_active_at": null

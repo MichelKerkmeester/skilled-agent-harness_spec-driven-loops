@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 04: Agent Configs Audit"
+description: "Agent configuration alignment edit list for task 04 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "agent alignment changes"
+  - "agent config edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 04: Agent Configs Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

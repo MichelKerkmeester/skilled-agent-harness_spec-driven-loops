@@ -2,13 +2,13 @@
 title: "Tasks: Rollout Behavioral Benchmarks -- deep-research + deep-context"
 description: "Task Format: T### [P?] Description (file path). All pending -- phase blocked on its predecessor."
 trigger_phrases:
-  - "tasks"
+  - "rollout research context tasks"
   - "research context behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
     last_updated_at: "2026-07-02T19:55:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 7 tasks complete; 42 runs scored, scorecard published"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/025-doctrine-coherence-sweep",
   "description": "The doc-coherence lens found 22 places where older prose contradicts the metadata contract",
   "keywords": [
     "doc-coherence",

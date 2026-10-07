@@ -13,7 +13,7 @@
     "retroactive-rework",
     "docs"
   ],
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7",
   "keywords": [
     "cross-analysis",

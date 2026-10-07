@@ -179,7 +179,7 @@ Test Inputs (fixtures, configs)
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -200,7 +200,7 @@ Phase 4 (Scripts) ---------+
 | Phase 4: Scripts | None | Phase 5 |
 | Phase 5: Integration | Phases 1-4 | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -302,7 +302,7 @@ Phase 4 (Scripts) ---------+
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Custom Test Harness vs External Framework
@@ -334,7 +334,7 @@ Phase 4 (Scripts) ---------+
 - Positive: Integration phase validates cross-domain interactions
 - Negative: Coordination overhead; mitigated by workstream notation
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK
@@ -367,6 +367,19 @@ Phase 4 (Scripts) ---------+
 - Generate unified coverage report
 - Produce final pass/fail summary
 **Duration**: ~60s
+
+### Pre-Task Checklist
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership below
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
 
 ---
 

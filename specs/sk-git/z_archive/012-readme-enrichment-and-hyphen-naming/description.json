@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/012-readme-enrichment-and-hyphen-naming",
+  "specFolder": "sk-git/z_archive/012-readme-enrichment-and-hyphen-naming",
   "description": "Three gaps: (a) `README.md` is too thin to orient a reader on what sk-git uniquely does and why; (b) the executable surfaces (`scripts/`,",
   "keywords": [
     "three",

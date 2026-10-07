@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution"
     last_updated_at: "2026-07-06T16:57:18.543Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored Level 2 implementation record"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution |
+| **Spec Folder** | 008-advisor-workspace-root-resolution |
 | **Completed** | 2026-06-21 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/011-routing-remediation",
-  "spec_folder": "mcp-tooling/011-routing-remediation",
+  "packet_id": "mcp-tooling/z_archive/011-routing-remediation",
+  "spec_folder": "mcp-tooling/z_archive/011-routing-remediation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -47,9 +47,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
       ".opencode/skills/mcp-tooling/hub-router.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       "regression/post-ws1-replay-hub.json",
       "scratch/replay-driver.cjs",
       "regression/post-ws2-replay-hub.json",
@@ -57,10 +55,7 @@
       "regression/pre-fix-gates.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/mcp-tooling/graph-metadata.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
+      ".opencode/skills/mcp-tooling/graph-metadata.json"
     ],
     "entities": [
       {
@@ -100,21 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
-        "source": "derived"
-      },
-      {
         "name": "hub-router.json",
         "kind": "config",
         "path": ".opencode/skills/mcp-tooling/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
         "source": "derived"
       },
       {
@@ -166,18 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +177,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL, release-blocking verdict on the mcp-tooling hub routing surface",
     "created_at": "2026-07-16T16:50:35Z",
-    "last_save_at": "2026-09-11T16:41:51.030Z",
+    "last_save_at": "2026-10-07T18:11:38.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +216,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cd8b61e5379dc7cc91652ccf7194c5dc9479650bd98557cdfd87b7be9f1278a8",
+    "source_fingerprint": "sha256:98a19835681eb5c92409f2cea6cd804c1cea7676e0a8ec01dd531684cae360c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0227008d01e780b2243cb8b1fe3c86ae81922a32de607a9a43fbca55d83167f",
-      "plan.md": "5459aa56e2a1d35a7d7e09c9ff5161b8d1c826229cb2ac93b69326c0a675dfe1",
-      "tasks.md": "0f7c19be967765769a40daf7d36d2b52f09c571cdac35ee2039155740228f265",
+      "spec.md": "cc3a426f70b8788d77ad8536468fa30ecb517880a103fb891fb75de4c9d19aa8",
+      "plan.md": "63dc6231532dbc033ca2f56a55cd7e6634cd52ad4d690e7737a0d98942795bc5",
+      "tasks.md": "6a9d178a17f7fed4ed26c5efe18621d49414299bbd2874823a53e1c27366c589",
       "decision-record.md": "78a5b8aa91d57a004d6f160aa0c1f954290654639b00110e66dd10da7353b5c2",
-      "implementation-summary.md": "7450f65e7b10dd1100faf07c3d7a9cd86c4963e96bb12e11ffb86593c4d1b64a",
+      "implementation-summary.md": "ebf7b1ce9ba3505fc6eeeb069de9145978677078cc6005e3156fb3c4388fa1e4",
       "research/research.md": "37553967cbf2d1055e925cbdaab944a29d0af99021e68ae04d2ed87c575be9a0"
     },
     "last_active_child_id": null,

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
     last_updated_at: "2026-07-31T03:28:14Z"
     last_updated_by: "claude-code"
     recent_action: "All 7 phases (A1-A7) implemented and verified"

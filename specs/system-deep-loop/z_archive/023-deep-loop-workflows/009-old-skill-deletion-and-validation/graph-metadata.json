@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so that rollback stays per-strata until the very end",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-08-30T15:39:24.646Z",
+    "last_save_at": "2026-10-07T18:14:45.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cb66dd7449d1f5ae90a696dd90e53d31912c64170132849cfe9431538226c55",
+    "source_fingerprint": "sha256:3d2337b7880285ceeae7dc64a5d89c22e935d0bf74c5f1b8132f53c1fb62eae7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2740f998331d60598725ea1fb193a6bebffd87b9d9f586013fcff435bb0bdb5d",
-      "plan.md": "b66ddda3f0adabec8d57858902c17b4648957bb5094cb6eae2710f3adb4ccb7a",
-      "tasks.md": "062f1414c39ffa5fced72dbe3fea50748d8c95228610e329cae4666ecd4f1c64",
+      "spec.md": "bad1ded5ef8c34910d11daaf2b85442267640f6d70af22e69879b9b7344773e8",
+      "plan.md": "986fc325c313d471a739da8b5a82badacbd677b9475dddffb218ea1e4ff077a4",
+      "tasks.md": "c872bff6c017ea243dc34ebbf4592b8b28f72686f245f2e1f77928a7b843cafa",
       "decision-record.md": "431db2812f3d0d67194a6d3144bd3b53da28e7d917b8b0b6aa0bde0189bb3734",
-      "implementation-summary.md": "e87e8c0ec3bddef2b009064e6849088e744b91896e689d2a7abab077d6f04c4c"
+      "implementation-summary.md": "18a4ea04ee8f8c8383235c2c9450dc4840f9ba2023ec0483252f0be6beed45c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

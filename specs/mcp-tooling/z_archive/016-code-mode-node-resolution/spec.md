@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/016-code-mode-node-resolution"
+    packet_pointer: "mcp-tooling/z_archive/016-code-mode-node-resolution"
     last_updated_at: "2026-08-28T00:00:00Z"
     last_updated_by: "session"
     recent_action: "All four phases shipped"

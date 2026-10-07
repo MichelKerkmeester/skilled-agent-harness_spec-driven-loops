@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/005-skill-authoring",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
   "description": "After Phases 3 and 4 the CLI and MCP surfaces exist, but nothing tells an agent or human when to use the CLI versus the MCP, how to install the mode,",
   "keywords": [
     "phases",

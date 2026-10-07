@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/002-references",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/002-references",
   "description": "`references/` holds 7 flat files, all governed by `skill-reference-template.md`",
   "keywords": [
     "references",

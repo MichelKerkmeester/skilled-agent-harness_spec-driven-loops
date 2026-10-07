@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/013-structure-naming-cleanup",
-  "spec_folder": "sk-design/013-structure-naming-cleanup",
+  "packet_id": "sk-design/z_archive/013-structure-naming-cleanup",
+  "spec_folder": "sk-design/z_archive/013-structure-naming-cleanup",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -16,13 +16,9 @@
       "styles/docs stray removal",
       "dunder test folder rename",
       "interface command yaml conformance",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "structure naming cleanup plan",
+      "structure naming cleanup tasks",
+      "structure naming cleanup implementation summary"
     ],
     "key_topics": [
       "sk-design",
@@ -194,7 +190,7 @@
     ],
     "causal_summary": "Three structural/naming defects in `sk-design`: (1) a misplaced `styles/docs/` folder holding a stray `manual-testing-playbook.md` whose content the hub playbook already covers under `styles-library-utilization/`; (2) dunder test/fixture folders (`corpus/tests` in five modes plus a backend `tests/fixtures`) that violate the kebab-case sk-doc filesystem naming convention (nodemodules excepted as tool-mandated); (3) the `/interface` command workflow YAML assets that do not conform to the create-command contract that governs `commands/interface/assets/`",
     "created_at": "2026-08-30T15:39:12.961Z",
-    "last_save_at": "2026-09-11T04:35:40.324Z",
+    "last_save_at": "2026-10-07T18:12:34.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bb6dc612745c176e7cc192af29a84d9d108f804e1ba5a3ff5a36d0883a31499",
+    "source_fingerprint": "sha256:c4f9a42fbc56e4c77d1d2c583fb1b20da12918d0c532a8606a658be464c527d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37e61880bc333077ceb5919dab3ff73c0cb46a5c0c0280dfb34fa34659df17b4",
-      "plan.md": "247cba3356eda5f06a7cffc974ccca0b980845144baffcd6070fad563ec2376e",
-      "tasks.md": "ec2467da32be1a90938d366b758d1b082ce8c94a3b74f24471d5cf4b27102ce3",
-      "implementation-summary.md": "2e5632abb8fedd1ceed03e58ffca14559bb9c4018ecd40d51103a30c1ca2f8c3"
+      "plan.md": "1cbb6a4858fce75ba0106fe650f839c90172ad53eb826a7f1f1836f5e039e4d5",
+      "tasks.md": "bb8a6f71722df068584f470c6bddf0fb019dfc28b5a662197782533eab0110ce",
+      "implementation-summary.md": "7ceb9668a03b70c17cefaa80070e08ad8923c5804dcccdee890f6845f1d7af19"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,7 +41,7 @@ _memory:
 ## Metadata
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-deep-review-uplift |
+| **Spec Folder** | 018-deep-review-uplift |
 | **Status** | Complete |
 | **H-9 Status** | Deferred to packet 111+ |
 <!-- /ANCHOR:metadata -->

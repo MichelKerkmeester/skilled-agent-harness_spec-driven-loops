@@ -176,7 +176,7 @@ None - file is already well-structured with clear status.
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## 3. Summary of Changes
 
 ### By Category
@@ -207,7 +207,7 @@ None - file is already well-structured with clear status.
 | Files modified | 0 | 7 | - |
 | Files restructured | 0 | 0 | - |
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 ---
 
 ## 4. The One Redundancy to Address

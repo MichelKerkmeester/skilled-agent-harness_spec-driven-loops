@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/006-cmd-create-feature-catalog",
   "description": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there",
   "keywords": [
     "repo",

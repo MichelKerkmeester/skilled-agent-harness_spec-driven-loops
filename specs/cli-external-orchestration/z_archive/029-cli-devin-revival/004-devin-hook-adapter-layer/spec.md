@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer"
     last_updated_at: "2026-07-25T10:09:43Z"
     last_updated_by: "opencode"
     recent_action: "Corrected status after the documented hooks.v1.json schema produced live firings"

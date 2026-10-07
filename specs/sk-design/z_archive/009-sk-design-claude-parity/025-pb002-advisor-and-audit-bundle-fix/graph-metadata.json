@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
+      ".opencode/skills/sk-design/description.json"
     ],
     "entities": [
       {
@@ -75,6 +76,12 @@
         "source": "derived"
       },
       {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
@@ -87,9 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "verdict-matrix.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh, independent Opus-max audit of sk-design's parent hub and all 6 subskills (dispatched after phase 024 closed its 8 bugs) cross-referenced the manual-testing playbook's remaining never-fixed items and confirmed `PB-002` still had two real, live defects: the advisor probe loses `sk-design` top-1 to `sk-code` for a design-scoped review prompt, and the live dispatch resolves a bundled `audit`+`foundations` instead of pure `foundations`, contradicting `sk-design/SKILL.md`'s own Mode Vocabulary Guardrails rule about which mode owns review framing",
     "created_at": "2026-07-07T20:49:01.958Z",
-    "last_save_at": "2026-08-30T15:39:12.437Z",
+    "last_save_at": "2026-10-07T18:12:29.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b44d2f57eaf1d48cc3fbf43e801978cac79c1b3da58d687c20296bc6004fff78",
+    "source_fingerprint": "sha256:cc4c4bcb42f6399bf06dcbf118c78161db4850db718d861af20df23aeabbc3d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39d27576af23c1bc2e3a2cff0548dfe8413578b49fc75d73a8e3b2f5ad12053a",
-      "plan.md": "3237e130eec7b6d1f264df1f4f95fe1709879b8ebbef375d0eef021adf3de4e9",
-      "tasks.md": "fbbd619b30577e6e9e3f99516c886ea660a3e6d353b935b4ac731cb9201f8688",
-      "implementation-summary.md": "e07bc069a975f20acd59dafe9327c84bc4b6b6f85b89f3b27485359ee177c2e1"
+      "spec.md": "dfd2b5e269ec0edb482da04c12034ffaf56006c548c18ff2df8dcdbdb4af876f",
+      "plan.md": "c57590b31c16929451ad905630057fd03ae7fa4e0496d629de43d766ec1b1de4",
+      "tasks.md": "55c9802adcad4cc97feb6b897d4827d0d20b4e479801f6e6a1c369e7c18dbf71",
+      "implementation-summary.md": "a7fbdbf0e10df2c4dc408c7552634281079b770263b1803927818beac1856609"
     },
     "last_active_child_id": null,
     "last_active_at": null

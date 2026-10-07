@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "sk-code routing could not be measured honestly on the canonical typed-pair surface",
     "created_at": "2026-07-24T12:00:18.909Z",
-    "last_save_at": "2026-08-30T15:39:14.779Z",
+    "last_save_at": "2026-10-07T18:12:35.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d71480c93ccad39df9f72baa11f96237a4e34c9c03b0bce3c348c1b58bf5403c",
+    "source_fingerprint": "sha256:503fcc4cae66a36306241ae550b780b7172edf90c75f33cc2b6045619590d9f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5b662a28b95fff106dda5eadf541e1367d701e38848eb4905ee2bf079ec1eb3",
+      "spec.md": "943a811c72675a1fa5b88052ae0b4e77ca7db8ad81abd40ac37bab048c1598b6",
       "plan.md": "24fa54595a3722553b655db1e92b9c7e4816fea036dca8d77e2b00f025d0d5f1",
       "tasks.md": "8d5a9142ec6b3498283022859cdc5fb29cf8b7f562ccd102c43a304dd7613283",
-      "implementation-summary.md": "835a0893a8b3fdeb1d1bdbffa68867462746b09d35dd3c0a7d4f3a0b6b219365",
+      "implementation-summary.md": "2ce84d87e04af697d99e1da8b2084e21a8f4f3ad973af03133b54c9579b47fe1",
       "research/research.md": "037ac5debac3a36f5a4df502724a2d3537a0bffe462624ccd3abee6566c211d8"
     },
     "last_active_child_id": null,

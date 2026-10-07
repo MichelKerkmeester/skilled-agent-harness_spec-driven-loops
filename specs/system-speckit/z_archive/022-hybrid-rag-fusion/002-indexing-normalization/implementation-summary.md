@@ -4,7 +4,6 @@ description: "Close-out summary for consolidated indexing deduplication, tier no
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "002"
   - "indexing"
 importance_tier: "important"

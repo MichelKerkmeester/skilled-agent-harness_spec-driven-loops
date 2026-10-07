@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-08-30T15:39:16.099Z",
+    "last_save_at": "2026-10-07T18:13:22.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c84b88f539400eebc315d1a3ca2cc1e428e0bd338fb553fce424b53717643888",
+    "source_fingerprint": "sha256:6384bce15e9edc4b07b96a3cb20d2b704571130f2c7cbc1b73d41178e93eff14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6703735a63ebd6fa60d98f0658d5b2d4c57bb0e77d606c75cbf4f972cafbc3c3",
-      "plan.md": "21c503318d940e800bfcfe226fb41acb903ed6a59b7895e0d26e10cef85bb0d6",
-      "tasks.md": "b453ab2c57b1e576e0c53846894e88c293fc23fb23463320018dbcda28c13999",
-      "implementation-summary.md": "04718183ee0a0f6c98af59c4173002308924c99a145e396f482397359d3dc780"
+      "spec.md": "d276f0def0c61ac32fdc49a0111223ea3c370e17d202158cb5fc412d7b6806ca",
+      "plan.md": "0581f5b0de17fb25a67a2cb6ab2ed5d015b999efb1ec7a38772f3842382bef90",
+      "tasks.md": "2aed5a375337e723ae300b8ddd6ddea6636f07fb21c26b730f54fad3de402030",
+      "implementation-summary.md": "c8ea2095a792847cde60642c243f557c24c1d50967338472202462cae0e0053c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Plan phase to improve ambiguous code/problem prompts so review or debug candidates outrank broad sk-code without overconfidence.",
     "created_at": "2026-05-18T07:49:27.135Z",
-    "last_save_at": "2026-08-30T15:39:26.269Z",
+    "last_save_at": "2026-10-07T18:15:36.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:85bde54c226d1d349e5a190ee2d86dc6fbac895a4dee14aa90adfb814df3739a",
+    "source_fingerprint": "sha256:f8251672e69a0499769d94f3a658c8228118dc853ced1c5f464193d0fd666333",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d91beea266dd7c11203408b6fe733d5c5a1d8979bb1477675a8912be981c825",
-      "plan.md": "38af624e06dc0c734ba239fc6d1843c5737442ce60ae41fc14fc93624168ba41",
-      "tasks.md": "d3e915b08c3295cfc94fbac7d621c6a2a13afec6c6f2481f15281ca7a3646b93",
-      "implementation-summary.md": "383a52c9bb0ab15cef843bdfa40cac0cc174367c0ad09fd45eb43ac962d806e5",
+      "spec.md": "f5c138a32bb9a2ccf5656cc126c0374923b7732cb1f79f9d2c2ceffa0ea7f551",
+      "plan.md": "1dddeca92c85618fa22e2e051b1eb795f77a5904aa0a3800c5ed8d230f8af20a",
+      "tasks.md": "5f9ff3775168f3a42ec53395020cce04ac11c19d4eac395bf7f236c4934f5270",
+      "implementation-summary.md": "3f90726a5e8ec07528de6e804cc949d468769507ec4d33a7ecbccefa2d3b5410",
       "resource-map.md": "bf2a6223d3ad44c49b698eb5ada5af4bfe549110ea45e80f23877248e893dfc3"
     },
     "last_active_child_id": null,

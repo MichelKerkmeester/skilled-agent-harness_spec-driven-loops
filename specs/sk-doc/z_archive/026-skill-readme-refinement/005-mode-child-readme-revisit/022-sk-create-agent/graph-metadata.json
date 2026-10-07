@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-agent/README.md",
       ".opencode/skills/sk-doc/sk-create-agent/changelog/v1.0.1.2.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The sk-create-agent README predates the pilot standard in the concrete ways this phase measures",
     "created_at": "2026-08-04T08:34:47.033Z",
-    "last_save_at": "2026-08-30T15:39:17.773Z",
+    "last_save_at": "2026-10-07T18:13:50.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aef71c248aa01a00543c7458e38ddfd2235a05d504823711795d5af99f98d582",
+    "source_fingerprint": "sha256:0c8a10a77cdaf8adb74addf7fc636870cb237a5ff3c7a5a1936dbabdc9a89d9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1cc1aa0c72959d67b796ec7f88d46f330e5dd6e0c2e19947456dae21221f004",
-      "plan.md": "8d7ab682308c4279859d3434e56cdfead3923cfe885105c2aa8c5dc97b18c4c8",
-      "tasks.md": "5424b571525e2e8bef5e751d6fad1c390493fc965fca12c0fc0014b3d51aa502",
-      "implementation-summary.md": "efb974c55c3939d74bca555fac9ba14a07e77a78725802a2ef5bfa2a43ade5d7"
+      "spec.md": "d0c6d3da6ffd653a102224ace5eaae40727d2858872bab351a2cb96635876e6e",
+      "plan.md": "b757d725674a54f0361085d35460d0561fa4474b694441898fb1b904abd36757",
+      "tasks.md": "11efc045479ee66fa0d5333db6f26536da1ee842d57fffe284f5934836e7c84c",
+      "implementation-summary.md": "8505f1e232bb8d9a64746a9a08205be1ba18f7369c05cdd8b00275e8af1db386"
     },
     "last_active_child_id": null,
     "last_active_at": null

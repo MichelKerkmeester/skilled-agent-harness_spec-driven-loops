@@ -47,8 +47,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/commands/doctor/skill-advisor.md",
       "review/review-report.md",
       "review/resource-map.md",
+      ".opencode/README.md",
       "review/runner.sh"
     ],
     "entities": [
@@ -77,9 +79,21 @@
         "source": "derived"
       },
       {
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/skill-advisor.md",
+        "source": "derived"
+      },
+      {
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built You",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-08-30T15:39:26.758Z",
+    "last_save_at": "2026-10-07T18:16:07.259Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2656b1588c37553600892914a2c1a36e0dbd8d687cbfaa27c72dae642f37a654",
+    "source_fingerprint": "sha256:fedd9a094c5a7c10795fcffd65b2d5fc2669a24703d2e2190ce57e8222fc27f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d771f25f1309f0a653d98caa5697a04afbfb5055a1b6241a1ce1faa7a705a6c1",
-      "plan.md": "0f7f07555bbccb91c4972ed7f156040cdd6d9068d5bd26399d9b6a4b2d42285a",
-      "tasks.md": "9b686a883c10dd570280a897922339f2da4f5d77545a5011bb7c5e442cdd54ec",
-      "implementation-summary.md": "f4c4dafd322160402d05164ece3abf1a52a2e4e54874174155fdf95542f25375"
+      "spec.md": "16d2a4631c70aae20761c01d9df8f3c2eb46b6a21c3e4d9ca71ec8e83d5f6aac",
+      "plan.md": "7ca330adc70e749e9e46e0de69faca1a4aaa65b01c0aa84114e48fe781257e00",
+      "tasks.md": "55d1ca14620dce9f8b0be407e018cd625f4ace5e73a4b1a72b4a5c82fce2ca5a",
+      "implementation-summary.md": "63a9df76004787e0690fb2eb05c13b0a7cada205bd3a936e1c35c8704a18f065"
     },
     "last_active_child_id": null,
     "last_active_at": null

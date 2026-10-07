@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,28 +48,25 @@
       ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
     "created_at": "2026-08-04T08:34:40.125Z",
-    "last_save_at": "2026-08-30T15:39:17.631Z",
+    "last_save_at": "2026-10-07T18:14:21.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53d559a23d795b28248449aef8df2e3a9074b2442df31b92302efa59ab092874",
+    "source_fingerprint": "sha256:2270f4a2d87e9212dd0bcf895094e962ef817580c9787ab3bff5e76a381e456e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c508cb914994f7f56b8f9e6ddbe7eea403904826038669504a0f7a068e7ef126",
-      "plan.md": "b49f7a0ae9c808a81c982983f992abf3c4e7ff7095d8754c64a7635c47fc2521",
-      "tasks.md": "824bd05f9db25df305bf5530a4c64bd429573ba1193ad23ce7d2aaba7193ace0",
-      "implementation-summary.md": "b7b4f9c99ca19e23fe558dce409eb9a68dd0bafa172cffa5a8a7325935c53c6c"
+      "spec.md": "78c6d4abf1f7b5e1b7a5d7361920737d3096509f07fa5805e42d283c704fb54d",
+      "plan.md": "09ab0c3660d1a1c76eff664797d7f8f74a198896616f69874a32fbb593614714",
+      "tasks.md": "bb2fc455c4d5c747a543b8d36fcc6607ff141a4916df73525776b5b001005556",
+      "implementation-summary.md": "de2b5806224f35b1d2798386f6cee68ca4097ca1965e118a518bd0e42ec69a3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

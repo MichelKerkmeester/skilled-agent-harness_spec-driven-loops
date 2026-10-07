@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The first skill-advisor reconnect implementation added owner-lease and bridge happy paths, but it dropped the bridge module's `{ action: \"respawn\" }` decision",
     "created_at": "2026-06-11T06:25:37Z",
-    "last_save_at": "2026-08-30T15:39:27.222Z",
+    "last_save_at": "2026-10-07T18:15:56.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddb64dcb871a980e3ae9ccbd32d9977e037c20a22a002fe1144e0522d16acc08",
+    "source_fingerprint": "sha256:b61ca61eca340c1f325f6ffc9b39f19cf58c6f302ceda72160dfe6498fa8652e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "130fe5e29ee89f73cdd57197477eda7e694a0a6f655a7e581533940554971071",
-      "plan.md": "ff92fd8b6abb28b71b42e0cebeeee78193d23ae3c0547499839db36926b0c174",
-      "tasks.md": "eeba742043d6ff49aa1325c6535f4cee4b632ef3f7ae044a3d6492f377a9ac9d",
-      "implementation-summary.md": "6a048080e9a3041c240a38fe5360f3a3abed5fae6122328453d740a66cca67b9"
+      "spec.md": "4d96ce640d4cc0ee334d2d6b1d07c1f15d2f7da0082f3902dceccdd2cf045dac",
+      "plan.md": "f99e2b1c529e01b08cfd30f32c9f03af6779bfe75160493c953cae4f68143277",
+      "tasks.md": "788dc1381bbd2779fc70010879418c2fb1472f0351ae15d52d35ec95faa5b7bd",
+      "implementation-summary.md": "893760e0caf935a586a34bbde3e58f4b38ad7c9d79c346de56e2bc6b6f91e2e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

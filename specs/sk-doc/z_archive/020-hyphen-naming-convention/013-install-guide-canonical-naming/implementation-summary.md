@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/013-install-guide-canonical-naming"
     last_updated_at: "2026-07-24T15:09:05Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed the INSTALL-GUIDE migration; classifier test PASS, suite pre-existing-red baselined"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/003-interface-commands/005-interface-command-benchmark"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "orchestrator"

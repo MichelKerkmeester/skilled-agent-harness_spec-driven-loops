@@ -11,19 +11,22 @@
   },
   "derived": {
     "trigger_phrases": [
-      "042.003",
+      "wave executor spec",
       "wave executor",
       "segment planner",
       "coordination board",
       "parallel deep loop",
-      "implementation plan",
-      "tasks",
+      "wave executor plan",
+      "wave executor tasks",
+      "wave executor task list",
+      "wave executor decision record",
       "decision record",
-      "implementation summary"
+      "wave executor implementation summary"
     ],
     "key_topics": [
       "wave",
       "executor",
+      "spec",
       "segment",
       "planner",
       "coordination",
@@ -31,7 +34,6 @@
       "parallel",
       "deep",
       "loop",
-      "implementation",
       "plan",
       "tasks"
     ],
@@ -192,7 +194,7 @@
     ],
     "causal_summary": "The deep-loop products are currently optimized for one iteration stream at a time",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-09-07T16:17:20.322Z",
+    "last_save_at": "2026-10-07T20:55:12.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37b081de3695d654363f1d5baebe7d37b8512d59d9471bde4a176b9c396b6982",
+    "source_fingerprint": "sha256:c1243392ac53ea1b333d9e2755eade173fc69b5f57d05db1e8ab613031dc2b26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30426f3bc61a885c6da4760144b609d0535765ced68754580584f9338fbc07e9",
-      "plan.md": "e58fc8da4d39b1b45700f0a5707514ba04692979eb5787659d83d222c8d31e5d",
-      "tasks.md": "0eb1d17c81e693afdc0cf7dfe4fef3b1c20a36cecb2885f5ecb8a98c35e1e81d",
-      "decision-record.md": "a311b4347b421c858a049f477ce449a233c97b8c9a84edcb17cdccd98a57ff13",
-      "implementation-summary.md": "071434983656ddacf9e287ee8162bb05e6fc59c75e04f755458362614a6ad562"
+      "spec.md": "8addec630c856bd31fffed5ea6c7343b129942fa0e54bcc08b99ee2b76258bef",
+      "plan.md": "cf73ba29acc25c26a0fcf90bd8722087eaa620b3fafdbe28629b068b57fb2c0b",
+      "tasks.md": "c6ce54ba58a3bece50dd33e86944c3f291017c983da5ae8bfa6a009e2bd0503b",
+      "decision-record.md": "990b60f464499a23d7fbf12e8c00b3ffe8c3f2457fa5766ecce75ed806214c1e",
+      "implementation-summary.md": "ef459862455a9604c6cf544ec9c51a70d0f4e2e7b53a754c8da1436c799f0a61"
     },
     "last_active_child_id": null,
     "last_active_at": null

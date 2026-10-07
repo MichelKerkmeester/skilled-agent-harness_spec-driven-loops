@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
   "description": "The migration playbook lagged the 006 plugin research",
   "keywords": [
     "migration",

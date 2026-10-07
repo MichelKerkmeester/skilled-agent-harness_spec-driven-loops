@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/017-mcp-magicpath/004-hub-integration",
+  "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
   "description": "A packet nothing routes to is a document, not a capability",
   "keywords": [
     "packet",

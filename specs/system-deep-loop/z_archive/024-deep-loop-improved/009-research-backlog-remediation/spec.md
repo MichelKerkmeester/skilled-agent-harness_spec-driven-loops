@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation"
     last_updated_at: "2026-07-01T17:35:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "All 11 children complete and independently verified; phase closed"

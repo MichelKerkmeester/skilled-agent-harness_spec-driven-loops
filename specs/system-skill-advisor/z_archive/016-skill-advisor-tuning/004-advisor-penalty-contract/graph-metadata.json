@@ -13,7 +13,13 @@
     "trigger_phrases": [
       "advisor self-recommendation penalty",
       "auditRecsAdvisorPenalty contract",
-      "advisor must not recommend itself on audit prompts"
+      "advisor must not recommend itself on audit prompts",
+      "advisor penalty contract plan",
+      "audit recommendation penalty lock plan",
+      "advisor penalty contract tasks",
+      "advisor penalty contract verification tasks",
+      "advisor penalty contract summary",
+      "advisor penalty contract implementation summary"
     ],
     "key_topics": [
       "advisor",
@@ -26,8 +32,8 @@
       "itself",
       "audit",
       "prompts",
-      "graduation",
-      "suite"
+      "plan",
+      "recommendation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -173,7 +179,7 @@
     ],
     "causal_summary": "The 007 graduation suite adopted the CUT verdict for the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`); the guard code remains in `fusion.ts` pending deletion in the gated code window",
     "created_at": "2026-06-24T07:59:12.248Z",
-    "last_save_at": "2026-09-07T16:17:30.482Z",
+    "last_save_at": "2026-10-07T21:54:09.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,13 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a28a5aff371c52f27d1090fb3c4f92a5efbcf33e7d63ccfce1fa53aea01bb7d",
+    "source_fingerprint": "sha256:d49c8ee1069074a971b02541fb52425c233e7d86add7f9b117ea3b04f47c8fd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c3799537ba25a5d905a72d698d0caa608257bdf98806fe1013f3afd76d5e423",
-      "plan.md": "0a2f3a515458d4d0256f85fb841de35935c136f09c20b0160866dac821118637",
-      "tasks.md": "3f4bc20f4b6508329bfc9e5431932d7e21219113af64286bd04d101b9352c8b2",
-      "implementation-summary.md": "771b8f3ee1d17be28a386a46f63b85688cdfdc46f14e3d3021a7dcf82d3626ea"
+      "spec.md": "4c07bc214cb6be92435164395f828d007858d2f1f930a7ecf527ff0dfa17e9c7",
+      "plan.md": "e18c3f6ea80e21a75efbc09b071f5f92cb8eb17578690893dfe42b5c287bad5e",
+      "tasks.md": "2fd5ced632343e190d952436625d8be0acaca183af0773ca9120356d0c5abd33",
+      "implementation-summary.md": "1e8a26bf41be468b957628814aeea9bde1fc943eb7e3236acdf203b6057fda2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in the packet skill, README, and router resource map. This phase renames only that packet-owned asset/reference set and closes every active path reference while leaving playbook, benchmark, changelog, tool-mandated, and data-key boundaries intact.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-08-30T15:39:16.503Z",
+    "last_save_at": "2026-10-07T18:13:22.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:def7ff8f172cee4db3cd93c4e0bd3b9e1e547a4ec892e7bbd2e940ed5fcf3717",
+    "source_fingerprint": "sha256:e10474751c4c7a598a56ce54ca9f51619efaacc6a600874964cd5c463795fa75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e283f5533d19116b621ed3c14b67659c975f7756069d3dc5dee619109c65d56",
-      "plan.md": "001ce062b889425eb726718bf4a4a0c3bf227ef9034e2293b1c8d6ee1a2246ea",
-      "tasks.md": "c916b8378ee766f637f7e538a89e4d2fff08a38c1aa29ef0cb635ee3c16264f8"
+      "spec.md": "6dce127f20c0eae1e8a1b8445ef9bbd32a2bef02a333de6715d5790403c63d07",
+      "plan.md": "f004b4ca5d94d1ee786ddb44c1649725d0885d69bb9457f262203ac7dc2984a2",
+      "tasks.md": "294e097afe3ec92ca42795a0d8f47fad5d8f60414c6a73e963947ae51851d2cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

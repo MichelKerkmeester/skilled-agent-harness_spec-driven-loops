@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-design/012-sk-design-program/007-consolidation-remediation",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/007-consolidation-remediation",
   "description": "After `/interface:audit` and `/interface:foundations` were retired, a five-iteration deep-review returned CONDITIONAL (P0=0, P1=4, P2=3) and a",
   "keywords": [
     "interface",

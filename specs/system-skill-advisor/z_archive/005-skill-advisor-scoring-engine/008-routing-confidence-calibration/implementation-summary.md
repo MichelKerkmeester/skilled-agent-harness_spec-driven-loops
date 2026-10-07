@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/008-routing-confidence-calibration"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/008-routing-confidence-calibration"
     last_updated_at: "2026-05-14T07:06:20Z"
     last_updated_by: "codex"
     recent_action: "Implemented damping sweep"

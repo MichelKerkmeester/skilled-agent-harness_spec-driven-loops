@@ -16,14 +16,11 @@
       "session 120 121 deep review",
       "dual-executor deep review",
       "model-benchmark mode review",
-      "implementation",
-      "plan",
-      "name",
-      "template",
+      "review model benchmark mode hardening plan",
       "plan core",
-      "tasks",
+      "review model benchmark mode hardening tasks",
       "tasks core",
-      "summary",
+      "review model benchmark mode hardening implementation summary",
       "impl summary core"
     ],
     "key_topics": [
@@ -33,10 +30,10 @@
       "dual-executor",
       "model-benchmark",
       "mode",
-      "implementation",
+      "model",
+      "benchmark",
+      "hardening",
       "plan",
-      "name",
-      "template",
       "core",
       "tasks"
     ],
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits)",
     "created_at": "2026-05-28T17:42:53Z",
-    "last_save_at": "2026-09-07T16:17:17.723Z",
+    "last_save_at": "2026-10-07T21:27:37.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c49683b21960a4fe865a1c3639161ed23a54593b72406dce3df022adbe8b9c09",
+    "source_fingerprint": "sha256:103c8ee9a9f1d4da0f74a0e80e6c03970fea2e53869cacc0fb7ed87364490016",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c4e0abdc1199d8030056155a5cf4a61407176af23fe3ddb2e1fed777e153c3b",
-      "plan.md": "dc5015a6947cc3d170ac0f1a7c43d25a174eec7bcb09d7de29c8094508e1611b",
-      "tasks.md": "636d2de0cb9c6c6a25f7d2dfd147759f3ed09edb3dce5e97d54ba899d4b97bc4",
-      "implementation-summary.md": "1de4786a19da4a10d127ad2ff2448185f9abd94d2ef04a93fa15244d4590bae3"
+      "plan.md": "b01209a936a1b2a95eb030d4bd03de721f0c30851ecefd205488c0400160e376",
+      "tasks.md": "5e7528262612b47bc4828a5128668aa03c322019de344681dc1ac6c116d4fb96",
+      "implementation-summary.md": "3b5b007367d3f83d8d5af60f8ac1b34d6668e14048c812bc315e18e3180b3cb7"
     },
     "last_active_child_id": null,
     "last_active_at": null

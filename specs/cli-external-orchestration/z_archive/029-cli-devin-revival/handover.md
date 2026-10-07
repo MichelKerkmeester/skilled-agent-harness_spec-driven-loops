@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival"
     last_updated_at: "2026-07-25T09:57:33Z"
     last_updated_by: "opencode"
     recent_action: "Completed phase 011 hook-truth, runtime README, Cursor mirror and local Zed MCP reconciliation"

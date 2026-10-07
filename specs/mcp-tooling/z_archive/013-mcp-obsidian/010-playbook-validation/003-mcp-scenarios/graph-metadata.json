@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
-  "parent_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 6 MCP manual-testing-playbook scenarios (round-trip + verification) against the live Local REST API and record pass/fail. Executor: deepseek-v4-flash via cli-opencode.",
     "created_at": "2026-08-03T04:10:02.018Z",
-    "last_save_at": "2026-08-30T15:39:10.126Z",
+    "last_save_at": "2026-10-07T18:11:38.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cef008d7160a206ce7cc2f44c4fe63cf572f537c6a4893fedc95ce89478eecf",
+    "source_fingerprint": "sha256:d2f4f55e2365ac5409d8f96db36eda29705c98b0e1e3eea68cff011231210acd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26cc683712ca9eef0c432c8f2550d1eb44315255c983bc7c39b29a3b5d0c3895",
-      "plan.md": "9cf3c82124d96a4a5deca82cc2fbaf4a630dac7ae9abda2d3fedf571fcfe0e2b",
-      "tasks.md": "450c10a3e5178bcc5a8a2004a67906b3674a5d1751bb0b4d838c8e0373e1852a",
-      "implementation-summary.md": "b5597d331b309d142d5cda7391697052e188ca8b39d3e47ff413eed94f4a1824"
+      "spec.md": "f648d40f2e123878946dd45c2ed0f79a81c31c6b8021b34b151acd5e3e20b056",
+      "plan.md": "f0b107905635e4ee35c3bac8b8bc0a84532a471d63c30e48190e5c32bf0eab9c",
+      "tasks.md": "fb9b3e3dca4127f7306c433e647c062404b70f32b9726101f11089ee3c19ce39",
+      "implementation-summary.md": "821dac1f1dbf4b8c6a82054e42732e2cc4dd3727272d7ea00581e561c4039ea4"
     },
     "last_active_child_id": null,
     "last_active_at": null

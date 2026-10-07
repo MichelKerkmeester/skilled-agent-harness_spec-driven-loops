@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.218Z",
+    "last_save_at": "2026-10-07T18:14:23.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:cb71a2c517b3dd6f50762d5068f4315e6eae533cc997cbf0f021994171f83fd6",
+    "source_fingerprint": "sha256:7d3dd5acd1b2bb3dba25c3f13862e8311075adda9024bd5299104c2a88e2ce2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e3a1d091c084d389cc7f8b0d478cd32e393d1bf5606dc0f840f3f0a5ce88f79",
       "plan.md": "ac7d78d4062cb7376d27b53cfca6c109a825d5ed0a621f598b3455c75a2e8dcc",
       "tasks.md": "a9e48a52bc34123c218229bd1b4fa2c6840150580693b50de5bbb83005084062",
-      "implementation-summary.md": "d81db9e9b42b50d50e03b853edea118291152c4ba6223454f78591506b218ea8",
+      "implementation-summary.md": "540261cf3d47b919e8f6b5c3c2701846f4a24a8ac4c12334ee3be3010dc5cedb",
       "resource-map.md": "60ee632e3cfd1de8e0864a539d66c672c5566573eef53b66e37321ab1ef9cbdc"
     },
     "last_active_child_id": null,

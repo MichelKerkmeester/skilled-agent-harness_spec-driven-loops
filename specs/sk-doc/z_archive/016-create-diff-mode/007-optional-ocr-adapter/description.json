@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/007-optional-ocr-adapter",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/007-optional-ocr-adapter",
   "description": "Scanned documents contain no reliable text layer, but OCR is expensive, error-prone, language-dependent, and easy to misrepresent",
   "keywords": [
     "scanned",

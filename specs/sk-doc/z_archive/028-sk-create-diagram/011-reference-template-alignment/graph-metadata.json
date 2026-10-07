@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
-  "spec_folder": "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/011-reference-template-alignment",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/011-reference-template-alignment",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The operator named 10 reference files that don't align with `sk-create-skill`'s literal reference template: missing `---` dividers between numbered sections, and inconsistent layout structure",
     "created_at": "2026-08-12T16:40:28.000Z",
-    "last_save_at": "2026-08-30T15:39:18.037Z",
+    "last_save_at": "2026-10-07T18:14:21.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22f8bf4b1a37599fa1c7b2ce40b2f18ee037bc6d7c101811b706f3e74796aeda",
+    "source_fingerprint": "sha256:c117cbbc79a34e03114dcdbc4e24ce0b32ad1be8c17ab7a90061d460d5c271cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a93bd32c0800b9f99a7382510725c28a9f4e03716dfc344cdee8ecf2546be132",
-      "plan.md": "48215e7df07bac7918b077586b151baa3b8c4244d800364428ca758ba4f72083",
-      "tasks.md": "5abbc7fff4f803f884b9263a15a5764ef57a2f8a8e6f9845361ce91e9690082c",
-      "implementation-summary.md": "068c06332b4d24323e4ca2d1f3f502730dd9eada5ca09f66b6db7cce6ac6d8e4"
+      "spec.md": "d076fe650dac3a4cfd537d194ce5b28ff53e24d98155762da271eb0a29e382c5",
+      "plan.md": "553decb82086bb2edc9f90f391279d2ad27e3e2eb06457790e74875b9df142b5",
+      "tasks.md": "6eccfee00bcfefc2ff3fa75579574a27fdbb94de6c293ab877ed9c168a4ce6a0",
+      "implementation-summary.md": "0b5246628c49f23042888c65de89a885ae5a9322fab4e0c25162b5c9752bdc50"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T18:40:07.000Z"

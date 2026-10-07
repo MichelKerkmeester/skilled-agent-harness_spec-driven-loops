@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/009-create-diff-command"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/009-create-diff-command"
     last_updated_at: "2026-07-15T19:16:49Z"
     last_updated_by: "claude"
     recent_action: "Applied create-command conformance fix; reconciled 009 to Complete"

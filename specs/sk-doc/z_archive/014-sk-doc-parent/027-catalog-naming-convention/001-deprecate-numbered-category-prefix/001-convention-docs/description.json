@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs",
   "description": "Phase 001 of the numbered-prefix deprecation.",
   "keywords": [
     "phase",

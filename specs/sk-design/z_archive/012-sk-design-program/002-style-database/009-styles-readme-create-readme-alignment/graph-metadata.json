@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/002-style-database/009-styles-readme-create-readme-alignment",
-  "spec_folder": "sk-design/012-sk-design-program/002-style-database/009-styles-readme-create-readme-alignment",
-  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/002-style-database/009-styles-readme-create-readme-alignment",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/002-style-database/009-styles-readme-create-readme-alignment",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/002-style-database",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
     "created_at": "2026-07-22T05:45:30.641Z",
-    "last_save_at": "2026-09-10T20:50:07.998Z",
+    "last_save_at": "2026-10-07T18:12:23.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2186a6f796edef5cc89f5603c89daedcc47483840dd1f6f166a243400d27d51",
+    "source_fingerprint": "sha256:f0ddff192a4839bb2497a69d2dea6a248fd2c365cecb8b50ae9d2a2ebacb9569",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35a623a555c0af7ae7e5512a018d717264250287633f6d0571c00ad6e3395c9c",
-      "plan.md": "5f5a3fa6347c68d5c5065274cf71a76667e8f15174d495e82d3ea78cab752926",
-      "tasks.md": "b52c902f5027753505a0fa451552611a839a7568c7baa7fa0f501959079e8824",
+      "spec.md": "dd3f29441e1aff66b31f0e9ecdc0a8cc303a84ec0bea66666c2daabdbfc1deac",
+      "plan.md": "d6c13b53e261f2fc68ddd1f26c4e9a0791bcabd8865cf9c5a4010662a65bdd75",
+      "tasks.md": "5397afc2b120669c836824bc7a98f60a064addd063463e74e68a3457dbc2dc58",
       "decision-record.md": "eeb03374bbe006e37a0b3ef1b5753c1b1669b891731db0bcb3b35dc193f18e71",
-      "implementation-summary.md": "c3dbde21199f0be6a2ec4a43c311da4128b6ca407f22a5edc3b5e96d99df81dc"
+      "implementation-summary.md": "5b7c887c7dc1b5a2d7930ad9fcc12c200efb887789a67862f5cbee607eb8a5ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

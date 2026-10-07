@@ -14,6 +14,10 @@
       "deep-improvement rename",
       "122 phase 003",
       "rename deep-agent-improvement",
+      "deep-improvement rename plan",
+      "phase 003 narrow rename plan",
+      "deep-improvement rename tasks",
+      "phase 003 narrow rename tasks",
       "122 phase 003 implementation summary",
       "deep-improvement rename results"
     ],
@@ -22,19 +26,21 @@
       "rename",
       "phase",
       "deep-agent-improvement",
+      "plan",
+      "narrow",
+      "tasks",
       "implementation",
       "summary",
       "results",
       "skill",
-      "across",
-      "dir",
-      "commands",
-      "agent"
+      "across"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".codex/config.toml"
     ],
@@ -43,6 +49,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -94,56 +112,102 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deterministic",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. What was done",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. Scope honored (NARROW)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. Verification evidence (all green)",
-        "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions.json, and cross-references; zero dangling refs; green advisor rebuild.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-08-30T15:39:23.821Z",
+    "last_save_at": "2026-10-07T20:49:45.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4aad7e973085e36f832544b3553971ca9ac2a84642f559efe8061ffc91ebdee",
+    "source_fingerprint": "sha256:48662d9a1e6781325592704bc7febf1c8aae5609cc02fe2c85b4f85ef2ee1e95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d282ec85bb99a8f19deff39cea03db504e17fd5e768104895390de3c4478a39",
-      "implementation-summary.md": "95580e7aa775149f3d3073800bdba1853be48916efee403bea80386f198862a4"
+      "spec.md": "cfa52975817718e3bd8ff3c97a90a012d3fb42c00185a30d58049b526ab54c4c",
+      "plan.md": "04a7843227daad465a36485fcaca93bb1373e4e5b5d9aa0e4551fd319e11a2b0",
+      "tasks.md": "807717ff2229887f607bf39db2c31ab76b66677b1b15517b706624881ea00445",
+      "implementation-summary.md": "45f8eb544a24d113caeb3276d5a903962539ab0aba1b7dda46047a602f10e1ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-benchmark packet uses snake_case taxonomy directories and fixture, profile, guide, and storage filenames. This phase converts those non-exempt resource names to kebab-case and updates packet-local references while preserving benchmark schema fields, manifests, and Python package exemptions.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-08-30T15:39:16.447Z",
+    "last_save_at": "2026-10-07T18:13:01.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e439ef950a4ff0956669fd159fdb1e12f09c897a362aa0b1ee79e51691decfb5",
+    "source_fingerprint": "sha256:929a8de08e6dbf0c7e53b01a5c9216a48206fdcbed690d6388c615d2feb39fa9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5ca64970614e84a804f0563997bc10c1d87b55e3bac55e6a9f036e96b8f0d62",
-      "plan.md": "82fd54f60a84ee12371a3dd99e5d12d949f2b91eef03057ec4a20bc2ca01270a",
-      "tasks.md": "c6d20cbd4781a63319e692a51081f34c0f85021505608caaad0f57acc8e2eb79"
+      "spec.md": "62e103e1960a2eb26c884b8e264184e5b826c3873c25847684ad8afd835eb8b4",
+      "plan.md": "08a9b13794072b2411febd8bc9be261c3e49bd7c393d120b8ac25b7d1338d11e",
+      "tasks.md": "c4100ba1ca743b83b574df8ac1a38441ea47102381efaf15ed186c97f6d6c718"
     },
     "last_active_child_id": null,
     "last_active_at": null

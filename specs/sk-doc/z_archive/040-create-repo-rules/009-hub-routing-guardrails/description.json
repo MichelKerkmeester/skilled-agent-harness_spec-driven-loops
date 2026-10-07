@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/009-hub-routing-guardrails",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails",
   "description": "Wiring a nested mode into a parent hub had no single description of what \"done\" means",
   "keywords": [
     "wiring",

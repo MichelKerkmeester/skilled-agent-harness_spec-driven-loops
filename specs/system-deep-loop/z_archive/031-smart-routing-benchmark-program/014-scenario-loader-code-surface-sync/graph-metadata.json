@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,49 +44,31 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,11 +178,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-08-30T15:39:20.004Z",
+    "last_save_at": "2026-10-07T18:15:14.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac6b31380553b0a8ff751c6b660e2ebe66641a7662c76f7ca0f806d960204022",
+    "source_fingerprint": "sha256:9bc140ebd18ab0ac55b1a39a6f4c48eb3fa3ad991cd5a15e774b9555a6040c76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2ec948a4218de71b33466ad4297efe7eb04e836ae3364def2b19d90096ef6c9",
-      "plan.md": "434e8e710f0498ac492828e4bdc8fde3453bcca1cf711c1b872773d101b7479f",
-      "tasks.md": "589566d66c9476cfaf62bac3242d9bf25b4e9d25e5b5d62031df4026879b5a7b",
-      "implementation-summary.md": "b254590715d1b653d6bb3c21e04debf2f1654cef0554f4b8afd8600e178c56d5"
+      "spec.md": "9e2476a58e5dfe384b7386d360bafa324b29184d6545e9c3ec97b2f178d0367f",
+      "plan.md": "a5cbd5489475469a7189eae126c01f0d96fd027d4fe98009aed1a3ba00b42431",
+      "tasks.md": "d739cfcabd10c02da75b35fa9683fbd2d2d2bbc0b5bf506c6b9c094c72070b72",
+      "implementation-summary.md": "1df03f3c0f8f07704d85929a1b90411b593148c71e9ed3aa37deae7a718b3cc6"
     },
     "last_active_child_id": null,
     "last_active_at": null

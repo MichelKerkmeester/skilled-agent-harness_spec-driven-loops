@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/017-fenced-code-structure-parity"
+    packet_pointer: "sk-doc/z_archive/017-fenced-code-structure-parity"
     last_updated_at: "2026-07-17T13:56:23.385Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored task breakdown for the four template fence fixes"

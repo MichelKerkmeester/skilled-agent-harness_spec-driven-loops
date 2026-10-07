@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The roadmap aims to support cross-agent and collaborative memory, but sharing memory safely requires stronger controls than the current system provides today",
     "created_at": "2026-04-12T09:02:50.262Z",
-    "last_save_at": "2026-08-30T15:39:38.574Z",
+    "last_save_at": "2026-10-07T20:26:37.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:623803912ff4b283ea25258fe47e9c6b1e95e9668f1133703d1e26f64b47d9f0",
+    "source_fingerprint": "sha256:299600b840191a458dde7cc43b379c381951fc48d6cc2305e685a1e718abb9b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d01c52011ef2e48c8acb453be23c1e2d6a350971840d31f42b0b862900e42c36",
-      "plan.md": "7b1710bf4933662fdef5ce1d9b342c9a18354dedf6a9af79a87a46d8f89b4a71",
+      "spec.md": "8fbcc029d3f915354947788c7e8bb0101777eac70d2551f40a224bbbf68d1aee",
+      "plan.md": "d569c420341effc2f8fcd39e62896f4b424691210eeaae44a3aa03750a9de561",
       "tasks.md": "df504b72aa1657f745175f00800c365f2181111bcad50ab47557a9b6db0f31b2",
       "decision-record.md": "4d6164ddd96417dc169d59be9360155de4830cf631666f6cde2ff8e64f3abf71",
       "implementation-summary.md": "0a1a3fb50cf32abc749586764848139b5c58764731ef85b4fd5bf275be4078fe"

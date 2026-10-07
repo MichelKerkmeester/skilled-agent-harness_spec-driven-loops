@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
+  "specFolder": "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin",
   "description": "`cli pi` ships its own model picker (`/models`) backed by pi's own provider roster",
   "keywords": [
     "cli",

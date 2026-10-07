@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/017-mcp-magicpath",
-  "spec_folder": "mcp-tooling/017-mcp-magicpath",
+  "packet_id": "mcp-tooling/z_archive/017-mcp-magicpath",
+  "spec_folder": "mcp-tooling/z_archive/017-mcp-magicpath",
   "parent_id": null,
   "children_ids": [
-    "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
-    "mcp-tooling/017-mcp-magicpath/002-manual-and-auth",
-    "mcp-tooling/017-mcp-magicpath/003-skill-packet",
-    "mcp-tooling/017-mcp-magicpath/004-hub-integration",
-    "mcp-tooling/017-mcp-magicpath/005-playbook-and-verification",
-    "mcp-tooling/017-mcp-magicpath/006-design-authority"
+    "mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
+    "mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth",
+    "mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
+    "mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration",
+    "mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+    "mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority"
   ],
   "manual": {
     "depends_on": [],
@@ -132,16 +132,16 @@
     ],
     "causal_summary": "MagicPath has no MCP server",
     "created_at": "2026-08-29T11:35:18.007Z",
-    "last_save_at": "2026-08-30T15:39:10.571Z",
+    "last_save_at": "2026-10-07T18:11:40.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:32e868ef31174077489d442214f607e9ef49f95c88e1f1e56eff76d1bb90e5c3",
+    "source_fingerprint": "sha256:75a8213a6b5979cb4b4e9480d50f6c2090b1f06558882b56d33c586895bc55dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19d33aaa0083764468e37de9273af7436180454c1aee69104da8ab39f553fcfc"
+      "spec.md": "aa33a9ff8f8405175521f9bf4e2a88cf04f1b14e9d463225398a8a1eed05297d"
     },
     "last_active_child_id": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
     "last_active_at": null

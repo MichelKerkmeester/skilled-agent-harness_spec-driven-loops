@@ -8,7 +8,7 @@ contextType: "planning"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/016-command-mirror-restoration"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration"
     last_updated_at: "2026-08-13T17:00:20.000Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"

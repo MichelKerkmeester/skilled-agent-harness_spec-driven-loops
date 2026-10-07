@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-motion changelog/ conformance"
 description: "Task breakdown for auditing design-motion's single changelog file."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/008-changelog"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/008-changelog"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author changelog audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "changelog tasks"
 ---
 # Tasks: design-motion changelog/ conformance
 

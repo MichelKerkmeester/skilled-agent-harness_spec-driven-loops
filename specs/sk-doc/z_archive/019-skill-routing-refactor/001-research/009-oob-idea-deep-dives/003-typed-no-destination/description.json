@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
   "description": "The current zero-signal state can collapse genuine no-work, no-match, dependency failure, degradation, handoff, and clarification needs into one bare",
   "keywords": [
     "current",

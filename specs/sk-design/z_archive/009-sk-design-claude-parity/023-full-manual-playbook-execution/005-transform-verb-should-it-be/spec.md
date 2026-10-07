@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be"
     last_updated_at: "2026-07-07T17:10:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Ran all 5 assigned dispatches (TV-002-V2/V3/V4, TV-003, TV-004) and graded verdicts"

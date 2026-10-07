@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor"
     last_updated_at: "2026-10-03T17:00:00Z"
     last_updated_by: "doctor-audit-validation-sweep"
     recent_action: "Recorded the folder as the authored routing source home"

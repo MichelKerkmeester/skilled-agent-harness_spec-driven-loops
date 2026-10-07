@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/038-authoring-hardening/001-template-conformance-gaps",
-  "spec_folder": "sk-doc/038-authoring-hardening/001-template-conformance-gaps",
-  "parent_id": "sk-doc/038-authoring-hardening",
+  "packet_id": "sk-doc/z_archive/038-authoring-hardening/001-template-conformance-gaps",
+  "spec_folder": "sk-doc/z_archive/038-authoring-hardening/001-template-conformance-gaps",
+  "parent_id": "sk-doc/z_archive/038-authoring-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a third template was blamed on grep evidence and then cleared by a negative control.",
     "created_at": "2026-08-29T11:34:45.425Z",
-    "last_save_at": "2026-08-30T15:39:18.209Z",
+    "last_save_at": "2026-10-07T18:14:16.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:645007e44cefbc2b3772636e6923513acec3bbb11aa8373f4d96da18a0a2026a",
+    "source_fingerprint": "sha256:e926aa420419547d2c141f5bfcc7d90713bdae978e597a2b706037893caece30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d8de665a8258c7c9652a4f7783c98b2d88d4d52cb6b10788f3b4d12e78164c2",
-      "plan.md": "318e4652768caca9bef6ccaa1e459ded7997864b26a1b2dd695b22b4572ef010",
-      "tasks.md": "5c30a5037f66d842e1106278ebdfe28c6fc7f77d5518abcd9d2ae86f9b56fc1b",
-      "implementation-summary.md": "d204cf4bbb1b9d999e69e43ab196d5d2c8376aaf7a9e5b152939298a6921a929"
+      "spec.md": "b113c0bf706e18900237ebfd0c35945668860a3cea7bebd86ab4a41c7a7872d4",
+      "plan.md": "947bb29b33ef90b81e027bc3a88708cb11551d28b7360692751661036fd9f828",
+      "tasks.md": "7923c7322c1662b118130e5ea17b7764ba5bb205e2db086fcc77f770901f37e3",
+      "implementation-summary.md": "cfa8d6fba12c512f35917b29cb006626d17f99fe6b7d9ede9428eeb3e04fe35a"
     },
     "last_active_child_id": null,
     "last_active_at": null

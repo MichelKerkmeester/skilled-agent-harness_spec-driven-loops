@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
     last_updated_at: "2026-07-27T11:15:00Z"
     last_updated_by: "claude"
     recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."

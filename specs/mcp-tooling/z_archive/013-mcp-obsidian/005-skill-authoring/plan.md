@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/005-skill-authoring"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring"
     last_updated_at: "2026-08-02T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 5 skill-authoring plan"

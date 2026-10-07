@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/mcp-code-mode/README.md",
       ".opencode/skills/mcp-code-mode/changelog/v1.0.0.31.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The mcp-code-mode skill README still carries the older tabular reference-card style with an AT A GLANCE table as its spine",
     "created_at": "2026-08-04T08:34:35.394Z",
-    "last_save_at": "2026-08-30T15:39:17.470Z",
+    "last_save_at": "2026-10-07T18:13:46.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62fb2d5e358948e7407bfe903e9cb0e6523c99b85ab589bc0cad0a9eef344974",
+    "source_fingerprint": "sha256:208f5e0b251336c345ab4f00b46288c945f77f0cc7fa87f1533933abe95374b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e4c387730ab6332b08e87d90d603dffcd8ec116f96e78cadcae1c2c772db714",
-      "plan.md": "2ddb7be66f1f41ef4763729d9c84792cd131edef333fbe597d826008dc75e54f",
-      "tasks.md": "e594bb175ff52683cc1c4395fe3138f52b4f8f0b8f601b3107ff121676f63593",
-      "implementation-summary.md": "eb7f6c221e6b4b3137cf54608a3ea0be56cdc005832b28321eb6ae66e08b3c37"
+      "spec.md": "1e14669fa1738441b04b42be622a3a448187a669a0b285158cecf6ad73e76c7a",
+      "plan.md": "1ffa77076076637c0b731f2cb8611b40b358fcaa55d9e6d68deda93237228eba",
+      "tasks.md": "fc793251ab4768dcee4d08d4602138e761343091e394e96b771e742455b6120a",
+      "implementation-summary.md": "8d464d883a559bd94c5aa31ef3ae0b8e1a3da95a11171892fb563b70566309a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

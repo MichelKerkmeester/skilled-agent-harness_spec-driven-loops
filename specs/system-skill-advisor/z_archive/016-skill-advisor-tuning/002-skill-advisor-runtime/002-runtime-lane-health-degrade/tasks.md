@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade"
     last_updated_at: "2026-06-19T08:19:43Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented C5/C5a/AMB lane-health-degrade tasks and recorded test evidence"

@@ -2,12 +2,7 @@
 title: "Implementation Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/plan]"
 description: "Phase 1 (Analysis) Phase 2 (Implementation)"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "system"
-  - "health"
-  - "audit"
-  - "032"
+  - "system health audit plan"
 importance_tier: "important"
 contextType: "planning"
 ---

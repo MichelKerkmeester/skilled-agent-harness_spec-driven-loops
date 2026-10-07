@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Correct ten confirmed feature-catalog claims that disagree with current registries, hooks, command metadata, validation anchors, or the live filesystem. Preserve the catalogs as current-state inventories backed only by durable source evidence.",
     "created_at": "2026-07-25T10:26:07Z",
-    "last_save_at": "2026-08-30T15:39:15.600Z",
+    "last_save_at": "2026-10-07T18:13:29.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ef32472224f3cc2f20b93ce3e3e1d22c7be70954dd946682102b3b375d4a27f",
+    "source_fingerprint": "sha256:3957e83b3a73828a4e3bd93fae74cba73032c0673a23fd68b2f1cb081407b273",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a29ae1650ef8e37df0c6f08b8744869e439bd868ddbe90a008617fe8f21db48a",
-      "plan.md": "4c2401aed0cdaee6182b18769de0340ab29a35fd012ec3d55c992b49556c1b0e",
-      "tasks.md": "0c21efa063bb972a5124278edee9b615df1a61b665b922eeb1b5552d491591da",
-      "implementation-summary.md": "88b7bf4fddfaaaf473fc3dfae0dab23d9cc7bde86d07a7c4d7aff9e639353474"
+      "spec.md": "072bbdefc9f14750aff06a9e71d8846d25b9071dfb448323b6be20c8d25e1836",
+      "plan.md": "ce84f383f0bc917e274c2bdb9d7f7af72d03ec76ac1a6516e1d3a6a081d093e3",
+      "tasks.md": "4ca12d7292593aac117780cbc9863b93d811a9e17c6cfabe21d5fd05d9432315",
+      "implementation-summary.md": "0a5205d55c305c81e6ec86c5259c691285beac71ea939d8f532b66e03e30a9e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

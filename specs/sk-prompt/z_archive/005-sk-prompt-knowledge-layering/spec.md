@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "opus-orchestrator"
     recent_action: "Spec 130 shipped and verified"

@@ -2,12 +2,8 @@
 title: "...ystem-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin/tasks]"
 description: "Task breakdown by user story for the Memory Plugin Dashboard Optimization feature."
 trigger_phrases:
-  - "tasks"
-  - "memory"
-  - "plugin"
-  - "dashboard"
-  - "optimization"
-  - "002"
+  - "memory plugin dashboard tasks"
+  - "memory plugin dashboard task breakdown"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/010-deep-improvement-accepted-vs-shipped"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Two-phase promotion (accept vs ship) with branch-preserved failure + a new rollback-candid"

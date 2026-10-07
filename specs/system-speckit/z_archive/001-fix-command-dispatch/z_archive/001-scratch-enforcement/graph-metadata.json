@@ -21,7 +21,8 @@
       "implementation",
       "plan",
       "tasks",
-      "enforcement"
+      "enforcement",
+      "scratch folder enforcement summary"
     ],
     "key_topics": [
       "feature",
@@ -34,15 +35,16 @@
       "plan",
       "tasks",
       "enforcement",
-      "ensure",
-      "agents"
+      "summary",
+      "ensure"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -164,24 +172,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ensure AI agents never place random scripts, tests, or temporary files in the project root folder, directing them to use `specs/[###-name]/scratch/` directories instead",
     "created_at": "2026-04-12T09:02:53.506Z",
-    "last_save_at": "2026-08-30T15:39:36.882Z",
+    "last_save_at": "2026-10-07T20:14:57.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fa2aeceb3674cbfcba7baf8b0e5ea96ae67d51fe5a46879775bdd4dcd6de83d",
+    "source_fingerprint": "sha256:21eee25769f032a6b1db510d5f4bd1cc880b3e6b679f1f6d85271ccf81c7adaf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da49976690dcce2cc57826b78f246de1bf4cd0ed264219995632d3e7ba843936",
       "plan.md": "d0f5e11274c15de84bc287c1c265ac31b9c1f51fb2a16badf2eabb864f47a9f3",
-      "tasks.md": "69c76a3e9d4fa6c7c77212822964ba325affceb5cd03f71248655164e7c782f6"
+      "tasks.md": "69c76a3e9d4fa6c7c77212822964ba325affceb5cd03f71248655164e7c782f6",
+      "implementation-summary.md": "9f13799af03bf8128d25c1bea1557e41da66e73e3b5e7f09aebb5dd82bed3ebc"
     },
     "last_active_child_id": null,
     "last_active_at": null

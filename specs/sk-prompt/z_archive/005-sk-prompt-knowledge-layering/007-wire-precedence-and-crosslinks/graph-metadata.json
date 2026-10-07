@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Each cli- skill defined prompt-composition guidance independently, so a caller could not predict which rule prevailed when two constraints matched the same dispatch",
     "created_at": "2026-06-05T12:47:32.516Z",
-    "last_save_at": "2026-08-30T15:39:19.248Z",
+    "last_save_at": "2026-10-07T18:14:20.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe36800b0339ece75bffbda4c4ecf4bebeb86e5bd5fd655d431f288f9c852b61",
+    "source_fingerprint": "sha256:cab91c8d13af2f05080b8c242cb232aeefcfda0a184556a8dbeb473f9357ce4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cdfca211c3d69f5cccb794778447d508af92cec3acf02fd86664ba172446238",
-      "plan.md": "df25869a369f5c71df20b5e8e9ded6d1b3b24f906dd7395a66b4175252c4c202",
-      "tasks.md": "fa0a4e79f4e5ceadb15184e14e33abcf1f4da7be652d63c32ba5ee51b64d8b8b",
-      "implementation-summary.md": "8775a66bfb51ea99515e4be8caec9a6bc1ec8505f80f5386f1cc1cbba68ed678"
+      "spec.md": "b03179829e975dce9a53bdedca213ce2f2cede8d941ae56b47c0b9bb75c0399b",
+      "plan.md": "23a411faf7991b1fa40267fd1c4c87c950c22467fef80ff45fa10a271c913a07",
+      "tasks.md": "da90850fee6116499bae9d1ef35a3b2071a43d0212b0c0ff751e27d6ab19e7f5",
+      "implementation-summary.md": "b465f452f147af80af85c23aa0f24f54c335eecb351013d3e46d654b35f61273"
     },
     "last_active_child_id": null,
     "last_active_at": null

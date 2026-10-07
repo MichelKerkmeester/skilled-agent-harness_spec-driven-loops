@@ -1,3 +1,13 @@
+---
+title: "Deep Review Report v2: sk-doc router rerun refined extraction"
+description: "Refined measurement of the 071 sk-doc router stress-test logs: the qualitative ranking is confirmed and cli-copilot's resource-name hallucination is surfaced as a new concern."
+trigger_phrases:
+  - "sk doc router rerun refined extraction review report"
+  - "sk doc router rerun review findings"
+importance_tier: "normal"
+contextType: "review"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: review-report | v1.0 -->
 # Deep Review Report v2: 072-sk-doc-router-rerun-refined-extraction
 
 **Packet**: `.opencode/specs/sk-doc/z_archive/009-sk-doc-router-rerun-refined-extraction/`

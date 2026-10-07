@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "spec-completion"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles"
     last_updated_at: "2026-06-02T18:30:00Z"
     last_updated_by: "agent"
     recent_action: "Populated completion docs for phase 004"

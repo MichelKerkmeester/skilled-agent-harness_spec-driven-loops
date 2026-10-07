@@ -2,11 +2,8 @@
 title: "Task [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/spec]"
 description: "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect the post-implementation stat..."
 trigger_phrases:
-  - "task"
-  - "skill"
-  - "references"
-  - "audit"
-  - "spec"
+  - "skill speckit alignment audit"
+  - "skill reference review"
 importance_tier: "important"
 contextType: "planning"
 ---

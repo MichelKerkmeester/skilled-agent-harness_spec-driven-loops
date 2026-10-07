@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Adds privacy-minimized Web Push hints and hardens installation, lifecycle, revocation, and stale-state behavior across supported mobile platforms",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-08-30T15:39:07.927Z",
+    "last_save_at": "2026-10-07T18:11:39.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:174a0f07d09f6bc94a06883b90c00aaec52a1a338b880d7a3a8866cc6786f903",
+    "source_fingerprint": "sha256:07c5ec9e2a8dcab725b78715d7cb4aa9764a76bfca7dcb43734587c57de18243",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fae69d04309e253ec8c27c17e1a62dafb234efaeab2ed20d06261b12e91225c8",
-      "plan.md": "1a641bc2aed973b27b0552631b466c21b1075a776bf495e670ca3a2f15d127b9",
-      "tasks.md": "b467cf780912368b259990d0fcaf49600cf7f47fa883c6b9894e752b2d5c845a",
+      "spec.md": "b7c5d1a1fe16db41cc4734267dbb02e58d89e672ef2316c1b99cb05a7ab54ce3",
+      "plan.md": "7d52d9a710c820bed2dcdc73fa36c9bdb234dc74d0740cff8c7fc0db5d7a0732",
+      "tasks.md": "2f6ad4e00af26655b0a442b46e510e4c6d5486e9469afb0b4c872838337dfa2c",
       "decision-record.md": "c92dd81288dbfdaccecacdb1ff256da3e89e34f22263de6af7c7402d26d0c5bc",
-      "implementation-summary.md": "9bff854eb2a9b46c08443608e31f085af2e972c14e8aa79e51eb6b5fdec60d24"
+      "implementation-summary.md": "9028930ca37600f572fbfed00a670e34088ca909319fac621b80195180e6146d"
     },
     "last_active_child_id": null,
     "last_active_at": null

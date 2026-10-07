@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-sk-improve-agent-promotion-verification |
+| **Spec Folder** | 004-sk-recursive-agent-promotion-verification |
 | **Completed** | 2026-04-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

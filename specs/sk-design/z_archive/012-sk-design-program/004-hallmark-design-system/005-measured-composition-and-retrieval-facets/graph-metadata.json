@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
-  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
-  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page shape already present in each style's canonical record, token axes, and `DESIGN.md` headings",
     "created_at": "2026-07-22T19:16:29.110Z",
-    "last_save_at": "2026-08-30T15:39:12.892Z",
+    "last_save_at": "2026-10-07T18:12:31.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,13 +182,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3df6a6456e186f4f87208b78c56fcb472a37790a331af37d77b5f59c58114e0d",
+    "source_fingerprint": "sha256:4d6754b661c40caaa2956486273bd73d13ba36f9b857468a0852e1afa78c7edb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b6959d73a642fbf62a39b852eacd4a8b30d88b376c191b320092439b8e2535ac",
-      "plan.md": "60e2fada89e29305f87ae8ba250b8f932f4c0f86e7e8f59a18a8387c67f5f2d5",
-      "tasks.md": "b15e1df3b221efed39d125e9baec906c9a22e21444cc1e5accaa82aad0ffe906",
-      "implementation-summary.md": "75718282cdcdab9488f44985803c41c9594e6ab9e17cf2c21aa45fcb9bd49307"
+      "spec.md": "74db752f2dd39720b7f43fd3bcf7b82358af6d5795c8e04b7a4ed06d2b489c27",
+      "plan.md": "cfbd97ab60bf99a91850b6c67b82ee4d662913dbd8e2076c58d78e0d2c54feaf",
+      "tasks.md": "c56993584c8ce1bf9c488bc508118703fcbe6bef264648d84155cd3e9ec5e2c1",
+      "implementation-summary.md": "ad231732f84cbdc9e6422f13a8f4f52e5afc91f2d1f4502285fddd5269f99c43"
     },
     "last_active_child_id": null,
     "last_active_at": null

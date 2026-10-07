@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/003-trim-duplicates"
     last_updated_at: "2026-07-29T09:18:42Z"
     last_updated_by: "implementer"
     recent_action: "Trimmed duplicated enumerations across six modes, preserved routing JSON"

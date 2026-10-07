@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
   "description": "Two independent models on two CLIs enumerate every consumer of a mode packet directory or workflowMode key, so the rename phases start from a found",
   "keywords": [
     "two",

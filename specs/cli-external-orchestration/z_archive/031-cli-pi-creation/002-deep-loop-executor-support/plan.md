@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/002-deep-loop-executor-support"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Plan executed via LUNA (codex), re-verified, reviewed by GLM-5.2"

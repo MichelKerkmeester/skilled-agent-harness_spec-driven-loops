@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark"
     last_updated_at: "2026-07-10T22:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All tasks complete"
@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "mcp cli hub benchmark tasks"
 ---
 # Tasks: mcp-tooling + cli-external Hub Benchmark & Router Improvements
 

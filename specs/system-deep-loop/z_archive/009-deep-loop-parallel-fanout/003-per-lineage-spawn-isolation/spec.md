@@ -23,16 +23,22 @@ _memory:
 
 # Phase 003 — Per-lineage spawn + sub-packet isolation
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - `fanout-pool.cjs` spawn path: existing deep-loop command, single synthesized `config.executor` per lineage, `--max-iterations {lineage.iterations ?? default}`, env `SPECKIT_FANOUT_LINEAGE_ID={label}`, capture stdout to `{sub-packet}/logs/iter-NNN.out`.
 - `--artifact-dir-override` branch in `step_resolve_artifact_root` for all 4 YAMLs: `deep_start-{research,review}-loop_{auto,confirm}.yaml` (override → use it; else `resolveArtifactRoot`). Sub-packets at `{artifact_dir}/lineages/{label}/`.
 - Recursion-guard check: distinct kinds safe; same-kind replicas verify loop-lock/ancestry (`SPECKIT_<KIND>_STATE_DIR`).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - Integration: pool spawns a stub command twice into two `lineages/{label}/` trees; distinct trees + distinct sessionIds + no lock contention.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Salvage (004); merge (005).

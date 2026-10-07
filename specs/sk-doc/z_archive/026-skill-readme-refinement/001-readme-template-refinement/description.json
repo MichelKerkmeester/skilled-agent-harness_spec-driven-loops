@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/001-readme-template-refinement",
   "description": "The shared standalone README template at `sk-create-skill/assets/skill/skill-readme-template.md` predates the mcp-obsidian pilot",
   "keywords": [
     "shared",

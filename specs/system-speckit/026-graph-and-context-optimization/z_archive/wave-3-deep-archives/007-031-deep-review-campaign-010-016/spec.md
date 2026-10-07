@@ -7,14 +7,25 @@ status: complete
 urgency: normal
 created_at: "2026-05-14"
 completed_at: "2026-05-14"
+importance_tier: "normal"
+contextType: "implementation"
+trigger_phrases:
+  - "deep-review campaign 010-016"
+  - "code-graph remediation review"
+  - "10-iteration review verdict"
 ---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # 017: Deep-Review Campaign 010-016
 
+<!-- ANCHOR:success-criteria -->
 ## Outcome
 
 CONDITIONAL verdict — 0 P0, 1 P1, 19 P2 findings. MCP rename is complete and correct in all production code paths. P1 is a documentation clarity issue (skill slug vs MCP namespace naming), not a functional defect.
+<!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:problem -->
 ## Findings Summary
 
 | Severity | Count |
@@ -33,3 +44,4 @@ CONDITIONAL verdict — 0 P0, 1 P1, 19 P2 findings. MCP rename is complete and c
 - Naming discoverability gaps (launcher error messages, config table)
 - Feature catalog vs tool count reconciliation
 - Operational resilience (lock staleness detection)
+<!-- /ANCHOR:problem -->

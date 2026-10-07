@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/007-testing/001-hermetic-test-isolation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/007-testing/001-hermetic-test-isolation"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Authored leaf spec for 001-hermetic-test-isolation (global dependency floor)"

@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research/001-reference-split` |
+| **Spec Folder** | 006-deep-research-reference-split |
 | **Completed** | 2026-05-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

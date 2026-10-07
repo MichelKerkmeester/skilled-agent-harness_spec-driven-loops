@@ -7,7 +7,6 @@ trigger_phrases:
   - "spec"
   - "kit"
   - "bug"
-  - "implementation summary"
   - "080"
   - "speckit"
 importance_tier: "normal"
@@ -24,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/080-speckit-bug-remediation` |
+| **Spec Folder** | 080-speckit-bug-remediation |
 | **Implementation Date** | 2026-01-28 |
 | **Duration** | Single session (10 parallel Opus agents) |
 | **LOC Changed** | ~800 lines across 18 files |

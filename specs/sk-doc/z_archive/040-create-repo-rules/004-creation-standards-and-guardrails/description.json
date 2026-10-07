@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/004-creation-standards-and-guardrails",
   "description": "Phase 3 generated a rule that passed all eleven structural assertions and is thin: two sections, one obligation, nothing a reader would change their",
   "keywords": [
     "phase",

@@ -5,7 +5,6 @@ trigger_phrases:
   - "implementation"
   - "summary"
   - "013"
-  - "implementation summary"
   - "agents"
 importance_tier: "normal"
 contextType: "implementation"

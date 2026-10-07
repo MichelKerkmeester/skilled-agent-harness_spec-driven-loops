@@ -164,7 +164,6 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -187,7 +186,6 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

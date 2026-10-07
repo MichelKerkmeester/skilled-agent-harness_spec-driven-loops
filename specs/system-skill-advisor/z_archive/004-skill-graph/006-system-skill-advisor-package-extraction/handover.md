@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction"
     last_updated_at: "2026-05-15T12:07:05Z"
     last_updated_by: "codex"
     recent_action: "026 sk-code audit follow-ons closed through 030"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/013-deep-review-grok-deepseek"
     last_updated_at: "2026-08-13T05:55:33.000Z"
     last_updated_by: "claude"
     recent_action: "Review complete, merged CONDITIONAL verdict, findings remediated in phase 014"

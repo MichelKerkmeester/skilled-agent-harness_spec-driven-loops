@@ -1,9 +1,11 @@
 ---
 title: "Implementation Summary: packet-012 deep-review remediation"
 description: "Fixed all deep-review findings (P0=0, P1=9, P2=1); persistent-path hardened, evidence reconciled; adapter stays legacy-default."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "remediation-orchestrator"
@@ -22,10 +24,7 @@ _memory:
       - "#2: no production query caller passes a generation pin; the contract was enforced (fail-closed), not removed"
       - "#7: SLO reworded as bounded-sample; full-corpus measurement deferred to the persistent-enable go/no-go"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "review remediation implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

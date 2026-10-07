@@ -80,7 +80,7 @@ The canonical changelog and release-notes template now sits next to every other 
 
 ### Template relocation
 
-The 7,718-byte template was copied verbatim to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md) and the original was deleted. File parity was confirmed by size and by reading the new file end-to-end before the delete. No content was edited during the move.
+The 7,718-byte template was copied verbatim to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../../.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md) and the original was deleted. File parity was confirmed by size and by reading the new file end-to-end before the delete. No content was edited during the move.
 
 ### Reference updates
 

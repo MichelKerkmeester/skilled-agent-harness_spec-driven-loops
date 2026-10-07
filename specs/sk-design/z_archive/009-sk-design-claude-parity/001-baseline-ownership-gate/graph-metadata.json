@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -16,13 +16,12 @@
       "sk-design",
       "gate",
       "phase 001",
-      "implementation plan",
       "baseline ownership",
       "tasks",
       "decision record",
       "rollback",
       "threshold authority",
-      "implementation summary"
+      "complete"
     ],
     "key_topics": [
       "baseline",
@@ -30,13 +29,13 @@
       "sk-design",
       "gate",
       "phase",
-      "implementation",
-      "plan",
       "tasks",
       "decision",
       "record",
       "rollback",
-      "threshold"
+      "threshold",
+      "authority",
+      "complete"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-09-11T16:41:54.438Z",
+    "last_save_at": "2026-10-07T18:11:24.687Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce337690bfb17fc979cdf16d35295117ab9281dcba0b77e91f4a32d39a32f30b",
+    "source_fingerprint": "sha256:93e9ce795dc4238508461edcc55b36c8baa0a34a90ee1a94027f0a3195955c36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6306dbf6ab0c325a8c0343329e9a9dbe962264e4502d83929ae38f18adfb61a",
-      "plan.md": "a13f06c79c2a9c518aa704be5e86695aec0cb10e6dc360b70a2617a8389fd92b",
-      "tasks.md": "a51680be3a865901f747f279ad139ff4b3cdca2d4a6aaf1094fcf9ccf8bf9f35",
+      "spec.md": "602bc08cd1f3afa5ca64fbfa3a11e69ec732c9aba85adfa5299af48422636988",
+      "plan.md": "e273e53fbdbd0f07356218652b43ddc00285021a2ef94ed77bef85797e36740e",
+      "tasks.md": "ee644976edda9761700a6a675478aad39b21e43f3844113480cbf755e9fbd546",
       "decision-record.md": "f80cd2893797354dfd8f724bf3fa104e63c840813cff2cd757854782b9db44ec",
-      "implementation-summary.md": "22410f3ab56d99eaefe0c0e7954b7565e20302db8cb1ce6a5347e3951572d0ea"
+      "implementation-summary.md": "9892ac274feeee48d0a816e1933b55e8a47edb1c7bac16a34529052a94b46c80"
     },
     "last_active_child_id": null,
     "last_active_at": null

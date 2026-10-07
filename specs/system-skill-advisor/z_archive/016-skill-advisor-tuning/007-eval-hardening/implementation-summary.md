@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "Complete"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/007-eval-hardening"
     last_updated_at: "2026-07-07T07:15:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Eval-hardening infrastructure implemented and verified corpus-neutral; all scorer gates green"

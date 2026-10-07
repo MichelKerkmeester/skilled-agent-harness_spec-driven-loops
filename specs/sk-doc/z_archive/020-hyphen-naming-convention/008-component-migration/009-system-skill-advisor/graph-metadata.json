@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -90,16 +90,16 @@
     ],
     "causal_summary": "The system-skill-advisor surface contains several independent filesystem-name groups that still use snakecase:",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-08-30T15:39:16.811Z",
+    "last_save_at": "2026-10-07T18:12:46.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c665c174079dd238f96f0c99affe4a050ce6d5c7d6db3adfcd540191b27fbeac",
+    "source_fingerprint": "sha256:5844b190b6af006fa5a5763aee0d74cb328d3a42bc821e5c282cfecd6eb0ff38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bfbfc7ecc5d4ca50b3f72d3c6baac2e56a7e3b70f766f0f68bd9ed34bdd2b05d"
+      "spec.md": "e28f81317a972d1623fcc6cc117f34d3528d748aa1db5df04766acc943617d5e"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
     "last_active_at": null

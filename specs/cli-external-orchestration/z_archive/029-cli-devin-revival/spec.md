@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival"
     last_updated_at: "2026-07-27T11:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase 015 superseded: all 13 roster agents mirrored into Devin."

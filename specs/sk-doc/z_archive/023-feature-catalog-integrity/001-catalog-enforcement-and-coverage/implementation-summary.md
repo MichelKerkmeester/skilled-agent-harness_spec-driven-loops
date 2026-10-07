@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
+    packet_pointer: "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
     last_updated_at: "2026-07-31T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Captured scoped validator and packet-validation receipts"
@@ -39,7 +39,7 @@ _memory:
 | **Spec Folder** | 001-catalog-enforcement-and-coverage |
 | **Completed** | In Progress |
 | **Level** | 3 |
-| **Status** | In Progress |
+| **Status** | Planned |
 <!-- /ANCHOR:metadata -->
 
 ---

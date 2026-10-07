@@ -2,7 +2,6 @@
 title: "Implementation Summary: sk-code-review [03--commands-and-skills/016-sk-code-review-creation/implementation-summary]"
 description: "Completion summary for promoting sk-code-review to first-class review baseline with baseline+overlay contract wiring across skill, agents, commands, advisor, and docs."
 trigger_phrases:
-  - "implementation summary"
   - "sk-code-review"
   - "baseline overlay"
   - "041"

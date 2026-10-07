@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/058-codex-dispatch-scope-loosening"
+    packet_pointer: "cli-external-orchestration/z_archive/058-codex-dispatch-scope-loosening"
     last_updated_at: "2026-08-30T11:20:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Scoped the runtime-delegation rule to deep-loop fan-outs"

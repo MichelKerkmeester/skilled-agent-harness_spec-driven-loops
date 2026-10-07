@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode",
   "description": "`ADR-001: Sliding-Window Convergence Mode For Long Loops`",
   "keywords": [

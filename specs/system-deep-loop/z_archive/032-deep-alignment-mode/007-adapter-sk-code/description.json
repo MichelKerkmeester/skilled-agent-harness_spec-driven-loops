@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code",
   "description": "`deep-alignment` sequences its v1 authorities by determinism (sk-doc, sk-git, sk-design, then sk-code last) because sk-code conformance is the hardest",
   "keywords": [
     "deep-alignment",

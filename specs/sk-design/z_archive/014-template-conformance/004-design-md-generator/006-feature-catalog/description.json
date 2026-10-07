@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/006-feature-catalog",
   "description": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`,",
   "keywords": [
     "feature-catalog",

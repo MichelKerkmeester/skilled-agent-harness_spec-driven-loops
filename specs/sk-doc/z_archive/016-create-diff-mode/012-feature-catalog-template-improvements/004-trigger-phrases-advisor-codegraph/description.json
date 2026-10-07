@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
   "description": "Add or improve trigger_phrases in 40 skill-advisor snippets and 14 code-graph snippets. Audit existing phrases for quality; fill all gaps.",
   "keywords": [
     "improve",

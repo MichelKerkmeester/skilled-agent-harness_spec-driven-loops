@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,7 +15,6 @@
       "sk-design feature catalog",
       "procedure card system catalog",
       "phase 010",
-      "implementation plan",
       "tasks",
       "phase 010 implementation summary",
       "feature catalog completeness summary",
@@ -31,10 +30,10 @@
       "card",
       "system",
       "phase",
-      "implementation",
-      "plan",
       "tasks",
-      "summary"
+      "implementation",
+      "summary",
+      "remediation"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -194,7 +193,7 @@
     ],
     "causal_summary": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package (`design-md-generator/featurecatalog/featurecatalog.md`, 7 categories)",
     "created_at": "2026-07-06T04:35:22.460Z",
-    "last_save_at": "2026-08-30T15:39:12.208Z",
+    "last_save_at": "2026-10-07T18:11:38.601Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3af006f24b1fbb52043d82490c4546d6e7eade480e08a7f9af993c62f1ddf8c6",
+    "source_fingerprint": "sha256:00e9c433ae2bac58542f49a40d8d4eda56bc8391271bff152e550180d831234e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f8873f4884f6c605a74486e2a1190728ef9257d5675de0ea08bc2790c0f6f65",
-      "plan.md": "417e19aed8ac9268a5322d49e6176f15241dfca2a9c60ec88ae3156609291581",
-      "tasks.md": "bf3cc38803cdb5c1d650d0592f51cb0b5df3202ef6a845d63ca1649ce6ac6f18",
-      "implementation-summary.md": "344f2220438250a748c4ed0839e3c99ddc15fb0e9fc8b22c8ec5b37e9cce0a35"
+      "spec.md": "4418c30280346db3b38b7f9f20da6ab13fd5ff8b4ecf9864cc7820e363fb362d",
+      "plan.md": "0133422d76895b230b97875fb274130797f42fb4c2affd9d812f5b9aeaef8a90",
+      "tasks.md": "8a39284b61baa161627c4cfce5424e205510e941b787fea0c06131a671fd0600",
+      "implementation-summary.md": "65b4bac7c8c29ba227b15e1006444c2caadffde6f91164deb3c078b196a43e5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

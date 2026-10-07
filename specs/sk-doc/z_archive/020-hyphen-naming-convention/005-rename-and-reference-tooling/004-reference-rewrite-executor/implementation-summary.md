@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
     last_updated_at: "2026-07-18T08:08:15Z"
     last_updated_by: "codex"
     recent_action: "Built and verified the static reference-rewrite executor"

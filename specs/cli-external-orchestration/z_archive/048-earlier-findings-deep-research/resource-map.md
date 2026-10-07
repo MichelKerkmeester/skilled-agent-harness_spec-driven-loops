@@ -5,11 +5,13 @@ trigger_phrases: []
 <!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Known Context — sk-vision host-adapter findings (research corpus)
 
+<!-- ANCHOR:summary -->
 This packet seeds a deep-research loop over five findings surfaced while running the
 `sk-vision` manual-testing-playbook across Cursor and Devin with GLM 5.2 (via cli-cursor and
 cli-devin). Each finding below is the research subject: determine root cause, classify it as a
 bug vs expected behavior, propose the cleanest durable fix or documentation, and note any
 cross-host generalization.
+<!-- /ANCHOR:summary -->
 
 ## Finding 1 — Cursor requires one-time MCP approval
 `cursor-agent mcp list` reported `sk-vision: not loaded (needs approval)`; the server only
@@ -46,6 +48,8 @@ Separately, `sk_vision_inspect` does not forward a `settings` object to the Pyth
 `max_tokens` cannot be raised through the MCP tool. Question: root cause of the base64 padding
 error and whether `inspect` should forward `settings`.
 
+<!-- ANCHOR:documents -->
 ## Source artifacts (for reference, not required reading)
 - `specs/sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook/scratch/run-2026-08-17/` — transcripts + OCR fixture.
 - `.opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--*` — recorded verdicts.
+<!-- /ANCHOR:documents -->

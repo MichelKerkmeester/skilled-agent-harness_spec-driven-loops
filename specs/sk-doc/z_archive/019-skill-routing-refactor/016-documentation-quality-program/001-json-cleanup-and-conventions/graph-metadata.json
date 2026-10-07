@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "advisor metadata json cleanup",
       "nested description.json residue",
       "parent-skill-check description rule",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "advisor metadata cleanup summary"
+      "json cleanup and conventions plan",
+      "json cleanup and conventions tasks",
+      "advisor metadata cleanup summary",
+      "parent-skill-check rule 2b",
+      "prompt-models description residue removed"
     ],
     "key_topics": [
       "advisor",
@@ -34,9 +30,9 @@
       "residue",
       "parent-skill-check",
       "rule",
-      "implementation",
+      "conventions",
       "plan",
-      "technical"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
     "created_at": "2026-07-22T08:55:19.438Z",
-    "last_save_at": "2026-09-11T04:36:33.309Z",
+    "last_save_at": "2026-10-07T18:13:26.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e8e872c3eb5b98be35969cae4086684100c9b3bb043dfe808c89080ef62a803",
+    "source_fingerprint": "sha256:0f5bbc3d151faca716d427311579a463421aa2e96561ac0f969c61cd5f45aa8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c72ee79587f490817c0b1857dd465b61b2cbabe1d12e37feb74242335c896018",
-      "plan.md": "496f4db6e2ebc7ecb0356b4b6572ce43193a60e87fc95b2a42850a5dd45c546b",
-      "tasks.md": "db5eee5aa5dcace356e2a866c911e142ffc3ffadfa7c05305920375c73a40d18",
-      "implementation-summary.md": "bbf4d396921b0e510ebf1e715e177a6483df99d9012176da17896aa3b0fc7a42"
+      "spec.md": "679a42707fe99f44bfdfd5245967b864239c94f77fa86f61a43593f6d6b79b70",
+      "plan.md": "251beb282e24abac7da2f60e8ab008073eff0d57fc09a11bb883e4f446833447",
+      "tasks.md": "fdac6729f3a5f433945a1df819053c6448d88bfc7a87bb819d1447d8313afb5f",
+      "implementation-summary.md": "85387eed1d5f5e47805754c15f28c2f64fcf5fd6d22118a1cd6cd245483d5806"
     },
     "last_active_child_id": null,
     "last_active_at": null

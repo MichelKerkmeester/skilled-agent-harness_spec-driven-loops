@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Lineage subprocesses own their JSONL state writes (`deep-review-state.jsonl` et al.) and the prompt asks for ISO-8601 timestamps, but nothing verifies truthfulness",
     "created_at": "2026-07-02T15:14:06.679Z",
-    "last_save_at": "2026-08-30T15:39:26.035Z",
+    "last_save_at": "2026-10-07T18:15:13.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64544fe3276327cf2d54252ffb6b1dac3975e2357f00652930ed1791b889680a",
+    "source_fingerprint": "sha256:190e1cae282b11350ed923fbba6015a91004b0a93bc96c90b28da5ddffa0bdc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6cb932490b19a06bb89084eeebc265d5f4e20e412eefcdce8e17db6fde9ec4be",
-      "plan.md": "cc490a4470ec254036800dd6ff49e4150ca9cf82faf6835172ad57a0b5b54eb4",
-      "tasks.md": "e11fb6efb612a5c28c99e70abc6db093db54db82759bc46996d420a12799b455",
+      "spec.md": "d909e036d6bc2f9686119ed271e597c9f64b37617d046424b287cd20fb9bd5df",
+      "plan.md": "bcdffea0ecc4948f799caff37e528c7fe4c13b806cbfd864fd18faaff1f20b99",
+      "tasks.md": "1e6247e8fcf973fa3e772eea10d7d2f14051a036c0a966621b420b0500b2742f",
       "decision-record.md": "2b24b15b7e1c0d336c6b029fbf2e28b8c7d87fbef89de0b6d68a5c8bc099f626",
-      "implementation-summary.md": "f183c18c9ad5970b81a57a0d453500518442c5b1082010a7d34abe69781ca97a"
+      "implementation-summary.md": "dfeda8460be6d369a27f4065749a68bede0c7efbac35b5c8ab649b9d355a31e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

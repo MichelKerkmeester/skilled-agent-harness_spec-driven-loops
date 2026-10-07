@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/021-benchmark-naming-and-playbook-results",
-  "spec_folder": "sk-doc/021-benchmark-naming-and-playbook-results",
+  "packet_id": "sk-doc/z_archive/021-benchmark-naming-and-playbook-results",
+  "spec_folder": "sk-doc/z_archive/021-benchmark-naming-and-playbook-results",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-09-11T16:42:11.541Z",
+    "last_save_at": "2026-10-07T18:13:27.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e2b561fef8bfc671529c3305bc76ffeed84e5aa9ea9c97d51914ba8a816b5ef",
+    "source_fingerprint": "sha256:ab4863e2debf1af7f343a222b00e81b8083ab3d066ba1bb5e3c7bd58187eeadd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c43a19964757671b34c9516e661fe2db98366efef2dddd9f299fa10de95d4141",
-      "plan.md": "ed7814f8625178a4098747ec9f9ab7720c2bc771f868750bc3ccf5500cfd3cab",
-      "tasks.md": "d3d8bf0469614ff5b64485fe25aad4316bc331410a2d973dbf972134aded0233",
+      "spec.md": "56953bee38d8b5e0d34c259c1f24fd9a8508bab19911ab7c2e12d34acba2bf58",
+      "plan.md": "7d965b3c852206daff623d6328ca9b5efb5296e56bf9b95078f9976fef186e23",
+      "tasks.md": "6ec774d376f692dec592f354a658df159a71e3bed789d42afb2aa94667aabada",
       "decision-record.md": "0c887c2df2c5e3be95e662e27fda32937f6b19ee84f422974afcf3f2881a3716",
-      "implementation-summary.md": "dcedaec19c91a57d29ea8f65cdbc850b0503b4bcff0589721551a06e0bc1c365"
+      "implementation-summary.md": "d375e87c8f2e81b211b78dd171dad3c258e021db176a6bec9ad8e7bc1c72a594"
     },
     "last_active_child_id": null,
     "last_active_at": null

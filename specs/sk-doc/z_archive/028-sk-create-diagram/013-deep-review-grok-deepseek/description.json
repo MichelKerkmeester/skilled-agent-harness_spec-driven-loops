@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/013-deep-review-grok-deepseek",
   "description": "Every prior phase in this packet was orchestrator-verified against real files, but never run through an independent, adversarial multi-model review",
   "keywords": [
     "every",

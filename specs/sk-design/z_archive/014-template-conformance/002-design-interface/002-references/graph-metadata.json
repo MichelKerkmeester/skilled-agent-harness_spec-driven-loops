@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/002-references",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/002-references",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/002-references",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/002-references",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`references/` holds 29 files (5 in `aesthetics/`, 2 in `design-grounding/`, 10 in `design-process/`, 10 in `foundations/` including `color/`, `layout/`, `type/` subfolders, 2 in `mcp-tooling/`), all governed by `skill-reference-template.md`",
     "created_at": "2026-07-27T14:56:07.863Z",
-    "last_save_at": "2026-08-30T15:39:13.001Z",
+    "last_save_at": "2026-10-07T18:12:31.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffde342a21987062a2e08868acabdc5911737a38ade12e6445c3be1c910ed91e",
+    "source_fingerprint": "sha256:78ded555ada86261a682f014173231833a82562cb34db6198393b4c0a88229b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0444b27df230608c4bdf13fb6b0bd0652c075105c6b01d633e140c0a3f5fed80",
-      "plan.md": "e1d20c888ff3cf4c78b5b64b0be2bbabe0638a4dff9a3bff03f84669fe762adf",
-      "tasks.md": "938b617b327984114aeaff373e5adb7573d3c6e4a7e76241d0aa870cbaf0d84e",
-      "implementation-summary.md": "b28e134941de4546bb694be28568f6d12cdbea6c15e567596ca1d0a4b4765aab"
+      "spec.md": "6f8a88a0f724bab915259d6454740cb3038605a8e4abe4cc09278d71305d91c9",
+      "plan.md": "86dedf9514ef996a0a401c9fa3d3959c55fc8a5b18847ae122b69be1b0947179",
+      "tasks.md": "3f98a5d81b98bb1b17fa3a7f919fa1fd3a70ce90dc6c43d41601e84bbf4ef90e",
+      "implementation-summary.md": "7d20e5707c882b2c1d34aaf61df5df50e226518808a0a0d3ab368f2d0c2a8f70"
     },
     "last_active_child_id": null,
     "last_active_at": null

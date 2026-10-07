@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+  "specFolder": "sk-doc/z_archive/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
   "description": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and",
   "keywords": [
     "cli-external",

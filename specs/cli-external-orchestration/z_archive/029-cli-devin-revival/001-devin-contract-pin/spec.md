@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/001-devin-contract-pin"
     last_updated_at: "2026-07-23T20:03:10Z"
     last_updated_by: "claude-code"
     recent_action: "Verified live Devin CLI contract against docs.devin.ai"

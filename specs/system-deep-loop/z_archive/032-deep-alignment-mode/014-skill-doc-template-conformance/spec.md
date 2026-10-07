@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance"
     last_updated_at: "2026-07-13T13:00:00Z"
     last_updated_by: "claude"
     recent_action: "Six groups conformed + verified; adapters HVR-clean; checkers green"

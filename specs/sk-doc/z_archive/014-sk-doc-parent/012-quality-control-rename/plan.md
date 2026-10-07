@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/012-quality-control-rename"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/012-quality-control-rename"
     last_updated_at: "2026-07-07T06:49:21.963Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Author phase-012 plan"

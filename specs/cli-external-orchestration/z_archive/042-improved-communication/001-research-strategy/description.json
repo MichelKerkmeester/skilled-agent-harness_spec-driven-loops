@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "specFolder": "cli-external-orchestration/z_archive/042-improved-communication/001-research-strategy",
   "description": "The reference proves that whole-message rewriting, user-question context, a narrow copy-editing prompt, low sampling, and fail-open display can make",
   "keywords": [
     "reference",

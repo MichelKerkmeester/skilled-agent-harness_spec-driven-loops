@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration/implementation-summary]"
 description: "Phase 1 migrated @spec-kit/shared to native ESM so downstream packages can import stable .js-specifier exports without CommonJS fallbacks."
 trigger_phrases:
-  - "implementation summary"
   - "shared esm migration"
   - "phase 1 closeout"
 importance_tier: "important"

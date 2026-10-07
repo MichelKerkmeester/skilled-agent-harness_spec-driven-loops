@@ -2,13 +2,8 @@
 title: "Decision [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/decision-record]"
 description: "The system has a hardcoded EMBEDDING_DIM = 768 constant in vector-index.js, but the active Voyage AI provider returns 1024-dimension embeddings. This causes 100% of memory index..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "system"
-  - "spec"
-  - "kit"
-  - "decision record"
-  - "049"
+  - "system analysis bugs decision record"
+  - "embedding dimension decision record"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -61,7 +56,7 @@ We will:
 
 ---
 
-<!-- ANCHOR:metadata -->
+<!-- ANCHOR:metadata-2 -->
 ## DR-002: Template Metadata Format Standardization
 
 ### Context
@@ -89,7 +84,7 @@ Templates use inconsistent metadata formats: 6 use bulleted lists, 4 use tables.
 - Update 4 templates: `handover.md`, `implementation-summary.md`, `debug-delegation.md`, `context_template.md` (metadata section only)
 - Document exception for `context_template.md` in style guide
 
-<!-- /ANCHOR:metadata -->
+<!-- /ANCHOR:metadata-2 -->
 ---
 
 ## DR-003: Implementation-Summary Requirement Logic

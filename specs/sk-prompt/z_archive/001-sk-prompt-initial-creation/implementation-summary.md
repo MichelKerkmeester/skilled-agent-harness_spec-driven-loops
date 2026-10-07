@@ -6,7 +6,6 @@ trigger_phrases:
   - "summary"
   - "prompt"
   - "improv"
-  - "implementation summary"
   - "003"
 importance_tier: "normal"
 contextType: "implementation"

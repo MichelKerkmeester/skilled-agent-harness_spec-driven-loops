@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/008-code-graph-coverage-bridge"
     last_updated_at: "2026-07-01T22:20:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold content with spec-grounded complete info"

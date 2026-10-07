@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme"
     last_updated_at: "2026-08-04T14:55:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 031 executed: README rewritten"

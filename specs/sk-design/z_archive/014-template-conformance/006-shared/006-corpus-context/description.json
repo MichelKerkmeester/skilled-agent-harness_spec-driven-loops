@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/006-shared/006-corpus-context",
+  "specFolder": "sk-design/z_archive/014-template-conformance/006-shared/006-corpus-context",
   "description": "`.opencode/skills/sk-design/shared/corpus-context/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md",
   "keywords": [
     "opencode",

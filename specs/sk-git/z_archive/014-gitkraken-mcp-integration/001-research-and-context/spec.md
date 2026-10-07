@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-git/014-gitkraken-mcp-integration/001-research-and-context"
+    packet_pointer: "sk-git/z_archive/014-gitkraken-mcp-integration/001-research-and-context"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Captured the full 31-tool surface via gk mcp --list-tools"

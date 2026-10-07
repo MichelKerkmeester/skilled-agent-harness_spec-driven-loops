@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/008-bounded-command-matrix"
     last_updated_at: "2026-07-15T11:58:18Z"
     last_updated_by: "codex"
     recent_action: "Built bounded scheduler, 52-cell manifest, and hermetic reconciliation gate"

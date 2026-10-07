@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on `sk-prompt`",
     "created_at": "2026-05-06T10:22:43Z",
-    "last_save_at": "2026-09-07T16:17:11.909Z",
+    "last_save_at": "2026-10-07T18:13:56.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2163d1ca1db77b1089398e94d41b3fd1650a98e16614955cf7d48b5787753c59",
+    "source_fingerprint": "sha256:14d9552a20033fbf7f717afd97e8242bc941d3b2a4ec1ff8424ae1491e4acd79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb084ea02d40d99667e02fdd443a8f79f936cde99224a2b38770f9d7556d524b",
-      "plan.md": "cff23c738be5c92621b72741c291383833a3d2aaf1e8fa3b1ff703bdfbb783cf",
-      "tasks.md": "bc63c09e8be990dcbe3efdf89c7fac41b865d2193abff37263da5cb0f84308ac",
-      "implementation-summary.md": "4aeb0d3f74a1e110374e7d55de5f4d64daed8c7bab2d2892b5b6f4d2bde2936d"
+      "spec.md": "134b1afe54f5041484eafaa80ea5af155d9b92b4cb3056c39f17f60ad591a337",
+      "plan.md": "ce5b94afdb016805e4c16cf1ce26c263ef2e6773034ed85141a364904afcd886",
+      "tasks.md": "0bdfbd5ce3d73a0525d4e222aa3906a6f9af63725b9a78da446c7925591856c2",
+      "implementation-summary.md": "208e1323e703dcb14133709f256d19637839af197935ab796df59ee7b0ca419a"
     },
     "last_active_child_id": null,
     "last_active_at": null

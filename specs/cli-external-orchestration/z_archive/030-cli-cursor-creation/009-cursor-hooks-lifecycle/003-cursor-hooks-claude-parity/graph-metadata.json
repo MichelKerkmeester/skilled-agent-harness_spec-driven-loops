@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,19 +42,10 @@
       "tasks.md",
       "implementation-summary.md",
       ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
       ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
-      ".opencode/logs/cli-dispatch-audit.log",
       ".cursor/mcp.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts",
       ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
-      "mcp-server/hooks/cursor/shared.ts",
-      "mcp-server/hooks/cursor/user-prompt-submit.ts",
-      "mcp-server/hooks/cursor/post-tool-use.mjs",
-      "mcp-server/hooks/cursor/precompact.ts"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -88,45 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
-        "source": "derived"
-      },
-      {
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
-        "name": "cli-dispatch-audit.log",
-        "kind": "file",
-        "path": ".opencode/logs/cli-dispatch-audit.log",
-        "source": "derived"
-      },
-      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".cursor/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-tool-use.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "precompact.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts",
         "source": "derived"
       },
       {
@@ -200,11 +161,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately excluding everything else pending further review",
     "created_at": "2026-07-24T14:11:06.037Z",
-    "last_save_at": "2026-08-30T15:39:07.509Z",
+    "last_save_at": "2026-10-07T18:11:39.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a109ffc349f49efbc4cd6d2fcab06689f58a57f8e9ac7aae09844e9f3fa73d1",
+    "source_fingerprint": "sha256:51b79537d7196fccd74e7f8e2ddc6df21d9c4d4937b121c71481dc36b2d30f6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e20896fecd00c4d96a836020b062a602fe37b1ebf354a2dea38bf0499690681d",
-      "plan.md": "e7ec1024c80d6a1798c8a01b9fec296032a8435b49b8c7735e08de4af26b2d3e",
-      "tasks.md": "ea4277353d861b3b8dbef8deb69ca4dab2a58e789bbf3eaa50a0423f0c7e00ad",
-      "implementation-summary.md": "10215536aa2174bf20fdd2cd576820f22e7ae5bbdee25dd6a15de3e9467a09b6"
+      "spec.md": "c2e89e85ff8e4062ebb8f99a96b263e420a4c535b6beeabb4956850089f642b4",
+      "plan.md": "bff0aa16f3e603db2458d80ba99f1b97d80848329eee4dab47145bf70ffa2f57",
+      "tasks.md": "21b8dff4cf7f58b3ab38086ccc5f116091ad8592d68175323fc73ff22f673372",
+      "implementation-summary.md": "d692ae339e3428b1a6d0086d900a7f086404ec1473b44df8bdb34d621dcdf39a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,7 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/plan]"
 description: "Implementation plan defining phased approach to resolve 75+ issues identified by 10-agent analysis."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "041"
+  - "post merge refinement 4 plan"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -511,7 +506,7 @@ Selected Option 1 (single project) - all changes within existing .opencode/ stru
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## APPENDIX B: ISSUE SUMMARY BY PRIORITY
 
 ### P0 Critical (11 items)
@@ -547,10 +542,10 @@ Selected Option 1 (single project) - all changes within existing .opencode/ stru
 - Mustache conditional complexity
 - Content hash tracking
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-3 -->
 ## TIMELINE SUMMARY
 
 | Phase         | Duration | Cumulative | Key Deliverable         |
@@ -561,4 +556,4 @@ Selected Option 1 (single project) - all changes within existing .opencode/ stru
 | Phase 4 (Val) | 7h       | 33h        | Full validation         |
 
 **Total Estimated:** 33 hours (~4 working days)
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-3 -->

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/033-mobile-cli-template-alignment"
+    packet_pointer: "sk-doc/z_archive/033-mobile-cli-template-alignment"
     last_updated_at: "2026-08-28T05:48:15Z"
     last_updated_by: "claude"
     recent_action: "Repaired routing-fixture drift and added the fixture-routability guard"

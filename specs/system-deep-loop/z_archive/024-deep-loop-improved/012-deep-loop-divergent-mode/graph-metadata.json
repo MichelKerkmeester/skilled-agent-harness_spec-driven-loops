@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Deep research and deep review are designed to converge",
     "created_at": "2026-07-10T09:06:56Z",
-    "last_save_at": "2026-08-30T15:39:25.359Z",
+    "last_save_at": "2026-10-07T18:15:15.629Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5d965152d8e64da1ca2c78f295711c49600d564dc824f5ec7989d9d7d400603c",
+    "source_fingerprint": "sha256:90ac94df8d9085e43ecc9520d32ab303db30f45ab0519759b954bd7edb2079fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "974671b9e4590ecc9ee1c961009d1e01918efb9a151edb8349ce510124a2dc85",
-      "plan.md": "a03fc7596658c55a5912ce732e547d7c411275bd03c10148a50ec3d5152972a8",
-      "tasks.md": "d91a6b6391638b2546a156731a54c6b96c6e0f67facbfc077ef7327633ab48aa",
-      "implementation-summary.md": "5e99ffaae0a2daa904fe2087fd2ac825b9e798fb68962324113e1748b7d0b265",
+      "spec.md": "675a6d8ff7dae212d704ecc22d3eb325b71903ed19937c5c630f1020d22173ea",
+      "plan.md": "30b60cc34388dbe4e096b65578e77310227aaa274fcda7a917e2b0e2b1403e67",
+      "tasks.md": "f91e8859c6d5297a35c36e907595d1f6b3d640b348dd5a82fcb483d0566937af",
+      "implementation-summary.md": "4dd0eb7a8175bac96f75e0ddbfe21c04e36074b2406d8ee909241e8dda1b0af9",
       "research/research.md": "63bd64a0fbadd0544199d2f85d266532b3329d921f3f8abea818284f9eda026a"
     },
     "last_active_child_id": null,

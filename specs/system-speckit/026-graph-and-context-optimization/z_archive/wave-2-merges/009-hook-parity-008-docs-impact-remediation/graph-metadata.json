@@ -44,9 +44,9 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".claude/settings.local.json",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/README.md",
       ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
@@ -75,12 +75,6 @@
         "source": "derived"
       },
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
@@ -95,7 +89,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -193,11 +187,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "File Consistency Gates",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and Copilot wrapper behavior actually shipped across sub-packets 001-011. Source of truth is impact-analysis/merged-impact-report.md.",
     "created_at": "2026-04-23T19:40:00Z",
-    "last_save_at": "2026-08-30T15:39:32.698Z",
+    "last_save_at": "2026-10-07T20:40:59.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dba42855a5744e5815c052e075610d25cac1cce54ba100a46cac71ab3e5252d",
+    "source_fingerprint": "sha256:073bd66cdb19091b84854bded80219fa0fab96d4fe32479135de136a6c4a5dfa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae1bcef281af150bf19fd402796618256cfb922f366d98ecb1cd88c4a950eb9c",
-      "plan.md": "f0e3dbe7e88dc11d1754b9fa83828ea01f9750e3f73acf60c4ecb8551f8eb1d1",
-      "tasks.md": "9840a4775efac25ddd71e87ca3bda9d1ba5fc7d87146e92349b18915259feee9",
-      "implementation-summary.md": "9b13621d6fe8b057ed85d06c30ab5b988cef8488c13a5625cb743d9f4d265a9a"
+      "spec.md": "b4de50019762e7df8bf475591ee3e6dd5596dc0ade5c72f2dea51ab293f3dcee",
+      "plan.md": "754872e8da27a7d2c2dbfa1d5857504de196e4483fddf6e7eb5ddc8db2c2ddaf",
+      "tasks.md": "de75e70cb9cb99020425a84ad4f89f923a0c4bad54caf515db7ad66d99bb64d0",
+      "implementation-summary.md": "d2bfd08b33230330f30c7011c861131dc699466a82a9e74a023b3064d76e5a5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

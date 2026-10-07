@@ -6,7 +6,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Structural leaf classifier + no-new-numbers guard; commit db0c0490e9"
@@ -16,10 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "validator and guard implementation summary"
 ---
 # Implementation Summary: Make validate_document.py Number-Agnostic + Add a No-New-Numbers Guard
 

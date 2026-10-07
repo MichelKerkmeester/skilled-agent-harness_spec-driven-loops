@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
   "description": "Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still",
   "keywords": [
     "packet",

@@ -2,14 +2,13 @@
 title: "Implementation Summary: opencode-go Flash + Qwen 3.8 Max roster"
 description: "Added qwen3.8-max to the cli-pi fan-out roster and re-pointed deepseek-v4-flash to the opencode-go provider across both synced enforcement points, with opencode-go docs in cli-pi and cli-opencode. Live-verified."
 trigger_phrases:
-  - "implementation summary"
   - "opencode-go roster"
   - "qwen3.8-max"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/034-opencode-go-flash-qwen-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/034-opencode-go-flash-qwen-roster"
     last_updated_at: "2026-08-11T07:16:30.272Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Summarized shipped roster + docs changes and live verification"

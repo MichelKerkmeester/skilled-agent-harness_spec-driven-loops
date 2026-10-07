@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/027-playbook-snippet-template-migration"
+    packet_pointer: "sk-doc/z_archive/027-playbook-snippet-template-migration"
     last_updated_at: "2026-08-06T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author tasks"

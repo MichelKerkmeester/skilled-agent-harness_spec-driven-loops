@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -161,7 +161,7 @@
     ],
     "causal_summary": "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-08-30T15:39:16.783Z",
+    "last_save_at": "2026-10-07T18:13:28.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,12 +169,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:af8ab085b42dc78a7eb1d6d5c1b5885fd81d7fba5b654fea53e9b63d32dab6dc",
+    "source_fingerprint": "sha256:a96d4772b43beb2ad30e9ebb41087f05ab20473e17411a4c290d949b67efbe67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39000238fcdad0aa814106c8e464498246c15028f13f6c253682ef667243494a",
-      "plan.md": "c679295977fee7dddc3cb78933a44bed8a9f1a13de57bf152183fee937134399",
-      "tasks.md": "7b266c1a769d055c8563981f2ff63c969a3e2a0ef3c8a79a992e11dc7ddf38ab"
+      "spec.md": "1507cd529480a696e5c90e1fce8a06c83fc1cce5672b07efcc7eb080b353dd49",
+      "plan.md": "1cb6cea431919a3743268182112208f859077b18d7daa85efb8a1c8e2b1d7772",
+      "tasks.md": "42f7d1222b085288d4c01304de794f67f9028e84e6866491107daa5952175141"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing tie-in, and router wiring across `SKILL.md`, README, FEATURE-CATALOG, plugin-operation-logic and the playbook)",
     "created_at": "2026-08-22T13:09:10.941Z",
-    "last_save_at": "2026-08-30T15:39:10.465Z",
+    "last_save_at": "2026-10-07T18:11:37.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e39e34854102cd07c07693fab8d97cbb97be23717a29ea2dff55dc4e8d5c6034",
+    "source_fingerprint": "sha256:d3f6afd3adfcf2a30822e69d7699b46dc375459e99287bbeb73816e2a79cbd66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1b4f5ff2338f337a95344ca273c7ad2a205687b82157caf3ae1b69b0793bcdd",
-      "plan.md": "0209c0b6c802075a6bd7e751421cf2424dec90f37165215fb44c1b6d1b5559b5",
-      "tasks.md": "0a29c392154d1e72df12ee9a66fdefe261a1041b8b1df9bad2934e5fa4257118",
-      "implementation-summary.md": "611202a865b430d8c25db4af964fc31bdaadad1fd9a301c655c26ce89892e3dc"
+      "spec.md": "9bea141d4f947e61fe668b2e2df8836105b4a92469645b8a3667f6aa91503f9d",
+      "plan.md": "b4275488909f1d451f4eacc80719833b9e2f310053ecfcfe4a7995767e2c5684",
+      "tasks.md": "49d6ff9d955af899bd7903de73e000db23c60c29aee47d6af9d92a07791ff36e",
+      "implementation-summary.md": "5ef2dc9a65c346c1bd50796685534e18146f62918eee3ee248aebfdde57389c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

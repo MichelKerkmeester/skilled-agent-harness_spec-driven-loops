@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment` |
+| **Spec Folder** | 004-deep-loop-runtime-reference-asset-alignment |
 | **Date** | 2026-05-24 |
 | **Level** | 3 |
 | **Status** | Phase 8 Complete, Phase 9 Approval Gate |

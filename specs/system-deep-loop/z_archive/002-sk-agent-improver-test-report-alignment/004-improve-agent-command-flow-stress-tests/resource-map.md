@@ -23,6 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## Scope
 
 Restructured CP-040..045 stress tests around the 060/003 test-layer-selection finding. Per-CP layer partition: 4 scenarios use command-flow dispatch; 2 stay body-level with required inputs materialized. Ran R1 against 062 wiring (3/2/1), then R2 cleanup (5/1/0 final).
@@ -31,6 +32,7 @@ Shipped across **3 commits**:
 - `1203b345f` — Stages 1-3 + R1 stress
 - `dadf3f755` — test-report.md synthesis
 - `7d3063b60` — R2 cleanup + final close-out
+<!-- /ANCHOR:summary -->
 
 ---
 

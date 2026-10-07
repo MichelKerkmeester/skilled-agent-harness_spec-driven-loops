@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub"
+    packet_pointer: "cli-external-orchestration/z_archive/026-cli-external-parent/003-scaffold-hub"
     last_updated_at: "2026-07-10T05:03:42Z"
     last_updated_by: "claude"
     recent_action: "Stated no-advisor-rebuild-before-006 invariant explicitly (WS-B R4)"

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing"
     last_updated_at: "2026-07-24T10:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented and live-verified phase 005 (Composer registry + CI gate)"

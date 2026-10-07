@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/003-assets",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/003-assets",
   "description": "`assets/` holds 3 files (`interface-preflight-card.md`, 210 lines; `foundations/contrast-pair-inventory.md`, 55 lines; `foundations/token-starter.md`,",
   "keywords": [
     "assets",

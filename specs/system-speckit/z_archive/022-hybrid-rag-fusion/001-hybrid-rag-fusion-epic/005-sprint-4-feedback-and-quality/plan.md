@@ -220,7 +220,6 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -248,7 +247,6 @@ Phase 5 (TM-06 Reconsolidation) ─────┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

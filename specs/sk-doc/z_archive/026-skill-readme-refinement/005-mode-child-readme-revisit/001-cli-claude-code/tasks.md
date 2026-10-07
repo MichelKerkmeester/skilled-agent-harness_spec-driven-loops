@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code"
     last_updated_at: "2026-08-04T13:50:00Z"
     last_updated_by: "phase-executor-001"
     recent_action: "README rewrite executed, version 1.5.0.0, changelog added, gates green"

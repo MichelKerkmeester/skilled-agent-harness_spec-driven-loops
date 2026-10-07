@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/009-create-diff-command",
-  "spec_folder": "sk-doc/016-create-diff-mode/009-create-diff-command",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/009-create-diff-command",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/009-create-diff-command",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,6 @@
       "implementation-summary.md",
       ".opencode/commands/create/diff.md",
       ".codex/prompts/create-diff.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/skills/sk-doc/mode-registry.json"
     ],
     "entities": [
@@ -85,12 +84,6 @@
         "name": "create-diff.md",
         "kind": "doc",
         "path": ".codex/prompts/create-diff.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "key_phrase",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes through the advisor — but it is the only one of the eleven sk-doc `create-` workflow packets with no dedicated slash command",
     "created_at": "2026-07-15T18:43:15.367Z",
-    "last_save_at": "2026-08-30T15:39:14.245Z",
+    "last_save_at": "2026-10-07T18:12:22.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f5226d36d608697e529b984916f74fe67f5f485bab8c888c480f65c6e432b87",
+    "source_fingerprint": "sha256:b4f340577d3080da7e0ad02871425797ae04d6cd8dad1a4a265bfdc38fdcaee4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0986d2ade30725137ed5df27728a1d4ff36cc7ffac4597d7bb4f06c1a08faf2d",
-      "plan.md": "b5d10d9a36f1c381d47e0c89868f54b2d3791851fa47784ddfdaa3df76f94ed6",
-      "tasks.md": "f966b2e073bf6b2ab074240d33e7b30b205ad224b61ebb17a5b9025c95b76aba",
-      "implementation-summary.md": "e774a5286258c4c34add66fc4fb4ca43028a6188aedd33987c34cc87644118c3"
+      "spec.md": "7364a3af0235c11f15641802b2d3ab31dcef90216c6ed47f3a49c88f6c289ba9",
+      "plan.md": "6dce74a0c156ede284625c95b08e6dd374722c85ba0ba251e4b22277acbbc5a6",
+      "tasks.md": "398bc58a132f9eb65e5279a8bef5660bd416395d7cfd2860f801bfcd194eee5d",
+      "implementation-summary.md": "c3bd21501c2521d64a4131fc4930396576b2834a082015e227cc7f31070ddc99"
     },
     "last_active_child_id": null,
     "last_active_at": null

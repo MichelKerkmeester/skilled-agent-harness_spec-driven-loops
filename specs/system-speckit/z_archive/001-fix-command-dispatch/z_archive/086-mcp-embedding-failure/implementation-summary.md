@@ -7,7 +7,6 @@ trigger_phrases:
   - "failure"
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "086"
 importance_tier: "normal"
 contextType: "implementation"

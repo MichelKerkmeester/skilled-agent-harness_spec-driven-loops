@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact answers \"what is this hub's compiled-routing state right now,\" reports carry a stale absolute path the moment they are copied anywhere else, and nothing stops a future archive run from being generated against a `006` shadow candidate instead of the actually-serving `010` manifest — which would archive a decision that was never live",
     "created_at": "2026-07-20T21:51:37.595Z",
-    "last_save_at": "2026-09-11T16:42:05.157Z",
+    "last_save_at": "2026-10-07T18:13:24.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc65c87340160056a0175ed830dabe61d411094869700909629ae609f7358ee1",
+    "source_fingerprint": "sha256:54041f7e60329fb0446bb9a7b66680d92b5798778614c986f8f647d780ee8351",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24ce77a8441a3db9c0dd3d28c124be30482ca2686c88498dee4d0ef5c72fc4ca",
+      "spec.md": "aca66cb4ca44cf34b1fc5116436eec3aa5ff07485e3864e66a8d49395075e20b",
       "plan.md": "e08ead2a2c41f5de7af4e72f397e288c7b52ac6396710cc291e7c0dae605bb4a",
       "tasks.md": "a84eb261ed4c15e01358a32c398f08d8f6aaaeb6fe4d5db98aad761a817dea52",
-      "implementation-summary.md": "e99d3e0e659ff6bc81e8e7cc82d4750322695ed7ef6e30e3be4e9b7e36f72603"
+      "implementation-summary.md": "9f20e8ab094578ba366e6d36dc9d09e5fa02255a09d50ad05d419becfcbd654d"
     },
     "last_active_child_id": null,
     "last_active_at": null

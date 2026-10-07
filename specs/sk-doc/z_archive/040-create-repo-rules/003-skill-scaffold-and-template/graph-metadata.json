@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
-  "spec_folder": "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
-  "parent_id": "sk-doc/040-create-repo-rules",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/003-skill-scaffold-and-template",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/003-skill-scaffold-and-template",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 produced a contract nothing can execute",
     "created_at": "2026-08-31T11:33:09Z",
-    "last_save_at": "2026-08-31T12:49:29.116Z",
+    "last_save_at": "2026-10-07T18:14:21.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:565d6f9c7fd2d45166f0b71e54d968f75a86846652f8c795bcae862312caeb00",
+    "source_fingerprint": "sha256:79abf6a81cd7487269070adfc8b96b3d5e5d56fa4ffc15a985e2729854a2ac95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b2562857d2047bc4b9c406be423ee18947a2eaac75c5442ed4712fa47a4a203",
       "plan.md": "0e60e810501ccbf94cade9e67340eba1fd734302b95f920fc676095180fa67d6",
       "tasks.md": "3aaac898c198a04980027d8475e3ecd19643aa1ba22bf512367ea9a6e64eb30d",
-      "implementation-summary.md": "4e042a8abd646a473ccb0d27f0d72883962785bb7edac01a3c64fd2faad99de9"
+      "implementation-summary.md": "b40bc1c2b8e65e392a610b74d7508de67104439a91ff64250e52a4ee0331b22c"
     },
     "last_active_child_id": null,
     "last_active_at": null

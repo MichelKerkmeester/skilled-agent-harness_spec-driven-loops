@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/008-remediation-closeout"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/008-remediation-closeout"
     last_updated_at: "2026-07-27T09:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Executed T001-T016; T017-T019 (Item 5) remain unchecked pending operator approval"

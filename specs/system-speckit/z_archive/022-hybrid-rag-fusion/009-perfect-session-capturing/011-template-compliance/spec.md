@@ -152,7 +152,6 @@ Use the live template files as the single source of truth for required header an
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## 7. L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -171,7 +170,6 @@ Use the live template files as the single source of truth for required header an
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## 8. L2: EDGE CASES
 
 ### Data Boundaries

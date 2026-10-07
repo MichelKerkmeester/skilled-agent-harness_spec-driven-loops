@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
+  "specFolder": "sk-doc/z_archive/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
   "description": "Both surfaces are structurally outside the validator: `system-spec-kit` because it is a single skill rather than a mode",
   "keywords": [
     "surfaces",

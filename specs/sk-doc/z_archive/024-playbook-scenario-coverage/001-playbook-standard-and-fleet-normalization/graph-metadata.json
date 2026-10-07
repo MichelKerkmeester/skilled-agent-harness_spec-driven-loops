@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
-  "spec_folder": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
-  "parent_id": "sk-doc/024-playbook-scenario-coverage",
+  "packet_id": "sk-doc/z_archive/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "spec_folder": "sk-doc/z_archive/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "parent_id": "sk-doc/z_archive/024-playbook-scenario-coverage",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-08-30T15:39:17.336Z",
+    "last_save_at": "2026-10-07T21:56:21.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54c76ce257a8f91f717d543cebb3e86f04fa7ae3e198550361dae5786d90868f",
+    "source_fingerprint": "sha256:9f4dc22ac60fc57d00d82bf6643177c4cc2566dd23acbb3c5516b170a0834147",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6143fe953b67ddec8e112aae41a8aea32ffb4275d5c7babe2a3d7923d2dcf647",
-      "plan.md": "eff5a2d863c9076f73e28840ba55db7bf92b55e302e9fcc1d683146fef047c33",
-      "tasks.md": "78cd8ab399caab9bd705f98d8cc29aba5ba7afa2ee869c2948e44136fac72b1d",
+      "spec.md": "176ecb0d1e79fc694302f7b4e2fb5edfe76cca1869ea6ed4aabd093a04ef1b15",
+      "plan.md": "26c57fe5b5af5c069708d45bcd8021896c927a30176a630c1522d5528130b70e",
+      "tasks.md": "9d77d50beb237caa6bb36c847778c92aa2f94300f7ff0fbe97d04877afaa9ac2",
       "decision-record.md": "631ff176d14c8a111d54ca86aa704648c19102609c93179998d17b40ed3c64fa",
-      "implementation-summary.md": "136b937c14aa606e9161377204a8d47700e565330509d15a1f2fac58eeec61f2"
+      "implementation-summary.md": "15edc1c83d36c5238c2fff49856499ec6bc9d8d0b9f593e766ed79c3a088958b"
     },
     "last_active_child_id": null,
     "last_active_at": null

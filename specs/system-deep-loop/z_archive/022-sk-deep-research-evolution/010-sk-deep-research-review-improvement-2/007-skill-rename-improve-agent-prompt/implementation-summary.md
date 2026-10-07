@@ -2,7 +2,7 @@
 title: "...orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/implementation-summary]"
 description: "This phase captures the completed improver-skill rename in the current Level 2 packet format so future closeout work can trust the renamed paths and evidence."
 trigger_phrases:
-  - "042.007"
+  - "skill rename improve agent prompt implementation summary"
   - "skill rename implementation summary"
 importance_tier: "normal"
 contextType: "implementation"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/006-shared"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/006-shared"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author phase-parent spec for template-conformance subtree"

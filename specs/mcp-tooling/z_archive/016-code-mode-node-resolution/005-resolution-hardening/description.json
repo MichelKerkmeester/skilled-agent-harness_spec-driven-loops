@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
+  "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening",
   "description": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
   "keywords": [
     "packet",

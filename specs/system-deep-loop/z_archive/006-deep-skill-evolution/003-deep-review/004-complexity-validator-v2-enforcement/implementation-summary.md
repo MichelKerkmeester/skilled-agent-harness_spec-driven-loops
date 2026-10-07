@@ -25,7 +25,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-validator-v2-enforcement` |
+| **Spec Folder** | 004-complexity-validator-v2-enforcement |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | Bundled with 005 |

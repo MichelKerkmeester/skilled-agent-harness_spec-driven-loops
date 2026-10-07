@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/012-regression-test-backfill"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/012-regression-test-backfill"
     last_updated_at: "2026-07-01T00:00:00Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Completed mk-goal regression coverage backfill and SC-002 falsification check"

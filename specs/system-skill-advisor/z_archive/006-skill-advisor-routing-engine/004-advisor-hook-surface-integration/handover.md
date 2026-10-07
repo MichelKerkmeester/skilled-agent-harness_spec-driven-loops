@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -21,6 +21,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 # Handover: Phase 020 Skill-Advisor Hook Surface
 
+<!-- ANCHOR:handover-summary -->
 ## Status Snapshot (2026-04-19T11:45:00Z)
 
 **Phase 020 state:** All research waves converged, all wave-3 P0 + P1 patches applied, implementation-ready.
@@ -38,7 +39,9 @@ _memory:
 | 9 P1 patches across 003/004/005/007/008/009 | **DONE** — all applied, all children pass validate.sh --strict (0 errors) |
 | **Implementation dispatch executor policy** | **cli-codex gpt-5.4 high fast primary gpt-5.4 high fallback** (user directive 2026-04-19) |
 | /spec_kit:implement :auto 020/002 | Ready to dispatch — first in the critical path |
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:context-transfer -->
 ## What Happened This Session
 
 1. **Scaffolded 8 implementation children** (002-009) under `001-skill-advisor-hook-surface/` based on wave-1 + wave-2 research convergence. Plan in /Users/michelkerkmeester/.claude/plans/start-running-all-iterations-bright-seal.md.
@@ -78,7 +81,9 @@ _memory:
 All 6 patched children pass `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child> --strict --no-recursive` with 0 errors (pre-existing warnings only — RELATED DOCUMENTS custom header + implementation-summary.md baseline — same as pre-patch state).
 
 Full findings: research-validation.md in the wave-3 artifact folder (research/020-skill-advisor-hook-surface-pt-03/)
+<!-- /ANCHOR:context-transfer -->
 
+<!-- ANCHOR:next-session -->
 ## Post-Compact Resume Plan
 
 All patches are landed. The critical path is now:
@@ -102,6 +107,7 @@ All patches are landed. The critical path is now:
 ```
 
 Repeat pattern for 003-009; each command targets its own child spec folder.
+<!-- /ANCHOR:next-session -->
 
 ## Key Files
 
@@ -184,6 +190,7 @@ Working tree: clean (only untracked `.claude/scheduled_tasks.lock` which is loca
 
 No active background tasks.
 
+<!-- ANCHOR:session-notes -->
 ## Safety Notes for Post-Compact Resume
 
 1. **Do not re-dispatch any research wave** — 3 waves converged, architecture is settled.
@@ -191,6 +198,7 @@ No active background tasks.
 3. **Patches are landed** — wave-3 P0 (005 impossible gate) + all 9 P1 items are applied and validated. No additional spec edits needed before implementation.
 4. **Executor policy** — cli-codex gpt-5.4 high fast primary; cli-copilot gpt-5.4 high fallback. Do not mix other executors into the 020 train without updating the continuity frontmatter.
 5. **Plan file at /Users/michelkerkmeester/.claude/plans/start-running-all-iterations-bright-seal.md** is from an earlier planning pass — treat as historical reference, not current state.
+<!-- /ANCHOR:session-notes -->
 
 ## Recommended First Message Post-Compact
 

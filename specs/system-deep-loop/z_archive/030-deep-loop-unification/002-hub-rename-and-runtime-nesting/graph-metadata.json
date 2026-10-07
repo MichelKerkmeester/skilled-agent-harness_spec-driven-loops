@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/002-hub-rename-and-runtime-nesting",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +39,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "changelog/v2.0.0.0.md",
+      "runtime/package.json",
+      "runtime/tsconfig.json",
+      "runtime/README.md"
     ],
     "entities": [
       {
@@ -64,6 +68,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.0.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "runtime/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
         "source": "derived"
       },
       {
@@ -161,35 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Executed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Staged",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deep-loop-workflows` is already Option-E-hub-shaped but carries the wrong top-level name; `deep-loop-runtime` is a separate skill folder that `deep-loop-workflows`' mode packets already reach into via hardcoded relative paths in 12+ files, and which itself reaches back into `deep-loop-workflows/shared/rollout/` in 5+ files, plus borrows TypeScript tooling from a third skill (`system-spec-kit`) via 4 more hardcoded relative paths",
     "created_at": "2026-07-08T04:36:15.483Z",
-    "last_save_at": "2026-08-30T15:39:19.770Z",
+    "last_save_at": "2026-10-07T18:15:18.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a866de9b3928d59a554c926549f4fa9c738c574c88c0e2ac487bfb2af95cda0",
+    "source_fingerprint": "sha256:080bef1e65c80a31072640e2ca889c1d19d211c2eea89f2b78d4f254ae972a22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b83657ebcb42d288751f229433aa1c4583caca82967f44da5005720f91c5f16f",
-      "plan.md": "0fe0bfda32826805a478726e4b38f333d2c3a576123269542fc164fbe9621bf4",
-      "tasks.md": "fe3314458b6687327f3352ce5379c49618f6aafa48245af11fb58faa2174da59",
-      "implementation-summary.md": "fa76e5790079e551e0947d88d63a35eeafc91e386d9b5036384d74d71baaf707"
+      "spec.md": "295e0a7c56aa0d361b146360e03fe0d22b47b3513df30b2796093ac8a8863ef8",
+      "plan.md": "2ba5ed7369eaa68015984f7a93f53dbd1e60e9ba21e7278bfdc040cf4c4920a9",
+      "tasks.md": "a757fe55500189749ad714af9a97277dcd5877967d9cade8097cfd2515f5021d",
+      "implementation-summary.md": "814faccd53cee416729aae3ce4b7211f9612e1e5ea9fa10465184598b7843002"
     },
     "last_active_child_id": null,
     "last_active_at": null

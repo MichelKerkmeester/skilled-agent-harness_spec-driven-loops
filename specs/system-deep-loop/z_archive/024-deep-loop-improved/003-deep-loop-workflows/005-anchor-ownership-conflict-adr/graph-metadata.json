@@ -193,7 +193,7 @@
     ],
     "causal_summary": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved markdown overwrite race: whichever writer runs last wins, with no event emitted, no conflict record stored, and no declared owner",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-08-30T15:39:24.936Z",
+    "last_save_at": "2026-10-07T21:19:55.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43af1082576ef85b592b9c343c7d8d86abaddf96b469759d2fbaf493b98bdc46",
+    "source_fingerprint": "sha256:d5da172231b50154893e498c9806037ae70abda314a4d4953aee1e1a755aa1eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9574c119f28e6156bcbd6b43ca35d3de4c01f3d4d90df94c6d527b48b2ff36e3",
-      "plan.md": "2ab239c624a628a42b1b0a839ef6c7dbfdfa01c4c2fdeb9dfc04c734fb34cd00",
-      "tasks.md": "4448df5394d3f3035f68f365ec2f615cb655ed9b8f67694ba7faf6e54f5e52ee",
-      "decision-record.md": "3c22ae98e856f6553d0b27f6d468f660c8b2d61114e59fe8c23bfa0368100d9d",
-      "implementation-summary.md": "a993707460464f959760043d0abe1397b50135a0ee193572c7ba7a4fb6f56b11"
+      "spec.md": "6b6a0b682fa00689ada6a7e3adf3ca0894ef52fb138bdb5c65f2259bc20cbcb0",
+      "plan.md": "cfc351376ba4d842728b146c069916fa6ebadb2e56de435cc80381da15ca7f89",
+      "tasks.md": "52d638f6634ac9b2330eb4c8d22068bff6499fb4b3c5a2e2f53e5b6d9d411360",
+      "decision-record.md": "e5f889d41b299e17cee009e155840b68a8486fc9f249693e14c2991d16ba8ef3",
+      "implementation-summary.md": "c0d97c8ed69471cebe0002a148543f5003e15caf42d1754e8fbba85a910a3bca"
     },
     "last_active_child_id": null,
     "last_active_at": null

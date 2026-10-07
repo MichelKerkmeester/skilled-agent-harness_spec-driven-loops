@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
     last_updated_at: "2026-07-11T22:20:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All tasks complete with evidence"

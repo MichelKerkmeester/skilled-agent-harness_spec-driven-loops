@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/024-manual-playbook-bug-remediation"
     last_updated_at: "2026-07-07T19:20:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec.md after confirming all 12 constituent dispatches PASS across 3 remediation rounds"

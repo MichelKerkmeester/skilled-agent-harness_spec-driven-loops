@@ -2,7 +2,6 @@
 title: "Implementation Summary [03--commands-and-skills/020-cmd-create-readme-install-merger/implementation-summary]"
 description: "Implementation cycle completed for canonical create command merge with compatibility aliases and validation evidence captured."
 trigger_phrases:
-  - "implementation summary"
   - "implementation complete"
   - "merge strategy"
   - "canonical wrapper"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/001-research-and-canon"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/001-research-and-canon"
     last_updated_at: "2026-07-06T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "30-iter GPT-5.5 research done; research.md synthesized"

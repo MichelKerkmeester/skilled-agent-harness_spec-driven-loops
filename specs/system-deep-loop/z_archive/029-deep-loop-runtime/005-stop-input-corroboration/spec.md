@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/005-stop-input-corroboration"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration"
     last_updated_at: "2026-06-19T13:46:00+02:00"
     last_updated_by: "codex"
     recent_action: "Implemented deep-loop-runtime stop-input corroboration (default-off gates)"

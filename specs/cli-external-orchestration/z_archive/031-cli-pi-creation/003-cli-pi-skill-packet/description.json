@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/003-cli-pi-skill-packet",
   "description": "`cli-pi` does not exist anywhere in this repo yet",
   "keywords": [
     "cli-pi",

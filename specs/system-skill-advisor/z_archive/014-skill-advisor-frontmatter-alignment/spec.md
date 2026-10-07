@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/014-skill-advisor-frontmatter-alignment"
+    packet_pointer: "system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:31:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 15 docs normalized and verified"

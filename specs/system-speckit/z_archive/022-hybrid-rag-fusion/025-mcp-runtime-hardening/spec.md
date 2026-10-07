@@ -150,7 +150,6 @@ Close the T020-T025 gaps with targeted tests, one focused code change (log sanit
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -169,7 +168,6 @@ Close the T020-T025 gaps with targeted tests, one focused code change (log sanit
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

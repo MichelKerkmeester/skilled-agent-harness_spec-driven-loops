@@ -173,7 +173,7 @@ Create a template architecture where:
 <!-- /ANCHOR:complexity -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -188,7 +188,7 @@ Create a template architecture where:
 | NFR-M01 | Single source of truth for core content | Yes - core/ folder |
 | NFR-M02 | Modular addendum updates | Yes - addendum/ structure |
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

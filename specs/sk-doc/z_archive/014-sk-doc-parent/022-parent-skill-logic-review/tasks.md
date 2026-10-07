@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/022-parent-skill-logic-review"
     last_updated_at: "2026-07-07T15:48:20.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-022 tasks"

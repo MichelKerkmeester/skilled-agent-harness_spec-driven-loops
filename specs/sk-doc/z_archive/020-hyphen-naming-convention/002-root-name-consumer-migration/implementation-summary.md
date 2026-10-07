@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration"
     last_updated_at: "2026-07-18T07:18:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Kebab-cased the leaked matrix .cjs name flagged by the phase-004 guard"

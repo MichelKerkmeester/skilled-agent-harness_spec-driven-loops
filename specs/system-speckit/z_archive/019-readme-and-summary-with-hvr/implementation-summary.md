@@ -3,7 +3,6 @@ title: "Implementation Summary [system-spec-kit/z_archive/019-readme-and-summary
 description: "Archive normalization summary for Readme And Summary With HVR."
 trigger_phrases:
   - "019-readme-and-summary-with-hvr"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

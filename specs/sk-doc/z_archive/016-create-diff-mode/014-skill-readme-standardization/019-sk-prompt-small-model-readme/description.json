@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
   "description": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five",
   "keywords": [
     "sk-prompt-models",

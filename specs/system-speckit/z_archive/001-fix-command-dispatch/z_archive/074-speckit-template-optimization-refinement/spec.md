@@ -30,7 +30,6 @@ Enterprise-scale refinement of the SpecKit template optimization (Spec 073), con
 
 ---
 
-<!-- /ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -143,7 +142,7 @@ Conduct thorough quality review of Spec 073 implementation through parallel rese
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -158,7 +157,7 @@ Conduct thorough quality review of Spec 073 implementation through parallel rese
 - **NFR-R01**: All changes reversible via git
 - **NFR-R02**: Validation system unchanged (no regression risk)
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

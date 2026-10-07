@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/005-design-md-generator",
-  "spec_folder": "sk-design/005-design-md-generator",
+  "packet_id": "sk-design/z_archive/005-design-md-generator",
+  "spec_folder": "sk-design/z_archive/005-design-md-generator",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -43,28 +43,25 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      ".opencode/specs/sk-design/005-design-md-generator/spec.md",
-      ".opencode/specs/sk-design/005-design-md-generator/plan.md",
-      ".opencode/specs/sk-design/005-design-md-generator/tasks.md"
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -166,7 +163,7 @@
     ],
     "causal_summary": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
     "created_at": "2026-07-16T09:27:32.433Z",
-    "last_save_at": "2026-08-30T15:39:12.053Z",
+    "last_save_at": "2026-10-07T18:11:15.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,12 +171,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:2aa3da1636bc0329c6958c1756ddf0bc6d87b66b6f3751b5c9fc469f7d2c19c9",
+    "source_fingerprint": "sha256:f86559d35767e0c136af64a73515d0de2d06e1470234acc0dd8f3b83509e7194",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e65394161614f6410fc54b179ad4e6a2fa732b796317a75b2b1f19c4e607d17a",
-      "plan.md": "4e37e412bf1eddfb7b8077452636c0fc37447712c1b97cc7a2aacb2bf085eeb2",
-      "tasks.md": "ceda0ca16eb21d4c13c387ad0f448b31537d6e7ea17e1ea5a92dbf741a18a505"
+      "spec.md": "73aa42571b8a86959519381701dbd9f955ec1b65e354a81fe687fe267aefac9e",
+      "plan.md": "ec021a72b1ac9359f886218b7137d229d2ff910a2bc416e9c80da458a0c6f8ac",
+      "tasks.md": "e9c94fa5ab770f0e00f497ab9e994be3cf7cda9d96ab25a7f51d8760b00e7f9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

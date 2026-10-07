@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-  "spec_folder": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "scripts/README.md",
-      ".opencode/commands/create/diagram.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/scripts/README.md",
       ".opencode/skills/sk-doc/sk-create-diff/scripts/README.md"
     ],
     "entities": [
@@ -81,12 +79,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "diagram.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/diagram.md",
         "source": "derived"
       },
       {
@@ -190,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this directly after reviewing the merged packet",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:18.010Z",
+    "last_save_at": "2026-10-07T18:14:21.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaf87297e91189dc3bb53e0c23b6d52a0af3748fb37ca1ed91e5247c0057edad",
+    "source_fingerprint": "sha256:ef9240902b58b99c13da2f6e9762b412406ec55648e331fc1a2ce492eeddec38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbbdd9d6817d7724f9551e8830c8771801e1778fa4952b9243cae8e4f3178eed",
-      "plan.md": "c4fa37c81b815923ebaf3e70e7351065180d63f612d08a1097c40afe140fed00",
-      "tasks.md": "a5a881945f1109f2d246f00eef0328b2251214d85f694e0cf971d1478874caab",
+      "spec.md": "305db3b94e33fd6c58e79d5619fb48d573dcb0e0abc2df415e40aa8f83ea3663",
+      "plan.md": "e363ccca80ffe95a7b11f6a993d31874f97bc954a8de7d063e293bbc5f1a227b",
+      "tasks.md": "105fa9d14d5303f01cda0dae3a225cd4db171ff904b60a4697c32fa285c60362",
       "decision-record.md": "b91bcceb0ec5d44c3ac1d7b7535fd74268b80d7d6b36c058a917948ea4df06ab",
-      "implementation-summary.md": "a5aedcf953f3fd9d92078a9ec8eb0febc8a8ae3db784ed3b46f7a885d002ec27"
+      "implementation-summary.md": "dfefbb1ca8ee1e613d4e3f23dcfc079cb258d2fdb00bfd77fe1c7888cab3bf06"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T18:40:07.000Z"

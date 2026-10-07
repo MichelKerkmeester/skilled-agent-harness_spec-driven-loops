@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/002-cmd-create-codex-compatibility",
   "description": "Codex misinterprets agent routing metadata in create command files in three ways:",
   "keywords": [
     "codex",

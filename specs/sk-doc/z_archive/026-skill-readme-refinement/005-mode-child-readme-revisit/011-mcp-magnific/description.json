@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific",
   "description": "The skill README at `.opencode/skills/mcp-tooling/mcp-magnific/README.md` still carries the older tabular reference-card style and predates the pilot",
   "keywords": [
     "skill",

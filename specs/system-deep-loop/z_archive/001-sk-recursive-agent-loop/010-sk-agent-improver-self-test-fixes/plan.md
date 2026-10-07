@@ -20,12 +20,17 @@ _memory:
 ---
 # Plan: Self-Test Fixes and Reducer Improvements
 
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+<!-- ANCHOR:summary -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
 | Phase | 010 |
 | Approach | Fix-first: bugs and stale refs first, then reducer improvements, then candidate promotion |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## Deliverables
 
 ### D1: Fix Stale Command Path (Bug Fix)
@@ -114,7 +119,9 @@ This way the dashboard shows the actual profile identity instead of a misleading
 - Dynamic scorer on agent-improver: 100 across all 5 dimensions
 - Integration scanner: all mirrors aligned
 - Reducer with Phase 009 ledger: correct family, plateau detection with window=2, non-zero accepted count
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 ```
@@ -127,7 +134,9 @@ D6 (verification) — depends on all above
 ```
 
 D1+D2 are sequential (same files). D3, D4, D5 can be done in parallel.
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:affected-surfaces -->
 ## Critical Files
 
 | File | Changes |
@@ -139,3 +148,4 @@ D1+D2 are sequential (same files). D3, D4, D5 can be done in parallel.
 | `.opencode/skills/sk-improve-agent/scripts/reduce-state.cjs` | D3: family fix (line 66). D4: plateau window (lines 305-308). D5: accepted counting (lines 207-215) |
 | `.opencode/skills/sk-improve-agent/assets/improvement_config.json` | D4: add `plateauWindow` field |
 | `.opencode/skills/sk-improve-agent/references/improvement_config_reference.md` | D4: document new field |
+<!-- /ANCHOR:affected-surfaces -->

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map",
   "description": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
   "keywords": [

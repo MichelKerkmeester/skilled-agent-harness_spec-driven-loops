@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Only 1 of 9 mkskilladvisor tools has real CLI coverage today (skilladvisor.py covers advisorrecommend); advisorrebuild and 4 of 5 skillgraph tools have no shell path at all",
     "created_at": "2026-06-06T14:45:16Z",
-    "last_save_at": "2026-08-30T15:39:27.177Z",
+    "last_save_at": "2026-10-07T18:16:08.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fb95a16dd017daf4d3ebca62ba856dc9ae00267d6553d7483738570b245507d",
+    "source_fingerprint": "sha256:5fcaf5e941d9b13a5e316bb28f0376fc8af26bb73a8647e5f60732e940431e2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02d2fe24a7ce83e7fb22d26a1da8c50c9b939e493ae6c7dbe6542a75ec4f37a2",
-      "plan.md": "f5bae3abfcda0213fb4126f5727b6994e378bad55e0bcc0ff3bb0e88ca7845ab",
-      "tasks.md": "53e0ee46f93dd48d59c3125362c50f98ac834c79c505758655c53f69139f680e",
-      "implementation-summary.md": "95ab45e37637bd89870be99a0e527354728c68977136119d3ab5ead4b5faeee0"
+      "spec.md": "aa46224c7e6b4c1fd400f6f8907534aaf629aabb3dd54ac943680bf497f4098b",
+      "plan.md": "83e5c18681899a67f90d753b0269828d1f147f5b1fe73f99b0141e85475aaea0",
+      "tasks.md": "97b02afc0b6b96f5198bd12b06ae5f91893f4a176197ceaf2e4b137ccadc31aa",
+      "implementation-summary.md": "e59825a2aa67a61835b2b4a112dfae460fecc5ba9e1680497eb4754063ca3521"
     },
     "last_active_child_id": null,
     "last_active_at": null

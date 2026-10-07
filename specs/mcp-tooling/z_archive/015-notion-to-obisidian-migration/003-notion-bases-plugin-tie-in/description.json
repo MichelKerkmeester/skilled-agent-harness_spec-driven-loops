@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in",
   "description": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the",
   "keywords": [
     "mcp-obsidian",

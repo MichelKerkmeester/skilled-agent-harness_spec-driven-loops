@@ -1,3 +1,13 @@
+---
+title: "Job 2 Report: Cross-Repo Dead-Link Cleanup"
+description: "Parallel-job report recording the cross-repo dead-link cleanup applied for the deep-review remediation, with per-task evidence."
+trigger_phrases:
+  - "job 2 dead link cleanup report"
+  - "cross repo dead link remediation"
+importance_tier: "normal"
+contextType: "implementation"
+---
+
 # Job 2 Report - Cross-Repo Dead-Link Cleanup
 
 Spec packet: `067-mcp-figma-transfer/004-deep-review-remediation`

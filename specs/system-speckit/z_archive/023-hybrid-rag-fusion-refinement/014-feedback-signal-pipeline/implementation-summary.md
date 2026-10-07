@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline/implementation-summary]"
 description: "Packet closeout audit for the feedback signal pipeline. Syncs the markdown to current code and verification evidence without overstating live runtime status."
 trigger_phrases:
-  - "implementation summary"
   - "feedback signal pipeline summary"
   - "feedback pipeline verification"
   - "014"

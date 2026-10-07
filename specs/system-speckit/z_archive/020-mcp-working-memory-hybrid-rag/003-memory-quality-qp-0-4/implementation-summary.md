@@ -3,7 +3,6 @@ title: "Imple [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/003-m
 description: "Archive normalization summary for Memory Quality QP 0 4."
 trigger_phrases:
   - "003-memory-quality-qp-0-4"
-  - "implementation summary"
   - "phase"
   - "archive"
 importance_tier: "normal"

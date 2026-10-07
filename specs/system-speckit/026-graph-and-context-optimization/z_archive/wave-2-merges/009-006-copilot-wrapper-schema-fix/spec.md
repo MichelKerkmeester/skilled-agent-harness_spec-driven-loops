@@ -18,12 +18,14 @@ _memory:
     completion_pct: 40
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Copilot Wrapper Schema Fix for .claude/settings.local.json
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -37,9 +39,11 @@ _memory:
 | **Predecessor** | `../../006-skill-advisor/003-advisor-standards-alignment/spec.md` |
 | **Successor** | `../007-copilot-writer-wiring/spec.md` |
 | **Research** | `../../research/002-copilot-hook-followup-deep-review-remediation/research.md` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM
 
 Copilot CLI 1.0.34 logs this error on every user prompt:
@@ -57,9 +61,11 @@ Research packet `002-copilot-hook-followup-deep-review-remediation` traced the r
 The error has existed since Copilot 1.0.14 (March 2026) — it's a long-standing cross-runtime collision, not a 1.0.34 regression.
 
 This blocks per-prompt refresh of `$HOME/.copilot/copilot-instructions.md` (the managed `SPEC-KIT-COPILOT-CONTEXT` block) because the `userPromptSubmitted` hook crashes before the system-spec-kit writer can run.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -80,9 +86,11 @@ This blocks per-prompt refresh of `$HOME/.copilot/copilot-instructions.md` (the 
 | Path | Change |
 |---|---|
 | `.claude/settings.local.json` | Add top-level `type`/`bash`/`timeoutSec` to 4 matcher wrappers |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers
@@ -98,11 +106,14 @@ This blocks per-prompt refresh of `$HOME/.copilot/copilot-instructions.md` (the 
 | ID | Requirement | Acceptance |
 |---|---|---|
 | REQ-004 | Update `../../007-hook-parity/002-copilot-custom-instructions-hook-parity/implementation-summary.md` §Known Limitations to reflect the resolved schema collision | File edited with a note referencing this packet + research pt-03 |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: A fresh `copilot -p` session produces a log file with no `Neither 'bash' nor 'powershell'` lines.
 - **SC-002**: Claude Code still runs the nested UserPromptSubmit hook (`dist/hooks/claude/user-prompt-submit.js`) every prompt.
 - **SC-003**: `.claude/settings.local.json` remains syntactically valid (jq parses it cleanly).
+<!-- /ANCHOR:success-criteria -->

@@ -10,7 +10,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Security & Documentation Remediation
 

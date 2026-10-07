@@ -13,10 +13,9 @@
     "trigger_phrases": [
       "behavior benchmark scorecard",
       "deep loop behavior benchmark",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary"
+      "scorecard and integration plan",
+      "scorecard and integration tasks",
+      "scorecard and integration implementation summary"
     ],
     "key_topics": [
       "behavior",
@@ -24,13 +23,13 @@
       "scorecard",
       "deep",
       "loop",
-      "implementation",
+      "integration",
       "plan",
       "tasks",
+      "implementation",
       "summary",
       "close",
-      "program",
-      "aggregate"
+      "program"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "Close the program: aggregate every scored run from phases 002-004 into one cross-skill scorecard (5 modes x 3 executors), analyze per-checkpoint latency ratios and bucket distributions, and explicitly confirm or refute packet 031's three headline findings per mode (3-10x latency gap, role-absorption risk, inconsistent Command-only routing discipline)",
     "created_at": "2026-07-02T05:53:06.653Z",
-    "last_save_at": "2026-08-30T15:39:25.902Z",
+    "last_save_at": "2026-10-07T21:27:51.523Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9990a241aa4efdb35074174ad59b688e445d8e1661d764106e32a920c3aefeaf",
+    "source_fingerprint": "sha256:549c7781bc519839ef7c38abb3ad63dd1996f353588fc350d72e4f0dae82a052",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4effb207e563ff0e2eada020d95a5c8ad403c5878ccb7630908c476fb41b0b25",
-      "plan.md": "fc4f3aa826576927ee78dc863e0d405a6d1f81f4e8ac5d9d6f19186eddfb3eec",
-      "tasks.md": "9cec9fb8074cf41b43c7b744d0b512869e40cecedc9ad9ce99f880a79b271a28",
-      "implementation-summary.md": "aa6b4180493be701261fe9c3539f0627637ae370286a854b6c17afd0816ffadd"
+      "spec.md": "1f916383777e13da792ddeef76d28ee33d31efad1db5e0126ef73c4395937eea",
+      "plan.md": "71ce9e33b4f1161b4eb00fbf475309b0f2f91ebaf944584b736643e5bad5baa4",
+      "tasks.md": "1ab4688b8130ca88915408c12310f8572b6c86b30d9212a5ec86598c895f683c",
+      "implementation-summary.md": "48380167b8f8f387caf56c8adc29576d535027fe7c33c681902c4d5dbe21f6b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

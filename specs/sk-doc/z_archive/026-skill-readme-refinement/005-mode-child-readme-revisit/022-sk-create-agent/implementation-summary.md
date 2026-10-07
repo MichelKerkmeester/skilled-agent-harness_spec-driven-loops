@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent"
     last_updated_at: "2026-08-04T15:11:04Z"
     last_updated_by: "phase-executor"
     recent_action: "Closed phase 022: README rewritten, version 1.0.1.2, changelog entry added"

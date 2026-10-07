@@ -3,13 +3,12 @@ title: "Implementation Summary: Phase 9: incumbent-inventory-parity"
 description: "The three incumbent mcp-tooling packets now expose the same inventory surface: chrome-devtools gained a 30-file feature catalog, a byte-true Code Mode manuals snapshot, and mcp-servers pointers; click-up gained its top-level install front door; figma gained worked example walkthroughs. All derived from existing packet docs, all gates green."
 trigger_phrases:
   - "incumbent inventory parity summary"
-  - "implementation summary"
   - "mcp tooling parity shipped"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity"
     last_updated_at: "2026-07-16T13:17:05Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase complete; gates green"

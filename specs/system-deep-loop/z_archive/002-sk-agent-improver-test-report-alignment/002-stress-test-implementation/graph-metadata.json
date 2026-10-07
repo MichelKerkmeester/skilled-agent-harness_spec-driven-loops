@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packet 060 phase 001 found that sk-improve-agent has serious evaluator machinery (proposal-only candidates, 5-dimension deterministic scoring, journals, benchmarks, mirror-drift policy, legal-stop vocabulary) but lacks the part that made packet 059's @code campaign effective: same-task A/B stress scenarios that force one failure-path claim at a time, reset the sandbox between calls, and judge only grep-checkable signals",
     "created_at": "2026-05-02T09:47:05.342Z",
-    "last_save_at": "2026-08-30T15:39:22.614Z",
+    "last_save_at": "2026-10-07T21:49:49.293Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6c1d9740acb1d713f9099c7f31ec186f86a9ede460363cb61b02502f785f2aad",
+    "source_fingerprint": "sha256:a5905996aa7141f3f27e599ddb04167fbe19f5dddb96a5ff23aebac99dae2785",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bee524ed0615d36c3d28dcf9cab4a4f5b0eb2c79318916bd92202b9b9e7970e",
@@ -219,7 +219,7 @@
       "decision-record.md": "c6afa19aed420d58970999005e6807d689f192c53e9e38d7a0a95580981492dd",
       "implementation-summary.md": "900a0b2d21467340c96760dc626a7c0d33e334defca546cab78a2c8782dfecc3",
       "handover.md": "6158094105761dc78ceead30951a92991b6c0ccc755abeab8564fa0a807350f3",
-      "resource-map.md": "4a180e8dedfeb8db3f229cf9a98e0c8e8300dc83b6561e4c293b9a100b9de4d9"
+      "resource-map.md": "5fc19c68240ca36d041eef512e9e388854a642cd5372b9ee291f0b5a852af993"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -100,7 +100,7 @@ _memory:
 
 ---
 
-<!-- ANCHOR:phase-3 -->
+<!-- ANCHOR:phase-3-2 -->
 ## Phase 3: Verification
 
 - [x] T007 Verify dark-run results for N4, normalization, and TM-01 — new memories visible, old not displaced, MRR@5 not regressed, interference penalty correct [included] {T002, T004, T005}
@@ -126,10 +126,11 @@ _memory:
   - Extends R-006 (weight rebalancing surface) and R-007 (post-reranker stage in scoring pipeline)
 - [x] T010 [P] Add lightweight observability — log N4 boost values and TM-01 interference scores at query time, sampled at 5% of queries [2-4h] {T002, T005} — Observability (P2)
 
+<!-- /ANCHOR:phase-3-2 -->
+
 ---
 
 <!-- ANCHOR:completion -->
-<!-- /ANCHOR:phase-3 -->
 ## Completion Criteria
 
 - [x] All tasks T001-T009 (including T004a, T005, T006) marked `[x]` — T009 is required (PI-A1, P1)

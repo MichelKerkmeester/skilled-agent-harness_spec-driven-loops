@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -164,7 +164,7 @@
     ],
     "causal_summary": "The mcp-code-mode manual-testing tree uses snake_case for its root, eight category directories, the index, and 27 scenario files. This phase renames that filesystem tree to kebab-case and updates every active link and pointer while preserving scenario IDs, tool names, content keys, Python exemptions, and frozen changelog history.",
     "created_at": "2026-07-14T15:18:23Z",
-    "last_save_at": "2026-08-30T15:39:16.945Z",
+    "last_save_at": "2026-10-07T18:13:24.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,12 +172,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8689261522739083ffb1611caad82f5d2113ec31dd8633b7573652a3d632486e",
+    "source_fingerprint": "sha256:d6e91827a4247dbbb8c1c3d25df3baa41139f631ff28e97d749b1cd214b08809",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca14f72cb6697d1f39638e38f4587d37a091ad061e60cb054f8061ee1030b253",
-      "plan.md": "90a701baf5431cb5730099061d1f183679cdba95d5d90b8c1a268776d4519ba6",
-      "tasks.md": "0381daaf436ac40ffc825e96f9634be2577ee75935f56346bfeb18f269bb2478"
+      "spec.md": "5502798d82c171afc98fd1c116479d2e4d6c2b2afdc757f1636bce29fb85cd21",
+      "plan.md": "367f42cdd13d9f33cc475d6bf298bdcdb2a0d6ef389b107367af450f35a873cc",
+      "tasks.md": "c323542b64da3259e6bd18a87674b91d6e642dbadcbd4a3c506bd70fb982fe87"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,13 +13,12 @@
     "trigger_phrases": [
       "036 phase 001",
       "contract compiler design",
-      "plan",
+      "contract compiler design plan",
       "036 001 plan",
-      "tasks",
+      "contract compiler design tasks",
       "036 001 tasks",
-      "implementation",
-      "summary",
-      "031 007 001"
+      "contract compiler design summary",
+      "compiled contract design implementation"
     ],
     "key_topics": [
       "phase",
@@ -28,12 +27,12 @@
       "design",
       "plan",
       "tasks",
-      "implementation",
       "summary",
+      "compiled",
+      "implementation",
       "packet",
       "command",
-      "carved",
-      "design-first"
+      "carved"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -185,7 +184,7 @@
     ],
     "causal_summary": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the 035 phase-003 pass and grounded in the real /deep:review 14-file authority chain) into an implementable spec, resolving the three named unknowns — the OpenCode prompt-injection insertion point, checksum ownership over generated markdown, and CLI-executor receipt/progress parity under fan-out — then decompose the build and retrofit phases.",
     "created_at": "2026-07-03T17:04:53.763Z",
-    "last_save_at": "2026-08-30T15:39:25.592Z",
+    "last_save_at": "2026-10-07T20:32:35.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4b9f3bf9e4d8e59872e654fbb7a9997766cb36fef5d9da40427859ccfd056f8",
+    "source_fingerprint": "sha256:400236543798ed47a1c613842ab7e0ecc6d43584697620069d72b9dd03f17432",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6beb88f2b8531a5b91fead6d68a3e7eb18ba68ab645f5e46d2f59d8339e25913",
-      "plan.md": "69519e34d27ad87dc0a12887ceeec53f325dcdcc99ebd6fb715aea2224d8d562",
-      "tasks.md": "700a2d6e2cdc52e100978682ba20621552a2b8c9cc40a98e88328cd8be26062f",
-      "implementation-summary.md": "50783cbbe1e71744fb18d1da689b7e879d8d523d4af872ca7118acab27d041bb"
+      "spec.md": "02e1fff68c3f6d25851b98f6ae01105f0be494c7f0372cc259e4f6af755329fd",
+      "plan.md": "6c04207a5747d0c0b6e76ec5b2a9cdfcaaceea4f052c4fca62a221550fd1714b",
+      "tasks.md": "862142050d5dfc9ac9769e17386da92feba5380341bb56db19c4e012dbadea97",
+      "implementation-summary.md": "b215a6c8e668169c103c89d6dd4c592ca19e2d035d534207579148669c56e665"
     },
     "last_active_child_id": null,
     "last_active_at": null

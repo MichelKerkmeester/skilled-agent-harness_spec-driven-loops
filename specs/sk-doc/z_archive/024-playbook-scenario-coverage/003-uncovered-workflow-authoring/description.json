@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "specFolder": "sk-doc/z_archive/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
   "description": "Coverage gaps in this fleet were previously argued from prose",
   "keywords": [
     "coverage",

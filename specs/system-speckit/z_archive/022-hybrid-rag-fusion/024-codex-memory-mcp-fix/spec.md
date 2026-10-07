@@ -172,7 +172,7 @@ Keep this Level 3 packet truthful by updating it to record the landed Codex `spe
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -188,7 +188,7 @@ Keep this Level 3 packet truthful by updating it to record the landed Codex `spe
 - **NFR-R02**: Follow-on recommendations must map to real files or review findings so the next implementation wave is auditable.
 - **NFR-R03**: Direct DB lifecycle helpers must keep `initializeDb(':memory:')` and custom-path flows isolated by promoting the active shared connection and DB path before later default reads or writes occur.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

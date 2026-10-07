@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
   "description": "Phase parent for the mcp-obsidian playbook validation run: execute every manual-testing-playbook scenario against a live throwaway vault (headless",
   "keywords": [
     "phase",

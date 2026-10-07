@@ -2,11 +2,7 @@
 title: "Tasks: Post-Merge [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2/tasks]"
 description: "tasks document for 037-post-merge-refinement-2."
 trigger_phrases:
-  - "tasks"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "037"
+  - "post merge refinement 2 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

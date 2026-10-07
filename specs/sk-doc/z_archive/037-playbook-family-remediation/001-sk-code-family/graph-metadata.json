@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/037-playbook-family-remediation/001-sk-code-family",
-  "spec_folder": "sk-doc/037-playbook-family-remediation/001-sk-code-family",
-  "parent_id": "sk-doc/037-playbook-family-remediation",
+  "packet_id": "sk-doc/z_archive/037-playbook-family-remediation/001-sk-code-family",
+  "spec_folder": "sk-doc/z_archive/037-playbook-family-remediation/001-sk-code-family",
+  "parent_id": "sk-doc/z_archive/037-playbook-family-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Five dirty roots in the sk-code family carried 586 operator-scenario violations, the largest single class being a grading vocabulary the validator forbids that a prior literal alignment to sk-doc had imported.",
     "created_at": "2026-08-29T11:53:22.131Z",
-    "last_save_at": "2026-08-30T15:39:18.166Z",
+    "last_save_at": "2026-10-07T18:13:55.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:249b2bdfc0053e32dce5d93fb1332d5082e14f276e5d0c61915a3ad744744d68",
+    "source_fingerprint": "sha256:3e16bbfd9e615f6a561f9c2ccd29f36ead26dfc89c576e65d8dd524125dca860",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "feb0c85577734c300d63326ecd127ddc05d2d0f79dfb1ae4d5719c8a92a2b518",
-      "plan.md": "efd72130a2df44de0b90e7535f3857d539e7e092cac1fa93f87cf1fac0450d4b",
-      "tasks.md": "a1f6fe5e319b8632c18fd772e88c727ac394953c60e98480af4ec1139c62e401",
-      "implementation-summary.md": "40e086ae02b83ddb89ed65f89e6ad1699c549bf8e340781a6880265bb2199c8b"
+      "spec.md": "0b25843e4d043a8d228f10bc09de7218d0e65dd62dfa19f1f4ea37faa9af95eb",
+      "plan.md": "ccfc325bcbf222badf839d24c3aae32caa206bfbeadc6f1b3762cef8bf576b66",
+      "tasks.md": "bebb010591ce21279c2447a8aafcd53cf0ab0a61704b977ebd19343bda8beccf",
+      "implementation-summary.md": "bf195dc453e2a53f42d270a7217a16fae4537f1aa4ac11a752abbf394f27c670"
     },
     "last_active_child_id": null,
     "last_active_at": null

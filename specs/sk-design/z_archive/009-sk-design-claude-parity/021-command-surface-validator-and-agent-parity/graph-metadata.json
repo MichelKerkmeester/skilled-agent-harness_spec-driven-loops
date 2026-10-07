@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/agents/design.md",
       ".claude/agents/design.md",
       ".opencode/skills/sk-design/SKILL.md"
@@ -72,6 +73,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting `STATUS=INVALID STAGE=metadata` with 10 errors, attributed to `:auto|:confirm` modeled as a flag and missing `design-mcp-open-design` sibling coverage",
     "created_at": "2026-07-07T09:58:04.406Z",
-    "last_save_at": "2026-08-30T15:39:12.303Z",
+    "last_save_at": "2026-10-07T18:12:19.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a23265b8c10f33e4fbdeb842012ff83972cd31c2b03ebf9f033b722fa6e8580",
+    "source_fingerprint": "sha256:db34209d478895a2ac5ee2650aa20a339a5e08ea26baa56e8d1e51d37c4c6235",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bbb12e0783a1df39f7fd2cf3182c2768170f209de88e02e20790612a8d68e8e8",
-      "plan.md": "b61b0824f723a046d9901291ff2c2652e5ad502fbdadab743eae70a8a698bd8b",
-      "tasks.md": "ca3e3a3bfc22b2f88bb2377e3e38fd87bc8ea0a344e61aade77884a09e52901a",
-      "implementation-summary.md": "83d24bff72c8771e50f4b377c0ccb10151e3c6112abc615246545bf0eba7d325"
+      "spec.md": "adfc308e233df2ece75060f4151ed2a3384d04bbe1ecf098735b4b4f289c666a",
+      "plan.md": "d4c28ad4b6fffbb3a4444aef233d413be40c55f0a18f74e833374d1995f05cc3",
+      "tasks.md": "3297166396349793ae34df170ed6e215b4ceefca9f9fb72a6f3ec6cb1a1971c4",
+      "implementation-summary.md": "f48eaeb7cc2ef8162e7d3ca87a5ba279cfd035dbf9f91adbb6debef61d9e9b4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,8 @@
 title: "...2--system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-03-command-alignment/decision-record]"
 description: "Task 03 requires systematic audit/creation of 9 command configuration files. The scope must be clearly defined to ensure complete coverage while avoiding scope creep into adjace..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "task"
-  - "command"
-  - "configs"
-  - "decision record"
+  - "command alignment decisions"
+  - "command config scope decision"
 importance_tier: "important"
 contextType: "planning"
 ---

@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/019-routing-drift-remediation"
     last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Recorded the three-phase remediation approach and its gates"

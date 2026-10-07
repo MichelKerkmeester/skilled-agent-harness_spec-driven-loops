@@ -9,7 +9,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/007-parent-scaffold-and-governance-docs"
     last_updated_at: "2026-07-01T08:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from research.md F-015, F-008/G-007 (Tier1 #11,#13)"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios"
     last_updated_at: "2026-08-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Ran the 6 MCP scenarios via cli-opencode deepseek: 6/6 PASS"

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
     "created_at": "2026-06-30T16:17:28Z",
-    "last_save_at": "2026-08-30T15:39:25.675Z",
+    "last_save_at": "2026-10-07T18:15:02.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6aab1a9f237765d69d24405a2f045d75b2eac502a08f80fcc0c63ae2f286bfd4",
+    "source_fingerprint": "sha256:8d50845ea170d64f8fac1fe666d150f87e9b9f0089b5630d66efc53cd2ed8fce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72f06d22052910e69070fde546aad083c386cf4bde972d81c55eb4f03f748de1",
-      "plan.md": "61be42f1c8036080dd9dcff4ef3f555a4641a519c58f5f06efc385ccbf2a9c64",
-      "tasks.md": "97765f5d4138521d50e710c7f07b0ef6a7e430c98d1a9e292d0e794bb1dcf71e",
-      "implementation-summary.md": "05dd17483349d0d6fe61fdb24995177ea84781a104d30c3f1724718a5c72f9f9"
+      "spec.md": "aee087a6066cd92c1719c453cc10bc6d7e279fba839bd48e95e3c2cbd18e26f2",
+      "plan.md": "d6034d1b80ddce3f0537890755b828069d72ec5ad8438ef6c86255d24a589d69",
+      "tasks.md": "6a97006015fc614bd54aacbf896dbe66eeb3e3729c1486dcadd4ec0ec864a676",
+      "implementation-summary.md": "86e2351d1c17ea1d8e0402e39b56ee25c58e302ff1266e110e96e0355d01db98"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/010-mcp-mobbin/002-skill-authoring"
+    packet_pointer: "mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring"
     last_updated_at: "2026-07-17T06:03:03.924Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"

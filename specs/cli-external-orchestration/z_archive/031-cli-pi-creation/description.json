@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "description": "This repository already dispatches work to five external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`,",
   "keywords": [
     "repository",

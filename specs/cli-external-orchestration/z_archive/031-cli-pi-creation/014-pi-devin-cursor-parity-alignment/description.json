@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
   "description": "`cli-pi` was built to structurally mirror `cli-devin`/`cli-cursor` from the start (phase 003's skill packet, phases 005/006/008's designs), but a",
   "keywords": [
     "cli-pi",

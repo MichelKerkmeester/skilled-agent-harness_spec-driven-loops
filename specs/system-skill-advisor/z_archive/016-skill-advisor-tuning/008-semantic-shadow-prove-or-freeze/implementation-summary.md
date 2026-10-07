@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "Complete"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze"
     last_updated_at: "2026-07-07T09:00:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Confirmed the freeze and shipped the additive guards"

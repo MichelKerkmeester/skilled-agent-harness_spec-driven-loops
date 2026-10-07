@@ -192,7 +192,7 @@
     ],
     "causal_summary": "There is no safe way for an operator to inspect what a deep-loop run would do without executing it: setup, focus selection, and convergence reads cannot be validated without risking executor dispatch, state mutations, reducer rewrites, or child spawns",
     "created_at": "2026-06-28T20:20:45.392Z",
-    "last_save_at": "2026-08-30T15:39:25.072Z",
+    "last_save_at": "2026-10-07T18:15:13.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a967d5dfba5c0b6844c93c94801384d60c5575a7f8194ffdb6dfe32ab4229b05",
+    "source_fingerprint": "sha256:d9d68ce5d992362fda1152fe95566cf9dbfd14d61a283115cbf3484f5e2f7af8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd31fe0dadbad353b1a33a3ea79fcf896c91440c2834f34c9f1048c36d5ed2c9",
-      "plan.md": "15ec74b6eb5e797801d3127a9ec714cd11fe5df548dcd83398e2b54be0345b8f",
-      "tasks.md": "5cdc68f4c079f964241af88fe2bfab9d4d26e62bc3de7e7a7f81d46d504387bb",
-      "implementation-summary.md": "164916b61a4eabeccebd6831dca186242bbdcd5e22be4b8cc02dbe690f133fbf"
+      "spec.md": "f0008f4d7b2b45a255b480cf3adceb40a7b6e5c252153ca28125d14c0b350344",
+      "plan.md": "3b3929462d53f247a858b403376afadcb25fcc4428abf2f4fda38674ec9812cb",
+      "tasks.md": "397cb64904dd94b6731386963f18054292f2a16071d29779e10396768ae4516c",
+      "implementation-summary.md": "f3fe3463de885e7ea7f3dd19202a9de04c9016af7acee2dede9f01b9ec2b5d2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

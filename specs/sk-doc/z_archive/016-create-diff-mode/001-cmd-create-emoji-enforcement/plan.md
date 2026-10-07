@@ -151,7 +151,6 @@ User invokes `/create` → Command parses input → Validation runs → Template
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -171,7 +170,6 @@ Phase 1 (Analysis) ──────┐
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -262,7 +260,7 @@ Phase 1 (Analysis) ──────┐
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Remove vs. Make Optional
@@ -311,4 +309,4 @@ LEVEL 3 PLAN (~200 lines)
 - Dependency graphs, milestones
 - Architecture decision records
 -->
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

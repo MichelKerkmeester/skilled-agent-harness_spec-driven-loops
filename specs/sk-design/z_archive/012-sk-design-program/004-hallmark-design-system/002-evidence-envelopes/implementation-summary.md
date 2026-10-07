@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
     last_updated_at: "2026-07-23T07:04:12Z"
 
     last_updated_by: "implementation-agent"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/004-design-audit",
+  "specFolder": "sk-design/z_archive/004-design-audit",
   "description": "The shipped `audit` mode is the cross-cutting QA and critique child of the `sk-design` family, but its packet was absent from git and memory",
   "keywords": [
     "shipped",

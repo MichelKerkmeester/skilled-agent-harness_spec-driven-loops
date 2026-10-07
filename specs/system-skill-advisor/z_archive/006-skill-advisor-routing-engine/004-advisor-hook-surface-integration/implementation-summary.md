@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"
@@ -160,22 +160,22 @@ These are documented as out-of-scope; they do not block Phase 020 release.
 | Child | Status | Converged at | Evidence |
 |-------|--------|--------------|----------|
 | 001-initial-research | Converged | 2026-04-19T08:30Z (wave-1) + 2026-04-19T09:15Z (wave-2) + 2026-04-19T10:53Z (wave-3) | Research synthesis under ../research/020-skill-advisor-hook-surface-pt-01/, .../001-skill-advisor-hook-surface-pt-02/, .../001-skill-advisor-hook-surface-pt-03/ |
-| 002-shared-payload-advisor-contract | Converged | 2026-04-19T13:05Z | [implementation-summary.md](002-shared-payload-advisor-contract/implementation-summary.md) |
-| 003-advisor-freshness-and-source-cache | Converged | 2026-04-19T09:30Z | [implementation-summary.md](003-advisor-freshness-and-source-cache/implementation-summary.md) |
-| 004-advisor-brief-producer-cache-policy | Converged | 2026-04-19T15:33Z | [implementation-summary.md](004-advisor-brief-producer-cache-policy/implementation-summary.md) |
-| 005-advisor-renderer-and-regression-harness | Converged | 2026-04-19T15:51Z | [implementation-summary.md](005-advisor-renderer-and-regression-harness/implementation-summary.md) |
-| 006-claude-hook-wiring | Converged | 2026-04-19T14:04Z | [implementation-summary.md](006-claude-hook-wiring/implementation-summary.md) |
-| 007-gemini-copilot-hook-wiring | Converged | 2026-04-19T14:25Z | [implementation-summary.md](007-gemini-copilot-hook-wiring/implementation-summary.md) |
-| 008-codex-integration-and-hook-policy | Converged with documented config deferral | 2026-04-19T16:40Z | [implementation-summary.md](008-codex-integration-and-hook-policy/implementation-summary.md) |
-| 009-documentation-and-release-contract | Converged | 2026-04-19T14:51Z | [implementation-summary.md](009-documentation-and-release-contract/implementation-summary.md) |
+| 002-shared-payload-advisor-contract | Converged | 2026-04-19T13:05Z | implementation-summary.md |
+| 003-advisor-freshness-and-source-cache | Converged | 2026-04-19T09:30Z | implementation-summary.md |
+| 004-advisor-brief-producer-cache-policy | Converged | 2026-04-19T15:33Z | implementation-summary.md |
+| 005-advisor-renderer-and-regression-harness | Converged | 2026-04-19T15:51Z | implementation-summary.md |
+| 006-claude-hook-wiring | Converged | 2026-04-19T14:04Z | implementation-summary.md |
+| 007-gemini-copilot-hook-wiring | Converged | 2026-04-19T14:25Z | implementation-summary.md |
+| 008-codex-integration-and-hook-policy | Converged with documented config deferral | 2026-04-19T16:40Z | implementation-summary.md |
+| 009-documentation-and-release-contract | Converged | 2026-04-19T14:51Z | implementation-summary.md |
 
 ---
 
 ### Release Prep
 
-- [x] All 8 implementation children converged — [002](002-shared-payload-advisor-contract/implementation-summary.md), [003](003-advisor-freshness-and-source-cache/implementation-summary.md), [004](004-advisor-brief-producer-cache-policy/implementation-summary.md), [005](005-advisor-renderer-and-regression-harness/implementation-summary.md), [006](006-claude-hook-wiring/implementation-summary.md), [007](007-gemini-copilot-hook-wiring/implementation-summary.md), [008](008-codex-integration-and-hook-policy/implementation-summary.md), [009](009-documentation-and-release-contract/implementation-summary.md)
+- [x] All 8 implementation children converged — 002, 003, 004, 005, 006, 007, 008, 009
 - [x] Cross-runtime parity: 4 runtimes × 5 canonical fixtures = identical additionalContext — [advisor-runtime-parity.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-runtime-parity.vitest.ts), extended by 008
-- [x] 019/004 200-prompt corpus: 200/200 top-1 parity — [advisor-corpus-parity.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-corpus-parity.vitest.ts) and [005 summary](005-advisor-renderer-and-regression-harness/implementation-summary.md)
+- [x] 019/004 200-prompt corpus: 200/200 top-1 parity — [advisor-corpus-parity.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-corpus-parity.vitest.ts) and 005 summary
 - [x] Cache hit p95 ≤ 50 ms + cache hit rate ≥ 60% on 30-turn replay — [advisor-timing.vitest.ts](../../../../skill/system-spec-kit/mcp_server/tests/advisor-timing.vitest.ts), 005 bench: p95 `0.016 ms`, hit rate `66.7%`
 - [x] Disable flag verified: `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` stops adapter work — skill-advisor-hook reference (§9) in `.opencode/skills/system-spec-kit/references/hooks/` and runtime hook tests for Claude, Gemini, Copilot and Codex
 - [x] Documentation published — reference doc (skill-advisor-hook) and validation playbook (skill-advisor-hook-validation) in `.opencode/skills/system-spec-kit/references/hooks/`, `CLAUDE.md` §Gate 2, and runtime READMEs under `.opencode/skills/system-spec-kit/mcp_server/hooks/`

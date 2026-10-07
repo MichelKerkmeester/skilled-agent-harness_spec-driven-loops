@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/012-remaining-mode-conformance"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/012-remaining-mode-conformance"
     last_updated_at: "2026-07-27T18:03:42Z"
     last_updated_by: "conformance-executor"
     recent_action: "Executed and verified all fixes across both packets, 20 files"

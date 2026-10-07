@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
     last_updated_at: "2026-07-18T07:35:59Z"
     last_updated_by: "codex"
     recent_action: "Completed implementation and fixture verification"

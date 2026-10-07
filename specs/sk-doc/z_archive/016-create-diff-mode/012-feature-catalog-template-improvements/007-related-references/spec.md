@@ -3,14 +3,19 @@ title: "Phase 007: Related References — All Skills"
 description: "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "related references spec"
+  - "catalog related references"
+  - "snippet neighbor links"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 007: Related References — All Skills
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -22,14 +27,19 @@ trigger_phrases: []
 | **Prerequisite** | Phase 002 complete |
 | **Skill targets** | All three skills |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 315 of 366 snippets lack `Related references:` in SOURCE METADATA, making it hard to navigate within a category without returning to the root catalog. Each snippet should link to its immediate neighbors (previous and next file in the same category directory, sorted by filename).
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### Target
@@ -49,9 +59,11 @@ Related references:
 | Last file in category (no next) | Only prev link |
 | Only file in category | Omit Related references entirely |
 | File already has Related references | Skip (idempotent) |
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -60,11 +72,14 @@ Related references:
 | R-002 | Links use relative paths within the category | No absolute paths, no cross-category links |
 | R-003 | Link text is the neighbor's frontmatter title | Title field used, not the filename slug |
 | R-004 | Script is idempotent | Re-running adds nothing if already present |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - All snippets in multi-file categories have `Related references:` in SOURCE METADATA
 - Link text matches the neighboring file's `title` frontmatter value
 - Zero broken relative links (prev/next files all exist)
+<!-- /ANCHOR:success-criteria -->

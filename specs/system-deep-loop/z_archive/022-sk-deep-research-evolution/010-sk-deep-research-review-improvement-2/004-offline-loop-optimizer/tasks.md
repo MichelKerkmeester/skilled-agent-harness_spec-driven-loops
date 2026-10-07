@@ -2,8 +2,8 @@
 title: "Tasks: Offline [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "042.004"
-  - "tasks"
+  - "offline loop optimizer tasks"
+  - "offline loop optimizer task list"
   - "offline loop optimizer"
   - "phase 4a"
   - "phase 4b"

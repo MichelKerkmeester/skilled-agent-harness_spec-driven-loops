@@ -38,7 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -63,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No skill exists for external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) to delegate tasks to Claude Code CLI",
     "created_at": "2026-04-12T09:02:50.203Z",
-    "last_save_at": "2026-08-30T15:39:08.293Z",
+    "last_save_at": "2026-10-07T19:23:33.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +198,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57b6e6c3e6ae5bad044f47a45428269c4c51dee30c715dd408a394073152c1f5",
+    "source_fingerprint": "sha256:af353694dbe8c1f0ea75cfa2c9def9ac3ddf7960241ab6400bdadf3ef5fa26a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b161cc2c82c1bb482b3f112512fc03b007a633d9dec730507044e172b7c42dc",
-      "plan.md": "8a8565448b511b92948a28cef1c8265cd7456f6fa8223a5c22df4e4a53de54e3",
+      "plan.md": "0f3a1b35499ed265a1a526a000d9d676b6a4de139d60dacbbb687334e6899a53",
       "tasks.md": "0109ab769a5148c8756e797cd124c349d55010533a3d8d090a4b86fb0ea9c07e",
       "implementation-summary.md": "ccab37c60731cd4b17e63f535857eb1ca33aaa60af0b3be1ef658d4494330bd0"
     },

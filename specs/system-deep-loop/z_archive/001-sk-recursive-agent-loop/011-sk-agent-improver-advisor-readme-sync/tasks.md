@@ -19,23 +19,32 @@ _memory:
 ---
 # Tasks: Phase 011 — Skill Advisor Routing + README Sync
 
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+
+<!-- ANCHOR:phase-1 -->
 ## Skill README (D1)
 
 - [x] T001: Update sk-improve-agent version from 0.1.0.0 to 1.0.0.0 in skill table
 - [x] T002: Update sk-improve-agent description to mention 5D scoring, integration scanning, dynamic profiling
 - [x] T003: Verify skill counts are correct
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Skill Advisor — Public (D2)
 
 - [x] T004: Add INTENT_BOOSTERS for 5-dimension, integration scan, dynamic profile, evaluate/score agent
 - [x] T005: Add PHRASE_INTENT_BOOSTERS for Phase 008+ capabilities and /deep:start-agent-improvement-loop command
 - [x] T006: Add COMMAND_BRIDGES for /deep:start-agent-improvement-loop, /prompt, /create:* commands
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Skill Advisor — Barter (D3)
 
 - [x] T007: Add COMMAND_BRIDGES to Barter advisor (all except /deep:start-agent-improvement-loop)
 - [x] T008: Add PHRASE_INTENT_BOOSTERS for /prompt and /create:* to Barter advisor
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:completion -->
 ## Verification (D4)
 
 - [x] T009: Test "evaluate agent with 5 dimensions" → sk-improve-agent >= 0.8
@@ -49,3 +58,4 @@ _memory:
 
 - [x] T015: Mark spec.md and plan.md status Complete
 - [x] T016: Write implementation-summary.md
+<!-- /ANCHOR:completion -->

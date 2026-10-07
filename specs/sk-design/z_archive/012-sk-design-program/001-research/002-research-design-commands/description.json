@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/001-research/002-research-design-commands",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/001-research/002-research-design-commands",
   "description": "The five design commands (`.opencode/commands/design/{interface,audit,foundations,motion,md-generator}.md`) are thin routers: each resolves an",
   "keywords": [
     "five",

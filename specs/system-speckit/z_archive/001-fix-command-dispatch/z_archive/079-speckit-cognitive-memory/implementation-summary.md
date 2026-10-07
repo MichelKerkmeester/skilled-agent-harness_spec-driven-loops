@@ -7,7 +7,6 @@ trigger_phrases:
   - "cognitive"
   - "memory"
   - "upgrade"
-  - "implementation summary"
   - "079"
   - "speckit"
 importance_tier: "normal"
@@ -24,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/079-speckit-cognitive-memory` |
+| **Spec Folder** | 079-speckit-cognitive-memory |
 | **Implementation Date** | 2026-01-27 |
 | **Duration** | Single session (10 parallel Opus agents) |
 | **LOC Changed** | ~1,200 lines (8 files modified/created) |

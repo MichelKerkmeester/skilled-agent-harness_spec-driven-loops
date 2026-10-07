@@ -19,12 +19,17 @@ _memory:
 ---
 # Plan: Skill Advisor Routing + README Sync
 
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+<!-- ANCHOR:summary -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
 | Phase | 011 |
 | Approach | 3 deliverables in parallel: README, advisor Public, advisor Barter |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## D1: Update Skill README
 
 **File**: `.opencode/skills/README.md`
@@ -84,7 +89,9 @@ Add same COMMAND_BRIDGES as D2 EXCEPT:
 - All others apply (sk-improve-prompt and sk-doc exist in Barter)
 
 Also add PHRASE_INTENT_BOOSTERS for `/prompt` and `/create:*` commands.
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:testing -->
 ## Verification
 
 ```bash
@@ -98,3 +105,4 @@ python3 .opencode/skills/skill-advisor/scripts/skill_advisor.py "/create:agent" 
 # Verify README
 grep "sk-improve-agent" .opencode/skills/README.md
 ```
+<!-- /ANCHOR:testing -->

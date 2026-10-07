@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 015/005's audit found that across all 17 active skills, three structured-signal fields are universally absent:",
     "created_at": "2026-05-14T01:30:00Z",
-    "last_save_at": "2026-08-30T15:39:26.347Z",
+    "last_save_at": "2026-10-07T18:15:32.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:30:00Z",
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e3cec83fab9bb1960b70eb1d6debdfc8a3f8a45517a95d9beaeece35d1121bf",
+    "source_fingerprint": "sha256:2791e177d20bdaa41df9a26a173268b335ea708c17ea54c8ffd87c2d9d77b15c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f98bdfd9363170867293d53b4f301948dc04d3ecfc4ad72e16a4fb76e78b3878",
-      "plan.md": "b26d534bdfba73eab12e94d44db6caaef8e19dc75aa4e6d130dd05c2b8812bad",
-      "tasks.md": "4c25a443ec2550b39ce1e2c6c3cc9e02efe806286f93cb6ebab42808f5c98bd3",
-      "implementation-summary.md": "192d6eb2d7a5e995e16a36120b29f18f357e234d6f1c366b890471c3ecb985e4"
+      "spec.md": "1cefd2ec96d9cd46d40dc3ee86df18f76a8adbf6fb58f3cb2597c7d946ccb1cd",
+      "plan.md": "9aa54a9800c729eedd50864acf5a862a13e399fa97055ecd3ffb65cd68cf0010",
+      "tasks.md": "74394b8217b3250ec42353aefac6de1ba6f3411059e01e92abbe8d5a1ff48b85",
+      "implementation-summary.md": "27d2102f1444ba696224216c1e9a1eb1865b29874ef84f4a0e651edc4f9bf103"
     },
     "last_active_child_id": null,
     "last_active_at": null

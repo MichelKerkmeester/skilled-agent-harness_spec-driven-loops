@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -90,16 +90,16 @@
     ],
     "causal_summary": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
     "created_at": "2026-07-14T15:17:02Z",
-    "last_save_at": "2026-08-30T15:39:16.859Z",
+    "last_save_at": "2026-10-07T18:12:47.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4bae473832c7b807c508bfa6e9b33e1336b5120d3cf4055bc6c8601846af2999",
+    "source_fingerprint": "sha256:44b84bee5c75c41540fe6a463abcf19a8f454e0186ac407a5b26ef063c9d7c9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ac62751004cd6e96cad6594319db038a626f81d9103166c93e3fc04f507a13f"
+      "spec.md": "1e5e49477db90e618a9c6dd96f5c9dbd3a62c18c010688bb215e1651e0ae8ab2"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
     "last_active_at": null

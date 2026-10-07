@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
     last_updated_at: "2026-07-13T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Planned moves, rewrites, routing, and verification"

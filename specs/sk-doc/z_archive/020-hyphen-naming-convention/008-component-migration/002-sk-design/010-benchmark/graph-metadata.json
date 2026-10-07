@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-08-30T15:39:16.365Z",
+    "last_save_at": "2026-10-07T18:13:08.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:74fc801f3dad5bebfbbcd9c2587d9b81c8cc72da1d05fe55d268ff63bba2d33d",
+    "source_fingerprint": "sha256:3c6b76469c8f8255b38e44ebd0461fc4f515cc09e7ecc4e6e38bd741a4f2b782",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0d9a15554246ad6cb1e52c4ab6fa7b5726289bb2668f0d3e3793ebe9eac3241",
-      "plan.md": "d4183d4baac2bb22388aff7757580073c78c374e01e98e969a6f2479701fa3da",
-      "tasks.md": "c171b8c7c0accd0ef1151a0a9e10261617ff6c82c9be81d4502a301758fb2217",
+      "spec.md": "0039819fe5b9f8eed6e1aa4cf414b2a73c43cfa98a0367cecec0c17156ac8075",
+      "plan.md": "0fb8d8b756728e53fc1294385d9205dfc78085370e8624c206eb1cb35e78d3f9",
+      "tasks.md": "2d0f0be63a9b075b9bf751707c9882b1265bdd70263004f34fc8c8fc59856bab",
       "decision-record.md": "00fc4a9831787cd10006525a4053075f0a5d3b469bc1233572c826b460fc76e7"
     },
     "last_active_child_id": null,

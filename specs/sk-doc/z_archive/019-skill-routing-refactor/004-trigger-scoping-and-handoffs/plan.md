@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/004-trigger-scoping-and-handoffs"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped broad triggers and corrected ten handoff lists"

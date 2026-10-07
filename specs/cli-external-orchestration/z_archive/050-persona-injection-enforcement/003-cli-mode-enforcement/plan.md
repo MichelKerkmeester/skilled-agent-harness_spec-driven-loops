@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/003-cli-mode-enforcement"
     last_updated_at: "2026-08-19T11:12:00Z"
     last_updated_by: "claude"
     recent_action: "Build (cli-devin) + verify (cline) + reconcile complete"

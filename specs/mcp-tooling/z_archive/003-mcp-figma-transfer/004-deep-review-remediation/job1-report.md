@@ -1,3 +1,13 @@
+---
+title: "Job 1 Report: Documentation Drift Fixes"
+description: "Parallel-job report recording the documentation drift fixes applied for the deep-review remediation, with per-task evidence."
+trigger_phrases:
+  - "job 1 documentation drift report"
+  - "deep review remediation drift fixes"
+importance_tier: "normal"
+contextType: "implementation"
+---
+
 # Job 1 Report — Documentation Drift Fixes
 
 | Task | Status | Evidence |

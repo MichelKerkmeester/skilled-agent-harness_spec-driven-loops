@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal"
     last_updated_at: "2026-07-06T16:57:20.679Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented and verified T002-T007 staleness signal"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal |
+| **Spec Folder** | 003-embedding-staleness-signal |
 | **Authored** | 2026-06-19 |
 | **Level** | 2 |
 | **Status** | complete |

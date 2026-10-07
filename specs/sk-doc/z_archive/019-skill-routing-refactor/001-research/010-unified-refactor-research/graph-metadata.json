@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/010-unified-refactor-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/010-unified-refactor-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "unified router refactor research",
       "fuse eight routing ideas into one",
-      "parent hub and singular skill routing contract"
+      "parent hub and singular skill routing contract",
+      "unified refactor research plan",
+      "fuse routing ideas into one contract",
+      "unified refactor research tasks",
+      "fused router design verification tasks"
     ],
     "key_topics": [
       "unified",
@@ -32,13 +36,27 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Produce",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority, and migration",
     "created_at": "2026-07-18T10:28:55.781Z",
-    "last_save_at": "2026-08-30T15:39:14.772Z",
+    "last_save_at": "2026-10-07T19:46:33.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:28a875a7c294492ae90f2f3dcd89aadfcca6bb0c0b5ef5e6e505df7a4ba4e722",
+    "source_fingerprint": "sha256:73fa532099ed2416bc6741bf903db82d4068b8fe7a7b74afbc39d5f6164cf158",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e905c17c965df1884ecebb0b49090fb349420056b1f66ed94d7d90a49f44a017"
+      "spec.md": "e905c17c965df1884ecebb0b49090fb349420056b1f66ed94d7d90a49f44a017",
+      "plan.md": "16c8a1c98f39cacc9fec5722716e7c5975665d755f4b70545a74849c17ad900c",
+      "tasks.md": "a12f689526dacdec7ba8420f4f6386c3c1ec4da34655decb10308c892f4be612"
     },
     "last_active_child_id": null,
     "last_active_at": null

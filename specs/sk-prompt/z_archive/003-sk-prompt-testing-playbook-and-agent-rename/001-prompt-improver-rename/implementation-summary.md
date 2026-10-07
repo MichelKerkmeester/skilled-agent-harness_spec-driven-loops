@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename"
+    packet_pointer: "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename"
     last_updated_at: "2026-05-06T19:40:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 001 rename complete + .codex residuals fixed post deep-review"

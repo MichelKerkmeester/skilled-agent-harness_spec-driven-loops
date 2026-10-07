@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -154,7 +154,7 @@
     ],
     "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-30T15:39:16.904Z",
+    "last_save_at": "2026-10-07T18:13:00.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,12 +162,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5f9897206c09a0f3a4ed424879e8b71bb6aba7aaaabaebad42b58c36630147ec",
+    "source_fingerprint": "sha256:d471e3daa22f423c20c66af4824d430d74d1ade5ba00cc20d505a4dfee8f02ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "887ce03626ed8e72c753e5ba288d16b279c97d90f23957b3a691e77e402b3fee",
-      "plan.md": "512c6f6404d930d23994167e7120c506928ca71cb2519a17de43158f745ac116",
-      "tasks.md": "3a9eba6643fc5d1ce720c373d0c6cac5a98e98261cf7455a5ee5e98eb2c0654f"
+      "spec.md": "88511ef0dcac1ae887f1545b5c1399a010bb520bc54692f7c0b95e6622619241",
+      "plan.md": "d4bcbe2ad2318398c64764303bcb286793cf2402e96d605c31c5f5e1ba87ce93",
+      "tasks.md": "802a92c9c8fe0be9f631235a80415e830ba9e73a31608950e9f246da8ea2a296"
     },
     "last_active_child_id": null,
     "last_active_at": null

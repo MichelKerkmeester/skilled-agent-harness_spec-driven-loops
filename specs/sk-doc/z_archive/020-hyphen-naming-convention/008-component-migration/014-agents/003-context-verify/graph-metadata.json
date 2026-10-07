@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for context across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:41Z",
-    "last_save_at": "2026-08-30T15:39:17.124Z",
+    "last_save_at": "2026-10-07T18:13:08.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,12 +166,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:785e95406d6a20ec68241822d17ce46a53cd1f890e79edcc509e455b02f4066a",
+    "source_fingerprint": "sha256:0682c8a6c8630c000ea3e60eca7cc2390f98d01c5bd74408231c94c711dfd957",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e02fd95eb13ea670672a700433f9deb4eb1e5349721fb4d476bbdab2474c07e",
-      "plan.md": "d1b819d59627016da016783f7385ea6bd6d9f4edc4db77e33e08795923374a1b",
-      "tasks.md": "856147d045a9b01bc0bd205e9b90864657a861b7cf0c06882f8c80fd9feba89c"
+      "spec.md": "fa62fecd10deb168ed7e26117274ce545af3a4d5f5cc146591cc14fbfd066034",
+      "plan.md": "dd6350e904ca0570dd4dd515956e400684371bfed46f03b3fbd9a040adde1ecb",
+      "tasks.md": "110bb5c7d1dbc972487672bad5daf9896c1707a8a07f45f5954829538aba3f99"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,6 @@ title: "Implementation Summary: deep-agent-improvement skill release cleanup"
 description: "Final summary of the five-phase release-cleanup of the deep-agent-improvement skill: audit, README rewrite, validation gate, and a converged deep-research loop. All 9 audit findings and 3 in-scope deep-research gaps resolved; 2 code/config gaps escalated."
 trigger_phrases:
   - "deep-agent-improvement release cleanup summary"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
@@ -51,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement` |
+| **Spec Folder** | 013-deep-agent-improvement-release-cleanup |
 | **Completed** | 2026-05-24 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/004-command-lane-integration",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/004-command-lane-integration",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,10 @@
       "peer adapter registration",
       "alignment convergence gate",
       "raw-delta reducer agreement",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "command lane integration plan",
+      "command lane integration tasks",
+      "sk-doc-command lane registration",
+      "command adapter convergence run"
     ],
     "key_topics": [
       "command",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy.",
     "created_at": "2026-07-14T20:36:59.449Z",
-    "last_save_at": "2026-09-11T04:38:01.217Z",
+    "last_save_at": "2026-10-07T18:15:14.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54ed017ca40ef24da5eb90ec604d9c62e8a5153e6ad8c5e1fd0d711543cecdaf",
+    "source_fingerprint": "sha256:00791729462b928e7684e34c1be006982dcde19e07107bfffb0d065273458433",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1860d4b3d45b9edb2a7dcfa3b1d0351d9f926018064d249620273f88cb189ca",
-      "plan.md": "2e9cf339e2e669fbc93ddf28dbfad2e79e42091b79a1592a2d0f38553eefb710",
-      "tasks.md": "1ef1254bfdc391b86adfd0582ea05d0e19237a8096fcb210e4faaa1f5fc0c788",
-      "implementation-summary.md": "2d4dbf6bae97d3c949bafcc37b54e185efaa3d8520d932859ea7ba06db0d563f"
+      "spec.md": "e1ee93d5882b3e1e8e7ccc5fcd8683dc2b7ce5c4b0eda1ffdae28970d3b8814e",
+      "plan.md": "4eca79cc4443dccedc244bb3d0f296a28d0446c724078240532ae7ae97061eb7",
+      "tasks.md": "de71d28b5d3899150267effe152a8a230876f5f52a1f313498712a784f27a2c9",
+      "implementation-summary.md": "994567262604a2caac1d1e43c56fef0df14431b33dcc9d2b59fa5125ebb1b302"
     },
     "last_active_child_id": null,
     "last_active_at": null

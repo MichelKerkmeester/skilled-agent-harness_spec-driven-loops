@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
+    packet_pointer: "system-skill-advisor/z_archive/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
     last_updated_at: "2026-07-05T08:13:59.253Z"
     last_updated_by: "claude-opus"
     recent_action: "Shipped T00-T13 core; T14/T15 + optional remain"

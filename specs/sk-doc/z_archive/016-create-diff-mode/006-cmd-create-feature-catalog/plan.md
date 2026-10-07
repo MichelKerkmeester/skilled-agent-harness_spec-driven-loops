@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/006-cmd-create-feature-catalog"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -156,7 +156,6 @@ User invokes `/create:feature-catalog` -> command captures target skill path, op
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -174,7 +173,6 @@ Contract Lock -> Command Family Implementation -> Runtime-Discovery Sync -> Vali
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

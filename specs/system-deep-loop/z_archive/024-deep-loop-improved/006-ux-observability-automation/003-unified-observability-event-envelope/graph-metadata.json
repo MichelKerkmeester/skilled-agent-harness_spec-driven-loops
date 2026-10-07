@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Each deep-loop producer appends events in a different native format",
     "created_at": "2026-06-28T21:08:34.372Z",
-    "last_save_at": "2026-08-30T15:39:25.049Z",
+    "last_save_at": "2026-10-07T18:15:04.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b1c656530759703d30da0da189e7b0fd539d4f748bd0225d2175d59cef40d03",
+    "source_fingerprint": "sha256:5ed7c52529f87bcd8efaf9b11be14837299ea23a49739546267888a6a9b026bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "424021f9a258bbaaa63351e19bd2d8fbc09d7a1ce0487f3d61cd5373f824a0c3",
-      "plan.md": "b4544a31db109f89f1e7d4ba0d22b5303ff43bf760e45b4e60acade38fba3213",
-      "tasks.md": "760515f0206a7993080353f945afee7f389eaaef3dd496569e257af63d288160",
-      "implementation-summary.md": "f8a853798fae08bf57e2c2e5921eb8dc317ea9a518b4e951876136411dab2495"
+      "spec.md": "f63117157a7cb894198047e9227ae6a60173d33a7fdecb9974a244dacbc9b3b0",
+      "plan.md": "4c03d98606d4ee41da37be644c90574a0dfee261fcc03df2c15f2c59e6a9ef0f",
+      "tasks.md": "1a0361547cf8960920eb8f265ff39cb53163d44f9b90856ca0e7fce0b1d70c6e",
+      "implementation-summary.md": "ee230e55ef51ea93668da71c013229ae2666a86b3c8ed30a860b2ccee5a72f38"
     },
     "last_active_child_id": null,
     "last_active_at": null

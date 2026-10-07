@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook/002-rule-encoding"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook/002-rule-encoding"
     last_updated_at: "2026-07-27T23:30:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Encoded ten state-gated rules and extended the shared evaluator"

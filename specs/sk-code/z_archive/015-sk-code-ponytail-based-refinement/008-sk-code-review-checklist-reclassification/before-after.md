@@ -9,15 +9,19 @@ importance_tier: "normal"
 contextType: "general"
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
 # Before / After — Phase 008: sk-code-review Checklist Reclassification
 
+<!-- ANCHOR:metadata -->
 > **Scope**: move six review checklists `references/ → assets/`, align them to the asset template, re-path every consumer.
 > **Commits**: `73675304ee` (move + alignment) and `74ed061d66` (version bump).
 > **Standard conformed to**: `sk-doc` `skill_asset_template.md`.
 > This is a **supplementary** doc (no `_memory:` block, no template markers) so it is not structure-validated by `validate.sh --strict`.
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## At a Glance
 
 | # | Area | Before | After |
@@ -31,9 +35,11 @@ contextType: "general"
 | 7 | Version metadata | `SKILL.md version: 1.2.0.0`, latest changelog `v1.4.0.0` | `version: 1.5.0.0`, new changelog `v1.5.0.0.md` |
 
 **No review doctrine changed** — the move is path + overview-shape only. A `git mv` back plus `git restore` reverts it with no data migration.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:comparison -->
 ## 1. The Six Moved Files
 
 `code_quality_checklist`, `security_checklist`, `solid_checklist`, `test_quality_checklist`, `fix-completeness-checklist`, `removal_plan` are checklist artifacts a reviewer **applies**, not doctrine a reviewer **reads** — so they belong in `assets/`, not `references/`.
@@ -182,9 +188,11 @@ Both mirrors re-synced; their `assets/` match `.opencode`.
 
 ### After
 `version: 1.5.0.0`; new changelog `changelog/v1.5.0.0.md` records the reclassification. SKILL version now equals the latest changelog (`v1.5.0.0`).
+<!-- /ANCHOR:comparison -->
 
 ---
 
+<!-- ANCHOR:net-effect -->
 ## Verification (live re-run on `system-speckit/027`)
 
 | Check | Command | Result |
@@ -197,12 +205,15 @@ Both mirrors re-synced; their `assets/` match `.opencode`.
 | SKILL version == latest changelog | `grep version` vs `ls changelog/` | `1.5.0.0` == `v1.5.0.0.md` |
 
 > Note: 10 `references/<moved>` strings remain **inside `changelog/v1.1`–`v1.4`** by design — those are point-in-time release records; the move is documented in `v1.5.0.0` rather than rewriting history.
+<!-- /ANCHOR:net-effect -->
 
 ---
 
+<!-- ANCHOR:notes-caveats -->
 ## What Did **Not** Change
 
 - Any review checklist item, severity model, or finding-format doctrine.
 - The four genuine references (`review_core`, `review_ux_single_pass`, `quick_reference`, `pr_state_dedup`) — unchanged except outbound cross-link re-pathing.
 - The rule canary's invariant (keyed on `pr_state_dedup.md`).
 - Historical changelogs `v1.1`–`v1.4` (left as accurate point-in-time records).
+<!-- /ANCHOR:notes-caveats -->

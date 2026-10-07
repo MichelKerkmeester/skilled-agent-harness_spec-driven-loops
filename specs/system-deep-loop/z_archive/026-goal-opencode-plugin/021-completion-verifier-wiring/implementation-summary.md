@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/021-completion-verifier-wiring"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/021-completion-verifier-wiring"
     last_updated_at: "2026-07-03T17:50:00Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Verified verifier wiring; orchestrator refreshed metadata"

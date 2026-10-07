@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/009-refine-hub-cli-connections"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/009-refine-hub-cli-connections"
     last_updated_at: "2026-06-03T06:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented C1-C10; guard green"

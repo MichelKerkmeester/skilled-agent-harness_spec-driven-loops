@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "system",
-      "spec",
-      "kit",
-      "bug",
-      "analysis",
-      "049",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record",
-      "decision record"
+      "system spec kit bug remediation",
+      "memory indexing dimension bug",
+      "system analysis bugs remediation plan",
+      "bug fix phase plan",
+      "system analysis bugs task list",
+      "bug remediation verification tasks",
+      "system analysis bugs decision record",
+      "embedding dimension decision record",
+      "system analysis bugs implementation record",
+      "bug remediation completion summary",
+      "research",
+      "findings"
     ],
     "key_topics": [
       "system",
       "spec",
       "kit",
       "bug",
+      "remediation",
+      "memory",
+      "indexing",
+      "dimension",
       "analysis",
-      "implementation",
+      "bugs",
       "plan",
-      "tasks",
-      "decision",
-      "record",
-      "comprehensive",
-      "20-agent"
+      "phase"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -48,14 +48,7 @@
       "implementation-summary.md",
       "research/research.md",
       "handover.md",
-      "scripts/rules/check-folder-naming.sh",
-      "scripts/rules/check-files.sh",
-      "scripts/rules/check-frontmatter.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      "scripts/package.json"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -101,33 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "check-folder-naming.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-folder-naming.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-files.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-frontmatter.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-frontmatter.sh",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "scripts/package.json",
         "source": "derived"
       },
       {
@@ -201,11 +170,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Total Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Hours",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Verified",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A comprehensive 20-agent parallel analysis of the system-spec-kit skill revealed 1 CRITICAL bug, 2 HIGH severity issues, and 6 MEDIUM issues that impact the memory indexing syst...",
     "created_at": "2026-04-12T09:02:53.531Z",
-    "last_save_at": "2026-08-30T15:39:37.219Z",
+    "last_save_at": "2026-10-07T20:07:26.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,16 +210,16 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:4c947320532255689a8d2878065db542bd67857ad8b14a9fa70c2cd7e79bce1c",
+    "source_fingerprint": "sha256:3234ce94f2995ef4fcf96a8f8d3378888afa9527f86da0c6ff9ef9356c9bc188",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5dda3ec43677af419a51f66a3a81015dd5805221d1bdf46afdb8b11a0575a1a8",
-      "plan.md": "ef00e115c1fa514cebdd63e51a6d489b911c5473a96fa2968122254298de77e3",
-      "tasks.md": "0949267a7d4706b58c12fb4f6c1f409d9a1afe8b631c21a5f969783178829f0f",
-      "decision-record.md": "e7408f7699a98a533c8bd189788b5eacecde6c4ba93a1e0e2b69d2ce30547ab1",
-      "implementation-summary.md": "5b6eb0d239338b5d0f4b2d271f9d37af2125303ef2dc1ca5dcafa982d528b270",
+      "spec.md": "fe280fabee628c5686efd1075183cf99b580ea98d6f022bef709272da9ebf2f1",
+      "plan.md": "a31d0291ae99924e86fca347ee5c407a73fc3404d2059d464e726927d8d8c663",
+      "tasks.md": "756a1e6de8dd6947e03ebd621b2f2948f6e0df612a4ce1cdb8206709d3c2608f",
+      "decision-record.md": "6b40a949d036b44653d46e207e1a007f7d6a62476dc9288091ab747ad854db0f",
+      "implementation-summary.md": "3ee1997b304ba13b6bcb4b0be6dde2f22a6c63d24176a36f3c983733c55af152",
       "research/research.md": "672d34ede8f00d346e8aea750485092fe9fccdee04094a75361842fec1317691",
-      "handover.md": "6dbc256a7ca7d53782804bd7ed595009ef2d0b9cf9e7e5902200b583ef6b1ded"
+      "handover.md": "09c5416631c1defc57864b779a6c1eab784cd843ba065ea912a37b359fb4d1d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

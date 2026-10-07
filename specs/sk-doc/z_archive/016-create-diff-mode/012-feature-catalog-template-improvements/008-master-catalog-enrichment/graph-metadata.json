@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "master catalog enrichment spec",
+      "master catalog trigger phrases",
+      "catalog last updated field",
+      "master catalog enrichment plan",
+      "master catalog enrichment tasks",
+      "master catalog frontmatter task list"
     ],
     "key_topics": [
-      "implementation",
-      "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
       "master",
-      "files",
-      "remaining",
-      "stale"
+      "catalog",
+      "enrichment",
+      "spec",
+      "trigger",
+      "phrases",
+      "last",
+      "field",
+      "plan",
+      "tasks",
+      "frontmatter",
+      "task"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -110,22 +119,48 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
     "created_at": "2026-07-09T10:02:46.152Z",
-    "last_save_at": "2026-09-11T04:36:15.514Z",
+    "last_save_at": "2026-10-07T20:38:27.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:230b199224378a5e0e70d4480f588b36c0b986d4b636d3c8c9f479bc97611971",
+    "source_fingerprint": "sha256:3508a7d3deafa581b5ba1b03f8662cfc789a19e760a4e6bbde0f7b6120a5ca67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9db91d3212c5feb1668d583338af23bdb18b379be9d504187075cbcfeb8782bf",
-      "plan.md": "5363d5d6fe2dbe055ef3a67dd2f065a167657745ac5e8f27e9b6a9ee6cb65062"
+      "spec.md": "a5e8992be07b2020ba670b1c6b3b79ead49a8f2b539337bbaf7f646e1926388b",
+      "plan.md": "23ad8b1b3a1e308531da583aea58923c5829801abc2c862c8332f90288f37aaf",
+      "tasks.md": "17b6e36ce8b4e5e60db859a8a9f712e58eb2acb92c62174723b89c5aabd588b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

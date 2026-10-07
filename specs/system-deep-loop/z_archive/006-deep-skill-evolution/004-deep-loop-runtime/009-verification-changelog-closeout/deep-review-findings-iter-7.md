@@ -1,3 +1,14 @@
+---
+title: "Deep Review Findings: Iteration 7 edge cases and adversarial sweep"
+description: "Iteration 7 review findings F-027 through F-030 against the deep-loop-runtime references and scripts: two P1 reference-accuracy gaps and two P2 hardening notes, with cumulative status 0 P0 across seven iterations."
+trigger_phrases:
+  - "deep review iteration 7 findings"
+  - "edge case adversarial sweep"
+  - "state_format reference accuracy"
+importance_tier: "important"
+contextType: "implementation"
+---
+
 # Deep Review Findings — Iteration 7
 
 **Review scope:** Edge cases + adversarial sweep  

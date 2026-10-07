@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/008-structural-anomalies",
+  "specFolder": "sk-design/z_archive/014-template-conformance/008-structural-anomalies",
   "description": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance",
   "keywords": [
     "four",

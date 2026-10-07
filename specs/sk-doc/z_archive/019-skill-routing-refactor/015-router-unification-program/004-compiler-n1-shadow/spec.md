@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Implemented and verified the shadow compiler and mcp-code-mode N=1 artifacts"

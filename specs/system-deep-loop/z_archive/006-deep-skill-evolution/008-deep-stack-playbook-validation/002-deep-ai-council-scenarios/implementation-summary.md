@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/002-deep-ai-council-scenarios |
+| **Spec Folder** | 002-deep-ai-council-scenarios |
 | **Completed** | PENDING — scaffold only; verdicts filled post-run |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

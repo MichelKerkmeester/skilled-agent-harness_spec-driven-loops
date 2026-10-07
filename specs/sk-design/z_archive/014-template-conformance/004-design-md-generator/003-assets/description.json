@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/003-assets",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/003-assets",
   "description": "`assets/` holds 3 files — `cardinal-rules-card.md`, `design-md-prompt-template.md`, `source-of-truth-router-card.md` — none of which was part of the",
   "keywords": [
     "assets",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Make init_skill.py auto-run the H/S class gate --fix and write a compiler-valid derived block so a new skill is born complete, generate S-class leaf-manifest.config.json defaults from one shared source, and add one joined test proving scaffold -> generated gate -> advisor ingest -> parent selection -> compiled route (O2 + O9, closing the open 024 journey-proof gap).",
     "created_at": "2026-07-29T08:00:12.368Z",
-    "last_save_at": "2026-08-30T15:39:15.863Z",
+    "last_save_at": "2026-10-07T18:13:28.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4df51347406e8d3eb3ab8a43305e5ade6dd8f66b4f7936042268cd219e2b85be",
+    "source_fingerprint": "sha256:014d8258103f768490a37783221879f68c43dac7bfc15c28a82caee04e9c1be0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ce9066d1faadf6090444a96f7e0b8639a4d3c5c85c20e971bf8b735cc761947",
-      "plan.md": "e5b547aca482715b1f78601ae1f81654d3ec3badf3e0f715897343e8d5829318",
-      "tasks.md": "1614ef67d03f4595d5f66d91c7514cf1f33b5088e586dd9e3a1d6b9fe32ca987",
-      "implementation-summary.md": "8bcc63a1aaa176d1b1801fc626a61453c5153738458f1ecd643f55bfc92c9c53"
+      "spec.md": "bb95e343feef6f828f106d093c39eb6fdf8be00f5e590c3db4e568be72696f7c",
+      "plan.md": "fb482c925448502b53143d3e95ce91813ea64ae05f589829ceaf665046a69991",
+      "tasks.md": "0b1a20be4cd2e706ebb6dd3d07e629f8abc1e72dc05e1d9680e99a3c99de2369",
+      "implementation-summary.md": "e6528b7ea5225cf9411d0727269b24430bd90f3b96b22b9553cada8c6ebaa09d"
     },
     "last_active_child_id": null,
     "last_active_at": null

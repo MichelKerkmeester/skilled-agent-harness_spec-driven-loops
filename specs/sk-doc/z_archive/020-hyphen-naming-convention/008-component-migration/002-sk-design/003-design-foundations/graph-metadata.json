@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary.",
     "created_at": "2026-07-14T15:17:15Z",
-    "last_save_at": "2026-08-30T15:39:16.323Z",
+    "last_save_at": "2026-10-07T18:13:13.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:376d8cf8ee194a42d4b4f9618654c9dfbdf448b5982efa8c1a196f64e47a57c5",
+    "source_fingerprint": "sha256:991903dc8cae45e686846fc70ee65dba0ac45e28d029fcd195fb39d852ace668",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5229862e8aaec485d940fe6e52c8f301167d724d9d0b0d51753d9482c3704cef",
-      "plan.md": "842dc16995706718193f5b015c17fd7b25452e55b4771d22e6bb52672044ede8",
-      "tasks.md": "4e73acf9cf95f767b29609efa4f237c348106cfd16c9fdd332d98e8253a8cc07"
+      "spec.md": "0d35a203dd15282f666066bc6825f8d79c1d502d08084d3c6aa609ab32a3e244",
+      "plan.md": "4ce3e867bfc918b2296afba887a0ebbbb05f52315be7f76b70e63d0b44ff74a5",
+      "tasks.md": "794ebe26a104362232eb1e9b048304e23393e1dbc59daad23ae45a0637dfdcc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

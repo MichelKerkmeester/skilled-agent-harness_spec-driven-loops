@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
-  "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [
-    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
-    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
-    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
-    "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge"
+    "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
+    "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
+    "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+    "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge"
   ],
   "manual": {
     "depends_on": [],
@@ -96,16 +96,16 @@
     ],
     "causal_summary": "Program parent grouping all naming-convention governance for feature_catalog / manual_testing_playbook content across every skill. Holds three children: the two completed de-numbering packets (former top-level 025 category folders, 026 snippet filenames, re-nested here as 001/002) and the new hyphen->underscore restyle of content folders and files (003). Root purpose only; the re-nest mechanics live in context-index.md and each child's own docs.",
     "created_at": "2026-07-12T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:13.763Z",
+    "last_save_at": "2026-10-07T18:12:33.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b7776286cb652382303ff3bc1ff864635579d85f748259a021de0bf418f2a365",
+    "source_fingerprint": "sha256:11c7a662c03149ceac60c9462e9a4d361d711ed2daa09c454cb8a357880592b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fcbc4a264619363df9369c5a77475117916f48b5bed5f9778336dffb2b1a7ad"
+      "spec.md": "524b85cdaaee260db8aba2fc0384c6bc8800fe4c2392657990c6dc8fb427c110"
     },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
     "last_active_at": "2026-07-12T00:00:00.000Z"

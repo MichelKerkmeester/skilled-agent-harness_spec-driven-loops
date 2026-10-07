@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/011-routing-remediation"
+    packet_pointer: "mcp-tooling/z_archive/011-routing-remediation"
     last_updated_at: "2026-07-16T19:05:00Z"
     last_updated_by: "claude"
     recent_action: "Authored Level 3 planning packet from the phase-007 review Planning Packet"

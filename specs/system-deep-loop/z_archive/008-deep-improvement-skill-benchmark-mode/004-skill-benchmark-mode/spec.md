@@ -30,12 +30,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Purpose
 
 Design and build **Lane C (skill-benchmark)** in the renamed `deep-improvement` skill: a benchmark that measures whether a *skill* is well-structured, well-routed, efficient, and useful **in practice** (how AIs actually discover/use it), and emits actionable, ranked remediation findings.
 
 The converged design from Phase 001 is authoritative, and the Phase 002 implementation playbook is the build guide; this spec is the working frame.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:requirements -->
 ## 2. Build (reusing the three pluggable seams)
 
 - **Fixtures (candidate-source).** Per-target-skill scenario set: realistic prompt + expected activation + expected reference/asset(s) + correct-outcome rubric, including negatives (should-not-activate). Authoring approach per Phase 001 RQ4.
@@ -45,6 +49,8 @@ The converged design from Phase 001 is authoritative, and the Phase 002 implemen
 - **Command.** `/deep:start-skill-benchmark-loop` (`:auto`/`:confirm`). Reuse the model-benchmark command scaffold unless Phase 001 RQ6 says otherwise.
 - **Report.** Skill Benchmark Report: per-dimension scores + ranked bottlenecks + concrete remediations (Phase 001 RQ5). Diagnostic by default (no target-skill mutation); optional hand-off to Lane A.
 
+<!-- /ANCHOR:requirements -->
+
 ## 3. Resources to add
 
 - `references/skill-benchmark/*` (operator guide, evaluator/scoring contract, scenario-authoring guide).
@@ -53,6 +59,7 @@ The converged design from Phase 001 is authoritative, and the Phase 002 implemen
 
 Per the fixed per-lane layout: Lane C adds exactly one subdir per area (`skill-benchmark/`) under `references/`/`assets/`/`scripts/`; genuinely cross-lane logic goes in `shared/`. The Phase 002 playbook fixes the shared-vs-Lane-C module split.
 
+<!-- ANCHOR:success-criteria -->
 ## 4. Success criteria
 
 - Lane C runs end-to-end on ≥1 real target skill and emits a ranked, actionable Skill Benchmark Report.
@@ -60,6 +67,10 @@ Per the fixed per-lane layout: Lane C adds exactly one subdir per area (`skill-b
 - Repeatability evidence (variance across runs) is captured, mirroring Lane B stability.
 - `validate.sh --strict` green for this phase.
 
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:scope -->
 ## 5. Out of scope
 
 Remediating flagged skills (NG1). Replacing `sk-doc` validation or manual playbooks (NG2). `deep-loop-runtime` changes (NG3).
+<!-- /ANCHOR:scope -->

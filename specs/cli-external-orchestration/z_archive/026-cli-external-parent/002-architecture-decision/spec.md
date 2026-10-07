@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/026-cli-external-parent/002-architecture-decision"
+    packet_pointer: "cli-external-orchestration/z_archive/026-cli-external-parent/002-architecture-decision"
     last_updated_at: "2026-07-09T19:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the five-ADR decision gate and frozen target shapes"

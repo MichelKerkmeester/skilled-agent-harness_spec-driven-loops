@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/017-design-proof-token-relocation",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/017-design-proof-token-relocation",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/hub-router.json"
     ],
     "entities": [
       {
@@ -68,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-design`'s hub root had a `references/` folder containing exactly one file, `designprooftoken.md`, while every other cross-cutting design doc (`antislopprinciples.md`, `cognitivelaws.md`, `designtokenvocabulary.md`, etc.) already lives directly in `shared/`",
     "created_at": "2026-07-07T04:26:23.402Z",
-    "last_save_at": "2026-08-30T15:39:12.276Z",
+    "last_save_at": "2026-10-07T18:11:38.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ca640981d1a6a2e8fdfd7e0f41814f6caf01c699cde9add0606b869f4a45c33",
+    "source_fingerprint": "sha256:de95b6a243a5d36446b17640764ec4195167f889fb6606b792cfb3481f101f34",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5e2020b4311401ff59520cd9792cc20ad3b709f952adbc3fdc920cbd0dac8e0",
-      "plan.md": "3782580d7838363c0e34636e1d07add1444a1b9e5ed3e8880d3d9caa660d91a6",
-      "tasks.md": "6a64f424c4b18ca8f7422dfd064f2268c7bfea28eaeea1782ce61b8e3de6f4ae",
-      "implementation-summary.md": "2c3f4d127b2941febe6948f571588b6c9a6e95342d11a352d8235287039b47d4"
+      "spec.md": "230fc26ba5ecf930b87d9d2ab17b2c596ecf4030355e213bf6c0042cab2e5363",
+      "plan.md": "48812cacad42544ef9496e9a4434939b469aa7335fe492aad90ba04b5e3622a1",
+      "tasks.md": "adf25ae7d939a9378c1db9f83c0607f458b67465dfbf1d28e0997245f23e7bf6",
+      "implementation-summary.md": "aebe11c76c2a33dc5af6013734ca80ddb2884e70f9dac36d66deeeea215d6bba"
     },
     "last_active_child_id": null,
     "last_active_at": null

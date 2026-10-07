@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-30T15:39:16.297Z",
+    "last_save_at": "2026-10-07T18:13:30.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:3786eaf8d0c193e904c9eb124827430c862483d6d750633871ed5a31675406fb",
+    "source_fingerprint": "sha256:b245079a24bc3b6b6dd0f9c57c410f30db8726243723dccb8ac6deee191000c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "450b1b79fe9a3bef66b4bdd8d059fadcac16ee9277fd79ade768790409c6cce8",
-      "plan.md": "6abaf1dba352acb4aa1b0caa364761f50d12d71e6c67f783f6b428776509d652",
-      "tasks.md": "e734d257e384c1d4ad50005498f2e378da68b2efd1847955c7ae70a0b30a8ab5"
+      "spec.md": "addb34b2c55a90a280ba38560b694e11f91f5ba8cb2f02a7273beefd1e8512a4",
+      "plan.md": "d18e326983b968c26bb101a02c1fbbc2389763d1de9c0a91142a374c5c405167",
+      "tasks.md": "33ad2c9fcf25b3eccc711a9b9d515370965c0c9199b941fca57c7cd65fdbe835"
     },
     "last_active_child_id": null,
     "last_active_at": null

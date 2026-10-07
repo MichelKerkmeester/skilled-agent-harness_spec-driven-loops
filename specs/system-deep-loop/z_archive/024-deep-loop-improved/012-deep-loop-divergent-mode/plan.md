@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/012-deep-loop-divergent-mode"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode"
     last_updated_at: "2026-07-10T09:43:07Z"
     last_updated_by: "opencode"
     recent_action: "Synthesized four context passes and a native three-seat AI Council into the implementation plan"

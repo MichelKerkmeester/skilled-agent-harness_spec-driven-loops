@@ -12,7 +12,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup"
     last_updated_at: "2026-07-16T18:23:19Z"
     last_updated_by: "claude"
     recent_action: "Shipped G1-G4 + resolved G2/A-G2 by evidence; gates green"

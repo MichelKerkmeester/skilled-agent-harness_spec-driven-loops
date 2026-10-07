@@ -2,7 +2,6 @@
 title: "Imp [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/017-governance/implementation-summary]"
 description: "7 features audited: 7 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "governance"
   - "code audit"
 importance_tier: "normal"
@@ -55,6 +54,9 @@ All 7 governance features were audited — feature flag governance process, suns
 5. Constitutional gate-enforcement: rule pack accurately describes gate cross-references and trigger phrases
 6. Admin identity governance: resolveAdminActor() behavior correctly documented
 7. Governance audit review and rollout metrics: reviewGovernanceAudit() and shared-space metrics confirmed
+
+Per-feature findings are recorded in `spec.md` under the audit findings section.
+
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
   "description": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
   "keywords": [
     "master",

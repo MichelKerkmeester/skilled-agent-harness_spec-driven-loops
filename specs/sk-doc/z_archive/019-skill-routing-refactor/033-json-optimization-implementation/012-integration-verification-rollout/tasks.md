@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout"
     last_updated_at: "2026-07-29T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored planned phase spec"

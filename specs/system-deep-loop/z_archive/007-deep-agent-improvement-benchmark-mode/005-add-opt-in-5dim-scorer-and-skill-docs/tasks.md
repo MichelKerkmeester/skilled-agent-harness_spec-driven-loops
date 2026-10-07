@@ -2,9 +2,7 @@
 title: "Tasks: Phase 1: optin-5dim-scorer-and-skill-docs"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
+  - "add opt in 5dim scorer and skill docs tasks"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"
@@ -13,8 +11,8 @@ _memory:
     packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
     last_updated_at: "2026-05-28T19:15:45Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
     blockers: []
     key_files: []
     session_dedup:

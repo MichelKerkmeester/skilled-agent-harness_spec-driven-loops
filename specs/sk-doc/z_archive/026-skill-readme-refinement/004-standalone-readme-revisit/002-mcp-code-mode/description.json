@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
   "description": "The mcp-code-mode skill README still carries the older tabular reference-card style with an AT A GLANCE table as its spine",
   "keywords": [
     "mcp-code-mode",

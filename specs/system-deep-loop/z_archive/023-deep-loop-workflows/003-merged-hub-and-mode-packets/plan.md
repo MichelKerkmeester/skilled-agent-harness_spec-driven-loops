@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/003-merged-hub-and-mode-packets"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/003-merged-hub-and-mode-packets"
     last_updated_at: "2026-06-15T05:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Assembled implementation plan from parallel planning fleet"

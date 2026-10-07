@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/008-deep-loop-finding-dedup"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/008-deep-loop-finding-dedup"
     last_updated_at: "2026-07-06T17:15:59.122Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran both benchmarks and authored the three graduate verdicts"

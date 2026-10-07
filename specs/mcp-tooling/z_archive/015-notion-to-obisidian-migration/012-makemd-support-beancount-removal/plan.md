@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal"
     last_updated_at: "2026-08-23T19:40:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted the make-md/beancount implementation plan"

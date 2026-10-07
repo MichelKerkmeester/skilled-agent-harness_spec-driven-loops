@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-skill-docs-sk-doc-alignment |
+| **Spec Folder** | 007-025-skill-docs-sk-doc-alignment |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 | **TEN Observed At Scan** | yes, packet 010 implementation summary recorded the `mk-code-index` rename as complete |

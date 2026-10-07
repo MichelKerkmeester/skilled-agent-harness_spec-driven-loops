@@ -1,3 +1,11 @@
+---
+title: "Phase-004 Scorecard -- deep-ai-council + deep-improvement Behavioral Benchmarks"
+trigger_phrases:
+  - "rollout council improvement scorecard"
+importance_tier: "high"
+contextType: "implementation"
+---
+
 # Phase-004 Scorecard — deep-ai-council + deep-improvement Behavioral Benchmarks (3 legs × 10 scenarios, 30 scored runs)
 
 > **Legs**: `claude-cli` (baseline: claude v2.1.198) | `gpt-fast-med` (`openai/gpt-5.5-fast --variant medium`) | `gpt-fast-high` (`--variant high`), via the shared runner with hardened fixture restores. Run evidence: `runs/{baseline,gpt-fast-med,gpt-fast-high}/` in this folder.

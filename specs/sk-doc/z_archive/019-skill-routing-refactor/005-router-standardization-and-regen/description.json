@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/005-router-standardization-and-regen",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/005-router-standardization-and-regen",
   "description": "The ten packets placed trigger lines and handoff boundaries inconsistently, and the JSON projections were not derived from a uniform source shape",
   "keywords": [
     "ten",

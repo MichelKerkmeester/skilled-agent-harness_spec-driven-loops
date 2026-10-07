@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment"
     last_updated_at: "2026-07-28T08:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Swept external consumers and runtime mirrors to the sk- names"

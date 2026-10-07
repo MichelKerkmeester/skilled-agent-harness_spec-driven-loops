@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/002-parent-skill-readme-template",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/002-parent-skill-readme-template",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,28 +46,25 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The fleet has parent hubs with READMEs of inconsistent shape",
     "created_at": "2026-08-04T07:12:16.602Z",
-    "last_save_at": "2026-08-30T15:39:17.435Z",
+    "last_save_at": "2026-10-07T18:13:45.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8931507012c11571371a0ba3766a1b14359455c072e270177cd6fc059441f37",
+    "source_fingerprint": "sha256:baac512ddd35221f93d97e0efc22984fd8507cc0e3c881d1b76aa943804a05fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ffe76950139396f4d85af8f327e085e87a3e1480cb1f59272ba3638e6686ac0",
-      "plan.md": "24d8d297f06efd67d3df07d892fa96775d805f98d30f3f8cc494162016db1a41",
-      "tasks.md": "e734c09acb6ee3ed369559785b7104d2f690590ed53e6f0aa2144e1034c97331",
-      "implementation-summary.md": "1b7cda323921653a1b5a24843a307f1804addab06b4fd5346d58431abbb83f29"
+      "spec.md": "51fb125761f269c2e50d3c8181af24355533d0f38628328cfeb908c72be077f9",
+      "plan.md": "1d9d64638cdd0db297d3a8ec28e1fc2321e11c0f62ec0c8df8bfe9edf67f65b2",
+      "tasks.md": "0de6bdba656e99c7d462aef9e827535558ac88128470727ec53083fd0c941ae3",
+      "implementation-summary.md": "091f51e0f364e3c10ae10a0be150aa2097ab2d30b8195aaa5106b010de88119a"
     },
     "last_active_child_id": null,
     "last_active_at": null

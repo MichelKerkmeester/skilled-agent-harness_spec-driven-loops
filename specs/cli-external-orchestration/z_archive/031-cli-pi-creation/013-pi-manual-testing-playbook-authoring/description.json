@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
   "description": "`cli-pi/manual-testing-playbook/` contains only a `.gitkeep` today",
   "keywords": [
     "cli-pi",

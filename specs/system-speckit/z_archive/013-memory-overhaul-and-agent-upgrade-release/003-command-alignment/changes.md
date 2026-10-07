@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 03: Command Configs Audit"
+description: "Command configuration alignment edit list for task 03 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "command alignment changes"
+  - "command config edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 03: Command Configs Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

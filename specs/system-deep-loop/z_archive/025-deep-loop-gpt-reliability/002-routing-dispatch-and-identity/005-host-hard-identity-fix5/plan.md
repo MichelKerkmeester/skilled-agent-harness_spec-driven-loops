@@ -1,12 +1,12 @@
 ---
 title: "Implementation Plan: Host Hard Identity / FIX-5 (PARKED)"
 description: "PARKED — no plan until phase 004's smoke fires the escalation trigger. See decision-record.md."
-trigger_phrases: ["plan", "host-hard-identity-fix5"]
+trigger_phrases: ["host hard identity fix5 plan", "host-hard-identity-fix5"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5"
     last_updated_at: "2026-06-30T15:30:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "PARKED — plan stub only; activate via decision-record.md trigger"
@@ -28,6 +28,8 @@ _memory:
 
 ## STATUS: PARKED
 
+<!-- ANCHOR:summary -->
 This phase has **no actionable plan**. It is parked pending the escalation trigger defined in `decision-record.md`. When (and only when) phase 004's smoke shows GPT mis-dispatch persists after 001+002+003 land, this plan gets populated with the chosen approach (minimal 4-agent hard identity vs full FIX-5 process isolation).
 
 See `spec.md` §3 and `decision-record.md` for the deferred scope + trigger.
+<!-- /ANCHOR:summary -->

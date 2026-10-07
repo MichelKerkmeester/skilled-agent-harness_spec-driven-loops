@@ -1,9 +1,11 @@
 ---
 title: "Implementation Summary: sk-design style database"
 description: "Built and fixture-verified the SQLite+FTS5+vector style database per the 001 design; adapter defaults to legacy pending the full-corpus activation gate."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/002-style-database/001-style-database"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/002-style-database/001-style-database"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "review-remediation"
@@ -22,10 +24,7 @@ _memory:
     answered_questions:
       - "Vectors: profile-addressed JSON arrays + deterministic cosine (no external SQLite vector extension, per no-new-deps)"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "style database implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

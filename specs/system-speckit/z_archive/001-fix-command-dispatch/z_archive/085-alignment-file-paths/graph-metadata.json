@@ -19,8 +19,10 @@
       "spec",
       "implementation",
       "plan",
-      "summary",
-      "implementation summary"
+      "alignment validator file path tasks",
+      "memory folder alignment fix tasks",
+      "recovery content validation tasks",
+      "summary"
     ],
     "key_topics": [
       "alignment",
@@ -30,17 +32,18 @@
       "spec",
       "implementation",
       "plan",
-      "summary",
+      "tasks",
       "memory",
-      "files",
-      "saved",
-      "incorrect"
+      "folder",
+      "recovery",
+      "content"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -54,6 +57,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -135,6 +144,36 @@
         "source": "derived"
       },
       {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path Analysis In The Alignment Validator",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recovery Content Validation In",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -151,42 +190,26 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "New Functions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Updated Functions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Added Step",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths",
     "created_at": "2026-04-12T09:02:53.557Z",
-    "last_save_at": "2026-08-30T15:39:37.606Z",
+    "last_save_at": "2026-10-07T20:39:49.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f424de0c1ffdd326eb6fbb42284b539c5b61485c1ede3c1fba9296ca62ebc68",
+    "source_fingerprint": "sha256:c576a36fa65db027f1b67cd60bd5945120b58a932000784cd59cfc2ad4c913c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "299ec563b44b96f9022a995c7576b1849689a76ce3dc129c8e64004a2ed3e6ee",
+      "spec.md": "59d18da22290eeff74d2ef16a4f441dffbe47194cebcad91f13cac51d1e2ac44",
       "plan.md": "6f1d289b4d1fe51638832c4956a23e8b575a68e31f6e2cf866a2b6af01218c1c",
-      "implementation-summary.md": "6eaab52c7213a4af29ef47a8ddb17d64ff88bd4e561a284473bb4bc3e9a110eb"
+      "tasks.md": "20237d10ecd662e8fbafe55601c573b3d813720c6980b43d6fadf1c45655567a",
+      "implementation-summary.md": "de66108d9c2154c3b473e3a4a0207a312da7a56fd381ea37c8c115fcc3b54808"
     },
     "last_active_child_id": null,
     "last_active_at": null

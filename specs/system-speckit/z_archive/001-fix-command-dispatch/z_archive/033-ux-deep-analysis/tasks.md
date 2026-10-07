@@ -2,10 +2,7 @@
 title: "Tasks - UX Deep Analysis [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/033-ux-deep-analysis/tasks]"
 description: "tasks document for 033-ux-deep-analysis."
 trigger_phrases:
-  - "tasks"
-  - "deep"
-  - "analysis"
-  - "033"
+  - "ux deep analysis tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

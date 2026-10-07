@@ -5,14 +5,6 @@
   "parent_id": "system-skill-advisor",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/005-routing-weight-sweep-harness",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/006-seeded-corpus-evaluation-sweep",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/007-hard-intent-corpus-resweep",
-    "system-skill-advisor/005-skill-advisor-scoring-engine/008-routing-confidence-calibration",
     "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
     "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
     "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring",
@@ -100,7 +92,7 @@
     ],
     "causal_summary": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.642Z",
+    "last_save_at": "2026-10-07T18:15:28.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

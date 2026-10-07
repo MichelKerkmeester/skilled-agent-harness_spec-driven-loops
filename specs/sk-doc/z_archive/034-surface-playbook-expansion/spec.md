@@ -13,7 +13,7 @@ contextType: "spec"
 parent: "sk-code"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/034-surface-playbook-expansion"
+    packet_pointer: "sk-doc/z_archive/034-surface-playbook-expansion"
     last_updated_at: "2026-08-29T10:24:54Z"
     last_updated_by: "claude"
     recent_action: "Expanded both surface playbooks to 7 category dirs; both validate PASS/FAIL_CLOSED"

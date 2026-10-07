@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved"
     last_updated_at: "2026-07-02T15:45:49Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Phase 011 complete: child 007 sliding-window mode shipped and verified"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout",
+  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/007-docs-agents-governance-and-closeout",
   "description": "Adding a 4th CLI mode is not complete when the packet and runtime wiring exist — the new executor must also appear wherever its 3 siblings already do:",
   "keywords": [
     "4th",

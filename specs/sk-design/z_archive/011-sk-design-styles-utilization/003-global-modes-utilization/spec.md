@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/003-global-modes-utilization"
     last_updated_at: "2026-07-18T11:00:00Z"
     last_updated_by: "claude"
     recent_action: "Research converged at 6 iters; per-mode strategies delivered"

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/026-cli-external-parent/007-routing-benchmark-and-review",
+  "specFolder": "cli-external-orchestration/z_archive/026-cli-external-parent/007-routing-benchmark-and-review",
   "description": "The merged `cli-external` hub serves two modes that were previously independent skills, and its delegation routing now flows through a rewritten",
   "keywords": [
     "merged",

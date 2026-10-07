@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
-  "spec_folder": "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
-  "parent_id": "sk-design/012-sk-design-program/001-research",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "styles database rust opportunities",
       "rust features optimizations automations integrations styles",
       "sk-design styles rust research",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "styles database rust opportunities plan",
+      "styles database rust opportunities tasks",
+      "styles database rust opportunities implementation summary"
     ],
     "key_topics": [
       "styles",
@@ -35,8 +29,8 @@
       "integrations",
       "sk-design",
       "research",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "The styles database (`styles/db/`, SQLite + FTS5 + rebuildable vector projection over ~1,290 style bundles) works, but the question is whether Rust could make it materially better — not whether to port it",
     "created_at": "2026-07-20T07:00:06.322Z",
-    "last_save_at": "2026-09-11T04:35:34.022Z",
+    "last_save_at": "2026-10-07T19:23:54.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8975a731df55ea01866ce52a82cd94733cfad01dd27e0c989b2fac4394eb55d5",
+    "source_fingerprint": "sha256:cdbe90d4115fad43f342094b98d8cb2005d84e0106fe2d71ef5527aacf8bf359",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9abaede7a6b3f50ed569d53f5650af10a8568ffb6449707022e12a9ae55f381",
-      "plan.md": "2e9c177b75fe8d9407d3f7348c23a7d7578366d357b2285b89643cbe884a2bac",
-      "tasks.md": "955126214b22022341ea32be7e8a1ca7edaff033d57e7730a3d0c6eb4ab0e8d7",
-      "implementation-summary.md": "0b56286552225fe58bec216b88744c476273b51f045f93dcb609d30d7a4b2b33"
+      "spec.md": "1d95d7b0c1014837363d5e1e03c512bccc0ebdb1f32ec1790ff618968d61bc6f",
+      "plan.md": "8cecc6ec27d1053dfe77f6c70e5123479378aceee74672a3e8fc5ae644a546db",
+      "tasks.md": "04c297465e551297d53af4839b506c26521e5cefd10e160a5c1015dd93294327",
+      "implementation-summary.md": "510f3ba1eeacdfcb9adbac90d686a2342ba2dd5eb6cc8ce061b1aaa625a792c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

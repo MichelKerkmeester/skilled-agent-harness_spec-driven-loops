@@ -19,8 +19,7 @@
       "implementation",
       "plan",
       "tasks",
-      "summary",
-      "implementation summary"
+      "summary"
     ],
     "key_topics": [
       "memory",
@@ -42,8 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/manage.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
@@ -189,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Command Structure",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec ID: 083-memory-command-consolidation",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-08-30T15:39:37.555Z",
+    "last_save_at": "2026-10-07T19:24:21.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9ebd300200560d219f079c29d21f0b8f1a5dab35863feab1064d83c849c4a8d",
+    "source_fingerprint": "sha256:89b6482461998fcef5a2d750c3a022aac57318760177a0a21718ae36e878cdec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2373ebc2609d4bd6bfa0dce5171e3d9143a84b1ba39e2db9218c3b2adcd67e1",
       "plan.md": "0e97a49561264dd98d8cdfa32b74abea0fe59181526abc10e3bd15a90abc41e3",
       "tasks.md": "a1d11a12ea6eccb7f465b0c3332adcbd293c35c421745530a3f75df68e68fb31",
-      "implementation-summary.md": "95d2b1fbff48bf9af9ebde9eea945253af06e2d5abedd18926e4e55bf1dd187b"
+      "implementation-summary.md": "c13fd5a19cc22d21c50832fdff1da4e482bd1757f44cf851dee42c150cda7cc1"
     },
     "last_active_child_id": null,
     "last_active_at": null

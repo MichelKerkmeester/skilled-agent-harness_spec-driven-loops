@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "subheadings spec kit spec",
+      "how it works subheadings",
+      "catalog section subheadings",
+      "subheadings spec kit plan",
+      "subheadings spec kit tasks",
+      "how it works subheadings task list"
     ],
     "key_topics": [
-      "implementation",
+      "subheadings",
+      "spec",
+      "kit",
+      "works",
+      "catalog",
+      "section",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
+      "tasks",
+      "task",
+      "list",
       "apply",
-      "sub-headings",
-      "system-spec-kit",
-      "works"
+      "sub-headings"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -98,22 +107,60 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target only files that need restructuring.",
     "created_at": "2026-07-09T10:02:46.134Z",
-    "last_save_at": "2026-09-11T04:36:15.360Z",
+    "last_save_at": "2026-10-07T20:38:24.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7bd48b3f83d11434a39adba064ee9924f145e21aba4800b863908ae55f33a8da",
+    "source_fingerprint": "sha256:e4f555ee5e0a61047a8bc14f5af641cc742b6a4e95675ef8e7e9d4d7fa2d4241",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6797deb45581ebe5d61acc47fb3e39a80f99c0279b7d640703840ca4b9c8fd74",
-      "plan.md": "e6b8c403e4b5c1ff93a8693d2b36f394a822cee17c70c534b76d37e0c5c5ec74"
+      "spec.md": "fbae421dec2dfe2bcab9688eb9076eed472a8d762510aa46dfc537a3b6abfd52",
+      "plan.md": "22f154caef8ac0fa4c9a5a92b31bc17448faa21b4e0cd0894eec51cc223b5393",
+      "tasks.md": "bdf15ea24a7f4b34a8a8c8dd66a432dbcb7e97518411749626ae974bea96c4c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

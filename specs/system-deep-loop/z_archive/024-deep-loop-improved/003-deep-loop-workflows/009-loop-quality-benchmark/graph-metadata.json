@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better than what was there before?)",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-08-30T15:39:24.968Z",
+    "last_save_at": "2026-10-07T18:14:52.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc6ec822a8717d23316ff1117f2db70a35eddfc866930034c94a403ecd7096e8",
+    "source_fingerprint": "sha256:6ac687490ebbbf2ffc7e6ba58b2e0c98b4c683b483ccaf20bee128f4f5875bdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "250c20dd13c9f3edb5ec0b8d2f9f56c2e1fb472ae9845cdc1debdfcef66c0184",
-      "plan.md": "5c79c9a65329d03062c3ef38f3fd72a79af082553feb4c8daad52ea971575420",
-      "tasks.md": "3ff5801c5c42bc9e8a450f7c65b869f1aeb09f36a469d2ee0e03a3dd305e6f87",
-      "implementation-summary.md": "acc05b1a63e5d033dff860c6a955d9619f735e47d10e94abf5ebd9157b8f46aa"
+      "spec.md": "16fae2efbe415674ae0b9779184ac0b98aff61ef298f7a6af756c898d30208c9",
+      "plan.md": "38bfda789b81b096f95087b680c0c4101b14c550fad21210007254036e7bcdaf",
+      "tasks.md": "1b8deef8eef6439649f56b297ed3547053decd7bb7a3ce91d4002a658e8be4eb",
+      "implementation-summary.md": "9920160c308b6b1bef9d535ecf29c37e81d47222e5c9f7d721210830269fb684"
     },
     "last_active_child_id": null,
     "last_active_at": null

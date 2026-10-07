@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/003-skill-packet"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet"
     last_updated_at: "2026-08-29T12:35:00Z"
     last_updated_by: "session"
     recent_action: "Authored the packet by executor and corrected its calling convention"

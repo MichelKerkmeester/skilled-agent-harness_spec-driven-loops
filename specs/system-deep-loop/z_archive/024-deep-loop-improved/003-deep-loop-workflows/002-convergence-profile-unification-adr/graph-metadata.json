@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Convergence math is spread across `convergence.cjs`, `lib/council/convergence.cjs`, and `lib/coverage-graph/coverage-graph-signals.ts` with no shared shape, no parity test, and no declared contract",
     "created_at": "2026-06-28T14:02:07Z",
-    "last_save_at": "2026-08-30T15:39:24.912Z",
+    "last_save_at": "2026-10-07T21:19:52.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c1b37e82fba22888e38f015d0570950c3025aeed05d7843812466a584a429b",
+    "source_fingerprint": "sha256:d08e1be212074a640d47023cfca2437f9f2e07b3e68aace5bb55ccfa8b552322",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2605fedc38ff735a6f4bf79222760c0559bf688eef7f04de8f50ffa3fb9684bd",
-      "plan.md": "ba6d9cb6cb7475152deb18d0df0cb2c49fbdf4b9cdc3a3e0d56601cdf32af19b",
-      "tasks.md": "c38653f4eef900506df2b712d058d117b1228530e02d4b20610e5177dda6a8c9",
-      "decision-record.md": "51a701df1545208bc79d48ee7b75eb9551306522e0addd01c4e2d4ecc28a99dd",
-      "implementation-summary.md": "54787cc189e4edb29093207cedace7af17f43b71d90aa1203ad63868f02ca16a"
+      "spec.md": "b4eb3628fb81739aab1bf271b4cb0d141906ae8aad5c7667eedbbd7d619d883e",
+      "plan.md": "3afdd28d747be32dd8232181fa6422ffb611e36264503f0a1273a7837ffcdff1",
+      "tasks.md": "a23ee18319082880217a530fbbfcc71617cf409e86c7c6f574720a8e5c4efbd3",
+      "decision-record.md": "5848f09717791fce7b39f7c237b42d5ca821c20ce23345580933be4f3a868c4d",
+      "implementation-summary.md": "2222f01fc54ccdee3ae75b1c742f324fd3794cee15cb3c0113e7beb17f626031"
     },
     "last_active_child_id": null,
     "last_active_at": null

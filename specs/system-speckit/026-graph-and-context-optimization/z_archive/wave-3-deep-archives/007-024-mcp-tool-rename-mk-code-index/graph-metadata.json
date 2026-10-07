@@ -48,8 +48,7 @@
       ".claude/mcp.json",
       "opencode.json",
       ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/update.md",
-      ".claude/settings.local.json"
+      ".opencode/commands/doctor/update.md"
     ],
     "entities": [
       {
@@ -98,12 +97,6 @@
         "name": "update.md",
         "kind": "doc",
         "path": ".opencode/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The extracted code-graph MCP server was registered as `systemcodegraph`",
     "created_at": "2026-05-14T17:29:04Z",
-    "last_save_at": "2026-08-30T15:39:32.786Z",
+    "last_save_at": "2026-10-07T18:16:06.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:338c9cec048f30a3872859b6285272d83e910491eb522349e51b003c0227e8db",
+    "source_fingerprint": "sha256:41d4ae2ece9ff3325722fa8cf5a31e6aca148f134c5d6432aab335a70c117649",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4659a869670db30d27933a15ac9faf56aaeb410aeb150e77fc11c23ad0db6612",
       "plan.md": "d4f07cd5f535de4bd67cc87fbd36a17e67cafb8597865f89c20f354429383f78",
       "tasks.md": "a41554a62a54d091d758900dace130f79e464e56d46ff5e24054b05e59dfe8dc",
-      "implementation-summary.md": "51dbdee86a4a680814814d47c808adb28f8bf39d217ff96c514754387a05c150"
+      "implementation-summary.md": "2c395a3c5804fe8005b8d60a097c9e9e6185b80d765244eb55ff34ea3b39d004"
     },
     "last_active_child_id": null,
     "last_active_at": null

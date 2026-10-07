@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 06: Root README Update"
+description: "Root readme update edit list for task 06 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "global readme update changes"
+  - "root readme refresh edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 06: Root README Update
 
 <!-- SPECKIT_LEVEL: 3 -->

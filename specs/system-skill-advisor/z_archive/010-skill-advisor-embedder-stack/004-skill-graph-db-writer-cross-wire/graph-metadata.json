@@ -41,10 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/embedders/registry.ts",
-      "lib/embedders/schema.ts",
-      "lib/embedders/index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,24 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": "lib/embedders/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "schema.ts",
-        "kind": "code",
-        "path": "lib/embedders/schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "lib/embedders/index.ts",
         "source": "derived"
       },
       {
@@ -190,11 +169,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Refactor `refreshSkillEmbeddings()` to use the new EmbedderAdapter layer when an active pointer is set",
     "created_at": "2026-05-17T22:02:52.268Z",
-    "last_save_at": "2026-08-30T15:39:27.113Z",
+    "last_save_at": "2026-10-07T18:16:08.582Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3acc7a0d55e5891d86b00032c62b0ca005420fc1aafedbe9e4d91721b9a4846e",
+    "source_fingerprint": "sha256:35e314c7ee870933bd237074310f91ee79168c557445ebcb95f05d2aa8bf1034",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0ceabb5076315849b34527946d930bd7b4cfddd9918b6ddfca5c0c4947f0cf7",
-      "plan.md": "84963ec04fa8256bc8d3eb9ddfe55b3518f47a5b24af7ccd359956054c3f1c90",
-      "tasks.md": "64d1484be3a67b07cfe804e63ec27ce4ad14ea0d877e0d150ebb310490b1128d",
-      "implementation-summary.md": "0b5bf4c857a6ae78433b64f96d0cc3f8f705a30dae59ba4e0906a6aa49f50b4b"
+      "spec.md": "a8217972c864cc341c17a95a65fee25f09b1178d565002a1240f0e33350f2add",
+      "plan.md": "4ae1253bf3845ca835257dc5613cead8e265279aab5445aee128a52c5814379f",
+      "tasks.md": "b37b8093e8b8bda17ae6b72113a26735a5015a779e445e52c29412a45a587a3e",
+      "implementation-summary.md": "f75731b13134b5d92699d5b4aef7aacd2c1e34e6468efaa57e6a5e91739c3eef"
     },
     "last_active_child_id": null,
     "last_active_at": null

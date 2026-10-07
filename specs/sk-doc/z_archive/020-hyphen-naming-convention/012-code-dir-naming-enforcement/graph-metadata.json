@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The canonical rule (`shared/references/filesystem-naming-convention.md`) says kebab-case is the sole in-scope form, but three enforcement gaps let non-canonical code directories ship — as seen in `sk-design/styles/{db,engine,harness,tests}`:",
     "created_at": "2026-07-20T10:44:42.471Z",
-    "last_save_at": "2026-08-30T15:39:17.212Z",
+    "last_save_at": "2026-10-07T18:13:26.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b59a64ff5a827ff9378103fefea3cde306813569b2c38f8e1b87c1f825b2a54f",
+    "source_fingerprint": "sha256:2e1ba72e1307943836f417f9bd75ae62875f6ee091f8149773d1a4df977eb173",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "860eeebc0d8c44aed099f528e4b79a5985cce9b3fb6961b11432507282d791f9",
-      "plan.md": "2a7fb1b00d8cbd4096f03e9ccb1374aeea03ccbd0b9ac6a663054adcf35d1dda",
-      "tasks.md": "be06be656de3a7b23da0e14683b860ed0e49a1f2aaedbe245bdda7627814e73e",
-      "implementation-summary.md": "45baa3b9c7a905c9bf168f6b97fcae5f4f1aac3371b530dc81a6d4b104527764"
+      "spec.md": "9fc6de4e36308842d18fc58b91c2525a0e35d03b21c326e8c0af4b47c615fac7",
+      "plan.md": "a2d984df68646675b4b86a991ea7e79ed9a968ed3b80859a5620fcafad07b92d",
+      "tasks.md": "87d19c9ad80c45788af2f75bb1004860df1bec92b5bb90b7f875e38be73ec403",
+      "implementation-summary.md": "1243a4d9cc1f6288386e4ec4c06530392c2a57b4d31e05058d9da9f6e1c4d2de"
     },
     "last_active_child_id": null,
     "last_active_at": null

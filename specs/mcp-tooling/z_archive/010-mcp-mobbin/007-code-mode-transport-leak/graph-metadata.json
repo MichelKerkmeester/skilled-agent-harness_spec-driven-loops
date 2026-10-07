@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "A browser verification window for Mobbin reopened every few minutes with no user action",
     "created_at": "2026-08-25T06:57:09.439Z",
-    "last_save_at": "2026-08-30T15:39:10.015Z",
+    "last_save_at": "2026-10-07T18:11:18.117Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15f38b74f4f455ee5626bf36e9528f18167cf87436fe4640a00d16539e675a02",
+    "source_fingerprint": "sha256:ebc1c459bf749ac7537aec3b6665583eaaaa54ffb5bdb0db617b5610fb1464f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49838253c2cbe91495c51379598143d0d9b9fdafa59fd5e68e31ceaddf8ebd56",
-      "plan.md": "1a2f9d9f0c76af606bf36099adde657843f6a83be6a970072c00468d518a8d3f",
-      "tasks.md": "229377bcb4e7670fd83a2de86eeb102bea6aafdb900f7883de9ce4aea46da56f",
-      "implementation-summary.md": "d6f257f9bf18b6036da167848d1933baafc07b872b9ee153f71ba02deba0f06c"
+      "spec.md": "095ddafa8fa617b47afdea7fe031cf83dfa5f081300dd8303bbcb36a85da7daa",
+      "plan.md": "97b0d8db150d3213df274c0799cab87dd4e4a0294bb03d3ff339287a39a2ba76",
+      "tasks.md": "247170285889cc1ab124dd669bf05d2473713606765cc1f880086b2844c42cc7",
+      "implementation-summary.md": "ad41288b7518e4fb477aa949e7d9793cb3bf656e5c2191fd9d1645e9b77e474f"
     },
     "last_active_child_id": null,
     "last_active_at": null

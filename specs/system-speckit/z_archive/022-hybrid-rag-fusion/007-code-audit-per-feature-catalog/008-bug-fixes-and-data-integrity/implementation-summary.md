@@ -2,7 +2,6 @@
 title: "...kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/008-bug-fixes-and-data-integrity/implementation-summary]"
 description: "11 features audited: 11 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "bug fixes & data integrity"
   - "code audit"
 importance_tier: "normal"

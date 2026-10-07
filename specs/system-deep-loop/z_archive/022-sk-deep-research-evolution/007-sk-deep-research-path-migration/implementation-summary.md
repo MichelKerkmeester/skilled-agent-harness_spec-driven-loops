@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 035-sk-deep-research-path-migration |
+| **Spec Folder** | 007-sk-deep-research-path-migration |
 | **Completed** | 2026-03-28 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

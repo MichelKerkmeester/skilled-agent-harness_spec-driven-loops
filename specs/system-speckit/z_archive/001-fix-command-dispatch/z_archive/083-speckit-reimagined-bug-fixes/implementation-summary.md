@@ -7,7 +7,6 @@ trigger_phrases:
   - "spec"
   - "kit"
   - "bug"
-  - "implementation summary"
   - "083"
   - "speckit"
 importance_tier: "normal"

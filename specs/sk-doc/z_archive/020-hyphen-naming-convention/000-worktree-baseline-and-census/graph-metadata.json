@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/000-worktree-baseline-and-census",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/000-worktree-baseline-and-census",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,10 +44,8 @@
       "tasks.md",
       "implementation-summary.md",
       "shared/package.json",
-      "scripts/package.json",
       ".opencode/skills/system-spec-kit/package.json",
       ".opencode/skills/system-spec-kit/shared/package.json",
-      ".opencode/skills/system-spec-kit/scripts/package.json",
       ".opencode/skills/system-spec-kit/package-lock.json",
       "baseline/gates/baseline.json",
       "baseline/gates/install-summary.md",
@@ -203,7 +201,7 @@
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-08-30T15:39:16.060Z",
+    "last_save_at": "2026-10-07T18:12:59.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2f3c8aa20f7cf579237d7cff74253507637b9077e51cfd0f624d6ba96d6b890",
+    "source_fingerprint": "sha256:7d373afef63e9c1a45ac78f6eaf39f0de4cc0dbaaa93010b1c49a0dbb47fe000",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3fc2138f1df69fca6a6ecf1941daa32afa8c8db4ec29ad08e6a5a0d0f66d130",
-      "plan.md": "e16308ace1d517eefb1de7b977d157de92f3d73df615b3f24c253bf96e7cfb98",
-      "tasks.md": "fed28c131e421edfaf54c8f68f31d3cc1e72120d7c8f1db0f3ba592027b6e58e",
-      "implementation-summary.md": "a4de86501c424a820448e6ddaf950768ee963b89a62176648630316ba1ec0ff4"
+      "spec.md": "4dd6e4a2cc0ec439209bc6badfe0ce27e7d7d12ab5f27d4828289f00da09e11d",
+      "plan.md": "7f56c649496a41c27acd0027ba725a303acea44cf09570982bb96077b1f5ccfe",
+      "tasks.md": "e804af85ea4307c92fac72c0abc7560b81c99ac2811bd5be35e03ef03f5dfef0",
+      "implementation-summary.md": "c529df99dcf99ae3581674f402c2dfa3c00e9348a606f710b8119fa86abe3e74"
     },
     "last_active_child_id": null,
     "last_active_at": null

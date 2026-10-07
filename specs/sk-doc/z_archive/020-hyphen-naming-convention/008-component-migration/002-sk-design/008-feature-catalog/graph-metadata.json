@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to manual playbook paths.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-08-30T15:39:16.353Z",
+    "last_save_at": "2026-10-07T18:13:01.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d1cc7553772ba51d62104dcdf00377e201259363242dbad32fc60456bc4579dd",
+    "source_fingerprint": "sha256:aa9969ac7787f29e79ef5fe587b96fc26fa8589a45b1fe4fee620e16a00dbc9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abc2d345b8b4bc254cbae035cebb488261353d3afa23363ee4edafa41a372bdb",
-      "plan.md": "2fe14d4d3d5c66380cc8470460055e94196031af38398e1feb8436a221c0e601",
-      "tasks.md": "10f75a685d1f8ba8768e081bbc98c12d0eded04951d2aa90c22bab66fafd6001"
+      "spec.md": "b77d8ceb23acf2ce56bae6989555e8c95bb3e70d998193c3b55a63524666e70c",
+      "plan.md": "886c47db3f8a1abb82889b2ed4b6777ebededee549e66d128097c3374ade9f0f",
+      "tasks.md": "33c9b70bd3610d59bf14f5937edb7909990aa85d8b81a2530b426da54bc87d19"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator signal if it writes schema-correct artifacts in expected paths while doing semantically wrong-mode work",
     "created_at": "2026-06-30T15:05:00Z",
-    "last_save_at": "2026-08-30T15:39:25.417Z",
+    "last_save_at": "2026-10-07T18:15:12.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40974c314ff98679bfc093ec77b52123f9dbd6945197a8e3ab4524adbd104d99",
+    "source_fingerprint": "sha256:6c3e970b29a6ad88e295a4442298d9be6aaf7a3b362f6d6e4dc4460a86f2e754",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47b1d9a82bab2db580b58cdaa4431cffba9d4f8a35ff859ba359cb0d4a7318fa",
-      "plan.md": "2ba148107b7feb6fd4b567721a9b371b942073bc5fa4b62c241c5bd9077ee7b7",
-      "tasks.md": "f4f44609feb60002be3d562b18a4ec95ff0a07bc06a23742d3a469eb55b40da4",
+      "spec.md": "6e6140c707c13dbd871b5c5faf196219d95448015f5d7700417635de1740a5d1",
+      "plan.md": "bc71b3ca27d8c5de3fde495aea6808829467d63d4958b9408ca60fc250afb090",
+      "tasks.md": "19a32920de6f4ceb60ab0ee183bb218d729cf4956f21ba126390702b7394b0fd",
       "decision-record.md": "a57bf735d9440356da6604456dd27524ef431e8b435c60be8be63ebea60c35fd",
-      "implementation-summary.md": "987ad590782a26250e1922f0d4567d5d088fcb4fadfaf1626eb36fabe623ae52"
+      "implementation-summary.md": "8783f361a2e23bc0ce54226cdc328953611c1f4d5b6ab9b84b035c5e8d43607b"
     },
     "last_active_child_id": null,
     "last_active_at": null

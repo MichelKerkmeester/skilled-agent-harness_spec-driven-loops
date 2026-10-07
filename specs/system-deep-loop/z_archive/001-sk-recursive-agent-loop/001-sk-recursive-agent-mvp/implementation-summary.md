@@ -2,7 +2,6 @@
 title: "Implementati [system-deep-loop/z_archive/001-sk-recursive-agent-loop/001-sk-recursive-agent-mvp/implementation-summary]"
 description: "Completed implementation summary for sk-improve-agent, covering proposal, scoring, promotion, rollback, drift review, and verification evidence."
 trigger_phrases:
-  - "implementation summary"
   - "agent improvement summary"
 importance_tier: "normal"
 contextType: "general"
@@ -28,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-sk-improve-agent-mvp |
+| **Spec Folder** | 001-sk-recursive-agent-mvp |
 | **Completed** | 2026-04-03 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

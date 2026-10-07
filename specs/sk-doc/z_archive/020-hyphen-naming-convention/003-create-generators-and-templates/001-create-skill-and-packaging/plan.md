@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
     last_updated_at: "2026-07-18T06:41:37.848Z"
     last_updated_by: "codex"
     recent_action: "Completed the scaffold, package check, template, and regression plan"

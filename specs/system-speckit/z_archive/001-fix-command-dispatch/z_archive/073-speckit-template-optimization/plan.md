@@ -225,7 +225,7 @@ Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4
 
 ## 11. L3+: AI EXECUTION FRAMEWORK
 
-### Pre-Task Protocol
+### Pre-Task Checklist
 1. Load spec.md, verify scope alignment
 2. Load plan.md, identify current phase
 3. Find next uncompleted task
@@ -238,6 +238,16 @@ Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4
 | TASK-SEQ: Follow phase order | HARD |
 | TASK-SCOPE: Stay within template system | HARD |
 | TASK-VERIFY: Count lines for verification | HARD |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the tasks.md blocked section
+3. Continue with the next unblocked task; escalate after two blocked tasks
 
 ---
 
@@ -269,7 +279,7 @@ Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4
 <!-- /ANCHOR:testing -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## 14. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -278,7 +288,7 @@ Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4
 | SKILL.md | Internal | Available | None |
 | Real usage analysis | Research | Complete | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:rollback -->

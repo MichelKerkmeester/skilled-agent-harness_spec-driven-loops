@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-git/008-research-and-requirements"
+    packet_pointer: "sk-git/z_archive/008-research-and-requirements"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Froze the research phase: synthesis + decision record + acceptance matrix"

@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the deep-loop workflow layer",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-09-07T16:09:41.331Z",
+    "last_save_at": "2026-10-07T18:15:16.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9785fce9fefd54ba8a1456527f8792bb69badfaefb2d2078c52a3bee63c479c9",
+    "source_fingerprint": "sha256:bead12813214481b1f53a46eeb0520eba0f762f56e96d3f8045ee1d65f4af7be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b208dc9e5d52bb81924851c6ed02d01d9be56a2d77066e161790cbfedebcaefd",
-      "plan.md": "ff52140928560023c13e97dd1947eaa60df3d707693082dd51a85a96fccf2035",
-      "tasks.md": "74aa599f64ee5fc8b8e5f994a41ff7d92acf29583c14d14d583f40bc06e0df15",
-      "implementation-summary.md": "a0d2ebf30a792d8993d06046323a2d61d7b91d1ab25d574ec3265fd4cbf72cd5"
+      "spec.md": "0102cea3fefb2b26b60d23e8e2d1cb53539f8f83e4d1af0593963ad876e5525c",
+      "plan.md": "77fbaf43d6a996d48ccd16af45f61ed942f21868adc9e6b00caa47f45017256c",
+      "tasks.md": "2397be7f4b22516df40f844dbe5d942d9c93e67ea6b5ac06448d5852e6b00391",
+      "implementation-summary.md": "3c071f4c5de6c55ad01a1edc30f4abf34a298adab829ad5793795c17d14987e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

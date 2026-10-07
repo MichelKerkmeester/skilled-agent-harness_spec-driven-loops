@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
-  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/002-sk-doc-children",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/004-deep-loop-children",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
-    "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation"
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/002-sk-doc-children",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/003-sk-design-children",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/004-deep-loop-children",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/006-standalones",
+    "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -89,16 +89,16 @@
     ],
     "causal_summary": "The repo has 46 SKILL.md files — 7 parent hubs, 34 hub-mode children, 5 standalones",
     "created_at": "2026-07-13T15:40:27.936Z",
-    "last_save_at": "2026-08-30T15:39:13.867Z",
+    "last_save_at": "2026-10-07T18:11:52.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:37ce2be62a34f3c6d77323b0db2c996a7be9f1404de06d66530c6643ad9fdd6a",
+    "source_fingerprint": "sha256:2370e7b5b23e55ade9ee0b42dc2235ac7ab4ee08f1c4c2a4ff9dec2d6bd0b261",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "493c03593e7f3cf8d5d192a0f80dc31f68f7bdc22a1a8003dfe5412c76e3f542"
+      "spec.md": "108b1c0f1bca2bf58b1544b6e700f4b835623c55d13ab60b1fd13fbdefd9b3b3"
     },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
     "last_active_at": null

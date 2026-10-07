@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/003-cli-cursor-skill-packet",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/003-cli-cursor-skill-packet",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) has no presence in this repo — no standalone skill, no hub mode, no archived packet",
     "created_at": "2026-07-24T04:34:03.998Z",
-    "last_save_at": "2026-08-30T15:39:07.434Z",
+    "last_save_at": "2026-10-07T18:11:35.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0872678d6a4be68ada9693880fd07d96dc25620a870ed3edfd24cfee53e57c17",
+    "source_fingerprint": "sha256:38ab6a75233357099cf68439569cc2d20084eb81a477a62f337ad2708badd101",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "927c511b0e93c507a2e6d068bde7c72b47035195ea7ec98722282bcc9c4c27da",
-      "plan.md": "361576a31671948c8e1f41b6f36c62a64667fc1cf5e9760e8bebe4706e5b512b",
-      "tasks.md": "b5c1cdd2cadc8bc4e40287ebf80f8d5057c70504ac7a698bd702c1835fba699d",
+      "spec.md": "bcc115b42c7ab8072fb280e675de6f7d7e13dac94e6bcac7c6265c9722b96891",
+      "plan.md": "2ca1c94ddbc010ff3fa8f3bf8bd45aeafc1579dfc857ba7bfad89a566a4d5846",
+      "tasks.md": "f88a0af3f534ed6746d7aca02961084eedfb3a54627c84af935410321d7638f2",
       "decision-record.md": "331bba3896ed3ab4c3dbcf32c5ad04e2cedaedb9c685fa725eafebc3aa1540b9",
-      "implementation-summary.md": "39de1884522858e8b905d1f67dbca357de1d69484889f7556e9052c4fc70b4b1"
+      "implementation-summary.md": "480f9d6e4a078acb69456d563ab9ec8b7e930bf3b6c5a4e0cc3e049ef6df4753"
     },
     "last_active_child_id": null,
     "last_active_at": null

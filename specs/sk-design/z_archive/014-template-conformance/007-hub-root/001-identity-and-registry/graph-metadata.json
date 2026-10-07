@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/007-hub-root/001-identity-and-registry",
-  "spec_folder": "sk-design/014-template-conformance/007-hub-root/001-identity-and-registry",
-  "parent_id": "sk-design/014-template-conformance/007-hub-root",
+  "packet_id": "sk-design/z_archive/014-template-conformance/007-hub-root/001-identity-and-registry",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/007-hub-root/001-identity-and-registry",
+  "parent_id": "sk-design/z_archive/014-template-conformance/007-hub-root",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "sk-design hub identity-and-registry conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "sk-design",
@@ -26,10 +25,10 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
-      "skills"
+      "skills",
+      "hub-root",
+      "identity"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/ (8 hub-root identity/registry files)` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md (SKILL.md) + skill-readme-template.md (README.md) + parent-skill-description-template.json, parent-skill-graph-metadata-template.json, parent-skill-hub-router-template.json, parent-skill-registry-template.json (JSON companions); doctrine: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`",
     "created_at": "2026-07-27T14:59:53.751Z",
-    "last_save_at": "2026-08-30T15:39:13.342Z",
+    "last_save_at": "2026-10-07T18:12:21.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de7b1dc7388845625b7fbf21a3b78d465970db558186507568eac800725a92c6",
+    "source_fingerprint": "sha256:7cc9706f558c4f132fc70dd5809a75d37427c7bd5e38699cba62afa92fe5fe2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "549e3a3d2537bf61debb5d8203e3906dde00e213bb2e25f4d6ca512d16e37fd5",
-      "plan.md": "3fb35267e85660b3a56281f94f1edb76f3357419bf4b99a8ed1cdadf29871067",
-      "tasks.md": "da19bf08d9d630e87ea71f5160d9b78cb37d3e147315db638c999e7b4bd66b85",
-      "implementation-summary.md": "68a208d8f42df1e38422d940b843066c3955eb05b739fd060e5b8a2232740b7b"
+      "spec.md": "a45f26fd69f0e4022fe48dedb44a00fd9deebf536714886ed8ec281cae62bf3e",
+      "plan.md": "51b12dbe57f32e0eb23ebc23e499c4798b7ffa33628fd72579f75f917631dc1f",
+      "tasks.md": "58e6c512d23713d07ecd8b18fb20b611b4306b675314b0eb1813035a0b0d42a2",
+      "implementation-summary.md": "d3de41ce3c901239e712cfb85a2de59c802b1ece6e6005b91c4e58c7140ce354"
     },
     "last_active_child_id": null,
     "last_active_at": null

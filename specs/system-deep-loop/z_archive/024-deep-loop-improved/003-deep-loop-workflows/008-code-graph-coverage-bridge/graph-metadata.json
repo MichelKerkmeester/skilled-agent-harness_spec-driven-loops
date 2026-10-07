@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deep-context and deep-review loops start with an empty coverage graph",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-08-30T15:39:24.960Z",
+    "last_save_at": "2026-10-07T18:15:02.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59fc60169000c443a8a0a1071ae465c3a9e20592d9b3e4ad53ea06909ebf951c",
+    "source_fingerprint": "sha256:b98b47bbb8e362a73d46e6f5ceea7f76248a9b40497985a926e12824aef69d10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d255900015a442db809d66041d717a081fa63451800abebaca37a7b908a8a15",
-      "plan.md": "39c37df275494e3f553b6c9c0af6adc4c5714c5b430ce2e82f3e43c4cf14ef96",
-      "tasks.md": "01d56b7412cb675b09c6bf12a9176bdfd87cf9f010c474ad25f734053784e300",
-      "implementation-summary.md": "c705a842da47a7efdc3806367da6e39d53563d6bee5e89e7a3ae4bf2d32cc863"
+      "spec.md": "a32cc87c72db1ededd21e21e85ee9bd1f3cb7bec4438c3df8daa2094bb8f81a8",
+      "plan.md": "56c42eedb85b7ca4c3ee14ce52074c9e6bfb0a306a6770e5d416515e2fe48889",
+      "tasks.md": "c1d5da6a69657ba7683d4536488986f47136763fdb93e6d6d85b488ef6778d17",
+      "implementation-summary.md": "fb71a8ed3ea3264ea67c3be774f30c651a490a17f5592369d66c070637229f79"
     },
     "last_active_child_id": null,
     "last_active_at": null

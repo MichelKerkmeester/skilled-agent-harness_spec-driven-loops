@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor/implementation-summary]"
 description: "Phase 3 stabilized scripts-side CommonJS to ESM interop and hardened the memory-save pipeline for mixed-runtime operation."
 trigger_phrases:
-  - "implementation summary"
   - "scripts interop refactor"
   - "memory-save hardening"
 importance_tier: "important"

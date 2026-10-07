@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
     last_updated_at: "2026-08-25T05:05:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Plan authored; syntax fix applied and proven against an empty auth store"

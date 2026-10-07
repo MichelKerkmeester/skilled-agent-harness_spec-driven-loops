@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
   "description": "The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests;",
   "keywords": [
     "class-h",

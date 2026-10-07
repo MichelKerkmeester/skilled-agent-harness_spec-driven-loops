@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment",
   "description": "Phase 002 of the numbered-snippet-filename deprecation.",
   "keywords": [
     "phase",

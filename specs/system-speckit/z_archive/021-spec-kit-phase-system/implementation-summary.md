@@ -4,7 +4,6 @@ description: "The phase system moved from proposal into implemented behavior acr
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "021"
   - "spec"
 importance_tier: "normal"

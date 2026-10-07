@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references"
     last_updated_at: "2026-08-31T10:21:21Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Moved section 8 into the eighth rule and added per-section pointers"

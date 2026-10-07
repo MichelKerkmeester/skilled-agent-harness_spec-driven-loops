@@ -4,15 +4,14 @@ description: "Validation script specification and fix workflow for the final com
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "validation sweep plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 009 — Validation Sweep
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 1. VALIDATION SCRIPT SPECIFICATION: `validate_catalog_compliance.py`
 
 ```python
@@ -47,9 +46,11 @@ SKILL_ROOTS = {
 # Run with: python validate_catalog_compliance.py > 009-validation-sweep/validation_report.csv
 # Summary:  python validate_catalog_compliance.py --summary
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 2. EXPECTED SUMMARY OUTPUT FORMAT
 
 ```
@@ -71,6 +72,7 @@ system-code-graph (14 snippets):
 
 OVERALL: 367/370 files pass all applicable checks (99.2%)
 ```
+<!-- /ANCHOR:testing -->
 
 ---
 
@@ -85,6 +87,7 @@ After running the validation script:
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. EXECUTION ORDER
 
 ```
@@ -97,6 +100,7 @@ After running the validation script:
 7. Update 125 spec folder status to 'complete'
 8. Commit: "chore(125-009): validation sweep complete — all catalogs at 125 standard"
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 

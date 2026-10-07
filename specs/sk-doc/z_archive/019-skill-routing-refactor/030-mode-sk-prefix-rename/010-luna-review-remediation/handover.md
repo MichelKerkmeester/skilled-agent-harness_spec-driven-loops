@@ -5,6 +5,7 @@ contextType: "handover"
 trigger_phrases: []
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Goal Prompt — Implement packet 010 autonomously (GPT-5.6-SOL high/fast)
 
 > Paste the block below into a fresh Claude Code session on the `sk-doc/0114-mode-sk-prefix-rename`
@@ -12,13 +13,16 @@ trigger_phrases: []
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## ROLE & OBJECTIVE
 
 You are the implementation conductor. Autonomously implement **all three phases** of the approved plan in
 `.opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation/`
 (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`). Drive the work through the **`/speckit:implement`**
 workflow; carry out the code/doc changes with **cli-codex GPT-5.6-SOL, high reasoning, fast tier** agents.
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:context-transfer -->
 ## PRE-APPROVED CONTEXT — do not re-ask
 
 - **Spec folder (Gate 3 pre-resolved, your write authority):**
@@ -40,11 +44,13 @@ codex exec --model gpt-5.6-sol \
   -c approval_policy=never --sandbox workspace-write \
   "<phase task>. Spec folder: .opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation (pre-approved, skip Gate 3). Load sk-code and run its surface verification."
 ```
+<!-- /ANCHOR:context-transfer -->
 
 Single-dispatch discipline: one codex agent at a time — capture its PID at launch
 (`codex exec ... & CODEX_PID=$!`), and after its work returns SIGKILL that PID
 (`kill -9 "$CODEX_PID"; pkill -9 -P "$CODEX_PID"`) before the next. Never blanket-kill `codex exec`.
 
+<!-- ANCHOR:next-session -->
 ## THE THREE PHASES (respect dependencies)
 
 1. **Catalog Alignment (R1-P1).** Replace the twelve unprefixed `workflowMode` keys with the canonical
@@ -61,7 +67,9 @@ Single-dispatch discipline: one codex agent at a time — capture its PID at lau
    parity + root-metadata + leaf-freshness gates into a packet-local evidence directory. Publish
    `current-state-verification.md` that explicitly supersedes phase 008's snapshot and links the rerun
    outputs; add pointers from the parent, 008, and 009 records **without rewriting** their historical results.
+<!-- /ANCHOR:next-session -->
 
+<!-- ANCHOR:session-notes -->
 ## HARD CONSTRAINTS
 
 - **SCOPE LOCK** — touch only files named in the plan's Affected Surfaces table. Do **not** edit
@@ -78,7 +86,9 @@ Single-dispatch discipline: one codex agent at a time — capture its PID at lau
 - **Git** — never force-push; never `--no-verify`; conventional commits; do not push to `origin` without a
   fresh explicit go-ahead.
 - **Finding = hypothesis** — re-read each cited symptom before and after fixing it.
+<!-- /ANCHOR:session-notes -->
 
+<!-- ANCHOR:validation-checklist -->
 ## VERIFICATION (per phase, then final)
 
 - Phase 1: the twelve-key parity assertion passes on **both** catalog pages; `validate_document.py` and
@@ -89,6 +99,7 @@ Single-dispatch discipline: one codex agent at a time — capture its PID at lau
   present with commands, outputs, results, timestamp, and the supersession statement.
 - Final: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <010 path> --strict`
   (expect the external stale-dist block — document it), then mark every `checklist.md` item with evidence.
+<!-- /ANCHOR:validation-checklist -->
 
 ## AUTONOMY & CLOSE-OUT
 

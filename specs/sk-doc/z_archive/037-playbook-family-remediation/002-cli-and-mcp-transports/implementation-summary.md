@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "sk-doc/037-playbook-family-remediation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports"
+    packet_pointer: "sk-doc/z_archive/037-playbook-family-remediation/002-cli-and-mcp-transports"
     last_updated_at: "2026-08-29T11:45:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped the transport cleanup; fourteen roots verified at zero violations"

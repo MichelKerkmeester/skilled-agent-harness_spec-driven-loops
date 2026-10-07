@@ -2,14 +2,8 @@
 title: "Spec Kit [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/042-post-merge-refinement-5/decision-record]"
 description: "Architecture Decision Record (ADR) documenting significant technical decisions for the post-merge refinement phase."
 trigger_phrases:
-  - "spec"
-  - "kit"
-  - "memory"
-  - "system"
-  - "architecture"
   - "decision record"
-  - "042"
-  - "post"
+  - "post merge refinement 5 decision record"
 importance_tier: "important"
 contextType: "planning"
 ---

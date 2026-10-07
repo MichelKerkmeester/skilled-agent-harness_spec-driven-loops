@@ -13,6 +13,12 @@
     "trigger_phrases": [
       "123 phase 001 schema",
       "fanout config schema",
+      "schema config plumbing plan",
+      "fan-out schema implementation plan",
+      "executor config parsing steps",
+      "schema config plumbing tasks",
+      "fan-out schema task breakdown",
+      "executor config verification checklist",
       "123 phase 001 implementation summary",
       "fanout schema done"
     ],
@@ -21,14 +27,14 @@
       "schema",
       "fanout",
       "config",
+      "plumbing",
+      "plan",
+      "fan-out",
       "implementation",
-      "summary",
-      "done",
-      "opt-in",
-      "multi-executor",
-      "representation",
-      "without",
-      "changing"
+      "executor",
+      "parsing",
+      "steps",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -100,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Approach Add",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -130,9 +142,33 @@
         "source": "derived"
       },
       {
-        "name": "Verification",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "description:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -152,29 +188,11 @@
         "kind": "key_phrase",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What changed (verified on disk + by test run)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Backward-compat rule",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification (observed, clean runs)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add the opt-in multi-executor config representation without changing any behavior",
     "created_at": "2026-05-30T10:12:01.126Z",
-    "last_save_at": "2026-08-30T15:39:23.919Z",
+    "last_save_at": "2026-10-07T20:43:33.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29c5829c42ce4defa4e99d977d80ef8c505ee13cb253db97fc9b3d24a29306ca",
+    "source_fingerprint": "sha256:0f6fc3b59a56949fd658998da34b2bc30e9358c2d3686ec8fe6732f4cb3a4088",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fca082c81d3ae0702a6851a55690d064e5da60b5f4f9cb8b3b7a4f5819019816",
-      "plan.md": "9a374a0c20b9bcc878001c2313df3814de584fee564f9727a455091c0333c40e",
-      "tasks.md": "16302d2de37ab94906015731175d7045d809be73e5cd000148eeef5069468493",
-      "implementation-summary.md": "3bb782fcb4a6277b84199150732dc7235f6cddc217dc8c3d7fe9819b3bef6fa5"
+      "spec.md": "839ce9d7935bc4054f6eb41cc588c7dd5e151fc64935f314b04771a2a7d7d38c",
+      "plan.md": "5ee9efdbf5f24d28e014569b75e03d4a40cf4d2943c436718a3b0f87ab726311",
+      "tasks.md": "21e8c3f79ff08d0a7400a380648945f7bfefc28e4b227a180055766cd1fdf72a",
+      "implementation-summary.md": "4c3077f2276fbd579ec12579f3b30b81e3e16109e123ad7c4077feac8b7a605f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout",
+  "specFolder": "cli-external-orchestration/z_archive/028-cli-hub-rename/004-verify-closeout",
   "description": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are",
   "keywords": [
     "targeted",

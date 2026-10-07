@@ -7,6 +7,8 @@ updated: "2026-05-30T00:00:00Z"
 
 # Handover: deep-loop native fan-out parallel multi-executor (packet 123)
 
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 <!-- AI-FIRST HANDOFF: Optimized for an AI agent (or fresh session) continuing this work. -->
 
 ## 0. TL;DR (read this first)

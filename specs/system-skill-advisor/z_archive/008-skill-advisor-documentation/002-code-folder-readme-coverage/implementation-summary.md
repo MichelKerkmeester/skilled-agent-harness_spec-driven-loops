@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/002-code-folder-readme-coverage"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/002-code-folder-readme-coverage"
     last_updated_at: "2026-05-15T11:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-code-folder-readme-coverage |
+| **Spec Folder** | 002-code-folder-readme-coverage |
 | **Phase** | B of 4 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

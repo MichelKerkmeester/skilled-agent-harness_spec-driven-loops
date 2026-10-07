@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/002-architecture-decision"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/002-architecture-decision"
     last_updated_at: "2026-07-11T13:16:04Z"
     last_updated_by: "claude"
     recent_action: "Drafted the architecture-decision gate plan"

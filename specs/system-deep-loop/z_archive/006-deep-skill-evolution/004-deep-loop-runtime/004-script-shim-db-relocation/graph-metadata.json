@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 4 `deeploopgraph` MCP tools (`deeploopgraphconvergence`, `deeploopgraphupsert`, `deeploopgraphquery`, `deeploopgraphstatus`) are dispatched by deep-review and deep-research workflow YAMLs through the MCP transport",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-08-30T15:39:23.273Z",
+    "last_save_at": "2026-10-07T18:14:19.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66c42495e55df8da3afc06f9960b7526798b1c274f06c1164314b362fba2b8d1",
+    "source_fingerprint": "sha256:7b95ae8108e33ca852d4c011d794fd3f11f06a079e36017eb300987c2437f2f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f031a4ba55c95a62aae995ae5c1fa16247549c20ef3aa6b7a81fca712e0eb77",
       "plan.md": "2acb5c3ab7bfcf83405403096edb150f80da11721d042294ea92bafbe8de8317",
       "tasks.md": "314da40cbea4105309eaf6eb307e31b985b512a422d7a58dcb6b198d8c2831c2",
       "decision-record.md": "8c7da99c0a3953e07598933d4f2e006e0dfe3180cf7050185405622a05c366d0",
-      "implementation-summary.md": "eb1d291cfba9be088453dcaafa631f79ad2f675173fd4fb28417505951a8d2f5"
+      "implementation-summary.md": "eede45474c58b101ee7ccc884822980ace5aa0bdc9dcbfea737d82f677edae95"
     },
     "last_active_child_id": null,
     "last_active_at": null

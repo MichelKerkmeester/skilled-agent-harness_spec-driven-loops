@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/009-remove-transition-aliases",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/009-remove-transition-aliases",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,9 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
       ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py"
     ],
     "entities": [
@@ -67,12 +65,6 @@
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
         "source": "derived"
       },
       {
@@ -180,7 +172,7 @@
     ],
     "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-08-30T15:39:17.192Z",
+    "last_save_at": "2026-10-07T18:13:10.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d8499f0481cf4b6c1c2bfd895129ce5132a1398fdd5c710483cc2ff03ec4ecde",
+    "source_fingerprint": "sha256:ff0c9016254d1a2ab4cfdb33da262e179cd2b43e1d84cb060d7f8114e5b19d49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf22143a05241f4789277fbf321deef0e2e612f57d48d2108a303f614bbb6e45",
-      "plan.md": "84a7adccf516e97bb7e93304d1c78d551d99ef901fcf3980cadcd48082a649c5",
-      "tasks.md": "0150ee1dc1bbfcfe92482e0ec6a11691065526b26b7067e8be7794728ec1df89"
+      "spec.md": "c92c1626c3cbcfe264930d4b47dcf2b76b2db9dc9564c0a0a6ce2d9926c58571",
+      "plan.md": "4987b3a80a006b8699976204d18e3702a2dfffca7af3b8b6343951afca45af47",
+      "tasks.md": "78d508179d66cb1cc0d08990b3a6c67546d10da02f50d992dfcc91d0954c4d14"
     },
     "last_active_child_id": null,
     "last_active_at": null

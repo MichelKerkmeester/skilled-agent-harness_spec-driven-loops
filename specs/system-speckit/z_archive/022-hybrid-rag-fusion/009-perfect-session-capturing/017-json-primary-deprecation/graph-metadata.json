@@ -15,8 +15,7 @@
       "017 json primary deprecation",
       "dynamic capture deprecation",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "json",
@@ -26,11 +25,11 @@
       "capture",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "session",
       "reconstructs",
-      "context"
+      "context",
+      "runtime",
+      "databases"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -189,7 +188,7 @@
     ],
     "causal_summary": "Dynamic session capture reconstructs context from runtime databases after the fact",
     "created_at": "2026-04-12T09:02:50.280Z",
-    "last_save_at": "2026-09-10T21:04:56.672Z",
+    "last_save_at": "2026-10-07T19:24:33.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea2a99f0be0b0f5382d7e048b706da08131149e59c8cd564da320b8ced0055e6",
+    "source_fingerprint": "sha256:8d1711359b7a01b79fbee41b5f23e03f9d90b8332f9928ba2c5ada9871babf8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c0b1e3e0858020a8af91219a231b42d3d330c6a9ee98034cdf36fa279904174",
-      "plan.md": "80f19682c1f1a23416c51883a696f4ac8963db5bd5fca7a74efa533fe87aff42",
+      "spec.md": "87fc2527dcc9a1d77a43e18aa4b5c26bdb034764c605583337871ac5716ca83b",
+      "plan.md": "377f5e7c58460930192fb58e39badb64b86404bc3b2b85aec9a38379fb1bb812",
       "tasks.md": "9165cfc6cd3d72d1eb9295b7bb87f1277ed7fd70ac51920e30be2496aed97330",
-      "implementation-summary.md": "983f0c14dca95037e3fe69b19e752ace46bdac1978801ff0e7aae7a95a0f4602"
+      "implementation-summary.md": "cf7c790c652d278cd666390c0d211ec09d77b9439402cc59a3a9e6fca846a716"
     },
     "last_active_child_id": null,
     "last_active_at": null

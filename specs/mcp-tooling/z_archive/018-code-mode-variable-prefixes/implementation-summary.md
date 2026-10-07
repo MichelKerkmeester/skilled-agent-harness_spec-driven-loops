@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/018-code-mode-variable-prefixes"
+    packet_pointer: "mcp-tooling/z_archive/018-code-mode-variable-prefixes"
     last_updated_at: "2026-08-29T14:33:53Z"
     last_updated_by: "session"
     recent_action: "Repaired three lookups and documented every required key"

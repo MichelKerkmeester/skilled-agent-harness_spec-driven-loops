@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/015-design-commands-implementation",
   "description": "The five `/design:` commands remain flat single-file commands with routing logic and presentation content (Ask-first wording, STATUS templates,",
   "keywords": [
     "five",

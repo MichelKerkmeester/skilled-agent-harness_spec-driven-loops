@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only \"does this feature match the docs\" scenarios",
     "created_at": "2026-06-29T10:43:19Z",
-    "last_save_at": "2026-08-30T15:39:25.131Z",
+    "last_save_at": "2026-10-07T18:15:14.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a8483e949b53976956af9a91a87a527fa3706cb3ac2604c49ffd6302003ff9c",
+    "source_fingerprint": "sha256:0fc9604fa65dc5267ceea4aabb0e5a3f7cb09a5feab6a34c5d6fd677beace24e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b5fecc09c201c44c6271f1a079ae99f579f3a02c9221a9ed7422c03e6c8a900",
-      "plan.md": "d098b6f4c2a9d979e7b331a174ceae91cb8c29fa47c4c55be56bbeec37c9e2e1",
-      "tasks.md": "e9a4bf9ea109518a81d631fc8872f38c218d995183becb4fd1a11056421577ab",
-      "implementation-summary.md": "f924d500c483feb2ea7836770c15cb128dc1eeb43ceb20b1e53d46a10f77ad62"
+      "spec.md": "2cd9be3e81f004892b9b796d1690c43586676323a3d8c69fe84a88535c44cff7",
+      "plan.md": "a6a8f63f374b95eebf08cd92f7d884966eef1114c2cff8032bd45da08bb32b65",
+      "tasks.md": "80b3f3d1eed24d947c76343d1efe905743b4b3747e2503e6642689bfa2314c00",
+      "implementation-summary.md": "c4ac2a6ec7d06194a4faaceade880f0202a41803c0af3f7cce622b54acad2b5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

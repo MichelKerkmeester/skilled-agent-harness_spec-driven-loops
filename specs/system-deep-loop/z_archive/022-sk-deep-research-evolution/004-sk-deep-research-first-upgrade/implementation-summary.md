@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-sk-deep-research-first-upgrade |
+| **Spec Folder** | 004-sk-deep-research-first-upgrade |
 | **Completed** | 2026-03-31 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

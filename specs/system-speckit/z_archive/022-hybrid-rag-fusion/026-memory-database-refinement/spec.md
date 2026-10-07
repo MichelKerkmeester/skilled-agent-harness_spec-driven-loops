@@ -179,7 +179,6 @@ None at spec time. The review scope and iteration count are defined; findings wi
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Reliability
@@ -194,7 +193,6 @@ None at spec time. The review scope and iteration count are defined; findings wi
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

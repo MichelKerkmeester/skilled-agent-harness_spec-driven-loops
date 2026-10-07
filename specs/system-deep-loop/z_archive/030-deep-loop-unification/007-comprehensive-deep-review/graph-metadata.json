@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/007-comprehensive-deep-review",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/007-comprehensive-deep-review",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/007-comprehensive-deep-review",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/007-comprehensive-deep-review",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,6 @@
       ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".opencode/agents/orchestrate.md",
-      ".opencode/specs/descriptions.json",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".opencode/skills/sk-doc/scripts/package_skill.py",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
@@ -86,12 +85,6 @@
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 verified SKILL.md structural template conformance across `system-deep-loop` (already 100%) and fixed a set of soft warnings (asset naming, word count, changelog frontmatter)",
     "created_at": "2026-07-08T18:58:44.424Z",
-    "last_save_at": "2026-08-30T15:39:19.815Z",
+    "last_save_at": "2026-10-07T18:15:18.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e603d75c97b1e408c9f9ad44494110e7f781413bb57a32294868adf07f500449",
+    "source_fingerprint": "sha256:62dc01c64fccab1325310435462ebb27137099ba711f77fe8ebce5e163380240",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ef8c6544a9456b1faa3f01d15422d5db7415f35f17994955c658b2de2a380a7",
-      "plan.md": "bd583a92b3d64e25f9bc9684d957bc6e9226b38cee7b9c1acc6d56b19053ec80",
-      "tasks.md": "d6c21bb9310c8f5fbfa0bf3a6305b90541d9ea1b28813dd71d61c3d6de0d9746",
-      "implementation-summary.md": "68a96e4279cc8f4708e9d2d62f98e911c78ceeea40478cc9630d2f7adccce615"
+      "spec.md": "291a052f4a95953b36c251ceae6425e84ba25cf8b07372be286ebfad5d672e63",
+      "plan.md": "a00c772254f6a9b15ab62a2913485464f55754f116e7bb25ad986d1718f93cd3",
+      "tasks.md": "11c59d603d0647374517b087c7e390f9d4a0594803cdfb252c6a29fed6abd583",
+      "implementation-summary.md": "0c035611367110df9a9bee25516a4868ed035a0174f5f3adb56863346cf7df8e"
     },
     "last_active_child_id": null,
     "last_active_at": null

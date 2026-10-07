@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/014-skill-word-cap-relief"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/014-skill-word-cap-relief"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Trimmed design-interface/SKILL.md 4991 to 4760 words; router block byte-identical."

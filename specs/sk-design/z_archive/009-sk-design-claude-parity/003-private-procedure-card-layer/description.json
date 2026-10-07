@@ -14,7 +14,7 @@
   "level": 3,
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/003-private-procedure-card-layer",
   "description": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would",
   "keywords": [
     "external",

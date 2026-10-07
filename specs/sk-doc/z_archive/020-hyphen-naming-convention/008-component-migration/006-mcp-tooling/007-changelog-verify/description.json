@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
   "description": "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component",
   "keywords": [
     "mcp-tooling",

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/063-devpass-gpt-5-6-luna"
+    packet_pointer: "cli-external-orchestration/z_archive/063-devpass-gpt-5-6-luna"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Shipped Luna plus the cli-opencode DevPass catalog"

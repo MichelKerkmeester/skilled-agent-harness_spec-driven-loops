@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
-  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
-  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,14 +14,8 @@
       "structural fingerprint cards",
       "load on demand design cards",
       "authored macrostructure cards",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "authored cards plan",
+      "authored cards tasks"
     ],
     "key_topics": [
       "structural",
@@ -32,10 +26,10 @@
       "design",
       "authored",
       "macrostructure",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "sk-design",
+      "independently-authored"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -182,7 +176,7 @@
     ],
     "causal_summary": "sk-design has no independently-authored library of abstract structural-fingerprint cards",
     "created_at": "2026-07-20T09:21:26.003Z",
-    "last_save_at": "2026-09-11T04:35:38.304Z",
+    "last_save_at": "2026-10-07T19:23:51.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a09bd2ba494a6939147687c1268ffed2ef26089c0ebd708756a33f448e61a2ab",
+    "source_fingerprint": "sha256:f80995ebe97e3127723758e016723552d6ae62f9cd61eaef852f6dab7a9b1a91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a4f82381b62fb7fde3755dfea57d29795df99449c66bfaeb6b107a498fdf206",
-      "plan.md": "8bffa920da880e253be51f2a5e3cb30247f39b4ae30b40395bf57fe8b2d33a14",
-      "tasks.md": "630ec81284c8cfd20f232c90e26cd98e17505022ddac896f9dc707bc180ca9aa",
-      "implementation-summary.md": "63f79570c9e1967a55924b380956b9858488b2b04534ea279cb5acfa12cecdbc"
+      "spec.md": "1636ed13562f376dce76d574159fc89c57fd51da6e32a010ac68f63d9ca4bfe4",
+      "plan.md": "ea0d0a62d17c6da548175c5c643bb4a2388742a0198baee3ee96e503f1a52f80",
+      "tasks.md": "5cdaa8796ba4aed524d240badbaf22f3358542f713241fbb7d597e9aebdd49e4",
+      "implementation-summary.md": "25dfb740b0c3f73ba7c14256359a46eda10f613251d2e20f9b2b77f0110bc215"
     },
     "last_active_child_id": null,
     "last_active_at": null

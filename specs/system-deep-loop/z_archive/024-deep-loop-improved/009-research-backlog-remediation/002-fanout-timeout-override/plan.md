@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/002-fanout-timeout-override"
     last_updated_at: "2026-07-01T07:15:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan"

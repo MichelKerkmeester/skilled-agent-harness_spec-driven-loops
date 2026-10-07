@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/024-canon-self-enforcement"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "DO-NOW batch shipped+verified (4/4 hubs, validate 0/0); packet closed"

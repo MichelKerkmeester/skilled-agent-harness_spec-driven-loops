@@ -4,23 +4,24 @@ description: "Execution plan for adding and improving trigger_phrases across sys
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "trigger phrases advisor codegraph plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 004 — Trigger Phrases, advisor + code-graph
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Same derivation algorithm as phase 003. Two skills processed sequentially — each is small enough that one or two agents can handle an entire skill.
 
 Use the same quality floor: 3 phrases minimum, 6 maximum. Phrase #1 always = canonical H3 heading from root catalog.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. EXECUTION MODEL
 
 ### system-skill-advisor
@@ -39,9 +40,11 @@ Use the same quality floor: 3 phrases minimum, 6 maximum. Phrase #1 always = can
 - All 7 categories combined can be handled by 2-3 agents (small files, 1-4 files per category)
 - Agent reads: root catalog + all snippets
 - Code-graph snippets currently have 3 phrases — verify quality, add tool function names if missing
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 3. EXECUTION ORDER
 
 ```
@@ -55,9 +58,11 @@ Use the same quality floor: 3 phrases minimum, 6 maximum. Phrase #1 always = can
 
 4. Verify: grep -rL "trigger_phrases" both skills → expected: 0
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 4. VERIFICATION
 
 ```bash
@@ -78,3 +83,4 @@ grep -rL "trigger_phrases" \
   grep -v "feature_catalog\.md$" | wc -l
 # Expected: 0
 ```
+<!-- /ANCHOR:testing -->

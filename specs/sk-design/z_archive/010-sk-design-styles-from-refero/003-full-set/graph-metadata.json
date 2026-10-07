@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/010-sk-design-styles-from-refero/003-full-set",
-  "spec_folder": "sk-design/010-sk-design-styles-from-refero/003-full-set",
-  "parent_id": "sk-design/010-sk-design-styles-from-refero",
+  "packet_id": "sk-design/z_archive/010-sk-design-styles-from-refero/003-full-set",
+  "spec_folder": "sk-design/z_archive/010-sk-design-styles-from-refero/003-full-set",
+  "parent_id": "sk-design/z_archive/010-sk-design-styles-from-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The pilot proved the harness on 50 styles and recorded GO",
     "created_at": "2026-07-18T10:25:46.940Z",
-    "last_save_at": "2026-08-30T15:39:12.478Z",
+    "last_save_at": "2026-10-07T18:12:07.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:873a51625680e7b00e5650baffe6384fd71923ca469711889db69e43e1512af2",
+    "source_fingerprint": "sha256:33ba02e361d7c49dc656b9bfd27d3893b444ad132d128319b95f9b2785666458",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a8a6b57bede463db0318cd61b6bb9d410dd7f8f0f58b208380081c902d13b19",
-      "plan.md": "f8a536086d0add94a19b7b9a71e6fce2e5aaf351f123407a4c182690f49dd4de",
-      "tasks.md": "6d7d126b42aba1ced21970990789c56f10ab900b9ea97ceebbbfda2012e7568d",
-      "implementation-summary.md": "93606ca1fd7372c323733590da3782a785e81e6eceb9ddfe747fe3922a666764"
+      "spec.md": "516285d722fa8189a9ca6f7ab075f3f38976f0c166c4e9bca96555f395ce096c",
+      "plan.md": "093a591fa460fe7fb7cd30c7d4e57c45fc20f9a2dbdf9f08807245515a6c5ead",
+      "tasks.md": "0072ed8aa6cbd76285b984d3ba5f0d130a6fe118003b53d1a5e5a8c44bd76ebc",
+      "implementation-summary.md": "b9f07ac2dff180c4800edc3f75c3c9de7bb73004243523cee39f65238c8cd5d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

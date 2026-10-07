@@ -1,9 +1,11 @@
 ---
 title: "Research Plan: Rust opportunities for the sk-design styles database"
 description: "How the 20-iteration deep-research study was run and synthesized."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -20,10 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "styles database rust opportunities plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

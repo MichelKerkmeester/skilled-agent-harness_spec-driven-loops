@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep"
     last_updated_at: "2026-07-09T06:41:48Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Ran Phase 0 read-only triage for the cross-skill routing sweep"

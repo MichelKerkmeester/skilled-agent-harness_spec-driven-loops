@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-md-generator packet-root conformance"
 description: "Task breakdown for auditing and remediating design-md-generator's three root markdown files."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/001-packet-root"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/004-design-md-generator/001-packet-root"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author packet-root audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "packet root tasks"
 ---
 # Tasks: design-md-generator packet-root conformance
 

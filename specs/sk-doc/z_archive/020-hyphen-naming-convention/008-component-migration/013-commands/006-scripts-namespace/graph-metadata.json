@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
     "created_at": "2026-07-14T15:18:35Z",
-    "last_save_at": "2026-08-30T15:39:17.062Z",
+    "last_save_at": "2026-10-07T18:13:21.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:99f86d0a91038498c0eaae2a19f4136a725da25c47e51b7d5b4815bb64fc3c46",
+    "source_fingerprint": "sha256:a7475f342164b9ae006e534ca609cbe2ecdf9836c1b69c470feb5d93803d3b7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eac3a10fedc266e375e5385b3318942c6decb40e50c966a8f0e01604e0929537",
-      "plan.md": "140ad598df1231d4826f8813386f7f77e4ea2c1ff281ce86bcff55bed934f544",
-      "tasks.md": "3b2e5d8242cf532d1a91c919b593ba1baf57b3fe6e16479d5a87c38f7b90e903"
+      "spec.md": "5fe18bc62d6b67a451b1fed1e748fd1cb3d35344915fb2c0f113197b26d98fc9",
+      "plan.md": "fb490c038f489b80f26dfeac03b31560c5a0b0a6cae4a76bee74dcfe9503944c",
+      "tasks.md": "07de730a0d72b6a54d777da22382273545cd38583c22f2418a582f808472618f"
     },
     "last_active_child_id": null,
     "last_active_at": null

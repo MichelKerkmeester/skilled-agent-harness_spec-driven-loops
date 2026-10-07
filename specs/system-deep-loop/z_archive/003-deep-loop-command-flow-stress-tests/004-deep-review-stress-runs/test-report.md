@@ -1,3 +1,13 @@
+---
+title: "Test Report: @deep-review Command-Flow Stress (062/004)"
+description: "Six command-flow stress scenarios for the deep-review command and agent; both rounds produced 5 partial and 1 timeout verdict, confirming the failures are not parallelism artifacts."
+trigger_phrases:
+  - "deep review command flow stress"
+  - "deep review stress test report"
+  - "cp signal contract failures"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Test Report: @deep-review Command-Flow Stress (062/004)
 
 **Final Composite (R2):** PASS 0 / PARTIAL 5 / FAIL 1 (TIMEOUT)

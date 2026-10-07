@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/005-enable-registry-checks-and-repair-tests"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/005-enable-registry-checks-and-repair-tests"
     last_updated_at: "2026-07-14T19:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored task breakdown"

@@ -8,7 +8,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests"
     last_updated_at: "2026-07-06T16:24:25.683Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Implemented parity tests"

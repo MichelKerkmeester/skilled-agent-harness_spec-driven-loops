@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing"
     last_updated_at: "2026-07-06T16:57:19.672Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented default-off C1/QCR/C6 scorer seams with deterministic unit coverage"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing |
+| **Spec Folder** | 005-conflict-rerank-query-routing |
 | **Status** | complete |
 | **Completed** | 2026-06-19 - default-off code seams implemented, live promotion gates pending |
 | **Level** | 2 |

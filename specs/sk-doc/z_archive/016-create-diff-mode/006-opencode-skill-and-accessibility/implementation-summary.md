@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "active"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/006-opencode-skill-and-accessibility"
     last_updated_at: "2026-07-15T13:52:51Z"
     last_updated_by: "claude"
     recent_action: "Refined the engine: binary/unsupported refusal and a code-diff report redesign; re-ran all gates"

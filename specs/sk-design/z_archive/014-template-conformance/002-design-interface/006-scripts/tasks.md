@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/002-design-interface/006-scripts"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/002-design-interface/006-scripts"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned tasks.md"

@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 010 — Feature Catalog and Snippet Completeness"
 description: "Level 2 plan for auditing sk-design's feature-catalog coverage and defining the file layout for five new feature_catalog/ packages plus one completeness fix, all authored template-first against sk-doc's canonical scaffolds."
 trigger_phrases:
-  - "implementation plan"
   - "feature catalog completeness"
   - "sk-design feature catalog"
   - "phase 010"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/010-feature-catalog-completeness"
     last_updated_at: "2026-07-06"
     last_updated_by: "markdown-agent"
     recent_action: "Closed all Definition of Done items after the catalog remediation."

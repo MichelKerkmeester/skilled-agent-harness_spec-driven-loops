@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/002-references",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/002-references",
   "description": "`references/` holds 29 files (5 in `aesthetics/`, 2 in `design-grounding/`, 10 in `design-process/`, 10 in `foundations/` including `color/`,",
   "keywords": [
     "references",

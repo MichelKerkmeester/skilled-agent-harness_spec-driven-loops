@@ -7,7 +7,6 @@ trigger_phrases:
   - "naming"
   - "convention"
   - "test"
-  - "implementation summary"
   - "091"
 importance_tier: "normal"
 contextType: "implementation"

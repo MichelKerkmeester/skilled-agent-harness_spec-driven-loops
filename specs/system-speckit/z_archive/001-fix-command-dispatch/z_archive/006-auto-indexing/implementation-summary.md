@@ -7,7 +7,6 @@ trigger_phrases:
   - "semantic"
   - "memory"
   - "auto"
-  - "implementation summary"
   - "006"
 importance_tier: "normal"
 contextType: "implementation"

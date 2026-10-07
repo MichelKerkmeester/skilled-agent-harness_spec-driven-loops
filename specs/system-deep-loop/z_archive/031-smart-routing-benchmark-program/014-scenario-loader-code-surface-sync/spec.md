@@ -10,7 +10,7 @@ contextType: "general"
 parent: "system-deep-loop"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync"
     last_updated_at: "2026-07-06T08:41:30.599Z"
     last_updated_by: "claude-opus"
     recent_action: "Loader parsers re-synced to code-<surface>/; regression guard added; harness vitests green"

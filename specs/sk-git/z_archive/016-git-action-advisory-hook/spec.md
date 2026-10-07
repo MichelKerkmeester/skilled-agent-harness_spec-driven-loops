@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook"
     last_updated_at: "2026-07-28T09:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Closed the packet: all eight phases complete, six runtimes covered, pushed to v4"

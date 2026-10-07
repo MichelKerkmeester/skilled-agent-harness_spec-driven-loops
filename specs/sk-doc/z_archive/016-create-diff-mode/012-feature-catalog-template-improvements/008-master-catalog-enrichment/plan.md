@@ -4,21 +4,22 @@ description: "Execution plan for enriching the 3 master feature_catalog.md files
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "master catalog enrichment plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 008 — Master Catalog Enrichment
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Three targeted file edits. Each master catalog is large (spec-kit is 4,715 lines) but only the frontmatter block needs updating — no need to read the full file content for this phase.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. EDITS PER FILE
 
 ### system-spec-kit/feature_catalog/feature_catalog.md
@@ -69,9 +70,11 @@ trigger_phrases:
   - "what does code graph do"
 last_updated: "2026-05-31"
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 3. EXECUTION ORDER
 
 ```
@@ -82,9 +85,11 @@ last_updated: "2026-05-31"
 5. git diff --stat → verify only frontmatter changed
 6. Commit: "chore(125-008): add trigger_phrases + last_updated to master catalogs"
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 4. VERIFICATION
 
 ```bash
@@ -102,3 +107,4 @@ grep -r "FEATURE_CATALOG\.md" \
   .opencode/skills/system-code-graph/feature_catalog/ | wc -l
 # Expected: 0
 ```
+<!-- /ANCHOR:testing -->

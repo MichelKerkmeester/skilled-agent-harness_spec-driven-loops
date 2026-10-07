@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/007-create-skill-router-marker-gap"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/007-create-skill-router-marker-gap"
     last_updated_at: "2026-07-13T14:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Analyzed the create-skill router-marker gap across all ten packets from live checker output"

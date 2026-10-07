@@ -2,14 +2,13 @@
 title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/implementation-summary]"
 description: "Purpose-first rewrite of the sk-prompt README with a version bump to 1.1.0.0, a changelog entry and full validation evidence."
 trigger_phrases:
-  - "implementation summary"
   - "phase 008 summary"
   - "sk prompt readme summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt"
     last_updated_at: "2026-08-04T13:24:03Z"
     last_updated_by: "008-sk-prompt"
     recent_action: "Executed README rewrite and changelog entry"

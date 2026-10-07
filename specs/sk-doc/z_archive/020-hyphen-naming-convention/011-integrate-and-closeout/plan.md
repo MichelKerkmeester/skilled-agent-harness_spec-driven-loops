@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/011-integrate-and-closeout"
     last_updated_at: "2026-07-14T17:28:50Z"
     last_updated_by: "codex"
     recent_action: "Defined the rebase, gate-rerun, fast-forward, and closeout sequence"

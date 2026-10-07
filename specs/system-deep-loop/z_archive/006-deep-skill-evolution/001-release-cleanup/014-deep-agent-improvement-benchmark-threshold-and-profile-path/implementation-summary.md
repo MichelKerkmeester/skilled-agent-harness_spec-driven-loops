@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement/001-benchmark-threshold-and-profile-path` |
+| **Spec Folder** | 014-deep-agent-improvement-benchmark-threshold-and-profile-path |
 | **Completed** | 2026-05-24 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

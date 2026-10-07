@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/014-review-remediation",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/014-review-remediation",
   "description": "The 10-iteration deep review of the sk-design Claude-parity packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`)",
   "keywords": [
     "10-iteration",

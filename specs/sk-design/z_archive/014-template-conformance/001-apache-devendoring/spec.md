@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
     recent_action: "Reconciled packet docs against the shipped de-vendor commit 4ac59d21c5"

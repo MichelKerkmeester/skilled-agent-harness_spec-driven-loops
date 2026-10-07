@@ -3,12 +3,11 @@ title: "Implementation Summary: sk-design hub benchmark conformance"
 description: "Audit complete — see Verification for evidence."
 trigger_phrases:
   - "sk-design hub benchmark conformance"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/007-hub-root/005-benchmark"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/007-hub-root/005-benchmark"
     last_updated_at: "2026-07-27T16:20:05Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffold Planned implementation-summary placeholder"

@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr",
   "description": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no",
   "keywords": [

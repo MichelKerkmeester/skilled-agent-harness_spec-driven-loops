@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/014-goal-state-cleanup-and-archive"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/014-goal-state-cleanup-and-archive"
     last_updated_at: "2026-07-01T13:17:14Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented goal-state archive, prune, and orphan sweep behavior with lifecycle tests"

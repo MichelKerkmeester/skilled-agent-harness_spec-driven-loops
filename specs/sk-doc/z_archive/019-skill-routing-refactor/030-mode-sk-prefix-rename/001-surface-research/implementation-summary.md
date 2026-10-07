@@ -9,7 +9,7 @@ contextType: "research"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research"
     last_updated_at: "2026-07-28T08:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Merged both research lineages into the frozen contract"

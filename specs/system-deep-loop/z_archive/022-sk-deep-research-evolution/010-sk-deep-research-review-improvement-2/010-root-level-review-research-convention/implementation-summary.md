@@ -2,14 +2,13 @@
 title: "...estration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/implementation-summary]"
 description: "Shared path resolver + 19 file updates so review/research folders always land at spec tree root with phase subfolders."
 trigger_phrases:
-  - "estration"
-  - "042"
-  - "deep"
-  - "research"
-  - "review"
-  - "implementation summary"
-  - "010"
-  - "root"
+  - "root level review research convention"
+  - "root level artifact placement"
+  - "deep loop convention"
+  - "research folder convention"
+  - "review folder convention"
+  - "root level packet convention"
+  - "root level folder convention"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -27,6 +26,7 @@ _memory:
 # Implementation Summary: Root-Level Review/Research Folder Convention
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 

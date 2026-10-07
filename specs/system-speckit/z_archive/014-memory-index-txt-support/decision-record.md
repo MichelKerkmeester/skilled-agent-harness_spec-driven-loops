@@ -3,9 +3,9 @@ title: "Decision Record: Memory Index Txt Support [system-spec-kit/z_archive/014
 description: "Archive normalization decision record for Memory Index Txt Support."
 trigger_phrases:
   - "decision record"
-  - "archive"
-  - "validation"
-  - "normalization"
+  - "memory index txt support archive"
+  - "memory index txt support validation"
+  - "memory index txt support normalization"
 importance_tier: "normal"
 contextType: "general"
 ---

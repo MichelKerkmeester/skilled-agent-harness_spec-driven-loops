@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/003-external-reference-migration",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/003-external-reference-migration",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/003-external-reference-migration",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/003-external-reference-migration",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "948 non-noise references to `deep-loop-workflows`/`deep-loop-runtime` exist outside the two skills' own folders — across `/deep:` commands (434 hits, 24 files), doctor (15 hits incl",
     "created_at": "2026-07-08T04:36:15.645Z",
-    "last_save_at": "2026-08-30T15:39:19.782Z",
+    "last_save_at": "2026-10-07T18:15:17.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5b8fe5eeae88950dd6ed3ed72df518b398523ff70a7ae25763611de47a13d7f",
+    "source_fingerprint": "sha256:9335bf58e6286e6e961150cefa86e8ca8abb58e7ae636c636c798ad8148e38d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae8699457d19646245384db5ae3c6b826584c1fb9394fb41ece90c512258d76e",
-      "plan.md": "2b487f38e8b09d917855d4d251b9dcbf088606eecb03fcee63d8ce526add3bd9",
-      "tasks.md": "0cf070778095cf9ca6bdc196d666ec4abf61c5af611a254b9a3c8a8b35f2ac34",
-      "implementation-summary.md": "ea6690b1e9201ec35cee13fd3a845cde3b44a99eba434f9af0f88e2c4085c29f"
+      "spec.md": "b0937ba73ed65ec74cb786a20bc51fca8f7745668a86eee4cd6e7fd42fd21868",
+      "plan.md": "11bdfc388c3f3f195423d54bccd8bec80b012cfe36c59ea2421f490c160d0715",
+      "tasks.md": "321b8c7aac7b2c479e742d414b2dd5346c7fedc5529da8c4f3d4c813eb218bf1",
+      "implementation-summary.md": "03ea6d3076f76d1c4ac97188b3ebb9d4a9578704d9ad054f0c2e3e3f94c5409d"
     },
     "last_active_child_id": null,
     "last_active_at": null

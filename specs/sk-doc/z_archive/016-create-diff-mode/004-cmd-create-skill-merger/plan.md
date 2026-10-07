@@ -3,7 +3,6 @@ title: "Implementation Plan: Create Skill Merger"
 description: "Consolidate skill creation command surfaces into one canonical command and two unified mode workflows, align and expand canonical artifacts, retire deprecated assets, and complete memory indexing."
 # SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2
 trigger_phrases:
-  - "implementation plan"
   - "create skill merger"
   - "create:sk-skill"
 importance_tier: "important"
@@ -148,7 +147,6 @@ User invokes `/create:sk-skill` -> command file validates setup and required fie
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -168,7 +166,6 @@ Phase 1 (Canonical Create) ---> Phase 2 (Migration Cleanup) ---> Phase 3 (Refere
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

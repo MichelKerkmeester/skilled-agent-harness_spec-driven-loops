@@ -1,3 +1,11 @@
+---
+title: "Retrospective [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/retro]"
+description: "Retrospective for the system health audit, dated 2025-12-25."
+trigger_phrases:
+  - "system health audit retrospective"
+importance_tier: "important"
+contextType: "planning"
+---
 # Retrospective - System Health Audit
 
 ## Summary

@@ -2,14 +2,13 @@
 title: "Implem [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools/implementation-summary]"
 description: "The mcp-chrome-devtools README now opens purpose-first with a one-line pitch and a problem-first overview, carries the CDP capability surface, preserves every dispatch fact and versioned at 1.0.11.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "chrome devtools readme"
   - "mode readme rewrite summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools"
     last_updated_at: "2026-08-04T16:20:00Z"
     last_updated_by: "phase-executor-008"
     recent_action: "README rewrite executed, version 1.0.11.0, changelog added, gates green"

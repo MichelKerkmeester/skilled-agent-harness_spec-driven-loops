@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Deep-review post-dispatch validation previously proved that an iteration produced a markdown file and a minimally shaped JSONL row",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.170Z",
+    "last_save_at": "2026-10-07T18:14:22.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02cf67bcf5645d2d2275f6153f980ae7180c6ad08b14970890aafd563886e4e5",
+    "source_fingerprint": "sha256:a8d2fd1cbdf34929640b994775465a3efdbba953b70496e2a8b4d9b9f6e04451",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "900b1f4985b86a4e056d25688b169e5457a9a92fa5a6b9b7382e321e7a2b25d5",
       "plan.md": "6b9730ec2eb9bc06d3863f6607b844259f22baeb52ec5ea6304f5fed833e3051",
       "tasks.md": "5029cdfb20cd72d6afd4962d9b6de783960f19428c71bedd707afbec952db9da",
       "decision-record.md": "9605f7fe55a48c7dc2cc867fe027d41a3f102059fa8b02729607356b2411b9e7",
-      "implementation-summary.md": "429f24c83da18848f345a79e38cc7760f5096ab316e86bc9f4cc09acefe8021b"
+      "implementation-summary.md": "6188f660ddbc8cf7f5d25b5652f6eb5ffb2dd0371d17ff68c586b5d8802ee8f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

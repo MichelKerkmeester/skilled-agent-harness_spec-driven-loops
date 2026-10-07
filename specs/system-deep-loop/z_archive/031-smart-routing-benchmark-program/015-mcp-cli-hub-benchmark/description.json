@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
   "description": "The two new parent hubs mcp-tooling (children: mcp-chrome-devtools, mcp-click-up, mcp-figma) and cli-external (children: cli-opencode,",
   "keywords": [
     "two",

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/008-interface-audit-pilots"
     last_updated_at: "2026-07-18T19:05:14Z"
     last_updated_by: "claude"
     recent_action: "Built and verified both pilots; 36/36 tests pass, authority order enforced by typed schemas"

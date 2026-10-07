@@ -2,12 +2,7 @@
 title: "Plan: README & Install [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/plan]"
 description: "Fix all issues in each file before moving to the next. This minimizes context switching and ensures comprehensive fixes per file."
 trigger_phrases:
-  - "plan"
-  - "readme"
-  - "install"
-  - "guide"
-  - "alignment"
-  - "045"
+  - "readme alignment plan"
 importance_tier: "important"
 contextType: "planning"
 ---

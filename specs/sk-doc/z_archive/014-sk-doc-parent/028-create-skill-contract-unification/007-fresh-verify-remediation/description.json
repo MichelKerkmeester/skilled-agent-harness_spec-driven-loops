@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
   "description": "A fresh Sonnet-5 xhigh review of all 46 SKILL.md surfaced 11 pre-existing content defects (none from the prior conformance sweep); this phase",
   "keywords": [
     "fresh",

@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Delivered the shared minter, freshness, status, and sync foundation"

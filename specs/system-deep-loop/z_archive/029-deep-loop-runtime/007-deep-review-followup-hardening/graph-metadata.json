@@ -4,10 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening",
   "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
   "children_ids": [
-    "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
-    "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard",
-    "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests",
-    "system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
     "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
     "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard",
     "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests",
@@ -39,7 +35,7 @@
       "deep-review"
     ],
     "importance_tier": "medium",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -89,16 +85,16 @@
     ],
     "causal_summary": "The 2026-07-02 10-iteration deep-review of packet `deep-loops/030-agent-loops-improved` (verdict CONDITIONAL, 0 P0 / 5 P1 / 1 P2) and its same-day remediation left four verified, unowned defects open: the Node validation path silently skips strict-only shell rules and unconditionally requires completion docs from unstarted folders (two native-vs-shell parity gaps in the same orchestrator, plus a missing vitest harness for its registry bridge); deep-loop LEAF executors can fabricate JSONL timestamps with nothing detecting it (observed live: a tidy invented 12:01-12:10 sequence predating the",
     "created_at": "2026-07-02T15:14:06.396Z",
-    "last_save_at": "2026-08-30T15:39:26.020Z",
+    "last_save_at": "2026-10-07T18:14:34.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d9bd690b7329019395bc20c8ac2184023a380036b478ddb078548cb9187fc9be",
+    "source_fingerprint": "sha256:19740c446e31c6eade647bc8a11aec4c58619cce2639c3275923948a012d394e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e2257fbccdc6162950900a94bd69f69b0fdc532fadb8b7709b097698700ceae"
+      "spec.md": "13b253c149c954710d80f79772675056c8e7d2b91c0df45780b7c51429fa09dd"
     },
     "last_active_child_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix",
     "last_active_at": null

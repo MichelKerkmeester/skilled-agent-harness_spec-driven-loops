@@ -3,7 +3,6 @@ title: "...-kit/z_archive/020-mcp-working-memory-hybrid-rag/005-post-research-wa
 description: "Archive normalization summary for Post Research Wave 2 Controlled Delivery."
 trigger_phrases:
   - "005-post-research-wave-2-controlled-delivery"
-  - "implementation summary"
   - "phase"
   - "archive"
 importance_tier: "normal"

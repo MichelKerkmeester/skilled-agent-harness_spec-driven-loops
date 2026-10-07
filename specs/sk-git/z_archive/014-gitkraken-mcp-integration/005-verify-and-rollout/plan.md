@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout"
+    packet_pointer: "sk-git/z_archive/014-gitkraken-mcp-integration/005-verify-and-rollout"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Ran the terminal verification gate"

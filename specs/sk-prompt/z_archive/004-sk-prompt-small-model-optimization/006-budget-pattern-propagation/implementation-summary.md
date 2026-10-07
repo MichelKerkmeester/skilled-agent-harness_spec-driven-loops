@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation"
     last_updated_at: "2026-05-18T19:10:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented Phase 006 cross-skill propagation"

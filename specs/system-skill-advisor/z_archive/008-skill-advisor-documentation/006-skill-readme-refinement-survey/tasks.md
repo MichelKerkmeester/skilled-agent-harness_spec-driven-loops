@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/006-skill-readme-refinement-survey"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/006-skill-readme-refinement-survey"
     last_updated_at: "2026-05-16T13:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored task list"

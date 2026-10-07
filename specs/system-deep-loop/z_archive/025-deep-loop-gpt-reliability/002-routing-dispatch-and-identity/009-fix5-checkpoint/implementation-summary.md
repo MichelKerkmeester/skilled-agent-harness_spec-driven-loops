@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint"
     last_updated_at: "2026-07-01T17:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Gate applied; FIX-5 closed; packet complete"

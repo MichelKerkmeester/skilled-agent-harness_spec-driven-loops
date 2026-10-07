@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/044-deepseek-v4-flash-max-only"
+    packet_pointer: "cli-external-orchestration/z_archive/044-deepseek-v4-flash-max-only"
     last_updated_at: "2026-08-16T17:34:05Z"
     last_updated_by: "implementer"
     recent_action: "Authored spec for pinning DeepSeek Flash to the max thinking tier"

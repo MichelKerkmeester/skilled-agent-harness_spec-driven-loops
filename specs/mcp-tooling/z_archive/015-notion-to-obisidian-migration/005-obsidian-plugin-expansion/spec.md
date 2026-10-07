@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion"
     last_updated_at: "2026-08-23T03:52:43Z"
     last_updated_by: "claude"
     recent_action: "installed 9 plugins in the vault; authored 3 references + roster + router wiring"

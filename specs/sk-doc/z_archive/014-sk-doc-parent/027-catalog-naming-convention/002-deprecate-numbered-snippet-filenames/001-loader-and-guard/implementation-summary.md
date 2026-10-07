@@ -6,7 +6,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Content-gate loader + stage parse + guard shipped; commit 28a2569b4c"
@@ -16,10 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "loader and guard implementation summary"
 ---
 # Implementation Summary: Number-Agnostic Loader + No-Numbered-Snippet Guard
 

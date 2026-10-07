@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "specFolder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
   "description": "Runs the independent whole-system, security, performance, device, accessibility, rollback, and sign-off gates for staged release",
   "keywords": [
     "runs",

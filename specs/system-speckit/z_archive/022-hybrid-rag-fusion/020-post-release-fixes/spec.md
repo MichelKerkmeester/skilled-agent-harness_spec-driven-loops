@@ -65,8 +65,8 @@ This documentation pass does not fix those findings yet. Its job is narrower and
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -184,7 +184,7 @@ Turn this packet into an implementation-ready remediation program that:
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -201,7 +201,7 @@ Turn this packet into an implementation-ready remediation program that:
 - **NFR-R01**: All packet-local references must resolve from `020-post-release-fixes/`.
 - **NFR-R02**: The canonical review boundary must remain stable: `review/review-report.md` is authoritative and the top-level `review-report.md` is historical only.
 - **NFR-R03**: If report subsections drift, the packet must follow the normalized review state already reflected in the canonical `review/` artifacts.
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 
 <!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES

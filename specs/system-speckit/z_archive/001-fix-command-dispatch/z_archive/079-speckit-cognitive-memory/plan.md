@@ -199,7 +199,7 @@ assert(evaluate({sim: 0.60}).action === 'CREATE');
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -221,7 +221,7 @@ Phase 3 (Scoring + Testing Effect) ───────────────
 | Phase 3: Scoring | Phase 1 | Phase 4 |
 | Phase 4: State Model | Phase 1, 2, 3 | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -325,7 +325,7 @@ Phase 3 (Scoring + Testing Effect) ───────────────
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: FSRS Power-Law Over Exponential Decay
@@ -375,7 +375,7 @@ Phase 3 (Scoring + Testing Effect) ───────────────
 - Gradual population as accessed
 - No migration downtime
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

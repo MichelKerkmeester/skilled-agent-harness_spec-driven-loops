@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for debug across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:41Z",
-    "last_save_at": "2026-08-30T15:39:17.130Z",
+    "last_save_at": "2026-10-07T18:13:21.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,12 +166,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:dafdeff49f3e80cf7af801676f2736a65bc30155ef2de8bd26a2b014d0ed8b68",
+    "source_fingerprint": "sha256:12df13119d761a5b1611c3a2a6e63d59798938947c7fc39f56de823634cf62ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d48f146f0d14b5be364b93ada09af327442ddebe3148fb1fd15278e7cafe9a4",
-      "plan.md": "da4c1ecfb12fcd08f7568b82de79c3d6f0fcb66e914b5da19da9a430396b37d7",
-      "tasks.md": "fb97d3d7d44e25bc5b94c45fd018237d8d11eab4eb81d5a367aa3da5bf72a480"
+      "spec.md": "67634dbec3e40af84d9abe14e03a8aaf70cfe00ad8d37cf37aa59b8f23400ae2",
+      "plan.md": "6de01d72579b71c20dda47437e98efa81ea6c6d5dc398277b59a873d43afdeac",
+      "tasks.md": "d58cc1707c473af70e84bd19bbebde5ef9f0c0c0039e360c968d677bc32e77cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

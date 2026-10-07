@@ -2,7 +2,6 @@
 title: "...23-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds/implementation-summary]"
 description: "Phase 011/002 persisted adaptive ranking threshold overrides in SQLite with cache-aware read/write paths and regression coverage."
 trigger_phrases:
-  - "implementation summary"
   - "persist tuned thresholds"
   - "adaptive ranking thresholds"
 importance_tier: "important"

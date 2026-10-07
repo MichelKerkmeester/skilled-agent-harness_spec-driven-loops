@@ -169,7 +169,6 @@ All 11 scenarios must be executed and pass before this phase is marked complete.
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -188,7 +187,6 @@ All 11 scenarios must be executed and pass before this phase is marked complete.
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

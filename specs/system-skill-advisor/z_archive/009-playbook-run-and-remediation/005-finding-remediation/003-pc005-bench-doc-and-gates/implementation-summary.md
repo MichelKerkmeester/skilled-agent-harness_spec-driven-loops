@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-remediation"
     recent_action: "Shipped PC-005 doc fix + bench gate recalibration"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates |
+| **Spec Folder** | 003-pc005-bench-doc-and-gates |
 | **Completed** | 2026-05-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

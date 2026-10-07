@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/014-skill-word-cap-relief",
+  "specFolder": "sk-design/z_archive/014-template-conformance/014-skill-word-cap-relief",
   "description": "`design-interface/SKILL.md` measured 4,991 words against the 5,000-word hard cap enforced by `packageskill.py` (`MAXSKILLMDWORDS`) — nine words of",
   "keywords": [
     "design-interface",

@@ -18,11 +18,20 @@ _memory:
     completion_pct: 40
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks
 
+<!-- ANCHOR:phase-2 -->
 - [ ] **T-01** — Reapply the top-level `type` / `bash: "true"` / `timeoutSec: 3` fields to all 4 matcher wrappers (UserPromptSubmit, PreCompact, SessionStart, Stop). *Note*: reverted in `6cd00aa51b` — reapply required.
 - [ ] **T-02** — Re-verify `.claude/settings.local.json` shows those top-level fields on all 4 wrappers. *Note*: reverted in `6cd00aa51b` — reapply required.
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 - [ ] **T-03** — User runs live Copilot smoke: `copilot -p "schema smoke"` in fresh shell. *Blocked on user*.
 - [ ] **T-04** — Inspect newest `~/.copilot/logs/process-*.log` for zero `Neither 'bash' nor 'powershell'` matches. *Depends on T-03*.
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:docs -->
 - [x] **T-05** — `implementation-summary.md` truth-synced to document the landing commit plus revert commit.
 - [x] **T-06** — Parent packet rollup updated so packet 010 is marked `reverted-needs-reapply`.
+<!-- /ANCHOR:docs -->

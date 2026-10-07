@@ -5,30 +5,6 @@
   "parent_id": "system-deep-loop",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-deep-loop/032-goal-opencode-plugin/001-state-store",
-    "system-deep-loop/032-goal-opencode-plugin/002-injection-plugin",
-    "system-deep-loop/032-goal-opencode-plugin/003-goal-command",
-    "system-deep-loop/032-goal-opencode-plugin/004-lifecycle-tracking",
-    "system-deep-loop/032-goal-opencode-plugin/005-completion-supervisor",
-    "system-deep-loop/032-goal-opencode-plugin/006-active-continuation",
-    "system-deep-loop/032-goal-opencode-plugin/007-sk-prompt-goal-enhancement",
-    "system-deep-loop/032-goal-opencode-plugin/008-system-spec-kit-integration",
-    "system-deep-loop/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer",
-    "system-deep-loop/032-goal-opencode-plugin/010-security-and-correctness-fixes",
-    "system-deep-loop/032-goal-opencode-plugin/011-command-surface-normalization",
-    "system-deep-loop/032-goal-opencode-plugin/012-regression-test-backfill",
-    "system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish",
-    "system-deep-loop/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive",
-    "system-deep-loop/032-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity",
-    "system-deep-loop/032-goal-opencode-plugin/016-plugin-correctness-fixes",
-    "system-deep-loop/032-goal-opencode-plugin/017-hot-path-optimization",
-    "system-deep-loop/032-goal-opencode-plugin/018-test-architecture-restructure",
-    "system-deep-loop/032-goal-opencode-plugin/019-code-refinements",
-    "system-deep-loop/032-goal-opencode-plugin/020-capability-additions",
-    "system-deep-loop/032-goal-opencode-plugin/021-completion-verifier-wiring",
-    "system-deep-loop/032-goal-opencode-plugin/022-review-remediation",
-    "system-deep-loop/032-goal-opencode-plugin/023-p2-hardening",
-    "system-deep-loop/032-goal-opencode-plugin/024-retention-tightening",
     "system-deep-loop/z_archive/026-goal-opencode-plugin/001-state-store",
     "system-deep-loop/z_archive/026-goal-opencode-plugin/002-injection-plugin",
     "system-deep-loop/z_archive/026-goal-opencode-plugin/003-goal-command",
@@ -89,7 +65,6 @@
     "key_files": [
       "spec.md",
       "research/research.md",
-      ".opencode/commands/memory/learn.md",
       ".opencode/plugins/README.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       "research/resource-map.md",
@@ -108,12 +83,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "learn.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/learn.md",
         "source": "derived"
       },
       {
@@ -215,17 +184,17 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-08-30T15:39:25.623Z",
+    "last_save_at": "2026-10-07T18:14:37.938Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:47e5f4f25fdf8b1ab9d24271d6a44473e5e59cc8a240707fea6437ce3f08d0f0",
+    "source_fingerprint": "sha256:9ed34b90ebb202674fa81f9ae8a72e68d1d327f3d261911a5fff072650f9e21a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd8b339d48d6daf78e223ca3bb5c6ba39ac58e9296decedbdb6e90263b348691",
+      "spec.md": "49ad36c8e1a4fb47f4a54fae3ae22841bb90b5d7a4aa0c9d49212922003e73e6",
       "research/research.md": "f4fa54e1ec758ad1c45538f80fc1615f76b1b654a2ae6ad62e0c9a505f764cc5"
     },
     "last_active_child_id": "system-deep-loop/z_archive/026-goal-opencode-plugin/024-retention-tightening",

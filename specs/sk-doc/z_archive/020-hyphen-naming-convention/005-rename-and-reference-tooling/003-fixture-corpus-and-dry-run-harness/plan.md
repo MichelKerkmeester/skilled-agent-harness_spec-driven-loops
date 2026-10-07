@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
     last_updated_at: "2026-07-18T08:32:34Z"
     last_updated_by: "codex"
     recent_action: "Completed the fixture corpus implementation plan"

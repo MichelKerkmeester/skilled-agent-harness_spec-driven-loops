@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `010-council-graph-cli-migration` |
+| **Spec Folder** | 010-council-graph-cli-migration |
 | **Status** | Complete |
 | **Level** | 3 |
 | **Completion** | 100% |

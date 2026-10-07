@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/013-iconic-integration"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration"
     last_updated_at: "2026-08-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Published the canonical full Iconic rule payload and direct Iconic routing"

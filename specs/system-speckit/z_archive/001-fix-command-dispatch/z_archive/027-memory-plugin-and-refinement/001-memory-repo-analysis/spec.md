@@ -155,7 +155,7 @@ Analyze our semantic memory system architecture, compare with roampal-core's inn
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### NFR-001: Documentation Quality
@@ -168,7 +168,7 @@ Analyze our semantic memory system architecture, compare with roampal-core's inn
 - All improvement opportunities identified
 - No significant gaps missed
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:risks -->

@@ -4,7 +4,6 @@ description: "Hydra closure summary covering parent and phase template normaliza
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "008"
   - "hydra"
 importance_tier: "critical"

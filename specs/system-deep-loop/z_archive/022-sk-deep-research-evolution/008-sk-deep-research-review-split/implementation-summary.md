@@ -42,7 +42,7 @@ template_source_header: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 036-sk-deep-research-review-split |
+| **Spec Folder** | 008-sk-deep-research-review-split |
 | **Completed** | 2026-03-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

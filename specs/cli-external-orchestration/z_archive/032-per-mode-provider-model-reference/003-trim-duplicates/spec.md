@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/033/003-trim-duplicates"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/003-trim-duplicates"
     last_updated_at: "2026-07-29T08:35:30Z"
     last_updated_by: "template-author"
     recent_action: "Author phase-3 spec"

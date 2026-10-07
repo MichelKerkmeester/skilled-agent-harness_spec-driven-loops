@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/002-fanout-determinism-observability"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented the order-invariance tests and default-off near-duplicate merge dedup"

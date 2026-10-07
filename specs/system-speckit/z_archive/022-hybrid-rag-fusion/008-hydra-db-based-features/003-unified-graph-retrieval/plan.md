@@ -152,7 +152,7 @@ In-process graph-fusion layer inside the current retrieval pipeline, with bounde
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -165,7 +165,7 @@ Phase 2 lineage -> Graph scoring contract -> Pipeline integration -> Regression 
 | Pipeline integration | Scoring contract | Regression validation |
 | Regression validation | Pipeline integration | Phase 4 and Phase 6 confidence |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -263,7 +263,7 @@ Phase 2 lineage -> Graph scoring contract -> Pipeline integration -> Regression 
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-301: Keep Graph Fusion In-Process and Deterministic
@@ -278,7 +278,7 @@ Phase 2 lineage -> Graph scoring contract -> Pipeline integration -> Regression 
 - Faster delivery and simpler rollback.
 - Requires careful regression measurement and trace design.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

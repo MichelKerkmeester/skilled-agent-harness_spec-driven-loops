@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/035-command-template-conformance",
+  "specFolder": "sk-doc/z_archive/035-command-template-conformance",
   "description": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory",
   "keywords": [
     "audit",

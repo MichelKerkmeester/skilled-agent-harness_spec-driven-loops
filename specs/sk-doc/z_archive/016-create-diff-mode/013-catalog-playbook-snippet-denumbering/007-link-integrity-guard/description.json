@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
   "description": "The deep review found 295 broken markdown links across skills/commands/agents because feature removal/migration/deprecation edits deleted snippet",
   "keywords": [
     "deep",

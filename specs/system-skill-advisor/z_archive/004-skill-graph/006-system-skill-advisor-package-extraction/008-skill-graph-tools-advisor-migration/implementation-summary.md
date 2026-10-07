@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration"
     last_updated_at: "2026-05-14T15:45:16Z"
     last_updated_by: "codex"
     recent_action: "008 implementation shipped (D1+D2)"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `008-skill-graph-tools-advisor-migration` |
+| **Spec Folder** | 008-skill-graph-tools-advisor-migration |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |
 | **Status** | Complete |

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `design-md-generator` mode writes DESIGN.md prose with no grounding in any real, shipped design system",
     "created_at": "2026-07-18T14:14:08.114Z",
-    "last_save_at": "2026-08-30T15:39:12.548Z",
+    "last_save_at": "2026-10-07T18:12:33.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30c5c6ed808331cc2102c0c56d41145c2c84d3cea1a65ace1be33d4ecdb051f4",
+    "source_fingerprint": "sha256:74bae319ec011b154708cab51060f78c3d5fef51b84f310f75750adfc47acfbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "00d1f84a8376f13b57ef23b898800f276f53daf5208e40a30b5ab08056d34adf",
-      "plan.md": "ba6ada6cde8155f676b8b700e69e09607af8188c47dd3e1b395e378262ea8454",
-      "tasks.md": "433729a429daea189daf7a2cd7d327d4603b51ea2ece8a466945917c97d77ad9",
-      "implementation-summary.md": "4ea8199c50fdd80b7301eeeeeb0c35cbd531c3178a9a4909353902f50db3e25b"
+      "spec.md": "7cd9e73d8efc11c30f6e37f559a3fe4ef0f30cf6ec56d3ea3d93490923e4edff",
+      "plan.md": "eb23dc6ccdccac5c518faa57d3177ce28708e87df7d3c96b2b8ccdd5c7fdf57c",
+      "tasks.md": "94bf733d55a4bbde90af6fceed32d9acbb4666683367ad3eb233430f8ef7365f",
+      "implementation-summary.md": "5a885fefe347780326689b5d426d4c8154fa5ecd4857b429983caa456dd5a77e"
     },
     "last_active_child_id": null,
     "last_active_at": null

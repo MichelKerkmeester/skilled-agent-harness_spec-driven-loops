@@ -1,12 +1,25 @@
+---
+title: "Plan — Mass-Deletion Guard"
+description: "Add one shared fail-open bash lib and wire it into the existing commit and push hook chain, with a threshold of 100 tracked deletions as the ceiling."
+trigger_phrases:
+  - "mass deletion guard plan"
+  - "deletion guard design plan"
+  - "pre commit deletion threshold plan"
+importance_tier: "important"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan — Mass-Deletion Guard
 
+<!-- ANCHOR:summary -->
 ## Approach
 
 Add one shared, fail-open bash lib and wire it into the existing hook chain,
 matching the repo's established pattern (shared `lib/`, blocking gates with an
 env bypass, fail-open on missing/broken dependencies).
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:architecture -->
 ## Design
 
 - **`lib/mass-deletion-guard.sh`** — pure helpers, no side effects, no `exit`:
@@ -31,7 +44,9 @@ env bypass, fail-open on missing/broken dependencies).
 Real destructive events here were 902 and 44 files; normal commits rarely delete
 near 100. 100 catches the catastrophic while effectively never firing on ordinary
 work. Fully tunable per-operation for the rare legitimate large deletion.
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:testing -->
 ## Verification
 
 - Tracked test `tests/mass-deletion-guard.test.sh`: 8 verdict-logic cases
@@ -39,9 +54,12 @@ work. Fully tunable per-operation for the rare legitimate large deletion.
   cases in an isolated repo.
 - Confirm the effective `core.hooksPath` `pre-commit` resolves to the edited
   source (so the gate actually fires on the real repo).
+<!-- /ANCHOR:testing -->
 
+<!-- ANCHOR:rollback -->
 ## Risk / blast radius
 
 Every commit runs the gate. Mitigated: only net deletions >100 block, adds/mods
 never block, fail-open on any error, per-invocation override. Reversible: revert
 the two hook edits; the lib and test are additive.
+<!-- /ANCHOR:rollback -->

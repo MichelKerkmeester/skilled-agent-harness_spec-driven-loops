@@ -11,27 +11,21 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gate",
-      "enforcement",
-      "constitutional",
-      "memory",
-      "refinement",
-      "spec",
-      "034",
-      "implementation",
-      "plan"
+      "gate enforcement refinement spec",
+      "gate enforcement refinement plan",
+      "gate enforcement refinement tasks"
     ],
     "key_topics": [
       "gate",
       "enforcement",
-      "constitutional",
-      "memory",
       "refinement",
       "spec",
-      "implementation",
       "plan",
+      "tasks",
       "refine",
       "gate-enforcement",
+      "constitutional",
+      "memory",
       "cover",
       "hard"
     ],
@@ -39,7 +33,8 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -52,6 +47,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -125,22 +126,48 @@
         "kind": "quoted",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Refine the gate-enforcement.md constitutional memory to cover ALL 4 HARD BLOCK gates (0, 3, 5, 6) instead of just 2 (3, 5).",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-08-30T15:39:37.107Z",
+    "last_save_at": "2026-10-07T20:12:08.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:eea07fdde6bb14440686cfab3c789ebc6ca06c6609adf7c4b4970607bdf29e10",
+    "source_fingerprint": "sha256:09718dbfed36daa26440eae6e59a81da35dd46f8db32bf90c42071eda6be51f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6011ac0d28a0945bad39d9a7eca0e0921e911abc721d8cb41eac80ee5f7a6018",
-      "plan.md": "8cef35c861fe169abd0247e03df5876e641bbb3ab3d1a939474ea3be0aa3c5d1"
+      "spec.md": "7abfd14469921fff7461d024354d209d962a0ca09be35a2bea9be86edb751612",
+      "plan.md": "8477061d19f19d0802f5f74bdf41b5e6182d6affccced28344086002c878ef89",
+      "tasks.md": "8d26f8667a59a3622e1e06ee7436f2782b210876bd82357c2725f0cb5342ceaa"
     },
     "last_active_child_id": null,
     "last_active_at": null

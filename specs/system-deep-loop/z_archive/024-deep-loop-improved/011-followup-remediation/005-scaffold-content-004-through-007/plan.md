@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007"
     last_updated_at: "2026-07-01T22:55:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Completed scaffold content backfill"

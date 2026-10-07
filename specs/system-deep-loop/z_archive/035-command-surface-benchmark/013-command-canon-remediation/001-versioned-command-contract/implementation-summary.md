@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
     last_updated_at: "2026-07-16T12:30:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped versioned command contract; six families populated, templates and skill aligned"

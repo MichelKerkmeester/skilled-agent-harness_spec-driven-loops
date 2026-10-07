@@ -19,13 +19,18 @@ _memory:
 ---
 # Tasks: Phase 009 — Agent-Improver Self-Test
 
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+
+<!-- ANCHOR:phase-1 -->
 ## Pre-Flight Verification
 
 - [x] T001: Verify all 8 .cjs scripts parse (`node -c`)
 - [x] T002: Run `scan-integration.cjs --agent=agent-improver` standalone, capture output
 - [x] T003: Run `generate-profile.cjs --agent=.opencode/agents/agent-improver.md` standalone, capture output
 - [x] T004: Run `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` standalone, capture baseline
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Loop Execution
 
 - [x] T005: Create runtime directories under `009-sk-improve-agent-self-test/improvement/`
@@ -34,7 +39,9 @@ _memory:
 - [x] T008: Execute iteration 2: scan, propose candidate, score, benchmark, reduce
 - [x] T009: Execute iteration 3: scan, propose candidate, score, benchmark, reduce (or stop if plateau)
 - [x] T010: Verify stop condition fires correctly (plateau or max iterations)
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Observation Recording
 
 - [x] T011: Document integration scan results for agent-improver
@@ -48,8 +55,11 @@ _memory:
 - [x] T016: Update root 041 spec.md — add Phase 9 to phase map
 - [x] T017: Update root 041 implementation-summary.md — add Phase 9 section
 - [x] T018: Update root 041 changelog.md — add Phase 9 entry
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:completion -->
 ## Spec Folder Finalization
 
 - [x] T019: Write Phase 009 implementation-summary.md
 - [x] T020: Update Phase 009 tasks.md and checklist.md to final state
+<!-- /ANCHOR:completion -->

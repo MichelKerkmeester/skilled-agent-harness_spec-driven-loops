@@ -2,12 +2,7 @@
 title: "Spec: Constitutional [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/047-constitutional-readme/spec]"
 description: "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skills/system-spec-kit/constitutional/. The README should explain how con..."
 trigger_phrases:
-  - "spec"
-  - "constitutional"
-  - "memory"
-  - "system"
-  - "readme"
-  - "047"
+  - "constitutional readme spec"
 importance_tier: "important"
 contextType: "planning"
 ---

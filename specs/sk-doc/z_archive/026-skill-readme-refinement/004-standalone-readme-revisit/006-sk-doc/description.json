@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
   "description": "The sk-doc README still carries the older tabular reference-card style and predates the pilot standard set by mcp-obsidian",
   "keywords": [
     "sk-doc",

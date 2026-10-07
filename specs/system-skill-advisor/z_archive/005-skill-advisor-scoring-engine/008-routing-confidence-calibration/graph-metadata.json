@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30",
     "created_at": "2026-05-14T02:15:00Z",
-    "last_save_at": "2026-08-30T15:39:26.700Z",
+    "last_save_at": "2026-10-07T18:16:06.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:15:00Z",
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df6eec171302680153a3c0769ecfc641a63c97320315fbb1eac9096c4a6ae5f2",
+    "source_fingerprint": "sha256:18ca7320ee97ffb17e736d41bfa234058479729047df838938d80a6660302ed2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32b7ce4fb96e02dc27066e26b9f125a8a13be2fb7bd4b3d679a576ec0438074e",
-      "plan.md": "f32241530931c0eaa1f7fcf9a19cf615dcdd44ff52b256dc82490c3202b7f221",
-      "tasks.md": "8f18b7c8ee60fb1da0551b8b1467ab7711cc3e42094d71e720a38ee5ab617b6f",
-      "implementation-summary.md": "fd5682bcfefdebe4a468db0417238d56d4551c79a256f48a053a375a73257431"
+      "spec.md": "acbe090f9917db29979dbdd2ae2028eab25a8dc9dfde4375931b206377fee645",
+      "plan.md": "61cd576d68d6177dbd37bd65fc05896f3a0bc79eb12e4b7b9ab13ab0b0cd8aa4",
+      "tasks.md": "97ffdbc56c25fa3ecf6e8a2606885efb247c8d4bcd5d1149df344a87e6345b4b",
+      "implementation-summary.md": "7df8896c789a7bc5d6232860c6c497d751e6a94d54695b21ce2aa9604a74c3ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

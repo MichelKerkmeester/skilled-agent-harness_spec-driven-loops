@@ -159,7 +159,6 @@ Execute all six evaluation scenarios from the manual testing playbook, producing
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Test Execution
@@ -170,7 +169,6 @@ Execute all six evaluation scenarios from the manual testing playbook, producing
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Scenario-Specific

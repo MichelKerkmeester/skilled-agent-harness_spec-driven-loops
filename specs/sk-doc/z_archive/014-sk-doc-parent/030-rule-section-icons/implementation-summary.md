@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/030-rule-section-icons"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/030-rule-section-icons"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "Icon sweep complete + validated; ready to ship"

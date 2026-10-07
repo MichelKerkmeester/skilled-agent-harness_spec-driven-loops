@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 004's ADR-001 explicitly decided to register the guard adapters in a committed, project-level `.cursor/hooks.json`, but the operator deferred the actual file to \"a later, separately-approved step.\" That step never happened: no `.cursor/` directory existed anywhere in this repo",
     "created_at": "2026-07-24T13:32:31.907Z",
-    "last_save_at": "2026-09-11T16:41:47.110Z",
+    "last_save_at": "2026-10-07T18:11:39.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1249d7becd7c1ee3a74fa2eed1739443b90950dc1ecbc6fe5046d49b3bbb5dd1",
+    "source_fingerprint": "sha256:47ded64dbda9e6b1598c651faa9c019027d954a3fee262c920263a5e252d6396",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10a5b5f4537bb15b3f7c179bfcc350b5bda7cc88e85e3c707da98bdd116d570c",
-      "plan.md": "432ccc624ee92fb1b9829331950041c165e555e0f13ff6d2399c7d69b91f4657",
-      "tasks.md": "32b8cd7f890b745f22b503964c1589176af3bab53a2751ce11b34e190ecccf73",
-      "implementation-summary.md": "090cc253e72a72e38380efcb1356bd6ba2e9a969eec496fb935f1221b65d033a"
+      "spec.md": "b41f1658c3c64984c02cbacfb0949ca64b5a800d059a4558c90d53a1be21e09b",
+      "plan.md": "ea040a4aa5a2cce4ea21443cd3f7df73a9070b9f2c289bf20b1b274e3346f58a",
+      "tasks.md": "9649828e16300d59ba7d6b031d30c1ebd9cf22097118e622b69419e45dba9a03",
+      "implementation-summary.md": "9217da4dd4a98053fbe1ae260e4f3b40b43d9e25e9a95623d6525ade82990bb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine"
     last_updated_at: "2026-07-06T16:57:21.016Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented default-off RRF import + deterministic rank order + conflict carrier with unit tests"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine |
+| **Spec Folder** | 001-rrf-determinism-spine |
 | **Authored** | 2026-06-19 |
 | **Level** | 2 |
 | **Scope** | Advisor RRF determinism spine: C3 (import) + C2 (folded) + conflict-suppression carrier - implemented default-off |

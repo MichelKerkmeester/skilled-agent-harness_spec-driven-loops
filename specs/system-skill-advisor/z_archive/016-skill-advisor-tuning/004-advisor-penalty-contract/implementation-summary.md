@@ -1,11 +1,14 @@
 ---
 title: "Implementation Summary: Advisor Self-Recommendation Penalty Contract"
 description: "Summary of documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking it with a regression test that fires the penalty in the production-default state and was confirmed to break when the penalty is zeroed, with the penalty value unchanged at -0.25 and the advisor build typecheck clean."
+trigger_phrases:
+  - "advisor penalty contract summary"
+  - "advisor penalty contract implementation summary"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/004-advisor-penalty-contract"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/004-advisor-penalty-contract"
     last_updated_at: "2026-07-06T17:28:26.576Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented and locked the implicit penalty"

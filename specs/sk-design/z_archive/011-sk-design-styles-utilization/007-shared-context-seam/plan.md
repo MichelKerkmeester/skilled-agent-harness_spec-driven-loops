@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/007-shared-context-seam"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/007-shared-context-seam"
     last_updated_at: "2026-07-18T13:40:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the shared-context-seam Level-2 planning scaffold"

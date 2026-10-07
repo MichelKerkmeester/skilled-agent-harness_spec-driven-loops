@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
     "created_at": "2026-04-12T09:02:50.225Z",
-    "last_save_at": "2026-08-30T15:39:38.015Z",
+    "last_save_at": "2026-10-07T19:24:21.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f20049c8d14ab67272ef6f3bcc75413adc8d58fe87db4bef6ae566ed7a771d6",
+    "source_fingerprint": "sha256:4bf93e9964a96eb1fcc54a04d49582e5da7e370d2fc87a566373fd32b58c326a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fd7dfc06171750b815525b086f45ed310e6b324e7f47446cfec6d2404ccf39aa",
-      "plan.md": "396248f13e4b2ba4927cc601de850be7143a96fa317f8a43eead443cbcf0c2e8",
+      "spec.md": "be71b56898793e5fc044f1fdfe3a0ecfa7dc699941da973e5093f8a2be7bf444",
+      "plan.md": "f22ebe38b6d0d9b7ffbc98631f2e61ecb49534d3ad969673639969af22f0f3f8",
       "tasks.md": "cac0c876db6a96d2ca1986b5948c862822e7d5dc84b2d5c9b69608d266508d39",
       "implementation-summary.md": "37f12df92879496409aa238b6b77ada799d4ed2e31eab93a57ef4d47b9344bce"
     },

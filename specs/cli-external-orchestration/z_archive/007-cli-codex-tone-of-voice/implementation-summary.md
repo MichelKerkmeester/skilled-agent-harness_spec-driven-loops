@@ -40,6 +40,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## 1. FINAL OUTCOME
 
 Codex CLI now loads a voice addendum at every session start, scoped to **Voice**, **Tone**, and **Reasoning Visibility** only. The file is version-controlled in the repo and symlinked into the user's home directory so Codex's documented discovery path picks it up automatically.
@@ -59,9 +60,11 @@ Codex CLI now loads a voice addendum at every session start, scoped to **Voice**
 **Precedence header** in the file states: this addendum does NOT override the project-level `AGENTS.md` framework (gates, scope discipline, code style, safety, memory). Codex combines both files into the instruction chain. Also out of scope: command-execution policies at `~/.codex/rules/*.rules` (Starlark — separate system).
 
 **Content origin**: grounded in Anthropic's publicly documented Claude character principles ([Claude's Constitution](https://www.anthropic.com/constitution) + the [Claude 4.5 Opus Soul Document](https://www.lesswrong.com/posts/vpNG99GhbBoLov9og/claude-4-5-opus-soul-document)), synthesized during this spec's research phase.
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:decisions -->
 ## 2. THE JOURNEY (why the final shape differs from the original spec)
 
 The original spec (preserved below the FINAL OUTCOME header in `spec.md`) planned two Codex-specific assets inside `cli-codex/assets/`:
@@ -75,6 +78,7 @@ Both were authored, integrated into `cli-codex/SKILL.md` (Resource Domains, LOAD
 2. **Discovery of user-global AGENTS.md** (ADR-007): Codex CLI's documented discovery path includes `~/.codex/AGENTS.md` — a user-global instruction file loaded at every session start and combined with project-level `AGENTS.md` into a single instruction chain. This made the APP personalization asset redundant: the same voice content, placed in the user-global file, would apply automatically to every Codex CLI session AND be directly copy-pasteable into the APP UI if the user wanted it there. Removed the APP personalization asset too.
 
 3. **File placement + scope tightening** (ADR-008): the user wanted the file version-controlled and shareable, not hidden in their home directory. Since Codex CLI doesn't automatically read `<repo>/.codex/AGENTS.md`, we used a symlink: source of truth at `<repo>/.codex/AGENTS.md` (following the user's existing `.codex/` symlink pattern where `changelog`, `prompts`, `skills`, `specs` already point to `.opencode/` counterparts), loader at `~/.codex/AGENTS.md` → the repo file. Content was also tightened from "seven target behavior shifts" (Scope / Code style / End-of-turn rhythm / etc.) down to three categories only — Voice, Tone, Reasoning Visibility — so the addendum never overlaps with the project-level framework.
+<!-- /ANCHOR:decisions -->
 
 ---
 
@@ -106,6 +110,7 @@ Both were authored, integrated into `cli-codex/SKILL.md` (Resource Domains, LOAD
 
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## 4. HOW IT WORKS AT RUNTIME
 
 **Every Codex CLI session** (inside or outside this repo):
@@ -124,9 +129,11 @@ Responds with Claude-like voice, governed by project framework.
 ```
 
 **When an AI orchestrator delegates to Codex via cli-codex skill**: the global voice file is NOT injected into the delegation prompt. The orchestrator's own system instructions govern voice. Codex's own session-loaded `~/.codex/AGENTS.md` still applies to its response naturally — but the orchestrator doesn't read or re-inject that content.
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## 5. VALIDATION STATUS
 
 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/cli-external-orchestration/007-cli-codex-tone-of-voice --strict` reports template-shape deviations (ANCHORS_VALID, TEMPLATE_HEADERS, SECTIONS_PRESENT, SPEC_DOC_INTEGRITY) that are strict-mode style issues, not correctness blockers. `PLACEHOLDER_FILLED`, `LEVEL_DECLARED`, `PRIORITY_TAGS`, `EVIDENCE_CITED`, `COMPLEXITY_MATCH`, `FOLDER_NAMING`, `LEVEL_MATCH`, `NORMALIZER_LINT`, `SPEC_DOC_SUFFICIENCY`, `TOC_POLICY`, `CONTINUITY_FRESHNESS`, and `EVIDENCE_MARKER_LINT` all pass.
@@ -134,6 +141,7 @@ Responds with Claude-like voice, governed by project framework.
 **Functional validation**: byte-count parity confirmed between `<repo>/.codex/AGENTS.md` and `~/.codex/AGENTS.md` (both 2746 bytes, symlink resolves correctly).
 
 **Qualitative validation (user responsibility)**: start a fresh Codex CLI session and ask a deliberately ambiguous question; observe that Codex hedges, asks a clarifying question, or surfaces assumptions rather than fabricating a confident answer.
+<!-- /ANCHOR:verification -->
 
 ---
 

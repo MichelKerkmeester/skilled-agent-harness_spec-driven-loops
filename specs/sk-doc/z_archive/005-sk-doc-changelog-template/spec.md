@@ -92,12 +92,12 @@ Move the template into `sk-doc/assets/documentation/`, repoint the changelog com
 ## 3. SCOPE
 
 ### In Scope
-- Move the changelog template to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../skill/sk-doc/assets/documentation/changelog_template.md)
+- Move the changelog template to [.opencode/skills/sk-doc/assets/documentation/changelog_template.md](../../../../.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md)
 - Delete the original at the former create-command asset path (`.opencode/commands/create/assets/changelog_template`)
 - Update `create_changelog_auto.yaml` and `create_changelog_confirm.yaml` to reference the new path
-- Update [.opencode/commands/create/changelog.md](../../../command/create/changelog.md) (Section 3 + Related Resources references)
-- Update [.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md](../../../skill/system-spec-kit/references/workflows/nested_changelog.md) (the "do not reuse global template" pointer)
-- Add CHANGELOG intent + RESOURCE_MAP entry + use-case mention + references-list entry in [.opencode/skills/sk-doc/SKILL.md](../../../skill/sk-doc/SKILL.md)
+- Update [.opencode/commands/create/changelog.md](../../../../.skilled/commands/create/changelog.md) (Section 3 + Related Resources references)
+- Update [.opencode/skills/system-spec-kit/references/workflows/nested_changelog.md](../../../../.skilled/skills/system-spec-kit/references/workflows/nested-changelog.md) (the "do not reuse global template" pointer)
+- Add CHANGELOG intent + RESOURCE_MAP entry + use-case mention + references-list entry in [.opencode/skills/sk-doc/SKILL.md](../../../../.skilled/skills/sk-doc/SKILL.md)
 
 ### Out of Scope
 - Editing the template's content. The move is path-only; the file body is preserved verbatim.

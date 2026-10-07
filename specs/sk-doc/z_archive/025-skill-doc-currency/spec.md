@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "track-e-spec-author"
     recent_action: "Authored phase-parent spec from the track (e) synthesis proposal"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
     "created_at": "2026-07-14T15:17:14Z",
-    "last_save_at": "2026-08-30T15:39:16.318Z",
+    "last_save_at": "2026-10-07T18:12:57.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8aa8f9f84107fbe2f483aa38fbbad3916ce689382abbc0644445fa0f9b7cb48b",
+    "source_fingerprint": "sha256:3ad5ddb0ef255a98299e95311b915bd3b24ef635264149a0933bf1458a16b72c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95462176215e87adddc81d9effe0ecb1f6128659a4fd6092b6c796b525153135",
-      "plan.md": "6e80e621e53347eadb9eee98052fdb811083fd3ece300b314909940f601b9cfa",
-      "tasks.md": "2c652fc74b7fba8e33014977c0858a49386ebdb569a2467f0a2b9c47ce7e3499"
+      "spec.md": "7cab94c05878a6d5b7447fcbe82167f0581cd7b753b1ee503e9be1bedced2066",
+      "plan.md": "535f3643a5e0e25ca9874c38b521af9d92df1c706ec07f0e7a79175ac781eeee",
+      "tasks.md": "f2e2648632615bc47e57010f54cd71842ef85b4700e10b0732293ca2225bff2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -423,7 +423,7 @@ function computeRecencyScore(updatedAt, tier, decayRate = 0.1) {
 
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-2 -->
 ## Pending Decisions
 
 | Topic | Blocker | Expected Resolution |
@@ -431,4 +431,4 @@ function computeRecencyScore(updatedAt, tier, decayRate = 0.1) {
 | Personalized weights storage | Phase 3 scope | After Phase 2 validation |
 | A/B testing infrastructure | Phase 3 scope | After usage data available |
 | Cross-project ranking | Out of scope | Future spec |
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-2 -->

@@ -11,32 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "task",
-      "command",
-      "configs",
-      "audit",
-      "spec",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record",
-      "decision record",
-      "summary"
+      "command alignment audit",
+      "opencode command review",
+      "command alignment plan",
+      "command config audit phases",
+      "command alignment tasks",
+      "command config audit checklist",
+      "command alignment decisions",
+      "command config scope decision",
+      "command alignment delivery",
+      "command config audit completion"
     ],
     "key_topics": [
-      "task",
       "command",
-      "configs",
+      "alignment",
       "audit",
-      "spec",
-      "implementation",
+      "opencode",
+      "review",
       "plan",
+      "config",
+      "phases",
       "tasks",
-      "decision",
-      "record",
-      "summary",
-      "configuration"
+      "checklist",
+      "decisions",
+      "scope"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -195,7 +193,7 @@
     ],
     "causal_summary": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and speckit command references (specs 124, 128, 129) are current and consistent",
     "created_at": "2026-05-26T19:43:14.237Z",
-    "last_save_at": "2026-09-10T21:04:36.454Z",
+    "last_save_at": "2026-10-07T20:49:08.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:477ad00b4655765f98066fb4ea543125cd8b4ccedbfa949e6b7d6a420ff1caea",
+    "source_fingerprint": "sha256:1e0e14c363e07a9fc3fdc2c89e0c1c700aef144948ef17b7d0ae48168690efca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "affc25fd2b72e9a3f6059d364ae84d608123212b909aa8415261603181e80aeb",
-      "plan.md": "c414319ea3bd0ef66a5231c48d03c378621f1521f2ad241fd96df3207388b5c2",
-      "tasks.md": "5a399a6bfb6ccab1d8776758fa9a22f1c98895f1a652077d2569662e3fa0d906",
-      "decision-record.md": "575efe31dc2fc7ed7b9f8c3385c0b6d7ac27f8b9b829e18066762f6007281e0a",
-      "implementation-summary.md": "0e9b39119e04701bfcd182528e6064b29c604f102b1c6d04b229cb65943a8b83"
+      "spec.md": "bca945316bf6b8aeb7736f4b25d2e5cceb51081c7cd1d8e5fc259e42802c63b4",
+      "plan.md": "bda311a69224d7de9092685c3c2847d252d138567685fd4247e6f69fddef00af",
+      "tasks.md": "83f3a5842948ec44cad8e33ccddfcc3dc6214dede73829b8e511c8c93848367d",
+      "decision-record.md": "7a6bafa209cd7bb6e83ca6e86e8ec69871e7ef95ba84d681f06fe2106f292cb6",
+      "implementation-summary.md": "c8618dee9905b5ccec3a85aa533c2b88e095700eeecd86cdeed05cf70502eff3"
     },
     "last_active_child_id": null,
     "last_active_at": null

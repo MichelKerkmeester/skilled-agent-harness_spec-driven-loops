@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,32 +12,50 @@
   "derived": {
     "trigger_phrases": [
       "deep-ai-council canonical router",
-      "INTENT_MODEL normalization"
+      "INTENT_MODEL normalization",
+      "deep-ai-council canonical router plan",
+      "deep-ai-council intent signals conversion plan",
+      "deep-ai-council canonical router tasks",
+      "deep-ai-council intent signals conversion tasks"
     ],
     "key_topics": [
       "deep-ai-council",
       "canonical",
       "router",
       "normalization",
+      "plan",
+      "intent",
+      "signals",
+      "conversion",
+      "tasks",
       "convert",
       "per-keyword",
-      "tuple",
-      "weights",
-      "unparseable",
-      "mode-a",
-      "harness",
-      "10-scenario"
+      "tuple"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,96 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Convert",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "keys",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Convert deep-ai-council's INTENT_MODEL (per-keyword tuple weights, unparseable by the Mode-A harness → D5=0 from 10 dead_intent_keys) to canonical INTENT_SIGNALS, add a 10-scenario Type-1 gold and a key-sync test, landing the already-designed PASS-92 conversion into the working tree.",
     "created_at": "2026-07-09T12:18:00.101Z",
-    "last_save_at": "2026-08-30T15:39:19.973Z",
+    "last_save_at": "2026-10-07T20:53:16.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:4ba85523b6e9097a5ad13ec53343352c42daef1e4dc471aa2b433e3c65301d0c",
+    "source_fingerprint": "sha256:6b4a1e45ae993fa806b214a033184a4af7e64cad06b498394cb4f7dc791ff9ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "516ab6577fee734bfa31ac1406691e519c7e18f28f529a832102c8ebc2c1b951"
+      "spec.md": "b011e28f238dc8b8968eac24de80438e1f509591995485d4bb092d4ed8d52e07",
+      "plan.md": "12e271687f3586dd07af4fb56ce41c75982154508f939706446c0640f27da623",
+      "tasks.md": "cb0c8c6c5a7b04e577fa23c1659edf05a58c9621a62903566c29e3821f44d888"
     },
     "last_active_child_id": null,
     "last_active_at": null

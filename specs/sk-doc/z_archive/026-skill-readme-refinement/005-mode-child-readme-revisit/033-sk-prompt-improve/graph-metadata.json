@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -55,19 +52,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The README at `.opencode/skills/sk-prompt/sk-prompt-improve/README.md` still carries the older tabular reference-card style: AT A GLANCE, QUICK START and HOW IT WORKS tables come before any narrative about why the skill exists",
     "created_at": "2026-08-04T08:34:51.229Z",
-    "last_save_at": "2026-08-30T15:39:17.855Z",
+    "last_save_at": "2026-10-07T18:14:01.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:837e975a4da4cd52de8c4f1a39c301fea731675ade39c7227f7a485644dff08d",
+    "source_fingerprint": "sha256:f0f0818172a71661abc1bd4aa256923b1297dea4aa33aa1fc29768e901543443",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77481227310e6f65f84748b6c98429b6ac4e407463b50a3cf9691c7fa05678b1",
-      "plan.md": "57bf1ecdd026d2c84ed0986bb646726fd8f6556f62721a74c39c9ef057766861",
-      "tasks.md": "fb26e5fb8c93f628b84e9ba976bbdf7099f6d095025d3641dd8ab8d7ae01ab7c",
-      "implementation-summary.md": "d733f912fbf5e48c54fd1936a416d7c76959388e06837ac086f0caa247331281"
+      "spec.md": "23a9d42292fa429e88ea6f4c2be1441751fe64e38182e87f8d4159dd6527dfb3",
+      "plan.md": "33a7fb892784ee9c471a23f3c18c926d46e69b3a13ec3de942d3338b980c7b84",
+      "tasks.md": "da09fc0298744bc74f6abfdff16c9fd72aa4b84a18c40ff14e8c11857a3fbbc3",
+      "implementation-summary.md": "bea06a834c449307a2b8238ad1c432d6d4e6e9f90ef93a0b95e03ac6d8b070d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

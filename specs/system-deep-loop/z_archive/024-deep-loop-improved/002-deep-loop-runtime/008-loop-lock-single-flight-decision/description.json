@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/008-loop-lock-single-flight-decision",
   "description": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before",
   "keywords": [

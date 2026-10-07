@@ -424,7 +424,7 @@ For research tasks, testing is replaced by validation checkpoints:
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## 10. TIMELINE SUMMARY
 
 ```
@@ -449,7 +449,7 @@ Phase 3: Recommendations            [████████] 2-3 hours
 TOTAL ESTIMATED TIME: 9-13 hours
 ```
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 ---
 
 ## 11. DELIVERABLES CHECKLIST

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/004-shell-python-daemon"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/004-shell-python-daemon"
     last_updated_at: "2026-05-26T20:00:00Z"
     last_updated_by: "playbook-run-operator"
     recent_action: "Executed phase-004 wave scenarios"

@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-sk-deep-research-review-mode |
+| **Spec Folder** | 005-sk-deep-research-review-mode |
 | **Completed** | 2026-03-31 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,7 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "live anti-overfit lane",
-      "circularity meter gate"
+      "circularity meter gate",
+      "live anti-overfit lane plan",
+      "circularity meter gate plan",
+      "live anti-overfit lane tasks",
+      "circularity meter gate tasks"
     ],
     "key_topics": [
       "live",
@@ -21,23 +25,37 @@
       "circularity",
       "meter",
       "gate",
+      "plan",
+      "tasks",
       "route",
       "fixture",
       "corpus",
-      "existing",
-      "executor",
-      "seam"
+      "existing"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,60 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Route the fixture corpus through the existing live executor seam (today the fixture path hardcodes the deterministic router) so T2 decontaminated holdouts get a real live resourceRecall, publish the T1↔T2 circularity meter as a real anti-overfit signal, and add an opt-in gate — advisory by default with sample-floor + repeat-median flakiness controls so Mode-A stays the only hard CI gate.",
     "created_at": "2026-07-09T12:18:01.367Z",
-    "last_save_at": "2026-08-30T15:39:19.985Z",
+    "last_save_at": "2026-10-07T20:54:51.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:76a5fd73b2603845f14caa01c1ba2defa87e579466b6cb7209f1c9109b0415c7",
+    "source_fingerprint": "sha256:b0d215705bed6171d8c5f9269f407922e627e88ffab618b1e00ff5ff178cfc9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96f166b39303b701c9a02e67c64c8cc56a74025ca006f2aa65612920bd3070aa"
+      "spec.md": "09508a43f64c6323bc3e151e2063a6bbe1546a8335ffd312453090666abdddb4",
+      "plan.md": "50024881c8034914cfdf10c14cd29b204351be6cd74fd8f9a8c2742037ae326d",
+      "tasks.md": "0e75daa47d667c74dac92063c677efa619fa80166852e01fb460d5abfae0a780"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
   "description": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas:",
   "keywords": [
     "skill",

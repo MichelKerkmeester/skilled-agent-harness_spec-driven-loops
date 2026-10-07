@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the same file, some records are written twice and others are lost depending on who wins the append race",
     "created_at": "2026-06-28T14:01:55Z",
-    "last_save_at": "2026-08-30T15:39:24.779Z",
+    "last_save_at": "2026-10-07T18:15:15.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d40bd420a64cd58ed8a667512f587858331e1f2046341e5cdd23e5d45fc96374",
+    "source_fingerprint": "sha256:d9fcfb20a7b2eee870108a92b170ab49c0794310ee27443875b08313e2d53d78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb2f6340b686ed37e2d4ff1504e0b386aefb11e0f6f9da9c4a80552fa208eaff",
-      "plan.md": "9d176211e4ce7da8fbdbc9d7f0d393b17783d74546c4e9186b198ef2a707611f",
-      "tasks.md": "c389cd35f7d388a60311b40f1257f4e52a5f3a5b9255a6ca50089101b586dfeb",
-      "implementation-summary.md": "14a9d2b2a2d4d6fb42a12747c83f4a09015a5f80948b7a8fe1ff7afe5ed4e119"
+      "spec.md": "6dae5bbcc2d1ff96e297657c681e37df1092169f7f00faac621ffa0ad458efff",
+      "plan.md": "664e88f68991babe4561900b653d04db109fdeaceb65e26dd6d0b08e1cfa5bb4",
+      "tasks.md": "993050b5353da1657a431e6b66f96561b73b31aa41e90f83f8b8f5bae0b700e2",
+      "implementation-summary.md": "d3a868a1c1c0c6ef56732eb57488a9d16adb0335fbfda217b9f011a5a5c73c93"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,8 +2,7 @@
 title: "Impleme [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor/implementation-summary]"
 description: "Orchestrator-managed parallel wave execution for deep research and deep review: fan-out/join proof, deterministic segmentation, activation gates, keyed merge, and 97 tests."
 trigger_phrases:
-  - "042.003"
-  - "implementation summary"
+  - "wave executor implementation summary"
   - "wave executor"
   - "segment planner"
   - "coordination board"

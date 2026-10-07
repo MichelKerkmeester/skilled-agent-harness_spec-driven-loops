@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning"
     last_updated_at: "2026-07-07T17:49:35.000Z"
     last_updated_by: "claude-opus"
     recent_action: "WU-1 reconciled 001/002/003/004 spec honesty (WS1 falsified, RRF row, guard ledger truthed)"

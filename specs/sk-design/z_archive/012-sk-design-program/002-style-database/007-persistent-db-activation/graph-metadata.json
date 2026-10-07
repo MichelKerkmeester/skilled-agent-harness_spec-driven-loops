@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
-  "spec_folder": "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
-  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/002-style-database/007-persistent-db-activation",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/002-style-database/007-persistent-db-activation",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/002-style-database",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `003-db-fate` gap research recommended shelving the SQLite styles database: the JS math is tiny and parity-sensitive over 1,290 style bundles, and no measured SLO breach justified a storage swap",
     "created_at": "2026-07-21T11:26:38.944Z",
-    "last_save_at": "2026-09-11T16:41:54.506Z",
+    "last_save_at": "2026-10-07T18:12:21.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97f337860110111f6cb3cf3a37a1eeaf72070cef96643cec3dc48ba1299ddfd8",
+    "source_fingerprint": "sha256:0cc1024f5a70166768e9be7eecfbc6c7937b4b1cf8d13b51bb5f90dfa502245a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9456919d6485641034397b526469d7db35e525a265bea289bb5f3bf6adfe6e78",
-      "plan.md": "81630af0a58b6515ed2dc00cff5f6f406b1201090651906119ba7609cd8f2d3f",
-      "tasks.md": "82e0dd225403f7e289065faceaf676022afd8f74e815e7f613d1d29566b95858",
-      "implementation-summary.md": "318d987fb90af0c956ed18250d6d96cd0cbc0d5ebc6d9a7c811e122290e8f030"
+      "spec.md": "d4d77e33d6b45a1210ebfb41aad2e8e1d168cdf7cbd378d436df7988611b4742",
+      "plan.md": "85f21e86fe5195a313c0ca83136ba4a485b588880afc5e0e204751546bd43fba",
+      "tasks.md": "804a9d8e1e00ebe35619d72ad9063fc418ab270fd4e288e0fae2dfa9e8ab5d8a",
+      "implementation-summary.md": "9c5ddbf2485c2275decb257d3012368cf34b8a14c80b4988f822d6b47883b69a"
     },
     "last_active_child_id": null,
     "last_active_at": null

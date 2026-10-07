@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/005-upgrade-speckit-docs/implementation-summary]"
 description: "Archive repair summary for the OpenCode Documentation Quality Upgrade folder."
 trigger_phrases:
-  - "implementation summary"
   - "documentation quality upgrade"
   - "archive"
 importance_tier: "normal"

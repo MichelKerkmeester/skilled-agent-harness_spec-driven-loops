@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The advisor scorer's parent-hub confusion — routing \"audit\" / \"review\" / \"code audit\" prompts among `sk-code`, `sk-design`, and `deep-loop-workflows` — is a half-landed vocabulary migration, not a missing scorer feature",
     "created_at": "2026-07-07T18:21:29.658Z",
-    "last_save_at": "2026-08-30T15:39:27.503Z",
+    "last_save_at": "2026-10-07T18:16:09.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:227f25b9fb35b79ca1670c93dacd74e47caed5a34d679f0db3c7f9b196b15d40",
+    "source_fingerprint": "sha256:f38d369a263eecb522067129f530caab3322b70f80a6fda1000c3a5954c88452",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ec15eb470b5618947fff39807609bc0b5292fb3040d2eef307b60afc37ebb2a",
-      "plan.md": "4b51b9ba07d1198b6d0f9df0b4e35a00e522929e7f16409b2643f045f3f61a76",
-      "tasks.md": "d1a9dd74681c01100ee27ab4b695c9b1fe55114768e535fe55dc7d1ae96bbf74",
-      "implementation-summary.md": "bb484aa1a2123c94368cf8b93d58d32162c0c5d3417d972cdd1d13991fb60567"
+      "spec.md": "b2a932b4cac409026a50f3c0c5fd9edcda049ca92ac1c1d020eb3ac02b56181b",
+      "plan.md": "9b0cc8bcb1827b48860277c2962cd1d2bf37a831fb2855f27983e06cc326cf56",
+      "tasks.md": "c7c4d482d964a605fc0093cc9dfb0a54510f9624d4441c26f0027d404b3d0d1e",
+      "implementation-summary.md": "b968e3e2e7400e88d637eb4d674240b555140665e6f7b2e0e6aefabc82ad045e"
     },
     "last_active_child_id": null,
     "last_active_at": null

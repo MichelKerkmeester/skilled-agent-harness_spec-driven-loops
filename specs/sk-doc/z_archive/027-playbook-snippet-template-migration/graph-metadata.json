@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/027-playbook-snippet-template-migration",
-  "spec_folder": "sk-doc/027-playbook-snippet-template-migration",
+  "packet_id": "sk-doc/z_archive/027-playbook-snippet-template-migration",
+  "spec_folder": "sk-doc/z_archive/027-playbook-snippet-template-migration",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The 32 per-feature snippet files under `.opencode/skills/sk-doc/manual-testing-playbook/` drifted from the snippet template (`sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md`)",
     "created_at": "2026-08-06T07:24:08.534Z",
-    "last_save_at": "2026-08-30T15:39:17.929Z",
+    "last_save_at": "2026-10-07T18:14:21.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f219589950c5a20185462e9e4e02e99f944308f1e369c03d33b87ebe6ae4c7bd",
+    "source_fingerprint": "sha256:d160ac81e88107fdb68de703d36e6503d037a07b9ee23c29f7871ee5c7e5b087",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82f2c042413fbf926ddc4325f74cd4220279a970cd166de188c7af05d97399cc",
-      "plan.md": "81a2ecb44597835dc2d9c04be30f4ef02903ab320a4488a356d9670f0dcd18e7",
-      "tasks.md": "4e58f6d6d07a205d258431a36256859f7b9edd3b5e79bcd6af7b82b32c04e53a",
-      "implementation-summary.md": "bcd981f689c1f81d51717c89d5e2951e9e80aca5ab5943d542017b83285a4a57"
+      "spec.md": "740b64d129e447c8f793c31fbfe940dbc9c34a5ae64724251190e6ccb51a5975",
+      "plan.md": "49a3624ecde497b53e7c53c789ea64e5b924e5d80269fab4302f76f01f3c6c3e",
+      "tasks.md": "b7e57f777dd66bb6369e5165a3175064e52755821f8827b296e9e4188766bded",
+      "implementation-summary.md": "83d3750d73b0ff602edb9efe71922fb4be0bd1041b2adca290f4151c91b32da8"
     },
     "last_active_child_id": null,
     "last_active_at": null

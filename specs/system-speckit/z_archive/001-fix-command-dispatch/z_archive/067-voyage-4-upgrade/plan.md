@@ -2,10 +2,8 @@
 title: "Voyage 4 Upgrade Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade/plan]"
 description: "File: .opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.js"
 trigger_phrases:
-  - "voyage"
-  - "upgrade"
-  - "plan"
-  - "067"
+  - "voyage 4 upgrade plan"
+  - "embedding model migration plan"
 importance_tier: "important"
 contextType: "planning"
 ---

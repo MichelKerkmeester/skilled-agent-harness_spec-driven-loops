@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/009-changelog",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/009-changelog",
   "description": "`changelog/` holds exactly 2 files: `v1.0.0.0.md` (65 lines, titled \"interface v1.0.0.0 - Data-backed and Claude Design parity\", genuinely about",
   "keywords": [
     "changelog",

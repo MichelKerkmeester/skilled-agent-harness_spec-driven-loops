@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/tasks.md",
+      ".opencode/skills/sk-design/sk-design-md-generator/README.md",
+      ".opencode/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -55,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -77,15 +76,21 @@
         "source": "derived"
       },
       {
-        "name": "skill-readme-template.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "path": ".opencode/skills/sk-design/sk-design-md-generator/README.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "v1.1.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "path": ".opencode/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
         "source": "derived"
       },
       {
@@ -189,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design-md-generator mode skill generates markdown from design artifacts",
     "created_at": "2026-08-04T08:34:46.630Z",
-    "last_save_at": "2026-08-30T15:39:17.766Z",
+    "last_save_at": "2026-10-07T18:13:54.493Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c31236118113508196f5b1329a7213ecd3b0076dd892f58a513c834d5cdcf4a7",
+    "source_fingerprint": "sha256:8982f2d4c10b356707d0b7c1d9cea4810fde731abfcbc0e9693db07dba8bbdc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "009200966f527d7fee1f607075467660d8e10429f44b600f5053a5d422c4a38e",
-      "plan.md": "d224acd897785e33772063582d6c4ce6d96848e4f227d3d3aff420d6508fd8cc",
-      "tasks.md": "d7c015dc9d43db6ad739d8ab670a288e863dc8d09c8f2cd062d7bcbb1552ba27",
-      "implementation-summary.md": "b0a1f72c61702f33b14893ca09b6c85c88297ea3d3ddcfad5976dbee9e8df476"
+      "spec.md": "2143f04aa4bb551ce9d024a0ab1fd87e5eaed2fc05fcee6e4e8a4a577982d663",
+      "plan.md": "492026433fd1630f7d0a5f5ddac33144385072ff65f1fae412b10cca69917971",
+      "tasks.md": "8d74e6d0b9561c13c2e7f6f85a2902e14c43b2815ebffccaf42aa30e0a65a793",
+      "implementation-summary.md": "ff11c46f49752684b7e8e974bdc9e36229128f31b54188cc5ddc9c4f7916b235"
     },
     "last_active_child_id": null,
     "last_active_at": null

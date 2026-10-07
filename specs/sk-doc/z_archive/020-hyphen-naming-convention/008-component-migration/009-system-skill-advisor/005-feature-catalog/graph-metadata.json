@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The advisor's feature catalog currently uses the snakecase root featurecatalog, seven snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-30T15:39:16.838Z",
+    "last_save_at": "2026-10-07T18:13:05.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:524902888ec58a3150cc9b8a4e56cc6e43ff9a77bcce7922ce8865d7c72ae4fa",
+    "source_fingerprint": "sha256:aad0d511cb59b83b5e1711034bd072bebc6dc46d9a1b9f5a56f2f4a6de75da8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "424c1671cc615120f9eb4346aba2c68f4e0513d412cec025a145cbd3288d180f",
-      "plan.md": "da6558060239671c201b6efcbced5db6dcc45c8ff0a1992a8ae639e055ebc64a",
-      "tasks.md": "f39991c4a83933fbb94efbe44b40bd25b74253d3665f0125069c93e11475a611"
+      "spec.md": "fd0b4d1c6cd972395499270af1ccaf885c220ce04f9d11eff3a3a77e9db15aa5",
+      "plan.md": "3f1db4dcaa0d19579ceb6b8491955e4e3691ba545318604d7e9bdab20a162e44",
+      "tasks.md": "6a5a790888323036fd2f93866981d1c2c5e0098e5a7f43e4708a3b42119f1dcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

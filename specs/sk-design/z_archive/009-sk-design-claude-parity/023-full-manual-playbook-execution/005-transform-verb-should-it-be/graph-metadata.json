@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "dispatch-log.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be/dispatch-log.md"
+      "dispatch-log.md"
     ],
     "entities": [
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "The sk-design manual-testing-playbook category `transform-verb-framing` has three scenario files (`should-it-be-audit.md`, `clarify-alias-only.md`, `foundations-excluded-aliases.md`) that assert precise routing contracts for `transformVerbRouting` in `mode-registry.json`: \"should it be\"-framed transform verbs must resolve to `audit`; `clarify` must resolve to `interface` (as an alias-only entry excluded from command projection parity); and `typeset`/`colorize` must never resolve to `foundations` solely by themselves",
     "created_at": "2026-07-07T15:08:39.400Z",
-    "last_save_at": "2026-08-30T15:39:12.361Z",
+    "last_save_at": "2026-10-07T18:12:27.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de7b56c7cd123d85c58137b2b57572824552a8e07392b364640b4da18d0f3433",
+    "source_fingerprint": "sha256:0e0ea39f6c920c117e89b05642970312265311ad85c165c119178b285e6c0c5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1ed97c3a8fde6bd6222b8105ec35db734d43b93caab7886dea8b99a6a137986",
-      "plan.md": "f238a84dd8a93a78c2291beb3612df1d6ce6113bb1f8d8a8762ad9089dbaea01",
-      "tasks.md": "0a3b13e5c8b1ce701fa267644de59509ac41de49b681010d45c2084710525816",
-      "implementation-summary.md": "3c379843c8f6a2d04296bf4f98ced1a7d6061c03bfca38de66399050c178722d"
+      "spec.md": "b78bfadb889046d70f2522840763e5b866f1ca1826d0cc70625effd5688bff74",
+      "plan.md": "4611bd113473cca59930eb0f14995de258fbaee72922bf16853c988433fad312",
+      "tasks.md": "663f31f8ab5abcf221ebd62671053a47337d7025b53306637d024e78ad61e8be",
+      "implementation-summary.md": "76ed6d040de4232abe8e29f02956c310faaf9758df0b7620521cfc5b2a9d038a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "description": "The `design-interface` mode (`.opencode/skills/sk-design/design-interface/`) grew nine top-level folders — packet root, `references/`, `assets/`,",
   "keywords": [
     "design-interface",

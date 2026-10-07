@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/008-mcp-aside/001-research",
-  "spec_folder": "mcp-tooling/008-mcp-aside/001-research",
-  "parent_id": "mcp-tooling/008-mcp-aside",
+  "packet_id": "mcp-tooling/z_archive/008-mcp-aside/001-research",
+  "spec_folder": "mcp-tooling/z_archive/008-mcp-aside/001-research",
+  "parent_id": "mcp-tooling/z_archive/008-mcp-aside",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,32 +46,27 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
       "research/resource-map.md",
       "research/deep-research-findings-registry.json",
-      "research/fanout-attribution.md",
-      "context/website-link.md"
+      "research/fanout-attribution.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -84,12 +79,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "website-link.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
         "source": "derived"
       },
       {
@@ -199,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode), but no one has confirmed the CLI exists as a real standalone binary, what tools the MCP server exposes, or how auth works",
     "created_at": "2026-07-16T09:39:14Z",
-    "last_save_at": "2026-09-10T20:43:40.910Z",
+    "last_save_at": "2026-10-07T18:11:39.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:adabb41ead25adec46c472a62581e0914677908f2292f4cdcce1f0cd00e61585",
+    "source_fingerprint": "sha256:9c5d3ef41b4ab0228b8c2cc5be5e07f1f520a761909e11fd03abd4f4681cd881",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "324c06201afc546ad036a7c331d34f548fa29614d70ec15881312c42cb00ee5a",
-      "plan.md": "cba8744c11eab19a1212c3d2b785772b7010a095f2f86ff84b3f88a15e0dfe02",
-      "tasks.md": "4b16d1a3047cbd4dec035a0d8f505e419185f4498cc0bdc676a42645261b851d",
-      "implementation-summary.md": "514276f58dd49801f941f2de5b227b90e9ee1fab06ad19b6c8ef5e73f5dafca3",
+      "spec.md": "89eb174c94d169988cfe7432d4518a15904aad1356cac60c6b00b5abcd40f7c9",
+      "plan.md": "b5010a457f331190bf7c24e4d11f78afe0fa07545cacea3d1ecaad60c56baa54",
+      "tasks.md": "45e7ce27850fc5b54b54cf65fd516ee5c79dd7845bb05adc0b845c9e3ad93b79",
+      "implementation-summary.md": "f3f9c36e5427e9fbba8a3ebe77c9793fc739091b0806b987d9a7bb309b91394b",
       "research/research.md": "b0d49d67e3e14e631b51e119cb3ed495b3f13c0915972fd886a20c03e4492219"
     },
     "last_active_child_id": null,

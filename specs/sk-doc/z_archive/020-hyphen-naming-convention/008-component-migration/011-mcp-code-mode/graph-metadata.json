@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -88,16 +88,16 @@
     ],
     "causal_summary": "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-08-30T15:39:16.913Z",
+    "last_save_at": "2026-10-07T18:12:45.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b2b578da8e95b6aa1ad7ade3766948a7fd12901fe20c5475b8f58d5b5e9f2d19",
+    "source_fingerprint": "sha256:952d0df1de28953055f8e52a43a30d3d2e512bfb6541a7b9a8fdbd61bf4778fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cce26070b5b293db03d21a11bb523add7b329707b8836cc84f4e64a648a79bab"
+      "spec.md": "5e72fc7124b1421564acbdc2820f1d6dd5f3510e6f37e91da0e3a684b3607fd6"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
     "last_active_at": null

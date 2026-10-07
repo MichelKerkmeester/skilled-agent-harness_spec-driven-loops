@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
-  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
-  "parent_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "review remediation",
       "packet 012 findings",
       "style database hardening",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "review remediation plan",
+      "review remediation tasks",
+      "review remediation implementation summary"
     ],
     "key_topics": [
       "review",
@@ -32,11 +26,11 @@
       "style",
       "database",
       "hardening",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "implementation",
+      "summary",
+      "gpt-5"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "The GPT-5.6-SOL deep review over packet 012 stabilized 0 P0, 9 P1, 1 P2",
     "created_at": "2026-07-19T13:04:50.464Z",
-    "last_save_at": "2026-09-11T16:41:54.397Z",
+    "last_save_at": "2026-10-07T19:23:36.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8959503e6f5979f21d097459f414fc6e152cc92790f2bd09398445cecd96b041",
+    "source_fingerprint": "sha256:3e00873f9b06f6e48bb23d5bd15df6b0d17853131f05e5b94f33bdd4da9c287e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f9e0495b2d349366286ed3a10d58211daaab578fbe6c3f2fff19f20edc7af11",
-      "plan.md": "9bb99009dd521dcb4cf9d26c2c487f8dff49c86209405a914790ab852feedca8",
-      "tasks.md": "1e0a16f636cffd99e7252a9d926488323bec45cb3591b15a15d17741a5c3689a",
-      "implementation-summary.md": "f7983590223f209b4e8cf49422dd519edec80d921239801a90929b63783c1f92"
+      "spec.md": "4928ae0f46cc24b92f2ca48d9033272b62ddbae7951458681fe5d4ee58189c85",
+      "plan.md": "30bc2a42a7d066ebbf0587ad24d0e30bd32c23bdd79b5e28d10e0133af5b174a",
+      "tasks.md": "000cab3b78ba599a7f49ce5950beefd49e4d410ac06984db9e33026b94cd80e4",
+      "implementation-summary.md": "70032c0b5f3c73326023b11101e691b058728c9aeccbd4b0e9870b64fcbdd8c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

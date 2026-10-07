@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census",
-    "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope",
-    "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration",
-    "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
-    "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard",
-    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
-    "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map",
-    "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration",
-    "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
-    "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
-    "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout",
-    "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
-    "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
-    "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening"
+    "sk-doc/z_archive/020-hyphen-naming-convention/000-worktree-baseline-and-census",
+    "sk-doc/z_archive/020-hyphen-naming-convention/001-convention-policy-and-scope",
+    "sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration",
+    "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
+    "sk-doc/z_archive/020-hyphen-naming-convention/004-no-new-snake-guard",
+    "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+    "sk-doc/z_archive/020-hyphen-naming-convention/006-inventory-and-frozen-map",
+    "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
+    "sk-doc/z_archive/020-hyphen-naming-convention/009-remove-transition-aliases",
+    "sk-doc/z_archive/020-hyphen-naming-convention/010-whole-repo-gate",
+    "sk-doc/z_archive/020-hyphen-naming-convention/011-integrate-and-closeout",
+    "sk-doc/z_archive/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+    "sk-doc/z_archive/020-hyphen-naming-convention/013-install-guide-canonical-naming",
+    "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -99,16 +99,16 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-08-30T15:39:16.053Z",
+    "last_save_at": "2026-10-07T18:12:47.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:61aa2c397ce8519bdecd248b0edcf742d227716e1a862a41477907207d24e898",
+    "source_fingerprint": "sha256:658b4c47f4c5220fa5c0321958c200b0ec04c63f483e56483198b31dea194d4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06ce06f76714c1f825fe721f423d849e2715cb4aeaf91958e85ff331b05fa5c3"
+      "spec.md": "565c8772a807cc6efc5ecc8a43c2e2da1e78b45e8a6007f6aa6910122d599968"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
     "last_active_at": null

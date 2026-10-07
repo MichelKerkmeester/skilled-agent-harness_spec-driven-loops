@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
-  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
-  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "packet_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+  "spec_folder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+  "parent_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gemini-3.7-flash-high`, and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gemini-3-7-flash-high`",
     "created_at": "2026-08-15T09:11:19.337Z",
-    "last_save_at": "2026-08-30T15:39:08.009Z",
+    "last_save_at": "2026-10-07T18:11:38.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc4c008c198a1db57449cb0971e222c7c83b3b24e4427405b305c7509b99d6fa",
+    "source_fingerprint": "sha256:8eb864e90b81bd9f1913545f1634945e0a447ca65c6f35c27f00097d87580296",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "108044ec1b737490555bd9024ffe12a3be4854b4c2ec1e78996a31d8afc4450c",
-      "plan.md": "ce1f5c5adcce98601acf5db9f3615cc98dc2e441cbdc0087760870479d2ed7f7",
-      "tasks.md": "3bc2b4b617f9adb22a1b8e84482f116f1696bd0e9a8ef42bfeaf1682157b9229",
-      "implementation-summary.md": "576bcf65679eed689e2c7c6443a76596009548ae0edf072ee6e0b045a0a5e4bf"
+      "spec.md": "2182032dff62929b8af8f58abba822fb3a129220d39f6b1939dea9353afdcaf8",
+      "plan.md": "a2a2e63ac825dac69a82293ea264985b365218e18f192e11b5082ea4ecc179e4",
+      "tasks.md": "cc5f36cec3b2ebfdbe30d12f1f718b896a095306cd36b45fc9da231099a94cc6",
+      "implementation-summary.md": "666ab87b3a5d3f801221c63e2bc12db485195952733f974ddcaad03d930f796b"
     },
     "last_active_child_id": null,
     "last_active_at": null

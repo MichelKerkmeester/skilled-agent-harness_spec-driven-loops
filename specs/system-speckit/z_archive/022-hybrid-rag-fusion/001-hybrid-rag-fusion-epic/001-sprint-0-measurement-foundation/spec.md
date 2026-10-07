@@ -184,7 +184,6 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -203,7 +202,6 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

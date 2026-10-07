@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/027-cli-codex-revival/001-codex-contract-pin",
-    "cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support",
-    "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet",
-    "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer",
-    "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
-    "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
-    "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
-    "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
-    "cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness"
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/001-codex-contract-pin",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/002-deep-loop-executor-support",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/003-cli-codex-skill-packet",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/004-codex-hook-adapter-layer",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/005-codex-agent-toml-sync",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/006-docs-and-closeout",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+    "cli-external-orchestration/z_archive/027-cli-codex-revival/009-codex-hook-install-robustness"
   ],
   "manual": {
     "depends_on": [],
@@ -103,16 +103,16 @@
     ],
     "causal_summary": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-08-30T15:39:07.120Z",
+    "last_save_at": "2026-10-07T18:11:38.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8b3314195932668350df5cf1e2d56ce8115e42271afe15902a28953474cabea2",
+    "source_fingerprint": "sha256:4c36ab34535b0a22f09b75d63fb65a5bb555282f7b429572b0f51bca473fe0f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46859bd2a9ea3b981e5e38b8902862361ea795bd8320f893f02bb0679a486bfd"
+      "spec.md": "fdfd83b8c8c13bc106a85edc693692f3193574f20342d57a599592943ab89528"
     },
     "last_active_child_id": "008-cli-codex-model-roster-and-alignment",
     "last_active_at": "2026-07-14T04:11:03Z"

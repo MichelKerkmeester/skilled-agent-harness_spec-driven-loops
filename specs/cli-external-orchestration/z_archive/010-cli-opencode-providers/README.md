@@ -76,7 +76,7 @@ Resume follow-up work through `/speckit:resume`, which rebuilds packet continuit
 
 Phase decomposition is typically not needed at Level 1. Most Level 1 tasks are small enough to complete in a single pass without phased ordering.
 
-If a task unexpectedly grows beyond Level 1 scope, consider escalating to Level 2+ with phase decomposition rather than splitting a Level 1 spec. See the Phase System in the [main templates README](../README.md#phase-system).
+If a task unexpectedly grows beyond Level 1 scope, consider escalating to Level 2+ with phase decomposition rather than splitting a Level 1 spec. See the Phase System in the [main templates README](.skilled/skills/system-spec-kit/templates/README.md#phase-system).
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/003-cmd-create-changelog",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/003-cmd-create-changelog",
   "description": "No automated way to create changelog entries",
   "keywords": [
     "automated",

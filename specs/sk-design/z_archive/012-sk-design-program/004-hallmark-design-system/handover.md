@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system"
     last_updated_at: "2026-07-23T07:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Authored the hallmark handover"

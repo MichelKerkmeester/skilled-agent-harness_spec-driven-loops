@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/010-hook-code-style-cross-runtime"
     last_updated_at: "2026-07-27T03:47:58Z"
     last_updated_by: "claude-code"
     recent_action: "Sweep complete and verified across all four runtimes"

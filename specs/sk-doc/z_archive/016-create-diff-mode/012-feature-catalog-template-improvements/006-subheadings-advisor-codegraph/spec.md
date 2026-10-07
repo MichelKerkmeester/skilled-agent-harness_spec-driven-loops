@@ -3,14 +3,19 @@ title: "Phase 006: Sub-headings — system-skill-advisor + system-code-graph"
 description: "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done in a single AI pass per skill."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "subheadings advisor codegraph spec"
+  - "advisor catalog subheadings"
+  - "code graph section subheadings"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 006: Sub-headings — system-skill-advisor + system-code-graph
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -23,8 +28,11 @@ trigger_phrases: []
 | **Input** | `002-mechanical-sweep/output/long_sections_audit.csv` |
 | **Skill targets** | system-skill-advisor, system-code-graph |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 ### Estimate
@@ -34,9 +42,11 @@ trigger_phrases: []
 
 ### Same standard as phase 005
 H3 vocabulary, grouping rules, and no-prose-rewrite constraint are identical to phase 005.
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 3. REQUIREMENTS
 
 Same as phase 005, scoped to the two smaller skills.
@@ -46,10 +56,13 @@ Same as phase 005, scoped to the two smaller skills.
 | R-001 | All flagged advisor files have H3 sub-headings | Re-audit shows 0 flagged in advisor |
 | R-002 | All flagged code-graph files have H3 sub-headings | Re-audit shows 0 flagged in code-graph |
 | R-003 | Prose unchanged | git diff shows only `### ` additions |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 4. SUCCESS CRITERIA
 
 - Zero files in either skill have HOW IT WORKS >3 paragraphs without H3 sub-headings
 - Standard vocabulary used where appropriate
+<!-- /ANCHOR:success-criteria -->

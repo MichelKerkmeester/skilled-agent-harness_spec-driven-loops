@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/009-mcp-refero/002-skill-authoring"
+    packet_pointer: "mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring"
     last_updated_at: "2026-07-17T06:03:03.117Z"
     last_updated_by: "claude"
     recent_action: "Verified packet gate and marked checklist with evidence"

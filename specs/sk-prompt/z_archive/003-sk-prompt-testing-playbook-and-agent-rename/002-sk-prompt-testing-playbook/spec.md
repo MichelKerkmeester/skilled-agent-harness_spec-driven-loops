@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
+    packet_pointer: "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
     last_updated_at: "2026-05-06T16:58:29Z"
     last_updated_by: "codex"
     recent_action: "Phase 002 complete: 28 scenarios shipped"

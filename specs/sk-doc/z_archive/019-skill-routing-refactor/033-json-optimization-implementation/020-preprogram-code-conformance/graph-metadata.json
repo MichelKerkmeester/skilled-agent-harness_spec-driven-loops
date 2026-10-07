@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -183,7 +183,7 @@
     ],
     "causal_summary": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced strict-mode directive, a manifest path join without a containment guard, and missing JSDoc on exported functions.",
     "created_at": "2026-07-30T08:23:44.740Z",
-    "last_save_at": "2026-08-30T15:39:15.998Z",
+    "last_save_at": "2026-10-07T18:13:25.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9f9382af5f999bf81857812a32354c90932b1c961de10ea5f23d8f3b8c73285",
+    "source_fingerprint": "sha256:b4085e43b586c5c6d5732394f6a47e26aa0eea99ce981c69acdfe367fa60ba30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86741bc50bd342fd399a12eaae17efb2d1f93b795523c2aaee2cf15da9203e94",
-      "plan.md": "b29f85c62d6d0c36f6f41e677dcd5cae8732b6013e7453d2f02740532de238ac",
-      "tasks.md": "eebd9ce4b129413f6390f73811f339bf25af3ea7241c2489ab3e0c556c291799",
-      "implementation-summary.md": "128535b8eafe66e61261ce30a077b324b983caa50d349346fc1ff8b2b07fbe15"
+      "spec.md": "5b7d158242be2c6b7d8222dcac5750568e8ce497949e63931ac5bf50ee949ea0",
+      "plan.md": "9056c708a1f3f58384488963c8e21cecca6746a26854badb4e3e58453f254099",
+      "tasks.md": "b2bb3e5548e2781ed8c22c072d1eeb47a0f3ab840cd3e8d5a64d465d3467f50b",
+      "implementation-summary.md": "78141c008cd2f081a077dfd0864c3ac43dd8b411c3986d088ec2600200c2b200"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/003-cli-codex-skill-packet",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/003-cli-codex-skill-packet",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Runtime support alone does not provide a safe user-facing Codex route",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-08-30T15:39:07.143Z",
+    "last_save_at": "2026-10-07T18:11:39.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82bee9942eb4804c86503298257ec4dce83b9dac061bc56b4d89cd413875b4a6",
+    "source_fingerprint": "sha256:1fffaa79e6b2d26d3f614390bb455dd7137452e699489674394ee616d1c81c48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "412f5f411a7b223737a61fa7f39a309792a488fe082562de8e096da3de100176",
-      "plan.md": "97d87237c5b3a6f1474886391bc02a02052046f002f7dd985779151a4d44ea0d",
-      "tasks.md": "50da6556c6a820cc57b72b3bb1c38b6464805dd07dc26fd28c6143f146410dc7",
-      "implementation-summary.md": "188c3b78a49c9e144f2f0b2d2cf189bfb88fcaff3ed4be405916db5f9c90476a"
+      "spec.md": "c49159986f2e42279d312e774638caa1bf53493b73f874ccecccfbb8852ba876",
+      "plan.md": "84bf0822fb57bd0099c9fc03894c2aac52eec2790962b6aafae644222be9e170",
+      "tasks.md": "cc6e1f563164e050290510ef097584f1daf81c9df69f4493412f63f6c22abc6e",
+      "implementation-summary.md": "7cfb23cb13720bd9b3e0faf081b9d31d972ab84b1a0494860a6831a8fae213ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

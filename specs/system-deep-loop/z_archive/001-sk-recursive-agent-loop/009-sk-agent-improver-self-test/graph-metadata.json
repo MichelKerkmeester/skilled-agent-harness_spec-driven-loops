@@ -18,8 +18,7 @@
       "plan",
       "tasks",
       "phase",
-      "impleme",
-      "implementation summary"
+      "impleme"
     ],
     "key_topics": [
       "spec",
@@ -29,11 +28,11 @@
       "tasks",
       "phase",
       "impleme",
-      "implementation",
-      "summary",
       "sk-improve-agent",
       "skill",
-      "validated"
+      "validated",
+      "against",
+      "handover"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +190,7 @@
     ],
     "causal_summary": "The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent ...",
     "created_at": "2026-04-13T04:55:07.905Z",
-    "last_save_at": "2026-08-30T15:39:22.559Z",
+    "last_save_at": "2026-10-07T21:25:23.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ec1836e4d32c1fdf74b073cee574770b986f3a18000c20bfb22f8356d6d063c",
+    "source_fingerprint": "sha256:511693fba9725a5a686f64b535b31e14678d9a9e4116eff18296a153bb185b01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5fc2f4c261497db31c6de538a810cd92684a38672395eb302a1c1fae02a5286e",
-      "plan.md": "72997f01549a169e913b0c05ea1816fd500868b9dedf4a532ee6e4236c261f55",
-      "tasks.md": "7f5db23ec2f94329a223531fc7dfbbfb04284f17dbb52fa441f7ce7c768e87b2",
-      "implementation-summary.md": "9b909d513fc0f32419eaa70ed9ecec019c02bff342f51de09712bd578579c555"
+      "spec.md": "756636e55fb5ead35232826ce78f00bd0525d921b1515079411dc2f2e8396227",
+      "plan.md": "5ff4119102cafb973a3bcaeb4b58222faf3d9c5fd48f2606dd150d256b3a06da",
+      "tasks.md": "30a6ee938db81f816e7e8635274444a4ffefd32c307b57a7665d464b6f4e45e6",
+      "implementation-summary.md": "4cd3ae36ff6abc71ef95c5c56961a51c9f8e08c9ac412c37fed362a447ce4f30"
     },
     "last_active_child_id": null,
     "last_active_at": null

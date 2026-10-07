@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -20,7 +20,6 @@
       "phase 6 tasks",
       "cli pi readme tasks",
       "mode readme rewrite tasks",
-      "implementation summary",
       "mode readme rewrite summary"
     ],
     "key_topics": [
@@ -34,8 +33,8 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "summary",
+      "cli-pi"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -46,9 +45,6 @@
       "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-pi/README.md",
       ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.4.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -56,19 +52,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +196,7 @@
     ],
     "causal_summary": "The cli-pi README at `.opencode/skills/cli-external-orchestration/cli-pi/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:40.852Z",
-    "last_save_at": "2026-08-30T15:39:17.646Z",
+    "last_save_at": "2026-10-07T18:14:21.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c15941ebbed23b6cfd8aea1b7cb8b793f399a045377a093212ffba590657a8c0",
+    "source_fingerprint": "sha256:4e3d7154fb040b0c4b9534f0cf67e25d6d457019757e6f374ef3b65896860763",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b946715bfb73a9e97bdcccecfbd01e9aefdad08e9e9cc5c76f727b9be7ba21f",
-      "plan.md": "193718daa9cd81dd61a69cb330ffb10295d9ac5787a3605e402f1978481946a5",
-      "tasks.md": "cb7d97070f92a475f9956e01138a548e95ffc2897e1b9d98508bc4c4dc483d5b",
-      "implementation-summary.md": "564fe693135d7b57325981566f43fadf0ebd08fb214f3456af281547d9ba8be3"
+      "spec.md": "6bb31fc68e2fa26533b23621c551ac0179f6ba06d48caa344afd9a86dee655d3",
+      "plan.md": "ed0a265eb2c5d495a177e4896940d040cb80faedbcfdbc5eb06b06f9fef9b6a7",
+      "tasks.md": "5e3d4b9ad0d01f35ab3402fcb5ff90973b159ad9e7030d48521b7f9729b936c4",
+      "implementation-summary.md": "d449ab04ab8b3817a07dce0b1cefae9ec95617b83782ba45bb4c439c032d4565"
     },
     "last_active_child_id": null,
     "last_active_at": null

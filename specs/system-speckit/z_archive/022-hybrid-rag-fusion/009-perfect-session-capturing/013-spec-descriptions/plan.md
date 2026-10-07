@@ -269,7 +269,6 @@ interface PerFolderDescription {
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## 8. L2: PHASE DEPENDENCIES
 
 ```
@@ -294,7 +293,6 @@ Phase 4 (Aggregation) ───────────────────�
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## 9. L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

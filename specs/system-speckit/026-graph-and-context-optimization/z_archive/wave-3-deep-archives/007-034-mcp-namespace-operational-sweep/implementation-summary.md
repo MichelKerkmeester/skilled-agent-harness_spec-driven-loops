@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `020-mcp-namespace-operational-sweep` |
+| **Spec Folder** | 007-034-mcp-namespace-operational-sweep |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 | **Operational stale refs found** | 13 across 3 files |

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Three deferred items remained after 014",
     "created_at": "2026-06-05T12:47:32.528Z",
-    "last_save_at": "2026-08-30T15:39:19.315Z",
+    "last_save_at": "2026-10-07T18:14:22.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5c501a5ff23d21460549243d684c88896197cd69dbf7b44b213e2646968e85f",
+    "source_fingerprint": "sha256:6246fc48f21b5b3d913e1d1dadd288af05057abc0988ca233c12b108843293a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a268ec54bdbc01e72d32882919f52fbc30b54a0af91d6bd3bdff886639efa18c",
-      "plan.md": "c5b6d08e2d1d1d132ad12114a518e9f911b481e5d6f6a6366903cd641dcd3197",
-      "tasks.md": "3289dcedead15b9dc5d76026420593409373babb8e1ec1163b30644ae9bd137c",
-      "implementation-summary.md": "900d99fbd208ed9941ce04a5212af6e80a60d18d36fb49e43dede0d61d3a9eea"
+      "spec.md": "45daecc68f9d34bc8e0dbe6802fbdeef321b5689da56b72774305feec47af878",
+      "plan.md": "0c31d173a297f4597d3bf39c514184b8dad6c067d57907de8ce3848841917229",
+      "tasks.md": "bf4876e679e11f32f1d7cbcd7af3721c8416866aa0d73a8bf97fb8313f7c4674",
+      "implementation-summary.md": "dbb5ba44ee825e42228995d766c57dfda3dd59273592bab440498ccb2ab6d21b"
     },
     "last_active_child_id": null,
     "last_active_at": null

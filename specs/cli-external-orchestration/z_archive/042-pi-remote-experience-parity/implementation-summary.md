@@ -1,7 +1,11 @@
 ---
+title: "Implementation Summary: Pi Remote Experience Parity Research"
+description: "Two-lineage deep research into the Pi remote experience; both lineages completed all 20 iterations and the SOL-high synthesis merged them into ranked recommendations for the 041 packet."
+importance_tier: "critical"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/042-pi-remote-experience-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/042-pi-remote-experience-parity"
     last_updated_at: "2026-08-12T06:47:00Z"
     last_updated_by: "claude"
     recent_action: "Synthesized both research lineages into research/research.md and completed the packet"
@@ -12,16 +16,14 @@ _memory:
       - "spec.md"
     completion_pct: 60
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "pi remote experience parity implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Pi Remote Experience Parity Research
 
 ## Status: Review
 
+<!-- ANCHOR:what-built -->
 ## Current State
 
 The two-lineage deep-research run is **complete**. Both lineages finished all 20 iterations with no early convergence and reached `synthesis_complete`:
@@ -31,15 +33,20 @@ The two-lineage deep-research run is **complete**. Both lineages finished all 20
 
 The **GPT-5.6 SOL HIGH (fast)** synthesis merged both lineages into `research/research.md` (1079 lines): executive summary, all eight experience axes, model convergence/divergence, ranked P0/P1/P2 recommendations for the 041 packet, and 20 open validation questions.
 
+<!-- /ANCHOR:what-built -->
+
 ## Headline Finding
 
 A best-in-class Pi remote experience is a **typed, redacted, replayable event ledger** with a separate authenticated command protocol — not a terminal mirror or chat clone. Both lineages independently converged on this shape, and it can exceed the Claude Code + mobile reference on transcript richness, replay determinism, approval integrity, notification privacy, authority legibility, session isolation, and local data control — while explicitly not claiming unrestricted cloud-agent autonomy.
 
+<!-- ANCHOR:verification -->
 ## Verification Evidence
 
 - Fan-out config validated against the real executor schema (parse + expand + capability preflight) before launch.
 - Per-lineage `synthesis_complete` state and 20 iteration files on disk.
 - Blast radius: no repo files outside `042/research/` attributable to the CLI children; out-of-window changes were daemon/MCP churn and unrelated concurrent sessions.
+
+<!-- /ANCHOR:verification -->
 
 ## Next Steps
 

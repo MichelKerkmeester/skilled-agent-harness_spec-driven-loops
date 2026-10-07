@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/002-skill-scaffold-and-design-system"
     last_updated_at: "2026-08-12T06:10:45.000Z"
     last_updated_by: "claude"
     recent_action: "Authored phase spec ahead of executor dispatch"

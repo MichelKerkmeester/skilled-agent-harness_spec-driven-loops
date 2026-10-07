@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/003-cross-mode-anti-convergence-adr"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "antiConvergence block across the 4 mode configs (council=minRounds), stopPolicy:fail-close"

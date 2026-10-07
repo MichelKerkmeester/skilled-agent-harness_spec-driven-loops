@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/038-authoring-hardening/001-template-conformance-gaps",
+  "specFolder": "sk-doc/z_archive/038-authoring-hardening/001-template-conformance-gaps",
   "description": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a",
   "keywords": [
     "two",

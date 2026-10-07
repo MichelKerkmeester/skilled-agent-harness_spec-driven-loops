@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
     "created_at": "2026-05-18T12:40:53.971Z",
-    "last_save_at": "2026-08-30T15:39:19.147Z",
+    "last_save_at": "2026-10-07T18:14:12.526Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d52fb1651adb7acf75eca2fd1ba23b4717fb323e1589b87255b6b6e912c5b507",
+    "source_fingerprint": "sha256:bed774cdf519f2b84586344bbb883bb9697ba1c5f9ee3a8681175ec352017e97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "973dbc1f7792bbd8d3dab8840354f53d6f300df0f0123668edb85dc1905a7b8b",
-      "plan.md": "1a0fd066875e938ad89209ab72686145be2aa151ed9c8847fb84fbcdf3e41e82",
-      "tasks.md": "baf44f393187ef5d3d9f820782f3bd01e072c6ecdc5691457ed78c51d2c8a577",
+      "spec.md": "bf5f099ca99044d55d48cdff9200d551159a06d5f255d0d5c5dd56a3b395655c",
+      "plan.md": "048bf817f0f9412b0fdcbb7c55301da200e174763ccb58ff2f7d6da836b45461",
+      "tasks.md": "e143722382bbd0e2e34bd6ee69fe70672134d1c8b4bfd954a7be82e9b31368ac",
       "decision-record.md": "dee1e6af64179ed382a7175b77ca031b5f6d7cc9d253c63741fbf05dbd72f367",
-      "implementation-summary.md": "bae137fe08f9b7882f9e8b90ebecfc3ae5c60cda651c977cdeaabd4bb83472c6"
+      "implementation-summary.md": "49ea19e0f887feffef94de4f4b5c76c44fc1287683b5b66abb4a3a30c405579b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
   "description": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with",
   "keywords": [
     "lane-c",

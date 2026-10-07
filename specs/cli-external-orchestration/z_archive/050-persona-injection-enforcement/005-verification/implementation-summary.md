@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/005-verification"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/005-verification"
     last_updated_at: "2026-08-19T11:39:00Z"
     last_updated_by: "claude"
     recent_action: "Sweep 5/5 + recursive gate 5/5 Errors:0; packet work complete"

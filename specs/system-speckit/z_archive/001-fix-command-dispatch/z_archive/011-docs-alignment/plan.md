@@ -12,7 +12,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-# Implementation Plan: [YOUR_VALUE_HERE: feature-name] - Technical Approach & Architecture
+# Implementation Plan: Not recorded - Technical Approach & Architecture
 
 Implementation plan defining technical approach, project structure, and execution strategy.
 
@@ -25,8 +25,8 @@ Implementation plan defining technical approach, project structure, and executio
 
 ### Metadata
 - **Category**: Plan
-- **Tags**: [YOUR_VALUE_HERE: feature-name], [YOUR_VALUE_HERE: area]
-- **Priority**: [NEEDS CLARIFICATION: What is the implementation priority? (a) P0-critical - blocks launch, must ship (b) P1-high - core MVP, essential (c) P2-medium - important enhancement (d) P3-low - nice to have, can defer]
+- **Tags**: Not recorded, Not recorded
+- **Priority**: Not recorded
 - **Branch**: `[FORMAT: ###-feature-name]`
 - **Date**: [FORMAT: YYYY-MM-DD]
 - **Spec**: [OPTIONAL: link to spec.md if exists]
@@ -35,7 +35,7 @@ Implementation plan defining technical approach, project structure, and executio
 Feature specification from `/specs/[###-feature-name]/spec.md`
 
 ### Summary
-[YOUR_VALUE_HERE: Extract primary requirement and technical approach from spec - 2-3 sentences]
+Not recorded
 
 ### Technical Context
 
@@ -44,7 +44,7 @@ Feature specification from `/specs/[###-feature-name]/spec.md`
 - **Storage**: [example: PostgreSQL, CoreData, files] [OPTIONAL: N/A if none]
 - **Testing**: [example: pytest, XCTest, cargo test]
 - **Target Platform**: [example: Linux server, iOS 15+, WASM]
-- **Project Type**: [NEEDS CLARIFICATION: What project structure applies? (a) single-project - monolithic src/ (b) web-app - frontend/ + backend/ (c) mobile-app - api/ + ios/ or android/ (d) monorepo - packages/*]
+- **Project Type**: Not recorded
 - **Performance Goals**: [example: 1000 req/s, 10k lines/sec, 60 fps] [OPTIONAL: N/A if not performance-critical]
 - **Constraints**: [example: <200ms p95, <100MB memory, offline-capable] [OPTIONAL: N/A if none]
 - **Scale/Scope**: [example: 10k users, 1M LOC, 50 screens]
@@ -70,8 +70,8 @@ Feature specification from `/specs/[###-feature-name]/spec.md`
 - [ ] Rollback verified or not needed
 
 ### Rollback Guardrails
-- **Stop Signals**: [YOUR_VALUE_HERE: conditions that trigger stop/rollback - example: error rate >5%, critical bug in production]
-- **Recovery Procedure**: [YOUR_VALUE_HERE: reference to recovery steps or document]
+- **Stop Signals**: Not recorded
+- **Recovery Procedure**: Not recorded
 
 ### Constitution Check (Complexity Tracking)
 
@@ -107,7 +107,7 @@ specs/[###-feature]/
 
 ### Source Code (Repository Root)
 
-[YOUR_VALUE_HERE: Select ONE option below and expand with real paths. Delete unused options.]
+Not recorded
 
 ```
 # Option 1: Single project (DEFAULT)
@@ -147,7 +147,7 @@ ios/ or android/
 
 ### Structure Decision
 
-[YOUR_VALUE_HERE: Document the selected structure and reference the real directories captured above - example: "Selected Option 1 (single project) because feature is backend-only CLI tool"]
+Not recorded
 
 ---
 
@@ -156,58 +156,58 @@ ios/ or android/
 
 ### Phase 0: Research & Discovery
 
-- **Goal**: [YOUR_VALUE_HERE: research objectives - example: evaluate GraphQL vs REST for API design]
+- **Goal**: Not recorded
 - **Deliverables**:
   - Research findings documented in research/research.md
   - Technical feasibility assessment
   - Architecture decision records
-- **Owner**: [YOUR_VALUE_HERE: team or individual]
-- **Duration**: [YOUR_VALUE_HERE: time estimate - example: 3 days]
+- **Owner**: Not recorded
+- **Duration**: Not recorded
 - **Parallel Tasks**: [OPTIONAL: None if sequential | list tasks marked with [P] if parallel work possible]
 
 ### Phase 1: Design & Setup
 
-- **Goal**: [YOUR_VALUE_HERE: design objectives - example: define data models and API contracts]
+- **Goal**: Not recorded
 - **Deliverables**:
   - Data models defined (data-model.md)
   - API contracts defined (contracts/)
   - Quick start guide (quickstart.md)
   - Development environment setup
-- **Owner**: [YOUR_VALUE_HERE: team or individual]
-- **Duration**: [YOUR_VALUE_HERE: time estimate - example: 1 week]
+- **Owner**: Not recorded
+- **Duration**: Not recorded
 - **Parallel Tasks**: [OPTIONAL: None if sequential | list tasks marked with [P] if parallel work possible]
 
 ### Phase 2: Core Implementation
 
-- **Goal**: [YOUR_VALUE_HERE: core functionality - example: implement user authentication and authorization]
+- **Goal**: Not recorded
 - **Deliverables**:
-  - [YOUR_VALUE_HERE: key feature 1 - example: User registration endpoint]
-  - [YOUR_VALUE_HERE: key feature 2 - example: JWT token generation]
-  - Unit tests coverage ≥ [YOUR_VALUE_HERE: percentage - example: 80%]
-- **Owner**: [YOUR_VALUE_HERE: team or individual]
-- **Duration**: [YOUR_VALUE_HERE: time estimate - example: 2 weeks]
+  - Not recorded
+  - Not recorded
+  - Unit tests coverage ≥ Not recorded
+- **Owner**: Not recorded
+- **Duration**: Not recorded
 - **Parallel Tasks**: [OPTIONAL: list tasks marked with [P] if parallel work possible]
 
 ### Phase 3: Integration & Testing
 
-- **Goal**: [YOUR_VALUE_HERE: integration objectives - example: integrate with external payment API and verify end-to-end flows]
+- **Goal**: Not recorded
 - **Deliverables**:
   - Integration tests passing
   - E2E tests passing
   - Performance benchmarks met
-- **Owner**: [YOUR_VALUE_HERE: team or individual]
-- **Duration**: [YOUR_VALUE_HERE: time estimate - example: 1 week]
+- **Owner**: Not recorded
+- **Duration**: Not recorded
 - **Parallel Tasks**: [OPTIONAL: None if sequential | list tasks marked with [P] if parallel work possible]
 
 ### Phase 4: Deployment & Monitoring
 
-- **Goal**: [YOUR_VALUE_HERE: deployment strategy - example: staged rollout to production with feature flags]
+- **Goal**: Not recorded
 - **Deliverables**:
   - Production deployment completed
   - Monitoring/alerting configured
   - Documentation finalized
-- **Owner**: [YOUR_VALUE_HERE: team or individual]
-- **Duration**: [YOUR_VALUE_HERE: time estimate - example: 3 days]
+- **Owner**: Not recorded
+- **Duration**: Not recorded
 - **Parallel Tasks**: [OPTIONAL: None if sequential | list tasks marked with [P] if parallel work possible]
 
 **Parallelization Note**: Use [P] tag to denote tasks that can run in parallel
@@ -232,35 +232,35 @@ ios/ or android/
 
 ### Unit Tests
 
-- **Scope**: [YOUR_VALUE_HERE: components/functions requiring unit tests - example: all service layer functions, validation logic]
+- **Scope**: Not recorded
 - **Tools**: [example: pytest, jest, XCTest]
 - **Coverage Target**: [example: ≥80% line coverage]
 - **Execution**: [example: Local + CI on every commit]
 
 ### Integration Tests
 
-- **Scope**: [YOUR_VALUE_HERE: integrations requiring testing - example: database operations, external API calls, message queue interactions]
+- **Scope**: Not recorded
 - **Tools**: [example: pytest + docker-compose, Postman, integration test framework]
 - **Coverage Target**: [example: All API endpoints, all database operations]
 - **Execution**: [example: CI on PR, nightly]
 
 ### End-to-End Tests
 
-- **Scope**: [YOUR_VALUE_HERE: critical user journeys - example: complete checkout flow, user onboarding, data export process]
+- **Scope**: Not recorded
 - **Tools**: [example: Playwright, Cypress, Selenium]
 - **Coverage Target**: [example: Top 5 user flows, happy paths]
 - **Execution**: [example: CI on PR to main, pre-release]
 
 ### Test Data & Environments
 
-- **Test Data**: [YOUR_VALUE_HERE: strategy - example: factory pattern for dynamic data, fixtures for static data, snapshots for UI]
+- **Test Data**: Not recorded
 - **Environments**: [example: Development | Staging | Production-like]
-- **Database**: [YOUR_VALUE_HERE: strategy - example: containerized PostgreSQL per test run, in-memory SQLite, shared test database]
+- **Database**: Not recorded
 
 ### CI Quality Gates
 
 - [ ] All tests must pass
-- [ ] Code coverage ≥ [YOUR_VALUE_HERE: X%]
+- [ ] Code coverage ≥ Not recorded
 - [ ] No critical security vulnerabilities
 - [ ] Linting/formatting checks pass
 - [ ] Performance benchmarks met
@@ -275,16 +275,16 @@ ios/ or android/
 
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
-| [YOUR_VALUE_HERE: metric name - example: Feature completion] | 100% | [Acceptance criteria checklist] |
-| [YOUR_VALUE_HERE: metric name - example: Bug count] | P0/P1 = 0 | [Issue tracker] |
+| Not recorded | 100% | [Acceptance criteria checklist] |
+| Not recorded | P0/P1 = 0 | [Issue tracker] |
 
 ### Performance Metrics
 
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
-| [YOUR_VALUE_HERE: metric name - example: API response time] | < [X] ms p95 | [APM tool] |
-| [YOUR_VALUE_HERE: metric name - example: Throughput] | > [Y] req/sec | [Load testing] |
-| [YOUR_VALUE_HERE: metric name - example: Memory usage] | < [Z] MB | [Monitoring] |
+| Not recorded | < [X] ms p95 | [APM tool] |
+| Not recorded | > [Y] req/sec | [Load testing] |
+| Not recorded | < [Z] MB | [Monitoring] |
 
 ### Quality Metrics
 
@@ -302,18 +302,18 @@ ios/ or android/
 
 | Risk ID | Description | Impact | Likelihood | Mitigation Strategy | Owner |
 |---------|-------------|--------|------------|---------------------|-------|
-| R-001 | [YOUR_VALUE_HERE: risk description - example: Third-party API rate limits] | High/Med/Low | High/Med/Low | [Mitigation plan] | [Name] |
-| R-002 | [YOUR_VALUE_HERE: risk description] | High/Med/Low | High/Med/Low | [Mitigation plan] | [Name] |
+| R-001 | Not recorded | High/Med/Low | High/Med/Low | [Mitigation plan] | [Name] |
+| R-002 | Not recorded | High/Med/Low | High/Med/Low | [Mitigation plan] | [Name] |
 
 ### Rollback Plan
 
-- **Rollback Trigger**: [YOUR_VALUE_HERE: conditions - example: error rate > 5%, critical bug detected, performance degradation >50%]
+- **Rollback Trigger**: Not recorded
 - **Rollback Procedure**:
-  1. [YOUR_VALUE_HERE: step 1]
-  2. [YOUR_VALUE_HERE: step 2]
-  3. [YOUR_VALUE_HERE: step 3]
+  1. Not recorded
+  2. Not recorded
+  3. Not recorded
 - **Data Migration Reversal**: [OPTIONAL: N/A if no data changes | describe how to reverse data migrations]
-- **Verification**: [YOUR_VALUE_HERE: how to verify successful rollback]
+- **Verification**: Not recorded
 
 ---
 

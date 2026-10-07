@@ -173,7 +173,6 @@ For each scenario: run with flag ON, capture trace; run with flag OFF, confirm n
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -193,7 +192,6 @@ Phase 1 (Setup) ─────────────┐
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

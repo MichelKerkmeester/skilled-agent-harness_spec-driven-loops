@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth",
-  "spec_folder": "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth",
-  "parent_id": "mcp-tooling/008-mcp-aside",
+  "packet_id": "mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+  "spec_folder": "mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth",
+  "parent_id": "mcp-tooling/z_archive/008-mcp-aside",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected",
     "created_at": "2026-07-16T12:58:30Z",
-    "last_save_at": "2026-09-10T20:43:40.799Z",
+    "last_save_at": "2026-10-07T18:11:41.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a800dcfd4dbe2e71f25914d51395806048d48df93cb8bc8952163e46fba17e3",
+    "source_fingerprint": "sha256:b53890c7fd894fb57268d0594c73cb6f5b470d4702f1fcc643db192647010633",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fac27d7ac16395ebfbf84ffab977dc0cec111be91514fbee4dc6738521666c42",
-      "plan.md": "882e0f326e9c32f817ee883527bee5ac23a1736496d4f54758dca21e7d5c5512",
-      "tasks.md": "261d6197f1064207640155838924dad5d103cc9bf1ac9ea77643bf5e8eab0b16",
-      "implementation-summary.md": "b5e459ee559b2cf6d62baeecdf8b82bd866e21667aea7039dedd222c073bc5ce"
+      "spec.md": "96a84710147d27a80568abb6df088d4df53e7d379f5553e09af189b44985c430",
+      "plan.md": "02d088c41ad557105a74645c9c421403ced90f8dfd2583031688bcd242029034",
+      "tasks.md": "0cbc8a79ddc0de10f3cd6699abf2db53adecd2e71ef8c9fc9248a50e2b94d8cc",
+      "implementation-summary.md": "2f93c709a8cddeba5827944544dedcb303258cc5fe951a5c62fdf94bb297c2e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

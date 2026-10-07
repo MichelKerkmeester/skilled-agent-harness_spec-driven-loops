@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The health-md deep research (phase 012, `research/lineages/codex/research.md`, 6 iterations, all questions answered) found the mode's health-md reference set partly accurate but not safe to use unchanged: quick-start examples use the wrong `health-md` fence and invented keys (`type: chart`, `dateRange`), the framing is Apple-only (Android export profiles exist), and the validation path misses the plugin's deterministic bundled mock-data fallback",
     "created_at": "2026-08-03T14:17:59.502Z",
-    "last_save_at": "2026-08-30T15:39:10.172Z",
+    "last_save_at": "2026-10-07T18:11:38.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dec67e9f5213f0f0efb3072978bffb2159b1578670ecd17195800485fa93898a",
+    "source_fingerprint": "sha256:4e01db18f2b4a49541527999b2f43cb06f29165e373304e5ade9f8b8522c3bfe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4ddd5a014678ab7cccb97863710af943f570e40e860606a796635a061ca2076",
-      "plan.md": "22215f7c2d624f6e6d9def78c430f7ef9e8999d947227fb3094ee7a1202b066b",
-      "tasks.md": "0455092d03d8998e50d62e92a9fb1c33de0b7f881c731e6a8344fc4a56276a8b",
-      "implementation-summary.md": "3044bcdf144a0f15e4cb0bfaccd5df2765054b2142c7dc7ca54838b88adaa33c"
+      "spec.md": "1316279fffbe7ddcf87d9c8360d3872e33e236854ec214175b669b927f8496e7",
+      "plan.md": "4e233bad5f1fbb238bb70c041e212288eb134f052c14b55de38869525e9c180f",
+      "tasks.md": "fb91817a94f139ba230609dabc03032341b650124c3459ffa6d8abe9fdfbec48",
+      "implementation-summary.md": "c56409c4bc42246f7969f5b4cc28dee8cd387e034f0185c194edf52c067778b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

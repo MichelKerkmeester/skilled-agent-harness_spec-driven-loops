@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "executable edge route parsing",
       "route cycle false positive",
       "yaml comment edge parsing",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "executable edge route parsing implementation"
+      "executable edge route parsing plan",
+      "executable edge route parsing tasks",
+      "executable edge route parsing implementation",
+      "route cycle false positive status",
+      "yaml comment edge parsing progress"
     ],
     "key_topics": [
       "executable",
@@ -34,9 +30,9 @@
       "positive",
       "yaml",
       "comment",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "Backlog K3: replace the route-cycle detector's raw-text edge extraction — which reads YAML comments as dispatch edges and yields false P0 circular-dependency findings — with schema-aware parsing that traverses only declared dispatch fields. Clears the false P0 cycles while keeping real direct/subaction/workflow cycles failing. Independent of the 001 contract chain; can run in parallel.",
     "created_at": "2026-07-16T07:51:58.792Z",
-    "last_save_at": "2026-09-11T04:38:02.372Z",
+    "last_save_at": "2026-10-07T18:15:18.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2acb22fb1e226160203e96d61d883fa9224f1bc00147abd68f3a2ebc21f4005f",
+    "source_fingerprint": "sha256:f55cb7ed2ab53b5e2de7c9bf221b4a63b4b88313bc12a20bdc7bb5221e4fc294",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57be4bb61909de01144b3449a428949f2b7bf9c89652c7d016820664bf6546e6",
-      "plan.md": "e5afa128b01840dd05ff69de4763705409132bbb8f949f46dfd0a1c5f765f9f0",
-      "tasks.md": "fb98c9e964e92260d50578f404115b97b5a44e63d4b3a2addb157f586c5c44fd",
-      "implementation-summary.md": "2a6f751caacb061fe1c7942900d469d07cc852d277c15870ed5ba3fa44e96fd2"
+      "spec.md": "7a61bf60508abc1acfb1fc277cc793ca066a27e4061adca202ebc6f7cd4a773a",
+      "plan.md": "d0baee4a653cd537ddfc2e1d171c4863c1087d381fc985e64fbd3c38feda4f51",
+      "tasks.md": "4c88163a60bf7fb7532d6f3e4eaeee6a198f7b5e66f008ee2cc142aeedde00f6",
+      "implementation-summary.md": "f2d58881cec15c1ecc3f570893e923093ae6b5f9db873c2bdab10d648f6886e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

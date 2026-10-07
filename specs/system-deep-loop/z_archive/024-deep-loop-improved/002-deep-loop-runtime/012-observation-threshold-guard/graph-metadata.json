@@ -188,7 +188,7 @@
     ],
     "causal_summary": "A single-observation finding can trigger a STOP decision or auto-promotion without any confirmation; this causes premature convergence on noise — a spurious finding from one iteration halts a run that would have produced substantially better results in subsequent iterations",
     "created_at": "2026-06-28T14:02:00Z",
-    "last_save_at": "2026-08-30T15:39:24.837Z",
+    "last_save_at": "2026-10-07T18:15:16.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fb98525636df02b99e65810cc8511826219ee49a9465cfaeb9ebb25560e8206",
+    "source_fingerprint": "sha256:fef690a037d90ec53df4d859bbdd9eea18940b354ff44a4403e1bf4bf639eeff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "932f58bb31b7c421ccd2ba813883d4351a80dec626c5987c1bfb2fb6eebbaed5",
-      "plan.md": "056b371d95d045993177933097f1ee852d4ee0daf1426bc598dfef76fb422945",
-      "tasks.md": "53f1abe1d7a203de2a0ae0ad96f09c2343b4d926ad8b98fe9cc677082f54007e",
-      "implementation-summary.md": "62a5eca24e468f1df1d187d7e042df3e1e31ed76254b0fbaaa239a143b3c88b7"
+      "spec.md": "982cafea2a0e433fd26617c2d231bfbac00572038d6de095936e93af80fcdc17",
+      "plan.md": "0e21bdf575ca3c40ff5ec09e3c7d653284b9c4600509845a5ce1badfcbe34e79",
+      "tasks.md": "5083fd952e6cdf39ab784b5034f907d9b18213feb145c4282b19df4d091172c7",
+      "implementation-summary.md": "889333f524c330e715eb21a96a7c566eccc62dcc3a277e977af870296a303418"
     },
     "last_active_child_id": null,
     "last_active_at": null

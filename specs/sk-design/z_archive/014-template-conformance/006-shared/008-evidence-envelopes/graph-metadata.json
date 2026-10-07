@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/006-shared/008-evidence-envelopes",
-  "spec_folder": "sk-design/014-template-conformance/006-shared/008-evidence-envelopes",
-  "parent_id": "sk-design/014-template-conformance/006-shared",
+  "packet_id": "sk-design/z_archive/014-template-conformance/006-shared/008-evidence-envelopes",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/006-shared/008-evidence-envelopes",
+  "parent_id": "sk-design/z_archive/014-template-conformance/006-shared",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "sk-design shared evidence-envelopes conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "sk-design",
@@ -26,10 +25,10 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
-      "skills"
+      "skills",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/evidence-envelopes/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored evidence-envelopes/ template; bespoke shared subdir)`",
     "created_at": "2026-07-27T14:59:53.472Z",
-    "last_save_at": "2026-08-30T15:39:13.325Z",
+    "last_save_at": "2026-10-07T18:12:28.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35d511df6c5cae7ebe7d8d6bbd743cd18217c12c284d0bda6a2d3031b6cee5d5",
+    "source_fingerprint": "sha256:ed5eb6109455effd0d7ba73de6c2db7586e8125f98ecd8bd53cde8baad4f4939",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eaa0015507d65db4a405d0d8aac031997a7e7be42ea9d7d685eee50afb229287",
-      "plan.md": "2e8eeed262761a96d801422183ba2d8183ba5c6e2e9f809fb367164ff054c0d0",
-      "tasks.md": "3d46e54b1df35f10f103ccd7bf0f1dcd689ba9416fed71168fbd5281dc63e00e",
-      "implementation-summary.md": "1386c6eb885d69f9ac1ff67be30aa94a51b5d1a6d6579003ccec75f464e80197"
+      "spec.md": "c80fad5e483d8bfbd8a042782db84a3a3f4e00a48794d31a21c506f3cc6b1737",
+      "plan.md": "89d35b8516f8aeaf7f8afacdd373298ee2101600ddbd2fcd1483c634318a8c6d",
+      "tasks.md": "4180c4929a20892533a02b82b64c05cd911315c35cab810b8d1b7d6619be8d1a",
+      "implementation-summary.md": "1b8b300f6c282edd6f4a4acfd12416f531c41b277be4f19a00cd9939079f8821"
     },
     "last_active_child_id": null,
     "last_active_at": null

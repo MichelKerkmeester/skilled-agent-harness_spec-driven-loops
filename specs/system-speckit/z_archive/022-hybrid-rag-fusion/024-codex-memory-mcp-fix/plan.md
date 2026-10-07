@@ -175,7 +175,6 @@ current remediation evidence
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -192,7 +191,6 @@ Phase 1 (evidence capture) -> Phase 2 (packet authoring) -> Phase 3 (validation 
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -280,7 +278,7 @@ landed runtime evidence -> 024 packet scope -> tasks/checklist -> future runtime
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Open a focused Codex remediation packet instead of expanding `020`
@@ -298,5 +296,5 @@ landed runtime evidence -> 024 packet scope -> tasks/checklist -> future runtime
 **Alternatives Rejected**:
 - Extend `020` further: rejected because it keeps the Codex slice buried inside a packet that intentionally remains broader and incomplete.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---

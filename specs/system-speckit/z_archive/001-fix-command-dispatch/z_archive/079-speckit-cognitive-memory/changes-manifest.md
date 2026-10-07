@@ -1,3 +1,7 @@
+---
+title: "Changes Manifest: Speckit Cognitive Memory Upgrade"
+---
+
 # Changes Manifest: Speckit Cognitive Memory Upgrade
 
 **Date**: 2026-01-27 (Implementation) + 2026-01-28 (Testing & Alignment) + 2026-01-29 (Command Alignment)

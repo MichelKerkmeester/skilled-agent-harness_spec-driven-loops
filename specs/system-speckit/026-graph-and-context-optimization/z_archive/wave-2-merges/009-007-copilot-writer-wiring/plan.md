@@ -18,13 +18,17 @@ _memory:
     completion_pct: 35
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Copilot Writer Wiring
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:summary -->
 ## Approach
 Two top-level command reapplications in `.claude/settings.local.json` to restore the Copilot-side writer invocations that `6cd00aa51b` removed.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:ai-execution -->
 ## Steps
 1. Replace `"bash": "true"` in `hooks.UserPromptSubmit[0]` with:
    ```
@@ -38,6 +42,9 @@ Two top-level command reapplications in `.claude/settings.local.json` to restore
 4. Validate: `jq . .claude/settings.local.json`.
 5. Standalone writer probe via `SPECKIT_COPILOT_INSTRUCTIONS_PATH` override — confirm managed block renders + `Refreshed:` is current again.
 6. User runs live Copilot smoke from a fresh shell after packet 010 is restored.
+<!-- /ANCHOR:ai-execution -->
 
+<!-- ANCHOR:rollback -->
 ## Rollback
 `git checkout -- .claude/settings.local.json` reverts both packet reapplications in one step if the smoke disproves the wiring.
+<!-- /ANCHOR:rollback -->

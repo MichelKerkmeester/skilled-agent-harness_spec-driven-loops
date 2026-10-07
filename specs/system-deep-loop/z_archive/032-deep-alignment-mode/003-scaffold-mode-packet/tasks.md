@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/003-scaffold-mode-packet"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/003-scaffold-mode-packet"
     last_updated_at: "2026-07-11T12:57:42Z"
     last_updated_by: "claude"
     recent_action: "Re-verified T001-T013; T011 drift-guard fails 5/7, marked Blocked"

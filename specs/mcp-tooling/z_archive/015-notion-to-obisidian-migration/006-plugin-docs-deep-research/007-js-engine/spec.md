@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine"
     last_updated_at: "2026-08-22T14:00:00Z"
     last_updated_by: "claude"
     recent_action: "Synthesized findings into synthesis.md prioritized edit table"

@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/015-headless-model-matrix-hardening"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/015-headless-model-matrix-hardening"
     last_updated_at: "2026-07-14T08:35:00Z"
     last_updated_by: "claude"
     recent_action: "Authored implementation plan (3 phases, affected surfaces, gates, rollback)"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/012-command-improvement-research",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/012-command-improvement-research",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model improvement backlog for create-command and every OpenCode command that uses the defined templates and routing logic, ready to seed follow-on remediation packets.",
     "created_at": "2026-07-16T05:38:36.268Z",
-    "last_save_at": "2026-08-30T15:39:20.310Z",
+    "last_save_at": "2026-10-07T18:15:16.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:de3acdb023f536cffba46e2b63b6f32e3489d3b61540839e624a9ed2c172c5e6",
+    "source_fingerprint": "sha256:2a4d7c2cd48ba1aa8b43031ad8cd7ca33323e6d6dd2b470cd73d46913aee799e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91b9ae81cc43eada3f405ba3c056af9ce4b9115e232b1a062d4bc351f6230be5",
-      "plan.md": "e44d0d71a4ea8a41f0569d5887ae747403f33711a449c28da27a7ec1fb002ddd",
-      "tasks.md": "e772de68df1eab651ab3ea302a954b3d409c3250fc05e3fef7624612c0e6865b",
-      "implementation-summary.md": "bf58ca0175b210d5b0eaca80a2561f91ebe09264fd6e0cb70ba7b34aeb8a6bf0",
+      "spec.md": "bb355cd699a6f8ea5d432dab16833a63a80911bfa6b1923f84c82f6a5557ecc4",
+      "plan.md": "61648dad6672a2788f05a4b8ffbd29db0a5a950e8f90abdde38ed4373a2c75e5",
+      "tasks.md": "99ed326ad1aaf640e84819970fac780848cd4f2b190d86889a45fd7b9fcbab6b",
+      "implementation-summary.md": "ee450754dee83eca77b8ab4524026d5a54e6aff0312a3e6b8ccfb815cb15fb28",
       "research/research.md": "936e3a58778de2b433641adcbd8670b4182d31a54159e24ee77d9126eb717dc8"
     },
     "last_active_child_id": null,

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization"
     last_updated_at: "2026-07-08T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Grouped five completed deep-loop skill frontmatter alignment phases under a phase parent"

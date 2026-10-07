@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout"
     last_updated_at: "2026-07-15T10:49:30Z"
     last_updated_by: "codex"
     recent_action: "Completed scenario authoring, fixture authoring, reconciliation, and hermetic regression checks"
@@ -17,10 +17,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command scenario rollout plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

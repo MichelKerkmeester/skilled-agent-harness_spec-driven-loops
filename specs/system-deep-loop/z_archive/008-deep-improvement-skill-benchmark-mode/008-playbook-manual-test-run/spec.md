@@ -1,17 +1,27 @@
 ---
 title: "Execute the deep-improvement manual testing playbook (48 scenarios)"
+description: "Run every scenario in the deep-improvement manual testing playbook (48 scenarios across 10 categories and 3 lanes) for real in a sandbox, capture evidence, and produce a PASS/FAIL/SKIP verdict per scenario plus a release readiness roll-up."
+trigger_phrases:
+  - "deep-improvement playbook manual test run"
+  - "48 scenario execution runbook"
 status: not-started
 level: 1
+importance_tier: "normal"
+contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # 008 — Deep-Improvement Playbook Manual Test Run
 
+<!-- ANCHOR:problem -->
 ## 1. PURPOSE
 
 Run every scenario in `.opencode/skills/deep-improvement/manual_testing_playbook/`
 (48 scenarios across 10 categories / 3 lanes) for real in a sandbox, capture
 evidence, and produce a PASS/FAIL/SKIP verdict per scenario plus a release
 readiness roll-up.
+
+<!-- /ANCHOR:problem -->
 
 ## 2. ENTRY POINT
 
@@ -20,6 +30,7 @@ scenario map, prerequisites, per-scenario execution protocol, wave order,
 category-specific gotchas (CP stress-test sandbox seeding + tripwire caveat),
 and the results-matrix template.
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE / OUT OF SCOPE
 
 - In scope: executing the shipped scenarios as written, recording verdicts +
@@ -28,9 +39,13 @@ and the results-matrix template.
   reveals a real skill bug, record it as a FAIL with evidence — fixing is a
   separate packet.
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:success-criteria -->
 ## 4. ACCEPTANCE
 
 - All 48 scenarios executed or SKIP-with-documented-blocker.
 - `results-matrix.md` complete with verdict + decisive evidence per scenario.
 - Release-readiness verdict (per the playbook landing §5) stated with its reason.
 - Results committed by explicit pathspec (never `git add -A`).
+<!-- /ANCHOR:success-criteria -->

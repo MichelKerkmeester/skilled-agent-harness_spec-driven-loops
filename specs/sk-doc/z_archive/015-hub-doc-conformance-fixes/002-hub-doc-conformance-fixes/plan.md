@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes"
+    packet_pointer: "sk-doc/z_archive/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes"
     last_updated_at: "2026-07-11T09:08:12.320Z"
     last_updated_by: "claude"
     recent_action: "Authored the four-work-stream remediation plan"

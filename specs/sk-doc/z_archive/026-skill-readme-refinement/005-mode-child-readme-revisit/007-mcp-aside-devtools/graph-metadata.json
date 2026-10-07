@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "phase 007 tasks",
       "mcp aside devtools readme tasks",
       "aside devtools rewrite tasks",
-      "implementation summary",
-      "aside devtools readme"
+      "aside devtools readme",
+      "mode readme rewrite summary"
     ],
     "key_topics": [
       "mcp",
@@ -36,7 +36,7 @@
       "phase",
       "plan",
       "tasks",
-      "implementation"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:41.334Z",
-    "last_save_at": "2026-08-30T15:39:17.654Z",
+    "last_save_at": "2026-10-07T18:14:21.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c2de0a58cf768ccdeafc39cb20576242ea3c3c6b1f10b09468e1f0c978cfb8f",
+    "source_fingerprint": "sha256:9e1ff6d8961e8f669ea95cd5ba125119a065461ec4dee10bf44345d9f52b298d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a733f48f36446dd18c1f01d00745bb695d53e7eeacff5ace0de190d3906e2488",
-      "plan.md": "46634d3014f0bc0601695205182455fb09b4202ef37b9d5236ac9d9b61fe5b18",
-      "tasks.md": "d1409c97552c6f3624173a9ee711d28a2d26946159474217949eeb29e5cdd4c0",
-      "implementation-summary.md": "52e451533c5618a1b10a3db386f1afd567d80e93484848176d997a3846936d9d"
+      "spec.md": "c61a491000767b3bcc7ee00c6b781a0e914ce69dbd796551a578d37550c9e1a1",
+      "plan.md": "6c048a666e5f462b5ea444bd1edb999c6e895da7ece0901ef4a09e2de0813f56",
+      "tasks.md": "aeb5e3fccfa388d1820077fbcf57dd0f441481cf4512a5738df3bcb6bcb49adf",
+      "implementation-summary.md": "bdb48ae9924d04e613dc2ad467c0be9027d8cd016e51a8acf64d748836eb76dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

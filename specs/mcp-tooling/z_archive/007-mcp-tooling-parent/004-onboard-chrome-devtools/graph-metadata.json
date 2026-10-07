@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,28 +44,25 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "The hub skeleton exists but has no packet content",
     "created_at": "2026-07-09T20:18:23Z",
-    "last_save_at": "2026-08-30T15:39:09.754Z",
+    "last_save_at": "2026-10-07T18:11:22.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a67bae2c6c04c19a35245e6f576d25d3eea1e3ac3523f00d10d4c5ad383dc61",
+    "source_fingerprint": "sha256:7aea75a09ceb6728158b233a07909b963f033566ecc97ee0fcedc386fe127c75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da64f094f338d9cee9092b739525c3981ee952b5dd3d9531f571ffa83b09b591",
-      "plan.md": "849bbb76b2038979ab444346ec3a46a3056ff697b135ceb51ea7adb6fbcbbfd1",
-      "tasks.md": "b649db91b2f196bb4cdb72df1fec088f162f597de767aec561851f8dde7000af",
-      "implementation-summary.md": "3a19043be7c08877d6ec2d64a6cb9816426a7228007fd73ca813128d63c68b82"
+      "spec.md": "85e69f12b950afbbd6148ef59fe1ef531b47a2fe24de87d0bbe246ecd40b18b1",
+      "plan.md": "2d583b5e788ede303453d27c4b15ce7ec4595257962e153e492b058da3eb5f85",
+      "tasks.md": "1d0a8642a1376a785d6bc8db069ab50d5fa7075f5310731018cafbc2acd82213",
+      "implementation-summary.md": "3a08efa2adf92d089584c19cf385542969ae6da0e046f56e7f91d4b385838b9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

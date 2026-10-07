@@ -19,20 +19,27 @@ _memory:
 ---
 # Tasks: Phase 008 — Holistic Agent Evaluation
 
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+
+<!-- ANCHOR:phase-1 -->
 ## Foundation Scripts
 
 - [x] T001: Create `scan-integration.cjs` — integration surface scanner
 - [x] T002: Create `generate-profile.cjs` — dynamic target profile generator
 - [x] T003: Test scan-integration against handover, context-prime, debug agents
 - [x] T004: Test generate-profile against handover, debug, review agents
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Script Refactoring
 
 - [x] T005: Refactor `score-candidate.cjs` — add 5-dimension framework + --dynamic flag
 - [x] T006: Refactor `run-benchmark.cjs` — add integration consistency checks
 - [x] T007: Refactor `reduce-state.cjs` — add per-dimension tracking + dashboard
 - [x] T008: Align all 8 .cjs scripts with sk-code-opencode (box headers, section separators)
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Documentation Updates
 
 - [x] T009: Update SKILL.md — 5-dimension framework, new references, updated routing, RULES emoji markers
@@ -86,10 +93,13 @@ _memory:
 - [x] T039: Update root 041 spec.md — add Phase 8 to phase map, scope, requirements, success criteria
 - [x] T040: Update root 041 implementation-summary.md — add Phase 8 section, update counts
 - [x] T041: Write Phase 008 implementation-summary.md with full session coverage
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:completion -->
 ## Verification
 
 - [x] T042: Run `package_skill.py --check` — PASS
 - [x] T043: Run backward-compatibility test (existing handover profile scores)
 - [x] T044: Run end-to-end flow verification (scanner + profiler + scorer + all parse)
 - [x] T045: Runtime mirror audit (all 5 runtimes, 25 checks, 0 failures)
+<!-- /ANCHOR:completion -->

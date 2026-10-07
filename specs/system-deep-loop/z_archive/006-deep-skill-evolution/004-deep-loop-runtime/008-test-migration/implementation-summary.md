@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/008-test-migration` |
+| **Spec Folder** | 008-test-migration |
 | **Completed** | _pending_ |
 | **Level** | 2 |
 | **Actual Effort** | _pending (estimated: 8-10 hours)_ |

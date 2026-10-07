@@ -5,15 +5,6 @@
   "parent_id": "system-skill-advisor",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/002-jina-swap-and-reindex",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/003-install-guide-docs",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/007-skill-advisor-compat-contract-consolidation",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
-    "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
     "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture",
     "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/002-jina-swap-and-reindex",
     "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/003-install-guide-docs",
@@ -110,16 +101,16 @@
     ],
     "causal_summary": "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring. The active runtime remains gemma; default alignment to mk-spec-memory Nomic is deferred to 003/006-shared-embedder-logic.",
     "created_at": "2026-05-18T16:14:38.284Z",
-    "last_save_at": "2026-08-30T15:39:27.086Z",
+    "last_save_at": "2026-10-07T18:15:56.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:864f6885fcc5367ada561e383c54f1720a6ce53ef89ddca05c539240161171a0",
+    "source_fingerprint": "sha256:46eca4f8c9ad92592e8644a9456eb38445a0921ddaffd0f3941c140d6e8d5930",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abef5aa8f0077bb83630869614a0bd886f1afa73b91e6f7425a913d10c7ac291"
+      "spec.md": "3405506dc86c0de1ecebcd95e7b56244f97ce374c6507d57d813f3f982569187"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
     "last_active_at": null

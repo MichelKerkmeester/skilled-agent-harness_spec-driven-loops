@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/046-cli-devin-current-cli-repair",
+  "specFolder": "cli-external-orchestration/z_archive/046-cli-devin-current-cli-repair",
   "description": "The installed devin CLI (3000.4.25) breaks non-interactive fan-out lineages in two independent ways",
   "keywords": [
     "installed",

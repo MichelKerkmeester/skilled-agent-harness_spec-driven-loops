@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-git/017-config-filter-transparency",
+  "specFolder": "sk-git/z_archive/017-config-filter-transparency",
   "description": "A `maintainer-flags` clean filter maps four config files so that the committed blob differs from the file on disk: the working copies carry `\"true\"`",
   "keywords": [
     "maintainer-flags",

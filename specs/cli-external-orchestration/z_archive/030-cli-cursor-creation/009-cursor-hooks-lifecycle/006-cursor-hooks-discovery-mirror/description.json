@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
+  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
   "description": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked",
   "keywords": [
     "operator",

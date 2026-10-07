@@ -11,7 +11,7 @@ contextType: "implementation"
 predecessor_research: "../001-deep-agent-router-and-orchestration/research/research.md"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation"
     last_updated_at: "2026-06-30T19:50:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Phase 001 validated successfully"

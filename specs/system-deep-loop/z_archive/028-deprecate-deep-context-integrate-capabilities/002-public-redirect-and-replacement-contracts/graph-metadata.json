@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/commands/deep/assets/compiled/manifest.jsonl"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.jsonl",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
     "created_at": "2026-07-04T14:32:35Z",
-    "last_save_at": "2026-08-30T15:39:25.928Z",
+    "last_save_at": "2026-10-07T18:15:09.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b9da8238e5f01ec1d933df871b7473c0feffde33ec436d357dbe83a711dde00",
+    "source_fingerprint": "sha256:368c05e5dc8673eca7f0155bfadd4be6862dfc99e1d08b348828cb3e8c034fbd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ffb74f1a1f92f77eb7754523c58dd8a4c79348249a12f80a70550b14508efb1e",
-      "plan.md": "ad9deda41ba82558347a3e6db3ba6bed61cc22fbe26a73e866976c8b59ffa374",
-      "tasks.md": "f0fb80bbbfd26b4960430288f71d0aca07919738bf8e98abaf148997ab7fa74c",
+      "spec.md": "e376cf9083015285db84e289396f1ed7e5f83b2a121000f2efc71dfd946c6cf8",
+      "plan.md": "f65772431be743d425587593e1b813a075dbad2ece52f38572fda8deb953f772",
+      "tasks.md": "38176ac45ec5d1f9d8e547013cdadbf99a3ebb091fe87d3d8a0b52a2e582120e",
       "decision-record.md": "56020881f0eb8241bd3b66b221c0824ab6477675d824b2029bbc358e41626ef4",
-      "implementation-summary.md": "a0dada74100841f4dc64c89d5e6d175c5f8b8cc45523fa5754dcedb3d4787895"
+      "implementation-summary.md": "7ad0e68344b22cc6a3f218a3cf6ef91ba197702775bb2c1545ca913ba2a6236a"
     },
     "last_active_child_id": null,
     "last_active_at": null

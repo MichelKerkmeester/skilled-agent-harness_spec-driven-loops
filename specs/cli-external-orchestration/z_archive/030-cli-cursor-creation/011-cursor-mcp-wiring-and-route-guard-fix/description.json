@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix",
+  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix",
   "description": "Phase 011 recorded a blocker: \"no MCP server is configured for Cursor CLI on this machine… fabricating one was out of scope (would need credentials",
   "keywords": [
     "phase",

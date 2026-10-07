@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-08-30T15:39:23.554Z",
+    "last_save_at": "2026-10-07T18:14:23.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:031fc0362fd0caa154bceb0a17852bea04643b3871be5ccb8a0fb89774989cff",
+    "source_fingerprint": "sha256:d360184a999c46cb3c485f89f1a659a752076b3e7abb0b9a73f038d3460750e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80aefd6d0db93e8fb6b84f38ce6268945e18c42703ff5cdf130b0f548e6d57d7",
       "plan.md": "657dcadc929759c1ce557b38624c2cc53c1af0c76b6f8c5493d585b5390c1369",
       "tasks.md": "09fa03ecf033bf256a4af2580219e65b2467f1209f7e2c81a5e6f5967eee38e4",
-      "implementation-summary.md": "6b5577634b932dfbba5513ace2f6467f7eabe1395f73c5061c3a945b4f1eeb2a"
+      "implementation-summary.md": "c2483beabff965be5b514ec37a5a31e79c86ebe91af5730982a6ad5abdbd54a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

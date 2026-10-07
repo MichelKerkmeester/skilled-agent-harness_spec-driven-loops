@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
-  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
-  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
     "created_at": "2026-07-14T04:26:32.723Z",
-    "last_save_at": "2026-09-11T16:42:01.733Z",
+    "last_save_at": "2026-10-07T18:12:29.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34ca683bbe8595333cf183f1bcb8e8fe9af79a4a95ed66efe8fd567e9a71b795",
+    "source_fingerprint": "sha256:fc289fbff979adc60b16101bb604733836426f93ecd7813379e900e0e311b248",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b9f732cf0daaa1e93ea8bc2f42dc194db93466ba6d7913d37b7ac579a60a006",
-      "plan.md": "c8443fb6392a68610c984a0bdbed5bb75c21571b1c44c2a0464771dd621c7a71",
-      "tasks.md": "56a941b78a4cd70c0b9a6ae48b64874cb11962d289ae691084af31004facb1ff",
+      "spec.md": "cdf32362ea1525f163a8308aca478146341db430bd315edddebd93b645525f0d",
+      "plan.md": "2a45fe2bb78d7bfadf23980227cbd7778a0f5ac08f569ca546edd01f7da2b995",
+      "tasks.md": "f69d69a68583a54fbbb5c2c8edca157724aea19eec8854e144c7eb5981e59c0a",
       "decision-record.md": "b7c836cfd0ce7d210ce62b4b091ea35738e63c388f9ca01874625b43765d7159",
-      "implementation-summary.md": "8c139d8a98c55c7247e1c3a64c7518c1f5574875a81c6a8bb025d96bccba6556"
+      "implementation-summary.md": "3c49caffa278d7542ddc5e3e54ea27910046c3746b37377355b9b68ed4164d69"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/005-root-and-config"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/005-root-and-config"
     last_updated_at: "2026-05-06T13:35:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase complete via direct sed (CLI dispatch unreliability rule applied)"

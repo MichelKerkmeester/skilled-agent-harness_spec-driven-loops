@@ -23,17 +23,23 @@ _memory:
 
 # Phase 006 — Command surface + docs + final parity
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Expose fan-out via the command entrypoints (opt-in), document it for both consumers, and prove single-executor parity.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - `commands/deep/start-research-loop.md` + `start-review-loop.md` §0: repeatable `--executor` (groups trailing `--model/--reasoning-effort/--service-tier/--executor-timeout/--iters/--label/--count`), `--executors <json>` escape hatch, `--concurrency N`; Default Resolution Table + PRE-BOUND SETUP ANSWERS additions; fan-out EXAMPLES.
 - Default policy: 0–1 executor & no `--executors` ⇒ `config.executor` (single, recommended default, unchanged); 2+ / `--executors` / `count>1` ⇒ `config.fanout`.
 - Docs: `deep-research/SKILL.md` (§4 NEVER #9 + EXPERIMENTAL) + `deep-review/SKILL.md` (FORBIDDEN INVOCATION PATTERNS) carve-out permitting command-driven fan-out (ad-hoc shell + intra-lineage wave stay forbidden/deferred); "Fan-Out Convergence" in both `references/convergence/convergence.md`; `deep-loop-runtime/SKILL.md` script table adds `fanout-pool.cjs`/`fanout-merge.cjs`.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - **Final parity gate (non-negotiable):** single-executor run byte-identical to pre-change `main` (config, state.jsonl modulo timestamps, iteration md, research.md/review-report.md).
 - Docs accurate; full vitest green; `validate.sh --strict` green for parent + children.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Wave-within-lineage (deferred).

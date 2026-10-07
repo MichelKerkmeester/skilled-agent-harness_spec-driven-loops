@@ -1,3 +1,13 @@
+---
+title: "SpecKit System Architecture & Health Analysis [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/015-system-analysis/analysis-report]"
+description: "Deep architectural analysis of the SpecKit system covering the interaction between AGENTS.md, skills, commands and data."
+trigger_phrases:
+  - "speckit system architecture analysis"
+  - "architecture health analysis report"
+  - "spec kit governance audit"
+importance_tier: "important"
+contextType: "research"
+---
 # SpecKit System Architecture & Health Analysis
 
 > Deep architectural analysis of the SpecKit system, covering the interaction between AGENTS.md, Skills, Commands, and Data.

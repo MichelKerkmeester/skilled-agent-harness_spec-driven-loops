@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/058-flag-enum-authority"
+    packet_pointer: "cli-external-orchestration/z_archive/058-flag-enum-authority"
     last_updated_at: "2026-08-30T11:05:00Z"
     last_updated_by: "claude-code"
     recent_action: "Audited eight static DV-* scenarios against devin 3000.6.7"

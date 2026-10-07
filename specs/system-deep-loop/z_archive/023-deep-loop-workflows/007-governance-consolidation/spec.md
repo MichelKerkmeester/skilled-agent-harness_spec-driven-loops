@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/007-governance-consolidation"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/007-governance-consolidation"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "R1 superseded by decision-record; per-mode trees intentional"

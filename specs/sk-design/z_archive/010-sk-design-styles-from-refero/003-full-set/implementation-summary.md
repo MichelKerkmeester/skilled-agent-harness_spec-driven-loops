@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/010-sk-design-styles-from-refero/003-full-set"
+    packet_pointer: "sk-design/z_archive/010-sk-design-styles-from-refero/003-full-set"
     last_updated_at: "2026-07-18T10:25:46Z"
     last_updated_by: "claude"
     recent_action: "Extracted all 1,290 styles with 0 errors and re-indexed"

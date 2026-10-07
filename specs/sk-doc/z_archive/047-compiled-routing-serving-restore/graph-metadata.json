@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/047-compiled-routing-serving-restore",
-  "spec_folder": "sk-doc/047-compiled-routing-serving-restore",
+  "packet_id": "sk-doc/z_archive/047-compiled-routing-serving-restore",
+  "spec_folder": "sk-doc/z_archive/047-compiled-routing-serving-restore",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Three of the five parent hubs reported `servingAuthority: legacy` with cause",
     "created_at": "2026-09-01T05:38:12Z",
-    "last_save_at": "2026-09-10T20:45:43.886Z",
+    "last_save_at": "2026-10-07T18:14:17.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:526e8c859f864e0bb0586e8ddafdeab5531b7bab3ab30c3ffb9f21fd860fc364",
+    "source_fingerprint": "sha256:3166f2ef280c2412f5d3563028c67290003578881f7456457b270db877c60579",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1df3dad85fb69f35859a98a0ea801593a26756b94b58f4924c273d2c30e553d",
       "plan.md": "0269c21f91e06b8e17b524a12a7c10d3dcfc87e6eb0fc39025cd273a34f05e26",
       "tasks.md": "51f613fef30ae621023ee89e3f71c9a0604790f845a52015fb4586e346ed3de2",
-      "implementation-summary.md": "230f58d7e8e79122a77a810cf133151284f8f5e1d851ec11caaf6d3972433b35"
+      "implementation-summary.md": "92fe27d2a79a425c3fa43a8b0d0e001caf824df435cb999ed717b7b930672563"
     },
     "last_active_child_id": null,
     "last_active_at": null

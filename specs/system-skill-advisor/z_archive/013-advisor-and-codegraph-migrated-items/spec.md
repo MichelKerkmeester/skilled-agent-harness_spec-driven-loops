@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items"
     last_updated_at: "2026-07-07T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Phase-parent scaffolded during system-skill-advisor extraction"

@@ -74,8 +74,8 @@ This phase turns the roadmap from a loose planning artifact into a controlled ex
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -176,7 +176,7 @@ Create a trustworthy Phase 1 foundation so later Hydra phases can build on repro
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -195,7 +195,7 @@ Create a trustworthy Phase 1 foundation so later Hydra phases can build on repro
 - **NFR-O01**: Phase 1 must provide rollback-safe artifacts for later schema work.
 - **NFR-O02**: Documentation must support manual validation by maintainers without hidden assumptions.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

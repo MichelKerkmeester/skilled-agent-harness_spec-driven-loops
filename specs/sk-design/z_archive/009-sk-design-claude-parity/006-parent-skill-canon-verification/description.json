@@ -18,7 +18,7 @@
   "level": 2,
   "status": "planned",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/006-parent-skill-canon-verification",
   "description": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor",
   "keywords": [
     "phases",

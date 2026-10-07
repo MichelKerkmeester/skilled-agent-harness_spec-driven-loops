@@ -140,7 +140,6 @@ AI assistant request → skill_advisor.py routing → SKILL.md smart router
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -158,7 +157,6 @@ Phase 1 (Setup) ──► Phase 2 (Gemini Implementation) ──► Phase 3 (Rev
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

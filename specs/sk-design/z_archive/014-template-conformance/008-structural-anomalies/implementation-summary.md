@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/008-structural-anomalies"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/008-structural-anomalies"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "structural-anomalies-executor"
     recent_action: "Relocated four Open Design transport modules into transport/ and updated all references"

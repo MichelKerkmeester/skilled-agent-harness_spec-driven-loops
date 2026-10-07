@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep- skills' documentation substantially",
+    "causal_summary": "The 008 deep-skill doc-evolution ship (commit fb8d560443) reworked the 5 deep- skills' documentation substantially",
     "created_at": "2026-05-25T19:30:00.000Z",
-    "last_save_at": "2026-08-30T15:39:23.492Z",
+    "last_save_at": "2026-10-07T18:14:16.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f16eb6ea7aa181af3f9abb0d635670e0350085850c9f911a2dfff3475784236",
+    "source_fingerprint": "sha256:a791a35431eca6cebb334d822f75119aa442f5f73160f4a783a2f42e3c32a3d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f4a34a3bb6d5d1f6b1b488d21a6242e1c6628e04d2f31495ca2d8705357de7e",
+      "spec.md": "77e9671a37a400f55648608a3e47eda777d66727a904a0ddb3c5f3b5fb058712",
       "plan.md": "2db27cab1f0ceb7a0ea3f40a24407d17214ac04fa9649b3b67502a2a05fb5291",
       "tasks.md": "ebd4ff8a37cb5a02a4f8afd5b2ede2654c2993f1b56f83c25c4d4f3f7df8598b",
-      "implementation-summary.md": "9215a0584e384947d1ca312dfe51ec083fbb46bc2479568c4387d3252591260a"
+      "implementation-summary.md": "76c1ee341fbeadbf0f84733b0605a64f506f8a9bf5ac7a726de6463bc08a04de"
     },
     "last_active_child_id": null,
     "last_active_at": null

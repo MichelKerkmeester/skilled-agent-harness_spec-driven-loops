@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
   "description": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
   "keywords": [
     "defaultmode",

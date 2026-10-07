@@ -2,7 +2,6 @@
 title: "...spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/019-decisions-and-deferrals/implementation-summary]"
 description: "Meta-phase: cross-cutting analysis across all audit phases"
 trigger_phrases:
-  - "implementation summary"
   - "decisions & deferrals"
   - "code audit"
 importance_tier: "normal"

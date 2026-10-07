@@ -50,7 +50,6 @@
       "resource-map.md",
       "hooks/claude/hook-state.ts",
       "lib/context/shared-payload.ts",
-      ".claude/settings.local.json",
       "hooks/codex/user-prompt-submit.ts"
     ],
     "entities": [
@@ -94,12 +93,6 @@
         "name": "shared-payload.ts",
         "kind": "code",
         "path": "lib/context/shared-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Run Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill-advisor system has already passed through sibling sub-phases `001`, `008`, and `009`, plus targeted parity closure in `007/006-integrity-parity-closure/`",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-08-30T15:39:26.651Z",
+    "last_save_at": "2026-10-07T22:27:14.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +210,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:bf1a743d156bbe01bb3276d35c6ea1bca0d5a242fb14e2199e9eb4bb4d185156",
+    "source_fingerprint": "sha256:c7aad9121af7207d521f10da9937cb8a425c1f30a2c7273b9efd0372af4d9773",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b01d8a981428af2a7a8173a546dbebb7263d55fdc13b7d6fc688da82e805e926",
-      "plan.md": "6628ecc2ab653549462d379ae30e167ab33820975321e48c295612763b683a3a",
-      "tasks.md": "6ad22521832650fcfa413499f31fb05aed6ce01b879f4bdffd22b70976246761",
-      "implementation-summary.md": "57e8515f685e342ae82d3d0df7db9adcead0cfa2323747940a8a2b1b1e6bcff2",
-      "resource-map.md": "1487f698cdc68b568cd771b14a065c7a6857b25e87daed5d1d5f852c9403711c"
+      "spec.md": "0e0db2e78ed36d22760bb724464ec28bf2cb54ea575795660fdea066de1d65d9",
+      "plan.md": "311644c46a1af9dd76f60219ecdb53de018f03560c3f4ea33c8fbd2b4c3a590c",
+      "tasks.md": "595af8776ebd5fa81679cc7aea488d58147d84e1837442add9b621c375f9c4f7",
+      "implementation-summary.md": "9a70894cb624cecfddc34d8922fe16728c12d24a1c39cd178556dcbfed7fbd33",
+      "resource-map.md": "6c8122a07a09361d525d1a0ff31ed39768986cbb60a6748de027ac9909703448"
     },
     "last_active_child_id": null,
     "last_active_at": null

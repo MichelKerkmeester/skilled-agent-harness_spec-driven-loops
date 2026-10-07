@@ -102,8 +102,8 @@ The delivery stayed intentionally narrow so `008` could unblock `007` without de
 Reference links: [spec.md](spec.md) and [plan.md](plan.md).
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

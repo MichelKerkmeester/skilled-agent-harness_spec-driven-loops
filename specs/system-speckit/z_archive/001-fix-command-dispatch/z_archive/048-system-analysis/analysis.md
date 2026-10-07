@@ -1,3 +1,11 @@
+---
+title: "Analysis [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/analysis]"
+description: "Comprehensive system audit of the SpecKit and Memory systems via 20 parallel agents, dated 2025-12-30."
+trigger_phrases:
+  - "system analysis speckit memory audit"
+importance_tier: "important"
+contextType: "planning"
+---
 # SpecKit & Memory System Analysis
 
 > **Spec Folder**: 048-system-analysis

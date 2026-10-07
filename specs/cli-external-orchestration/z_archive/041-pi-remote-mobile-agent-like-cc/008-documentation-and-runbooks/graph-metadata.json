@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Turns the implemented contracts and observed operations into accurate API, security, setup, maintenance, incident, and rollback documentation",
     "created_at": "2026-08-10T18:28:43Z",
-    "last_save_at": "2026-08-30T15:39:07.936Z",
+    "last_save_at": "2026-10-07T18:11:40.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7280e86481abe5df46b1d12884aa695dc44fdea6c79935a646480abd232580ad",
+    "source_fingerprint": "sha256:911a78e650e80ce8390fefa9d6999581f0364e1047cc9758cca7971b84b23b24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f594ad19fa8abe8103c8b016ce38112a0e3ef06825408846da7b5266f34b3780",
-      "plan.md": "36ff274d6b77c62a96e2b1e323c6682fd73e93a116cb89d481520a7bd851a59c",
-      "tasks.md": "008a2e5d85da8aca7f516b75089b8cb13fcff390531b1550765481a24cca2075",
-      "implementation-summary.md": "8b4b7aee2d109ba3cc24e56ab9c57b64faec75f766600296d1c18f0cf6bccab3"
+      "spec.md": "205fc7a739729b556538eefdbafff5648abac08918849792148682e08cb9d804",
+      "plan.md": "ff7c3fe7d7cba8a5a6db5d68a3aa2800f4c4fb1fcf7ed65c935a874fdedf4fba",
+      "tasks.md": "d3c4be47710c28680baecc1579803618c7d6ae54ebe58a3c53cf29e1541b89fb",
+      "implementation-summary.md": "c366adf063fd989200696b3e5b692ed9b44ad39c83d89f04c054f83eaaa55ad3"
     },
     "last_active_child_id": null,
     "last_active_at": null

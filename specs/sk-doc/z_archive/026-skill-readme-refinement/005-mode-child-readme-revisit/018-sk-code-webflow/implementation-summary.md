@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow"
     last_updated_at: "2026-08-04T14:45:00Z"
     last_updated_by: "markdown-executor"
     recent_action: "Summarized phase 018 rewrite and validation"

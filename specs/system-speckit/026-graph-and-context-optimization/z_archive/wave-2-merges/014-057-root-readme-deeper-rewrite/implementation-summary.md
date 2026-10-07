@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/057-root-readme-deeper-rewrite |
+| **Spec Folder** | 014-057-root-readme-deeper-rewrite |
 | **Phase** | Deeper second-pass follow-on to 056 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

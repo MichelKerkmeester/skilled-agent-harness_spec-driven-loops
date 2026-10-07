@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
-  "spec_folder": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
-  "parent_id": "sk-doc/024-playbook-scenario-coverage",
+  "packet_id": "sk-doc/z_archive/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "spec_folder": "sk-doc/z_archive/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "parent_id": "sk-doc/z_archive/024-playbook-scenario-coverage",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -181,7 +181,7 @@
     ],
     "causal_summary": "Coverage gaps in this fleet were previously argued from prose",
     "created_at": "2026-07-30T19:29:16.012Z",
-    "last_save_at": "2026-08-30T15:39:17.355Z",
+    "last_save_at": "2026-10-07T18:13:50.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,12 +190,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:49a08c16324d84e6ff2d774602b1c2c471a74af17f23d460ed387d21794e0b0b",
+    "source_fingerprint": "sha256:955c8fafe4909787dcc04da401d7727773de5867cdfed51aa37ab0a84155e2bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be71aa49b605c3ed907f33e739932a68c91487ba85eec1d11e34ddbd2b3fa95c",
-      "plan.md": "cfa0ced5d4ea7b808a28cf1f488d80f97f94ddd1b8c6d965ae5a4da927857948",
-      "tasks.md": "1aa06733e9b62ff78fbf205259784ef4d2f1e3041e7423cf7aabf78359e9598b",
+      "spec.md": "3aa2a94e5c59717985e9ca2b1bab1dd2b2aa65b869c2c1fa0a3bb18aa26f2064",
+      "plan.md": "8609c5d9aab3b8e796117b495defadacb193445da4932a5f89958d4f15422796",
+      "tasks.md": "72520d11ecb50fd0a02bfae6485df0797c042c0fd69bebeedf48b6a53bcec168",
       "decision-record.md": "2118a8d0883a6df14c55c8f46f76c7ff2dca51a6f376cafb535ffc7d5c12018d"
     },
     "last_active_child_id": null,

@@ -1,12 +1,12 @@
 ---
 title: "Tasks: Contract Compiler Design"
 description: "Task stub for phase 001 of packet 036 (command contract compiler)."
-trigger_phrases: ["tasks", "036 001 tasks"]
+trigger_phrases: ["contract compiler design tasks", "036 001 tasks"]
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design"
     last_updated_at: "2026-07-03T19:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Design verified + decomposed; Sonnet-confirmed"

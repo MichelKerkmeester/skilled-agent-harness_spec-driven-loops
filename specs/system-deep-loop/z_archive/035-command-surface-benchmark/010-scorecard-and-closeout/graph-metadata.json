@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/010-scorecard-and-closeout",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/010-scorecard-and-closeout",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,8 @@
       "two-axis scorecard",
       "remediation backlog",
       "packet closeout",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "scorecard and closeout plan",
+      "scorecard and closeout tasks"
     ],
     "key_topics": [
       "command",
@@ -33,10 +27,10 @@
       "backlog",
       "packet",
       "closeout",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "publishes",
+      "reconciles"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -182,7 +176,7 @@
     ],
     "causal_summary": "Publishes the two-axis scorecard and remediation backlog, reconciles all packet status metadata, and runs recursive strict validation so the benchmark ships as a coherent, evidence-backed packet.",
     "created_at": "2026-07-14T20:37:00.688Z",
-    "last_save_at": "2026-09-11T04:38:01.515Z",
+    "last_save_at": "2026-10-07T18:15:16.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,12 +184,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:1f062fddb75b7716e4cb7a111f60b933390927b1f7cd6a09406e33ed1d15122b",
+    "source_fingerprint": "sha256:51f5a78ea2c8c61a25eb2892a036857880167a0d99c16a2510f3ae9803ffd05a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fd3a240a51ae879091ad6fd80f3f94777d001e6c4f1e9d5a9b35b182d326fb38",
-      "plan.md": "a03e209a8e577c90e8c86f6f8488018adb918ea7f7050fe5199a7cb35b7d612e",
-      "tasks.md": "a76343c97d589f3ca7bcb67a88466f8dc20cd4f050ce3054670b274092679fdb"
+      "spec.md": "f1e715506e90a2fb7e01f5f2dddc78a9a47adc2a45e7ed5e27210fb3163de264",
+      "plan.md": "e7d745c2243f0aed5929d751c4e0fcdc4bdaf7a3345dbd9aa8803a3569e9ce40",
+      "tasks.md": "847f6968d3bb3456ba401b029a187fa5daf1528f898e9bfdcde15b61fb164bad"
     },
     "last_active_child_id": null,
     "last_active_at": null

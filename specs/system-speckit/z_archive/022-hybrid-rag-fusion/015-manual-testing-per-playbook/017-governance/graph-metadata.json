@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Manual governance scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.303Z",
-    "last_save_at": "2026-09-10T21:05:01.873Z",
+    "last_save_at": "2026-10-07T20:38:19.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f14e8ed8bdb192432b1f017096e4541b624ddb31489149e40d1777079acb91e",
+    "source_fingerprint": "sha256:885e03503e2243f9ec020a852546ff615bd9a4deb9f61fa452c6ecf3b064148e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbc554912f7dc9588ec338f3c845ff1e22136d211de7cbe946b5f44bd0bcf756",
-      "plan.md": "cc9a3579b9a2c4ad326b8b90dbbf0e065dfa44e7a4b66c37d1d2b8d9c6595c90",
+      "spec.md": "4de74f66a68d1887fcb59bcf00df109f7f70695fe43f14162c33395f3a803c99",
+      "plan.md": "bc85211cb4390fa079c3b2f8f7e20034151e7426241ec9e3f64a17825b137cf1",
       "tasks.md": "b47c8ab5a60436a342e43310f156c801f9fadb1b6ef8cc66be52c91a2315d6c6",
       "implementation-summary.md": "c30f9ef1488a9293649617a8f69c1236b6f144dbad75651e0bf09cfb3ca973f3"
     },

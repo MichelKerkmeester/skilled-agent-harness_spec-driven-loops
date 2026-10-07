@@ -11,25 +11,24 @@
   },
   "derived": {
     "trigger_phrases": [
-      "071/003",
-      "synthesize",
+      "sk doc router stress test synthesize spec",
       "071/003 plan",
       "071/003 tasks",
       "071/003 summary"
     ],
     "key_topics": [
+      "doc",
+      "router",
+      "stress",
+      "test",
       "synthesize",
+      "spec",
       "plan",
       "tasks",
       "summary",
       "raw",
       "cell",
-      "logs",
-      "phase",
-      "contain",
-      "cli-specific",
-      "output",
-      "formats"
+      "logs"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "45 raw cell logs from Phase 2 contain CLI-specific output formats (codex stdout with token line, copilot Tokens summary block, opencode JSONL stream)",
     "created_at": "2026-05-05T10:27:21Z",
-    "last_save_at": "2026-08-30T15:39:18.341Z",
+    "last_save_at": "2026-10-07T21:59:53.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,10 +195,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7f5f8f491faaa00bc747e003b9112b0f65f44bdcd9d838a0b02fab7d5959f59",
+    "source_fingerprint": "sha256:256ea29630bcb9578bb0fb72ad1b09794ec4c957686d37662624d4b66789ef2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd87462d2ad64c3de251b919707830a14f6b28ac695709fb3700576c71b2fab6",
+      "spec.md": "db62c02b275c0ba0c6cf4a8a4f2573c2e314eb132fd378384a1379ccfb9e1dcf",
       "plan.md": "60a6729a9dfeb11c86b32f816167a8dfe32f595f099c4b29602366cb00d997d8",
       "tasks.md": "ffc4c1147baee210850a36091463cc689369e7e2b01843fe77dc2dd6f5876936",
       "implementation-summary.md": "5c98c4a5d53f3b6da2be7aae35ef2df24ad6a37fbd270bfcd46b70f3c7e89d0c"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files",
     "created_at": "2026-07-07T16:16:46.832Z",
-    "last_save_at": "2026-08-30T15:39:12.410Z",
+    "last_save_at": "2026-10-07T18:12:16.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:070fe0eb9a1feab553ae1c81271d8cb48c4964eb30efc008daf9a9cf50f2c685",
+    "source_fingerprint": "sha256:f62004dfa2517d5e94327ecb296a2bc74fc0b81efba8235d2d0586aef3fc76f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4da8cdabe9553b0b043e3292a0657d5f757fbd28ca27e12ea197de77a2d3e578",
-      "plan.md": "2a09df5529f3f566946a08a11dcf30ae5c29a400ec8fb0d2f8ad6fe2e3c29608",
-      "tasks.md": "47ad5cbc2cd2d6c5d38d3e23e12f8e9105a66ebf47d6e603eb9e4a9c1f291f8c",
-      "implementation-summary.md": "f67987faa8375484e1451df5dd2e448be2adbb7de3b554d6b873c27b39fd3dcb"
+      "spec.md": "5bf2f9b066fa76e781bd2430826c516fb23405cdc8d6b64c65b87807357b6701",
+      "plan.md": "6f98e3dd11e6b11698be6ab2b2a0904857cdd8d7307512af61192d868d264dc6",
+      "tasks.md": "2d1df91233ee06b57055b850cb898ae775bc81b4ea76ad24d2943ea7ed88b6d2",
+      "implementation-summary.md": "fe75443fddbaddfc7ab9f406beb9102ccf907a8e1310e42f87a42300925c3c2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

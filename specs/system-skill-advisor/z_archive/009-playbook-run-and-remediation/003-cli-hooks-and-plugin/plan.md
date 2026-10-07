@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/003-cli-hooks-and-plugin"
     last_updated_at: "2026-05-26T20:00:00Z"
     last_updated_by: "playbook-run-operator"
     recent_action: "Documented CL execution plan"

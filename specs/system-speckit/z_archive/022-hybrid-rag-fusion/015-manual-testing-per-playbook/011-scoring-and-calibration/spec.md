@@ -70,28 +70,28 @@ Provide a canonical phase packet that maps every assigned scoring-and-calibratio
 
 | Test ID | Scenario Name | Feature Catalog | What It Validates |
 |---------|---------------|-----------------|-------------------|
-| 023 | Score normalization | [`../../feature_catalog/11--scoring-and-calibration/01-score-normalization.md`](../../feature_catalog/11--scoring-and-calibration/01-score-normalization.md) | Validates min-max normalization and edge-case guards. |
-| 024 | Cold-start novelty boost (N4) | [`../../feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md`](../../feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md) | Checks that the disabled novelty logic stays out of the live path. |
-| 025 | Interference scoring (TM-01) | [`../../feature_catalog/11--scoring-and-calibration/03-interference-scoring.md`](../../feature_catalog/11--scoring-and-calibration/03-interference-scoring.md) | Mutates fixture data to prove cluster penalty behavior. |
-| 026 | Classification-based decay (TM-03) | [`../../feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md`](../../feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md) | Needs mixed fixtures so tier and class combinations can be compared. |
-| 027 | Folder-level relevance scoring (PI-A1) | [`../../feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md`](../../feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md) | Confirms the pre-ranking layer runs before per-memory ranking. |
-| 028 | Embedding cache (R18) | [`../../feature_catalog/11--scoring-and-calibration/06-embedding-cache.md`](../../feature_catalog/11--scoring-and-calibration/06-embedding-cache.md) | Writes cache state and timestamp metadata; requires isolated fixture. |
-| 029 | Double intent weighting investigation (G2) | [`../../feature_catalog/11--scoring-and-calibration/07-double-intent-weighting-investigation.md`](../../feature_catalog/11--scoring-and-calibration/07-double-intent-weighting-investigation.md) | Requires trace capture from both hybrid and non-hybrid searches. |
-| 030 | RRF K-value sensitivity analysis (FUT-5) | [`../../feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensitivity-analysis.md`](../../feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensitivity-analysis.md) | Needs a repeatable evaluation corpus and captured comparison output. |
-| 031 | Negative feedback confidence signal (A4) | [`../../feature_catalog/11--scoring-and-calibration/09-negative-feedback-confidence-signal.md`](../../feature_catalog/11--scoring-and-calibration/09-negative-feedback-confidence-signal.md) | Mutates validation feedback and needs recovery evidence over time. |
-| 032 | Auto-promotion on validation (T002a) | [`../../feature_catalog/11--scoring-and-calibration/10-auto-promotion-on-validation.md`](../../feature_catalog/11--scoring-and-calibration/10-auto-promotion-on-validation.md) | Mutates tier state and must leave an audit trail in the sandbox. |
-| 066 | Scoring and ranking corrections | [`../../feature_catalog/11--scoring-and-calibration/11-scoring-and-ranking-corrections.md`](../../feature_catalog/11--scoring-and-calibration/11-scoring-and-ranking-corrections.md) | Regression bundle focused on corrected ranking math and anomalous value checks. |
-| 074 | Stage 3 effectiveScore fallback chain | [`../../feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md`](../../feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md) | Needs crafted rows that intentionally miss successive score fields. |
-| 079 | Scoring and fusion corrections | [`../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md`](../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md) | Covers the phase-017 correction bundle, including normalization and fusion weights. |
-| 098 | Local GGUF reranker via node-llama-cpp (P1-5) | [`../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md`](../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md) | Requires host-level env control and optional model assets. |
-| 102 | node-llama-cpp optionalDependencies | [`../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md`](../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md) | Verifies optional dependency installation and dynamic import fallback behavior. |
-| 118 | Stage-2 score field synchronization (P0-8) | [`../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md`](../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md) | Depends on includeTrace output from the active non-hybrid pipeline. |
-| 121 | Adaptive shadow proposal and rollback (Phase 4) | [`../../feature_catalog/11--scoring-and-calibration/18-adaptive-shadow-ranking-bounded-proposals-and-rollback.md`](../../feature_catalog/11--scoring-and-calibration/18-adaptive-shadow-ranking-bounded-proposals-and-rollback.md) | Mutates adaptive signals and feature flags; needs rollback-safe isolation. |
-| 159 | Learned Stage 2 Combiner (SPECKIT_LEARNED_STAGE2_COMBINER) | [`../../feature_catalog/11--scoring-and-calibration/19-learned-stage2-weight-combiner.md`](../../feature_catalog/11--scoring-and-calibration/19-learned-stage2-weight-combiner.md) | Validates shadow scoring output alongside the live Stage 2 combiner. |
-| 160 | Shadow Feedback Holdout (SPECKIT_SHADOW_FEEDBACK) | [`../../feature_catalog/11--scoring-and-calibration/20-shadow-feedback-holdout-evaluation.md`](../../feature_catalog/11--scoring-and-calibration/20-shadow-feedback-holdout-evaluation.md) | Validates holdout evaluation pipeline for offline scoring comparison. |
+| 023 | Score normalization | `../../feature_catalog/11--scoring-and-calibration/01-score-normalization.md` | Validates min-max normalization and edge-case guards. |
+| 024 | Cold-start novelty boost (N4) | `../../feature_catalog/11--scoring-and-calibration/02-cold-start-novelty-boost.md` | Checks that the disabled novelty logic stays out of the live path. |
+| 025 | Interference scoring (TM-01) | `../../feature_catalog/11--scoring-and-calibration/03-interference-scoring.md` | Mutates fixture data to prove cluster penalty behavior. |
+| 026 | Classification-based decay (TM-03) | `../../feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md` | Needs mixed fixtures so tier and class combinations can be compared. |
+| 027 | Folder-level relevance scoring (PI-A1) | `../../feature_catalog/11--scoring-and-calibration/05-folder-level-relevance-scoring.md` | Confirms the pre-ranking layer runs before per-memory ranking. |
+| 028 | Embedding cache (R18) | `../../feature_catalog/11--scoring-and-calibration/06-embedding-cache.md` | Writes cache state and timestamp metadata; requires isolated fixture. |
+| 029 | Double intent weighting investigation (G2) | `../../feature_catalog/11--scoring-and-calibration/07-double-intent-weighting-investigation.md` | Requires trace capture from both hybrid and non-hybrid searches. |
+| 030 | RRF K-value sensitivity analysis (FUT-5) | `../../feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensitivity-analysis.md` | Needs a repeatable evaluation corpus and captured comparison output. |
+| 031 | Negative feedback confidence signal (A4) | `../../feature_catalog/11--scoring-and-calibration/09-negative-feedback-confidence-signal.md` | Mutates validation feedback and needs recovery evidence over time. |
+| 032 | Auto-promotion on validation (T002a) | `../../feature_catalog/11--scoring-and-calibration/10-auto-promotion-on-validation.md` | Mutates tier state and must leave an audit trail in the sandbox. |
+| 066 | Scoring and ranking corrections | `../../feature_catalog/11--scoring-and-calibration/11-scoring-and-ranking-corrections.md` | Regression bundle focused on corrected ranking math and anomalous value checks. |
+| 074 | Stage 3 effectiveScore fallback chain | `../../feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md` | Needs crafted rows that intentionally miss successive score fields. |
+| 079 | Scoring and fusion corrections | `../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md` | Covers the phase-017 correction bundle, including normalization and fusion weights. |
+| 098 | Local GGUF reranker via node-llama-cpp (P1-5) | `../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md` | Requires host-level env control and optional model assets. |
+| 102 | node-llama-cpp optionalDependencies | `../../feature_catalog/11--scoring-and-calibration/14-local-gguf-reranker-via-node-llama-cpp.md` | Verifies optional dependency installation and dynamic import fallback behavior. |
+| 118 | Stage-2 score field synchronization (P0-8) | `../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md` | Depends on includeTrace output from the active non-hybrid pipeline. |
+| 121 | Adaptive shadow proposal and rollback (Phase 4) | `../../feature_catalog/11--scoring-and-calibration/18-adaptive-shadow-ranking-bounded-proposals-and-rollback.md` | Mutates adaptive signals and feature flags; needs rollback-safe isolation. |
+| 159 | Learned Stage 2 Combiner (SPECKIT_LEARNED_STAGE2_COMBINER) | `../../feature_catalog/11--scoring-and-calibration/19-learned-stage2-weight-combiner.md` | Validates shadow scoring output alongside the live Stage 2 combiner. |
+| 160 | Shadow Feedback Holdout (SPECKIT_SHADOW_FEEDBACK) | `../../feature_catalog/11--scoring-and-calibration/20-shadow-feedback-holdout-evaluation.md` | Validates holdout evaluation pipeline for offline scoring comparison. |
 | 170 | Fusion Policy Shadow v2 (historical playbook row) | Retired in active MCP server; no current feature-catalog file | Documents that `SPECKIT_FUSION_POLICY_SHADOW_V2` and related Fusion Lab code are no longer active in `mcp_server`. |
-| 171 | Calibrated Overlap Bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | [`../../feature_catalog/11--scoring-and-calibration/21-calibrated-overlap-bonus.md`](../../feature_catalog/11--scoring-and-calibration/21-calibrated-overlap-bonus.md) | Verifies calibrated overlap bonus replaces flat convergence bonus with beta=0.15 scaling and 0.06 cap. |
-| 172 | RRF K Experimental (SPECKIT_RRF_K_EXPERIMENTAL) | [`../../feature_catalog/11--scoring-and-calibration/22-rrf-k-experimental.md`](../../feature_catalog/11--scoring-and-calibration/22-rrf-k-experimental.md) | Verifies per-intent K optimization selects best K from sweep grid using NDCG@10. |
+| 171 | Calibrated Overlap Bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) | `../../feature_catalog/11--scoring-and-calibration/21-calibrated-overlap-bonus.md` | Verifies calibrated overlap bonus replaces flat convergence bonus with beta=0.15 scaling and 0.06 cap. |
+| 172 | RRF K Experimental (SPECKIT_RRF_K_EXPERIMENTAL) | `../../feature_catalog/11--scoring-and-calibration/22-rrf-k-experimental.md` | Verifies per-intent K optimization selects best K from sweep grid using NDCG@10. |
 
 ### Files to Change
 
@@ -221,7 +221,6 @@ Provide a canonical phase packet that maps every assigned scoring-and-calibratio
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -236,7 +235,6 @@ Provide a canonical phase packet that maps every assigned scoring-and-calibratio
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

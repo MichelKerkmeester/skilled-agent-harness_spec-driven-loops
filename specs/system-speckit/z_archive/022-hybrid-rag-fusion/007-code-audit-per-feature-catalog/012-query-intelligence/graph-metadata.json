@@ -15,8 +15,7 @@
       "query intelligence",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -27,10 +26,10 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -176,7 +175,7 @@
     ],
     "causal_summary": "The feature catalog for Query Intelligence has evolved significantly",
     "created_at": "2026-04-12T09:02:50.251Z",
-    "last_save_at": "2026-08-30T15:39:38.365Z",
+    "last_save_at": "2026-10-07T20:25:09.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d342e91ba9f6a98cac43f7737c6a52c97f1716b92b2ddfe9f6cac134ddf5cbed",
+    "source_fingerprint": "sha256:820c8f7247e526d56add0ddc68f7ece2ffc07e6a7bdaa7e9614fd1713bffea46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32ca8e8d3694f9f1a6d0af33557366a7b547500a5039f0dfd15822062f550ac2",
-      "plan.md": "87ec73806505cdfa26f6a181247939a506c3c75366e99c6eeec4dc8784a07824",
+      "spec.md": "b61916e88c9c3a1b80e8cc327df1414f82fae818c9bcc0f175491c66441d8af6",
+      "plan.md": "3bed772e3314ed21f66310204589005700c6efd3f65effe7a9a7d8630ac177cf",
       "tasks.md": "5b3d1764d034965fe3bfeaaf4d52774900646a4dbc29a33983021b04feac6216",
-      "implementation-summary.md": "6dfb6587e0f1e4b181c0f07d0d61f94cc2412633fa3251f287f349c6a978a6db"
+      "implementation-summary.md": "6c27dc8e98089f74ff57f4ff661b7eaf7140d45ae75efc99bc42e22fe45c7ebc"
     },
     "last_active_child_id": null,
     "last_active_at": null

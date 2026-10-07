@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Trigger ownership was inconsistent across packet source files and router projections",
     "created_at": "2026-07-13T04:45:46Z",
-    "last_save_at": "2026-09-11T16:42:04.461Z",
+    "last_save_at": "2026-10-07T18:12:35.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bb13c59448b6e4eef7bfb898a2d0b4c946b67df53263cddc43e7b9c69ab53ed",
+    "source_fingerprint": "sha256:43201c018322425b7b555b90f5130c3a09c5646af2ffae04b956777eaaad0aaf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "226429c91f8f797ec21293499c1ed373b533c73862b3482a43d7d28e6a6a5888",
-      "plan.md": "5413770d85e99dc0d5c02d9228533e56da046f06c39a61fc7d06326be3448e59",
-      "tasks.md": "36f3a435d7421309c553dec3c56954b8aac762bc8352846482b8b5fb156144be",
+      "spec.md": "b0756703435ec6142356a461bb7f0f99ed6fe1786ce8829f1e4cb5ceff4c2b11",
+      "plan.md": "d93a1199b847e8bf085d7a9f82f06a2ee713eec0087841781ebbcc2d0d97e2da",
+      "tasks.md": "5bc55ed493633866d80f60f020b4c8e7ff9f53addf118690dad1ed972cc19fa2",
       "decision-record.md": "49e5fdeb0785d20dae78068abe954a398404b2085611cd09abbb8b093c969b3d",
-      "implementation-summary.md": "8d1ec5c0f83523b80d5a35a37dc21507178a8e98d3910448857d112cf184c63e"
+      "implementation-summary.md": "090f181198805c5f22efda1a77651b405593e537b6b2cb44353d63e0208f2752"
     },
     "last_active_child_id": null,
     "last_active_at": null

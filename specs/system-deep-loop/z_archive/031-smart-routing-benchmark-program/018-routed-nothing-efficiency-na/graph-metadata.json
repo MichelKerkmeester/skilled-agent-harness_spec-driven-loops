@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,7 +22,7 @@
       "d3 routed nothing null",
       "efficiency undefined salvage",
       "holdout scoring honesty",
-      "implementation summary"
+      "routed nothing efficiency na implementation summary"
     ],
     "key_topics": [
       "efficiency",
@@ -45,9 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -78,18 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "re-baseline",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Packet",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stage-aware scorer (packet 061) added a fitted-vs-holdout split and a `generalizationGap`",
     "created_at": "2026-07-11T21:53:32.572Z",
-    "last_save_at": "2026-09-11T04:37:56.986Z",
+    "last_save_at": "2026-10-07T18:15:16.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9b2b7f159044618dfbaead8869108761e452babf8e3f1fdb6c51af6c645b11f",
+    "source_fingerprint": "sha256:8b2930e0b5bd4728ee6df92d470e1f949029beae51cfef9b45f1f2d416a6fd9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bef0b8818ed63b36501e83658f7a674aa1a92e30b5adc6dea9ad5a2e8435658",
-      "plan.md": "7d088cae302c3bdfb93723e2b5e04578fb414939736e1fa35775fb254c5c5a08",
-      "tasks.md": "3a95e64ea5b699690eb36e383e7db6b6aca6c8b9f85ae8604c06ee22adc5d7f5",
+      "spec.md": "7ff305842bcd865156217cc35132ae87d5d0965452938bdd559a00d74cb6664c",
+      "plan.md": "28a2c88fe84e03ef1f483cb60d3c16d5844866493e69d654be2eca1ff72df415",
+      "tasks.md": "572604fdb4a9d13d3ffef83cc62c0e642b60abe751ae11249819fbd4859ea252",
       "decision-record.md": "1448e17703c65dda40b949ab4b4328d2b148b1d40f5481277428e0a97dac923f",
-      "implementation-summary.md": "70cff6425b27ef0cfd6d60a1f03c4eaabb32c335cde39d2ac850fb58be5d905f"
+      "implementation-summary.md": "09363d159106ec7a88a233505dec831af2baa975e4b045d59e375c1acb5acfd7"
     },
     "last_active_child_id": null,
     "last_active_at": null

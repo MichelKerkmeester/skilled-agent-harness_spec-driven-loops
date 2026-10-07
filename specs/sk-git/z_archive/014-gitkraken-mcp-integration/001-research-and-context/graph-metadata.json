@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/014-gitkraken-mcp-integration/001-research-and-context",
-  "spec_folder": "sk-git/014-gitkraken-mcp-integration/001-research-and-context",
-  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "packet_id": "sk-git/z_archive/014-gitkraken-mcp-integration/001-research-and-context",
+  "spec_folder": "sk-git/z_archive/014-gitkraken-mcp-integration/001-research-and-context",
+  "parent_id": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,15 +43,13 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/spec.md",
-      ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -69,7 +67,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-git/014-gitkraken-mcp-integration/001-research-and-context/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,7 +193,7 @@
     ],
     "causal_summary": "The GitKraken MCP integration program (see `../spec.md`) needs ground truth before any file changes: the GitHub README under-documents the real tool surface (it names only 3 example tools against a real 31), the correct `.utcpconfig.json` config shape isn't obvious (the CLI's own config generator emits a machine-local form, not the repo's portable `npx` convention), and whether to register the server read-only or read+write is a real safety tradeoff against sk-git's existing ask-first/no-direct-branch/conventional-commit rules",
     "created_at": "2026-07-15T04:22:49.551Z",
-    "last_save_at": "2026-08-30T15:39:18.531Z",
+    "last_save_at": "2026-10-07T18:13:59.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fcbcef81783b752cbd593044af933590e2c4cf67af721185251749c3cb4183a",
+    "source_fingerprint": "sha256:0b67def16e63a33f2c6431c2fac77f11276f940a61d55de2c9125ab016b550cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6b59732795fca709c9837af235244d14bdfbf5881192d02a7d7d15c5cfaa3b9",
-      "plan.md": "cf386b36f160108f5838fc059b4588024f08feb58aee0ff09c0e8e1b015571b8",
-      "tasks.md": "c41bd3d248db942190d2ac50792253f3918190366f2c50ffeec97aa8b6621f07",
-      "implementation-summary.md": "322248eb2d7cf5886f73ba2d4d935ca186fc7aec918cef1e0438b9e6941d51a6"
+      "spec.md": "f0664ab3936a1b7bbee0308b80869b4bae3c627bd57eb5ca40531a6e8c607009",
+      "plan.md": "e51a047327f3b8b9cd4e8211d1e76f41888dbfb0f2757f9e15bff777042ad55c",
+      "tasks.md": "4012ac2ac32b1e2d61ff547af5b4bb632fa94ae79d26c0ae47b24ec44ea82df4",
+      "implementation-summary.md": "516a5cda0a9a5979c47a24690afd434a32b9aed7762b877817fdb1fbdc808c4c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/002-style-database/007-persistent-db-activation"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"

@@ -23,6 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## 1. OVERVIEW
 
 5 stages. Total wall-time est: 1-2 hours autonomous (codex implements stages 1-3 + 5; stress runs are stage 4 cli-copilot loop).
@@ -34,7 +35,9 @@ _memory:
 | 3. Ensure CP-041/042 body-level inputs materialized | 2 playbook files modified | ~10 min |
 | 4. R1 stress run (cli-copilot) + R2 if needed | 6 verdict files + transcripts | ~30-60 min |
 | 5. test-report.md + close-out | test-report mirroring 059 + summary update | ~15 min |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## 2. STAGE 1 — SCAFFOLD + TEMP-ROOT HELPER
 1. Author 8 markdown files at packet root + 2 JSON stubs
 2. Author `/tmp/cp-061-sandbox-setup.sh` that creates `/tmp/cp-061-sandbox/` with: `.opencode/commands/deep/` (recursive copy), `.opencode/skills/sk-improve-agent/` (recursive copy), `.opencode/agents/cp-improve-target.md` (fixture), `.claude/agents/cp-improve-target.md` + `.gemini/agents/cp-improve-target.md` + `.codex/agents/cp-improve-target.toml` (mirrors), profile + fixture assets
@@ -56,3 +59,4 @@ Run all 6 scenarios sequentially via cli-copilot. Triage. If R1 surfaces gaps, R
 
 ## 6. STAGE 5 — TEST-REPORT + CLOSE-OUT
 Mirror 059's 11-section ANCHOR structure. Document R1/R2 narratives with transcript pull-quotes. Update implementation-summary + handover. Optionally commit + push.
+<!-- /ANCHOR:phases -->

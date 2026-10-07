@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/020-command-agent-template-conformance",
   "description": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
   "keywords": [
     "sk-doc",

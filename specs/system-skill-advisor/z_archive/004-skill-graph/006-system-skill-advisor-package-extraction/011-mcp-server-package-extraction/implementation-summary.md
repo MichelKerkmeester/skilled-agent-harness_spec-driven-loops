@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction"
     last_updated_at: "2026-05-14T20:05:00Z"
     last_updated_by: "codex"
     recent_action: "011 full extraction shipped (D2a+D2b)"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `011-mcp-server-package-extraction` |
+| **Spec Folder** | 011-mcp-server-package-extraction |
 | **Completed** | D2a+D2b completed 2026-05-14 |
 | **Level** | 3 |
 | **Next Safe Action** | Operator: 014 manual testing via cli-opencode |

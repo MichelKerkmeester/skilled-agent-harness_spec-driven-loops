@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/011-feature-catalog-and-manual-playbook",
+  "specFolder": "sk-git/z_archive/011-feature-catalog-and-manual-playbook",
   "description": "The create-skill canon expects every skill to carry a feature catalog and a manual-testing playbook that covers its full surface",
   "keywords": [
     "create-skill",

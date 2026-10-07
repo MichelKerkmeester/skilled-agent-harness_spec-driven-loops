@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity"
     last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Initialized lean phase-parent docs from completed research evidence."

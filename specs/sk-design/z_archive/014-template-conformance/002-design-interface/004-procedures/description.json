@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/004-procedures",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/004-procedures",
   "description": "`procedures/` holds 9 cards (39-44 lines each: `aesthetic-direction.md`, `component-system-inventory.md`, `deck-direction-spec.md`,",
   "keywords": [
     "procedures",

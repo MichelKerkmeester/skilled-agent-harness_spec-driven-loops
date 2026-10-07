@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "in-progress"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation"
     last_updated_at: "2026-07-22T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Fixed the NUL corruption and the named non-runnable commands."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "review remediation plan"
 ---
 
 # Implementation Plan: Deep-Review Remediation

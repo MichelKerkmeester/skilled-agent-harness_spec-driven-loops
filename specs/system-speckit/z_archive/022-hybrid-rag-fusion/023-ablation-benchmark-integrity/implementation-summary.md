@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/023-ablation-benchmark-integrity/implementation-summary]"
 description: "The ablation benchmark now fails closed on DB provenance mismatches, scores parent memories consistently, and bypasses evaluation-only truncation so Recall@20 reflects retrieval quality instead of token clipping."
 trigger_phrases:
-  - "implementation summary"
   - "ablation benchmark"
   - "benchmark integrity"
 importance_tier: "important"

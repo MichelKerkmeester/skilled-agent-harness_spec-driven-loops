@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review"
     last_updated_at: "2026-08-04T14:52:00Z"
     last_updated_by: "phase-executor"
     recent_action: "Rewrote README purpose-first; version 1.6.0.0; changelog entry added"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/008-divergent-mode-dogfood",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/008-divergent-mode-dogfood",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packet `055-deep-loop-divergent-mode` shipped `convergenceMode: \"divergent\"` — an opt-in scope-expansion pivot where a legal STOP triggers a 3-seat native Council direction-selection instead of terminating",
     "created_at": "2026-07-11T06:01:10.004Z",
-    "last_save_at": "2026-08-30T15:39:19.828Z",
+    "last_save_at": "2026-10-07T18:15:11.109Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3cc9580a60c15a0f5a4f15d98910541a7ff48c97bc17b0e33ce616bab7cba85a",
+    "source_fingerprint": "sha256:ffa2969a2b47dd91c24f5357ac061ccf92342ccad7387d654073477475279490",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07f3027176c1298a4135b37d749d8187c3b76bdb385801b47c2daf371d0c620f",
-      "plan.md": "8a9cd4fd1ae3778275b04f36b6536439b9da14b744e1edcf0708374227f6d297",
-      "tasks.md": "76b577950504d6725774f654679021f3bc5c511d0f48f6a21c5ea2760ebea5c6",
-      "implementation-summary.md": "22405c1544cad1697706b5dee816b256a580a424ed0090ce9ade008f0e7c0440",
+      "spec.md": "76151397c7fa0a9ec6c5618a6651a5e14139c0fe6918543a445f8f05d17a4bf8",
+      "plan.md": "32f24fac74b89d15afe3a208d30ec2fed7711bd3f1a2284762f08ed744e4fc7f",
+      "tasks.md": "36cd47eafaddef28cc5baa2306461af5de6f086100a75ca8ab620acd9b2bc3af",
+      "implementation-summary.md": "01a8812e529de7405ae459b6c5ab9ec0bc21bf6bfb99952cf246e59876490500",
       "research/research.md": "3ed8c628eb637364b452696c1b2173c91f376e931589919577c97e5cdf996fc7"
     },
     "last_active_child_id": null,

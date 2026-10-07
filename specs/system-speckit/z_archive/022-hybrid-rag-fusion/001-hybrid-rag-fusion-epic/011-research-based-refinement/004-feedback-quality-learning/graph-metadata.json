@@ -163,7 +163,7 @@
     ],
     "causal_summary": "Add implicit feedback event ledger, FSRS hybrid decay policy, quality gate exceptions, weekly batch learning, assistive reconsolidation, and shadow scoring with holdout evaluation.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-08-30T15:39:38.147Z",
+    "last_save_at": "2026-10-07T20:30:38.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,11 +171,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:88d0abeed72aa0f0143f620b80fa77874054caf83693d1ece1d863eaa8db7c1c",
+    "source_fingerprint": "sha256:7c6c42e0d2c8bcde7573312b9769c50a98d25fc7d025fec5a366e43f80cb264f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d5329cd4d577784ee8ffb5e8a543070e62cc84453129b2989ebfdc7ee09ea9a",
-      "plan.md": "fb473d2ee8903cdc6b52df22757e7ccc7bb1c900bee97a6b7dba01c6b25c719d",
+      "spec.md": "9207734a9db030ec4574faab24c84abdee9ff532fbc5d52c2949709e31556b58",
+      "plan.md": "7214463d1e367cbcfdb5727ba0070d6623d59560cbc7df7b74cfb7d28f07401c",
       "tasks.md": "fea08544fe875a05de5a0c0cf1ab58ce0202118f40edd32f7260c26b0007da96"
     },
     "last_active_child_id": null,

@@ -6,7 +6,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
     last_updated_at: "2026-07-16T08:06:37Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded Level-1 contract-phase doc set"
@@ -18,10 +18,7 @@ _memory:
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_template.md"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "versioned command contract plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

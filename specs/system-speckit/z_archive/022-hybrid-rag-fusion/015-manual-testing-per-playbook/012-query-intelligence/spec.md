@@ -66,16 +66,16 @@ Provide a single query-intelligence-focused specification that maps all 10 Phase
 
 | Test ID | Scenario Name | Feature Catalog | Exact Prompt | Exact Command Sequence |
 |---------|---------------|-----------------|--------------|------------------------|
-| 033 | Query complexity router (R15) | [`../../feature_catalog/12--query-intelligence/01-query-complexity-router.md`](../../feature_catalog/12--query-intelligence/01-query-complexity-router.md) | `Verify query complexity router (R15).` | `1) Run simple/moderate/complex queries 2) Inspect selected channels 3) Disable flag fallback` |
-| 034 | Relative score fusion in shadow mode (R14/N1) | [`../../feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md`](../../feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md) | `Check RSF shadow behavior post-cleanup.` | `1) Inspect branch conditions 2) Run queries 3) Confirm RRF live ranking` |
-| 035 | Channel min-representation (R2) | [`../../feature_catalog/12--query-intelligence/03-channel-min-representation.md`](../../feature_catalog/12--query-intelligence/03-channel-min-representation.md) | `Validate channel min-representation (R2).` | `1) Run dominance query 2) Inspect pre/post representation 3) Verify quality floor` |
-| 036 | Confidence-based result truncation (R15-ext) | [`../../feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md`](../../feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md) | `Verify confidence-based truncation (R15-ext).` | `1) Run long-tail query 2) Inspect cutoff math 3) Verify min-result guarantee` |
-| 037 | Dynamic token budget allocation (FUT-7) | [`../../feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md`](../../feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md) | `Verify dynamic token budgets (FUT-7).` | `1) Run classed queries 2) Inspect budgets 3) Disable flag fallback` |
-| 038 | Query expansion (R12) | [`../../feature_catalog/12--query-intelligence/06-query-expansion.md`](../../feature_catalog/12--query-intelligence/06-query-expansion.md) | `Validate query expansion (R12).` | `1) Complex query expansion 2) Parallel baseline+expanded 3) Dedup + simple-query skip` |
-| 161 | LLM Reformulation (SPECKIT_LLM_REFORMULATION) | [`../../feature_catalog/12--query-intelligence/07-llm-query-reformulation.md`](../../feature_catalog/12--query-intelligence/07-llm-query-reformulation.md) | `Verify LLM reformulation in deep mode (SPECKIT_LLM_REFORMULATION).` | `1) Enable flag 2) Run deep-mode query 3) Inspect reformulated query in trace 4) Disable flag fallback` |
-| 162 | HyDE Shadow (SPECKIT_HYDE) | [`../../feature_catalog/12--query-intelligence/08-hyde-hypothetical-document-embeddings.md`](../../feature_catalog/12--query-intelligence/08-hyde-hypothetical-document-embeddings.md) | `Verify HyDE hypothetical document generation (SPECKIT_HYDE).` | `1) Enable flag 2) Run query 3) Inspect generated hypothetical doc 4) Confirm shadow-only (no live impact) 5) Disable flag fallback` |
-| 163 | Query Surrogates (SPECKIT_QUERY_SURROGATES) | [`../../feature_catalog/12--query-intelligence/09-index-time-query-surrogates.md`](../../feature_catalog/12--query-intelligence/09-index-time-query-surrogates.md) | `Verify index-time query surrogate generation (SPECKIT_QUERY_SURROGATES).` | `1) Enable flag 2) Save a memory record 3) Inspect generated surrogates in index 4) Run retrieval using surrogate terms 5) Disable flag fallback` |
-| 173 | Query Decomposition (SPECKIT_QUERY_DECOMPOSITION) | [`../../feature_catalog/12--query-intelligence/10-query-decomposition.md`](../../feature_catalog/12--query-intelligence/10-query-decomposition.md) | `Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries using rule-based heuristics in deep mode.` | `1) Enable flag 2) Run a multi-faceted deep-mode query 3) Inspect bounded facet detection output 4) Verify decomposition produces at most 3 rule-based sub-queries 5) Disable flag fallback` |
+| 033 | Query complexity router (R15) | `../../feature_catalog/12--query-intelligence/01-query-complexity-router.md` | `Verify query complexity router (R15).` | `1) Run simple/moderate/complex queries 2) Inspect selected channels 3) Disable flag fallback` |
+| 034 | Relative score fusion in shadow mode (R14/N1) | `../../feature_catalog/12--query-intelligence/02-relative-score-fusion-in-shadow-mode.md` | `Check RSF shadow behavior post-cleanup.` | `1) Inspect branch conditions 2) Run queries 3) Confirm RRF live ranking` |
+| 035 | Channel min-representation (R2) | `../../feature_catalog/12--query-intelligence/03-channel-min-representation.md` | `Validate channel min-representation (R2).` | `1) Run dominance query 2) Inspect pre/post representation 3) Verify quality floor` |
+| 036 | Confidence-based result truncation (R15-ext) | `../../feature_catalog/12--query-intelligence/04-confidence-based-result-truncation.md` | `Verify confidence-based truncation (R15-ext).` | `1) Run long-tail query 2) Inspect cutoff math 3) Verify min-result guarantee` |
+| 037 | Dynamic token budget allocation (FUT-7) | `../../feature_catalog/12--query-intelligence/05-dynamic-token-budget-allocation.md` | `Verify dynamic token budgets (FUT-7).` | `1) Run classed queries 2) Inspect budgets 3) Disable flag fallback` |
+| 038 | Query expansion (R12) | `../../feature_catalog/12--query-intelligence/06-query-expansion.md` | `Validate query expansion (R12).` | `1) Complex query expansion 2) Parallel baseline+expanded 3) Dedup + simple-query skip` |
+| 161 | LLM Reformulation (SPECKIT_LLM_REFORMULATION) | `../../feature_catalog/12--query-intelligence/07-llm-query-reformulation.md` | `Verify LLM reformulation in deep mode (SPECKIT_LLM_REFORMULATION).` | `1) Enable flag 2) Run deep-mode query 3) Inspect reformulated query in trace 4) Disable flag fallback` |
+| 162 | HyDE Shadow (SPECKIT_HYDE) | `../../feature_catalog/12--query-intelligence/08-hyde-hypothetical-document-embeddings.md` | `Verify HyDE hypothetical document generation (SPECKIT_HYDE).` | `1) Enable flag 2) Run query 3) Inspect generated hypothetical doc 4) Confirm shadow-only (no live impact) 5) Disable flag fallback` |
+| 163 | Query Surrogates (SPECKIT_QUERY_SURROGATES) | `../../feature_catalog/12--query-intelligence/09-index-time-query-surrogates.md` | `Verify index-time query surrogate generation (SPECKIT_QUERY_SURROGATES).` | `1) Enable flag 2) Save a memory record 3) Inspect generated surrogates in index 4) Run retrieval using surrogate terms 5) Disable flag fallback` |
+| 173 | Query Decomposition (SPECKIT_QUERY_DECOMPOSITION) | `../../feature_catalog/12--query-intelligence/10-query-decomposition.md` | `Verify bounded facet detection decomposes multi-faceted queries into max 3 sub-queries using rule-based heuristics in deep mode.` | `1) Enable flag 2) Run a multi-faceted deep-mode query 3) Inspect bounded facet detection output 4) Verify decomposition produces at most 3 rule-based sub-queries 5) Disable flag fallback` |
 
 ### Out of Scope
 - Executing the 10 query-intelligence scenarios and assigning final run verdicts (this is what the phase packet enables).
@@ -160,8 +160,8 @@ No P1 items defined for this phase; all 10 query-intelligence scenarios are mand
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Canonical source for exact prompts, commands, evidence targets, and pass criteria | Treat the playbook as source of truth; update this phase packet only from that document |
-| Dependency | [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Verdict rules determine PASS, PARTIAL, FAIL, and coverage requirements | Apply the protocol during evidence review; do not invent alternate verdict logic |
+| Dependency | `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Canonical source for exact prompts, commands, evidence targets, and pass criteria | Treat the playbook as source of truth; update this phase packet only from that document |
+| Dependency | `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Verdict rules determine PASS, PARTIAL, FAIL, and coverage requirements | Apply the protocol during evidence review; do not invent alternate verdict logic |
 | Dependency | [`../../feature_catalog/12--query-intelligence/`](../../feature_catalog/12--query-intelligence/) | Supplies feature context for each query-intelligence scenario | Keep every test row linked to its mapped query-intelligence feature file |
 | Dependency | MCP runtime plus retrieval sandbox corpus | Required to execute `memory_search` scenarios safely | Run stateful tests in an isolated sandbox; preserve restart/checkpoint instructions in the plan |
 | Risk | 033 and 037 require disabling feature flags to test fallback paths; flag changes can affect other concurrent test runs | Medium | Isolate flag-toggle tests to a dedicated runtime instance; restore default flag values before the next scenario |
@@ -187,7 +187,6 @@ No P1 items defined for this phase; all 10 query-intelligence scenarios are mand
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -202,7 +201,6 @@ No P1 items defined for this phase; all 10 query-intelligence scenarios are mand
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

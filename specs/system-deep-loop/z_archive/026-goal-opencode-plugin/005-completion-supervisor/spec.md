@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/005-completion-supervisor"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/005-completion-supervisor"
     last_updated_at: "2026-06-28T21:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented supervisor verdict handling for the goal plugin"

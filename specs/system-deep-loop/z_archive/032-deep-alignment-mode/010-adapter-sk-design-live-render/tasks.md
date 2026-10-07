@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/010-adapter-sk-design-live-render"
     last_updated_at: "2026-07-11T14:57:13Z"
     last_updated_by: "claude"
     recent_action: "T001-T013 all done; adapter built+dry-ran, zero chrome-devtools sites"

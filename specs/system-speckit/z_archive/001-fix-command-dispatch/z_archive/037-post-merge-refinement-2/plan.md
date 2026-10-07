@@ -2,9 +2,7 @@
 title: "Plan [037-post-merge [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2/plan]"
 description: "plan document for 037-post-merge-refinement-2."
 trigger_phrases:
-  - "plan"
-  - "037"
-  - "post"
+  - "post merge refinement 2 plan"
 importance_tier: "important"
 contextType: "planning"
 ---

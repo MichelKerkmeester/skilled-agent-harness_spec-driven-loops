@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,8 +47,6 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/speckit/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
       ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
@@ -80,18 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no `assets/` folder",
     "created_at": "2026-07-06T04:33:03.987Z",
-    "last_save_at": "2026-08-30T15:39:12.241Z",
+    "last_save_at": "2026-10-07T18:11:40.288Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:194b226287228a84f8f07cfe6744bc99902c9b8d51729f389ef188200b6fb3fe",
+    "source_fingerprint": "sha256:f07685aec49052f0ad98e1c702aa223f6f6458d77afbbfb86f3f72b984a5881c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d0a23132c2ecae30e1a1c735c4f6e10d5ae9897c830dd0c8830dafb0326ecc0",
-      "plan.md": "bb9f5f9084dc14e6618ec43fe3dcfaaf4822ed5d9e211b5375e1ff848f204651",
-      "tasks.md": "c400fe670d06bb285644af8b14db759583c0732becba5daad3bba6ad88ba4b29",
+      "spec.md": "ebefad498b241cd591ac200a3e3506a7e9fce08ca9ac2070d10bf13cf32c4dec",
+      "plan.md": "0a0545221469d7ea64f215db4064e998f9f63293b5f63fcc332453abcfeb1556",
+      "tasks.md": "1cd936082aa3f21b0ef507f511989be1898344609097fea2e7c18917985ee2e3",
       "decision-record.md": "550ba0e9fae7d9e2a9245c5e1c256f99e0d7df0c9bbe93f5a37ea33e8c090ff2",
-      "implementation-summary.md": "503fe45c00b16fc2182282c1fca2a2623b58e6e825f2d5e7d48a60e98ea11292"
+      "implementation-summary.md": "aaad61a22674e825143a2b32caa12af9616280d84a4d82f4fb412390dc7a7eb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

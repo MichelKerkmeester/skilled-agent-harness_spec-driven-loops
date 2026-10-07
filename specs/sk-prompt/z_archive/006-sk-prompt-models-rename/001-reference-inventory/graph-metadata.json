@@ -16,7 +16,7 @@
       "sk-prompt-small-model occurrences",
       "sk-prompt-models reference inventory plan",
       "rename reference map plan",
-      "tasks",
+      "sk prompt models rename tasks",
       "sk-prompt-models inventory tasks",
       "sk-prompt-models rename 001-reference-inventory"
     ],
@@ -29,10 +29,10 @@
       "sk-prompt-small-model",
       "occurrences",
       "plan",
+      "prompt",
+      "models",
       "tasks",
-      "001-reference-inventory",
-      "touches",
-      "files"
+      "001-reference-inventory"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The rename touches ~799 files",
     "created_at": "2026-06-28T13:47:21.024Z",
-    "last_save_at": "2026-08-30T15:39:19.339Z",
+    "last_save_at": "2026-10-07T22:25:33.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8122ba6dea59e3ca85ecc47a43ae5491f3ce149499503fc5a4171cf43b708ddf",
+    "source_fingerprint": "sha256:faf91f7d2b1f3110399deb7fb3413a8d79c6e21e38e22327729a9b145435f9fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca552ca510f9580c44ae1374b40269271792a2b7f34e7a2d46af5ba15b3f064e",
-      "plan.md": "3d7e712fe729956d0123b0291a7552f81ab59e3573d10f6202c170cc1a3c7f4b",
-      "tasks.md": "57a815ffc053701af7056b30d1964cc0369bcb4f5fd65447d531c035dd7256c5",
-      "implementation-summary.md": "16b34179295de79445dd1f096cbd9f9dab5957e4f2180cf853eb33f11996094b"
+      "spec.md": "7b153b50ad906edf96136375ec0380f0ce66eba1f16f9bf63a386f3f5153a029",
+      "plan.md": "c182a5bd7e359997e54a133da64376d236508eaaa3aa5964ffcd0d198ac04b07",
+      "tasks.md": "52c6a6d840375679c10505389373903bbbc36a60e2d42a30cb53320acd466893",
+      "implementation-summary.md": "e555029abfd88f9115abd0e85688c0507cd23c6058cf61f7d0121bc601107de3"
     },
     "last_active_child_id": null,
     "last_active_at": null

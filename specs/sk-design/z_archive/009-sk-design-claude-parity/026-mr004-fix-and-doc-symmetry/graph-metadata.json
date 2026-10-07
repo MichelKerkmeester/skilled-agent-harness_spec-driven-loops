@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,9 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/description.json"
     ],
     "entities": [
       {
@@ -87,9 +89,21 @@
         "source": "derived"
       },
       {
-        "name": "verdict-matrix.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 025 closed `PB-002` but left four items explicitly open or deferred: `MR-004`'s newly-discovered live-daemon-path advisor conflict (out of that phase's scope), a pre-existing `skilladvisor.py` negation-matching bug affecting `AI-004`'s standalone probe, and two \"fix-now, improvement\" findings from the fresh audit the operator declined to bundle into phase 025's narrower scope (parent version-number alignment, and the transform-verb-precedence doc-symmetry gap for `excludedAliases.audit`)",
     "created_at": "2026-07-08T03:36:33.546Z",
-    "last_save_at": "2026-08-30T15:39:12.446Z",
+    "last_save_at": "2026-10-07T18:12:24.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13d6d969f128927b5464132bc5c2eb2d82555424b079818219541fd617ff8398",
+    "source_fingerprint": "sha256:4cf74fc206af73577927ae7c351fcb94eeecd4ec74e93551131a14976b9e7606",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d326b115b15876952a745f7cd2f681279c52b64acc702b887b878407f32ea11c",
-      "plan.md": "9f814de3e9d04828cee015f989ac56baf428005cf71c03e8874623481c78a27b",
-      "tasks.md": "d5a2091665a5872f7ac5d4fb64af6faf6da032349d7bfe3079ef53c470a81173",
-      "implementation-summary.md": "97f36191ea8895880edba8e31bcbeeb2589e2b4df9fec7a6c3f9f1488f99907e"
+      "spec.md": "952c9e713fc64cb3cdc70e675794d50dcd0cd7bbd46406ddb50a7c08b9fd015c",
+      "plan.md": "72d284741fb4d02a6c30c50c2d0936bde90129ff317ed711cb93fb5b25df5e18",
+      "tasks.md": "acbeec5f43682ffa4ca598f0ba99b33bcbb5914a7fa3cd8c7b46c6b0dfa60a56",
+      "implementation-summary.md": "7ecd27b8ebc6fe03f9a9048fff3609cfc1b87eca86903bbe0a515b4fc8e775a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

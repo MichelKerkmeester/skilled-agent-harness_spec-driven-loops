@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
   "description": "Sweep live surfaces outside the four hubs — runtime mirrors, agent definitions, commands, workflows, cli-orchestration docs, metadata — to the sk-",
   "keywords": [
     "sweep",

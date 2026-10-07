@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The reconcile verdict depends on scorer parity staying true, the orphan-launcher incident class has no regression fixture, and rebuild/scan mutation wall-time was never measured (read-only research residual)",
     "created_at": "2026-06-06T14:45:17Z",
-    "last_save_at": "2026-08-30T15:39:27.184Z",
+    "last_save_at": "2026-10-07T18:16:08.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2261a6c7ae461097ea55c1e6869b0ab2a54afce755fe0152d2b3ebaccce5b2fe",
+    "source_fingerprint": "sha256:c89c5bec3f29c0415163332579ca35ed3aef48ff1291ddcc5a702660199455fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b78a5e169243db6140806e4eec6fe867313b25107d89620739ed5c602ef87ba0",
-      "plan.md": "850641ddb67a5c033d5316d3e9c73e7bd534a7a27e97e58d2dffacda4c76c0d6",
-      "tasks.md": "51ba71ced6439fa0e8513eec584dbe2318a9169e6eaa9fdf0481e09a8f2af077",
-      "implementation-summary.md": "63f018e5c2273604fd3ad9d880c63f1285144b6ddb5552f6e9fb9df33b2b647b"
+      "spec.md": "f8ca799941b1423b286522e0665a2435968d2893a9c86ce4af220722ac72dd3c",
+      "plan.md": "3472e603f09ab4d2d748d4a17716630259f544df53048a51c207eed67a41669a",
+      "tasks.md": "4cab96c6365ec81de3583ce2f8eb9ebfaf8e396b0ba9a794c844370a58ee1f83",
+      "implementation-summary.md": "6655cebb59e5d8209413f4d834f6c08bfa64fb5bc3f311afe8470ba455d56848"
     },
     "last_active_child_id": null,
     "last_active_at": null

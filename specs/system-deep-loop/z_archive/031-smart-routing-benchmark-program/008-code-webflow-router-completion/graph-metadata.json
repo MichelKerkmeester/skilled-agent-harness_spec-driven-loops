@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,7 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "code-webflow router completion",
-      "webflow language keyword fix"
+      "webflow language keyword fix",
+      "code-webflow router completion plan",
+      "webflow language keyword fix plan",
+      "code-webflow router completion tasks",
+      "webflow language keyword fix tasks"
     ],
     "key_topics": [
       "code-webflow",
@@ -21,23 +25,37 @@
       "webflow",
       "language",
       "keyword",
+      "plan",
+      "tasks",
       "land",
       "inline",
       "skilled",
-      "parent",
-      "already",
-      "declares"
+      "parent"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,84 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Land",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Inline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Land code-webflow's inline INTENT_SIGNALS/RESOURCE_MAP router on skilled/v4 (the parent already declares the webflow surface; the child block is absent, so the drift guard fails on the webflow side) and correct its LANGUAGE_STANDARDS keywords from ts/py/shell to css/html/js, co-rewriting the WF-013 gold prompt.",
     "created_at": "2026-07-09T12:18:00.729Z",
-    "last_save_at": "2026-08-30T15:39:19.979Z",
+    "last_save_at": "2026-10-07T20:53:18.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:80fe8f6351e6ecb013bbdff0a4d87aa047af1ce3c99b7d1a1f14fe69ed8f97f4",
+    "source_fingerprint": "sha256:1aa4e694cff63d96c8fcb01ce3d16a18da68e54a14c09cd78076de80aad9b2e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d6d824b991b9699258c02a4504f17c27a7246a4712534c69a3057666db34a97"
+      "spec.md": "0f15a53e944fa5a42f69c8fff0c79dfeebb94d41efe948bd541ef425efced8cb",
+      "plan.md": "1606bdc2b170c1e4759a49245d55e3836d618005baa08fc55f6f5ce966e033e8",
+      "tasks.md": "f4e9b603244d5ae18608063483704acef911928c55f23387a0b60fe08c3ff0a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

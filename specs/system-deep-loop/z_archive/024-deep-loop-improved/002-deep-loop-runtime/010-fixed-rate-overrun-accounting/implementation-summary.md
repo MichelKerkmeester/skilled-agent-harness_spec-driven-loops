@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/010-fixed-rate-overrun-accounting"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added fixed-rate overrun accounting to fanout-run.cjs (process.hrtime slot timing -> skipp"

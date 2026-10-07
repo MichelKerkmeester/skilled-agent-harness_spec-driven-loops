@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-sk-deep-research-creation |
+| **Spec Folder** | 001-sk-deep-research-creation |
 | **Completed** | 2026-03-18 (v1 + Phase 5.5) |
 | **Level** | 3 |
 

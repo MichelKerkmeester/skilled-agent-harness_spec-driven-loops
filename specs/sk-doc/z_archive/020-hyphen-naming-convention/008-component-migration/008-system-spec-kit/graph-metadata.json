@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -100,16 +100,16 @@
     ],
     "causal_summary": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate.",
     "created_at": "2026-07-14T15:17:01Z",
-    "last_save_at": "2026-08-30T15:39:16.740Z",
+    "last_save_at": "2026-10-07T18:13:27.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:140867a3326be824d2caf2b8cdf0131b7b3b252a3551b55ddb437927c7179f87",
+    "source_fingerprint": "sha256:eb8afbb1244a5b46a6aef64f67b2d05d365366b41fe1e38a294d0386d02d4d28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "502911bb1daf30ba016e91a0e79d06cb70e2c5d7e07a4ef2bba5cc32a6ee0e4d"
+      "spec.md": "8320dcc8951ca96b32accfbbd5e16c1ae65140fb0471ee1889ab631d35717066"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
     "last_active_at": null

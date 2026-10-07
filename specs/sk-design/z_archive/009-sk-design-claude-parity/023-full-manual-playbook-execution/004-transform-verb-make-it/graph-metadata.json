@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,42 +44,31 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/dispatch-log.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-log.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/dispatch-log.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +188,7 @@
     ],
     "causal_summary": "Phase 023's parent scope assigned this child wave 5 of the 55 real constituent dispatches: all 4 variants of `TV-001` (`make it` transform-verb prompts that should route to `interface`) plus the first variant of `TV-002` (`should it be` transform-verb prompts that should route to `audit`)",
     "created_at": "2026-07-07T15:12:22.642Z",
-    "last_save_at": "2026-08-30T15:39:12.354Z",
+    "last_save_at": "2026-10-07T18:12:09.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f6834c47753cff15bc607c97b9c53083b1ca0c31574020f1b7700c2b95024b2",
+    "source_fingerprint": "sha256:842a2978530dd98a99d5064e02ecb617eed10921818c1af9434c0a3da1e942e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1b91444d8be90162b337e9f08c47b795934ed4898cf939f5b0e9b74b248d02d",
-      "plan.md": "1d4849674ac7eabb4fa3e1b497080c8eb2774d6c321ea6adce2283fc5d01bbc4",
-      "tasks.md": "e6be72b14b2a90b4c6a7f7383f85267eece0dbe09fab1c4e23e6d2bd09a1a3f3",
-      "implementation-summary.md": "d9229bd13d9b5467e17be719f1ad7c56bb4a9c6f10827e0fe4b46641809bb7b8"
+      "spec.md": "93d882b6837714d95cbb622075902956d36d0998e73b63dab75d69eb4252255d",
+      "plan.md": "b5317c95b322852b52bea084dd7421879a16614bb96873b0e2ff23fbcc62e1cc",
+      "tasks.md": "ad6e974cdd5f8891f88bf745048ef04c64a278d47a3cb93f58fe7a4995abdad2",
+      "implementation-summary.md": "75895399fb8124d15bb6d95a4b52486ca018d3af83cbbf9b7094bcd8325fb145"
     },
     "last_active_child_id": null,
     "last_active_at": null

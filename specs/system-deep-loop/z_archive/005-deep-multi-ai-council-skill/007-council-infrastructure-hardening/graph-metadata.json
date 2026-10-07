@@ -43,9 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
-      "scripts/test-council-matrix.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-council-matrix.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/test-council-matrix.sh",
         "source": "derived"
       },
       {
@@ -191,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur; (2) the playbook's §17 FEATURE CATALOG CROSS-REFERENCE INDEX carries 32 \"No feature catalog exists yet\" placeholders inherited from packet 002; (3) playbook scenario → vitest test-name anchors are one-way strings with no integrity check; (4) DAC-025's \"delete graph + replay from artifacts\" path is doc-only with no helper script; (5) the Codex TOML runtime mirror is only checked for sandbox/permission strings, not name + description prose; (6)",
     "created_at": "2026-05-11T11:00:00Z",
-    "last_save_at": "2026-08-30T15:39:22.772Z",
+    "last_save_at": "2026-10-07T18:14:08.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:073bf701ebe1bf280cf581acea50598be7cdfba1fabcd3c3b728a5d522f6ae08",
+    "source_fingerprint": "sha256:11b7d1253af70014ee1d7317e045d1fb2ddf4ee1c3afee16787c8796f7664586",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cacac90e7eb8ca5661b963f49e44e8cb6817c4e33dba4896e8237e843d038877",
       "plan.md": "0068982c7dfc78a99356c97177c6e19f83102243636209b2bc41d1e305a61d5d",
       "tasks.md": "77c5d88c74cc6b6cf70908bb1c80d07454fece460c5554c055152b432e2f3bb5",
-      "implementation-summary.md": "e5a87bdeb2962359d0365c7a0446912214cdf0125aa409bc47291901b177caf0"
+      "implementation-summary.md": "398402efab02a087aa3e637b3a4f921d34d7149be719bc3deaa1d75b7430619a"
     },
     "last_active_child_id": null,
     "last_active_at": null

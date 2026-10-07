@@ -23,26 +23,34 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-1: Per-CP layer partition (not single-shape suite)
 
 **Decision:** CP-041 + CP-042 stay body-level; CP-040 + CP-043 + CP-044 + CP-045 use command-flow dispatch.
 
 **Why:** Per 060/003 research §4 — discipline lives at different layers per scenario. Forcing one shape on all 6 either misses body-level tests (CP-041/042) or under-tests command-level tests (CP-040/043/044/045). Partition matches owning layer.
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-2: Reuse CP-040..045 IDs for active corrections
 
 **Decision:** Modify the existing playbook files (013-018) in-place rather than creating CP-046..051.
 
 **Why:** Per 060/003 research §11 — successor IDs reserved for spec-local experiments or explicit archival. These are active corrections to the same scenario claims; reusing the IDs preserves the cross-reference history.
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-3: Command-capable temp project root (not just --add-dir)
 
 **Decision:** Build `/tmp/cp-061-sandbox/` with a real `.opencode/` skeleton that lets `/deep:start-agent-improvement-loop` resolve all relative paths.
 
 **Why:** Per 060/003 research §5 062 sketch — `--add-dir /tmp/...` against an empty sandbox under-specifies the command's path assumptions. Real project skeleton required.
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-4: Honest verdict reporting (not score-massaging)
 
 **Decision:** R1 results documented as-is. R2 only if targeted edit can close a gap; otherwise honest gap documentation in test-report.
 
 **Why:** Same discipline as 060/002 — score-massaging defeats the purpose of stress testing. Real PASS at honest count > forced PASS at inflated count.
+<!-- /ANCHOR:adr-004 -->

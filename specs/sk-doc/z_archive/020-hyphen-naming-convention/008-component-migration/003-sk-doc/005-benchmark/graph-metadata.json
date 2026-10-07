@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The root sk-doc benchmark directory is assigned a naming phase for fixtures, profiles, and storage-guide artifacts, but the pinned surface currently contains only .gitkeep. This phase records the empty baseline, verifies no hidden or referenced snake_case artifact is missed, and keeps create-benchmark packet resources in their separate phase.",
     "created_at": "2026-07-14T15:17:27Z",
-    "last_save_at": "2026-08-30T15:39:16.478Z",
+    "last_save_at": "2026-10-07T18:13:25.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:67e6d409f2448f6d331bfbfff8d5d6e3f41a1a372d397fcc2347b48ce7122377",
+    "source_fingerprint": "sha256:5660a9824032cf693a4744a3c3509579b9cb2db3ec60cb805c9ec327c0c962d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18a6e575c28d2883d701ac3751a549623440d2da219afd1c46abcfdf37f2a8aa",
-      "plan.md": "af5004f86ed44cf551bee8fa29fec1a398bc2b886448fd0412bd4d2f4fb0580b",
-      "tasks.md": "e7559d60e67ebf6834e68a4ca058b5792fac3ed39ae052a31b5d52fe12600f13"
+      "spec.md": "ca178e6662ba08945479805d3e09d1b1c3de436abdcb60b4bf11d3ca09c0d271",
+      "plan.md": "f1b664a065585f2031f357b18898c21af847eeb175e23584ad016586f20c93ab",
+      "tasks.md": "40f4aef97c798c975380d57b2c631ade5b465ef5600f284831e71e3b3656f7bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

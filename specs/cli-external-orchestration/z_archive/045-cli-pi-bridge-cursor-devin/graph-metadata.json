@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
-  "spec_folder": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin",
+  "packet_id": "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin",
+  "spec_folder": "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities"
+    "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities"
   ],
   "manual": {
     "depends_on": [],
@@ -93,16 +93,16 @@
     ],
     "causal_summary": "`cli pi` ships its own model picker (`/models`) backed by pi's own provider roster",
     "created_at": "2026-08-17T09:56:22.539Z",
-    "last_save_at": "2026-08-30T15:39:08.023Z",
+    "last_save_at": "2026-10-07T18:10:57.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:82ff33ade9642e2bfc789cfd31bd71ab617a85510e5720f6abc03ca9f1c31d41",
+    "source_fingerprint": "sha256:391148a38396eb2cf59d2a169e3ad1251d7c851b6863af183af566a141c7df55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f41e2fe924ed62af287e8f87d4adbd585a0b53095e829ca0590a2d5eb826920"
+      "spec.md": "f7874dfeaa4ebaa36691ea42671db0dd215c481e9a81ee8dd6b4d1c302838993"
     },
     "last_active_child_id": "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities",
     "last_active_at": null

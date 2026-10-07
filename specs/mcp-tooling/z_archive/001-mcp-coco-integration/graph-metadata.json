@@ -50,8 +50,6 @@
       ".codex/config.toml",
       ".opencode/agents/context.md",
       "scratch/cross-cli-auto-usage-test-results.md",
-      "scripts/common.sh",
-      "scripts/doctor.sh",
       ".claude/agents/context.md",
       ".codex/agents/context.toml"
     ],
@@ -108,18 +106,6 @@
         "name": "cross-cli-auto-usage-test-results.md",
         "kind": "doc",
         "path": "scratch/cross-cli-auto-usage-test-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "common.sh",
-        "kind": "script",
-        "path": "scripts/common.sh",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode had no semantic code search capability",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-08-30T15:39:10.637Z",
+    "last_save_at": "2026-10-07T19:23:46.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +211,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:936075cf3092ea6995d04e37c1ab0afde39a0c7ba4d959dd5cdd8d2ad312955d",
+    "source_fingerprint": "sha256:7c6a7d2fe17cc714328596a3a33a662cffd76a3b41e095f7927e5bbb007af861",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91232ee12a9aebaa4a215bbe5ae4f64d52b3c8481258ff99e143fd34040ddcc0",
-      "plan.md": "fa32d0b927071d0383eef7ca577e34a46d56e29125a3dcdea8d1b9affc4565ef",
+      "spec.md": "174eb48c89bcf48f8a891aa6746c7d7881de38500ef41b100d3becc973ca4179",
+      "plan.md": "9a405fd626538ed2190aee5dce53e110f622e6943debe1fccfd2ef20929ce9ab",
       "tasks.md": "3eb10c42df67bf10a15c981edfc0dc5983f363f8c112790e875ee78b5d58142d",
       "implementation-summary.md": "30f0487397e732b21d8d0a3692f2f36a99c5939a5e439a80832b79db9fc87551",
       "research/research.md": "c19163b2133a063265c9d7301e330bfaa1487eb70d54930c08874bf75f870824"

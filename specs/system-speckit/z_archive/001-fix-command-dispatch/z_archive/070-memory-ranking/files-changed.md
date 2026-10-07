@@ -1,3 +1,7 @@
+---
+title: "Files Changed: 070-memory-ranking"
+---
+
 # Files Changed: 070-memory-ranking
 
 > **Spec:** Memory & Folder Ranking Improvements  

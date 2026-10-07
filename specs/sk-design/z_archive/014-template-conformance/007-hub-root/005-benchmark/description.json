@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/007-hub-root/005-benchmark",
+  "specFolder": "sk-design/z_archive/014-template-conformance/007-hub-root/005-benchmark",
   "description": "`.opencode/skills/sk-design/benchmark/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory",
   "keywords": [
     "opencode",

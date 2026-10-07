@@ -2,14 +2,13 @@
 title: "Implementation Summary: GLM-5.3-Flash + Gemini 3.7 Flash on the CLI OpenRouter roster"
 description: "Retired Ox Alpha and routed Z.AI GLM-5.3-Flash across OpenRouter/opencode-go/Cline plus Google Gemini 3.7 Flash on OpenRouter, in both CLI docs, .pi config, and the deep-loop cli-pi fan-out roster (two synced points + provider map + flash max-pin) with guard tests. Every slug live-verified; committed 215ff4b3b4 and pushed to origin/v4 + origin/main; live-verified (PONG)."
 trigger_phrases:
-  - "implementation summary"
   - "glm-5.3-flash gemini roster"
   - "retire ox-alpha glm gemini openrouter"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/055-glm-5-3-flash-gemini-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster"
     last_updated_at: "2026-08-27T07:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Retired Ox Alpha; routed GLM-5.3-Flash + Gemini 3.7 Flash into docs and roster; live-verified"

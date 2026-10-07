@@ -2,13 +2,8 @@
 title: "Deci [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation/decision-record]"
 description: "Architecture Decision Record (ADR) documenting the choice of parsing strategy for the Anchor System."
 trigger_phrases:
-  - "decision"
-  - "regex"
-  - "based"
-  - "anchor"
-  - "extraction"
-  - "decision record"
-  - "065"
+  - "anchor system implementation decision record"
+  - "anchor parsing strategy decision"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -159,4 +154,3 @@ function extract_anchors(content) {
 ## 6. IMPLEMENTATION NOTES
 
 > **Implementation Status**: Completed and verified in `memory-parser.js`. Unit tests cover standard, nested, and broken anchor scenarios.
-<!-- /ANCHOR:id -->

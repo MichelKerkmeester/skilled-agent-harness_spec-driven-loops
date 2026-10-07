@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Audit-confirmed P0 bugs in system-skill-advisor docs: broken ADR-001 path (missing `004-skill-graph/` segment), broken hook reference link in README/INSTALLGUIDE, wrong build-command path in ARCHITECTURE §8, and 9 nested READMEs with stale audit-packet rows",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.924Z",
+    "last_save_at": "2026-10-07T18:15:38.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ff6d0a543a73fb7b85847f5bf76bb23587735156b7467b0ad4b9fcfa0a0cc47",
+    "source_fingerprint": "sha256:a6f2851d38517fe47af6e340dff37e6df90f923b3efb1a5e0a54b22b177b7f79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fcf019ca6e744103a466b637476ec5bddc48a2bd6b18438680142fd163191203",
-      "plan.md": "2370d25a50d2ab9201d500aac833d75187670a700ff9d1539fc11de29a892910",
-      "tasks.md": "a2c4541f7af7bf6dcd91e87c53244ac311cbaa8a88fe29bf2b88ca6520eae124",
-      "implementation-summary.md": "00adfe1f1b91611e5cfdf20b7ac7378002a48f90c96c7f008c2a1e6c671891eb"
+      "spec.md": "45ebf7c72c08261b1be562e89dd6c23ebff864bb66fa76d4479fe403e8e9299a",
+      "plan.md": "a9c55d873e5b555034d1aa589b9a5cbf119ada277d6fa4f6d7001ac395a64707",
+      "tasks.md": "f1e69f05d1fc1701bc95a329b3ee2540052fec6d809c1ed3472415f5a0f04532",
+      "implementation-summary.md": "010134a54195530cb738b7ad4c59aca858fd19aa2e346ea7d5be1f24b3db4e66"
     },
     "last_active_child_id": null,
     "last_active_at": null

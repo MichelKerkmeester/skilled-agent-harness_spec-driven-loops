@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix"
     last_updated_at: "2026-08-25T05:05:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored spec for the cline-pass apiKey placeholder syntax fix"

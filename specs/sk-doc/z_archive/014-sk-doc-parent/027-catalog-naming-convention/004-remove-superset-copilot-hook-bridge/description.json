@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/004-remove-superset-copilot-hook-bridge",
   "description": "The repo checks in a bridge that forwards GitHub-Copilot hook lifecycle events (`sessionStart`, `sessionEnd`,",
   "keywords": [
     "repo",

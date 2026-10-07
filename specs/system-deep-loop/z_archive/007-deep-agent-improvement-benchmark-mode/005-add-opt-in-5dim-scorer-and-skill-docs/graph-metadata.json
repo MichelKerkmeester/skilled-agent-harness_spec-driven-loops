@@ -14,14 +14,11 @@
       "optin 5dim scorer",
       "run-benchmark scorer flag",
       "deep-agent-improvement skill docs sk-doc",
-      "implementation",
-      "plan",
-      "name",
-      "template",
+      "add opt in 5dim scorer and skill docs plan",
       "plan core",
-      "tasks",
+      "add opt in 5dim scorer and skill docs tasks",
       "tasks core",
-      "summary",
+      "add opt in 5dim scorer and skill docs implementation summary",
       "impl summary core"
     ],
     "key_topics": [
@@ -34,9 +31,9 @@
       "skill",
       "docs",
       "sk-doc",
-      "implementation",
+      "opt",
       "plan",
-      "name"
+      "core"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "The 122 review flagged that the ported 5-dim scorer (`score-model-variant.cjs`) was built and available but never wired into `run-benchmark.cjs` (deferral F-P2-1/F-P2-2), and the deep-agent-improvement SKILL.md did not document the model-benchmark mode at all (the whole 121/003 feature was undocumented in the skill)",
     "created_at": "2026-05-28T19:15:44Z",
-    "last_save_at": "2026-09-07T16:17:16.732Z",
+    "last_save_at": "2026-10-07T21:27:36.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd30657843dfe58bd60b8ca9ced24fa8052e30d76d2d0ad5a6ec9584117b7866",
+    "source_fingerprint": "sha256:6472eb78994422ece5d3aaea88c7b8f6db5e5161792f23fad1aa51f335f59894",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79566988e9c3113485f9d97740deae52da44c30fa3a002da256295154394ee53",
-      "plan.md": "ca87a3aad2f635f9a5abecb7ce999a8b6ba36d5096711588f57292d23707f323",
-      "tasks.md": "3fdb73ef8f3ce8bcef200275727ce4eedee361bc0e776e49d964ce8db8dff84f",
-      "implementation-summary.md": "1d8d61d921e8ca9fde9abf0e8e0d1d55575f40c6c0c83edaab1cc3ac42f5d732"
+      "plan.md": "1b3d00331114464f98c1957fb319356686acd77ec9e8ed8041132079f25ffaff",
+      "tasks.md": "94cedfa63b2e8b25e03e160e0cb298eea0485c3d656e04872ae198ea759926fa",
+      "implementation-summary.md": "cfdc9a523d908d776ab0c878bc547836cc97192446c7512624b689afe4b5d076"
     },
     "last_active_child_id": null,
     "last_active_at": null

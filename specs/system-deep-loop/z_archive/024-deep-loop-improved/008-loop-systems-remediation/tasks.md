@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation"
     last_updated_at: "2026-07-01T12:50:56Z"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Rewrote parent aggregate tasks from seven completed children"

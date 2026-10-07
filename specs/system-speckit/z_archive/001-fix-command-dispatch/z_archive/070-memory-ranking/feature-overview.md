@@ -1,3 +1,7 @@
+---
+title: "Memory Ranking Feature"
+---
+
 # Memory Ranking Feature
 
 > **Spec:** 070-memory-ranking  

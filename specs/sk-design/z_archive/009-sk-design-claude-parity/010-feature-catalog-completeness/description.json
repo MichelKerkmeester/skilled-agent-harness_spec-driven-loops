@@ -1,7 +1,7 @@
 {
   "title": "Phase 010 - Feature Catalog and Snippet Completeness",
   "level": 2,
-  "specFolder": "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/010-feature-catalog-completeness",
   "description": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package",
   "keywords": [
     "only",

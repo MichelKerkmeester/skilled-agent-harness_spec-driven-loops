@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/013-mcp-obsidian",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian",
   "description": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
   "keywords": [
     "drive",

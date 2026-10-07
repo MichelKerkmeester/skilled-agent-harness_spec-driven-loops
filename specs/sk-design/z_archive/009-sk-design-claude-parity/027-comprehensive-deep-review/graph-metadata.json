@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/027-comprehensive-deep-review",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/027-comprehensive-deep-review",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,10 +40,10 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/specs/descriptions.json",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".opencode/skills/sk-doc/scripts/package_skill.py",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
       {
@@ -77,12 +77,6 @@
         "source": "derived"
       },
       {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
         "name": "executor-audit.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -98,6 +92,12 @@
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `009-sk-design-claude-parity` packet built sk-design to Claude-parity and was closed complete on 2026-07-06, with its own 10-iteration review covering only the spec-folder documentation of packet 009 itself (`009/review/`, status complete, 8 P1 findings recommending a `010-...-remediation` follow-up)",
     "created_at": "2026-07-09T05:17:37.332Z",
-    "last_save_at": "2026-08-30T15:39:12.454Z",
+    "last_save_at": "2026-10-07T18:12:20.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0d997dc258d2dd8ed3aea61571f6c9124d433209099e4c81e00a35cf4e0cd55",
+    "source_fingerprint": "sha256:a50f6bfa890313effa5b4cebe647a2ef0975b6e9706c7d6c74685b972cf7c4dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "556635141af1c764b0a167d40930f5b28bd4f49fb31326201f01b23999255f49",
-      "plan.md": "8e7cad9fbcdf1fd91f37a201ee1b0486d02dfcb449608cff075a0811fd5c33d3",
-      "tasks.md": "c2d9e210f4f6e1028056ddefb213f3bf8da781b8b807569b611a4635cc4b63ac",
-      "implementation-summary.md": "d55136322db458ee6b0ad4f0f18eb8e3eded11a630f4e9d1e5bc0fc1f0d51c29"
+      "spec.md": "52e11b656cb4eafdfedd6edfe94972ce6fff2386faa12df52787a74c7b94dbc6",
+      "plan.md": "f0df6a8d642eac60ac7757034d23055a2a475b9ee7e906fdab4a38406910f281",
+      "tasks.md": "16411b72d618a38ce71d759b423775b5fb36f7fecd593cc09d7c917a70bb9389",
+      "implementation-summary.md": "36e4baee18fc03b9cc4a037e30241d64e3a75f4d357d3ab02005e4be1cfae1c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

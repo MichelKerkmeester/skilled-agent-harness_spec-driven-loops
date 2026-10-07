@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/017-stage-aware-scorer"
     last_updated_at: "2026-07-11T21:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded Level 2 spec + captured pristine baseline"

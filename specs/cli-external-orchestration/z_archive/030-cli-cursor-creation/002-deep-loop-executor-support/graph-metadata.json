@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/002-deep-loop-executor-support",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/002-deep-loop-executor-support",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The deep-loop runtime's typed executor union currently has 4 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode`) defined in `EXECUTORKINDS` (`executor-config.ts` line 11, confirmed live)",
     "created_at": "2026-07-24T04:24:28.248Z",
-    "last_save_at": "2026-08-30T15:39:07.423Z",
+    "last_save_at": "2026-10-07T18:11:32.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f21a5ee9d36d4b7d6d0987c1da1d9f37a77262f2a41e4be82aebb1dcc1d84284",
+    "source_fingerprint": "sha256:729adcc0f01b14539c71a7f2c9ee54a4caec559d7309601fb46698f17616b3c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9caa87e613db125529aa7cca4535fbc741bd12227e5546a3496e9cf4f8a6e14b",
-      "plan.md": "a975b404727d12d327614657c8128826aa42276f4aabf8d397030ba591277ccb",
-      "tasks.md": "6810167f9cb1ce0a104e1b2439550cef388f564124fd5a6f73dea2c7ba8d77aa",
-      "implementation-summary.md": "63d69a9134cf1445dbcb49ba306fb434be57bf3681269adba62ce3610d8cb051"
+      "spec.md": "0e1e2b29b4669fa7492239529eb15ae5d4ba33030f9532e5e00c95f64a898df2",
+      "plan.md": "e196594c5118a23c28476738c109be577aad00776c27e65403d55fda1af1a8f4",
+      "tasks.md": "d3fcf017d37c84885401eca7fbd4f47790492afaa4661b93f5eaf11b13e4cc54",
+      "implementation-summary.md": "71a662307c4ce852899ee97b8b0ef392dc528f7486b66642bbd796c7f7cc4af6"
     },
     "last_active_child_id": null,
     "last_active_at": null

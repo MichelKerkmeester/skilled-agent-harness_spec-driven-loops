@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,11 @@
       "command contract adapter",
       "peer adapter deep-alignment",
       "command reference checks",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "command contract adapter plan",
+      "command contract adapter tasks",
+      "sk-doc-command implementation",
+      "command adapter fixture proof",
+      "command reference topology coverage"
     ],
     "key_topics": [
       "sk-doc-command",
@@ -33,10 +30,10 @@
       "deep-alignment",
       "reference",
       "checks",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "fixture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command topology, and proves exact fixture outcomes without duplicating generic document validation.",
     "created_at": "2026-07-14T20:36:59.179Z",
-    "last_save_at": "2026-09-11T04:38:00.852Z",
+    "last_save_at": "2026-10-07T18:15:11.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:889902eec625165b5ca6643b35f2c0f66b01ddd30918ffdb4ee5a648d220eb24",
+    "source_fingerprint": "sha256:a5fe0acf7b242675d9d93a6b29e29d9703e072128ee635aeabd76e8f2b3d26e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bca3288107d68c0c2a259994e5857766879ce9c4319b134e03792a2da9a10f6b",
-      "plan.md": "1bf7b393969a2dbf3f8f24bc0822ef346260e7eafe9fb4ab9d3f4e34c41ddcb1",
-      "tasks.md": "e119a55735f54f28137616175f8e7b40bbffdd8681c8d80a84a81e60a017ad50",
-      "implementation-summary.md": "140732b57145813acb93eea6a5163ca89e4ead2f6826c44776e458f9b065fee6"
+      "spec.md": "2e419fe9df030919f4e1924900c3c694efe057ef36b1c261ae29fca21410461a",
+      "plan.md": "c208d3235ba3d04a779d0524672b52762ef845e5c626c25845eea3210c768fd8",
+      "tasks.md": "5f1c5abf3f2ef38995e18e601575dd1920ee791752a5f4cc43958266618bd913",
+      "implementation-summary.md": "be3be34870c3bebb77a9ba3f1517ea75c5408eed4d3bc34b1485d1c494955f26"
     },
     "last_active_child_id": null,
     "last_active_at": null

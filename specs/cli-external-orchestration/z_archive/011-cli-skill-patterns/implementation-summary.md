@@ -25,6 +25,7 @@ _memory:
     answered_questions:
       - "Should we strict-dedupe UNKNOWN_FALLBACK_CHECKLIST in cli-opencode 3→1? -> No, deferred. The 3 occurrences are 1 dict + 2 distinct cross-references; removing either loses meaning. Norm is 2-3, not 1."
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

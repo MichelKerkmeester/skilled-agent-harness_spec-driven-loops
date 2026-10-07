@@ -370,6 +370,16 @@ Before starting each test task, verify:
 | TEST-MOCK | Mock external dependencies (APIs, file system) |
 | TEST-PARALLEL | Tasks marked `[P]` can run concurrently |
 
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact against the task in this file before moving on
+3. Continue with the next unblocked task; escalate after two blocked tasks
+
 ### HALT Conditions
 
 The AI agent MUST stop execution and escalate when:

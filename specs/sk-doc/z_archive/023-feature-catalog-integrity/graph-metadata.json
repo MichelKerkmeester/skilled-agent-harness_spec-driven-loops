@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/023-feature-catalog-integrity",
-  "spec_folder": "sk-doc/023-feature-catalog-integrity",
+  "packet_id": "sk-doc/z_archive/023-feature-catalog-integrity",
+  "spec_folder": "sk-doc/z_archive/023-feature-catalog-integrity",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
-    "sk-doc/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
-    "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation"
+    "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+    "sk-doc/z_archive/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
+    "sk-doc/z_archive/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation"
   ],
   "manual": {
     "depends_on": [],
@@ -114,16 +114,16 @@
     ],
     "causal_summary": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
     "created_at": "2026-07-30T19:29:15.340Z",
-    "last_save_at": "2026-08-30T15:39:17.294Z",
+    "last_save_at": "2026-10-07T18:13:26.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2d3b8666da6a026e50438919bf45cabfee3363f653d23cf021bf63efb7b78f8f",
+    "source_fingerprint": "sha256:be6d8d4984c76778d616be5cbfe416dea496146655a0a6ac89d908936a38abbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e656cac18da19e53f65c10891f1b3747bc4a5ec451d4a4473795b0c1c1fc88ea"
+      "spec.md": "f8aa4168f72d03988ed9e92c3bdf576c7749aa1b96d899c78da7f63e41fc82c2"
     },
     "last_active_child_id": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
     "last_active_at": null

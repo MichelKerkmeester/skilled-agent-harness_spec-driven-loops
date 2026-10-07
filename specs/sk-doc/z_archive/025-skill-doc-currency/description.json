@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/025-skill-doc-currency",
+  "specFolder": "sk-doc/z_archive/025-skill-doc-currency",
   "description": "Skill-level documentation — the `SKILL.md`, `README.md`, `references/` and `assets/` that agents read before acting — has drifted away from the code,",
   "keywords": [
     "skill-level",

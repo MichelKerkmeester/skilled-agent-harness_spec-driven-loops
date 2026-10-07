@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/015-deprecate-open-design"
+    packet_pointer: "sk-design/z_archive/015-deprecate-open-design"
     last_updated_at: "2026-08-10T14:09:15Z"
     last_updated_by: "remnant-remediation"
     recent_action: "Removed residual transport contracts"

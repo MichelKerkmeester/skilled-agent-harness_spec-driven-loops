@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
   "description": "The sk-code-webflow README still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set",
   "keywords": [
     "sk-code-webflow",

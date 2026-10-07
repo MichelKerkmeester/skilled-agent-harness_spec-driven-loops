@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/027-program-deep-review"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review"
     last_updated_at: "2026-07-29T04:23:14Z"
     last_updated_by: "claude-code"
     recent_action: "Review executed and synthesized"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "proof carrying route plan deep dive",
       "prepare verify commit routing",
-      "route proof is not authority"
+      "route proof is not authority",
+      "proof-carrying commit plan",
+      "proof carrying route lifecycle",
+      "proof-carrying commit tasks",
+      "proof carrying route lifecycle verification tasks"
     ],
     "key_topics": [
       "proof",
@@ -27,18 +31,32 @@
       "commit",
       "routing",
       "authority",
-      "decision"
+      "proof-carrying"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A route decision can blur classification, authority acquisition, and execution",
     "created_at": "2026-07-18T04:39:05.757Z",
-    "last_save_at": "2026-08-30T15:39:14.762Z",
+    "last_save_at": "2026-10-07T19:46:30.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:47bbb9323b5929778ba793e825423c85af0c41193ad73d14f5913827babeb62e",
+    "source_fingerprint": "sha256:64e6785ec6a948997f439da36b2994ea2935d8c140726eb6bfefbe503a73e06b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea5dfca2dbb4c80e572109d598efa43c094760c6efc73dca0276ae700a6a2487"
+      "spec.md": "ea5dfca2dbb4c80e572109d598efa43c094760c6efc73dca0276ae700a6a2487",
+      "plan.md": "fcede1121493808caf976ce1ea3644ebcb95a0864a2e2faa2f73de16cdd31e55",
+      "tasks.md": "782dc8dd941a4a307db6aac8ced95eaf6d1c14ba01035e92ab3eefec1ebb8221"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/058-flag-enum-authority",
+  "specFolder": "cli-external-orchestration/z_archive/058-flag-enum-authority",
   "description": "`devin --help` prints four `--permission-mode` values",
   "keywords": [
     "devin",

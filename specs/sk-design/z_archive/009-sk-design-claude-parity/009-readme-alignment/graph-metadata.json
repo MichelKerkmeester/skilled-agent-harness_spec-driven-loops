@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/009-readme-alignment",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/009-readme-alignment",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/009-readme-alignment",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/009-readme-alignment",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -24,7 +24,6 @@
       "hub readme update",
       "mode packet readme",
       "procedure card readme gap",
-      "implementation plan",
       "tasks",
       "phase 009 implementation summary",
       "readme alignment complete",
@@ -40,9 +39,9 @@
       "procedure",
       "card",
       "gap",
-      "implementation",
-      "plan",
-      "tasks"
+      "tasks",
+      "phase",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -51,8 +50,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/README.md",
-      ".opencode/skills/sk-design/SKILL.md"
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
       {
@@ -80,15 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "`sk-design`'s hub `README.md` and its five mode-packet `README.md` files describe a snapshot of the skill that predates Phases 002-005",
     "created_at": "2026-07-06T04:34:29.707Z",
-    "last_save_at": "2026-08-30T15:39:12.197Z",
+    "last_save_at": "2026-10-07T18:11:39.031Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e00bffaf38f496ec983eb4947bf167196f1b9b729e433bfec4dbf01b9db48ae",
+    "source_fingerprint": "sha256:c15a3d325260edf1ea7893def90ba1caacbe918ff617c56af1953d2411ce749c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f13415cd83c5fc92c0339b20792ac70bf7142ecc97c5aafa92090f9a94b76bde",
-      "plan.md": "a198277fb3f26070aa1214632d506668cdb43ace9fc3e4e0736a1e5b65b46d11",
-      "tasks.md": "9a6d1b5d21d392221ad3dac8ab61a6467a65974ca0f9f0eddbbd4c5b781e8a0a",
-      "implementation-summary.md": "c1c1a86b043d5e27ab827881d49997120c0f0ca21556dc35e46b860319841a5a"
+      "spec.md": "6a3e4e279dbfcba1e38a950def1561c51f676ef79a38e3603b4d00d867b97e60",
+      "plan.md": "4b03cb2a6424bee2259bd313843bc91eff147ac306af8c4ecca664761e7918ee",
+      "tasks.md": "b658ef8f504ee0c48406ab696b32b7b515d0ef575ea3c8919e8e5f5c20c972e5",
+      "implementation-summary.md": "1cafd4f57cee12d6357a616f7b54361a70d19a611afa868d207dfb23868839e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

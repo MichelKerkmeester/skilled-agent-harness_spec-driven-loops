@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/036-grok-4.6-support"
+    packet_pointer: "cli-external-orchestration/z_archive/036-grok-4-6-support"
     last_updated_at: "2026-08-12T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Corrected spec after operator follow-up: keep Grok 4.5 alongside Grok 4.6 (not a swap), and sort roster tables alphabetically"
@@ -242,6 +242,7 @@ Add Grok 4.6 to both enforced allowlists alongside the existing Grok 4.5 entries
 
 ## 12. OPEN QUESTIONS
 
+<!-- ANCHOR:questions -->
 - Adopt only the 4.5-parity tiers (low/medium/high, matching the old tier count) or the full 4.6 family including the new xhigh tier? **RESOLVED: full adoption — operator chose option 2 ("check actual available levels and modes"), which the live-verification pass confirmed as exactly 8 Cursor ids and 4 Devin uids (see ADR-001).**
 - Should Grok 4.5 be retired now that 4.6 is available, or kept alongside it? **RESOLVED (operator follow-up, after the first implementation pass): kept alongside 4.6. Both versions are live and dispatchable on both platforms today, and the operator explicitly asked to make sure 4.5 stays in the roster (see ADR-002).**
 - Should roster tables and allowlist arrays be grouped by family (as originally structured) or sorted alphabetically? **RESOLVED (operator follow-up): alphabetically, across every table/list/array this packet touches (see ADR-002).**

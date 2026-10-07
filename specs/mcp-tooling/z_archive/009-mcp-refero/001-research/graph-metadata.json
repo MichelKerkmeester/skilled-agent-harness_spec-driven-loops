@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/009-mcp-refero/001-research",
-  "spec_folder": "mcp-tooling/009-mcp-refero/001-research",
-  "parent_id": "mcp-tooling/009-mcp-refero",
+  "packet_id": "mcp-tooling/z_archive/009-mcp-refero/001-research",
+  "spec_folder": "mcp-tooling/z_archive/009-mcp-refero/001-research",
+  "parent_id": "mcp-tooling/z_archive/009-mcp-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,13 +46,8 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/spec.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/plan.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/tasks.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/context/website-link.md",
       "research/resource-map.md",
       "research/deep-research-findings-registry.json",
-      "context/website-link.md",
       "research/fanout-attribution.md",
       "research/lineages/sol/research.md",
       "research/lineages/sol/resource-map.md",
@@ -60,25 +55,26 @@
       "research/lineages/glm/research.md",
       "research/lineages/glm/convergence-report.md",
       "research/lineages/glm/findings-registry.json",
-      "research/lineages/luna/research.md"
+      "research/lineages/luna/research.md",
+      "research/lineages/luna/resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -91,12 +87,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "website-link.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/001-research/context/website-link.md",
         "source": "derived"
       },
       {
@@ -206,11 +196,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Refero MCP is an unverified external surface: this repo has never documented its tool names, parameters, auth expectations, rate limits, or free-vs-paid gating, and the official `referoskill` repo's conventions have not been reviewed",
     "created_at": "2026-07-16T09:39:27Z",
-    "last_save_at": "2026-09-10T20:43:40.874Z",
+    "last_save_at": "2026-10-07T18:11:40.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:43a72d8d167920fadd1ecb459059e508349182b420404f646713a900d1c47340",
+    "source_fingerprint": "sha256:8fbc2084b5de32e8b236a35430b67f2e06ea78bb026c85015d814c282242e245",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e177c18461c4d2497da0b627b262cc94dcb7bbad1b3272997a120d855a9a7a4f",
-      "plan.md": "b34f9e812607ccd586903652419aaa738776b974b6f9406a3d481a8bd67e478d",
-      "tasks.md": "4129c3e09a1652d67755c03a815b8c167c424cd596de5bbc40c882bdb44d451a",
-      "implementation-summary.md": "6a5281b3c68199309a3e9189a8d3f63f152adc32e4ab73566e69157f117cac9c",
+      "spec.md": "6ecf4aa285a0850dc53bc662acb4c26622eef24844d71998f45aa771c8b17a1c",
+      "plan.md": "6d4608efa344530a27dd6ac512ccc705e9808ec717546f0ca051062f5abc593a",
+      "tasks.md": "109ccd5540f8f6709ecf8121e350495ccba98c460989f09b64f26c873ce0736c",
+      "implementation-summary.md": "66948df518eb0094ef6f2dbb66b7826754e6d43be69297f4e296eb2904e04835",
       "research/research.md": "4911abb972340e82cf1ac9e92b232e20ed6e7f3fc6c5ac24eed301abc270b986"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
-  "parent_id": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:27Z",
-    "last_save_at": "2026-08-30T15:39:19.872Z",
+    "last_save_at": "2026-10-07T18:15:14.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce2d39e0f04a1ae0f50b91bdddf95815eda7b7f42efcb3b8ec8678e85d8430d3",
+    "source_fingerprint": "sha256:5dfdc31aa8e6c2fc4fc15caac1f6cff510184bc734e605c072d804cb4d33f05c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa7efd40a8b6ac11a0c22111f1f5ad88c6a1d7864a9eb3b17b203c68dd78836f",
-      "plan.md": "d9f2b16aa0ffc6ffca9de24a2c2aefe3a5f00016bac363c009163b76d9694c57",
-      "tasks.md": "2d07927c8acd5eda5ced0eb67347887f2cf52164f56c0fe2bbeae2886a55eaf4",
-      "implementation-summary.md": "439d984eba0af82d048d1ff68d52998d9603be16a70734d012e654df4c57a586"
+      "spec.md": "1e89fa004809de6dc68fe913567c702b77d0d790f0d6c95f02e6f7918dc1a67f",
+      "plan.md": "44aae10230833f3fd7b0989386394999d648d1c3c1cd2deabcc6496544aa5186",
+      "tasks.md": "ffd4b3732e9aaf5f7e995858a8e428575f79d0ade2db0e114d47f3eee183c4a3",
+      "implementation-summary.md": "82e4bbbca973035244c2012e8c7566980ff9492b082b5c1d6e8b611a45442daa"
     },
     "last_active_child_id": null,
     "last_active_at": null

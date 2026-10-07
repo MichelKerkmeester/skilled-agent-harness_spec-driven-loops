@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/004-commands",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/001-research/005-gap-remediation-research/004-commands",
   "description": "Forced 5-iter GPT-5.6-SOL research on rewriting the /interface:* commands as literal self-contained design prompts, spending the 002 research that",
   "keywords": [
     "forced",

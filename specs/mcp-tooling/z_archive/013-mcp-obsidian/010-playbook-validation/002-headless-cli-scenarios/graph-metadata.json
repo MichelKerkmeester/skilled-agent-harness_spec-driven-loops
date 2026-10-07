@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
-  "parent_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-pi.",
     "created_at": "2026-08-03T04:10:01.640Z",
-    "last_save_at": "2026-08-30T15:39:10.118Z",
+    "last_save_at": "2026-10-07T18:11:38.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c13c768660a56d9061a0c60c444a39bcd1b916823627f75f7cd291eb8709d3d8",
+    "source_fingerprint": "sha256:a003b62bc55cfeedb7518d7991ee10e7b9b46732c4146c77cf5164609ae44b61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a717d78c305dd697d13de17c991dd6534b8ead9108ba79b10ed3e48ea5e5d3ac",
-      "plan.md": "7e75d3989a02abbbeeb432610bb720fff2f105f5259d5c035d67c4087eb90a5d",
-      "tasks.md": "150050475013ff6f4bb26f0d27f4cfe51e19f69effa946b4d051738f648fe355",
-      "implementation-summary.md": "901c12a2af3e7f418f6aafa851975c3e998072e8384720a09eeeb81a98e3e747"
+      "spec.md": "151f8f452716306a10c3f6c7d42b14fb9cedfe90738d6b9e9eea899e398f77a1",
+      "plan.md": "cc31876b0b63b318e63cea1e6ae3c68581c0de6029599a69d955ec0558d5bae7",
+      "tasks.md": "a9fbfba984d046f6a25fde9b95836df68f1e28999d056c7e73c2afc58d540517",
+      "implementation-summary.md": "5104675fbf34c992258c28f11dcff5d7b3719202f4595e79963852ee0d8ef0b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/029-doc-divider-and-anchor-standard",
-  "spec_folder": "sk-doc/029-doc-divider-and-anchor-standard",
+  "packet_id": "sk-doc/z_archive/029-doc-divider-and-anchor-standard",
+  "spec_folder": "sk-doc/z_archive/029-doc-divider-and-anchor-standard",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two documented conventions are unenforced and have drifted across 8,620 structured `.md` files",
     "created_at": "2026-08-13T06:06:24Z",
-    "last_save_at": "2026-09-11T16:42:11.733Z",
+    "last_save_at": "2026-10-07T18:14:19.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:de8b150e7481f26ca66be997ec9194d3a56f5e1abdc01469e2b34b3385e3f3b5",
+    "source_fingerprint": "sha256:dee413db383765c02bbac491a1df4b170cb5578e9210735d17e03979945bd0d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b9d31ec7da26033e395697c1a04fe9b12c157f09797c282e86b340c71858ed6",
-      "plan.md": "89777bca884c473b450645c10a5682bc17c8860ef6542517c4303b4d03f64d29",
-      "tasks.md": "edfe59f31b12730874e08aa7aff21e16223bb091b51eee1295b3abfaa7ecaf4d",
+      "spec.md": "ea39782386ef2963d86bcb035501a4980d752770d374c6580b9f3530d11a8ee5",
+      "plan.md": "f28b8796bd7149cee6b2c7c39c59f3e67f911676b51221e8a0d2d50c17298401",
+      "tasks.md": "1f65967a96d7263c4f67a1d90a6be2289698353c703a0d64ea349f08896fa8f9",
       "decision-record.md": "eaa2ee31921b9313ca917a2b4faf5acaf5bca9fcd5cf663b45d1c3b20f480787",
-      "implementation-summary.md": "a1296ffd348a048f2d18e7fe019b31ac20e717630152006c1b29cec961c0e4d3",
+      "implementation-summary.md": "6b0257056d6793982371229f0e8bb2858e53af4dceae10a8ec036072f33dbeb9",
       "research.md": "de58e2c466174daa4b0a5630e96e624606f5307baa5feb356a492ff770c67005"
     },
     "last_active_child_id": null,

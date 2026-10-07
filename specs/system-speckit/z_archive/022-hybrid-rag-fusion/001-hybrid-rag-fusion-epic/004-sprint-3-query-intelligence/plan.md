@@ -203,14 +203,13 @@ The 100+ queries required for RSF shadow comparison (CHK-030) must be sourced us
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
 Phase 1 (R15 Router) ──────┐
                             ├──► Phase 3 (R2 Min-Rep) ──► Phase 4 (Shadow + Verify)
 Phase 2 (R14/N1 RSF) ──────┘
-`
+```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
@@ -223,7 +222,6 @@ Phase 2 (R14/N1 RSF) ──────┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

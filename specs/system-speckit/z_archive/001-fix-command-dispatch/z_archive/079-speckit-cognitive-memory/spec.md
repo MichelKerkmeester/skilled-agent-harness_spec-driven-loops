@@ -31,7 +31,6 @@ Upgrade the Spec Kit Memory MCP server with cognitive science-inspired memory pa
 
 ---
 
-<!-- /ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -152,7 +151,7 @@ Implement human-like memory characteristics where useful memories strengthen thr
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -171,7 +170,7 @@ Implement human-like memory characteristics where useful memories strengthen thr
 - **NFR-R01**: Schema migration is idempotent (can run multiple times safely)
 - **NFR-R02**: Graceful degradation if new columns missing
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

@@ -1,3 +1,12 @@
+---
+title: "State Simplification Test Suite [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification/test-suite]"
+description: "Test matrix and execution log for the state simplification changes"
+trigger_phrases:
+  - "state simplification test suite"
+  - "state simplification verification"
+importance_tier: "normal"
+contextType: "general"
+---
 # State Simplification Test Suite
 
 **Purpose**: Verify the V13.0 state simplification changes work correctly  

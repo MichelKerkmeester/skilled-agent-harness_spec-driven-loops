@@ -175,7 +175,7 @@ As a SpecKit user, I need documentation to reference level-specific template pat
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -188,7 +188,7 @@ As a SpecKit user, I need documentation to reference level-specific template pat
 - **NFR-C01**: Root templates MUST continue to work as fallback
 - **NFR-C02**: Existing spec folders MUST not be affected
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

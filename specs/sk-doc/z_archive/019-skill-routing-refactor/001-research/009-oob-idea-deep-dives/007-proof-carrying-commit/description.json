@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
   "description": "A route decision can blur classification, authority acquisition, and execution",
   "keywords": [
     "route",

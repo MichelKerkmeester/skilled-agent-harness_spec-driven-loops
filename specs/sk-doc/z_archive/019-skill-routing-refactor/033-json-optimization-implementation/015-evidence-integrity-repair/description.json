@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
   "description": "Rewrite the rubber-stamped rollout checklist with per-item evidence, re-open the three items that certify a regression as absent, reconcile the",
   "keywords": [
     "rewrite",

@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor",
   "description": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no",
   "keywords": [
     "five",

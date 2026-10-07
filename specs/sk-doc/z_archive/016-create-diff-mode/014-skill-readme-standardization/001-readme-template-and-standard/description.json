@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
   "description": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human",
   "keywords": [
     "sk-doc",

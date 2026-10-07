@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity"
     last_updated_at: "2026-07-07T12:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec.md"

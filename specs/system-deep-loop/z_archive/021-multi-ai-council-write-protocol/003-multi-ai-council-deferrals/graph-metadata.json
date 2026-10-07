@@ -139,6 +139,12 @@
         "source": "derived"
       },
       {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -163,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "shell",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -179,23 +191,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Five Checks Evaluation",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-06T17:36:40Z",
-    "last_save_at": "2026-09-07T16:17:18.674Z",
+    "last_save_at": "2026-10-07T22:26:10.318Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b41c07dfce6b669ff967e9509b4afbda85845e1f74e21304d9a4e22dfda51b41",
+    "source_fingerprint": "sha256:d0e0a28cd4f53ff2588f09aa0f1b1e190ffab8a44794b8aab48de67637dda31e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83df782d9cb6274d77d964130dc1590ee559ce0f9f8cae46120806511ffe813f",
-      "plan.md": "a1e06af5628fdea8997c6ff7fcb42b9e1940c39b926df6e78b851090f8da01ef",
-      "tasks.md": "d6ccd5be0ae2e916de3bd77f68a9b0bbbd24f5dc7a5218323fb61f1bf1b960b0",
+      "plan.md": "c8d6830ca94fa556498b0652859d4af3503af5b7e96934997397fc386d140713",
+      "tasks.md": "eb45b741cc1847c55178e555c0d88f2261881ff1df3509f437bc406131b74e67",
       "decision-record.md": "8c0a42874555985b92e3970aea81d1b76897d2e74ae290473c4d862ad82f7cdf",
       "implementation-summary.md": "234ea7a4cfa28a3ae7cb30fe11168ee196c8321b6a5712d6a8763d8d27967395"
     },

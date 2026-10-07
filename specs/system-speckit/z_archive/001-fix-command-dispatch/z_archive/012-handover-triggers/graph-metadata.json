@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Enable AI agents to automatically suggest handover.md or debug-delegation.md templates when users express intent for session transfer, work continuation, or parallel debugging through natural language keywords",
     "created_at": "2026-04-12T09:02:53.511Z",
-    "last_save_at": "2026-08-30T15:39:36.942Z",
+    "last_save_at": "2026-10-07T19:24:08.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,10 +178,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d01b31b2c5d8ed2efd3d7d1d070ce511fe4f39d599e74f7a30765ad494b82f2c",
+    "source_fingerprint": "sha256:06552a8c61ade6e3c62db5b77483ee99c3f00702c4a7ae78b96fe0080020448a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28de7229e3ac6705e5502005d864a54f24b5bdd0bc8370d144ceffe6d0d0e81a",
+      "spec.md": "717e596903b008162eecd090821e2ccdee1460268e99b14d28b93869c2301ada",
       "plan.md": "a38a6b96224637457dd23c5edaccb619f786ad1d1c9f5112bd6d84ebf2e5433c",
       "tasks.md": "4b10b58ee5495db85ee6b36a323bb5405d441cf92b25e87b2089516f09f44d40"
     },

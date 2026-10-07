@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/006-shared/003-assets",
+  "specFolder": "sk-design/z_archive/014-template-conformance/006-shared/003-assets",
   "description": "`.opencode/skills/sk-design/shared/assets/` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md`",
   "keywords": [
     "opencode",

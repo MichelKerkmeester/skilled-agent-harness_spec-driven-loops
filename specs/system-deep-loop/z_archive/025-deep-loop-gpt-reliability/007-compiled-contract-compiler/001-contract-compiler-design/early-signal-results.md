@@ -1,3 +1,13 @@
+---
+title: "P1+P4 Early-Signal Results"
+description: "Directional live-model probe results after building the compiler and rollout live consumer, testing whether the compiled contract flips GPT behavior on the delegation cells."
+trigger_phrases:
+  - "early signal results"
+  - "compiled contract flip probe"
+  - "contract injection behavior probe"
+importance_tier: "important"
+contextType: "research"
+---
 # P1+P4 Early-Signal Results
 
 > Live-model probe run after building P1 (compiler) + P4 (rollout live consumer). Goal: does injecting the compiled contract flip GPT behavior on the 035 T002 delegation cells? Executor: gpt-fast-med, N=1 per cell/mode. This is a directional early signal, not a full acceptance round.

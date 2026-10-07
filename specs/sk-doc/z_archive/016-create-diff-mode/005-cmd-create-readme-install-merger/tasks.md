@@ -2,7 +2,6 @@
 title: "Tasks: Merge create README and install guide [03--commands-and-skills/020-cmd-create-readme-install-merger/tasks]"
 description: "Task Format: T### Description (file path or artifact)"
 trigger_phrases:
-  - "task breakdown"
   - "merge tasks"
   - "create command unification"
   - "migration tasks"

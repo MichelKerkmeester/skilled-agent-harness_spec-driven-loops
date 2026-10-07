@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/018-git-subprocess-env-isolation",
+  "specFolder": "sk-git/z_archive/018-git-subprocess-env-isolation",
   "description": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C",
   "keywords": [
     "three",

@@ -17,9 +17,11 @@
       "deep pre-route",
       "deep prompt header",
       "gpt role negotiation",
-      "plan",
+      "command pre-route headers plan",
       "command-pre-route-headers",
-      "tasks"
+      "command pre-route headers tasks",
+      "command pre-route headers summary",
+      "deep pre-route header verification"
     ],
     "key_topics": [
       "resolved",
@@ -31,9 +33,9 @@
       "gpt",
       "role",
       "negotiation",
-      "plan",
-      "command-pre-route-headers",
-      "tasks"
+      "command",
+      "headers",
+      "plan"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -173,7 +175,7 @@
     ],
     "causal_summary": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
     "created_at": "2026-06-30T15:15:00Z",
-    "last_save_at": "2026-08-30T15:39:25.430Z",
+    "last_save_at": "2026-10-07T20:32:28.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4db8ccc0e36cdf3d39ad04f50a410c91282fdd6c9f61957df038ad7b40b5af60",
+    "source_fingerprint": "sha256:b6198ced26c3afbca6652b1a2d6e03610f6658d576fbe7827c07fee01758379c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee2285b6b18be61603ac8a6ebfd6ca71f7dbfe24273894543e85a3e05617d424",
-      "plan.md": "0561035cc7f9efd69dc27aca6798eef3b6cf2368a8b3b75298fcf92a99fd644e",
-      "tasks.md": "a084585a934aba52b863f8633ff69f9cb70755ea358740590739005c290895e9",
-      "implementation-summary.md": "62fc17cd352314628f09e4d726df87499c87b818b7e1eaf838c2ecdd3d54faff"
+      "spec.md": "5a2be4b90ddfb1df9fb3a865eeb8630e0b5d9230056fd0fb73957e357b1cc1f3",
+      "plan.md": "f8fa4d897383657e22c4ede1945e1d95710104bf6c394deb5114efbf90ce52b6",
+      "tasks.md": "dec50c63e01b1eb113f5803dd5490fdf7a558c32950dd65493dd18b604fde97a",
+      "implementation-summary.md": "159989fc67a30f3c53cbf4237a9e721b1a4ff4324310f8c6215f53f25dc8f2cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

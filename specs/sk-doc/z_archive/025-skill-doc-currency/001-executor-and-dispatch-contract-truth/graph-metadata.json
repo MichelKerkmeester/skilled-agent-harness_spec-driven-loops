@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
-  "spec_folder": "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
-  "parent_id": "sk-doc/025-skill-doc-currency",
+  "packet_id": "sk-doc/z_archive/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+  "spec_folder": "sk-doc/z_archive/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+  "parent_id": "sk-doc/z_archive/025-skill-doc-currency",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
     "created_at": "2026-07-30T19:29:16.509Z",
-    "last_save_at": "2026-08-30T15:39:17.375Z",
+    "last_save_at": "2026-10-07T18:13:59.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:853a2bb8847aa89ea8c52ef7a619009731209d67a10fe850940a99626d19a465",
+    "source_fingerprint": "sha256:9b1aa8d16c773d8614fc1bbcbfdbbd6e52630d56122fecb2937cd7d9d0ee54f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74d5aed276806c8d3c670ec326f46e72578e71acada585a5f4533ad18b56b148",
-      "plan.md": "ce632f4606c6f00bc66219336a1da7b2880db30c1b87c8deeb64f28d1d26c8ab",
-      "tasks.md": "2873c801483e273f44e89720ccd377221e6e30ffc5997297793fdc0f86562e01",
+      "spec.md": "25950e349aa18d26767bfbbeda657f9b4a686700444bf3b1b3691ad3f7134512",
+      "plan.md": "f515d30520bda14e7635431afbd66c2c62aa916f2042936044f13d9d83e52c32",
+      "tasks.md": "35e11cf6b9150a08074a027fb39ee35f9601d2c3ad86bb5dbf12cf5f04cee7b9",
       "decision-record.md": "b8f18c98b2f2cc9e7ff1d48282ba4ebe12dfb8a739467678ca2206e8b4a4f580",
-      "implementation-summary.md": "29ea89026da8af6a4cbeb622b4164d3411a1da60463df3c0960442e6e623fa54"
+      "implementation-summary.md": "23d6dcf692b309836cbde3464fde3eaa34dc8bd2ffdb34a1fcdb9595179cc0eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -7,7 +7,6 @@ trigger_phrases:
   - "create"
   - "commands"
   - "codex"
-  - "implementation summary"
   - "012"
 importance_tier: "normal"
 contextType: "implementation"

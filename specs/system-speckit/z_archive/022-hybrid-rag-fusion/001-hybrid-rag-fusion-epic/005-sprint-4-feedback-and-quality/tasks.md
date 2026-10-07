@@ -121,7 +121,7 @@ _memory:
 
 ---
 
-<!-- ANCHOR:phase-3 -->
+<!-- ANCHOR:phase-3-2 -->
 ## Phase 3: Verification
 
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
@@ -136,10 +136,11 @@ _memory:
   - [x] TM-04 quality gate: low-quality saves blocked (signal density <0.4); semantic near-duplicates (>0.92) rejected [evidence: save-quality-gate.ts `SIGNAL_DENSITY_THRESHOLD = 0.4`, `SEMANTIC_DEDUP_THRESHOLD = 0.92`; ~90 tests in save-quality-gate.vitest.ts]
   - [x] TM-06 reconsolidation: merge/replace/store paths verified; checkpoint created before enable [evidence: reconsolidation.ts `MERGE_THRESHOLD = 0.88`, `CONFLICT_THRESHOLD = 0.75`; memory-save.ts `hasReconsolidationCheckpoint()` safety gate; sprint4-integration tests cover all 3 paths]
 
+<!-- /ANCHOR:phase-3-2 -->
+
 ---
 
 <!-- ANCHOR:completion -->
-<!-- /ANCHOR:phase-3 -->
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`

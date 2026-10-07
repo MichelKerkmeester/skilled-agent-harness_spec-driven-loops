@@ -2,7 +2,6 @@
 title: "Implementation Plan: Nested Changelog Per Spec [system-spec-kit/025-nested-changelog-per-spec/plan]"
 description: "Implements packet-local nested changelog generation in system-spec-kit by adding a dedicated script, canonical templates, and command/documentation updates that route packet-aware workflows to the new output mode."
 trigger_phrases:
-  - "implementation plan"
   - "nested changelog"
   - "025"
   - "phase changelog"

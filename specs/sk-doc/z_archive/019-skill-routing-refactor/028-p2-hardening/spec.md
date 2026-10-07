@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/028-p2-hardening"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/028-p2-hardening"
     last_updated_at: "2026-07-29T06:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Applied all ten P2 fixes; added negative-case tests; ran the full gate sweep"

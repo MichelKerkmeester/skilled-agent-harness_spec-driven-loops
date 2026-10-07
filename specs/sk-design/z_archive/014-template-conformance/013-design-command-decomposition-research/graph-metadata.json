@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/013-design-command-decomposition-research",
-  "spec_folder": "sk-design/014-template-conformance/013-design-command-decomposition-research",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/013-design-command-decomposition-research",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/013-design-command-decomposition-research",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,7 @@
       "implementation-summary.md",
       "research/lineages/glm/research.md",
       "research/lineages/composer/research.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
       {
@@ -72,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -187,17 +193,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub from 6 modes / 5 commands to 2 workflow modes + 1 transport / 2 commands",
     "created_at": "2026-07-27T17:50:43.207Z",
-    "last_save_at": "2026-08-30T15:39:13.437Z",
+    "last_save_at": "2026-10-07T18:12:20.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71446bb8454a6a9ac62360d9195c1aa14637a754596e11aafe570706cb4f7fc5",
+    "source_fingerprint": "sha256:dc2277db16c23e6a8b75d8819f805677d57aecb7f9f755b5091b64da1338b768",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5780d9449bf4f7bf27739fc9009a61f83b6b122795765c99934d96fb8281fc91",
-      "plan.md": "6625bb129c5fc2943720f1691ffc201a580c00501e526a59dc927b4b74942847",
-      "tasks.md": "085bbfc5251561ec15bf167d1054f0fd67401fa7943f5e6358678d54363c3382",
-      "implementation-summary.md": "85bc3b48e9ed720bd828b12e0c370157c5e75da45c253aeb51c7f12040cadfd1"
+      "spec.md": "b6809bb0a01ad4cac6e041e6edb57e9081eb32d2d94060cba2e1dc8f3cc58983",
+      "plan.md": "c30812db6a96c8c67b263660f7844c84ca96011b9c826ac920bd446c28bfee56",
+      "tasks.md": "d743c3446092fa2110c22b3fc0d7e8c62c90d352fce67329ea1120de18756cd7",
+      "implementation-summary.md": "5b60e1fb60429474aedc81b76e9721fcad60e405c60c4d844583b6ba6bc3fce7"
     },
     "last_active_child_id": null,
     "last_active_at": null

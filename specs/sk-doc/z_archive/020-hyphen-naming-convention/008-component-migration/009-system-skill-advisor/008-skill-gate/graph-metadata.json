@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The six surface-migration phases can each appear green while a cross-phase path, an exempt name, a stale reference,",
     "created_at": "2026-07-14T15:18:12Z",
-    "last_save_at": "2026-08-30T15:39:16.852Z",
+    "last_save_at": "2026-10-07T18:12:59.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:10aa001f070473f16c63510d5ae4aef1bc69fe61578c4f187b94c31408b1493f",
+    "source_fingerprint": "sha256:dffad7702c04c629d7ca6feed1f36d20eecd3665aedb5bcb43a92520d2ac3b4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4ffc2c8f1d848e1f007bba804de2913c21caa49bfd96807559e216628708f24",
-      "plan.md": "7d798ee76e5fd4c8caea777323aa804dc19cd0232de3f1948e9da38f4220beff",
-      "tasks.md": "b144ee3cf718b4a884696dc08d028b8bc0cdb5d7c7bff60dff7645250adab8dc"
+      "spec.md": "38da239aaa28e3c3670fe2914b824fb0fd2a5cc291a5d756c7eb48afdfa6cc9a",
+      "plan.md": "791e482019d3b49cdd0d304313c6ca238c02e6cc15e9df8688df097d4987ca13",
+      "tasks.md": "00ea7ba3c42acdd146fd64e4491ec3821e97352333eee0bfbb4fcc26e7bb2d33"
     },
     "last_active_child_id": null,
     "last_active_at": null

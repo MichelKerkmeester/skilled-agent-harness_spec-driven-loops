@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/032-split-doc-template-alignment"
+    packet_pointer: "sk-doc/z_archive/032-split-doc-template-alignment"
     last_updated_at: "2026-08-19T08:29:06Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Conformed sk-code-mobile-cli surface to templates (10 ref/asset files)"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/001-reducer-anchor-fix"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix"
     last_updated_at: "2026-07-06T16:24:27.982Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the DONE Q6-anchor reducer template fix against commit 61fe63b24d"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/001-reducer-anchor-fix` |
+| **Spec Folder** | 001-reducer-anchor-fix |
 | **Completed** | 2026-06-18 |
 | **Level** | 1 |
 | **Shipped commit** | `61fe63b24d` |

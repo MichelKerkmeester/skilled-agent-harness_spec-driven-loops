@@ -3,7 +3,6 @@ title: "Impleme [system-deep-loop/z_archive/001-sk-recursive-agent-loop/009-sk-a
 description: "Ran the first self-referential test of the sk-improve-agent skill: the /deep:start-agent-improvement-loop loop targeting .opencode/agents/agent-improver.md itself. This is the agent that describes t..."
 trigger_phrases:
   - "impleme"
-  - "implementation summary"
   - "009"
   - "agent"
 importance_tier: "normal"
@@ -19,13 +18,18 @@ _memory:
 ---
 # Implementation Summary: Phase 009 — Agent-Improver Self-Test
 
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
 | Phase | 009 |
 | Parent | 041-sk-improve-agent-loop |
 | Date | 2026-04-04 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:what-built -->
 ## What Was Done
 
 Ran the first self-referential test of the sk-improve-agent skill: the `/deep:start-agent-improvement-loop` loop targeting `.opencode/agents/agent-improver.md` itself. This is the agent that describes the improvement workflow evaluating its own quality across 5 dimensions.
@@ -74,6 +78,7 @@ Profile extracted from `agent-improver.md`:
 ### Stop Condition
 
 Loop exited via **max-iterations (3)**, not dimension plateau. The plateau detector requires ALL dimensions to have 3+ identical scores simultaneously. System Fitness had scores [93, 100, 100] — only 2 consecutive identical values at 100, not the required 3. This is a valid finding about the plateau detection logic: a dimension that improves mid-run resets its plateau counter.
+<!-- /ANCHOR:what-built -->
 
 ## Self-Referential Observations
 
@@ -89,6 +94,7 @@ Loop exited via **max-iterations (3)**, not dimension plateau. The plateau detec
 
 6. **Convergence speed**: Well-maintained agent file converges in 2 iterations (baseline 99 → fix → 100). By iteration 3, only precision/consistency tweaks remain with no score impact.
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 | Decision | Why |
@@ -98,7 +104,9 @@ Loop exited via **max-iterations (3)**, not dimension plateau. The plateau detec
 | 3 iterations max | Sufficient to demonstrate improvement, plateau, and stop |
 | No promotion | Test-only phase — candidates stay in runtime area |
 | Record all artifacts | Full audit trail for the self-referential test |
+<!-- /ANCHOR:decisions -->
 
+<!-- ANCHOR:verification -->
 ## Verification Results
 
 | Check | Result |
@@ -113,3 +121,4 @@ Loop exited via **max-iterations (3)**, not dimension plateau. The plateau detec
 | No infra_failure | OK |
 | 3 candidates generated | OK |
 | Stop condition: max-iterations | OK |
+<!-- /ANCHOR:verification -->

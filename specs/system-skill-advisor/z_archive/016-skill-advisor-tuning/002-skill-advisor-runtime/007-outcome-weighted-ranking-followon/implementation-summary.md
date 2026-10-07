@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon"
     last_updated_at: "2026-07-06T16:57:18.930Z"
     last_updated_by: "codex"
     recent_action: "Built shadow-only modules, verified typecheck and scorer suite green"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon` |
+| **Spec Folder** | 007-outcome-weighted-ranking-followon |
 | **Completed** | 2026-06-19 (shadow-only build, live promotion NO-GO) |
 | **Level** | 3 |
 | **Status** | complete |

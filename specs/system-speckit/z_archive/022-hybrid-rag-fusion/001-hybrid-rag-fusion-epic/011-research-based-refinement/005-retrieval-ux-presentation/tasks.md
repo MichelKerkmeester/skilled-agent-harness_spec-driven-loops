@@ -27,6 +27,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 
+<!-- ANCHOR:phase-1 -->
 ## Phase A: Recovery & Confidence
 
 ### REQ-D5-001: Empty/Weak Result Recovery
@@ -49,9 +50,11 @@ _memory:
 - [ ] **A-13** Implement request quality assessment — evaluate query-level quality as `good`, `weak`, or `gap`
 - [ ] **A-14** Integrate confidence output into `search-results.ts` result objects
 - [ ] **A-15** Write tests for confidence scoring (margin, agreement, drivers, labels, edge cases)
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase B: Explainability & Profiles
 
 ### REQ-D5-002: Two-Tier Explainability
@@ -72,10 +75,12 @@ _memory:
 - [ ] **B-11** Implement `debug` formatter — produce full trace with no field omission
 - [ ] **B-12** Add profile parameter to `memory-search.ts` and `memory-context.ts` interfaces
 - [ ] **B-13** Write tests for all four profile formatters (shape validation, token reduction for quick mode)
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
 
+<!-- ANCHOR:phase-3 -->
 ## Phase C: Progressive Disclosure & Session State
 
 ### REQ-D5-005: Progressive Disclosure
@@ -98,21 +103,4 @@ _memory:
 - [ ] **C-13** Implement `preferredAnchors` persistence — remember which anchors the caller favors across turns
 - [ ] **C-14** Wire session state into `memory-context.ts` query pipeline — ensure state is read at query start and written at query end
 - [ ] **C-15** Write tests for session state persistence, dedup behavior, and follow-up quality with session context
-
-<!-- ANCHOR:notation -->
-<!-- /ANCHOR:notation -->
-
-<!-- ANCHOR:phase-1 -->
-<!-- /ANCHOR:phase-1 -->
-
-<!-- ANCHOR:phase-2 -->
-<!-- /ANCHOR:phase-2 -->
-
-<!-- ANCHOR:phase-3 -->
 <!-- /ANCHOR:phase-3 -->
-
-<!-- ANCHOR:completion -->
-<!-- /ANCHOR:completion -->
-
-<!-- ANCHOR:cross-refs -->
-<!-- /ANCHOR:cross-refs -->

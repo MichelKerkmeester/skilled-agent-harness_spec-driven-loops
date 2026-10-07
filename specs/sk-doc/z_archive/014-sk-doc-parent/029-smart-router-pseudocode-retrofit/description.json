@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
   "description": "The nested `sk-doc` mode packets carried simplified prose smart-router sections (call-sequence text blocks or terse routing notes) instead of the",
   "keywords": [
     "nested",

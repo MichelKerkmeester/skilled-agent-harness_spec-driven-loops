@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/006-advisor-graph-mode-routing"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/006-advisor-graph-mode-routing"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored impl-summary; advisor collapse shipped in merge, routing parity re-verified in 156"

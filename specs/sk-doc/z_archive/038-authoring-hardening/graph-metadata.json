@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/038-authoring-hardening",
-  "spec_folder": "sk-doc/038-authoring-hardening",
+  "packet_id": "sk-doc/z_archive/038-authoring-hardening",
+  "spec_folder": "sk-doc/z_archive/038-authoring-hardening",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/038-authoring-hardening/001-template-conformance-gaps",
-    "sk-doc/038-authoring-hardening/002-validator-false-positives",
-    "sk-doc/038-authoring-hardening/003-per-root-enforcement"
+    "sk-doc/z_archive/038-authoring-hardening/001-template-conformance-gaps",
+    "sk-doc/z_archive/038-authoring-hardening/002-validator-false-positives",
+    "sk-doc/z_archive/038-authoring-hardening/003-per-root-enforcement"
   ],
   "manual": {
     "depends_on": [],
@@ -120,16 +120,16 @@
     ],
     "causal_summary": "Manual testing playbooks across the skill fleet had drifted to roughly 2,600 contract violations, and no build ever failed",
     "created_at": "2026-08-29T11:34:45.442Z",
-    "last_save_at": "2026-08-30T15:39:18.202Z",
+    "last_save_at": "2026-10-07T18:13:41.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:de84141051a1d82ac03698439dd3d3724b1f11a6a8a011a900033de1f775ec8a",
+    "source_fingerprint": "sha256:62aabbc6f51f29120433ce407be03447f8073a5dd254fa47cdd334f81beedd37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2eff558792ae62cb9ad45da835af57d8a524dd08b4f255fb9d8a0bf7e775e5ba"
+      "spec.md": "7cb4a1c5cd34190f5eed9b45f5c58d0bd2f7b5bdb5210798832c1a347702c35a"
     },
     "last_active_child_id": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
     "last_active_at": null

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/016-code-mode-node-resolution",
-  "spec_folder": "mcp-tooling/016-code-mode-node-resolution",
+  "packet_id": "mcp-tooling/z_archive/016-code-mode-node-resolution",
+  "spec_folder": "mcp-tooling/z_archive/016-code-mode-node-resolution",
   "parent_id": null,
   "children_ids": [
-    "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract",
-    "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
-    "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
-    "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
-    "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening"
+    "mcp-tooling/z_archive/016-code-mode-node-resolution/001-resolution-contract",
+    "mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+    "mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
+    "mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+    "mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -174,16 +174,16 @@
     ],
     "causal_summary": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-30T15:39:10.524Z",
+    "last_save_at": "2026-10-07T18:11:38.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c8ccef89e3d75dd0321907fc6699ab10edbc4c7f4197ef5a7e2aad033051cfc3",
+    "source_fingerprint": "sha256:e5647f2513f47968fa573ab9a1608017086b6f67e26d548e2d470f9e41bcb180",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "231995c4ab9066de481481c8111e52048010d64ac5d79cd209e575a102c83533"
+      "spec.md": "672304d762f897f18c4b059b3b8132ea08fc75d8b2ec03fc6be2679c21aa00e6"
     },
     "last_active_child_id": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
   "description": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
   "keywords": [
     "pre-refactor",

@@ -2,12 +2,7 @@
 title: "Tasks: README & Install [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/tasks]"
 description: "tasks document for 045-readme-alignment."
 trigger_phrases:
-  - "tasks"
-  - "readme"
-  - "install"
-  - "guide"
-  - "alignment"
-  - "045"
+  - "readme alignment tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

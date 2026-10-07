@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment"
     last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "Applied all header renames and the asset restructure; verified VALID."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "reference asset template alignment plan"
 ---
 
 # Implementation Plan: Reference and Asset Template Alignment

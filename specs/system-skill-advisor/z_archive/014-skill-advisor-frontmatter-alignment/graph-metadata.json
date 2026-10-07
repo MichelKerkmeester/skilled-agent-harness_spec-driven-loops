@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment",
   "spec_folder": "system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "system-skill-advisor reference/asset frontmatter is inconsistent with the repo-wide contract: 14 of 15 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:39Z",
-    "last_save_at": "2026-08-30T15:39:27.287Z",
+    "last_save_at": "2026-10-07T22:04:17.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34118d5e1c3b707dec098cccdbe41cd6c6f514bd3e15dbdff26bb57e18816abe",
+    "source_fingerprint": "sha256:83b62ca67e6b369760b88b0b4780461f75be2c1951afdedfc6af9dc5ecd49b36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e51ec88db0c5235af5c4eba2719e96cd3162c8c8f3ed603675a50119249897f",
-      "plan.md": "abbe343157e212fadc8b4e0e54a9419c27d7208106dc1056a740210a94de7851",
-      "tasks.md": "0cd1761608fec99a530152bd68e5e6e96fd4aba43e1859efad3320f0ba2e83e4",
-      "implementation-summary.md": "3b918c8e01a280f31f05497ec19d85b9440a4a773c80f1e1765f00d421df8890"
+      "spec.md": "7f5a95fd7d4d837758bc1f842fb586600aeaa8cd79a17d83fe2638600c3324c3",
+      "plan.md": "33bb45cf8f23e81d2a05f87d2ab1bb919df070ca13bf8c513cfa7e9721199910",
+      "tasks.md": "e23da7be75ad4674741e3d0840b71d2273fe59ddab2611c6c99e197f96a5c88e",
+      "implementation-summary.md": "d2cae72bd1a93b8bcc8061eeac558d08f15bda5e6b57bf9f214dfb00e59eae62"
     },
     "last_active_child_id": null,
     "last_active_at": null

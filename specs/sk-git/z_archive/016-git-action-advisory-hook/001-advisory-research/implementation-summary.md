@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook/001-advisory-research"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook/001-advisory-research"
     last_updated_at: "2026-07-27T21:55:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Completed the ten-pass program and merged the corpus into research.md"

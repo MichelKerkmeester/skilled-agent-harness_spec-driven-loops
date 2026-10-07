@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
   "description": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1)",
   "keywords": [
     "audit",

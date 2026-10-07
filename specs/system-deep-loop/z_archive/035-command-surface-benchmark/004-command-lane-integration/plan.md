@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/004-command-lane-integration"
     last_updated_at: "2026-07-14T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded the lane-integration child for the full-corpus deterministic run"
@@ -17,10 +17,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command lane integration plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

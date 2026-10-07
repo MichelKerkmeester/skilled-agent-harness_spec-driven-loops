@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/022-command-metadata-generalization",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/022-command-metadata-generalization",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Only sk-design's two commands had machine-checked contracts: argument grammar, routing signals, and load choreography as validated data",
     "created_at": "2026-07-28T13:01:58.044Z",
-    "last_save_at": "2026-09-11T16:42:08.113Z",
+    "last_save_at": "2026-10-07T18:13:24.421Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10ec38a78d400d28e24a76f3786938ddf4c77365a0c4456cca7fe158987b8220",
+    "source_fingerprint": "sha256:5879df34db7ca4646b068185cc44b15813fb6f0851bd21bb347188c4c282cb41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a91c94d55546de0104d32d307225930c9af04173aff0f23d2ae1db4eee4b7d51",
-      "plan.md": "b826e8c6bf162e576ca10ef2a00bfa53cddd702e8054f1019e763158bf0e7e4e",
-      "tasks.md": "d943d54ac63cb0a129c3c189fc49c9c5eae19d9a0164ba328da68eb51740f399",
-      "implementation-summary.md": "a95980351198dbbb5017b6b3f1d55d479bedbeb609db39cb3e79aacb0a3a1309"
+      "spec.md": "ce357e2729d32a363666224cdbb510209b6585b2894ddd08c95575e4205d2d8b",
+      "plan.md": "c24478445a15699186415748938a5220ee542a9fe012cadd50f8b7296e296f79",
+      "tasks.md": "a2b96deaa317fde88576ebf0417c00b4f021e9e6c4dfb637389d7f43ad5a3a22",
+      "implementation-summary.md": "614bcb562c4e1b0aa4652d40bd0dfadf90cae9b6707cf8c9dcb4d93391ea2f2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

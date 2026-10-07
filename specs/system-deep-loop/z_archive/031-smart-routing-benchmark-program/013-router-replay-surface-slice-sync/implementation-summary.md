@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync"
     last_updated_at: "2026-07-06T08:41:30.282Z"
     last_updated_by: "claude-opus"
     recent_action: "Router-replay slicing restored; guard tests passing"

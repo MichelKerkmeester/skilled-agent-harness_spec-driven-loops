@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple"
     last_updated_at: "2026-06-03T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Playbook decoupled; scenarios reframed; changelog written"

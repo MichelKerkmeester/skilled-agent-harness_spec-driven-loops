@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/002-style-database/001-style-database",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/002-style-database/001-style-database",
   "description": "The 1,290-style library (`.opencode/skills/sk-design/styles/`) is served by a file-walking retrieval engine (`styles/engine`) whose read path rebuilds",
   "keywords": [
     "290-style",

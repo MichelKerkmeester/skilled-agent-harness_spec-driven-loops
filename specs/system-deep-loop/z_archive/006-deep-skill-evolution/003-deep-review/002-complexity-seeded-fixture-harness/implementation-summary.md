@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/002-complexity-seeded-fixture-harness` |
+| **Spec Folder** | 002-complexity-seeded-fixture-harness |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | 3 hours (estimated: 3 hours) |

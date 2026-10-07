@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler",
-  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "packet_id": "cli-external-orchestration/z_archive/029-cli-devin-revival/013-devin-permission-request-handler",
+  "spec_folder": "cli-external-orchestration/z_archive/029-cli-devin-revival/013-devin-permission-request-handler",
+  "parent_id": "cli-external-orchestration/z_archive/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "A controlled live probe (temporary unconditional-log hook wired into `.devin/hooks.v1.json`, backed up first and restored after) confirmed that `devin -p \"Create a new file at /tmp/...\"` under the CLI's default `--permission-mode auto` dispatches a real `PermissionRequest` event with payload `{hookeventname, toolname, toolinput, tooluseid, sessionid, promptid}`",
     "created_at": "2026-07-27T06:02:22.538Z",
-    "last_save_at": "2026-08-30T15:39:07.373Z",
+    "last_save_at": "2026-10-07T18:11:37.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f77eb0ef87d50b276e7d11ee9291ae01b0ea51fd0eb9bb0e7a53cd167fce45a0",
+    "source_fingerprint": "sha256:cdac9283bb52a28bc22ff343e7b52cb1d2ba9f7769801feaa41d9e04e36b9829",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ccd4251262ee5f8870a4452fa85869104eda7f7728ce4152ea3501d4030c221b",
-      "plan.md": "6b7d00f9f411d20097c8b5770f7691df863bc82f1b63ebf216fbf69362fff4f6",
-      "tasks.md": "bea9a50210d1c5db1e3d1bd9a5576000714d4b55a0a2b1a61fe1ea282d5069f3",
-      "implementation-summary.md": "21dd28a606593d49fd7dadd6a8f998a6150d085e6b6018a8ffbd8adde25420c4"
+      "spec.md": "7df6886def8de5ab26042553d907641a167053ed63993ef73322c028c1f70f01",
+      "plan.md": "69659d4adc262cdfdbb60c69f5c7817807fa23cd401697dcc01bad32f71d6035",
+      "tasks.md": "974c68db93b01776a7a061d2dcdb6082b9946cc86393df8ab1a819414d510489",
+      "implementation-summary.md": "530d509eca80385d80869b7058a752dcb05c0064171d688d7862f75848e0411b"
     },
     "last_active_child_id": null,
     "last_active_at": null

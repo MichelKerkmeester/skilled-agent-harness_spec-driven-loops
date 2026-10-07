@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,10 @@
       "validate_document.py path bug",
       "skill readme template clarifications",
       "doc tooling fixes",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "validate_document path fix summary"
+      "doc tooling and template fixes plan",
+      "doc tooling and template fixes tasks",
+      "validate_document path fix summary",
+      "validator symlink resolve"
     ],
     "key_topics": [
       "path",
@@ -33,10 +28,10 @@
       "clarifications",
       "doc",
       "tooling",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "summary",
+      "validator"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +190,7 @@
     ],
     "causal_summary": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
     "created_at": "2026-07-22T12:21:14.835Z",
-    "last_save_at": "2026-09-11T04:36:33.481Z",
+    "last_save_at": "2026-10-07T18:13:27.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8589a6e34a96974308037ac1ceb87859c7ee67ef03f3a74b2da82bf87ad63725",
+    "source_fingerprint": "sha256:7f6f3cff18508debe27f93d8ec88e38713658bcf0a8554bb8bae3c3ff262e8cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f8836abe31c3192cc59c36074fbf3edddc1300a36e6a54d01acc74b5137f2ce",
-      "plan.md": "f120e60d889740d7a2390744ee7f1307e1c4b7f04ce20c394215a4c203aae27b",
-      "tasks.md": "f6e24eab39d78ce8f690570fa2e600c8aa3f3089ab5ce26d3440ba896afa700b",
-      "implementation-summary.md": "d2fee82acb09327236848a12e2d73d2632592b04fc19af08584d6860962c00d2"
+      "spec.md": "7e9878d54217cd725273d44b999df5bdddd460f53bb908b1fa6c995909d30631",
+      "plan.md": "9d81ccd44b46952ef94a9d6b25abffae02ceffd8083dce50890007d9dc3fce3c",
+      "tasks.md": "b8d3656f73fb4777ccf4368cafec63e28fcbcd1e85c12b87d11a3d5d25436da8",
+      "implementation-summary.md": "1e2724dcbd50db5aa1e4e9f3073888963545d06f66381fad97e97573ba1fd5ec"
     },
     "last_active_child_id": null,
     "last_active_at": null

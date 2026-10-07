@@ -2,13 +2,13 @@
 title: "Tasks: Cross-Skill Scorecard & Integration"
 description: "Task Format: T### [P?] Description (file path). All pending -- phase blocked on its predecessor."
 trigger_phrases:
-  - "tasks"
+  - "scorecard and integration tasks"
   - "behavior benchmark scorecard"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
     last_updated_at: "2026-07-02T23:40:00Z"
     last_updated_by: "claude-code"
     recent_action: "Cross-skill scorecard + integration pointers complete; packet done"

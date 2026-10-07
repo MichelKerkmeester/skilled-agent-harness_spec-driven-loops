@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The operator wants a much tighter active-goal retention window than the shipped 30-day default, and wants the existing backlog reconciled to that new window immediately rather than waiting for the automatic hourly sweep to catch up",
     "created_at": "2026-07-04T17:02:05.348Z",
-    "last_save_at": "2026-08-30T15:39:25.851Z",
+    "last_save_at": "2026-10-07T18:15:16.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49c6d731abbb555a0ad6f44a73f339fc2c19ec0220a1395ebe4dd92861d932fc",
+    "source_fingerprint": "sha256:fc36f4cc2063603e9391cbb224c79a64b38afbf08e50d9d16048f6751dfb837e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "115a50292320e77460a7a781e6245ee79d74d2ec28a837fdbf0489e305d28550",
-      "plan.md": "ea9be4f014d1428b82a2d1ad17f2d56a1e73a888e6e8a8333aac26f149a4b9eb",
-      "tasks.md": "2d1f5b8daeed497c9436d62791b4aaa3db995049b3f9d5c777e4f3eb201f5b9d",
-      "implementation-summary.md": "5d187f7866fbd5b734dd385d29ead75734fd6ee95c1bfe68649ad1de07297503"
+      "spec.md": "af055b55e500381c7bd221fe966e4b6587279220006128ad41560296515e8b14",
+      "plan.md": "e6559416a45d429327701e22f41d12e4885a42701d947b77f4c2cede93ca8c69",
+      "tasks.md": "2252b233fd143564e245d79e881353e2dbe7e2fc3d9beb8fb15a8cd4cca3a739",
+      "implementation-summary.md": "1a44e97e0a0d463cd17a75a6f4fa8747b4d642042f63da92c1d55208f59c93e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

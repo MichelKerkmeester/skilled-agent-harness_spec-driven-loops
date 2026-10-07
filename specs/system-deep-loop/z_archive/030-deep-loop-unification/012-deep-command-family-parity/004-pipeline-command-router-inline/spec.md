@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline"
     last_updated_at: "2026-07-13T21:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded phase 004 planning docs (spec/plan/tasks/checklist/decision-record)"

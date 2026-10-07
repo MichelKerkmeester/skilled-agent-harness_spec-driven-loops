@@ -1,9 +1,11 @@
 ---
 title: "Implementation Plan: packet-012 deep-review remediation"
 description: "Remediation approach for the packet-012 review findings, persistent-path hardening first."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -20,10 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "review remediation plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

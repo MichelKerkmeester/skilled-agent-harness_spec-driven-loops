@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-md-generator manual-testing-playbook/ conformance"
 description: "Task breakdown for auditing design-md-generator's 18-file manual-testing-playbook/ tree."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/004-design-md-generator/007-manual-testing-playbook"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author manual-testing-playbook audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "manual testing playbook tasks"
 ---
 # Tasks: design-md-generator manual-testing-playbook/ conformance
 

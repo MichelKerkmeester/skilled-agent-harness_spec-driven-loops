@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `design-md-generator` backend defines DESIGN.md structure in several disconnected places: the formatter (`formatters-v3.ts`) decides emission, the write-prompt builds its own instructions, and `validate.ts` re-encodes section requiredness",
     "created_at": "2026-07-18T14:19:11.358Z",
-    "last_save_at": "2026-08-30T15:39:12.535Z",
+    "last_save_at": "2026-10-07T18:12:35.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5c1b84441872995a3e61ac83a30806be469d81cb7355cdeac54a1fde73ece0b",
+    "source_fingerprint": "sha256:178eb36bcd5cffd391b4f9a349f118a7c8f8c4d021e43ce9897ea991e8c1a6f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eeaa6449b96922c0329e624ed47aae2b3ff927419e981ec13f136b415463c487",
-      "plan.md": "582a4648e318fb82d9a23b724ca226f5be80a893307d06619d9baf247ad294e7",
-      "tasks.md": "3d5fa20fd0356d3f18e969f213d8628c263a9fed561641e45aa585457fc5abb4",
+      "spec.md": "c3c4385c629683ce1d6ef6bd47b7ff2fc1d36baebd4173244212224f02da2937",
+      "plan.md": "5748ffff3b48c49b29e93c6db53e2eaacf678c4cee91c2e9499b3657bffee259",
+      "tasks.md": "5298ec59ce325b7aacb3e33530efdeea264fae289ac2f6857b3e1d9e5024f1f4",
       "decision-record.md": "11775551b84d9b106dd0ba30df4ae35d01b38c9f5eaeb78d63104bea9448a76c",
-      "implementation-summary.md": "456558bf3da7d0c94868f1ffde1c062f2fcc99d23c53e975bc2c71dad7456fd2"
+      "implementation-summary.md": "320a7cedf259005bd77b075e0cc67e968d983dd932c1307e399072652b3a9cdb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,8 @@
 title: "Task [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-06-global-readme-update/spec]"
 description: "Specify required updates to the project root /README.md to ensure all statistics, feature descriptions, and component references reflect the post-alignment state after spec 130 ..."
 trigger_phrases:
-  - "task"
-  - "root"
-  - "readme"
-  - "update"
-  - "spec"
-  - "global"
+  - "global readme update audit"
+  - "root readme refresh"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -147,4 +143,4 @@ The implementer should populate `changes.md` with:
 
 - **Parent**: [../spec.md](../spec.md)
 - **Changes**: [changes.md](changes.md)
-- **Dependency**: [../task-05-changelog-updates/changes.md](../task-05-changelog-updates/changes.md)
+- **Dependency**: [../005-changelog-updates/changes.md](../005-changelog-updates/changes.md)

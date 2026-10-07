@@ -16,6 +16,7 @@ This is the executor brief for phases 002-005. Every decision below is final unl
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## 1. Skill identity
 
 - **Folder / `name`**: `sk-create-diagram` under `.opencode/skills/sk-doc/`.
@@ -23,7 +24,9 @@ This is the executor brief for phases 002-005. Every decision below is final unl
 - **`packetKind`**: `workflow` (a nested workflow packet under the existing `sk-doc` hub — not a new standalone hub; `sk-doc` already owns the one advisor identity).
 - **`backendKind`**: `template-scaffold`, matching every sibling `create-*` mode.
 - **`toolSurface`**: `{ allowed: [Read, Write, Edit, Bash, Grep, Glob], forbidden: [Task], mutatesWorkspace: true, bashAllowlist: [] }` — identical to every sibling mode. No network tool is claimed; see §5 onboarding decision.
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## 2. Scope boundary vs. `sk-create-flowchart`
 
 `sk-create-flowchart`'s own "When NOT to Use" already excludes this skill's entire domain: *"The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work."* `sk-create-diagram` is the packet that owns exactly that excluded domain — self-contained HTML files with inline SVG. No scope overlap exists; the boundary is additive, not contested.
@@ -33,7 +36,9 @@ This is the executor brief for phases 002-005. Every decision below is final unl
 > Use `sk-create-flowchart` instead when the deliverable is an ASCII or box-drawing flowchart directly inside a markdown document — no HTML file, no SVG, no design system. Use `sk-create-diagram` when the deliverable is a standalone visual artifact: architecture diagrams, sequence diagrams, ER diagrams, and 24 other technical/product diagram types, rendered as a self-contained `.html` file with inline SVG.
 
 Phase 005 adds one optional line to `sk-create-flowchart/SKILL.md`'s "When NOT to Use" pointing at `sk-create-diagram` for SVG/HTML requests (tracked as the phase-parent's third open question — a same-sentence edit, not a restructure).
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## 3. Command surface
 
 **One command: `/create:diagram`.** Every sibling `create-*` mode maps 1:1 to exactly one command in `command-metadata.json` (confirmed against all 12 existing `sk-doc` modes). The source plugin's three Claude Code commands (`export-diagram`, `import-drawio`, `import-mermaid`) collapse into natural-language routing inside the one packet — the source's own Pi implementation already worked this way (one skill, natural-language triggers, with the slash commands as optional Claude-Code-specific convenience wrappers this repo does not need to replicate).
@@ -42,7 +47,9 @@ Phase 005 adds one optional line to `sk-create-flowchart/SKILL.md`'s "When NOT t
 1. **Generate** — "make me an architecture diagram of X" → select type, load `references/type-<name>.md`, draw.
 2. **Import** — "redraw this drawio/mermaid file" → route by source extension to `references/import-drawio.md` or `references/import-mermaid.md`.
 3. **Export** — "export this diagram as PNG/SVG" → `references/export.md`.
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## 4. Target file tree
 
 Ground truth checked directly against the two closest sibling nested workflow packets on disk (`sk-create-diff/`, `sk-create-flowchart/`) rather than inferred from prose — both carry exactly `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/`, `changelog/`, and neither carries `graph-metadata.json`, `leaf-manifest.config.json`, `leaf-manifest.json`, `leaf-aliases.json`, or `benchmark/` (those apply to top-level skill roots under the H/S root-metadata contract, not to packets nested inside a hub). `sk-create-diagram` matches that shape exactly:
@@ -85,13 +92,17 @@ sk-create-diagram/
 ```
 
 No `graph-metadata.json` here — nested workflow packets never carry one (Rule §3.9 "Do not add `graph-metadata.json` to nested workflow packets or surface packets"; confirmed absent on both sibling packets on disk). `manual-testing-playbook/` and `benchmark/` are left for a later iteration once the skill has real usage to script scenarios from — `sk-create-flowchart` ships without either.
+<!-- /ANCHOR:adr-004 -->
 
+<!-- ANCHOR:adr-005 -->
 ## 5. Open-question resolutions (carried from `../spec.md`)
 
 **Icon set** — **include in v1.** `primitive-icons.md` (827 lines) and `assets/icons.html` are pure reference/example content with zero runtime dependency risk, and richer architecture/sequence diagrams genuinely need labeled component icons (server, database, K8s, Docker, cloud). Deferring it would ship an incomplete design system for the diagram types that need it most.
 
 **Onboarding automation** — **agent-mediated guidance only, no packet script.** Every sibling `sk-doc` mode's `toolSurface.allowed` is `[Read, Write, Edit, Bash, Grep, Glob]` — none declare a network-fetch tool. `references/onboarding.md` ports as a documented workflow (ask the user for a URL, extraction procedure, propose-diff-then-write pattern) that assumes the *calling* AI session's own tools do any live fetch, exactly as the source's own onboarding flow already works (it is agent-mediated prose, not a Python script, in the source too — nothing to build here beyond porting the reference).
+<!-- /ANCHOR:adr-005 -->
 
+<!-- ANCHOR:adr-006 -->
 ## 6. Section-order mapping: source `SKILL.md` → `sk-create-skill` contract
 
 The source `SKILL.md` uses 12 numbered sections (Setup gate, Philosophy, When to Use, Diagram Types, Anti-patterns, Design System, Primitives, Layout, Summary Cards, Checklist, Templates, Import, Output). `sk-create-skill` requires `WHEN TO USE / SMART ROUTING / HOW IT WORKS / RULES / SUCCESS CRITERIA / REFERENCES`. Phase 002's mapping:
@@ -106,3 +117,4 @@ The source `SKILL.md` uses 12 numbered sections (Setup gate, Philosophy, When to
 | `REFERENCES` | Full pointer list to every ported `references/*.md` |
 
 `SKILL.md` stays under the 5k-word ceiling by keeping the connector-rule *details*, the full complexity-budget table, and every type's layout conventions in `references/`, exactly as the source already does — only the routing index moves into `SKILL.md`.
+<!-- /ANCHOR:adr-006 -->

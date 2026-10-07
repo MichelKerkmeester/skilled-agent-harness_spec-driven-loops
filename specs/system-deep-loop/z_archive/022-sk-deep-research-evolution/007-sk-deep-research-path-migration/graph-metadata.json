@@ -46,13 +46,8 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
-      ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
-      ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
       ".codex/agents/deep-research.toml",
-      ".codex/agents/deep-review.toml",
-      "scripts/common.sh",
-      "scripts/setup/check-prerequisites.sh"
+      ".codex/agents/deep-review.toml"
     ],
     "entities": [
       {
@@ -86,24 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "frontmatter-migration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-research-paths.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
-        "source": "derived"
-      },
-      {
         "name": "deep-research.toml",
         "kind": "file",
         "path": ".codex/agents/deep-research.toml",
@@ -113,18 +90,6 @@
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "common.sh",
-        "kind": "script",
-        "path": "scripts/common.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-prerequisites.sh",
-        "kind": "script",
-        "path": "scripts/setup/check-prerequisites.sh",
         "source": "derived"
       },
       {
@@ -198,11 +163,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep research has an inconsistent packet contract",
     "created_at": "2026-04-12T09:02:50.179Z",
-    "last_save_at": "2026-08-30T15:39:24.404Z",
+    "last_save_at": "2026-10-07T20:02:25.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d653dda1182b38e5dbc263f55fb61a8b55436cbf9d5d806e9cb7db4519e1d246",
+    "source_fingerprint": "sha256:493a3cbb7d861bf6309a6d78393c1a31ceda7fb8748fc01d52b92ac06645040d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3eabc276ac62a13445e9e07ad857ce61de9844d19e0048ff03c2d2c7e99eced0",
-      "plan.md": "d17c207b227b596d5c6fecf8fa335bf20c2f9c797a024493b21071405b16aa83",
+      "spec.md": "18421427edf334b5e9b6d6ac78dcb4506fa17b9da7e39e0603579e1fa15bc429",
+      "plan.md": "cd5663879fc49684ca7330bb6f6e3c0cbc4ef48399bb652fb156c3fa4dd8c332",
       "tasks.md": "3841a6cf5b0adb34f13b426d94386b4c0a8f274a9c7817230224b688effb5c36",
       "decision-record.md": "151ab4f6471b051a739d6c35551f7d25aed49848e31410bc9d2f5dde41b19f27",
-      "implementation-summary.md": "28df0cd6ffbd0ebe1756ab000a6a85eb5b2487cc74667d4f7f0e54126cdc4313"
+      "implementation-summary.md": "37f8558248d6306a5761952f9367e72f615e2640092c5eee82dc8eb15e38a92f"
     },
     "last_active_child_id": null,
     "last_active_at": null

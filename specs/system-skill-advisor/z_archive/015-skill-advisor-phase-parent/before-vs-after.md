@@ -1,3 +1,13 @@
+---
+title: "Before/After Record: Skill Advisor RRF Spine, Lane Health and Default-Off Routing"
+description: "Record of what changed in the Skill Advisor across packet 028 and the resulting effect."
+trigger_phrases:
+  - "skill advisor before after record"
+  - "rrf spine lane health change record"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
 # What Changed in the Skill Advisor: The RRF Spine, Lane Health and Default-Off Routing
 
 > The Skill Advisor is the routing-intelligence scorer of packet 028, the component that reads a request and recommends which skill should handle it. Before 028 it fused five lanes with a raw-score weighted sum, counted a dead lane the same as a lane that ran and matched nothing, served cached cosine vectors with no embedder-freshness check and carried no principled guard against a skill scoring its own authored content. The 028 work re-grounded that scorer on a shared fusion spine and a runtime health model, then built a family of ranking and learning seams default-off on top of it. The subsystem became one always-on correctness layer (lane health, embedding freshness and a corrected workspace-root resolver) plus a default-off frontier (the RRF determinism spine, the conflict, query-class and exact-rerank routing refinements, the self-recommendation guard and the shadow-only Beta-posterior learning chain), every gated member waiting on the data or benchmark it names rather than flipped on a structural guess. Eight phase children carry that story, from `001-rrf-determinism-spine` through the newly moved `008-advisor-workspace-root-resolution`.
@@ -98,4 +108,4 @@ The Skill Advisor subsystem of packet 028 shipped one always-on correctness laye
 
 ---
 
-The 2026-06-27 post-release drift audit + remediation (175 findings converged across packet 028, driven to 100% terminal — 130 fixed-verified, 45 false-positive) corrected residual documentation, config and metadata drift touching this track. The umbrella record is in the [028 before-vs-after.md](../../system-speckit/028-memory-search-intelligence/before-vs-after.md) Section 12 and the [013 drift-remediation changelog](../../system-speckit/028-memory-search-intelligence/changelog/000-release-cleanup/changelog-000-013-drift-remediation.md).
+The 2026-06-27 post-release drift audit + remediation (175 findings converged across packet 028, driven to 100% terminal — 130 fixed-verified, 45 false-positive) corrected residual documentation, config and metadata drift touching this track. The umbrella record is in the [028 before-vs-after.md](specs/system-speckit/028-memory-search-intelligence/before-vs-after.md) Section 12 and the [013 drift-remediation changelog](specs/system-speckit/028-memory-search-intelligence/changelog/001-release-cleanup/changelog-000-013-drift-remediation.md).

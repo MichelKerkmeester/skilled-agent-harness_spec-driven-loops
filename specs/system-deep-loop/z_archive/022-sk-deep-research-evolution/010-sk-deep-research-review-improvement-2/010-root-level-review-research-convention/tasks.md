@@ -2,14 +2,14 @@
 title: "...killed-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/tasks]"
 description: 'title: "Tasks: Root-Level Review/Research Folder Convention"'
 trigger_phrases:
-  - "killed"
-  - "agent"
-  - "orchestration"
-  - "042"
-  - "deep"
-  - "tasks"
-  - "010"
-  - "root"
+  - "root level review research convention"
+  - "agent orchestration convention"
+  - "spec tree orchestration"
+  - "root level artifact placement tasks"
+  - "deep loop convention tasks"
+  - "root level convention task list"
+  - "root level packet tasks"
+  - "root level folder tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
@@ -25,9 +25,11 @@ status: complete
 # Tasks
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Shared Path Resolver
 
 - [x] T001 Create `review-research-paths.cjs` in `.opencode/skills/system-spec-kit/shared/`
@@ -36,6 +38,9 @@ status: complete
 - [x] T004 Add boundary check: stop walking at `specs/` directory level
 - [x] T005 Add unit tests for standalone, child, grandchild, and deep-nested paths
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Consumer Updates
 
 ### 2a. Reducers
@@ -58,6 +63,9 @@ status: complete
 - [x] T036 Update `.codex/agents/deep-review.toml` (mirror)
 - [x] T037 Update `.codex/agents/deep-research.toml` (mirror)
 
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Documentation
 
 - [x] T040 Update `sk-deep-review/SKILL.md` State Packet Location section
@@ -66,9 +74,14 @@ status: complete
 - [x] T043 Update `sk-deep-research/README.md` folder structure
 - [x] T044 Update `sk-doc/assets/documentation/readme_template.md` with convention note
 
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:completion -->
 ## Verification
 
 - [x] T050 Verify resolver returns correct paths for all test cases
 - [x] T051 Verify `grep -r '{spec_folder}/review/' .opencode/commands/` returns 0
 - [x] T052 Verify all 8 agent files are consistent
 - [x] T053 Run `npx tsc --noEmit`
+
+<!-- /ANCHOR:completion -->

@@ -41,7 +41,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/commands/deep/skill-benchmark.md",
       ".opencode/commands/deep/review.md",
       ".opencode/commands/deep/ai-council.md",
       ".opencode/commands/deep/research.md",
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/skill-benchmark.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
     "created_at": "2026-07-01T10:50:58.996Z",
-    "last_save_at": "2026-08-30T15:39:25.442Z",
+    "last_save_at": "2026-10-07T18:15:16.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:270b3906bccf55fef794b30fe6741bc66e895a7c6431790552e2eee2f7c97829",
+    "source_fingerprint": "sha256:41f2025cd7cbfcd22e0b152d3efacf910017b344dccb5ed74820a8046103b69e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3716a58f1274b75f3968f356ddac918691893a4dc6e7b52dc8fc5cd81cf237a",
-      "plan.md": "48d68fc64e1e20a23e24b5609be5656d3d07326bab7121ac49fd8f21ae2aef60",
-      "tasks.md": "dc59abe613fe5967e8f13f5d6e09f1cb29e76e932f83afcb428dd837b11b5ff7",
-      "implementation-summary.md": "246bdf6829a8f2484a29ce67d2096cb810f37b4ad5b4f8b065f7840b6bea25b0"
+      "spec.md": "a969da346220aa0ab5543262aea3274c4dfc29a03ebe9be4c2e82180e28be91e",
+      "plan.md": "523ac322580f4ed4be83dd7f00e5d50aebf5e581aa91180bc791eec10be6c8fa",
+      "tasks.md": "b127567341794c135e7570133fa0121a04260bd5e4d1e492c07acffd6ae8fb06",
+      "implementation-summary.md": "e9a3ed5a6e88816a339c30fe4a242cced285338c4fe74c9005ac30ec7f54afbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

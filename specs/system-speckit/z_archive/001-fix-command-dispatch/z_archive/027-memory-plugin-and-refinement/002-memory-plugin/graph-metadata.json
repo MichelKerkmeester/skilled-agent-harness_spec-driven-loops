@@ -11,31 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "memory",
-      "plugin",
-      "dashboard",
-      "spec",
-      "002",
-      "implementation",
-      "plan",
-      "tasks",
-      "optimization"
+      "memory plugin dashboard spec",
+      "memory plugin dashboard optimization",
+      "memory plugin dashboard plan",
+      "memory plugin optimization plan",
+      "memory plugin dashboard tasks",
+      "memory plugin dashboard task breakdown"
     ],
     "key_topics": [
-      "feature",
-      "specification",
       "memory",
       "plugin",
       "dashboard",
       "spec",
-      "implementation",
+      "optimization",
       "plan",
       "tasks",
-      "optimization",
+      "task",
+      "breakdown",
       "reduce",
-      "token"
+      "token",
+      "consumption"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -162,7 +157,7 @@
     ],
     "causal_summary": "Reduce token consumption from ~2,000-5,000 tokens to ~500-1,000 tokens per session by replacing full memory content injection with a compact ASCII dashboard that surfaces memory IDs for on-demand loading",
     "created_at": "2026-04-12T09:02:53.519Z",
-    "last_save_at": "2026-08-30T15:39:37.061Z",
+    "last_save_at": "2026-10-07T20:13:13.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -170,12 +165,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d72547b42eab506c6de67f3eef70cdf8dc79a44fe3f4e509c4be7644b25b67c1",
+    "source_fingerprint": "sha256:9a9c2968a11130b15801c18aa0f2688dd266a0c338ef222152168b4b9645c011",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be33822e61fd3fa428d8bf36ef24c3ac7684190385313ceb86dd5e9f48488e59",
-      "plan.md": "df114577b2249802699925169ffa0a4dac70ceb7a9e95ff332e9ae661c07948a",
-      "tasks.md": "26c9dc99dc491fdabc544da2ec1c1d10bfaa42e3931724c0e009c902cbceaa7a"
+      "spec.md": "c89fa250ea05b675bf011ba8bba355f5c1b09d134ba7334b9b99373c7c085688",
+      "plan.md": "d764ba0d12ebb6ae6a4ec9b537a3b3ece435cb4c6082a06f3130f87d35746387",
+      "tasks.md": "409ba2a643a94e372d84861b3f7693eaa4d7b8764b290f59fdbb8a2c595e4eb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

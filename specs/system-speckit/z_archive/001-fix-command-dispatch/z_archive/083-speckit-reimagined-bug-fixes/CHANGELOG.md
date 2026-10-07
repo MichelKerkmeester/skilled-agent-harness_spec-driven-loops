@@ -1,3 +1,14 @@
+---
+title: "Changelog: Spec Kit Bug Fixes"
+description: "Release notes for the bug fixes produced by the 15-agent parallel audit."
+trigger_phrases:
+  - "spec kit bug fix changelog"
+  - "release notes bug fixes"
+  - "bug fix release summary"
+importance_tier: "normal"
+contextType: "general"
+---
+
 # Changelog: Spec Kit Bug Fixes
 
 > Release notes for v1.2.2.0 - Bug fixes from 15-agent parallel audit

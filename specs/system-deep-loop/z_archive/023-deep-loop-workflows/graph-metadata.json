@@ -5,16 +5,6 @@
   "parent_id": "system-deep-loop",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-deep-loop/029-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
-    "system-deep-loop/029-deep-loop-workflows/002-runtime-backend-promotions",
-    "system-deep-loop/029-deep-loop-workflows/003-merged-hub-and-mode-packets",
-    "system-deep-loop/029-deep-loop-workflows/004-command-surface-repoint",
-    "system-deep-loop/029-deep-loop-workflows/005-agent-mirror-repoint",
-    "system-deep-loop/029-deep-loop-workflows/006-advisor-graph-mode-routing",
-    "system-deep-loop/029-deep-loop-workflows/007-governance-consolidation",
-    "system-deep-loop/029-deep-loop-workflows/008-framework-docs-sweep",
-    "system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation",
-    "system-deep-loop/029-deep-loop-workflows/010-deep-loop-skill-system-review",
     "system-deep-loop/z_archive/023-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
     "system-deep-loop/z_archive/023-deep-loop-workflows/002-runtime-backend-promotions",
     "system-deep-loop/z_archive/023-deep-loop-workflows/003-merged-hub-and-mode-packets",
@@ -56,7 +46,6 @@
     "key_files": [
       "spec.md",
       "research/research.md",
-      "context/context-report.md",
       "research/iterations/iteration-001.md"
     ],
     "entities": [
@@ -70,12 +59,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-report.md",
-        "kind": "doc",
-        "path": "context/context-report.md",
         "source": "derived"
       },
       {
@@ -159,17 +142,17 @@
     ],
     "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULLISOLATENOMCP consolidation)",
     "created_at": "2026-06-14T20:16:09.672Z",
-    "last_save_at": "2026-08-30T15:39:24.561Z",
+    "last_save_at": "2026-10-07T18:14:36.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:62bd500b2e84db4dbf8dd35558a4fced321e020301258ba15661b18cf969eb1a",
+    "source_fingerprint": "sha256:5216ae26684e3632f93e63c8c27a787fc7933449392682ecc0c9d49d56425ba2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2546b19ee0bfe04fafca787d7cf4c20e15ea8b26f3b84a01f09a86e1cb6fcc30",
+      "spec.md": "074e55b372d6c2cc40b1209ff264d2363e838a6fde29bd69f724e8a08de834b0",
       "research/research.md": "d3e6246e54bc9a64268e51d35e5c7c54dabd21ec4630ef9eec6c9cdc00bd26ea"
     },
     "last_active_child_id": "system-deep-loop/z_archive/023-deep-loop-workflows/004-command-surface-repoint",

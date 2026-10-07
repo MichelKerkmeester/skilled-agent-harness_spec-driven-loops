@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/002-naming-manifests",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/001-research/005-gap-remediation-research/002-naming-manifests",
   "description": "Forced 5-iter GPT-5.6-SOL research on renaming the underscore styles backend to kebab-case and reconciling the two overlapping manifests into one",
   "keywords": [
     "forced",

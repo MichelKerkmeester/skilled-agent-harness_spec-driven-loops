@@ -160,7 +160,6 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -178,7 +177,6 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

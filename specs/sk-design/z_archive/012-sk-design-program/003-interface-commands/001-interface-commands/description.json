@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/001-interface-commands",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/003-interface-commands/001-interface-commands",
   "description": "The five `/design:` commands are thin routers with no creation scaffolding",
   "keywords": [
     "five",

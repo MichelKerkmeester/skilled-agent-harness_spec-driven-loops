@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/034-opencode-go-flash-qwen-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/034-opencode-go-flash-qwen-roster"
     last_updated_at: "2026-08-07T13:25:40Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored spec for opencode-go deepseek-flash + qwen3.8-max in cli-opencode and cli-pi"

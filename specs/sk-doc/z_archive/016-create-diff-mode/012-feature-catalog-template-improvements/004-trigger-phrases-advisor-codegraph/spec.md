@@ -3,14 +3,19 @@ title: "Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph"
 description: "Add or improve trigger_phrases in 40 skill-advisor snippets and 14 code-graph snippets. Audit existing phrases for quality; fill all gaps."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "trigger phrases advisor codegraph spec"
+  - "skill advisor trigger phrases"
+  - "code graph trigger phrases"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -22,14 +27,19 @@ trigger_phrases: []
 | **Prerequisite** | Phase 002 complete |
 | **Skill targets** | system-skill-advisor, system-code-graph |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 Both skills have partial trigger_phrases adoption (the 57 files with trigger_phrases across all skills are concentrated here). Phase 004 audits existing phrases for quality and fills remaining gaps. These are smaller, faster to complete than spec-kit.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### system-skill-advisor (40 snippets, 7 categories)
@@ -59,9 +69,11 @@ Both skills already have partial trigger_phrases. Audit each:
 - Fewer than 3 phrases → add more
 - Phrases don't include the tool function name → add it
 - Generic phrases only → replace with specific ones
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -70,11 +82,14 @@ Both skills already have partial trigger_phrases. Audit each:
 | R-002 | Minimum 3 phrases per snippet | No snippet has < 3 phrases |
 | R-003 | Existing weak phrases improved | Files previously with 1-2 phrases now have 3+ |
 | R-004 | MCP tool names present where applicable | `advisor_recommend`, `code_graph_query` etc. are phrases |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - 54 snippets have `trigger_phrases:` with ≥ 3 quality phrases
 - Zero snippets have generic-only phrases
 - MCP tool names and CLI command names are trigger phrases where applicable
+<!-- /ANCHOR:success-criteria -->

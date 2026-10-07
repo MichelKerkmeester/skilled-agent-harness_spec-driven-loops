@@ -1,3 +1,13 @@
+---
+title: "Context Index: GPT Reliability Packet Reorg"
+description: "Old-to-new phase remap preserving per-phase narrative while the packet was regrouped into seven themed tracks."
+trigger_phrases:
+  - "deep loop gpt reliability reorg index"
+  - "031 phase remap"
+  - "old to new phase mapping"
+importance_tier: "critical"
+contextType: "implementation"
+---
 # Context Index — 031 GPT Reliability (Deep-Loop) reorg
 
 This packet was renamed `031-deep-loop-issues-with-gpt-opencode` →

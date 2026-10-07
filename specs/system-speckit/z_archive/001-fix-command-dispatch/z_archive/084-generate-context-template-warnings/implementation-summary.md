@@ -7,7 +7,6 @@ trigger_phrases:
   - "fix"
   - "generate"
   - "context"
-  - "implementation summary"
   - "084"
 importance_tier: "normal"
 contextType: "implementation"

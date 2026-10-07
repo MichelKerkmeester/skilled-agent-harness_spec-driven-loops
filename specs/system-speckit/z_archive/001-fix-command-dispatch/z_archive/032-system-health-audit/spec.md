@@ -2,13 +2,7 @@
 title: "System Health Audit [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/spec]"
 description: "Spec ID: 032-system-health-audit"
 trigger_phrases:
-  - "system"
-  - "health"
-  - "audit"
-  - "comprehensive"
-  - "bug"
-  - "spec"
-  - "032"
+  - "system health audit spec"
 importance_tier: "important"
 contextType: "planning"
 ---

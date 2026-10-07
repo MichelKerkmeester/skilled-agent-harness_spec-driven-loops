@@ -50,8 +50,7 @@
       "research/context-bundles/tests-scorer-fixtures.json",
       "lib/context/README.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/scripts/audit_readmes.py",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/sk-doc/scripts/audit_readmes.py"
     ],
     "entities": [
       {
@@ -118,12 +117,6 @@
         "name": "audit_readmes.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/scripts/audit_readmes.py",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Compose Pass",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Close the gap in two parallel tracks:",
     "created_at": "2026-05-15T11:55:00Z",
-    "last_save_at": "2026-08-30T15:39:26.889Z",
+    "last_save_at": "2026-10-07T22:05:43.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f808e547d5d3f4b72f6c498e0c4264fdbe54052f397f78a48ba7d1b849953488",
+    "source_fingerprint": "sha256:33230818f5243b2058a9ef07d2040281b4f04b1895f623050c31762fd5187512",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7468e5ac9b78321596d5a39c06e9f5a6a15971331413097d2781365b26088153",
-      "plan.md": "33441b8d82ff9f307e1eeb6544de593586756f059883a82f3e3c8fdbeff8bd45",
-      "tasks.md": "ded42d36b7e56ff91b925111856055fa60ac8758aa9948ed4ce3f49bd3c8b897",
-      "implementation-summary.md": "f54564bc03949d5f857ecedccd44181e837ca50b105e159d0d51ec17b906b462",
+      "spec.md": "33f9ad8f58180bf5e86a9666456b805e8dca94208d23afccf84aff6c6d3cee06",
+      "plan.md": "d0d1d4abef77fdeae0f932e64a65d70c9648899cec8b3aa258cff4e48b765397",
+      "tasks.md": "93e54f7c92647af0fa76511f64548e424c0a3ef9eacfd8782381b7e0a447c31e",
+      "implementation-summary.md": "682ebd5a2436f85b7a7ed403cca9713d94a92cb7af6090fb3e5066149bbe1bf7",
       "resource-map.md": "2a9b58641444ef5e71ce02503667c235d3cec9254af2f00cffa7fe5e03a5d62a"
     },
     "last_active_child_id": null,

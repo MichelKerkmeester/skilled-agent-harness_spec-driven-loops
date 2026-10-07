@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/006-shared",
+  "specFolder": "sk-design/z_archive/014-template-conformance/006-shared",
   "description": "`shared/` holds cross-packet vocabulary consumed by every sk-design mode (11 root markdown contracts, plus",
   "keywords": [
     "shared",

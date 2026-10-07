@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a clean checkout after a hard crash, and the shadow delta sink accepted an environment-controlled path without workspace containment validation",
     "created_at": "2026-05-19T15:11:02.194Z",
-    "last_save_at": "2026-08-30T15:39:26.543Z",
+    "last_save_at": "2026-10-07T18:16:08.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8d8f5a5bd29f2d4e5faa55e094ddadaac3fdeb2531b9fbe7066501fff8fa608",
+    "source_fingerprint": "sha256:a8b443ffe191ada2f5c7670438ca3b4640325f01ae0bea4e2555707a98fa9f1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ded6be730368aff9b12d4450bcad99a6ded1a2ed737ed64097c20416b594337",
-      "plan.md": "19575ce6c6826d0cc577a5af719a8372dbcd4043f7a2212e7b74d7405edfa6fd",
-      "tasks.md": "d25b29618b8047cda2c550cb3c672099eb38d53328b0b1fa8754753ede4f1173",
-      "implementation-summary.md": "896da3c1e878f8549f0821226a2d4e2ed3d16a8f3b41850ca231efb71da033b9"
+      "spec.md": "ab333f827d93f13daaccf9bf602d4a4d4f3e620b61aa8cb00033939205bd0f4a",
+      "plan.md": "e52107ddd81e2c185d765982131b274506c0792dd1786e9a5c4ed9a7b775bf74",
+      "tasks.md": "538f16ad3b2902317ead35ff820dbe8e571629e54de43b6208ba4fab6f168bb0",
+      "implementation-summary.md": "1a5c281c7ad3e008ac62c3077f3d6011d5e56f98f52398b0ad03cdfecb3405da"
     },
     "last_active_child_id": null,
     "last_active_at": null

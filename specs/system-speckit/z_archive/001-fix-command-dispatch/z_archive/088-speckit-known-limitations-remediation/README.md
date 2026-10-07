@@ -1,3 +1,14 @@
+---
+title: "Level 2 Templates"
+description: "Level 2 template overview: when to use them, what they add, and how they relate to Level 1 and Level 3."
+trigger_phrases:
+  - "level 2 template guide"
+  - "medium feature templates"
+  - "template required files"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Level 2 Templates
 
 > Medium-sized features requiring QA validation, NFRs, and edge case documentation (100-499 LOC).
@@ -206,10 +217,10 @@ diff specs/###-feature-name/checklist.md .opencode/skills/system-spec-kit/templa
 | [Level 1 Templates](../level_1/) | Simple features (<100 LOC) |
 | [Level 3 Templates](../level_3/) | Large features (500+ LOC) with decision records |
 | [Level 2 Addendum](../addendum/level2-verify/) | Additional verification sections |
-| [Template Guide](../../references/templates/template_guide.md) | Complete template usage guide |
-| [Level Decision Matrix](../../assets/level_decision_matrix.md) | How to choose the right level |
-| [Validation Rules](../../references/validation/validation_rules.md) | What validation checks |
-| [system-spec-kit SKILL.md](../../SKILL.md) | Primary skill documentation |
+| [Template Guide](.skilled/skills/system-spec-kit/references/templates/template-guide.md) | Complete template usage guide |
+| [Level Decision Matrix](.skilled/skills/system-spec-kit/assets/level-decision-matrix.md) | How to choose the right level |
+| [Validation Rules](.skilled/skills/system-spec-kit/references/validation/validation-rules.md) | What validation checks |
+| [system-spec-kit SKILL.md](.skilled/skills/system-spec-kit/SKILL.md) | Primary skill documentation |
 
 ---
 

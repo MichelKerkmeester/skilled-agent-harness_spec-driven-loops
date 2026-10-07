@@ -5,14 +5,6 @@
   "parent_id": "system-skill-advisor",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-skill-advisor/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
-    "system-skill-advisor/007-skill-advisor-production-hardening/002-advisor-plugin-hardening",
-    "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
-    "system-skill-advisor/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration",
-    "system-skill-advisor/007-skill-advisor-production-hardening/005-fail-open-fallback",
-    "system-skill-advisor/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks",
-    "system-skill-advisor/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
-    "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality",
     "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
     "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/002-advisor-plugin-hardening",
     "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
@@ -100,7 +92,7 @@
     ],
     "causal_summary": "Phase parent for skill-advisor hardening and safety improvements across 4 child packets. Covers deferred remediation, telemetry measurement, plugin hardening, standards alignment, and CLI Devin integration hooks.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.774Z",
+    "last_save_at": "2026-10-07T18:16:09.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

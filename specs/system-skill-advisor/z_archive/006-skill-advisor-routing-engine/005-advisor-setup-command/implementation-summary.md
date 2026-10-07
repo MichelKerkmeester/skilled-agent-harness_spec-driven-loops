@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/005-advisor-setup-command"
     last_updated_at: "2026-04-25T19:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Closed 25 P1 + 5 P2 deep-review findings via 12-step in-place remediation"

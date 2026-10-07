@@ -19,6 +19,7 @@ contextType: "planning"
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Adopt camelCase for JavaScript in OpenCode Framework
 
 ### Metadata
@@ -106,8 +107,10 @@ The `sk-code-opencode` skill enforces `snake_case` for JavaScript functions, par
 
 **Rollback**: `git checkout -- .opencode/skills/system-spec-kit/` restores all JS files
 
+<!-- /ANCHOR:adr-001 -->
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Backward-Compatible Export Strategy
 
 ### Metadata
@@ -144,3 +147,5 @@ This applies only to MCP handler files in `mcp_server/handlers/`. Internal scrip
 
 **Positive**: Zero breaking changes for consumers
 **Negative**: Slightly larger export objects - negligible impact
+
+<!-- /ANCHOR:adr-002 -->

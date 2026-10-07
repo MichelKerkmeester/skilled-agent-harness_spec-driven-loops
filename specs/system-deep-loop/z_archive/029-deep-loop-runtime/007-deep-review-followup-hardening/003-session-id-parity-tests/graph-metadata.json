@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Cross-mode workflow parity is maintained by discipline, not tests",
     "created_at": "2026-07-02T15:14:06.822Z",
-    "last_save_at": "2026-08-30T15:39:26.044Z",
+    "last_save_at": "2026-10-07T18:15:14.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9e809bff79f2b1ba550a1db7cada57dbb7c2ac1057486d8f6c7e97d5d7600ba",
+    "source_fingerprint": "sha256:58d9d5ed69362ea8e1e96312e789421582c0968146c499bc0120c00d16fa867e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1540557f68feb91eb4189ace8bebd9d6db3f554171fe9379b13f5dc339bc085",
-      "plan.md": "06ac37538e8c878ae550e6bf089bc36273542553798f43ac64f6f07de0f44770",
-      "tasks.md": "9e9f66a193dfbf9bbd5387143189c7eb6262e645c406506b1b53f102955a1e58",
+      "spec.md": "3c7c2d5305bc1fadb9924801b0ba80afef13d79630a952c18f4b37b77ba3ca62",
+      "plan.md": "8a86a7eb0d5d94cf9092aa56c3d086272b42ae20ffedc3dd39111dfc66745a05",
+      "tasks.md": "1c4caf98ec2f7f11cd4e53bab40f253003dff66dc65cca781550668440a4308c",
       "decision-record.md": "859a1275ffa48ebf2f8a9a46bf72a38f0aab9da094ef998505851a60495561b0",
-      "implementation-summary.md": "e2c1ca1dbdbfc3cab5cadf8d27ae235905a80d7e1f2e6a85a5dfb305aebeeeae"
+      "implementation-summary.md": "ffea6a01c114bf4e07edd8aa6ac7bf8dd02d9378659997e7e2791ffe89df7095"
     },
     "last_active_child_id": null,
     "last_active_at": null

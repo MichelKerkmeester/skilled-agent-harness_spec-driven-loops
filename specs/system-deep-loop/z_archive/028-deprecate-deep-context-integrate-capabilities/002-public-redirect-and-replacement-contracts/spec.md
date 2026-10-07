@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts"
+    packet_pointer: "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts"
     last_updated_at: "2026-07-04T17:50:32Z"
     last_updated_by: "opencode"
     recent_action: "Validated phase 002 public redirect and replacement contracts"

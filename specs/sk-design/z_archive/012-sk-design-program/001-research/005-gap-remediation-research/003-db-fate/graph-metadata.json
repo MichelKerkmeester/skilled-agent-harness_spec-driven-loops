@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/003-db-fate",
-  "spec_folder": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/003-db-fate",
-  "parent_id": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/001-research/005-gap-remediation-research/003-db-fate",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/001-research/005-gap-remediation-research/003-db-fate",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/001-research/005-gap-remediation-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "styles database fate research",
       "styles sqlite wire in or shelve",
-      "styles db utilization decision"
+      "styles db utilization decision",
+      "styles database fate research plan",
+      "styles sqlite wire in or shelve plan",
+      "styles database fate tasks",
+      "styles sqlite wire in or shelve tasks"
     ],
     "key_topics": [
       "styles",
@@ -25,20 +29,34 @@
       "shelve",
       "utilization",
       "decision",
-      "forced",
-      "5-iter",
-      "gpt-5"
+      "plan",
+      "tasks",
+      "forced"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,72 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Answer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Forced 5-iter GPT-5.6-SOL research deciding whether to wire the dormant styles SQLite DB into the default path or formally shelve it in favor of the flat-file engine.",
     "created_at": "2026-07-21T09:46:41.787Z",
-    "last_save_at": "2026-08-30T15:39:12.656Z",
+    "last_save_at": "2026-10-07T21:49:43.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a7fe888d536204416c5a9a83af9f5a1199878bcbff9003b33803d265983c4ba2",
+    "source_fingerprint": "sha256:1f9066eddcaab4f2943c1dbd8a9e969b011c7c20bc86603278c8a19ba3d24452",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31b8954aa3631ba26c9d1d65784a19e2d445bb7130bd391b4079f3c2cb44095f"
+      "spec.md": "25d5a525ed6fdfeb754b290c0c0160b4c720cb6742cf3e39eef7cf0be2683031",
+      "plan.md": "27849ce8674f9dc7e377857798e0711cb31fc308a5f7ab865b9ee1dc0fa5c720",
+      "tasks.md": "0f5dd08864f8710de0bfc54bd27329c818e38914fcc60d42bf0d2d86f5a51ef4"
     },
     "last_active_child_id": null,
     "last_active_at": null

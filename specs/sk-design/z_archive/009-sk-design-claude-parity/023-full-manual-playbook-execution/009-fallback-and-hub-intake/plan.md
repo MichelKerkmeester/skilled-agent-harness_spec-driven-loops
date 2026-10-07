@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake"
     last_updated_at: "2026-07-07T17:25:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan.md"

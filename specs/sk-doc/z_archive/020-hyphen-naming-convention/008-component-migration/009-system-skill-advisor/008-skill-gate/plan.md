@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
     last_updated_at: "2026-07-14T18:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the subtree gate implementation plan"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,31 +46,27 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -95,12 +91,6 @@
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current README at `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md` predates the pilot standard that the mcp-obsidian README set and that phase 001 codified in the refined template",
     "created_at": "2026-08-04T08:34:49.644Z",
-    "last_save_at": "2026-08-30T15:39:17.828Z",
+    "last_save_at": "2026-10-07T18:13:50.470Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e111ee36f12600ec28b2ef8caaf5f534dd0c28fb73a1427fbae76b48d347ac6",
+    "source_fingerprint": "sha256:50aea89739ff98ac022a6029ff87db43ea846e48f64d554ccc3e0aa2f5811438",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "496f3e22ad535ff716f9cbdd3e0924b55a51d6d5fb57a086cfb60a0b91d88dae",
-      "plan.md": "c12fed76c21426ca66fafce9dccbf5ce00b1c136c3269f75359c0113cbe21fd0",
-      "tasks.md": "6decf11262fb29efcdeb45caf34de1323dcee4c20e5fa1614c31612563b57d60",
-      "implementation-summary.md": "dd6dd1826e444125d9dadfe1396fc8694948b39adb5f8bd2a9fcda37e1f2e989"
+      "spec.md": "51a79c28a818498ae8ed3eb08ddc213dae787726a6e37cb0e0356a30f2437243",
+      "plan.md": "c2cbc5e57e7494fd90837680d63711b469ad2ca29791bb8d86ba2424811f02bf",
+      "tasks.md": "030adb3441de3ce992b800f8e407bb13c10154de576c85e081445e7de1e86978",
+      "implementation-summary.md": "f5ecd5744eae4b3a2e00778b531c978432d1d77600f8129618395c5ec44c94d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

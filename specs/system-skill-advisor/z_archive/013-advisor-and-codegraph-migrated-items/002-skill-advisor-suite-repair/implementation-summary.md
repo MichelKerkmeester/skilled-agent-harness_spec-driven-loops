@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair"
     last_updated_at: "2026-06-15T19:00:00Z"
     last_updated_by: "opus-agent"
     recent_action: "Suite at 0 failed/553: settings-parity retargeted; 3 symmetry edges added; build clean"

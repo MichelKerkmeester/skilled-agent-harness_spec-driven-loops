@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/010-benchmark-artifact-embedding",
   "description": "The operator reviewed the 9 benchmark report folders and found no copy of the actual HTML/SVG output each scenario produced — every `source.md`",
   "keywords": [
     "operator",

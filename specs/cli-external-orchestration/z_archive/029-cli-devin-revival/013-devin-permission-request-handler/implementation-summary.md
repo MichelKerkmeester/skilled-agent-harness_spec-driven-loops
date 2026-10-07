@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/013-devin-permission-request-handler"
     last_updated_at: "2026-07-27T12:00:00Z"
     last_updated_by: "claude"
     recent_action: "Adapter inert under the bypass mode actually used; PreToolUse guards verified active."

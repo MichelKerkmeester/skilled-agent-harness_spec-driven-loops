@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/041-quality-control-assessment",
-  "spec_folder": "sk-doc/041-quality-control-assessment",
+  "packet_id": "sk-doc/z_archive/041-quality-control-assessment",
+  "spec_folder": "sk-doc/z_archive/041-quality-control-assessment",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -51,7 +51,6 @@
       ".opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
       "scratch/baseline/vocab-sync.json",
       "scratch/baseline/router-replay.txt",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts",
       "scratch/post-fix-command-proof.txt",
       "scratch/baseline/packet-baseline.txt",
       "scratch/after.txt"
@@ -130,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "command-binding-existence.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "post-fix-command-proof.txt",
         "kind": "file",
         "path": "scratch/post-fix-command-proof.txt",
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Assess whether the sk-create-quality-control mode is routed to, used, duplicated elsewhere, and worth its size. It is routed to more than any sibling, used as a route target by two of them, duplicates nothing, and is the second smallest packet in the hub. What was actually broken is that every command it documented failed at the shell and every reference pointed at the wrong SKILL.md section. Keep the mode; repair its executable surface.",
     "created_at": "2026-08-31T20:01:08.484Z",
-    "last_save_at": "2026-08-31T20:01:08.484Z",
+    "last_save_at": "2026-10-07T18:14:15.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:431f39a820b3f083323a7295120fe29d8f128d98a1c3d60ffc4099949ca8191a",
+    "source_fingerprint": "sha256:39acedf9446449019a56ca621cc01a915643fc0273814ff144edfd678038806b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a7e5f11fadf174a0236229b6ae7a36420190de1b55ae5ec157256e0864c3010",
-      "plan.md": "0a4ed604871c05c8a9ea50e4d39df10d070d051cbaf4718ff5e15371a8ee3c08",
-      "tasks.md": "aba51d533fdcbb1cc3749c3be8d40b0dd32ab658fdc235af5efbfbf7c738ccc4",
-      "implementation-summary.md": "17ce42f2318b705137402df9772b85aa73cdd59214550a830a0ad8385eec71d8"
+      "spec.md": "ea3d5f0534a0a91f8096a71cc9e715f4002ce6d70d7730ec0db924cbcf6cfbf8",
+      "plan.md": "04499cf181ed6e50df45fcc1ae1728cb7be9b3795eeeaa51ce98a89ba05e100d",
+      "tasks.md": "7ef85be27c2cfe94453e0ed902cfaf29d8861a6b0f9f615be9882d4df8fee80a",
+      "implementation-summary.md": "f3016dfe8c8ff804d33efa91d4b1e7126da289b113c68446b27b682aab45df9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

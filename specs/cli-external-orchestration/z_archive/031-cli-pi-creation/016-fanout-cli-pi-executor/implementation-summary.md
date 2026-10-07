@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "cli-external-orchestration/031-cli-pi-creation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor"
     last_updated_at: "2026-07-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Superseded by mainline cli-pi fan-out 76c9ee944c; adopted in v4 merge, 179 tests pass"

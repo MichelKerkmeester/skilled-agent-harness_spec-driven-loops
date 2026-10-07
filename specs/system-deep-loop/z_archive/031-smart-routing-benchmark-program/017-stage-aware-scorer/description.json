@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/017-stage-aware-scorer",
   "description": "The Lane C skill-benchmark harness has a benchmark scenario `stage` axis (`routing` | `holdout` | `negative`) that is only half-wired:",
   "keywords": [
     "lane",

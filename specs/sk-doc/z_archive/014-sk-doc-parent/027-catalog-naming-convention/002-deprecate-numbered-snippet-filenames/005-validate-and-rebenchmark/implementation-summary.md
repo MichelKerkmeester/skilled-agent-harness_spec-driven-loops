@@ -6,7 +6,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recursive validate Errors 0 + independent review; spec closure commit 7ffa3f75b7"
@@ -16,10 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "validate and rebenchmark implementation summary"
 ---
 # Implementation Summary: Validate the De-Numbering + Independent Review
 

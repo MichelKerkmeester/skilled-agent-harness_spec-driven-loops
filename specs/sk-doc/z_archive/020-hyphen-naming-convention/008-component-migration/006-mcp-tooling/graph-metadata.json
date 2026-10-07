@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -103,16 +103,16 @@
     ],
     "causal_summary": "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior.",
     "created_at": "2026-07-14T15:16:59Z",
-    "last_save_at": "2026-08-30T15:39:16.597Z",
+    "last_save_at": "2026-10-07T18:12:45.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:189130aecf570cafa493cfd116898ff4c2706d1b111d8bebe3eed38cc964f802",
+    "source_fingerprint": "sha256:d6ebc558ff7f96eb30cb0bf898fab5786225367590d904344daef1a04c148e6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17617fa958283ee0d3a94944a46ecabb72b10f64e28dbd11105f899f85fe322e"
+      "spec.md": "eecc7b1ca14c0dd3bdcd49ee91877aeb886d2e5b9c87f211dcc31f6cba71df54"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
     "last_active_at": null

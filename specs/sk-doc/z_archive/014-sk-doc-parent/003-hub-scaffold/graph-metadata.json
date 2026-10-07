@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/003-hub-scaffold",
-  "spec_folder": "sk-doc/014-sk-doc-parent/003-hub-scaffold",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/003-hub-scaffold",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/003-hub-scaffold",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "sk-doc hub scaffold",
       "125 hub scaffold",
-      "sk-doc parent phase 003"
+      "sk-doc parent phase 003",
+      "sk-doc hub scaffold plan",
+      "sk-doc parent phase 003 plan",
+      "sk-doc hub scaffold tasks",
+      "sk-doc parent phase 003 tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -21,24 +25,45 @@
       "scaffold",
       "parent",
       "phase",
+      "plan",
+      "tasks",
       "monolith",
       "parent-hub",
       "conversion",
       "feature",
-      "specification",
-      "skeleton",
-      "two-tier"
+      "specification"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -76,20 +101,96 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:33.986Z",
-    "last_save_at": "2026-09-03T22:28:59.182Z",
+    "last_save_at": "2026-10-07T19:46:58.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:9c748806f4c37309dd831dae2bd2bbdd9062e863868af8554e5cf17f34b5f134",
+    "source_fingerprint": "sha256:bdcaf0b927b355457e8dd1432540db313943f029b1be3dfd46fa1669ea25eb1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "649f3f4bcf86569797f1936e137cb0ae1b3b2fc70c677ef938f8d3b156039c4a"
+      "spec.md": "c1ed2513f4a84884b637c033e2409e03b2183f7e07865e8e0e6872fbe34ee061",
+      "plan.md": "c22a9915ede4f49f2bb4ce669036c984cb82082cc9b2fa7b42099985e524f841",
+      "tasks.md": "f76b5e070c1d36ccff825dc82bce9c32ae9163d9aed9ae1f06072316add1726a"
     },
     "last_active_child_id": null,
     "last_active_at": null

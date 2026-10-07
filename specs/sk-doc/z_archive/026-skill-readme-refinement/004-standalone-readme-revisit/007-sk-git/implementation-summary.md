@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git"
     last_updated_at: "2026-08-04T13:26:00Z"
     last_updated_by: "phase-executor"
     recent_action: "Rewrote sk-git README, bumped version to 1.4.1.0, added changelog entry"

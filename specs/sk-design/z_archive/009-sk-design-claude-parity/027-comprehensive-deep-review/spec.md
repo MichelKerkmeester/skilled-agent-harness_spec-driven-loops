@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/027-comprehensive-deep-review"
     last_updated_at: "2026-07-09T09:10:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "20 iterations + full remediation complete; all checkers pass"

@@ -1,9 +1,11 @@
 ---
 title: "Plan: design-motion corpus/ conformance"
 description: "Plan to audit design-motion's corpus/ directory (no authored template) against overview.md rules and package_skill.py."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/005-corpus"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/005-corpus"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author corpus audit plan"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "corpus plan"
 ---
 # Plan: design-motion corpus/ conformance
 

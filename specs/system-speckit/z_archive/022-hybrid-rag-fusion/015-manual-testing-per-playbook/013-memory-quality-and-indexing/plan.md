@@ -224,7 +224,6 @@ Manual memory quality test execution pipeline with review-gated evidence collect
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -244,7 +243,6 @@ Phase 1 (Preconditions) --> Phase 2 (Core Pipeline) --> Phase 3 (Quality Loop) -
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

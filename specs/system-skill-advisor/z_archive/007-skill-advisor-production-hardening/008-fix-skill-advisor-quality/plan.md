@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/008-fix-skill-advisor-quality"
     last_updated_at: "2026-04-30T00:00:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Plan authored"

@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/014-sk-doc-parent/015-commands-refresh",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/015-commands-refresh",
   "description": "The `.opencode/commands/` surface (the `/create:` and `/doc:` command files plus their `assets/` presentation and resource YAMLs) cited the",
   "keywords": [
     "opencode",

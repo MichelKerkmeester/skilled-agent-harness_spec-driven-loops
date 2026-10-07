@@ -53,10 +53,11 @@ The `generate-context.js` pipeline contains two categories of correctness gap di
 | **Phase** | 003 of 016-json-mode-hybrid-enrichment |
 | **Parent Spec** | `../spec.md` |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -168,7 +169,7 @@ Eliminate silent data loss and silent quality degradation in the memory-save pip
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -186,7 +187,7 @@ Eliminate silent data loss and silent quality degradation in the memory-save pip
 - **NFR-R01**: All new V-rules must emit structured error objects (not throw) so the caller can handle them gracefully.
 - **NFR-R02**: The fast-path fix must not break existing callers that omit `filesModified`.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

@@ -4,7 +4,6 @@ description: "Created comprehensive test suite for system-spec-kit v2.1.0 featur
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "078"
   - "speckit"
 importance_tier: "normal"
@@ -125,7 +124,7 @@ Created comprehensive test suite for system-spec-kit v2.1.0 features covering 8 
 
 ---
 
-<!-- ANCHOR:verification -->
+<!-- ANCHOR:verification-2 -->
 ## L2: VERIFICATION EVIDENCE
 
 ### Code Quality Evidence
@@ -142,7 +141,7 @@ Created comprehensive test suite for system-spec-kit v2.1.0 features covering 8 
 - **Edge cases**: Floating point precision, negative learning index, boundary conditions, empty inputs
 - **Error scenarios**: MemoryError handling, missing parameters, invalid values, malformed data
 
-<!-- /ANCHOR:verification -->
+<!-- /ANCHOR:verification-2 -->
 ---
 
 ## L2: NFR COMPLIANCE

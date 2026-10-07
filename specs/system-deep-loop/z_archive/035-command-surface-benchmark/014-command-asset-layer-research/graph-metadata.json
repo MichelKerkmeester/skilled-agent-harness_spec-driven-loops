@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -16,13 +16,11 @@
       "presentation asset research",
       "workflow yaml mode research",
       "route manifest yaml research",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist"
+      "command asset layer research plan",
+      "command asset layer research tasks",
+      "command asset layer research run",
+      "asset layer cross-model backlog",
+      "command yaml presentation research synthesis"
     ],
     "key_topics": [
       "command",
@@ -36,7 +34,7 @@
       "mode",
       "route",
       "manifest",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "A two-lineage deep-research fan-out (5x GPT-5.6-Sol xhigh/fast via cli-codex + 5x GLM-5.2 max via cli-opencode, 10 forced iterations, non-convergence) drilling the command asset layer — the _auto.yaml / _confirm.yaml workflow YAMLs, the _presentation.txt display assets, and the doctor route-manifest _routes.yaml — and producing a cross-model asset-layer backlog (A-K/A-W/A-G) at research/research.md that refines the 013 remediation phases.",
     "created_at": "2026-07-16T07:48:40.216Z",
-    "last_save_at": "2026-09-11T04:38:02.387Z",
+    "last_save_at": "2026-10-07T18:15:20.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bed2fba0773f2f28777529082a0c812d29b68534f6e2c88fe3a644e95bfa3a12",
+    "source_fingerprint": "sha256:e1ff67a10fdbe9865ad2e8d5407f9a307f272ed01f474a57a04c3023e547a2d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72f8e50fce2fc050393c2c0587137a86cdcc5898414f14fa635ae564e5ac69c1",
-      "plan.md": "3f96148a01559f6800774270087f51eff510bef9e61fa0f904e4dedf28753557",
-      "tasks.md": "76c057b64c5d50d001be74cc99bc1c8fc8e288542ed64208daca5298c7de9e4b",
-      "implementation-summary.md": "18ac7a5639b00d028a2dddba359f7abadad01e4fd1481851f964502a1dd37729",
+      "spec.md": "9b1bc3b23bea01ffcf2f5fe8407262f41bf1b828327f1498b43e6f6aa645229c",
+      "plan.md": "4d3b844e951b452a72acfd6e436154d7cfc0041a570f2c6bf096acf892f8e395",
+      "tasks.md": "be7b6398ab0584d36fa165dcab741ed5267813723c24041de9e21f18da8da8b6",
+      "implementation-summary.md": "68433099c7d844fb00912b82ad14f5b3fb5acb42ddf5c7c70c9c711cd62508f4",
       "research/research.md": "ba9bac13cdae7cc6702e723ca7ac0a8d5e596aa1a90a7bdf1f519a2cfd504a54"
     },
     "last_active_child_id": null,

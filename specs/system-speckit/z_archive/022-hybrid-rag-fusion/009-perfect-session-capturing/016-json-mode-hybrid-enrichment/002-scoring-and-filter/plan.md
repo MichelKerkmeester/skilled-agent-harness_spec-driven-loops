@@ -232,7 +232,6 @@ JSON input
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -257,7 +256,6 @@ Phase 1 (Foundation) ──► Phase 2 (Scorer) ──► Phase 3 (Filter Extens
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -361,7 +359,7 @@ extractors/quality-scorer.ts (bonus removal)
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Bonus Removal vs. Rebalancing
@@ -387,4 +385,4 @@ LEVEL 3 PLAN (~200 lines)
 - Dependency graphs, milestones
 - Architecture decision records
 -->
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

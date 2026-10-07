@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
-  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/z_archive/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+  "spec_folder": "cli-external-orchestration/z_archive/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+  "parent_id": "cli-external-orchestration/z_archive/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "cli-pi's manual testing playbook has a Model Dispatch group (PI-017, PI-018), but neither scenario mentions the cline provider — the only cli-pi file that referenced cline was the provider roster",
     "created_at": "2026-08-18T18:42:01.971Z",
-    "last_save_at": "2026-08-30T15:39:08.123Z",
+    "last_save_at": "2026-10-07T18:11:36.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2a5020be5d8026590afdd7c045d69f0ae99b5c22f0093629155ef84ab7c9d33",
+    "source_fingerprint": "sha256:a0a6491e333e808dcbb493158c43a6b951496852ab66c7ad27ccd667b285b544",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e5de8ec700d591c72649e7822afee6a14755c5e68af3138c18b7e284fd0f69a",
-      "plan.md": "38f9278539e24537db5f623e5c68eecc8fd874f7a3d5879e8ac871d619c29d2c",
-      "tasks.md": "311e48563d9cba74b1f64f0db3d4a7cf7978b83a802ffe7ec068f222c728525f",
-      "implementation-summary.md": "8ab712b447153173eeb81c220cbc8bd0773244dc5e1f604699b013bde296c211"
+      "spec.md": "c640b6644161b30af8f23918dded8e41b45c61952b92e16dfac584da58ec526a",
+      "plan.md": "2fd67695684a32879b944fc008b4f80140f60a708d81e1a8a42f392f06b51922",
+      "tasks.md": "0855c580104728c73f7981f0617378ae1c393826cb6b37f38b074b563868a86b",
+      "implementation-summary.md": "d5dd4d4dd420d7c9b6991b18bc2be57fd667e4f698edc6f9c191503f7fdd12be"
     },
     "last_active_child_id": null,
     "last_active_at": null

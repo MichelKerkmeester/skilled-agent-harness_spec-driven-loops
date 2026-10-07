@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-sk-improve-agent-package-runtime-alignment |
+| **Spec Folder** | 005-sk-recursive-agent-package-runtime-alignment |
 | **Completed** | 2026-04-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

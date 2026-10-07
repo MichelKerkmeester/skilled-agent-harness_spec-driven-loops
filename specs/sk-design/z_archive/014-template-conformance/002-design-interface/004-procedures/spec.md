@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/002-design-interface/004-procedures"
     last_updated_at: "2026-07-27T16:20:08Z"
     last_updated_by: "spec-author"
     recent_action: "Sampled one card as near-conformant with a minor field-name variance"

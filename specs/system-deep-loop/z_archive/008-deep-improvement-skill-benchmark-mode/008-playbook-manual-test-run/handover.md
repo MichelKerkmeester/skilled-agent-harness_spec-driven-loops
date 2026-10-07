@@ -1,9 +1,24 @@
+---
+title: "Session Handover — Execute the deep-improvement Manual Testing Playbook (all 48 scenarios)"
+description: "Fresh-session runbook for the 008 manual test run: the golden rules, the 48-scenario map, prerequisites, where results go, the per-scenario execution protocol, and category-specific notes."
+trigger_phrases:
+  - "deep-improvement playbook manual test run handover"
+  - "48 scenario execution runbook"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # Handover — Execute the deep-improvement Manual Testing Playbook (all 48 scenarios)
 
+<!-- ANCHOR:handover-summary -->
 > **For a fresh agent session.** Mission: run **every** scenario in the
 > `deep-improvement` manual testing playbook **for real** in a sandbox, capture
 > evidence, and record a PASS / FAIL / SKIP verdict per scenario + a release
 > readiness roll-up. Read this top-to-bottom before running anything.
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:context-transfer -->
 
 Repo root (the working directory for almost everything):
 `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`
@@ -86,6 +101,9 @@ operator, or ask which model to use.
 
 ---
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:next-session -->
 ## 3. GATE 3 — WHERE RESULTS GO
 
 This run produces files (results matrix + evidence), so it needs a spec-folder
@@ -138,3 +156,4 @@ contaminate each other.
   The candidate-generation step normally dispatches `@deep-improvement`. Read each
   E2E file: graph/lineage/coverage assertions (022/024-era content) can be checked
   on node-produced artifacts, but a true end-to-end run (017 full-pipeline) needs
+<!-- /ANCHOR:next-session -->

@@ -335,7 +335,7 @@ _memory:
 - [B] T163 Re-run `npm run check:full` for full-workspace confirmation [BLOCKED: unrelated dirty-worktree failure in `tests/unit-rrf-fusion.vitest.ts`, test `C138-CV13`, from shared RRF work outside orphan-remediation scope]
 ---
 
-<!-- ANCHOR:phase-3 -->
+<!-- ANCHOR:phase-3-2 -->
 ## Phase 3: Verification
 
 **Regression gates (HARD BLOCKER per phase):**
@@ -356,8 +356,9 @@ _memory:
 
 **Memory save:**
 - [ ] T129 Save session context via `generate-context.js` to 004 memory folder
+<!-- /ANCHOR:phase-3-2 -->
+
 <!-- ANCHOR:completion -->
-<!-- /ANCHOR:phase-3 -->
 ## Completion Criteria
 
 - [ ] P0 implementation tasks complete; runtime verification tasks (T012-T015, T029-T032, T051-T055) remain open

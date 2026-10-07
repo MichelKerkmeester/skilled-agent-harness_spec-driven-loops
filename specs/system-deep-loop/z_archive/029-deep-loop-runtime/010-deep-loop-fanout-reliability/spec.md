@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/010-deep-loop-fanout-reliability"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/010-deep-loop-fanout-reliability"
     last_updated_at: "2026-06-04T23:10:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Implemented A1-A7 fan-out reliability fixes and regression tests"

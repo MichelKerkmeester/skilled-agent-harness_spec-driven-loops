@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
-  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
-  "parent_id": "mcp-tooling/016-code-mode-node-resolution",
+  "packet_id": "mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+  "spec_folder": "mcp-tooling/z_archive/016-code-mode-node-resolution/002-launcher-shim",
+  "parent_id": "mcp-tooling/z_archive/016-code-mode-node-resolution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
     "created_at": "2026-08-28T16:11:20Z",
-    "last_save_at": "2026-08-30T15:39:10.538Z",
+    "last_save_at": "2026-10-07T18:11:39.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edaf0b46a6824e0287fb8c81701c2943d0dacee8116f4dc3c6105d00e62464c6",
+    "source_fingerprint": "sha256:553d939f5730cebabc778f4b927c5c2e4bd3f27eb92aefac97a9ad853c40a57a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80242adc477845be77f7bbe90594b44145253d4de49ec6fc84af48fa3673ad15",
       "plan.md": "1a25e792619380c16dfd3f7933a88ff6b6e035725dbe584f6f2c6d85360eaab7",
       "tasks.md": "1e1b76b6d456f6c34b89b08330f1fdcdcc7ee8192f7d1296cee3e5136087b334",
-      "implementation-summary.md": "ddc74d23e07727bc1b3a0f365bd76a441577c5f826aeee97e82157ac5ba80f01"
+      "implementation-summary.md": "d4559a4be60c3379f1318c2421e74fef46ad22935e51f4f6c88a9ff049fc48d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,7 +2,6 @@
 title: "Implemen [system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives/implementation-summary]"
 description: "Fixed false-positive validation rules blocking legitimate memory/spec files from bulk reindex, plus contextType migration from decision/discovery to planning/general across the full stack."
 trigger_phrases:
-  - "implementation summary"
   - "009 reindex validator"
   - "false positive fix summary"
   - "contexttype migration"

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+  "specFolder": "sk-design/z_archive/011-sk-design-styles-utilization/005-md-generator-schema-contract",
   "description": "The `design-md-generator` backend defines DESIGN.md structure in several disconnected places: the formatter (`formatters-v3.ts`) decides emission, the",
   "keywords": [
     "design-md-generator",

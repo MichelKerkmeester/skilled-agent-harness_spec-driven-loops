@@ -2,7 +2,6 @@
 title: "Implementation Plan: The DevPass DeepSeek route moves to V4.1 Flash"
 description: "Probe the gateway first so the replacement is chosen on evidence, then move the one literal through the runtime, the two skill rosters and the Pi config, letting the test suites prove the three copies of the effort pin agree."
 trigger_phrases:
-  - "implementation plan"
   - "gateway route repoint approach"
   - "probe before wiring"
   - "effort pin three copies"

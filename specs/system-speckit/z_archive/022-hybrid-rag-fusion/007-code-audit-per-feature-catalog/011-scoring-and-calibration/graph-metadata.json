@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "implementation summary",
       "scoring & calibration"
     ],
     "key_topics": [
@@ -28,10 +27,10 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +188,7 @@
     ],
     "causal_summary": "The feature catalog for Scoring and Calibration has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-08-30T15:39:38.357Z",
+    "last_save_at": "2026-10-07T20:28:59.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2d3578020594ec0dc8ca5c572bcf2d5e764085212836cf569b1a6a2a52b52ba",
+    "source_fingerprint": "sha256:e0407d21232e163a6675ddac476d565033416166311d278c3c63463e7bf9be57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fa32c21504dbc97c416c641d3197627cb3f2d1c4c623de08aa0c6ab9c207e8f",
-      "plan.md": "98b25d520a9c64ec761569fdfba35d2274557d35856345d7f046e9a139eaf910",
+      "spec.md": "e0ffaf1cbae3fcd6662d1033069246e063f41c69e403b1a52e7376b07bba3a7e",
+      "plan.md": "cca3820f892067e6899f613be15bbf29c7e866b547f29646c8fb7588341eb381",
       "tasks.md": "f8120e677ace02763c426509d20ac47454daa7209ba4db7812cb7a7250742096",
-      "implementation-summary.md": "5e6afad2c12bdfe2386cfd314345cc4fa794c1a0b5f83446bb8189872f07045e"
+      "implementation-summary.md": "632768921435438f7f24c8187e133c9b6b1b6449502314247a976529332b198f"
     },
     "last_active_child_id": null,
     "last_active_at": null

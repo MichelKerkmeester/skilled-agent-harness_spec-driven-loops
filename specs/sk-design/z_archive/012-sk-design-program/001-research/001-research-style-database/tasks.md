@@ -1,9 +1,11 @@
 ---
 title: "Tasks: Deep research — style database architecture"
 description: "Task breakdown for the style-database deep-research phase."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/001-research-style-database"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/001-research-style-database"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -20,10 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "research style database tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

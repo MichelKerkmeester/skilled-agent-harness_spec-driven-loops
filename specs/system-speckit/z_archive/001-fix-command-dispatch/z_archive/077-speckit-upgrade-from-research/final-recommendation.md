@@ -1,3 +1,7 @@
+---
+title: "Final Recommendation: SpecKit System Upgrade"
+---
+
 # Final Recommendation: SpecKit System Upgrade
 
 > **Executive Recommendation Document**

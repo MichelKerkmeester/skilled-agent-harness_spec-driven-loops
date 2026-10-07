@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/001-parent-hub-canon",
   "description": "Bring the 7 parent hub SKILL.md files in this batch into full conformance with the parent-hub canon; each file is updated by a fresh GPT-5.6 LUNA MAX",
   "keywords": [
     "bring",

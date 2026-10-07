@@ -2,7 +2,6 @@
 title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/implementation-summary]"
 description: "The mcp-tooling hub README now opens purpose-first: a one-line pitch, a problem-first overview and a routing surface table, with the version field synchronized to 1.5.0.0 and a matching changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "mcp tooling readme summary"
   - "phase 3 closeout"
   - "hub readme rewrite summary"
@@ -10,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling"
     last_updated_at: "2026-08-04T12:52:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Documented phase 3 closeout: README rewrite, version 1.5.0.0, changelog added"

@@ -1,9 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/042-pi-remote-experience-parity",
-  "spec_folder": "cli-external-orchestration/042-pi-remote-experience-parity",
-  "parent_id": "cli-external-orchestration",
-  "parent_id_review_required": true,
+  "packet_id": "cli-external-orchestration/z_archive/042-pi-remote-experience-parity",
+  "spec_folder": "cli-external-orchestration/z_archive/042-pi-remote-experience-parity",
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -18,10 +17,9 @@
       "pi remote ux research",
       "pi claude app parity",
       "pi remote best experience",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "pi remote experience parity research plan",
+      "pi remote experience parity research tasks",
+      "pi remote experience parity implementation summary"
     ],
     "key_topics": [
       "remote",
@@ -31,13 +29,13 @@
       "claude",
       "app",
       "best",
+      "plan",
+      "tasks",
       "implementation",
       "summary",
-      "shipped",
-      "validation",
-      "evidence"
+      "packet"
     ],
-    "importance_tier": "critical",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -120,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "all",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -133,12 +137,6 @@
       },
       {
         "name": "2. STAGES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. DEPENDENCIES",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -162,6 +160,18 @@
         "source": "derived"
       },
       {
+        "name": "Tasks: Pi Remote Experience Parity Research",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -178,23 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Evidence",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pi Remote Experience Parity",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume, network-resilient replay, steer/stop) but not the app feel",
     "created_at": "2026-08-12T06:00:00.000Z",
-    "last_save_at": "2026-09-20T04:33:30.653Z",
+    "last_save_at": "2026-10-07T21:49:15.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:67279e900c8bafaa6790b6bea23cb65f48d06474c7153410c55e65744782facb",
+    "source_fingerprint": "sha256:9fe91191bd397e67c69f9d776878f02d107eac925edc8fb307f594b60a0764fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fcd523ef4862f1d0354e8c426c3a0319aad0fead6de2fad44f373fe89baea05f",
-      "plan.md": "4e7c3c509cd467edda04f9ba66059af25bbf46189be801f7a6c29d577c5286cc",
-      "tasks.md": "fac30e2ff95112ee267dee76b519364103ecb6b244a4a30959b03ffe4f002624",
-      "implementation-summary.md": "6c8bade99af473e5079b378bb2cf3ea9babf72afbe6936ba3a94d0079d744331",
+      "spec.md": "2a2a48d9ac7e2c3a4f4b19f4f8c303a355592dabbe969da917131b5fcf6d9314",
+      "plan.md": "b722d3c215f3914cd421f4fc4c59f0aa88508a7cc152946ea9f4a3082cfdd29a",
+      "tasks.md": "fc1ab7b30cdcdda637b07e82e343afb438c3a713946093a05548445f8e25845b",
+      "implementation-summary.md": "82fd26a99e36ea5c91d29dfa295ee70a43f57dcae954257ad8b1d6e4bb80f357",
       "research/research.md": "e42c2d7f2930f5051944d99b8942eb9647b19e99b34b51129064061f1ed1ff7a"
     },
     "last_active_child_id": null,

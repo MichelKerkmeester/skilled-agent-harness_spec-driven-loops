@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/008-bounded-command-matrix",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/008-bounded-command-matrix",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,11 @@
       "model matrix executor variance",
       "leaf sentinels",
       "alignment fan-out wiring",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "bounded command matrix plan",
+      "bounded command matrix tasks",
+      "bounded command matrix implementation",
+      "command behavior matrix scheduler",
+      "command matrix reconciliation"
     ],
     "key_topics": [
       "bounded",
@@ -36,7 +33,7 @@
       "alignment",
       "fan-out",
       "wiring",
-      "implementation"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying the alignment fan-out wiring that is not shipped today.",
     "created_at": "2026-07-14T20:37:00.448Z",
-    "last_save_at": "2026-09-11T04:38:01.312Z",
+    "last_save_at": "2026-10-07T18:15:16.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9f43edc94f8daa86f2c0a69eabb9b4d6245c7693ab79afa871890a4e425c174",
+    "source_fingerprint": "sha256:75a692411ff5ca1c000235e3420d2058617a4ccfc27a759e636e65dbeb38f15d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93d31190e0cf6d0abd3c306e61af734a40ec3a3380e6430e1bb62b79ccf3e604",
-      "plan.md": "4f8e9811cd6ac440999fc04731ba1893e3438e09682bf5795a016add6007c9eb",
-      "tasks.md": "3e9a4d80f0a5e887e7675bfbab1245998fd3d07e7bc4a0e6b22666b683d842d7",
-      "implementation-summary.md": "42e85b0edeb4033403b82962079f2c49cc3cbe836135dadd9883c0a7223ca3bc"
+      "spec.md": "79d47e7b29ec8805940d6e7bb2fbdc7641ca3e2bccc60b6a09a1afe5bed4e2a9",
+      "plan.md": "948bfd8998d3a12da934a4ab0042cdee454e4659e494128f5ce640469c625622",
+      "tasks.md": "1ba9f9b54091ab2384a93a086455a6a3da2404429e9dcc473aa1a8c088b6d389",
+      "implementation-summary.md": "b608825b6933f191220ef4e4fcf7f2975cca0fa12dce608c858d102155efe959"
     },
     "last_active_child_id": null,
     "last_active_at": null

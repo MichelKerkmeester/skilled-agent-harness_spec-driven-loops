@@ -45,7 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      ".opencode/commands/memory/search.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "search.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,22 +195,24 @@
     ],
     "causal_summary": "The current `/memory:search` command (667 lines) combines two fundamentally different concerns:",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-08-30T15:39:37.358Z",
+    "last_save_at": "2026-10-07T20:21:02.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e7351cfbca9f8ebacf29eb6c507e338da3f253da212c6a060c4666d14e1d293",
+    "source_fingerprint": "sha256:2a113a7bd8325ba0cafec6f5f7c30d691f361b16daf4fb8ca620d44e5c63eba9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c474f560901cae1c58599ebf1b6c82cdce944acbf7643fe5b28683a2a16ee41",
+      "spec.md": "d93945c64cbca6bdda04529b86e5017e7fd70bd7234dedb032822df443c0d545",
       "plan.md": "c364b5c1ddb781b7a0def3a551015147de57791ecd8647455b1a2fcff37b6651",
       "tasks.md": "9d267dac5ffc42fb1bd9d35f2111a86aa8f5535da375cc466f2a673ca4b3f024",
-      "decision-record.md": "029f0896f4c9392b2d19ea6baec5dfc0f44e41c067ee10fc058a8f1754c14815"
+      "decision-record.md": "029f0896f4c9392b2d19ea6baec5dfc0f44e41c067ee10fc058a8f1754c14815",
+      "implementation-summary.md": "18b5dfc1daaab987cdd542491a1dcb05c148b892d5749613d85ee0776e7ed157"
     },
     "last_active_child_id": null,
     "last_active_at": null

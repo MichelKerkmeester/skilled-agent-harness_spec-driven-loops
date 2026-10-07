@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/002-design-interface/005-corpus"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/002-design-interface/005-corpus"
     last_updated_at: "2026-07-27T16:21:47Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned plan.md"

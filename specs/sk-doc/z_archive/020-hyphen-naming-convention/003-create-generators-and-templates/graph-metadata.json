@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
-    "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
-    "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
-    "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+    "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
+    "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
+    "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
+    "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
   ],
   "manual": {
     "depends_on": [],
@@ -85,16 +85,16 @@
     ],
     "causal_summary": "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions.",
     "created_at": "2026-07-13T14:34:05.523Z",
-    "last_save_at": "2026-08-30T15:39:16.084Z",
+    "last_save_at": "2026-10-07T18:12:45.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:96a3ab3eadf9bb790f0d9cd3d80762a66e4c64a6bd72761fc197476c6110d179",
+    "source_fingerprint": "sha256:a20344731412f11aec6f854d94f7ab3a3c14b24e80cfa51e96f5ef92a5f6969d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b725e50d21bf9261412c3f5b5774339bd73062b41c9b5711fdd477110a3558c"
+      "spec.md": "7e5af13e1f980bb698c33034d6fbb94505581c1abf4d59202068864676b88c6c"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
     "last_active_at": null

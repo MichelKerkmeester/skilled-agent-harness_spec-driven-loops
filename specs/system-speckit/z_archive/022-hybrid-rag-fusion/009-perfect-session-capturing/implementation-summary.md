@@ -94,8 +94,8 @@ The work landed in four steps:
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

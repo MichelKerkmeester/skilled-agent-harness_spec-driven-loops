@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/011-skdoc-doc-conformance",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/011-skdoc-doc-conformance",
   "description": "A parallel sk-doc conformance audit of `deep-alignment`'s own 83 shipped docs returned MAJORGAPS: 4 P0, 13 P1, and 11 P2 findings against the 25 clean",
   "keywords": [
     "parallel",

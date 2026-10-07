@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix"
     last_updated_at: "2026-07-27T10:45:00Z"
     last_updated_by: "claude"
     recent_action: "Implemented (GPT-5.6-LUNA xhigh) and verified."

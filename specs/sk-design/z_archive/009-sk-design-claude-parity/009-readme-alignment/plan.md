@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 009 — README Alignment (Hub + Sub-Skills)"
 description: "Complete Level 2 plan for updating the sk-design hub README.md and its five mode-packet README.md files to match the shipped Phase 002-005 reality, using sk-doc's readme templates."
 trigger_phrases:
-  - "implementation plan"
   - "readme alignment"
   - "sk-design readme alignment"
   - "mode packet readme"
@@ -10,7 +9,7 @@ importance_tier: "normal"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/009-readme-alignment"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/009-readme-alignment"
     last_updated_at: "2026-07-06T05:10:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Verified all six README edits against the live tree"

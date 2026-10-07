@@ -7,6 +7,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: cli-* skill consistency patterns
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -69,6 +70,7 @@ Keep all provider-native flag names exactly as the upstream binaries accept them
 - Verified by `checklist.md` per-skill rows CHK-010 through CHK-056 (do-not-collapse grep gate).
 - spec.md §3 "Out of Scope" bullet 1 captures this rule.
 <!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
@@ -125,6 +127,7 @@ Keep identical: the ASK-not-substitute user-prompt template language, the cache-
 - T011, T015, T018 port + substitute per sibling.
 - Verified by checklist.md CHK-063 (all 5 skills have the subsection).
 <!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
@@ -178,5 +181,6 @@ Folder count parity is a structural surface; load-bearing files are functional s
 - Verified by checklist.md CHK-091 / CHK-092 (file existence checks).
 - spec.md §3 "Out of Scope" final bullet captures the rule.
 <!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->
 
 ---

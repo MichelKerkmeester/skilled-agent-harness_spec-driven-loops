@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/007-design-hub-routing"
+    packet_pointer: "sk-design/z_archive/007-design-hub-routing"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "gpt-5.6-luna"
     recent_action: "Drafted hub routing reconstruction plan"

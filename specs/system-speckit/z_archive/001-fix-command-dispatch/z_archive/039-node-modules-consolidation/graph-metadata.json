@@ -11,30 +11,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "node",
-      "modules",
-      "consolidation",
-      "spec",
-      "039",
-      "implementation",
-      "plan",
-      "task",
-      "breakdown",
-      "tasks"
+      "node modules consolidation spec",
+      "node modules consolidation plan",
+      "node modules consolidation tasks"
     ],
     "key_topics": [
       "node",
       "modules",
       "consolidation",
       "spec",
-      "implementation",
       "plan",
-      "task",
-      "breakdown",
       "tasks",
       "system-spec-kit",
       "skill",
-      "duplicate"
+      "duplicate",
+      "nodemodules",
+      "directories",
+      "consuming"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -173,7 +166,7 @@
     ],
     "causal_summary": "The `system-spec-kit` skill has duplicate nodemodules directories consuming ~1.9GB:",
     "created_at": "2026-04-12T09:02:53.525Z",
-    "last_save_at": "2026-08-30T15:39:37.129Z",
+    "last_save_at": "2026-10-07T20:12:11.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +174,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:21e59f8d82cb398a2852b6d954d9a1bdfab586e58d21a3cb046d12fd9253e6aa",
+    "source_fingerprint": "sha256:57382dd4a638e82c53076c17a40443306aa101d7b810c2935f34489523d1a295",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0cc936a754d90c0e637894f64aacd7524644f4921aaac3c61fdc6c29a5762765",
-      "plan.md": "54cf3f11575f4af4af2e95b0c8f177157cad32c36f1ed4e1a34f6c947ab23de4",
-      "tasks.md": "e1dc073617750135dd8dc61682fc35679d7d39c1a1e18686d9871e4c2acfcfd7"
+      "spec.md": "10b79b522b756672394bafcf87264da39f98506d9a7bed9a56d8ed50fd3e3a5f",
+      "plan.md": "658633c7b365d7d60e5cbe3e91446d30e87a10485a173d5add1cb5bb86330e7d",
+      "tasks.md": "3604ad875243fcde12ae3281db86390a0ef110cd1bd174f9838f61c581750e10"
     },
     "last_active_child_id": null,
     "last_active_at": null

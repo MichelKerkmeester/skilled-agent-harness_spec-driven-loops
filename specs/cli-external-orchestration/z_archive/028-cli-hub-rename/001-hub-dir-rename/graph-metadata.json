@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename",
-  "spec_folder": "cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename",
-  "parent_id": "cli-external-orchestration/028-cli-hub-rename",
+  "packet_id": "cli-external-orchestration/z_archive/028-cli-hub-rename/001-hub-dir-rename",
+  "spec_folder": "cli-external-orchestration/z_archive/028-cli-hub-rename/001-hub-dir-rename",
+  "parent_id": "cli-external-orchestration/z_archive/028-cli-hub-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The external CLI hub used a directory identity that no longer matched the canonical parent-skill name",
     "created_at": "2026-07-13T03:34:30Z",
-    "last_save_at": "2026-08-30T15:39:07.215Z",
+    "last_save_at": "2026-10-07T18:11:40.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cf2433765c9c8a3b31797b211677dc1f0266e950044b967a2d343fa2d69d5fd",
+    "source_fingerprint": "sha256:84f6d0d7502197bd343844e81e9ef741b6ae8afb061621656e11474804fcf3f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cd05349bcfd5f1d4850570e97c38c9c6e468105a801253b364adf832e2fab9b",
-      "plan.md": "3dbf486979c046052828669fb7fec6cb014fb9db43841ffb61a4d9ddf8216d02",
-      "tasks.md": "ab11503e8c54d91adc3b5ef4404000601067b3ff43c2ecd018d18fde68339f3b",
+      "spec.md": "c7d7aaa42b0ae5cefbfd69231c769426a1b9b9f0f5693500a12412d73aa2a9f4",
+      "plan.md": "ee5762802203d894aeb9483f15278a29ca8ba766f7391abd8271b0a32aa21276",
+      "tasks.md": "e61d594f91e08dd4d0a6828c115e9f59f58a3d921fc79b34960f8513bed14fbc",
       "decision-record.md": "f44cba3358abe8f0dbcb3bea37ca33e6998b6016e5edd3919678630f7184f816",
-      "implementation-summary.md": "4a878c92309a3b79caed46fda6be0953a147b555565c3a4053406e94b7125363"
+      "implementation-summary.md": "0c43f3ce501186dc732573be0f8381c1d8b695342614e65ba6166c5ee37c4ebb"
     },
     "last_active_child_id": null,
     "last_active_at": null

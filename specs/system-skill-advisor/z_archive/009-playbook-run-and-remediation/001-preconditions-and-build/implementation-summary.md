@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build"
     last_updated_at: "2026-05-26T20:00:00Z"
     last_updated_by: "playbook-run-operator"
     recent_action: "Preconditions established and verified"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-playbook-run-and-remediation/001-preconditions-and-build |
+| **Spec Folder** | 001-preconditions-and-build |
 | **Completed** | 2026-05-26 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

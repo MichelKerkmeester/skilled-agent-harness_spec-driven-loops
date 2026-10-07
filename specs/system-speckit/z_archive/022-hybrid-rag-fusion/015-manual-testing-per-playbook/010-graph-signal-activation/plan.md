@@ -169,7 +169,6 @@ The pipeline stays consistent across all graph signal scenarios: establish the g
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -190,7 +189,6 @@ Phase 1 (Preconditions) ──► Phase 2 (Core Graph) ──► Phase 5 (Verdic
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

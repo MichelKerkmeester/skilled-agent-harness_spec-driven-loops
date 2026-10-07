@@ -8,7 +8,7 @@ contextType: "implementation"
 status: "draft"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/004-import-export-tooling"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/004-import-export-tooling"
     last_updated_at: "2026-08-12T06:38:42.000Z"
     last_updated_by: "claude"
     recent_action: "Authored task queue ahead of executor dispatch"

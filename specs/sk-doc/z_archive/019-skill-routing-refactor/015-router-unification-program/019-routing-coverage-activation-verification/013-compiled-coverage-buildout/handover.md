@@ -2,17 +2,14 @@
 title: "013 compiled coverage buildout — handover"
 description: "_Worktree .worktrees/0089-sk-doc-default-routing-cutover (branch sk-doc/0089-default-routing-cutover). Merge to v4 is OPERATOR-GATED. Companions: goal-coverage-buildout.md, comp..."
 trigger_phrases:
-  - "015"
-  - "router"
-  - "unification"
-  - "program"
-  - "019"
-  - "handover"
-  - "013"
-  - "compiled"
+  - "compiled coverage buildout handover"
+  - "routing coverage activation handover"
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
+<!-- ANCHOR:handover-summary -->
 # Handover — Compiled-Coverage Build-Out (015/013)
 
 _Worktree `.worktrees/0089-sk-doc-default-routing-cutover` (branch `sk-doc/0089-default-routing-cutover`). Merge to v4 is OPERATOR-GATED. Companions: `goal-coverage-buildout.md`, `compiled-routing-coverage-diagnosis.md` (parent 015 folder)._
@@ -40,6 +37,9 @@ _Worktree `.worktrees/0089-sk-doc-default-routing-cutover` (branch `sk-doc/0089-
 
 The 4 routing agents dispatched (one per then-drifted hub) all landed successfully: `a381edc1f8` (sk-design, system-deep-loop, mcp-tooling), `66d179b023` (sk-doc). Each landing was verified per the checklist below at the time, and the whole set is independently re-verified live as part of this reconciliation pass: parity `subVerdict==='compiled-serving'` (drift=0, resolver-missing=0) — confirmed for sk-doc/sk-prompt directly, others corroborated via the live cross-hub vitest assertion; legacy `legacyProjection` byte-identical; frozen SHAs unchanged; `DEFAULT_ON_HUBS` now correctly lists all 7 (populated in `4cd19370da`, not still `new Set()`).
 
+<!-- /ANCHOR:handover-summary -->
+
+<!-- ANCHOR:context-transfer -->
 ## The proven recipe (why hubs under-route, how sk-code was fixed)
 The compiled **shadow-child** router (`.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/lib/{router,canary-router}.cjs` + `registry-compiler.cjs`) must score/select like the frozen legacy replay `router-replay.cjs`: weighted keyword match over the hub's own `hub-router.json` vocabulary, ambiguity-delta near-tie retention, **always route** near-tied sets, correct bundle rules. sk-code was under-routing because its pipeline used a generic OR-set evaluator + a selective controller that force-`defer`ed bare-surface routes and abstained on ties (neither legacy nor sk-design does this). **Reference impls:** `006-sk-design/lib/router.cjs` (production, 37 match) and `001-sk-code/lib/*` (committed).
 
@@ -51,11 +51,18 @@ The compiled **shadow-child** router (`.opencode/bin/lib/compiled-routing/009-pa
 - **All 7 manifests read `servingAuthority: 'compiled'`.** The flip was therefore **cohort-only** — confirmed: no manifest's `servingAuthority`/`shadowOnly` changed in `4cd19370da`, only the re-mint hash (a provenance shift from the directive-wording edit, not a routing-rule change).
 - Two divergent compilers exist (canonical `001-sk-code` vs per-hub shadow-child copies); the runtime/parity uses the shadow-child.
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:next-session -->
 ## DONE: the staged flip (shipped in `4cd19370da`; this section now records what happened, not what remains)
 1. **Persist cohort** — DONE. All 7 hub ids added to `DEFAULT_ON_HUBS` in `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` AND its authored twin `.../015-router-unification-program/014-runtime-engine/lib/resolve.cjs`; re-synced via `.opencode/bin/compiled-route-sync.cjs`. Verified byte-identical (`diff` clean) during this reconciliation pass.
 2. **Lockstep docs** — DONE. All 7 hub `SKILL.md` compiled-routing directives carry default-on wording + explicit `SPECKIT_COMPILED_ROUTING=0` kill-switch (confirmed live, identical pattern across all 7); both create-skill parent templates (`sk-doc/create-skill/assets/parent-skill/*`) carry fleet-default-on wording naming all 7 hubs (confirmed live); 7 catalog leaves updated (spot-checked live for `sk-doc`).
 3. **Staging mechanism actually used** — NOT a live run of `011-activation-cutover-p4/controller/cutover-controller.cjs` (that controller remained a DRY-RUN prover throughout, per `011`'s own reconciled docs). Once every hub independently reached `compiled-serving` across the commits above, the persistence was hand-implemented directly as a single reconciling commit (`4cd19370da`) rather than a live one-hub-at-a-time run of the controller's stop-on-first-failure loop. This is a documented deviation from the original plan, not a silent one — see both packets' `implementation-summary.md`.
 4. **Verify** — DONE, re-confirmed live during this reconciliation pass: with cohort persisted + flag UNSET, every hub resolves compiled == legacy (byte-identical effective routing, 0 drift each); `SPECKIT_COMPILED_ROUTING=0` → all 7 legacy (`causeCode: flag-off`, drilled live); per-hub cohort removal → byte-exact restore (cited from `011`'s CHK-025 drill, not re-mutated live in this doc-only pass); full skill-benchmark vitest green (258/258, re-run live); 3 frozen SHAs unchanged (re-hashed live).
 
+<!-- /ANCHOR:next-session -->
+
+<!-- ANCHOR:session-notes -->
 ## NEVER
 Edit the 3 frozen scorer files (`router-replay.cjs` `d5e13da…`, `score-skill-benchmark.cjs` `d5a9cc7…`, `load-playbook-scenarios.cjs` `5029f22…`); change what LEGACY routes (any `hub-router.json`/`mode-registry.json`/SKILL.md routing); flip a non-hub (sk-git, system-code-graph, system-skill-advisor, system-spec-kit, mcp-code-mode); flip any hub before it is compiled-serving; touch the 2 strays (`mcp-tooling/008-mcp-aside`, `system-deep-loop/032-…`); merge to v4 without explicit operator go-ahead (still ungranted as of this reconciliation pass).
+<!-- /ANCHOR:session-notes -->

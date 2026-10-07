@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/006-shared/001-root-docs",
-  "spec_folder": "sk-design/014-template-conformance/006-shared/001-root-docs",
-  "parent_id": "sk-design/014-template-conformance/006-shared",
+  "packet_id": "sk-design/z_archive/014-template-conformance/006-shared/001-root-docs",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/006-shared/001-root-docs",
+  "parent_id": "sk-design/z_archive/014-template-conformance/006-shared",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "sk-design shared root-docs conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "sk-design",
@@ -26,10 +25,10 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
-      "skills"
+      "skills",
+      "root",
+      "markdown"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root contracts; closest structural analog is .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md (numbered OVERVIEW, --- separators) — apply as a judgment call and record it`",
     "created_at": "2026-07-27T14:59:51.122Z",
-    "last_save_at": "2026-08-30T15:39:13.279Z",
+    "last_save_at": "2026-10-07T18:12:30.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3af7728c3bb7f0cc1af5a4bbe7ee3becdd53ff70f5d68fefe4ff0eab7a4967d",
+    "source_fingerprint": "sha256:ce1f836e90defa199a3fd56a89c9f3ab7a2b6ae4cbdd5611ecbeed7edf92f9ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa65c9621fba84aaef1361647321d0258dfa009b7ee9df7cd312d152337e6e96",
-      "plan.md": "5413ddeac0aad430d6c6e558917603d5fb9a76334ea346a3f4114e2038f7d78c",
-      "tasks.md": "c864dbcc1ac5baacd118bdd533af4b9e05b57cbf0acf0f190677b262912e1aa1",
-      "implementation-summary.md": "0c3682ea1c8b2efbd838517a72251b7b20dadcfecef703d8392062832b11d9dc"
+      "spec.md": "bb554eeec522a826f391a268e718d5ec38d66cc79a1adf1d8952e656f62a9fe2",
+      "plan.md": "0d4d2faad8d3d713d1d499da291b176809850d3db9a42370e36657f41d3e9828",
+      "tasks.md": "3c49e9b978468b45034bd00eee1f5953eef8895a6010c4337473d1b9eac0b852",
+      "implementation-summary.md": "61678738f273cdd6f4cb77d8b10c7ff9bf1a9cecc222aafa20d7b73b0b42ab4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

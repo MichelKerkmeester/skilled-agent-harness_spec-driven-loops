@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions"
     last_updated_at: "2026-07-09T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded from fresh-Opus analysis"

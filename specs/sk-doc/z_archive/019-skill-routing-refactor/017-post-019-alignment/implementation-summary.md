@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/017-post-019-alignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/017-post-019-alignment"
     last_updated_at: "2026-07-25T07:47:34Z"
     last_updated_by: "opencode"
     recent_action: "Completed and sealed the alignment audit"

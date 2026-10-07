@@ -302,7 +302,7 @@ As a developer, I need vec_memories rows to be cleaned up when memories are dele
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -328,7 +328,7 @@ As a developer, I need vec_memories rows to be cleaned up when memories are dele
 - **NFR-M02**: Documentation changes must update CHANGELOG sections
 - **NFR-M03**: Code changes must follow existing style conventions
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -405,7 +405,7 @@ As a developer, I need vec_memories rows to be cleaned up when memories are dele
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -416,7 +416,7 @@ As a developer, I need vec_memories rows to be cleaned up when memories are dele
 - Changes to external MCP integrations (Narsil, Figma, etc.)
 - Refactoring code that isn't part of a bug fix
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

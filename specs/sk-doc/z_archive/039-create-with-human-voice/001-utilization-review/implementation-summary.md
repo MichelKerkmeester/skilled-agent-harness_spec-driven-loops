@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/039-create-with-human-voice/001-utilization-review"
+    packet_pointer: "sk-doc/z_archive/039-create-with-human-voice/001-utilization-review"
     last_updated_at: "2026-09-02T22:10:00Z"
     last_updated_by: "utilization-review"
     recent_action: "Closed the six write-ups"

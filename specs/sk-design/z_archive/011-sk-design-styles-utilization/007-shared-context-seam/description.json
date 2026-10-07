@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/011-sk-design-styles-utilization/007-shared-context-seam",
+  "specFolder": "sk-design/z_archive/011-sk-design-styles-utilization/007-shared-context-seam",
   "description": "The 003 global-modes research settled that the styles library is a mode-owned evidence system, not a hub-level style chooser, and that its top-ranked,",
   "keywords": [
     "global-modes",

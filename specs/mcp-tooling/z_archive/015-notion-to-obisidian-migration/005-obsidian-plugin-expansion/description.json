@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/005-obsidian-plugin-expansion",
   "description": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
   "keywords": [
     "mcp-obsidian",

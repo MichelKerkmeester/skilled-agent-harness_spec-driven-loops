@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/003-design-motion/008-changelog",
-  "spec_folder": "sk-design/014-template-conformance/003-design-motion/008-changelog",
-  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "packet_id": "sk-design/z_archive/014-template-conformance/003-design-motion/008-changelog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/003-design-motion/008-changelog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-motion changelog conformance",
       "motion changelog template audit",
       "v1.0.0.0 changelog structure check",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "changelog plan",
+      "changelog tasks",
+      "changelog implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -33,10 +27,10 @@
       "audit",
       "structure",
       "check",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:14.301Z",
-    "last_save_at": "2026-09-11T04:35:42.879Z",
+    "last_save_at": "2026-10-07T19:23:36.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:139d7bdade76e02b10f5eb560c00b61fdf3901097bbc0da539f2a1d1e74f5ff1",
+    "source_fingerprint": "sha256:7d69d3ed87f9f7dc510cd2b07534777ba4457cd9278dfa83189b19a13b785855",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "089840b052f24fd73975f89d23e3b1184bd6593b886e54f9a9ec2318570839ca",
-      "plan.md": "7f2e8f856f3f1b7487ce0e1044e67134240868a9df7bf24f7163956bdff73296",
-      "tasks.md": "a68d6794af6bdf2c1ac58e5229c5ec7577b51b522709beeb5deb306532aa17a7",
-      "implementation-summary.md": "cf090d0ac2d5c20ed6d6904f9c2514d4b310f5e41fe68f86dac4c8391abe4700"
+      "spec.md": "6d9c0ef80821c578a4f5a161f39e810949da641e80b0db0eb7469702ebc06965",
+      "plan.md": "6487d52420bd98b8fa976e8606c67e28b359e59a955ce3583ffd87d064c7fbc5",
+      "tasks.md": "76551dd888c7efdf25a3ef2d66c0126a38fc8e4b8489912dd2055f28a8c435ac",
+      "implementation-summary.md": "2a8bf7dde6af4ec6d5f70d959624a999cd4527e157c76c5563c48211f9680b0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

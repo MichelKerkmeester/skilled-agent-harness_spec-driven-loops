@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/018-post-019-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/018-post-019-research",
   "description": "Packet 019 surfaced high-value questions about fleet-wide routing decomposition, confidence calibration, leaf-use telemetry, route-budget selection,",
   "keywords": [
     "packet",

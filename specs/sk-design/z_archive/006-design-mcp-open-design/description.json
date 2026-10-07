@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/006-design-mcp-open-design",
+  "specFolder": "sk-design/z_archive/006-design-mcp-open-design",
   "description": "The shipped `design-mcp-open-design` transport mode had no packet in git or memory",
   "keywords": [
     "shipped",

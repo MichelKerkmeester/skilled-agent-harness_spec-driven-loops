@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/005-backend",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/005-backend",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/005-backend",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/005-backend",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-md-generator backend structure conformance",
       "backend scripts tests directory rules",
       "md-generator test suite structural audit",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "backend plan",
+      "backend tasks",
+      "backend implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`backend/` is structurally unlike every other sk-design mode folder: it is a real TypeScript package (`package.json`, `tsconfig.json`, `tsconfig.build.json`, `vitest.config.ts`, `README.md`, `.npmignore`) with `scripts/` (29 `.ts` files) and `tests/` (19 `.ts` files + fixtures, 173 tests total)",
     "created_at": "2026-07-27T15:10:02.344Z",
-    "last_save_at": "2026-09-11T04:35:43.611Z",
+    "last_save_at": "2026-10-07T19:23:51.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26f0e20a6a27654e66e5ab3af320c64f080c67e15dd3670d7fa68dd682193d52",
+    "source_fingerprint": "sha256:de8e526f26b2219bc37ce3ff9f724c90b718866e29eb444532ddcf29d6fa2dbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8869a2b2fbae521e744d105f729f815901751a3eb434745a8388847707465bdf",
-      "plan.md": "e366e360d3b20f784c59b20f45a250b972d50eb9af095fec299ed0bc0aa831f4",
-      "tasks.md": "38ade13c4bf8dcaca3783c6574190621c9ba9bb7550c2c508fe71fc59b86e355",
-      "implementation-summary.md": "7295271ce1a8009920b885717e2d5fe811e14d0680aea544872b6c79c66727b0"
+      "spec.md": "a1da698f1ba07291331b33cd4c1bed78bb53534fb21373be5896026d543f6f84",
+      "plan.md": "90a799f380c2a9bd8e0e6ec4277569adecbf9c1254259256519b85591421e390",
+      "tasks.md": "0dbd2241cf322df9147a74ad306ddde4b12df56d7d6549add92d7443d8e845f5",
+      "implementation-summary.md": "2e45d0b1dbed659a6eca50acdb0124896ce4e04e47584097754a8589b6a36a74"
     },
     "last_active_child_id": null,
     "last_active_at": null

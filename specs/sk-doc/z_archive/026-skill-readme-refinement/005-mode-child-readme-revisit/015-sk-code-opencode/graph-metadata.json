@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-code/sk-code-opencode/README.md",
       ".opencode/skills/sk-code/sk-code-opencode/changelog/v1.0.0.5.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The sk-code-opencode mode README at `.opencode/skills/sk-code/sk-code-opencode/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:44.426Z",
-    "last_save_at": "2026-08-30T15:39:17.720Z",
+    "last_save_at": "2026-10-07T18:14:21.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec370f3f12c4321683593cf73f8c147691b4dba500fd9dd554d7ff08f17f780c",
+    "source_fingerprint": "sha256:efd4705776d912b2b2867d7e115e123fcc9b68f3f1a16ee8b3b0c1940cbddf77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ec4c5498a2cbc734455da509a998739b1ae3cb78085243963e367380bdd352e",
-      "plan.md": "3a1288bd0dcdc89863bcb76e9b08bd30f9c936684203da6bb0b20d6b86f3c30c",
-      "tasks.md": "05e6a45fc6ae5efa64bda749039d78e4b406ba340dc363be3b674da5fe40f104",
-      "implementation-summary.md": "2005c78059322b42ad337ead346f4421f1cd6209fccfb6dfed2be0377db40983"
+      "spec.md": "3d7c1d27eac464cbdec55abc0452a36b10d1559bebc99844ca96aff90ad6f6b6",
+      "plan.md": "4c12ab4236c4c51490df88e541098afd06aa31b1f2d6d6f5a088ca787ab5bfe7",
+      "tasks.md": "a42408bf32e16e024f328af31a6823aaf51819f94b7420488fdf21a7a8a9102d",
+      "implementation-summary.md": "535224f88a14f65fa4c1f7e77b7ef595a62c8997bdd5b049f703449830e44354"
     },
     "last_active_child_id": null,
     "last_active_at": null

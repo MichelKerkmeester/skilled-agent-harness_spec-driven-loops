@@ -6,7 +6,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration"
     last_updated_at: "2026-05-03T11:10:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed memory-save routing calibration for CP-101 and CP-104"

@@ -6,7 +6,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Applied migration (111 renames / 88 stage / 3 index); commit 8f1301e1e6"
@@ -16,10 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "execute migration implementation summary"
 ---
 # Implementation Summary: Execute the 111-File Snippet Rename + Stage Injection
 

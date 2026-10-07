@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max"
+    packet_pointer: "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max"
     last_updated_at: "2026-08-15T13:00:00Z"
     last_updated_by: "pi"
     recent_action: "Shipped Luna Max roster additions + honesty sweep; deep-loop vitest 190/190 green"

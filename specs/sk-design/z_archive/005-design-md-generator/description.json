@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/005-design-md-generator",
+  "specFolder": "sk-design/z_archive/005-design-md-generator",
   "description": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
   "keywords": [
     "design",

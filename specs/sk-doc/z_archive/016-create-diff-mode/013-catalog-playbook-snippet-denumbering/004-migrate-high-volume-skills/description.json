@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
   "description": "After system-spec-kit, seven skills carry the bulk of the remaining snippets (~548 files)",
   "keywords": [
     "system-spec-kit",

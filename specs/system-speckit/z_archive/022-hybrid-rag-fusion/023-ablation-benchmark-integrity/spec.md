@@ -143,7 +143,6 @@ Restore a benchmark path that either runs against an aligned parent-memory datas
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -162,7 +161,6 @@ Restore a benchmark path that either runs against an aligned parent-memory datas
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

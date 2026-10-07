@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/019-routing-drift-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/019-routing-drift-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,8 @@
       "implementation-summary.md",
       ".opencode/bin/compiled-route-status.cjs",
       ".opencode/bin/lib/compiled-route-manifest.cjs",
-      ".opencode/skills/sk-prompt/leaf-manifest.json"
+      ".opencode/skills/sk-prompt/leaf-manifest.json",
+      ".opencode/skills/sk-design/description.json"
     ],
     "entities": [
       {
@@ -86,6 +87,12 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".opencode/skills/sk-prompt/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A post-019 survey of every skill hub surfaced drift that had accumulated against the authorities packet 019",
     "created_at": "2026-07-24T18:15:58.637Z",
-    "last_save_at": "2026-08-30T15:39:15.633Z",
+    "last_save_at": "2026-10-07T18:13:31.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67f454d8f789ec47dc696c9b21819ac4ac3f4cb5f2d76f0351cb64b644b65209",
+    "source_fingerprint": "sha256:b6ab54670a23aca616f0c554729fd9c5fe4d0ec72328ac6284c330d39d1fc52e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa3603351d4c71ccded353b305bcf074b513bfe787c9ea3a3c2e350d87e8a052",
-      "plan.md": "874511f3239918f789f1b1c4784bc326d909405b5d2caeae1d74b3bb84120baa",
-      "tasks.md": "7372657d0330bbea8b269fad1068cd349d63fe7e0796203ecbc8c9fab5431b82",
-      "implementation-summary.md": "db58b82b652517a71bf38c2a205cf48645d7981f09568233858032c7d3c69319"
+      "spec.md": "139121c2cfb018e1be5c04a4fa515fb0e4ba07e0dfc755db599345cd69d42baf",
+      "plan.md": "1dfc943a27811ef10f4e612521d4d69ea85554c1c1e63d5d07dfeeacf0489d13",
+      "tasks.md": "b7efee2dd07f4f39329d11a0ca24bd48202a2d85c783e640dfa645ec8583f097",
+      "implementation-summary.md": "5c386083be2559ac55d49b58cfbda3ce2a13dc0f18403e7fd1bb1d8a92ec0222"
     },
     "last_active_child_id": null,
     "last_active_at": null

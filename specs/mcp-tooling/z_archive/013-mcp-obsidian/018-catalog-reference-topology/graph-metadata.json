@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The mcp-obsidian feature catalog spreads 25 cards over 14 narrowly named directories, making navigation heavier than the surface warrants",
     "created_at": "2026-08-03T19:59:41.360Z",
-    "last_save_at": "2026-08-30T15:39:10.206Z",
+    "last_save_at": "2026-10-07T18:11:38.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16589cc8290d73b217d51f143a36fb948f2f4b807d3cd0428e1c9ad17987bed6",
+    "source_fingerprint": "sha256:63e13c27be08d3d6f3657fd396ec85e843727693be910919e100e13c036b2896",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3cd79f3e73694d9fd777e690f4d876dcf3a09d2fbc878aa21bdbe674b86f4b7e",
-      "plan.md": "908c38a8233665b9beabefbe2e64750223fa861733d9f030c8e888ffbb998788",
-      "tasks.md": "79f022ea28a26d24f8c555a0bc7f078d7049cb20a116a1a10632c89167215b80",
-      "implementation-summary.md": "4ee97d650c28c96fb184744b0a6ef2139f9ea3aff349da52c7bf0e62af90ec91"
+      "spec.md": "916b0b78c3fded5738fbd3789c29d14ef4a43d4d602bc2fd3055fea2d261cc50",
+      "plan.md": "3259ee1803de87986efb704d7e63d1b1d1ad6c99ced7edb860b6019edd1bcd64",
+      "tasks.md": "50782d1f939a938670da6da2117de006f645f26fddbcee1b590f29049a36c342",
+      "implementation-summary.md": "8f1fa2b61a8b54d61c454a07d60e54cc0fa411a745af7d529a3c26cea5ba57f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

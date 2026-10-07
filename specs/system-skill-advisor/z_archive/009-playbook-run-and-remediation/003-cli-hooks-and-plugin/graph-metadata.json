@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge",
     "created_at": "2026-05-26T20:10:28.064Z",
-    "last_save_at": "2026-08-30T15:39:27.012Z",
+    "last_save_at": "2026-10-07T18:15:48.723Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b531a86966c9fb053ed0fb081d1b4ed062e1c47d99a48f4d22ca7c12a167d6f1",
+    "source_fingerprint": "sha256:2088c8bd6d04593ef8f6b01db1f09f393d53ae3324ecfa3fb0435f5a602ca141",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36b1943bc9aa490bb33e6e1b4dbe28d1d761c2d4b8b7e36c4852ae214961b0b1",
-      "plan.md": "2ba1218a0f5e52159dd3bbfce3b1e67a1b252129dc9ce66eeefc2c564db689ef",
-      "tasks.md": "8a98dc11e4fc61b51f223ab8337b86c96e2ededc66ed8c8ead3ed8bb5c03038b",
-      "implementation-summary.md": "13b46f32b7b7e56d2e6f2ed58cdce869c6ecc6188bd63111c82be0dd37183441"
+      "spec.md": "4b42a886de3169c43c612203bd44f3da1a009d763e8980faf4a9249281701166",
+      "plan.md": "878c15394e15099aff60f456e8fad6e9fd83011166e3908d944222f2d0a98a65",
+      "tasks.md": "caf86af850832cd93ec4e8a55a5ea6e708463753f73fbca048ff5fd6e800dbf4",
+      "implementation-summary.md": "8bbd47b5ad7e583b455f550b2a2c4027a2bc206a1d526530aa125dfe3bf95d24"
     },
     "last_active_child_id": null,
     "last_active_at": null

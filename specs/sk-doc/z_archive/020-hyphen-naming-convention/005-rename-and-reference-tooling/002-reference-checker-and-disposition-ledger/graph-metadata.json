@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-30T15:39:16.151Z",
+    "last_save_at": "2026-10-07T18:13:22.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10ecc442f65d0b89ab6bc02971403a8f17fbbf2b15058b2596b4197843aec7d8",
+    "source_fingerprint": "sha256:73ecf3794c842aefa17c647e8bf4d2801b6a2a0b99f41f16f69368e2b9ba739e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eeeeb66f69006457ee4b2be0c5a8f07dc2dae3a8d869d7a78a35c6e7f2b75c99",
-      "plan.md": "b48904ac3b5c58cf16d6dea08ee4606a03accaeccccf52d194df99b65ed1f92a",
-      "tasks.md": "65b717a0a45e92950db2ad360748569868b312563691508f0d6419a1b2562966",
+      "spec.md": "bc282b85bfe999384dcbbfd3e921627a9ca5676bda81f312a3b3a373f20da30c",
+      "plan.md": "e231725b9ec132977e3e0559e34af41c84ffb2c221e56c542c9f963201b847df",
+      "tasks.md": "9ed61f552450dca010abc1bdfcb9353f9c9dafa6e285929b9196e0ed00ed55ff",
       "decision-record.md": "2fefe799279256eb1cf220933d4218b5dfaea80852a79083ce1fc3a79e62c30c",
-      "implementation-summary.md": "f957f0b023bbb9bf68e4b1ec4b1d1e70c85cc8e946f787b38c6cdce745bbca7b"
+      "implementation-summary.md": "7e97f1bbdcabfe4cdcaa287ce48fe7ba0376bc684f895a1aa80838e6d46a8617"
     },
     "last_active_child_id": null,
     "last_active_at": null

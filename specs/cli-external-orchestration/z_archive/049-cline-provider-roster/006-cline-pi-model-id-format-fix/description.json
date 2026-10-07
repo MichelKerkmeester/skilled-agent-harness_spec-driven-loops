@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+  "specFolder": "cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
   "description": "Phases 3 and 5 declared the cline-pass models in `.pi/models.json` with bare ids (`deepseek-v4-flash`, `deepseek-v4-pro`)",
   "keywords": [
     "phases",

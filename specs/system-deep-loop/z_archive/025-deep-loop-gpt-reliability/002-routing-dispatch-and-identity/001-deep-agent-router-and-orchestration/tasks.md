@@ -1,11 +1,14 @@
 ---
 title: "Tasks: Deep Agent Router & Orchestration Hardening"
 description: "Task list for the DEEP primary agent, orchestrate hardening, and command/skill refinement."
+trigger_phrases:
+  - "deep agent router orchestration tasks"
+  - "gpt deep agent dispatch tasks"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
     last_updated_at: "2026-06-30T13:45:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Created task list"

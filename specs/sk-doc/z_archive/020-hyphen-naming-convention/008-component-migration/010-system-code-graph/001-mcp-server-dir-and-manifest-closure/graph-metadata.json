@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
     "created_at": "2026-07-14T15:18:13Z",
-    "last_save_at": "2026-08-30T15:39:16.864Z",
+    "last_save_at": "2026-10-07T18:13:17.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:099bf39e868756f4bfdaf76c71574fe999fa657e95b5841a9e440bc26e679748",
+    "source_fingerprint": "sha256:fa7a54b577dad8e4982cc6b3b8318138881a0fd84237fc248b1baab674a473b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "197a47acd7def016763fbadd693cc91c246a93de5599a7fa808b848e7a3639cb",
-      "plan.md": "4ccef9f19f271169c665a07f73257177106772690252c63274b75bfb32b3b1a9",
-      "tasks.md": "f739528ad006bbb43fd700638698ad248452e04b43267c3025e5336cd9b0ed04",
+      "spec.md": "829e492460bd0fa007bfe5ab9ad5d4cca319f7e0a7a2eca3df2bd54b2f880a6f",
+      "plan.md": "bf0c2182db7fa5e8a6bff2eb6d0888d7b827cc7fce89f3f875256e6eedd9bae5",
+      "tasks.md": "8f48c136ab4ef5b1aed270fd171617102d2b6c7b433b5792fce8256f26594c0c",
       "decision-record.md": "4f05956a3ebf4eb4f611d20fcb888916cb1203f39498878ec4c0dcb0b4dedb5a"
     },
     "last_active_child_id": null,

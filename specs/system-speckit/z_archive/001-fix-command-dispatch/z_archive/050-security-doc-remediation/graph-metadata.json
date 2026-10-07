@@ -18,8 +18,9 @@
       "050",
       "implementation",
       "plan",
-      "summary",
-      "implementation summary"
+      "security documentation remediation tasks",
+      "system spec kit security fix tasks",
+      "summary"
     ],
     "key_topics": [
       "security",
@@ -28,20 +29,20 @@
       "spec",
       "implementation",
       "plan",
+      "tasks",
+      "system",
+      "kit",
       "summary",
       "audit",
-      "system-spec-kit",
-      "identified",
-      "medium-severity",
-      "low-severity"
+      "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "scripts/rules/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
@@ -59,6 +60,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -67,7 +74,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "scripts/rules/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -137,6 +144,36 @@
         "source": "derived"
       },
       {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -153,30 +190,26 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Security Fixes Implemented",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Security audit of system-spec-kit identified 4 medium-severity and 5 low-severity issues",
     "created_at": "2026-04-12T09:02:53.532Z",
-    "last_save_at": "2026-08-30T15:39:37.227Z",
+    "last_save_at": "2026-10-07T20:08:38.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04d99fdd51e0081a241332d3dedc9871d19ecf82e12b7a78923b342424c8224d",
+    "source_fingerprint": "sha256:76720304458a25dd1ea4d30b272ddd090b14354d4b6e0f458f7f4a30ae68dc85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25a43031ae495c1cc761da3ca9c57b8b7c91729e22d54a45260c83f65fb5732d",
+      "spec.md": "9841eed9246f27ae5101ce369e64e001cea0c12490c3cb9b6be85c2e739a9a53",
       "plan.md": "3e8a2487386bf7150a61dae9ac4f9783b5d96975422118c11721f1a79d95e15c",
-      "implementation-summary.md": "4aec51480b90694b758185e18300c4e922ffd292125373667e835812ab2ae9eb"
+      "tasks.md": "96db2d3252a3b8690b31afdee291d7dbdc5304d8079089266b1f7f5d8c890491",
+      "implementation-summary.md": "3e6ff8da5badd02e4970b24054ed26fd05bab1d0782b7986574bbab2f12e0f27"
     },
     "last_active_child_id": null,
     "last_active_at": null

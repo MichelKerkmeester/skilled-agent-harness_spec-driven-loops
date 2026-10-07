@@ -50,7 +50,7 @@
       "handover.md",
       "resource-map.md",
       ".devin/hooks.v1.json",
-      ".claude/settings.local.json",
+      ".devin/config.json",
       "research/iterations/iteration-01.md",
       "research/findings.json",
       ".opencode/plugins/README.md",
@@ -118,9 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.local.json",
+        "name": "config.json",
         "kind": "config",
-        "path": ".claude/settings.local.json",
+        "path": ".devin/config.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`system-skill-advisor` already supports Claude, Gemini, Codex, and OpenCode prompt-time guidance, but Devin CLI has no explicit advisor hook registration",
     "created_at": "2026-05-15T13:05:18.133Z",
-    "last_save_at": "2026-08-30T15:39:26.813Z",
+    "last_save_at": "2026-10-07T18:16:08.309Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,16 +223,16 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:5fd70d695a4403c5d0fc6bbe9b9be6d5eb8b07f78f27f6e091f1e37ef1e69acb",
+    "source_fingerprint": "sha256:ab5feb4d8ccf1233e63e0016f9deaa091fb4654b69f9309c4ed38b86df4282c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2db8c2f861b596847344e2eab61c983840efabf010976726cc4431264077d7cc",
-      "plan.md": "f7dc8db30ddb18ef15836e3f87989f5fa0195bd61b6ae8c3a2acf528086f7290",
-      "tasks.md": "4977dd588f867eea7955a6b17f5b91c0beddb39376a6a18ef0d684157f9ca099",
+      "spec.md": "57a33f26428656175fc33784afc97e20582491e57969a8dda7d023954df66f28",
+      "plan.md": "93994c58d29e9d8655facb5e35fd3650530a069beda28eed32418871abcd5af8",
+      "tasks.md": "fa2696fc186ed271abbc1bb9831794715d7fa801119260d43825ca8f7209a236",
       "decision-record.md": "85a69cd6ead85a1446870cebf5c028c7fb1cda093a9ac26c21d0b18a4f47d154",
-      "implementation-summary.md": "4c233630f7dd8419b6e93894db8d9f58702cec5c1c8b52dc156fa60790d0f8c2",
+      "implementation-summary.md": "b39a25953da18cac1097901443c5449acb32c4fecbdb1c06a4e0a71352e0b672",
       "research/research.md": "7c6fbefb90f8ec10427efa10f6b299da552c5b0aa9a994cd941d9bead78b1952",
-      "handover.md": "0356320d5bed747be758e78ee77f7b4eda37d0a0ae6d6e754e6ed826b7872d37",
+      "handover.md": "98acc9d9f6bee60fbd2217f88491f2611f29c25cfc6258f430be1285d5e9a433",
       "resource-map.md": "e2c3342119034440528fdcf99d3b2c5e2e24ef125ad8b435fd3c61bcaf0ac756"
     },
     "last_active_child_id": null,

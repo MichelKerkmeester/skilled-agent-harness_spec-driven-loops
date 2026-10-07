@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 3 deep- slash-command MD files moved to `.opencode/commands/deep/` and are registered as live skill names (`deep:review`, `deep:research`, `deep:ai-council`)",
     "created_at": "2026-05-23T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.472Z",
+    "last_save_at": "2026-10-07T18:14:20.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd97abd9ab61f42a57ee769f9a27c70ff1a5d8c960e54de4db62f621dd066882",
+    "source_fingerprint": "sha256:49db90187c7fa5e09427e96b0726c872f53f341c91a57cdb78f53591448ed5c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "689a9b34ee27fc2494d4778a9c2bd647c049799357427034d27ffb8a5fdf7dc5",
       "plan.md": "8d6e642774d97eadc4bd93803d0375086471411d6b90800b59c1c5834c79f601",
       "tasks.md": "8cf8245136311de0355cb674cc369667fe0f0370bd9544f91e536356cd536cdf",
       "decision-record.md": "fd71bb3b967efffa304a22b45fb1a54e2b419a69d99cdfe01c50490fa57c7d1e",
-      "implementation-summary.md": "a3716b1a7ed7b418fcd9f2ffe717856659edeff37d57ac973b4abd226b6cc64d"
+      "implementation-summary.md": "17680622ae8f6fe1ef4cb698201eae4e8b1959d0af9f70f49a14475414314faf"
     },
     "last_active_child_id": null,
     "last_active_at": null

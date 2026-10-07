@@ -40,16 +40,16 @@ The advisor needed automatic graph freshness, derived metadata, native scoring, 
 
 Keep advisor ownership inside the system-spec-kit MCP server, with a self-contained `mcp_server/skill_advisor/` package and thin compatibility adapters for legacy Python and plugin callers.
 
-<!-- ANCHOR:adr-001-consequences -->
 <!-- /ANCHOR:adr-001-decision -->
+<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 - Advisor internals share one package boundary.
 - Legacy callers remain supported through shims.
 - Future routing improvements can be promoted through MCP tools without changing runtime hook contracts.
 
-<!-- ANCHOR:adr-001-alternatives -->
 <!-- /ANCHOR:adr-001-consequences -->
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Alternative | Rejected Because |
@@ -66,10 +66,10 @@ Keep advisor ownership inside the system-spec-kit MCP server, with a self-contai
 - Five-lane fusion starts with semantic shadow at 0.00 live weight.
 - Schema migration is additive and rollback-safe.
 - Python parity means regression protection, not byte-for-byte freeze.
-<!-- /ANCHOR:adr-001 -->
-
-<!-- ANCHOR:adr-002 -->
 <!-- /ANCHOR:adr-001-impl -->
+
+<!-- /ANCHOR:adr-001 -->
+<!-- ANCHOR:adr-002 -->
 ### ADR-002: Freshness and Recovery Boundary
 
 ### Status

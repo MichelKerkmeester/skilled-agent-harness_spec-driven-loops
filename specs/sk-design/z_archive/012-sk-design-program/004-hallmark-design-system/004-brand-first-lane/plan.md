@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
     last_updated_at: "2026-07-22T19:01:14Z"
 
     last_updated_by: "spec-author"

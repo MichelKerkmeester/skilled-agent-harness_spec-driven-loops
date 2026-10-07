@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/006-release-readiness-synthesis |
+| **Spec Folder** | 006-release-readiness-synthesis |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

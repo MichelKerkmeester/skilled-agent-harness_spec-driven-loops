@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/044-deepseek-v4-flash-max-only",
-  "spec_folder": "cli-external-orchestration/044-deepseek-v4-flash-max-only",
+  "packet_id": "cli-external-orchestration/z_archive/044-deepseek-v4-flash-max-only",
+  "spec_folder": "cli-external-orchestration/z_archive/044-deepseek-v4-flash-max-only",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -15,14 +15,11 @@
       "pin deepseek flash to max effort",
       "flash max only fan-out",
       "cli-pi cli-opencode flash thinking pin",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "deepseek v4 flash max only plan",
+      "deepseek v4 flash max only tasks",
+      "deepseek v4 flash max decision record",
+      "deepseek flash max pin summary",
+      "flash thinking pin fan-out summary"
     ],
     "key_topics": [
       "deepseek",
@@ -35,8 +32,8 @@
       "fan-out",
       "cli-pi",
       "cli-opencode",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "Operator policy: DeepSeek V4 Flash may be dispatched only at its max thinking tier — never at a lower effort (high/low/off) and never non-thinking",
     "created_at": "2026-08-16T16:53:59.878Z",
-    "last_save_at": "2026-09-20T04:33:33.076Z",
+    "last_save_at": "2026-10-07T21:53:00.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed2af4ead34adf2f05b3f0bfbbfdab8b8dfa440ad92c4c4c519e2c8e69d8bcd1",
+    "source_fingerprint": "sha256:da684c50aeef4f07d8bca2cc2df80f3a0016f0a7b802cce2042921656e5df62b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0684a73ad1c5a567c79ca2d8f810d1a7783e714c1989ee3dc9f513056d45289",
-      "plan.md": "38b2a494983e431a5921a5dc0c19580cf24e715a7f18936eb687b57dc62b9cb4",
-      "tasks.md": "7842f2bbab45b0f94ea8c1b3b6d1408d5d07e5c066ad602b56942b3fbbc257fc",
-      "decision-record.md": "6906473f07860dc422813576ccf038ff346d959d86d0d40de48384621eb2cc96",
-      "implementation-summary.md": "c92a3f1fef547a9612819f69d94e1e5d27ecf271d882542c7ad6cdc3d181a5a5"
+      "spec.md": "bbf8f7d581d7aed01db004e3cc9419145f4279fccb37f54c85be37074cc1d3c8",
+      "plan.md": "029cbea684176ac47042a13beadc8370ae3bfa9c505c6c333589d308498e6444",
+      "tasks.md": "039813b4ec3225fc3e5c727e4ca0ec9bc2db8392605d733fcc960afc63b040ee",
+      "decision-record.md": "89b1e0ade1b8205c7779c4ae1f994f775bf193abd00fb4889496cf5f40b84df5",
+      "implementation-summary.md": "ab63d1af8ca9a2d5404779907dfd404bcf7f78126855bc5cd7ca7f44b2972fa9"
     },
     "last_active_child_id": null,
     "last_active_at": null

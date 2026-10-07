@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
-  "spec_folder": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/015-multi-file-boundary-dividers",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/015-multi-file-boundary-dividers",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "When multiple files are combined into one explicit before/after pair, lines such as `===== BEGIN FILE: path =====` and `===== END FILE: path =====` are diffed as ordinary document text",
     "created_at": "2026-07-20T09:08:16Z",
-    "last_save_at": "2026-08-30T15:39:14.507Z",
+    "last_save_at": "2026-10-07T18:12:20.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbe37423f227bf3e81609f8f48c29ff8960758dd4eb9b26dda94375c88da3502",
+    "source_fingerprint": "sha256:6dc4a14c1d88570c82aaebbcd3b60847387637c208d3c909ec297c2aec9b1c56",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ac3697871551ebac4d9536559dbb6eeaca1480e015296c77a4654dd5c8ce7412",
-      "plan.md": "5779b4ca8217038d79863568b7089cf6c4b53a79f08d82894aad6fe2a8f596bd",
-      "tasks.md": "d4c04095466148551d52cb02b1860e290c2ddc98dc301092648a6d669cbd8ff7",
-      "implementation-summary.md": "0a3c5fa523a9a8f0b316088e82a8dfd4830a1656f9a35bb1bb91c136226ed442"
+      "spec.md": "0ed1e697ee848cb206c0062688b7b271f9c05646ce9fada8b1f717af5092de6f",
+      "plan.md": "16779a55c77c07d1311909bc964a3ae8c0e188a6a234b078e046262064b1caa3",
+      "tasks.md": "f26c1c42930be4223015f6320e516ebc7492ee689064cff7964cc56d71a24653",
+      "implementation-summary.md": "604d5a123f1407fc88006079eca3505e5796b4557a8bffa012ef22df7ce8e0bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

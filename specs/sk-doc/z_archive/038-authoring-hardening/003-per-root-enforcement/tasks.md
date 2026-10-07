@@ -11,7 +11,7 @@ contextType: "tasks"
 parent: "sk-doc/038-authoring-hardening"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/038-authoring-hardening/003-per-root-enforcement"
+    packet_pointer: "sk-doc/z_archive/038-authoring-hardening/003-per-root-enforcement"
     last_updated_at: "2026-08-29T12:40:00Z"
     last_updated_by: "claude"
     recent_action: "Completed the enforcement tasks; first gate version rejected by its own control"

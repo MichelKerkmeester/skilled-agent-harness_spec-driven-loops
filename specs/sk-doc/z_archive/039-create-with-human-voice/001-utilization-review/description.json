@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/039-create-with-human-voice/001-utilization-review",
+  "specFolder": "sk-doc/z_archive/039-create-with-human-voice/001-utilization-review",
   "description": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the",
   "keywords": [
     "mode",

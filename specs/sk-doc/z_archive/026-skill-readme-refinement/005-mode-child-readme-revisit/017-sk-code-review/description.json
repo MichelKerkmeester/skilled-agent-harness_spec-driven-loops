@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review",
   "description": "The sk-code-review README at `.opencode/skills/sk-code/sk-code-review/README.md` still carries the older tabular reference-card style",
   "keywords": [
     "sk-code-review",

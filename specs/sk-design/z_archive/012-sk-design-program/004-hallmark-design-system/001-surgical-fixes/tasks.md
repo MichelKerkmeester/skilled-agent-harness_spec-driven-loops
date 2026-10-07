@@ -1,9 +1,11 @@
 ---
 title: "Tasks: Surgical Fixes to Existing sk-design Modes"
 description: "Phase 1 task breakdown for the five surgical Hallmark-adoption heuristic fixes across the sk-design interface, audit, and foundations mode reference trees."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
     last_updated_at: "2026-07-22T18:00:04Z"
 
     last_updated_by: "implementation-agent"
@@ -21,10 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "surgical fixes tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

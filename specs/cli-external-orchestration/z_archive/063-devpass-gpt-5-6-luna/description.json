@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/063-devpass-gpt-5-6-luna",
+  "specFolder": "cli-external-orchestration/z_archive/063-devpass-gpt-5-6-luna",
   "description": "The operator asked for GPT-5.6 Luna on the DevPass route, then for both CLI rosters to carry it",
   "keywords": [
     "operator",

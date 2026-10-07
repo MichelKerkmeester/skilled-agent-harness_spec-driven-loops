@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-09-10T21:05:00.915Z",
+    "last_save_at": "2026-10-07T20:38:14.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:672e8bd7cc1cb682042edc84596d0f9935fd1d348a7f845fa24a850fb1933593",
+    "source_fingerprint": "sha256:ad64a9dcb9bde503895a2204961d5de5504d9ce250a1996d9c05a18135a8708b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85106f59b12e22ca5297b6e14835299c67ba96f515d0783b987e154e2d1a36f9",
-      "plan.md": "7525cccf6631ab90a709db918f6aef7a880f1da934f695356216ba51fee0fefd",
+      "spec.md": "87e2a29a3014692c18bac937dddddbf5357561079640725bc04259ddfcba1984",
+      "plan.md": "05a716a71ff1e6b4110910e95b77f06b9384cf080aa0f70ec38a91257187a3f8",
       "tasks.md": "85588d1fe79c4132ef644652291bd7862eb3695d878c795947de7a3da8d7083f",
       "implementation-summary.md": "23bba9ec488d4e10b12a9b9862790b931f28dda2cc272c99e0f47119b933c871"
     },

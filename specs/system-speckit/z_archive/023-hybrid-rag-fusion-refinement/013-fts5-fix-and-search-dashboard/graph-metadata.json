@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic search\"`",
     "created_at": "2026-04-12T09:02:50.339Z",
-    "last_save_at": "2026-09-10T21:05:11.341Z",
+    "last_save_at": "2026-10-07T21:54:09.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f8a6f0a6fe8511a9c73745f7e7cc64ea8ee469f524f43c3f04d34bb6cddd070a",
+    "source_fingerprint": "sha256:b56899c4204156f3c12fb696ab5b33b233e9f6b13ed01197e61936fc60d00390",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5048fa62bf0ee4407c5a10ec6c74107ce83f65cc72a67bda368d1b61322efe52",
       "plan.md": "f84f6ac40374d4920fe7ea9423340b41dc246fa27c661c83b1f884e907a71c53",
       "tasks.md": "c605b723b46707a8b1e81586014ce17c9ae7e9dbe056d438d99971581286667d",
       "implementation-summary.md": "7102455ad2a6b67f80ac0a4df1e5e9e85d503f1a042d9b5a4e257fb9031dad6e",
-      "handover.md": "5e1e0047a4c20c6c0c12622ba57d294df96273370b84f79267dc060eff1ca1e7"
+      "handover.md": "c57c5afc4dfe1212a4bb6e1fd6272798e7d30da07f8f9c65082d01513b73e3d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

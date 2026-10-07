@@ -12,7 +12,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Tasks: [YOUR_VALUE_HERE: feature-name] - Implementation Breakdown
+# Tasks: Not recorded - Implementation Breakdown
 
 Task list template for feature implementation with user story organization and independent testing.
 
@@ -45,8 +45,8 @@ Tasks MUST be organized by user story so each story can be:
 
 ### Metadata
 - **Category**: Tasks
-- **Tags**: [YOUR_VALUE_HERE: feature-name], [YOUR_VALUE_HERE: area]
-- **Priority**: [NEEDS CLARIFICATION: What is the task priority? (a) P0-critical - must complete first (b) P1-high - core functionality (c) P2-medium - important but not blocking (d) P3-low - can defer]
+- **Tags**: Not recorded, Not recorded
+- **Priority**: Not recorded
 
 ### Input
 Design documents from `/specs/[###-feature-name]/`
@@ -212,11 +212,11 @@ Choose based on project complexity and traceability requirements.
 
 ---
 
-### Phase 3: User Story 1 - [YOUR_VALUE_HERE: title] (Priority: P1) MVP
+### Phase 3: User Story 1 - Not recorded (Priority: P1) MVP
 
-**Goal**: [YOUR_VALUE_HERE: brief description of what this story delivers]
+**Goal**: Not recorded
 
-**Independent Test**: [YOUR_VALUE_HERE: how to verify this story works on its own]
+**Independent Test**: Not recorded
 
 **Tests for User Story 1** (OPTIONAL - only if tests requested):
 - [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
@@ -234,11 +234,11 @@ Choose based on project complexity and traceability requirements.
 
 ---
 
-### Phase 4: User Story 2 - [YOUR_VALUE_HERE: title] (Priority: P2)
+### Phase 4: User Story 2 - Not recorded (Priority: P2)
 
-**Goal**: [YOUR_VALUE_HERE: brief description of what this story delivers]
+**Goal**: Not recorded
 
-**Independent Test**: [YOUR_VALUE_HERE: how to verify this story works on its own]
+**Independent Test**: Not recorded
 
 **Tests for User Story 2** (OPTIONAL - only if tests requested):
 - [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
@@ -254,11 +254,11 @@ Choose based on project complexity and traceability requirements.
 
 ---
 
-### Phase 5: User Story 3 - [YOUR_VALUE_HERE: title] (Priority: P3)
+### Phase 5: User Story 3 - Not recorded (Priority: P3)
 
-**Goal**: [YOUR_VALUE_HERE: brief description of what this story delivers]
+**Goal**: Not recorded
 
-**Independent Test**: [YOUR_VALUE_HERE: how to verify this story works on its own]
+**Independent Test**: Not recorded
 
 **Tests for User Story 3** (OPTIONAL - only if tests requested):
 - [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
@@ -318,23 +318,23 @@ Choose based on project complexity and traceability requirements.
 ## 5. OPTIONAL TESTS GUIDANCE
 
 ### Unit Tests
-- **What**: [YOUR_VALUE_HERE: components/functions requiring unit tests - example: all service layer functions, validation logic]
-- **Where**: [YOUR_VALUE_HERE: test file locations - example: tests/unit/]
-- **Coverage Target**: [YOUR_VALUE_HERE: percentage - example: 70-80% line coverage]
+- **What**: Not recorded
+- **Where**: Not recorded
+- **Coverage Target**: Not recorded
 
 ### Integration Tests
-- **What**: [YOUR_VALUE_HERE: integrations requiring testing - example: all API endpoints, all database operations]
-- **Where**: [YOUR_VALUE_HERE: test file locations - example: tests/integration/]
-- **Coverage Target**: [YOUR_VALUE_HERE: description - example: all API endpoints, all DB operations]
+- **What**: Not recorded
+- **Where**: Not recorded
+- **Coverage Target**: Not recorded
 
 ### Test Data
-- **Fixtures**: [YOUR_VALUE_HERE: location and description]
-- **Factories**: [YOUR_VALUE_HERE: test data generation strategy]
-- **Snapshots**: [YOUR_VALUE_HERE: snapshot testing approach if applicable]
+- **Fixtures**: Not recorded
+- **Factories**: Not recorded
+- **Snapshots**: Not recorded
 
 ### Execution
-- **Local**: [YOUR_VALUE_HERE: command to run tests locally - example: npm test, pytest]
-- **CI**: [YOUR_VALUE_HERE: when tests run - example: on every PR, nightly builds]
+- **Local**: Not recorded
+- **CI**: Not recorded
 
 ---
 

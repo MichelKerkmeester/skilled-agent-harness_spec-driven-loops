@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
     last_updated_at: "2026-07-20T11:09:35Z"
     last_updated_by: "codex"
     recent_action: "Completed kebab-case output contracts and regression coverage for create command assets"

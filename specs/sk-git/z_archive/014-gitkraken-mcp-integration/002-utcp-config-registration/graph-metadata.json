@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
-  "spec_folder": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
-  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "packet_id": "sk-git/z_archive/014-gitkraken-mcp-integration/002-utcp-config-registration",
+  "spec_folder": "sk-git/z_archive/014-gitkraken-mcp-integration/002-utcp-config-registration",
+  "parent_id": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Code Mode has no path to the GitKraken MCP server: `.utcpconfig.json` has no `gitkraken` entry, so `calltoolchain` cannot reach it regardless of what sk-git documents",
     "created_at": "2026-07-15T04:22:49.852Z",
-    "last_save_at": "2026-08-30T15:39:18.540Z",
+    "last_save_at": "2026-10-07T18:14:21.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1b1233fa788ec66ef48e1786e537a492ee4e0ada3557d056f707b37adad33ff",
+    "source_fingerprint": "sha256:d848aa7f1edb5867a2dba380809f12fa5391761d337c91e71dd6b86625ad784b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b5c3a9dec3c214815a4446a8f517543bbcca131d107eae3825539a560113711",
-      "plan.md": "bacaaf9388e40907433b4e2198b3c95fa352b5f4cf7a387ddc2522523b89430a",
-      "tasks.md": "4346a1f53f0da895baf7c75c81f230760c82739487fa32766d09d1da37578305",
-      "implementation-summary.md": "d20c9c37f336d63e7489e4802704259a7fd002956557be6d44b8b0ba3b4a5991"
+      "spec.md": "a7ab2b793cf82877ccc161beeff9ae4dc9370ab7d11395025df430a99a633c1d",
+      "plan.md": "f4627d3052e430d5eb663d5af34f6b1f2d82b0c0b87fe72bdab4d0f7c9bdc483",
+      "tasks.md": "f4f18ce92b0d054975677420637784f707a0643c3938ffb7335feb8f1197935c",
+      "implementation-summary.md": "08bc02dbc175e51cfa4cfe5ef74af98c1ee5818cffce9c2ad32fd9885713e0f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance",
-  "spec_folder": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance",
+  "spec_folder": "sk-design/z_archive/014-template-conformance",
   "parent_id": null,
   "children_ids": [
-    "sk-design/014-template-conformance/001-apache-devendoring",
-    "sk-design/014-template-conformance/002-design-interface",
-    "sk-design/014-template-conformance/003-design-motion",
-    "sk-design/014-template-conformance/004-design-md-generator",
-    "sk-design/014-template-conformance/008-structural-anomalies",
-    "sk-design/014-template-conformance/005-design-mcp-open-design",
-    "sk-design/014-template-conformance/006-shared",
-    "sk-design/014-template-conformance/007-hub-root",
-    "sk-design/014-template-conformance/009-aesthetics-retirement",
-    "sk-design/014-template-conformance/010-motion-merge",
-    "sk-design/014-template-conformance/011-retirement-residue",
-    "sk-design/014-template-conformance/012-remaining-mode-conformance",
-    "sk-design/014-template-conformance/013-design-command-decomposition-research",
-    "sk-design/014-template-conformance/014-skill-word-cap-relief"
+    "sk-design/z_archive/014-template-conformance/001-apache-devendoring",
+    "sk-design/z_archive/014-template-conformance/002-design-interface",
+    "sk-design/z_archive/014-template-conformance/003-design-motion",
+    "sk-design/z_archive/014-template-conformance/004-design-md-generator",
+    "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
+    "sk-design/z_archive/014-template-conformance/006-shared",
+    "sk-design/z_archive/014-template-conformance/007-hub-root",
+    "sk-design/z_archive/014-template-conformance/008-structural-anomalies",
+    "sk-design/z_archive/014-template-conformance/009-aesthetics-retirement",
+    "sk-design/z_archive/014-template-conformance/010-motion-merge",
+    "sk-design/z_archive/014-template-conformance/011-retirement-residue",
+    "sk-design/z_archive/014-template-conformance/012-remaining-mode-conformance",
+    "sk-design/z_archive/014-template-conformance/013-design-command-decomposition-research",
+    "sk-design/z_archive/014-template-conformance/014-skill-word-cap-relief"
   ],
   "manual": {
     "depends_on": [],
@@ -48,14 +48,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/014-template-conformance/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,16 +96,16 @@
     ],
     "causal_summary": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`, `shared`, plus the hub root) against the `sk-doc` create-skill templates and standards found the hub's 75 reference files are frontmatter-conformant but structurally uneven: numbered-section discipline, separator hygiene, and a handful of frontmatter enum values drift per folder rather than uniformly, and one folder (`design-interface`) still carries a committed Apache-2.0 license artefact for content that was never de-vendored into original words",
     "created_at": "2026-07-27T14:48:40.384Z",
-    "last_save_at": "2026-09-11T16:41:56.823Z",
+    "last_save_at": "2026-10-07T18:11:51.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:03e2d9aa5ea7a2d7d7811ad5c6877458bd61519635b4d04c17a275f6a69a375a",
+    "source_fingerprint": "sha256:031ba0a09fef693f0cd19faf968ada775718cf5ff5243a95a9b6189485b60b87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a904868c0b801acad39ca7efe0e8db969ee76ab1e02bf6548f5bc0f8a12c3b51"
+      "spec.md": "7aa53a27ed36741017bd58a7b21b6db622fca99813ef15e8ed678c41434fa2c7"
     },
     "last_active_child_id": "sk-design/014-template-conformance/012-remaining-mode-conformance",
     "last_active_at": "2026-07-27T17:36:43.927Z"

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
   "description": "Phase parent implementing the 012 command-improvement backlog via a versioned machine-readable command contract.",
   "keywords": [
     "phase",

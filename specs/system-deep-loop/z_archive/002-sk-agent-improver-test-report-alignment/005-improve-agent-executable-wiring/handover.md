@@ -30,14 +30,19 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:handover-summary -->
 ## Current State
 **Phase:** COMPLETE
 **Last action:** Stages 2-6 implemented, tests passed, summary written
 **Next:** Start 061 and run command-flow CP stress tests against the new wiring
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:next-session -->
 ## Resume Prompt
 > Start 004-improve-agent-command-flow-stress-tests. The 062 wiring is in place: static benchmark profile/fixtures materialize to `{spec_folder}/improvement/benchmark-outputs`, `run-benchmark.cjs` writes `report.json` and appends `benchmark_run`, both YAML modes gate `benchmark_completed` on report existence, and `legal_stop_evaluated` now emits nested `details.gateResults`.
+<!-- /ANCHOR:next-session -->
 
+<!-- ANCHOR:context-transfer -->
 ## Gotchas (carried forward)
 - Stay on main; no feature branches
 - Worktree cleanliness is never a blocker
@@ -45,7 +50,9 @@ _memory:
 - codex `-c service_tier="fast"` always explicit
 - Use absolute paths in any cli prompts
 - v3.0.0 strict-validate template-shape errors are pre-existing, not blocking
+<!-- /ANCHOR:context-transfer -->
 
+<!-- ANCHOR:next-session-2 -->
 ## 061 Hand-Off (after 062 ships)
 > Start 004-improve-agent-command-flow-stress-tests. Restructure CP-040..045 to invoke `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1` from a command-capable temp project root. The producer/consumer wiring 062 just shipped means GREEN is now achievable instead of "expected RED methodology evidence."
 
@@ -53,3 +60,4 @@ _memory:
 - CP-043 should grep `details.gateResults` plus all five gate keys, not flat `gateResult`.
 - CP-045 should assert `benchmark-outputs/report.json`, `status:"benchmark-complete"`, `benchmark_run`, and report-gated `benchmark_completed`; the old sentinel-file contract is retired.
 - Full cli-copilot scenario execution was intentionally deferred here because 062's scope was wiring, native helper/static verification, and expected-signal updates.
+<!-- /ANCHOR:next-session-2 -->

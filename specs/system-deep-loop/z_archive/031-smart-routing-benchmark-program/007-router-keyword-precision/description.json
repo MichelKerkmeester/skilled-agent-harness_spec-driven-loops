@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/007-router-keyword-precision",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/007-router-keyword-precision",
   "description": "Narrow over-broad generic keywords in the deep-loop child routers (deep-research + deep-improvement) so unrelated marketing/billing/UI prompts stop",
   "keywords": [
     "narrow",

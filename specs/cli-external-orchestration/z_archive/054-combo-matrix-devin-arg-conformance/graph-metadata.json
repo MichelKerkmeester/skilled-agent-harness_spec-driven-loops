@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/054-combo-matrix-devin-arg-conformance",
-  "spec_folder": "cli-external-orchestration/054-combo-matrix-devin-arg-conformance",
+  "packet_id": "cli-external-orchestration/z_archive/054-combo-matrix-devin-arg-conformance",
+  "spec_folder": "cli-external-orchestration/z_archive/054-combo-matrix-devin-arg-conformance",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -19,7 +19,6 @@
       "plan",
       "tasks",
       "combo-matrix devin conformance",
-      "implementation summary",
       "respect-workspace-trust test fix"
     ],
     "key_topics": [
@@ -34,7 +33,7 @@
       "test",
       "plan",
       "tasks",
-      "implementation"
+      "fanout-run"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "`fanout-run.cjs` unconditionally appends `--respect-workspace-trust false` to the `cli-devin` dispatch command (the packet-046 devin-CLI repair: non-interactive print mode cannot answer the workspace-trust prompt, so fresh dispatch dirs otherwise fail closed)",
     "created_at": "2026-08-24T13:33:08.535Z",
-    "last_save_at": "2026-08-30T15:39:08.223Z",
+    "last_save_at": "2026-10-07T18:11:40.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f0cc974bd2a517c2051d4e2f4e7ca5cec3dc676f5e8ca49a866a49c69a6ff0f",
+    "source_fingerprint": "sha256:7a48b72e7db401098d42d473450f7817d5b27e244c27e76d4f0ee3a36c2ba16c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "38867bec90f0293a7afe7dd5d05c64afa9865b34d496686492d4492980d63f50",
-      "plan.md": "727622eceac41b3d67dc8fc58cc6d53b0690fab1a64f8425a02dc9f57b047de5",
-      "tasks.md": "2b39fb82472510263af100f479ce86076f7ea992e7d45f88f8e135a9e57370e2",
-      "implementation-summary.md": "a948810d3f530384e0f60d764740beac33ad8ad3f209bc7cbac84401d6535782"
+      "spec.md": "088dccc82adc733e50119dd633b78293dc8446544ac043a36205787eb0c83ba8",
+      "plan.md": "0cb9430763ef4dc3e2beae3e1e3eabe46d7493fe383c3b5add2e190047395189",
+      "tasks.md": "b3572d073adf0ff0689ae4107454a14ca41e0ae988965dbf80014fb654d3826d",
+      "implementation-summary.md": "eb2cec96f52848316e8806debd683ad66982cb541ef3263205349937106b5b44"
     },
     "last_active_child_id": null,
     "last_active_at": null

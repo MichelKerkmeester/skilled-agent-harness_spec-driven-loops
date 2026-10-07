@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/064-gpt-6-astra-oauth",
+  "specFolder": "cli-external-orchestration/z_archive/064-gpt-6-astra-oauth",
   "description": "The operator asked for GPT-6 Astra at all thinking levels and in fast mode, through cli-pi, cli-opencode and cli-codex, over the official GPT provider",
   "keywords": [
     "operator",

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Scripts (`create-spec-folder.sh`, `expand-template.js`) copy from root templates instead of level-specific folders",
     "created_at": "2026-04-12T09:02:53.544Z",
-    "last_save_at": "2026-08-30T15:39:37.393Z",
+    "last_save_at": "2026-10-07T20:13:20.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fa76b7ee1d34483d598c40db73bdb582e0a294d129c6e160c427d03cbb8d49d",
+    "source_fingerprint": "sha256:643f5edf01bb4ebd1d5b4e1d5c2ba12f635bdb856ed0510240c07ff9f2d0d215",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e98d4d7fdde459fa64ffb5c0fdb4b745297e88cd36b62188190aec8f8b0bf342",
-      "plan.md": "e1b07d262013ed6d2c7fb119e4fccd8ee4eebdf28bb9ff3694e2a6a8f58fd387",
+      "spec.md": "3c2c05a2470f6187855e7e9a79d123db9d41e0e74cdeb80513c0ee29c181cd23",
+      "plan.md": "fa3bfd9c051cb21129ab7df207b087e828ad336d8b0835688104ff19add9da4f",
       "tasks.md": "140c12e773c7a7e0e46d8e95c7adf0b361b15c7118b1a2bb86acfa02432f6ec0",
       "decision-record.md": "8564cfabb44144d4c640d41f5463f0729b76fe2e3bdff7efcb390776de8cbbad",
-      "implementation-summary.md": "30d40629cc8ef5a7e4475478b3fbe5d8facbe692c9a94ceff7911e4cfbfc3dbe"
+      "implementation-summary.md": "34dbdd43c3dbe1a8b85789ac6e6f2ea0ef875a889164149d06fd3df5781eecf2"
     },
     "last_active_child_id": null,
     "last_active_at": null

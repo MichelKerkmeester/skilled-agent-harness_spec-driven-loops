@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-  "spec_folder": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,8 +41,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-      ".opencode/commands/create/diagram.md",
       ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md"
@@ -81,13 +79,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "diagram.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/diagram.md",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -191,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:18.000Z",
+    "last_save_at": "2026-10-07T18:14:20.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8405a5a8f6f4ad1d92740fc174e811818abd07f054f85ccb0c38216d8d6411e4",
+    "source_fingerprint": "sha256:93e90d69c5a643b4f7f0e4ceb18deb790cc80584ab47d29b2259b34ddb8ffb79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5a4fed850c2f75b23108f8e86ce3132c77febfc5cc319780f8d66fae9071cb6",
-      "plan.md": "d25ab2ed13cdd9e453e7fe7eee0d3313b47c949af21af099d4c3448121106691",
-      "tasks.md": "e02f9cb31d0185f26745ef576b206bce42d627f969e518884b3ed081443a6eb2",
+      "spec.md": "2085c165531ce6bf4cf02743da5072f26e95477587df6bb49dc704729983c850",
+      "plan.md": "345ab2baaca4611a1e43885419a9f54f0197cea58d33e1b2a6aaf98bbb531fbd",
+      "tasks.md": "27ef58bff85c53efadd0ffe993e849b67ada083d408f5a9e755c58d712e8f7e2",
       "decision-record.md": "32882acbacab083bbfbe26c87e2f866b60cda1fd88a61df72cea4bac6a7b475f",
-      "implementation-summary.md": "af4f5958debb7d7fb903d7a6720b6a88e6c1bfeaa2af106a0b48ba6d8b5d4424"
+      "implementation-summary.md": "8e60eb7edcee38c3ef46244d21908e093752c170073da8d358364f3c54f733f2"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T18:40:07.000Z"

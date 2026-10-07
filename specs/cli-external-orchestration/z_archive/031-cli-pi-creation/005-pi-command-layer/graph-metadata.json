@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/005-pi-command-layer",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/005-pi-command-layer",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under `.opencode/commands/{create,deep,doctor,interface,memory,prompt,speckit}/.md` plus 2 top-level files, using Claude Code's colon-namespaced invocation (`/deep:research`, `/create:skill`) and a single opaque `$ARGUMENTS` string that each command's own router logic parses for flags and mode suffixes",
     "created_at": "2026-07-27T06:48:17.724Z",
-    "last_save_at": "2026-08-30T15:39:07.672Z",
+    "last_save_at": "2026-10-07T18:11:38.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73540cedf236ad97f490e36ef24b9307124cd7aabc8aee09d8c4612b9042066a",
+    "source_fingerprint": "sha256:8b050cda721f3313c3868a9048278b95ca31f5f62aa178961f5ce2cb038e6ea4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "148acf7616e09081e7ff69e85f640fe9542e5a1490625c9547fe6c1f69fde765",
-      "plan.md": "21b9cac8ffb31115cef1dc0b66be138052b99fdb8f6c02369546d4118377f305",
-      "tasks.md": "1ea622b6f2532618fcce2066bdd2b0649e44184f77231b4a8182a59cddc55dcf",
-      "implementation-summary.md": "72e685cfccda411a5bb2ebc588132eeda6c55ad9bc75b7b342b711a2daf9118f"
+      "spec.md": "c51db0247320b282e8f14dd76d4f5878028a284f17451823bb44b7c475c0d6cd",
+      "plan.md": "4e535afa2b02225b1c1a0a01c8fb6ac050269206871df7fca8d393ef010f5457",
+      "tasks.md": "7a6840f1165fc9cfb6c63ce37198cf1c65be79bdf98fa41c05c45315547fe439",
+      "implementation-summary.md": "80cd1124718fc70be56d50d73e54cee62670ecf787d025feee5da91838398841"
     },
     "last_active_child_id": null,
     "last_active_at": null

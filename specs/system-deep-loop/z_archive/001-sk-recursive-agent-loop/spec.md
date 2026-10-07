@@ -39,17 +39,17 @@ _memory:
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | [`001-sk-improve-agent-mvp/`](./001-sk-improve-agent-mvp/) | Complete | Evaluator-first MVP for `sk-improve-agent`: proposal-only loop, canonical handover target, append-only ledger, guarded promotion and rollback. [Implementation summary](./001-sk-improve-agent-mvp/implementation-summary.md). |
-| 2 | [`002-sk-improve-agent-full-skill/`](./002-sk-improve-agent-full-skill/) | Complete | Full-skill expansion: benchmark harness, target profiles, second structured target, stronger no-go rules, and downstream mirror-sync guidance. [Implementation summary](./002-sk-improve-agent-full-skill/implementation-summary.md). |
-| 3 | [`003-sk-improve-agent-doc-alignment/`](./003-sk-improve-agent-doc-alignment/) | Complete | sk-doc alignment for `sk-improve-agent`, related command and agent surfaces, and parent packet closeout. [Implementation summary](./003-sk-improve-agent-doc-alignment/implementation-summary.md). |
-| 4 | [`004-sk-improve-agent-promotion-verification/`](./004-sk-improve-agent-promotion-verification/) | Complete | Guarded promotion verification for handover plus explicit `context-prime` repeatability evidence. [Implementation summary](./004-sk-improve-agent-promotion-verification/implementation-summary.md). |
-| 5 | [`005-sk-improve-agent-package-runtime-alignment/`](./005-sk-improve-agent-package-runtime-alignment/) | Complete | Stricter template fidelity for the agent-improver package, runtime mutator rename to `agent-improver`, command alignment, and `.agents` mirror sync. [Implementation summary](./005-sk-improve-agent-package-runtime-alignment/implementation-summary.md). |
-| 6 | [`006-sk-improve-agent-command-rename/`](./006-sk-improve-agent-command-rename/) | Complete | Rename the command entrypoint itself to `/deep:start-agent-improvement-loop-improver`, rename wrapper and YAML command assets, and sync packet history to the new command surface. [Implementation summary](./006-sk-improve-agent-command-rename/implementation-summary.md). |
-| 7 | [`007-sk-improve-agent-wording-alignment/`](./007-sk-improve-agent-wording-alignment/) | Complete | Wording-only cleanup across the current agent-improver package, runtime mirrors, wrapper prompts, and active packet docs. [Implementation summary](./007-sk-improve-agent-wording-alignment/implementation-summary.md). |
-| 8 | [`008-sk-improve-agent-holistic-evaluation/`](./008-sk-improve-agent-holistic-evaluation/) | Complete | Holistic 5-dimension evaluation: integration scanner, dynamic profile generator, refactored scorer/benchmark/reducer, any-agent support, manual testing playbook. Renamed skill from sk-recursive-agent to sk-improve-agent. [Implementation summary](./008-sk-improve-agent-holistic-evaluation/implementation-summary.md). |
-| 9 | [`009-sk-improve-agent-self-test/`](./009-sk-improve-agent-self-test/) | Complete | Self-referential test: ran the full `/deep:start-agent-improvement-loop` loop targeting `agent-improver.md` itself. 3 iterations, baseline 99→100 (systemFitness fix), plateau at 100 across all 5 dimensions. [Implementation summary](./009-sk-improve-agent-self-test/implementation-summary.md). |
-| 10 | [`010-sk-improve-agent-self-test-fixes/`](./010-sk-improve-agent-self-test-fixes/) | Complete | Fix 5 issues from Phase 009 self-test: stale command path, reducer family hardcoding, configurable plateau window, accepted counting, and candidate promotion to canonical. [Spec](./010-sk-improve-agent-self-test-fixes/spec.md). |
-| 11 | [`011-sk-improve-agent-advisor-readme-sync/`](./011-sk-improve-agent-advisor-readme-sync/) | Complete | Skill advisor routing for Phase 008+ capabilities (5D scoring, integration scanning, dynamic profiling, /deep:start-agent-improvement-loop command), COMMAND_BRIDGES for all /deep: and /create: commands, README version bump to 1.0.0.0, Barter advisor sync. [Spec](./011-sk-improve-agent-advisor-readme-sync/spec.md). |
+| 1 | [`001-sk-improve-agent-mvp/`](./001-sk-improve-agent-mvp/) | Complete | Evaluator-first MVP for `sk-improve-agent`: proposal-only loop, canonical handover target, append-only ledger, guarded promotion and rollback. [Implementation summary](./001-sk-recursive-agent-mvp/implementation-summary.md). |
+| 2 | [`002-sk-improve-agent-full-skill/`](./002-sk-improve-agent-full-skill/) | Complete | Full-skill expansion: benchmark harness, target profiles, second structured target, stronger no-go rules, and downstream mirror-sync guidance. [Implementation summary](./002-sk-recursive-agent-full-skill/implementation-summary.md). |
+| 3 | [`003-sk-improve-agent-doc-alignment/`](./003-sk-improve-agent-doc-alignment/) | Complete | sk-doc alignment for `sk-improve-agent`, related command and agent surfaces, and parent packet closeout. [Implementation summary](./003-sk-recursive-agent-doc-alignment/implementation-summary.md). |
+| 4 | [`004-sk-improve-agent-promotion-verification/`](./004-sk-improve-agent-promotion-verification/) | Complete | Guarded promotion verification for handover plus explicit `context-prime` repeatability evidence. [Implementation summary](./004-sk-recursive-agent-promotion-verification/implementation-summary.md). |
+| 5 | [`005-sk-improve-agent-package-runtime-alignment/`](./005-sk-improve-agent-package-runtime-alignment/) | Complete | Stricter template fidelity for the agent-improver package, runtime mutator rename to `agent-improver`, command alignment, and `.agents` mirror sync. [Implementation summary](./005-sk-recursive-agent-package-runtime-alignment/implementation-summary.md). |
+| 6 | [`006-sk-improve-agent-command-rename/`](./006-sk-improve-agent-command-rename/) | Complete | Rename the command entrypoint itself to `/deep:start-agent-improvement-loop-improver`, rename wrapper and YAML command assets, and sync packet history to the new command surface. [Implementation summary](./006-sk-recursive-agent-command-rename/implementation-summary.md). |
+| 7 | [`007-sk-improve-agent-wording-alignment/`](./007-sk-improve-agent-wording-alignment/) | Complete | Wording-only cleanup across the current agent-improver package, runtime mirrors, wrapper prompts, and active packet docs. [Implementation summary](./007-sk-recursive-agent-wording-alignment/implementation-summary.md). |
+| 8 | [`008-sk-improve-agent-holistic-evaluation/`](./008-sk-improve-agent-holistic-evaluation/) | Complete | Holistic 5-dimension evaluation: integration scanner, dynamic profile generator, refactored scorer/benchmark/reducer, any-agent support, manual testing playbook. Renamed skill from sk-recursive-agent to sk-improve-agent. [Implementation summary](./008-sk-recursive-agent-holistic-evaluation/implementation-summary.md). |
+| 9 | [`009-sk-improve-agent-self-test/`](./009-sk-improve-agent-self-test/) | Complete | Self-referential test: ran the full `/deep:start-agent-improvement-loop` loop targeting `agent-improver.md` itself. 3 iterations, baseline 99→100 (systemFitness fix), plateau at 100 across all 5 dimensions. [Implementation summary](./009-sk-agent-improver-self-test/implementation-summary.md). |
+| 10 | [`010-sk-improve-agent-self-test-fixes/`](./010-sk-improve-agent-self-test-fixes/) | Complete | Fix 5 issues from Phase 009 self-test: stale command path, reducer family hardcoding, configurable plateau window, accepted counting, and candidate promotion to canonical. [Spec](./010-sk-agent-improver-self-test-fixes/spec.md). |
+| 11 | [`011-sk-improve-agent-advisor-readme-sync/`](./011-sk-improve-agent-advisor-readme-sync/) | Complete | Skill advisor routing for Phase 008+ capabilities (5D scoring, integration scanning, dynamic profiling, /deep:start-agent-improvement-loop command), COMMAND_BRIDGES for all /deep: and /create: commands, README version bump to 1.0.0.0, Barter advisor sync. [Spec](./011-sk-agent-improver-advisor-readme-sync/spec.md). |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -82,14 +82,14 @@ Keep `041-sk-improve-agent-loop` as the parent packet for the `sk-improve-agent`
 
 ### Files to Change
 See phase-level specs for implementation scope:
-- [Phase 1 scope](./001-sk-improve-agent-mvp/spec.md)
-- [Phase 2 scope](./002-sk-improve-agent-full-skill/spec.md)
-- [Phase 3 scope](./003-sk-improve-agent-doc-alignment/spec.md)
-- [Phase 4 scope](./004-sk-improve-agent-promotion-verification/spec.md)
-- [Phase 5 scope](./005-sk-improve-agent-package-runtime-alignment/spec.md)
-- [Phase 6 scope](./006-sk-improve-agent-command-rename/spec.md)
-- [Phase 7 scope](./007-sk-improve-agent-wording-alignment/spec.md)
-- [Phase 8 scope](./008-sk-improve-agent-holistic-evaluation/spec.md)
+- [Phase 1 scope](./001-sk-recursive-agent-mvp/spec.md)
+- [Phase 2 scope](./002-sk-recursive-agent-full-skill/spec.md)
+- [Phase 3 scope](./003-sk-recursive-agent-doc-alignment/spec.md)
+- [Phase 4 scope](./004-sk-recursive-agent-promotion-verification/spec.md)
+- [Phase 5 scope](./005-sk-recursive-agent-package-runtime-alignment/spec.md)
+- [Phase 6 scope](./006-sk-recursive-agent-command-rename/spec.md)
+- [Phase 7 scope](./007-sk-recursive-agent-wording-alignment/spec.md)
+- [Phase 8 scope](./008-sk-recursive-agent-holistic-evaluation/spec.md)
 
 Root packet assets retained as shared evidence:
 - [`research/`](./research/)

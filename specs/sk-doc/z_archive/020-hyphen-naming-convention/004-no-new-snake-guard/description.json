@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/004-no-new-snake-guard",
   "description": "Nothing prevents snake_case from re-entering in-scope filesystem names.",
   "keywords": [
     "nothing",

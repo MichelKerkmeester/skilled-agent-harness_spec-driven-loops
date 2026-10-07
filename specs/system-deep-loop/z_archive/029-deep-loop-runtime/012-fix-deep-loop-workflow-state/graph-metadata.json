@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Five findings flagged the deep-loop workflow state machine",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-09-07T16:17:26.516Z",
+    "last_save_at": "2026-10-07T18:15:15.630Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9c95b2ce2d6574327b2f18b6a9e800f782f172dc4d73c1eb7984822f1b66af9",
+    "source_fingerprint": "sha256:a33bd3bd49a8267acc50ce820d65f13423d413e5c7f66f0ac1719825e0fef126",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42083a238b9060ac9d831458a245fac0263c0b63c65140297e2c16803a07387f",
-      "plan.md": "9f4950620d9e41a31e80404d481dbe0f84ccd5cfec70b8629542205bec9c7626",
-      "tasks.md": "ed79bef7796d341113fa26ea37637dcb69fba4df677cbe77ed93f4e9c54fa1a8",
-      "implementation-summary.md": "fd9d5dd23622baafb79e99cad53ef8b8e5ec7e2b1e150b61779e2a0664139ab6"
+      "spec.md": "b4c905aacca730c8b997c3a2c3bf56607fea5de2ee2c2143db42c25112248601",
+      "plan.md": "54966eaaf7468ea671e3952483eb0683b32ff19ef69296f0871a7ad2889f2b86",
+      "tasks.md": "17c22724c42e43589e73cd010d51c0b88fdbaf6003af791d82282e5e9e537b76",
+      "implementation-summary.md": "33e862a3cc57d79cccb4f77d99ec2704761d3cb267549d3196c1ac038443765b"
     },
     "last_active_child_id": null,
     "last_active_at": null

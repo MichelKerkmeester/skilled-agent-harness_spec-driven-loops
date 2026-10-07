@@ -3,7 +3,6 @@ title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/003-constitutional
 description: 'title: "Implementation Summary"'
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "003"
   - "constitutional"
 importance_tier: "normal"

@@ -2,12 +2,8 @@
 title: "Implementation Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/plan]"
 description: "This plan addresses bugs and misalignments discovered during a comprehensive 20-agent analysis of the system-spec-kit skill. The work is organized into 4 phases, prioritized by ..."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "system"
-  - "spec"
-  - "kit"
-  - "049"
+  - "system analysis bugs remediation plan"
+  - "bug fix phase plan"
 importance_tier: "important"
 contextType: "planning"
 ---

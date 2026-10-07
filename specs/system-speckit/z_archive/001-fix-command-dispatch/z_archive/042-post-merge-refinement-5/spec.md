@@ -2,13 +2,7 @@
 title: "Feature Specificatio [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/042-post-merge-refinement-5/spec]"
 description: "Complete feature specification defining requirements, user stories, and success criteria for fixing critical bugs and improving quality following the Spec Kit Memory merger."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "spec"
-  - "kit"
-  - "memory"
-  - "042"
-  - "post"
+  - "post merge refinement 5 spec"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -190,7 +184,7 @@ As a developer using the memory system, I need improved search quality and bette
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -223,7 +217,7 @@ As a developer using the memory system, I need improved search quality and bette
 - **NFR-O02**: Database migrations MUST be idempotent
 - **NFR-O03**: System MUST support backward compatibility with existing memory files
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -305,7 +299,7 @@ As a developer using the memory system, I need improved search quality and bette
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -317,7 +311,7 @@ As a developer using the memory system, I need improved search quality and bette
 - **Performance optimization** - Beyond fixing identified performance bugs
 - **UI/UX redesign** - Commands will work the same way, just correctly
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

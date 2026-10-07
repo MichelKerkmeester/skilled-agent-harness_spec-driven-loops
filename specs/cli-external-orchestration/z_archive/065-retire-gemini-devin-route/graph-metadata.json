@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/065-retire-gemini-devin-route",
-  "spec_folder": "cli-external-orchestration/065-retire-gemini-devin-route",
+  "packet_id": "cli-external-orchestration/z_archive/065-retire-gemini-devin-route",
+  "spec_folder": "cli-external-orchestration/z_archive/065-retire-gemini-devin-route",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Devin bills Gemini 3.8 Flash High at twice the 3.7 rate",
     "created_at": "2026-09-06T09:39:16Z",
-    "last_save_at": "2026-09-06T09:43:00.081Z",
+    "last_save_at": "2026-10-07T18:11:30.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a496e0c1c4adbe446dda6755521a02cbdc29fed79aa186c6a0a8a793ff676f8",
+    "source_fingerprint": "sha256:564111b3d87b014fa37833f0487f41465c818df4171c4ead25da61241c687798",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80af5de044b1dc62c00b1e11227f19216c6c14e8759dbf2a4be5eeeecc70bbd6",
+      "spec.md": "6acba33a8c007e60555ed1cdd11dbd286aad2c0b0f2ca48ab5e8ad8b7bfad0a4",
       "plan.md": "043995e53f7dc5e7e8ce87ea7795fb54d49d33fc774ba628eb1900827a55dd11",
       "tasks.md": "65280bc2b6574ce7b98b175a1f93bd2a9f3b9500b718ac854a80ff35e3502b97",
-      "implementation-summary.md": "c967aec2ff39b7c23dd15be349857f19ec2390d6327bc897f1143ceb8c542ba5"
+      "implementation-summary.md": "58eae475dd8e16eb45a1f62ff48307631b6a042ab63cde40e1a2bbb2b9ed551e"
     },
     "last_active_at": null
   }

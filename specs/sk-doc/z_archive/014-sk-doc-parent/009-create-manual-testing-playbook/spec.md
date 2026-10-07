@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/009-create-manual-testing-playbook"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/009-create-manual-testing-playbook"
     last_updated_at: "2026-07-06T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Placeholder scaffolded"

@@ -109,3 +109,4 @@ Rejected for CLI kinds — they're pooled headless subprocesses; not agent dispa
 - Native fan-out is NOT pooled — it's sequential agent dispatches. For high parallelism,
   use CLI executor kinds. Native fan-out is appropriate for 1–3 lineages.
 <!-- /ANCHOR:adr-001-consequences -->
+<!-- /ANCHOR:adr-001 -->

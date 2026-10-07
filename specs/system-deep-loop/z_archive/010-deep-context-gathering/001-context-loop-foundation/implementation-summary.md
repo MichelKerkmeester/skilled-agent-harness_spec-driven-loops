@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 134-deep-context-gathering |
+| **Spec Folder** | 001-context-loop-foundation |
 | **Status** | Complete |
 | **Completed** | 2026-06-06 |
 | **Level** | 3 |

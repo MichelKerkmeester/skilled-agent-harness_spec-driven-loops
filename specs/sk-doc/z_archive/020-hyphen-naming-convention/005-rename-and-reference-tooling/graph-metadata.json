@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
-    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
-    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
-    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
+    "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+    "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+    "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+    "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
   ],
   "manual": {
     "depends_on": [],
@@ -86,16 +86,16 @@
     ],
     "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger, and a compare-and-swap static reference-rewrite executor, then proves them against disposable fixtures before any migration run.",
     "created_at": "2026-07-13T14:34:05.527Z",
-    "last_save_at": "2026-08-30T15:39:16.133Z",
+    "last_save_at": "2026-10-07T18:12:44.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4cb613c916ca8a4b79117865463f5b053da22d7c74a1582eebfac2878c50abbe",
+    "source_fingerprint": "sha256:a07d36ff6b99f7c136a2a755124400a6f0f5c465c5cfe25e39c5dd8ccf307825",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "524fa9be263e8582d5547259f1da6876ef7c98ffeeef495b6d025867a189e70f"
+      "spec.md": "d5f99b0ba6b166623ffc0c1ad3f8d34849e28f2c0ab52f4fda41b6512df7572f"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
     "last_active_at": null

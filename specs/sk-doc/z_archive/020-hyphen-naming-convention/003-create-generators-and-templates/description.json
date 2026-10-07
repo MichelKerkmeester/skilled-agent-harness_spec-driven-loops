@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
   "description": "The create-* generator families and their templates can still emit underscore filesystem names.",
   "keywords": [
     "generator",

@@ -2,14 +2,14 @@
 title: "Implementation Summary: ai-council Subagent-Only Conversion"
 description: "Converted ai-council.md from mode: all to mode: subagent, an explicit operator override of research's unanimous 6/6 recommendation, verified with real live opencode CLI smoke tests rather than assumption, and redirected 2 real documentation callers discovered depending on the removed direct-invoke path."
 trigger_phrases:
-  - "implementation"
-  - "summary"
+  - "ai-council subagent conversion summary"
+  - "ai council mode override summary"
   - "ai-council subagent only"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
     last_updated_at: "2026-07-01T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implementation complete; validate.sh --strict passing"

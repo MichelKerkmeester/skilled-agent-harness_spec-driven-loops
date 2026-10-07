@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/010-pi-manual-testing-playbook",
   "description": "`cli-codex`, `cli-devin`, and `cli-cursor` each ship a split-document manual-testing playbook (root file + category folders, `{PREFIX}-NNN` scenario",
   "keywords": [
     "cli-codex",

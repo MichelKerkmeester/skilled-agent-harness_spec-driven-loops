@@ -164,7 +164,7 @@
     ],
     "causal_summary": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the hybrid-rag-fusion memory system",
     "created_at": "2026-04-12T09:02:50.295Z",
-    "last_save_at": "2026-09-10T21:05:00.721Z",
+    "last_save_at": "2026-10-07T19:24:35.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,10 +173,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b1545bcefadeb89e76efa67b5aad50ccb5ca70f6794e5ec507e6e8e9cdfd0f0",
+    "source_fingerprint": "sha256:1ee1cb6a25cdb6466cc530ec82558e9b108fb05b1c96938defc7dc65b8fe4ccb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "225ccc1aa8718e0943f7979a8c4d4de0f2e87fd92e01806be44376e3c156957f",
+      "spec.md": "b58846baa2ee7db4bcd43e43b7de9c6333eab3a641559faa608a969489749e13",
       "plan.md": "1a586f4e94ea081b542c2171e118dc6f795aeea2e1475c723d88ebac205fe8cb",
       "tasks.md": "38138ed69e9217d529f414198c4df1dc55263affda887cc091789b72986b8ee0",
       "implementation-summary.md": "96ce7f369b83f4e91b019ff884336c4ec1986971c5b2470b516380fa5e43c62c"

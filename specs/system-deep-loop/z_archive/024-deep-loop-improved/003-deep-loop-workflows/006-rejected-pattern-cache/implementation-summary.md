@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/003-deep-loop-workflows/006-rejected-pattern-cache"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Bounded rejected-idea index with exact + fuzzy suppression and reversal events in deep-res"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/003-design-motion",
+  "specFolder": "sk-design/z_archive/003-design-motion",
   "description": "The shipped motion mode defines the temporal layer for the sk-design family, but its packet was absent from git and memory",
   "keywords": [
     "shipped",

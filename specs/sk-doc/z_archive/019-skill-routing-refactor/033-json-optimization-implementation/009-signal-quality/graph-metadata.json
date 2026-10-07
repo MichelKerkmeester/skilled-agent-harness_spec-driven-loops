@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Fix intent-signal quality across the skill fleet (O6): a per-skill intent_signals coverage floor, dedup domains-vs-intent_signals double-counting in the lexical lane, strip generic file-path tokens from derivedKeywords, enrich the advisor's own thin signal set, add an intent_signals<->derived.trigger_phrases reconciliation gate, and add SQLite-vs-filesystem fallback expected-degradation parity tests.",
     "created_at": "2026-07-29T08:00:28.924Z",
-    "last_save_at": "2026-08-30T15:39:15.913Z",
+    "last_save_at": "2026-10-07T18:13:31.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf4b5ddbfe9f7cc70bd7c0590e44ea6441db67fb9d3a85e53ff11fbf654a2e71",
+    "source_fingerprint": "sha256:d86799826190715977cf7ac42c067e5aeed60cdda63f1aaa51b7fe1bee0bce29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8d165cde2750f5b848dccf8987dbc7d1a6a88c6b18111350f00167e82bb4deb",
-      "plan.md": "42e272d0ccd477012366a8ed033a588299756453f8fad056ffb4b1fda222d2b1",
-      "tasks.md": "4b51a8063b4de54716f049969f53127f3e4707bb74cf4fab01bd4ea6f25ad7aa",
-      "implementation-summary.md": "9c95c4d4f7d7242035a778835ba457daf5e7a5c69a3b8906c9d3f89c3b876d35"
+      "spec.md": "de15402e886f8824ddb0651d9e9aada13f94a3bed1274f6ffdad89b5b1c50b51",
+      "plan.md": "09685d60976393ae1965cf78a2f1ee4bd216302acfe5c71f25d41a227a3a7de1",
+      "tasks.md": "ae988a7c492e50a82674827487c86b2e07f71f7229df0cd3a0b89757b9e69a04",
+      "implementation-summary.md": "4bfcac8f5d45fa014bf3fe458edbaa8d929ccbc17a2d6caa638214adc7875429"
     },
     "last_active_child_id": null,
     "last_active_at": null

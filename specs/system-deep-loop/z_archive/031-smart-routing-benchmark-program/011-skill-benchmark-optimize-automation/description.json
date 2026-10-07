@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
   "description": "Build the planned loop-host --mode=skill-benchmark-optimize → optimize-skill-benchmark.cjs that turns benchmark signals into propose-by-default",
   "keywords": [
     "planned",

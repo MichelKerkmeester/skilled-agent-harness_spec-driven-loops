@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `.cursor/hooks/` discovery mirror gave the Cursor runtime a single place to see its full hook inventory",
     "created_at": "2026-07-24T18:29:18.029Z",
-    "last_save_at": "2026-08-30T15:39:07.566Z",
+    "last_save_at": "2026-10-07T18:11:41.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62b2f05324bef5950d0d0b8bc547f14a1d2ad8e8744ad8757a38153aa29eb0c9",
+    "source_fingerprint": "sha256:558363757180e0b2560bdf5c2da868cf6c825a36f8b9465202fdaa66c7d8a6d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12dcea733e0df8b98a2e0d4d5f0d1103b91322618fecac26f08e1b37aff74618",
-      "plan.md": "ef2ad202f3acbc9efbeacd4530d7a9b9198f49a5a2eb42098f84a89405fe9242",
-      "tasks.md": "589d9e4bca29049f165ebdafd2df940f4749719cbf1ba004222f077b869d854b",
-      "implementation-summary.md": "674835aeb174ebaf793fe874e0b99571e81126278ba7913586ab7cbdee487aad"
+      "spec.md": "b0dc45ceaa3d11ad61db56337b7b602f002497402b018500ffc5210a5b87f575",
+      "plan.md": "b548ca1d019b7310e008bc5ee1c012388ef5d363a36b2b2fb7820eb2a5a86683",
+      "tasks.md": "574ad860c8030e2e67b1e895c848f318043c44002cb9afd8d4833854705d4037",
+      "implementation-summary.md": "4d6d8ee461f7c54c649a816e03b273a77ca8655dff8243a31ad5e0aaff3cb181"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -145,7 +145,7 @@
     ],
     "causal_summary": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retrieval session state.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-08-30T15:39:38.153Z",
+    "last_save_at": "2026-10-07T20:32:00.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -153,12 +153,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:9313dbe986e1b2af99c455b24e531f3ab875cc7d3d0abb343b9c77a42a89d18a",
+    "source_fingerprint": "sha256:a8b92b30eee8140707d869559d180ed590424a691bb7bc3b98350a0627377c53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2bc188479b3a81731913bce807fcf431296e48e45a5b00361e8ed9f814e00274",
-      "plan.md": "c575cd0b85f44126357479839625210c24a4b92935d06ee4180290e122d26afb",
-      "tasks.md": "678f1b05b72d25dc937041b380fa744089165b29b9d1c845a8db4f402e503ec1"
+      "spec.md": "0e0f970796d2d6c312f9726e997123b93fe4b6cba11fc67f92ebf4803136cb76",
+      "plan.md": "42798ab429f32855f57d6140f03e7733f194741823c5d20bc22875d6f91d9d7b",
+      "tasks.md": "1c2e91eef8866e75418f8e22161bf17d38adb13ceebed01ab7f7079a228a8a74"
     },
     "last_active_child_id": null,
     "last_active_at": null

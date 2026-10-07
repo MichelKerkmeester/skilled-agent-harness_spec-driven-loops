@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/004-import-export-tooling",
-  "spec_folder": "sk-doc/028-sk-create-diagram/004-import-export-tooling",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/004-import-export-tooling",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/004-import-export-tooling",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,10 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
-      ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py",
-      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,24 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "drawio_extract.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
-        "source": "derived"
-      },
-      {
-        "name": "mermaid_extract.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
         "source": "derived"
       },
       {
@@ -186,11 +165,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Generating diagrams from scratch is only half the source skill's value — redrawing an existing draw.io or Mermaid diagram at a chosen format/size/detail/audience is the other half, and neither the extraction tooling nor its routing exists yet in the ported packet",
     "created_at": "2026-08-12T06:20:00.000Z",
-    "last_save_at": "2026-08-30T15:39:17.974Z",
+    "last_save_at": "2026-10-07T18:14:20.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2316adbd8728ac1a4ab2763e8a225c9fd026f4dd02c353569d57fffc17efc1a0",
+    "source_fingerprint": "sha256:b22f3839c092b8ef0cff46227a78637e4249de7016384b67cf79b7257034cc0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e76dc292eb3b70cbd0e8ad6483a30d4a82ab56bbff8584efc81ec35e1de6bc9",
-      "plan.md": "25336fbb621709b905c6fb28512aa71323abed5a46fb86ec69453ba20f4a2f50",
-      "tasks.md": "9a82677f19441dafa173e00820cb5d4e95945ddbf922967024daf97e6fbc30ea",
-      "implementation-summary.md": "27a7203bf8ed8d8a8ad61af4cb30995af5dedddac829038c2dff1e24b96c0e39"
+      "spec.md": "efa654f0cced664811fe04312539c514cf50fe6a0a94646689626d8524703a73",
+      "plan.md": "163939b158d4fd3a9fa9f167864a86f4809ace9e8914d4522aa31709b404ad3c",
+      "tasks.md": "4ac73b3a46cb4f49c28b57b74b3f30ae7bc5ab8c0550e2072b9f4b04644943c8",
+      "implementation-summary.md": "b252ceb73643804ba11326743a565c57727631b4158bd8d65dfef06c73305115"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T06:38:42.000Z"

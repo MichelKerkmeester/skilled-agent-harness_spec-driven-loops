@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
+  "specFolder": "cli-external-orchestration/z_archive/026-cli-external-parent/003-scaffold-hub",
   "description": "No parent-hub skeleton exists yet for the approved `cli-external` merge",
   "keywords": [
     "parent-hub",

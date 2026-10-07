@@ -7,9 +7,10 @@ trigger_phrases:
   - "compiled routing operator-gated"
 contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
+importance_tier: "normal"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation"
     last_updated_at: "2026-07-29T18:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed 6 stale rename refs, 10/10 pass; REQ-2 operator-gated, REQ-3 externally blocked"
@@ -24,6 +25,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -31,9 +33,11 @@ _memory:
 | **Spec Folder** | 011-rename-fallout-remediation |
 | **Completed** | 2026-07-29 |
 | **Level** | 2 |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 ### REQ-1 — stale rename references in the router-sync test (fixed)
@@ -53,15 +57,19 @@ The sk-doc compiled-routing manifest was never recompiled after the mode rename,
 | File | Action | Purpose |
 |------|--------|---------|
 | `system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts` | Modified | Repoint 6 stale pre-rename references to canonical `sk-*` names |
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
 Investigated each finding against the live tree, fixed only the one file the rename actually broke, and reached the documented-alternative outcome the spec allowed for the two that are genuinely gated/external. Verified REQ-1 by re-running the suite to green; verified REQ-2's non-urgency via the live serving-status probe; verified REQ-3's blocker by attempting the build.
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -71,10 +79,13 @@ Investigated each finding against the live tree, fixed only the one file the ren
 | sk-doc compiled-routing parity | drift confirmed (32 rows) — guarded: live serving is `legacy` (correct) |
 | `compiled-route-status --hub sk-doc` | `servingAuthority: legacy` — no live mis-route |
 | mcp-server dist rebuild | FAIL — `@earendil-works/pi-coding-agent` missing + pi-hook type errors (external) |
+<!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **REQ-2 operator action:** re-activating sk-doc compiled routing requires an operator-gated recompile + serving-closure re-attestation. Routing is correct via legacy until then; no urgency.
 2. **REQ-3 external blocker:** the mcp-server dist rebuild is blocked by the hook-runtime program's `hooks/pi/*.ts`; unblocks `validate.sh --strict` once that lands. Do it on main/CI.
+<!-- /ANCHOR:limitations -->

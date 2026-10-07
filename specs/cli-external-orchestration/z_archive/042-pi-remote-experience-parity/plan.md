@@ -1,8 +1,17 @@
+---
+title: "Implementation Plan: Pi Remote Experience Parity Research"
+description: "A two-lineage deep-research fan-out through the shared deep-loop runtime, with each lineage running the full research loop independently before one higher-tier synthesis merges their output."
+trigger_phrases:
+  - "pi remote experience parity research plan"
+importance_tier: "normal"
+contextType: "general"
+---
 # Implementation Plan: Pi Remote Experience Parity Research
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 A two-lineage deep-research fan-out through the shared deep-loop runtime (`fanout-run.cjs`), each lineage running the full research loop independently, followed by a single higher-tier synthesis.
@@ -12,6 +21,9 @@ A two-lineage deep-research fan-out through the shared deep-loop runtime (`fanou
 - **Stop policy**: `max-iterations` — convergence is telemetry only; the loop runs the full 20.
 - **Synthesis**: `cli-codex` · gpt-5.6-sol · reasoning `high` · fast, read-only, merging both lineages into `research/research.md`.
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:phases -->
 ## 2. STAGES
 
 | Stage | Description | Verification |
@@ -21,12 +33,20 @@ A two-lineage deep-research fan-out through the shared deep-loop runtime (`fanou
 | Synthesis | SOL-high consolidation | research/research.md with all 8 axes + ranked recommendations |
 | Persist | Metadata + strict validation | validate.sh --strict passes |
 
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:dependencies -->
 ## 3. DEPENDENCIES
 
 - Deep-loop runtime `fanout-run.cjs` (executor kinds `cli-codex`, `cli-pi`).
 - Authenticated `codex` (ChatGPT OAuth) and `pi` binaries.
 - The 041 packet as architecture grounding.
 
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
 ## 4. ROLLBACK
 
 The packet is additive and research-only; removing the folder fully reverts it. No runtime code changes.
+
+<!-- /ANCHOR:rollback -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -16,10 +16,9 @@
       "mechanical sweep",
       "catalog heading rename",
       "bulk catalog fix",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "mechanical sweep plan",
+      "mechanical sweep tasks",
+      "catalog sweep task list"
     ],
     "key_topics": [
       "mechanical",
@@ -28,18 +27,19 @@
       "heading",
       "rename",
       "bulk",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "task",
+      "list",
+      "script-driven",
+      "across"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -52,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -113,22 +119,54 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
     "created_at": "2026-06-04T13:19:25.656Z",
-    "last_save_at": "2026-09-11T04:36:15.274Z",
+    "last_save_at": "2026-10-07T20:38:20.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:9908bb97ace6899f93880dc109d0721538095a1445e879a4b34253a888f1c05d",
+    "source_fingerprint": "sha256:ae87cae9edf111d142e35491601d8d62dd5902e178a4d4faa6ffb534a020570f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5052c1169f6785cf4c3e28d32ad78e71db2652635c5237f72e7ee6e69c9a77f6",
-      "plan.md": "d7434818a7dca2539af56d1b5f11730af56b502011e75cd42b9ff293bcf4251e"
+      "spec.md": "0f22ddfade0166e28ced75d6b76e93abaeb79043cf2c6beccdf52513a225eacb",
+      "plan.md": "3f906c16933ed3379c7a624d1d3fee7f94da259b4fa28c2a2a8f56aa79fbe9c1",
+      "tasks.md": "3ece2dd62dd08cca227c85edcfb7024be149c70efae6aec1312c7f914b200ad6"
     },
     "last_active_child_id": null,
     "last_active_at": null

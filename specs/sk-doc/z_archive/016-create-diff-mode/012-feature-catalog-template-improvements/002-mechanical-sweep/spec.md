@@ -8,12 +8,14 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 002: Mechanical Sweep — All Skills
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -24,14 +26,19 @@ contextType: "general"
 | **Method** | Python scripts (automated, idempotent) |
 | **Prerequisite** | Phase 001 complete (done) |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 365+ snippet files still use the old heading, 328 lack the template marker, and 249 have a 2-column validation table. These are purely mechanical fixes — no AI judgment needed. Running scripts first establishes a clean, consistent baseline before the judgment-intensive phases begin.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### Target files
@@ -54,9 +61,11 @@ contextType: "general"
 - `trigger_phrases` frontmatter — handled in phases 003+004
 - Sub-headings — handled in phases 005+006
 - Related references — handled in phase 007
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -66,9 +75,11 @@ contextType: "general"
 | R-003 | Validation table updated to 3 columns | `grep -r "| File | Focus |" */feature_catalog/` returns 0 results |
 | R-004 | All scripts idempotent | Re-running changes nothing, no duplicate markers |
 | R-005 | Audit CSV produced | `long_sections_audit.csv` exists with filepath + paragraph count for all snippets |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - All 3 scripts execute without errors
@@ -76,3 +87,4 @@ contextType: "general"
 - Zero files retain `| File | Focus |` validation table header
 - `long_sections_audit.csv` produced for phase 005 input
 - Git diff shows only targeted mechanical changes (no prose alterations)
+<!-- /ANCHOR:success-criteria -->

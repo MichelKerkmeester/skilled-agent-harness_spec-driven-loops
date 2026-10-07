@@ -2,15 +2,12 @@
 title: "Implementation Summary"
 description: "Both DeepSeek V4.1 Flash tiers joined the two enforced Devin allowlists, the fan-out fixture now binds itself to the source array, and the permission-mode guidance names a silent failure it had not warned about."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "deepseek v4 1 flash implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash"
+    packet_pointer: "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash"
     last_updated_at: "2026-09-15T18:35:32Z"
     last_updated_by: "claude-conductor"
     recent_action: "Added both V4.1 tiers to the two allowlists, bound the fixture to the source, amended the permission-mode note"

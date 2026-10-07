@@ -22,7 +22,7 @@
       "tasks",
       "009 tasks",
       "reindex validator tasks",
-      "implementation summary"
+      "009 reindex validator"
     ],
     "key_topics": [
       "reindex",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
     "created_at": "2026-04-12T09:02:50.322Z",
-    "last_save_at": "2026-09-10T21:05:08.206Z",
+    "last_save_at": "2026-10-07T18:16:29.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b471165a2f1e234cbe1c54a535e44fb306ba9d3a3864ebb5bf3d22f0da069b2",
+    "source_fingerprint": "sha256:36fedcfbf7bf0295487fb68eabc69b9934c44f8c674ef95ef4bed175b8d6e7f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a2c3aba464c573eb2fd12cedba12c946d36cfdd2609b33d90491db34389d384",
       "plan.md": "732bee96aa612ef27c5386bf92d8fa1f690726e17b3753715de5fd1eb86c5de6",
       "tasks.md": "8176c8443bf405a8f77e290b12453f27bb656e6d8eb0b1ce95399f9d61f38554",
-      "implementation-summary.md": "61b346aea32fc68f87ec3d8d78743de0a6896c6741ce20c1d5525f8e6eb08180"
+      "implementation-summary.md": "78b5003cb96a448fb627877d5c4358119b0a4ea97f0662075bdd00c5bf77eb8c"
     },
     "last_active_child_id": null,
     "last_active_at": null

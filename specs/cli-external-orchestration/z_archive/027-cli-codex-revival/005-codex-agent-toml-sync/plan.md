@@ -6,7 +6,7 @@ importance_tier: normal
 contextType: planning
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/005-codex-agent-toml-sync"
     last_updated_at: "2026-07-13T06:25:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored planned phase stub for the .codex agents TOML sync"

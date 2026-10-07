@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Rewrote plan to ten phases for the ratified Option 3 collapse (ADR-005)"

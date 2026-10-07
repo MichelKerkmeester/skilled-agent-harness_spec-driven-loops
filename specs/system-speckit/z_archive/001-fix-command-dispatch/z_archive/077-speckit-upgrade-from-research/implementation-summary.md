@@ -6,7 +6,6 @@ trigger_phrases:
   - "summary"
   - "speckit"
   - "upgrade"
-  - "implementation summary"
   - "077"
 importance_tier: "normal"
 contextType: "implementation"

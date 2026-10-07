@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/022-parent-skill-logic-review",
   "description": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested",
   "keywords": [
     "parent-hub",

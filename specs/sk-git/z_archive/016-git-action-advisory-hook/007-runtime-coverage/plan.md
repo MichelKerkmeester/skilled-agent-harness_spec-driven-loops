@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook/007-runtime-coverage"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook/007-runtime-coverage"
     last_updated_at: "2026-07-28T08:00:00Z"
     last_updated_by: "glm-5-2"
     recent_action: "Built and verified in one pass"

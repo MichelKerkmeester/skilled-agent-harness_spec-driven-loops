@@ -19,7 +19,6 @@ total-tasks: 28
 
 ---
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: CRITICAL (P0)
 
@@ -31,9 +30,8 @@ total-tasks: 28
 | 1.4 | Reconcile LOC counts across 3 documents | `SKILL.md`, `level_specifications.md`, `level_selection_guide.md` | [ ] | Count actual LOC, update all 3 |
 | 1.5 | Fix Voyage model version contradiction | `embedding_resilience.md`, `environment_variables.md` | [ ] | voyage-3 vs voyage-4 |
 
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: HIGH (P1)
 
 | # | Task | File(s) | Status | Notes |

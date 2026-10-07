@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment"
     last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "All tasks shipped and verified VALID."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "reference asset template alignment tasks"
 ---
 
 # Tasks: Reference and Asset Template Alignment

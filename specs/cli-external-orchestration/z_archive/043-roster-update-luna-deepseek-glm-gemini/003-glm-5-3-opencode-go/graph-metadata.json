@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
-  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
-  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "packet_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+  "spec_folder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+  "parent_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "cli-opencode already serves `opencode-go/glm-5.3` live, but its catalog documents only DeepSeek Flash and Qwen under that gateway — the model is dispatchable but invisible to anyone reading the roster",
     "created_at": "2026-08-15T08:28:38.249Z",
-    "last_save_at": "2026-08-30T15:39:08.001Z",
+    "last_save_at": "2026-10-07T18:11:30.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:474877214455e6eeea7802424a8a824e77b96087135f89e306c317cd170eaf26",
+    "source_fingerprint": "sha256:89ad4876890071a52772dac7821891cf1c9238fc98323f6752e5072d57ad059e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c3d8aa0662805a1ac4acb912c8d2260c852624d5e9c5d44d0995f1fcdd41ba5",
-      "plan.md": "2eb1200ec94461086f62c70f0b3da3512788b566e87edfb4657bef5da217de20",
-      "tasks.md": "19f8d640c3ddffc22c057a91f988e69f2fa3843b51269bee8785dfe5b7d5dce6",
-      "implementation-summary.md": "d6de6db561925cc255c93cd9dfa0c24407afd3e0cb7939df45a4b4c62c2618dd"
+      "spec.md": "1b468df26800ac20ee534b10d361f83587c60a1143eeb708ceafeefcc6a59acb",
+      "plan.md": "3ae6ffe6745282a4e376d9a2cb8705b51fe4e69557dd3bc9e4ea40e220b0a871",
+      "tasks.md": "8d3855cb963f8c0bbc74c3527c72ab3b8ce65ca1e2fae49e7bdd92415dfedca5",
+      "implementation-summary.md": "f92f0089fb0e37f6c3247d718b118558adcae06fbf6359ddc08e41a6677f887a"
     },
     "last_active_child_id": null,
     "last_active_at": null

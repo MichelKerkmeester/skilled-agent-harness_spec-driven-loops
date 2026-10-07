@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt"
     last_updated_at: "2026-07-14T18:04:33Z"
     last_updated_by: "codex"
     recent_action: "Authored the sk-prompt phase-parent map from the live surface inventory"

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `featurecatalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape",
     "created_at": "2026-05-11T11:35:00Z",
-    "last_save_at": "2026-08-30T15:39:22.778Z",
+    "last_save_at": "2026-10-07T18:14:09.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24e4318f503dfd21256db459286b870d268ccc8f30404d4230c9ab243aaa26b3",
+    "source_fingerprint": "sha256:503a09f4fd30a492662a7794a9d0aa3d5699d8cf950ab9489dadd49d4f006132",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d43e578288ae785dd515bab6f3e9d13e2ede5c8ae1a0fd6166b136f67b5787b0",
       "plan.md": "2d837489fb0df04ead3b0e40c4dc53188fd61b1211aba915a9576ac1de909ff8",
       "tasks.md": "2ef0dae830e273d9bf3b4d1370b768f268476fc3ffedb7918f09c7e9cdbe1dc7",
-      "implementation-summary.md": "ccf30203e89093ed7610b21091e54787b5e2a8245fb4d2a438bcbfd6802da7b9"
+      "implementation-summary.md": "e03017c0adf8379eb252d46fc00085f1cda0407ea441a2d81c776bdc42c0f152"
     },
     "last_active_child_id": null,
     "last_active_at": null

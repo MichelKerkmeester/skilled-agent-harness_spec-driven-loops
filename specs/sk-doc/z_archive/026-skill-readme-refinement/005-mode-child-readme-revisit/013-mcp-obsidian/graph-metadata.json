@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,28 +46,25 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The mcp-obsidian README is the pilot that set the purpose-first standard for mode skill READMEs",
     "created_at": "2026-08-04T08:34:43.761Z",
-    "last_save_at": "2026-09-10T20:45:28.450Z",
+    "last_save_at": "2026-10-07T18:14:21.014Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaa3408fc8ceb316d0b31e7707d4df6effcc31b261c523875a3ccf31c1cf0ddf",
+    "source_fingerprint": "sha256:f73053abff4dcbc9d907dc2b70cfc7c1c9269ab4825d276f4ba94b3ff8b051db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0af6a269595ce39dcbceb3860d653655e9e773be3c0dd3e5813acc486f070e9d",
-      "plan.md": "4284e7df605e69b33143b609abfd7d6fc096dffcfd0ae184d244d0de45c10df8",
-      "tasks.md": "1fb444a190ceb59f83b4c92c0b0f1721ebbb8e10836a51fda451cd2d33a275db",
-      "implementation-summary.md": "77a03cca366ad22ebbf3b8120ec7c11af224e9f5d371917ac8278d10aeae7191"
+      "spec.md": "4ab0d1ae3118d3d7c40f4d4f904b5ed117d4e355cd923adf39399fed0a568cc1",
+      "plan.md": "b07c3a674565533e99adae1a181c9d30f70cab7fba97ef02ee0e99676536e28f",
+      "tasks.md": "43ec3455ccf1c95d8b3444df600a1ff2bc60a55b80b8ad88c1b59b643ca7d8af",
+      "implementation-summary.md": "bec6bf3b8845f47ec28b84630b78906b9cafb39f9761b25d1d6b2574cb2a8103"
     },
     "last_active_child_id": null,
     "last_active_at": null

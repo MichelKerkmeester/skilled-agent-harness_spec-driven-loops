@@ -14,10 +14,9 @@
       "deep review behavior benchmark",
       "RVB scenarios",
       "pilot behavioral benchmark",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary"
+      "pilot deep review plan",
+      "pilot deep review tasks",
+      "pilot deep review implementation summary"
     ],
     "key_topics": [
       "deep",
@@ -28,9 +27,9 @@
       "scenarios",
       "pilot",
       "behavioral",
-      "implementation",
       "plan",
       "tasks",
+      "implementation",
       "summary"
     ],
     "importance_tier": "high",
@@ -189,7 +188,7 @@
     ],
     "causal_summary": "The framework needs proving against one real mode before its rubric and budgets are multiplied across five",
     "created_at": "2026-07-02T05:53:05.801Z",
-    "last_save_at": "2026-08-30T15:39:25.876Z",
+    "last_save_at": "2026-10-07T21:27:47.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a5297d5fa46e3c699eed9298f769f5d0d40f2efe4d23652fec5ec2085329f23",
+    "source_fingerprint": "sha256:b95bac6adda5225c14957d61bbb95b8141c04174dc53334acd563279efe74561",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04f32266cfd0756eb1e584ab969052329d4a0071cdc0901880ac991e1afd27b6",
-      "plan.md": "96be174bbc9409f75a73602622542d0617f0c2633161f4eb2183320cd7adaab6",
-      "tasks.md": "919a33c07033b4c627ebf850d4cac0773dc9e8b82a02c8e0e93dec3f6ede8ad1",
-      "implementation-summary.md": "4c4e3ee8e02857f593d5c46b67ceff574eddf565ff377d5eac60d8e679967e68"
+      "spec.md": "6b3ede070b0cfe60aca6abe932d1549aebbb70767cd4c1fe09293ae683b31d6a",
+      "plan.md": "2d85cb8167ec5b97a3f8ee34924887d6b4d712f60145b7954d4dac975c56689a",
+      "tasks.md": "18c71b190f3f2e56f00c46ad91ffff916f206d449b9303017514dbd5e2265b4f",
+      "implementation-summary.md": "9bfde21794393d3c2cbc106ba9d832fa04553babb56aece9cb63144d662921c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

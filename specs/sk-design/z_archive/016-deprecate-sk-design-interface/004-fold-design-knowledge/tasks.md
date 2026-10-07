@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface/004-fold-design-knowledge"
     last_updated_at: "2026-08-19T06:07:13Z"
     last_updated_by: "spec-author"
     recent_action: "Authored 8 design-knowledge files, repointed 3 links, verified zero ../shared refs"

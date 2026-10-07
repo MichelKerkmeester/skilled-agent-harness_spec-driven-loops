@@ -11,30 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "042.007",
+      "skill rename improve agent prompt spec",
       "skill rename",
       "sk-improve-agent",
       "sk-improve-prompt",
       "rename closeout",
+      "skill rename improve agent prompt plan",
       "skill rename plan",
+      "skill rename improve agent prompt tasks",
       "skill rename tasks",
+      "skill rename improve agent prompt decision record",
       "skill rename decision record",
-      "improve-agent",
-      "skill rename implementation summary"
+      "improve-agent"
     ],
     "key_topics": [
       "skill",
       "rename",
+      "improve",
+      "agent",
+      "prompt",
+      "spec",
       "sk-improve-agent",
       "sk-improve-prompt",
       "closeout",
       "plan",
       "tasks",
-      "decision",
-      "record",
-      "improve-agent",
-      "implementation",
-      "summary"
+      "decision"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +195,7 @@
     ],
     "causal_summary": "The two improver skills were renamed from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`, but the closeout docs still carried stale metadata, old runtime-agent references, and missing template markers",
     "created_at": "2026-04-12T09:02:50.196Z",
-    "last_save_at": "2026-08-30T15:39:24.522Z",
+    "last_save_at": "2026-10-07T20:55:15.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4172326982d4caaeac96442a821a64e0d357e80735b70e53dbe40f8dfe2a76ea",
+    "source_fingerprint": "sha256:b68ba9b22e24debcd65ba05e0a5a3900ce0660bb89b043e089d28424fa259fec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eec0f555c46a647355f5437ba213beb673f983b57c5723a114bedf892fe14f2d",
-      "plan.md": "075907a1dbac8b16be8e20e4096bb5bd8262560a0fba4e7a9ff686a24ad284c8",
-      "tasks.md": "01614ee95424392a2be118adee13be3d8b1764e62bc94f2ca3e1555a1f47bf4f",
-      "decision-record.md": "1a967a9a2f6c69e68c20cb99071e05c138643eabdfc6c9e28b10610f2b076282",
-      "implementation-summary.md": "3465e2580c20983cb538b5e9e4d9a83a7a40f37436d4936fbd7db36909a51a35"
+      "spec.md": "2da286cf0d28ce495e93bfa376c7892639983e6b2bafd2fa02d8c17cdc0a3106",
+      "plan.md": "e58e3a2d57a17b05be2fa9902cd2a1db936ee2f16fd52b0713bdcb83694a9944",
+      "tasks.md": "c2bb01c20eb245932e03358896b10b6071d0b69217f4b3d7428029a4ef21edfa",
+      "decision-record.md": "a048ca1f8b194cad414953746ae8c86a6444704902944acf9f908f20909f2c12",
+      "implementation-summary.md": "2a09a83e4a597acba0b8068ea6fc3d66998313ab8a3a08a78eded44bbc9c4d98"
     },
     "last_active_child_id": null,
     "last_active_at": null

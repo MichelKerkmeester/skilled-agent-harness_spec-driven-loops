@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use manual_testing_playbook roots, category directories, scenario files, and index names with underscores, and catalog/index references point into those paths.",
     "created_at": "2026-07-14T15:17:20Z",
-    "last_save_at": "2026-08-30T15:39:16.359Z",
+    "last_save_at": "2026-10-07T18:13:05.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:0797e3278c720c3751c256582e155abbce017ecc135006acb9220575bf2e6d93",
+    "source_fingerprint": "sha256:52c41772a603bc9a925516bae4edfc62657d2f458d002b3ec1d2c0fd58fd2873",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55fc437f4e03fd04e77146ab4d9d46392e352e719e45bc581ff94c37e662c0d1",
-      "plan.md": "0eff5eccf369a8814962058dfba1b18fda0bbea26417beeda23652d2064fca93",
-      "tasks.md": "19f6e2799a56e9a2992242f99236d7d9274ddc119c482388a1cbdbf6934492d6"
+      "spec.md": "80242c82056ded0405f923167b7cf3097be706986e6e96c185848fa1e692ead2",
+      "plan.md": "62cadb8ba10e1531b66d9cab00343808c7abef8815aa6b30bf804df8e251226a",
+      "tasks.md": "a0d5cea60df880a104e6ae510dd74b0117b324af82e4011ec5af35e90454c074"
     },
     "last_active_child_id": null,
     "last_active_at": null

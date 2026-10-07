@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The advisor scorer treats explicit-lane disambiguation penalties as pre-clamp additive offsets and floors net-negative lane matches to zero, so a shipped penalty never survives as durable negative evidence and any saturating positive support erases the demotion",
     "created_at": "2026-07-06T11:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.326Z",
+    "last_save_at": "2026-10-07T18:15:57.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:effcf6004d8fe45e3117c99cea898cf58fcec745d174ee8a0b41134e33f426ff",
+    "source_fingerprint": "sha256:6e33df5e2bb343139f2753b9276c01e523476e019f1aae6345b13d696084fe68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ac719a889863fb5214d656ebcc92be2b377a37d2742743179c6bb573c86aa26",
-      "plan.md": "4563e6a9b125399fa6d97c69642d2358269c122410bcf898e5ddd5f2abdc1e36",
-      "tasks.md": "f37ee6f172ab89b686d326a8ae2632765d3bb1c2b7c31d144683bd53a3590b0f",
-      "implementation-summary.md": "7041d24e23560432aa34bb14720e4c891f305bc54502223b1a82ca80fad9c7fd"
+      "spec.md": "83ec3d70a264b15443db346e198e3015caa8fa33144a3d25d92c244e22a4ef1d",
+      "plan.md": "7ea01c864d2c07ca21b2b8a7831f4be22afd9536046ec06867b6632de9251a80",
+      "tasks.md": "73c116728f3cd51a8e1e0f9d3fe51c1c76dcf92753512679c995c5516bf87e98",
+      "implementation-summary.md": "9d98803802e1c275e0d8c47a04e77546d1c44938bdbef5075536b1a3cf4da1b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

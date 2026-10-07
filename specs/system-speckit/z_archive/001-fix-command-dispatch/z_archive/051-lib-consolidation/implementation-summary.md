@@ -2,12 +2,8 @@
 title: "Implemen [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/implementation-summary]"
 description: "Consolidated shared JavaScript modules into a central lib/ folder within the system-spec-kit skill. This eliminates code duplication between scripts/shared/ and mcp_server/share..."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "lib"
-  - "consolidation"
-  - "implementation summary"
-  - "051"
+  - "lib consolidation implementation record"
+  - "shared module unification summary"
 importance_tier: "normal"
 contextType: "implementation"
 ---

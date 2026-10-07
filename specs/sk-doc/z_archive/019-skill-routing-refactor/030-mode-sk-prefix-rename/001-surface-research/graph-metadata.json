@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/001-surface-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Two independent models on two CLIs enumerate every consumer of a mode packet directory or workflowMode key, so the rename phases start from a found surface rather than a guessed one.",
     "created_at": "2026-07-28T05:34:08.652Z",
-    "last_save_at": "2026-08-30T15:39:15.721Z",
+    "last_save_at": "2026-10-07T18:13:23.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4298588924b0337cedb64a625edb112ecd1329214dbf71185255ed03106419a",
+    "source_fingerprint": "sha256:12c69f2b222a6a3ccf10a7041e3839f7fc56438897c9cfb37db2eb8274194b51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4219db9b2d1441ee7cf3d7eb75618c92cc2e1f2827d7d82553aeba9401742a9e",
       "plan.md": "f2ac5f20573b8d5f9a447dcf5ec6d7f25043231fa4129ffc5015b51d02cbe623",
       "tasks.md": "98dcac01e63cf8f6de176aafca159f4be95ce95750024514a41715252d80bf25",
-      "implementation-summary.md": "341c251f197fb046522eed0070f7c202f30071b94a5bf83e13d4303488237ee5"
+      "implementation-summary.md": "b61bb23ab51517d808aeeccd3244f94ea99f88c15558169b81916a00d3d190a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,12 @@
       "conformance_benchmark template",
       "peer adapter benchmark authoring",
       "create-benchmark conformance family",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "create benchmark conformance family plan",
+      "create benchmark conformance family tasks",
+      "create-benchmark conformance implementation",
+      "conformance benchmark family complete",
+      "peer adapter authoring branch",
+      "benchmark family parity test"
     ],
     "key_topics": [
       "conformance",
@@ -33,10 +31,10 @@
       "adapter",
       "authoring",
       "create-benchmark",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "complete"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +198,7 @@
     ],
     "causal_summary": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test.",
     "created_at": "2026-07-15T04:42:13.321Z",
-    "last_save_at": "2026-09-11T04:38:00.686Z",
+    "last_save_at": "2026-10-07T18:15:06.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:782c3ac94b72ec0cfbb62023f919a4adc2edbdc73b7005efee1af6fd2dcfd511",
+    "source_fingerprint": "sha256:78b2a35f676ed6905c2781f589e73cc17d770863d900798d62aeb839d75614bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f9a69802a389aff673140b2fcb564050bea9752f29805c473f0a978e26e8e10",
-      "plan.md": "eb974518503fbe49d28ab2ea744720e117acbc72367c7a39fa824edfbe03c427",
-      "tasks.md": "663938fb055f6f4dc5a1a87072958980881f02fbe7bebd8a543026a82d18b11c",
-      "implementation-summary.md": "2304270f4f7eff52f446650f7eeed318b62921b22370ba04ed9a3b0ac0811c51"
+      "spec.md": "83106b34dae66796ca04ddd69973cb474179103566749c0cea9e683c94ae5041",
+      "plan.md": "56ab3de88427e86e6e58a46b9896823f9a14c08fb26c6887c4133d0e1bb96e88",
+      "tasks.md": "db5640ce7691ed9114bd7315c12adba2816ff2bc60801e2497f705795d558b3d",
+      "implementation-summary.md": "b4ce06dd9137a9cd0b200f5593aa0fd6d40dae7e12919118157343d8161d2a34"
     },
     "last_active_child_id": null,
     "last_active_at": null

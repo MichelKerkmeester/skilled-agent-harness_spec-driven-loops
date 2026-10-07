@@ -4,13 +4,6 @@
   "spec_folder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation",
   "parent_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
   "children_ids": [
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
@@ -140,17 +133,17 @@
     ],
     "causal_summary": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, semanticshadow lane-weight doc drift, the OpenCode plugin bridge native-route fail-open, and a stale vitest path in two playbook scenarios",
     "created_at": "2026-05-27T11:53:18.233Z",
-    "last_save_at": "2026-08-30T15:39:27.029Z",
+    "last_save_at": "2026-10-07T18:15:27.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f3d5ab159a7d0cc7c38454617046e5ec07bd4d615f20679a1e0ef886f2ef3f6d",
+    "source_fingerprint": "sha256:a9ec44ade22f1dd8e9a8abaef4924e7fcb1eba37124f7135041de50df4740a18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "591dd6ed47438cd42f566f9b588a3e6c9c28c5a954857da4fa138b7424f73d7d",
+      "spec.md": "fc3ccf7d162938fce0bfb61d47fb820b146eb7c0080ba3152459a198f90ae940",
       "research/research.md": "8873c793e25906c9650889b156b80ca0ed1700ca65fb0b04c6bd3edec51e511f"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",

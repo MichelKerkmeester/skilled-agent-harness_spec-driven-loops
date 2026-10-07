@@ -48,8 +48,6 @@
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       ".opencode/package.json"
     ],
     "entities": [
@@ -87,18 +85,6 @@
         "name": "deep-research.toml",
         "kind": "file",
         "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reducer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-deep-research` already uses packet files as the continuity boundary, but the workflow still drifted across runtime mirrors, lifecycle naming, and reducer ownership",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-08-30T15:39:24.425Z",
+    "last_save_at": "2026-10-07T20:02:28.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04fbf5d10bed35fefed09f190e76ae08907f156cc46b951268b644156f1168b2",
+    "source_fingerprint": "sha256:0f98996d4cc11d5fc69ad0668cad00625923bdbe8c15a74aaf8eb2c914515e7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "640811dfe7c8f613d1d140e273b765a368535adf74fd33c1f10eca57367976f8",
-      "plan.md": "bc81eb21b5093af70cd520cde833a7b3634df420476eefc5b710da5fcb97531f",
+      "spec.md": "3850db1c04cb82c0f40950eb4eedb0615aeaea49957f5ad8636d10eeec8c208d",
+      "plan.md": "e38cce238b847cb618447c9bf780e0f1fe3c51fcffc31905b2ba98b552b952fd",
       "tasks.md": "16751ce4961ed39d9b5340419faf1b6c434eb01a945de7a2a54f71897bb80a1e",
-      "implementation-summary.md": "6e7e8f881201b0a60aa129729ba1c8952ac6970551ef68046c3d0241478af065"
+      "implementation-summary.md": "a090a01e2353f119885986a7f46a90526e24004775d55ec29202752394941eb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

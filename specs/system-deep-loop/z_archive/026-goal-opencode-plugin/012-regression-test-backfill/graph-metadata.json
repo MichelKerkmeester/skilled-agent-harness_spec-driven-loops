@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is never invoked by any test; the `event()` handler swallows all exceptions with no test asserting on the error path; and 7 of 9 wired events (`session.created`, `message.updated`, permission/question asked+replied, `session.deleted`, `.disposed`) have zero coverage through the real entrypoint (tests bypass the state machine by writing state directly)",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-08-30T15:39:25.725Z",
+    "last_save_at": "2026-10-07T18:15:15.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ee7018cfe7159d2ad5ca92a85ccbe89c6106284f293e332a4b95c8784f5c01a",
+    "source_fingerprint": "sha256:19c6186044f54615e311b4218672a5c4b72ee5ba4cdda923fcf30e4cc89108f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ada169088575c31294c1eaaeb5d69dc7b385dc3a00f8dfd7f5ec28b8a539ff04",
-      "plan.md": "8b00e22dacde7b53e94b9feeff38bab78c899332e6c881bfbdc6a894cbee63d9",
-      "tasks.md": "31641691dccdbee42754f79dfbc1d93fd690760c37ab19217e1928a0a6ca75cd",
-      "implementation-summary.md": "4f86762e7292cd8f5a6541c9db40e57c4098b4f773109bc43241abcb741512e4"
+      "spec.md": "2657878be2c9665ca80e2f86343c09fecbfb4efff27b83e7671d4cb6a041e645",
+      "plan.md": "92a3fa3f9ef43a83d3bbb170461b187f265f77132604a3d0f7f1e22c38df445e",
+      "tasks.md": "8a8b9f0d93be9e141ad753fa4b58ba0ee5e28227679ba8f82d58c2032d621fff",
+      "implementation-summary.md": "03af98169ca508bbf4a4a31b4fcc2562ee36a2b96639fdb56d169df199e54553"
     },
     "last_active_child_id": null,
     "last_active_at": null

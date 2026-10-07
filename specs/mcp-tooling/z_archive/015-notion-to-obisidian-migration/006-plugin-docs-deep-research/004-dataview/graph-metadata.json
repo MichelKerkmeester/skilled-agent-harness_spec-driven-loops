@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the DataviewJS API section documents roughly 5 methods against the plugin's real ~30+, and two existing statements (inline-field multiline continuation, and an implied fixed DQL command-resolution order) are contradicted by the plugin's actual behavior",
     "created_at": "2026-08-23T03:43:07.446Z",
-    "last_save_at": "2026-09-10T20:43:52.438Z",
+    "last_save_at": "2026-10-07T18:11:09.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2d152a5cabfbeef9cb8049dc0192387e50b2972f0a73da86ab4f2fe8ac3c41e1",
+    "source_fingerprint": "sha256:f2f9976b2b792f9c24d5a3b6594227845bc93ed09bef91d1d7c349b17e9a1c8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0893ebacfac7e3f35c2e86469fe045cf3b2a6b752ad73aa71808d6cbf372d1a",
-      "plan.md": "7a9d7f6184542f9db2588100f23a7a7348d5e8af9641f932789dcab54a821314",
-      "tasks.md": "2efdf6322b5804e5a073356e3ee1b50e17b5dbbcbe922016d03293382da8d3e9",
+      "spec.md": "7b56bca485ef41883562c4bcea3de66cb61ecabb00395c1c72124b20dd9b99ae",
+      "plan.md": "7c6051f90394d136a6b3b518d4e1f2de0e6fcd5b4ac65fff1db3280edb344dc3",
+      "tasks.md": "0f1ab76c32bb78e5d3a863793b457131d02359df81175a2de77227d19c6a0d24",
       "research/research.md": "86a72e4187bff3e1609afd40fbeaf1ac8c48978e96eb89e2fcbeb0ea9bf49eb2"
     },
     "last_active_child_id": null,

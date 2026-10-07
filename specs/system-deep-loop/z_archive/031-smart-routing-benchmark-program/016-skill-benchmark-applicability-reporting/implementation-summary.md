@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting"
     last_updated_at: "2026-07-11T15:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Harness reporting fix + hub-D1 skillId bug shipped; aggregates verified; tests green"
@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "skill benchmark applicability reporting implementation summary"
 ---
 # Implementation Summary
 

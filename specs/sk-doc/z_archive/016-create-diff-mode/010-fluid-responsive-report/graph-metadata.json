@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/010-fluid-responsive-report",
-  "spec_folder": "sk-doc/016-create-diff-mode/010-fluid-responsive-report",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/010-fluid-responsive-report",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/010-fluid-responsive-report",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The create-diff HTML report is a self-contained document opened inside IDE preview panes and editor webviews on the desktop, whose widths vary widely (a narrow split around 480–700px, a half-screen editor around 900–1100px, a full editor up to ~1600px+)",
     "created_at": "2026-07-16T05:37:43.581Z",
-    "last_save_at": "2026-08-30T15:39:14.263Z",
+    "last_save_at": "2026-10-07T18:12:32.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cb7d76a2c5400b9f259dac2ee76fe247536cf78e1571950435fdab285360f0d",
+    "source_fingerprint": "sha256:dfeaef88072978cbc082a22134871987a45c42b1ecd43ec6bde9489d00949ee0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c387b2791507e79bbc8b6ccb52f93284e4f5405a4f5e7f0df28bbbf33f3e1cee",
-      "plan.md": "0c095992fc0c20aa63788013285e2537d901987e6006bb6c8cab9cbd9b01e89b",
-      "tasks.md": "d4b19b22042be72067feb811048e055b92d250a9dab806707aaf8e15f889009d",
-      "implementation-summary.md": "644c14ef7df0bc0891d7053c911e3b2ddafe5a9f1558393b327dc3acbb1b2655"
+      "spec.md": "2f78b172d427f57040b3dca35e511b2761dc7d5a64fb55c77fa38ef8c68a1c8a",
+      "plan.md": "e542dc7c515060279ed2b09a940ee7c5384f7e0f257dea3bb27454d7ffffb57e",
+      "tasks.md": "4917083769fefd97abb0e41a1521bc234555fab96f3c5b81b0e6a24b21c50d0f",
+      "implementation-summary.md": "413b9ffa230d0a2d633604cd21accb1d5c5b146860be72e057db054e88aa7f9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -203,7 +203,6 @@ Add `### Scenario Registry` table to spec.md in these 17 phases (use `006-analys
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -229,7 +228,6 @@ Note: Within Phase 2, individual phase folders (001-022) are independent and can
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

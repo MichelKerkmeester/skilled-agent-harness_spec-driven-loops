@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation"
     last_updated_at: "2026-08-23T06:00:00Z"
     last_updated_by: "claude"
     recent_action: "Renamed tasks.md phase headers to canonical Setup/Implementation; refreshed generated metadata"

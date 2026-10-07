@@ -46,13 +46,11 @@
       "review/lineages/gpt-fast-high/review-report.md",
       "research/lineages/gpt-fast-high/research.md",
       ".opencode/skills/mcp-code-mode/SKILL.md",
-      ".opencode/skills/sk-design/README.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/extractors/README.md"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained deep-mode routing rows and was later bloat-reduced, a new `mk-deep-loop-guard.js` plugin was added and later renamed (from `deep-route-guard.js`), and `.opencode/agents/.toml` mirrors were removed as an obsolete requirement",
     "created_at": "2026-07-01T15:17:20.938Z",
-    "last_save_at": "2026-08-30T15:39:25.544Z",
+    "last_save_at": "2026-10-07T18:15:10.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3290b6982e8c6a843feaa06e6e2ab06d81fbd0e202620db005be4e9d3d66bd94",
+    "source_fingerprint": "sha256:58b7062f9e6f40fd42cef6016320150d951843e0c2382d2b42ad7c5e05f983c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d72e39af5c2503329b9908b6ee78cb1887be9bef94ff77b89488dae1b29af47a",
-      "plan.md": "6955f0ec35ebaa8342c003afde2e6ab8158942a746b965f59d97d096c17b6360",
-      "tasks.md": "64d6eda176a020c229c63e00e83d566f9cadf28bce151aaa5057d7ed5ff131f7",
-      "implementation-summary.md": "f812c35e44242d606ffef7d4b7f2331687723b610dc93949bb47611b14bec11f"
+      "spec.md": "1154871b8e9574d1f3e2b5d6f0e05fc53288d8d8da50c43e13099f543432404b",
+      "plan.md": "449acfb3939d2bad03de55b87669372a14a0f53de1d5821f60a39436c52090ca",
+      "tasks.md": "639e49b5ababec1f91b6b283c71e1fffe1440351fc52e1b6dabd259e1aeefd10",
+      "implementation-summary.md": "ca7f56de543d30c31dff5516dea3ef47c89d687a3f170e46e5484917c2a2e3de"
     },
     "last_active_child_id": null,
     "last_active_at": null

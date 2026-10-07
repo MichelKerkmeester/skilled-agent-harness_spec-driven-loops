@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/009-verification-changelog-closeout",
   "description": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts",
   "keywords": [

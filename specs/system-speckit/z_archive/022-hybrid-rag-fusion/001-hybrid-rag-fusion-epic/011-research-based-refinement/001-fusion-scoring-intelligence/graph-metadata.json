@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and hard-coded Stage 2 signal weights",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-09-10T21:04:44.556Z",
+    "last_save_at": "2026-10-07T19:24:34.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,11 +178,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ce6dfd6143ceadf1b05e81c0bf824a3650e2cf91e69cbd1ae338e7faeaecb3ba",
+    "source_fingerprint": "sha256:a5bca06dc7ff189b935afa3d7d848312b012801e3ea048a9ff70ed1963ebeccb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9b394408f17cb7a4e3d5ccb6db7eb6cc0ab4f24ff630dd020d9901dace1abc7",
-      "plan.md": "2eef7db51683dab1d66505137fef19465ff18b2bf8ac749b6edba72e4acd9167",
+      "spec.md": "f7dfdfca0161f5b767278fc9c4e02c86bd7b6469748ef73540e6420dd8d2bce3",
+      "plan.md": "149a3a0a83335524d16d740db6857b757113c16d7997fed0b4734397b518ef45",
       "tasks.md": "da415fffe29bd05a7aea2ad14707b33a0fc2aae7815a1019883372b7a77378a1"
     },
     "last_active_child_id": null,

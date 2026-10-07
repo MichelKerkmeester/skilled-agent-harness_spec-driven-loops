@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
   "description": "Run the mcp-tooling skill/routing benchmark (Mode A router-replay) validating seven-mode routing, and record the official-CLI scenarios as",
   "keywords": [
     "run",

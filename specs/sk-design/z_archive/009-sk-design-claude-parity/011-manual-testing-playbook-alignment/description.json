@@ -3,7 +3,7 @@
   "level": 2,
   "status": "planned",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/011-manual-testing-playbook-alignment",
   "description": "The sk-design hub and mode-packet manual testing playbooks did not fully exercise behavior added by earlier parity-refactor work:",
   "keywords": [
     "sk-design",

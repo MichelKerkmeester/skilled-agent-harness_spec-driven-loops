@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.305Z",
-    "last_save_at": "2026-09-10T21:05:03.501Z",
+    "last_save_at": "2026-10-07T20:38:22.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +204,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0659f30a42c6139dad9fa2d23e647989650f4a4d7084383bc59648dafcb21d92",
+    "source_fingerprint": "sha256:a86bd4e1806521cfbc9f944f0cfa40ddb6ea041ab96aa7c3ef51ec91b6f79e15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "966361511cccc225a2c7cadd0e468e7d35afe5fdaa2804c90feb09a460cb268d",
-      "plan.md": "07c2b931a3fc48c1bb75fcef1ca31fd757bf0e43e3627ac22382d33cfa6c9b00",
+      "spec.md": "d66ce621d31c3254ca8dc2b0655648de2a72ebfcefda96dbf63ba1c73adadc3c",
+      "plan.md": "3cb5b05f12b3f8465a3c796942ae12396c5f21a832f3b88ec40d3ca3c6563874",
       "tasks.md": "566e9181efb5b299cae8cbad92e7f8ba7701562f875e86ab6ee4f4afac2cb6c9",
       "implementation-summary.md": "2262d3c5765e25858232685b91f0c061c5fbd5feffa09a33d6b3fea626b33858"
     },

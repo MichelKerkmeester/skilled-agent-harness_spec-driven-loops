@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
-  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
-  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "packet_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
+  "spec_folder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash",
+  "parent_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,32 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "deepseek v4 1 flash",
+      "devin serves a deepseek v4 1 flash family",
+      "deepseek v4 1 flash plan",
+      "deepseek v4 1 flash tasks",
+      "deepseek v4 1 flash implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
-      "implementation",
+      "deepseek",
+      "flash",
+      "devin",
+      "serves",
+      "family",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary",
+      "enforced",
+      "allowlist",
+      "carried"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +187,7 @@
     ],
     "causal_summary": "Devin serves a DeepSeek V4.1 Flash family that neither enforced allowlist carried, so a fan-out naming it was refused before a request was sent.",
     "created_at": "2026-09-15T18:35:31Z",
-    "last_save_at": "2026-09-15T18:49:56.952Z",
+    "last_save_at": "2026-10-07T18:11:33.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3490c8f018b074b746e3c688a3dc97710576774d994fa9285c54213eb0bd0800",
+    "source_fingerprint": "sha256:3cb5440cfd6dc6cdd2c58dbfe8ba0eb170670d2472ecf1af29859905b94a088c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5f0e2150be1f62c4c010039bb9a1a541642cee993cadd8a08064b0e4ca3ef16",
-      "plan.md": "d3a7de5905d2c4e367a79c205ea1d4e48a863b4338a712dbecbcb015079aa32f",
-      "tasks.md": "e0374f9cf511315ce658095fabe6e14f77f8965ba0d7040eabb74e2f398109c5",
-      "implementation-summary.md": "d9c2f2677da876d3a4eecb40f2e722e1b63ac9825d741893fb57373e21c696d7"
+      "spec.md": "39a01ce9c594b341d0d4a87cedbd1a44f81526daf834bdc510003b006fd91958",
+      "plan.md": "206967c17757b0fae380e2419d39985f59d3fab921445f0a7df0633de9e89644",
+      "tasks.md": "5d8e88f8c5196b99bcb3136eb311b06c9be6d1543b59fcdf8e6bc3de23e0a625",
+      "implementation-summary.md": "99553d61295831643e80d6274c8eb3cc086408ad66353eb4e35db54c7a1e85d5"
     },
     "last_active_at": null
   }

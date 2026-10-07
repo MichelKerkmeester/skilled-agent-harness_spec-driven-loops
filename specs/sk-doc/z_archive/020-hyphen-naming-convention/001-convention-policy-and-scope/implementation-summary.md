@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/001-convention-policy-and-scope"
     last_updated_at: "2026-07-18T05:35:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Published the canonical convention doc and superseded 027"

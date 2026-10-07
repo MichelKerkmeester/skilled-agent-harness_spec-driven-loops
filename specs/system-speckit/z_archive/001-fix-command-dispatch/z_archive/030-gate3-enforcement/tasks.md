@@ -2,11 +2,8 @@
 title: "Tasks - Gate 3 Enforcemen [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/tasks]"
 description: "Phase 1 Status: COMPLETE"
 trigger_phrases:
-  - "tasks"
-  - "gate"
-  - "enforcement"
-  - "030"
-  - "gate3"
+  - "gate3 enforcement tasks"
+  - "gate3 enforcement task breakdown"
 importance_tier: "normal"
 contextType: "implementation"
 ---

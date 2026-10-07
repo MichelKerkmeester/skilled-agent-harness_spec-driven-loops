@@ -2,14 +2,13 @@
 title: "Implementation Summary: Ox Alpha via the Cline provider for cli-pi"
 description: "Registered x-ai/ox-alpha on the cli-pi Cline provider — .pi config + both pi docs + the deep-loop cli-pi fan-out roster (two synced points + provider map) + guard tests. The real Cline id is x-ai/ox-alpha (vendor prefix, not cline-pass/), found by an authorized live probe after the DeepSeek-analogy guesses 404'd, and confirmed by a real PONG turn."
 trigger_phrases:
-  - "implementation summary"
   - "cline ox-alpha cli-pi"
   - "x-ai/ox-alpha cline-pass"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/053-cline-ox-alpha-cli-pi-roster"
     last_updated_at: "2026-08-24T10:18:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Registered x-ai/ox-alpha across config, docs, fan-out roster, and guard tests; live-verified"

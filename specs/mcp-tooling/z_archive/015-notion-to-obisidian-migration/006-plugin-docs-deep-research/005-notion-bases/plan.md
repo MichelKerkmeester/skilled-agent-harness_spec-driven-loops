@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases"
     last_updated_at: "2026-08-22T09:30:00Z"
     last_updated_by: "claude"
     recent_action: "Authored retrospective plan for the completed research run"

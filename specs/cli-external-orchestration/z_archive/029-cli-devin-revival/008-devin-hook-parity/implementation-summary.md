@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/008-devin-hook-parity"
     last_updated_at: "2026-07-25T10:09:43Z"
     last_updated_by: "opencode"
     recent_action: "Corrected phase status after documented-schema live verification"

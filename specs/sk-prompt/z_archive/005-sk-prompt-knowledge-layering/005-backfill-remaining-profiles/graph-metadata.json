@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After phase 4, the sk-prompt-models hub had a scaffold and two priority profiles but was missing authoritative prompt-craft documentation for six models in the active dispatch rotation: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, and glm-5.1",
     "created_at": "2026-06-05T12:47:32.512Z",
-    "last_save_at": "2026-08-30T15:39:19.233Z",
+    "last_save_at": "2026-10-07T18:14:21.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8a3e85e90acf0e1800eac6862e892d555e9bf1c706d985055b9d498f3b6daef",
+    "source_fingerprint": "sha256:d5307e06349924aa2e69ffcf92fffc26d720a5de19a3379108a49bbaad805b9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e46fcb352992801ac7f33548642aa2d65ea4b743a6bd00d1a2e43a24f90510f4",
-      "plan.md": "3a549918c2e5b9812cb0d5f7f4d6e6d47f1819c13903acf6107f4b1e2d320b32",
-      "tasks.md": "a9cd864a0ec403cc929d50349307853b7cbf9093f25f1899d2cffcbfea7b97b1",
-      "implementation-summary.md": "3095886ae49897225b39b26a838e37bfaf152d9108df6d5053fb4bf31fc04132"
+      "spec.md": "148800b0f211cfedd7c0e492b407212af36de33c6a48886b205fae7c9bfee101",
+      "plan.md": "91144505410a68564fdf5c73c259efb65d40d24dae3efe448bdf42e127e6e30a",
+      "tasks.md": "64e62678b47174f44f945ae357ddff51c1176a130c9af7d7d89983d7b6ede5fe",
+      "implementation-summary.md": "7775cb4900eb57082a5abc78ee3eb85e6cb1310b129d225d56b61a3bb2189c93"
     },
     "last_active_child_id": null,
     "last_active_at": null

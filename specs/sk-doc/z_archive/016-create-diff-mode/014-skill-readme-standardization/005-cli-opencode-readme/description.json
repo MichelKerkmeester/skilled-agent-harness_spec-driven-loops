@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
   "description": "The cli-opencode README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a skill version of 1.0.0 (the",
   "keywords": [
     "cli-opencode",

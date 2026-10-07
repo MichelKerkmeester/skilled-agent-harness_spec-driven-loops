@@ -1,3 +1,11 @@
+---
+title: "Index [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/index]"
+description: "Document index for the system health audit packet."
+trigger_phrases:
+  - "system health audit index"
+importance_tier: "important"
+contextType: "planning"
+---
 # System Health Audit - Index
 
 > **Spec ID:** 032-system-health-audit  

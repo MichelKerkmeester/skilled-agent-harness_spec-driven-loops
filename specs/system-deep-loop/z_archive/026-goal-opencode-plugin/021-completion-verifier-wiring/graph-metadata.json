@@ -193,7 +193,7 @@
     ],
     "causal_summary": "From the dossier (e-3.1, verbatim): `supervisorVerifier` is options-injectable only (`mk-goal.js:128`, `1197-1199`); OpenCode loads plugins without options, so production verdicts are permanently not-configured -> `notmet`; goals can NEVER auto-complete in production; autonomy ends only via caps",
     "created_at": "2026-07-03T07:30:51Z",
-    "last_save_at": "2026-08-30T15:39:25.824Z",
+    "last_save_at": "2026-10-07T18:15:15.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8026b9c8e9d70046682e6bb5fcc4771e156dcb02f760232b430ea01429135729",
+    "source_fingerprint": "sha256:7a07be6e1fb2f35e5b799d2cf7cf17ab48db2f44d73a2cf149e021c2361bdeec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0bcae1547d0297153b70171c74a2fee8549d4a9b51c9558c2fe7307b913a265",
-      "plan.md": "5f4a467b53ed16af013a757ef0dae5be28cd5d3b6ec91cc5c3a6dc2edfadb94f",
-      "tasks.md": "b385c8d3f7200a7a06bc43ef15327f99c861f6c55645c9c803e6f693616d3140",
-      "implementation-summary.md": "79341ef7289f091c5bda6e1bcae5465ea499fcc8668a04863ddfe5fa460bdcaf"
+      "spec.md": "2c6f32f01c920b6f2475a996231c3ce23c69ba8f1a4879f52b23b21977d7efde",
+      "plan.md": "c536bbe127a287b0d1e7f75f24efca1fab25708f6d03152dfdee8a587d4adac4",
+      "tasks.md": "323ef0cc3214c1908420f9ba47a814a8339130dd41f9d364d9fa985e9f55e7ac",
+      "implementation-summary.md": "5296c978921e5bbddf51bef728838dceb1e02771cd6152c7c5c6455b8f063577"
     },
     "last_active_child_id": null,
     "last_active_at": null

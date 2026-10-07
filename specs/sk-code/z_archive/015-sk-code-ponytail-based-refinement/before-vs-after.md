@@ -1,3 +1,9 @@
+---
+title: "What Changed in 142: Ponytail-Based Refinement for sk-code and sk-code-review"
+trigger_phrases:
+  - "ponytail based refinement before after"
+  - "sk code review checklist refinement"
+---
 # What Changed in 142: Ponytail-Based Refinement for sk-code and sk-code-review
 
 > Spec 142 shipped a targeted transfer of ponytail mechanisms into `sk-code` and `sk-code-review`, validated across eight completed phase children without changing the core review contract or smart-router behavior.

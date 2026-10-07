@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Claude dispatch contracts and the delegated playbook tree.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-08-30T15:39:16.556Z",
+    "last_save_at": "2026-10-07T18:13:12.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +188,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:7dbb49c673578674825e161ce9e2b5e5614fa82c8871df9e2cf524996aa4d112",
+    "source_fingerprint": "sha256:8959dbc1068cac4b2fbf9b0535ca1a1d0eba5c401de9af7abc1abc0562b1dec5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0784667bdc6ddaa579b23380d8f9632c63d1d56b0be5f4aa17187e1634b4bd1",
-      "plan.md": "dc9b114f3588ce9eee55bb96aded084b4cc099c9458894e00186bfda4f1f0a1b",
-      "tasks.md": "2b1054c650aba51c15f69c2456fe835d01ba7bb801dd5c8f70a3cd9cb129f667"
+      "spec.md": "26fddab874725a74685618920c4b4cb2026aa05df066b2d600d96d5e67bea2ad",
+      "plan.md": "07068747664e12e6f928f24d3b9016a5add4b8156b3f100d2bc3108ba48e0d82",
+      "tasks.md": "9f4cfa28f073528cf0337ccb2aab4abf3e9825b012f373508732c1113867a4a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

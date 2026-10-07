@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB schema, metric computation, ablation studies, shadow scoring, and ground truth tooling",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-08-30T15:39:39.102Z",
+    "last_save_at": "2026-10-07T19:24:35.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abd0f52aa26dec6ca4fec52171445ceacd4c225ed4280b55a93d6bb5d3959add",
+    "source_fingerprint": "sha256:d173f733bc3765b10b318770b0978c2fc9dc181e66e7e22139fb5343eb8bfe82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "154b837b6147afe35dcf3030e2b7ca3f96fe7fc6f27e443a23e05fb233a1e5e8",
+      "spec.md": "e2f23bad02664bed9d6a03104113b27fddcc50127a0f6d7d4c9329d23c91d8c5",
       "plan.md": "93bf3d5ef1f04ba121c6876ac04cbce6ced91304268877c5d44d267cce50d84a",
       "tasks.md": "af3116083d33414d604383950d12e3aeef7c0246e645ec26683d095277ef8aba",
       "implementation-summary.md": "b9fc99fd5c58ec2daf27b62b2d1a9f0a816447d2082fade24810e022a0c17658"

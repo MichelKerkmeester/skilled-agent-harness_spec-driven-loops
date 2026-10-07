@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -110,16 +110,16 @@
     ],
     "causal_summary": "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent.",
     "created_at": "2026-07-14T15:16:58Z",
-    "last_save_at": "2026-08-30T15:39:16.537Z",
+    "last_save_at": "2026-10-07T18:12:46.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:88cc92d1477b4123585ff554cb3ce84964107b05cf536da7658a5906f4145d81",
+    "source_fingerprint": "sha256:8c680c3e323142fd439b44c263d5dda6bf56a2ca08525fe7895e1e103cf58da6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12a464a2575ad94168da1ae54cb334f58d41e3e64cd5ab3f40bf904b1775c38f"
+      "spec.md": "5dcdf1e2af4dd6b77fd99f9aa63a81b3f6bd700eba5650b3a037be40557836de"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers"
     last_updated_at: "2026-08-25T05:06:09Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Linked the successor phase after 009 landed"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/012-template-alignment"
+    packet_pointer: "mcp-tooling/z_archive/012-template-alignment"
     last_updated_at: "2026-07-17T08:07:47Z"
     last_updated_by: "codex"
     recent_action: "Closed template alignment packet"

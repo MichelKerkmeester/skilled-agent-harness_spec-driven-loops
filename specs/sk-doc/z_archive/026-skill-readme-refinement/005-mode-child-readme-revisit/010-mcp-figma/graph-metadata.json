@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,9 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-figma/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -56,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +197,7 @@
     ],
     "causal_summary": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and validated by the sk-doc README validator",
     "created_at": "2026-08-04T08:34:42.556Z",
-    "last_save_at": "2026-08-30T15:39:17.679Z",
+    "last_save_at": "2026-10-07T18:14:20.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b773f629eb2473b8a037d5029025c0e859f6a20c2de5c8964cc6727fe89c9653",
+    "source_fingerprint": "sha256:a0376dbf98afbde5a219eadfe740159ddd277c0e962c50799754339bf659f8b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5cb76cb8d4a9c4274ce942d3975ab50503cda5e1a5e9667525e79d4697de22cd",
-      "plan.md": "800d8b2e06fe1e0f723073d6575445028d790cfd3182928727d434963895b4ee",
-      "tasks.md": "8e6b1ff61ed7662c34997b717e7b9ac01a4614139fb4126785132a11cdb5455d",
-      "implementation-summary.md": "6b966e7ebd98c2eeb0178aa6dfec1dfd424dc648596608348d6aad9d92c6022a"
+      "spec.md": "963313860b4918b3e32eec0abd461b911d7e003fe84bfd739041a99304a84110",
+      "plan.md": "ff5b4faccc3f700c513ee39884cc1854f5e08e9f955fcb98a4c73cb48efaf651",
+      "tasks.md": "2229ac0c33b660a255ef98474fb3e353e67a1d1730b0585886245316cb4126b2",
+      "implementation-summary.md": "841363c2689cc74af2cf3c08c0b9eca85e653bd5307a040d2043022d13a26b44"
     },
     "last_active_child_id": null,
     "last_active_at": null

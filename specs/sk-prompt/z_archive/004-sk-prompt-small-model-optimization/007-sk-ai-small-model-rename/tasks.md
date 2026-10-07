@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored tasks.md"

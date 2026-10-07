@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
   "description": "The `sk-doc/create-agent` authoring guide and template prescribe one canonical agent section skeleton (`CORE WORKFLOW` / `CAPABILITY SCAN` / `RUNTIME",
   "keywords": [
     "sk-doc",

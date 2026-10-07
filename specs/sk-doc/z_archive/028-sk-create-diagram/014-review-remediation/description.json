@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/014-review-remediation",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/014-review-remediation",
   "description": "The 013 deep-review (5 iterations Grok 4.6 + 5 iterations deepseek-v4-flash, merged strongest-restriction) returned CONDITIONAL: 0 P0, 4 P1, 12 P2",
   "keywords": [
     "deep-review",

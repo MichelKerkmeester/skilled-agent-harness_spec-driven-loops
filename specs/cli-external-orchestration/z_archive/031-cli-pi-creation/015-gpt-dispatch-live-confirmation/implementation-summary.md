@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "cli-external-orchestration/031-cli-pi-creation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/015-gpt-dispatch-live-confirmation"
     last_updated_at: "2026-07-29T04:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented the confirmed cli-pi GPT-5.6 invocation from a live dispatch"

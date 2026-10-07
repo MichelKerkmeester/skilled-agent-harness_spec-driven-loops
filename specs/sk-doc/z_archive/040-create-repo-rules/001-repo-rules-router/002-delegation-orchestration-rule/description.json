@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
   "description": "The six shipped rule files govern the AI working alone: what to build, what to touch, what counts as proof, what can break, how to diagnose, what to",
   "keywords": [
     "six",

@@ -2,13 +2,13 @@
 title: "Tasks: GPT Behavioral Hardening — Follow-Up Research"
 description: "STATUS: RESEARCH-ONLY. Task breakdown deferred until /deep:research synthesizes findings."
 trigger_phrases:
-  - "tasks"
+  - "gpt behavioral hardening research tasks"
   - "gpt behavioral hardening"
 importance_tier: "critical"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
     last_updated_at: "2026-07-01T05:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Research complete: both lineages 30/30 iterations, consolidated research.md written"

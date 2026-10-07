@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A maintenance pass on `system-skill-advisor` surfaced three drift issues that the package's own ARCHITECTURE.md already flags or implies: (1) `npm run build` fails immediately with `TS5103: Invalid value for '--ignoreDeprecations'` because `mcpserver/tsconfig.json` sets `\"6.0\"` while installed TS is 5.9.3 (only `\"5.0\"` is valid); (2) SKILL.md and ARCHITECTURE.md disagree on whether the server exposes 8 or 9 public tools; (3) the root `opencode.json` registration comment still says \"four tools\" — flagged stale in ARCHITECTURE.md §6 but never fixed",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.899Z",
+    "last_save_at": "2026-10-07T18:16:08.348Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb14e14fef6154b650365ee745741459df0267f475b128874e39cfb0aa31690d",
+    "source_fingerprint": "sha256:99c76d65b14737439136eab2596b02530a74b3a192fd6e7bfde14f2c339e15ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "106e151572ecb9169dec953d75f294b5b196bc2454f3186a6c7854304dc9b209",
-      "plan.md": "c7e2bd60b6e9ebf195e9e98c405ed28dfcdeb8026dc1b85949c507bc81b3b289",
-      "tasks.md": "3a676c2a3f2702f8076b7f077eb6b975ee69bb0338d62eb7f404a68f2b7c2e0b",
-      "implementation-summary.md": "33e4c7167a352c6c4062e58aac83fab2482c7b823ca0ac3792d9847f62c52e3b"
+      "spec.md": "9458cfef17bcaf135134570bf86d8f85417f9c1325d970c317927f06e96559b7",
+      "plan.md": "95276c53dc580741a36daedb23d24f95d81583e351f43d0ac8ee2a5e1204ac8a",
+      "tasks.md": "f44ce9f6885fcc23f1e95cb33b92d6a6deaaf461bb29ad1b93acb9e3f2a7deaf",
+      "implementation-summary.md": "aaf065fd46ecef5f86fbc8c16ea0210a73a6bdf055de2a1edb3ae76af7b912d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

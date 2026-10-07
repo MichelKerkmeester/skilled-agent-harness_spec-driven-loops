@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
   "description": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
   "keywords": [
     "repo",

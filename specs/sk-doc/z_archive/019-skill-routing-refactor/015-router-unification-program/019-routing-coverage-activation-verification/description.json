@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "description": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome",
   "keywords": [
     "phase",

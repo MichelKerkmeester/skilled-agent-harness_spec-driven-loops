@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms the whole system is internally consistent",
     "created_at": "2026-06-05T12:47:32.518Z",
-    "last_save_at": "2026-09-07T16:17:13.834Z",
+    "last_save_at": "2026-10-07T18:14:21.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64051d512b9a74afb2a3bc84126fdb06cf616514c864e73b15e2445ca8e96e13",
+    "source_fingerprint": "sha256:4b2b3be823f402105de4bd093a9603ded6c4c7456976dad81901833530ef3e62",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b932d38e6b49aaa5649c1e78a76344c9c177d773ac8bb79cfbb08e00448b04ae",
-      "plan.md": "a961a9f420ed69e3b2367effd85ac035c15e02568d8e3805cb48b7a8bf3d8179",
-      "tasks.md": "8572cef3c8b9aba60c7298491b7359ff8d4f335cb10c18519f24a8132a10b850",
-      "implementation-summary.md": "332dbc0985b663492a571f36c3beed2c61da61c11ab964aa6c07560f963a7277"
+      "spec.md": "650c1ef44a33ba7aa48e7349194d0da032e2666a6f176a60a2a9c9f6499a03e4",
+      "plan.md": "b53571d44cbb22a290d55c9a6073cf4d4320f170c8172858b47d50e8a1ebc622",
+      "tasks.md": "fd9b4b9eda3742653a513325ff1628ca06995746514de237b734a3d72d6b96c7",
+      "implementation-summary.md": "099d535e0c83f8ad2ab463b7bcc429bf2ebc177a17a7a9092021ef5952ef3bec"
     },
     "last_active_child_id": null,
     "last_active_at": null

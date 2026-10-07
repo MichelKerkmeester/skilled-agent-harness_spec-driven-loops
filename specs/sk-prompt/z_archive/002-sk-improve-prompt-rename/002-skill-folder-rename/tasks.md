@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename"
     last_updated_at: "2026-05-06T11:00:06Z"
     last_updated_by: "codex"
     recent_action: "Phase 002 complete: folder renamed, 9 files updated, advisor rebuilt"

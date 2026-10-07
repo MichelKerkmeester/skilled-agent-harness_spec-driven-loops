@@ -52,10 +52,11 @@ Four structural gaps in the generate-context.js memory pipeline degrade indexing
 | **Siblings** | 001-initial-enrichment (done), 002-scoring-and-filter, 003-field-integrity-and-schema |
 | **Research** | `../research/research.md` Round 2, Domain D + F (74 findings, 20 recommendations) |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -182,7 +183,7 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 ---
 
 <!-- ANCHOR:questions -->
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -196,7 +197,7 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 - **NFR-R01**: Trigger phrase filter must be idempotent — applying the filter twice to the same input produces the same output
 - **NFR-R02**: Template section additions for toolCalls/exchanges must be strictly additive — no changes to existing section rendering logic
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -284,13 +285,13 @@ Establish operator visibility into embedding pipeline health, enforce signal qua
 
 ---
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 12. OPEN QUESTIONS
 
 - Should the toolCalls Mustache section render the full ToolCallSummary[] or a condensed count + top-N by frequency? (Prefer top-3 by call count to avoid verbosity)
 - Does the pre-save overlap check (REQ-012) need to be synchronous for the first save of a spec folder, or advisory-only across all saves? (Recommend advisory-only to keep P2 scope contained)
 - Are any of the 9 un-suppressed OPTIONAL_PLACEHOLDERs conditional on feature flags? If so, un-suppression must preserve the flag gate.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 

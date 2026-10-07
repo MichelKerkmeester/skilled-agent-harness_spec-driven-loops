@@ -7,7 +7,6 @@ trigger_phrases:
   - "remaining"
   - "bugs"
   - "remediation"
-  - "implementation summary"
   - "054"
 importance_tier: "normal"
 contextType: "implementation"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/033-post-sync-verification-fixes"
+    packet_pointer: "system-deep-loop/z_archive/033-post-sync-verification-fixes"
     last_updated_at: "2026-07-12T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Packet completed: 5 test failures root-caused and fixed"

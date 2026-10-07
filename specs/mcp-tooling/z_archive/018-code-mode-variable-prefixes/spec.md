@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/018-code-mode-variable-prefixes"
+    packet_pointer: "mcp-tooling/z_archive/018-code-mode-variable-prefixes"
     last_updated_at: "2026-08-29T14:10:00Z"
     last_updated_by: "session"
     recent_action: "Repaired the notion, obsidian and clickup credential lookups"

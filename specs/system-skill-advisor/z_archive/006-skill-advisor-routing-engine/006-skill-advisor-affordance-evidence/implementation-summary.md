@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence"
     last_updated_at: "2026-04-25T14:03:00+02:00"
     last_updated_by: "copilot-gpt-5.5"
     recent_action: "Completed affordance evidence"

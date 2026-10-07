@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
     "created_at": "2026-06-05T12:47:32.509Z",
-    "last_save_at": "2026-09-07T16:17:13.370Z",
+    "last_save_at": "2026-10-07T18:14:20.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72d51cb4c22c7af7c6b3df04f44ad082827a97651d6b569ef012976c81e0770d",
+    "source_fingerprint": "sha256:10283f166e809fb90ed20fb6a2ad3aad7090f3ccaf0a73366955df97121b088a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76af90fa9138bbbad88456cf38ff5a963b3afa2b38a1cedb787f821bff6286a2",
-      "plan.md": "17de8f58cfee0563b5fcc0428c476168c8f0200eedaa09e4eba90e0fb48c9b05",
-      "tasks.md": "74232a2345524d6d17c86ca72e3a2671c6914d71eac1a72b279d5598be378b2b",
-      "implementation-summary.md": "6e2bb9ff6814a1aa3b96196fb4a8996a3d105a6ba0420355010ea550b5356fce"
+      "spec.md": "18cfe3cdf66e71983da042a25bbc79b0d018646fa6c3fe1d0b0adb06dbc3f61a",
+      "plan.md": "cbf59d330447d9551a2dc752fe5f3d1b114d664a8a5b422233015f17d67cda41",
+      "tasks.md": "a0863bbdf84b3f52962ac982aefe378455598031dc7762a7563ff02380d7317e",
+      "implementation-summary.md": "658ecceebe20b4359006da1bd3465b7e9d05da0ddf3fd92022521bac93905878"
     },
     "last_active_child_id": null,
     "last_active_at": null

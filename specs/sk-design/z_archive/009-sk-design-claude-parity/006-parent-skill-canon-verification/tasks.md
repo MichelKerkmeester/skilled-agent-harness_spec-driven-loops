@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/006-parent-skill-canon-verification"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Completed Phase 006 task breakdown with evidence."

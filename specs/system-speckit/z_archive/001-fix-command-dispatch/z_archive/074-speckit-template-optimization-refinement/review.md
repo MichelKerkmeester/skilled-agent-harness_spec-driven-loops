@@ -1,3 +1,7 @@
+---
+title: "Review: SpecKit Template Optimization Implementation Quality"
+---
+
 # Review: SpecKit Template Optimization Implementation Quality
 
 > **Spec:** 074-speckit-template-optimization-refinement

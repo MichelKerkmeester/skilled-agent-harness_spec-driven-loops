@@ -40,7 +40,6 @@ Comprehensive test suite to verify all ~246 files adjusted during the OpenCode n
 | **Created** | 2026-02-06 |
 | **Parent Spec** | `090-opencode-naming-conventions` |
 
-<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->

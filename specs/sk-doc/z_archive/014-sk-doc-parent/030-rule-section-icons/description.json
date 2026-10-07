@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/014-sk-doc-parent/030-rule-section-icons",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/030-rule-section-icons",
   "description": "SKILL.md rule sections carried an inconsistent icon convention: 13 files used `✅ ALWAYS / ❌ NEVER / ⚠️ ESCALATE IF` while the remaining rule sections",
   "keywords": [
     "skill",

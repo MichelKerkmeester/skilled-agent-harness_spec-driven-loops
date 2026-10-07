@@ -51,10 +51,11 @@ JSON-mode saves became the safe path for multi-spec sessions, but the implementa
 | **Predecessor** | [015-runtime-contract-and-indexability](../../015-runtime-contract-and-indexability/spec.md) |
 | **Successor** | [002-scoring-and-filter](../002-scoring-and-filter/spec.md) |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -182,7 +183,7 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 ---
 
 <!-- ANCHOR:questions -->
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -197,7 +198,7 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 
 - **NFR-R01**: File-backed JSON saves must continue to work on the authoritative structured path without silently reopening stateless reconstruction.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -276,11 +277,11 @@ Correct the phase record so it matches the shipped implementation, preserve the 
 
 ---
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 12. OPEN QUESTIONS
 
 - None. The phase scope and delivery are complete, and remaining work moved into successor phases.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 

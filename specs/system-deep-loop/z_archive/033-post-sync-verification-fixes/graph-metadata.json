@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/033-post-sync-verification-fixes",
-  "spec_folder": "system-deep-loop/033-post-sync-verification-fixes",
+  "packet_id": "system-deep-loop/z_archive/033-post-sync-verification-fixes",
+  "spec_folder": "system-deep-loop/z_archive/033-post-sync-verification-fixes",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -45,14 +45,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts",
       ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
       ".opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs",
       ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
       ".codex/agents/deep-review.toml",
-      "scripts/tests/deep-review-contract-parity.vitest.ts",
-      "scripts/tests/reducer-backlog-remediation.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
       ".opencode/commands/deep/assets/deep-review-auto.yaml",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
@@ -83,18 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reducer-backlog-remediation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,11 +188,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A large operator-directed sync of outstanding working-tree state (3,801 files, from concurrent sessions on `skilled/v4.0.0.0`) was committed and pushed",
     "created_at": "2026-07-11T23:38:57.864Z",
-    "last_save_at": "2026-08-30T15:39:20.193Z",
+    "last_save_at": "2026-10-07T18:15:13.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e94cd158e8dfacf0f9642edb1eee05707aa378021df1bf45d408b1cb859f81",
+    "source_fingerprint": "sha256:e837096f165e74029d88187debf57e29cfc4fc41fbed11663b40377ea2c4649d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f2b0eba5fe6d8724856a76950720579235fbabd6e7203991cf07fbda6f003661",
-      "plan.md": "d769c59cba2c59842974545f6078da3bfb1f799fddfe5025b5f7634d7a1a3bed",
-      "tasks.md": "17340f3fa4837b70f6314241baa093d2cb8e53989011a01921401f9cafcf3e6f",
-      "implementation-summary.md": "471f7a2cf35580c930fcf49f09deb73849f56d0017b9d846729b22ee1a1bc2f0"
+      "spec.md": "9395c1e9f0c6e3a34d8a7332e377ba14a0d45cc8307e54b1efbe9806802e6064",
+      "plan.md": "246d1c988ac7910a4b803aef7e7f85e1c4ee20d9b977cf97a7cedae7821ba3ef",
+      "tasks.md": "f195d7bb9cdebe659efdf56d44fc76d2c03d5d9f683b15ed1843b7aad9142876",
+      "implementation-summary.md": "abb316fb0b202e0f5498108020e888fa49877335dcc0ca70c80b9202647137e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

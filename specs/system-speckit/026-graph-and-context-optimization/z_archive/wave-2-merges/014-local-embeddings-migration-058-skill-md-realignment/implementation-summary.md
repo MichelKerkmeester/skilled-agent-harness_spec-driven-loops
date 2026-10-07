@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/058-skill-md-realignment |
+| **Spec Folder** | 014-local-embeddings-migration-058-skill-md-realignment |
 | **Phase** | 058 |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

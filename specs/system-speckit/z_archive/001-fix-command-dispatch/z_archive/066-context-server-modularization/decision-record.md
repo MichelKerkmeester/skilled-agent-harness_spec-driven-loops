@@ -2,13 +2,8 @@
 title: "Dec [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/decision-record]"
 description: "Architecture Decision Record documenting the modularization approach for context-server.js."
 trigger_phrases:
-  - "decision"
-  - "context"
-  - "server"
-  - "modularization"
-  - "architecture"
-  - "decision record"
-  - "066"
+  - "context server modularization decision record"
+  - "module split architecture decision"
 importance_tier: "important"
 contextType: "planning"
 ---

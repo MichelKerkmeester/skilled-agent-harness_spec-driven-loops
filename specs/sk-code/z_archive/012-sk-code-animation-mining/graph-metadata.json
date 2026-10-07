@@ -190,7 +190,7 @@
     ],
     "causal_summary": "sk-code's Motion.dev surface is strong on API how-to (animate/timelines, scroll/gestures, integration, a decision matrix, performance pitfalls) but light on the design-principle layer — when/why to use a given easing, concrete duration/stagger values, anticipation/arc guidance — and has no animation-specific visual-verification recipe",
     "created_at": "2026-06-02T08:43:12.089Z",
-    "last_save_at": "2026-08-30T15:39:11.533Z",
+    "last_save_at": "2026-10-07T18:11:37.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9ae9175f3949875bfdb0be438108200722e9038f2a816ca6f17c93d4decf32b",
+    "source_fingerprint": "sha256:d08d9e6fe331c1ab760ffac7bf590a0a420f5475ec65b199cae3088a91274339",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f95a99cf2c0aff116fbb501ba9bd43838cb899e466858c3900c93a5e48d608e",
       "plan.md": "893d005c7a9bdd55460cd48acb46ed0a8f0072d2b8228e3abdc33f53d156f81c",
-      "tasks.md": "f7c83ddbc133cb69cc1b74ccc89c1d91f30f945b7e1feaabb195c860b3eb85e2",
+      "tasks.md": "46174063cea330e7df316e7de90ad35b22eabe26ba3df072b202ce08b083d2b6",
       "implementation-summary.md": "a9f80f5cb0593d661d0f5d26604b57d96dda03ce1f1f97ce49b3c8ecd69b9d56"
     },
     "last_active_child_id": null,

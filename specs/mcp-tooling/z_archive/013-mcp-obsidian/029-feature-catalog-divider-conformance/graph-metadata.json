@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,22 +10,35 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "feature-catalog divider conformance",
+      "style-a section dividers",
+      "mcp-obsidian catalog leaves",
+      "feature-catalog divider plan",
+      "style-a divider insertion",
+      "idempotent divider scripting",
+      "feature-catalog divider tasks",
+      "divider insertion task record",
+      "catalog conformance task list",
+      "feature-catalog divider summary",
+      "divider conformance record",
+      "catalog leaves shipped"
+    ],
     "key_topics": [
-      "missing",
+      "feature-catalog",
+      "divider",
+      "conformance",
       "style-a",
       "section",
       "dividers",
-      "plugin",
-      "feature-catalog",
+      "mcp-obsidian",
+      "catalog",
       "leaves",
-      "match",
-      "sibling",
-      "cli",
-      "mcp",
-      "repo-wide"
+      "plan",
+      "insertion",
+      "idempotent"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -101,6 +114,12 @@
         "source": "derived"
       },
       {
+        "name": "additive-only",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "N",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -125,9 +144,39 @@
         "source": "derived"
       },
       {
-        "name": "Verification",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "description:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "_memory:   continuity:     packet_pointer:",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -141,35 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Final state: complete — shipped to v4",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What changed",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Root cause (why they were missing)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add the missing Style-A section dividers to the 11 plugin feature-catalog leaves so they match the sibling `cli/` and `mcp/` leaves and the repo-wide catalog convention",
     "created_at": "2026-08-06T10:56:39.750Z",
-    "last_save_at": "2026-09-20T04:34:16.150Z",
+    "last_save_at": "2026-10-07T21:21:34.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b6d68849cbc383039e68ba15159cf0011c09891e420842cabe24c119b422bce",
+    "source_fingerprint": "sha256:b1e44efd0e750547192aec39a7c63b8291d958b81aa320cd9bc5ef5ad95c3dc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35c01b663296905fd53f3ce8829881296c09c61ef5fd476b3d2e2abb2f1cdb5d",
-      "plan.md": "16c373c0782c7e95e12702f8ab5573855e5138c967580b52fd819806c5bf13ca",
-      "tasks.md": "b32750e1cfb71870a9220452ae1b09f7853e216b668c7d5c93c026fd9d92b3c1",
-      "implementation-summary.md": "e8c2e6295d9f15e29452f48e6541f4ce876200d3226369db0cc8911ab01d97bb"
+      "spec.md": "c55423f986a75d3ce7e328cb6e0154a7300e2afb55e0bab737c5579479f1adf4",
+      "plan.md": "0160d4d57c3eada19cdd8c392e0ac3973c491f8f010dddff1ee9ca07d34cb24e",
+      "tasks.md": "79f5feb10e72865e3093a6230d0170aaf47cb087e5792f7bfa7ec76a8882745a",
+      "implementation-summary.md": "27cee0745d7a0ded5461bc21fa9b6053bd7b06719572532521a74d9ac5cdff1c"
     },
     "last_active_child_id": null,
     "last_active_at": null

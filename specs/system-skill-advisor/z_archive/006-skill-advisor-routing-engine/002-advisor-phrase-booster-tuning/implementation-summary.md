@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/002-advisor-phrase-booster-tuning"
     last_updated_at: "2026-04-15T12:14:00Z"
     last_updated_by: "memory-save-post-followup"
     recent_action: "Same-session follow-up completed — 12 hyphenated INTENT keys migrated (10 to PHRASE, 2 duplicate-removes). Cumulative: 36 INTENT deleted, 33 PHRASE added. Final invariant: zero multi-char keys in INTENT_BOOSTERS. Regression held at 1.0 top1/p0 across all 3 checkpoints (pre-Phase-2, post-Phase-2, post-follow-up)."

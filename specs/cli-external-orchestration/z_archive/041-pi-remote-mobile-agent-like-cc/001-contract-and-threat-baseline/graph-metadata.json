@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Pins the live Pi, host, ingress, browser, storage, and extension contracts and freezes the threat model before production implementation",
     "created_at": "2026-08-10T18:28:38Z",
-    "last_save_at": "2026-08-30T15:39:07.879Z",
+    "last_save_at": "2026-10-07T18:11:39.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f08844d24bab75b52b0516da96bc74e6631639ae099230393fe0524bd5ceb4c3",
+    "source_fingerprint": "sha256:8e695beffd75db7857143a5c6496fb91ed65699ef97cde955c7d8be58de637d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e626c4c5e38978e2f3002d2652dbf92289551f9fb0ea62f59ee2c847a1ecdfc",
-      "plan.md": "3369aefd2fc26d2b4516d0caa7f97b0e942f29563f9e57423994b4bbb78a4ee1",
-      "tasks.md": "56457ab33292b6b2261c622e86251a28186c4fb69ecf13ee0ab1ca66dcba52b9",
+      "spec.md": "2c193b34e827b8bf2a42a5a773f899e115c19bcac79737b15c6be70f3c9731bb",
+      "plan.md": "d6b71041a2f93dbc5e84371abb316e55db248cb8edcca756248bb6316e95259f",
+      "tasks.md": "69900731ae23a1c2600fda731d2a05c9adbb9729dff1192040907ca58d6b1dfc",
       "decision-record.md": "77c9769939b49c3c94608e29cc8997196076bdb1076ad89a5de57fda35b8cbf3",
-      "implementation-summary.md": "535f6ad38b080bbc2b970c3ec979560c99f4c58315942ca90261e76df5cf13af"
+      "implementation-summary.md": "fc39386646a2300a4e94636cb6cfd9cd32dfadc69446a20d941dce7ad853db2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

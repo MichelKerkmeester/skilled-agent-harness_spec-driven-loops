@@ -6,7 +6,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test"
     last_updated_at: "2026-05-03T12:12:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed all remediation phases and final CP replay"

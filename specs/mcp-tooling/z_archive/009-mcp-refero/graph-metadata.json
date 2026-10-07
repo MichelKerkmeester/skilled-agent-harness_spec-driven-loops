@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/009-mcp-refero",
-  "spec_folder": "mcp-tooling/009-mcp-refero",
+  "packet_id": "mcp-tooling/z_archive/009-mcp-refero",
+  "spec_folder": "mcp-tooling/z_archive/009-mcp-refero",
   "parent_id": null,
   "children_ids": [
-    "mcp-tooling/009-mcp-refero/001-research",
-    "mcp-tooling/009-mcp-refero/002-skill-authoring",
-    "mcp-tooling/009-mcp-refero/003-hub-integration",
-    "mcp-tooling/009-mcp-refero/004-validation-and-handoff",
-    "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
-    "mcp-tooling/009-mcp-refero/006-live-verification-capture"
+    "mcp-tooling/z_archive/009-mcp-refero/001-research",
+    "mcp-tooling/z_archive/009-mcp-refero/002-skill-authoring",
+    "mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
+    "mcp-tooling/z_archive/009-mcp-refero/004-validation-and-handoff",
+    "mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+    "mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture"
   ],
   "manual": {
     "depends_on": [],
@@ -89,16 +89,16 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no design-reference research transport: when UI work needs real-world design examples (screens, flows, patterns from shipping products), there is no routed skill surface for Refero, even though a `refero` manual already exists in `.utcpconfig.json` (`npx -y mcp-remote https://api.refero.design/mcp`) and is reachable through Code Mode",
     "created_at": "2026-07-16T09:39:27Z",
-    "last_save_at": "2026-09-10T20:43:40.375Z",
+    "last_save_at": "2026-10-07T18:11:41.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3f6652a966d2d5b0c0b4e1a398317ccda27e556c039a81041c4629214bd5d60b",
+    "source_fingerprint": "sha256:dc8ade17a9ac570c813193a8a72cc1778363e7723cfa9e94b8e8f96533b34f25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a78893e6fb41efbcedb72e2512db8021b9d321cac88d9b1d6c489d80a5f6343"
+      "spec.md": "b4091f0d49fdb1287a5da8abcf314e0eee23ff9de4539036865518f117aea93c"
     },
     "last_active_child_id": "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
     "last_active_at": "2026-07-16T12:07:27.216Z"

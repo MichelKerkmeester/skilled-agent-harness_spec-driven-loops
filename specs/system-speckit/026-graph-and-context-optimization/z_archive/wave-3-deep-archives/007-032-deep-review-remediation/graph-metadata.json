@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph remediation campaign. 3 findings deferred per reviewer recommendation.",
     "created_at": "2026-05-14T21:10:00Z",
-    "last_save_at": "2026-08-30T15:39:32.840Z",
+    "last_save_at": "2026-10-07T18:16:05.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50d214335d7d61f489c7b1610a3d93fa4f2818e555390103265c5e20b17f832f",
+    "source_fingerprint": "sha256:603450ad1fafa43b44f44fe9c002b5bd2f963eb605ff23741c8459cc97dac56d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b28a3bcbc20cd3a4967109f43fe11ff612dc115edd0c164f2779087fb85f9010",
       "plan.md": "08d1bf7662982bd87647038bc7f5ed22bd00371ee4d7940449515d011f620b66",
       "tasks.md": "fe283a6879c48e156a85f9dcb178bbc7eec09eb43e3097abf0efc11e057d7232",
-      "implementation-summary.md": "42eebd4a1e80f9cd73f437db8a958a825762120bf6d8660a03d7aacca76abb1c"
+      "implementation-summary.md": "9c03d6088c45ee9c56f3b115cfb1609c9627a5575640645a4839754da873087f"
     },
     "last_active_child_id": null,
     "last_active_at": null

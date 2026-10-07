@@ -191,7 +191,7 @@
     ],
     "causal_summary": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time",
     "created_at": "2026-06-28T20:06:50.952Z",
-    "last_save_at": "2026-08-30T15:39:25.018Z",
+    "last_save_at": "2026-10-07T18:14:59.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89c695cacb5470a4964c16c358785f6cefd61a98cc9fc41b230a4d5d4159c627",
+    "source_fingerprint": "sha256:f68253f86372ba84e4aac577261b194fe5a82a6232ec62e769f1e6ed8ce107b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a2f24cd15cfa66592f70cc3c4553220920d083c7923b86854b95335f9095c00",
-      "plan.md": "fa5b87a5cc52897af12dd63c9db2da82d072f6b5630646b357e09aff9a8c2274",
-      "tasks.md": "c4cd97ece462dda22c9085a307d602ff610013ea34778c624fea0873d051172c",
-      "implementation-summary.md": "6da5c56aa739114f1d70b3903d986f98216f3c350741de3024d03d2bc55b892d"
+      "spec.md": "407671029e706dca69237c81b54dbd879fc36c8b9bf032fb4f2db3945ff13f2a",
+      "plan.md": "98b5a34f9b7f412dfbf3fe4846aade3c4d22360ab88781afce7885d9805d4f02",
+      "tasks.md": "895fba2cc30c18e4b3051f93874ae9b5f71905f9f0bba788964e5bd0bbdd7e35",
+      "implementation-summary.md": "59598a9b911b258fdc3d9e52a2a14194a04c272f141c310fca36cb4a48bf5596"
     },
     "last_active_child_id": null,
     "last_active_at": null

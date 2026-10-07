@@ -3,7 +3,6 @@ title: "Implementation Summary: deep-review skill release cleanup"
 description: "Five-phase release-cleanup arc complete. 56 audit + research findings closed across Phase 2 + Phase 5. deep-review v1.9.0.0 shipped with 95/96 PASS at validation gate. Strict validate exit 0 at every phase boundary."
 trigger_phrases:
   - "deep-review release cleanup summary"
-  - "implementation summary"
   - "phase 1-5 complete"
 importance_tier: "important"
 contextType: "implementation"
@@ -48,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review` |
+| **Spec Folder** | 007-deep-review-release-cleanup |
 | **Completed** | 2026-05-23 |
 | **Level** | 3 |
 | **Commits** | `7b7ac1ce73` (phase 1+2), `88a8ff30b8` (phase 3), `a77d13fa5f` (phase 4 validation), `40bd96371a` (ADR-006 approval), plus 10 phase-5 iter commits + 1 synthesis commit |

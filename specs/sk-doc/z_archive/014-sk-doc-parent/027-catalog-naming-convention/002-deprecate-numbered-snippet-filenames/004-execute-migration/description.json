@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration",
   "description": "Phase 004.",
   "keywords": [
     "phase"

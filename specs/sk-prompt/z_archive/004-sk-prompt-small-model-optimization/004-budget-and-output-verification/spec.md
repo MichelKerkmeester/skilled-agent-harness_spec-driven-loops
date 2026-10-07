@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/004-budget-and-output-verification"
     last_updated_at: "2026-05-18T14:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored 004 spec.md L3"

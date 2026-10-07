@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory",
+  "specFolder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/001-analysis-inventory",
   "description": "Before any enforcement rule can be written, the packet needs a precise, evidence-backed map of WHERE personas are (or are not) attached today",
   "keywords": [
     "enforcement",

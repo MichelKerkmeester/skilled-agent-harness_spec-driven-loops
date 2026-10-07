@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/001-smallcode-deep-research"
     last_updated_at: "2026-05-18T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Synthesis complete; 12 iters; HYBRID verdict"

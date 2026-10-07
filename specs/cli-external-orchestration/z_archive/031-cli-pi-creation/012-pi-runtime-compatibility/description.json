@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/012-pi-runtime-compatibility",
   "description": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot",
   "keywords": [
     "cli-pi",

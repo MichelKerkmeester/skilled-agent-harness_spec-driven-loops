@@ -10,7 +10,7 @@ contextType: "implementation"
 predecessor_research: "../007-gpt-behavioral-hardening-research/research/research.md"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
     last_updated_at: "2026-07-01T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implementation complete; validate.sh --strict passing"

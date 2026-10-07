@@ -20,7 +20,6 @@
       "description system refactor",
       "spec folder description",
       "description tasks",
-      "implementation tasks",
       "description implementation"
     ],
     "key_topics": [
@@ -194,7 +193,7 @@
     ],
     "causal_summary": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
     "created_at": "2026-04-12T09:02:50.274Z",
-    "last_save_at": "2026-09-10T21:04:55.930Z",
+    "last_save_at": "2026-10-07T19:24:31.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed0bf734d87a1750839c7ff3e392824510711f210d74e85c29e9ef035b3f2349",
+    "source_fingerprint": "sha256:bfeb5877d99b7a0650e9f7120134eb4ea228441cf4506e26e813ca04e0d488c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8687d4dd8e4c98076088af6a25760207c9fb644ba5294356705f8d7ecd352176",
-      "plan.md": "081889d0a9c3e35dfbaa2dee90beaae8953fff3f35d260b791ee35c5d5420f70",
-      "tasks.md": "61cb1a7c6b26f4eb85f12c59351b97681480ddc3e014bf3b1863ca819f71c02f",
-      "implementation-summary.md": "327f1f519126ddfabddd34d490b63e3820d4cb4d819e6d9246e61107bb7effe4"
+      "spec.md": "e11f6735e05446a206368f15e6abaa53bb519f22f010e190ed361a7ef218a084",
+      "plan.md": "f33344926264ba91c43fc9f510ec605332f727d1cdaa0d0afc84341f0f2ad241",
+      "tasks.md": "8cd283f15a080ca0a83936719554f012889b02eba13a5963a3bbce70aef79f1f",
+      "implementation-summary.md": "0ba81a899070140830df993b0d8ca245ea488d52448bc67c09f28f9a16510ff6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix` |
+| **Spec Folder** | 004-iteration-ordering-fix |
 | **Completed** | 2026-05-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

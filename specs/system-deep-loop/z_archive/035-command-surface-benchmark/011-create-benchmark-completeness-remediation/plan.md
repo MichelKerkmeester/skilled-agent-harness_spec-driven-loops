@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/011-create-benchmark-completeness-remediation"
     last_updated_at: "2026-07-16T04:35:00Z"
     last_updated_by: "claude"
     recent_action: "Authored execution plan"
@@ -15,10 +15,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "create benchmark completeness remediation plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

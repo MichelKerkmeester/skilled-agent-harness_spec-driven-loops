@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: Refine resource-detection heuristic + re-extract metrics from 071 raw logs"
 description: "Address P1-001 from 071/003 review-report: cli-copilot's verbose 'Not loaded:' sections inflate false-positive count. Refine extract_metrics_v2.py to parse only positive resource mentions, re-extract from existing 071 logs, publish corrected matrix_v2.csv + review-report-v2.md."
-trigger_phrases: ["072", "sk-doc-router-rerun-refined-extraction", "P1-001 fix"]
+trigger_phrases: ["sk doc router rerun refined extraction spec", "sk-doc-router-rerun-refined-extraction", "P1-001 fix"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:

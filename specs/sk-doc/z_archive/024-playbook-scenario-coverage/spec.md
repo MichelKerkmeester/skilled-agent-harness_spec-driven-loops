@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/024-playbook-scenario-coverage"
+    packet_pointer: "sk-doc/z_archive/024-playbook-scenario-coverage"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored the phase-parent spec from the track (d) synthesis proposal"

@@ -1,3 +1,12 @@
+---
+title: "Phase 008: Further Deep-Loop Improvements"
+description: "Completed phase packet closing the runtime-truth gap across research, review, and deep-agent-improvement."
+trigger_phrases:
+  - "further deep loop improvements"
+  - "phase 008 closeout"
+importance_tier: "normal"
+contextType: "implementation"
+---
 # Phase 008: Further Deep-Loop Improvements
 
 **Parent spec**: [../spec.md](../spec.md)  
@@ -23,9 +32,9 @@ Phase 008 closed the visible runtime-truth gap across research, review, and deep
 
 ## Primary Evidence
 
-- [.opencode/changelog/12--sk-deep-research/v1.6.0.0.md](../../../../changelog/12--sk-deep-research/v1.6.0.0.md)
-- [.opencode/changelog/13--sk-deep-review/v1.3.0.0.md](../../../../changelog/13--sk-deep-review/v1.3.0.0.md)
-- [.opencode/changelog/deep-agent-improvement/v1.2.0.0.md](../../../../skills/deep-agent-improvement/changelog/v1.2.0.0.md)
+- [.opencode/changelog/12--sk-deep-research/v1.6.0.0.md](../../../../../../.skilled/skills/system-deep-loop/deep-research/changelog/v1.6.0.0.md)
+- [.opencode/changelog/13--sk-deep-review/v1.3.0.0.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md)
+- [.opencode/changelog/deep-agent-improvement/v1.2.0.0.md](../../../../../../.skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.0.0.md)
 - [research/research.md](../research/research.md)
 
 ## Final State

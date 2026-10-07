@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/005-advisor-setup-command"
     last_updated_at: "2026-04-25T14:30:00Z"
     last_updated_by: "deepseek-v4-pro"
     recent_action: "Created tasks.md"

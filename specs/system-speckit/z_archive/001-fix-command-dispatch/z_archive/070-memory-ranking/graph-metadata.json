@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "research/research.md",
-      ".opencode/commands/memory/search.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Folder Ranking",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory dashboard displays \\\"top folders\\\" ranked purely by memory file count. This creates several issues",
     "created_at": "2026-04-12T09:02:53.543Z",
-    "last_save_at": "2026-08-30T15:39:37.382Z",
+    "last_save_at": "2026-10-07T20:12:42.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ccd5fd3b8355dffc6efa334d1658577fe58ad812131de691ca4c38edf552e64b",
+    "source_fingerprint": "sha256:7866f9c289e8f586c6e6324c29949be2e8a94d179147894e6058ede5449f4265",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b4e3dd33637a0969e0c3a86344bda5ee7b98b6008f01d9fa5dfc1850ad492ce",
       "plan.md": "8efc27620c049b38570b44e7f98452e134b36602beb78ff870dd13ba19348893",
-      "tasks.md": "1e65c4619ab894dd1599dcc106c99761c4056edc92b8345e053e6cfacb80a04d",
-      "decision-record.md": "18e2c8df980f05a22ec60b3ab63d37ba699a6f68f1cef488c9d52d236cdb4666",
-      "implementation-summary.md": "1c2ac603108be313d2a0bf485bf8ef1187611eef56f1c9f72dfd0b181915741a",
+      "tasks.md": "6d397ea51e066824526807836356ac2dd286f65ca61e3219448776e79693c024",
+      "decision-record.md": "7be0f11a3a0dfe251982cea7548f1f3479a51b844f447f9e0a36223aaca6960a",
+      "implementation-summary.md": "db8f3a1891adb85835799f4683806b95474b1d930834c0b51d1dc7c0a802bd6e",
       "research/research.md": "2b365de70d5ea4a84c6152755179f3f2106535b8fd8ea33aa45ba3a0803a6032"
     },
     "last_active_child_id": null,

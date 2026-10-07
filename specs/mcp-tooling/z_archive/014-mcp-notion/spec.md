@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/014-mcp-notion"
+    packet_pointer: "mcp-tooling/z_archive/014-mcp-notion"
     last_updated_at: "2026-08-21T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "mcp-notion built + hub-registered; advisor routes Notion 0.95; canon + parent-hub green"

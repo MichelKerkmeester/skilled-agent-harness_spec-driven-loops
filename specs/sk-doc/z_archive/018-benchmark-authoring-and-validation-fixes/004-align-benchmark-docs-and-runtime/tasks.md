@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime"
     last_updated_at: "2026-07-14T15:45:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored task breakdown"

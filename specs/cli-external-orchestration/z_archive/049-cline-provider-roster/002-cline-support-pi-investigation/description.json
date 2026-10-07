@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation",
+  "specFolder": "cli-external-orchestration/z_archive/049-cline-provider-roster/002-cline-support-pi-investigation",
   "description": "cli pi's `/login` does not list Cline, so the operator cannot authenticate the Cline provider from pi and cannot select",
   "keywords": [
     "cli",

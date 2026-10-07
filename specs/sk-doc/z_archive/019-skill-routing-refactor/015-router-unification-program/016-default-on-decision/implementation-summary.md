@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Settled the ruling (adopt the phased path) and reconciled the packet to that status"

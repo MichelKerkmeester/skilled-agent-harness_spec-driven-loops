@@ -4,7 +4,6 @@ description: "Summary of the 2026-03-21 truth-reconciliation pass for the 011 sk
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "011"
   - "skill"
 importance_tier: "normal"

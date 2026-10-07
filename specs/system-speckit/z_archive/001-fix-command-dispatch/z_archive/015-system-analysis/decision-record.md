@@ -17,5 +17,7 @@ contextType: "planning"
 
 ## N/A
 
+<!-- ANCHOR:decision -->
 This spec folder is for **System Analysis** only. No architectural decisions were made or enforced during this session.
 Recommendations are documented in `analysis-report.md`.
+<!-- /ANCHOR:decision -->

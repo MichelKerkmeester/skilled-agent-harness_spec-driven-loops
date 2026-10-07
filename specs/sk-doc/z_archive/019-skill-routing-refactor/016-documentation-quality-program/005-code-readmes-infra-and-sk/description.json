@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
   "description": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a",
   "keywords": [
     "repo-wide",

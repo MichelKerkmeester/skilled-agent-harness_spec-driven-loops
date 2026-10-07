@@ -12,7 +12,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/009-cmd-create-changelog-and-releases"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -188,7 +188,7 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 
 ---
 
-<!-- ANCHOR:success-criteria -->
+<!-- ANCHOR:success-criteria-2 -->
 ### Acceptance Scenarios
 
 **Given** a user runs `/create:changelog [spec] :auto :release` with a valid spec folder, **when** the changelog file is generated with STATUS=OK, **then** the command proceeds to the release phase, creates an annotated git tag, pushes it, and calls `gh release create` without requiring additional user input.
@@ -200,7 +200,7 @@ Extend `create:changelog` to optionally create a git tag, push it, and publish a
 **Given** `gh auth status` returns a non-zero exit code (user not authenticated), **when** the release phase performs its pre-check, **then** the command aborts with a clear error message ("GitHub CLI not authenticated — run `gh auth login` and retry") and no git tag is created.
 
 **Given** `gh release create` fails after the tag has already been pushed, **when** the error is detected, **then** the command reports the partial state, logs the exact manual recovery command, and instructs the user to delete the dangling tag with `git tag -d vX.X.X.X && git push origin --delete vX.X.X.X`.
-<!-- /ANCHOR:success-criteria -->
+<!-- /ANCHOR:success-criteria-2 -->
 
 ---
 

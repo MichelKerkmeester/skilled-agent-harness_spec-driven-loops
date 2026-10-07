@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/012-sk-design-program/002-style-database/008-styles-folder-readmes",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/002-style-database/008-styles-folder-readmes",
   "description": "Give every non-data folder under .opencode/skills/sk-design/styles a README.md stating its purpose, key files, and architecture fit — completing the",
   "keywords": [
     "give",

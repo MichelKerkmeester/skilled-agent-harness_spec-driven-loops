@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -179,7 +179,7 @@
     ],
     "causal_summary": "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean.",
     "created_at": "2026-07-14T15:17:13Z",
-    "last_save_at": "2026-09-10T20:44:58.144Z",
+    "last_save_at": "2026-10-07T18:13:00.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,12 +187,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:fc992d6eb204127ff0228acb45809b45252ae2fade2de7dc33a283ff5bd306e6",
+    "source_fingerprint": "sha256:45d712e330713d4849ca358f80a5625498ab108383f0c395920ce96e38a18512",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0950c37bc39e721ef9914c535e80bd2419c7715f1b6261e5f382088279629d3e",
-      "plan.md": "cf8fe7772bbc9d80191ccfc02bc6ff5d2284a4a01f2dfbd3e37c4dce3717b627",
-      "tasks.md": "2da259dc1fd33c43a705518bac696799d836a0cb0681888b0136306068976d56"
+      "spec.md": "201c25b08d98e61c8bc463cbf6785c79eb70278ca05ccf7402d5504b382c559f",
+      "plan.md": "c953fe8f893e324e18ca6a00405c0f3185cbbcb44cda5eb1fdaf4f995b41ac6f",
+      "tasks.md": "f4d0bff5202d3171b251ab2fd6f227d46140f35f9e12e0d8cf721911521f9b86"
     },
     "last_active_child_id": null,
     "last_active_at": null

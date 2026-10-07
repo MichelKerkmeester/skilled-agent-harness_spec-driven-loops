@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/008-mcp-aside/002-skill-authoring",
-  "spec_folder": "mcp-tooling/008-mcp-aside/002-skill-authoring",
-  "parent_id": "mcp-tooling/008-mcp-aside",
+  "packet_id": "mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
+  "spec_folder": "mcp-tooling/z_archive/008-mcp-aside/002-skill-authoring",
+  "parent_id": "mcp-tooling/z_archive/008-mcp-aside",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/spec.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/plan.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/tasks.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md"
     ],
@@ -55,19 +52,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP fallback, no install guide, no routing-recall scenarios, and no backend documentation",
     "created_at": "2026-07-16T09:39:15Z",
-    "last_save_at": "2026-08-30T15:39:09.840Z",
+    "last_save_at": "2026-10-07T18:11:38.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51f066b79a90105b339da96d8076d6bdf3f36e8190770916b75e94312f28642b",
+    "source_fingerprint": "sha256:13420fcb3847fa0e61245633367708d77f98151865c833ad25670cdd7430c23b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7355d8d465786f212666314385ed52981b0aefe5af9fe20a80da5852640b14a7",
-      "plan.md": "baadf44a8b3fc87c2a6d3fd270140226113e9333cb64efecfd1486f01a4ce066",
-      "tasks.md": "7d6e82012b96b970fa4eedf9920440875d3662d053bf170febb3d94f67e08d8a",
-      "implementation-summary.md": "1f815005b9884ed0d060b014b702ef73f542704fc885669fa36b18712235e20e"
+      "spec.md": "2cb885634af7bb820bdd7ebdc0ba563742b51be35f08d8c6129cfe99e14e2362",
+      "plan.md": "3facfa0663a69a37443edfea489bd9c8728a2fed00cd1d655d8052e6e9d6d968",
+      "tasks.md": "7f5c74d4f0835f8d616e3a1fcbb0b6fa18175785a5f898577419799bd3b25ad5",
+      "implementation-summary.md": "a2e58e8e048bd8cd679efae7cc92b8f4e2069cf21ec931b4507bee8a0b9e8c9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

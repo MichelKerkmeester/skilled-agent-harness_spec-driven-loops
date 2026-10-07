@@ -137,7 +137,7 @@ As a SpecKit skill maintainer, I need the Resource Router pseudocode to include 
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -147,7 +147,7 @@ As a SpecKit skill maintainer, I need the Resource Router pseudocode to include 
 - **NFR-U01**: Keywords should be natural language phrases users would actually say
 - **NFR-U02**: False positive rate should be low (keywords specific enough to avoid accidental triggers)
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -199,7 +199,7 @@ As a SpecKit skill maintainer, I need the Resource Router pseudocode to include 
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -208,7 +208,7 @@ As a SpecKit skill maintainer, I need the Resource Router pseudocode to include 
 - Integration with memory system triggers (handled by system-memory skill)
 - Changes to handover.md or debug-delegation.md template content
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

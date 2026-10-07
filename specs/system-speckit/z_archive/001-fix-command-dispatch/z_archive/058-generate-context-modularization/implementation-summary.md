@@ -7,7 +7,6 @@ trigger_phrases:
   - "generate"
   - "context"
   - "modularization"
-  - "implementation summary"
   - "058"
 importance_tier: "normal"
 contextType: "implementation"

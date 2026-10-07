@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/034-surface-playbook-expansion",
-  "spec_folder": "sk-doc/034-surface-playbook-expansion",
+  "packet_id": "sk-doc/z_archive/034-surface-playbook-expansion",
+  "spec_folder": "sk-doc/z_archive/034-surface-playbook-expansion",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
     "created_at": "2026-08-29T10:24:54.000Z",
-    "last_save_at": "2026-08-30T15:39:18.133Z",
+    "last_save_at": "2026-10-07T18:14:05.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd107e38577d9431c29dbc89e5a56666248c3ac5729e6949393d73220983ddc9",
+    "source_fingerprint": "sha256:154035f6312c11985f284033bab2dcd0030c31b9e819f59d519ebb3e22b778c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1e5a7b1e507516ee1b52512dda42b77b879e493affb31ffe7fad13032151e29",
-      "plan.md": "13ae574ac2153dc4bb772c62747c41686c53b45a945a7e5de0d61d3ce7df6a84",
-      "tasks.md": "56df6271c0076af174e95fe52b7a22ffe321c5ebe0a9acd2fd76f9f94093bc6d",
-      "implementation-summary.md": "304efc5e56eeb4fb49f0f8a6a021e752af8ea127e8cc18427578cbe0fbc487a6"
+      "spec.md": "6b53392a8d704875b25f684e706be71fad9769b57a51d76ea3cbeb6f5ccd21ed",
+      "plan.md": "6cd26a2fe3f5b2a261979e34dffd9f3d70c3dc4fef431d65be3bed16eb5ae5d6",
+      "tasks.md": "f33c4a3fedddeef894b69fcc0275a29bed2a8a06657b171dd371266cf19524c8",
+      "implementation-summary.md": "74271f09e9ac38da924cccabe77003b0d32ce2772fb2180381786968a6433069"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,7 +2,6 @@
 title: "Imple [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/018-ux-hooks/implementation-summary]"
 description: "19 features audited: 19 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "ux hooks"
   - "code audit"
 importance_tier: "normal"
@@ -52,6 +51,9 @@ All 19 UX hook features were audited — mutation hooks, health autorepair, safe
 2. F12 (hooks README alignment): source list trimmed to 5 relevant files (was 40+)
 3. F17 (retrieval session state): catalog correctly states default ON (graduated)
 4. F01, F03, F05, F06, F08, F09, F10: source lists trimmed from 30-150+ files to 3-6 directly relevant files each
+
+Per-feature findings are recorded in `spec.md` under the audit findings section.
+
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -2,14 +2,13 @@
 title: "Implementation Plan: Rollout Behavioral Benchmarks -- deep-research + deep-context"
 description: "Author and execute the deep-research (RSB-001..008) and deep-context (CXB-001..006) behavior_benchmark packages against the pilot-calibrated framework: Claude baselines plus both GPT-5.5-fast legs (28 GPT runs), scored and classified."
 trigger_phrases:
-  - "implementation"
-  - "plan"
+  - "rollout research context plan"
   - "research context behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase plan authored; not started"

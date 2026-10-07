@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/033/002-register-and-wire"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/002-register-and-wire"
     last_updated_at: "2026-07-29T08:35:29Z"
     last_updated_by: "template-author"
     recent_action: "Author phase-2 spec"

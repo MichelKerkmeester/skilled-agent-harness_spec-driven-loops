@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop"
     last_updated_at: "2026-08-04T13:37:24Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 9 task list inside 004-standalone-readme-revisit"

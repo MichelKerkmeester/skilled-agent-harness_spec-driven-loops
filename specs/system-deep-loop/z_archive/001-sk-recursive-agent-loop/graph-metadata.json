@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-08-30T15:39:22.474Z",
+    "last_save_at": "2026-10-07T21:24:18.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:522a1fd32fc96bd9d5d6910ccfbbfab55d9e7599ebf309db74c0b4d386026128",
+    "source_fingerprint": "sha256:d970b78e76c5b56fdb7afa8dab19d694da1c95a7af121f46e8a87a2c26f65151",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70b5d51cba517b69fb8ab6925e8b381d36515eda6bd2363d4bff21d76899170b",
+      "spec.md": "7f556cff70c85faeee583db10173ced559807e8af3b1f5c72df923391017f28e",
       "research/research.md": "ba0a01ebd35b19274907032a4630da2f8aef2d70e7be8915d689936f64927d2f",
       "resource-map.md": "d6791a793bdab08746671d9062e52f35f34a76fd3bac2fe8c415900ccb57151a"
     },

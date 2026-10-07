@@ -41,10 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/test-fixtures/053-template-compliant-level2/spec.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,18 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation-extended.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
         "source": "derived"
       },
       {
@@ -190,11 +175,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A four-reviewer audit (plugin code, documentation, spec packet, speckit integration) found that packet 032's own bookkeeping has drifted from reality across phases 007-014: three-way status disagreements, stale \"N of M\" phase-count labels contradicted by later phases, a false rename history repeated in four documents, an overstated \"packet-wide\" fingerprint fix, and dangling cross-references left behind when review/research folders were archived and their paths reused by later audits",
     "created_at": "2026-07-03T07:30:47Z",
-    "last_save_at": "2026-08-30T15:39:25.754Z",
+    "last_save_at": "2026-10-07T18:15:16.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1dfcd173ecb66b11d1f8ebb98f19f07fe9164f5baabe5938da56924abd16d5ff",
+    "source_fingerprint": "sha256:cd0c6de311be5a804db649ee7db4ae662d6d50144382cda838e6bbc611a73fe1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ce75a0d71dc5afc1a016a557bb3b0690b80173caa36346c44b64d6e66bbecd7",
-      "plan.md": "8a7f93251ede010479133eb0f0aab6b851ce0861294c450855c24a42d6567093",
-      "tasks.md": "6def8518ad9d5106599c937d40f12d45c94c8f89b08d3b5b18bfc98afad12cc8",
-      "implementation-summary.md": "0a461596d9e40dab57ccb8d3f70c8dd3c083d2e6ecbe6316c956f0aaf364bff2"
+      "spec.md": "ef25f10e5ecc127e4585577e8e4b2b2f690e653d4cc9fd3b4c3d897268d5bc05",
+      "plan.md": "eaddbe0c908fb454153cbf98992b8b1463d3bac727dd2a948caaa87696afccf8",
+      "tasks.md": "2c27633a024e2a64f35ab986522b78c689b72a7f929421c22fffb3d1563616b7",
+      "implementation-summary.md": "85b9b90df18f24457187cc4efd0c5a80805c99cbb628adf250e79fe9ba092372"
     },
     "last_active_child_id": null,
     "last_active_at": null

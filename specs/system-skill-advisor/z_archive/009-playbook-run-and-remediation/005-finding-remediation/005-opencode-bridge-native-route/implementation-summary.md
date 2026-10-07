@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-remediation"
     recent_action: "Shipped bridge direct compat import (route:native); cold-env residual flagged"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route |
+| **Spec Folder** | 005-opencode-bridge-native-route |
 | **Completed** | Partial (2026-05-27) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

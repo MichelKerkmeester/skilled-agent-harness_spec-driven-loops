@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation"
     last_updated_at: "2026-05-18T13:50:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored 002 plan.md L2"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
-  "spec_folder": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests for three runtimes) using its own conventions",
     "created_at": "2026-08-12T05:47:23.000Z",
-    "last_save_at": "2026-09-20T04:35:59.899Z",
+    "last_save_at": "2026-10-07T22:04:21.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +207,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:01e762f148d62799365cf10e42955781ed378ccfa20ea3faa6d1cc222f3a79c1",
+    "source_fingerprint": "sha256:1bb0a975b7bf435af2eada96691841ff4fa4b165a0b7230673a7410d759d8e81",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "caa6ec98ff64d918f590206630127849e54f228f2f7046a1433834c22e93350e",
-      "plan.md": "6d4dcaa4c0fdfba115131bf4330b24379a3059cbf644a693aabe42512f7cb08f",
-      "tasks.md": "1b6f91dece835ee52932253323417c99102c8a592c038b28e8a27db6843f8034",
-      "decision-record.md": "9e5f2d7bc0d527b7ed055a7a17b70eaad0a691e99811a1d0aee32dad7ab762c3",
-      "implementation-summary.md": "a4a0720ad8961b382d234d7d0670c77c26c4e9f642ef23f75f21e5ce7a402d71",
-      "resource-map.md": "115f50dbb6d425e47780ebde52a4e2fd61a74434fa7338d45138d7eceeb8626f"
+      "spec.md": "b647659ac058e8d1ca5c26efaa0e675b1927b6dc8bf8cc8773113e1e7e4f278e",
+      "plan.md": "8aadfc024e3f80d2417bb290e6eb1bb3b3439241792208458c4cd2bd05980358",
+      "tasks.md": "766f0c530ea0327199c51d10ef205c374565d3fbb7da81b3df99bfd665427f6b",
+      "decision-record.md": "cfd644a0e9cc217c8a68e69596a67ac850c0667c6ffb23018fdf03d09e26d581",
+      "implementation-summary.md": "808b284ea75fb14092b819f9a989d944dc53747cef8182dc2220fe14bf1cd654",
+      "resource-map.md": "1c4aa67f0184c541950895ebbb1b9efd490ffc951b3fae3e870b2b3e934ac534"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T05:47:23.000Z"

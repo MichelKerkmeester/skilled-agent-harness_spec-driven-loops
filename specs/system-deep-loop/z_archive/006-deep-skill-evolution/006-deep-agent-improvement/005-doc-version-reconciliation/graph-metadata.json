@@ -16,7 +16,6 @@
       "packet 125",
       "deep-agent-improvement doc",
       "documentation reconciliation",
-      "implementation plan",
       "tasks",
       "implementation",
       "summary"
@@ -27,13 +26,13 @@
       "doc",
       "documentation",
       "reconciliation",
-      "implementation",
-      "plan",
       "tasks",
+      "implementation",
       "summary",
       "shipped",
       "correctness",
-      "skill"
+      "skill",
+      "brought"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +190,7 @@
     ],
     "causal_summary": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical companion standard as the post-118 deep-loop-runtime, deep-review, and deep-research peer skills",
     "created_at": "2026-05-23T07:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.403Z",
+    "last_save_at": "2026-10-07T18:14:11.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51753df5c2c0d1079e82a57916a3d2f9a91a1bc9525dea2323d1cafb35699573",
+    "source_fingerprint": "sha256:e2dd3224093e334a429568f6235508832b4fe110e2a757cc5f71a563163630a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b0c545559eeb826ec79949571d832228a729ba062a0e5da1b1495f967e77970",
-      "plan.md": "c3b63a041175b80ca7c1ba99b93200d630131bf8798633270a0b8d098c14ecdc",
+      "spec.md": "7a81014dba6670ae428ca44a7e6b77d0f312263e4928392f05cfd27f20b47862",
+      "plan.md": "e45fcc898881018cf9368f2d209be4ba8edd182beda39d717b09459ae7e73215",
       "tasks.md": "8b57b470f0cee6672dd7187a7ef06cca5059f0d9826373573b5f3b087d09a1c6",
-      "implementation-summary.md": "97fd69e2fcf48384cd1dd0c8e79d0d28455715f5c2641842c97a58074fb3321b"
+      "implementation-summary.md": "5d2fd614b7c4bef96b37e009f138c042cf81a423c30a81abf57e0a9ee1cc69a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

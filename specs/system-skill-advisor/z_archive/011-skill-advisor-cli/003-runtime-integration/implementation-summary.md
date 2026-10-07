@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/011-skill-advisor-cli/003-runtime-integration"
+    packet_pointer: "system-skill-advisor/z_archive/011-skill-advisor-cli/003-runtime-integration"
     last_updated_at: "2026-06-09T19:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Reconciled shipped skill-advisor runtime evidence"

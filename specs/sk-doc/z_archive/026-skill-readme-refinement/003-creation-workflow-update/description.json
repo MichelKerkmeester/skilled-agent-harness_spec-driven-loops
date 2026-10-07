@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/003-creation-workflow-update",
   "description": "The create-skill workflow at `.opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` predates the README refinement program",
   "keywords": [
     "create-skill",

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/001-cline-deepseek-flash-cli-opencode"
     last_updated_at: "2026-08-18T11:12:25Z"
     last_updated_by: "claude"
     recent_action: "Plan authored; edits applied"

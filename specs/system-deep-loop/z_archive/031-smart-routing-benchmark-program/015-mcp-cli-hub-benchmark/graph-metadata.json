@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,14 +13,8 @@
     "trigger_phrases": [
       "mcp cli hub benchmark",
       "mcp-tooling cli-external skill benchmark gold",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "mcp cli hub benchmark plan",
+      "mcp cli hub benchmark tasks",
       "mcp cli hub benchmark results",
       "keyword router ceiling finding"
     ],
@@ -33,10 +27,10 @@
       "cli-external",
       "skill",
       "gold",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "results",
+      "keyword"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -182,7 +176,7 @@
     ],
     "causal_summary": "The two new parent hubs mcp-tooling (children: mcp-chrome-devtools, mcp-click-up, mcp-figma) and cli-external (children: cli-opencode, cli-claude-code) pass Mode-A Type-2 routing (92/89) but their 5 children return NO-SCENARIOS (prose-only playbooks, no expected_intent/expected_resources gold), mcp-figma's INTENT_MODEL tuple router is unparseable by the replay scorer, and Mode-B never genuinely dispatched a live model.",
     "created_at": "2026-07-10T16:26:05.944Z",
-    "last_save_at": "2026-09-11T04:37:56.836Z",
+    "last_save_at": "2026-10-07T18:15:15.893Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38199628c0778f26eaadf2cec834c48cc2518b9aac790340d5999b1dcf236d7f",
+    "source_fingerprint": "sha256:d344368ddb39d1fc6b8bca943d94a555d5b68793053de6917e3ef97ca479c554",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17879932eb1be76f99193a4fc919ed884271d1e839227cc3e403f00fd210f7a5",
-      "plan.md": "33bad2814711f48bd253c6a4127e5ffc87f3b387737b9b60fac52932bbcbb5f7",
-      "tasks.md": "01a68030bb58d1fb0ea1759b34bdfc9659f8346181af45862450e34e45d2c644",
-      "implementation-summary.md": "b72ea40207467df1ad818cba5100f67426fad913e3ec751ac6517132ff56bd1f"
+      "spec.md": "0b45971d5aeeacd2e116485c868e863f0246f1a654f5287328f6b5b04befe079",
+      "plan.md": "0afefac1bec7467ec6b2cd3dbf7905af16e7b31797d12cb47e16c1da211e0c19",
+      "tasks.md": "f24969e23c3f6ab334be230b7221fe5ec70682d331b678bc4269ea8a43bb75ef",
+      "implementation-summary.md": "2348b9d69047bbf81c38cba095f17b3a8c596656f367587fbfff41862c2e9d32"
     },
     "last_active_child_id": null,
     "last_active_at": null

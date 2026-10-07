@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `019-deferred-fix-followup` |
+| **Spec Folder** | 007-033-deferred-fix-followup |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 | **Findings Closed** | 5 (F001, F006/F011, F012, F017, F018) |

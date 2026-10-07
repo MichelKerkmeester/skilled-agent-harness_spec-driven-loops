@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture"
     last_updated_at: "2026-05-17T22:05:00Z"
     last_updated_by: "main_agent"
     recent_action: "Completed pluggable embedder architecture tasks"

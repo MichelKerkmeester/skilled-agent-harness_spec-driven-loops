@@ -14,7 +14,6 @@ contextType: "planning"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Rename workflows-memory → system-memory
 
-<!-- ANCHOR:summary -->
 <!-- ANCHOR:architecture -->
 ## Implementation Architecture
 
@@ -79,7 +78,6 @@ Based on the proven pattern from `.opencode/specs/system-spec-kit/z_archive/001-
 
 ---
 
-<!-- /ANCHOR:summary -->
 <!-- /ANCHOR:architecture -->
 ## Phase 1: Directory Rename (BLOCKING)
 

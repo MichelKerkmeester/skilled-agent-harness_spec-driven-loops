@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/026-cli-external-parent/006-advisor-and-integration"
+    packet_pointer: "cli-external-orchestration/z_archive/026-cli-external-parent/006-advisor-and-integration"
     last_updated_at: "2026-07-09T19:00:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted the referrer-sweep task list"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
-  "spec_folder": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/015-flowchart-deprecation",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/015-flowchart-deprecation",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,11 +38,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
       ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
-      ".opencode/skills/sk-doc/scripts/validate-flowchart.sh",
-      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
       ".claude/agents/markdown.md",
       ".pi/agents/markdown.md",
       ".opencode/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
@@ -74,33 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
-        "source": "derived"
-      },
-      {
         "name": "post-edit-router.cjs",
         "kind": "file",
         "path": ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate-flowchart.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-doc/scripts/validate-flowchart.sh",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
         "source": "derived"
       },
       {
@@ -192,11 +164,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 012 merged `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram` and left the source skill as a redirect stub, matching the \"redirect, not delete\" decision recorded at the time",
     "created_at": "2026-08-13T05:55:33.000Z",
-    "last_save_at": "2026-08-30T15:39:18.071Z",
+    "last_save_at": "2026-10-07T18:14:02.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e0a970435425a6fbf79bfd5cd110d553700f0d902eaf83b2f4c910f2b80461a",
+    "source_fingerprint": "sha256:e8e8860237c38b9f42dc03e0017e09350025b9c23236d4c3c90541c106cef14f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a2d45e6ebdc263be794fd7ebab7996d51e78daa4cd954867fd427732fad1799",
-      "plan.md": "e6849aeb878efb8fed9e238a0ba023457f5ee92fe359cc58c92dfe06cd70e532",
-      "tasks.md": "b14f5162c881991d7a879fbfcfe7e4748b3b3a91b26c766507fc248e8bdfd2af",
-      "implementation-summary.md": "cd7f63efc90708048cda28ca0c95230cdb20ab22c79c21bbb99462f46d3c67aa"
+      "spec.md": "4099cf28c86d54b4cb21419bd3ea11e848eba43c24e69866b42b4561cca0986a",
+      "plan.md": "580c2d77e7dbf16009b495f7b8fc9a279215cef24c28c7653ef993e153ce57a0",
+      "tasks.md": "b1d62e9f68f5acfb9627bb88d0f3195dbb5e2b005014d96480ae3d35e65b0053",
+      "implementation-summary.md": "141ac7f166f7bd8559394dbcc854fa1688a4a073ed30819b4c0e32282560882b"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-13T17:15:00.000Z"

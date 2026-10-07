@@ -47,9 +47,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tools/index.ts",
-      "schemas/tool-input-schemas.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,18 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Complete Removal",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Backward",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 001 (runtime skill scaffold), 002 (lib migration), and 003 (script shims + DB relocation) complete, the four `deeploopgraph` MCP tools become dead weight: their handlers still live in `system-spec-kit/mcpserver/handlers/coverage-graph/`, their schemas still live in `tool-schemas.ts` and `schemas/tool-input-schemas.ts`, and they still register at server startup, even though no consumer invokes them anymore",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-08-30T15:39:23.284Z",
+    "last_save_at": "2026-10-07T18:14:10.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3861b236cb055915e567d9ee7463a2d76c25ef4c6f7b49715084ac452c092661",
+    "source_fingerprint": "sha256:5fcd0219a08c2dbe235871c80a8411c5ea8b1fa0a10cc4252f82e3bdccf6a413",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9241412ba220c1ba557caca62f37c9ff10e41f1d0923b52f832864ed8db9a226",
       "plan.md": "34ad7f5a26d1208659ed1fe578bd767fda16fcd3cecd602f561008c90def7847",
       "tasks.md": "e0b5cf15e116a6f14fe800015f029010195e62ae8a533152211fd3fb317aa073",
       "decision-record.md": "79c955dbbd1432602e557b36960ff6693c44f89af1bdbefc0f494d70bfdf7946",
-      "implementation-summary.md": "aa77e51876b46eb51af05a8a8941d2606ccad0f97d5cb7b8d9a07e00ebb33bb6"
+      "implementation-summary.md": "72244f70967c7bdf7f956dceb7ecef2d509197ee0e03b85aaa3ab577e592813d"
     },
     "last_active_child_id": null,
     "last_active_at": null

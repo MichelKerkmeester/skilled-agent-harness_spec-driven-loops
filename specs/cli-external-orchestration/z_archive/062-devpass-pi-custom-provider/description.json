@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/062-devpass-pi-custom-provider",
+  "specFolder": "cli-external-orchestration/z_archive/062-devpass-pi-custom-provider",
   "description": "pi builds its runtime provider set from a compiled-in catalog plus every `providers.` block in `.pi/models.json`",
   "keywords": [
     "runtime",

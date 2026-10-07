@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: the CLI roster truth pass — DevPass, vision, Gemini 3.8, V4 Pro retirement, pi repair"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "devpass roster vision gemini 3 8 acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

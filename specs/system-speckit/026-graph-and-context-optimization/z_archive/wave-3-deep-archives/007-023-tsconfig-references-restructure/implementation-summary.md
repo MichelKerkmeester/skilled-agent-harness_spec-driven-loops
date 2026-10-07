@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-tsconfig-references-restructure |
+| **Spec Folder** | 007-023-tsconfig-references-restructure |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

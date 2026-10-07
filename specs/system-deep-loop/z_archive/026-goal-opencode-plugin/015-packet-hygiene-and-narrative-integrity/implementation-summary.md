@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity"
     last_updated_at: "2026-07-03T11:59:55Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Completed packet hygiene, narrative integrity, and documentation validation repairs"

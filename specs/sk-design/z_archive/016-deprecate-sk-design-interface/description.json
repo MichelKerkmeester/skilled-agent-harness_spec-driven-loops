@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/016-deprecate-sk-design-interface",
+  "specFolder": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "description": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual",
   "keywords": [
     "sk-design",

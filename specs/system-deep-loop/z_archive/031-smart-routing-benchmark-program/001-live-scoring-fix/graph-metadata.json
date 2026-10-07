@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/001-live-scoring-fix",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/001-live-scoring-fix",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/001-live-scoring-fix",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/001-live-scoring-fix",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,9 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,18 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "live-asset-recall.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Old Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parent program's live (Mode-B) scores under-represented real routing quality",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-08-30T15:39:19.948Z",
+    "last_save_at": "2026-10-07T18:14:56.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f8530e20f2ae66af88811a9b1a1e5740267d61a19a2c6cb78864c736a32444c",
+    "source_fingerprint": "sha256:c21d1e45498b40c14ac71ef991405d5bf905008d7f8687d9a7c6031ba52cba68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "611a8e706f7ccc51781c9d33791cd014c40f159f849908fe1f8c1c16221dcf98",
-      "plan.md": "84b58e79dc0c86ec46b3c8f9e842fe64012bc4b0c624b10e8d635e56f046dd05",
-      "tasks.md": "7dff12376ce157d15ef43e69d52250e6aaaf556f24253d06bd5954fbdca0f0a7",
-      "implementation-summary.md": "7570aee791b11271de1ef2a6081982004f3bdbb7b23bea053dc9cd58dae22311"
+      "spec.md": "66cbaef393691fd273983c9084926b98d1b34b3e6f0760645a31f1a97bad9746",
+      "plan.md": "c67227c156ccbf8e015181a22721507893543d7d69aa4654e39db35cc8bf0dfa",
+      "tasks.md": "cc42e638a76bd79dafffaa3cf9772f6424f1d33397f8af258932fc49269e481f",
+      "implementation-summary.md": "b6f15827434660b85d089c4855794443ec3cd2438d57916a791176835d0962e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

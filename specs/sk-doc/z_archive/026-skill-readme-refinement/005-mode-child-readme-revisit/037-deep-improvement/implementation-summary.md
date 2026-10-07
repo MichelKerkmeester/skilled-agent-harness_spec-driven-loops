@@ -2,14 +2,13 @@
 title: "Implement [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/implementation-summary]"
 description: "The deep-improvement README now opens purpose-first with a one-line pitch and a problem-first overview, carries the three lanes, the integration scan and the guarded promotion gate, and versioned at 1.17.1.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "deep improvement readme"
   - "deep-improvement readme rewrite summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement"
     last_updated_at: "2026-08-04T18:45:00Z"
     last_updated_by: "phase-executor"
     recent_action: "Delivered README rewrite, version bump and changelog entry"

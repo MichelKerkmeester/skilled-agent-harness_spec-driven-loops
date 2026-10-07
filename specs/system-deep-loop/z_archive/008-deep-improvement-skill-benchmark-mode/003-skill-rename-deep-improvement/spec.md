@@ -30,10 +30,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Purpose
 
 Rename the skill `deep-agent-improvement` to `deep-improvement` across every surface so the name reflects its real scope (agents + models + skills). The `-agent-` infix is now misleading.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## 2. Scope (surface list — confirmed/expanded by Phase 001 RQ6)
 
 - `.opencode/skills/deep-agent-improvement/` → `.opencode/skills/deep-improvement/` (dir + `SKILL.md` `name:`/frontmatter/triggers/keywords).
@@ -43,16 +47,21 @@ Rename the skill `deep-agent-improvement` to `deep-improvement` across every sur
 - Cross-references: sentinel `sk-prompt-models`, root `CLAUDE.md` / `AGENTS.md` agent-routing entries, any other skills/docs that name `deep-agent-improvement`.
 - Internal self-references inside the skill's own references/scripts/README.
 
+<!-- /ANCHOR:scope -->
+
 ## 3. Approach
 
 Use `git mv` for the directory to preserve history; then a tracked find-and-replace across the confirmed surface list; then advisor rebuild + validate. Agent-name decision (`@deep-agent-improvement` → `@deep-improvement`?) recorded explicitly in this phase's `decision-record.md`.
 
+<!-- ANCHOR:success-criteria -->
 ## 4. Success criteria
 
 - Zero dangling `deep-agent-improvement` references where `deep-improvement` is intended (grep-clean, allowing intentional historical mentions in archives).
 - Skill-advisor rebuild + `advisor_validate` green; skill resolvable under the new name.
 - Lane A (`/deep:start-agent-improvement-loop`) and Lane B (`/deep:start-model-benchmark-loop`) still run.
 - `validate.sh --strict` green for this phase.
+
+<!-- /ANCHOR:success-criteria -->
 
 ## 5. Out of scope
 

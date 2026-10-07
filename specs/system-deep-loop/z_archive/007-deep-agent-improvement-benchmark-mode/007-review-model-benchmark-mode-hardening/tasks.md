@@ -2,9 +2,7 @@
 title: "Tasks: Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
+  - "review model benchmark mode hardening tasks"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"
@@ -13,8 +11,8 @@ _memory:
     packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/007-review-model-benchmark-mode-hardening"
     last_updated_at: "2026-05-28T17:42:53Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
     blockers: []
     key_files: []
     session_dedup:

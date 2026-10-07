@@ -30,12 +30,17 @@ _memory:
 ---
 # 031 GPT Reliability (Deep-Loop) Chronological Timeline
 
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 > **Sort key.** Git commit order, oldest first, for commits already recorded in this packet's historical timeline.
 > **Current structure.** The packet is no longer a flat seventeen-phase program. It is a 7-track GPT reliability packet with old-to-new traceability in [`context-index.md`](./context-index.md).
 > **Current status.** Tracks 001-005 are Complete, track 006 is Planned, and track 007 is In Progress. The packet is not complete.
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:milestones -->
 ## 0. The Seven Tracks
 
 1. `001-research-and-diagnosis` (Complete) collects the behavioral-hardening research plus the moved-in GPT reliability research from former packet 034.
@@ -45,9 +50,11 @@ _memory:
 5. `005-skill-doc-hygiene` (Complete) contains skill-doc drift audit and remediation.
 6. `006-reliability-fixes` (Planned) contains acceptance/rollout foundation, Gate-3 precedence validator and dispatch receipts/progress records.
 7. `007-compiled-contract-compiler` (In Progress) contains contract compiler design plus completed router deprecation and generalization probes.
+<!-- /ANCHOR:milestones -->
 
 ---
 
+<!-- ANCHOR:timeline -->
 ## 1. Initial Research Scaffold (2026-06-30)
 
  701e93712b  chore(repo): land 028 workspace snapshot
@@ -126,6 +133,7 @@ No commit hash was present in the old timeline source for these moved-in or late
 - **Track 003 / child 005**: former packet 037, mk-deep-loop-guard retention, added sweep/archive/prune cleanup for `.loop-guard-state`.
 - **Track 007 / child 002**: deep-loop router deprecation deleted the dead router mirrors and generalized orchestrate's no-intermediary guidance.
 - **Track 007 / child 003**: generalization probes ran focused fix-vs-fallback behavior-benchmark probes and recorded mixed results.
+<!-- /ANCHOR:timeline -->
 
 ---
 

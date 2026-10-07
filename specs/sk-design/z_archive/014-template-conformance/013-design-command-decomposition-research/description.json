@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/013-design-command-decomposition-research",
+  "specFolder": "sk-design/z_archive/014-template-conformance/013-design-command-decomposition-research",
   "description": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub",
   "keywords": [
     "interface",

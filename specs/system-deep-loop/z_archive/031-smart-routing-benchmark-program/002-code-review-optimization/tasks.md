@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/002-code-review-optimization"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/002-code-review-optimization"
     last_updated_at: "2026-07-09T05:03:21Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the code-review routing-optimization tasks"

@@ -1,3 +1,7 @@
+---
+title: "Files Changed Log"
+---
+
 # Files Changed Log
 
 > Complete record of all files created, modified, or deleted during the System Spec Kit v2.1.0 Test Suite implementation.

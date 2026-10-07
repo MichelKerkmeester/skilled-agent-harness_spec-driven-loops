@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,12 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-prompt-quality-card-sync.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Recommended Framework",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-prompt/prompt-models` is this repo's canonical registry of per-model prompt-craft profiles (`assets/model-profiles.json` + `references/models/.md`), consumed when dispatching to a specific model through any executor",
     "created_at": "2026-07-24T04:49:31.694Z",
-    "last_save_at": "2026-09-11T16:41:47.115Z",
+    "last_save_at": "2026-10-07T18:11:38.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f623d6362a3ac06b07bf85ba0393795946c3bdb6e98a9a55fc9d1a6c47ce4af2",
+    "source_fingerprint": "sha256:c320d173a181268466393fe874f09119cd097734c3b2a9b9bb48f7c7f363957c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f4432bebef767e8cb8ee2d108d9d1045f0badff8c1dccd3034ee1d0b90a0c17",
-      "plan.md": "d94d441af3b51e62392f473602b2415dc09e0f75f47c9570ea2c3d414493273f",
-      "tasks.md": "1ac11ad713b488c95a8dfb5b9771ffcb60d2ff4acb8af2d0f608cec2da05de21",
-      "implementation-summary.md": "fbe6b200867e54962bea76e85a10ed85435029d7e285ead0412f95a8d11ce3e9"
+      "spec.md": "3282e11edf520eaaf911ac529c17a77c754616878886ffa43015867df0b97953",
+      "plan.md": "060864100e55176711f4fa2ff3860f7fc70101f2c885b1a8159a4aa0a2ab1a25",
+      "tasks.md": "14d5388ac255178b8bea0713c0a4a3bc086b8389f59629da3532175eb5fd275a",
+      "implementation-summary.md": "9c295d97baff6d49a4e9efd7680f7e724dbe6f252bb7915e46168829a597571c"
     },
     "last_active_child_id": null,
     "last_active_at": null

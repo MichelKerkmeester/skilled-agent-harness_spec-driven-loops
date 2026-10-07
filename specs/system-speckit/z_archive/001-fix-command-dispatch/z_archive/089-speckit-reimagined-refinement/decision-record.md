@@ -19,6 +19,7 @@ spec: "089"
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## DR-001: Audit Methodology — Parallel Agent Dispatch
 
 **Date:** 2026-02-06
@@ -34,8 +35,10 @@ spec: "089"
 - Serial analysis (too slow for ecosystem-wide audit)
 - 20 agents (excessive for 8 directories; 10 was sufficient)
 
+<!-- /ANCHOR:adr-001 -->
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## DR-002: Pre-analysis 081 — Archive Rather Than Update
 
 **Date:** 2026-02-06
@@ -55,8 +58,10 @@ spec: "089"
 - Delete 081 entirely (loses historical research value)
 - Consolidate into 2 files then update (reasonable but lower priority than bug fixes)
 
+<!-- /ANCHOR:adr-002 -->
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## DR-003: Config Dead Code — Document Before Removing
 
 **Date:** 2026-02-06
@@ -75,8 +80,10 @@ spec: "089"
 - Immediate deletion (risks losing design intent)
 - Wire into runtime (over-engineering if features aren't needed)
 
+<!-- /ANCHOR:adr-003 -->
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## DR-004: LIKE Injection Fix — Escape Helper Pattern
 
 **Date:** 2026-02-06
@@ -94,8 +101,10 @@ spec: "089"
 - Parameterized exact match instead of LIKE (would change search semantics)
 - Input sanitization at API boundary (too broad, may break legitimate uses)
 
+<!-- /ANCHOR:adr-004 -->
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## DR-005: Agent Model Version Updates — Defer to Phase 4
 
 **Date:** 2026-02-06
@@ -110,8 +119,10 @@ spec: "089"
 - Updating all 7 agent files is mechanical but time-consuming
 - Higher priority bugs should be addressed first
 
+<!-- /ANCHOR:adr-005 -->
 ---
 
+<!-- ANCHOR:adr-006 -->
 ## DR-006: Filters.jsonc — Fix Path AND Naming Together
 
 **Date:** 2026-02-06
@@ -129,8 +140,10 @@ spec: "089"
 - Fix path only, fix naming later (broken intermediate state)
 - Convert code to camelCase (would require more code changes than config changes)
 
+<!-- /ANCHOR:adr-006 -->
 ---
 
+<!-- ANCHOR:adr-007 -->
 ## DR-007: Scope Boundary — Commands Directory Excluded from Fixes
 
 **Date:** 2026-02-06
@@ -140,3 +153,5 @@ spec: "089"
 **Decision:** Exclude commands directory from remediation scope. No changes needed.
 
 **Evidence:** 100% compliance across all audit dimensions (reference integrity, naming, frontmatter, Gate 3 enforcement, workflow patterns).
+
+<!-- /ANCHOR:adr-007 -->

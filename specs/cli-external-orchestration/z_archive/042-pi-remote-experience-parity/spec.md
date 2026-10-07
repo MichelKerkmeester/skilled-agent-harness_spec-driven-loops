@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/042-pi-remote-experience-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/042-pi-remote-experience-parity"
     last_updated_at: "2026-08-12T06:47:00Z"
     last_updated_by: "claude"
     recent_action: "Synthesized the two-lineage deep-research run into research/research.md"

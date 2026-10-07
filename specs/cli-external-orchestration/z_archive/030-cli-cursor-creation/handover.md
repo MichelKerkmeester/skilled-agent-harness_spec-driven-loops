@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation"
     last_updated_at: "2026-07-24T18:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phases 010-017 shipped and pushed; packet validates 18/18 at 0/0"

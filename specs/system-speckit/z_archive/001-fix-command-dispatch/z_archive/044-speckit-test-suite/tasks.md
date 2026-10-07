@@ -2,13 +2,7 @@
 title: "Tasks: Spec Kit Test [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/tasks]"
 description: "Total: ~830 test cases across 4 domains"
 trigger_phrases:
-  - "tasks"
-  - "spec"
-  - "kit"
-  - "test"
-  - "suite"
-  - "044"
-  - "speckit"
+  - "speckit test suite tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -89,7 +83,7 @@ Total: ~830 test cases across 4 domains
 <!-- /ANCHOR:phase-2 -->
 ---
 
-<!-- ANCHOR:phase-2 -->
+<!-- ANCHOR:phase-2-2 -->
 ## Phase 2: Unit Tests - Skill Advisor (Week 2)
 
 ### Task 2.4: Routing Logic Tests (P0 - ~100 tests)
@@ -109,7 +103,7 @@ Total: ~830 test cases across 4 domains
 - [ ] Multi-skill matching scenarios
 - [ ] Confidence score calculations
 
-<!-- /ANCHOR:phase-2 -->
+<!-- /ANCHOR:phase-2-2 -->
 ---
 
 <!-- ANCHOR:phase-3 -->

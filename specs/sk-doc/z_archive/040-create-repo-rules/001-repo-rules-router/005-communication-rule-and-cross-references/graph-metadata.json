@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
-  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
-  "parent_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two problems, one cause",
     "created_at": "2026-08-31T10:21:19Z",
-    "last_save_at": "2026-08-31T11:37:33.492Z",
+    "last_save_at": "2026-10-07T18:14:22.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41b2b9a51111c03dcfcf1b14543bd2777a7d16f8bc331ee5fbf61846fd4b1a14",
+    "source_fingerprint": "sha256:5658edea045b4a7b5d7c24d6543f436443e39c084c2013407f3b3cbe40b276c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93781d7133d97f9fdaa11234fc80980189d308a2d24e712a36e6c40dad88b5b5",
       "plan.md": "45bf0d47f56de133672ea544d4ebca30e3ffe1aa767712d75e09665f32f979ca",
       "tasks.md": "32dfc513bc7547482dbbeeddaac13873e8989227d07303a4bec50e1222d04496",
-      "implementation-summary.md": "20a2e7f1dcbdb8d831900e2ce3a4aa026f493802a067ce25f5d901ddf52659e6"
+      "implementation-summary.md": "59c3d4a3e7cef9017b4c68c590be5ab996b6eec04f4ab97db317c7d9750f70b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

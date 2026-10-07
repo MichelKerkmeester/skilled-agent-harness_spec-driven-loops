@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/005-advisor-provenance-guard"
     last_updated_at: "2026-06-10T23:03:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented advisor source_kind provenance guard and verification"

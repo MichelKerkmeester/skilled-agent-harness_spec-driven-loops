@@ -154,7 +154,7 @@ Verify that all 22 Pipeline Architecture features are accurately documented in t
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -163,7 +163,7 @@ Verify that all 22 Pipeline Architecture features are accurately documented in t
 ### Reliability
 - **NFR-R01**: Findings must be reproducible by re-reading same sources
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -264,6 +264,7 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 
 ---
 
+<!-- /ANCHOR:complexity -->
 <!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
@@ -271,9 +272,8 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 - **Given** the listed source files for a feature, **when** maintainers spot-check them against the repo, **then** the packet either confirms them or records the drift.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
-<!-- /ANCHOR:complexity -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - ~~Are there undocumented features in this category not yet in the catalog?~~ **Resolved**: No gaps found.
@@ -288,5 +288,5 @@ Phase 014 was revalidated against the 2026-03-25 deep review findings. Five verd
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 <!-- /ANCHOR:questions -->

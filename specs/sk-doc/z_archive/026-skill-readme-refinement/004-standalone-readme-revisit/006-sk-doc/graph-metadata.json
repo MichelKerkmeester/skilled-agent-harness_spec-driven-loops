@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,11 +46,9 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/README.md",
+      "changelog/v2.0.0.0.md",
       ".opencode/skills/sk-doc/changelog/v2.0.0.0.md",
       ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -58,19 +56,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -88,7 +86,7 @@
       {
         "name": "v2.0.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/changelog/v2.0.0.0.md",
+        "path": "changelog/v2.0.0.0.md",
         "source": "derived"
       },
       {
@@ -202,7 +200,7 @@
     ],
     "causal_summary": "The sk-doc README still carries the older tabular reference-card style and predates the pilot standard set by mcp-obsidian",
     "created_at": "2026-08-04T08:34:37.008Z",
-    "last_save_at": "2026-08-30T15:39:17.505Z",
+    "last_save_at": "2026-10-07T18:13:44.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e980c134f5e681c8cf2ba46a053007cf191a9f84dc3b19eda62221fdb713eae",
+    "source_fingerprint": "sha256:f48f8b1ccb9e04c83600003dfbb2443750d72f2bd4cdbd9364ffd2b57736be16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3d2d2f0e3ce626bcddd919c8542e549b4cd2fc8b265c42915845a4132e76ba0",
-      "plan.md": "f5d797b641359bb899b2e4fa24d0d8641730dd7cdfc02ec91756571031c1e768",
-      "tasks.md": "a172457f4a2c7ae7f356a61a1228eaad29dfe7d1e983d99324f0b540b4e44b94",
-      "implementation-summary.md": "4ad88992c606d102aab0e57a58e18d1308fac9f07523d6ac7931add6bad34eb7"
+      "spec.md": "5ecb4e4630a50b325c5215778c65e11db28d5db8f67197b9c0f67d3ec7d806ea",
+      "plan.md": "39a4a0111d302c3751e0b86b3e15e6c16629278fa2ba67ed98013d8a399563bb",
+      "tasks.md": "89623bfc7debbe39679bc450cfb072d7de81284c50a9e1e127b296ba1970e774",
+      "implementation-summary.md": "aff04fbfaa9079f0ac9e86d70f6b9e104e4708481d454c149ab491e0d4350fbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

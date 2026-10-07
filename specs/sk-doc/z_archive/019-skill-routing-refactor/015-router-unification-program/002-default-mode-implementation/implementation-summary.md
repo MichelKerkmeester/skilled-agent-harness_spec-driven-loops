@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation"
     last_updated_at: "2026-08-16T12:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Flipped 4 hubs to defaultMode null + routing-helper fallback; sk-design fixed"

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/002-deep-loop-executor-support"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
     recent_action: "Authored tasks.md for phase 002"

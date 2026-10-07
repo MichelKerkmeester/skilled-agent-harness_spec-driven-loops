@@ -15,6 +15,7 @@ contextType: "planning"
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Post-SpecKit Template Upgrade - Command Alignment
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Section Header Emoji Standardization
 
 **Status**: ACCEPTED
@@ -26,8 +27,11 @@ contextType: "planning"
 
 **Rationale**: `📌` is approved for REFERENCE/NOTES sections; "NEXT STEPS" is clearer than "WHAT NEXT?"
 
+<!-- /ANCHOR:adr-001 -->
+
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Mandatory Gate Addition for /memory:search
 
 **Status**: ACCEPTED
@@ -39,8 +43,11 @@ contextType: "planning"
 
 **Rationale**: Consistency with other memory commands; prevents context inference errors.
 
+<!-- /ANCHOR:adr-002 -->
+
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Parallel Agent Dispatch Strategy
 
 **Status**: ACCEPTED
@@ -52,8 +59,11 @@ contextType: "planning"
 
 **Rationale**: Namespace-based grouping maintains consistency; parallel execution reduces time.
 
+<!-- /ANCHOR:adr-003 -->
+
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: OUTPUT FORMATS Section Placement
 
 **Status**: ACCEPTED
@@ -65,8 +75,11 @@ contextType: "planning"
 
 **Rationale**: Improves discoverability; follows debug.md and handover.md patterns.
 
+<!-- /ANCHOR:adr-004 -->
+
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Frontmatter Argument-Hint Format
 
 **Status**: ACCEPTED
@@ -78,8 +91,11 @@ contextType: "planning"
 
 **Rationale**: Template standard requires `<angle-brackets>` for required arguments.
 
+<!-- /ANCHOR:adr-005 -->
+
 ---
 
+<!-- ANCHOR:summary -->
 ## Summary
 
 | ADR | Decision | Commands Affected |
@@ -89,3 +105,5 @@ contextType: "planning"
 | 003 | 5 parallel agents | All 19 |
 | 004 | OUTPUT FORMATS | 4 spec_kit commands |
 | 005 | Angle brackets | /create:skill, /create:agent |
+
+<!-- /ANCHOR:summary -->

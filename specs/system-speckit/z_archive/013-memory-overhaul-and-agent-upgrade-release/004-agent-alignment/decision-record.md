@@ -2,12 +2,8 @@
 title: "De [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-04-agent-alignment/decision-record]"
 description: "Task 04 requires systematic audit/creation of agent configuration files across 3 platforms (OpenCode, Claude, Codex). The scope must be clearly defined to ensure complete covera..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "task"
-  - "agent"
-  - "configs"
-  - "decision record"
+  - "agent alignment decisions"
+  - "agent config scope decision"
 importance_tier: "important"
 contextType: "planning"
 ---

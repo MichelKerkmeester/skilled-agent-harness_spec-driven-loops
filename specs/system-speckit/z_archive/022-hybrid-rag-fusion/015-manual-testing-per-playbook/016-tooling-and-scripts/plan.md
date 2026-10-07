@@ -168,7 +168,6 @@ Two groups have sub-scenario expansions that require individual tracking:
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -189,7 +188,6 @@ Note: Phases 2, 3, and 4 can run in parallel after Phase 1 completes.
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

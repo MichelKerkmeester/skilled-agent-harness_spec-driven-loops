@@ -16,14 +16,17 @@ contextType: "decision"
 
 ---
 
+<!-- ANCHOR:adr-001-context -->
 ## 1. Context
 
 Injected questions from the research inbox and the reducer's `key-questions` rewrite could target the same strategy anchor in the same reduce step. Before this phase, there was no declared owner for that anchor: whichever writer ran last could silently win, with no conflict record, no event, and no durable operator decision.
 
 The preceding inbox-provenance phase froze the inbox as an input surface. This phase needed to decide how inbox records interact with reducer-owned strategy state without reopening the inbox schema or generalizing the model across other loop modes.
+<!-- /ANCHOR:adr-001-context -->
 
 ---
 
+<!-- ANCHOR:adr-001-decision -->
 ## 2. Decision
 
 Make `key-questions` a generated projection from the canonical question registry:
@@ -36,9 +39,11 @@ Make `key-questions` a generated projection from the canonical question registry
 - Disagreements emit a `question_conflict` JSONL event containing both the inbox value and the registry value instead of silently overwriting markdown.
 
 Direct edits to the generated `key-questions` block are not treated as a second canonical writer; they flow through the legacy import path established by the inbox-provenance work.
+<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
+<!-- ANCHOR:adr-001-alternatives -->
 ## 3. Alternatives Considered
 
 | Alternative | Verdict | Why |
@@ -47,9 +52,11 @@ Direct edits to the generated `key-questions` block are not treated as a second 
 | Let inbox injections write directly to `key-questions` | REJECTED | The inbox is an input queue, not canonical state; allowing direct writes would keep two owners for one anchor. |
 | Block the run on every disagreement | REJECTED | Some conflicts can be carried as `needs_decision` without stopping progress; the key requirement is that they are visible and recorded. |
 | Registry-owned projection rendered only by the reducer | CHOSEN | It establishes one owner for the markdown anchor while preserving inbox provenance and operator decision history. |
+<!-- /ANCHOR:adr-001-alternatives -->
 
 ---
 
+<!-- ANCHOR:adr-001-consequences -->
 ## 4. Consequences
 
 - `key-questions` is deterministic output from registry state rather than an editable source of truth.
@@ -57,9 +64,12 @@ Direct edits to the generated `key-questions` block are not treated as a second 
 - Operator decisions become durable registry data instead of implied markdown state.
 - Manual edits to generated questions require the legacy import path to become canonical.
 - Unresolved conflicts can accumulate as `needs_decision`; operators must review those records instead of relying on markdown ordering.
+<!-- /ANCHOR:adr-001-consequences -->
 
 ---
 
+<!-- ANCHOR:adr-001-impl -->
 ## 5. Migration Guide (informational, not executed here)
 
 Future reducer changes must preserve the ownership split: inbox records remain immutable inputs, registry rows remain canonical state, and `key-questions` remains reducer-rendered output. Any new conflict surface should emit structured events with both competing values and a durable operator decision field before changing rendered markdown.
+<!-- /ANCHOR:adr-001-impl -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,10 +39,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-parity-deep-skills.vitest.ts",
       ".github/workflows/routing-registry-drift.yml",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
       ".opencode/bin/compiled-route.cjs"
     ],
     "entities": [
@@ -71,27 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "routing-parity-deep-skills.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-parity-deep-skills.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
-        "source": "derived"
-      },
-      {
-        "name": "gate2-golden-prompts.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "routing-golden-prompts.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,11 +168,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add a joined parent-then-mode golden-prompt acceptance suite to routing-registry-drift.yml, grounded in a live 029 research miss (a parent-hub scaffold prompt ranked sk-prompt above sk-doc); asserts top-1/top-3 skill selection plus compiled-route mode selection for representative prompts (create-skill, git, deep-research), independent of the O1 derived-authority decision.",
     "created_at": "2026-07-29T08:00:15.756Z",
-    "last_save_at": "2026-08-30T15:39:15.874Z",
+    "last_save_at": "2026-10-07T18:13:28.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d807b2f83276e7fa651d6597c9e50c705c0e7f3fa89d2bd286909ba5e4eed77d",
+    "source_fingerprint": "sha256:ca9e99922cd0e44df3dab0a5d3a8a2f01ab8e221754b92d8dcf341fbe44629b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d0b773e7112d45da103d4d356bd6ec21fe0541afd63b3299650b1e9d30aa8e8",
-      "plan.md": "59363fb2d87a9f7be4eae027e85d701169f00bd2273989219815540f542681cd",
-      "tasks.md": "a8838304d6689904d34307b0712d09e26ea2568180b29b78d4802222f4f8c3d5",
-      "implementation-summary.md": "275d24eace52672b02d6df2b306e326aa418fbb2c785f43d7356fbfad2f11e29"
+      "spec.md": "8494d3289b4e894856b74c3f8e157edd03d008ac1db4a349e8d6dd63780f560c",
+      "plan.md": "f79da7ae15479fff1f571b23d64f74955246c0caa649e55a6d0d4d0605201123",
+      "tasks.md": "1d1fcb8ab0910f729588e7bb79a58c7e67f456c0a0225d58562c3fef4e2f6b39",
+      "implementation-summary.md": "4bd38413533de55483721c4b514dd87d0fc91bff41389f02a9e85dbf97350e9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

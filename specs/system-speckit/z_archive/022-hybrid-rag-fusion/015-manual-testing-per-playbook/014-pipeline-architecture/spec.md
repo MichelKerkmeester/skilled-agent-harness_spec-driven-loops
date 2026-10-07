@@ -207,7 +207,6 @@ Execute all 18 playbook scenarios for the pipeline architecture category and rec
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -220,7 +219,6 @@ Execute all 18 playbook scenarios for the pipeline architecture category and rec
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Scenario Boundaries

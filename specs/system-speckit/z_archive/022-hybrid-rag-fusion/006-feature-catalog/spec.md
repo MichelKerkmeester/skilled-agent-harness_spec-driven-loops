@@ -71,8 +71,8 @@ The older `180`, `189`, `194`, and `224/275` figures remain historical milestone
 
 **Current-State Note (2026-03-27)**
 
-- Live filesystem count reports **255** feature entries across **21** numbered categories under `.opencode/skills/system-spec-kit/feature_catalog/`, excluding the root index documents [root feature catalog index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md) and [simple-terms index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG_IN_SIMPLE_TERMS.md).
-- Live filesystem count reports **290** scenario files across the same **21** numbered categories under `.opencode/skills/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index [root manual-testing index](../../../../skill/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md).
+- Live filesystem count reports **255** feature entries across **21** numbered categories under `.opencode/skills/system-spec-kit/feature_catalog/`, excluding the root index documents [root feature catalog index](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md) and simple-terms index.
+- Live filesystem count reports **290** scenario files across the same **21** numbered categories under `.opencode/skills/system-spec-kit/manual_testing_playbook/`, excluding the root playbook index [root manual-testing index](.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md).
 - Treat the earlier `180`, `189`, `194`, and `224/275` figures as historical milestones only.
 
 **Deep Research Addendum (2026-03-26)**
@@ -112,14 +112,14 @@ Remediation backlog: 8 P0 critical, 15 P1 required, 5 P2 recommended. Full detai
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- ANCHOR:problem -->
+<!-- ANCHOR:problem-2 -->
 
 ### Problem Statement
 This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were current release-control truth. Without an explicit statement that the live denominator is now `255` feature entries across `21` categories, the packet contributes to stale-count drift.
 
 ### Purpose
 Preserve the March 8 snapshot as historical record while making the live wrapper denominator explicit so other packets stop treating older milestone counts as current truth.
-<!-- /ANCHOR:problem -->
+<!-- /ANCHOR:problem-2 -->
 <!-- /ANCHOR:problem -->
 
 
@@ -127,7 +127,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 
 ### In Scope
 - Preserve and reference the 2026-03-08 180-feature historical snapshot
@@ -141,7 +141,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 - Actual remediation edits to snippet files (separate follow-up phase)
 - Restructuring the 21-category taxonomy
 - Changes to MCP server source code
-- Updating the monolithic feature catalog index [root feature catalog index](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md) (done after snippet remediation)
+- Updating the monolithic feature catalog index [root feature catalog index](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md) (done after snippet remediation)
 
 ### Files to Change
 
@@ -157,7 +157,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 | `006-feature-catalog/scratch/investigation-X*.md` | Create | 10 agent outputs |
 | `scratch/remediation-manifest.md` | Create | Synthesis output |
 | `scratch/analysis-summary.md` | Create | Statistics |
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 <!-- /ANCHOR:scope -->
 
 
@@ -165,7 +165,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 
 ### P0 - Blockers (MUST complete)
 
@@ -184,20 +184,20 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 | REQ-006 | Cross-validation between verification and gap streams | Overlapping findings reconciled |
 | REQ-007 | Analysis summary with aggregate statistics | Category-level pass/fail counts |
 | REQ-008 | 2026-03-16 omitted-snippet addendum | All 14 omitted snippets explicitly listed and classified with evidence |
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- ANCHOR:success-criteria -->
+<!-- ANCHOR:success-criteria-2 -->
 
 - **SC-001**: All 180 historical-snapshot snippets (2026-03-08) have been read and verified against source code
 - **SC-002**: All 55 gaps have a confirmed status (gap/false-positive) with evidence
 - **SC-003**: Remediation manifest exists with zero unclassified findings
 - **SC-004**: All file paths in existing snippets resolve to real files on disk
 - **SC-005**: All 14 omitted current snippets (2026-03-16 addendum) are explicitly classified with remediation status
-<!-- /ANCHOR:success-criteria -->
+<!-- /ANCHOR:success-criteria-2 -->
 <!-- /ANCHOR:success-criteria -->
 
 
@@ -205,7 +205,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- ANCHOR:risks -->
+<!-- ANCHOR:risks-2 -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -213,13 +213,13 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 | Risk | Agent rate limiting (30 concurrent) | Partial results | Stagger launches 3-5s apart |
 | Risk | Source files moved since last annotation | False invalid paths | Agents report both invalid and new paths |
 | Risk | Context window overflow in agents | Incomplete verification | Partition into manageable chunks per agent |
-<!-- /ANCHOR:risks -->
+<!-- /ANCHOR:risks-2 -->
 <!-- /ANCHOR:risks -->
 
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-3 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Accuracy
@@ -235,7 +235,7 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 - **NFR-X01**: Each verification report follows the structured output format
 - **NFR-X02**: Remediation manifest covers every finding from both streams
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-3 -->
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -317,10 +317,10 @@ Preserve the March 8 snapshot as historical record while making the live wrapper
 
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 
 - None currently. Historical (2026-03-08) and addendum (2026-03-16) boundaries are now explicit.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 
@@ -393,7 +393,7 @@ All feature catalog references in code MUST use the feature name only, never fol
 - All TypeScript source files under `mcp_server/` (handlers, lib, shared, scripts)
 - All inline comments referencing spec folders, sprints, phases or ticket numbers
 - Adding feature catalog name references to key functions, modules and exports
-- The root feature catalog index [feature catalog source of truth](../../../../skill/system-spec-kit/feature_catalog/FEATURE_CATALOG.md) and its individual files as the source of truth for feature names
+- The root feature catalog index [feature catalog source of truth](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md) and its individual files as the source of truth for feature names
 
 ### Out of Scope
 - Test files (`.vitest.ts`) are excluded from comment modifications

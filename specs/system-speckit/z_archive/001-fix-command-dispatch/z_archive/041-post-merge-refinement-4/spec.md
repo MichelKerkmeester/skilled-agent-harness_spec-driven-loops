@@ -2,13 +2,7 @@
 title: "Feature Specificatio [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/spec]"
 description: "Complete specification for addressing 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "spec"
-  - "041"
+  - "post merge refinement 4 spec"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -243,7 +237,7 @@ As an AI agent, I need gate system documentation to be more accessible so that I
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -275,7 +269,7 @@ As an AI agent, I need gate system documentation to be more accessible so that I
 - **NFR-O02**: Database migrations MUST be backward compatible
 - **NFR-O03**: Changes MUST be validated before deployment (checklist verification)
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -356,7 +350,7 @@ As an AI agent, I need gate system documentation to be more accessible so that I
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -368,7 +362,7 @@ As an AI agent, I need gate system documentation to be more accessible so that I
 - **Breaking changes to MCP signatures** - Tool signatures must remain backward compatible.
 - **Gate system architectural simplification** - Documentation can be improved, but gate logic itself is not restructured in this pass.
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

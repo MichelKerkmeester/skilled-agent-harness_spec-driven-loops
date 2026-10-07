@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/003-hub-integration",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/003-hub-integration",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/plan.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/tasks.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
       ".opencode/skills/mcp-tooling/SKILL.md",
@@ -58,19 +55,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/003-hub-integration/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "After phase 002 the `mcp-mobbin` packet exists but is invisible: the hub's mode registry, router, parent SKILL.md, and graph metadata do not mention it, the advisor cannot route to it, and Code Mode has no `mobbin` manual to call",
     "created_at": "2026-07-16T09:39:33Z",
-    "last_save_at": "2026-08-30T15:39:09.984Z",
+    "last_save_at": "2026-10-07T18:11:37.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b2f76d357a63a50ff492490112ef3b88372cf5efb49674a88b61125dfeba2ea",
+    "source_fingerprint": "sha256:9299f8576ecd72026b9c08579d732a865dc1ce5238da6bb20a81bc49cbb26661",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47ab42ed529aba624c62fbf51d5e30f0f905bfed0295700cc69935fc271ae47e",
-      "plan.md": "e216d277ea8421d452e65a523297a13e8e0c90f87957e55ee044264d121462a1",
-      "tasks.md": "748d8434f26e106ecf09aed1fb169d24939cc61ac88a4d8c3394bf8ad872c9db",
-      "implementation-summary.md": "21d2a22a682fa2ebfe1ecb5ee18dc9fd7e2e1d33f95b9cb7134d0511e2784027"
+      "spec.md": "5d8ffdb52285621284ae2c4c4f2d4fbbdf7159a830a718748959cbee683cbfd1",
+      "plan.md": "a087d817a19351da172732f1b64059885e8420a8706c41c3965ceb9071fcb566",
+      "tasks.md": "9ee8315f9dcdb9db7363587f78f901893c14b005a0c8728247f7e70db1f37b78",
+      "implementation-summary.md": "1a6c59fe25424112e485cc7e6469335ae372231d7340de7e59f79e695f807d3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

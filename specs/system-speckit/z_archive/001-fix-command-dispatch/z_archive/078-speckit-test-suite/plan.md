@@ -154,7 +154,7 @@ npm test
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -172,7 +172,7 @@ Phase 4 (Framework) ────────┤                                 
 | Phase 4: Framework | None | Phase 5 |
 | Phase 5: Templates | Phase 2, 3, 4 | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

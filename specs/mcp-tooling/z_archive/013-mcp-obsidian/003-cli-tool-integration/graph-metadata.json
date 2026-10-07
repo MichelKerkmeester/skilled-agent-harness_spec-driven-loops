@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it, or look up its commands",
     "created_at": "2026-08-02T05:50:27Z",
-    "last_save_at": "2026-09-07T16:16:56.768Z",
+    "last_save_at": "2026-10-07T18:11:06.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e291414372a83c4bcbe06b1c5267c2fd72f9069345b87f782441dde04790a2d7",
+    "source_fingerprint": "sha256:bde155283dad338e92601a9bd0272860a600edd7b2670e6a8fe6eef79d63e89d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0506d0cbee7bf2d5072b907a813d07a868895d571dd9d2afaeb8c72b01266ea8",
-      "plan.md": "f7f34da799d607bc78ec1a8efef1a03d7a6fdb7baf8f3efeb6737367a2e7c211",
-      "tasks.md": "e0cae1527824bcb002136ad192179dc3369689aafedaa96458fb625e6a15cde5",
-      "implementation-summary.md": "8b5707aa88646132f372dde8a5809ca8804147703bde635b6749b6abf857d52d"
+      "spec.md": "73bdfd105358603ab16f1e2dc6b4a41339bd5e699c02f74a0f32e4bb80f2c82a",
+      "plan.md": "3a78823e47aa829aef4eb1ac15dcadcae134e80fca47cddc7aedbb1f9201fa6b",
+      "tasks.md": "2ad6f6c885e79e03fc89c9c0541b0fdf74c14888c7a6b6f1cb8bc516a039a5a4",
+      "implementation-summary.md": "d8afe1e60e9e2d5f6c15f5a1dcc2fd97f50ddc7814e1e7d3219b07d863d76b52"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/005-validation-and-closeout"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/005-validation-and-closeout"
     last_updated_at: "2026-07-08T13:15:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Doc finalized, commit/push held for confirmation"

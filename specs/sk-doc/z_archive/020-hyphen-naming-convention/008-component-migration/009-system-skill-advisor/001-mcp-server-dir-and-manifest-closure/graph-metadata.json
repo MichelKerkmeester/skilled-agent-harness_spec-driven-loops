@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-30T15:39:16.817Z",
+    "last_save_at": "2026-10-07T18:13:10.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:dc9fa948dfdfc3313161391d6044eadb351861ac9a665d157fe9b9e013342882",
+    "source_fingerprint": "sha256:5146f84ad8eaf614ae5a629bcbfe955a1d3648f53f92099c9ba597c278e72c58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed6bf3f147232ec7983497ae29e692ff8b709c55a61423a81b8a4d8638d97432",
-      "plan.md": "93645fa53c9a3a7f9f8b1a066643e0edc99c95e2fc4a396205d0013f11bccc03",
-      "tasks.md": "a5ce6ff0780d14bdd6d004d399ea3d9060a4bb79e65083bdb5e6d2f0ea61d9b3",
+      "spec.md": "d2b88ac86159855d62fd543574fc3cb183b864f7045d7a7c336f296574705e50",
+      "plan.md": "3e06ec99db9311abe02f0f6dd6dddb1fc25e9116dd4c7bdd8e2b5f14d6b3cd82",
+      "tasks.md": "4a2bf26d553e40876ab4ff067833d14c0850ad87ca4de2f128d1534c0995a402",
       "decision-record.md": "8786dbca05e3c5d9cb7d508360c3414660d8e5d3da101851746e1d3759bb1848"
     },
     "last_active_child_id": null,

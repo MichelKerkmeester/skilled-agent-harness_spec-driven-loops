@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored hub boundary docs"

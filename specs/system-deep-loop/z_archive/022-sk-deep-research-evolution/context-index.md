@@ -1,3 +1,13 @@
+---
+title: "Context Index: sk-deep-research Evolution Archive"
+description: "Migration bridge mapping the archived sk-deep-research evolution series to its consolidated archive home."
+trigger_phrases:
+  - "deep research evolution archive"
+  - "migration bridge index"
+  - "archived packet consolidation map"
+importance_tier: "normal"
+contextType: "general"
+---
 # Context Index: sk-deep-research Evolution Archive
 
 > Migration bridge for the archived `sk-deep-research` evolution series under

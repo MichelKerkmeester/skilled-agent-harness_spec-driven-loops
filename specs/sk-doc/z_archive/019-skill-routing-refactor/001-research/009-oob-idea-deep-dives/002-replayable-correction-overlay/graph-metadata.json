@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "replayable correction overlay deep dive",
       "two-plane routing learning",
-      "hash-addressed routing overlay"
+      "hash-addressed routing overlay",
+      "replayable correction overlay plan",
+      "replayable correction overlay tasks",
+      "two-plane routing learning tasks"
     ],
     "key_topics": [
       "replayable",
@@ -25,20 +28,34 @@
       "routing",
       "learning",
       "hash-addressed",
-      "cannot",
-      "safely",
-      "learn"
+      "plan",
+      "tasks",
+      "cannot"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +93,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Routing cannot safely learn by mutating serving rules online because mutable policy destroys deterministic replay",
     "created_at": "2026-07-18T04:39:05.018Z",
-    "last_save_at": "2026-08-30T15:39:14.740Z",
+    "last_save_at": "2026-10-07T19:46:24.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:9dbd658125e2691639b452f42fb75aebb72f8a789bfd7077e7833b9f449f7a20",
+    "source_fingerprint": "sha256:811ff87bb1a132b2e279fbe61467a80948875ee507df69ea569b89468b9bee96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0e5cc56ee65e0565fcd45f0e19ba09aefee6c350361bbdd91a52ccecac7c3c9"
+      "spec.md": "a0e5cc56ee65e0565fcd45f0e19ba09aefee6c350361bbdd91a52ccecac7c3c9",
+      "plan.md": "3a102fe6ad9234b3b0d77dd518ec0b94eed2304882755f4f309b4d90581a2a56",
+      "tasks.md": "6e5d8b3f1b13772df24a0f6739915ca5da024fda5c8501d185af2f6ffd81aef5"
     },
     "last_active_child_id": null,
     "last_active_at": null

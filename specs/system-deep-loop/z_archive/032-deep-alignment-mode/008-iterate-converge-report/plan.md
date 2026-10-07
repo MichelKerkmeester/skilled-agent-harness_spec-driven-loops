@@ -11,7 +11,7 @@ contextType: "general"
 status: "implemented"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/008-iterate-converge-report"
     last_updated_at: "2026-07-11T16:09:46Z"
     last_updated_by: "claude"
     recent_action: "Built and tested deep-alignment CONVERGE/ITERATE/REMEDIATE wiring scripts"

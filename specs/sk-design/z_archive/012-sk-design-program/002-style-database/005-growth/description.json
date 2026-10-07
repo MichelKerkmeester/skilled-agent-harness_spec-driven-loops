@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/002-style-database/005-growth",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/002-style-database/005-growth",
   "description": "At 10x-100x corpus growth (roughly 129,000 bundles versus today's ~1,290), the eligible-ID SQL-parameter shape used for broad queries can approach or",
   "keywords": [
     "10x-100x",

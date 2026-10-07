@@ -12,22 +12,36 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "deep-improvement 3lane doc rebuild",
+      "feature catalog playbook rebuild",
+      "deep-improvement 3lane doc rebuild plan",
+      "feature catalog playbook rebuild plan",
+      "deep-improvement 3lane doc rebuild tasks",
+      "feature catalog playbook rebuild tasks",
+      "deep-improvement 3lane doc rebuild handover",
+      "packet 122 child 007 resume"
+    ],
     "key_topics": [
       "deep-improvement",
-      "3-lane",
+      "3lane",
       "doc",
       "rebuild",
-      "re-architect",
-      "lanes",
+      "feature",
+      "catalog",
+      "playbook",
+      "plan",
+      "tasks",
       "handover",
       "packet",
       "child"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "handover.md"
     ],
     "entities": [
@@ -35,6 +49,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -80,6 +106,72 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "Validation And Tests",
         "kind": "proper_noun",
         "path": "handover.md",
@@ -96,34 +188,26 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
-      },
-      {
-        "name": "Exact Prompt",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Exact Command Sequence",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "007 — Deep-Improvement 3-Lane Doc Rebuild",
+    "causal_summary": "Re-architect the deep-improvement feature_catalog and manual_testing_playbook into one mirrored, lane-grouped taxonomy that covers lanes A, B and C plus the shared surface, conforming to the sk-doc templates.",
     "created_at": "2026-07-08T06:29:36.530Z",
-    "last_save_at": "2026-08-30T15:39:23.836Z",
+    "last_save_at": "2026-10-07T20:54:52.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:377fa11b06507bbe474e3e7bdffaabcdc7401a93c6f044f9cbddfb1adf0262f5",
+    "source_fingerprint": "sha256:82cc3450a87551dc09f70731682ad460736fda05a41c618df538ca59d5476fce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "760637c1843bf8abd575109506ef0ad295391c01c0f1d991eb19bb1a5926dcdd",
-      "handover.md": "380e4e5927088b72b8a8504d947854562e09dda0caccf32e826bf1e0e10e91d8"
+      "spec.md": "731c3865cab1aa8d55df8a77c46f4ac2d7ca87f370ca47684c1f8638f37ce2da",
+      "plan.md": "c462cef9f53a988b453ac338dd86870385897628242de57cbfcdae55ad1c1c3e",
+      "tasks.md": "55affb99ee76696e666741c442d06fb8cb53eb4b217982fd79b4ab497bbf80cd",
+      "handover.md": "e15f1d9b70a57000e898cd6e7290b159749156797e08e7ed17a3c62f5f895c65"
     },
     "last_active_child_id": null,
     "last_active_at": null

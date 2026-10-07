@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/007-design-hub-routing",
+  "specFolder": "sk-design/z_archive/007-design-hub-routing",
   "description": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory",
   "keywords": [
     "shipped",

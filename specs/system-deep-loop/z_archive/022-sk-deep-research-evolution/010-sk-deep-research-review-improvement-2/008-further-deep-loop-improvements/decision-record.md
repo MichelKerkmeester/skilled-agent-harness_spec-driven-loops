@@ -2,7 +2,7 @@
 title: "...led-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/decision-record]"
 description: "Consolidated Phase 008 decision record preserving the three accepted design choices that shaped graph wiring, replay consumers, and tool routing."
 trigger_phrases:
-  - "008"
+  - "further deep loop improvements decision record"
   - "phase 8 adr"
 importance_tier: "critical"
 contextType: "implementation"

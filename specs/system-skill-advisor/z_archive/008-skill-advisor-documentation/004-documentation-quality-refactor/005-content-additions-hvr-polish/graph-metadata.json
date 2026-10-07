@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines troubleshooting, no daemon lease contract, no skill-graph drift reconciliation guide, and the hook-reference link is broken because the canonical file lives in system-spec-kit",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.942Z",
+    "last_save_at": "2026-10-07T18:15:39.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae7b229c5478517191459090df6b1cfae385a2be9f70a6db33896cddd8aba9b3",
+    "source_fingerprint": "sha256:7bd74cce4c5345e47dce7ce16d9c0dd654155599bb242527b8739f8a6ad4ae26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "12b2955ae0964c37971b7c04f2f44a763834e3dcbf1c0730f1a7c858cc12a84d",
-      "plan.md": "4fb790787cacfa73e6cc76c3984096206a0dfaf51556e8afcb52c556e4191cfb",
-      "tasks.md": "aecea8e7a463e9de6eb24305877e1b31cb2ce96476f66fb4571adc66ccd24201",
-      "implementation-summary.md": "026af59b1d2fca1a79ce50503e3d4cb23f69c889250544edd141be3807c3c67c"
+      "spec.md": "59ad00edc27995fd69ff802a3696bcb56c6e94595293ea9cd2a9e9858765bb45",
+      "plan.md": "ac1ade677c4bfe0024144b2107091c73cf2ddde98dc48fcfeb732badb9ee6169",
+      "tasks.md": "b9393c5911f7d2b42f5e89e00ab51448ed46af234e1e29c38b21803e64cd3f3e",
+      "implementation-summary.md": "1fe7e9df72777c4af6045726db6e63cd647cd80e694f2f876a89379619c1bb9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

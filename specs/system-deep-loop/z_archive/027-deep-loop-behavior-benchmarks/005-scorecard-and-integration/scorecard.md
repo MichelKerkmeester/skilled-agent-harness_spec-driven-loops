@@ -1,3 +1,11 @@
+---
+title: "Cross-Skill Scorecard -- Deep-Loop Behavioral Benchmarks"
+trigger_phrases:
+  - "scorecard and integration scorecard"
+importance_tier: "high"
+contextType: "implementation"
+---
+
 # Cross-Skill Scorecard — Deep-Loop Behavioral Benchmarks (5 modes × 3 executors)
 
 > Synthesis of all five `behavior_benchmark` packages: deep-review (phase 002 pilot, 8 scenarios), deep-research + deep-context (phase 003, 14), deep-ai-council + deep-improvement (phase 004, 10). Total across the packet: **32 scenario contracts, ~120 scored live runs** on three executor legs — `claude-cli` baseline, `gpt-fast-med`, `gpt-fast-high`. Per-mode detail and corrected readings live in each phase's `scorecard.md`; this document is the cross-mode roll-up and the ranked remediation backlog.

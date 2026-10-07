@@ -49,9 +49,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".codex/config.toml",
-      ".claude/mcp.json",
-      ".claude/settings.local.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -94,18 +92,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "List Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "List Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Child 003 moved advisor source and DB ownership into the dedicated `system-skill-advisor` package, but the runtime still has no standalone advisor launcher or MCP registration",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-08-30T15:39:26.418Z",
+    "last_save_at": "2026-10-07T18:16:00.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -211,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc85c9a8d6f71d09b0891fdeb2caa703bd17466448913e8c8516cb62f07957df",
+    "source_fingerprint": "sha256:6739c055d86506a3996c092997c8463704a88a493219f84178a82a04b55f81b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "973548b8c979ef8a4cbb30b4c59f89a6f4485600e5d295b20821c3ab4315ec7a",
-      "plan.md": "fce59fe48c9050166db281504d9165894e72e6d27d0a6a5d63963e1cae3893de",
-      "tasks.md": "ac514b0d0f28cf3b6cb82113fb93e30867eb87d89bf9565bfc97c4c16a2945d1",
+      "spec.md": "fd7f90a95118be79ec27abee01a566b4f0fd0d948781dd7331f4d5f7a0fd6585",
+      "plan.md": "824a04562f062e744f04378b44dd9dd3b14835c3fbfbb18a54a79a85cb30ac51",
+      "tasks.md": "51c0b19f3e577adf839ce7b0190c0637b5838e75eaa6ab6b99d36192f60c2f8a",
       "decision-record.md": "3655de3cd9dee74ee1e78f4be85ec2fac2e089129b8724d718932fe62ce5b69f",
-      "implementation-summary.md": "5af3c66865656a6697b73d656bb821e3e39dab55609869187c001083a486afe8"
+      "implementation-summary.md": "72b9f8590fd6d9f2492db86c19488626900c0bef37a512686fe312616ba96cbb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/019-code-refinements"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/019-code-refinements"
     last_updated_at: "2026-07-03T07:30:50Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from four-reviewer audit dossier e-2 items (1-5, 8-9)"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill",
   "description": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been",
   "keywords": [
     "phase",

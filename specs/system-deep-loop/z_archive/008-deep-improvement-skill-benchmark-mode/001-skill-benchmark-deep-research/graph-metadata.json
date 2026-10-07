@@ -14,6 +14,10 @@
       "skill-benchmark deep research",
       "122 phase 001",
       "multi-model deep research skill benchmark",
+      "skill-benchmark deep research plan",
+      "phase 001 multi-model research plan",
+      "skill-benchmark deep research tasks",
+      "phase 001 multi-model iteration tasks",
       "122 phase 001 implementation summary",
       "skill-benchmark deep research results"
     ],
@@ -25,11 +29,11 @@
       "multi-model",
       "skill",
       "benchmark",
+      "plan",
+      "tasks",
+      "iteration",
       "implementation",
-      "summary",
-      "results",
-      "20-iteration",
-      "minimax-2"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,8 +43,7 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".codex/config.toml",
-      ".opencode/specs/descriptions.json"
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -80,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
         "name": "Purpose Run",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -122,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Approach Run",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -146,9 +149,39 @@
         "source": "derived"
       },
       {
-        "name": "Approach",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: Phase 001 — Skill-benchmark deep research",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format: T### [P?] Description (file path)",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark deep research tasks",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase 001 multi-model iteration tasks",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "important",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,41 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Activation Accuracy",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Unprompted Reference",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Asset Discovery",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Structural Connectivity",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "background",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "20-iteration multi-model deep research (5x MiniMax-2.7, 5x DeepSeek-v4-pro, 5x GPT-5.5-xhigh-fast, 5x Opus-4.8-native) investigating Lane C skill-benchmark design and the deep-agent-improvement->deep-improvement rename impact map.",
     "created_at": "2026-05-30T07:27:05.679Z",
-    "last_save_at": "2026-08-30T15:39:23.806Z",
+    "last_save_at": "2026-10-07T20:47:58.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +203,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d7f79f94dfed7ee2a5e0592c7e191e1fb7dea714707ec1e4420e6cf8cf8716c0",
+    "source_fingerprint": "sha256:95a38d3cfb2ca07f8f87d3bafeb03c5392ef86e2ac6373e8311f1fa705517d79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c0a4e535ba819ad33fb71894dc95eb4a0879aed149bcc7571f4a7a9c0e3e327",
-      "plan.md": "3c7b5e628c53df93242b8e56277f4372b3ef1f6d45d2e10d6862419ac6954df8",
-      "tasks.md": "a840a26b8751d38c42315b6d154084e08ee7704f85408b8cda4f379520c3a39b",
-      "implementation-summary.md": "69a1bc71279f79c4624b20bef0326fb492afb228d0aad7149192656b63ee07ed",
+      "spec.md": "e551d48034f97f5e59273f57d4a872fc9b6df19ea4ec9c5607e949fb3409d368",
+      "plan.md": "d637d344a28f7c2e162921bffb84fc8b63af45c20c2b1e63903c5b4eac5818b2",
+      "tasks.md": "c74d10b775b5447a645a2694ff32de84663124492eb690d1bd203a822be3be0e",
+      "implementation-summary.md": "5a0a3eb637951de5a545aa48078854c1676a98a8fac0f1063b4d1eb6c8546777",
       "research/research.md": "b5a0d0e2161604b2dd891a36f8115830af5e1275754ed16fb0656349c5fed567"
     },
     "last_active_child_id": null,

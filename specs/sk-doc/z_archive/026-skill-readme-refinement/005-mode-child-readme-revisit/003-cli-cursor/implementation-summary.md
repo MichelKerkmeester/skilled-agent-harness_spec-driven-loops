@@ -2,14 +2,13 @@
 title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/implementation-summary]"
 description: "The cli-cursor README now opens with a one-line pitch and a problem-first OVERVIEW on the refined template, passes the readme validator and the HVR gate with zero hits, and carries version 1.2.0.0 with a matching changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "cli cursor readme summary"
   - "phase 003 summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor"
     last_updated_at: "2026-08-04T15:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Completed README rewrite, version bump and changelog entry"

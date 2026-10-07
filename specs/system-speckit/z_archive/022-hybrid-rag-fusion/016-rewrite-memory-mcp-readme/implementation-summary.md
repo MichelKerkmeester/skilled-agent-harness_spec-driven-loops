@@ -3,7 +3,6 @@ title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/016-rewrite-memory
 description: "Summary of the complete README rewrite in simple-terms voice for the Spec Kit Memory MCP server."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "016"
   - "rewrite"
 importance_tier: "normal"

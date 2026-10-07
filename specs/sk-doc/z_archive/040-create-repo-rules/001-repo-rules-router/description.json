@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router",
   "description": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not",
   "keywords": [
     "agents",

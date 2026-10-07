@@ -50,8 +50,7 @@
       "shared/utils/token-estimate.ts",
       "shared/utils/path-security.ts",
       "shared/config.ts",
-      "core/config.ts",
-      ".opencode/skills/system-spec-kit/.gitignore"
+      "core/config.ts"
     ],
     "entities": [
       {
@@ -106,12 +105,6 @@
         "name": "config.ts",
         "kind": "code",
         "path": "shared/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/.gitignore",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-09-07T16:19:15.289Z",
+    "last_save_at": "2026-10-07T20:33:10.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +211,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:87fd4b7e64397193dbd3471a2ccffaba659b91502cc4ffe375410a0671056b7b",
+    "source_fingerprint": "sha256:1f8d341b4a50235a8d83c8e3dbe9dd154e0c09b7dbfa16e84d8431775e9cee25",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3461dfd2cfb8b1326787c0c1a8d8de5a9ff791ae161bb9235eb29e2aec2546d",
-      "plan.md": "33b47b3986abbf288d60fd288359ad4115d7635b8b5cb536526c75868388d065",
+      "spec.md": "8d3fa499262b790c72443609399262e138a3b1a049928de55555258b33b58e5d",
+      "plan.md": "c36cdb6b3062942e847a494b5eecf5c6330512a8ec70c1909f05e8df9fd6df18",
       "tasks.md": "f3a1d8ecee16b7378c1d8fe8d40ad5b90ebcca656e6112dd025be10263a8c723",
       "decision-record.md": "ed21c41fa5b63b37dd881b97baaad66f0f68bd0df574138f970929107ab27dae",
       "implementation-summary.md": "1c3cb7c2128baa7ca10e935283977f7c0eab7ae4a8a2c4dcd1b3a1de4b043514",

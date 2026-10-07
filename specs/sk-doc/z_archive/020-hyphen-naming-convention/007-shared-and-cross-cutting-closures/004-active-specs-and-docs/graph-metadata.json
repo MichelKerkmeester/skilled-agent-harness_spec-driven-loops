@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -154,7 +154,7 @@
     ],
     "causal_summary": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract.",
     "created_at": "2026-07-14T15:16:53Z",
-    "last_save_at": "2026-08-30T15:39:16.216Z",
+    "last_save_at": "2026-10-07T18:13:25.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,12 +162,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5ddbd52c2a89d918d82e939e05bcdc0cfade0418e6cefc08f90b6f59087f74e4",
+    "source_fingerprint": "sha256:b25e75473eb4844f77004e32c2ee03339bba42c594aa9130c4b3de3bfcf637b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3414d2941959eee086a8f0309a3a036e0fcb0e76789710d3947215cc16eb32d",
-      "plan.md": "c5dcd7c09e5d6819aa429bcf551fe598c86a71110b120bf62902cbd2f6b78877",
-      "tasks.md": "8f455e95e81af976037ba21a0373c92c7efd66653704f428a87f333d0a3d4f43"
+      "spec.md": "7dc6c2799930645fb2314fd92efe0e8dd0007eb48645108e1d8ae539895f652a",
+      "plan.md": "ac746387cdc5726c4ee1504a87dae5cb4a48bfb7b106cb88ebb0e0be07f49a41",
+      "tasks.md": "fa7cb4e7e952b20ec2f5395e3f74a6f577b8afe9aeff4207e643922c479da42f"
     },
     "last_active_child_id": null,
     "last_active_at": null

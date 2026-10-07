@@ -2,14 +2,13 @@
 title: "Implementation Summary: Phase 1 cli-external-orchestration README rewrite"
 description: "The cli-external-orchestration README now opens purpose-first with a one-line pitch and a problem-first overview, carries all six mode pointers and the routing facts, and versioned at 1.3.0.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "cli external orchestration readme"
   - "hub readme rewrite summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration"
     last_updated_at: "2026-08-04T12:45:00Z"
     last_updated_by: "phase-executor-001"
     recent_action: "Phase documentation complete"

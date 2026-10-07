@@ -1,3 +1,13 @@
+---
+title: "Reindex Diff - 065/001"
+description: "Pre and post reindex comparison for the skill advisor: advisor generation advanced by one while skill count and advisor record count held steady, and freshness and trust state did not change."
+trigger_phrases:
+  - "skill advisor reindex diff"
+  - "advisor rebuild generation delta"
+  - "reindex pre post comparison"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Reindex Diff - 065/001
 
 | Field | Pre | Post | Delta |

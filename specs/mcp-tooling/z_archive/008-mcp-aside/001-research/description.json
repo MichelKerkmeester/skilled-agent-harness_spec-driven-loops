@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/008-mcp-aside/001-research",
+  "specFolder": "mcp-tooling/z_archive/008-mcp-aside/001-research",
   "description": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode),",
   "keywords": [
     "aside",

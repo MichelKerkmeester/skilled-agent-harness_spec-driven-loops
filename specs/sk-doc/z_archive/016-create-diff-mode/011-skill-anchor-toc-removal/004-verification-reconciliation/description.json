@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/004-verification-reconciliation",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/004-verification-reconciliation",
   "description": "A large mechanical change set (≈860 files) needs proof that it removed only TOC/anchor scaffolding,",
   "keywords": [
     "large",

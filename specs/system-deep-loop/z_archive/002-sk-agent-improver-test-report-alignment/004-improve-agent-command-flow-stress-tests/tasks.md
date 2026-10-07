@@ -23,30 +23,40 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:phase-1 -->
 ## Stage 1
 - T-001 8 markdown + 2 JSON stubs
 - T-002 Author `/tmp/cp-061-sandbox-setup.sh`
 - T-003 Strict-validate
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Stage 2
 - T-004 Modify CP-040 (013-*.md) Call B → command-flow
 - T-005 Modify CP-043 (016-*.md) Call B → command-flow
 - T-006 Modify CP-044 (017-*.md) Call B → command-flow
 - T-007 Modify CP-045 (018-*.md) Call B → command-flow
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Stage 3
 - T-008 Modify CP-041 (014-*.md) — materialize 5 required inputs
 - T-009 Modify CP-042 (015-*.md) — materialize 5 required inputs
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:phase-4 -->
 ## Stage 4
 - T-010 R1 stress run all 6 scenarios via cli-copilot
 - T-011 Triage R1 results; sketch R2 if needed
 - T-012 R2 stress run on remaining gaps
 - T-013 R3 if R2 didn't reach target
+<!-- /ANCHOR:phase-4 -->
 
+<!-- ANCHOR:phase-5 -->
 ## Stage 5
 - T-014 Author test-report.md (11 sections, ANCHOR pairs)
 - T-015 Update implementation-summary.md
 - T-016 Update handover.md
 - T-017 Memory save (optional)
 - T-018 Commit + push
+<!-- /ANCHOR:phase-5 -->

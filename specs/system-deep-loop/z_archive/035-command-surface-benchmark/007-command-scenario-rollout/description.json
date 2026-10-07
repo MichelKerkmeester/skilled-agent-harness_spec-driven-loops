@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout",
   "description": "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude",
   "keywords": [
     "completes",

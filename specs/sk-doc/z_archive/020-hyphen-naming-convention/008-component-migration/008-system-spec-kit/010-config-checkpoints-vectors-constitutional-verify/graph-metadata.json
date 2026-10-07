@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for permitted snake_case filesystem names. The pinned inventory has zero rename candidates in the three runtime agent directories; generated/vector/checkpoint artifacts and tool-mandated names retain their exempt disposition.",
     "created_at": "2026-07-14T15:18:04Z",
-    "last_save_at": "2026-08-30T15:39:16.793Z",
+    "last_save_at": "2026-10-07T18:13:13.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8938adf2ff3ed4124ecedc8261b50240708801722a312e5d28446a9773d32c24",
+    "source_fingerprint": "sha256:9119afb1e3f44ebbaa76d5eeb97cf4e26403dc6b1fa95e8355ed0aced4426a87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "241b796d3506bc0246a2c1daea61a73d8d013b196745ac08c23e304df375c53f",
-      "plan.md": "a3bdab6a31a8df7619c34f2c5c288419ba3bde35f95fba9a920fc5110c1c9058",
-      "tasks.md": "1a4ff27745f6e763b80be6cb5aa1de51fd516810a1ae8f55748c49d384220fc8"
+      "spec.md": "319e919d29db5272f011f50d6ba91bd72e46206137901937102cb7ba295eb9e4",
+      "plan.md": "e7775dda33735f5e7721c35c56b4db0271129d3ccd920bbc62c9ebc9c444219f",
+      "tasks.md": "dd3f8533f44b4c05d36eaa9ec062af85aa0ed8f4588b0eaceac222ea7b9683f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

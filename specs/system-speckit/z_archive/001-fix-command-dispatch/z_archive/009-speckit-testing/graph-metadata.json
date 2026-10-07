@@ -21,7 +21,8 @@
       "implementation",
       "plan",
       "tasks",
-      "testing"
+      "testing",
+      "post rename testing summary"
     ],
     "key_topics": [
       "feature",
@@ -34,15 +35,17 @@
       "plan",
       "tasks",
       "testing",
-      "verify",
-      "features"
+      "summary",
+      "verify"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/.hashes"
     ],
     "entities": [
       {
@@ -61,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": ".hashes",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/.hashes",
         "source": "derived"
       },
       {
@@ -170,24 +185,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Verify all SpecKit features work correctly after the recent rename and consolidation changes",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-08-30T15:39:36.925Z",
+    "last_save_at": "2026-10-07T20:15:02.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:521338e6c7c9804fd1deae3aafa277af11d7907a1506ffa2d3dcef0530a0086a",
+    "source_fingerprint": "sha256:d4f0738e231f2d5af7f879ecd83ad09e4527196fb42e94deec452d5106c7cea5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "571ddeb3879e0fa3df963ae11ced281c46116508b50f1a7dc1af8e7bf622a887",
       "plan.md": "1e5cdf94c41bc863af9b4a74b38c021294557519c6c09db8c2d806f0d53ac74d",
-      "tasks.md": "869b8dd4705495e79024900cd9e778b655583809fbee60d891402c6e2aa94fde"
+      "tasks.md": "869b8dd4705495e79024900cd9e778b655583809fbee60d891402c6e2aa94fde",
+      "implementation-summary.md": "1f7a4fd309844b7e9c9ca93447cbf8e3105134104cf93545de2338651be17b5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

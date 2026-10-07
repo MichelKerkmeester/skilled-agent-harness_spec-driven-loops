@@ -2,12 +2,8 @@
 title: "Voyage 4 Model Upgrade [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade/spec]"
 description: "Objective: Evaluate and plan the upgrade from current Voyage models to the newly released Voyage 4 model family for both Spec Kit Memory MCP and Narsil MCP systems."
 trigger_phrases:
-  - "voyage"
-  - "model"
-  - "upgrade"
-  - "analysis"
-  - "spec"
-  - "067"
+  - "voyage 4 model upgrade spec"
+  - "embedding provider analysis spec"
 importance_tier: "important"
 contextType: "planning"
 ---

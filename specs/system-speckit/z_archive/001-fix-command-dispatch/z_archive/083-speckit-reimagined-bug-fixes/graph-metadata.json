@@ -46,10 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".claude/commands/memory/learn.md",
-      ".claude/commands/memory/save.md",
-      ".claude/commands/memory/manage.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -86,24 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "learn.md",
-        "kind": "doc",
-        "path": ".claude/commands/memory/learn.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".claude/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".claude/commands/memory/manage.md",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Format Standardization",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the successful release of Spec Kit v1.2.1.0 (SpecKit Reimagined + Memory Command Consolidation), comprehensive parallel audits revealed 70+ issues across the command files...",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-08-30T15:39:37.568Z",
+    "last_save_at": "2026-10-07T20:38:01.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c684c2bee8beb3e76b7e5e7d02acf3ce503e79599053d31916d09363e2f291ab",
+    "source_fingerprint": "sha256:45015402f20232779bc83b05d28bdeecb24a1eed326c0360f1f6e63a8b447cc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4792ce3a9ccd7666e895915860cddce28695183252c2041ba35ded067de42fb3",
+      "spec.md": "85c0628323525ab157ad4719617b74c30d09c6aaf67ebcfb62c114c917484276",
       "plan.md": "86f6bfdd8ac1b5de4b7c3e8b246a3e6ba7293e56f19d958d9414c6c2f23f10b3",
       "tasks.md": "c229ba0ae3ba60f9ce897df3b0d4bc50fc80d37f5370d9d154d0ec27cca6d0b8",
       "decision-record.md": "4a7d9c492ded5e0505129c15fd0e2d27d4c94197a0d02e44bf935d6556ae5487",
-      "implementation-summary.md": "d6c403a20c8b03b8aa94733fc94f8bbd09f66ee2c01facc0597ca52bb4486544"
+      "implementation-summary.md": "236242bdf4b3d536e3b8959992150a56a21f08738fcb13e9db4f5786bc309e7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

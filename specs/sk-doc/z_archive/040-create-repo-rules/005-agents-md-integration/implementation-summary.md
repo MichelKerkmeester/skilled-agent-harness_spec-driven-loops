@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/005-agents-md-integration"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/005-agents-md-integration"
     last_updated_at: "2026-08-31T11:33:11Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Contracted the wiring points and the three lifecycle paths"

@@ -1,3 +1,13 @@
+---
+title: "036 Build/Retrofit Phase Decomposition"
+description: "Proposed build and retrofit phases that follow the verified contract-compiler design, with effort tiers, dependencies, and acceptance signals."
+trigger_phrases:
+  - "build retrofit phase decomposition"
+  - "contract compiler phase decomposition"
+  - "compiler build phases"
+importance_tier: "normal"
+contextType: "planning"
+---
 # 036 Build/Retrofit Phase Decomposition
 
 > Output of phase 001 (design). Proposes the build phases that follow the verified design (`design.md`). Each becomes a 036 phase child once approved. Effort tiers: S (<100 LOC), M (100-499), L (≥500 / high risk). "Unblocks T002" marks phases the 035 acceptance re-run depends on.

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement"
     last_updated_at: "2026-08-04T05:41:57Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 20 specification"

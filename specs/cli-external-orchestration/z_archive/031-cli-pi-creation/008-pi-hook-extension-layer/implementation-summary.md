@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/008-pi-hook-extension-layer"
     last_updated_at: "2026-07-27T10:34:00Z"
     last_updated_by: "claude-code"
     recent_action: "Docs re-fetched live; pre-work closed out; phase stays Blocked"

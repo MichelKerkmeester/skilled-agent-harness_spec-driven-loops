@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "description": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command",
   "keywords": [

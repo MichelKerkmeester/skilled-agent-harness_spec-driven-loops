@@ -1,3 +1,14 @@
+---
+title: "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)"
+description: "Deep-review charter auditing three session-shipped commits on skilled/v4.0.0.0 for correctness, honesty and scope discipline; findings only, no remediation."
+trigger_phrases:
+  - "session shipped work review"
+  - "deep review session commits"
+  - "styles db foundation review"
+importance_tier: "important"
+contextType: "review"
+---
+
 # Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

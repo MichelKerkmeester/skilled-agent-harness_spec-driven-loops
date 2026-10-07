@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
   "description": "Phase 006 proved that the changed README surfaces have no broken links, but the repository-wide guard still reports 96 failures across older documents",
   "keywords": [
     "phase",

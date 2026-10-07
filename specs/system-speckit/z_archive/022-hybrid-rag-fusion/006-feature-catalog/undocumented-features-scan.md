@@ -1,3 +1,13 @@
+---
+title: "Undocumented Features Scan: MCP Server vs Feature Catalog"
+description: "Agent-driven scan of the MCP server source against the feature catalog for undocumented or under-documented capabilities."
+trigger_phrases:
+  - "undocumented features scan"
+  - "catalog coverage gap scan"
+  - "feature catalog gap findings"
+importance_tier: "normal"
+contextType: "research"
+---
 # Undocumented Features Scan — MCP Server vs Feature Catalog
 
 > **Date:** 2026-03-07

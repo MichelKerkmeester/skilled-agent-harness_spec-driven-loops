@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/024-create-journey-gate-fixes",
   "description": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
   "keywords": [
     "two",

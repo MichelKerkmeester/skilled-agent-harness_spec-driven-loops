@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor",
   "description": "Routing across the skill fleet was neither uniform nor measurable",
   "keywords": [
     "routing",

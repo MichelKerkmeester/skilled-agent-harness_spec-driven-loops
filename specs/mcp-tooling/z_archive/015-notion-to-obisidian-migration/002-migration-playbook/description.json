@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
   "description": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
   "keywords": [
     "research",

@@ -14,8 +14,7 @@
       "live proof",
       "parity hardening",
       "retained live proof",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "live",
@@ -24,12 +23,12 @@
       "hardening",
       "retained",
       "tasks",
-      "implementation",
-      "summary",
       "automated",
       "runtime",
       "contract",
-      "stronger"
+      "stronger",
+      "now",
+      "live-proof"
     ],
     "importance_tier": "normal",
     "status": "blocked",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "The automated runtime contract is stronger now, but the live-proof boundary is still lagging behind it",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-08-30T15:39:38.654Z",
+    "last_save_at": "2026-10-07T18:16:20.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6968c5477fa72c5012e27d1951c461e36add7c78617764ce3cc0d8d27f608a57",
+    "source_fingerprint": "sha256:8852a7fc4b8a4702bfb657ff43dcacd3172f6fcdd62be17b36e7dddb3b7e543d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbda3c80c2947d9c07c66fe56a4b9bf83f77f408f8026d82845fcd3193eea84e",
       "plan.md": "4d36eb69bb2bbdb741f434f64410e07c9fcfdbdbed4aa23e95675aaa1bd65f0d",
       "tasks.md": "263bdbc6b62598e59cb5595a294f7335842ca484510c1978ef3ca5f9a6716679",
-      "implementation-summary.md": "89c241418f2d3361d11ff352adf850ea1e782dd47a3690384347491b7bdadfbb"
+      "implementation-summary.md": "6ebd95745cad589c79dd84661747c915b7da8764d2de598015f91cd33096cc80"
     },
     "last_active_child_id": null,
     "last_active_at": null

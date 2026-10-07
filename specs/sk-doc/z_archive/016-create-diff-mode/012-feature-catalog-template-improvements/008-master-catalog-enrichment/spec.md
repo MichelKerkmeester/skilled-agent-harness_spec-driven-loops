@@ -3,14 +3,19 @@ title: "Phase 008: Master Catalog Enrichment — All Skills"
 description: "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "master catalog enrichment spec"
+  - "master catalog trigger phrases"
+  - "catalog last updated field"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 008: Master Catalog Enrichment — All Skills
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -22,8 +27,11 @@ trigger_phrases: []
 | **Prerequisite** | Phase 002 complete |
 | **Skill targets** | All three skills (master catalogs only) |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:scope -->
 ## 2. SCOPE
 
 ### Target files (3 total)
@@ -38,6 +46,7 @@ system-code-graph/feature_catalog/feature_catalog.md     (277 lines)
 2. Add `last_updated: "2026-05-31"` to frontmatter
 3. Scan body for `FEATURE_CATALOG.md` (uppercase) references → fix to lowercase
 4. Verify frontmatter has `title` and `description` (already present)
+<!-- /ANCHOR:scope -->
 
 ---
 
@@ -53,6 +62,7 @@ Master catalog trigger phrases represent the skill as a whole, not individual fe
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -61,10 +71,13 @@ Master catalog trigger phrases represent the skill as a whole, not individual fe
 | R-002 | All 3 have `last_updated:` | grep finds it in all 3 |
 | R-003 | No uppercase `FEATURE_CATALOG.md` in body | grep returns 0 |
 | R-004 | Body content unchanged | git diff shows only frontmatter additions |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - 3 master catalogs have `trigger_phrases:`, `last_updated:`, lowercase filename references
 - No body prose changed
+<!-- /ANCHOR:success-criteria -->

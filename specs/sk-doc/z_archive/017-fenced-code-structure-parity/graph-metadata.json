@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/017-fenced-code-structure-parity",
-  "spec_folder": "sk-doc/017-fenced-code-structure-parity",
+  "packet_id": "sk-doc/z_archive/017-fenced-code-structure-parity",
+  "spec_folder": "sk-doc/z_archive/017-fenced-code-structure-parity",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Four sk-doc authoring templates each contain a fenced example that shows a copy-pasteable document skeleton",
     "created_at": "2026-07-17T13:49:48.871Z",
-    "last_save_at": "2026-08-30T15:39:14.514Z",
+    "last_save_at": "2026-10-07T18:12:21.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d7be2772ed17283e438eb86a44c30796afc88fd320def9128ad71096e643a5e",
+    "source_fingerprint": "sha256:5e4a0987dc79c8f50f430831dcead963181d110124087d30be70caeffd66e2cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "898a3160ef1ae43993503ee167f9bd6f43552b578e3646d242c124295d28db04",
-      "plan.md": "c8c9293f2455f28ed849ceb99bbafb5dd695c8d05febf4d4d602cae15ad5cae5",
-      "tasks.md": "caa87d161950eb72bddd6040536995b85e077297e2491117494320fe0eecd782",
-      "implementation-summary.md": "cabf26150c74e7e5e95d2b3c5d3a4ce49047e2215fbf2098230f276bc31b649a"
+      "spec.md": "52cd0d308817553b0fce7587a2ed140a7a1b97d3f601288121033c837852c860",
+      "plan.md": "d6b680b16df57282f93ac807d6197cec3769d3c66b953d0f555769274c04cba9",
+      "tasks.md": "4d499ddf9efaa030bab8b45f3ad07335301a9e65c6a3207acef77c44f3144813",
+      "implementation-summary.md": "7a7e58e2855d84896e41d3a855ca094eb4cbe314a8b896710e9c659df3e51fee"
     },
     "last_active_child_id": null,
     "last_active_at": null

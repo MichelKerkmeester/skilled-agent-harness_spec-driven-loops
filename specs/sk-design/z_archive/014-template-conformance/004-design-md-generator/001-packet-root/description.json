@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/001-packet-root",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/001-packet-root",
   "description": "`design-md-generator`'s packet root is unusual among sk-design modes: it carries three root markdown files, not two",
   "keywords": [
     "design-md-generator",

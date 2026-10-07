@@ -2,14 +2,13 @@
 title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/implementation-summary]"
 description: "The cli-pi README now opens purpose-first with a one-line pitch and a problem-first overview, carries the three output contracts as a capability table, documents the conductor model and the conservative self-invocation guard, and is versioned at 1.4.0.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "cli pi readme"
   - "mode readme rewrite summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi"
     last_updated_at: "2026-08-04T15:58:00Z"
     last_updated_by: "phase-executor-006"
     recent_action: "README rewrite executed, version 1.4.0.0, changelog added, gates green"

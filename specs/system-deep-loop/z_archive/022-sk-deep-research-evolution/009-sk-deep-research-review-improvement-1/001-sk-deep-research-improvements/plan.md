@@ -67,7 +67,7 @@ This phase updates the deep-research contract where it is actually expressed tod
 Declarative workflow contract plus runtime-mirror parity
 
 ### Key Components
-- **Skill and references**: [../../../../skill/sk-deep-research/SKILL.md](../../../../skill/sk-deep-research/SKILL.md) and the `references/` files define the durable research packet contract.
+- **Skill and references**: [../../../../../../.skilled/skills/system-deep-loop/deep-research/SKILL.md](../../../../../../.skilled/skills/system-deep-loop/deep-research/SKILL.md) and the `references/` files define the durable research packet contract.
 - **Workflow assets**: [../../../../command/spec_kit/assets/spec_kit_deep-research_auto.yaml](../../../../command/spec_kit/assets/spec_kit_deep-research_auto.yaml) and [../../../../command/spec_kit/assets/spec_kit_deep-research_confirm.yaml](../../../../command/spec_kit/assets/spec_kit_deep-research_confirm.yaml) describe loop execution, lifecycle handling, and reducer sequencing.
 - **Runtime mirrors**: OpenCode, Claude, Gemini, and Codex deep-research mirrors must all consume the same packet contract and registry ownership model.
 - **Executable helpers**: `runtime-capabilities.cjs` exposes the live runtime capability matrix, and `reduce-state.cjs` reduces packet state into synchronized artifacts.

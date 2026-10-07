@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,11 @@
       "gate obligation check",
       "mode completeness check",
       "command reference coverage omission",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "semantic validation and fixtures plan",
+      "semantic validation and fixtures tasks",
+      "semantic validation implementation",
+      "gate obligation status",
+      "mode completeness status"
     ],
     "key_topics": [
       "semantic",
@@ -36,7 +33,7 @@
       "reference",
       "coverage",
       "omission",
-      "implementation"
+      "fixtures"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -45,8 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
+      ".opencode/commands/scripts/validate-command-references.cjs"
     ],
     "entities": [
       {
@@ -77,12 +73,6 @@
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reference-oracle.cjs",
-        "kind": "file",
-        "path": ".opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs",
         "source": "derived"
       },
       {
@@ -192,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence. Add a gate-obligation check for required-input routers, a mode-completeness check that a declared :auto/:confirm mode has both its workflow YAML and an EXECUTION TARGETS row, and close the reference-coverage omission that skips speckit/memory/doctor — each guarded by an independent mutation fixture. Canonize the new rules before enforcing them.",
     "created_at": "2026-07-16T11:52:03.667Z",
-    "last_save_at": "2026-09-11T16:42:16.781Z",
+    "last_save_at": "2026-10-07T18:15:19.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acc119be296643b6271e451e501bc0a941e94c2f48d74c7e28923b7be1afd7f7",
+    "source_fingerprint": "sha256:4416dd0f50953d228d36d24be37c956c0313fbff46bb5cd9db67d38a17c32e2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18d6e13e0e1df1d3a88baf90798ed9faf4fbb1e5e71ebd9aca9c55d44cba2cbe",
-      "plan.md": "f669a59b31ab37cbefd1c8cd36b62480789aa19c9df1cf83b5239a33c13fc8f9",
-      "tasks.md": "b1028fb41087af0ec14e85473143dcd5dbbc43b28f30da102ee37b57b1da9d24",
-      "implementation-summary.md": "0ba3f5e151eee669483a4a1c1ca38f87c867588565f63674e07cefa4203b98a3"
+      "spec.md": "712d0c0699e3147a9669b1409079235615f59faa1795e9067c77175cfc345b42",
+      "plan.md": "854b192122bd5c6585623a94b9becf7707c205ef93db2b98823d6403e9730338",
+      "tasks.md": "71b2d1a1eddb2eea1b0dd97a0d997c1ef057d28fb3359051f748443b433a4861",
+      "implementation-summary.md": "31faff17539d4d3ed360f5d78db69f00285ad73b1f6d70c544044c89fd270f06"
     },
     "last_active_child_id": null,
     "last_active_at": null

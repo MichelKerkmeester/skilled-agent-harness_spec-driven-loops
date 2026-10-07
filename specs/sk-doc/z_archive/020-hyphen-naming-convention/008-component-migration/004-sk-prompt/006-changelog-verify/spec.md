@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
     last_updated_at: "2026-07-14T18:04:33Z"
     last_updated_by: "codex"
     recent_action: "Authored the verification-only changelog and version specification"

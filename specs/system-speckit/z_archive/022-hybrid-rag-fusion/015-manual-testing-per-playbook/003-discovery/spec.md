@@ -177,7 +177,6 @@ Execute all eight Phase 003 discovery scenarios, record verdicts and evidence, a
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -196,7 +195,6 @@ Execute all eight Phase 003 discovery scenarios, record verdicts and evidence, a
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

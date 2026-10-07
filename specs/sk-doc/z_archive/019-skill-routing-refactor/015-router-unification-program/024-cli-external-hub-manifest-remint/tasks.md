@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint"
     last_updated_at: "2026-08-29T22:45:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "All tasks closed with observed command evidence"

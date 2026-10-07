@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout"
     last_updated_at: "2026-07-10T07:36:17Z"
     last_updated_by: "claude"
     recent_action: "Confirmed core cutover gate passed; rollout items remain"

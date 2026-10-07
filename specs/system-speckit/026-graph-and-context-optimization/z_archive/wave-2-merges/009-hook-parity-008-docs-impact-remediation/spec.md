@@ -18,12 +18,14 @@ _memory:
     completion_pct: 5
     status: "planning"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 # Feature Specification: Documentation Impact Remediation for 009 Hook/Daemon Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -37,9 +39,11 @@ _memory:
 | **Predecessor** | `../007-copilot-writer-wiring/spec.md` |
 | **Source Analysis** | `../impact-analysis/merged-impact-report.md` |
 | **Underlying Reports** | `../impact-analysis/01-impact.md` through `10-impact.md` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM
 
 Sub-packets 001-011 of `007-hook-parity` changed runtime hook contracts, advisor delivery, plugin-loader semantics, Copilot wrapper schema, Codex startup parity, and Claude prompt-time hook registration. The shipped behavior diverges from what the checked-in documentation still describes.
@@ -60,9 +64,11 @@ Without this remediation, operators consulting `SKILL.md`, `ARCHITECTURE.md`, `h
 - OpenCode plugin loader contract (ESM default-export) and skill-advisor plugin bridge guarantees
 - Codex hook timeout env knob (`SPECKIT_CODEX_HOOK_TIMEOUT_MS`)
 - Advisor native MCP tools (`advisor_recommend`, `advisor_status`, `advisor_validate`)
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
@@ -102,9 +108,11 @@ Update the following 13 files to align with shipped 009 behavior. Severity is th
 ### Files Expected to Change
 
 See §3 In Scope — the 13 listed paths. Expected LOC impact: ~200–450 total across all files (documentation-only).
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 — Blockers
@@ -136,9 +144,11 @@ See §3 In Scope — the 13 listed paths. Expected LOC impact: ~200–450 total 
 |---|---|---|
 | REQ-014 | Reconcile Codex hook capability across docs | Every mention of "Codex has no lifecycle hook" is replaced with the accurate `codex_hooks`-gated native SessionStart description from sub-packet 05 |
 | REQ-015 | Add cross-references back to this packet | Each updated file includes an inline reference to `026/009/012` in the relevant section's "Change note" or equivalent |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: All 10 P0 files updated, each change grounded in a specific sub-packet's impact-analysis row with source evidence cited.
@@ -148,3 +158,4 @@ See §3 In Scope — the 13 listed paths. Expected LOC impact: ~200–450 total 
 - **SC-005**: `hook_system.md` includes rows or prose for all four runtimes (Claude, Codex, Gemini, Copilot, OpenCode bridge) with the current prompt-vs-lifecycle split accurately represented.
 - **SC-006**: `validate.sh --strict` against this packet exits with code 0 or 1 (warnings acceptable, errors not).
 - **SC-007**: `graph-metadata.json` for 009 parent includes 012 in `children_ids`.
+<!-- /ANCHOR:success-criteria -->

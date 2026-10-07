@@ -17,7 +17,10 @@
       "agent",
       "plan",
       "tasks",
-      "phase"
+      "phase",
+      "advisor routing summary",
+      "readme sync summary",
+      "agent improver advisor bridges"
     ],
     "key_topics": [
       "spec",
@@ -27,18 +30,19 @@
       "tasks",
       "phase",
       "advisor",
+      "routing",
+      "summary",
       "readme",
-      "outdated",
-      "system-deep-loop",
-      "001-sk-recursive-agent-loop",
-      "011-sk-agent-improver-advisor-readme-sync"
+      "sync",
+      "improver"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -142,24 +152,56 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 008-010, the skill advisor and skill README are outdated",
     "created_at": "2026-04-13T04:55:07.907Z",
-    "last_save_at": "2026-08-30T15:39:22.571Z",
+    "last_save_at": "2026-10-07T21:24:24.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44272c4665dc1517719f41c35aedbb6a309372281475b4cce16c2e15071d1953",
+    "source_fingerprint": "sha256:e20b65e9ebe7d1488246a89ae1c93d32b7ca98d6e11345916bd3fa73fde6932f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "736f543e36bc948d4233210543266f52ae2fd1717cfaf66328244339e1d4ba19",
-      "plan.md": "175be24372b3f22db6ecb7204f206fbe705273af5595125e5ec80409b0c8292d",
-      "tasks.md": "948088d403f95d330fe0bf601f8aca7c759c1152c6ad7434f290e2894cc3e6ca"
+      "spec.md": "56bd3bca645de92c96c7ab520693f2e6fe4b8e172d7f24541d1aa21133f9e6be",
+      "plan.md": "9dea6def4472c0898279a469869d4238f300dcfa87a74a399c81619de6afcf5e",
+      "tasks.md": "014050945b84caa89cc9614e8acef279c3e16e77df46cdcb60277e38df432dd9",
+      "implementation-summary.md": "f8bdd02a960efff3bc8124ac26680950123bd6d387ff93bc0bdec21ffab78f51"
     },
     "last_active_child_id": null,
     "last_active_at": null

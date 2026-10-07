@@ -2,7 +2,7 @@
 title: "Imple [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/plan]"
 description: "Document the completed rename in the current Level 3 template so the packet reflects the delivered path changes and verification evidence cleanly."
 trigger_phrases:
-  - "042.007"
+  - "skill rename improve agent prompt plan"
   - "skill rename plan"
   - "rename closeout"
 importance_tier: "normal"

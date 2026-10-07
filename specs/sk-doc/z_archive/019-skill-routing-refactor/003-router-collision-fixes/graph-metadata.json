@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/003-router-collision-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/003-router-collision-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality work",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-08-30T15:39:14.798Z",
+    "last_save_at": "2026-10-07T18:12:35.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95f92ed3c1c9eca7691b7b215c6e59558ac5edf0d1d80d1774cfaed032f0b86d",
+    "source_fingerprint": "sha256:bc29459d53f9fb242a54613906b0fecf1fed80c543715caa5fa5e7fd0c070b9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a631ae1095bd306f98c634322e96bbec9b3791a4b7e304e2e05495032cce3268",
-      "plan.md": "8a5d4b48dad6283700b5bc3cc27da9f02d705179b7dba3963db44c2219f4ffd3",
-      "tasks.md": "8d10df4a6544f8d2ddbb919c42edbc3c03af20b10fd203d658580d8f505713d3",
+      "spec.md": "8e083b5c51cc5f8bac3592244cd7257ec864e19b050e89d5bcfea4bdbdcb0722",
+      "plan.md": "ecc608d5048f953755aa9917c416c41281d4865976f09db6762b074f8e996bc5",
+      "tasks.md": "796345ad9330c0492c4129443e7ce008f2763ef3d3eb5b68c7a0e9ea7525afe0",
       "decision-record.md": "2e7351b00c919c163c4710ebee116fa4616a05c35d8da4c8230cd8662f1e3068",
-      "implementation-summary.md": "a6bd64e4c370c7cb7db236e38306c8e810368d277754d631bc124256d78fdc03"
+      "implementation-summary.md": "c30eacf875e6735741760db204b271f1384a15b64cbfcf1c6cd3ccc51ec17d4b"
     },
     "last_active_child_id": null,
     "last_active_at": null

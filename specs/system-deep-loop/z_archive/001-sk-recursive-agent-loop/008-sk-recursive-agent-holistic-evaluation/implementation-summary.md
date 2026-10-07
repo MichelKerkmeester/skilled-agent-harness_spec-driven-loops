@@ -6,7 +6,6 @@ trigger_phrases:
   - "orchestration"
   - "041"
   - "recursive"
-  - "implementation summary"
   - "008"
 importance_tier: "normal"
 contextType: "implementation"
@@ -21,13 +20,18 @@ _memory:
 ---
 # Implementation Summary: Phase 008 — Holistic Agent Evaluation
 
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
 | Phase | 008 |
 | Parent | 041-sk-improve-agent-loop |
 | Date | 2026-04-04 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 Transformed the sk-improve-agent evaluation from structural keyword-checking (~15-20% coverage) to a **5-dimension integration-aware scoring framework** that evaluates agents holistically across their full system integration surface. Renamed the skill from `sk-recursive-agent` to `sk-improve-agent` and the command from `/speckit:recursive-agent` to `/deep:start-agent-improvement-loop`.
@@ -98,7 +102,9 @@ All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comm
 ### Create YAML Alignment
 
 All 12 create command YAMLs aligned with spec_kit gold standard: `description:` added to `operating_mode:`, section separators added to feature_catalog/sk_skill/testing_playbook, separator length standardized, missing `validation:` added to sk_skill.
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:decisions -->
 ## Key Decisions
 
 1. **Backward compatible**: Existing `--profile handover` and `--profile context-prime` work unchanged. Dynamic mode is opt-in via `--dynamic`.
@@ -106,7 +112,9 @@ All 12 create command YAMLs aligned with spec_kit gold standard: `description:` 
 3. **Any agent as target**: Dynamic profile generation means any `.opencode/agents/*.md` file is a valid evaluation target.
 4. **Integration-first**: The scanner is the foundational capability — everything else builds on knowing what surfaces an agent touches.
 5. **Rename to sk-improve-agent**: Clearer name reflecting the skill's purpose. Command moved from `spec_kit` namespace to `improve` namespace.
+<!-- /ANCHOR:decisions -->
 
+<!-- ANCHOR:verification -->
 ## Verification Results
 
 | Check | Result |
@@ -125,3 +133,4 @@ All 12 create command YAMLs aligned with spec_kit gold standard: `description:` 
 | Runtime mirror audit (25/25 checks pass) | OK |
 | Create YAML alignment (12/12 description, separators) | OK |
 | Manual testing playbook (21 scenarios, correct names) | OK |
+<!-- /ANCHOR:verification -->

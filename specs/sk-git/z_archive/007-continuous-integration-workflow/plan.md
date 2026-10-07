@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-git/007-continuous-integration-workflow"
+    packet_pointer: "sk-git/z_archive/007-continuous-integration-workflow"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Scripts, hook, wrapper, and cross-runtime wiring implemented and sandbox-verified"

@@ -136,7 +136,7 @@ Verify that all 4 Governance features are accurately documented in the feature c
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -145,7 +145,7 @@ Verify that all 4 Governance features are accurately documented in the feature c
 ### Reliability
 - **NFR-R01**: Findings must be reproducible by re-reading same sources
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -210,6 +210,7 @@ Verify that all 4 Governance features are accurately documented in the feature c
 
 ---
 
+<!-- /ANCHOR:complexity -->
 <!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
@@ -217,9 +218,8 @@ Verify that all 4 Governance features are accurately documented in the feature c
 - **Given** the listed source files for a feature, **when** maintainers spot-check them against the repo, **then** the packet either confirms them or records the drift.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
-<!-- /ANCHOR:complexity -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - F02 flag count stale: catalog claims 24 flags, actual implementation has 46 exported `is*` functions in `search-flags.ts`. Catalog entry should be corrected. — *RESOLVED: document the discrepancy; correction deferred to 020-feature-flag-reference phase*
@@ -234,5 +234,5 @@ Verify that all 4 Governance features are accurately documented in the feature c
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 <!-- /ANCHOR:questions -->

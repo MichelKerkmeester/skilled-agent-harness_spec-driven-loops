@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/002-cline-support-pi-investigation"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/002-cline-support-pi-investigation"
     last_updated_at: "2026-08-18T13:09:28Z"
     last_updated_by: "claude"
     recent_action: "Investigation done; verdict config-only-feasible, claims verified"

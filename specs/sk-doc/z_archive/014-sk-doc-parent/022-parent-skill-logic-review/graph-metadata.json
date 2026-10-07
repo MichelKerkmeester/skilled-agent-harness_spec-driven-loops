@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
-  "spec_folder": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/022-parent-skill-logic-review",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/022-parent-skill-logic-review",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested mode/surface packets — is scaffolded by `create-skill` and implemented independently by four hubs (sk-doc, sk-code, sk-design, deep-loop-workflows) and consumed by the skill advisor",
     "created_at": "2026-07-07T15:48:20.922Z",
-    "last_save_at": "2026-08-30T15:39:13.738Z",
+    "last_save_at": "2026-10-07T18:12:33.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f94dd4eb7acba3e3e613cfadeb3f7ca791c201532740963c81b6ec1307eb946a",
+    "source_fingerprint": "sha256:566a7bcc41d57481d1bd04143308de5ec26f399237f2dda869aa063ab52d7180",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a111cf0a8ea8890278bffbff577ffeb98af47f7db305fb93dc9f7238fca148c1",
-      "plan.md": "c7fa1754cf66947e2039a352ddfc8c8658d6dcf288704ab56d87c83107287c7d",
-      "tasks.md": "bb5fb1e3401a6b1989ca7a7d9c41c56998fabd1754d0f138f3ee6f5038bd6e80",
-      "implementation-summary.md": "d2b0ca6f54f05fcd8276d7cdb9cf5f0c597cbda7e4cf73c9bce4ac31f28f9c92"
+      "spec.md": "dd12d2a933aa5cea13a0b683c3a6c5dfd76cc5268a99913dd1378f2d16203276",
+      "plan.md": "2796d24cc6afe2b0d817d43537c3c92df9fc19e2c718b5e864467c05b7a646f1",
+      "tasks.md": "387fd5ff1b34ad957f990aa7dfd63c5ac528d033b5d2b2708a622977344458f2",
+      "implementation-summary.md": "d66e3165d320903f598e66aeb2c21598ef55389374111ba9a17956e8f7ee3bf5"
     },
     "last_active_child_id": null,
     "last_active_at": null

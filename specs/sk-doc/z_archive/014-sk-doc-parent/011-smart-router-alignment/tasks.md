@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/011-smart-router-alignment"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/011-smart-router-alignment"
     last_updated_at: "2026-07-07T06:49:18.161Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Author phase-011 tasks"

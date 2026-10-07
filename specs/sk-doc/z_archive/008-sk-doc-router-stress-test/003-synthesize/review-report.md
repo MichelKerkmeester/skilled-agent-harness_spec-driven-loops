@@ -1,3 +1,13 @@
+---
+title: "Deep Review Report: sk-doc router stress test synthesis"
+description: "Verdict, cross-CLI comparison matrix and P0/P1/P2 findings from the 45-cell sk-doc router stress test, with cli-codex ranked best for routing accuracy and token efficiency."
+trigger_phrases:
+  - "sk doc router stress test synthesize review report"
+  - "sk doc router stress test review findings"
+importance_tier: "normal"
+contextType: "review"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: review-report | v1.0 -->
 # Deep Review Report: 071-sk-doc-router-stress-test
 
 **Packet**: `.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/`

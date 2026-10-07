@@ -1,3 +1,12 @@
+---
+title: "Verification Guide: Memory Plugin Checklist [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin/verification-guide]"
+description: "Complete verification steps for each checklist item in the memory plugin dashboard implementation."
+trigger_phrases:
+  - "memory plugin verification guide"
+  - "memory plugin dashboard verification"
+importance_tier: "normal"
+contextType: "general"
+---
 # Verification Guide: Memory Plugin Checklist
 
 Complete verification steps for each checklist item in the Memory Plugin implementation.

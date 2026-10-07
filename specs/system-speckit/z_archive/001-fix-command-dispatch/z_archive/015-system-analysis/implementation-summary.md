@@ -7,7 +7,6 @@ trigger_phrases:
   - "speckit"
   - "command"
   - "pattern"
-  - "implementation summary"
   - "015"
   - "system"
 importance_tier: "normal"

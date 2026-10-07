@@ -1,3 +1,14 @@
+---
+title: "Analysis Report: 15-Agent Parallel Audit"
+description: "Complete findings from the comprehensive Spec Kit audit, including methodology, agent distribution and per-area results."
+trigger_phrases:
+  - "spec kit bug audit report"
+  - "parallel agent audit findings"
+  - "audit methodology results"
+importance_tier: "normal"
+contextType: "research"
+---
+
 # Analysis Report: 15-Agent Parallel Audit
 
 > Complete findings from the comprehensive Spec Kit audit conducted on 2025-02-03.

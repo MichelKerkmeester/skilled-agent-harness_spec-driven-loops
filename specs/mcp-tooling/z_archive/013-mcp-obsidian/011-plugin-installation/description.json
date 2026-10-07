@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/011-plugin-installation",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/011-plugin-installation",
   "description": "The user wants [health-md](https://community.obsidian.md/plugins/health-md) — an Apple Health visualization plugin — installed for Obsidian across all",
   "keywords": [
     "user",

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/005-command-behavior-evaluator"
     last_updated_at: "2026-07-14T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded the evaluator child that upgrades the shared framework to schema v2"

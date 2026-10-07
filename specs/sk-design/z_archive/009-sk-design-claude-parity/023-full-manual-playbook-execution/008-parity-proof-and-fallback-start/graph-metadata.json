@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,42 +44,31 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/dispatch-log.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-log.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/dispatch-log.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode` orchestrator (not just read or reasoned about) and graded strictly against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:09:17.527Z",
-    "last_save_at": "2026-08-30T15:39:12.388Z",
+    "last_save_at": "2026-10-07T18:12:14.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a10fdb82bf8b16f9cf47fc1ccf2861b8572ac57505bf440f6c1e78e6c18ae6da",
+    "source_fingerprint": "sha256:83105822166063cb2efb46e85718cd89fdb4eaeb15313116bc94d2a02f20f38d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe8f20f710385ebf2be4105039853effa6a6e384b207d24188c1efece6fc9274",
-      "plan.md": "fbe728fc548dabd7859f75549b4e08a0822024ce82c5a9e5c57de628451772da",
-      "tasks.md": "01d8b9669002da658a04f8d1ad8670117b667df0547e0c0bde651bd4a775e7f8",
-      "implementation-summary.md": "a72499174e4998389980258766acfa74201ee10df66e7c74ae97b12c39c67e2b"
+      "spec.md": "1165bb1a4145670f29bcf9d78a6adc82b48b2de16bd242325437b03be002d3de",
+      "plan.md": "4feb14ec971119c6606eb6d6503f4c375fa09326d1f685d497e7597130d5784a",
+      "tasks.md": "8968fde1736e7f103830b97ab290777ccf57f88f51d1177cb4b5a372e03ff7e9",
+      "implementation-summary.md": "b1ab3187c6e5605122f895f816c34741d4aecf37bae56da2b75cee53d01e0815"
     },
     "last_active_child_id": null,
     "last_active_at": null

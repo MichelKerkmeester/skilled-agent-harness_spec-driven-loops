@@ -164,7 +164,6 @@ User Request → SKILL.md (intent classification)
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -181,7 +180,6 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Integration)
 ---
 
 <!-- ANCHOR:dependency-graph -->
-<!-- /ANCHOR:dependencies -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -208,7 +206,7 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Integration)
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Progressive Reference Strategy
@@ -251,5 +249,5 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Integration)
 - Positive: Reduces file count, content is complementary
 - Negative: Larger single file (~45KB consolidated)
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---

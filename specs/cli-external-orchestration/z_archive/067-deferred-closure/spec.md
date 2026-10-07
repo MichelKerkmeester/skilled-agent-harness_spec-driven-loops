@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/067-deferred-closure"
+    packet_pointer: "cli-external-orchestration/z_archive/067-deferred-closure"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "All six findings closed; three repo-wide gates green"

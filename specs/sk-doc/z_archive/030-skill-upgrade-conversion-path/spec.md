@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/030-skill-upgrade-conversion-path"
+    packet_pointer: "sk-doc/z_archive/030-skill-upgrade-conversion-path"
     last_updated_at: "2026-08-15T11:59:34Z"
     last_updated_by: "claude-code"
     recent_action: "Phase 1 guide shipped and verified"

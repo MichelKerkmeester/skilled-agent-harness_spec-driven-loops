@@ -2,12 +2,8 @@
 title: "...system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin/plan]"
 description: "Implementation plan for optimizing the semantic memory plugin to inject a compact dashboard instead of full memory content."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "memory"
-  - "plugin"
-  - "dashboard"
-  - "002"
+  - "memory plugin dashboard plan"
+  - "memory plugin optimization plan"
 importance_tier: "important"
 contextType: "planning"
 ---

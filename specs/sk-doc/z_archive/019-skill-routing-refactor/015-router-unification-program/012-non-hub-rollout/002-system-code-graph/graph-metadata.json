@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
     "created_at": "2026-07-19T12:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:15.105Z",
+    "last_save_at": "2026-10-07T18:13:25.094Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b4783ebf345fa6989e0aac5e43bbbb3416843eb1c3bf46e38e31661f1c5fb82",
+    "source_fingerprint": "sha256:f2d50d4ef2605b260f717cf00c3d3ad930cda7dea6dca2ddbc229f063dac73a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "904e67a7d1b8a1c1d34540422ef9cc4f49c4fcbf67b0c6fe8993da12c588bb21",
-      "plan.md": "c5e820b1c246bcaee30963078a280846e1cbf23e33d9459feb48dc1823838610",
-      "tasks.md": "80937da5f27a72be4cd9072b3854f0b9bf61fef734cb0288c9a039e74bacda3a",
-      "implementation-summary.md": "f0df4cd08522420dcbae8e5bdecfc59f67d0268b2e706df58a1675d28f628ac9"
+      "spec.md": "f24629a88906db95bedb617de60cc2fc31ba47e09606edb0bd662d269ec02a44",
+      "plan.md": "5a3068acd659741e900cc70edf3a098e2876fcac1254b32cea08a951aaff3409",
+      "tasks.md": "07303509d0df216bb5f68e69413e5f28cfad27aee9cd12e1eb21a82f6a08b429",
+      "implementation-summary.md": "493f1faf86f7224db1a14c63c3c39111abc3ff0af6b5fa956e16eb9230a82ca0"
     },
     "last_active_child_id": null,
     "last_active_at": null

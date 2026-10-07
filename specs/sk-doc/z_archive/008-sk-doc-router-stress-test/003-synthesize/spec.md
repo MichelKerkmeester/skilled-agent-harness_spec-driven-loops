@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: Phase 3: synthesize"
 description: "Extract metrics from 45 raw cell logs into matrix.csv; author review-report.md with verdict + per-CLI rankings + P0/P1/P2 findings."
-trigger_phrases: ["071/003", "synthesize"]
+trigger_phrases: ["sk doc router stress test synthesize spec"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:

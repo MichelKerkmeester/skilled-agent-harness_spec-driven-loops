@@ -218,7 +218,6 @@ Target: `validate-memory-quality.ts` lines 612-650 and new rule location
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -239,7 +238,6 @@ Phase 1 (P0 Fix) ────┐
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -343,7 +341,7 @@ Phase 1 (P0 Fix) ────┐
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Warn-Not-Error for Unknown Fields
@@ -381,4 +379,4 @@ Phase 1 (P0 Fix) ────┐
 **Alternatives Rejected**:
 - Keep regex but extend it: regex cannot reliably handle all valid YAML syntax; would require a near-complete YAML subset implementation.
 - Use async YAML parsing: unnecessary complexity; frontmatter is small and parse is fast.
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

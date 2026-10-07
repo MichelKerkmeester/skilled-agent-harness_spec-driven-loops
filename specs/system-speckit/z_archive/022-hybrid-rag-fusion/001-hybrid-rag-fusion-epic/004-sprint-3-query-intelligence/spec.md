@@ -148,7 +148,6 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -176,7 +175,6 @@ Sprint 3 introduces 5 feature flags (all disabled by default):
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

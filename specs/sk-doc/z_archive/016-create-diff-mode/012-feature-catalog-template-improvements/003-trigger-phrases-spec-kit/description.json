@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
   "description": "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content.",
   "keywords": [
     "frontmatter",

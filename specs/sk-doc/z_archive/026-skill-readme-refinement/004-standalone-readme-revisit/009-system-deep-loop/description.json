@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
   "description": "The system-deep-loop skill README still carries the older tabular reference-card style",
   "keywords": [
     "system-deep-loop",

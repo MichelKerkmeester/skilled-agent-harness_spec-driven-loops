@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Public repository previously contained legacy documentation-skill identifiers plus stale references to a removed visual skill across content, folder paths, and runtime symlink names",
     "created_at": "2026-04-12T09:02:50.205Z",
-    "last_save_at": "2026-09-07T16:17:06.109Z",
+    "last_save_at": "2026-10-07T19:23:54.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +208,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e67c22c16087ec492aaf0e103519793d902b8e3f276a6ab61657ba6c657af0e",
+    "source_fingerprint": "sha256:7f0ba5246a96c066f8345ed9cbbda1a8e68a372d1ea4f00c2c3ed40ed2e52cbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9e5ec5fb0484338128603ceca3304a1b767604f317296c64ef6f75503c4ed93",
-      "plan.md": "b141cf37b9184dcba15624fa8992ae984366d923693e41e37086f02f5c877a4d",
+      "plan.md": "6048d625bffdb22d8e86bde124602050d4a36e4c0145384bf4b2219c964fc34a",
       "tasks.md": "06d7cdf9e41bd67e11481df7382140b44bc600aafdbdbe77e35dae811d998699",
       "implementation-summary.md": "c978faa4ca78ed7c7639d5345c3223e0459400f6b93640514799ae6588601264"
     },

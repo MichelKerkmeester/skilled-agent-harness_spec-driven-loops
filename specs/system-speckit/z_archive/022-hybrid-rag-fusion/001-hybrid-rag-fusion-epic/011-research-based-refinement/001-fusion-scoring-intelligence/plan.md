@@ -235,7 +235,6 @@ Stage 4 (Filtering) — unchanged
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -258,7 +257,6 @@ D4.A (external) ─────────────────────�
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Requirements | Complexity | Estimated Effort |

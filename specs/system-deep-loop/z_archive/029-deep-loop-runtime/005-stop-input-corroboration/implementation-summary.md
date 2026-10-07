@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/005-stop-input-corroboration"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration"
     last_updated_at: "2026-07-06T16:24:27.096Z"
     last_updated_by: "codex"
     recent_action: "Implemented deep-loop-runtime C1-C6 runtime seams and deterministic tests"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/005-stop-input-corroboration` |
+| **Spec Folder** | 005-stop-input-corroboration |
 | **Completed** | Runtime implementation complete. Live gates pending |
 | **Level** | 2 |
 | **Status** | complete |

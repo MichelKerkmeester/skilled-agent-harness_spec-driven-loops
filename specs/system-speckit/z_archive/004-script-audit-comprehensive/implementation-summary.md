@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/004-script-audit-comprehensive/implementation-summary]"
 description: "Archive repair summary for the Comprehensive Script Audit folder."
 trigger_phrases:
-  - "implementation summary"
   - "comprehensive script audit"
   - "archive"
 importance_tier: "normal"

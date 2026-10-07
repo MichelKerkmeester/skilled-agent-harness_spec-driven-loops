@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/008-fidelity-safety-a11y-hardening"
     last_updated_at: "2026-07-15T18:46:00Z"
     last_updated_by: "claude"
     recent_action: "Completed P1 code-opencode alignment; added scripts/README; wired 009 successor"

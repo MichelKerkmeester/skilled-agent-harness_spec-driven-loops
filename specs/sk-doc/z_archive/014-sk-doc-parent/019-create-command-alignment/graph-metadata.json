@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/019-create-command-alignment",
-  "spec_folder": "sk-doc/014-sk-doc-parent/019-create-command-alignment",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/019-create-command-alignment",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/019-create-command-alignment",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command — their `mode-registry.json` `command` field was `null`; and (2) four commands drifted from their packet names (`sk-skill`, `sk-skill-parent`, `folderreadme`, `testing-playbook`) so the public ids no longer matched `/create:<packet>`",
     "created_at": "2026-07-07T12:40:40.991Z",
-    "last_save_at": "2026-08-30T15:39:13.717Z",
+    "last_save_at": "2026-10-07T18:12:33.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a3d848f2131f70c3b5b7e3304a4e04d7220a6558609ec6bc3042e1a278fa098",
+    "source_fingerprint": "sha256:a778e59cae113cb5f7192c1078fa3a18cbad4d0d8bedb0e95a36068f5fbc8d8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a87cd89600fd6ebd1b42ac3b4bdb50e93048c02e35b555a3d33f5a970064ccc",
-      "plan.md": "9556650f764d730613499ca091bb4003d2a043673abf7a5dd89f0892a90c668d",
-      "tasks.md": "125e8e9db8217901522be2ad8f95cc9f5da5ac5872ca7cbc3ad4306b5f9b677f",
-      "implementation-summary.md": "2628f73decfda6abe5d5134edfbb14e3b0d4006e429eb669f6e05ab490743efc"
+      "spec.md": "83c766c6767490d87e8f29388995931e0bfb567d01b70549ee3c72cafb31fad7",
+      "plan.md": "3cdd6e401beedb3fa385f651bfb2ae943155c21a2bdae6e42e6b304768b3c1f5",
+      "tasks.md": "0e7e8644c8c2cfb9d6bc12308778eae9d42a4077df52150390e55eb1a02db374",
+      "implementation-summary.md": "6af91c87185bc4b9bb7c73db1c0182918e13bc175b612b27f166670be33d17e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

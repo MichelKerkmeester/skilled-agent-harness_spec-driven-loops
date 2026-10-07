@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/003-cli-mode-enforcement"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/003-cli-mode-enforcement"
     last_updated_at: "2026-08-19T11:12:00Z"
     last_updated_by: "claude"
     recent_action: "6 modes + hub carry persona rule; cline APPROVE 98/100; cli-pi parity fixed"

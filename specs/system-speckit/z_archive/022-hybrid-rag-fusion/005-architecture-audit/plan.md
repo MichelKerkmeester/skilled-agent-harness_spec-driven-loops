@@ -172,7 +172,6 @@ The recoverable original phase map shows 15 completed architecture-audit phases:
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -206,7 +205,6 @@ Phase 9 -> Phase 10 -> Phase 11 -> Phase 12
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Task Range | Notes |

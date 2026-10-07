@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The create-command YAML assets had drifted into uneven shapes",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-08-30T15:39:24.374Z",
+    "last_save_at": "2026-10-07T20:02:22.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:306b5f6f9f31c40cea5d8a92f6ed5f6a34c24091b2fe8b6bd6d1d35130c84d64",
+    "source_fingerprint": "sha256:2b779e5da17752eab512c87129adceb820a4c3aa154922b0b1ffc8ba751c29ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be005f8252861c395a0030be124e40a31379288ee3f543eb88b9ffb4a1e73ae6",
-      "plan.md": "4b902486d7536b73fc275e641dcf13c56afc2e9ccf75c42857c1b0b9f474d044",
+      "spec.md": "72d615a218ba3011e82e6b2450eb2c3dcc4fac3cd669475d4618253be4a2a351",
+      "plan.md": "ff955ef9bfe4b7c13052b1eb7882d121aaafc3a38c32056855c8fe286d05e3d5",
       "tasks.md": "693a7d4c408302439d8e9fdacfa943cd234156471b2d3aa6cad63136240404ca",
       "decision-record.md": "338f92cc02456961fd1ca5d24a0350968e79337430cc4fa70774f49f7e83e465",
       "implementation-summary.md": "d3a2a885bcd661be0dbf6b6edaef3d517971a0cba3743ae8c50dc5ff6e5e2964"

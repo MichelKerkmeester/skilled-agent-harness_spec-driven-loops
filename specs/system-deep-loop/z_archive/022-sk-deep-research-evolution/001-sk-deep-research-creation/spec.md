@@ -50,8 +50,8 @@ Create a 3-layer autonomous deep research system: `@deep-research` agent (single
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "typed no-destination deep dive",
       "no route control outcomes",
-      "typed defer instead of null"
+      "typed defer instead of null",
+      "typed no-destination plan",
+      "typed no route outcomes",
+      "typed no-destination tasks",
+      "typed no route outcome verification tasks"
     ],
     "key_topics": [
       "typed",
@@ -26,19 +30,33 @@
       "defer",
       "instead",
       "null",
-      "current",
-      "zero-signal"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,72 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current zero-signal state can collapse genuine no-work, no-match, dependency failure, degradation, handoff, and clarification needs into one bare `null` or a guessed default",
     "created_at": "2026-07-18T04:39:05.144Z",
-    "last_save_at": "2026-08-30T15:39:14.745Z",
+    "last_save_at": "2026-10-07T19:46:25.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:ef3ea91a00331c160f76edbd1be74bcdad05f20dfc7963da6b94610aa926f311",
+    "source_fingerprint": "sha256:c162c67ab476be2aea426be298a1b1a895653405a089c6416417223fdfa4e492",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ee8a8fea6f0938c395d106c9bab60b698567712e43e360de2ce5a31b3e971bb"
+      "spec.md": "3ee8a8fea6f0938c395d106c9bab60b698567712e43e360de2ce5a31b3e971bb",
+      "plan.md": "3cf0bc1b657161628df359298335ef538e48139a8b3a598b1f668a73583a6bab",
+      "tasks.md": "6c3ed24d333a5eb33f17c957ddf35c7d9275d9de8d469cb90104858c901ac9cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/007-feature-catalog",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/007-feature-catalog",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/007-feature-catalog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/007-feature-catalog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`feature-catalog/` has 5 kebab-case category directories with no numeric prefix (`adaptation-and-data/`, `aesthetic-direction-process/`, `delivery-gates/`, `procedure-cards/`, `token-system/`) holding 11 feature files, plus the root `feature-catalog.md` (`lastupdated: \"2026-07-06\"` present)",
     "created_at": "2026-07-27T14:56:08.741Z",
-    "last_save_at": "2026-08-30T15:39:13.034Z",
+    "last_save_at": "2026-10-07T18:12:21.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c7a15bbaae66f7f911dadda594f44c13434a278be82e09c6ae797c0bb2350be",
+    "source_fingerprint": "sha256:835e482bfb20b7d8cbc086452fb2552eec38473d407fefe3aa7bf0a4c76c7c08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "272cf8bc1f3198b205c3a5133afccba8e2ceca863c78e15373f7860f28335c79",
-      "plan.md": "620b14df04941554af50413585c17ea5843b0da94f0489622aa2d8cab9a05fa2",
-      "tasks.md": "ae73e03f3e8d5ad13792937d5335ebf02fa862d16c96df83ac2a54f2842fdce7",
-      "implementation-summary.md": "16abcca48e16050c58b76900dc167fb9f7a21aa85ed0f8073b75bd80a4b7b392"
+      "spec.md": "84ae179f0fa7b484982978703a3f0fc390fcabe40e84cb564dcecc4d0fb70109",
+      "plan.md": "068db3abe1382511deb735896dfffa62cda1d5e7c62a05fd2d6a437c91737487",
+      "tasks.md": "9df462f957dd3499460e91e91a01f02b0717cbc632f946770da654e97a38c210",
+      "implementation-summary.md": "275c4a0041ae0a4dbafa00107e425abeaf148e0ebfc5f9ecb0df30039b9dd720"
     },
     "last_active_child_id": null,
     "last_active_at": null

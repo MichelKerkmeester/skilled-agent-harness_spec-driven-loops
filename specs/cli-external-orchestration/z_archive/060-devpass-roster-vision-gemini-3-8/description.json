@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
+  "specFolder": "cli-external-orchestration/z_archive/060-devpass-roster-vision-gemini-3-8",
   "description": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
   "keywords": [
     "three",

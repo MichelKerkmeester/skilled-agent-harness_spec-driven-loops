@@ -1,3 +1,11 @@
+---
+title: "Pilot Scorecard -- deep-review Behavioral Benchmark"
+trigger_phrases:
+  - "pilot deep review scorecard"
+importance_tier: "high"
+contextType: "implementation"
+---
+
 # Pilot Scorecard — deep-review Behavioral Benchmark (3 legs x 8 scenarios, 24 scored runs)
 
 > **Legs**: `claude-cli` (baseline: claude v2.1.198) | `gpt-fast-med` (`openai/gpt-5.5-fast --variant medium`) | `gpt-fast-high` (`--variant high`), all via the shared runner with verified fixture restores. Run evidence: `runs/baseline-r2/`, `runs/gpt-fast-med/`, `runs/gpt-fast-high/` in this folder.

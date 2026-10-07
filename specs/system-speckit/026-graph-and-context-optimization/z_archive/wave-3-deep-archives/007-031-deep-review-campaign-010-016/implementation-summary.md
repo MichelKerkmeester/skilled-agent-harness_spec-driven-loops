@@ -1,5 +1,5 @@
 ---
-title: Implementation Summary — 017: Deep-Review Campaign 010-016
+title: "Implementation Summary — 017: Deep-Review Campaign 010-016"
 description: Deep-review results for the 7-packet code-graph remediation campaign.
 status: complete
 created_at: "2026-05-14"
@@ -12,10 +12,18 @@ review_p1: 1
 review_p2: 19
 review_converged_at: 10
 review_stopReason: maxIterationsReached
+importance_tier: "normal"
+contextType: "implementation"
+trigger_phrases:
+  - "deep-review implementation summary"
+  - "review verdict conditional"
+  - "review findings shipped"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 # Implementation Summary
 
+<!-- ANCHOR:what-built -->
 ## Review Completed
 
 10-iteration autonomous deep review of the 7-packet code-graph remediation campaign (010-016) shipped 2026-05-14.
@@ -28,7 +36,9 @@ review_stopReason: maxIterationsReached
 
 - **F002 (P1)**: SKILL.md `name: system-code-graph` vs MCP namespace `mk-code-index` — intentional dual naming but needs clarifying note for consumers
 - **19 P2 findings**: Documentation clarity gaps, stale architecture questions, naming discoverability, feature/tool count reconciliation, lock staleness
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:verification -->
 ### Dimension Coverage
 
 | Dimension | Verdict | Key |
@@ -37,7 +47,10 @@ review_stopReason: maxIterationsReached
 | Security | PASS | No P0/P1; P2 env validation, lock staleness |
 | Traceability | PASS (advisory) | P2 stale docs, feature/tool gap |
 | Maintainability | PASS | P2 build artifacts, test scenarios |
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:decisions -->
 ### Recommendation
 
 Ship as-is. Address P1 (F002) and batch-resolve P2s in a follow-up documentation packet.
+<!-- /ANCHOR:decisions -->

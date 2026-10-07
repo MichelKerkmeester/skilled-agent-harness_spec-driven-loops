@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/003-install-guide-docs"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/003-install-guide-docs"
     last_updated_at: "2026-05-18T03:30:00Z"
     last_updated_by: "markdown_agent"
     recent_action: "Authored INSTALL_GUIDE §12 + README pluggable-layer subsection + cross-links"

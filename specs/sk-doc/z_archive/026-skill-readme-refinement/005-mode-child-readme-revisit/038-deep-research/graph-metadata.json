@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,7 +22,7 @@
       "phase 038 tasks",
       "deep research readme tasks",
       "mode readme rewrite tasks",
-      "implementation summary"
+      "deep research mode readme summary"
     ],
     "key_topics": [
       "deep",
@@ -36,7 +36,7 @@
       "phase",
       "plan",
       "tasks",
-      "implementation"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -48,28 +48,25 @@
       ".opencode/skills/system-deep-loop/deep-research/README.md",
       ".opencode/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/tasks.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The deep-research mode skill README at `.opencode/skills/system-deep-loop/deep-research/README.md` predates the mcp-obsidian pilot standard",
     "created_at": "2026-08-04T08:34:53.072Z",
-    "last_save_at": "2026-08-30T15:39:17.894Z",
+    "last_save_at": "2026-10-07T18:13:48.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d84220d768ac94f46b5a6e2982d752214236b38788480814dcb63e050cf11521",
+    "source_fingerprint": "sha256:107a6dce024e4df63f8027abcdbac28255ecc3bd6366fa61bd1c3e8a04e8a098",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f1ae7a9e94e092e657119596bce6f888dc53af18c88bdb84645305e6b75e6ff2",
-      "plan.md": "5b3693f9e55cd0346890f89f02e7fefb2721ac0149dcb8fbceff28cb1fd27dac",
-      "tasks.md": "62c85e16178ac373dd603487f46976193a4fa44e5c10ae3f799ea779434d8e66",
-      "implementation-summary.md": "63fb2e66aafa1b4283b1d00a3520c09890381b3cf01706fe2c123b33f509c6b1"
+      "spec.md": "7e51ac110a62438dcb726eb06cb6a1f4213f9c4355e6f8b298dc31940f18dd51",
+      "plan.md": "a3e7d7174648ff173d4d3bd5ee31b7a0b0320f43005b24bb942e1b5ba94db30d",
+      "tasks.md": "60ea68b05d29fc5fa9f0d247bd9e9dc701760cbfbfa59ffc825d390413d80989",
+      "implementation-summary.md": "893d5478e4813f38097d715b48f86d1dc891fa79e9c0577905c5002172afa588"
     },
     "last_active_child_id": null,
     "last_active_at": null

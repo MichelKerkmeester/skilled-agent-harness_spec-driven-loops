@@ -12,7 +12,7 @@ contextType: "planning"
 parent: "sk-doc"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/023-feature-catalog-integrity"
+    packet_pointer: "sk-doc/z_archive/023-feature-catalog-integrity"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the phased parent from the track C deep-research synthesis"

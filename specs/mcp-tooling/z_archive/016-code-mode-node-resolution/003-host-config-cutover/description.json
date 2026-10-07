@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
+  "specFolder": "mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover",
   "description": "Nineteen server registrations span six configuration files",
   "keywords": [
     "nineteen",

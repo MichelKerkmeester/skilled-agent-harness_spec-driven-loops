@@ -6,7 +6,7 @@ importance_tier: important
 contextType: implementation
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/006-docs-and-closeout"
     last_updated_at: "2026-07-13T10:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Advertised cli-codex in README under the fail-closed contract and closed the packet"

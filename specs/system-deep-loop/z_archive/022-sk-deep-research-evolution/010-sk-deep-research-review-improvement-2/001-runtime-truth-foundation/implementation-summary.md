@@ -3,7 +3,6 @@ title: "...ed-agent-orchestration/042-sk-deep-research-review-improvement-2/001-
 description: "Deep-loop runtime contracts, stop-reason taxonomy, legal-stop gates, resume semantics, journals, dashboards, and behavior-first test coverage for sk-deep-research and sk-deep-review."
 trigger_phrases:
   - "042.001"
-  - "implementation summary"
   - "runtime truth"
   - "stop contract"
   - "legal stop"

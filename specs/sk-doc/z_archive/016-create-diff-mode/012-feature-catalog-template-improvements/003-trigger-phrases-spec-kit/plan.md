@@ -2,10 +2,9 @@
 title: "Plan: Phase [sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/plan]"
 description: "Execution plan for adding trigger_phrases to 313 spec-kit snippets via parallel category-scoped AI agents."
 trigger_phrases:
-  - "plan"
-  - "phase"
-  - "003"
-  - "trigger"
+  - "trigger phrases spec kit plan"
+  - "catalog trigger phrases plan"
+  - "spec kit snippet phrasing plan"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -14,6 +13,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. DERIVATION ALGORITHM
 
 For each snippet, an agent derives trigger_phrases using this priority order:
@@ -37,9 +37,11 @@ For each snippet, an agent derives trigger_phrases using this priority order:
 - Do NOT include generic terms ("memory", "spec kit", "feature") alone — too broad
 - DO include the exact tool function name as it appears in code (`memory_save`, `memory_search`)
 - DO include the natural-language phrase a user would type to invoke this feature
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. EXECUTION MODEL
 
 ### Agent scope per batch
@@ -56,9 +58,11 @@ Each agent handles ONE category directory:
 
 ### Parallel execution
 Up to 8 category agents can run concurrently (stay within context limits).
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 3. EXECUTION ORDER
 
 Categories ordered by size (smallest first to validate approach before large batches):
@@ -96,6 +100,7 @@ Pass 5 (largest):
   13--memory-quality-and-indexing (30 files)
   16--tooling-and-scripts (47 files — split into 3 sub-batches)
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
@@ -125,6 +130,7 @@ Do NOT change any other content. Only frontmatter trigger_phrases.
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. VERIFICATION
 
 After each category pass:
@@ -158,3 +164,4 @@ for f in Path('.opencode/skills/system-spec-kit/feature_catalog').rglob('*.md'):
 print(f'{len(low)} files with < 3 phrases')
 "
 ```
+<!-- /ANCHOR:testing -->

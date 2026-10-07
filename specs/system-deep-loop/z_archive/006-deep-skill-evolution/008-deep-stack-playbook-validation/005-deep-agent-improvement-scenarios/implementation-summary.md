@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios |
+| **Spec Folder** | 005-deep-agent-improvement-scenarios |
 | **Completed** | 2026-05-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

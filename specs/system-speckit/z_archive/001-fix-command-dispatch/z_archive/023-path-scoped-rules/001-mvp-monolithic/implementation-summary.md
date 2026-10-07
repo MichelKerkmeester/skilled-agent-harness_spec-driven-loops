@@ -2,14 +2,8 @@
 title: "...pec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic/implementation-summary]"
 description: "Implemented validate-spec.sh, a spec folder validation script that enforces documentation standards by checking for required files, unfilled placeholders, and required sections ..."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "path"
-  - "scoped"
-  - "validation"
-  - "implementation summary"
-  - "001"
-  - "mvp"
+  - "path scoped rules implementation summary"
+  - "path scoped validation delivery summary"
 importance_tier: "normal"
 contextType: "implementation"
 ---

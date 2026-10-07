@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface"
     last_updated_at: "2026-08-19T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored phase-parent spec + 6-child phase map"

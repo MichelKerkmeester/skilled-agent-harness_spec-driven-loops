@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The cli-codex component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Codex availability, sandbox, model, and review contracts.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-08-30T15:39:16.561Z",
+    "last_save_at": "2026-10-07T18:13:10.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5e2db1f5102af18d48afe68822331ae12af7a290e4722858fa5bacf21510ee8b",
+    "source_fingerprint": "sha256:cec0e80ff2b5ac9fee1af4d566fbdaaf6fb836ff298008478cde4ce644b04d95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c156662401a8ca373566f6fe7395adda4e6095f7f8bcf52ffe1de8bf6e74d517",
-      "plan.md": "fd1cb783c80adb80bff1fc434a422560a8b7fcd30e2bd0e3ac99a05fea7ff899",
-      "tasks.md": "0de949d85b6cda7de42869cf304159c8cfe405280e4202e8895b8176ae64c673"
+      "spec.md": "0113d24854bf4d3651e4c57b2e46cfe356b770d58b0149042bb6b1f79b8a92b0",
+      "plan.md": "719b80b80174c06955ddc26bf7eb273d32c38d3b1d6a5feb0d87ef679e83c870",
+      "tasks.md": "93093815e67d6dd11565223c9572a0a16860b2c2bc019530eaf098f6371799c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

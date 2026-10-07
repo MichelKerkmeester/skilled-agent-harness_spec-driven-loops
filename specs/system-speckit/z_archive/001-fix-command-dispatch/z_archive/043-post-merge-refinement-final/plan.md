@@ -2,12 +2,7 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/plan]"
 description: "Duration: 3-4 days | Effort: ~10 hours"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "043"
+  - "post merge refinement final plan"
 importance_tier: "important"
 contextType: "planning"
 ---

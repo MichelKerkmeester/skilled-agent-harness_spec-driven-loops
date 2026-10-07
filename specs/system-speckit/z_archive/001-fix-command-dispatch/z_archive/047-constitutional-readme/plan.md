@@ -2,12 +2,7 @@
 title: "Plan: Constitutional [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/047-constitutional-readme/plan]"
 description: "1. Analyze existing READMEs in the skill folder to understand patterns"
 trigger_phrases:
-  - "plan"
-  - "constitutional"
-  - "memory"
-  - "system"
-  - "readme"
-  - "047"
+  - "constitutional readme plan"
 importance_tier: "important"
 contextType: "planning"
 ---

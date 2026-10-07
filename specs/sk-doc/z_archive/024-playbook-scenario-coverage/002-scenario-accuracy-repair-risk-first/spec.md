@@ -12,7 +12,7 @@ contextType: "planning"
 parent: "sk-doc/024-playbook-scenario-coverage"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first"
+    packet_pointer: "sk-doc/z_archive/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored the risk-first repair child spec from the track (d) synthesis proposal"

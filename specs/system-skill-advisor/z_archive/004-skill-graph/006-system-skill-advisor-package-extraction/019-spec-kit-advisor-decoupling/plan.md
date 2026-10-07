@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling"
     last_updated_at: "2026-05-15T09:20:00Z"
     last_updated_by: "codex"
     recent_action: "Updated plan to reflect completed unblock path."

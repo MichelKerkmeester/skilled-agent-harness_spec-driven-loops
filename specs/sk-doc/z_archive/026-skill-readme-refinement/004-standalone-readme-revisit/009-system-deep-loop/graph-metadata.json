@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,13 +46,10 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/README.md",
-      ".opencode/skills/system-deep-loop/changelog/v2.1.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "changelog/v2.1.0.0.md",
       "SKILL.md",
       "manual-testing-playbook/manual-testing-playbook.md"
     ],
@@ -60,19 +57,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -88,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "v2.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/changelog/v2.1.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
@@ -103,6 +94,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.0.0.md",
         "source": "derived"
       },
       {
@@ -204,7 +201,7 @@
     ],
     "causal_summary": "The system-deep-loop skill README still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:38.067Z",
-    "last_save_at": "2026-09-03T22:19:40.794Z",
+    "last_save_at": "2026-10-07T18:13:46.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4aabde5930934142d2adcdfa66dcb4d6496f3822f8d70b3c4ffbced2a984a1e1",
+    "source_fingerprint": "sha256:092ab686f12e6595e258acb989d6d2eaa292425fe445320566869e2dbf209ce7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd738955baf42f54047f428a9e4aba32d3d97ee60a3fc2a766174f5986781266",
-      "plan.md": "7a2fc3bd7fbb163a00eea0ae2a750e75b49a6682332a47f4a41742f6981e8032",
-      "tasks.md": "3e826d0f9df34ab543dac5a11d12f32304fc736296b970fc8d0a9a58e1833afe",
-      "implementation-summary.md": "17162227bcc1a59c2e8bea2381343ee2999500b5e40083e55c5bcf0ab34e4dde"
+      "spec.md": "120871700e3be4c732158f1a96f9c6ec30df439ccd141d023d0dbd3ded4f5510",
+      "plan.md": "474ad6410a73ec952493a665cf6c6034f88d4821440c695892953e19928ff225",
+      "tasks.md": "824cf7ce46c9386d66452159f9f2d918d6e6c22d1d959b2fa06c3f3e9e4d424a",
+      "implementation-summary.md": "8d76018347475d8973887f5408dbfbab81fa75714b0a3a86dede5b6a2241f88c"
     },
     "last_active_child_id": null,
     "last_active_at": null

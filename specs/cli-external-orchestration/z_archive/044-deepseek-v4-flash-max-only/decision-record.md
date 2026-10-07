@@ -2,6 +2,7 @@
 title: "Decision Record: DeepSeek V4 Flash max-thinking pin"
 description: "Why Flash Max is an effort pin (not a model removal or a fabricated id), and how it maps onto four uneven CLI surfaces."
 contextType: "implementation"
+importance_tier: "normal"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/044-deepseek-v4-flash-max-only"
@@ -11,7 +12,8 @@ _memory:
     next_safe_action: "None; reference during implementation"
     blockers: []
     completion_pct: 100
-trigger_phrases: []
+trigger_phrases:
+  - "deepseek v4 flash max decision record"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: DeepSeek V4 Flash max-thinking pin
@@ -20,6 +22,7 @@ trigger_phrases: []
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001 — "Flash Max" is an effort/thinking level, not a model id
 
 **Context.** The operator asked that DeepSeek V4 Flash only ever run at "max" — never "flash high" or "non thinking" — and to "remove those lower effort levels." An initial reading treated "Flash Max" as a distinct model id and removed the Flash model on pi/opencode. Live verification corrected that:
@@ -30,8 +33,11 @@ trigger_phrases: []
 
 **Consequence.** The catalogs that called Flash "non-reasoning" were factually wrong and were corrected.
 
+<!-- /ANCHOR:adr-001 -->
+
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002 — Force to max (operator choice)
 
 **Context.** When a fan-out lineage requests Flash at a lower effort (high/low/off) or none, the pin must decide what to do.
@@ -40,8 +46,11 @@ trigger_phrases: []
 
 **Consequence.** A caller that names Flash at `high` silently runs at `max`; the receipt shows `max`, so the behavior is observable, not hidden.
 
+<!-- /ANCHOR:adr-002 -->
+
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003 — Do not fabricate a `-max` id; do not touch cursor or raw dispatch
 
 **Context.** Adding `deepseek-v4-flash-max` to the pi/opencode allowlists/rosters would create an id the providers do not serve. cli-cursor has no DeepSeek. The pin lives in the fan-out builders.
@@ -49,3 +58,5 @@ trigger_phrases: []
 **Decision.** No fabricated id. cli-cursor untouched. cli-devin already max-only (uid-baked); it gets only a policy note. Raw `pi`/`opencode` binary invocations (outside the fan-out) are not gated — documented as a boundary, not worked around.
 
 **Why.** The allowlists carry a "read from live, never fabricated" contract; the fan-out builders are the single command-construction point where the pin belongs.
+
+<!-- /ANCHOR:adr-003 -->

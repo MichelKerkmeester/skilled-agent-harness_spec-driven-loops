@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/006-sk-prompt-models-rename"
+    packet_pointer: "sk-prompt/z_archive/006-sk-prompt-models-rename"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Rename + review-remediation complete (007-009)"

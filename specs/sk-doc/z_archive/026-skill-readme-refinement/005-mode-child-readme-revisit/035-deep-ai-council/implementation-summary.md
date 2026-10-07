@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council"
     last_updated_at: "2026-08-04T18:30:00Z"
     last_updated_by: "phase-035-executor"
     recent_action: "Completed README rewrite, version bump and changelog entry"

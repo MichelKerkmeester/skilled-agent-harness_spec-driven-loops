@@ -23,13 +23,16 @@ _memory:
 
 # Phase 007 — Native per-iteration model schedule for deep-loop fan-out
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Design (spec only) a first-class, contract-compliant way for an operator to request a fixed-count heterogeneous per-iteration model schedule through the canonical `/deep:start-review-loop` and `/deep:start-research-loop` commands and the shared `deep-loop-runtime`. Motivating example: nine iterations on `minimax MiniMax-M2.7-highspeed` then one on `claude-opus-4-8`, so future runs never hand-roll a worker pool the way packet 122 review did. This phase produces the schema, routing, audit, merge-precedence, and command-surface design; implementation is this phase's own future work (no code here).
 
 **Background — the packet 122 deviation:** packet 122 review ran a heterogeneous per-iteration model mix by hand-rolling a shell worker pool (`run_one.sh` with a `case` statement assigning per-iteration dimensions and a `xargs`-style fan-out). That bespoke machinery bypassed the shared `deep-loop-runtime` dispatch, the externalized JSONL state machine, and the consumer merge; it worked once but is unreproducible through the supported command surface and violates deep-review forbidden patterns.
 
 **Problem statement — the contract gap:** there is no supported way to express "run band A on model X for N iterations, then band B on model Y for M iterations" through the canonical commands. Existing fan-out (phases 001-006) runs homogeneous lineages concurrently and merges once all complete; it has no ordered heterogeneous per-iteration schedule and no ordered/seeded band sequencing, forcing operators back toward the packet 122 hand-rolled path.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 **In:**
 - Design a fixed-count heterogeneous per-iteration model-schedule capability expressible via the canonical `/deep:start-review-loop` and `/deep:start-research-loop` commands and the shared `deep-loop-runtime`.
@@ -48,7 +51,9 @@ Design (spec only) a first-class, contract-compliant way for an operator to requ
 - Convergence-algorithm changes (newInfoRatio, Bayesian scoring) beyond making per-band max-iterations and ordered bands interoperate with existing convergence.
 - New executor kinds/providers/models beyond those registered (minimax, codex, claude, opencode, gemini, devin, native) and changes to the single-executor default path or existing homogeneous fan-out merge semantics.
 - Re-litigating or modifying packet 122 hand-rolled artifacts.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - Command surface and one-to-one desugaring into existing fan-out lineages specified; desugaring pinned to real fan-out and `executor-config` entry points.
 - No parallel dispatcher introduced; existing machinery reused.
@@ -56,13 +61,16 @@ Design (spec only) a first-class, contract-compliant way for an operator to requ
 - Merge precedence keeps the severity-rollup invariant (any active P0 from any band forces merged FAIL).
 - Every deep-review forbidden pattern mapped and opt-in byte-identical proven.
 - Valid Level-2 packet 123 child numbered `007`.
+<!-- /ANCHOR:success-criteria -->
 
+<!-- ANCHOR:risks -->
 ## Risks
 - **Sequencing gap:** existing fan-out runs lineages concurrently and jumps to synthesis once all complete; band B after band A with optional seeding needs an ordered/`dependsOn` extension to `fanout-pool.cjs` that does not yet exist, so it may be underestimated as pure sugar. Mitigation: front-load research to confirm whether ordering is sugar over concurrency caps or a genuine minimal pool-driver delta, and scope it explicitly.
 - **Reuse-vs-rewrite drift:** pressure to match packet 122 per-iteration-dimension UX could tempt true intra-loop executor rotation (the hard path needing band-sync barriers and iteration interleaving). Mitigation: hold the ordered-homogeneous-lineage framing and keep intra-loop rotation out of scope unless desugaring is proven insufficient.
 - **Merge-precedence regression:** generalizing the any-P0-to-FAIL rule into ordered band-priority risks weakening strongest-restriction, since a lower-priority band P0 must still escalate. Mitigation: specify precedence as conflict-resolution only, with severity rollup preserved as an invariant above band priority.
 - **Contract-compliance illusion and two-consumer divergence:** a loosely specified band-priority or ordered layer could resemble the forbidden ad-hoc dispatcher, and research dedup/attribution versus review severity-rollup may fit one design unevenly. Mitigation: explicit per-forbidden-pattern mapping; require all dispatch inside `step_fanout_spawn` and the fan-out scripts; specify the band-priority and audit model for both consumers with differences called out.
 - **API-assumption and scope-creep risk:** candidate files are enumerated but not re-read in this design pass, so specifying against a stale interface or drifting into code edits would mislead implementers. Mitigation: success criteria require locking the desugaring contract against actual entry points via the front-loaded research task; scope-out forbids code edits in this phase.
+<!-- /ANCHOR:risks -->
 
 ## Out of scope
 Implementation/build of the capability; any code edits; a competing parallel orchestrator; true intra-lineage executor rotation; convergence-math changes; new executor kinds; packet 122 artifact changes (all deferred or excluded per Scope/Out above).

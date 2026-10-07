@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The cli-codex README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T10:30:00Z",
-    "last_save_at": "2026-08-30T15:39:14.424Z",
+    "last_save_at": "2026-10-07T18:12:33.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bafeffb7871e0b953dc37244447637313fc4ff0f4b5df8ce9c5b128437d55702",
+    "source_fingerprint": "sha256:bed030e1651b9072e752d5b504520480c4879c694657720599a7b7b4a1feeb0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25eaef16c30acb8a7ebb451de8a506f25dfdc0092f19544b2dada619c3f634ed",
-      "plan.md": "30c31bf773973787e4abb741fbb650fec7b36a9f48003d0c1539fecda2714c69",
-      "tasks.md": "9bb0fb88c581766d264833837ff9b22eb5412737989ccc2aab06e967090783a5",
-      "implementation-summary.md": "47fb548c140d271d962c9a5dc0f910c091bbc781b087ee4409b444ae60834f9a"
+      "spec.md": "513f6b2685580c9c3c60933d243e85a2d11dd61455f5837dd43707dd983bc0c6",
+      "plan.md": "7fe1cc54e4da74079a7dc1ea3cd38006568efaf17c67a9bd58fc35b3c3f80582",
+      "tasks.md": "a2b333ebdb53f716e4faf58e6bc3de025117de16e2171c62dd1b01d40223960f",
+      "implementation-summary.md": "3bd85fc09e8a7d08c049ec432368efb64c2514901b7421902da5518e5b735f7b"
     },
     "last_active_child_id": null,
     "last_active_at": null

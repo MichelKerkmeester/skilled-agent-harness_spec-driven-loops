@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Independent GLM survivor audit, full four-hub gate reproduction, link set-diff against the frozen baseline, and packet documentation.",
     "created_at": "2026-07-28T05:34:11.900Z",
-    "last_save_at": "2026-08-30T15:39:15.765Z",
+    "last_save_at": "2026-10-07T18:13:17.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c2a038e5126f0e8a0230406378332533dbea4331403cc8b8b61b09ba4fe46d0",
+    "source_fingerprint": "sha256:b5a1380fcee75f36f1d53e53cdff8542cc32d4af68dd94e1ff4ef157999d7206",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8176fff37c2c34b9c772538aab09b0359f04502bffbd175e1ce17dc3bb4a557b",
       "plan.md": "0c9e49d78aae604079dcd5f2a3c6da38fd68b7e07a787301321201fb7a046870",
       "tasks.md": "207d6b52bd89dbc819ad4fa70fcb129ced5bac19458d8e5c1c88ceaa24d68615",
-      "implementation-summary.md": "43b4858b7c68e04cc300f5d57013530ddd74c5189cb958e613e66d5d295f476d"
+      "implementation-summary.md": "638d980a367da2b38725f245ce54bdbdcb6a01e50b0fe6bec3650a6f96c1f218"
     },
     "last_active_child_id": null,
     "last_active_at": null

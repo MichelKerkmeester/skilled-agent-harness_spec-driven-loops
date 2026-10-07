@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor"
+    packet_pointer: "mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor"
     last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
     recent_action: "Reconciled the installer-execution records with their evidence"

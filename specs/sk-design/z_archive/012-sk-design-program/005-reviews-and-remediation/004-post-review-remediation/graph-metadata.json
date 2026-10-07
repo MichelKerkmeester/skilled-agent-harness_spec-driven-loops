@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
-  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
-  "parent_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -177,7 +176,7 @@
     ],
     "causal_summary": "Remediate the verified findings from the 017 GPT-5.6-SOL review: fix stale _db/_engine path references in the styles playbook, the database README, the 015 parent phase-map, and the graph-metadata key_files pointers left behind by the 005 restructure. Documentation/metadata only; no shipped code behavior changes.",
     "created_at": "2026-07-21T18:23:49.821Z",
-    "last_save_at": "2026-09-11T16:41:56.658Z",
+    "last_save_at": "2026-10-07T18:12:34.741Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86e1f5a7df5110a30e9f5cb7713b861547fb8fee948ac318da389c919bcba702",
+    "source_fingerprint": "sha256:132f872d9f678be4ffa9dcad2ced1a12901317df24ca79fad208bde17df43ba3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a56e81fcd257574dd54902efa970eb298c321c560f4e8fb41f921ec9c1f57dd",
-      "plan.md": "100fc5ca6e49651021a46b34a1a1311a17ef6a124c5d5862dcfe42b2701951ff",
-      "tasks.md": "482fc2672a6f82c7c7a1bd1b61dc241f611d5e2174bdcedb8dd674aafc542cfc",
-      "implementation-summary.md": "d5f398e5c7d4964563bd0c95396808eceed31d5cc9682a64d5d4e2541933742b"
+      "spec.md": "84da7210e28be7d0707a12ebab2ad931d5781197f866fa8ed1108bda89483c84",
+      "plan.md": "cf560211b03d20dedfa46971d7c313f2c2028e9bdd3105f69ac76b82feb60143",
+      "tasks.md": "4ae72498d45bfb60502beb7ccc607355761d02b60298097bb53d68bca20b35e3",
+      "implementation-summary.md": "df0c3aba2a0d98326fa3e84fecd168748742323ea811fdeade4c5ac7d7efa393"
     },
     "last_active_child_id": null,
     "last_active_at": null

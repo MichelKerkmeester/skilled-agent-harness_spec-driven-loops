@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir |
+| **Spec Folder** | 006-deep-loop-empty-archive-dir |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -147,7 +147,6 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -163,7 +162,6 @@ Establish `/create:sk-skill` as the single canonical entrypoint with determinist
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/010-mcp-mobbin/006-live-verification-capture"
+    packet_pointer: "mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture"
     last_updated_at: "2026-08-25T06:58:18Z"
     last_updated_by: "claude-agent"
     recent_action: "Linked the successor phase after 007 landed"

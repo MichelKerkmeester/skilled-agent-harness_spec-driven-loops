@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/045-communication-voice-routing",
-  "spec_folder": "sk-doc/045-communication-voice-routing",
+  "packet_id": "sk-doc/z_archive/045-communication-voice-routing",
+  "spec_folder": "sk-doc/z_archive/045-communication-voice-routing",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -45,10 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".opencode/commands/rewrite/response.md",
-      ".opencode/commands/rewrite/response-by-external-agent.md",
-      ".opencode/skills/sk-communication/references/visual-explanation.md",
       "repo-rules/communication.md",
       "scratch/baseline-validate-commands.txt",
       "scratch/baseline-package-skill.txt",
@@ -85,30 +81,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "response.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response.md",
-        "source": "derived"
-      },
-      {
-        "name": "response-by-external-agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "visual-explanation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/references/visual-explanation.md",
         "source": "derived"
       },
       {
@@ -206,11 +178,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Banned Metaphors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Significance Inflation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
     "created_at": "2026-08-31T20:29:05.884Z",
-    "last_save_at": "2026-09-11T16:42:12.670Z",
+    "last_save_at": "2026-10-07T18:14:04.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03cac90e6572417b5b902a35c711d433465fe5dbac004266a7c4dbfe56fac5b3",
+    "source_fingerprint": "sha256:fda40a29011fac5c9cf8feba7c44e62e44d836dd01db7f4d924ead5e201bcb7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e983ea16f40cf09d3810a0d32f77057a8f6a83fbaa745e6b5d8351d3035a4444",
       "plan.md": "027410fe567dee6c62775b59edc53e17184903997ca7801ec830e2286067cf82",
       "tasks.md": "26646d666c5781d8a34c167568aa1fd901aead91ea402e88fb92f902370a64c9",
-      "implementation-summary.md": "8db8e9d07eb3f3f86ceb8b2c9071408ebd72ce096ccf61f08453d0e04460283d"
+      "implementation-summary.md": "0c6fc542f15bbbbf1c315ab31e47f111cbb1566e3cc042532c8d32a36a4b8d0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

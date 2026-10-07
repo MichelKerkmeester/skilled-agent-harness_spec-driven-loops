@@ -7,7 +7,6 @@ trigger_phrases:
   - "speckit"
   - "bug"
   - "fix"
-  - "implementation summary"
   - "064"
 importance_tier: "normal"
 contextType: "implementation"

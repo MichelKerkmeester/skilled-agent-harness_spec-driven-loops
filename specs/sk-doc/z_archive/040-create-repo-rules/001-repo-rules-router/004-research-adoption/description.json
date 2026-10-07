@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
   "description": "Phase 3 returns a ranked list from a single executor family running five iterations",
   "keywords": [
     "phase",

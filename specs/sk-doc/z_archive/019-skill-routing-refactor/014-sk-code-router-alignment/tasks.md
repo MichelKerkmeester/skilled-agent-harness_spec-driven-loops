@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/014-sk-code-router-alignment"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Conformed tasks to the strict template headers/anchors and added the continuity block"

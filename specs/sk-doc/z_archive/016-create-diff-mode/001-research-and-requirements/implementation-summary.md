@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/001-research-and-requirements"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "codex"
     recent_action: "Accepted the research direction and scaffolded phases 002-007"

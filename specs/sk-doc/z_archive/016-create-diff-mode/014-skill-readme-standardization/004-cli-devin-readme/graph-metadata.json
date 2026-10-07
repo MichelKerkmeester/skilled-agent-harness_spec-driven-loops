@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The cli-devin README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a version of 1.0.2.0 (the skill is 1.0.13.0) and a reference count of 5 (the directory holds 10)",
     "created_at": "2026-06-07T11:00:00Z",
-    "last_save_at": "2026-08-30T15:39:14.430Z",
+    "last_save_at": "2026-10-07T18:12:33.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:982ca6992681cca457beeada9b09a1bb1c33a6aab328567bd09b0c319796dd21",
+    "source_fingerprint": "sha256:3c9788056b2a2f3d1852881da5eaba592a49fe0007a69fc7492a9dfcc753b127",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5f9030a3dadbb95935381c8704ca0f6d3494a27dbd6cc636619568c8437ed51",
-      "plan.md": "f528fbbb3dc549f2f13994cb7466fdbe3a88ba3dc9133f871d3406120b58ab30",
-      "tasks.md": "2d40def5b0e90d1988ccc936fa1075da4f3fad67f4c33f53b070ba34e33a68a8",
-      "implementation-summary.md": "5b3af86f49c79a9316c19c5699af459f9ee81b54f77a73543d37a0e1350bf12f"
+      "spec.md": "8f29318df6d742628410fcaa4da82651b6d3ac54faab141f333249c6792a08ca",
+      "plan.md": "316e9f3ed1e2a44a610994f3dcf9fd4866c90fbf2371dfc81c0d08bb22b79b1f",
+      "tasks.md": "14d70d3645bd91acaf63d54fe52095edbbd1a9217dcf20926223fd148a0540b5",
+      "implementation-summary.md": "71dfe863fb412dc1e33b38d70e81a99d724eaa1d43878e7906e5b47e1fa57fcc"
     },
     "last_active_child_id": null,
     "last_active_at": null

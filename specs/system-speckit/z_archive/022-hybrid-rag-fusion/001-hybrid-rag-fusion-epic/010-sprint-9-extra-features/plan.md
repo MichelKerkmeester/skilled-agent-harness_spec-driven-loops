@@ -466,7 +466,7 @@ Depends on Phase 1 test infrastructure (eval framework verification).
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -481,7 +481,7 @@ Phase 1 (Hardening) ────────────────────
                                                 └── P1-5: GGUF reranker (needs eval baseline)
 ```
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

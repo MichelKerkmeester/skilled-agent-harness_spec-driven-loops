@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -166,7 +166,7 @@
     ],
     "causal_summary": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
     "created_at": "2026-07-14T15:18:38Z",
-    "last_save_at": "2026-08-30T15:39:17.091Z",
+    "last_save_at": "2026-10-07T18:13:18.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,12 +174,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a55aa2f8f1bbb35a3eff7aa2b923959da79f441842f724edf646709f75e5c9f5",
+    "source_fingerprint": "sha256:3d88e28df8de1fa657f5b7a75d63b55965c0d1ee2d1ef3d63705e4750737597a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1240ddc2e54455ad49b4d5077bf2e520a0827775026a85fde3a2f6f69a699c6d",
-      "plan.md": "15be0536c926779f5af51346c1071639ea3580670e35876ce4fd9b17712e8082",
-      "tasks.md": "90f5b269961f77a27235f1ac1bc28234d0351b7867c9b6e011a8af09052700db"
+      "spec.md": "052a70693cc686f5b0d02b664d1ac4ea485c7a8369662c40c821e0de207bf7fc",
+      "plan.md": "1582d908cfdd64b7553d0bd910a0ac286244abd5beaf870d2c08804d2234b883",
+      "tasks.md": "3fb14c3e747ae5da1106482ae1c095a94ae492004ceca6b58f82f50e07ebfe29"
     },
     "last_active_child_id": null,
     "last_active_at": null

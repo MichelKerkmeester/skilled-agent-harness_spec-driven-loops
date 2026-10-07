@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T10:44:39Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "rg-019-codex-verification-evidence-remediated"

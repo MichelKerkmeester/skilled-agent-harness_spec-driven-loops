@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The deep-review coverage graph accepted only coarse review node kinds: `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, and `REMEDIATION`",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.206Z",
+    "last_save_at": "2026-10-07T18:14:24.087Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72a24bed0cb3bbb2d343b4b579536839d921ce7339a83f809b1429f9a4679032",
+    "source_fingerprint": "sha256:289ddd6d4a2392412e97a95c35c2a51709727527e964b2d950b2b828b0b6d205",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "24491e148abe07e323f21902304712e9ad792f42ac800279bd30f30d4d7ea7c2",
       "plan.md": "12b45a9f1cc2071ffafcc16160cbe2447451028fe02356de9224212989ba31e6",
       "tasks.md": "bb7628ed3f6ee2092333fe78d51fdea780913a7ac3c7fcc58a49d18e1cea830b",
-      "implementation-summary.md": "abef524fa5675c5991bcd7bc6a67397d843f39878a94a04ee20f9dd62badcdff"
+      "implementation-summary.md": "35b4c2c7f4d78b567e15788800fb7a1639fec3963a8693f38673266756ad0d53"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "specFolder": "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
   "description": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
   "keywords": [
     "validatecatalogpackage",

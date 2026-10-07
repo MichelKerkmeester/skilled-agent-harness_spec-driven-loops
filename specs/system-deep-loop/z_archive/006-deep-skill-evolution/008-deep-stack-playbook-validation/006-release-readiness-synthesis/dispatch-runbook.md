@@ -1,3 +1,14 @@
+---
+title: "Dispatch Runbook: Deep-Loop Skills Playbook Validation (030)"
+description: "Canonical execution methodology for running all 177 deep-loop playbook scenarios via cross-AI dispatch: auth pre-flight, dependency-ordered execution, category batching, executor routing, single-dispatch discipline, anti-fabrication spot-verification, sandbox handling, evidence capture and remediation."
+trigger_phrases:
+  - "deep-loop playbook dispatch runbook"
+  - "cross-AI dispatch methodology"
+  - "playbook validation execution runbook"
+importance_tier: "important"
+contextType: "implementation"
+---
+
 # Dispatch Runbook — Deep-Loop Skills Playbook Validation (030)
 
 Canonical execution methodology for running all 177 deep-loop playbook scenarios via cross-AI

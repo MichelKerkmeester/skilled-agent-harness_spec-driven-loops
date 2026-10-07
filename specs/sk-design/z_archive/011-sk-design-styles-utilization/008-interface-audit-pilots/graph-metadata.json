@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/008-interface-audit-pilots",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/008-interface-audit-pilots",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The phase-007 shared context seam defines a neutral `CORPUSCONTEXTPLAN` envelope with common generation, provenance, role, transformation, fallback, and proof fields, but no mode consumes it yet",
     "created_at": "2026-07-18T14:17:16.591Z",
-    "last_save_at": "2026-08-30T15:39:12.568Z",
+    "last_save_at": "2026-10-07T18:12:34.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6396ed75405ead0d72b2e0516e41ad28d2b5b34721740dc5a27d0dd11a460b5",
+    "source_fingerprint": "sha256:31b7f4dbb210ed18c40134472c48ba49ccf5b0b24217963cb01c995e930bdae5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dda1f17b56006af0b93377ba369c0cf2e8f6804a7cb003b413e5ac3825139d1b",
-      "plan.md": "72535da1df48b63f4c5a67e45caac0a8195eaab4a134a9e199946b1db56a2f34",
-      "tasks.md": "13d122d7951a93770cbca237acf98fe97a6679b941ed1d3ecd45f780b1cf16c0",
+      "spec.md": "2ab1bd50632c7f70d23b375b5edceb007db6a05be265f4838827c48be28ebd73",
+      "plan.md": "e7048b1e514c2a55dab7e3d89c1601fa7ba12d81dfc84bdf30433e6efa00a743",
+      "tasks.md": "1a34f15247688ce39dd7feadb3a45d15f82081e611b14a9592b5e2f8083dd921",
       "decision-record.md": "c3c60fdaa4fe3665ee01a1c9e66d159a3e7940192f68f7a50b604aed1ed331dc",
-      "implementation-summary.md": "35410a878d4ce2e3977677673f1ef143d9c6efbe7d70ce88ead93e5a694d55e4"
+      "implementation-summary.md": "4a2d849ce2442dd8506aff27e124fb4017eff09a494fc9c3df24bfb169fa6994"
     },
     "last_active_child_id": null,
     "last_active_at": null

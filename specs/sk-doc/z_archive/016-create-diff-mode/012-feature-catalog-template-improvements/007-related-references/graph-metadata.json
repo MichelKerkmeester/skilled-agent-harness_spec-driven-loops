@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "related references spec",
+      "catalog related references",
+      "snippet neighbor links",
+      "related references plan",
+      "related references tasks",
+      "snippet neighbor links task list"
     ],
     "key_topics": [
-      "implementation",
-      "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "script-driven",
       "related",
       "references",
-      "prev"
+      "spec",
+      "catalog",
+      "snippet",
+      "neighbor",
+      "links",
+      "plan",
+      "tasks",
+      "task",
+      "list",
+      "script-driven"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -98,22 +107,48 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed.",
     "created_at": "2026-07-09T10:02:46.146Z",
-    "last_save_at": "2026-09-11T04:36:15.485Z",
+    "last_save_at": "2026-10-07T20:37:53.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7b5dfa58df2890f37d3e9ca0bcaeba242aba840b261155aa6d7ca36d5e11573a",
+    "source_fingerprint": "sha256:089cc3740d975ff1b1f795abc12d4574d96c5bd286a3780909ba802a6e6eb23e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b2e7ab12ea454ee916f2224b989c0547214ecfe44e177823b9d4f0fba5aac95",
-      "plan.md": "7dd548208d7c6c3c414d001c5bab019c2744ebb778db11553451eb95497444ae"
+      "spec.md": "e4c99808c1ba513dbd64e209eddf73322d51b3c67c96b85909a083745b6bd53f",
+      "plan.md": "4c3be5fcc454f9f62c0859dccc4083735838366c4d35fb04fc46a71b3cb593b2",
+      "tasks.md": "06e6cc124acc783db9988f6b420323a9b26d5157fb26eb693a91ff64895805bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/005-codex-agent-toml-sync",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/005-codex-agent-toml-sync",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -42,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Historical Codex agent TOMLs no longer match the canonical OpenCode Markdown set",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-08-30T15:39:07.159Z",
+    "last_save_at": "2026-10-07T18:11:38.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9705dcc8e6d4db548eca234ebc1e593138e071870a8dfaffc3a4fe44f7883d23",
+    "source_fingerprint": "sha256:e8afc58ecf5acc4889dd2cc8b2b964421b5553e03b0a6254615d7f7aabd99712",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24b2aa926a90c004148451678a1652852bf41a18f91956a59c3ce267f28c688f",
-      "plan.md": "0f1e0b069501173c7f6f70143a2d8caf90437b81e75037e6ba1176816cb054e2",
-      "tasks.md": "7922bf1f7b20833ed553745963e2ef99b83a09d699038bfb2e55ea8898c2306e",
-      "implementation-summary.md": "834057409f0dfd1fe6f12fb57048f236f3a704b5abaea4040c3ef2d31a211d96"
+      "spec.md": "2750652f9bffb35409cf788d2a6e16a17cdfed61f4c16d41e1ce5fd802bd525e",
+      "plan.md": "3e42312dd73781133f54dc97b0cdd79cf0b1816851c8d3d643279af44d4e4f90",
+      "tasks.md": "b91087fec889c558c77bbe8f38b72c34b33ce883375a298d1a407a773e6cec3b",
+      "implementation-summary.md": "9eefde0287ba9fd41c9664940db0a6388b567f043c4c1ffc184738f0c75ab687"
     },
     "last_active_child_id": null,
     "last_active_at": null

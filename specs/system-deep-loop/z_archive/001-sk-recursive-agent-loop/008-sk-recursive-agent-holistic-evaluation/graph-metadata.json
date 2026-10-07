@@ -20,8 +20,7 @@
       "tasks",
       "agent",
       "orchestration",
-      "041",
-      "implementation summary"
+      "041"
     ],
     "key_topics": [
       "spec",
@@ -32,10 +31,10 @@
       "tasks",
       "agent",
       "orchestration",
-      "implementation",
-      "summary",
       "sk-improve-agent",
-      "skill"
+      "skill",
+      "evaluates",
+      "agents"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs). The scorer tests \"does the file men...",
     "created_at": "2026-04-13T04:55:07.905Z",
-    "last_save_at": "2026-08-30T15:39:22.551Z",
+    "last_save_at": "2026-10-07T21:24:20.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a91c475f5f2af8f50fc2f2e9129b1df585eb4ce95b054a72d5f261bd7309b85d",
+    "source_fingerprint": "sha256:cf9cbae33fbf61acc9ae00e7c9d8ce51655931552053257e9b5c803fdd403c37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b9d78b4d9c9b00132db55d23deb82bdfbd364384091ddb56ef19056466c7e167",
-      "plan.md": "58a2c34701e17b31b05f57c7f4fa970ff67c497c790c5398c413d3e7d73a6545",
-      "tasks.md": "6bbbc19c2310286c2f024b5b6740c450ec297f454ed9b6daff6c4970e672851d",
-      "implementation-summary.md": "6a7392c5e57d262395a6d94d5c26acb34373935924051499bf093fe376d9d547"
+      "spec.md": "81635ec08ed695156ce58dc2a98399159f1cc5c2090998d7a390bedc5e87dee7",
+      "plan.md": "4f2cefa3a707b6f7c824a7c00fa7827a33e3001c92d1db27dc80b7d0faf28d3e",
+      "tasks.md": "b130f06c687150a82dba9d3a86f7b0a65ef5db24c6099ada9dba35e6e2256186",
+      "implementation-summary.md": "ca37505a30f6abd094d2b64cc4a4fdae0cbf9e50ad339174c74f75298a0f686c"
     },
     "last_active_child_id": null,
     "last_active_at": null

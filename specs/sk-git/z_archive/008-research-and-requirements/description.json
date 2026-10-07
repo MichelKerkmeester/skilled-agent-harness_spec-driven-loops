@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/008-research-and-requirements",
+  "specFolder": "sk-git/z_archive/008-research-and-requirements",
   "description": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
   "keywords": [
     "multiple",

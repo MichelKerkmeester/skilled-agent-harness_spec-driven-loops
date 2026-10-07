@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/011-migration-playbook-refresh",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The migration playbook lagged the 006 plugin research",
     "created_at": "2026-08-23T04:48:36.563Z",
-    "last_save_at": "2026-08-30T15:39:10.503Z",
+    "last_save_at": "2026-10-07T18:11:38.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad066067193f3dd3e24e7f56be6a1c24d88bbc8aeaac273dc7d0c93388aef5aa",
+    "source_fingerprint": "sha256:74293e26f50a44d4a8a6f0e5c9a59ee0ea1395692cc25fa0bbffc140aa8bb8b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a010ea13336dbe48dee1da5baaf63df5e373495b4948991d26990acd40b0327",
-      "plan.md": "1854506ba3fdbb4163426a2d8cf687466bcb38336e02fe3c1115fcc35d4877da",
-      "tasks.md": "2c46258854196eec06e654553fd77dffda9832a6fb99c83bc844236040f146a6",
-      "implementation-summary.md": "fbbcc6389cae11ab4dafb84b98b2ab10fbf65ea0b99baf5f58af6fd33e1e0881"
+      "spec.md": "f9d82bba9b4cafb46c8897a18d65c345c0965d7c47716920426841d29aca752b",
+      "plan.md": "8043458b842e2e5bb407b17fb6143ff3c4e8bac253c42bd8ae2ac6c51b59eeac",
+      "tasks.md": "c0dfb7c09f3a4f41804771efcec3fc68dc7f6e7b2f1d391b717948fa57240d30",
+      "implementation-summary.md": "f97307dbc1f5b9524abe9ce88a69a812e86d5fc5e9cb5ff05191db4e5e67f038"
     },
     "last_active_child_id": null,
     "last_active_at": null

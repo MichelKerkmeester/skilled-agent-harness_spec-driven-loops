@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The autonomous model-benchmark workflow sends benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{runlabel}`, outside `{specfolder}/improvement`",
     "created_at": "2026-06-29T10:43:18Z",
-    "last_save_at": "2026-09-07T16:17:22.019Z",
+    "last_save_at": "2026-10-07T18:15:16.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a861c05d5c4df91900e387b5dd5007fe94439235912c48fcdd422e7e0470f3bd",
+    "source_fingerprint": "sha256:c735cb2d58b40d5c1fc321e4b96218ea25571ac239fe76e001ad4c0cdca025b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c04faa4143f7c5b285334a05b59834465855fa8b605597a326fabd355a4c7878",
-      "plan.md": "ff0cdf360066fa2747dbbfc5b7cfa836d5dadc4f1a236e0db79963472a791e5e",
-      "tasks.md": "1afe9861f61a54e8236dc56c4eff7586bd4c928a9d2995705ca059d349c94319",
-      "implementation-summary.md": "17350051aedf3c56510b39956fc9377c15f9ebd73ff5fff9b5ae332a2c516bc0"
+      "spec.md": "d322438b360c254b53ad6a5f57479f9fc08fdef3f1efc6d9d0d4e3b406803d77",
+      "plan.md": "6dc62e426f89cecca3274f8abbe83fadbc3375ca354152023d8bfb8fc856dd7b",
+      "tasks.md": "cd3ac3a4baf7a998364bc37b247b5253d9245e5ad26483c5f742a842d3a4301a",
+      "implementation-summary.md": "7a6f536cd6fdf556f5328fedbaf72ac7f365ea0bdeefe9e1ffcc5d50a005be5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

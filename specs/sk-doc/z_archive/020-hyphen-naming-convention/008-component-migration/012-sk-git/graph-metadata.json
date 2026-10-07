@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -94,16 +94,16 @@
     ],
     "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-08-30T15:39:16.967Z",
+    "last_save_at": "2026-10-07T18:13:27.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:87c693cc53184e2b0e49a4b455a7a83afbc3d433b4cd0c3ddcb41fea1bb04480",
+    "source_fingerprint": "sha256:021187b261916f98270e4911c184adad0a7ffb854e788477c67b3539a7584164",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67d7f9b666ac23214bdd54424939fa4f980a8909163d86acd25df9e38c5d5a69"
+      "spec.md": "2f648bec8d29c8e2ad58af81134b35a3ff08e95a25dbb389037755ef23763516"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
     "last_active_at": null

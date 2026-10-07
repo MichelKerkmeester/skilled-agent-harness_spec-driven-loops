@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.294Z",
-    "last_save_at": "2026-08-30T15:39:39.080Z",
+    "last_save_at": "2026-10-07T19:24:34.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2068a17b93478dca12d4614e05c403607058ea9c431a92b924d71886e38026a3",
+    "source_fingerprint": "sha256:00e8d40e020df424acfecf9d3bcf904d84d959c996d8cbef13b0a5845cf1d791",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0ba83bedde27d2fbb2254aae6c79724f431f109fcee483e713d56e93b74b20a",
-      "plan.md": "256550bfec56822aad3b6bd5e634f8ef5d79d7126e0a9ccbb00fa4fdf9e04030",
+      "spec.md": "9058288cf2d3b7b2f51715df3103575f7d88cee50c64eb462280930869d67aa9",
+      "plan.md": "4bf14c52f21377ec505711993b3fe105089f8d6faba9fb1cee1b9c46808dbc58",
       "tasks.md": "b4c4c5e7cda69f896c2a900ebb2471a4bd446b241ca8b9deb0e82a9d0ae14bc0",
       "implementation-summary.md": "757b8b380bcba966149fd033ce6949aba595e5e0bdb3b7847d4b6b0772c39818"
     },

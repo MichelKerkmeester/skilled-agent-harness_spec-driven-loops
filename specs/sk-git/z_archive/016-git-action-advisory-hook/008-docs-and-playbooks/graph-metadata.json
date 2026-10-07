@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/008-docs-and-playbooks",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/008-docs-and-playbooks",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,7 +35,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/lib/README.md",
       ".claude/settings.json",
       ".codex/hooks.json",
       ".cursor/hooks.json",
@@ -64,12 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/lib/README.md",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 007 landed four runtime adapters and style-aligned scripts, but the `scripts/lib/` and `scripts/hooks/` directories had no READMEs, and no manual-testing playbook feature exercised the advisory's trap shape (a directory-scoped commit silently dropping an untracked file) on any runtime",
     "created_at": "2026-07-28T06:05:25.617Z",
-    "last_save_at": "2026-08-30T15:39:18.649Z",
+    "last_save_at": "2026-10-07T18:14:21.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d2219770a63fa5ca6185e17c8a1815b3106031fd162b031ded75028123e2c41",
+    "source_fingerprint": "sha256:d69bac669919ac31bd490a65a51d9581e238607262506faefa8d5c64d39d79cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bccfe7b6bf04cf950d272708f096951bdff665a8a541eeee10fc9e4e4834eacf",
-      "plan.md": "fc4eaa1470494ec124adc1d531be51a37fd198cfeb6bb1238576f4f0aa87a9d9",
-      "tasks.md": "84920b9a7311673647efcb4c0d18a8789081186732a2e40bf73ca6ab52cdc7fd",
-      "implementation-summary.md": "63a2f4cd83ec0c9d93349a4bd02a357e217d6527e0dc0919b6b54f1c03b02362"
+      "spec.md": "666026ab560f8639a60e573640b4c730c4b8ab7f7d20bfafbd9e8fbe34f7bc7a",
+      "plan.md": "bc81ce027c3a546a135cf2b73019074f409490c241f2338566214d229fea3dd0",
+      "tasks.md": "eb5bd8c85f1240262e2692f6f4908677e4f38bd09dcb5669d770f8447c0983a6",
+      "implementation-summary.md": "ada917680eb9c29b2a6c79677f781b227b7bf194e6cec00f2a53fca4b37cf27a"
     },
     "last_active_child_id": null,
     "last_active_at": null

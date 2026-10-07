@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map"
     last_updated_at: "2026-07-28T08:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Froze the contract and map with three execution amendments"

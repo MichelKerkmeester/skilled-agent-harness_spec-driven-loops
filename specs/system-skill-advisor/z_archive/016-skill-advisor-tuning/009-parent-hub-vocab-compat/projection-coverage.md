@@ -1,3 +1,13 @@
+---
+title: "Advisor Projection-Surface Coverage Check"
+description: "Read-only measurement of whether every parent-hub registry alias reaches a scorer-consumed projected field."
+trigger_phrases:
+  - "advisor projection surface coverage"
+  - "typed but unprojected aliases"
+importance_tier: "important"
+contextType: "research"
+---
+
 # Advisor Projection-Surface Coverage Check
 
 **Read-only measurement.** This artifact measures one gap: whether every parent-hub `mode-registry.json` alias reaches at least one field the advisor scorer actually consumes from its projection. The existing drift guard (`parent-hub-vocab-sync.cjs`) validates registry aliases against `hub-router.json` typed vocabulary and computes *graph trigger-phrase* coverage, but it never checks the scorer's projected surface. An alias can therefore be typed everywhere the guard looks (registry + hub-router + clean vocab-sync) yet have no direct phrase anchor the advisor can score on — "typed-but-unprojected".

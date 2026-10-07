@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/003-guard-and-enforcement/001-deep-route-guard-plugin"
     last_updated_at: "2026-07-01T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 12 tasks complete; validate.sh --strict passing"

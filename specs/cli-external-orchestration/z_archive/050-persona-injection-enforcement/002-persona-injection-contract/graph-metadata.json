@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
-  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/002-persona-injection-contract",
-  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "packet_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/002-persona-injection-contract",
+  "spec_folder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/002-persona-injection-contract",
+  "parent_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The P1 inventory confirmed the gap: only `cli-claude-code` `--agent` loads a resolved persona natively on the non-interactive path; the other five modes and the `fanout-run.cjs` runtime dispatch persona-less",
     "created_at": "2026-08-19T09:34:02.744Z",
-    "last_save_at": "2026-08-30T15:39:08.162Z",
+    "last_save_at": "2026-10-07T18:11:34.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8e7a6b5dd823360f7b9a71507ad90d064e998ffe0eb04cd6c015406ae7dd589",
+    "source_fingerprint": "sha256:ffc67b5337156e8f7aa104495ef3425ea5b232f7d7caf0fb0c1e90af319f4a78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4ac8e7a1f49bde9649d2fb66d749adcd8b226099efa3c1d84161f735092f8c4",
-      "plan.md": "9c693cabcc30866a8e4c0b05a19b6c3a68506c9d5283788f94b1b870cb3a8b8b",
-      "tasks.md": "04dc54593c4be9c8226ec1ee0e7400a69669be3d333b47b11e87b605fd33dcb2",
-      "implementation-summary.md": "b6e88e8736bd68dd6863d4306cce07469cba5f68a7006f2f22317ff58fb53096"
+      "spec.md": "a0fd6e5cc12c36c6f77612ad1d67d23593bec179c1a793728604f9f8189f88f0",
+      "plan.md": "4a2788d711e9620ad06e3f692af114648d39430814a68e720b026d6416488b5c",
+      "tasks.md": "10ab1d5c9e004464c63dab305f15ab484876c5b845e8e8fd170f725f3699d250",
+      "implementation-summary.md": "6d3e3c8c6c021572697558e0e42729fc2453f9434141abf558eca651d57acd16"
     },
     "last_active_child_id": null,
     "last_active_at": null

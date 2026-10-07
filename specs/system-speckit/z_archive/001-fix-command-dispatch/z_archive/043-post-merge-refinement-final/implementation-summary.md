@@ -2,13 +2,7 @@
 title: "...-system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/implementation-summary]"
 description: "This spec folder represents the final post-merge refinement of the Spec Kit & Memory system following the major merger in spec 035. A comprehensive 10-agent analysis reviewed al..."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "implementation summary"
-  - "043"
+  - "post merge refinement final implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -17,7 +11,7 @@ contextType: "implementation"
 
 | **Field** | **Value** |
 |-----------|-----------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final` |
+| **Spec Folder** | 043-post-merge-refinement-final |
 | **Status** | ✅ COMPLETE |
 | **Completion Date** | 2025-12-26 |
 | **Total Issues Fixed** | 39 |

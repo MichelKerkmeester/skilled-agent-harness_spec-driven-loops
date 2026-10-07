@@ -2,7 +2,6 @@
 title: "Implementation Summary [03--commands-and-skills/018-sk-code-opencode-refinement/implementation-summary]"
 description: "Closeout summary for targeted 043 refinements with verification evidence and closure status."
 trigger_phrases:
-  - "implementation summary"
   - "closeout"
   - "verification results"
   - "risk notes"

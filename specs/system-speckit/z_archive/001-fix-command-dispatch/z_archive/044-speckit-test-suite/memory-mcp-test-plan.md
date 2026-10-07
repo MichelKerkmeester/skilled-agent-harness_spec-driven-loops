@@ -1,3 +1,11 @@
+---
+title: "Memory MCP Server Test Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/memory-mcp-test-plan]"
+description: "Test plan for the Memory MCP Server."
+trigger_phrases:
+  - "speckit test suite memory mcp test plan"
+importance_tier: "important"
+contextType: "planning"
+---
 # Memory MCP Server Test Plan
 
 | Metadata | Value |

@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 4: Creation Standards and Guardrails"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "creation standards and guardrails acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

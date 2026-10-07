@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/004-deep-research-frontmatter-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/004-deep-research-frontmatter-alignment"
     last_updated_at: "2026-06-11T12:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Authoring executed: 15 docs conform and checks green"

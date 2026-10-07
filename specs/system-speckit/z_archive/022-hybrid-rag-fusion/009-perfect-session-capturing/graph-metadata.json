@@ -35,7 +35,6 @@
       "perfect session capturing",
       "spec 009",
       "truth reconciliation",
-      "implementation plan",
       "roadmap phases 018 019",
       "tasks",
       "decision",
@@ -43,7 +42,8 @@
       "summary",
       "deep",
       "research",
-      "perfect"
+      "perfect",
+      "session"
     ],
     "key_topics": [
       "perfect",
@@ -52,12 +52,12 @@
       "spec",
       "truth",
       "reconciliation",
-      "implementation",
-      "plan",
       "roadmap",
       "phases",
       "tasks",
-      "decision"
+      "decision",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -219,7 +219,7 @@
     ],
     "causal_summary": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that audit needed both implementation work and spec-pack follow-through",
     "created_at": "2026-04-12T09:02:50.263Z",
-    "last_save_at": "2026-09-10T21:04:51.607Z",
+    "last_save_at": "2026-10-07T19:24:34.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,14 +231,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:31e70c8f44f512aed8bc59fde28084210a1b602d339467c3f71c75cf63892c6c",
+    "source_fingerprint": "sha256:42b88869d3367eed9981a6430464b210773658c34ebc21cfe91c15c129b0c6a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1077a6e9fdb2a669416c9a114180ef46b3d2c41101b4b4180dc7bc9bbc293a20",
-      "plan.md": "98b58cf4255b48a3351047dcdf36f50d621509773dae89dbcba8d0a45594b933",
+      "plan.md": "6a670365287bd425427e80505d1074bf7657c70154a895292595471b29f6e568",
       "tasks.md": "eab8da466caa7b95cd4cb3c7833984e6dc17f5c31b4a31b18087068f2265a58e",
       "decision-record.md": "32d447b2b2c313c0929a1f020b6e2b21d85cf6bb781b08dffa2ce0572ea3612e",
-      "implementation-summary.md": "4ace026b426f0132e13eeed0754431ed921f4dfe4fc19749915952b231dcae64",
+      "implementation-summary.md": "aedc3d2fea8f46faadef7eb01bf4dbe178cc265d90a9e83d2815f3722fc51208",
       "research/research.md": "170e4998f2a4202ff0bd9751d29777770793e4706b2f8795bdf328adda4fcd5d",
       "resource-map.md": "e3dc15e28ad7457ec36c3bc3a1f7991a2b2efb4550ae317cbee8f40de2b2026c"
     },

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/004-complexity-validator-v2-enforcement",
   "description": "Deep-review post-dispatch validation previously proved that an iteration produced a markdown file and a minimally shaped JSONL row",
   "keywords": [

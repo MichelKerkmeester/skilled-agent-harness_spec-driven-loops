@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/013-install-guide-canonical-naming",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/013-install-guide-canonical-naming",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Normalize every skill install-guide document filename to the single canonical form INSTALL-GUIDE.md (uppercase + hyphen), resolving three inconsistent casings (INSTALL_GUIDE, install-guide, install_guide). The doc-type identifier install_guide is a code contract and stays; the classifier gains additive hyphen-stem recognition so renamed files still type as install_guide rather than silently downgrading to readme.",
     "created_at": "2026-07-17T16:40:25.363Z",
-    "last_save_at": "2026-08-30T15:39:17.218Z",
+    "last_save_at": "2026-10-07T18:13:27.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8f8f89129aebceca62948810cebf9370b82035dcc1608121e5c6ce944886b5d",
+    "source_fingerprint": "sha256:51cd80ca09a30021c55f8d533087f52fc555d2d88caf8bd257dd7e6fdf87a3d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f930ffcf0228305d8de52b53e4f41742f892d5fb6a80cb2b1932f29969fbc21d",
-      "plan.md": "ccca4d9a8b6fba53aa38a05661ad9f6cf2ed24726bc43d5812d795f7ca821aea",
-      "tasks.md": "8e139477a91a51a36e983142740c066e2b423602bbf3cb2ecc854dfc2f5fa079",
-      "implementation-summary.md": "569fb15c429bdde023689ca502d6e5d87d818c6d628684f3f79508b0a1d49a4f"
+      "spec.md": "0c6b348c44776602930130f4dac11af15b57f8f9e7c1799953122f802bce9152",
+      "plan.md": "c3cead728d182411603b248b907a181964ee97a31a88db53cef63323113baf15",
+      "tasks.md": "9a0d463001091d2586c585ea802d20310bf21cdb586494546b53c3880a20b16f",
+      "implementation-summary.md": "134a3643b4efe86d5fd73746befe7b211772333c290bc351f57d3c9bddda3ad7"
     },
     "last_active_child_id": null,
     "last_active_at": null

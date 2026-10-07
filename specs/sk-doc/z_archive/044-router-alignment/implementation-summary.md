@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/044-router-alignment"
+    packet_pointer: "sk-doc/z_archive/044-router-alignment"
     last_updated_at: "2026-08-31T21:30:00Z"
     last_updated_by: "stream-5"
     recent_action: "Aligned ROUTER.md with all 14 modes"

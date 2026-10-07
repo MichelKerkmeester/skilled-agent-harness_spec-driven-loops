@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
   "description": "Six class-H hubs still load their stage-two router from `shared/references/smart-routing.md`, while mcp-tooling already serves a root `ROUTER.md`",
   "keywords": [
     "six",

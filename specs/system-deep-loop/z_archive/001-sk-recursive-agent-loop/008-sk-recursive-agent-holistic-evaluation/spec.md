@@ -19,6 +19,9 @@ _memory:
 ---
 # Spec: Holistic Agent Evaluation & Integration-Aware Improvement
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
@@ -27,7 +30,9 @@ _memory:
 | Parent | 041-sk-improve-agent-loop |
 | Phase | 008 |
 | Estimated LOC | 800-1000 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 The sk-improve-agent skill evaluates agents by checking **keyword presence in markdown** (~15-20% of what a true agent improvement system needs). The scorer tests "does the file mention `spec.md`?" rather than "does the agent understand spec folders?". The benchmark tests "does output have required headings?" rather than "is the output correct and useful?".
@@ -37,6 +42,7 @@ This means:
 - Only handover and context-prime are supported as targets (hardcoded profiles)
 - Integration surfaces (mirrors, commands, YAML workflows, skill routing) are not evaluated
 - No cross-validation between an agent's stated rules and its actual workflow steps
+<!-- /ANCHOR:problem -->
 
 ## Solution
 
@@ -54,6 +60,7 @@ Two new foundation scripts:
 1. **Integration Scanner** (`scan-integration.cjs`) — discovers all surfaces an agent touches
 2. **Dynamic Profile Generator** (`generate-profile.cjs`) — derives scoring rubric from any agent's own rules
 
+<!-- ANCHOR:scope -->
 ## Scope
 
 ### In Scope
@@ -70,7 +77,9 @@ Two new foundation scripts:
 - LLM-as-judge scoring (non-deterministic, breaks promotion gates)
 - New target onboarding beyond dynamic profiles
 - Changes to promote-candidate.cjs or rollback-candidate.cjs gates
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 1. Any agent in `.opencode/agents/` must be a valid evaluation target via dynamic profiles
@@ -80,7 +89,9 @@ Two new foundation scripts:
 5. All scoring must remain deterministic (no LLM calls, no network, no randomness)
 6. Reducer dashboard must show dimensional progress
 7. SKILL.md must pass `package_skill.py --check` after changes
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success Criteria
 
 - `scan-integration.cjs` correctly discovers all surfaces for handover, context-prime, and debug agents
@@ -90,3 +101,4 @@ Two new foundation scripts:
 - `run-benchmark.cjs --profile handover` existing fixtures still pass
 - `package_skill.py --check` returns PASS
 - End-to-end `/deep:start-agent-improvement-loop-improver` loop works with new dimensional scoring
+<!-- /ANCHOR:success-criteria -->

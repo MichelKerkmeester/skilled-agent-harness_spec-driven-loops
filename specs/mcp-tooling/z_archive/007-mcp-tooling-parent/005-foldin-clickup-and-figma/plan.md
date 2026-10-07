@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma"
     last_updated_at: "2026-07-16T16:55:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled fold-in plan to reflect the executed moves"

@@ -193,7 +193,6 @@ Four parallel feature tracks with G2 → normalization dependency
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -223,7 +222,6 @@ Phase 6 (TM-03 Decay) ───────────────────�
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

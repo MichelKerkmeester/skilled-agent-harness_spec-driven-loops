@@ -14,6 +14,10 @@
       "skill-benchmark mode build",
       "122 phase 004",
       "Lane C skill benchmark",
+      "skill-benchmark mode build plan",
+      "lane c skill benchmark plan",
+      "skill-benchmark mode build tasks",
+      "lane c skill benchmark tasks",
       "122 phase 004 implementation summary",
       "lane c skill-benchmark build results"
     ],
@@ -24,17 +28,19 @@
       "lane",
       "skill",
       "benchmark",
+      "plan",
+      "tasks",
       "implementation",
       "summary",
       "results",
-      "design",
-      "renamed",
-      "deep-improvement"
+      "design"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -42,6 +48,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -87,6 +105,66 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -109,28 +187,26 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "2. Files (all under `.opencode/skills/deep-improvement/`)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Design and build Lane C (skill-benchmark) in the renamed deep-improvement skill: scenario fixtures, hint-free dispatcher capturing resource-load traces, routing/discovery/efficiency/usefulness scorer, ranked remediation report, and /deep:start-skill-benchmark-loop command.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-08-30T15:39:23.827Z",
+    "last_save_at": "2026-10-07T20:51:13.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7e6d83055fb63ec2b26c0e0a2e567c74bcc6c809fa95e99abd8c95c48fc7f08",
+    "source_fingerprint": "sha256:9069e23b163ef6bd9f5a6b45d421510cccc2d66847192e95a645ff86518c04ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bfd68355cf4f24a19ffdc22348e47abfa0a3767d4a636c9b7d1f9a9ef27c2c1e",
-      "implementation-summary.md": "3510e23fbe912c9997217557e83cb8ed1a0aba97264b303346d5ba974fd9ef4c"
+      "spec.md": "3975a23e0122e310f32d6b2e1b2bf91cd62593b738f9b7cd9956b6765787ef6f",
+      "plan.md": "cffafe2348662806986c66d877c7c94a5dbe94a28b36c4b37e886252f92f6ae9",
+      "tasks.md": "972edda7c43aa16ca34ce51130b09246e2f6d344b5bfd88147286ad4f0fbcdc7",
+      "implementation-summary.md": "6db36063ae1f7fa7cc47927347c9f938b9ac90f8ede58d05746c1af8b6d2c37d"
     },
     "last_active_child_id": null,
     "last_active_at": null

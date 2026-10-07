@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
     last_updated_at: "2026-07-30T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored packet from live guard evidence"

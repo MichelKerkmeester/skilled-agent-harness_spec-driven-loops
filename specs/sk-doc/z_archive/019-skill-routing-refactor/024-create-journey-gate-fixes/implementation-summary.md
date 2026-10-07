@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/024-create-journey-gate-fixes"
     last_updated_at: "2026-07-28T16:27:03Z"
     last_updated_by: "claude-code"
     recent_action: "Delivered all seven fixes with the journey proof green"

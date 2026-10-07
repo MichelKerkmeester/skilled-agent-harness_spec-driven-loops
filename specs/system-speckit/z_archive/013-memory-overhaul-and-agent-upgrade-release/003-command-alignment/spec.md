@@ -2,11 +2,8 @@
 title: "Task 03 — [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-03-command-alignment/spec]"
 description: "Audit all command configuration files in .opencode/commands/ to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and spec_kit command refere..."
 trigger_phrases:
-  - "task"
-  - "command"
-  - "configs"
-  - "audit"
-  - "spec"
+  - "command alignment audit"
+  - "opencode command review"
 importance_tier: "important"
 contextType: "planning"
 ---

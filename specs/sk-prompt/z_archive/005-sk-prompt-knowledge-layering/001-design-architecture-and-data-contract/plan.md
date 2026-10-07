@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "opus-orchestrator"
     recent_action: "Design ratified"

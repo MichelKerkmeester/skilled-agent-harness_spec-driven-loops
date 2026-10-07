@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/002-runtime-backend-promotions"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/002-runtime-backend-promotions"
     last_updated_at: "2026-06-15T05:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Assembled tasks from parallel planning fleet"

@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities"
+    packet_pointer: "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin/001-research-bridge-possibilities"
     last_updated_at: "2026-08-17T11:46:00Z"
     last_updated_by: "claude"
     recent_action: "Research tasks recorded post-run"
@@ -21,10 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "research bridge possibilities tasks"
 ---
 
 # Research Tasks: Native Bridge Paths for Cursor & Devin Models in cli pi

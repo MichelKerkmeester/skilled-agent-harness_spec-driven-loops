@@ -170,7 +170,7 @@
     ],
     "causal_summary": "`008-loop-systems-remediation/tasks.md` and `implementation-summary.md` are confirmed (direct read) to still be raw, unmodified templates — `tasks.md`'s title is literally `\"Tasks: Phase 1: loop-systems-remediation [template:level1/tasks.md]\"`, its continuity `packetpointer` is `\"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"` — despite the parent's own `spec.md` (already fixed during this remediation phase's own scaffolding) claiming `Status: Complete` and 7 completed children existing (`research/researcharchive/20260701T071133Z-gen1/research.md` §4.2, F-015)",
     "created_at": "2026-07-01T07:24:47.296Z",
-    "last_save_at": "2026-08-30T15:39:25.232Z",
+    "last_save_at": "2026-10-07T18:15:07.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,13 +179,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bde90b6bc957ee6b436acb15ae71db3098436e46d289aed3f071198b90667e2",
+    "source_fingerprint": "sha256:287086c02c485dfc0b8c2d71b4ddffb471273ca63660f78c9d4a06353491d4ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2715365f58dd135526e99f82d186fea18a9e32e973ac7eaa63528cc8e722924",
-      "plan.md": "69862e789ea00a4ae928fd607c7e046f5cb9356c918a3e146bbee70599993ce5",
-      "tasks.md": "b6593521e15eb7514373a5849808c2fc573cc5dee32f98f1719c9ee8a3c4e452",
-      "implementation-summary.md": "e38f1b8287d95b6b27a4786b1dc047181140e3a9f2651c481e17742fc8fa7792"
+      "spec.md": "aed615661bf62ad3941155da302c2f5281793b51fa9d2cddbc66fffbba69b990",
+      "plan.md": "3d45b6c63c2cba8bb1eb527ad29095a363649b266ecaec2a3a03fabee759cdcf",
+      "tasks.md": "152973d66630907c083cdd46cb4eb76698b79c8f19087855fb576475629b9a69",
+      "implementation-summary.md": "7e1d88623afbf69f541a4c3002f2a0317ae5fc96ad78c47ffb6bf6c499a77398"
     },
     "last_active_child_id": null,
     "last_active_at": null

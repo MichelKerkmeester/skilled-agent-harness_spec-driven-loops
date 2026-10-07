@@ -54,7 +54,7 @@ Extract actionable patterns from three AI-focused repositories to improve system
 6. **Task DAG** - seu-claude persists hierarchical tasks with tool output caching
 7. **RRF Fusion** - dotmd merges multi-engine results without requiring normalized scores
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## Recommendations Summary
 
 | Priority | Recommendation | Source |
@@ -64,4 +64,4 @@ Extract actionable patterns from three AI-focused repositories to improve system
 | Medium | Add intent parameter | drift |
 | Medium | Add usage boost to decay | drift |
 | Low | Consider RRF fusion | dotmd |
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->

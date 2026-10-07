@@ -1,3 +1,13 @@
+---
+title: "SpecKit Post-Rename Test Report [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing/test-report]"
+description: "Post-rename test report for system-spec-kit, covering script, template, reference, path and end-to-end checks."
+trigger_phrases:
+  - "speckit post rename test report"
+  - "post rename testing evidence"
+  - "spec kit script and template verification"
+importance_tier: "important"
+contextType: "implementation"
+---
 # SpecKit Post-Rename Test Report
 
 **Date:** 2025-12-17  

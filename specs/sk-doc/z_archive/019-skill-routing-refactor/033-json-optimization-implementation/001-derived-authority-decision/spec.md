@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision"
     last_updated_at: "2026-07-29T10:44:35Z"
     last_updated_by: "claude-code"
     recent_action: "Accepted ADR-001/ADR-002; verified claims vs source"

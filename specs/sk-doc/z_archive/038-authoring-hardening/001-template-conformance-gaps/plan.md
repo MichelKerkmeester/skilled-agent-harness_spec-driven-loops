@@ -11,7 +11,7 @@ contextType: "plan"
 parent: "sk-doc/038-authoring-hardening"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/038-authoring-hardening/001-template-conformance-gaps"
+    packet_pointer: "sk-doc/z_archive/038-authoring-hardening/001-template-conformance-gaps"
     last_updated_at: "2026-08-29T12:40:00Z"
     last_updated_by: "claude"
     recent_action: "Ran a control per accusation; edited two templates and cleared two"

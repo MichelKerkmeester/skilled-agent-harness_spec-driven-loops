@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/011-skill-advisor-cli"
+    packet_pointer: "system-skill-advisor/z_archive/011-skill-advisor-cli"
     last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All phases complete; tri-daemon gate + T9xx transport-down drill passed"

@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename"
+    packet_pointer: "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename"
     last_updated_at: "2026-05-06T15:30:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Both phases shipped + validated"

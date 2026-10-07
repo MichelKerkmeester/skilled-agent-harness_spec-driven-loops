@@ -35,10 +35,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,24 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation-extended.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
         "source": "derived"
       },
       {
@@ -184,11 +163,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The default `validate.sh` invocation path uses `.opencode/skills/system-spec-kit/mcpserver/lib/validation/orchestrator.ts` (a hand-written TypeScript file, ~530 lines) whose `validateFolder()` function (lines roughly 420-455) calls a flat, hardcoded sequence of validator functions (`validateFileExists`, `validatePlaceholders`, `validateTemplateSource`, `validateTemplateShape`, `validatePriorityTags`, `validateFrontmatterBasics`, `validateSpecDocRule`, `validateGeneratedMetadataIntegrity`, `validateGeneratedMetadataDrift`) and pushes results into an `entries[]` array",
     "created_at": "2026-07-01T19:38:04.143Z",
-    "last_save_at": "2026-08-30T15:39:25.334Z",
+    "last_save_at": "2026-10-07T18:15:03.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a4524f2100e3e6ac8cf79b2087a9b816a1c069a1ca9a8a666e2977153876f7e",
+    "source_fingerprint": "sha256:54294a86944552db2d8acddac22cfd9c8c6880227f1b14ea0fb71122f786235d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f31b8e521fe1f18c386ccb6545cacaa5cd8f0c46b5161976b84dfa83c04832a8",
-      "plan.md": "8ab03a4ff4759768326a1a37d80d133e65891d18758f697d8907fa59fb5b47f6",
-      "tasks.md": "dca49dc38409642e31957f0285893654672922ec510befa49ffa317e6fab715c",
-      "implementation-summary.md": "48681bae7ef059b1f9a8f19fd9ff0e6cb8bbd98b9eb97af5fe9940bcc73c91cc"
+      "spec.md": "8b8d493aed264258cfc1d8d03696ca0e9c77af98036effc49db5a4195b1a2567",
+      "plan.md": "4275b48425752043dc381e665f183d9f13b9c8c43b6a488ecaf4c9d97cee6238",
+      "tasks.md": "6f6d9edeae2f95f8682a20e6da80bf4570dd714527e4a40d11ef2df3f0bac82c",
+      "implementation-summary.md": "014c5af346891938a37905a888bb563ba2e20d60e6f30ef6f58aaad281b9dd3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

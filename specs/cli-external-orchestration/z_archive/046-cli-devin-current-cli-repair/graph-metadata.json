@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/046-cli-devin-current-cli-repair",
-  "spec_folder": "cli-external-orchestration/046-cli-devin-current-cli-repair",
+  "packet_id": "cli-external-orchestration/z_archive/046-cli-devin-current-cli-repair",
+  "spec_folder": "cli-external-orchestration/z_archive/046-cli-devin-current-cli-repair",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -15,14 +15,9 @@
       "devin respect-workspace-trust false",
       "devin sandbox rejects writes non-interactive",
       "cli-devin lineage salvage_miss",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "cli devin current cli repair plan",
+      "cli devin current cli repair tasks",
+      "cli devin current cli repair implementation summary"
     ],
     "key_topics": [
       "cli-devin",
@@ -196,7 +191,7 @@
     ],
     "causal_summary": "The installed devin CLI (3000.4.25) breaks non-interactive fan-out lineages in two independent ways",
     "created_at": "2026-08-17T11:20:42.518Z",
-    "last_save_at": "2026-09-11T04:34:32.402Z",
+    "last_save_at": "2026-10-07T18:11:26.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2eabd1567aaf8cd074545c1587fbfb7d62eb34f4b4d54f7a6e981cbc7a41d63f",
+    "source_fingerprint": "sha256:15588c9947517a3381eee901c8af2f58ef9c96d662ad23dfc5ff1624639c971d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe9933ff986503f2b98fc57594034d73eed1bedca260cb8d99abc04a60701421",
-      "plan.md": "6860c3cb8e943f7962f928e4e115ee2699744a89aa9e2e3310a11f5702efca7c",
-      "tasks.md": "be068067b75fe1544bb5021b1dd6c74926443e4cae211472ff5920b10a2cdc0d",
-      "implementation-summary.md": "4c4df3b8c2a9c10e9b003c1b7b68c2c7b073921e480e77668ab67374650e5b10"
+      "spec.md": "e043cad33e5d84b994a556c589a6a56acab54287cce51ed8755a0a90cbecde89",
+      "plan.md": "038bb592f00ce22753e820050ef6433033b2dbf690c7a3d0479034d23da90ad2",
+      "tasks.md": "6c67cabfd13cd51bccfe856c1a06be5951d30a171d8406e34416157964d74269",
+      "implementation-summary.md": "af0cf7e786c815ef6cba64e9afa7c7861f59fad81a9a0902ca6b1a010eb4746e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/005-corpus",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/005-corpus",
   "description": "`corpus/` has no authored sk-doc template — it holds `README.md`, `motion-evidence.mjs`, and `tests/` (`README.md`, `fixtures.mjs`,",
   "keywords": [
     "corpus",

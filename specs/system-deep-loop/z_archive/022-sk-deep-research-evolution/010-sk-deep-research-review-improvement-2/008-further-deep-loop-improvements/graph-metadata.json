@@ -11,31 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "008",
+      "further deep loop improvements spec",
       "further deep-loop improvements",
       "graph wiring",
       "blocked stop surfacing",
       "sample quality",
       "session isolation",
+      "further deep loop improvements plan",
       "phase 8 plan",
       "graph wiring plan",
+      "further deep loop improvements tasks",
       "phase 8 tasks",
-      "phase 8 adr",
-      "phase 8 implementation summary"
+      "further deep loop improvements decision record"
     ],
     "key_topics": [
-      "deep-loop",
+      "deep",
+      "loop",
       "improvements",
+      "spec",
+      "deep-loop",
       "graph",
       "wiring",
       "blocked",
       "stop",
       "surfacing",
       "sample",
-      "quality",
-      "session",
-      "isolation",
-      "phase"
+      "quality"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -45,9 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scratch/closing-review.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts"
+      "scratch/closing-review.md"
     ],
     "entities": [
       {
@@ -84,18 +83,6 @@
         "name": "closing-review.md",
         "kind": "doc",
         "path": "scratch/closing-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-aware-stop.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-isolation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-isolation.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +180,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Phase 008 work started from a simple but high-impact gap: the repo already shipped richer stop-state, graph, and replay helpers than the visible workflows actually called",
     "created_at": "2026-04-12T09:02:50.197Z",
-    "last_save_at": "2026-08-30T15:39:24.532Z",
+    "last_save_at": "2026-10-07T20:55:16.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40817d48221c118b7c2b90b5de4d49fda9aaee7742179d94923616e87b03c3ba",
+    "source_fingerprint": "sha256:4e976109ce4905567f9fdcc30917304411d0f7aa53e3a5ebfd52daed59e9f124",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "398723e3b1a4cde3d5267fe55e0156b93e5cb3d0318eb4166773fcfe472cfadb",
-      "plan.md": "bc718229ac8d0f2a26308364897ba5e38233469a0558b44da7eca1fbde156702",
-      "tasks.md": "172ce4918911107c5f87339b84b6198f35a36d2574003f6f87b15ab072f5dbcf",
-      "decision-record.md": "afc5ae985da37e2c71ae419eb4f77b73241d5aa7937309f0586cee7332de45d1",
-      "implementation-summary.md": "78306660bb3c768084405c68ce6c3d941f4e82ee70868fc2d5413a01cfc3a57b"
+      "spec.md": "9a6062b77a7f129eb5808deb1363b56f01ec2e7f8f8093ba73ae58fd7a56dea2",
+      "plan.md": "ccd5ea0d15e4d65585a6653af6b893705cde89089aa1952b093d00d7934d2ac1",
+      "tasks.md": "78b9b9b67fb62861d97e03d4316c46bf98afec3e29ea0fc3e5795d32c3415142",
+      "decision-record.md": "bc115b45d5142624ddc9f67d6fd66075f7520728cc21a5778c4984fe6983fa9c",
+      "implementation-summary.md": "a7ca584b070d986f92fa628bd3ebe588c6860860e886d5a5d07895074eea0173"
     },
     "last_active_child_id": null,
     "last_active_at": null

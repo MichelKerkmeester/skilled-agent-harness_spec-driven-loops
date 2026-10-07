@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
   "description": "The sk-create-skill README still carries the older tabular reference-card style, opens with an AT A GLANCE table and predates the pilot standard",
   "keywords": [
     "sk-create-skill",

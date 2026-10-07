@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` |
+| **Spec Folder** | 001-deep-ai-council-skill-creation |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

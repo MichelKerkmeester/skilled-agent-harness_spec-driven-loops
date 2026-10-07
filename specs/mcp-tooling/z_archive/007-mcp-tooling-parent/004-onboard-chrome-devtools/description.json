@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools",
+  "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools",
   "description": "The hub skeleton exists but has no packet content",
   "keywords": [
     "hub",

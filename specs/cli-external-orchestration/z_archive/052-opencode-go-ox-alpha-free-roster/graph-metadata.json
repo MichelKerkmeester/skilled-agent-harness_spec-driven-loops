@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
-  "spec_folder": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+  "packet_id": "cli-external-orchestration/z_archive/052-opencode-go-ox-alpha-free-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/052-opencode-go-ox-alpha-free-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -18,8 +18,7 @@
       "ox-alpha roster plan",
       "implementation",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "ox-alpha",
@@ -31,9 +30,9 @@
       "plan",
       "implementation",
       "tasks",
-      "summary",
       "alpha",
-      "model"
+      "model",
+      "needed"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
     "created_at": "2026-08-22T10:23:23.561Z",
-    "last_save_at": "2026-09-11T16:41:47.222Z",
+    "last_save_at": "2026-10-07T18:11:39.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5aaab8fa53f08f1bd6fdf1953fbf86a8e8ad5effc2b274660139f8458445797",
+    "source_fingerprint": "sha256:9f838d9676ce9c351fb9b75f2976e98845a9957936070417887423ef2b8ed6e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b98f3f480b3ee1051c4849dc52e981856f3377f5c7a9a814285b8787c08e19f8",
-      "plan.md": "4cbad429ab009386c2077283a94b5f3f05e7f70e80d3dfb8ce24f979c6b7ad3a",
-      "tasks.md": "6afc3293d2d99e62e14e3bf1bed61b9ac9cdd7aa8c813f45b92a28c6405b3edc",
-      "implementation-summary.md": "e4c646006627277b46e4b84b5f4440b74b0fd508ccdb2eb18f07b252adb1cf7d"
+      "spec.md": "36c052941728d2014272416b6390fe5c9ea3078dd1668c7705ce92d7e508f5ae",
+      "plan.md": "3cfd9af042d8861b124b67de228e960c920e353c09acd4b501cdaad79b3ed159",
+      "tasks.md": "746be3c2c106d55595e5894ce19e3268d2a8dac969275708a380058c4b4fb380",
+      "implementation-summary.md": "795aa12cb7e325eccaa10a0cccafc8f68822de4e68a3bb09c7268f88fedf2bde"
     },
     "last_active_child_id": null,
     "last_active_at": null

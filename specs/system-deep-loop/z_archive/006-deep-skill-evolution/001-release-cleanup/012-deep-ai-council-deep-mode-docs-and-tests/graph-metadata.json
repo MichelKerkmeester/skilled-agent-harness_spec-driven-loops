@@ -45,7 +45,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "changelog/v2.1.1.0.md"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.1.1.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.1.0.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session → topic → round, exposed via `/deep:ask-ai-council`) is implemented in `scripts/orchestrate-session.cjs` + `orchestrate-topic.cjs` + `scripts/lib/findings-registry.cjs` with no reference documentation",
     "created_at": "2026-05-24T06:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:22.947Z",
+    "last_save_at": "2026-10-07T18:13:54.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c05b108cd0a3ff8b02f8b66199b545bd946c2f37c5e5b2b56c21c3858145882d",
+    "source_fingerprint": "sha256:1e90a56d93ea7cebd1cb5a6f078e3020ef7f750deb5d344669728b4b36d3d3e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "63826191a0bb340777ed17b467078e43fe0e7b68118cba2515d490eb69871997",
       "plan.md": "f3058296bba09f5b31353c50833f6fa34415a88b0c2b243a08ac1621050aa64f",
       "tasks.md": "5b0b47b30d29fca8c7ccf9d3342ff139c2b109416fd70d45b02c7481eb4c1cf5",
-      "implementation-summary.md": "5f7053a3b5b326505bb9757d177dbad40c7c8163ddb4dc51a4f51e70814038ff"
+      "implementation-summary.md": "388641113370857ae7b6d0cfb70bea9a86cb20ca0e735f90f8b37ab0dcd26b2b"
     },
     "last_active_child_id": null,
     "last_active_at": null

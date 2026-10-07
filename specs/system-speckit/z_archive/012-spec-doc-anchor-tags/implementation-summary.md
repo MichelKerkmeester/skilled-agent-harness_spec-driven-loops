@@ -3,7 +3,6 @@ title: "Implementation Summary"
 description: "Archive normalization summary for Spec Doc Anchor Tags."
 trigger_phrases:
   - "012-spec-doc-anchor-tags"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager"
     last_updated_at: "2026-08-22T09:30:00Z"
     last_updated_by: "claude"
     recent_action: "Verified via fresh-reviewer synthesis that no doc fix is warranted"

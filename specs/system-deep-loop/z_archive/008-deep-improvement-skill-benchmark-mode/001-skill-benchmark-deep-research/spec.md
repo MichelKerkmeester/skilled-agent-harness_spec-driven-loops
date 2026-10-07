@@ -30,12 +30,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Purpose
 
 Run a multi-model deep-research loop to answer the open questions that gate the design of **Lane C (skill-benchmark)** and to produce an exhaustive **rename impact map** for `deep-agent-improvement → deep-improvement`. Findings feed Phase 002 (rename) and Phase 003 (Lane C design + build).
 
 Research only — no implementation. Per the deep-research contract: report findings, cite sources, never implement fixes during research.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:requirements -->
 ## 2. Research questions
 
 Derived from parent `spec.md` §11 (OQ1–OQ6) and §7 (R1–R6):
@@ -47,6 +51,8 @@ Derived from parent `spec.md` §11 (OQ1–OQ6) and §7 (R1–R6):
 - **RQ5.** How should the **Skill Benchmark Report** rank bottlenecks and express remediations so a follow-up packet (or Lane A) can act on them?
 - **RQ6.** Exhaustive rename surface for `deep-agent-improvement → deep-improvement` and a safe ordering: skill dir, `SKILL.md` frontmatter/triggers, commands, agent + runtime mirrors (`.claude`/`.codex`/`.gemini`), skill-advisor graph (`skill-graph.json`), `descriptions.json`, sentinel `sk-prompt-models`, root docs/CLAUDE.md, and any tests/fixtures.
 - **RQ7.** Prior art: how do agent/skill frameworks elsewhere measure tool/skill *discoverability* and routing efficiency (retrieval precision/recall, ablation, LLM-as-judge), and what transfers here?
+
+<!-- /ANCHOR:requirements -->
 
 ## 3. Method — multi-model split
 
@@ -72,6 +78,7 @@ Iteration discipline (from deep-research contract): LEAF, one focus per iteratio
 - A convergence report (stop reason, iterations, questions-answered ratio, newInfoRatio trend).
 - A rename impact map (RQ6) consumable by Phase 002.
 
+<!-- ANCHOR:success-criteria -->
 ## 5. Success criteria
 
 - Loop reaches convergence or 20 iterations with consistent state files.
@@ -79,6 +86,10 @@ Iteration discipline (from deep-research contract): LEAF, one focus per iteratio
 - `research/research.md` answers each RQ with cited sources and per-iteration ruled-out directions.
 - Findings are concrete enough to drive Phase 002 (rename) and Phase 003 (Lane C design).
 
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:scope -->
 ## 6. Out of scope
 
 No implementation, no skill mutation, no rename execution (that is Phase 002). This phase produces evidence and recommendations only.
+<!-- /ANCHOR:scope -->

@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "system-skill-advisor"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/009-parent-hub-vocab-compat"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/009-parent-hub-vocab-compat"
     last_updated_at: "2026-07-07T18:33:59.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Planned 3 read-only assets; two dispatched to read-only agents"

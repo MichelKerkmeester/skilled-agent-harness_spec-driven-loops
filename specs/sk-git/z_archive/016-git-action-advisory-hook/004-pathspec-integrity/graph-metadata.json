@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/004-pathspec-integrity",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/004-pathspec-integrity",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there",
     "created_at": "2026-07-27T18:47:26Z",
-    "last_save_at": "2026-08-30T15:39:18.624Z",
+    "last_save_at": "2026-10-07T18:14:22.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89ccb2383db9119a69f6a6fd5a8fc33848707abf72e0d8218855e4ed2dcd6adc",
+    "source_fingerprint": "sha256:308d583e624ae515152cf498783337e15880f8598aa98b79cb02d2d4451a79f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee35fe306675614d9ed9a69dbb048688108258ec00a85ecf86d5b73ed1bc9f3c",
-      "plan.md": "5595555ff9c1d2df89d8c9a0793eb98ea324f7ef7e34af7b17403803d0e64955",
-      "tasks.md": "71dcb9c329eb90b1e75539877530e216b91c3db0ac6f9e477717c3ac712abe2a",
-      "implementation-summary.md": "f50f932994ea833a76ca8b0ffff47ded350a030dc022fe62c96ae614e745cdfa"
+      "spec.md": "91b2cfb868f7aadb9f8d48409750c5c35c908d7674dd0a14471757e08d7d017b",
+      "plan.md": "88637ab4029c65e2f32577d113742e169f111d11d2dace60d2ff1192e1dfe4dc",
+      "tasks.md": "f3e3dc2a32433b67c37e42c016c38f8907716371b19e814c9ead5588f22249fa",
+      "implementation-summary.md": "82a6f22af06c698efb75c4a9ce1266bcfe2244a1b2edf87c1f1c8e103d994e3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

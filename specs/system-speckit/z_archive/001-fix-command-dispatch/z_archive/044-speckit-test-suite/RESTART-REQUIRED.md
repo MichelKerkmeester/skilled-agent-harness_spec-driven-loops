@@ -1,3 +1,11 @@
+---
+title: "MCP Server Restart Required [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED]"
+description: "Reminder that the Memory MCP server must be restarted to load the checkpoint fix."
+trigger_phrases:
+  - "speckit test suite mcp server restart"
+importance_tier: "important"
+contextType: "planning"
+---
 # MCP Server Restart Required
 
 ## Why

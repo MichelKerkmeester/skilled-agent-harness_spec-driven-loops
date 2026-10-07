@@ -18,12 +18,15 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["handover.md"]
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # Session Handover Document
 
 CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode | Last: Implementation Phases 2-5 via codex agents | Next: Verify Phase 2-3 agent output, validate all changes
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Session Summary
 
 - **Date:** 2026-03-24
@@ -36,9 +39,11 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
   - Memory context saved
   - Phase 1 Foundation fully implemented (severity normalization, canonical manifest, sk-code-review split)
   - Phases 2-5 dispatched as parallel codex agents
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Current State
 
 - **Phase:** Implementation — Phases 2-5 codex agents dispatched
@@ -113,9 +118,11 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 - **Phase 2-3 agent may have timed out** — If codex session exceeded limits, reference doc updates may be partial. Check output file and verify all 5 files were edited.
 - **Potential file conflicts** — Phase 2-3 and Phase 4-5 agents could have edited overlapping content in YAML workflows. Run `git diff` to check.
 - **deep_review_strategy.md template** was not included in any codex agent's scope — still has old 7-dimension model.
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 7. Continuation Instructions
 
 ### Resume Command
@@ -153,3 +160,4 @@ CONTINUATION - Attempt 1 | Spec: .opencode/specs/03--commands-and-skills/030-sk-
 | `.opencode/commands/speckit/deep-research.md` | Updated review mode description (by Phase 4-5 agent) |
 | `.opencode/specs/03--commands-and-skills/030-sk-deep-research-review-mode/research/research.md` | Rewritten as v2 research |
 | `030-sk-deep-research-review-mode/scratch/*` | 8 new iteration files + archived v1 state |
+<!-- /ANCHOR:next-session -->

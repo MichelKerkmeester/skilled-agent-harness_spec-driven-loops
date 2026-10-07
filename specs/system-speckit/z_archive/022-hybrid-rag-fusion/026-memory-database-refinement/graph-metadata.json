@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline",
     "created_at": "2026-04-12T09:02:50.315Z",
-    "last_save_at": "2026-09-10T21:05:07.304Z",
+    "last_save_at": "2026-10-07T19:24:32.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +220,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f6c214f03ce5ef65efdb09a06561abfcc8a49039cb7256c1a2414bc08540dc17",
+    "source_fingerprint": "sha256:dea033fa17657603e15c7d7ad1b9f0736dca8288a6701932d41926f7dd0cf1d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e258c1b034c2bd9d7cc0a286b319c2382be29d2feff3696da92fb9bf9774ad23",
-      "plan.md": "134035930e35652d6dd9267a36ebc28660e35ac419c8d921c40e87846c917c9c",
+      "spec.md": "f6398edda562e980da057b26661ca5372f4439f5e23fe90facf8b6893bac8f1a",
+      "plan.md": "b4b4dd845c5f54c51a06b4d104e4c87f0c828ec664a72829c622681daf66c9dd",
       "tasks.md": "b08441263731735a419771d6ffe6e15e63d94646916a21bee862fbf6ea9afd58",
       "implementation-summary.md": "9db6d88b28ae4d133aa71c25d557c7c6b2c27ed5327828af6745d1b0a1108276",
       "research/research.md": "6b2038dfea20d4f27bd9cc142395dca149b87695764c6fa08161260013e4642a"

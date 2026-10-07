@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`deep-alignment` sequences its v1 authorities by determinism (sk-doc, sk-git, sk-design, then sk-code last) because sk-code conformance is the hardest to automate: \"does this code follow the surface's stack patterns\" is a judgment call, not a fixed grammar",
     "created_at": "2026-07-11T06:17:04.546Z",
-    "last_save_at": "2026-08-30T15:39:20.120Z",
+    "last_save_at": "2026-10-07T18:15:11.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae40a99662059666326c04d99ae9d18aa580c8df83f85a9d753d604d82ba646d",
+    "source_fingerprint": "sha256:4f4442eda45c1676b71a91b926cf95f615a03ea325b30fff2972774d4cfe1cf5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b5a5fd5d1601ecba0504d17bffa9c4128ebf65c4c66ecec7bae24ff67bb4ef9",
-      "plan.md": "ae0c9ae9671789f1aadbcc5f7d74d23c9427bbf4efe4db35a00a3db6d6808ace",
-      "tasks.md": "6e8ba7427cdbd3f4f0de362f92c3ea2e46e2e67047bb1e5869c162daae425c3f",
-      "implementation-summary.md": "732e202126a6f30933b44bca42bcc9084f2283232589fe3e82029fb9752dfeb5"
+      "spec.md": "193fefddafa9b581823cdbb8bab32c8751d53775694cf197ac6803bcbc2e7343",
+      "plan.md": "0bb587ce8f2bb31c11e68cf95f9686d051f44b9eb236949e3f64c4b9ef5040ef",
+      "tasks.md": "de015642495c9a8c0168d601143e2937b9ec83a4124c5874089ed99adb1a546f",
+      "implementation-summary.md": "0d7d8730a1c1f298cdf1f94935d8fb8f87d971556bf9c00eda099fbe9a34a3b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

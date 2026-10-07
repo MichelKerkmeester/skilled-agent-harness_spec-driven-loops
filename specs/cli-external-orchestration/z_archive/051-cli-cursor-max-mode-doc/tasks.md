@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/051-cli-cursor-max-mode-doc"
+    packet_pointer: "cli-external-orchestration/z_archive/051-cli-cursor-max-mode-doc"
     last_updated_at: "2026-08-19T19:25:45Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete; validate --strict PASSED Errors:0"

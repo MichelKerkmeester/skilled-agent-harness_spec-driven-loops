@@ -38,11 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,30 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-scaffold-never-touched.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation-extended.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
         "source": "derived"
       },
       {
@@ -188,11 +160,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Several folders in this packet carried `Status: Complete` while their `plan.md`/`tasks.md`/`implementation-summary.md` were still byte-identical, untouched scaffold templates — confirmed directly for `008-loop-systems-remediation/tasks.md` and `implementation-summary.md` (title literally `\"[template:level1/tasks.md]\"`, `packetpointer: \"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"`), and for 3 other folders per `research/researcharchive/20260701T071133Z-gen1/research.md` §4.2 (F-010)",
     "created_at": "2026-07-01T07:28:44.272Z",
-    "last_save_at": "2026-08-30T15:39:25.256Z",
+    "last_save_at": "2026-10-07T18:15:05.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:787662efa1ecdcd8d0112f42415f2839d99b2b62dc414f8ff4ed0391f16585ec",
+    "source_fingerprint": "sha256:4325a01c18964c6c868a1f094077f9124629ba401fbb554c36d25cfdce0626b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5e1d9674a357d2dfcba1f408d73c7f234464eb42f027193d315d8c92f05e277",
-      "plan.md": "b581f908e97d797a7a9269156192aa716788cb1602d04a31275a9b3efadc1529",
-      "tasks.md": "2466088ca290acba37f5104ade29191fb37f8a19becfb85b2b58bfa413fddb49",
-      "implementation-summary.md": "2f8e08d72077f6cad5a2025964da4d8121708dc00d4fb7f583b87f3966304479"
+      "spec.md": "166bbe4c6dd8e657d202325b4791bd8a1145cadfb5acb3bf986f5c9a76cba4ec",
+      "plan.md": "645ff2d0cb6bc5c80a1bdcf287b08cb6278ab7cb1716006b475064f2d017ae7e",
+      "tasks.md": "95516342894a1c878e4267531005038634292ba8684e9da76fd737f2b141bf59",
+      "implementation-summary.md": "b837efa5b07bf4b78a2dbe1ff2c44a1b7f5dcf68f139368ceae9f96fcd437629"
     },
     "last_active_child_id": null,
     "last_active_at": null

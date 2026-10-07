@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/026-cli-external-parent/002-architecture-decision",
-  "spec_folder": "cli-external-orchestration/026-cli-external-parent/002-architecture-decision",
-  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "packet_id": "cli-external-orchestration/z_archive/026-cli-external-parent/002-architecture-decision",
+  "spec_folder": "cli-external-orchestration/z_archive/026-cli-external-parent/002-architecture-decision",
+  "parent_id": "cli-external-orchestration/z_archive/026-cli-external-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The program has approved high-impact structural decisions for folding `.opencode/skills/cli-opencode/` and `.opencode/skills/cli-claude-code/` into a single `.opencode/skills/cli-external/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
     "created_at": "2026-07-09T18:58:25Z",
-    "last_save_at": "2026-08-30T15:39:07.066Z",
+    "last_save_at": "2026-10-07T18:11:18.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:5c73bbb233ec44d127262906787baba8e29ee658855915f7c7eeb7e4272ad112",
+    "source_fingerprint": "sha256:05eabc82c6d532d6ec38d28f1d47dc75225fb383945a88d7b68d0febe7375267",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a2836b588b1e90aa66e3f097bffe38c89be0e41de5136cadb8f9914fe478773",
-      "plan.md": "43b0b39cb42e9fc0d131f5c2760a00d753c39f598f6f9ec83a78ea7b684a2840",
-      "tasks.md": "2640e4ae92bbcf6a327e9975a9d167a9a0a2b74982f1d9546327bad707fd329c",
+      "spec.md": "67edb68b3228857d0b663087bdce0e87e1c84bc8f7ee0a487050797229777c21",
+      "plan.md": "bfa98b0c783115c4611bd20667bf55dcc047bd29b99b66c8eed351f27527ae58",
+      "tasks.md": "ecc55298e19e849d6bae088c035c2561369dfd6671797354fae96556a2d28332",
       "decision-record.md": "5fdbde14e9448edb202baef430cef573f383698b82897c95154b8ed313de8903"
     },
     "last_active_child_id": null,

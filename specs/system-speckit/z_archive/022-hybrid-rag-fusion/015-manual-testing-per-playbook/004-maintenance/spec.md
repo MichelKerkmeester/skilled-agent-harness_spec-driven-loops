@@ -170,7 +170,6 @@ Execute all seven Phase 004 maintenance scenarios, record verdicts and evidence,
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -189,7 +188,6 @@ Execute all seven Phase 004 maintenance scenarios, record verdicts and evidence,
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

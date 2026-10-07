@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
   "description": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases.",
   "keywords": [
     "system-deep-loop",

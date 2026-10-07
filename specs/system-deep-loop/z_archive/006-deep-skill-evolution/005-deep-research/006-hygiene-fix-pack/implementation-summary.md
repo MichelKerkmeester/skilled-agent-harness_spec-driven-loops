@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 116-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack |
+| **Spec Folder** | 006-hygiene-fix-pack |
 | **Completed** | 2026-05-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

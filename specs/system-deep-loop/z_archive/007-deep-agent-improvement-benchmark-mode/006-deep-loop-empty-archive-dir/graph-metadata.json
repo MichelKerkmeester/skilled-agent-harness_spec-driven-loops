@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `researcharchive/`",
     "created_at": "2026-05-29T05:57:34.890Z",
-    "last_save_at": "2026-09-07T16:17:17.223Z",
+    "last_save_at": "2026-10-07T18:14:24.437Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b39136bb6960aa83878f31f7b4c2a82084865be1c9ed1e0dad4268fac61b1178",
+    "source_fingerprint": "sha256:9ba9fab5a7332805dba79c39f18775d1b521ec9e10e9d1e6ad47452957d6d85d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9143c08f6049e60c77002d010879fe014a04a7dbe88d450f40844070a489918e",
-      "plan.md": "ec0ff9c69e60a896f34a6ccb9edbc4fbde44ea20e8c0a20ce24f8a214ed7f988",
-      "tasks.md": "32aa2f74fecdb32985b75c660339459e012386a4dd0326e392cf8faa9f7d4d17",
-      "implementation-summary.md": "e76e80debbab3f724dd7971d77ce5f4ddecb837163dcdaffbe83366711790a9c"
+      "spec.md": "1b0e032fa0b9f2dfba83bce598796cde6007e4da5087f40e853f39f8da5f332d",
+      "plan.md": "5f34233422bf4c6b423c11b05585eed13f28e19b7e227beddad30148230d3d64",
+      "tasks.md": "0af690d8af4c84df0bb40b38ed2ee0c0a9df5531bb31612ce236906e850a9028",
+      "implementation-summary.md": "14c57e01002c232e3c96f9c0cf6a0499481210969116730148460ad4a02002a1"
     },
     "last_active_child_id": null,
     "last_active_at": null

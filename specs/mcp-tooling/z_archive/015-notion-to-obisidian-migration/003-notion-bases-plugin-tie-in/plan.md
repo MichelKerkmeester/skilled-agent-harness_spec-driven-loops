@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
     last_updated_at: "2026-08-22T04:06:26Z"
     last_updated_by: "claude"
     recent_action: "Built notion-bases 4-file tree, catalog entry, OBS-022 scenario, router intent, manifest regen"

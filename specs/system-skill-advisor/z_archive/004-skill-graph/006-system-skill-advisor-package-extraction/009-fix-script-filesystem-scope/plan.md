@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope"
     last_updated_at: "2026-05-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Production fixes verified"

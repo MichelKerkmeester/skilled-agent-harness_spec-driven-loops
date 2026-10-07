@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
-  "spec_folder": "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster",
+  "packet_id": "cli-external-orchestration/z_archive/053-cline-ox-alpha-cli-pi-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/053-cline-ox-alpha-cli-pi-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -20,7 +20,6 @@
       "implementation",
       "plan",
       "tasks",
-      "implementation summary",
       "x-ai/ox-alpha cline-pass"
     ],
     "key_topics": [
@@ -35,7 +34,7 @@
       "plan",
       "implementation",
       "tasks",
-      "summary"
+      "x-ai"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +200,7 @@
     ],
     "causal_summary": "pi's interactive Cline picker already discovers Ox Alpha as a free model (`Free — Try with limited usage, separate from ClinePass quota`) and can run it live — it is the operator's active model in the current session",
     "created_at": "2026-08-24T10:16:38.355Z",
-    "last_save_at": "2026-08-30T15:39:08.214Z",
+    "last_save_at": "2026-10-07T18:11:40.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f6a1b8c1c50a3dfecddd7e22c1da1d2c988c5e782b4cf43b559a204003ce458",
+    "source_fingerprint": "sha256:18c073a5c89ec88b2f80587bba61a5aa6d5934c90d0a5e856f235edd90b166fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab4ea2b8839f66f28460dbd8c6ad64bc285644ca1883f75c08e65db11c9f8951",
-      "plan.md": "6426652f024062bd3ed56c07b69d39d340aaf9adf3a03ba9c688170df6a1be5f",
-      "tasks.md": "60cac8336ad34b408008bb4a4ccbf14730388df06332def0e05b4e14493d1fd1",
-      "implementation-summary.md": "8cb2039b64300e4d0966674f891f5272b2e952d6b65dea7876a0a53b7208eed6"
+      "spec.md": "8521d94a692847d02cca46d5c7ee74bfb75090211bccda1c82cb465ddfe8de05",
+      "plan.md": "20dcadf48ad4cc763a04040a1b741c02838329c2db1fb4f06b504bb95b983a92",
+      "tasks.md": "db798c043c76849606e731ea0685747877bc4cd5da25507db30efbdaf25492d5",
+      "implementation-summary.md": "d1df216a939b7752ce10df218fbe1e8ec8a3da60bd3d17c4f376e6cf12a7829d"
     },
     "last_active_child_id": null,
     "last_active_at": null

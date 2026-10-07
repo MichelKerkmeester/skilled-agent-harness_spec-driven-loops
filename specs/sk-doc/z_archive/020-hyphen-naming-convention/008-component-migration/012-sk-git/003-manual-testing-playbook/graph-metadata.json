@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map).",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-08-30T15:39:16.991Z",
+    "last_save_at": "2026-10-07T18:13:27.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:c59808059922c1987dccd8aebf38823263b3c60d2d4cefa894c8b29a0981ac2f",
+    "source_fingerprint": "sha256:abb07cd7f729c002ade41938d6d3746378c0de6109c977b17005d0ad74620c03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "add6248ac78bc3dc7e88d31dfd44fe06493792601c3d469b514df15a932ff052",
-      "plan.md": "40c6a6de35e2212f01f6f544582e779332ab5f5ee1927bcc2c87c0c73b237905",
-      "tasks.md": "5d2a93f2ca236ab22632d55b2d19896754181110eebc5d9af32c12a31aa04079"
+      "spec.md": "4f1649ea212cad3278cf8b459dc09b7141202d04a96a2ac58f8671a6702db0e5",
+      "plan.md": "827046197850684e1e8a24a7476d0f8d814ed0b55edd28adcf92153bae6d3f8e",
+      "tasks.md": "b968bf6313a66b4e781a987c15e4ef52a3cba2d8a5d6a4a723dc77c54c4d20da"
     },
     "last_active_child_id": null,
     "last_active_at": null

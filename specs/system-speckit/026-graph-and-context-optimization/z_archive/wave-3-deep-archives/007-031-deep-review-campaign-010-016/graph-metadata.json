@@ -12,22 +12,35 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "deep-review campaign 010-016",
+      "code-graph remediation review",
+      "10-iteration review verdict",
+      "deep-review execution plan",
+      "review iteration loop plan",
+      "deep-review phase breakdown",
+      "deep-review task tracking",
+      "review iteration tasks",
+      "deep-review completion checklist",
+      "deep-review implementation summary",
+      "review verdict conditional",
+      "review findings shipped"
+    ],
     "key_topics": [
       "deep-review",
       "campaign",
-      "plan",
-      "execution",
-      "10-iteration",
-      "autonomous",
-      "deep",
+      "code-graph",
+      "remediation",
       "review",
-      "tasks",
-      "task",
-      "tracking",
-      "iteration"
+      "10-iteration",
+      "verdict",
+      "execution",
+      "plan",
+      "iteration",
+      "loop",
+      "phase"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -121,9 +134,39 @@
         "source": "derived"
       },
       {
-        "name": "2026-05-14",
+        "name": "Plan — 017: Deep-Review Campaign 010-016",
         "kind": "quoted",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks — 017: Deep-Review Campaign 010-016",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2026-05-14",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "normal",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review task tracking",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -149,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Recommendation Ship",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "|",
     "created_at": "2026-07-10T06:23:41.022Z",
-    "last_save_at": "2026-08-30T15:39:32.832Z",
+    "last_save_at": "2026-10-07T20:44:27.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -168,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d410256655191b96d5877bec2e21bcc2d80d652e0da598a9e0289ee825a0b90",
+    "source_fingerprint": "sha256:2214ef4e8db356a3aec105319b3e588a6d521d8af359279dd0f9ce02ce5a8d75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc7442e72fba95f1cea3f10add4ad5be086a4cf7b9ec493f1281f10fac307190",
-      "plan.md": "a4a30ceb79eddf9ab776b660db93e6bf9da9abb65b6c08517c2df6642a1a5ad4",
-      "tasks.md": "7dbc91a1ba5b34c86fd1698f586c4596db82dd6c08372ea1859abbdb476b065f",
-      "implementation-summary.md": "e7c530bd68ccd4c102206591cd460164a665910b2eec582c99e659a3ddd77a25"
+      "spec.md": "95d0ede8b84b9833428392b4eacd2c76a27096fa8bb23217a25088a63b691844",
+      "plan.md": "9a842b214c8fde81565654107ac786d084850fb7bd3f5463c5ddbedca7273237",
+      "tasks.md": "15fc2d328e12585ac791d418fce969a01f17c6c4f4f904e0fa70f1f11be383bf",
+      "implementation-summary.md": "c12cc11503c1667dad698d576660f1e867c639ec83f00243e9a82f809e55d3bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

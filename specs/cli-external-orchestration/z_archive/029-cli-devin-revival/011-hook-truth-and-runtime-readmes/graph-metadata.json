@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
-  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "packet_id": "cli-external-orchestration/z_archive/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
+  "spec_folder": "cli-external-orchestration/z_archive/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
+  "parent_id": "cli-external-orchestration/z_archive/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -50,7 +50,6 @@
       ".claude/hooks/README.md",
       ".cursor/hooks/README.md",
       ".cursor/hooks.json",
-      ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
       ".codex/hooks/README.md",
       ".cursor/hooks/mcp-route-guard.mjs",
       "hooks/devin/README.md"
@@ -102,12 +101,6 @@
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "index.js",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parse Zed",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The registration file was originally written with an unsupported wrapper shape",
     "created_at": "2026-07-25T09:17:23Z",
-    "last_save_at": "2026-08-30T15:39:07.357Z",
+    "last_save_at": "2026-10-07T18:11:36.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c0739e6596ee556d35bd65e0050e6a19001c089850aadae5c178982c98ed28d",
+    "source_fingerprint": "sha256:9df86e534a7101490a2f36f7e9a175e5dc7d8484552a38eeeca25949938fa9b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17091b1aa13b59158f606c7229fcab2c83093ff95670f2806018ce39ba1e3c0a",
-      "plan.md": "a68bb6e0df18073f50afa68e2bad79aaf038f327fd77181d73cd0e6c4245b5c5",
-      "tasks.md": "b46bf05178136d96185d583b7bf951b0317be82a80dad6fd4c363b8846cd8632",
+      "spec.md": "493b3707d6c4f24b58786be892d847b0c483ce8f2085ce76d876283301a0a65b",
+      "plan.md": "5c32c93afff1d170eb28b880dc3791c5e668dd5929ba2e2db90d7d13b884ae00",
+      "tasks.md": "f125ec94d956bf07b8982b6d42786ef7b908b15af07462440618276a80a09167",
       "decision-record.md": "422bb07c48aad6da48b0783dcc60f12d01c7285491b4b61538028d4a63332b07",
-      "implementation-summary.md": "291947c6fbb99c1304a4f22a5efcf0530cc1c020823dca0b843815a0948163ff"
+      "implementation-summary.md": "3428cb78187a9805cbaa69c74e7d1abb60d2d94ca6c1b0551857312b28ea229a"
     },
     "last_active_child_id": null,
     "last_active_at": null

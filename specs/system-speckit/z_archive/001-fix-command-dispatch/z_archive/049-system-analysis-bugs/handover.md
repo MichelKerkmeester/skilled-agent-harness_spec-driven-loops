@@ -2,26 +2,26 @@
 title: "Session Handover [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/handover]"
 description: "1. RESTART OPENCODE - MCP server has old code cached (critical)"
 trigger_phrases:
-  - "session"
-  - "handover"
-  - "document"
-  - "049"
-  - "system"
+  - "system analysis bugs session handover"
+  - "bug remediation continuation handover"
 importance_tier: "normal"
 contextType: "general"
 ---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 - **From Session:** 2024-12-31 14:30-14:45 CET
 - **To Session:** CONTINUATION - Attempt 2
 - **Phase Completed:** IMPLEMENTATION (third bug found and fixed, verification pending)
 - **Handover Time:** 2024-12-31T14:45:00+01:00
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Decisions Made
@@ -45,9 +45,11 @@ contextType: "general"
 | `.opencode/skills/system-spec-kit/mcp_server/lib/vector-index.js` | Enhanced getEmbeddingDim() to check env vars, fixed multiConceptSearch() | COMPLETE |
 | `.opencode/skills/system-spec-kit/scripts/lib/embeddings.js` | Added getEmbeddingProfileAsync() export | COMPLETE |
 | `.opencode/skills/system-spec-kit/mcp_server/context-server.js` | Fixed hardcoded 768 dimension check at line 675, bumped to v12.6.1 | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
@@ -64,9 +66,11 @@ contextType: "general"
 ### 3.3 Critical Context to Load
 - [x] Checklist: `checklist.md` (verification status updated)
 - [x] This handover: `handover.md`
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
 Before handover, verify:
@@ -75,9 +79,11 @@ Before handover, verify:
 - [x] No breaking changes left mid-implementation
 - [ ] Tests passing (if applicable) - PENDING: requires MCP restart for memory_search
 - [x] This handover document is complete
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
 ### Root Cause Analysis Summary
@@ -124,3 +130,5 @@ memory_search({ query: "embedding dimension bug" })  // Should return results (n
 .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/checklist.md
   - CHK005: Updated evidence with verification results
 ```
+
+<!-- /ANCHOR:session-notes -->

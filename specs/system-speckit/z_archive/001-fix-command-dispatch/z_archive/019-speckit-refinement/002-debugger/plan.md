@@ -2,12 +2,8 @@
 title: "Debug Delega [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/002-debugger/plan]"
 description: "plan document for 002-debugger."
 trigger_phrases:
-  - "debug"
-  - "delegation"
-  - "implementation"
-  - "plan"
-  - "002"
-  - "debugger"
+  - "debug delegation plan"
+  - "debug delegation command"
 importance_tier: "important"
 contextType: "planning"
 ---

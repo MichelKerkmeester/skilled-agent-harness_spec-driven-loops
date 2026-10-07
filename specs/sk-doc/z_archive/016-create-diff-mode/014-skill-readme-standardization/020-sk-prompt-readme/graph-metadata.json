@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it claims eight modes in one place and lists nine in another because the `$deep`/`$d` and `$s` aliases live in the references but not in the SKILL.md mode table)",
     "created_at": "2026-06-07T14:57:42Z",
-    "last_save_at": "2026-08-30T15:39:14.471Z",
+    "last_save_at": "2026-10-07T18:12:34.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c4ba2114d759c3999a2f8e8b54049a82bdcea0613ff682dfba59d543b1f6324",
+    "source_fingerprint": "sha256:b087d1c65cb19ba8dd55a94547fd85524d7ca9bf822c309cb6c6cd3569e49b44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92b7c76cd990a09430360977e85c97e5419246ef69ddb3280622a757d18196f6",
-      "plan.md": "f2c64693c01bacb1320e11b4e362c6d4e806615a869533f41798f9fb39fab461",
-      "tasks.md": "bdcd342746ff4404e74d28d8cefa0dc8a57c2eebe2593292d7770318c4f9a277",
-      "implementation-summary.md": "e26d0435f319d66c25b489544bfb77c7c05eaa4b70b15ef660fcb1abf6c9da0e"
+      "spec.md": "e7f4a813213947675353974799df28709f142d6d01df9d6a6a42af38dbf32e1e",
+      "plan.md": "079516c4706439c978c14d1b99560815fdbd4aa3de678fdae6162c511ba0d0a4",
+      "tasks.md": "7d98fbfbb7409344e657629b7130edc0e93c2e93227ead7462518c7685d1965c",
+      "implementation-summary.md": "2a9019f230b8f010999dd232c23f4eedb7e144507f298ac08a3b1350a4a5d62b"
     },
     "last_active_child_id": null,
     "last_active_at": null

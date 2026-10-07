@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase charter authored; not started"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
-  "spec_folder": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/014-markdown-agent-sync",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/014-markdown-agent-sync",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc` packet paths directly (template paths per `/create:` command, the required-reading table, and the resource inventory)",
     "created_at": "2026-07-07T04:51:45.089Z",
-    "last_save_at": "2026-08-30T15:39:13.683Z",
+    "last_save_at": "2026-10-07T18:12:32.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1668929bdec8ae870b5b6c1a547e581853ec163101dc38b5bce712fcb7668869",
+    "source_fingerprint": "sha256:05fb0daacf2bc783000d30067870347ea8736568dc920bf3b34358d2eb342b84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f9ccfe1dbcac3a72be48a4eaebf8d3e6b4144544045890835433dfdcf5ced3e",
-      "plan.md": "573f9a7474e67019a071afe508f5f52af62fbf34ae469cbb7da2c89e1ff2418d",
-      "tasks.md": "e9fa6c78af73a5c25d63b050fea60d79a3b5d2306088c66c1d125fe03c2a2d11",
-      "implementation-summary.md": "f7cc2eb44b86b9e6a2fcb74543dca6254c891e5b37b54023322c78e6f16a40ce"
+      "spec.md": "50ff6bb02dabbaa70790854884d6c2611dda713ebc7002bffb13b40274930fa6",
+      "plan.md": "259ad5beb8edcbc64453550ba9c4bd281fb1396ae7833bcf0c60fb41148e13f0",
+      "tasks.md": "dc09c2bd03b9e9c521647720655844ef26fd22bda02423f98f997653eac5b18c",
+      "implementation-summary.md": "6c6101ab75610e44b8e953474794b6007afa44ed64b53af11e6a4a06b9cb6b76"
     },
     "last_active_child_id": null,
     "last_active_at": null

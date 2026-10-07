@@ -2,10 +2,8 @@
 title: "Task 05 — [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-05-changelog-updates/spec]"
 description: "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work performed in spec 130."
 trigger_phrases:
-  - "task"
-  - "changelog"
-  - "creation"
-  - "spec"
+  - "changelog updates audit"
+  - "release changelog review"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -201,4 +199,4 @@ The implementer should populate `changes.md` with:
 
 - **Parent**: [../spec.md](../spec.md)
 - **Changes**: [changes.md](changes.md)
-- **Dependencies**: [../task-01-readme-alignment/changes.md](../task-01-readme-alignment/changes.md), [../task-02-skill-speckit-alignment/changes.md](../task-02-skill-speckit-alignment/changes.md), [../task-03-command-alignment/changes.md](../task-03-command-alignment/changes.md), [../task-04-agent-alignment/changes.md](../task-04-agent-alignment/changes.md)
+- **Dependencies**: [../001-readme-alignment/changes.md](../001-readme-alignment/changes.md), [../002-skill-speckit-alignment/changes.md](../002-skill-speckit-alignment/changes.md), [../003-command-alignment/changes.md](../003-command-alignment/changes.md), [../004-agent-alignment/changes.md](../004-agent-alignment/changes.md)

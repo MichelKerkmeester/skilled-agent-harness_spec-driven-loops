@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-opencode-language-gate"
     last_updated_at: "2026-07-09T10:45:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Split shipped + verified: 3 drift guards 20/20, child 84->87, hub 85->85"

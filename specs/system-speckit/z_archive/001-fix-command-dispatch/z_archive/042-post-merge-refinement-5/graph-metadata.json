@@ -11,32 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "spec",
-      "kit",
-      "memory",
-      "042",
-      "post",
-      "implementation",
-      "plan",
-      "merge",
-      "refinement",
-      "tasks"
+      "post merge refinement 5 spec",
+      "post merge refinement 5 plan",
+      "post merge refinement 5 tasks",
+      "decision record",
+      "post merge refinement 5 decision record"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "spec",
-      "kit",
-      "memory",
       "post",
-      "implementation",
-      "plan",
       "merge",
       "refinement",
+      "spec",
+      "plan",
       "tasks",
-      "following"
+      "decision",
+      "record",
+      "following",
+      "major",
+      "kit",
+      "memory"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -45,8 +38,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -77,12 +69,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
         "source": "derived"
       },
       {
@@ -192,11 +178,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Related Feature",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Following the major Spec Kit Memory merger, a comprehensive 10-agent analysis revealed systemic issues across the codebase:",
     "created_at": "2026-04-12T09:02:53.526Z",
-    "last_save_at": "2026-08-30T15:39:37.153Z",
+    "last_save_at": "2026-10-07T20:12:14.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +197,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:07c308f15ede03463a8a82932d4d2f99eb3948ee8c8e206e6214344134c35327",
+    "source_fingerprint": "sha256:d48b9a6f3fd4c3e234e876aba0931531c4df02e0821c7bf92cc22599e6977010",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66ac10bf2adc700fa334439ed7b823f5cc962111a8ae5513425a0a2d58d5d206",
-      "plan.md": "533b0422e57b993cf296ded7eb053355f341792a02014747c0313c785958b6c3",
-      "tasks.md": "6f92666d98e0c81b013ae70a1dc8bbea1172f4a2a46a4c26c3f22d3b8428def2",
-      "decision-record.md": "c30210dba48b55426e75b3cd5596af0ebfd90f5b7437040d74d4a8907f037ef8"
+      "spec.md": "c925e4c0becd0c4d157f8996c2be19ed4fbdb4dfb70caf43eb56e8218589f35b",
+      "plan.md": "50442f23a8ac7f6df307635e411ceea3f496ca8a0fda704e853ecd3739b598ad",
+      "tasks.md": "2617d4f674fc061667badf0fe1ab2381de90b98099a7142f1e09ea5e666fee48",
+      "decision-record.md": "26f88ce334b1f73d17d9564cf9550aed0dc8946bf9e4fd644dd4ad4e7f46860b"
     },
     "last_active_child_id": null,
     "last_active_at": null

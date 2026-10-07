@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/011-command-surface-normalization"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/011-command-surface-normalization"
     last_updated_at: "2026-07-01T10:04:52Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from review DR-002/004-P2/007-P1/008/010 + research F-005-F-009"

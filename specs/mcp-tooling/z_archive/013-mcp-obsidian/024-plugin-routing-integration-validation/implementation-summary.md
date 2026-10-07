@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/024-plugin-routing-integration-validation"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/024-plugin-routing-integration-validation"
     last_updated_at: "2026-08-04T12:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 024-plugin-routing-integration-validation executed"

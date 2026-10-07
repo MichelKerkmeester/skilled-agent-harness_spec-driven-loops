@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/005-hook-compatibility-consumer-cutover"
     last_updated_at: "2026-05-14T12:36:34Z"
     last_updated_by: "codex"
     recent_action: "Consumer cutover implemented"

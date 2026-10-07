@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review"
+    packet_pointer: "sk-doc/z_archive/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review"
     last_updated_at: "2026-07-11T09:14:17.440Z"
     last_updated_by: "claude"
     recent_action: "Review task ledger closed; all tasks complete with evidence"

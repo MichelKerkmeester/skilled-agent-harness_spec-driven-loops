@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
       ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
     ],
     "entities": [
@@ -78,12 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 proved that the changed README surfaces have no broken links, but the repository-wide guard still reports 96 failures across older documents",
     "created_at": "2026-08-05T05:58:53Z",
-    "last_save_at": "2026-08-30T15:39:17.914Z",
+    "last_save_at": "2026-10-07T18:14:21.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc01dfe54a53513b05b07a66c2a97f40bfcfc9a55710f426481af3df83d7b733",
+    "source_fingerprint": "sha256:b80f32a5b2addc1689a4a83595184cbb74aa4299591e6964109da307da78f2d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48235bd6fb4b8f15f98df642b9daf7ed8f91028a9f02df21f0981928c591ce00",
-      "plan.md": "01fcff709128a6b80ce8a52c7d892b93629390276c1863b9473b3354c93f2b55",
-      "tasks.md": "7f3a91f988f04681a6b68ef29acbe6b36e8a067e600609345c984801882372fd",
+      "spec.md": "348f371ddd30e80e014a4e9511ac314d93799f6739976e013aca605f73c8063a",
+      "plan.md": "07d77bc76bc8c16d69ca446a8c8f8adbcbd7f5a991086c323ee65e3fc6497c48",
+      "tasks.md": "2ffd41469fcb64cb77b841f7208c5ae9ac6f50d11f897b450003bb98a01a9487",
       "decision-record.md": "bd5fe24c1a8ad447b65156d4b8d02844079847a9a4f0cb845293f47891209b6f",
-      "implementation-summary.md": "76e03e4b689be4fdfc4599b981f02ea20299cabf4971c98813303e5efa0c92a6"
+      "implementation-summary.md": "fc12408bab18c253fbcf2fdabd657fc4cac2251c8d675fde59e54234f1bb5c91"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+  "spec_folder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+  "parent_id": "cli-external-orchestration/z_archive/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism — there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-24T04:52:26.644Z",
-    "last_save_at": "2026-09-11T16:41:47.090Z",
+    "last_save_at": "2026-10-07T18:11:38.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c43da4a00f515a5b1328430c496f96644c3801f4171155e82b6bfed2283faf75",
+    "source_fingerprint": "sha256:f36385ef801950bbc494e02807f3f966c6b5fdcabc87ce492551deff9b6cb6a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dca9e9f0cdb3746b44dec2af96e7f940ed1f10d778a509fa227113cecc834669",
-      "plan.md": "2e9cd321fd8d4c33a9e03bf9551284bca18aab4ad52f5afabcc562ba5bf28cd9",
-      "tasks.md": "f65bd5bbb71d23afe9d1f780815b6a9e54c79c76436152d1d05c0ba6b48c43fe",
-      "implementation-summary.md": "6f4bcd7019898650b2513b4cb6c14fceff565fcc872ba6598ceb33b83ca6a407"
+      "spec.md": "00730900071693fa0ce6d8d89d54bc6d95df8a2a5470d22b4f15ed4e96961cf6",
+      "plan.md": "e8aa6423dbec0143f7cf0edf82784ff5e3b2c1cdf9df36266a62b7add8682aea",
+      "tasks.md": "d80e46c648af576334c50f36ca908eaf2959e552643be8a944889d6a3c6af8c7",
+      "implementation-summary.md": "e542fbf648a96183f6df3eee914e7683f0aa3feb7e4f066392fc0f645b18e05f"
     },
     "last_active_child_id": null,
     "last_active_at": null

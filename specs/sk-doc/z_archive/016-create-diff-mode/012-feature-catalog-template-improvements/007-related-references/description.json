@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
   "description": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them.",
   "keywords": [
     "script-driven",

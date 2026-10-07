@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry"
     last_updated_at: "2026-07-08T03:36:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec.md after confirming MR-004 fix via standalone probe and live dispatch"

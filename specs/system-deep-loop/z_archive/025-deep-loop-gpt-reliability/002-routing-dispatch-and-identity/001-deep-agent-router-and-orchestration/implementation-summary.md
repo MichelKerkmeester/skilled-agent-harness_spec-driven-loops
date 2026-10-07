@@ -1,11 +1,14 @@
 ---
 title: "Implementation Summary: Deep Agent Router & Orchestration Hardening"
 description: "Status tracker for the DEEP primary agent and orchestrate hardening phase."
+trigger_phrases:
+  - "deep agent router orchestration summary"
+  - "gpt deep router hardening summary"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
     last_updated_at: "2026-06-30T15:40:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Transitioned to phase parent; decomposed implementation into 5 child phases (001-route-proof-validation, 002-agent-dispatch-hardening, 003-command-pre-route-headers, 004-gpt-verification-smoke, 005-host-hard-identity-fix5 PARKED). All findings/recs (F1-F38, R1-R11, C1-C3) mapped. 031 parent passes strict validation."

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Manual test scenarios for scoring-and-calibration need structured per-phase documentation instead of a single playbook table buried inside the hybrid RAG fusion packet",
     "created_at": "2026-04-12T09:02:50.297Z",
-    "last_save_at": "2026-09-10T21:05:00.954Z",
+    "last_save_at": "2026-10-07T20:38:16.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4881360282a544f12066c0b9c2caf4d99381298cf127f44926f75807998607e",
+    "source_fingerprint": "sha256:c1d092050e134092cea3f51fe84685593a6379b8949fd2a5c0bd1b72a1d5323e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9947ca8f724547da4a9f66ac5fd8aac742c45576e7efd075860fdb1135e12369",
-      "plan.md": "e473fa81248f8623cfce01aef4f6d181f6edf31a147245658ef7e9e1d5b66f27",
+      "spec.md": "9e88a7af3258d0732a41fe98f62c49cbddec6369b33d4230d122c55140c8d78c",
+      "plan.md": "aed9601b40dfa2810ed9950bb6295ce294e464a5fb5675b645fb96c98e24bec8",
       "tasks.md": "11981b71e93bfd522eb5628b4d18b9d1a34370daccab632abcfd2727366209b5",
       "implementation-summary.md": "4c6b55c0da68d212f039b6bc977a0592869dcbdf6c108ff08879fbb98d05486f"
     },

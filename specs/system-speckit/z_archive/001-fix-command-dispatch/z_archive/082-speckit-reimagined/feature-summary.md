@@ -1,3 +1,15 @@
+---
+title: "SpecKit Reimagined: Feature Summary"
+description: "33 features organized by functional area with current versus future state analysis and impact assessment."
+trigger_phrases:
+  - "speckit reimagined feature summary"
+  - "feature inventory overview"
+  - "current versus future feature state"
+  - "functional area feature breakdown"
+importance_tier: "normal"
+contextType: "planning"
+---
+
 # SpecKit Reimagined: Feature Summary
 
 > **33 features** organized by functional area with current vs. future state analysis and impact assessment.

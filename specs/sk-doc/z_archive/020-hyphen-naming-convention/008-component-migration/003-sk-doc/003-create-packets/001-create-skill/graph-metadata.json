@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts.",
     "created_at": "2026-07-14T15:22:33Z",
-    "last_save_at": "2026-08-30T15:39:16.412Z",
+    "last_save_at": "2026-10-07T18:12:56.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:b45b7edc51358db05860f92027a27db8479b494e9892ace68c61ea0de2c331b5",
+    "source_fingerprint": "sha256:a5e89f60ecbe4b67c51e6bd9d061d9c21227782e2784111d82d66756865dfb39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b56f034f478c23966691e708af580e6d396b287bb80385ce7fcfd7702cd6d6c",
-      "plan.md": "2164a6616a57f327a19eda72517e6446840161f66f73f52d753f4d5d3c8e263a",
-      "tasks.md": "ec5db18568cf912f9eb3a092f5820e2421bc6d096a477c1822baabd02dda7bbc"
+      "spec.md": "751bbac51f1ef4b47b08cd16652f70d5c9d5292b9f62433f9a47f0b14a537d72",
+      "plan.md": "226112d1247fc9d3aedda45e559d41017a86fa48339be3fbb8bc962177af67d5",
+      "tasks.md": "dee05481c07cf6954c09626a2b31d6ff69556772b04914e85453d856951ca69c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/007-comprehensive-deep-review"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/007-comprehensive-deep-review"
     last_updated_at: "2026-07-09T03:31:53.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "20 iterations + remediation complete; all checkers pass"

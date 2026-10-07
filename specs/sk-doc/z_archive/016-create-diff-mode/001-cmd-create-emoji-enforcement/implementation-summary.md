@@ -4,7 +4,6 @@ description: "Emoji usage is optional, not required across all /create command t
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "011"
   - "create"
 importance_tier: "normal"

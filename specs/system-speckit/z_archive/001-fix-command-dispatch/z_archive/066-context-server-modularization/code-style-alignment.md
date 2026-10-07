@@ -1,3 +1,12 @@
+---
+title: "Code Style Alignment Report: Spec 066 Modularization"
+description: "Analysis of the modularized context-server code against the workflows-code skill standards and existing codebase conventions."
+trigger_phrases:
+  - "context server modularization style report"
+  - "module code style alignment"
+importance_tier: "normal"
+contextType: "general"
+---
 # Code Style Alignment Report: Spec 066 Modularization
 
 Analysis of modularized code against workflows-code skill standards and existing codebase conventions.

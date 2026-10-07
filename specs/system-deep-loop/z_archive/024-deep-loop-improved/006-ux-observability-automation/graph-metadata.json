@@ -4,12 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation",
   "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
   "children_ids": [
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/001-dashboard-sparkline-trend",
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat",
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope",
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/004-run-now-control",
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/005-per-iteration-memory-upsert",
-    "system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/006-loop-wide-dry-run",
     "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/001-dashboard-sparkline-trend",
     "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat",
     "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope",
@@ -101,16 +95,16 @@
     ],
     "causal_summary": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects",
     "created_at": "2026-06-29T05:08:46.224Z",
-    "last_save_at": "2026-08-30T15:39:25.027Z",
+    "last_save_at": "2026-10-07T18:14:35.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b22b798bd72d647da089dbf25c11ce4ab9c1458c6ad5a1543a4bb622b637f7ee",
+    "source_fingerprint": "sha256:f28f7f5137a7d98f60804318f5295520114b0a8e750c84f9156d0137efe92378",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ae1d200d0576a730053f0473c0c143a16b0f7c15a5485ca97b9ad1ab0b8ce10"
+      "spec.md": "8856d98ae39920323ff6cc3b8777fbb143ff43b1e5938147cfd373fe0d455e73"
     },
     "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope",
     "last_active_at": null

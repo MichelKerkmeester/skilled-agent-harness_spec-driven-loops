@@ -51,8 +51,7 @@
       ".claude/agents/prompt-improver.md",
       ".opencode/commands/README.txt",
       ".opencode/agents/README.txt",
-      ".claude/agents/README.txt",
-      ".opencode/specs/descriptions.json"
+      ".claude/agents/README.txt"
     ],
     "entities": [
       {
@@ -101,12 +100,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`)",
     "created_at": "2026-05-06T13:19:25Z",
-    "last_save_at": "2026-09-07T16:17:12.412Z",
+    "last_save_at": "2026-10-07T21:35:06.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f5cf23f863b17e03191ac3c20d4bdc09bf3f0e1246eb74882f6fcf08607a6eb",
+    "source_fingerprint": "sha256:eb5256de2d79755533ddbd84ae443549173fcdf432e79d9b07e39b695ac931f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55eea95ba3be6a8d568471bc0b9ea4bf3f09a45065534ef42aab9ce943523958",
-      "plan.md": "b6443f0cb961824c6896469ff5122f8dac00abbf8622c66d6886cab5c53ada5a",
-      "tasks.md": "822f83a0e7513aa8f856b82232e4e04576fc06ec86411307e0c5c9350d1905af",
-      "implementation-summary.md": "6874ef73d36fc347bb2d046177ee0e8cba3c81028de223c43c23b6c637d18527"
+      "spec.md": "f4599c01fcf1e15fd76f7ed5740109f387e73067d53955ddb1b754f2dc2d339d",
+      "plan.md": "d70509051495a452886c6fb972f56246b70e47a9b28ec5386426ead3fdf7a7c2",
+      "tasks.md": "e89c9737bf45ef9ddee4ab7bc8ace53ebcd735249a18906b3f5d764e36b89f60",
+      "implementation-summary.md": "a037e4e957edec7bb9e6c1935d742b6491eed7a45cff8724d46d2612eba65a4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

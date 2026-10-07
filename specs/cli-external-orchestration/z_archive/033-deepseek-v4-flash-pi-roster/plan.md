@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/033-deepseek-v4-flash-pi-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/033-deepseek-v4-flash-pi-roster"
     last_updated_at: "2026-08-02T06:04:34Z"
     last_updated_by: "implementer"
     recent_action: "Authored implementation plan for the additive pi-allowlist change"

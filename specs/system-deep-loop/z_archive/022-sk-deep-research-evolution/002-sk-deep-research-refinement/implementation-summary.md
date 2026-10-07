@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-deep-loop/z_archive/022-sk-deep-research-evolution/002-sk-deep-research-refinement/implementation-summary]"
 description: "Summary of the research refinement cycle and the validated proposal outputs."
 trigger_phrases:
-  - "implementation summary"
   - "deep research refinement summary"
 importance_tier: "normal"
 contextType: "general"
@@ -29,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 024-sk-deep-research-refinement |
+| **Spec Folder** | 002-sk-deep-research-refinement |
 | **Completed** | 2026-03-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

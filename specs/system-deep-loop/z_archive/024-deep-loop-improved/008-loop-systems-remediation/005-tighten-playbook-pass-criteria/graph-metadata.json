@@ -15,10 +15,8 @@
       "deep-loop playbook pass-criteria tightening",
       "inspection-only loophole",
       "deep-loop-runtime",
-      "implementation plan",
       "manual testing playbook",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "tighten",
@@ -31,8 +29,8 @@
       "inspection-only",
       "loophole",
       "deep-loop-runtime",
-      "implementation",
-      "plan"
+      "manual",
+      "testing"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -190,7 +188,7 @@
     ],
     "causal_summary": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
     "created_at": "2026-06-29T10:43:20Z",
-    "last_save_at": "2026-08-30T15:39:25.139Z",
+    "last_save_at": "2026-10-07T18:15:16.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23ed743359a640cdb84577becfa19cfb5ab8a31484eb7cd52556426c30e7e89b",
+    "source_fingerprint": "sha256:6be1a78ea6e294ab063b27cd59c8a62512e12df1b7f0040082b9f547c431e8c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "98160b62835f175aee5536cb23d2ca8f0ffb923cd918de786e0162f312897b17",
-      "plan.md": "a187fbfa95ac8b73b8f02b13606b80bdc740a102ac845d3f26ac21af9297b1f9",
-      "tasks.md": "78222475cc5bcbfbba1a086cefba3367115745b72368739a53af1ab4d333773a",
-      "implementation-summary.md": "1d21ed1bef2263a3f17656093f785b30d676ee646fb72041e0d93f04534707a0"
+      "spec.md": "3ce34c15192a5c6a7fcf204a01e093a2b316558e945259e677f4578da02a1dc6",
+      "plan.md": "ffd885aea82edd074d7e2e4c04bc1cdd29d2d31b58733c9592862b07c66f98da",
+      "tasks.md": "8ff2dfe94a206d595933dbe8fee8975df90d025a4acf29489fe6d02c68354a35",
+      "implementation-summary.md": "f5dd05413449f216bb6e5a7a369250887118017994197d83a90c393996176bb7"
     },
     "last_active_child_id": null,
     "last_active_at": null

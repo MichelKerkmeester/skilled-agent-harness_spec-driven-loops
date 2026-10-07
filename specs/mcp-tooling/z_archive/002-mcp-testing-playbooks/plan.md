@@ -34,6 +34,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
 ### Technical Context
@@ -48,9 +49,11 @@ _memory:
 ### Overview
 
 Author three manual testing playbooks (mcp-code-mode, mcp-chrome-devtools, mcp-clickup) using the canonical sk-doc playbook contract. Drive scaffolding via `/create:testing-playbook <skill> create :auto` per skill, then hand-fill per-feature scenario content using the test-data inventory captured in `research.md`. CM is authored first because its scenarios define the manual-namespace contract, env-prefixing, and `call_tool_chain` semantics that BDG and CU per-feature files reference.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
@@ -67,9 +70,11 @@ Author three manual testing playbooks (mcp-code-mode, mcp-chrome-devtools, mcp-c
 - [ ] CCC audit recorded in research.md
 - [ ] Spec docs updated (tasks.md `[x]` with evidence; implementation-summary.md filled)
 - [ ] Memory save run via `generate-context.js`
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
@@ -106,9 +111,11 @@ grades against Pass/Fail criteria → records verdict
     ├─ PASS → moves to next scenario
     └─ FAIL → walks Failure Triage steps
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Scaffold (spec 049 governance)
@@ -146,9 +153,11 @@ grades against Pass/Fail criteria → records verdict
 - [ ] Spec strict-validate passes
 - [ ] implementation-summary.md filled with evidence
 - [ ] Memory save via generate-context.js
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
 | Test Type | Scope | Tools |
@@ -158,9 +167,11 @@ grades against Pass/Fail criteria → records verdict
 | Per-feature contract | Frontmatter + 5 H2 sections + ≥2 triage steps | Manual review + grep checks |
 | Cross-reference | `CM-NNN` references from BDG/CU resolve | Grep + lookup |
 | V7 smoke | One scenario per playbook end-to-end | Real environment (CM local, BDG Chrome, CU live ClickUp, CCC index) |
+<!-- /ANCHOR:testing -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
 | Dependency | Type | Status | Impact if Blocked |
@@ -171,18 +182,22 @@ grades against Pass/Fail criteria → records verdict
 | Chrome / Chromium binary | External | Yellow (per operator) | V7 BDG-001 marked SKIP if absent |
 | `validate_document.py` | Internal | Green | Cannot mark V1 PASS |
 | `generate-context.js` | Internal | Green | Cannot complete Phase 6 memory save |
+<!-- /ANCHOR:dependencies -->
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A playbook root validator fails repeatedly OR cross-reference resolution shows >5% broken links OR V7 smoke runs all FAIL
 - **Procedure**: Move authored playbook contents to `scratch/` inside spec 049, leave `.opencode/skills/<skill>/manual_testing_playbook/` empty, document rollback in implementation-summary.md, escalate to user before re-attempting
+<!-- /ANCHOR:rollback -->
 
 ---
 
 ---
 
+<!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -199,9 +214,11 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 | 4 CU | 2 (for CM-NNN refs) | 6 |
 | 5 CCC audit | 1 | 6 |
 | 6 Verify | 2, 3, 4, 5 | None |
+<!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -213,9 +230,11 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 | 5 CCC audit | Low | 30-60 min (audit only) |
 | 6 Verify | Med | 1-1.5 hours (validator + smoke + memory save) |
 | **Total** | | **8-12 hours** |
+<!-- /ANCHOR:effort -->
 
 ---
 
+<!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
@@ -232,11 +251,13 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 ### Data Reversal
 - **Has data migrations?** No
 - **Reversal procedure**: N/A — markdown files only; git revert sufficient
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
 ---
 
+<!-- ANCHOR:dependency-graph -->
 ## L3: DEPENDENCY GRAPH
 
 ```
@@ -285,9 +306,11 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 | Phase 4 | 2 | CU root + 25 per-feature files | 6 |
 | Phase 5 | 1 | research.md CCC audit section | 6 |
 | Phase 6 | 2, 3, 4, 5 | implementation-summary, memory save | None |
+<!-- /ANCHOR:dependency-graph -->
 
 ---
 
+<!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
 1. **Phase 1 Scaffold** - 30-45 min - CRITICAL
@@ -300,9 +323,11 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 **Parallel Opportunities**:
 - Phases 3 (BDG) and 4 (CU) parallel after Phase 2 CM frozen
 - Phase 5 (CCC audit) parallel with phases 3-4 (no dependency)
+<!-- /ANCHOR:critical-path -->
 
 ---
 
+<!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
 | Milestone | Description | Success Criteria | Target |
@@ -323,3 +348,4 @@ Phase 1 (Scaffold) ──► Phase 2 (CM) ──► Phase 3 (BDG) ──► Phas
 - **ADR-003**: Spec 049 flat Level-3 (no phase folders)
 - **ADR-004**: CM-first authoring sequence (CM defines cross-skill vocabulary)
 - **ADR-005**: V7 smoke runs against real environments (per user Q2 answer)
+<!-- /ANCHOR:milestones -->

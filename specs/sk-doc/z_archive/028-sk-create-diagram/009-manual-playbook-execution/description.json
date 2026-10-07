@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/009-manual-playbook-execution",
   "description": "The manual-testing-playbook shipped in phase 007 had never actually been run — its 9 scenarios existed as documented contracts with no execution",
   "keywords": [
     "manual-testing-playbook",

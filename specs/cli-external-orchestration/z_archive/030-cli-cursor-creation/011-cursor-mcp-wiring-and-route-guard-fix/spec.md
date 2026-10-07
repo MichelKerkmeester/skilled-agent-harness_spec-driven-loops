@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix"
     last_updated_at: "2026-07-24T18:33:03Z"
     last_updated_by: "claude-code"
     recent_action: "mcp.json symlinked; route-guard shape fixed and wired"

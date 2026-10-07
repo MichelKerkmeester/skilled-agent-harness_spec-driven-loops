@@ -14,14 +14,11 @@
       "benchmark mode remediation",
       "122 review findings fix",
       "deep-agent-improvement P1 fixes",
-      "implementation",
-      "plan",
-      "name",
-      "template",
+      "fix hardening findings for model benchmark plan",
       "plan core",
-      "tasks",
+      "fix hardening findings for model benchmark tasks",
       "tasks core",
-      "summary",
+      "fix hardening findings for model benchmark implementation summary",
       "impl summary core"
     ],
     "key_topics": [
@@ -31,12 +28,12 @@
       "review",
       "findings",
       "deep-agent-improvement",
-      "implementation",
+      "hardening",
+      "model",
       "plan",
-      "name",
-      "template",
       "core",
-      "tasks"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +191,7 @@
     ],
     "causal_summary": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode — the dispatcher drops the requested working directory for 4 of 5 executors, the D3 path guard misclassifies sibling-prefix paths, acceptance criteria run un-gated shell commands, and the D4 grader accepts unbounded model scores — plus 11 P2 advisories",
     "created_at": "2026-05-28T18:39:19Z",
-    "last_save_at": "2026-09-07T16:17:16.255Z",
+    "last_save_at": "2026-10-07T21:27:34.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a052981f641962bf2a91d0ad2e84f384a85869a78b69b3cb02c5da1058f87d3",
+    "source_fingerprint": "sha256:1aa10b79b1d87664bba6cebebb662e3b03e2c2c7b9cf8e0ac1caa9359d8650f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7861f3379a5642ef83bfc8656d930b6dd51971786233140deb0b560351cbe83",
-      "plan.md": "b41c78c24cc94589badb3e4fd0f0cb86ac6943a92c784334379d1f7c2004bcc0",
-      "tasks.md": "4e4fba79bb0cd660d171688a9888701134c7c3f390129fc19a6edd5f54c53141",
-      "implementation-summary.md": "6ab1da435920d44b697d0bb77f60232900842543078085371f12c75e909b106f"
+      "plan.md": "51ac6dd85351c5a3e97eec949acf6bf832e77ecb551b33d44b63592d52fe0403",
+      "tasks.md": "2f275be806866335b8d92e6a6a6563037c9d39b5918721438019155dfa60559c",
+      "implementation-summary.md": "333379cb19551b14878996c02394924061f87931cafaaf8d5be9f085b36f2a41"
     },
     "last_active_child_id": null,
     "last_active_at": null

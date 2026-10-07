@@ -1,11 +1,15 @@
 ---
 title: "Implementation Plan: Deep Primary Agent Router & Orchestration Hardening"
 description: "Plan to create a DEEP primary agent, harden the Orchestrate agent for deep-loop dispatch, and refine commands/skills for GPT adherence without latency regression."
+trigger_phrases:
+  - "deep agent router orchestration plan"
+  - "gpt deep primary agent hardening"
+  - "gpt deep agent routing plan"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
     last_updated_at: "2026-06-30T13:45:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Drafted implementation plan"

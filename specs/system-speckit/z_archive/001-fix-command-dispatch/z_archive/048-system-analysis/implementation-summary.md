@@ -2,14 +2,7 @@
 title: "Implementa [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/implementation-summary]"
 description: "This document summarizes the P3 technical debt items implemented as a follow-up to the initial 048-system-analysis work."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "technical"
-  - "debt"
-  - "remediation"
-  - "implementation summary"
-  - "048"
-  - "system"
+  - "system analysis implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/009-old-skill-deletion-and-validation"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/009-old-skill-deletion-and-validation"
     last_updated_at: "2026-06-16T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Closed CHK-060 (skill_graph_scan rejectedEdges=0); descoped CHK-065"

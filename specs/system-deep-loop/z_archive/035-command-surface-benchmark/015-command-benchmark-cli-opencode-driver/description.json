@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
   "description": "Phase-parent packet: add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios run under cli-opencode executors",
   "keywords": [
     "phase-parent",

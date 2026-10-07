@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors"
     last_updated_at: "2026-05-06T13:35:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Phase 004 rotation complete (5 files)"

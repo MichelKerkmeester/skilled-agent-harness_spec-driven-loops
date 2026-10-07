@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,36 +45,31 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "dispatch-log.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/dispatch-log.md"
+      "dispatch-log.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -188,7 +183,7 @@
     ],
     "causal_summary": "Phase 023 (full manual playbook execution) requires every `manualtestingplaybook` scenario to be dispatched for real through `cli-opencode` with the raw scenario prompt, not the Lane C harness's routing-analysis-only wrapper, and graded against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:11:26.139Z",
-    "last_save_at": "2026-08-30T15:39:12.378Z",
+    "last_save_at": "2026-10-07T18:12:14.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37ee95b25939be5a2b27204b0894c493ca501cb2aa17360d5d50b3682280f004",
+    "source_fingerprint": "sha256:444f34590cf7009bd3a76620d6ae26add669ee62777f928781bfe3de2a10d620",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91bb0c9ebca370c7c334e0bb01b8fe8ba65e2391da015872e2bb3678c9a1b1da",
-      "plan.md": "fcca035a5300892105d1421d97ab220a8bdd8987bdb3d2688faded1c4afd0477",
-      "tasks.md": "eaee187cc7b3d65e378fadac95eaadb796035d88de8134fc8096ecc68bc89ff2",
-      "implementation-summary.md": "4382ebe70c610e0930604c80deeba74c267ba56235bb92d1ab7a1d7bbaa94335"
+      "spec.md": "71d04dce2625aba185cdc1e4550b8630cb23e8de58be38e6a516ebbbe3d2e6d5",
+      "plan.md": "be9a8431ff0b2ffa298e541aac93645703da32638b01f9ee0378f215d11fdd76",
+      "tasks.md": "84472ba202b9e7129ec654091446321cebf928ca1e29c8927f3849884e0cfe0e",
+      "implementation-summary.md": "0e3ac59fa55054d587a1eb2db20dd20cb0f2f4b63e7493a2dda2c056a7d3e992"
     },
     "last_active_child_id": null,
     "last_active_at": null

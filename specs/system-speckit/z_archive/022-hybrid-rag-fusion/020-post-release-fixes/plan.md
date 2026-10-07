@@ -224,7 +224,6 @@ Canonical-review-driven remediation packet
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 | Phase | Depends On | Blocks |
@@ -240,7 +239,6 @@ Canonical-review-driven remediation packet
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -342,10 +340,10 @@ spec + plan + tasks + checklist
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 - **ADR-012-R1**: This packet now follows the canonical `review/` report instead of the historical top-level report.
 - **ADR-012-R2**: The remediation program is grouped by workstream rather than by predecessor packet lineage.
 - **ADR-012-R3**: The packet remains in active remediation, with only seven narrow landed slices recorded so far: the `map-ground-truth-ids` compatibility-wrapper slice, the modularization test-budget slice, the first conservative causal-graph hygiene slice, the second archived-supports hygiene slice, the third targeted-broadcaster hygiene slice, the node-`24980` case-by-case cleanup slice, and the node-`25027` case-by-case cleanup slice.
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

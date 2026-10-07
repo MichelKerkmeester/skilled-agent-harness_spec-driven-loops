@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/047-compiled-routing-serving-restore",
+  "specFolder": "sk-doc/z_archive/047-compiled-routing-serving-restore",
   "description": "Three of the five parent hubs reported `servingAuthority: legacy` with cause",
   "keywords": [
     "three",

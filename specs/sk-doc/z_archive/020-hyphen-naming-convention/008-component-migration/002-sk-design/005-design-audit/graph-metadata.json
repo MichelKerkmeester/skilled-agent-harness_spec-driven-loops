@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and audit references.",
     "created_at": "2026-07-14T15:17:17Z",
-    "last_save_at": "2026-08-30T15:39:16.334Z",
+    "last_save_at": "2026-10-07T18:12:59.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f6209b103568f984ddf3d40796fe227256cbb4a08f115f0cb720a3181bb9093c",
+    "source_fingerprint": "sha256:2611cbb08c73146c16be9594a602d9c6b7a006b100499e1c6424efecc5f53506",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f14f0ba794b35a7fbfb518fe089abc7cecf845302ec6443beffce4c1bfef0198",
-      "plan.md": "453166b6e82df322b266a1359d2935e96af0238c5f67feab4bb62419df3c59e6",
-      "tasks.md": "b468ffa31ccfa3adefc5353dfba8d6b9570cc9fc7f8d4336140d60e7a0158634"
+      "spec.md": "def43ba32146cef08a797b678c401349f05fa1c6a50e2cc8e781c2a6f85c2270",
+      "plan.md": "638a5eae6195b06840029f0e502cb9ce8404dd86d3e343b45c91e9b75fa5afaa",
+      "tasks.md": "10ed9974385db763091592dd8297a687b0ace2d2bb23368d0f9e8286c008ba04"
     },
     "last_active_child_id": null,
     "last_active_at": null

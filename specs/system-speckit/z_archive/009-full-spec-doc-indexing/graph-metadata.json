@@ -14,9 +14,7 @@
       "full spec doc indexing",
       "document indexing",
       "archive",
-      "implementation plan",
       "tasks",
-      "implementation summary",
       "note",
       "handover",
       "009",
@@ -29,12 +27,12 @@
       "indexing",
       "document",
       "archive",
-      "implementation",
-      "plan",
       "tasks",
-      "summary",
       "note",
-      "handover"
+      "handover",
+      "archived",
+      "folder",
+      "captures"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "This archived folder captures work that indexed full spec folder documents",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-08-30T15:39:37.718Z",
+    "last_save_at": "2026-10-07T22:05:43.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +201,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fd3e0900ba36c2f6d8ef569e50bd8df3a3be7d49d79e49ad2d306238f6a23fe6",
+    "source_fingerprint": "sha256:8c6f25d13382acabd4a7e2fb618dc4e44d35c1410772966228c159b18cc2a2da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2dc918ac8babfb91bdf2a58e487ce9501ff6b0cd917214239bf14a4dd3d2b26",
-      "plan.md": "657529018bfaf593a0d29aac5ce533ef69202f60e502ead51837b4d766319690",
+      "plan.md": "a6757b0893308af526e310932cfdba82dc719783446775d197a09987d70bc00d",
       "tasks.md": "137d88ee51d8473e93ed6f9aacf9a855575a44263e72380e506346cb44c181f5",
-      "implementation-summary.md": "f095bab52c9d9b5fb5dfcd075652207913ced602260329471af06e2a428d4496",
-      "handover.md": "b9b42eabcef5cb8ce317cbd32c3dc1ef96d6da068902cb5bbaf924f1cac98131"
+      "implementation-summary.md": "86b7845a4d1a44f3546d399233dcfbe82c63e5e2958c5c13ae7d79b45eb5bca3",
+      "handover.md": "1354a3b7db86f38a1ed2a203f8d02db33c841403e3b551fb0a27e9aa95748f97"
     },
     "last_active_child_id": null,
     "last_active_at": null

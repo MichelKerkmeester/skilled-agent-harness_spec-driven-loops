@@ -36,6 +36,7 @@ _memory:
 | **Status** | Accepted |
 | **Date** | 2026-03-20 |
 | **Deciders** | Phase implementer |
+<!-- /ANCHOR:metadata -->
 
 ---
 
@@ -131,4 +132,3 @@ The original phase design targeted broader file-backed JSON enrichment than what
 **How to roll back**: Revert the documentation correction and restore the inaccurate earlier narrative. This is not recommended.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
-<!-- /ANCHOR:metadata -->

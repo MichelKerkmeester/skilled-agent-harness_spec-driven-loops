@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research"
     last_updated_at: "2026-08-21T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored plan for the two-track 20-iter deep-research run; not yet launched"

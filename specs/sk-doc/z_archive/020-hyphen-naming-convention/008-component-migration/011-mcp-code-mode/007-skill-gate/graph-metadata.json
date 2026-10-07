@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The mcp-code-mode subtree needs one blocking rollup gate after its five closure phases and changelog verification. This phase aggregates sibling evidence and proves that no in-scope snake_case filesystem name or stale active path remains outside the Python, tool-mandated, generated, lockfile, and frozen-history exemptions.",
     "created_at": "2026-07-14T15:18:25Z",
-    "last_save_at": "2026-08-30T15:39:16.958Z",
+    "last_save_at": "2026-10-07T18:13:26.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d03c6bf4362ed3b8eb11bab185c3891c43e63ad621ad5136475042b6581caf34",
+    "source_fingerprint": "sha256:47b022578740d84ba6f9dfc756fb529867b6da6dd43df07a154109b39b8ab149",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e83934e2ec91bce234a3102018d52823455382f52d57afe6c0f768256fba862c",
-      "plan.md": "f6ad6739203ebbb3fc30a0e1f40e9c3003fd0b7126e225a4586b825bcc79a597",
-      "tasks.md": "6f9d40abb0fe2f120e558d57fce9b6700ba74a7262b06f82f33bb5379067f031"
+      "spec.md": "30d2f3dcdca8f41c15f1c6ebd65970101032242791aa738a0bc9d67967c7afe1",
+      "plan.md": "832b85654e6e3e23369777d0041364cbcaf8dae9b0eefc99ebd7c0feef201892",
+      "tasks.md": "71a2d325eeb2c2eabad4388559a9aec89c5077e26c0c4ee515f7e849f02b2642"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,7 +11,10 @@ importance_tier: "normal"
 contextType: "general"
 ---
 # Archive Note: Handover
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
+<!-- ANCHOR:session-notes -->
 This top-level archive note was simplified during validation repair for Command Adherence.
 
 It remains in the folder as a brief historical placeholder so the archived layout stays recognizable without carrying stale markdown references or validator-breaking metadata.
+<!-- /ANCHOR:session-notes -->

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The advisor source tree and this spec packet were moved outside git tracking before this run",
     "created_at": "2026-05-14T10:45:00Z",
-    "last_save_at": "2026-08-30T15:39:26.409Z",
+    "last_save_at": "2026-10-07T18:15:37.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T10:45:00Z",
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46ae00f5ba50e849c5ee5ec1ca9b9cca4ad27e98c6f3c4578749bef42c6510b7",
+    "source_fingerprint": "sha256:fdaf66548a6e2326ad886f70c043c5d3f70a4a0880b614e6290aa49b7d5adb38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21f67ed39b975e879cacdde59d868c3d6ac167351c3fa919a8d3a060241d1dcb",
-      "plan.md": "20f3868044f67e42036617bb6d24745fdec6a9318e951db84996fb8b203ca142",
-      "tasks.md": "fbb5435468b3074b9ee779ce5e7bfa27cf64571cca26757e0bf6ffc2010d495f",
-      "implementation-summary.md": "5ef78e6c33ce39a7cd9290847fc67c1bfc77203edb07c2e617744eaca62f8420"
+      "spec.md": "13636c8e3143d25dfcb84ff1ca635997be18a8b7f4527bde524aaa8f1b4b5f2d",
+      "plan.md": "49e3d5ada58a523765e765c2cacd02cf8e2b0406ba1cf2f1e290c3fe8aa7144e",
+      "tasks.md": "9568d8d5aff7ea3d372f194cc73a58d4d2908908327e8dc8762651b414b74994",
+      "implementation-summary.md": "d7eb824031df524079910456ec830b75d0e54c81549d0535271f4bebe0ed6fd4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/004-codex-hook-adapter-layer",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/004-codex-hook-adapter-layer",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Codex native hooks are stable, but no Codex adapters exist and the historical two-event configuration predates 0.144.1",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-08-30T15:39:07.152Z",
+    "last_save_at": "2026-10-07T18:11:38.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a7810bd5faedad8fc93ed24a24816be55e20b1a4234668442de0dc6dc55528e",
+    "source_fingerprint": "sha256:9e6a34c0b090db0b342afdc643fe9515ee04b85f54d744fc23c1c5dd94ec23c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4530871078bf7464bf37bba0d3f44a30bb2391c79acb1729298e91fc4aa0404b",
-      "plan.md": "538c47bbb09d228f6e57f08c7e79772c20c575f2b04c267aae43154924830af1",
-      "tasks.md": "8735bdfe202c4e31cea3b9b7773c5ab52d5d965f2a37e9169cbdec817af36ba1",
-      "implementation-summary.md": "976dc5252b19f7f43b05b3d6c47f5555e81ad95e3cdae6ee7af207f009c8af37"
+      "spec.md": "713d5e63d2c64bcfd6505ba6b2eb106bfc67bbfdcc80040f111990f2b15f1aba",
+      "plan.md": "826f86ed80ea76441ceb41459ab1ca448b53e3413ab0d9f1e223cbe01eeb8dd7",
+      "tasks.md": "9ee878db8607f18d72bb47fe3bc37cc4c97bbc9577e3f8397bec3b81ae60e8e0",
+      "implementation-summary.md": "1beab8a7ea0847185f1caad90d891d7bcfcc210cdf424f59bd841d99f68bd673"
     },
     "last_active_child_id": null,
     "last_active_at": null

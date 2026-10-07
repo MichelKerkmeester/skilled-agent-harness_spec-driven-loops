@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
+  "specFolder": "cli-external-orchestration/z_archive/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario",
   "description": "cli-pi's manual testing playbook has a Model Dispatch group (PI-017, PI-018), but neither scenario mentions the cline provider — the only cli-pi file",
   "keywords": [
     "cli-pi",

@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
-    "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine"
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+    "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine"
   ],
   "manual": {
     "depends_on": [],
@@ -101,16 +101,16 @@
     ],
     "causal_summary": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two) that investigate what to add, update, or create in the mcp-obsidian file-layer plugin references to optimize an AI's ability to operate each plugin. Research only; doc edits are the phase 009 follow-up build.",
     "created_at": "2026-08-22T20:29:43.463Z",
-    "last_save_at": "2026-08-30T15:39:10.409Z",
+    "last_save_at": "2026-10-07T18:10:55.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:509ba972eaf94c0145ae531db2f6694999d756d91bf3b716e315cc34c393a40d",
+    "source_fingerprint": "sha256:b3e6afc7a1bf037d5720e1b53ce98654b8c72d87dbc6141ea3a5a310664311c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ddb0142717a277cef8249ffb3127294baf1eace16e7f1760f0c7734e75952e1"
+      "spec.md": "32beb6581a8cbf0d21ca348e784af8ce1ad6c3cfec52248ed667907e7534c054"
     },
     "last_active_child_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
     "last_active_at": null

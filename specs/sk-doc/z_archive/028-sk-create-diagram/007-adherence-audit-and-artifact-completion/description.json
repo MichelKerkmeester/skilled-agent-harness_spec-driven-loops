@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
   "description": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but",
   "keywords": [
     "phase",

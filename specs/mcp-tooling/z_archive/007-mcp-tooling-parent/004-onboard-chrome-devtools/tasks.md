@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/004-onboard-chrome-devtools"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/004-onboard-chrome-devtools"
     last_updated_at: "2026-07-16T16:55:00Z"
     last_updated_by: "claude"
     recent_action: "Checked off onboarding tasks with evidence"

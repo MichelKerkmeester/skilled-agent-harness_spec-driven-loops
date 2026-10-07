@@ -15,6 +15,7 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["tasks.md"]
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 # Tasks: Documentation Impact Remediation for 009 Hook/Daemon Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -23,6 +24,7 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1 — Canonical Runtime Contracts
 
 | ID | Task | Priority | Rationale |
@@ -31,9 +33,11 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | T-002 | Update top-level `AGENTS.md`: Gate 2 hook-brief primary + `skill_advisor.py` fallback; Codex SessionStart parity note; OpenCode plugin ESM exemption in `sk-code-opencode` language table | P0 | [009/01, 05, 09] |
 | T-003 | Update `.opencode/skills/system-spec-kit/SKILL.md` startup/recovery: Claude four-event + `UserPromptSubmit`; Codex post-05 native `SessionStart`; Copilot `.claude/settings.local.json` startup surface | P0 | [009/01, 03, 04, 06, 10] |
 | T-004 | Update `.opencode/skills/system-spec-kit/ARCHITECTURE.md`: Copilot file-based transport (`custom-instructions.ts` writing to `$HOME/.copilot/copilot-instructions.md`); OpenCode plugin bridge ESM default-export entrypoint + per-instance state / dedup / cap/eviction | P0 | [009/04, 08, 09] |
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2 — Package-Level READMEs
 
 | ID | Task | Priority | Rationale |
@@ -41,9 +45,11 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | T-005 | Update `.opencode/README.md`: Gate 2 prose (hook brief primary, script fallback), directory-structure (advisor surface in `mcp_server/skill-advisor/`) | P0 | [009/01, 02, 07] |
 | T-006 | Update `.opencode/skills/system-spec-kit/README.md`: hook-primary Skill Advisor section; `scripts/` module profile corrected to ESM (per 02's validator flip); Copilot runtime-hooks summary; prompt-vs-lifecycle distinction | P0 | [009/01, 02, 03, 04] |
 | T-007 | Update `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` (and any sibling runtime hook READMEs with stale Copilot examples): replace `.github/hooks/scripts/*.sh` example with `.claude/settings.local.json` wrapper contract; note Claude nested commands coexist with top-level Copilot fields | P0 | [009/01, 10] |
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3 — Install / Reference / Supporting Docs
 
 | ID | Task | Priority | Rationale |
@@ -51,9 +57,11 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | T-008 | Update `.opencode/install_guides/SET-UP - AGENTS.md`: Gate 2 hook-first path, script fallback, native-tool/bootstrap verification, `--force-native` / `--force-local` / disable-flag notes | P0 | [009/02, 07] |
 | T-009 | Update `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`: add `advisor_recommend` / `advisor_status` / `advisor_validate` to verification step; Copilot row → merged `.claude/settings.local.json` wrapper execution + top-level `type`/`bash`/`timeoutSec` contract + writer wiring | P0 | [009/02, 10] |
 | T-010 | Update `feature_catalog/22--context-preservation-and-code-graph/05-cross-runtime-fallback.md`: Copilot fallback entry names `.claude/settings.local.json` + top-level writer commands | P0 | [009/10] |
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:docs -->
 ## Phase 4 — MED Surfaces
 
 | ID | Task | Priority | Rationale |
@@ -61,9 +69,11 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | T-011 | Update `manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md`: Copilot scenario inspects `.claude/settings.local.json` top-level fields/commands + smokes managed-block refresh via that path | P1 | [009/10] |
 | T-012 | Add `SPECKIT_CODEX_HOOK_TIMEOUT_MS` entry to `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` (default, scope, timeout-fallback behavior) | P1 | [009/03] |
 | T-013 | Add hook-surface summary + cross-links to runtime hook READMEs and hook reference docs in `.opencode/skills/system-spec-kit/mcp_server/README.md` | P1 | [009/01] |
+<!-- /ANCHOR:docs -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Phase 5 — Graph Metadata & Validation
 
 | ID | Task | Priority | Rationale |
@@ -72,6 +82,7 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | T-015 | Run `validate.sh --strict` on this packet; address errors, document warnings | P0 | §SC-006 |
 | T-016 | Generate / refresh `description.json` and this packet's `graph-metadata.json` via canonical memory save so derived fields stay aligned | P0 | System-spec-kit governance rule |
 | T-017 | Optional P2: reconcile every mention of "Codex has no lifecycle hook" in updated files with post-05 native SessionStart description | P2 | [009/05] — drift prevention |
+<!-- /ANCHOR:completion -->
 
 ---
 

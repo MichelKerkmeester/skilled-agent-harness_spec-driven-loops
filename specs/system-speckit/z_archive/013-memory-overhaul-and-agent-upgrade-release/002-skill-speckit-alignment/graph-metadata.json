@@ -11,32 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "task",
-      "skill",
-      "references",
-      "audit",
-      "spec",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record",
-      "decision record",
-      "summary"
+      "skill speckit alignment audit",
+      "skill reference review",
+      "skill speckit alignment plan",
+      "skill reference audit phases",
+      "skill speckit alignment tasks",
+      "skill reference audit checklist",
+      "skill speckit alignment decisions",
+      "skill reference scope decision",
+      "skill speckit alignment delivery",
+      "skill reference audit completion"
     ],
     "key_topics": [
-      "task",
       "skill",
-      "references",
+      "speckit",
+      "alignment",
       "audit",
-      "spec",
-      "implementation",
+      "reference",
+      "review",
       "plan",
+      "phases",
       "tasks",
-      "decision",
-      "record",
-      "summary",
-      "files"
+      "checklist",
+      "decisions",
+      "scope"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -199,7 +197,7 @@
     ],
     "causal_summary": "Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure version numbers, feature descriptions, and cross-references reflect the post-implementation state of specs 014–016 and 122–129",
     "created_at": "2026-05-26T19:43:14.235Z",
-    "last_save_at": "2026-09-10T21:04:36.423Z",
+    "last_save_at": "2026-10-07T20:49:08.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3193c1acb863d4b6bb32c51400fc65abe20e8273350afc15e5fbe556567dec5",
+    "source_fingerprint": "sha256:bbf051da802edc2d3810434c6fea2de075b54e77fded69ece4a5179b8e3103d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "083ddf94e4bd0f2669db10fecf9617f70ca7ee4fafb521de6be1b6042b530c42",
-      "plan.md": "7ca38de091251f5d19ad70f390865218d186fe250131b0fec7b3278df2ba1c50",
-      "tasks.md": "4cf4c28a8df63fb54309556da69dfc34abe76ddbdacd13c32080152add086efc",
-      "decision-record.md": "cca24bcd25e3ec729ac01afdb9e13acc3ee29eafb42db2334fac29a278456841",
-      "implementation-summary.md": "ae573ce8ec32a1e82f42a43d0111158a436eb72d46e8cb9c2e3e767a07d70126"
+      "spec.md": "897ec51ca6a6e750c07d56cf00c0e78207f397fe1a45b07074ae2ac508ee551f",
+      "plan.md": "bffa64095a22f00f549a510282241cba9ffd2096cf9cd399c06ea79d3d234860",
+      "tasks.md": "23b6f451eda7fe94393930f26e4fa402da26ff60d032b75a3febd0d30c61f562",
+      "decision-record.md": "590c7b66b43ee662a0cffadd826902420e9164fd36759d3eda092314b7d338a9",
+      "implementation-summary.md": "bc96ca02c22cb5efa7df64a2a04ea29d512d0dc070f65641151fca6e439b17d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

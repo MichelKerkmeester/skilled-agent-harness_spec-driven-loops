@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
     "created_at": "2026-06-07T14:42:36Z",
-    "last_save_at": "2026-08-30T15:39:14.464Z",
+    "last_save_at": "2026-10-07T18:12:34.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5b6f8a39bdda86925bdb4e51ad9ba3b9e5d10061dded2ec0be79a856bcd2ce4",
+    "source_fingerprint": "sha256:fc10da17ea6f1948c01c0f3961c96be898c141adb647aba5529592d511ab6f4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f730b3fdcb063c710e815062abd2ecc74d7f10187608a900514ff165aa171b70",
-      "plan.md": "494fa595ae3702afe21e588dd39f59e3eeb31511f40e6ff5dc9b48664db4bf06",
-      "tasks.md": "808c9367d5b14a99b4c283bac5d46e4a322dc323846fd927a531fe6da1bcc4b5",
-      "implementation-summary.md": "172e4c7b62e3b3d72bc46a97f232f82a2719ce8113066cc61e3730d62f851673"
+      "spec.md": "041b97a155a35ed6d27a2c61a13880f901742c84d8d167211ddf2ae5df4be8ce",
+      "plan.md": "c4552518beb35be92618a2730e5b6d6ec0ec9b189bb27828a3b439cc8e8c736a",
+      "tasks.md": "468c5ae8d2669f837c1aa9c5771cd241eb2c565985aaab3d8717ae8a703ac3dc",
+      "implementation-summary.md": "cf9bcde8c80eef147d82b06ce7b7bd8ccc242d13792df867ee6c6aae973579fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

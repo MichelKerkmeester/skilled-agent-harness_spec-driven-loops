@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support",
   "description": "The `mcp-obsidian` mode operates a vault at the file layer (read/write/search markdown and data files via CLI/MCP), but it has no knowledge of how",
   "keywords": [
     "mcp-obsidian",

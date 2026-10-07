@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/006-command-topology-pilot"
     last_updated_at: "2026-07-15T10:01:39Z"
     last_updated_by: "codex"
     recent_action: "Authored and hermetically verified four schema-v2 topology contracts and fixtures"

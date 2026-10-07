@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note rather than a force-fit router. Packets with real keyed resource subdirs (references/<key>/) already carry the discover_markdown_resources/_guard_in_skill/UNKNOWN_FALLBACK mechanism; the 7 flat-resource packets get a documented N/A note modeled on create-readme's precedent (does not use keyed resource discovery + router-resilience rules).",
     "created_at": "2026-07-12T14:23:01.493Z",
-    "last_save_at": "2026-08-30T15:39:14.824Z",
+    "last_save_at": "2026-10-07T18:12:36.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ee75754e763653ee69f5c555691d4ac2f23933c1cba0a1cd146a27e3f27be15",
+    "source_fingerprint": "sha256:68cfdd1d9c9635d71d0dfc7d2732334edbcfb09644b98c119a4e58f56906ab86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0682dbd105fd7619a7d1226cd7422acfef2bac04cc8a255eddd4ae814db0937b",
-      "plan.md": "bfb56c2fd04f36fa80cdbafa1934679cb9de45a88683d6e813b7e00c32473dfd",
-      "tasks.md": "78cbeef394041fe1afc8ee61332d5ca4fb21c0640a61cdcc849a90c8db8b0c1e",
-      "implementation-summary.md": "37dcf985acd302ebae3854e206211cff1af8127989ff67cb9ca0cd75b16ad14c"
+      "spec.md": "f6b946dbc9c7c254fd18bb56d77b29648f472e9fd1c9a2f4c95170bb4ebe61bb",
+      "plan.md": "7a1ad6290a0080d695ba4630e5c9e657d5a74197c79d2e81decb5c62806f4ce8",
+      "tasks.md": "b252cb7ab40100dcb931bc62f64aa0ef54e95eef877f4c372c4512f7c62107f1",
+      "implementation-summary.md": "24814d86d08fcbe5dcd9b79b0270380495208309b774b08e6e17ad100a79010a"
     },
     "last_active_child_id": null,
     "last_active_at": null

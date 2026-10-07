@@ -38,9 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,18 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-scaffold-never-touched.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ten leaf children across four phases still have `plan.md`/`tasks.md` whose BODY content is unmodified scaffold-template placeholder prose (`[Core feature 1]`, `[MVC | MVVM | ...]`, generic Setup/Core Implementation/Verification checklists), carrying scaffold-signature frontmatter markers: a `title` containing `[template:...]`, a `packetpointer` starting with `scaffold/`, and `lastupdatedby: \"template-author\"`",
     "created_at": "2026-07-01T19:38:04.141Z",
-    "last_save_at": "2026-08-30T15:39:25.326Z",
+    "last_save_at": "2026-10-07T18:15:04.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce48925169c4bbfbcf08a626bef1996f58be3dc4f182942d3f3bac59c66d568e",
+    "source_fingerprint": "sha256:0663ae85ac82a78f5b53253c1d2d2cfe8d5b6eb312b2fa4a284ec1e617243db6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a160ea02e2631245dd2e403ff99953bb8f3a3cee37854bb67754442c93615f9",
-      "plan.md": "71acdc223392542828f46492b775801bb19440a26f9ef23fe12761c05fa6c56c",
-      "tasks.md": "2556f1412b65b4a905d845535792548ba06f61ad2f4caf91d5f7c80effb2118b",
-      "implementation-summary.md": "26a6b7f3b3b6eb67df0196f66988faf836dbac575f282838c4e393a533810470"
+      "spec.md": "dc194e24b748eeca5d3a577ce0e106afc106e23fffc9a833f0f861d608576e21",
+      "plan.md": "27648f1666c3f930b1074f1b37df9a8fbf9a0e7259a630382b49407f7ea24898",
+      "tasks.md": "b5a24e07feea728665a39a12b3727f71f83b0ac98bc5c43b934b06389c37f322",
+      "implementation-summary.md": "d8f8f9f0d7b8bd4cf3a751149719c85f51873ec6b259db77f15c2b580209f391"
     },
     "last_active_child_id": null,
     "last_active_at": null

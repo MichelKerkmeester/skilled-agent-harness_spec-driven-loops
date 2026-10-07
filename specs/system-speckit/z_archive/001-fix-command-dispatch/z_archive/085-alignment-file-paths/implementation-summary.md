@@ -4,7 +4,6 @@ description: "File: .opencode/skills/system-spec-kit/scripts/spec-folder/alignme
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "085"
   - "alignment"
 importance_tier: "normal"

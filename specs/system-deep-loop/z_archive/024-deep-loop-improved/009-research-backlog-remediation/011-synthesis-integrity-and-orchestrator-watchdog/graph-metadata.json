@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Generation-2 forced-depth research (35 iterations/lineage) against this exact packet directly reproduced two critical bugs in the deep-research/fan-out runtime itself, discovered only because the orchestrating session cross-checked live process state rather than trusting self-reported completion:",
     "created_at": "2026-07-01T09:14:13.890Z",
-    "last_save_at": "2026-08-30T15:39:25.264Z",
+    "last_save_at": "2026-10-07T18:15:12.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,13 +180,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ef4b71a0e5e5ba899b4f5c5366375a5d677912c0cdf9362cd5433e84290fb49",
+    "source_fingerprint": "sha256:5a410cd4cb0ef61c6dc43cd32932ba6ba24fcb91a029058ca6ccd81ca6b146ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43f9574ce4d2434fa6a258e1d4b129ee5c39407e973230c8907f892e6ce33a55",
-      "plan.md": "e3137aa91767a00b00a086b31226334e3212eeda956f7d8c20e1674418a7dd4f",
-      "tasks.md": "7c869c7d6fefb3024e8770ee55cf04a9a6635ba8e268f89fb6cfc1052af1a91e",
-      "implementation-summary.md": "58a339baff0d81b5fa492cb77c2a17220e6596b72120ffbc2fb22fa1fffcb390"
+      "spec.md": "81acbbb25e28683c58fb24fa1ccf840685f2f63c03ef0660ad86f526441e8852",
+      "plan.md": "662816cf034dd81c851d2c67d7fefdf877467fa500fedc7d9d1d20ce114f003b",
+      "tasks.md": "04cadcb08a32312c7276e8938652e683263920ab87181a6ae2ca00d7f423043d",
+      "implementation-summary.md": "3322d2e7d307de572cb3dd522747b3de3a3ccd9810c77688b7ead61930062afb"
     },
     "last_active_child_id": null,
     "last_active_at": null

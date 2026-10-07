@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization"
     last_updated_at: "2026-05-21T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Phase 7 rename packet shipped"

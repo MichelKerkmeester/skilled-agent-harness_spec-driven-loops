@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/004-import-export-tooling",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/004-import-export-tooling",
   "description": "Generating diagrams from scratch is only half the source skill's value — redrawing an existing draw.io or Mermaid diagram at a chosen",
   "keywords": [
     "diagrams",

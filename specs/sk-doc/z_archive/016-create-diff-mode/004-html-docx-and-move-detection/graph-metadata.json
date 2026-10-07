@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection",
-  "spec_folder": "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/004-html-docx-and-move-detection",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/004-html-docx-and-move-detection",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Text-only extraction cannot represent headings, lists, tables, links, repeated blocks, or moves in HTML and DOCX reliably",
     "created_at": "2026-07-15T09:48:16.153Z",
-    "last_save_at": "2026-08-30T15:39:14.070Z",
+    "last_save_at": "2026-10-07T18:12:35.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:610e1ef601b2b2ff19ef903762ca726fd890673a76bd8e98828b9f471ad0bb40",
+    "source_fingerprint": "sha256:4a8f8876d88db816f5d82a1282a3472b22d6dca65d0f4d9c03ca8e1ab28278bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "747921756c7408e26ea234ea64554d3e67e70783fcedb0401c551d7993070a14",
-      "plan.md": "e1bd4cb924fe9225805143077b5f5e5492d0cf4a332a7eda8fc6497d8a2be1a2",
-      "tasks.md": "fe086171ea6bdb3c6954f57eb433f70b96e913bf29879edd5319d2eb9825a3df",
-      "implementation-summary.md": "625614a453b688d2efecddcac6e12a4b1ed7b717af7c374990ed931f7ff01107"
+      "spec.md": "0b0d9f0fb67d5abd782cf1451875efd7dc0c5568dd565a337169878066871d97",
+      "plan.md": "83d3eabe71897c05523d8ed2de6f917b1dc193cf17061602c8c96d8b395cf808",
+      "tasks.md": "6917319a3c9ec64e704e7631343dc77adeeac7dffdd4614a6096354ba73a52c8",
+      "implementation-summary.md": "e0c94864c19c0008fcd454b1161ac3573c15573888667993b9fcf31b420cd9e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

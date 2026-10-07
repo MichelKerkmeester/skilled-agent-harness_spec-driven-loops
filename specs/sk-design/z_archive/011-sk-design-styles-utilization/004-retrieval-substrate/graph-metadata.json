@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/004-retrieval-substrate",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/004-retrieval-substrate",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracted 1,290 real design-system bundles into `.opencode/skills/sk-design/styles/` (1,291 child directories, one of which is `harness` infrastructure)",
     "created_at": "2026-07-18T14:18:05.487Z",
-    "last_save_at": "2026-08-30T15:39:12.525Z",
+    "last_save_at": "2026-10-07T18:12:33.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4c2b9a479f71904d21dda950d0fbcb493ae11160150809cae8a38e730b82fad",
+    "source_fingerprint": "sha256:2a3baac71cbf5b90cdeec4b0f1328267acc40c3fc7cabaa8f156ab375b67c26d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "145131977d07a99c3540ff5a6ae1e751b5db6c07899f3e5ee00d4a96bfd0ea17",
-      "plan.md": "b62a4b4fc5effc0a28e2e091371388abe4312c617d98eb9caadee13ac630c19f",
-      "tasks.md": "3c9d56324e25445df3e431be7747feb279a03cfe092fd97bf171bc1627b4a7f5",
+      "spec.md": "fe2892bfce2eef4731c759e8595d26430ed8758f2a57693e41b3e4d8cbc6a662",
+      "plan.md": "ca6f383c6762372363c5ca8723afabe7777e1a1976f7479c27af3a4d7e3a1359",
+      "tasks.md": "0e71b7986853130e2cf41be90a38878287c0cea5acf061c3f125513123e17ea7",
       "decision-record.md": "43858fc35152c3c3101bb63f39d5cf29e469e072e660c90c95dd9245d65e1723",
-      "implementation-summary.md": "f097334043b4ba0795e2ac3b52f9b1e30652c3086840770d2cc54e1feedf48b7"
+      "implementation-summary.md": "abb1ec22f8f9c209942630fb4414403e7a472f34f24b988107ebe019463e9d06"
     },
     "last_active_child_id": null,
     "last_active_at": null

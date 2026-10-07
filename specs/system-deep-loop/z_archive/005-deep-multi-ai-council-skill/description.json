@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
   "description": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona,",
   "keywords": [

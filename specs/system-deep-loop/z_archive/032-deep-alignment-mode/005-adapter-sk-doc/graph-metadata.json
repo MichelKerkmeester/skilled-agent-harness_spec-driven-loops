@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`deep-alignment` has no reference adapter yet",
     "created_at": "2026-07-11T06:22:12.777Z",
-    "last_save_at": "2026-09-11T16:42:16.299Z",
+    "last_save_at": "2026-10-07T18:15:16.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20d5c6bb246f67c41ea689c670851cf019e884f7202cac1b26d481caf3c6669f",
+    "source_fingerprint": "sha256:a149fff8e0c0ef5c39fdcbc2a92d5d64af9ac4b821fd6530bc200df0090cb2ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6b4cda6456c99026096aa1a53480a4565e836753151bce83181693ea33238fc",
-      "plan.md": "c382483b4890e384947e6ea3289acae91d9cf29ce317b086c1f52d5ab62303bf",
-      "tasks.md": "f913aa3ee740d30fd750fdb57c320b8ee6d5e16c0673be576463f7f2554a3b79",
-      "implementation-summary.md": "da48f5dfe185d4f0f515158f2973f8a76aaa4166aeb9ae9f37d04d9f26d809b3"
+      "spec.md": "f9a9a6d2c2b4549184ae706ec9e253a6e4844329dc3dfa2174dedc4eb0903047",
+      "plan.md": "003f205d273f9d098e3b67051c2f46f972a2b566627722a3f66f8c440f74642a",
+      "tasks.md": "d57f53b63f542728c3ddecaecf0c7ae82320b9025236f882d01f4124aedacb67",
+      "implementation-summary.md": "8d0568a97002b2be47480b5fa076366589e28396fc977d0ec74a64efa2fc479e"
     },
     "last_active_child_id": null,
     "last_active_at": null

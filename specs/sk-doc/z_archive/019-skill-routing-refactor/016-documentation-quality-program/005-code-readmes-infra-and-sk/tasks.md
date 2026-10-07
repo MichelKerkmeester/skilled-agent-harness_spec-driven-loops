@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk"
     last_updated_at: "2026-07-22T13:27:47Z"
     last_updated_by: "claude"
     recent_action: "All thirty-three code READMEs authored and validated."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code readmes infra and sk tasks"
 ---
 
 # Tasks: Code READMEs (Infra and SK Batch)

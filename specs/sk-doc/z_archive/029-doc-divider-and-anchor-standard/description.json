@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/z_archive/029-doc-divider-and-anchor-standard",
+  "description": "Two documented conventions are unenforced and have drifted across 8,620 structured `.md` files",
+  "keywords": [
+    "two",
+    "documented",
+    "conventions",
+    "unenforced",
+    "drifted",
+    "across",
+    "structured",
+    "files"
+  ],
+  "lastUpdated": "2026-10-07T18:14:19.470Z",
+  "specId": "029",
+  "folderSlug": "doc-divider-and-anchor-standard",
+  "parentChain": [
+    "sk-doc",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

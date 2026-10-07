@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/009-community-plugin-support"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/009-community-plugin-support"
     last_updated_at: "2026-08-02T16:22:12Z"
     last_updated_by: "claude-opus"
     recent_action: "Deepened beancount/tables/brat plugin references; remediated hub integration audit"

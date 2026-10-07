@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 4 CLI prompt-quality cards (cli-opencode, cli-gemini, cli-codex, cli-claude-code) each inlined the complete framework table from the canonical card, producing 89-96 line files that diverged from sk-prompt whenever the table changed",
     "created_at": "2026-06-05T12:47:32.514Z",
-    "last_save_at": "2026-08-30T15:39:19.240Z",
+    "last_save_at": "2026-10-07T18:14:21.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cca386c48dc6ad70cfa5c77763c3ad707acb55ea1bdef7a77b61a246a4dbbfaf",
+    "source_fingerprint": "sha256:b44972b330f9d162a43c03a24689722ff22d694ab0c45a33734baa1c2f2344ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbebbc8f9c939686be7d0be324bd843ccadddd03bb720ebd2a055a618c226fbb",
-      "plan.md": "03910cf599c69d229acd177ed88ee73bcc3f88c4091f5e344b06adc41bab84b3",
-      "tasks.md": "9921ed886468306552a4c989f9f3c71c6a1947d8a5e5ae0a2ff3c0387412db3a",
-      "implementation-summary.md": "89423b5eba71bd17bef0da7f49550fbbeb7c83fea18c43785585a423a0015e89"
+      "spec.md": "4130626a224023512f64f26aa0da0bb04f9a826152c3d3847f3e2e4ff570a283",
+      "plan.md": "21f23767ed511669906a0ac56544cc6df8bec836065f90103f5694bd5ce241d1",
+      "tasks.md": "65eb3a21007fbcb841a11352ca7a81bce1011cbff0c19bf00186bc23ff87ccd0",
+      "implementation-summary.md": "ad3fe81c145ab837db86f7fdf608d9edc18df2e73a4ed68d7866097f9b9226bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

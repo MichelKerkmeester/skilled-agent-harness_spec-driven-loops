@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed and verified the seven create-* output naming migrations"

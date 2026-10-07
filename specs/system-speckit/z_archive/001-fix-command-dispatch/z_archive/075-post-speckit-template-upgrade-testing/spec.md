@@ -30,7 +30,6 @@ This specification defines a comprehensive test suite to validate the system-spe
 
 ---
 
-<!-- /ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -129,7 +128,7 @@ Validate that 100% of P0 functionality and 95%+ of P1 functionality operates cor
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -144,7 +143,7 @@ Validate that 100% of P0 functionality and 95%+ of P1 functionality operates cor
 - **NFR-R01**: Tests produce deterministic results across runs
 - **NFR-R02**: Failed tests provide actionable error messages
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

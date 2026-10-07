@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on content-addressed identity: a request pins one `effectivePolicyHash`, replay recompiles to byte-identical policy bodies, and rollback swaps to a byte-identical prior manifest [synthesis §1, §9]",
     "created_at": "2026-07-18T13:13:16.347Z",
-    "last_save_at": "2026-08-30T15:39:14.944Z",
+    "last_save_at": "2026-10-07T18:12:55.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12bc0eb92c1cc7f05a87bfbf8717e3acb9be85afc3cfcb9b099e84d34b89ff0f",
+    "source_fingerprint": "sha256:214dc69c620fcf94a8893ffc0f25afd548adda733ea6b2a19b1483ecc9bd232e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "38d71a979712e847dd0768519d79e8838eecbff2bfb7b4b266217f233e2de9e7",
-      "plan.md": "49796b4e90bbf5bd5485ffd26860b7e0cb3665319b69b68d26ba8b3259287b77",
-      "tasks.md": "1ae76832903f80744e7ecce21032d9338ba612d1f81bc55f691d44135c93441e",
-      "implementation-summary.md": "1e1017456b0c0a88c5fba680ca3458def9a47b915c4c2fe62ac4c3f4c2f003f2"
+      "spec.md": "221c42014f297e801759f16f95f8164a87656c6efb07041331da61beb34632e8",
+      "plan.md": "cc6424302cbccba15fdde6b85a9196565c66630ff31d385f651c2f8a72300579",
+      "tasks.md": "09c9c84dad193a6e20a35c5425f8b0d97e8fa8b8809e1c7b148761cd1d5b28c4",
+      "implementation-summary.md": "157a5886474342824a79980fbb80ab230c7e341fce4f9236b6b0ad96474fbaa6"
     },
     "last_active_child_id": null,
     "last_active_at": null

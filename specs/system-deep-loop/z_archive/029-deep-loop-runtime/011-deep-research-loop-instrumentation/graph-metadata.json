@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record, including iterations that repeated earlier findings",
     "created_at": "2026-07-05T13:17:57.971Z",
-    "last_save_at": "2026-08-30T15:39:26.083Z",
+    "last_save_at": "2026-10-07T18:15:16.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97435acb33492a42810d5aac41d7dda38a86e5abda2ac49f42cda9d26873a87a",
+    "source_fingerprint": "sha256:a265adb3acb52055d6feb1c3ee9305257275f5febc60bcdd65104332eb656d2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "309770b86462eee6c33242a64e69e5996f827d9c5dd4c57ac5598626523d63f8",
-      "plan.md": "433d3603ba338d9a4cfb22eca74029de8c1cff431804e674ab3b7004d3212e46",
-      "tasks.md": "d303df89a11313813b0361d642145a0389376034d273ee52c9c508264df8a712",
-      "implementation-summary.md": "c3e73a73a96db6b73f9d84ec19c5b831c4304da597cdf069973cb47b1fcc3c83"
+      "spec.md": "593bbc39312d1a023b15015213b6ca11b03c75345650fb512e883d337889da0f",
+      "plan.md": "180599d05bbab2a052c4abb76c2a137d418093f51a7b56378eff732d54554ab4",
+      "tasks.md": "7e783030e8974c80e8a611446d498dc027a97c69e7ec9c9114ece58e2d67bb5f",
+      "implementation-summary.md": "e0708b9497fee02867a9f61be73a33c8f50bad0c3055be893a1279a5b48506d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS` strings, (L2) `--dir` points at fresh worktree, (L3) main git status clean, (L4) prefer cli-copilot + gpt-5.5 for multi-phase targets",
     "created_at": "2026-05-18T12:32:47.354Z",
-    "last_save_at": "2026-08-30T15:39:19.123Z",
+    "last_save_at": "2026-10-07T18:14:18.247Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58dc11534e3c682ab7a152c5e433520b065d243faec17c7dd348d694f16c0f62",
+    "source_fingerprint": "sha256:f9b2f357f3f5e7c0ebf2c03ec6b0362e79658f6903c282333e413843aa2cff70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28b23cce0c19bd781dbc8eb1a04755c9085289e0ce7380a0cde2c0e8871a7d29",
-      "plan.md": "8d6e4ccbf7776f03aadee56341c0a25246daba13223ddffa55c276da262e2243",
-      "tasks.md": "d8cf2d196878ea529cfe53b48b4c4ec2448f96843640856edc0ff2d2f237c068",
+      "spec.md": "377de5b6e3791e1aae2b58022645f364c7423f9ffdf48d760e58beef6744d2a6",
+      "plan.md": "b5cc2ac6cbbb5c3f4f90403b277f8e4b537e2e80e6a73bcf62cb0f057769f2d1",
+      "tasks.md": "d5b751d23bb4a16f6fa3fdffa49eccd9575e26547b59ec8ef40113e35c9e5c4e",
       "decision-record.md": "018143bf93433a6e0015bceca8109fe125b6d78536702ad59370ab790a89cbc7",
-      "implementation-summary.md": "3c52ab6ebc1d1ac688843cd06e64d2857b779322834fde3e86716fa10a7ed6aa"
+      "implementation-summary.md": "6e074db60baf48907bde457f6dfc7ea101a27ee5a46974d327ebf560c9da2c15"
     },
     "last_active_child_id": null,
     "last_active_at": null

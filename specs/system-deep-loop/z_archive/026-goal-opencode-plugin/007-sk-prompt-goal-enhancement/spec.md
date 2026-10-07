@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/007-sk-prompt-goal-enhancement"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/007-sk-prompt-goal-enhancement"
     last_updated_at: "2026-06-30T16:45:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Implemented deterministic sk-prompt goal prompt generation in mk-goal"

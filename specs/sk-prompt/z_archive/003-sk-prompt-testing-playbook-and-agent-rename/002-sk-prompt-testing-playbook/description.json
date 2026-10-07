@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
   "description": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
   "keywords": [

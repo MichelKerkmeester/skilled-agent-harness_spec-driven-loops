@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver"
     last_updated_at: "2026-07-22T11:40:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Decomposed into three L2 child phases"

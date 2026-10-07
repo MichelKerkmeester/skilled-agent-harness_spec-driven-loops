@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
     "created_at": "2026-04-23T08:35:00.000Z",
-    "last_save_at": "2026-08-30T15:39:26.790Z",
+    "last_save_at": "2026-10-07T18:16:07.507Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c35e5428cfd9a529eb5ac8764ed3fc9230381c51e67f105c91ca1ae66057e69f",
+    "source_fingerprint": "sha256:f5ccbf3edc23048f3506ed07792f79fb694402d68bda35c5bb2631d58cdaaa92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9eb4bd279935125998c54989328857977bc9e58f033a40b7c5f2dffd61206f1",
-      "plan.md": "e5bfb25ae2228cde60adbbe9185dd8d239439c152340b27b1fd8e37c278b4e94",
-      "tasks.md": "4858cd87e034ab1b76894fe57ed5269ff424bfc862560b3a1e3721c7ab6e6365",
-      "implementation-summary.md": "79e41989a850fa428ad14d2e35e6088fccdcaa0df40e1d6956da0d30a4869260"
+      "spec.md": "eb13afa9c09f233d5ab4bd459367459b8360e2246bdd383007088072bf9e7e54",
+      "plan.md": "85390fa3033f9d93df6a389c0e9dff09800cf2dfab200aa2292af6742608a8fb",
+      "tasks.md": "f0b7e18a825277ab97f68cca001aaf536540b356aa35956d7aaf63186085b10e",
+      "implementation-summary.md": "47a237af2ebc22576ab709059c8a8975ce91ecef43154ffe9db735d3976eb0bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin"
     last_updated_at: "2026-06-30T16:30:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Landed all 5 remediation phases (010-014); audit-driven work complete"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra",
-  "spec_folder": "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra",
+  "packet_id": "cli-external-orchestration/z_archive/056-roster-drop-deepseek-api-pro-terra",
+  "spec_folder": "cli-external-orchestration/z_archive/056-roster-drop-deepseek-api-pro-terra",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -17,8 +17,7 @@
       "opencode-go default deepseek flash",
       "drop deepseek api pro terra plan",
       "opencode-go default deepseek flash plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "drop",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The operator retired three dispatch targets:",
     "created_at": "2026-08-29T10:34:45.843Z",
-    "last_save_at": "2026-08-30T15:39:08.247Z",
+    "last_save_at": "2026-10-07T18:11:39.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b56e44d4c4355c876cf16a0620c1ccedf7505f2c72b266962adfcbb5c7473651",
+    "source_fingerprint": "sha256:25e0711c4b19f12a8a94835f0b1877563c8a621d3f2b1a08dfbb78dfb7ea2440",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a8161cd9fefbde1d24d999b82065cb011b72fb38223b4a3228b72279bd5a1cf2",
-      "plan.md": "22dda96a566505fb452d7fe062ee5ae634a2f0c82cef6abe9cf1260c174faa54",
-      "tasks.md": "366aba175f7e6a5e9cad4d3892f4a8cf2ee36360cbe76d6872a723e66b3406f8",
-      "implementation-summary.md": "9ea7ef070f939784396472d64d4e8e3fbfbc652e0e2901ddb543fe6557212c38"
+      "spec.md": "f02ea2c386a148407c6ffafca138b8c67e289cf1620850b382b3536a48a3821a",
+      "plan.md": "ddfe7926911f1f6f06c82c6b4a2f3f8d6e7b3a885f44c1d2b0a69d82d0a5752d",
+      "tasks.md": "0def9dff7e7239ed65ba238d876b3427f48e8d12b7088cb180cd68f350477dc4",
+      "implementation-summary.md": "1a16315bf26997ec320b690240ad99f88418ef56745b2aaeb2c05b67d907cb7b"
     },
     "last_active_child_id": null,
     "last_active_at": null

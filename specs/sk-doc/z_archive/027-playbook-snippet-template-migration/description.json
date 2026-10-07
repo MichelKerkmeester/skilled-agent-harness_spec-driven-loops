@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/027-playbook-snippet-template-migration",
+  "specFolder": "sk-doc/z_archive/027-playbook-snippet-template-migration",
   "description": "The 32 per-feature snippet files under `.opencode/skills/sk-doc/manual-testing-playbook/` drifted from the snippet template",
   "keywords": [
     "per-feature",

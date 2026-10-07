@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
+  "specFolder": "cli-external-orchestration/z_archive/034-opencode-go-flash-qwen-roster",
   "description": "`qwen3.8-max` was absent from cli-pi's enforced deep-loop fan-out roster (`PISUPPORTEDMODELS` and its `fanout-run.cjs` mirror), so a fan-out dispatch",
   "keywords": [
     "qwen3",

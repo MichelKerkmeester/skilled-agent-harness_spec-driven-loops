@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
-  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "packet_id": "cli-external-orchestration/z_archive/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
+  "spec_folder": "cli-external-orchestration/z_archive/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
+  "parent_id": "cli-external-orchestration/z_archive/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
     "created_at": "2026-07-27T06:06:41.642Z",
-    "last_save_at": "2026-08-30T15:39:07.382Z",
+    "last_save_at": "2026-10-07T18:11:35.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7701194af927606b1af217a6a77daec177e79f89435b5959fa263ee93bb12d71",
+    "source_fingerprint": "sha256:0f868691277b834fb2540425a92e91d0a6453537a3de09e7ae08697da1ea7ebc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86e324a15066d773b756513c17ecd87f52945b5b623af437ce3d096e6d94316c",
-      "plan.md": "e1d3926f05a588e86c25bf7540577766a89b3944a42ef5fabfb45bb728cebd64",
-      "tasks.md": "51c26ec3dfc903d71c75d82f62c8e3ce01b84b2a649e78b9829483a0a820750c",
-      "implementation-summary.md": "2f4d6210f8325664954ebd8f2a8198ab275fe52803a16211d373ea934e990af7"
+      "spec.md": "50cb65705cbd4ff324ebd071d51ab470e5b2bd856053fb68f443c6cd38e12e12",
+      "plan.md": "a05fa80ba6b4dc240d71b4f80c2eb73148e3452e1466206fa002a9fccb56af87",
+      "tasks.md": "643179478e1457fc94239b2a323870e356136cfd4ed82347f28e458e26dc2a94",
+      "implementation-summary.md": "72e0ccdca5be7b5d40a0e8462586526f075e291c132407653ef3c0aac28f16b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

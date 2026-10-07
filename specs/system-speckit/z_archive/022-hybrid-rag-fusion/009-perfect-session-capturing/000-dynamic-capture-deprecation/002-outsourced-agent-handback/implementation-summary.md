@@ -128,8 +128,8 @@ File-backed saves bypass stateless alignment and `QUALITY_GATE_ABORT`, but they 
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

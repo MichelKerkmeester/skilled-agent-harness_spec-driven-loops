@@ -11,31 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "specification",
-      "post",
-      "merge",
-      "refinement",
-      "final",
-      "spec",
-      "043",
-      "implementation",
-      "plan",
-      "task",
-      "breakdown",
-      "tasks"
+      "post merge refinement final spec",
+      "post merge refinement final plan",
+      "post merge refinement final tasks",
+      "decision record",
+      "post merge refinement final decision record",
+      "post merge refinement final implementation summary"
     ],
     "key_topics": [
-      "specification",
       "post",
       "merge",
       "refinement",
       "final",
       "spec",
-      "implementation",
       "plan",
-      "task",
-      "breakdown",
       "tasks",
+      "decision",
+      "record",
+      "implementation",
+      "summary",
       "major"
     ],
     "importance_tier": "important",
@@ -46,7 +40,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scripts/rules/check-files.sh",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -78,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-files.sh",
         "source": "derived"
       },
       {
@@ -193,11 +180,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Context There",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues",
     "created_at": "2026-04-12T09:02:53.527Z",
-    "last_save_at": "2026-08-30T15:39:37.163Z",
+    "last_save_at": "2026-10-07T20:12:15.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2db7c8e7e4fda0717b1f082e5260cad2c221ebcab8355e9e57ba3318320bde6",
+    "source_fingerprint": "sha256:2d4c56c2d812c061d41405665b59c676891261e4fdd7cb0220fdcf9f0f8cfa7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99ebfabea0fd42902c0b97c0ab9c9472a4772cc651eddc62e0fb1bb03cbb535b",
-      "plan.md": "38bc3522e8173aa95e356a6f57e03ead66487f89c16ecc32a55d2b4e6162a286",
-      "tasks.md": "2c7e3bfd5394fad1830c2eaf6727b4da73ffed5a30f06bb6711454c7984c544e",
-      "decision-record.md": "c694e7e6ef4330b6dc4f645fa100160f75022888b8dd327a2ab05e22e4a7f390",
-      "implementation-summary.md": "808a68554b670d32305ce53c5f149f5df10371e77aef4588403616a1ce969c08"
+      "spec.md": "27edcc8bf15e018e63b80fc90d0996770bc4b0f0658c55b7fbdf106ba6297a0c",
+      "plan.md": "e0e273211d8abc18fa965a8ce45142d3dd79fdf15f555a8c39d80f76a85c2bb1",
+      "tasks.md": "6d489fba431691fc3e8247d9b864921e6d4dac84d6fd8d3fc05ba96d3e9a57e7",
+      "decision-record.md": "ba3f2881363c193932b2f5d677f10ba1770b0cb1a32a9c61343336cffce04cde",
+      "implementation-summary.md": "18df512b9a3b505eddd791f77da07bf13f2f94be56cdba6d8c4f38e115672023"
     },
     "last_active_child_id": null,
     "last_active_at": null

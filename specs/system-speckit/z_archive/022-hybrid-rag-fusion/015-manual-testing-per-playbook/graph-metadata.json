@@ -219,7 +219,7 @@
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-09-10T21:04:59.594Z",
+    "last_save_at": "2026-10-07T20:26:47.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,13 +229,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:8071d4915dcd0b78d4e3044f2d9b151e7d9bbfbe4cf075d40a9ac4ab4eefc3b4",
+    "source_fingerprint": "sha256:ac3f35e97331f5728bc767228f4d8c2f0ff7ded549672ce293a8e4d0eeeb447b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eae0da52e893017070c9835fbb812b6d7ba2c3f22b30e44a25e560f99a7133d8",
-      "plan.md": "85626c7b08d3dca9a303b30e4d25de3e9c38990ce4d003b5bf9e366cb065d0c2",
+      "plan.md": "58479384bb49e5185fafe302bfd5cbb24f0718ccf16bfb7e94215d43c7603e00",
       "tasks.md": "ab44bd1082b4ec98e9051e604f9effabaed448b3301924d4d42591f7c5c30f6f",
-      "implementation-summary.md": "7c902a29929a73b236056d6e7146f90f6305d9288047c0c86a392bd42422f386",
+      "implementation-summary.md": "4be6de29304b76fbf3581aec3f5c50496c539faf20351ddf938115ebad957154",
       "resource-map.md": "f1ada1c699a38e521712b890b6624345a6242ce715cf84fd3b24aa8ba3b6182f"
     },
     "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks",

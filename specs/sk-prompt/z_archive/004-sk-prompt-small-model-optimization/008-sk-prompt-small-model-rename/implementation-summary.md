@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-23T13:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored implementation-summary.md (re-application post stash-revert)"

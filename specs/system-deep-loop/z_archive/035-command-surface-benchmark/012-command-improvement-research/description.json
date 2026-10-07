@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/012-command-improvement-research",
   "description": "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model",
   "keywords": [
     "runs",

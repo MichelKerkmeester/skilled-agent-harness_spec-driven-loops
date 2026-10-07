@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/002-references",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/002-references",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/002-references",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/002-references",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,12 @@
       "design-md-generator references conformance",
       "extraction-workflow importance_tier enum",
       "vendor DESIGN.md exemplar placement decision",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "vendor exemplar placement decision"
+      "references plan",
+      "references tasks",
+      "vendor exemplar placement decision",
+      "references examples relocate or exempt",
+      "DESIGN.md exemplar conformance ADR",
+      "references implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -35,8 +32,8 @@
       "exemplar",
       "placement",
       "decision",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying `DESIGN.md`, `tokens.json`, and `writing-notes.md`",
     "created_at": "2026-07-27T15:10:01.534Z",
-    "last_save_at": "2026-09-11T04:35:43.193Z",
+    "last_save_at": "2026-10-07T19:23:35.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d5a8f2eec7e8037462e4a25d946cd8aa753977dc04d1d6386810086ab03b68f",
+    "source_fingerprint": "sha256:ce8b3be2f7436fbd832e049442621394d150ff0e9a1a5d39dd0b732f020c953a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c75be66ab1724bcf29747f30f450099b6dedfa76ed2c29d7007477f60451b79f",
-      "plan.md": "78e7eb720d097a8a30ed24edbdad8f1fd10eb1432d358196590e4faa6bbf0c40",
-      "tasks.md": "9ffcfdbc8488a0b6a5bd9c1536c32b2049783cdbc3011253318284eaf907cfe3",
+      "spec.md": "5d207e3c0e712c4503c4471659ae1c4bd3859714591a26bec73281bfed7388fe",
+      "plan.md": "399613081d3920450de0cd46ad0fd0d07327576a41b46cf6b2b3d09ae8c8bedd",
+      "tasks.md": "0aec97044155f7722ffeb7e57aa357e39afd35bc54e21c09bad200496a4a276f",
       "decision-record.md": "70349289d54f4e5d81ebbe0c169ce101ff0c148a526a16179e0f90fa966967a3",
-      "implementation-summary.md": "ed60822561266c7c8f02a30c472db02f2ea48402e1573f059eb15acee209dfe7"
+      "implementation-summary.md": "ddd5662599329f4e20f8e350087e116be7ec19656b0971a591a2b08921eec67a"
     },
     "last_active_child_id": null,
     "last_active_at": null

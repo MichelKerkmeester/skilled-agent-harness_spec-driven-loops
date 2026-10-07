@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/008-conformance-playbook-and-readme",
   "description": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
   "keywords": [
     "mode",

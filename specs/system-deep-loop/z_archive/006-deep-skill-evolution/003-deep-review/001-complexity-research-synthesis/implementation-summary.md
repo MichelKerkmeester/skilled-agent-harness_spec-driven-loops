@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution` |
+| **Spec Folder** | 001-complexity-research-synthesis |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

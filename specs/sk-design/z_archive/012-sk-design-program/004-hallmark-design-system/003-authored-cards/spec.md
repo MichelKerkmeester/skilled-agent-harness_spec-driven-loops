@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
     last_updated_at: "2026-07-22T18:39:18Z"
 
     last_updated_by: "implementation-agent"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/042-improved-communication/001-research-strategy"
+    packet_pointer: "cli-external-orchestration/z_archive/042-improved-communication/001-research-strategy"
     last_updated_at: "2026-08-11T06:40:41Z"
     last_updated_by: "codex"
     recent_action: "Completed local reverse engineering and two native web-research lanes."

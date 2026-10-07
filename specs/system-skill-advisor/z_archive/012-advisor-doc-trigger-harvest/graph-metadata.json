@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation`) proved with code evidence that the detailed frontmatter block (`triggerphrases`, `importancetier`, `contextType`) carried by 103 of 369 skill reference/asset docs has zero runtime consumers: Spec Kit Memory's index gate (`memory-parser.ts` `isIndexablePath`) admits only spec documents and constitutional memories; the skill advisor compiles only each skill's root `graph-metadata.json` (`skillgraphcompiler.py`, `indexSkillMetadata`,",
     "created_at": "2026-06-11T07:50:07Z",
-    "last_save_at": "2026-08-30T15:39:27.201Z",
+    "last_save_at": "2026-10-07T18:16:01.366Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:420b6d47111f5a58c6a3988bc8443cd79b5273fcd4959977c5ccb17f7f1c8528",
+    "source_fingerprint": "sha256:72827a7314dc7e00662cd9b3462f3e1eb3d7cfb83f1fe01163f6dbc5b69e9f93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c7582b506b11fd46794a580d13131aec269df2790df4b7a57af55fbc894105f2",
-      "plan.md": "c1ade55d9237cafe1cbfce057d9b5254a70b4059b4cf9756aaab6617a3862e89",
-      "tasks.md": "772b02e16448bcb505574e2631e0d076f77214a83385ef1ecfa39e9005a8f75b",
-      "implementation-summary.md": "a074696dec156febee41a7c304fa569fee0caac15b249843424351376ebbedac",
-      "handover.md": "142ef303d4a3924498c3ebfa2170ff215181b139a33e22c2b82731ef3cd649cc"
+      "spec.md": "378e3b1fb100224f1e7719da255164b18375228147efbb5c31c828b2cbb3cbd2",
+      "plan.md": "c5c0d0dd3a616dfe2efb02477ac39b621990232ea31042b6cae8aa5a2f817356",
+      "tasks.md": "87eef88395a84b97c3990d9b46a93bc50bbf7e254fc1a276aa81bfaf865ff723",
+      "implementation-summary.md": "07ddd11d136c989078a684f526010a7a6573309cdfa7ce835b11345f38cc5d4d",
+      "handover.md": "7f51f5b3eec12899e415920a7bb2bb4f56d630cd556723dbd6b194ddef384c07"
     },
     "last_active_child_id": null,
     "last_active_at": null

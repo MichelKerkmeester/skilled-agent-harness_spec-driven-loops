@@ -2,12 +2,8 @@
 title: "Tasks: System-Spec-Kit [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/tasks]"
 description: "Existing Infrastructure"
 trigger_phrases:
-  - "tasks"
-  - "system"
-  - "spec"
-  - "kit"
-  - "bug"
-  - "049"
+  - "system analysis bugs task list"
+  - "bug remediation verification tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -4,15 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity",
   "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability",
   "children_ids": [
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/006-mode-d-ai-council-identity-fix",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/007-orchestrate-universal-routing",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only",
-    "system-deep-loop/031-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/009-fix5-checkpoint",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/002-route-proof-validation",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening",
@@ -103,16 +94,16 @@
     ],
     "causal_summary": "GPT-backed OpenCode mis-routed and mis-dispatched deep-loop work and could not hold a hard host identity (the FIX-5 problem)",
     "created_at": "2026-07-04T19:02:59.813Z",
-    "last_save_at": "2026-08-30T15:39:25.402Z",
+    "last_save_at": "2026-10-07T18:14:54.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:187921c922a35263da36315780422b17edba0b5ee8cdc3e35ec805afa21a4d72",
+    "source_fingerprint": "sha256:04674848dd3286ec90636e7f171a737cfd489284dc1f53908fc0aba9967247bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ba5d649f76f00de51b11ad84111270a534b1c67c52300b5ef3872c2fec803ab"
+      "spec.md": "16e6522fe24fdf51155234066388dbf73ad643a48f31a592b86f2b9e5d7bafd5"
     },
     "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/004-command-pre-route-headers",
     "last_active_at": null

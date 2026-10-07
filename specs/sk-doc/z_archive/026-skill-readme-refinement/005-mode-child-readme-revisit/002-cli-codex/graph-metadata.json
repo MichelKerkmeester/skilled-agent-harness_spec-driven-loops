@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/README.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/changelog/v1.9.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The cli-codex README at `.opencode/skills/cli-external-orchestration/cli-codex/README.md` still carries the older tabular reference-card style and predates the mcp-obsidian pilot standard",
     "created_at": "2026-08-04T08:34:39.453Z",
-    "last_save_at": "2026-08-30T15:39:17.611Z",
+    "last_save_at": "2026-10-07T18:14:17.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21a5e495e1e02eee68c487efb36975240b70557f0ae58fecfd02a8f2f0cd7b22",
+    "source_fingerprint": "sha256:1fdc7b34ca82b0480e2ca2a6b2976ebbd7e379b7aab4050051245c02b0bb0084",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a4f90089a9888c32722d3cb0538ff679c72dcb5cb92e36bd78cee38d36a8023",
-      "plan.md": "b567e4ecc268d2e4304259293b8b20f20935705d07779d0daa91e40748b24bca",
-      "tasks.md": "9d46b0a2b7849488cc7c1c4d6951db799ec3e0fb4f54f94193248e22f4834200",
-      "implementation-summary.md": "263d79a7d6c267bd38ea6bf325e22a8b072a6a8bdc9da902a7a734429712fd57"
+      "spec.md": "091215f9d95db1343ce03f7ed45c93598c57ed445bd4da1f1437f68bbc5477a7",
+      "plan.md": "c00c17fed37c116d09c14d21fec6c252b6df70ae5f3e03c88aa575f1cc1cd406",
+      "tasks.md": "4e6c78cf85945483ecf24082e756f6990be3338aacd2b2a4989439d3b4dfb0b4",
+      "implementation-summary.md": "5892e8a34b85e2122201391033278bf05e2e32714d5dc5eece083246da5fb505"
     },
     "last_active_child_id": null,
     "last_active_at": null

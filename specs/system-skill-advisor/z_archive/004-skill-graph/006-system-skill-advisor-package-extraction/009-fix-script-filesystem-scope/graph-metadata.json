@@ -45,8 +45,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Applied",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two production advisor scripts resolve filesystem paths one directory too high",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.469Z",
+    "last_save_at": "2026-10-07T18:16:07.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a5974a3ab20ae32e267b8dad99644fbfff7fd3499fcf445f4b20a1d6280f0ed",
+    "source_fingerprint": "sha256:0ce33386996fc10965a30b0d400f170b4f13c6d50c26e1165e68abf53b1e659f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68536aeb54011af6b6bccc8b2b451a3471fc8adee8cab9ef70e00054f24f9242",
-      "plan.md": "14cc0151ac2b391ebcdc69637ba2882fb6b6972b1c5c2cb8b4cff5608927d06f",
-      "tasks.md": "1e68aa3b7739af90926fae5c3565023d8d77f6edb38380ffbf4e3fd7730082ee",
-      "implementation-summary.md": "276bf5dd9f68328f57b3281b602976d16e18b8338fa03a78ad5bcce1b3f95f2f"
+      "spec.md": "76ba118420c04f8b5935ef2db96f314eaf3f179dea80e8bf324b02ca793a121b",
+      "plan.md": "080706a5a29a0d4652c26a7047efb21682c309a89862d648959b4e7b2e9d314c",
+      "tasks.md": "226b845b5d84e85e3a88e6111ad50afb522558ff2f4088aaef2b217f8259fab2",
+      "implementation-summary.md": "1c3305aae79c04f9b642c9436403a06bd0d3ab8ab66caa3e2880f6af49ae7d8b"
     },
     "last_active_child_id": null,
     "last_active_at": null

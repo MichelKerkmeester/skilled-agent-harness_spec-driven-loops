@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the cross-portal (interdimensional) edge serialization shape and told the AI to never author it",
     "created_at": "2026-08-23T03:37:59.812Z",
-    "last_save_at": "2026-09-10T20:43:52.279Z",
+    "last_save_at": "2026-10-07T18:11:14.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3c163ce65aabb2212ed300100c7d12aa689b74405f6e37402f95315206db5fd2",
+    "source_fingerprint": "sha256:b76337b7f3ce24b2f6c859324cb7406128430314ab5ce66c82415a712d8e75c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "346b91f08ed3dbef01fce965f72a5353fcb48f43dd48bf2da9ae8ebb7b52ffd4",
-      "plan.md": "8077217c4b41d183f2a6b461242e809ac48a3100af3b747bb8198377ac6047d1",
-      "tasks.md": "88a68ff0a3704d2b3c1fce17e0a62657a1c595083c1f3663cbf48ac263377fa8",
+      "spec.md": "c989d0e6456a7c2a9d65fa2c54e0dabeb7a29ad648b49e565a277380dadbe0f1",
+      "plan.md": "78dfded81f2f75124c923dc013f5dd0642d20dcf40b128ecbcb6ddc5d87c5514",
+      "tasks.md": "632f106e3fce9ab35248ee9d23bff98eef4c8248cb613fbb78f92775336906d2",
       "research/research.md": "f05c924dbc149e94b33bb40371ee7bfff2aadf3c9a82218aa3f2c3422d76b713"
     },
     "last_active_child_id": null,

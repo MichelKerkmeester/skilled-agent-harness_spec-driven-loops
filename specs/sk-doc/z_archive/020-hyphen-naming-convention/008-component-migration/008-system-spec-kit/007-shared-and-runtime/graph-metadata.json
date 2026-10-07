@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The shared/runtime part of system-spec-kit contains an underscore-bearing shared/mcp_server directory even though its TypeScript/shared-package surface can use kebab-case. This phase verifies the runtime tree, renames the permitted shared directory, updates its references, and preserves package manifests, tool names, generated databases, and Python package directories.",
     "created_at": "2026-07-14T15:18:02Z",
-    "last_save_at": "2026-08-30T15:39:16.778Z",
+    "last_save_at": "2026-10-07T18:13:28.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:0513adc24b405f325f3ff375097683e951aa37af2d5f1d30a32c988ebe13dae6",
+    "source_fingerprint": "sha256:dce6b3899639c1dd196185bab91255b8d21f8bf87594bd80ecbe94906645da00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bac96659a15cec663e7d568b82e4f1600e3d5bb8dd0e7d751775faf3b0ab6b9c",
-      "plan.md": "426536e123058202aaa8897b7d4e7231f4c69e7f20e082987c3a7791cb4c3e79",
-      "tasks.md": "09752f13ba135cabe522778d282aa8016e3ceee30f44cafd8696cbe81b1e469b"
+      "spec.md": "222614d20ca89ab802a817da2a6d4ba5253c269902dd7d3ab3d22f3fe4dc6f71",
+      "plan.md": "84edf5a8de5ca8878c24028dd3350e0c4212e1d0bdbcc4d29fea7b6b93edbceb",
+      "tasks.md": "2dba4eade2df72cdca9405871cf71f6b7ff2879814a0267dc31d89852e4def7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/036-grok-4.6-support",
+  "specFolder": "cli-external-orchestration/z_archive/036-grok-4-6-support",
   "description": "cli-cursor's enforced `CURSORSUPPORTEDMODELS` allowlist and cli-devin's enforced `DEVINSUPPORTEDMODELS` allowlist both curated only Grok 4.5 (6 ids on",
   "keywords": [
     "cli-cursor",
@@ -14,11 +14,12 @@
     "grok",
     "ids"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.254Z",
+  "lastUpdated": "2026-10-07T22:28:00.658Z",
   "specId": "036",
   "folderSlug": "grok-4-6-support",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

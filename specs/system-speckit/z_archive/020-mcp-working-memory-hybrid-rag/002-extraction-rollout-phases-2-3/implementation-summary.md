@@ -3,7 +3,6 @@ title: "...system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/002-extra
 description: "Archive normalization summary for Extraction Rollout Phases 2 3."
 trigger_phrases:
   - "002-extraction-rollout-phases-2-3"
-  - "implementation summary"
   - "phase"
   - "archive"
 importance_tier: "normal"

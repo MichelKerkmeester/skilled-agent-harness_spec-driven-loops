@@ -25,7 +25,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `005-search-ledger-persistence-and-reporting` |
+| **Spec Folder** | 005-complexity-search-ledger-persistence |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | Bundled with 004 |

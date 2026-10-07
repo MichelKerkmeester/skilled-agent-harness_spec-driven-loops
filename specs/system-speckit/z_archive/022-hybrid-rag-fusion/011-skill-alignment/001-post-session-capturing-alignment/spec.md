@@ -143,7 +143,6 @@ Capture the narrow documentation-only alignment that imported the relevant post-
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Documentation Quality
@@ -159,7 +158,6 @@ Capture the narrow documentation-only alignment that imported the relevant post-
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Documentation Boundaries

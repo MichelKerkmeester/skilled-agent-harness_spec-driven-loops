@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/001-research",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/001-research",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/001-research",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,30 +46,25 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
-      "research/resource-map.md",
-      "context/website-link.md"
+      "research/resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -82,12 +77,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "website-link.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
         "source": "derived"
       },
       {
@@ -197,11 +186,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
     "created_at": "2026-07-16T09:39:32Z",
-    "last_save_at": "2026-09-10T20:43:44.585Z",
+    "last_save_at": "2026-10-07T18:11:14.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +206,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3644ba301f953f9824d3efe4b8b1790c07d497fafb72bd38282918d12919a0cf",
+    "source_fingerprint": "sha256:9ab03b225341589e04a2f73770f0ac0d019172b1e1dd4d4b1803e76bb9dbd443",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01bea300f0e765c65dd63234823a12fc6aaefbba9f6f23b00e567b4db82f59b1",
-      "plan.md": "8e57904c4f6ed8ee54aeb34542bd407f1dff8569209c395216fe8064425c8e22",
-      "tasks.md": "6601bf630e8b07ba994884988c12483aa829b45ef3ba1401e8a593eba9faa971",
-      "implementation-summary.md": "d1b33542c9cd7380907b4334070b4cc4a6deb339626cdfbc958e65535bf83e42",
+      "spec.md": "70240ae5fe4b5f35c039dfbfc54a40292c2aaec09f546588b99169b287990b58",
+      "plan.md": "e387bdeca813f714ec702e0ce62fecfc480a1589fb6f1ae2ad6eef4e63f0f38c",
+      "tasks.md": "d27636eb48a5984dc91603daa1d8ccfa6cfcce4fb694877558256577258821b3",
+      "implementation-summary.md": "39a182e24d8e332bb2111f6f9d4d309aff904ccd3d950f5dd822eb6a674db59f",
       "research/research.md": "2a44bf6b5ec30fab634b70e67ae966b073ffa61be6e4b858381cef918ed514e9"
     },
     "last_active_child_id": null,

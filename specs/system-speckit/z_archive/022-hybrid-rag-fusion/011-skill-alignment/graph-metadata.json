@@ -21,11 +21,11 @@
       "plan",
       "tasks",
       "summary",
-      "implementation summary",
       "011",
       "skill",
       "resource map",
-      "011-skill-alignment resource map"
+      "011-skill-alignment resource map",
+      "path catalog 011-skill-alignment"
     ],
     "key_topics": [
       "skill",
@@ -39,7 +39,7 @@
       "resource",
       "map",
       "011-skill-alignment",
-      "pack"
+      "path"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
     "created_at": "2026-04-12T09:02:50.284Z",
-    "last_save_at": "2026-09-10T21:04:56.621Z",
+    "last_save_at": "2026-10-07T18:16:26.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:539007272b102ae5d1c13177caf2891141323a9be985ba3c1dcaa5f41c6bd401",
+    "source_fingerprint": "sha256:2833704e69653423d59e14dad3c2b10c83c1a1f7d9511bf0bc8c1b9a02a899a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f53c57eaafb9169ae814475bdb54d631e3bd2e93052b60817f51a9353487677",
       "plan.md": "0d7a5f18be82b6cb4fa583300acd18ff59472a606d139ba0a359da2de3e020bc",
       "tasks.md": "4f22b031733097fc0ebe5b3aaed1b57616dcd55e0b92fcc5ed6b0317410401bf",
-      "implementation-summary.md": "244d1c31df8dedc02c375e53e4e754846161c21b3d280c555d6241af04beac85",
+      "implementation-summary.md": "2106b3b615879524711b0e7a9617b4f3df18ca863fe04e0bcd9726a245002298",
       "resource-map.md": "2e396bde9bda9fb34c805aad73515d3708afbf09c5c3657d046c61aca87b02b3"
     },
     "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022",

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/034-skill-benchmark-codex-executor",
+  "specFolder": "system-deep-loop/z_archive/034-skill-benchmark-codex-executor",
   "description": "The Lane C skill-benchmark live path (Mode B) dispatches its model \"test subject\" exclusively through cli-opencode; the `--executor` flag is threaded",
   "keywords": [
     "lane",

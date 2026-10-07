@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The rename swapped file CONTENT but not a few FILENAMES that embed the old skill name (2 playbook docs + a changelog entry)",
     "created_at": "2026-06-28T15:46:02.237Z",
-    "last_save_at": "2026-08-30T15:39:19.394Z",
+    "last_save_at": "2026-10-07T18:14:18.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e2582558a3df85275df26d75394ed8164bcc6e9531c67caadccec9adc302e56",
+    "source_fingerprint": "sha256:b0d1c6540f46198c4c8668f86afa5f03f967abe02b9309bfc5c83ebc5466ee30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e186180b843cbc237266f0c0876729fe4e70aacb187ccdbb8124c7709b85124",
-      "plan.md": "6267cd30cee233caab06e76fb02aff79086ebb98860eec08de3479a2ccecad51",
-      "tasks.md": "a25a92525a9ecbedca60eaa5f8c68b7c107150c2c5b8811c556529fe728787fc",
-      "implementation-summary.md": "28ba9a4eb0ada61decdc7c4481764d7f185ad55d40f4d6255a3987d9b1318e90"
+      "spec.md": "0abe4ec4dd42819b6f12cf6ab74a515631f8551d8d36e901f5d134518dfefb22",
+      "plan.md": "e097ae1bbb936f7d28375cb21f1b84cb25ed2ce450a1b77b6c6ed8a0d941b696",
+      "tasks.md": "6c5137ebbd41d9fe6a8314e0741ee7a5a0cfc309bfbf6f06951f71557bdabe2a",
+      "implementation-summary.md": "12d7b44c8e561df7d8bd156c6d0397a50d4ea481416a57736236328c43bf233e"
     },
     "last_active_child_id": null,
     "last_active_at": null

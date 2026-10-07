@@ -14,9 +14,7 @@
       "system wide remediation",
       "audit findings remediation",
       "archive",
-      "implementation plan",
       "tasks",
-      "implementation summary",
       "note",
       "handover",
       "008",
@@ -29,12 +27,12 @@
       "audit",
       "findings",
       "archive",
-      "implementation",
-      "plan",
       "tasks",
-      "summary",
       "note",
-      "handover"
+      "handover",
+      "codex",
+      "archived",
+      "folder"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "This archived folder captures work that remediated audit findings across the wider system-spec-kit surface",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-08-30T15:39:37.710Z",
+    "last_save_at": "2026-10-07T22:05:43.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +201,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:047dc404d44835a21e47f4899bc429d2b3f53879e9a6cc824dea234fb4705b09",
+    "source_fingerprint": "sha256:5a1df3f3a0f77616a980f6d2807bbb2e6dbe91ef1d0bf6b47ba3aebdce35b501",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fbeb69171ca976fd84aa90ad0a95f090ed2f19c63eba3b0430e904a1a49d386b",
-      "plan.md": "81442656f283cf7b742380d8e3522b9c075e994068c79f83f28b4e14c75aa3db",
+      "plan.md": "9eed8d705ea1d7c75ec5c5e3ddc34a4107a15c94f6929be6ca409be01f034c2e",
       "tasks.md": "d2bba20e359f292709ad4321127fd4aecd0addd0c4035114e8766aa729fac9c6",
-      "implementation-summary.md": "bfcde5c56c99243e56afad7f232bbd88c41ce08c496d530ac77b7d62736c52e6",
-      "handover.md": "db34a3ec43075e942bf2d155b80d5711ca6ad5416c2f704bd6de42ceed6742df"
+      "implementation-summary.md": "ae895a592e856e7e557d925143b74c4f18764b1cd8edc6e3605bad14f2af0801",
+      "handover.md": "33c0f8783456d92bf73cff672482b3cbedf3e5046bf7e1d6d417895777713601"
     },
     "last_active_child_id": null,
     "last_active_at": null

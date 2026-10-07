@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-08-30T15:39:16.429Z",
+    "last_save_at": "2026-10-07T18:13:03.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e6beaa928db33e2e73af7e17369ac654f47b30718bc9ec2c2771f0624c0fc744",
+    "source_fingerprint": "sha256:5f1d5aee84a2dcfdbe57a01f8b35c02724c57e0c0558c389499bb450b20ac553",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a2cf644d1930acc638485ed1556b9c1f59a23e688615978d351562204debeae",
-      "plan.md": "b6f944ccf5bc14fb4f94fc0cf1bce93721cd755bffcf902b71e5535691082a5d",
-      "tasks.md": "02df170e43c21071b2317f200e0315d4ea65a33c3f1e084d9ac376311ece61e6"
+      "spec.md": "5bf4483fef6fcf1e3d887dbc258328b3a4f82fbc9297ac7e7e72d4bd11fcf386",
+      "plan.md": "7fa704405b49033f9a58e9af73ae8a7795f9e24693f20c3bb7319f0d99d96e20",
+      "tasks.md": "eab4f0b13a90ccd754e81261da89b4b0b30d96d5253f87ad78c4ac5c01f1c620"
     },
     "last_active_child_id": null,
     "last_active_at": null

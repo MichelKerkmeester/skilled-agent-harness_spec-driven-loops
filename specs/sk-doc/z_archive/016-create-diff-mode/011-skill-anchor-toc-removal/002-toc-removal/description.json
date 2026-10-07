@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
   "description": "384 in-scope skill markdown files carry a `## TABLE OF CONTENTS` block (heading plus a list of anchor links)",
   "keywords": [
     "in-scope",

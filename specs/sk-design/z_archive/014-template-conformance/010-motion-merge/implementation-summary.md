@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/010-motion-merge"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/010-motion-merge"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
     recent_action: "Recorded the shipped motion merge c52071edb6 and its post-merge residue"

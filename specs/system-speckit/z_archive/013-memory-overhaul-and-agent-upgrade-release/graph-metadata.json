@@ -21,16 +21,16 @@
     "trigger_phrases": [
       "013-memory-overhaul-and-agent-upgrade-release",
       "memory overhaul and agent upgrade release",
-      "archive",
-      "validation",
-      "plan",
-      "archive normalization",
-      "tasks",
-      "verification",
-      "checklist",
-      "decision record",
-      "normalization",
-      "implementation summary"
+      "archive validation sweep",
+      "archive repair plan",
+      "archive repair tasks",
+      "archive verification pass",
+      "archive repair checklist",
+      "archive normalization review",
+      "memory overhaul decision record",
+      "memory overhaul implementation summary",
+      "resource map",
+      "013-memory-overhaul-and-agent-upgrade-release resource map"
     ],
     "key_topics": [
       "013-memory-overhaul-and-agent-upgrade-release",
@@ -41,10 +41,10 @@
       "release",
       "archive",
       "validation",
+      "sweep",
+      "repair",
       "plan",
-      "normalization",
-      "tasks",
-      "verification"
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -140,17 +140,17 @@
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to Memory Overhaul And Agent Upgrade Release",
     "created_at": "2026-04-12T09:02:53.566Z",
-    "last_save_at": "2026-09-10T21:04:36.081Z",
+    "last_save_at": "2026-10-07T20:49:08.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:73ed2f15625d793d9d2004a77a01f1ebc2c8f59c769b45337a72b7f4d84d2350",
+    "source_fingerprint": "sha256:ad39899ef112c51afba50479881b72304ef237e1fc4dc9e1150a876f6912ca60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df6da8b4ffdae3687e226955df06284055ec7c8e595d8b09e55b22981ce4a5f3",
+      "spec.md": "dc88d8081c62c13cc8517e9a9308ce9900df51c5b60ecd9211683654ad8efb01",
       "resource-map.md": "bb653dd1ce192001ddb179fb7c13ed056db6f89ac158680fa354d30d0f8a3b5c"
     },
     "last_active_child_id": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",

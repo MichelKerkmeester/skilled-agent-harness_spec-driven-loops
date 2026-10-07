@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".claude/settings.local.json",
       "dist/hooks/claude/user-prompt-submit.js"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Restored Shape",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Eliminate the 'Neither bash nor powershell specified in hook command configuration' error that Copilot CLI 1.0.34 throws on every user prompt by adding top-level Copilot-safe fields to the Claude-style matcher wrappers in .claude/settings.local.json. Cross-runtime compatibility with Claude Code was empirically verified in pt-03 research iter-6.",
     "created_at": "2026-04-22T15:15:00Z",
-    "last_save_at": "2026-08-30T15:39:32.681Z",
+    "last_save_at": "2026-10-07T20:38:19.347Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:194fbb5deac0d4a4595043af7ec3344a349aff678f660c8b948f661048199c41",
+    "source_fingerprint": "sha256:ca3d91355d0296d84750bc7e6be47ed3b00789f76240f497622190bd0083c510",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b62b0d7f355ccdfdfce869c6a5a89eb91ca342424840bfced601823e25be3d95",
-      "plan.md": "00a34d147579a22275175d781fe22c31561f80c110eef20c564eb7e9a39a0d18",
-      "tasks.md": "cfb23dbcf09c5dae267346387055eac9d817503f164a687b99a36a67df9c2c7e",
-      "implementation-summary.md": "142b6e1035c97276e850c0dbb5edeb1bb0bd7db62212c12a0d326b09d8e889be"
+      "spec.md": "53ebbaf1d8e3d2ac52d338ed282c918dece1e98d7cee5506d1f45c2cd908ab0f",
+      "plan.md": "68f35f1a4116d2d050d1b934904f10cb4f36ed4c6849d3ce00967ccead348043",
+      "tasks.md": "c2180e592f2c82ff8d9b26fb1f178e07845c1477ecbef18be7fe773bdabf5bfa",
+      "implementation-summary.md": "3f7fd4c458d3a324ddcef2831b3f7670c224f442f5c86fdbb812488aafa096b4"
     },
     "last_active_child_id": null,
     "last_active_at": null

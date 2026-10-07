@@ -4,12 +4,6 @@
   "spec_folder": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "parent_id": null,
   "children_ids": [
-    "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
-    "sk-prompt/002-sk-improve-prompt-rename/002-skill-folder-rename",
-    "sk-prompt/002-sk-improve-prompt-rename/003-opencode-internals",
-    "sk-prompt/002-sk-improve-prompt-rename/004-runtime-mirrors",
-    "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
-    "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
     "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map",
     "sk-prompt/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename",
     "sk-prompt/z_archive/002-sk-improve-prompt-rename/003-opencode-internals",
@@ -60,11 +54,7 @@
       "004-runtime-mirrors/spec.md",
       "005-root-and-config/spec.md",
       "006-advisor-and-validate/spec.md",
-      ".opencode/specs/descriptions.json",
-      ".opencode/commands/README.txt",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md"
+      ".opencode/commands/README.txt"
     ],
     "entities": [
       {
@@ -80,33 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-results.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
         "source": "derived"
       },
       {
@@ -178,17 +144,17 @@
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`)",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-08-30T15:39:19.004Z",
+    "last_save_at": "2026-10-07T18:13:38.035Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b6cba32049509ac159b1818d2a378891e1f886b15033259d8b292c44b8db09c5",
+    "source_fingerprint": "sha256:38bdcf444c202bf59f40663f8621b8671d201cae09d97cd6cad028c420356140",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ddb1d18062cdaaae546d39ce57bc2d4f8be504872fbd75024a2e145dce28c652",
+      "spec.md": "247aae5b56ba14dcb3825919b2def7d1a28ad90f9cde3bc311760d4fe37addad",
       "resource-map.md": "d7de1001ce4d5115f82f3e9f064fc9d86ea202a09a3058860f5ee92cbfad29f7"
     },
     "last_active_child_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate",

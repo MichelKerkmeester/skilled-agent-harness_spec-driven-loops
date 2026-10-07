@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/017-post-019-alignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/017-post-019-alignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Defines the bounded post-019 conformance audit and its fail-closed evidence contract.",
     "created_at": "2026-07-25T07:41:40.361Z",
-    "last_save_at": "2026-08-30T15:39:15.616Z",
+    "last_save_at": "2026-10-07T18:13:30.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3010d542dcd56b4396d0854c7164100e656e32301f6c9bb892ca2b48c901ad38",
+    "source_fingerprint": "sha256:d1b8597734e92425213dff09ec5c5ca7d5f8d7c82cce4553b54153f3654c1de0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a5ab5d0716fbed3415968dc98db55f23177d37beddfe18aff46c785d9c31311",
-      "plan.md": "6bc4f3f9f9f45eeb0abdcb96eeafb866b6a105ac02b3b64effd68d635a4bf075",
-      "tasks.md": "0cf3a787ef516a7e5ba741afd863d604ac6526167554a13bfff5114ece1eacfe",
-      "implementation-summary.md": "121094b14a98b7846cb8996c3c264e38046e3bf7139ca598c53612c89c419420"
+      "spec.md": "b7c63af63adc12c4d3dce6770af1d6d9d48af7dc110b3360dae30f246d24f2d3",
+      "plan.md": "8420878c549c366a8f86123c354dcf8e4a77e2c996b5b12bd1223b908d712660",
+      "tasks.md": "0ab743008800a3758014ea3539eb12fc6734570ab71146ae39ff573b89eeba4d",
+      "implementation-summary.md": "a474a1cb063f50c279ac522cb1176c8e439940f7b9f0db87da61271c7e4446d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

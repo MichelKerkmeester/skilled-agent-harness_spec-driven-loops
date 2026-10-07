@@ -137,7 +137,6 @@ Document the final contract so future maintenance reflects what actually shipped
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -156,7 +155,6 @@ Document the final contract so future maintenance reflects what actually shipped
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

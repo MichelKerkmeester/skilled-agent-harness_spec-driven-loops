@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/002-agent-routing-doc-update/implementation-summary]"
 description: "Archive repair summary for the Agent Routing Documentation Update folder."
 trigger_phrases:
-  - "implementation summary"
   - "agent routing documentation update"
   - "archive"
 importance_tier: "normal"

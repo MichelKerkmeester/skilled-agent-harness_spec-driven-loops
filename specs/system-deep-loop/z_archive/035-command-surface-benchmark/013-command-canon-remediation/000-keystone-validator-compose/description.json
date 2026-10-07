@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
   "description": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path,",
   "keywords": [
     "composes",

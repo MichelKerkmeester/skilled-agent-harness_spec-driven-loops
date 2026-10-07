@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-08-30T15:39:16.077Z",
+    "last_save_at": "2026-10-07T18:13:16.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6208f96e1101ee101ad90c3c977b527071b257177bc3d0585d8f45ad88f52667",
+    "source_fingerprint": "sha256:b66cc3ca4b01ffa4835e45c7a45fd31d10ddf74fe83ba7c6f8dbd494a2417040",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04c007421ef4d029fda97a20f571b42b401ce0ecb907cbd842c367f9bf6c6821",
-      "plan.md": "2d836b98d5362780ee1bf25132b635faaff9e9644aa19ece97a4c7b245f7bc57",
-      "tasks.md": "239799a842e1fd84c07810704fa45dbaab78cac044d517af4ddbe3ddef58a749",
-      "implementation-summary.md": "28f3cba5596ade88c6cbda8f4cde3660e5f8e202033561a641f0006375e0b665"
+      "spec.md": "db018db6650e8e8bd3d395ca662ff6cb66eaa4b783411e1c434578ea50a8d670",
+      "plan.md": "e076c1c339d9981887daa2b46a692190d6986dc68a34471bb75ade58ca9fc101",
+      "tasks.md": "dccdb8cce3f1a9fe6533b6f3eab219c2671a0697aca0643ffe98fe9277a4c35c",
+      "implementation-summary.md": "e1f9320214333e2c3549de79a5545bd6b9c6c63574d075a60304e613bf42eb4b"
     },
     "last_active_child_id": null,
     "last_active_at": null

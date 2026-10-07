@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "code readmes infra batch",
       "per-folder code readme",
       "script folder readme authoring",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "code readmes infra summary"
+      "code readmes infra and sk plan",
+      "code readmes infra and sk tasks",
+      "code readmes infra summary",
+      "thirty-three code readmes",
+      "per-folder readme swarm"
     ],
     "key_topics": [
       "code",
@@ -34,9 +30,9 @@
       "script",
       "folder",
       "authoring",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -194,7 +190,7 @@
     ],
     "causal_summary": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a developer opening one gets no orientation before reading the code",
     "created_at": "2026-07-22T13:08:27.050Z",
-    "last_save_at": "2026-09-11T04:36:33.944Z",
+    "last_save_at": "2026-10-07T18:13:26.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74ed50a0e227cebfe9f1b805dfc32c505ba1f45a5d68e82b5f784e4f9eaf7979",
+    "source_fingerprint": "sha256:9bd95928477912a4c5e3f50248af0ff167fc790186a0e3fcab80127d12ed05da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c53978d6ae8c04aaaa0089574000ad335f634ac0d0508f7c8d548f057a662406",
-      "plan.md": "71d70c0b5caa7bb85f46b730772dc36b04c005fcbf9e80aecfc3206c8fe71ebe",
-      "tasks.md": "99ae061329d9607155524b6f60da12ace93587dcfc3ce7b07703b719c1d3a21d",
-      "implementation-summary.md": "4e78f3e4eea0bfc07c27d4ecadba75efd5ccfc35169a66608aa793c06aabbd84"
+      "spec.md": "27964a33ce8a1577a2bf39a7d4959d1e69b9e73512cb9ce0696f57430556a3c3",
+      "plan.md": "32942642e3126ba0a1d79846c2a8f6a5e01f7040959168571ca39f0f12efb522",
+      "tasks.md": "adeb069c25c5cf2eecb32ec18b4107340de1ff7550ee23274f5dbabc4b2c2ca3",
+      "implementation-summary.md": "4cbe20b0f10493e62c0255b9c9b91ee5fa33ce4e31beeb090ecc973402e2932f"
     },
     "last_active_child_id": null,
     "last_active_at": null

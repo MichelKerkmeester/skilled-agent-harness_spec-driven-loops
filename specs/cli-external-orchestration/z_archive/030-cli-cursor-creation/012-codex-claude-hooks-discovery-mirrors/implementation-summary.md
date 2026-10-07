@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors"
     last_updated_at: "2026-07-27T03:47:58Z"
     last_updated_by: "opencode"
     recent_action: "Linked successor phase 018."

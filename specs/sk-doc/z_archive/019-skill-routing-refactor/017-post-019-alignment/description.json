@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/017-post-019-alignment",
   "description": "Defines the bounded post-019 conformance audit and its fail-closed evidence contract.",
   "keywords": [
     "defines",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity.",
     "created_at": "2026-07-14T15:17:59Z",
-    "last_save_at": "2026-08-30T15:39:16.758Z",
+    "last_save_at": "2026-10-07T18:13:27.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:fe358b18c710d36d310212ee7e7b041747d49554c384f0333653daf9293658d2",
+    "source_fingerprint": "sha256:62e2930ee99adcf795621d34b58f4afa3df91d14a46e8c92796064932df2a2d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e78ad2b9d8e7f6041ea424dde84368d6cb5ae1fa1024a23e134b8e2798210aa6",
-      "plan.md": "db98f632225ab3313343863059f70a727d24ac86a6c0f7f48f1823092ebe1b3f",
-      "tasks.md": "6beed3c0889a38c488aaee3b4417e13d7881c89ef4f2233fbc53f5791e83ab62"
+      "spec.md": "6b7c0f091d0e55c8465526b868334e6c80aa1d02986c9e2e8adb525db8ba1d7a",
+      "plan.md": "45e6e726b223e894b3e4a9cb51b949653ce30203a1a6004103cf3d8648c4cb5c",
+      "tasks.md": "99f1f37ede3587fb84a4f20c2da00419deefce548e08491774582872186cc5b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

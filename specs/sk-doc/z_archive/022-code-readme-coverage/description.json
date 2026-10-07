@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/022-code-readme-coverage",
+  "specFolder": "sk-doc/z_archive/022-code-readme-coverage",
   "description": "Three separate defects share one root cause: nothing mechanically enforces the code-README standard, and the standard itself is ambiguous about what",
   "keywords": [
     "three",

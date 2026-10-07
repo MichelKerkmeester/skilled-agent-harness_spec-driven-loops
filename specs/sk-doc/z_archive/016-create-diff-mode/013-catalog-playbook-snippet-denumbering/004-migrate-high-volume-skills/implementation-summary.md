@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase complete and merged to main"
@@ -92,8 +92,8 @@ Gate command (per skill): `find .opencode/skills/<skill> -name '*.md' | grep -cE
 
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 1. Cross-tree + cross-skill references handled in the phase-006 sweep.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

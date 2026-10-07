@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Phase 3: Disposition and Rule-Set Gap Research"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "disposition and gap research acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

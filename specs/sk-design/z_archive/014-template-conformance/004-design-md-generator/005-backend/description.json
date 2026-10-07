@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/005-backend",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/005-backend",
   "description": "`backend/` is structurally unlike every other sk-design mode folder: it is a real TypeScript package (`package.json`, `tsconfig.json`,",
   "keywords": [
     "backend",

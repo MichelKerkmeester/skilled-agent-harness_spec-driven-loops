@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/012-behavior-benchmark-capture",
   "description": "The deep-alignment DAB benchmark existed only as scenario contracts and an all-pending `claude-baseline.md` — no leg had ever been captured, so",
   "keywords": [
     "deep-alignment",

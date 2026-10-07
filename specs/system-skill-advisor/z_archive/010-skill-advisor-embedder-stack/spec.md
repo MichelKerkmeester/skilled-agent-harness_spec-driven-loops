@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack"
     last_updated_at: "2026-05-17T21:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded skill-advisor embedder parity packet"

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/013-iconic-integration",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/013-iconic-integration",
   "description": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags,",
   "keywords": [
     "user",

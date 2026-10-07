@@ -129,7 +129,6 @@ The runtime surfaces its new posture first, the structured JSON path carries the
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -148,7 +147,6 @@ Phase 1 (Setup) ---> Phase 2 (Core) ---> Phase 3 (Verify)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

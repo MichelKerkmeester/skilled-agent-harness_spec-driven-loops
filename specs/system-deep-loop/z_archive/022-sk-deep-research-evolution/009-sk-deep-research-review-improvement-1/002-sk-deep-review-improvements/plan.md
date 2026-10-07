@@ -67,9 +67,9 @@ This phase updates the deep-review contract where it is actually expressed today
 Declarative review contract plus runtime-mirror parity plus packet-local verification
 
 ### Key Components
-- **Skill and references**: [../../../../skill/sk-deep-review/SKILL.md](../../../../skill/sk-deep-review/SKILL.md), [../../../../skill/sk-deep-review/README.md](../../../../skill/sk-deep-review/README.md), and the `references/` files define the durable review-mode packet contract.
+- **Skill and references**: [../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md), [../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md), and the `references/` files define the durable review-mode packet contract.
 - **Workflow assets**: [../../../../command/spec_kit/assets/spec_kit_deep-review_auto.yaml](../../../../command/spec_kit/assets/spec_kit_deep-review_auto.yaml) and [../../../../command/spec_kit/assets/spec_kit_deep-review_confirm.yaml](../../../../command/spec_kit/assets/spec_kit_deep-review_confirm.yaml) encode lifecycle, migration, reducer refresh, and synthesis rules.
-- **Runtime mirrors**: [../../../../agent/deep-review.md](../../../../agent/deep-review.md), [../../../../../../.claude/agents/deep-review.md](../../../../../../.claude/agents/deep-review.md), [../../../../../../.gemini/agents/deep-review.md](../../../../../../.gemini/agents/deep-review.md), and [../../../../../../.codex/agents/deep-review.toml](../../../../../../.codex/agents/deep-review.toml) must all consume the same packet contract.
+- **Runtime mirrors**: [../../../../../../.opencode/agents/deep-review.md](../../../../../../.opencode/agents/deep-review.md), [../../../../../../.claude/agents/deep-review.md](../../../../../../.claude/agents/deep-review.md), ../../../../../../.gemini/agents/deep-review.md, and [../../../../../../.codex/agents/deep-review.toml](../../../../../../.codex/agents/deep-review.toml) must all consume the same packet contract.
 - **Verification surfaces**: The new Vitest guards under [../../../../skill/system-spec-kit/scripts/tests/](../../../../skill/system-spec-kit/scripts/tests/) enforce parity, reducer schema, lifecycle, and severity stability.
 
 ### Data Flow

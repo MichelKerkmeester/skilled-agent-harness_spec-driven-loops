@@ -2,11 +2,9 @@
 title: "Task 01 — [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/spec]"
 description: "Audit every README.md file in the .opencode/ directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references reflect the post-implementation..."
 trigger_phrases:
-  - "task"
-  - "readme"
-  - "audit"
-  - "alignment"
-  - "spec"
+  - "readme alignment audit"
+  - "opencode readme review"
+  - "readme audit scope"
 importance_tier: "important"
 contextType: "planning"
 ---

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/010-sk-design-styles-from-refero/001-extraction-harness"
+    packet_pointer: "sk-design/z_archive/010-sk-design-styles-from-refero/001-extraction-harness"
     last_updated_at: "2026-07-18T10:25:46Z"
     last_updated_by: "claude"
     recent_action: "Built the harness and proved it with a byte-match self-test"

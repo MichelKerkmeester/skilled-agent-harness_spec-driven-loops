@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Restored Shape Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
     "created_at": "2026-04-22T16:05:25.902Z",
-    "last_save_at": "2026-08-30T15:39:32.688Z",
+    "last_save_at": "2026-10-07T20:39:52.480Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00f7dce44c33c10786674689095a5a4a232bf4ae7f5722c3c6d1dda57a9570e5",
+    "source_fingerprint": "sha256:ade67d833bdcbecc1adc380ff4a27e1a517ac416685f1789c426e2c2c0a42a1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa447f6a2d5a33fab92c81392892c1fec8f8f71cab662789420eee6e4e602334",
-      "plan.md": "16878e0d4c9096f1df8dd21649fa9a6e25b2a154c60c3584ad6614779c0b44f3",
-      "tasks.md": "95c15dd9d7c0b32ec8c6f8756ad1579616ce37f1a7fae6a3fc11dcd385ffc5f4",
-      "implementation-summary.md": "50f2570bc37ac57679c6f20f4016af168c5759d95648bb277948cd1fd87992ef"
+      "spec.md": "ecc5186eb49e045af3c3051b971c6672492b94ff96433b4820a4f7acfa6ec80d",
+      "plan.md": "99743d4f6c47f91af364130ce6cd1cc5061fdc170222e9341f0f89d834981f2b",
+      "tasks.md": "215227630f79a19320fb37de69a9b2db839ff15508435a56c8beb6dbd6fc46b8",
+      "implementation-summary.md": "007c534f21feb7cf9c0ea79418b4b503e6bcadd2098c5e9375175c9fab69ee63"
     },
     "last_active_child_id": null,
     "last_active_at": null

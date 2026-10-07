@@ -205,7 +205,7 @@
     ],
     "causal_summary": "deep-review, deep-research, and the proposed deep-ai-council all rest on deep-loop-runtime and share iteration + saturation semantics",
     "created_at": "2026-05-23T06:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.461Z",
+    "last_save_at": "2026-10-07T21:08:12.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ef47d80513fdf074bd5217b7acadb8824665bc944daad4ed012e11cf5842895f",
+    "source_fingerprint": "sha256:20220be55add37cb542214d116a462e8c0d1a626c2b0579a21b4fbed12ef73c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ec3ef4656eba6abee407ae340cb52ce4f947eb95bf9819d4dcffe635bb65a89",
-      "plan.md": "348e4589e6928088267c20fa2d8947597dd8f465d72a29a5f67a8765d93a0707",
-      "tasks.md": "53f63c3d97df05d600d805a3394d27e0c2a8874d77d7661df6671aeaba44cc12",
-      "decision-record.md": "cf0a773501f0927ea435c2a076a820eca2456f12f6df804402399714172dae40",
-      "implementation-summary.md": "90c73c99145d18c7bfd35186d792948dde2efa24b9213c8e59afa8b1dc41932f",
+      "plan.md": "0930ed52c3044a42d8c050501d9635d6600cb5b807d440d72ead3545a87df366",
+      "tasks.md": "6e65c82e001c4826f767c6baad15be474243557987ad84ac50737bdd34d98235",
+      "decision-record.md": "73107e5eca4040248833561fa928a90ea882b92a0fc51048aaf21a82391dbd7c",
+      "implementation-summary.md": "c8df1385b425f05ffd3706bd9f23b70ce852c403a9f232ce44da7aa2bbac2f26",
       "research/research.md": "3761fe516e93bb1897a0e56121d0bae2ef9e7c72d16ac5a4fcfe79c35216e9ee"
     },
     "last_active_child_id": null,

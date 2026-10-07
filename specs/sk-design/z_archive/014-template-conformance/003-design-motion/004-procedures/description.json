@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/004-procedures",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/004-procedures",
   "description": "`procedures/` holds exactly one file, `interaction-states-pass.md`, which was not part of the 014 program's seed sample",
   "keywords": [
     "procedures",

@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
   "description": "The authored `system-skill-advisor` inline router had no target-local compiled policy, typed scorer projection, exact positive-route shadow-parity",
   "keywords": [
     "authored",

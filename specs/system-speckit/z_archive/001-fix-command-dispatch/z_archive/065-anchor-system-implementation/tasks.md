@@ -2,11 +2,8 @@
 title: "Tasks: Anchor [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation/tasks]"
 description: "tasks document for 065-anchor-system-implementation."
 trigger_phrases:
-  - "tasks"
-  - "anchor"
-  - "system"
-  - "implementation"
-  - "065"
+  - "anchor system implementation tasks"
+  - "targeted retrieval task list"
 importance_tier: "normal"
 contextType: "implementation"
 ---

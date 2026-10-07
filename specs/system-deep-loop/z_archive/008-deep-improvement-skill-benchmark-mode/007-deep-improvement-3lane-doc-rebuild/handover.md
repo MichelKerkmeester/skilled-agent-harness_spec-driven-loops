@@ -1,9 +1,26 @@
+---
+title: "Session Handover — Deep-Improvement 3-Lane Doc Rebuild (packet 122 / child 007)"
+description: "Resume entry point for the 007 doc-rebuild child: operator-locked decisions, the verified dispatch contract, the authoritative sk-doc structure contract, and the mirror taxonomy target."
+trigger_phrases:
+  - "deep-improvement 3lane doc rebuild handover"
+  - "packet 122 child 007 resume"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # Handover — Deep-Improvement 3-Lane Doc Rebuild (packet 122 / child 007)
 
+<!-- ANCHOR:handover-summary -->
 > **Resume entry point.** Read this top-to-bottom; everything needed to execute
 > is here. Created at the end of a context-exhausted planning session AFTER the
 > operator approved the plan. No code/doc files have been mutated yet — only this
 > spec folder (`spec.md` + this file) was created. Recommend `/clear` then resume.
+<!-- /ANCHOR:handover-summary -->
+
+---
+
+<!-- ANCHOR:context-transfer -->
 
 ---
 
@@ -102,6 +119,9 @@ table in OVERVIEW, 1:1 catalog↔playbook mapping).
 
 ---
 
+<!-- /ANCHOR:context-transfer -->
+
+<!-- ANCHOR:next-session -->
 ## 3. TARGET TAXONOMY (mirror both trees — identical category dir set)
 
 | # | Category dir | Lane | Surface |
@@ -124,3 +144,4 @@ category SPINE is identical. Both landings get a 3-lane legend + a category tabl
 - `01--evaluation-loop/` (6: initialization, candidate-generation, scoring-dispatch, promotion-gates, rollback, plateau-detection) → split: loop bits → `01--agent-improvement-loop`; scoring bits → `06--shared-scoring`.
 - `02--integration-scanning/` (3: surface-discovery, runtime-mirrors, command-dispatch) → `02--agent-improvement-integration`.
 - `03--scoring-system/` (4: five-dimension-rubric, dynamic-profiling, deterministic-scoring, dimensional-progress) → `06--shared-scoring`.
+<!-- /ANCHOR:next-session -->

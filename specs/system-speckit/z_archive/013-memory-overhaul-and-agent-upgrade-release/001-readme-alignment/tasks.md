@@ -2,11 +2,9 @@
 title: "Tasks [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/tasks]"
 description: "Task Format: T### Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "task"
-  - "readme"
-  - "audit"
-  - "alignment"
+  - "readme alignment tasks"
+  - "readme audit checklist"
+  - "readme remediation tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

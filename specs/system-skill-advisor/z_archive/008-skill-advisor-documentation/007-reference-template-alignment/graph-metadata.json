@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor references were stored as one flat root folder with kebab-case filenames and inconsistent sk-doc reference-template structure",
     "created_at": "2026-05-24T07:26:59Z",
-    "last_save_at": "2026-08-30T15:39:26.981Z",
+    "last_save_at": "2026-10-07T18:16:05.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9acc6c2b87da3efcc4bd30af9269ba0130c55d2cbf0226071bade2449c703bdb",
+    "source_fingerprint": "sha256:a2326cb4934ad39945d4527cced040470b47f038e6e640867e4f9aee03298535",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19304967be4c98e2b08d13f565d9cf3b0919a535d87f911f54d10ff20c6d6cf6",
-      "plan.md": "b47ac72b6412f1cfc3177a4a7c1657cace598791db9168754a4d8d131502e06a",
-      "tasks.md": "b3b129d4c3ddc426f0745f3ffdd7285581d0c9a41c27ff67c6cac433d9fe848c",
+      "spec.md": "b29e157e7c8dcd12e63c8cf5d89e8a4b9245d4b0eb2ca90754090ff49cf916d5",
+      "plan.md": "28ac5885150751f63c7084d1b485d3b8094b07b15c1e04cfa0ad283286dea3a7",
+      "tasks.md": "340e9e9ebf4c92406a9b97c3a93aa894e47a17d3d1f5ae824b8d55ed39f46eaa",
       "decision-record.md": "cee286f5a397e6180e57dee6de5cad0a2beeda3b76eb287a7c7e1c1da1e3df5c",
-      "implementation-summary.md": "60216598f0cbc68fb869ca596024a2f771d12bf5ad46116a3c9d7c439e2ed113"
+      "implementation-summary.md": "40aca82198c24994b7b7d92f17108680c439655ba659fac08bd443c5bdb81f76"
     },
     "last_active_child_id": null,
     "last_active_at": null

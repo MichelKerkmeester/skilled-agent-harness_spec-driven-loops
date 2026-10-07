@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Two different quality gates validate file descriptions at different pipeline stages with partial overlap and divergent coverage",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-09-10T21:04:53.856Z",
+    "last_save_at": "2026-10-07T19:24:28.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6306722f02fdb8da4ed70a5735760209f5cdb300f93b0c76295f80b01f9bca64",
+    "source_fingerprint": "sha256:7dd9c8211c69f214c82091838b745da83e397f19c6bcd59fd18e4463c5203965",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3cfa6060650404e75797350e945128e971f04b95235c798247b2e997d0d124a",
       "plan.md": "c37063b7b71e709691c7d19781d52b6b07f217c97dae7519bcfec643e07e99f5",
       "tasks.md": "e8aec4923ce16663471f8cd40b62d2eb6f3d08d993ee17a9f4a7220f2fd4d1f5",
-      "implementation-summary.md": "94a69f6c5c88fcfdeae7ea4943d4f26bd59ba7d4b7fe9c052c0506e7ddb49aa2"
+      "implementation-summary.md": "96073846f552535c139733fb00c75f4888c4da3765cfbced6b70f90353beb08e"
     },
     "last_active_child_id": null,
     "last_active_at": null

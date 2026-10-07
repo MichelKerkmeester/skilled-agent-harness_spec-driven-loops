@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/004-reliability-weighted-convergence"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence"
     last_updated_at: "2026-06-19T10:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Marked reliability cluster NO-GO. Deferred to benchmark tier"

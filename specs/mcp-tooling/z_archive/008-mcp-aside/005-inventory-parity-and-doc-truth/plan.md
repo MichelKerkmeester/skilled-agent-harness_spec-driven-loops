@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/008-mcp-aside/005-inventory-parity-and-doc-truth"
+    packet_pointer: "mcp-tooling/z_archive/008-mcp-aside/005-inventory-parity-and-doc-truth"
     last_updated_at: "2026-07-16T13:16:00Z"
     last_updated_by: "claude-agent"
     recent_action: "Authored plan for registered-state flips and inventory additions"

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/009-foundations-motion"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/009-foundations-motion"
     last_updated_at: "2026-07-18T19:51:10Z"
     last_updated_by: "claude"
     recent_action: "Built and verified foundations + motion wiring; 43/43 tests, authority bound to source"

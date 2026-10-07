@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/028-cli-hub-rename/003-reference-sweep",
-  "spec_folder": "cli-external-orchestration/028-cli-hub-rename/003-reference-sweep",
-  "parent_id": "cli-external-orchestration/028-cli-hub-rename",
+  "packet_id": "cli-external-orchestration/z_archive/028-cli-hub-rename/003-reference-sweep",
+  "spec_folder": "cli-external-orchestration/z_archive/028-cli-hub-rename/003-reference-sweep",
+  "parent_id": "cli-external-orchestration/z_archive/028-cli-hub-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After a hub rename, active docs and generated prompt surfaces can continue speaking the old path",
     "created_at": "2026-07-13T03:34:31Z",
-    "last_save_at": "2026-08-30T15:39:07.231Z",
+    "last_save_at": "2026-10-07T18:11:36.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73a97cac95019c4b062ccaa6bea1ee0804ff8779d2bac06381201da85dc1a050",
+    "source_fingerprint": "sha256:84a4e2bb7f0f54098a548fac2453319b8fd22d024ed47de37a41af7d1c22b2db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b109776a44fd0b827a12bd79106878786b582a8857db1c7f63666da83f26b83b",
-      "plan.md": "cd8de881e233ca6f42f6efb2a0834d43b9b785c9d8ccffe827dd96e0cb134c11",
-      "tasks.md": "21b648add1f804c0b2e765ff15b335e8b56b7f31986935aa27a093d1b81fc399",
+      "spec.md": "1d648182e9ce71b5587e3dfa016c20ff2ce1738725756a9c16accfe5a5c3396b",
+      "plan.md": "5bcf07550011a2d7fe5f39d7f05253e34befaa2b788f38dd501cc40c43535102",
+      "tasks.md": "1f46a8385df97b6b03d8964977aa86941417e4469706dd384aaa0cfe47208405",
       "decision-record.md": "8a1f6ecfc66d847d15e8f45e7001aa7c143bcacbfdbf15f81d48e8df1bdfe50a",
-      "implementation-summary.md": "e89ce5f08d982211d5c3f9157eaa6212e883937d6834c1519bf3ab0287423a72"
+      "implementation-summary.md": "c39c99ce7d77800e7dfca2ba9359db621f63ba63151e0ad22ab63ff7be5c4add"
     },
     "last_active_child_id": null,
     "last_active_at": null

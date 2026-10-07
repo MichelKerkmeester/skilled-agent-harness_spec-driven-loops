@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/002-register-and-wire"
     last_updated_at: "2026-08-11T07:16:29.255Z"
     last_updated_by: "implementer"
     recent_action: "Regenerated leaf-manifest and expanded smart-routing to six modes"

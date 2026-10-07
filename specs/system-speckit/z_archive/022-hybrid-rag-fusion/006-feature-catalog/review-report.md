@@ -1,3 +1,13 @@
+---
+title: "Deep Review Report: Feature Catalog Alignment"
+description: "Review of the feature catalog against the MCP server implementation and the hybrid-rag-fusion spec changes, with remediation verdicts per category."
+trigger_phrases:
+  - "feature catalog alignment review"
+  - "deep review report catalog alignment"
+  - "catalog remediation verdicts"
+importance_tier: "normal"
+contextType: "research"
+---
 # Deep Review Report: Feature Catalog Alignment
 
 **Review Target:** `.opencode/skills/system-spec-kit/feature_catalog/` (224 files, 21 categories) vs current MCP server implementation and 022-hybrid-rag-fusion spec changes

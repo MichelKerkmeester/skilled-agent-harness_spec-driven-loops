@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout"
     last_updated_at: "2026-08-16T07:53:20.991Z"
     last_updated_by: "markdown-agent"
     recent_action: "Proved fleet parity, promoted the graduated fleet, and closed the program in this worktree."

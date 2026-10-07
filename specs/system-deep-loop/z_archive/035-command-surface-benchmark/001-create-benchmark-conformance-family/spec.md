@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/001-create-benchmark-conformance-family"
     last_updated_at: "2026-07-15T06:28:57Z"
     last_updated_by: "codex"
     recent_action: "Completed conformance family routing, command authoring, and parity validation"

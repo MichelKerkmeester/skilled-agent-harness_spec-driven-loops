@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "review-remediation"

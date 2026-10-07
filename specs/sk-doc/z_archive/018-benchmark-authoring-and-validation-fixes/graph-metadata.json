@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
-  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "packet_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes",
+  "spec_folder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/005-enable-registry-checks-and-repair-tests",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation",
-    "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/005-enable-registry-checks-and-repair-tests",
+    "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation"
   ],
   "manual": {
     "depends_on": [],
@@ -88,16 +88,16 @@
     ],
     "causal_summary": "Benchmark-document authoring standards and templates lived scattered inside the `system-deep-loop/deep-improvement/` lanes, duplicated per family, with no single home",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-08-30T15:39:14.523Z",
+    "last_save_at": "2026-10-07T18:11:53.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a92f20f26f7165454690eb932034fcf3128a8f8f087ca2ee09d9c43868f706b0",
+    "source_fingerprint": "sha256:ddd6e52c6b8b89d51846489f16dc7f781d1206016fc73e65a701ad99ef7cf205",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe56e0eb75674d964e263499433ee36a475081b00eff170c9b2ee03bf9deac6d"
+      "spec.md": "1806a849517f60c64aa0157b4380f3f5d997d34c05ac09443c02a263a376baea"
     },
     "last_active_child_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization",
     "last_active_at": null

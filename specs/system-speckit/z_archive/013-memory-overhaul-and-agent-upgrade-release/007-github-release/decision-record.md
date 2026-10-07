@@ -2,12 +2,8 @@
 title: "Dec [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-07-github-release/decision-record]"
 description: "Task 07 requires systematic audit/creation of tagged releases for 3 tracks with GitHub release notes. The scope must be clearly defined to ensure complete coverage while avoidin..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "task"
-  - "github"
-  - "release"
-  - "decision record"
+  - "github release decisions"
+  - "release tagging scope"
 importance_tier: "important"
 contextType: "planning"
 ---

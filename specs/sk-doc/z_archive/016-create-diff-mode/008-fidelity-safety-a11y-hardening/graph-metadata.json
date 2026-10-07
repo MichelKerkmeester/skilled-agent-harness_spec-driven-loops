@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
-  "spec_folder": "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/README.md",
-      ".opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/implementation-summary.md"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "An adversarial review (GPT-5.6 SOL, ultra) of the `create-diff` engine and its redesigned HTML report, independently re-verified against the source, found real defects in three areas: (1) the engine decodes text with `errors=\"replace\"` and only sniffs a NUL byte for binary, so two files differing only in invalid bytes both become `�` and are reported identical at \"full fidelity\" — silent difference-erasure; (2) the diff line model splits on `\"\\n\"`, so empty files and trailing-newline-only differences produce phantom or mislabelled lines; (3) `validatereport.py` regex-matches tags and only",
     "created_at": "2026-07-15T15:35:12.038Z",
-    "last_save_at": "2026-08-30T15:39:14.213Z",
+    "last_save_at": "2026-10-07T18:12:25.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7cc396452b6c6c8a8ab50c7bde3548ecc619f28dc86d12c92154b7a6ec2a691",
+    "source_fingerprint": "sha256:2581d7084cfca3f22076dd428bb213acc068e1621a6235b270527f64eda768b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31b80116f703c16b24630338c5fe696995a851be4715b4660dfad221a84ecffc",
-      "plan.md": "9b41f297c556252ff1926b75d8ecc117c0abf3538a23928f48534abe41596f51",
-      "tasks.md": "4f116c4199340eeb4d271bb1e2d71b55e3da4f85926908274eb7057dc0661b84",
-      "implementation-summary.md": "2ae9a1a25edb4dd83bca485265febd630d30e789459ca43114fa8d804a80885d"
+      "spec.md": "b342c0022450dc7a1b860c06e4514c6d1c33b62c57fa26b719881875daaf2820",
+      "plan.md": "37e2f33eb8e38a4df6c231f1bb57cf373efc938c0a52c23af236880d9da47102",
+      "tasks.md": "133a4af1d97c7ce26898c81f8083581330fe46076735579c4cf318a14580e2ca",
+      "implementation-summary.md": "c8f37ac29e99f849a55bff94ce9e2f1ac16736689b9eda6e8446c539a4ed97ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/024-create-journey-gate-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/024-create-journey-gate-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
     "created_at": "2026-07-28T15:11:50.262Z",
-    "last_save_at": "2026-09-03T22:29:13.773Z",
+    "last_save_at": "2026-10-07T18:13:23.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfe36a9c2863ae467e2a999a8cf9e15405552685b2edaa4143af19c29e12dbb0",
+    "source_fingerprint": "sha256:e1f22d09269e3745b9120342302e3af621ede4f175ef312b4e08639116adc064",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb4fcf431c90a8ab35f30428ede41789e9d63b67cc929f42c92084f770ad211f",
-      "plan.md": "4059a792e9ab7984b6585b1b7975b32b4cf5f1100227b0767cf8e95cf864ae1c",
-      "tasks.md": "6ec1ea5781c42fb150eeeb12b8a8d4c88f313fbb149f9e2c4f2b7c1219de22cc",
-      "implementation-summary.md": "a2cd5126279a95174d63b67c6dcc3dbce8a5d376f1f00eeab75c313b8ab0c80f"
+      "spec.md": "cdacbb2a0f60655e94efa4ab2b7e51322530257a9e4ddaffb87ae9087746b15a",
+      "plan.md": "4d1726b6cb1d2c53f810b5049d55842646a7424e335783a8c12194ad0abe3b5b",
+      "tasks.md": "37c64ada8885eda4a052dac3f73a8a86f99ceb534c92e07e460a6cbc3ab945e2",
+      "implementation-summary.md": "174f3394a73d934984469abca5508d8531004583f8196023ccb0075d783be658"
     },
     "last_active_child_id": null,
     "last_active_at": null

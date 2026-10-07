@@ -46,9 +46,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "dist/context-server.js",
-      ".opencode/skills/system-skill-advisor/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      ".opencode/skills/system-skill-advisor/graph-metadata.json"
     ],
     "entities": [
       {
@@ -76,21 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Spec",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`",
     "created_at": "2026-05-14T13:02:30Z",
-    "last_save_at": "2026-08-30T15:39:26.449Z",
+    "last_save_at": "2026-10-07T18:16:07.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T13:20:00Z",
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da056fc4dec615af7d69da0c97dfb9562c9fe06f181e4f3b76186871eca3463f",
+    "source_fingerprint": "sha256:e0ae84dc0b98d9e92fc54ef8ae5c375cb27a7df23aefb4755fa74028e2239a12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68e25fe3e5d97effe01e08c7c7ac4669ce2d8683597ede94a2e3cac277b70411",
-      "plan.md": "c4cffaa22bf1daeacdc4881240eefc49eabd359e6b4a409aaea20c537d9c471c",
-      "tasks.md": "7d09689f82a0e4e22db3646394eb0f0bfbca8007df72f619c34a942d3a5666b0",
-      "implementation-summary.md": "8e6f53393cd5fc02dcd1293d9306dd4d44d1d1a32f27b015db60ce6cb671dafb"
+      "spec.md": "e202da9d57ac4aebda4e2edd04bfca03012f352499d89602185c8421238af998",
+      "plan.md": "4a0a3727bbb0318cada6adbfb4655df33d4a188af3b25fbaf5ac26f077362e5d",
+      "tasks.md": "d376cf125634c6c7b31523be500e48ffdeea8636602f2581c7caf3026cf43c2a",
+      "implementation-summary.md": "653668a639fa7e3eee37432ebae8a12c457620fa9fc7cf84dff0ff49a68bdb62"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/023-p2-hardening"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/023-p2-hardening"
     last_updated_at: "2026-07-04T09:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored plan from spec and adjudicated P2 findings"

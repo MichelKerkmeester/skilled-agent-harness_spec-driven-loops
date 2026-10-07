@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
   "description": "The styles database (`styles/db/`, SQLite + FTS5 + rebuildable vector projection over ~1,290 style bundles) works, but the question is whether Rust",
   "keywords": [
     "styles",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/004-cmd-create-skill-merger",
-  "spec_folder": "sk-doc/016-create-diff-mode/004-cmd-create-skill-merger",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/004-cmd-create-skill-merger",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/004-cmd-create-skill-merger",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,11 +15,9 @@
       "skill merger",
       "command consolidation",
       "unified workflow",
-      "implementation plan",
       "create skill merger",
       "tasks",
       "retroactive implementation",
-      "implementation summary",
       "canonical command"
     ],
     "key_topics": [
@@ -30,11 +28,11 @@
       "consolidation",
       "unified",
       "workflow",
-      "implementation",
-      "plan",
       "tasks",
       "retroactive",
-      "summary"
+      "implementation",
+      "canonical",
+      "surface"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +40,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -67,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -182,17 +187,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`, `/create:skillasset`)",
     "created_at": "2026-04-12T09:02:50.220Z",
-    "last_save_at": "2026-08-30T15:39:14.064Z",
+    "last_save_at": "2026-10-07T19:23:49.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b5cf7aafdda172e9848222a7f82c13d0cd334c9dba33b156847f402845f0eda",
+    "source_fingerprint": "sha256:c902b21db6d91965b433a6ee1539ed49a1505c72ce176e7a0021e46efcc564b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94832f5db14972d06936397a570bee149f2802e65b21ac9b67bced19aba6d982",
-      "plan.md": "620a00f651b17876f40919f20d96e05e754e7cf62147bb01bf91b962093665c7",
+      "spec.md": "08464cc56948384b96f855430b71308c76aa5e1f601ed36b3eb995b1a0a0dea6",
+      "plan.md": "e0b6f20e3fdf0fe9c47cecd74d29f9c5e35dfe6c6e8a0b813f02449569153ddd",
       "tasks.md": "29bde77a0ad04b24c636270be21f6c504511df8a4fb1d79970de271e1d1b7c85",
-      "implementation-summary.md": "800bd561032a0a8c0722be4c58cacb5229a7f09aba30db7fd377e552ce81d8a4"
+      "implementation-summary.md": "05195333e1cd4cc0ce785f31cb3405f2bec88d91b2d43cddd546e94e708e593b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/005-router-standardization-and-regen"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/005-router-standardization-and-regen"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed P2 source and projection work"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/009-aesthetics-retirement"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/009-aesthetics-retirement"
     last_updated_at: "2026-07-27T17:17:23.686Z"
     last_updated_by: "spec-author"
     recent_action: "Committed a4b707cddd; core retirement done, 2 residual gaps found on reverify"

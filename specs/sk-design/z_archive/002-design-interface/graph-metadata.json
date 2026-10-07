@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/002-design-interface",
-  "spec_folder": "sk-design/002-design-interface",
+  "packet_id": "sk-design/z_archive/002-design-interface",
+  "spec_folder": "sk-design/z_archive/002-design-interface",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction, interface-level composition, motion posture, critique, and writing",
     "created_at": "2026-07-16T09:10:47.132Z",
-    "last_save_at": "2026-08-30T15:39:12.030Z",
+    "last_save_at": "2026-10-07T18:11:21.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,12 +171,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:b5549a7503f66de868c659b10f72fdab8acad7438d0fc030921708cec38f967a",
+    "source_fingerprint": "sha256:a9f4798601ba1eb9e70aa930c2e1a6e2ffa09895760e20aa61f430ba028dd37d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9230d9f6f96ccc258fabb6adf9c1cfd79b43ed9ee980c33f8c6645ec7f5df336",
-      "plan.md": "64192f63813f398223b43c4ebc525ced58291bd8a18172e8581f5618203b2da8",
-      "tasks.md": "364fa0a9d4af395687194ecfb2d4be4fc603875abe6f85cd0e1dd795f58a873f"
+      "spec.md": "584f426cb494d131f42287502da8e7ca00ea80ddb8a5605749e4a25a2d718885",
+      "plan.md": "edcbf320d788717b874e491a88031f73808d419a150c9fc60551a6b1442833e8",
+      "tasks.md": "bd740b86e4aec8d6c86d580e8a56e9f2337add8cb9b391472d6babb90d9dcbf0"
     },
     "last_active_child_id": null,
     "last_active_at": null

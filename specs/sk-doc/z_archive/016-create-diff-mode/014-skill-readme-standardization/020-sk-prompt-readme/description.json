@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
   "description": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it",
   "keywords": [
     "sk-prompt",

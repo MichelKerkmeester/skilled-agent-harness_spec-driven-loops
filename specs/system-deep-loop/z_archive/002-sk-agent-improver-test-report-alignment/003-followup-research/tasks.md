@@ -23,6 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:phase-1 -->
 ## Stage 1 — Scaffold + State
 
 - **T-001** Author 8 markdown files (in progress)
@@ -30,7 +31,9 @@ _memory:
 - **T-003** Update phase parent graph-metadata children_ids
 - **T-004** Set up research/ state files (config, state-log, strategy, registry)
 - **T-005** Strict-validate
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Stage 2 — 10-iter Loop + Synthesis
 
 - **T-006** Dispatch v2 cli-copilot iteration runner in background
@@ -38,3 +41,4 @@ _memory:
 - **T-008** Dispatch cli-codex synthesis → research/research.md
 - **T-009** Update implementation-summary.md
 - **T-010** Update handover.md + commit
+<!-- /ANCHOR:phase-2 -->

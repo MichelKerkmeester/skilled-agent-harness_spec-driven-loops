@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay"
     last_updated_at: "2026-07-01T21:44:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold tasks with completed coverage-decay ledger from spec.md"

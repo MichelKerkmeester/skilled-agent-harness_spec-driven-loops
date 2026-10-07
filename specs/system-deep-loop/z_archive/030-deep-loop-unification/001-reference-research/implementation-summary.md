@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/001-reference-research"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/001-reference-research"
     last_updated_at: "2026-07-08T06:06:21.300Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "implementation-summary.md complete; checklist resolved"

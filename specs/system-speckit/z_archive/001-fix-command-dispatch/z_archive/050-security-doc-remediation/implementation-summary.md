@@ -7,7 +7,6 @@ trigger_phrases:
   - "security"
   - "documentation"
   - "remediation"
-  - "implementation summary"
   - "050"
 importance_tier: "normal"
 contextType: "implementation"

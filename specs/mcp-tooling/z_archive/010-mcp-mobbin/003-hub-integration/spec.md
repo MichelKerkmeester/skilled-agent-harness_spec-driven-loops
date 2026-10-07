@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/010-mcp-mobbin/003-hub-integration"
+    packet_pointer: "mcp-tooling/z_archive/010-mcp-mobbin/003-hub-integration"
     last_updated_at: "2026-07-16T10:30:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the planned hub-integration phase docs"

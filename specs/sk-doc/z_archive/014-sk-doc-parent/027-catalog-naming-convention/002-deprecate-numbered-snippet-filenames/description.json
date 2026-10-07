@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
   "description": "111 per-scenario snippet FILENAMES under feature_catalog/<category>/ and manual_testing_playbook/<category>/ across 9 skill packets carry a",
   "keywords": [
     "per-scenario",

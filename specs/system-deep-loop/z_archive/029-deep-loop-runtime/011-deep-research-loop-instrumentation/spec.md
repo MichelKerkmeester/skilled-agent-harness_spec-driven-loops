@@ -13,7 +13,7 @@ predecessor: "012-stress-and-skillmd-audit"
 successor: "014-recorded-failure-closure"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/011-deep-research-loop-instrumentation"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/011-deep-research-loop-instrumentation"
     last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Ship inert novelty detector instrumentation"

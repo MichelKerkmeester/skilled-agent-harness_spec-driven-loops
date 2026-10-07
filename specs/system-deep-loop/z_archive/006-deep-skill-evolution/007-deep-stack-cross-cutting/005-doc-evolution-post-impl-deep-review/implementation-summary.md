@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-post-impl-deep-review |
+| **Spec Folder** | 005-doc-evolution-post-impl-deep-review |
 | **Completed** | 2026-05-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

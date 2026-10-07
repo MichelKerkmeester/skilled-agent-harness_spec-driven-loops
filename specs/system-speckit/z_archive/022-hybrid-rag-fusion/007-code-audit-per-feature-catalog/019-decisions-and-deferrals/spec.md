@@ -138,7 +138,7 @@ Verify that all 5 Decisions and Deferrals features are accurately documented in 
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -147,7 +147,7 @@ Verify that all 5 Decisions and Deferrals features are accurately documented in 
 ### Reliability
 - **NFR-R01**: Findings must be reproducible by re-reading same sources
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -280,6 +280,7 @@ These re-audit mismatches should be treated as authoritative over the original z
 
 ---
 
+<!-- /ANCHOR:complexity -->
 <!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
@@ -287,9 +288,8 @@ These re-audit mismatches should be treated as authoritative over the original z
 - **Given** the listed source files for a feature, **when** maintainers spot-check them against the repo, **then** the packet either confirms them or records the drift.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
-<!-- /ANCHOR:complexity -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - All catalog undocumented-feature questions resolved: no new features found outside catalog inventory.
@@ -307,5 +307,5 @@ These re-audit mismatches should be treated as authoritative over the original z
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 <!-- /ANCHOR:questions -->

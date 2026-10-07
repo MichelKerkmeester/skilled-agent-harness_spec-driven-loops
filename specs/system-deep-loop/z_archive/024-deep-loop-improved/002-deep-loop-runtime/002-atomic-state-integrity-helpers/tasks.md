@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers"
     last_updated_at: "2026-07-01T21:22:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold tasks with completed integrity-helper ledger from spec.md"

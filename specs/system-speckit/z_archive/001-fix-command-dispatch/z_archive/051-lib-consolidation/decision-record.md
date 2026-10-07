@@ -2,12 +2,8 @@
 title: "Decision Record [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/decision-record]"
 description: "This document captures the architectural decisions made for consolidating shared JavaScript modules in the system-spec-kit skill. The consolidation addresses code duplication, i..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "lib"
-  - "consolidation"
-  - "decision record"
-  - "051"
+  - "lib consolidation decision record"
+  - "shared library architecture decision"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -24,6 +20,7 @@ This document captures the architectural decisions made for consolidating shared
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Shared Library Location
 
 **Status:** Proposed  
@@ -125,9 +122,11 @@ Maintain the status quo with `module.exports = require('../../other/shared/modul
 **Risks:**
 - Import path updates may miss edge cases → Mitigated by comprehensive grep and testing
 - Future developers may add to wrong folder → Mitigated by clear README guidelines
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Which Modules to Share
 
 **Status:** Proposed  
@@ -199,9 +198,11 @@ Keep modules in their current locations, maintain re-export wrappers.
 
 **Risks:**
 - Criteria may need refinement as patterns emerge → Document and update as needed
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Retry-Manager Split
 
 **Status:** Proposed  
@@ -304,9 +305,11 @@ Make vector-index an optional dependency, check before use.
 **Risks:**
 - API drift between retry-utils and retry-manager → Mitigated by importing from retry-utils in retry-manager
 - Incomplete extraction of shared logic → Mitigated by starting minimal, extending as needed
+<!-- /ANCHOR:adr-003 -->
 
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Import Path Strategy
 
 **Status:** Proposed  
@@ -405,9 +408,11 @@ Use `process.env.SPEC_KIT_ROOT` + path joining.
 **Risks:**
 - Developers may add incorrect paths → Mitigated by linting rule or grep check in CI
 - Refactoring folders changes paths → Mitigated by shared lib being stable location
+<!-- /ANCHOR:adr-004 -->
 
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Backward Compatibility
 
 **Status:** Proposed  
@@ -540,6 +545,7 @@ Replace re-export files with symbolic links.
 **Risks:**
 - Phase 3 never happens (perpetual deprecation) → Mitigated by creating tracking issue with due date
 - Warnings ignored → Mitigated by failing tests if warnings appear in CI
+<!-- /ANCHOR:adr-005 -->
 
 ---
 

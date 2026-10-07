@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
   "description": "Only two of about ten sk-doc modes verify kebab filenames in code: create-skill (`packageskill.py checkgeneratedpaths`, blocking only under",
   "keywords": [
     "only",

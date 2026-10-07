@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
   "description": "`shared/references/core-standards.md` taught snakecase as the `.md` filename rule: §2 (`:41` \"lowercase snakecase for all `.md` files\"; `:44-48`",
   "keywords": [
     "shared",

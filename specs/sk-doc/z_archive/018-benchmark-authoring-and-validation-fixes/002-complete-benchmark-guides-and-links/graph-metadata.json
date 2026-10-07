@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
-  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
-  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "packet_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+  "spec_folder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+  "parent_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Parent packet 015 made `sk-doc/create-benchmark` the single home for benchmark-document templates and standards for four families (MCP promotion, behavior, skill-benchmark, model-benchmark)",
     "created_at": "2026-07-13T13:14:44.226Z",
-    "last_save_at": "2026-08-30T15:39:14.550Z",
+    "last_save_at": "2026-10-07T18:12:32.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f81902fb8c27342046bbf5d1b8fc1c3ea1d13365ca1c6af8f54131fbcd6f4724",
+    "source_fingerprint": "sha256:e0128bf5dd13cc3123e75581741f437c874373f814872f3959d6c298fc81c9a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "290963f6c2c2445d3c38bf2939e3426e1667720364da71e5c79f4ae50717c57c",
-      "plan.md": "f7c64c195ebf57b4d1e2fa2dc6bc5c5dface43492c243a0fa082b4cfd7514247",
-      "tasks.md": "a125b2eb665cd0523c53d70281e5c393b4242ca16893e5690d16ed122bd0d34b",
+      "spec.md": "285dbd2dd42b990f07b30fd949322c0cb5b894f44ed1ce26987cbdb3a182aa29",
+      "plan.md": "45b0aa62d9dae0d8cf29c29c32bd07189c6f1a83adc6cb1ee43bb8b65293d389",
+      "tasks.md": "5e959dea24608b62ce57eab3dac43923855ec6165cce2080acb043b574f7b49b",
       "decision-record.md": "c81f51a9f7f7cb9a1e3a3399546516e063e08ff6811201fdef61f0e9aaed7dfe",
-      "implementation-summary.md": "9d23456fd90e93f38d4dcc6eadd5cd8c934925f7326806c431cabb308c1c7fde"
+      "implementation-summary.md": "ca8c67b556658279e0d8a3d110a88f2f7fa722d84d4d2ecd997e8af89b2d1b22"
     },
     "last_active_child_id": null,
     "last_active_at": null

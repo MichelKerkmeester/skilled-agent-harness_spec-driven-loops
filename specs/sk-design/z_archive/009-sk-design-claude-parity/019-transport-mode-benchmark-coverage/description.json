@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
   "description": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's",
   "keywords": [
     "phase",

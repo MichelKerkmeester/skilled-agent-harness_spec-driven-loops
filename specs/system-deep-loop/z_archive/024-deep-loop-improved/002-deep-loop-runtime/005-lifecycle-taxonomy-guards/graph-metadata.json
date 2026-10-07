@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across multiple files with no single authoritative source",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-08-30T15:39:24.771Z",
+    "last_save_at": "2026-10-07T18:15:15.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8eb6c0f7486d9245c15c802aad74511cee27fdfb5c9522927bfc266df50b48a6",
+    "source_fingerprint": "sha256:aaed3bd3f3bd6356b2550ff2efda653ab6a901350f180d3427b833efb8d1bb32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "137b354c79eb6a06f7c738de24923b64500bf27311e866ddca0e3176f6c7a6db",
-      "plan.md": "03f312f7541d9b19763d1345b9c1e73cb84208c11692f0b7c9e2cad4d4c7bae1",
-      "tasks.md": "f18deb3daab68bc2897de66881f4753cb0064d9e9940d84eaa67821c2017d722",
-      "implementation-summary.md": "d930f4a4ca2ffa897296e05f649751a525514b8b4ca4bb881729ffc555101eef"
+      "spec.md": "96facf34b931707266e4b9120c8e07187dfc5ebb4c1d1b20fd4d1b6bb0c87410",
+      "plan.md": "43a0ac2e3f5050c911d82f6c70c9891054b7072107d915e14919d001e3dc8353",
+      "tasks.md": "9d4197b1f51d937a6dcc524ae9f45c4209a45a538afda81e900ef7762045e56e",
+      "implementation-summary.md": "6d3d6473de6a9b0629588eae5665769dcf387fe24115ff0c8e1bde49f06cc106"
     },
     "last_active_child_id": null,
     "last_active_at": null

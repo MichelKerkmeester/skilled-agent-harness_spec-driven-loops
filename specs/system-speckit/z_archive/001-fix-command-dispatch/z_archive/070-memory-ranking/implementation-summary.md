@@ -7,7 +7,6 @@ trigger_phrases:
   - "memory"
   - "folder"
   - "ranking"
-  - "implementation summary"
   - "070"
 importance_tier: "normal"
 contextType: "implementation"
@@ -290,8 +289,8 @@ memory_stats({ folderRanking: 'count' })
 - **Tests:** `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js`
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

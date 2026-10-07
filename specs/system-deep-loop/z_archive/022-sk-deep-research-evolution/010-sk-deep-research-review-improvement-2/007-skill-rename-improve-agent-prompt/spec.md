@@ -2,7 +2,7 @@
 title: "Featu [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/spec]"
 description: "Close the rename follow-through for the two improver skills by keeping folder names, changelog paths, and all active references aligned with the shipped command namespace."
 trigger_phrases:
-  - "042.007"
+  - "skill rename improve agent prompt spec"
   - "skill rename"
   - "sk-improve-agent"
   - "sk-improve-prompt"

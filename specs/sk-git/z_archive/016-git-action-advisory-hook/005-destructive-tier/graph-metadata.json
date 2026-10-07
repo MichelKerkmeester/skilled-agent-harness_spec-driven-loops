@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/005-destructive-tier",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/005-destructive-tier",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/005-destructive-tier",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/005-destructive-tier",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "The first ten rules covered the success-while-doing-less class",
     "created_at": "2026-07-28T04:00:22.934Z",
-    "last_save_at": "2026-08-30T15:39:18.631Z",
+    "last_save_at": "2026-10-07T18:14:22.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cc467608fda8ca68ae8705b807d3f113cc78a2c3bac88753a560e34564870b6",
+    "source_fingerprint": "sha256:e0beadf4ea31c11dd991495ef0cd73ac2af04a709d09e2abc36af35e17dab3c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f075624f18c2a965070d44760b3f67a5d9947e568f6488bfc2b9d5437346b16",
-      "plan.md": "9c8b589348aa447d86b5980e040b17ea183c14949a6acd7236d4df5442862efe",
-      "tasks.md": "9302fc4a5a0feafbe4fdc00f93daa962025c50edc26c8d33bba830e02a35d4ee",
-      "implementation-summary.md": "37566fd5fc58862b7b6cd5c0cff4949ea5c9b5065d02fe108019372032330529"
+      "spec.md": "25a5e60ecb14fe0575871c1d4391335ffb7608d959be694183148b85e436a2e5",
+      "plan.md": "70a728453a1cc373cb29fc58abdc0b5d5d31e7106368d54f0028f3eb4f6781a1",
+      "tasks.md": "bc0426790b63d3ffbc4c76535cb2138954714357ba6909e30b16cae5069bd65b",
+      "implementation-summary.md": "05df62656640d2857a5e89cc7b480419c7ecd6e6904cb8132b7e6f3c172adc95"
     },
     "last_active_child_id": null,
     "last_active_at": null

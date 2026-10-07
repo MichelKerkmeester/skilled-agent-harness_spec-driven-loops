@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-ai-small-model` over-claims its scope",
     "created_at": "2026-07-15T10:52:29.617Z",
-    "last_save_at": "2026-08-30T15:39:19.179Z",
+    "last_save_at": "2026-10-07T18:13:53.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9e2a311e3c931150de9b58ca342acc85fd625368433b407813f779b263f7de8",
+    "source_fingerprint": "sha256:d8ad384a28dcd75e07d7be3b40be42b782be77311557176ef729fe6ce0c78449",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba8357e97a8d10abe90fa0c544f9fa35b4b2dc50c1ac4db6d56ac2fe8de68383",
-      "plan.md": "dd03c7fd4a84cf163c4a1de01e5e2deb0fb7ee41b410bf1dfc8261fafbea3290",
-      "tasks.md": "b08baa15fd0acf8bb9a7df235c3177a5d7bf803cbda4d1824be70237963fda4d",
+      "spec.md": "aa928c19d6385b9fae506ccc9315ce8b16db5524cb662cf28af24c6ace305008",
+      "plan.md": "52fbadd8dba8cde31f9129f004e2a9639cfdeee32d804a48ef681ef9ce1c4a70",
+      "tasks.md": "b14146aa75f2aca1bb11a83d14c0decc953581a3966bd7bdb8979a981dec162a",
       "decision-record.md": "bb33917218ddc02c6263a9c546c1a25b7c3c3ca23eba8bcd6cc4560899291768",
-      "implementation-summary.md": "08939943c7c91d9f330c031c2b2a3463d5abab53f3aeb511a000a343d7c9d880"
+      "implementation-summary.md": "f6e3e589d1d37d021eaca30c126d95cb9b7352a83f20b250b5115587e47970ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

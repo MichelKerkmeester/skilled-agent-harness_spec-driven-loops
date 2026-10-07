@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/z_archive/013-structure-naming-cleanup",
+  "description": "Three structural/naming defects in `sk-design`: (1) a misplaced `styles/docs/` folder holding a stray `manual-testing-playbook.md` whose content the",
+  "keywords": [
+    "three",
+    "structural",
+    "naming",
+    "defects",
+    "sk-design",
+    "misplaced",
+    "styles",
+    "docs",
+    "folder",
+    "holding",
+    "stray",
+    "manual-testing-playbook",
+    "whose",
+    "content"
+  ],
+  "lastUpdated": "2026-10-07T18:09:43.091Z",
+  "specId": "013",
+  "folderSlug": "structure-naming-cleanup",
+  "parentChain": [
+    "sk-design",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

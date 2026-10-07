@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/004-command-lane-integration"
     last_updated_at: "2026-07-15T08:45:00Z"
     last_updated_by: "claude"
     recent_action: "Completed lane registration, the reducer-compatibility fix, and the converged full-corpus run"

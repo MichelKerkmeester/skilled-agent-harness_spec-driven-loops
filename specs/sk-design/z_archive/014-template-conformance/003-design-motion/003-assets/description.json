@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/003-assets",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/003-assets",
   "description": "`assets/` holds 3 files — `animate-presence-checklist.md`, `motion-pattern-cards.md`, `motion-performance-failure-card.md` — none of which was part of",
   "keywords": [
     "assets",

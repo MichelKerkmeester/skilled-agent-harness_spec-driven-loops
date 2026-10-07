@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,31 +13,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "phase",
-      "003",
-      "spec",
-      "trigger",
-      "plan"
+      "trigger phrases spec kit spec",
+      "catalog trigger phrases",
+      "spec kit snippet phrasing",
+      "trigger phrases spec kit plan",
+      "catalog trigger phrases plan",
+      "spec kit snippet phrasing plan",
+      "trigger phrases spec kit tasks",
+      "catalog trigger phrases task list"
     ],
     "key_topics": [
-      "phase",
-      "spec",
       "trigger",
-      "plan",
-      "frontmatter",
-      "system-spec-kit",
-      "snippets",
-      "derived",
-      "root",
+      "phrases",
+      "spec",
+      "kit",
       "catalog",
-      "headings",
-      "feature"
+      "snippet",
+      "phrasing",
+      "plan",
+      "tasks",
+      "task",
+      "list",
+      "frontmatter"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -50,6 +54,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -111,22 +121,54 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents.",
     "created_at": "2026-07-09T10:02:46.122Z",
-    "last_save_at": "2026-08-30T15:39:14.323Z",
+    "last_save_at": "2026-10-07T20:38:21.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:57fa7cf0c259ae5a256ba62f272249149a70deb82cb53e10a3281f27dd026f29",
+    "source_fingerprint": "sha256:b25f8480885e4ae0fe332ffa69f13567352b723bb298feb4475b91273a78c18f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94a7084accb94a6fc53fa9f0cdcee847159997f11814677a442c12761d2efbff",
-      "plan.md": "0f3cb92e927d89db6410c28adbb8cf09f53968e09ec71787bdc1f23c8740a7a4"
+      "spec.md": "cb926b5cfa725a76f26bfe727a80e07a6bfc54ce844d2b053115802d7925858b",
+      "plan.md": "c6f672a2767aa2725ce111e5190d2c9a366cbd9bfc4456b19f4fbe54528e5741",
+      "tasks.md": "32dbad0e088cdefab4339d5b2bd4e25c7db9de0db2999f4386c9db461a9fbc8f"
     },
     "last_active_child_id": null,
     "last_active_at": null

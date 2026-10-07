@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance"
     last_updated_at: "2026-07-14T06:52:00Z"
     last_updated_by: "claude"
     recent_action: "Wired folder-order successor 015; metadata refreshed"

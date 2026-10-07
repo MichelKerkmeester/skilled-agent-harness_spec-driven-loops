@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout"
     last_updated_at: "2026-08-22T21:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored notion-bases calendar recipe and recorded three prior-phase items"

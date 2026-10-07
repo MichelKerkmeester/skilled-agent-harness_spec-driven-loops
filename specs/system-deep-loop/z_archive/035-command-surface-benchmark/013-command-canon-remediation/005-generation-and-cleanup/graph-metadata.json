@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,12 +46,9 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-spec-kit/scripts/codex/generate-command-routers.cjs",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/commands/deep/research.md",
-      ".opencode/commands/memory/save.md"
+      ".opencode/commands/deep/research.md"
     ],
     "entities": [
       {
@@ -85,33 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
         "source": "derived"
       },
       {
-        "name": "generate-command-routers.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/generate-command-routers.cjs",
-        "source": "derived"
-      },
-      {
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Standardization",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The command contract is machine-readable and versioned, but the router surfaces that must obey it are still authored by hand-copying prose across six families",
     "created_at": "2026-07-16T14:59:02.625Z",
-    "last_save_at": "2026-08-30T15:39:20.349Z",
+    "last_save_at": "2026-10-07T18:15:20.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:160b137f22237d49afb2e4dd59a684f4bb623dcc296cda144533f1467a9d56e4",
+    "source_fingerprint": "sha256:e2af37ffab3cda0900debd8dd1cb8f3090d01e170d23db38c33e8e027e2b1e59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2abf86dbfca68715625d65b02fe4012908c71cfda220fd1cd9d6b965cb099cda",
-      "plan.md": "4fe805c03c539a7b5284b0fb745cb2a2ded56f0bbcd1e3ce5bdb2b128a1548a1",
-      "tasks.md": "67354ba73fbd1829384521d9b302e7a6457b501fb5a71e6562d27e893c4a7313",
+      "spec.md": "ce375c68459e29e82577633b924f4a31deb761cf58f0e192c53097d6cf5d00e6",
+      "plan.md": "592ceeca4796aa11358d9a08b550ab9947211643943e4a2947b8e5ec2214f3f3",
+      "tasks.md": "1710605835df7c7533fc9544a1414134f245f0027b802bd513c48953b7235ef0",
       "decision-record.md": "63f27e83f16c8725733542b5a8521a598ec446c893d146f1f32704a707a33d49",
-      "implementation-summary.md": "36d42f01ea51732aafada533a3e505cf7d30bf397cbcf9484dcc8de081d5223d"
+      "implementation-summary.md": "406b0848961f9717043ba19d16ff92fbf50950118a0be834663bbd8145beedbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

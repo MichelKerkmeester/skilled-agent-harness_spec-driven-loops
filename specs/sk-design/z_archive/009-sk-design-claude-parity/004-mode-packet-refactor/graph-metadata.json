@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -69,69 +69,43 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/decision-record.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/graph-metadata.json",
-      ".opencode/skills/sk-design/README.md"
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/004-mode-packet-refactor/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -223,11 +197,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Packets Remain Public Execution Lanes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the Claude-like private procedure strategy from the parent/procedure model",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:12.143Z",
+    "last_save_at": "2026-10-07T18:11:38.143Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,14 +229,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e319519a57a8ae9420c3dbcfc49ce73d167841a88607c174772b7a1b41ab98d4",
+    "source_fingerprint": "sha256:2bc3f627335357fddab5c8c261ca302fe0f33cbc6822f1a944b99e6d8b15093e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6adc8fd1ff668ab0b16601c5318ec6daa8f1c5cec1244bcca4ac3690905a93db",
-      "plan.md": "51ef998f7ad48fdc7486c763fb96d5fbec2f6f4edc9f56bdba4b8173eeef4406",
-      "tasks.md": "6bb6d87660b3fe5200cbe501627ce94a86a8f5b87ae6097bb9d519f328686855",
+      "spec.md": "bf731c8935e4a566f88fc93e15074742fc8923216895737ef50fd42912b319b2",
+      "plan.md": "aa8ba04e9d1e564ddafced5e1735380d1c6842e311ecceac5698a1daf25da406",
+      "tasks.md": "71d3db9579792280d5170818229d2ffbbdf9454291ec5e068a4db2b7bccaae58",
       "decision-record.md": "5e279ba57b9d911268f8167defb7ab1e57a23df94c16fd512dfe5085959cced8",
-      "implementation-summary.md": "9fbded812cf96cd84d0ab56d643ff2dea948f2fcc0ebb492d39c991c375f837f"
+      "implementation-summary.md": "6bd558e0895e08e46a91924b142c3b87f04fc29d41eb767a61c8305c8b01f92f"
     },
     "last_active_child_id": null,
     "last_active_at": null

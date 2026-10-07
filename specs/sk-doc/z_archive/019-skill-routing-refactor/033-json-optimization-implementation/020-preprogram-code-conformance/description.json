@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
   "description": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced",
   "keywords": [
     "four",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/067-deferred-closure",
-  "spec_folder": "cli-external-orchestration/067-deferred-closure",
+  "packet_id": "cli-external-orchestration/z_archive/067-deferred-closure",
+  "spec_folder": "cli-external-orchestration/z_archive/067-deferred-closure",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -22,7 +22,7 @@
       "deferred closure tasks",
       "drift verifier tasks",
       "playbook heading rename",
-      "acceptance criteria"
+      "deferred closure acceptance criteria"
     ],
     "key_topics": [
       "deferred",
@@ -49,8 +49,7 @@
       ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
       ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       "hooks/README.md",
-      ".pi/SYNC.md",
-      ".opencode/logs/cli-dispatch-audit.log"
+      ".pi/SYNC.md"
     ],
     "entities": [
       {
@@ -105,12 +104,6 @@
         "name": "SYNC.md",
         "kind": "doc",
         "path": ".pi/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-dispatch-audit.log",
-        "kind": "file",
-        "path": ".opencode/logs/cli-dispatch-audit.log",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 066 shipped its carve-out and recorded six adjacent findings it was not scoped to fix",
     "created_at": "2026-09-08T14:46:31.603Z",
-    "last_save_at": "2026-09-08T14:46:31.603Z",
+    "last_save_at": "2026-10-07T18:11:37.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d165b996cebcb640e3969a1c599f2ba02101feb60f6a4afbf57104f1c7993be1",
+    "source_fingerprint": "sha256:1996c386c119f7d07bb5ee551919d26d31bc6d8e568cdc6e223dbc0c755faabe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ef152cc7d803045e724dd4ca0025e93b5c02a27f381a74840414836ebd91c2b",
-      "plan.md": "3135286930be31c6453ec83419ae01b66b7d8b995233d4abcfa826151388cdb6",
-      "tasks.md": "bb71a2330f7b18732bcc966fea9f546f5035bc195ec996a04548bd678fdf97ba",
-      "implementation-summary.md": "4b572c797297f0597e8ef5c98867e7ce06251dfaf28b8278d1f07b0330e89502"
+      "spec.md": "4d7c29d1cc83ef632f0ab44bf343755e3937eaa4c2c50db3b545d688b0edbaa5",
+      "plan.md": "411386d982bf27498f7893828c53870d33a877f08e314427ffdb3b1bfd86cce1",
+      "tasks.md": "39e41d607b90f7ed79be28eed792cbf89d6ac9c7135e6fcc890b4a054a0568d2",
+      "implementation-summary.md": "727bae1e31597e38b179f3f20ba8bb419aaaa17ffcb21ff5a9f43ebe4511c5ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

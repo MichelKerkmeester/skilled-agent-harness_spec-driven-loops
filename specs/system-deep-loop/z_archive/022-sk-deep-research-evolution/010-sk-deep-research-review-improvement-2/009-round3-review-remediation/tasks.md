@@ -15,8 +15,10 @@ _memory:
     key_files: ["tasks.md"]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Task Breakdown: Round 3 Review Remediation
 
+<!-- ANCHOR:phase-1 -->
 ## Batch 1: Correctness (8 P1)
 - [ ] T001 Fix claim-adjudication event emission in review auto+confirm YAMLs [F-031-001]
 - [ ] T002 Add continuedFromRun to restart event payloads [F-031-002]
@@ -27,6 +29,9 @@ _memory:
 - [ ] T007 Emit legal-stop events from improve-agent workflows or update reducer [F-035-003]
 - [ ] T008 Port fail-closed JSONL pattern to improve-agent reducer [F-039-001]
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## Batch 2: Security (7 P1, 3 P2)
 - [ ] T009 Replace inline shell in 4 research/review YAMLs with helper scripts [F-040-001]
 - [ ] T010 Remove node -e from improve-agent YAMLs, use checked-in scripts [F-040-002]
@@ -39,6 +44,9 @@ _memory:
 - [ ] T017 Add stakeholder tracking to level_specifications.md Level 3+ definition [F-048-002]
 - [ ] T018 Fix schema_version migration edge case [F-043-001]
 
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 ## Batch 3: Traceability — Reference Docs (7 P1, 1 P2)
 - [ ] T019 Rewrite research convergence.md to blocked_stop schema [F-033-001]
 - [ ] T020 Fix research loop_protocol.md delta-to-full replay [F-033-002]
@@ -48,6 +56,9 @@ _memory:
 - [ ] T024 Downgrade root verification or finish lifecycle cleanup [F-037-002]
 - [ ] T025 Add Lane-to-Commit mapping to root implementation-summary [F-037-003, F-045-004]
 
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:phase-4 -->
 ## Batch 4: Traceability — Mirrors + Root Docs (8 P1, 6 P2)
 - [ ] T026 Sync Claude deep-review mirror iteration skeleton [F-041-001]
 - [ ] T027 Sync Gemini deep-review mirror [F-041-002]
@@ -63,6 +74,9 @@ _memory:
 - [ ] T037 Remove stale static-mode language from improve-agent command doc [F-049-003]
 - [ ] T038 Update Phase 002 spec to v2 DDL [F-043-002]
 
+<!-- /ANCHOR:phase-4 -->
+
+<!-- ANCHOR:phase-5 -->
 ## Batch 5: Maintainability — Code (10 P1, 3 P2)
 - [ ] T039 Require explicit session/generation at joinWave() boundary [F-034-001]
 - [ ] T040 Add finalizeBoard() path to wave-coordination-board [F-034-002]
@@ -75,14 +89,22 @@ _memory:
 - [ ] T047 Consolidate entity-length policy to shared constant [F-042-004, F-050-007]
 - [ ] T048 Fix wave merge hidden defaults [F-050-001]
 
+<!-- /ANCHOR:phase-5 -->
+
+<!-- ANCHOR:phase-6 -->
 ## Batch 6: Maintainability — Playbooks (4 P1, 4 P2)
 - [ ] T049 Rewrite DRV-015 around flat event schema [F-046-001, F-050-003]
 - [ ] T050 Rename E2E-022 around flat mutation-coverage artifact [F-046-002, F-050-005]
 - [ ] T051 Fix RT-027 to verify via archive separation [F-046-003]
 - [ ] T052 Reword RT-030 stability to last-N-samples range [F-046-004]
 
+<!-- /ANCHOR:phase-6 -->
+
+<!-- ANCHOR:completion -->
 ## Verification
 - [ ] T053 Run tsc --noEmit on MCP server
 - [ ] T054 Run vitest suite (0 failures)
 - [ ] T055 Grep sweep for stale references
 - [ ] T056 Commit and push to 026
+
+<!-- /ANCHOR:completion -->

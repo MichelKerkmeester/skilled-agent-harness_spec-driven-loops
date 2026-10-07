@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook",
   "description": "The sk-prompt hub and prompt-improve packet contain manual-testing-playbook roots, category directories, scenario files, and index references with",
   "keywords": [
     "sk-prompt",

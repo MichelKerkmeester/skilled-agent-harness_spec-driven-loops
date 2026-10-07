@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/007-hub-registration-and-advisor",
   "description": "The `mcp-obsidian` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for obsidian prompts (its hub",
   "keywords": [
     "mcp-obsidian",

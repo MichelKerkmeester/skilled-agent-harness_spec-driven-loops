@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
   "description": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`,",
   "keywords": [
     "6th",

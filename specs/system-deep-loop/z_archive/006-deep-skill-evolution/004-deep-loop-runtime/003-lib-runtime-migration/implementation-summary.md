@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/003-lib-runtime-migration` |
+| **Spec Folder** | 003-lib-runtime-migration |
 | **Parent Phase** | `skilled-agent-orchestration/116-deep-skill-evolution` |
 | **Level** | 2 |
 | **Completed** | 2026-05-22 |

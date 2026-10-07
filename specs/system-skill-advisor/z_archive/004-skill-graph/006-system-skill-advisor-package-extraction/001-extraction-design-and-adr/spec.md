@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr"
     last_updated_at: "2026-05-14T02:00:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded packet"

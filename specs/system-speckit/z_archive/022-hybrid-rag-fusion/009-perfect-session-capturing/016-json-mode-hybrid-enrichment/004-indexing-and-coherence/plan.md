@@ -198,7 +198,6 @@ input-normalizer.ts observation array build → dedup by string equality → nor
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -221,7 +220,6 @@ Phase 3 (P1b Template Sections) ┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -334,7 +332,7 @@ Phase 3 (P1b Template Sections) ┘
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: RetryStats Exposed as Accessor, Not Event Bus
@@ -353,4 +351,4 @@ Phase 3 (P1b Template Sections) ┘
 **Alternatives Rejected**:
 - Query embedding_status table directly in handler: couples handler to DB schema, adds latency, races with background job
 - Push via event emitter: adds complexity, async timing mismatch with synchronous health response
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

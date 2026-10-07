@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/003-design-motion/006-feature-catalog",
-  "spec_folder": "sk-design/014-template-conformance/003-design-motion/006-feature-catalog",
-  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "packet_id": "sk-design/z_archive/014-template-conformance/003-design-motion/006-feature-catalog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/003-design-motion/006-feature-catalog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-motion feature-catalog conformance",
       "motion feature catalog template audit",
       "motion restraint gate card structure",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "feature catalog plan",
+      "feature catalog tasks",
+      "feature catalog implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.941Z",
-    "last_save_at": "2026-09-11T04:35:42.416Z",
+    "last_save_at": "2026-10-07T19:23:35.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c8dbc6dad107d78740f4c87021fdecb562a3ca28a8592508e355cbf059a9b7d",
+    "source_fingerprint": "sha256:184c1e2cac8620d3c1708b81d7ab710d10517883e0de0c38c3381c94430787ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77ea5260ed8116b3ac75c2a5fa734ab9b5ba23a898687a96fce8d58bd8acb46b",
-      "plan.md": "9eb74e723bada45aabdf03318b7d9d64e41b49ae610b0f16bc525a0c93ed0941",
-      "tasks.md": "11fe70ba52193d5aef33930d9a9889cbd410c9daf13017332d73641607c393c5",
-      "implementation-summary.md": "162f305da6f284147cb1e61e741c9b7afa652032f784ecda8052c75d56795ddb"
+      "spec.md": "0bf337394f3cd625dfe2b6d93949443dbcea20a9645ed7d8ded3978e07f1979c",
+      "plan.md": "2883a54c77bebc44d06bb8afaa139c62ec987df6e16dda1ac852e1531be61dfe",
+      "tasks.md": "1022c4e02664d6cb2871246c4897f70a66e51a7e0bcf542444e90952d09879c0",
+      "implementation-summary.md": "b2809f8aa1ddf4e6ba421f023c698bdff3c8a6227f9777664d77deeaabd73b58"
     },
     "last_active_child_id": null,
     "last_active_at": null

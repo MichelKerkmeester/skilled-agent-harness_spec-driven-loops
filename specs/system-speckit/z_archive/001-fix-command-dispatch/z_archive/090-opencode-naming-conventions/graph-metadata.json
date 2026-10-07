@@ -151,25 +151,25 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder Setup",
+        "name": "Execution Protocol",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Skill Documentation",
+        "name": "Task Checklist",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Reference Sweep",
+        "name": "Execution Rules",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Status Reporting Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `sk-code-opencode` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
     "created_at": "2026-04-12T09:02:53.560Z",
-    "last_save_at": "2026-08-30T15:39:37.654Z",
+    "last_save_at": "2026-10-07T20:42:36.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a0a7d128a29ae6979db482cfff0dc1178b3678a015aa0fedaebf3dac7e6c8c7",
+    "source_fingerprint": "sha256:f9e0bc1ba8abcd167aa8a462a5abbe702cb98221f9fee6b1c4ec4dc956a0df47",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "22399649f1911dbc8e86cb8d20194adc2edbdce2c14ae709c210f720d6ba7be8",
+      "spec.md": "e0585ad6765e45f38ff09d957538c18eef4b63e1b0a0d3017ef3282aab2cc37c",
       "plan.md": "0ef7888b7ddd6d4518047181fee67b361273d37e43667a72ee6700386eb45fdf",
-      "tasks.md": "4feb4bd3452ef8a99232240585f82e1421a74d3624c151823efba0d16457df00",
-      "decision-record.md": "e737e59b194f75adb3d20982aaa88b40fb8fe2bbf2b102ea43eda3c63a1de929",
-      "implementation-summary.md": "177a57ee2a3e01851d5522bcd50670a1156018283bf113b606eee99b28262967"
+      "tasks.md": "fc95b9c33b0809da2b3eb117ed30fa49e47a30fb8a0e4e9c7b2b03c125e00c49",
+      "decision-record.md": "b4a2dbfc41b5a20fbcc2c614f1913f0724adc76802121307e3f3eb4c96f6c9cd",
+      "implementation-summary.md": "ec6f347c46cef97ca09e503dbdb89b6f136dfd5b0d3b4647f9643df705a2c27a"
     },
     "last_active_child_id": null,
     "last_active_at": null

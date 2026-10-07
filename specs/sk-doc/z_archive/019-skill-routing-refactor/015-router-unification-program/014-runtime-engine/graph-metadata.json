@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
     "created_at": "2026-07-19T14:22:34.516Z",
-    "last_save_at": "2026-09-11T16:42:04.761Z",
+    "last_save_at": "2026-10-07T18:13:24.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ad970dc89e1815f2231b143b6135c2c28691c6f70d8ac75f5b3b0b8fd415c92",
+    "source_fingerprint": "sha256:8501dff9a382f423639f9a6f5a2094638ea5ebdee9d2441486ce1602c09d772e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ada5a037becf96b54d5f00d8b3309eb498f2ba0a91e357bd3fbc0d926337250",
-      "plan.md": "c4f7469a9f5bc321cbf04776275b3c3cecb3575a421ffd6a01e40332a15d770e",
-      "tasks.md": "0c96242e80c9e950b1d8764619e52992790cff92d7bbc668aaecd056845baf91",
-      "implementation-summary.md": "289a94da28d77565b5fe223cd082a9adef3ec6b16372152fba87f60f8e2ce8b5"
+      "spec.md": "42c47440e5cb5de42ac339688102cdb839c16fe5b182218ae7c965e7bb7202cf",
+      "plan.md": "f9f9082c3a5347a30a0286a95a86c041f386e0a4f5beed762400152cec7dd2f4",
+      "tasks.md": "bfab0d4d699b9161737d592f49d43c67a10b614e153e85ab9c513d69db8cd078",
+      "implementation-summary.md": "55e03dad0f8aa62204fb9766e92a023681583e4949f084dad648035da8c6c575"
     },
     "last_active_child_id": null,
     "last_active_at": null

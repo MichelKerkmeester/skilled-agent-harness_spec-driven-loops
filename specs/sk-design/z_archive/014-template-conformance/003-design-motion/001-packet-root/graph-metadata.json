@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/003-design-motion/001-packet-root",
-  "spec_folder": "sk-design/014-template-conformance/003-design-motion/001-packet-root",
-  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "packet_id": "sk-design/z_archive/014-template-conformance/003-design-motion/001-packet-root",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/003-design-motion/001-packet-root",
+  "parent_id": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`design-motion`'s packet root carries exactly two markdown files, `SKILL.md` and `README.md`",
     "created_at": "2026-07-27T14:53:12.796Z",
-    "last_save_at": "2026-08-30T15:39:13.067Z",
+    "last_save_at": "2026-10-07T18:12:12.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fabbb4d229d456089bdddae47fa1cee551b33c044a2c675eec3cc124234212f",
+    "source_fingerprint": "sha256:ce659caee7bd2edaa62a9ccf4c290d914e050278f52d1d6965b2e49cd1f454ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99ceadad158693787a97f2a5da6c1423772a0d896cad09d698d0d21dc417e221",
-      "plan.md": "54fddfe957e31325d891b8981bbd4776edc2ba64864aa7ee2cfbde84b6b58e0e",
-      "tasks.md": "28ad9ca1884e8bb5730d34d29dce7d06338caf17d4b165b962c76dd7c23cfafb",
-      "implementation-summary.md": "fad930dc3c7d42c15cee827a0b3e44b0bcaaa4d860e2e11bf24907a9dfc2f7f9"
+      "spec.md": "63fd5d51eb276710c730a290d6a602a959eb6484b539a17fcc00252071bb12af",
+      "plan.md": "8ff342c631f1ede94bc12e721f9f39644e2afefca9d6f6db19ae436907af8d38",
+      "tasks.md": "4748249b51f869a375b3b8826822d40defe9e1af1288bcd7420bebbfb7a890a1",
+      "implementation-summary.md": "59aa90e147ec9cfe50bbc024a6b7c6fb8d93a347bb1941530f77b98b8d88ee0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

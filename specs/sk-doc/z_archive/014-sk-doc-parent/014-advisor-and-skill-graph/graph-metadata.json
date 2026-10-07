@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/014-advisor-and-skill-graph",
-  "spec_folder": "sk-doc/014-sk-doc-parent/014-advisor-and-skill-graph",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/014-advisor-and-skill-graph",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/014-advisor-and-skill-graph",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,13 @@
     "trigger_phrases": [
       "sk-doc advisor and skill graph",
       "125 advisor and skill graph",
-      "sk-doc parent phase 014"
+      "sk-doc parent phase 014",
+      "sk-doc advisor and skill graph plan",
+      "advisor graph re-fingerprint plan",
+      "skill graph one identity plan",
+      "sk-doc advisor and skill graph tasks",
+      "advisor graph re-fingerprint tasks",
+      "skill graph one identity tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -22,23 +28,37 @@
       "graph",
       "parent",
       "phase",
-      "monolith",
-      "parent-hub",
-      "conversion",
-      "feature",
-      "specification",
-      "skill-graph"
+      "plan",
+      "re-fingerprint",
+      "one",
+      "identity",
+      "tasks",
+      "monolith"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +96,96 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 014 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:36.981Z",
-    "last_save_at": "2026-08-30T15:39:13.676Z",
+    "last_save_at": "2026-10-07T21:51:44.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:84e016225c520beb361b22257bce0f7dab9f4c28dcb20227c852598b29e0f4a9",
+    "source_fingerprint": "sha256:6c03664fdd6d8318605afa3a3b779d19545b1db0216eeb9a26f3505d85b56d2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "574869e2c46bf9af04c0613e3784d58799f1543dca24fd2f29d889ea256f1f10"
+      "spec.md": "a15194eba726790741adc389cd29885dd5f5b4af03c26f7f1de88505c96209b6",
+      "plan.md": "378cf238cae4576a941de603381a88f4fee82d68049a50c02bc87ba9438a5ea3",
+      "tasks.md": "cf16adc2eadeab07020a15c880aec85d8071b5e8ef8d9bca64d22c30d500ac46"
     },
     "last_active_child_id": null,
     "last_active_at": null

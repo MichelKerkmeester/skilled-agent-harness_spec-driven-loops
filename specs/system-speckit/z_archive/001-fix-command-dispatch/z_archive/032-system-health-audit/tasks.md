@@ -2,12 +2,7 @@
 title: "Tasks - System Health [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/tasks]"
 description: "All 34 tasks completed on 2025-12-25."
 trigger_phrases:
-  - "tasks"
-  - "system"
-  - "health"
-  - "audit"
-  - "completed"
-  - "032"
+  - "system health audit tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

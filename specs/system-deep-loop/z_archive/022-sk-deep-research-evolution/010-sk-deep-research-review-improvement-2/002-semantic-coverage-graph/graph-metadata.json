@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "042.002",
+      "semantic coverage graph spec",
       "semantic coverage graph",
       "deep-loop graph",
       "deep_loop_graph_convergence",
       "deep-loop-graph.sqlite",
-      "implementation plan",
+      "semantic coverage graph plan",
       "deep_loop_graph_query",
-      "tasks",
+      "semantic coverage graph tasks",
+      "coverage graph task list",
       "deep loop graph",
-      "decision record",
-      "implementation summary",
-      "coverage graph"
+      "semantic coverage graph decision record",
+      "decision record"
     ],
     "key_topics": [
       "semantic",
       "coverage",
       "graph",
+      "spec",
       "deep-loop",
       "deep-loop-graph",
       "sqlite",
-      "implementation",
       "plan",
       "tasks",
-      "deep",
-      "loop",
-      "decision"
+      "task",
+      "list",
+      "deep"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Deep research and deep review currently know a great deal about iteration counts, novelty, and state transitions, but they still lack a first-class semantic model of coverage",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-09-07T16:17:19.835Z",
+    "last_save_at": "2026-10-07T20:55:10.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe355ef78f1ad0a07d92cf774110c47d53111d2dc2007c99e4c55e27014d91ad",
+    "source_fingerprint": "sha256:b9b929279036f213eb0168ea8476a665d7335088406179fea7f3b0c49fb397b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e7124b55226b72df202281bd9b68270a47d371c09e82065e9d9c3148bac3299",
-      "plan.md": "2f2c90a7e3305dd966fb380abe92d3c3ce3df2f1baf80b79ea0aba747103569b",
-      "tasks.md": "fd0e1a172fe2cb5ea2720c786b80fafb4d6f641de2401eaa1f90426703a6c9ed",
-      "decision-record.md": "ca4a50ea87295a4d32688b3d3c072682da1addb5285be3d02068015024cefa65",
-      "implementation-summary.md": "2e5a70eafc8b54873f58747686952d9d71857ec9de19b41c4a56488f621d39b2"
+      "spec.md": "1358ef07debbbdaf8d2fbe77c3ddf487c847d814b386df46c7ab58cf73fe4884",
+      "plan.md": "b53428b905722f11fcc33f8b2197912d9542498f6e05baf4c3925c922807b8b8",
+      "tasks.md": "d6c22d6325496e42c54758b31869a364223ae9461712983a14289b319788148b",
+      "decision-record.md": "b0334fc6feedfcecad92167299fbbc91237358f0daeb52bc47ccd9e1e13ff993",
+      "implementation-summary.md": "8ec2ef15d7e296fbf2407057ffdb0342a1dcfe8fbe455ff554342575d8ba2fa2"
     },
     "last_active_child_id": null,
     "last_active_at": null

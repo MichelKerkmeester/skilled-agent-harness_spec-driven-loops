@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/016-routing-benchmark",
-  "spec_folder": "sk-doc/014-sk-doc-parent/016-routing-benchmark",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/016-routing-benchmark",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/016-routing-benchmark",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,13 @@
     "trigger_phrases": [
       "sk-doc routing benchmark",
       "125 routing benchmark",
-      "sk-doc parent phase 016"
+      "sk-doc parent phase 016",
+      "sk-doc routing benchmark plan",
+      "cross-hub parity gate plan",
+      "routing gap remediation plan",
+      "sk-doc routing benchmark tasks",
+      "cross-hub parity gate tasks",
+      "routing gap remediation tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -21,24 +27,38 @@
       "benchmark",
       "parent",
       "phase",
-      "monolith",
-      "parent-hub",
-      "conversion",
-      "feature",
-      "specification",
-      "hub",
-      "cross-hub"
+      "plan",
+      "cross-hub",
+      "parity",
+      "gate",
+      "gap",
+      "remediation",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +96,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:37.518Z",
-    "last_save_at": "2026-08-30T15:39:13.699Z",
+    "last_save_at": "2026-10-07T21:51:44.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c13fa10e7a1a9792e5cf41090aef1aed999cc966d9ac2952c122981ba3536c80",
+    "source_fingerprint": "sha256:e193d9a531200dbfa2255607e143f3405fa37b98388cc031a250944f8a3f1a33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6db94ed0a8d37330e482a965f15c3e7d33cc5a46fe3ed3de856738851dc22ad5"
+      "spec.md": "7a2ba8a89c7dbb4ed17c6fe0cb48e9eb66586b6f82e199cecf06f345b879d06c",
+      "plan.md": "40739b5928003be61bffa816ffdd27262766c3edec1b611fbc0fb99bc7a71796",
+      "tasks.md": "b95afac348772b122b1eb5bd6653ee94882fce2755c7b3d451990fcaae70e467"
     },
     "last_active_child_id": null,
     "last_active_at": null

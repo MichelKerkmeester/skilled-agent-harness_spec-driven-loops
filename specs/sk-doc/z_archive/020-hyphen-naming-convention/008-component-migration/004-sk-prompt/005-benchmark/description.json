@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark",
   "description": "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus",
   "keywords": [
     "sk-prompt",

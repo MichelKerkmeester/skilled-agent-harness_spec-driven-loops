@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,28 +48,25 @@
       ".opencode/skills/mcp-tooling/README.md",
       ".opencode/skills/mcp-tooling/changelog/v1.5.0.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "`.opencode/skills/mcp-tooling/README.md` still carries the older tabular reference-card style: an AT A GLANCE table, a QUICK START block and a short VERIFICATION section describe the hub as a route map before any outcome",
     "created_at": "2026-08-04T08:34:35.776Z",
-    "last_save_at": "2026-08-30T15:39:17.478Z",
+    "last_save_at": "2026-10-07T18:13:40.816Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:583e36998e4d3e694ef79b08ee6bc9b3ca5f4f4d5721591386710158fe56a9f1",
+    "source_fingerprint": "sha256:5132c5af840a551f67d0a37cf8610435537c5d8c6835e716c6b1db12c946ff0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54eabe56038111882c4eabe5027ba454e1b48cff3acb194bcc21626bf88000bd",
-      "plan.md": "6eb533a0c749dbb94831cce96bcedd6d7235e8a13b8bcffb042f2aa2e20f1395",
-      "tasks.md": "6b0112d48772c3da8f136cd08fdef2561608df17dcc30f921a43af8e19400c9d",
-      "implementation-summary.md": "a5b63079eb553f3605293229dd1b3ae86d88e10a7189c847b5c1c647b189a6a4"
+      "spec.md": "4325ee07545531e535f7b33dd111ed834f112b1a283fe17e7b0409f0abc91f9e",
+      "plan.md": "1c22811ccc4d076b3d50683c177f11f66e7da8ed42a769f34937bc3b5e1da510",
+      "tasks.md": "2d58bcfc9636fb6fa81b0b75184c043ace806cd1c9ed36f122e91f23b8341797",
+      "implementation-summary.md": "7158c2cd2d46d98694630935cfc82db6b307899834a7226d7104534666d39c32"
     },
     "last_active_child_id": null,
     "last_active_at": null

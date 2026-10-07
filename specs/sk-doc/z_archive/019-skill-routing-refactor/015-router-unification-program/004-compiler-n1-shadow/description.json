@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
   "description": "The fleet has no single, verifiable representation of routing policy",
   "keywords": [
     "fleet",

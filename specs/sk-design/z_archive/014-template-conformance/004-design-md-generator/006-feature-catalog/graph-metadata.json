@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-md-generator feature-catalog conformance",
       "md-generator feature catalog template audit",
       "cluster-classify extract validate cards",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "feature catalog plan",
+      "feature catalog tasks",
+      "feature catalog implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`, `interaction-capture/`, `procedure-cards/`, `report-preview/`, `validate/`, `write-design-md/` — each holding one file, 8 subdirectory files plus the root (9 total)",
     "created_at": "2026-07-27T15:10:02.584Z",
-    "last_save_at": "2026-09-11T04:35:43.694Z",
+    "last_save_at": "2026-10-07T19:23:52.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a701c215a1c51245fef682381c1950417e177462d84bae815409a27341cd8c5",
+    "source_fingerprint": "sha256:9704928793a5e05683713e92700fbb3d6f726958963f0f96486cbae8da7149ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9a38d26135469bbc56b27bc8cbbaa3157b0203b0af40a1006288491f0b4e25b",
-      "plan.md": "beab23489089850d99fbb1a4284bf4612d093d5ecc00e8e7cd8b6552262ea72b",
-      "tasks.md": "0592cd73c86cb6903cf5318122927051379c5bfc16bbe954a64df3547be8c0d6",
-      "implementation-summary.md": "dc21ae3c6019645d54995440a21f7e2674039ea19455129b4c47d8cc4eca251f"
+      "spec.md": "dfdb9100fc00835f5492cc523a6ac9cd912a0d23e67ad79006d7d5ff329f9c1c",
+      "plan.md": "a9c3170e8791a975d88722ec91aa20afbd02ae69087dfa52c6e21e6542ceb89c",
+      "tasks.md": "2b8276461ed413252c1142aaed80316fc45af83c90cfeee9b81a993b37d1deb8",
+      "implementation-summary.md": "1256bf7208d11aafcc078310136ed5d17aff456295519bc314e9185d38616cdf"
     },
     "last_active_child_id": null,
     "last_active_at": null

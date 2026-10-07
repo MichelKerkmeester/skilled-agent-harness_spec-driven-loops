@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Scaffolded the seven-phase decomposition around the reference implementation"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "code readmes deep loop",
       "runtime lib domain readmes",
       "stale runtime catalog fix",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "code readmes deep loop summary"
+      "code readmes deep loop plan",
+      "code readmes deep loop tasks",
+      "code readmes deep loop summary",
+      "fifty-three deep-loop readmes",
+      "runtime lib catalog refresh"
     ],
     "key_topics": [
       "code",
@@ -34,9 +30,9 @@
       "domain",
       "stale",
       "catalog",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +194,7 @@
     ],
     "causal_summary": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
     "created_at": "2026-07-22T13:46:50.887Z",
-    "last_save_at": "2026-09-11T04:36:34.167Z",
+    "last_save_at": "2026-10-07T18:13:28.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00bd84034fd1b2c304268fc63c8d0fabf05a070d2455e73299628113a650f5b8",
+    "source_fingerprint": "sha256:581b0eb490c391e1dfc9b2b7b7982a6eca10d1a003405a76b5f9490eb3b19131",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "587b0c785212ee29488f657464fc3fce5e26fcf6130aa3513208a8938275587d",
-      "plan.md": "b2c0971898e507402593ee72e6939efd8b8ecdae4be47f632d69ce5e4e963483",
-      "tasks.md": "3ccb07cbaecbed40541a512224aad007da4ea19aff2427b9a3aab3977d57d8b9",
-      "implementation-summary.md": "05ded9791570bf0eff8c2e09a32b7ec4d4161e25a2b63d3a5a9c0416232ba337"
+      "spec.md": "9447b1bde40ade2b4dafdf69d0ddad805750988973e1c7ba02369277c6d35b82",
+      "plan.md": "d4c525105970fd07ebd182c452c546fee5f600973745462a5f4b4f1967e26fe6",
+      "tasks.md": "85a9991154e74ac74324078dac0f3e2bafe47c369088a11e8ef233ffa6f784d4",
+      "implementation-summary.md": "3ffbc515afcc8cc487e1468b06ab61845393ea4849852046165c189a5e61b5cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

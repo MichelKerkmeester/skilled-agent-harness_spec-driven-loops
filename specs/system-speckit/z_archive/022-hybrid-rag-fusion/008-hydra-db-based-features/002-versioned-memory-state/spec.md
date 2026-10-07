@@ -73,8 +73,8 @@ This phase turns the roadmap from capability metadata into actual memory-state b
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -170,7 +170,7 @@ Introduce a durable lineage contract that makes temporal state resolution explic
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -189,7 +189,7 @@ Introduce a durable lineage contract that makes temporal state resolution explic
 - **NFR-O21**: Maintainers can inspect lineage state during debugging.
 - **NFR-O22**: Migration checkpoints exist before any irreversible lineage move.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

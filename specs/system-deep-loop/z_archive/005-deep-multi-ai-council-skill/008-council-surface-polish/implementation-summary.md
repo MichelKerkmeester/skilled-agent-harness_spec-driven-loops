@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish` |
+| **Spec Folder** | 008-council-surface-polish |
 | **Status** | Complete |
 | **Level** | 1 |
 | **Completed** | 2026-05-11 |

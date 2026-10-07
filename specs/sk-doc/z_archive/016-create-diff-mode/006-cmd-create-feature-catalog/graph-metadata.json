@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog",
-  "spec_folder": "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/006-cmd-create-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/006-cmd-create-feature-catalog",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,8 @@
       "implementation-summary.md",
       ".opencode/commands/create/feature-catalog.md",
       ".opencode/commands/create/README.txt",
-      ".opencode/commands/README.txt"
+      ".opencode/commands/README.txt",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -91,6 +92,12 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there is no dedicated create command that can scaffold it consistently",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-08-30T15:39:14.100Z",
+    "last_save_at": "2026-10-07T20:38:17.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb67dc5d8b9c634ae2c3fdca0298f9ee36bd264758b6f78d065675ee7c57a287",
+    "source_fingerprint": "sha256:8174da0a33d3f3bb486c859f1cd60050ee32bd4b847802f2e23fc3fa2ce84f37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bbde163be099e89f1c980daf1bc506a09d054e4a7b4e1115456fa5cf05911a7",
-      "plan.md": "751abb0fb5460d716bd1afaa5ff7af5fd53350c13395e058a4af0a4c8bbe57a3",
-      "tasks.md": "f15c8c3eae557350e6d4f38ea061fc0493d9a38ffca9f085baef941917177681",
+      "spec.md": "8b0853c28f3fafa7772ccad78e761ea44b9542e4e25db57f01668a9761bceb1e",
+      "plan.md": "131afe9351d499458ace6ab1114f2aa3c2c62c4de7a10adad89460fa138f6f15",
+      "tasks.md": "055093c21947c3a0aba7e3f3fca9215c59f61ffb9d37c636e36acd7f25d339a5",
       "decision-record.md": "021fcda148ff278038053101a10513e46e0a21e7834f5371d813907d0ea6a09a",
-      "implementation-summary.md": "b898a486e9d4611df14c395eb406dace0a4a95379e00eb11f99e0b9c4d27ba03"
+      "implementation-summary.md": "6c788851c8d8f8e63a53e8b698914842fa875d5b690d7affee84b80e8b67ec28"
     },
     "last_active_child_id": null,
     "last_active_at": null

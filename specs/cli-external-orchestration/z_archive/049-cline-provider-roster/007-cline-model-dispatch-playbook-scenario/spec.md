@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/007-cline-model-dispatch-playbook-scenario"
     last_updated_at: "2026-08-25T05:06:09Z"
     last_updated_by: "claude"
     recent_action: "Linked the successor phase after 009 landed"

@@ -2,7 +2,7 @@
 title: "Implemen [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/plan]"
 description: "Completed Level 3 implementation plan showing the delivered A-E passes and the closing-audit remediation that finalized Phase 008."
 trigger_phrases:
-  - "008"
+  - "further deep loop improvements plan"
   - "phase 8 plan"
   - "graph wiring plan"
 importance_tier: "critical"

@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/003-agent-dispatch-hardening"
     last_updated_at: "2026-06-30T20:05:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Completed agent dispatch implementation tasks"

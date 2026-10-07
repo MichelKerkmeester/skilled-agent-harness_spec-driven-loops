@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
     "created_at": "2026-07-14T15:18:11Z",
-    "last_save_at": "2026-08-30T15:39:16.847Z",
+    "last_save_at": "2026-10-07T18:13:06.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:57d407e1eae4a79d0b38a0b25484192a120bb7b1573f0e9a18f29ce6ef7ba57e",
+    "source_fingerprint": "sha256:b38d748e181a8e063a8af9d91acb8e14dc1bd68839c7ce8fef8f2f4c40cf9ddd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "301c998a7df1a6022ec8437217297c4a7caed9459630c32305c373d52fbf22f1",
-      "plan.md": "6d7c4631e09b7ac5860791524dd29b20a92f4a5a00742c16eb805a6e0cf35fa6",
-      "tasks.md": "c51fd209d380932a154f1da34a6c305c8d50ca893412423aaab1a9b7f0f46cf6"
+      "spec.md": "cb0f9d898e1ffc65e67aa857bf52ccd49d907aaa843b4c6d5ae937d2b1b8f95b",
+      "plan.md": "8e314b7caab04cc20e5febb589d5b45884fba19f0021579f67477dcffa7e730a",
+      "tasks.md": "f29fa9e520cefa36806b63d92068832aad495f2faaaacee6dd81ac5b1780c66a"
     },
     "last_active_child_id": null,
     "last_active_at": null

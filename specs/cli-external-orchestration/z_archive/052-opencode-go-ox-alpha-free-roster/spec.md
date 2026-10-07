@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/052-opencode-go-ox-alpha-free-roster"
     last_updated_at: "2026-08-22T11:20:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reframed packet: dropped opencode-go route, added openrouter/stealth/ox-alpha"

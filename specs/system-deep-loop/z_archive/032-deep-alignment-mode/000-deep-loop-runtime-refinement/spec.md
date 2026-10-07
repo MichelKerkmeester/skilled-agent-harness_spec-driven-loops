@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/000-deep-loop-runtime-refinement"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement"
     last_updated_at: "2026-07-11T21:43:06Z"
     last_updated_by: "claude"
     recent_action: "Tier 1+2 remediation applied and test-gated"

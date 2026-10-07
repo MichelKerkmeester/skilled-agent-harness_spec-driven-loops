@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/042-sk-doc-shared-audit"
+    packet_pointer: "sk-doc/z_archive/042-sk-doc-shared-audit"
     last_updated_at: "2026-08-31T20:10:00Z"
     last_updated_by: "stream-3"
     recent_action: "Audited shared/ and repaired five files"

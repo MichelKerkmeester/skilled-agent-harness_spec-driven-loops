@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/002-tool-selection-and-scaffold",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/002-tool-selection-and-scaffold",
   "description": "Phase 1 produced a recommendation, but nothing is committed: there is no locked build-vs-adopt choice per surface and no package to build into",
   "keywords": [
     "phase",

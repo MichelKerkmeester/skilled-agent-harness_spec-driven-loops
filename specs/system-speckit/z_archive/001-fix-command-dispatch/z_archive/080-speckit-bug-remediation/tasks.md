@@ -32,6 +32,36 @@ contextType: "implementation"
 ---
 
 <!-- /ANCHOR:notation -->
+
+<!-- ANCHOR:ai-exec -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- [ ] Read spec.md, plan.md and this task list before the first edit
+- [ ] Confirm the target files match this task's file ownership
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one phase |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the task list before moving on
+3. Continue with the next unblocked task; escalate after two blocked tasks
+
+<!-- /ANCHOR:ai-exec -->
+
 <!-- ANCHOR:phase-1 -->
 ## Phase 1 Tasks
 

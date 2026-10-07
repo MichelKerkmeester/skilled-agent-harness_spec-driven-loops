@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/002-gpt-claude-benchmark"
     last_updated_at: "2026-07-01T17:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Benchmark complete; validate.sh --strict passing"

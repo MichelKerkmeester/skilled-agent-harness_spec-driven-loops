@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/001-research-and-context",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,29 +46,25 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
-      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/decision-record.md",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/spec.md",
-      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/plan.md",
-      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/tasks.md"
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/001-research-and-context/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +196,7 @@
     ],
     "causal_summary": "Phase 002's architecture freeze (adapter contract, state machine, reuse boundary) depends on accurate, current facts about the `deep-review` engine's real shape, the standards surfaces of four parent skills, and the one manual precedent (`130`/`131`) the whole mode-packet productizes",
     "created_at": "2026-07-11T10:39:13.368Z",
-    "last_save_at": "2026-09-11T16:42:16.124Z",
+    "last_save_at": "2026-10-07T18:15:15.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:864401c772609ef8b19be37b625dba1fe39609ff5a27452fff26a9900f705aae",
+    "source_fingerprint": "sha256:1c44959c6704d0216c874a289202a92519ee756c44c944495f5dc04f3f2707a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65650c9a2dd5f9601c0a7d676dd8d54153ffb824f0d38ba17e72f22912024f95",
-      "plan.md": "5769bb4b0fc4e8f32c769b571a1175e755ec7cea18ed7a1c279711809e909d6f",
-      "tasks.md": "629fda0e5379058b6581426b3d0ea971d27f2264fc10aadedb84c23e5eee8f47",
-      "implementation-summary.md": "5299ce10d9a614d092d83efb0af8ec84458b1bb308932f8177d0e68a39a4c105"
+      "spec.md": "08c8ef45541da1d6385ecebc4474602f71a97d9c8772f261b749ada8d128a105",
+      "plan.md": "51e164a59d603531bbdf57b56c2ab86ea34d3676442b9a1f527621953045af21",
+      "tasks.md": "9ddbd457e272e8fa3e375955d688272928780c561a4139e486c913b9776fabb8",
+      "implementation-summary.md": "1c1aedb89b379d7b23520b8239dcfec4cfcdf4d3a486f242b3242f8f597b28a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

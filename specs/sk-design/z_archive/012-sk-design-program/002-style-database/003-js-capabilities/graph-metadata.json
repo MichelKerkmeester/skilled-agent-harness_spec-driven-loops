@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/002-style-database/003-js-capabilities",
-  "spec_folder": "sk-design/012-sk-design-program/002-style-database/003-js-capabilities",
-  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/002-style-database/003-js-capabilities",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/002-style-database/003-js-capabilities",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/002-style-database",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -165,7 +164,7 @@
     ],
     "causal_summary": "Once Phase 0 (`001-foundation`) ships its measurement plane, the 013 research identified six concrete JS-only capability opportunities the styles database does not yet have: DOM-derived layout fingerprints, screenshot-based palette/dedupe, a shadow multimodal retrieval lane, batched embeddings, an auto-reindex watcher, and (conditionally) a parsed-projection cache",
     "created_at": "2026-07-20T09:21:23.223Z",
-    "last_save_at": "2026-08-30T15:39:12.703Z",
+    "last_save_at": "2026-10-07T18:12:02.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,13 +173,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72eea429682c33c189f42bb2011452437c8845bc4006f7a8f9699d708f9f4d77",
+    "source_fingerprint": "sha256:13925bcda2692f098228243a151d6ade7ecb125a75f7fbb62010286b950319c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f0555c52e58593e9ba9743414759b7825312207d73ba20d8c03a9931735473e",
-      "plan.md": "fe83b6f86bb1c1336f55052608133aab1e3a536f8c07731320c9521ddf553d5d",
-      "tasks.md": "3fb67e36196d6063174e3261b53eb80d50adbae4ddb69c4fabe693cdb1846485",
-      "implementation-summary.md": "a617026450db3c612570c7470ee064adc6acf05285c2a9cf1ee4a629b80c02c7"
+      "spec.md": "0ee0a7efc202b1ccc01ca20d267da5b2c1e83f9f9bf700ea5968829d49b23829",
+      "plan.md": "e825db917f5f0dc1848b30808518c2c5b1883ceac04408f6976a3beaab9bf048",
+      "tasks.md": "ba86e7f67ac39724df07250717bf98fead1036bd10358dd278f4a4ed4ae12763",
+      "implementation-summary.md": "9d0d7eaa466c0f56324f62e5281f4e8290760bd9676ad69c2a6bd112afed39a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

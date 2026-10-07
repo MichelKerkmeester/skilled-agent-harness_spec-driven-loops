@@ -1,9 +1,11 @@
 ---
 title: "Implementation Summary: Hallmark reuse research"
 description: "Completed 20-iteration study of the Hallmark design skill; produced a per-asset reuse/learning matrix and a licensing verdict feeding the 016 adoption plan."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/004-hallmark-design-skill-research"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -22,10 +24,7 @@ _memory:
     answered_questions:
       - "Can we reuse Hallmark for sk-design? Clean-room ADAPT of surgical heuristics into existing modes; MIT allows copy with notice; external assets excluded; no new modes/commands."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "hallmark design skill research implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

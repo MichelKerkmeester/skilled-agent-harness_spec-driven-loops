@@ -1,3 +1,7 @@
+---
+title: "Technical Analysis: Cognitive Memory Systems"
+---
+
 # Technical Analysis: Cognitive Memory Systems
 
 > **Research ID:** 079-speckit-cognitive-memory

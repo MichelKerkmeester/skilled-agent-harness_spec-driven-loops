@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/013-remove-spec-kit-references"
     last_updated_at: "2026-05-14T19:30:00Z"
     last_updated_by: "codex"
     recent_action: "Spec-kit advisor docs swept and validated"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `013-remove-spec-kit-references` |
+| **Spec Folder** | 013-remove-spec-kit-references |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Status** | Complete |

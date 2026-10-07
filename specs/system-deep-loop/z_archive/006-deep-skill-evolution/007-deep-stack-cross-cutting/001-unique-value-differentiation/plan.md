@@ -29,12 +29,15 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 10-iter deep-research dispatch via `/deep:start-research-loop`, executor `cli-devin` (model `swe-1.6`, permission-mode `dangerous`). One iteration at a time per memory `feedback_deep_loop_iter_one_at_a_time.md` — main agent kills zombies between iters.
 
 Each iter explores a dimension from §3 below, accumulates findings into `research/findings-registry.json`, and emits delta to `research/iterations/iter-NNN.md`. Saturation check after iter-005; convergence threshold 0.2 novelty rate. On convergence OR iter-010 reached, synthesize `research/research.md` and emit `decision-record.md` with routing rule + parity invariants.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## 2. EXECUTION SEQUENCE
 
 | Step | Action | Output |
@@ -54,6 +57,7 @@ Each iter explores a dimension from §3 below, accumulates findings into `resear
 | 13 | emit ADRs to `decision-record.md` | `decision-record.md` |
 | 14 | fill `implementation-summary.md` Status=Completed | `implementation-summary.md` |
 | 15 | strict validate this packet | exit 0 |
+<!-- /ANCHOR:phases -->
 
 ## 3. DIMENSIONS OF ANALYSIS
 

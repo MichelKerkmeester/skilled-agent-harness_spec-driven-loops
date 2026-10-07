@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/001-reference-research",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/001-reference-research",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/001-reference-research",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/001-reference-research",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Three parallel sonnet-5 Plan agents already produced a concrete, file:line-grounded mechanical design for merging `deep-loop-workflows` + `deep-loop-runtime` into `system-deep-loop` (structural layout, reference migration, and the research-fanout invocation itself)",
     "created_at": "2026-07-08T04:36:15.360Z",
-    "last_save_at": "2026-09-10T20:46:05.096Z",
+    "last_save_at": "2026-10-07T18:15:17.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d146491fdeceaff47eb837eb22ee52862689864a846dc355abea9bb529f3c72b",
+    "source_fingerprint": "sha256:d4fb5c2be17d7e2b793b983e6bcfb1d3c687f92a1c0555597ca465d1b1056fa5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7527022a523cc75a56b2ed3118f871759ab71260c3c76029c12b1682103c2094",
-      "plan.md": "fadbed834a53d1b69833251fbb64d6936cac6356647ddb08aa5ca2d2eb8fe9ad",
-      "tasks.md": "6f9756141cb2223097c1053ddafaa8710119707ddc43880b119896f4e6197a32",
-      "implementation-summary.md": "b50eae8a46f2867d6519c3ffde09c03c035e2c6272c3ec5a57827296f1c57a56",
+      "spec.md": "32b90c7c964c176c8ab4c2a4163989e987e9d883d111385ca5a3bc0b13015ffb",
+      "plan.md": "e93c0b57ce89244743cf1d77a58b0f8c76b9e152a8404f4739d84a15f5cfeeb4",
+      "tasks.md": "6143c90ffb086a90c47328d330dc23d7387b20866f90aa7a7c703706c5bb9091",
+      "implementation-summary.md": "cd5670c54491143e9ab962a733e6d9bec20a1a0998b4bdec3b18574373c75f7a",
       "research/research.md": "ebd4d095d817a8c66d169357d2ecd4eef48f06110fabdadffaa099bad16c3e9e"
     },
     "last_active_child_id": null,

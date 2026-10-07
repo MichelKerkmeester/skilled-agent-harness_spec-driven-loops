@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "specFolder": "sk-doc/z_archive/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
   "description": "Two contracts share one directory name, and only one of them is checked",
   "keywords": [
     "two",

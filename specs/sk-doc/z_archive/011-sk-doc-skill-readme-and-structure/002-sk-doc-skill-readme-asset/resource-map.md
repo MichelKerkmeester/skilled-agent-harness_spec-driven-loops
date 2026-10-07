@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource Map: sk-doc skill README asset
 
 ## Expected Read Paths
@@ -39,6 +40,7 @@ _memory:
 - `.opencode/skills/sk-doc/references/skill_creation.md`
 - `.opencode/skills/sk-doc/manual_testing_playbook*/**`
 
+<!-- ANCHOR:verification -->
 ## Verification Commands
 
 - `rg -n "skill_readme|assets/skill/.*readme" .opencode/skills/sk-doc`
@@ -47,12 +49,17 @@ _memory:
 - `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-doc`
 - `grep` check for stale playbook text: `3 resources`, `both skill asset templates`, `all 21 enumerated`, `SKILL_CREATION query, 3`, `median (3 resources)`.
 - `grep` check for old template section: `## 1\. WHEN TO USE` in `skill_readme_template.md`.
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:risks -->
 ## Risks
 
 - Stale references can remain if exact searches are too narrow.
 - Runtime or documentation mirrors can drift if only one surface is updated.
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 - Follow the parent phase order unless the user explicitly changes sequencing.
+<!-- /ANCHOR:dependencies -->

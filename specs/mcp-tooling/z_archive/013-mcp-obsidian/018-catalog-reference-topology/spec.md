@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/018-catalog-reference-topology"
     last_updated_at: "2026-08-03T20:32:51Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 18 migration specification"

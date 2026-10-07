@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
   "description": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest",
   "keywords": [
     "unified",

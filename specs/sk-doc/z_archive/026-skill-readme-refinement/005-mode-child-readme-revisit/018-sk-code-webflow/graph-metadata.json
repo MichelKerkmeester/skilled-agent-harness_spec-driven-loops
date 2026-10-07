@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-code/sk-code-webflow/README.md",
       ".opencode/skills/sk-code/sk-code-webflow/changelog/v1.1.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The sk-code-webflow README still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set",
     "created_at": "2026-08-04T08:34:45.561Z",
-    "last_save_at": "2026-08-30T15:39:17.744Z",
+    "last_save_at": "2026-10-07T18:13:48.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b02841466d45521bb07f0b8efbf08dd12bee109de8adda5a30ae92401bdcad8b",
+    "source_fingerprint": "sha256:3ffedf2cde97bdd3b5a1429faa9be6ba2720d4e9d1838faefea485753e7b1433",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29068cfb3c85bf51d21bdedbbfc09b9e59410f17d6a269cfb09184291496edf9",
-      "plan.md": "2aba2c4862731f3ccaedb7e7e3a74f2a99d62e155f9731415f0eb516083ad156",
-      "tasks.md": "0e1870f1fbe4150c576e3e10a1dfa36286b5327e76e12592a127824546aa55ef",
-      "implementation-summary.md": "e099f8eb1f3eb6ded35365874de6924e7cf1e53f8472303f56465e2520665a40"
+      "spec.md": "8d1d4bbe318fb3104b309563b8de2d0c50f0c06c0a3f35238dd67c9f56855372",
+      "plan.md": "dfb5198b58a42d3acafdcd308cf211cb61c86f02bdd47c528a2d0f02f30dc83a",
+      "tasks.md": "11af5e511099ecb965d53e6d29c71abd71549641cdc42a604971fb5dd1620734",
+      "implementation-summary.md": "efa3707c6689fb957972abd4a359d255d580a69063f64ad27d260d3c64e2c362"
     },
     "last_active_child_id": null,
     "last_active_at": null

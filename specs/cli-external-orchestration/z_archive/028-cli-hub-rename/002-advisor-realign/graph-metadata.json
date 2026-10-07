@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/028-cli-hub-rename/002-advisor-realign",
-  "spec_folder": "cli-external-orchestration/028-cli-hub-rename/002-advisor-realign",
-  "parent_id": "cli-external-orchestration/028-cli-hub-rename",
+  "packet_id": "cli-external-orchestration/z_archive/028-cli-hub-rename/002-advisor-realign",
+  "spec_folder": "cli-external-orchestration/z_archive/028-cli-hub-rename/002-advisor-realign",
+  "parent_id": "cli-external-orchestration/z_archive/028-cli-hub-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Moving the hub invalidates advisor paths and projections unless they are regenerated or repointed",
     "created_at": "2026-07-13T03:34:31Z",
-    "last_save_at": "2026-08-30T15:39:07.222Z",
+    "last_save_at": "2026-10-07T18:11:41.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74c89a63e5064a26e377383d0af3de2331e4f938b061adc583cfbee92fadb826",
+    "source_fingerprint": "sha256:f1b72f81dddd4278f22dc75c1ebb6a7bc2b5bc6e5a0dde289f19affcbf54c863",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6a07b84fd7ced59e1e0334ac40956e061a5387e265d186d2680251ec44154ff",
-      "plan.md": "f3de305390baed1e4be53c8a079e9b0a770506273d371738c10495079ed6c21e",
-      "tasks.md": "ba564c4c3f12a7f23fbc083d709db2a3e9d5852b3ee6ae3ad588a7e280377544",
+      "spec.md": "ff1d4d8062c52dc6c1e1b37b69582dff5c9fe91d1e5e08a94d33021a6711a451",
+      "plan.md": "6ae6b1a54a9189e79e9515d8b681c93c34f732a9921afe420143b2fb2163022f",
+      "tasks.md": "fd6164919712b90e8853e081c969a1f35fba312ab3bdf970e0e979eef72f1c8d",
       "decision-record.md": "f427135babab7c00f5bcb52b96cf78de0e522752e4d7bfd34f3c4ed43b15b78f",
-      "implementation-summary.md": "0ce91cb6bab10a71754a3e39ae7c197c13af6796863fc9a93e4206259a25b1e6"
+      "implementation-summary.md": "31226773be7148bf70b09ca6d727e750dc5c927ab25ab3768c70eabf74c278ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

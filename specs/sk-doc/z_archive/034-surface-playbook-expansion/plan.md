@@ -11,7 +11,7 @@ contextType: "plan"
 parent: "sk-code"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/034-surface-playbook-expansion"
+    packet_pointer: "sk-doc/z_archive/034-surface-playbook-expansion"
     last_updated_at: "2026-08-29T10:24:54Z"
     last_updated_by: "claude"
     recent_action: "Built 7 category dirs per package, waived agent-dispatch, verified 0 violations"

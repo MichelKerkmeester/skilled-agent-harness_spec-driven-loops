@@ -99,8 +99,8 @@ Unified quality scorer interface and contamination penalty across V1/V2 scorers.
 Reference links: [spec.md](spec.md) and [plan.md](plan.md).
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

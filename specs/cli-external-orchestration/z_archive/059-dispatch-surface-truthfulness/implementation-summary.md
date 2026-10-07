@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/059-dispatch-surface-truthfulness"
+    packet_pointer: "cli-external-orchestration/z_archive/059-dispatch-surface-truthfulness"
     last_updated_at: "2026-08-31T03:09:18Z"
     last_updated_by: "claude-code"
     recent_action: "Removed the quota-dead default and realigned the executor roster"

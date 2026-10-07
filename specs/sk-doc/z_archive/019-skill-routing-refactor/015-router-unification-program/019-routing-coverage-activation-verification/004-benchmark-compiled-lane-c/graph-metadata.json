@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,9 +42,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs"
     ],
     "entities": [
@@ -70,24 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-routing-parity.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-report.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
         "source": "derived"
       },
       {
@@ -191,11 +170,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
     "created_at": "2026-07-20T21:51:29.784Z",
-    "last_save_at": "2026-09-11T16:42:05.058Z",
+    "last_save_at": "2026-10-07T18:13:09.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06e6d883551df8785e88a082602a86e6b56ffd96c9fa64d6463ed9826539e160",
+    "source_fingerprint": "sha256:994bd4f30d26a5203099916edbeb1ad9d8c036c2b2c0e68020d50a23c8cf3f5a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "530c0f9bdf1b9a9afca80e2c1d6b685abeb08bae722b29da1e371e2116127fef",
       "plan.md": "8c8cc6954112fd5395043c01c1f90cd5fce8b56e4a7432c74ebbc09cc2145552",
       "tasks.md": "16aebb92542238611cb8e3bb9235e5176e849ca9a7da0b3ca2b110b0039efb38",
-      "implementation-summary.md": "544203f796b80fde5df80c25321ef6687ac9787b7a2262147645a580483815cc"
+      "implementation-summary.md": "8c5f87475bf9756e14c0f578314ae6ced6f97602b81bcf17b2b3e27ddf54f9c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

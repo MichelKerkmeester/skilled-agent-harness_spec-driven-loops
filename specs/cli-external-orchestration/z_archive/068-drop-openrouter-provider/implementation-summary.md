@@ -2,7 +2,6 @@
 title: "Implementation Summary"
 description: "OpenRouter left the cli-pi and cli-opencode closed rosters. All 25 mentions were classified before any edit: 22 live wiring, removed; 3 historical record, untouched; 0 generated."
 trigger_phrases:
-  - "implementation summary"
   - "openrouter removed from both rosters"
   - "live wiring versus historical record"
   - "fan-out roster divergence"
@@ -10,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/068-drop-openrouter-provider"
+    packet_pointer: "cli-external-orchestration/z_archive/068-drop-openrouter-provider"
     last_updated_at: "2026-09-09T09:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "OpenRouter removed from both rosters; residue sweep and CI checkers clean"

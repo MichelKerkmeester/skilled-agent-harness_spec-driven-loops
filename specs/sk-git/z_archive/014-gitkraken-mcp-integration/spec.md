@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/014-gitkraken-mcp-integration"
+    packet_pointer: "sk-git/z_archive/014-gitkraken-mcp-integration"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "All 5 phases complete; GitKraken MCP integrated end-to-end"

@@ -2,7 +2,6 @@
 title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration/implementation-summary]"
 description: "Phase 2 migrated @spec-kit/mcp-server to native ESM and removed CommonJS runtime assumptions from production server paths."
 trigger_phrases:
-  - "implementation summary"
   - "mcp server esm migration"
   - "phase 2 closeout"
 importance_tier: "important"

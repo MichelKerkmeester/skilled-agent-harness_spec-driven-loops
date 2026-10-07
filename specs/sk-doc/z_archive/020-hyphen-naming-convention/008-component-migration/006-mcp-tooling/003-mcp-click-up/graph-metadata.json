@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-08-30T15:39:16.620Z",
+    "last_save_at": "2026-10-07T18:13:20.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,12 +173,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:d46d0134d771b149d50b02c1cd93519a8287e83b9e711a7284834fb21dc33480",
+    "source_fingerprint": "sha256:46a01046553f451ecbb44ba4fa71f5146b4fb806b3591851c9140ed95440dfb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa58d92b7c1e6d1358b87b74f7b2ae285d708b4f49874940a67e7aabb678fd5d",
-      "plan.md": "b50a33cca5dd1e35327b5d46ad635fabc47b1103498cfbe76ec6248e9cbf411b",
-      "tasks.md": "df67c1d1884bd15a24e51979d2951337d743fc47d95bbe06855b16fac1dc21e1"
+      "spec.md": "b0d9f3c7ba4c529f72b78f56490fe6f2984338885c1ec3d7d99ba1dfda066f2b",
+      "plan.md": "d7bbf08558b5f2b9007a3ddd37126bd9829ddfd57a4c12c223f142d4c592b4c0",
+      "tasks.md": "5d034523729ee4d3eb0df92f85162aa4c3494947a69b6fb88d621fb4609d8b68"
     },
     "last_active_child_id": null,
     "last_active_at": null

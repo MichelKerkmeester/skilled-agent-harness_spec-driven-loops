@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
+  "specFolder": "sk-git/z_archive/016-git-action-advisory-hook/007-runtime-coverage",
   "description": "Phases 003 and 006 wired the shared advisory hook for Claude (`Bash`) and Codex/Devin (`exec`)",
   "keywords": [
     "phases",

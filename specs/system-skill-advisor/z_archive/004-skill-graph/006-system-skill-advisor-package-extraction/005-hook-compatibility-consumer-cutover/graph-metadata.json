@@ -48,11 +48,8 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "dist/context-server.js",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
       ".codex/config.toml",
-      ".claude/mcp.json",
-      "tools/index.ts"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -86,18 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
@@ -107,12 +92,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
         "source": "derived"
       },
       {
@@ -198,11 +177,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Update Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-001 split the advisor into a standalone package and MCP server, but live consumers still carry mixed assumptions",
     "created_at": "2026-05-14T10:38:05Z",
-    "last_save_at": "2026-08-30T15:39:26.429Z",
+    "last_save_at": "2026-10-07T18:16:07.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcc004774493997d8f3e45e72ea10635b46eb19626cfd4a2295a2955437b7f19",
+    "source_fingerprint": "sha256:643d967762456cd79b34f2a58fa512c6e190ef7946223cb3a0849a7c424cd89b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6eca503af26281fddf1123ce530a311c4b65b9a5e72e0e6e05a1fbca9dd30964",
-      "plan.md": "1816162e0cfb0fa4e227af3aa909c228befc601cf213f6ce06ae18476094e739",
-      "tasks.md": "b2793be9710453004f896c10a8df848dff055506266eaf2ffa5e02f24812c16d",
+      "spec.md": "1364c5932f74cc456000cc0f0874937be07a85266d1ef71af6197981af8d7055",
+      "plan.md": "d885896a3c3baa12efdb604d1f81af08eb0c5680329ee8ef8ef7377bd092fe54",
+      "tasks.md": "f05d0bba7dedaf7b763530415ca31b6d7c40471f36721efbb38912f29136d052",
       "decision-record.md": "c494e326c45b34397878a8fa428aa850d08c7c997f973d815feeffc46fb05ebf",
-      "implementation-summary.md": "33a3dac35d8d57c0b77b4931f52625d2fc13c823f3932f859fecdf4bbddcbe4d"
+      "implementation-summary.md": "a57b65605bf95d2618e1893b481343c297bd1f4047ff861a1032b17e35fbc326"
     },
     "last_active_child_id": null,
     "last_active_at": null

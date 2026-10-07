@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars"
     last_updated_at: "2026-05-23T18:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Phase 004b shipped via cli-opencode"

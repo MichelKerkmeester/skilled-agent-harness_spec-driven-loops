@@ -1,5 +1,5 @@
 {
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor",
   "description": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
   "keywords": [
     "replace",

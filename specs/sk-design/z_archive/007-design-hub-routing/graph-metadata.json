@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/007-design-hub-routing",
-  "spec_folder": "sk-design/007-design-hub-routing",
+  "packet_id": "sk-design/z_archive/007-design-hub-routing",
+  "spec_folder": "sk-design/z_archive/007-design-hub-routing",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -44,7 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-design/SKILL.md"
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -170,7 +184,7 @@
     ],
     "causal_summary": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet",
     "created_at": "2026-07-16T09:11:02.038Z",
-    "last_save_at": "2026-08-30T15:39:12.072Z",
+    "last_save_at": "2026-10-07T18:11:07.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +192,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:859110f4c62afe4cc8110be7c816d839a4900bcf396d9347c05e93bf26662633",
+    "source_fingerprint": "sha256:38965f1fcbd461f1d774e06109f61d6b967120921f8bf6a42f4b11b4fe9535ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e7d2299fb68531014ea1f80332c1edb067bf9f491c8c906e5eccb86e95f3165",
-      "plan.md": "bbb93d0a1efb8517bda24c1a913598856e23bacdb62d9ce1cdaf03bb807f1ddd",
-      "tasks.md": "e65a0a835c3d261a0e347e9a886efae2a6764efb695363b769e87ba4163bf610"
+      "spec.md": "6a62b16fbd8d6a669746af5cb75b34f1ba1981f4020f42865ef7cca67e8125e6",
+      "plan.md": "3c9ab4bd509d075ef14de62ef6b8c0fa4fce3a19ac9652e5d2865a225d24c7e7",
+      "tasks.md": "35e90da0d81ef490f4665e05fceac87a135db631475d9f344de97d8a91e6f38d"
     },
     "last_active_child_id": null,
     "last_active_at": null

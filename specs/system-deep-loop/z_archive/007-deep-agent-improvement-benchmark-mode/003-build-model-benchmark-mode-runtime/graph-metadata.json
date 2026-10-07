@@ -14,14 +14,11 @@
       "build benchmark mode",
       "deep-agent-improvement model-benchmark build",
       "loop-host.cjs dispatch-model.cjs",
-      "implementation",
-      "plan",
-      "name",
-      "template",
+      "build model benchmark mode runtime plan",
       "plan core",
-      "tasks",
+      "build model benchmark mode runtime tasks",
       "tasks core",
-      "summary",
+      "build model benchmark mode runtime implementation summary",
       "impl summary core"
     ],
     "key_topics": [
@@ -32,11 +29,11 @@
       "loop-host",
       "cjs",
       "dispatch-model",
-      "implementation",
+      "model",
+      "runtime",
       "plan",
-      "name",
-      "template",
-      "core"
+      "core",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +191,7 @@
     ],
     "causal_summary": "deep-agent-improvement can improve agent definitions but cannot benchmark models/prompts; the 120/003 benchmark rig is packet-local and one-off",
     "created_at": "2026-05-28T16:24:06Z",
-    "last_save_at": "2026-09-07T16:17:15.778Z",
+    "last_save_at": "2026-10-07T21:27:33.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71c4e855878acadd9bae2f6741825922311a788f4de49ab24bb8306e98fff8de",
+    "source_fingerprint": "sha256:7270649c00a7c5aaeca8d2101ebb3f2279f380a7b1fbf4b57e16b96d1b0000e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "594a9ac66b85ff69ff5fa0c9015324525f33ef230b1ffff8e3cb26919d04bd37",
-      "plan.md": "0e7735798fcee1f3b8e34c5f18b6d1ec8d6634e5d62d3377927fd36f18d7c7db",
-      "tasks.md": "8bfbcccc33012c51e50fdb08f848c38cd5cbe1752ef27c131615dffccba9c3d2",
-      "implementation-summary.md": "697b264edead014d5964dbf063ea97906597ddc2480e4e37d1af962b4c373e1c"
+      "plan.md": "62f6804b5a5f7eabec8a487f511b400c14f64e2fc0fa2d0d4fdbb012a67a539a",
+      "tasks.md": "f88956b9cd8c7cbc960e256b414f2eca4fc7f6754c708a86b904af46a6925ab6",
+      "implementation-summary.md": "035e02e478c961028f5ab1ff17be07149819686d6b09cd6b5adb0399f550b30a"
     },
     "last_active_child_id": null,
     "last_active_at": null

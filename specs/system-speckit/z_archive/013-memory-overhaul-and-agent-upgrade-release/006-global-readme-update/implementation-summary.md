@@ -2,13 +2,8 @@
 title: "...spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-06-global-readme-update/implementation-summary]"
 description: "Task 06 completed comprehensive updates to root README.md and .opencode/README.md, implementing 11 documented changes that simplify structure, improve clarity, and align with sp..."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "task"
-  - "root"
-  - "readme"
-  - "implementation summary"
-  - "global"
+  - "global readme update delivery"
+  - "root readme refresh delivery"
 importance_tier: "normal"
 contextType: "implementation"
 ---

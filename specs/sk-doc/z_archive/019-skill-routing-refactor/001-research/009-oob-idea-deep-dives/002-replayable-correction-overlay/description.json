@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
   "description": "Routing cannot safely learn by mutating serving rules online because mutable policy destroys deterministic replay",
   "keywords": [
     "routing",

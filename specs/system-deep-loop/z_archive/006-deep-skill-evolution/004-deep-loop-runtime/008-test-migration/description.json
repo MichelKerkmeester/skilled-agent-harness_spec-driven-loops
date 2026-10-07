@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/008-test-migration",
   "description": "After phases 001-006 land, the test layout in `system-spec-kit/mcpserver/tests/deep-loop/` is out of sync with the runtime code's new home in",
   "keywords": [

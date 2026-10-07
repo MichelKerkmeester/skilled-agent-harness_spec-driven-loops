@@ -16,6 +16,10 @@
       "implementation deep research",
       "122 phase 002",
       "deep-improvement implementation playbook",
+      "implementation deep research plan",
+      "phase 002 build playbook plan",
+      "implementation deep research tasks",
+      "phase 002 build playbook tasks",
       "122 phase 002 implementation summary",
       "implementation playbook results"
     ],
@@ -26,12 +30,12 @@
       "phase",
       "deep-improvement",
       "playbook",
+      "plan",
+      "tasks",
       "summary",
       "results",
       "gpt-5",
-      "5-primary",
-      "xhigh-fast",
-      "cli-codex"
+      "5-primary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -124,6 +128,12 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Approach Run",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -136,63 +146,57 @@
         "source": "derived"
       },
       {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "IQ1",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Approach",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Steps",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
+        "name": "Task Format",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Two Opus",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "Tasks: Phase 002 — Implementation deep research",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "The Opus",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "Task Format: T### [P?] Description (file path)",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Playbook",
-        "kind": "proper_noun",
-        "path": "research/research.md",
+        "name": "implementation deep research tasks",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "every",
-        "kind": "key_phrase",
-        "path": "research/research.md",
+        "name": "phase 002 build playbook tasks",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "1. Executive summary — recommended build order",
-        "kind": "heading",
-        "path": "research/research.md",
+        "name": "important",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "GPT-5.5-primary (xhigh-fast, cli-codex) implementation deep research with Opus 4.8 agent verification + synthesis, turning the converged 001 design into a build-ready implementation playbook for the deep-improvement rename + Lane C (skill-benchmark).",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.815Z",
+    "last_save_at": "2026-10-07T20:48:00.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +206,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a25a1b51a50906493358141438d5d2f8b6e6b456ee7af3f767cb47a69db0a58b",
+    "source_fingerprint": "sha256:45ba1cb41653db1c25858520ed56c3429e7326fe8ca56ad1bfd8032cd6bc0409",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3980685d9d8dbf1a462b90610a635fb65de3f622cea25ddd5e868e08265d0db0",
-      "plan.md": "086952d8747000063a5ddaf30078bc7bfdae15e350d4d5e41333ef8d20aef556",
-      "tasks.md": "cd27ea4c749359b0684b97ca7870eb514c1aa6a2c58dc1fbfc95e656d3fbb618",
-      "implementation-summary.md": "bf7d59b320c65f253ba7539677b84ac1173a6df3f6f04155d9c6e2a4d1c38f93",
+      "spec.md": "5b07a3d18bdc0c8dfc1c46005dce71d877f30fb0ca91575c0c44f6aca1f69ea7",
+      "plan.md": "2122b726c738cf8b73ce2bde6758d768a399db688a958cb00417d8b9e819f28b",
+      "tasks.md": "37bfb2fb32620e2fdcd596816483d4d2eccf9471e524660f718b3c4aac4dc169",
+      "implementation-summary.md": "7838ca21b26a47ecc96b464785fdb82d6beb695429142516070bb15a841afe77",
       "research/research.md": "69816f682fcf2dfbb17e8a9c38a0abb2f1b9f90378111bc1bd1e0f606766be04"
     },
     "last_active_child_id": null,

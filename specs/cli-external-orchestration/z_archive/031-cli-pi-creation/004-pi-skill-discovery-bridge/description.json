@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/004-pi-skill-discovery-bridge",
   "description": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke,",
   "keywords": [
     "unlike",

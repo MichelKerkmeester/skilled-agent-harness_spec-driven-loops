@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement"
     last_updated_at: "2026-08-04T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author phase-parent spec + 6-phase documentation map after the mcp-obsidian README pilot"

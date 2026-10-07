@@ -4,7 +4,6 @@ description: "Restructured the SpecKit template system from monolithic templates
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "073"
   - "speckit"
 importance_tier: "normal"

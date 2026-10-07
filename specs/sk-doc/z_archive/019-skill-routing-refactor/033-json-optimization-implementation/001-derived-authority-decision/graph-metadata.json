@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape against the TS Zod SkillDerivedV2 schema used by the lifecycle subsystem.",
     "created_at": "2026-07-29T07:59:56.768Z",
-    "last_save_at": "2026-08-30T15:39:15.833Z",
+    "last_save_at": "2026-10-07T18:13:26.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a94d8d3b9f25c77e7ff1942ebfa01ae7f30f0c2d116c799ce2942d90c4d8f72",
+    "source_fingerprint": "sha256:83a172477b603813f362aed5a52072702dcb84c2a7f2e99c466b842d5de7ddd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd5bcd210c5f488ab426a09c3ae5c890add8bab1ca35191df08d28d4395f3160",
-      "plan.md": "8934731d08748064cecfe24003aaf52ddb84d99ddbfd02a1f7c9f117a4c8eece",
-      "tasks.md": "62d04957aee8005531b4d513e15d522550a107ec832e70d3d1de9335248e7853",
+      "spec.md": "a9f610380cb5b8a5312d9cc7eacc0d6bd1b1cf360e32bcebe61b6c409c6d40cc",
+      "plan.md": "058c98a14d67b443e9f1d7e074758d087f9eecc91cb4d6fdd87c4de67465abc9",
+      "tasks.md": "42a180243108c137793132f4ad2f99b3e0ebd7a257367a26ef335b52cec38976",
       "decision-record.md": "f84f975eb832053a8245fbe5b2d6a72f578616289ad2f458c8532deece47d871",
-      "implementation-summary.md": "6c9bc323d520864cbb04c9eeccd969eca4d398d0a5787354f3888a936e11540b"
+      "implementation-summary.md": "bff6b847d99eb3eeabd8649203842c8ff65d7410482a019706e7243bac29750e"
     },
     "last_active_child_id": null,
     "last_active_at": null

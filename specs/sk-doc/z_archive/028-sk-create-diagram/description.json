@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram",
   "description": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of",
   "keywords": [
     "context",

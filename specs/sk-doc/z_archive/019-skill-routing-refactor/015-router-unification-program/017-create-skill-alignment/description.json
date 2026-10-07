@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
   "description": "The original gap was that new parent hubs could not express a deliberate compiled state",
   "keywords": [
     "original",

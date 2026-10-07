@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research",
   "description": "The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that",
   "keywords": [
     "tier-2",

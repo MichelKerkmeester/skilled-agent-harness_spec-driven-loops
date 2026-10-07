@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 002 — Parent Hub Compatibility Shell"
 description: "Completed Level 2 plan for adding parent hub manager behavior while preserving sk-design routing identity, mode registry authority, proof gates, and transport-vs-taste separation."
 trigger_phrases:
-  - "implementation plan"
   - "parent hub compatibility shell"
   - "sk-design manager shell"
   - "mode registry"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/002-parent-hub-compatibility-shell"
     last_updated_at: "2026-07-05T22:14:30Z"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Closed hub shell plan."

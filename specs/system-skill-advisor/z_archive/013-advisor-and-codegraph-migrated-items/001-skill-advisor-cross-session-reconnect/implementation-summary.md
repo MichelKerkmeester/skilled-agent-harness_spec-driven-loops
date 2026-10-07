@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect"
     last_updated_at: "2026-06-11T10:07:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Recorded launcher remediation evidence."

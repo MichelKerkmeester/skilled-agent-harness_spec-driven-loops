@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-codex, cli-gemini)",
     "created_at": "2026-05-18T07:49:27.130Z",
-    "last_save_at": "2026-08-30T15:39:26.234Z",
+    "last_save_at": "2026-10-07T18:15:37.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:901691c7aa2f016041d3e6685207160bd2a525cdc78f433aacc1c5050a00aee5",
+    "source_fingerprint": "sha256:023b31f6955a2e07efec3efffc49c54506dec3255741d226557201ba81bf36c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f587685dd5f0020b88a314a1b56a9187fc794a027fcaec4879045055d7b435bc",
-      "plan.md": "d31e748902aeb6e180fc414a09e63999005260020c412194b29595ce9ad938af",
-      "tasks.md": "3b791b1e51307faaa4487d514f277ba69cd471566858ec970d86cfed988dbe2a",
-      "implementation-summary.md": "5d2d4baa4b178960ffa6b57d1f8ccfc5333722eb6855dfc3e5c8f78b71fd6897",
+      "spec.md": "3214449aeaead5ad268306ac93fe2a3cd304b3127391cf6f91f3958ca26d2be0",
+      "plan.md": "9746e390c756c3b9f9d5ed413da35bbb3ec0a890d69c3269a2a8eeb7d7d451e1",
+      "tasks.md": "0d605826ecf7b1f9541cbe98e1a18d000f40cf7df2fcc02701759c2a0ffb83ff",
+      "implementation-summary.md": "c2ffcd9e00cdf58412276f701766330cf8d34daae69d0de073dc3a078b831da3",
       "resource-map.md": "f32fa7a8ac668a7beb4782d4313cb931b4c7155510f2821766f0fde1c08b4f69"
     },
     "last_active_child_id": null,

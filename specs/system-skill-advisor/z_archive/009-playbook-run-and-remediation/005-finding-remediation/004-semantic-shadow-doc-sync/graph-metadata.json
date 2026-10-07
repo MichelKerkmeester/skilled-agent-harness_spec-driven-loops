@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The live `semanticshadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/tests/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `scorer-fusion/01-five-lane-fusion.md:29` agrees)",
     "created_at": "2026-05-26T21:20:46.369Z",
-    "last_save_at": "2026-08-30T15:39:27.054Z",
+    "last_save_at": "2026-10-07T18:15:54.115Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e88598e566d8324f4c052d7c942ef1e925ad51e66c825ade05ce8858e92b49f",
+    "source_fingerprint": "sha256:8c350eb6233dc6367f730371547b08410aa26e247929fb101658a6459b2b0b59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4f382390112fd6b2ec598c9659ca8aa293caf2052628247419037b42ce27725",
-      "plan.md": "c738d423c82962c8e475ae4a45e7ada1c1ad4774c399d34b72228e2c9f8f1cd6",
-      "tasks.md": "09411f70d592ad38257be7f85230a2d6e97814648544f86c6a39ad35943b3587",
-      "implementation-summary.md": "a70a48a794ce3521c3acc5dcaa27e6def437746e1265fde084069ebda2a133e2"
+      "spec.md": "aee67c78972ff062d003debffbc0e5746b9085d99dfef6149f08b1463b34acc4",
+      "plan.md": "817cd55d77a32543710e30c3518f7daa5f9a5c2142663cd68feb19f1b9343cb8",
+      "tasks.md": "bf746395eeb0f01f0a51c4e56cf183339e6943957db2bfa483dc0af70fdecb71",
+      "implementation-summary.md": "c0741b120927c8cc0ccd3b62297c22c1f8a7d42517aa225cf2b006ed72f725d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

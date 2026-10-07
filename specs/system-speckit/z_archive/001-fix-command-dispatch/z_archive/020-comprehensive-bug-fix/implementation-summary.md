@@ -7,7 +7,6 @@ trigger_phrases:
   - "comprehensive"
   - "bug"
   - "fix"
-  - "implementation summary"
   - "020"
 importance_tier: "normal"
 contextType: "implementation"
@@ -20,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-comprehensive-bug-fix |
+| **Spec Folder** | 020-comprehensive-bug-fix |
 | **Completed** | 2024-12-24 |
 | **Duration** | ~2 hours |
 | **Level** | 3 |
@@ -187,8 +186,8 @@ Implementation complete. Recommended follow-up:
 *Generated retroactively for comprehensive bug fix work completed 2024-12-24*
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

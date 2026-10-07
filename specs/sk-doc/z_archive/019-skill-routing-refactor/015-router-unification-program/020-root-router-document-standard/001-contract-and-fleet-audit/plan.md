@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit"
     last_updated_at: "2026-08-16T07:40:46.607Z"
     last_updated_by: "markdown-agent"
     recent_action: "Executed the serial read-only Phase 001 audit plan end to end."

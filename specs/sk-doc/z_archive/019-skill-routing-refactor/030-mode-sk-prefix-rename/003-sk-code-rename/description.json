@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/003-sk-code-rename",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/003-sk-code-rename",
   "description": "Move code-quality, code-review, code-webflow and code-opencode to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and",
   "keywords": [
     "move",

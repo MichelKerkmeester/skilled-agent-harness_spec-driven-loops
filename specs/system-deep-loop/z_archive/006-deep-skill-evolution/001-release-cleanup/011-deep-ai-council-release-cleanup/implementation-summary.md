@@ -3,7 +3,6 @@ title: "Implementation Summary: deep-ai-council skill release cleanup"
 description: "Five-phase release-cleanup of the deep-ai-council skill: spec folder + schemas, surgical audit, README rewrite, validation gate, and a converged cli-devin deep-research loop. Shipped to v2.1.0.0."
 trigger_phrases:
   - "deep-ai-council release cleanup summary"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
@@ -48,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council` |
+| **Spec Folder** | 011-deep-ai-council-release-cleanup |
 | **Completed** | 2026-05-24 |
 | **Level** | 3 |
 | **Target skill** | `.opencode/skills/deep-ai-council/` shipped to v2.1.0.0 |

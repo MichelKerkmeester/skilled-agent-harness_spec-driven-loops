@@ -15,8 +15,7 @@
       "pipeline architecture",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -27,10 +26,10 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -176,7 +175,7 @@
     ],
     "causal_summary": "The feature catalog for Pipeline Architecture has evolved significantly",
     "created_at": "2026-04-12T09:02:50.252Z",
-    "last_save_at": "2026-09-10T21:04:48.955Z",
+    "last_save_at": "2026-10-07T20:25:12.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d279902e3ab905a953bd56fd35d71f1774d5e67b5ec41c384652778cb7787fbc",
+    "source_fingerprint": "sha256:9a9fe4cf6ad4377eecc3ea53d09bf73902ba095df6d76dea1aaeacbd969bb949",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9d75c41197be5b450d78e497bb873486118b0dc1724b5364812720012b5fe88",
-      "plan.md": "12704e625da14257479d90bbedadd7ac56ff748f6979fac3987ea8a1c0265fef",
+      "spec.md": "e8454bc19661f8622ec8577d13665368d1300641c23d24944e9eaf9dc8f551d2",
+      "plan.md": "e3452e154dcbbc579bb199a898ddb87aaef818721a35e07045252fa5cc65dffc",
       "tasks.md": "3c6b0013c8d3722183a5b7b3468e83d28e29ae19b382376e9b95f2a9e94cdb82",
-      "implementation-summary.md": "b9d6eff056a2f297b7e8948c27fddee20a92d620ac9f35dd4921c0c4439503b8"
+      "implementation-summary.md": "6fd7519e02c440410cbe1817c99ea67b8290d446d6471b07d9ec382c093eb356"
     },
     "last_active_child_id": null,
     "last_active_at": null

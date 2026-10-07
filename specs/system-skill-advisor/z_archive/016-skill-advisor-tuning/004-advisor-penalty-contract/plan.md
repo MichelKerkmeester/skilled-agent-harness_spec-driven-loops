@@ -1,11 +1,14 @@
 ---
 title: "Implementation Plan: Advisor Self-Recommendation Penalty Contract"
 description: "Plan for documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking its behavior with a regression test that fires it in the production-default state, with no change to the penalty value or routing logic, proven by the advisor build typecheck and a confirmed break-on-removal of the test."
+trigger_phrases:
+  - "advisor penalty contract plan"
+  - "audit recommendation penalty lock plan"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/004-advisor-penalty-contract"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/004-advisor-penalty-contract"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Planned the document-and-lock change for the implicit penalty"

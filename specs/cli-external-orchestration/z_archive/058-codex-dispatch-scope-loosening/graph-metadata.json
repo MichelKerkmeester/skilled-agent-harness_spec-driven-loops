@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/058-codex-dispatch-scope-loosening",
-  "spec_folder": "cli-external-orchestration/058-codex-dispatch-scope-loosening",
+  "packet_id": "cli-external-orchestration/z_archive/058-codex-dispatch-scope-loosening",
+  "spec_folder": "cli-external-orchestration/z_archive/058-codex-dispatch-scope-loosening",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Say what the runtime is for, and leave a legal path for what it is not for,",
     "created_at": "2026-08-30T09:07:07Z",
-    "last_save_at": "2026-08-30T14:03:05.040Z",
+    "last_save_at": "2026-10-07T18:11:40.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fe1592640ca304158d2de2018a8f00edaa2542856e2b978edb0dda30597a51f",
+    "source_fingerprint": "sha256:b71248d6e7c74798d5a9724ecdea832a78abe837fd38447cdd21386f2140bc08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2f342214d72351ba954b887a21369d022302cdf02ac7c7172a9a491fc5a3954",
-      "plan.md": "6ffc10ab726693e2ad572e75db2fb30a37f5fdcb4b5bca7b5f9048c602d8da26",
-      "tasks.md": "4659af2761d786f24ef26a9c8d6d1d938693fedf5eb22cd769de05c4f21f94fd",
-      "implementation-summary.md": "3b9ff8482376bab9aad5f27bad5774a03516fa0c09638de3102532b2f3db6756"
+      "spec.md": "e9e9e0b5af16314e086e5698a9206e5988385573d5b8f152794d0b2f503bf56c",
+      "plan.md": "e530b415e6044948c926efed2813038718e83f6cecc632b6ae3b8d6a8fb1dc3f",
+      "tasks.md": "9c5c59fcaf6add1e65f67256010cb45f2e3b881c3b8f9337d68828e9d69cc46d",
+      "implementation-summary.md": "6d1a71c7a861c53ed221e0d297d7c06ae9ebdbb7811ef3eb06e386545e269745"
     },
     "last_active_child_id": null,
     "last_active_at": null

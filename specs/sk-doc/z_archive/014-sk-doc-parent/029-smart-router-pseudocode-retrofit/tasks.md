@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/029-smart-router-pseudocode-retrofit"
     last_updated_at: "2026-07-14T16:56:15.126Z"
     last_updated_by: "claude-opus"
     recent_action: "All tasks completed and verified"

@@ -16,13 +16,13 @@
       "012 command alignment",
       "tool schema alignment",
       "mcp command reality",
-      "plan",
-      "command",
-      "alignment",
-      "012",
-      "tasks",
-      "implementation",
-      "summary"
+      "command alignment plan",
+      "command alignment reconciliation plan",
+      "post-review alignment plan",
+      "command alignment tasks",
+      "command alignment reconciliation tasks",
+      "post-review task list",
+      "command alignment implementation summary"
     ],
     "key_topics": [
       "command",
@@ -34,9 +34,9 @@
       "mcp",
       "reality",
       "plan",
-      "tasks",
-      "implementation",
-      "summary"
+      "reconciliation",
+      "post-review",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The 012 spec pack previously described a command surface that is no longer true on disk:",
     "created_at": "2026-04-12T09:02:50.286Z",
-    "last_save_at": "2026-09-10T21:04:58.447Z",
+    "last_save_at": "2026-10-07T20:26:46.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b8966ab7b6cf87e66a261d00eb1d9d8111b4edea4d3f8385394d488dbb19b74",
+    "source_fingerprint": "sha256:745b4eed901ee9c3f46e4caf1fe0d6a30d665fd69bf4ca709d3d5962784480bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f6d3287b886267a4a8ed7b1e1229e50a0921c8b8dd52f8eb4710940a4e2d519",
-      "plan.md": "2fe123fbcd3080eb778d0fba6e993cc0585b9cca2327a1c2e23d6eb556f82d15",
-      "tasks.md": "a9161219b734517b87c749aaa36f6f13b50c21a80a389738228ec2e3678e1c3e",
-      "implementation-summary.md": "70dff3200f38bcd57018b3ba4e844830d243a76877452a38f6b1b045a3597ad6"
+      "plan.md": "ecfaf447f83849e92ecd9b49e3e63ae8ac3ade39c3eab554a3ac82ffef1cdf33",
+      "tasks.md": "03f2308f38abc79348f757423f052f78874622268fab1386b3f16f31229e1d5c",
+      "implementation-summary.md": "dc1ccb7a0beae3eb9fba0ffec0aa1ae81ca6a74aad05e030d89287b903d0cc3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

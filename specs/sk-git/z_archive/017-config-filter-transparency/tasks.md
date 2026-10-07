@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/017-config-filter-transparency"
+    packet_pointer: "sk-git/z_archive/017-config-filter-transparency"
     last_updated_at: "2026-07-28T07:50:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Documented the filter and verified advisory coverage"

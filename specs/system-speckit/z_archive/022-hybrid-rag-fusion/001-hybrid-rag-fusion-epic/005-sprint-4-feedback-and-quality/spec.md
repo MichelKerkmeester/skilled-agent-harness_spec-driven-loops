@@ -188,7 +188,6 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -207,7 +206,6 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

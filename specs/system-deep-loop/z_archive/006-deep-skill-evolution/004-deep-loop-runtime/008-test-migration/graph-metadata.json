@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After phases 001-006 land, the test layout in `system-spec-kit/mcpserver/tests/deep-loop/` is out of sync with the runtime code's new home in `deep-loop-runtime/lib/`",
     "created_at": "2026-05-22T20:05:00Z",
-    "last_save_at": "2026-08-30T15:39:23.316Z",
+    "last_save_at": "2026-10-07T18:14:07.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d57ccce742942b00a1799cc5ece0cbf5679d66350793e4799cd97c46ef88c3c6",
+    "source_fingerprint": "sha256:f246ac2365e96581effcc71d7ea6704c65908cbc94bd3cfc6804c95904bb5570",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1f20dfdb8fb603bc2ddce97397d438ff6cfd419d6602dadfafa3afd3e53bd23",
       "plan.md": "e005623cf05b0234ab421405d8c4fb1019aa56a598c779348a6824624e2819b0",
       "tasks.md": "0d7d1829436c27e9e8f9144fd8ff933e9fffb6d0a07e8a059bf13c541de1e864",
-      "implementation-summary.md": "aa295ee5f75bfe13f0be877d578cec9781bce26900162a194f9773c74bcd81bb"
+      "implementation-summary.md": "5a30750192a727f5ab214e9cdccce060594207e1e422dcd5e6b4a3d902aea479"
     },
     "last_active_child_id": null,
     "last_active_at": null

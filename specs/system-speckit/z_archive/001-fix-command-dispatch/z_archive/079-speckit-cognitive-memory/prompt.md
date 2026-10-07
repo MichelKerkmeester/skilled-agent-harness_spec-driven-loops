@@ -1,3 +1,7 @@
+---
+title: "Cognitive Memory Upgrade Prompt"
+---
+
 **Role:** Systems architect and technical researcher specializing in analyzing codebases, architectural patterns, and implementation strategies.
 
 ---

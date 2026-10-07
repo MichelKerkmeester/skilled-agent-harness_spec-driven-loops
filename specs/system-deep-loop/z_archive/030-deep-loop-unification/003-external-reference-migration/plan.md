@@ -7,7 +7,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/003-external-reference-migration"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/003-external-reference-migration"
     last_updated_at: "2026-07-08T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan from Plan-agent B's verified staged design"

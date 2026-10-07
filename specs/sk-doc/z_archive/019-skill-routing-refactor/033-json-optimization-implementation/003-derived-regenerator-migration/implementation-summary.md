@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration"
     last_updated_at: "2026-07-29T14:03:10Z"
     last_updated_by: "claude-code"
     recent_action: "Built regenerator + freshness gate + CI wiring; corpus-neutral fleet pass"

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The skill advisor's `semanticshadow` lane at `scorer/lanes/semantic-shadow.ts` is not an embedding lane",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-08-30T15:39:26.664Z",
+    "last_save_at": "2026-10-07T18:16:05.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2075cd7f3cff8e6052a6148732a01a1f9b38685ca129f2d391af6bd83bbb3909",
+    "source_fingerprint": "sha256:cc18c57da9489a5789067c70a2674765f11fae3c03e06c8a97e679d9233ced0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c4dd55ce9fbea2356a3b09613e54687a6ac94ce26e8f753b9627ddf7277e51f",
-      "plan.md": "9d18da56045e35861714d5fb8357a69086e1c9baa1b09a7388b1236a04972c38",
-      "tasks.md": "81921d92d66463e2f05a5804aae16f750bad86b64cd1faebc2e5ea6392727678",
-      "implementation-summary.md": "19d9732b7ceb3d512e9604220b9393cfc5773dd79e6ca9198910d92d8774f1b1"
+      "spec.md": "69b6c41f187acaea9cd287eeadc6ecc2a95eb13e274c0893df1926403f774e2e",
+      "plan.md": "44d6d2a7d29581a53bd12ba6d2544641c885037352775a549a341f93e6420f65",
+      "tasks.md": "4c5fe04eb0afb40ce81fed9460493faf909fe0ed2d7991d0ede8237ae8cc65a0",
+      "implementation-summary.md": "ccaad5be9b935cd3b3b1403d92808644ae5faf8653070a04313070066a048e75"
     },
     "last_active_child_id": null,
     "last_active_at": null

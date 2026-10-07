@@ -19,6 +19,7 @@ contextType: "planning"
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: CORE + ADDENDUM Architecture
 
 ### Metadata
@@ -81,8 +82,11 @@ The existing SpecKit templates were monolithic - each level had its own complete
 - Requires understanding the composition model
 - Mitigation: Pre-composed templates in level folders for direct use
 
+<!-- /ANCHOR:adr-001 -->
+
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Value-Based Level Scaling
 
 ### Metadata
@@ -144,8 +148,11 @@ Analysis of real usage patterns showed that higher-level templates added boilerp
 - Some enterprise features only available at L3+
 - Mitigation: Clear level selection guidance in SKILL.md
 
+<!-- /ANCHOR:adr-002 -->
+
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Workstream Notation for Parallel Agents
 
 ### Metadata
@@ -208,6 +215,8 @@ Configuration in parallel_dispatch_config.md defines:
 **Negative**:
 - Additional notation to learn
 - Mitigation: Clear documentation in parallel_dispatch_config.md
+
+<!-- /ANCHOR:adr-003 -->
 
 ---
 

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census.",
     "created_at": "2026-07-14T15:17:29Z",
-    "last_save_at": "2026-08-30T15:39:16.486Z",
+    "last_save_at": "2026-10-07T18:13:25.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:826bf88f3c4f1ea90f22741c0a9d60ae6ad1fc31c7a4639c4654bbf1020e3e07",
+    "source_fingerprint": "sha256:31a2b7ff759b968bd467ea44d2084726b6256193905f3bb38450c85fe8449b7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8f5029e950708bc798fa4042f5aa6bb92077e25ce610d2243f80a28a06c25a7",
-      "plan.md": "cb9c5ae19432f599ecf77e547a989ea47b6aead5381ae73c9536951d55223ecf",
-      "tasks.md": "4d1907b581b0e0bde1af40647034cd9fedf4b5405d339f36a9925968ac7edebf"
+      "spec.md": "f09498377753d8436cea0ea23aeb6665c979ff25cc02cb5b69251c427815514f",
+      "plan.md": "039a7c7825ea6c0f292859e31396077aa8162d3788cbd7a11af3d72bd097e639",
+      "tasks.md": "0feedb6df3b263db38a04cf0e855a1832552f42e8558706aa323cd65aa6b96da"
     },
     "last_active_child_id": null,
     "last_active_at": null

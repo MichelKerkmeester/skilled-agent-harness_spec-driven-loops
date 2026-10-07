@@ -7,7 +7,6 @@ trigger_phrases:
   - "opencode"
   - "naming"
   - "convention"
-  - "implementation summary"
   - "090"
 importance_tier: "normal"
 contextType: "implementation"
@@ -142,8 +141,8 @@ Fixed cross-directory import mismatches and remaining string-embedded function n
 **Spec Folder**: 6 files in `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions`
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

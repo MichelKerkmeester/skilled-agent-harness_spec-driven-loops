@@ -187,7 +187,7 @@
     ],
     "causal_summary": "`/deep:start-review-loop:auto` advertises itself as autonomous (`:auto` suffix → `executionmode = AUTONOMOUS`)",
     "created_at": "2026-05-11T09:32:52Z",
-    "last_save_at": "2026-08-30T15:39:24.196Z",
+    "last_save_at": "2026-10-07T18:15:14.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29b9ff4011179cb82cf5f60e83cdd34669df15e87329375d034508a56a3d6c40",
+    "source_fingerprint": "sha256:1943b6bd6dde98a113b9ff368cefe3197a609d57f342bdf4bf28022c86ec4d63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cc794ebee64284f37ba20adf7fd09212af290b8877eee5b67be4fabda409cbdc",
       "plan.md": "f144390428667b6fccaccbe82c0da6217dfb112b2dd026207471b7328b3dad49",
       "tasks.md": "f1792b7d1b20674858ac764c0b8cf6bab81d766e8ede13bbf41643eac617abf1",
-      "implementation-summary.md": "449a163b09df6663b8c5e406b33299a6cacb4e9d2d11f0a80ef2eefbe67a3174"
+      "implementation-summary.md": "85ee61f8194c58b8b28d3c482fb3b949f799488f39faa1c1a18d052ec39eb3cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The skill advisor ships an RRF-fusion path and two routing guards that are built, pass their unit tests and are byte-identical when off, but have never been measured against the real corpus on the production routing path",
     "created_at": "2026-06-24T04:51:51.544Z",
-    "last_save_at": "2026-08-30T15:39:27.444Z",
+    "last_save_at": "2026-10-07T18:16:06.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1969ae9c73ca6ba654663c32e2e6675ef5f30db959571dff017d643a66cada53",
+    "source_fingerprint": "sha256:75d0b9be630f064bb2e0993f8857f11f891208efbf5606b660956d547d2c232b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4c3316a4640a600f712588ccebda2592dda8e7f3eebb8127145d9be18ca95f9",
-      "plan.md": "5d362a5297cc8c2e9c0dca0dc1aad5a4aa3b14ca2ab8ce30ce46e734c825ca32",
-      "tasks.md": "116e7b8ed48a8a838011a79c76b2984f9c7e66b8d07c477c791321e2e9b1c8da",
-      "implementation-summary.md": "6644dd074f344180229f7f15645845a1a7fbc6ab37fd2642dee42a1500b51e51"
+      "spec.md": "d8a8ba8bf2dff2bc55cc58d4fd69ea9af49ed3f2bc55b1cfa254b91a1c7e271c",
+      "plan.md": "4273b5d400c7f9f2ea0364b24980d52c70189b7c4a8a7e8e1e91cdda07dc50a0",
+      "tasks.md": "8a03770fbbc03eeacc274bd381e6f3c5e870ecf3f737dbb5d99f60c4a3a8ca27",
+      "implementation-summary.md": "b7f194113094a3050e38b874a3f27f51872ee5fdc7b2e91bd4c7bc709c2225fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

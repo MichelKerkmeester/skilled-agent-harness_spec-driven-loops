@@ -14,23 +14,21 @@
       "fix command dispatch",
       "command dispatch vulnerability",
       "archive",
-      "implementation plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "command",
       "dispatch",
       "vulnerability",
       "archive",
-      "implementation",
-      "plan",
       "tasks",
-      "summary",
       "archived",
       "folder",
       "captures",
-      "work"
+      "work",
+      "system-spec-kit",
+      "feature",
+      "specification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +186,7 @@
     ],
     "causal_summary": "This archived folder captures work that fixed a command dispatch vulnerability in system-spec-kit",
     "created_at": "2026-04-12T09:02:53.506Z",
-    "last_save_at": "2026-08-30T15:39:36.875Z",
+    "last_save_at": "2026-10-07T18:16:07.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd066aee5c8c84fbf3638057c8297f4212d14742cb20dcb8a8c0742f8d1a1458",
+    "source_fingerprint": "sha256:3d6ba0aaed4d945388060fb5ee2990824f70da3ceb45125e1bf65a6468c96107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6351b6abf9b29204a1f075b90655bef0e720c07eb8802c46d2fb1cf89340ae41",
-      "plan.md": "ffc5d5e19d5770836db48b20e2fd1161bea6989f6cb7cd6f447eb648d0346411",
+      "plan.md": "6fe6fd0f719d8ccd1930f9de5abd586ca8a8e9817baafd544200f6cf3edf2fd9",
       "tasks.md": "9ade3c3f8d5428fcf32d425e14cdbdfbe9269e587a7ff644163b3d074271ae1e",
-      "implementation-summary.md": "36ddce3c100b998ccf65dd54212dbf25e584f31008757d2a601b9138c81d9b8d"
+      "implementation-summary.md": "55d85b70cc033651416badfde1dbf4bd7eedacb19d75921b52eb309649b1d9c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

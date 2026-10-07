@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "deferred code checker fixes",
       "10a manifest checker path fix",
       "skill command uppercase flip",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "deferred fixes summary"
+      "deferred code and checker fixes plan",
+      "deferred code and checker fixes tasks",
+      "deferred fixes summary",
+      "10a checker fix summary",
+      "skill command flip summary"
     ],
     "key_topics": [
       "deferred",
@@ -35,8 +31,8 @@
       "command",
       "uppercase",
       "flip",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +193,7 @@
     ],
     "causal_summary": "The closeout deferred five follow-ups",
     "created_at": "2026-07-22T16:53:39.311Z",
-    "last_save_at": "2026-09-11T04:36:34.802Z",
+    "last_save_at": "2026-10-07T18:13:28.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fab0a88b39cb6a7a9ea04b246028984d8e2ba944535ee580455a406de9b596a",
+    "source_fingerprint": "sha256:5006eb6cb66837f8fab2d6fd7db47ed342ecbd50b0660354fc718f3ff2d1cabf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2a9f3b1e7f579ed2b58227b97b4042309fb04ce81b23108a143aed0995d1764",
-      "plan.md": "bbef5b2fd72aaa0f16e4c0b04a397461a3aa13663dea25d50f714ada460f514b",
-      "tasks.md": "c6dfb54d26fc6833d544ae4abb9c0d52e3108c73400735de071930d8dde74287",
-      "implementation-summary.md": "57289156e37e6cfafe3817d8f201580a121a077bcf834d7504730430f1763e7f"
+      "spec.md": "3b4389e49a2fa09898161438cb930f0d655e58caeaa44d6440f81f361dd7a232",
+      "plan.md": "0a1267fd3defdb95c1f5a2a74ce0dc9980d7ecb988e97c96d340ecfc888bf791",
+      "tasks.md": "fb81d3a83f5591cd9382b3b1f67f0e9739c5b3a734088d9c9230b3e8fe9dbb22",
+      "implementation-summary.md": "1d5f9c221656dc32c182e9420a48a454658476912b5a5efbade573024ff61188"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,8 +18,7 @@
       "archive normalization",
       "validation",
       "tasks",
-      "decision record",
-      "implementation summary"
+      "decision record"
     ],
     "key_topics": [
       "002-extraction-rollout-phases-2-3",
@@ -33,7 +32,7 @@
       "tasks",
       "decision",
       "record",
-      "implementation"
+      "archived"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Extraction Rollout Phases 2 3",
     "created_at": "2026-04-12T09:02:53.571Z",
-    "last_save_at": "2026-08-30T15:39:37.892Z",
+    "last_save_at": "2026-10-07T18:16:43.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ff6d4028ecf68736511d4fa47f1b6a5a21e657d12e923ce3b6653e0952ccaae",
+    "source_fingerprint": "sha256:e44e25bf7e0c74bef8e9bda4ae1de7b0f9b218efc4706282b1e2f09bf63b1d8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3e8bea50f2120315d8fc7414d3f252d59f1c12090ecbec6e644d7505a419690",
       "plan.md": "376c14df9766dc1a6a9d5427b3135181decf798e050218b96972d5e0258572bd",
       "tasks.md": "cc3b9c479c2ae0c23172a2b69339da6d8a3c3621e15b6e9157cfa4b7ee91a14a",
       "decision-record.md": "c0e9894117a262ff592cb7394314f0732e715689aa6069e1c066f2e812ae789b",
-      "implementation-summary.md": "14df7e8185d7dcfd34ab96b6471b74cf0d75a5e5951b35a77ebe3aad77232801"
+      "implementation-summary.md": "be580f75e2258519528f2bf321cdd48ebfc8ce491956ea42d487d1de12385b41"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,6 @@ title: "Implementation Summary"
 description: "Archive normalization summary for Index Workflows Code."
 trigger_phrases:
   - "016-index-workflows-code"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/034-skill-benchmark-codex-executor",
-  "spec_folder": "system-deep-loop/034-skill-benchmark-codex-executor",
+  "packet_id": "system-deep-loop/z_archive/034-skill-benchmark-codex-executor",
+  "spec_folder": "system-deep-loop/z_archive/034-skill-benchmark-codex-executor",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs"
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
     ],
     "entities": [
       {
@@ -79,24 +76,6 @@
         "name": "codex-dispatch.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "codex-executor.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-dispatch.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "live-executor.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "vs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane C skill-benchmark live path (Mode B) dispatches its model \"test subject\" exclusively through cli-opencode; the `--executor` flag is threaded all the way to `runLiveScenario` but ignored there, so cli-codex is unwired",
     "created_at": "2026-07-15T14:32:09Z",
-    "last_save_at": "2026-08-30T15:39:20.198Z",
+    "last_save_at": "2026-10-07T18:15:14.978Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:988bcd200b5644864aee9f1e415c36f6f2ed1671b65a39158d14d05111605dcb",
+    "source_fingerprint": "sha256:e732126e2fe54719a7fcd777626ee1e2201f5798a94540ed08dbee4bfd2284ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "438976d0cb2d51f6558a7513b6ae7007947ebe99f7d806cdaad07f8a2cfaa2e3",
-      "plan.md": "8eeafd3d1758258f97e451b2f0c0a81c9d675d8ee7b48897e0f7f8eb060e3574",
-      "tasks.md": "f5c78482b653c2284f2673aa23e4e6cb061e34bb7c921b358cd321da2e009417",
-      "implementation-summary.md": "65818f94b5e61ce11f2d109941fb44e46a9bfb34f3c65836f074689eb653720b"
+      "spec.md": "bfc37fc98a5aa64010ceaf6cc26d4b182b0dc1a1e678b184019fcd2f75db2f61",
+      "plan.md": "cf26270ca8cab0215e3005a6ecc7439d458d32d6de471793b302efc3e9531fe5",
+      "tasks.md": "48bb8f75a8ad3fd3c6e8bfa12a81e1c8feb1cc2e666784e34296b6ba22a0c213",
+      "implementation-summary.md": "03a0230899e4a2c062d4a81bc9b693cfbe3f37c0a471fad12fd1e08713a0fb50"
     },
     "last_active_child_id": null,
     "last_active_at": null

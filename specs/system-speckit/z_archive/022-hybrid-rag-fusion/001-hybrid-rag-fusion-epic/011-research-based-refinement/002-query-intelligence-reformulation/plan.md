@@ -164,9 +164,12 @@ _memory:
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## 6. ROLLBACK STRATEGY
 
 Each feature is independently flag-gated. Rollback = disable flag. No data migrations required. Index-time surrogates (Phase C) are additive metadata — disabling the flag skips surrogate matching at query time but stored surrogates remain inert.
+
+<!-- /ANCHOR:rollback -->
 
 <!--
 PLAN — D2: Query Intelligence & Reformulation
@@ -175,23 +178,4 @@ PLAN — D2: Query Intelligence & Reformulation
 - ~20.5 days total estimate
 -->
 
-<!-- ANCHOR:summary -->
-<!-- /ANCHOR:summary -->
 
-<!-- ANCHOR:quality-gates -->
-<!-- /ANCHOR:quality-gates -->
-
-<!-- ANCHOR:architecture -->
-<!-- /ANCHOR:architecture -->
-
-<!-- ANCHOR:phases -->
-<!-- /ANCHOR:phases -->
-
-<!-- ANCHOR:testing -->
-<!-- /ANCHOR:testing -->
-
-<!-- ANCHOR:dependencies -->
-<!-- /ANCHOR:dependencies -->
-
-<!-- ANCHOR:rollback -->
-<!-- /ANCHOR:rollback -->

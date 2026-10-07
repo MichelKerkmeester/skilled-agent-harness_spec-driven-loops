@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
   "description": "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs.",
   "keywords": [
     "apply",

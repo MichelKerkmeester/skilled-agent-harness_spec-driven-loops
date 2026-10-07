@@ -2,13 +2,13 @@
 title: "Tasks: Phase 1: reference-inventory"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
+  - "sk prompt models rename tasks"
   - "sk-prompt-models inventory tasks"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/006-sk-prompt-models-rename/001-reference-inventory"
+    packet_pointer: "sk-prompt/z_archive/006-sk-prompt-models-rename/001-reference-inventory"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase complete"

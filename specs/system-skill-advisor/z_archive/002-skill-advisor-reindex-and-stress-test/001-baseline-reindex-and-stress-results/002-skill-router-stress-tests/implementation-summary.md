@@ -6,7 +6,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests"
     last_updated_at: "2026-05-03T10:45:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed skill-router stress campaign with PASS=1 WARN=1 FAIL=4"

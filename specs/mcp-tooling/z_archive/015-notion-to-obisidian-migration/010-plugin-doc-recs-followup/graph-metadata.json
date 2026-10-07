@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/010-plugin-doc-recs-followup",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,11 +41,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".claude/mcp.json",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/advanced-canvas.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/claudian.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -76,30 +72,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "data-model.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md",
-        "source": "derived"
-      },
-      {
-        "name": "advanced-canvas.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/advanced-canvas.md",
-        "source": "derived"
-      },
-      {
-        "name": "claudian.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/claudian.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Errors",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
     "created_at": "2026-08-22T20:16:22.967Z",
-    "last_save_at": "2026-08-30T15:39:10.494Z",
+    "last_save_at": "2026-10-07T18:11:38.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57bd030617f1f72ee3d2f1273183b251238b4c62ec7b4fbfa868149b36d417b1",
+    "source_fingerprint": "sha256:f3bce4586715ee6a8c8b5cc623b3e1274f57b80d065f19684426baf88bf517b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65b58f4865374b9d7bf4077ffbe9c4d321915ac804eddb6de06f53fc2856e041",
-      "plan.md": "cfad787951898f5b4c0fac5f881bad347c2504c4f550fe17541820ad8650ded1",
-      "tasks.md": "2515b00ad8deffd3b5bc4d56f97bbf88c5956a84c12f2b106ed5e458dd007667",
-      "implementation-summary.md": "4ab4d5c26426ca479fa6bde20fd6ef19d4d23fec3ff2e43019d4f46050c88717"
+      "spec.md": "9b231f65a1ede633d94367b335473ec192e6cf70865c9727e6c57b88f3f45d40",
+      "plan.md": "5c18ed10d6e349c7586a92336b55530f5dbb456e7c79efd640ae70fed763aa37",
+      "tasks.md": "ac556c68c79946ebb27fed929671212ed9512de031085f16559e38386a482964",
+      "implementation-summary.md": "2e1a161da7846d84b70bd44f3870222890146f1be6ca5fc78922a48bf375e8cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

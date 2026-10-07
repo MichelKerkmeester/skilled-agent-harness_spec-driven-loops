@@ -10,7 +10,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening"
     last_updated_at: "2026-07-01T08:20:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from research.md F-013 and F-016 (Tier2 #16,#17)"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
   "description": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures,",
   "keywords": [
     "cli-external-orchestration",

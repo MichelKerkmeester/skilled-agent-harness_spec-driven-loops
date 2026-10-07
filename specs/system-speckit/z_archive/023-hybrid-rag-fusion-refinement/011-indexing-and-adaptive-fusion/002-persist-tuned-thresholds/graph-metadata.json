@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`, `minSignalsForPromotion`) in a `WeakMap` keyed by the DB object",
     "created_at": "2026-04-12T09:02:50.330Z",
-    "last_save_at": "2026-08-30T15:39:39.559Z",
+    "last_save_at": "2026-10-07T18:16:31.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2edd82b2806a58c1ec3a48844d2150e3d0f109157a7b5a0070628a18eff46d3",
+    "source_fingerprint": "sha256:e70c7801a48ee88b757d4599a6f0f511f6e5e436eb437876e61de4d9d5d4b2b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "46d0a230407292164aa3374cf215846471b937064706f0af7308b8048ba47426",
       "plan.md": "70d6c172740442400ff12dfd9652d5df09e89a57e20e0d8aa5c2744b498399af",
       "tasks.md": "5e6d390f0a03e8c03d16aa7466f9c528a08de0ba3a1a265d6a426d7b0b3cbc9b",
-      "implementation-summary.md": "805a101c87018cd0fed687b6a03f31d7b73110fd171d4af22d5b5b8a2a3bb779"
+      "implementation-summary.md": "2de94c09ddaed6be01de5316fdec1c20dc12113bbd1cedc6f795ea2e71a23b52"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,8 @@
 title: "Tasks: Contex [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/tasks]"
 description: "Task list for decomposing context-server.js into focused modules."
 trigger_phrases:
-  - "tasks"
-  - "context"
-  - "server"
-  - "modularization"
-  - "implementation"
-  - "066"
+  - "context server modularization tasks"
+  - "module extraction task list"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-sk-deep-research-testing-playbook |
+| **Spec Folder** | 003-sk-deep-research-testing-playbook |
 | **Completed** | 2026-03-19 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

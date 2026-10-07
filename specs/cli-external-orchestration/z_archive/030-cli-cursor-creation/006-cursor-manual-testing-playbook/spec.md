@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
     recent_action: "19 CU-NNN scenarios authored across 9 categories; validate_document.py clean"

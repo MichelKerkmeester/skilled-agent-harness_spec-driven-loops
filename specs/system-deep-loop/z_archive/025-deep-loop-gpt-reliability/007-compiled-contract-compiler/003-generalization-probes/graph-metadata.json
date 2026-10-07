@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and check whether the leaf-reliability check lifts the pass rate. Prepares behavior-benchmark scenario cells (context CXB-004, council ACB-005, review re-probe) and runs them fix-vs-fallback on the gpt-fast-med leg; results and the generalization verdict are recorded here.",
     "created_at": "2026-07-04T14:19:08.954Z",
-    "last_save_at": "2026-08-30T15:39:25.604Z",
+    "last_save_at": "2026-10-07T18:14:57.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97a3dac433f28ad4db2345a0bcd306a0d0aa392549e77e682912977cd35d3243",
+    "source_fingerprint": "sha256:e265cc435389fc1766d6172e73d779da86a89a1febdd66605287406b26005e14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e953e4f43e71789a05f5cefcc9a5152790c7d6e1e06fcd18bf7867c0f6af8346",
-      "plan.md": "6e0b9d996eae2972f20d85c8339efbaeab77d3e026abb323363944a2a07b4e91",
-      "tasks.md": "cf2bbd5d04e5aa71cbdbd037c4b20d07d4ca0ceea1a8a47963842c5b64b29382",
-      "implementation-summary.md": "b7e448e329210ce0d5e1d4e72bc2574780ff33f856093104d21cfb7df7cc4289"
+      "spec.md": "5bced9a1f112cb8ba23d85f3b3de5a3b7ceb8ef2018955886727a55f585408c9",
+      "plan.md": "6cf4613dac602ca61c7df70152b26ccd53945322bf6faf1379b31314152db38c",
+      "tasks.md": "cb21e43955fac48cd9d359d45914df86ad21788a726f7559c904dc5eb6947dba",
+      "implementation-summary.md": "1ff19ab0c36646b8b2fe16635df32c1332f2e3139bf3e03848429c504118f1df"
     },
     "last_active_child_id": null,
     "last_active_at": null

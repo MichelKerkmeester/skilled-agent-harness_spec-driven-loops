@@ -1,3 +1,13 @@
+---
+title: "Context Index: Command Contract Compiler (carved from 035)"
+description: "Migration bridge recording the 036 carve out of 035 and the phase mapping that moved to the contract-compiler packet."
+trigger_phrases:
+  - "command contract compiler index"
+  - "036 carved from 035"
+  - "contract compiler migration index"
+importance_tier: "important"
+contextType: "general"
+---
 # Context Index — 036 carved from 035
 
 > Migration bridge. This packet was carved out of `035-gpt-reliability-fixes` on 2026-07-03 after the 035 phase-003 design pass returned a research-sized feasibility verdict.

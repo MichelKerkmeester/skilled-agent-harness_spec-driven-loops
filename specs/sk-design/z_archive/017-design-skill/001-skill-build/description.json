@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-design/017-design-skill/001-skill-build",
+  "specFolder": "sk-design/z_archive/017-design-skill/001-skill-build",
   "description": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400",
   "keywords": [
     "agents",

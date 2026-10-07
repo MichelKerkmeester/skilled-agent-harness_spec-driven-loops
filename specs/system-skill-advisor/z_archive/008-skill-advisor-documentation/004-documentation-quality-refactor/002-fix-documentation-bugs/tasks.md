@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded tasks skeleton"

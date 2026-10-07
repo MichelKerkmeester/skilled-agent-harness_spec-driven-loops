@@ -185,7 +185,6 @@ Tester reads playbook → Issues MCP tool call or triggers startup sequence → 
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -202,7 +201,6 @@ Phase 1 (Setup) ──► Phase 2 (Execution) ──► Phase 3 (Verification)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

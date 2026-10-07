@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "sk-design is referenced across ~180 files; this read-only phase classifies every reference into reconcile buckets and produces dependency-map.md for phases 002-006.",
     "created_at": "2026-08-19T04:18:34.845Z",
-    "last_save_at": "2026-08-30T15:39:13.483Z",
+    "last_save_at": "2026-10-07T18:12:32.380Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e497f4568475cd99486f5178b2d405766430a181b4ca99c942d7a23dd305912",
+    "source_fingerprint": "sha256:0ac660a8abe57d3bc0551c308a8bf6999cd58c2399173595530fcce6ac002e9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f1292f57b37e035cd135a2bdc7fb1a370d82663f0da0dab51a3557e8eb5d6fe",
-      "plan.md": "cfef3fe8d8c6fffb69796872dbba6f7003ee4bc04a3b2c41298cbd480df654b6",
-      "tasks.md": "73e9ec69e666877086af0bc4ba4bd72dbb36ec47cc381d8832609493cd980527",
-      "implementation-summary.md": "e9e2b2526c9bc92ff03ed4035a651c95a6290b8d962ee43a31a2db3fda7874db"
+      "spec.md": "07c5d489fa54d03b418c1d4c9a3647532a69510a7b378bc4e7268c457f5f5b80",
+      "plan.md": "e2284aed5a40242c0fe50911387523b09bcd028dda7d49fa8a71733e7a01fc9f",
+      "tasks.md": "90d6d82e4c6aa028008860f568d28ac680de7403c4e63588a653864239400855",
+      "implementation-summary.md": "928d61884c7b98e5ec07e217e7ce499a3fed6362deaf86bc50369ac4035bc1e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

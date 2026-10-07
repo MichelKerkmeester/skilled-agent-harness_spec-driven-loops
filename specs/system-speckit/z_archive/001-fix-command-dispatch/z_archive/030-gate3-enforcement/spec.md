@@ -2,13 +2,8 @@
 title: "Gate 3 Enforcement [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/spec]"
 description: "During a comprehensive bug fix session (63+ bugs, 25+ files, 15 parallel agents), the AI"
 trigger_phrases:
-  - "gate"
-  - "enforcement"
-  - "preventing"
-  - "spec"
-  - "folder"
-  - "030"
-  - "gate3"
+  - "gate3 enforcement spec"
+  - "spec folder question enforcement"
 importance_tier: "important"
 contextType: "planning"
 ---

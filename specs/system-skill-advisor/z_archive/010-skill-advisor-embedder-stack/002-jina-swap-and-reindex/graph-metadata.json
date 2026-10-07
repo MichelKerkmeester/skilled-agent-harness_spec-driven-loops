@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Flip skill-advisor default from gemma to jina-embeddings-v3 using 022/001 pluggable layer; reindex skill-graph.sqlite; smoke-test semantic-shadow",
     "created_at": "2026-05-18T08:07:25.978Z",
-    "last_save_at": "2026-08-30T15:39:27.098Z",
+    "last_save_at": "2026-10-07T22:36:55.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d96e2e1621c3a644107e3630264c0317b2ff8245e29f000d98cb8e2e880b5de9",
+    "source_fingerprint": "sha256:4fd1b543f7c47d8f968582821fdf0e567798393d875c67d985b84c4b7d716d9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aba296c2a1f0053eea89fb3aaf55a4a446028d88376d52e4a9085cf3ab1ad533",
-      "plan.md": "e7b6327492efd2eca4577b3d30450be97c51d60dd2e0bc06e2903596ef930df5",
-      "tasks.md": "304230bd4a290296ac67f544d7d42f958620742b68d5887e96681983cc46e6c3",
-      "implementation-summary.md": "45d37e51b01a1a5ecef076dfd1ac76135ec0bf27770b5b06bba73ea60a068805"
+      "spec.md": "e73083b7450ab84b8f5e48bdb49378c2fc265aaded87dfeab9769cc5a9e87b6d",
+      "plan.md": "60bd07a068328df487c863dfd7712d8cf660fe18d21714a151c7d2db17e818f3",
+      "tasks.md": "651858098ffc7fe2fe8d55e1c3ff8a783c18790319e33ba4ee7aedd479cc4d46",
+      "implementation-summary.md": "34cf8795adcd719be4bdb8ce4408502c9af248ff392ebf6292c0314a6ccddf8e"
     },
     "last_active_child_id": null,
     "last_active_at": null

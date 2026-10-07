@@ -31,6 +31,7 @@ _memory:
 
 # Implementation Summary — Phase 002: Implementation deep research
 
+<!-- ANCHOR:what-built -->
 ## 1. What was done
 
 Per the operator doctrine (**GPT-5.5 xhigh-fast generates, Opus 4.8 verifies**), Phase 002 turned the converged 001 design into a build-ready implementation playbook:
@@ -41,10 +42,16 @@ Per the operator doctrine (**GPT-5.5 xhigh-fast generates, Opus 4.8 verifies**),
 | Verification — 2 agents | Opus 4.8 (native Agent) | Adversarial cross-check of every load-bearing claim against real repo code |
 | Synthesis | Opus 4.8 (main loop) | `research/research.md` — the implementation playbook with a Cross-checks verdict section |
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
 ## 2. How it ran
 
 The 5 GPT-5.5 iterations dispatched via the packet-local `xargs -P 2` worker pool (`cat jobs.txt | xargs -P 2 -L 1 ./run_one.sh`); `orchestration-status.log` shows all 5 `exit=0` (durations 311–429s). Two Opus verifier agents then split the surface — one on build architecture (loop-host, dispatcher, scorer, advisor in-process, cache, trace), one on router-replay/fixtures/rename — each reading the actual files and returning CONFIRMED/CORRECTED/REFUTED verdicts with `file:line` evidence. Opus (main loop) synthesized both into `research.md`.
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:verification -->
 ## 3. Outputs
 
 - `research/research.md` — implementation playbook: build order, per-IQ synthesis, module map, loop-host wiring, trace capture, fixtures, scorer/report, the widened rename runbook, and a §7 Cross-checks verdict table.
@@ -52,6 +59,9 @@ The 5 GPT-5.5 iterations dispatched via the packet-local `xargs -P 2` worker poo
 - `research/gpt55/{deltas,state-parts}/*.jsonl` — per-iteration findings + state.
 - `research/orchestration-status.log` — driver ledger (5× exit=0).
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:decisions -->
 ## 4. Headline findings (see research/research.md for full detail)
 
 The Opus pass changed **4 verdicts** from the GPT-5.5 baseline — these are the corrections that would have caused build failures if shipped unverified:
@@ -63,13 +73,17 @@ The Opus pass changed **4 verdicts** from the GPT-5.5 baseline — these are the
 
 Plus the rename census was **widened** (CONFIRMED+): +`.claude/commands/` mirror, `.codex/config.toml` registry, mandatory `tsc` dist rebuild, SQLite recompile as the true last step; and **refuted** two GPT-5.5 surfaces that don't exist (`sk-prompt-models`, `data/skill-metadata.json`).
 
+<!-- /ANCHOR:decisions -->
+
 ## 5. Next steps
 
 - **Phase 003** — execute the narrow rename via §4 of `research.md`; checkpoint the operator before the atomic advisor commit (mutates shared files outside packet 122).
 - **Phase 004** — build Lane C from §3 of `research.md`.
 
+<!-- ANCHOR:limitations -->
 ## 6. Notes / caveats
 
 - Doctrine deviation from 001: this phase ran a **single generator (GPT-5.5) + Opus verification**, not a 4-model sweep, per the operator's explicit "use gpt 5.5 xhigh fast as much as possible but verify with opus 4.8 agents" directive.
 - `research/gpt55/iterations/iteration-002.md` was salvaged and is oversized (~2.3MB — it echoed large file dumps into stdout; its structured delta is absent). Its substance (IQ2 loop-host wiring + IQ3 trace capture) was independently and fully covered by the Opus verification, so no signal was lost. The raw artifact is retained as the audit trail rather than trimmed.
 - MCP servers (spec-memory, code-graph, skill-advisor) are down this session; the Phase 003 advisor rebuild/validate will use the Python `skill_advisor.py` script fallback.
+<!-- /ANCHOR:limitations -->

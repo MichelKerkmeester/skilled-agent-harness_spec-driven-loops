@@ -2,7 +2,6 @@
 title: "...c-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement/implementation-summary]"
 description: "16 features audited: 16 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "evaluation & measurement"
   - "code audit"
 importance_tier: "normal"

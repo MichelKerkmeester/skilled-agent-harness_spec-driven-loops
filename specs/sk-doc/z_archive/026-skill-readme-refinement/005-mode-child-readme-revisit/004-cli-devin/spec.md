@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin"
     last_updated_at: "2026-08-04T13:46:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 004 docs (spec, plan, tasks, checklist) inside 005-mode-child-readme-revisit"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "021 review remediation",
       "fix nul corruption headers",
       "deep review blockers remediation",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "review remediation summary"
+      "review remediation plan",
+      "review remediation tasks",
+      "review remediation summary",
+      "nul corruption fix summary",
+      "021 blocker remediation"
     ],
     "key_topics": [
       "review",
@@ -32,11 +28,11 @@
       "headers",
       "deep",
       "blockers",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "summary",
+      "blocker",
+      "forced"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "The forced 20-iteration deep review of the 021 program returned FAIL",
     "created_at": "2026-07-22T20:53:39.733Z",
-    "last_save_at": "2026-09-11T04:36:34.834Z",
+    "last_save_at": "2026-10-07T18:13:28.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b729e1b2089e5d6b2d1f63b7d7cd98c02bf6fd2d404834d9646870020b352a9",
+    "source_fingerprint": "sha256:c0469b4b3097da22c2fc3f458a6f9215a525f40fdf3ca6dd0bd5cf54190eb51c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c45087dbd7e406ca94d6532c4fec3f7153a6630074610168eb36d3987ffca95",
-      "plan.md": "f8a79c03af0bc6e5e058d4b92222b648564f256c0f49d04dc106bd07467a359a",
-      "tasks.md": "efc5824eee2ba542f481a94db08ecc875a8d26a72a5dac13e8a8fb5ffcb77332",
-      "implementation-summary.md": "180866c830ee373ab55a71b6c823ad9cc38a228f79b34bceb7f5cf5e16b95233"
+      "spec.md": "72eb1f4f0911fe92fb58bf2e005460a3f2b4533b74db02ffdfa64c157e90bc2f",
+      "plan.md": "15096946142e743ef91570ba9b9631ec2424dbdb4168cfb47ce22deede716222",
+      "tasks.md": "59eab911dc14e28bd94cfda9aba0f3a94a13faaed37fcce48486b99106f95f9b",
+      "implementation-summary.md": "9e30a4305a6679915d72756ae4875dceb4ba2c84dc1971f09e65e13861e0c64d"
     },
     "last_active_child_id": null,
     "last_active_at": null

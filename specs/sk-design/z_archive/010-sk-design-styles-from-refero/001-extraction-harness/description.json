@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
+  "specFolder": "sk-design/z_archive/010-sk-design-styles-from-refero/001-extraction-harness",
   "description": "The styles.refero.design per-style tabs (DESIGN.md, Tailwind v4, CSS Variables, Design Tokens, each Extended) are client-rendered, so they cannot be",
   "keywords": [
     "styles",

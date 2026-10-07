@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/001-advisory-research",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/001-advisory-research",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/001-advisory-research",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/001-advisory-research",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-09-10T20:45:50.065Z",
+    "last_save_at": "2026-10-07T18:14:22.605Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:d3fee23af173882af7084b72bde0151347fab2576d32a317bfa8e8a6b5ecb833",
+    "source_fingerprint": "sha256:60ab78be38fccc9dc77ffaa8c4241d0f0c27d4775b4aee489fe887516df0da75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf0cc15c5290a351062a25dc819fa2c13b68f5e9667934d3af21e07a75a2a3a7",
-      "plan.md": "d5e49d62793239c9ace2033ccc0d83965e3b633696169d0e9109e9b27bc0d129",
-      "tasks.md": "784430727f16a7da99406b71eef09b723b88e0ff3dd90017d6ce2a19ca7c09f1",
-      "implementation-summary.md": "d54fde64379493aa274d0817ec64e7078b7c1a075c42b4fb9b140778776c97f7",
+      "spec.md": "88ded2609e1959656bf223f76dfb58bf3b23a3aa6d8571931a73dc55f9113fa9",
+      "plan.md": "20fde02aa976863efae54ccf1886540e2be134a2cd20b338d31630c871f5e323",
+      "tasks.md": "3795018ad06d909ad3477d835a45f168b31262593af70ddcf45218d8a49bf8af",
+      "implementation-summary.md": "7e772e638078681bf097478cde0a97d7365b28fe63f51489deb3ea14ac80a750",
       "research.md": "91c8ad98b7a394de185cde09fee5259a9d274fa4414792f30145a4f622b1c053"
     },
     "last_active_child_id": null,

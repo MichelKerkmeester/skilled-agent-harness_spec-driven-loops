@@ -51,8 +51,7 @@
       "improvement/benchmark-runs/context-prime/repeatability.json",
       "improvement/promotion-001.json",
       "improvement/rollback-001.json",
-      "improvement/post-rollback-compare.txt",
-      ".opencode/specs/descriptions.json"
+      "improvement/post-rollback-compare.txt"
     ],
     "entities": [
       {
@@ -119,12 +118,6 @@
         "name": "post-rollback-compare.txt",
         "kind": "file",
         "path": "improvement/post-rollback-compare.txt",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `003`, the agent-improver package and packet hierarchy were clean, but two important proof points were still missing: a successful guarded promotion path for the canonical handover target, and explicit repeatability evidence for the second target `context-prime`",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-08-30T15:39:22.521Z",
+    "last_save_at": "2026-10-07T18:14:18.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cfcfb03a9e0d8dfdea5fc74040e444bee11cb7180e018a80dd95d2e033bd9a1",
+    "source_fingerprint": "sha256:03e209daa60f01715bdc963d3c67923a1ac71c2dd2ef0cc182125c05de85c629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7853a89972639839f340018e0f6238badcc5a4dfb04233b23a5f86651e797c49",
       "plan.md": "35149de9ba139ed383834122f29cf99372482601748ceb5d8ed0441b06903e95",
       "tasks.md": "c9684555c3b769df27b73aae1512a91c3b8b919bdbe042ae22ced4752c1db2c6",
-      "implementation-summary.md": "ec663168adcab722ec9bd08d2fa836e6706c5cf651ca54f4aca56786ec2c9051"
+      "implementation-summary.md": "092092b269193fd902ab6f60347708a724cb243681021bc97788517017611bc1"
     },
     "last_active_child_id": null,
     "last_active_at": null

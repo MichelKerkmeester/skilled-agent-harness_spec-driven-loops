@@ -4,23 +4,24 @@ description: "Execution plan for applying H3 sub-headings to long HOW IT WORKS s
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "subheadings advisor codegraph plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 006 — Sub-headings, advisor + code-graph
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Both skills are small enough to handle in 2-4 agent passes total. Read the audit CSV filtered to these skills, identify flagged files, process each skill in one agent pass (or two for skill-advisor if context is tight).
 
 Same execution model and H3 vocabulary as phase 005. See phase 005 plan for the full H3 vocabulary list.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. EXECUTION MODEL
 
 ```
@@ -33,9 +34,11 @@ Same execution model and H3 vocabulary as phase 005. See phase 005 plan for the 
 
 4. Re-run audit for both skills → verify 0 remaining flagged
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 3. VERIFICATION
 
 ```bash
@@ -52,3 +55,4 @@ print(f'Remaining flagged: {len(flagged)}')
 "
 # Expected: 0
 ```
+<!-- /ANCHOR:testing -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully into Obsidian, using `mcp-notion` (the 24-tool Notion MCP mode) and `mcp-obsidian` (Local REST API + notesmd CLI + plugins) as the migration engine",
     "created_at": "2026-08-21T20:10:21.172Z",
-    "last_save_at": "2026-09-10T20:43:51.047Z",
+    "last_save_at": "2026-10-07T18:11:04.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e6c5287f551dc3b1a2fa4221cf3faf9098321afdd09f18a0c48302087780f3a3",
+    "source_fingerprint": "sha256:3c1b0aba88111d55034a8a6c59dbb2302278aabbb3af4444382306fe95a93c27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "153c0074a2244213ca66aaa511c3e4762b4fc42ebf79af6e03373975bd33bd24",
-      "plan.md": "d0abb2a10f2363b32c0ed9445c68d86d28200500d594c94493c907457a866be6",
-      "tasks.md": "412b165b7eb33b2ba65a224ca0207805f9a82e8fad7648d3a7f2349d94fc5913",
+      "spec.md": "db20cc59789f53ce6107bb494ef897c09bc9e40f7b04ca015d4b62cab4fabd91",
+      "plan.md": "e48121a5f931834564b78f48b8267b4c3fdc268817e3085e23a5cb93db9e0a3c",
+      "tasks.md": "c7de69c7c0bb8fab808a7171af52cb1e6e6d2bd0a04b97b2e37783a10adf010e",
       "research/research.md": "9821b9b6456e1fd502d3a63c7ee766a80184ca96170e32ce1a44cc76a05f51fc"
     },
     "last_active_child_id": null,

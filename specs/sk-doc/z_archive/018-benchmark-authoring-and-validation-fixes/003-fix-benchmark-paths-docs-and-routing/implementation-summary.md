@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing"
     last_updated_at: "2026-07-20T06:37:55Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed all audit findings; gates green"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-git/016-git-action-advisory-hook",
+  "specFolder": "sk-git/z_archive/016-git-action-advisory-hook",
   "description": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
   "keywords": [
     "sk-git",

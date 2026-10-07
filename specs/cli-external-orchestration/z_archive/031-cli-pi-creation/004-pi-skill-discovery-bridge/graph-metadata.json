@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke, repo-authored hook adapters to bridge this repo's guard/skill content into their native surfaces, Pi natively speaks `SKILL.md` and documents ingesting external `SKILL.md` trees directly — its own docs' only cross-harness example shows `{\"skills\": [\"~/.claude/skills\", \"~/.codex/skills\"]}`",
     "created_at": "2026-07-27T06:48:17.614Z",
-    "last_save_at": "2026-08-30T15:39:07.660Z",
+    "last_save_at": "2026-10-07T18:11:31.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8c14fd95b03e8fb1c8bf8a7ea924ac10dc3c785418f9d1143328feca68d1034",
+    "source_fingerprint": "sha256:f45b9719ca6ea99b95a8f81f170ad429f31b34098b6c5da68cef2d1263929ab5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6618497dd989fe54078c81d936e69dbcf2fb85040b4777a358c3ffd9c1a00991",
-      "plan.md": "2e3b045bc7a8f2eaf6149702e57c3bced11bf42370a51a71bf72957844a4620a",
-      "tasks.md": "4b409dc5c063907475cb4025c9dd242656f3913781cb57768b03e750f00c5cbb",
-      "implementation-summary.md": "4c6858fb4345e645abc60326a88bdc96401faca1bc70631d9679486e50a5f5d5"
+      "spec.md": "a144b50e2e02c925c9d74358c1e27da96b353402e6ba97f32cd663c76821f559",
+      "plan.md": "ce7552323c37797c6c59099a4978ac5f92a186adf227880599c42e9304bc0200",
+      "tasks.md": "4d4c5cbeb315a996fb5f0f72cab34a4963bd36a1a746f0546f9df38705821fcb",
+      "implementation-summary.md": "77407750090859f5b7dd8563cfb6c7f5ddbd734b208ec9a5301892a473b739d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

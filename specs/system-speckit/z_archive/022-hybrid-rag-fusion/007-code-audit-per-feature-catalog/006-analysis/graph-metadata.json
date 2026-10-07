@@ -15,8 +15,7 @@
       "analysis",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -26,11 +25,11 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
       "evolved",
-      "significantly"
+      "significantly",
+      "specification",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Analysis has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-08-30T15:39:38.316Z",
+    "last_save_at": "2026-10-07T20:28:52.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6e1203760943ef7c33540d0f77e65f4a255472a9dca6048914f3da611c2e26c",
+    "source_fingerprint": "sha256:fbc8698218d9d15e79454b2a5344ecf97cd6edb7f76319b30a0a32da54c75092",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "949e9d5ab987b7e2a55ee9df01c794591b6798bd750ab744563a3518af242e60",
-      "plan.md": "832f54067f286f7eec53541fea740de20df0c4a85224a5993fc4e3015c210689",
+      "spec.md": "2b3506093465c48ba6630717cff4471a66d0c90bffaf4fe2340851d331b3d7ae",
+      "plan.md": "a75814a08e6c7a240b4303189060aa874229b5c7e661a0ded4d80334e4e4fd58",
       "tasks.md": "16af541aed951ee603ff981dc680656ab45befb255bbf8c4cb96e751acecd722",
-      "implementation-summary.md": "451147a3eb19af675f003debdec7811cb74c79b0b731d90e97f3b4a64d0ba18e"
+      "implementation-summary.md": "43b528ece791e2daf9a5918b1d1061f5d4b7b5fca2fa0878b5aa604d4ab03ca5"
     },
     "last_active_child_id": null,
     "last_active_at": null

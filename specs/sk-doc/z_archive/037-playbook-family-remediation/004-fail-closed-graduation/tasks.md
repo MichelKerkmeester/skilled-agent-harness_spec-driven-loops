@@ -11,7 +11,7 @@ contextType: "tasks"
 parent: "sk-doc/037-playbook-family-remediation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation"
+    packet_pointer: "sk-doc/z_archive/037-playbook-family-remediation/004-fail-closed-graduation"
     last_updated_at: "2026-08-29T11:45:00Z"
     last_updated_by: "claude"
     recent_action: "Completed the graduation tasks; 41 roots gated and the control run both ways"

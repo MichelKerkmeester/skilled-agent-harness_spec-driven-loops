@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
   "description": "The sk-design-md-generator mode skill generates markdown from design artifacts",
   "keywords": [
     "sk-design-md-generator",

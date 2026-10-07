@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "validation sweep spec",
+      "catalog compliance sweep",
+      "feature catalog validation",
+      "validation sweep plan",
+      "validation sweep tasks",
+      "catalog compliance task list"
     ],
     "key_topics": [
-      "implementation",
-      "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "final",
+      "validation",
+      "sweep",
+      "spec",
+      "catalog",
       "compliance",
-      "check",
-      "across"
+      "feature",
+      "plan",
+      "tasks",
+      "task",
+      "list",
+      "final",
+      "check"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -104,22 +113,48 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Final compliance check across all 370 catalog files. Run the validation script, review the report, apply targeted fixes, confirm 95%+ compliance on all 6 checks before closing the rework project.",
     "created_at": "2026-07-09T10:02:46.158Z",
-    "last_save_at": "2026-09-11T04:36:16.128Z",
+    "last_save_at": "2026-10-07T20:38:28.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:cdbb87c43d47a272ff065facdcc6a2b0c315e9c6379c9ec00e3e48221ee3fbda",
+    "source_fingerprint": "sha256:481976185421ff63fe4838bbaaa7afe25f5d8b99e9690f444b599ccbff8a2c37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "041efae23fd87f20600d14d178a90dfffe4b773f89716078ec1cd31d27f4d96f",
-      "plan.md": "2a02efc950d68e7a53be9501c75a7d795e66c8c5a71e09e6579ff65002ffc0ff"
+      "spec.md": "1455cb0cd387a76953e45f2b124f6207e114a993d055c332518266df7a71e0ca",
+      "plan.md": "a52aeed98865051b16649ca380413694efeba08a034a74e7946010ed15b9fec4",
+      "tasks.md": "e8c6e7af78bcd749b61e1dfebd2493d945322849778913481533e712e559f9db"
     },
     "last_active_child_id": null,
     "last_active_at": null

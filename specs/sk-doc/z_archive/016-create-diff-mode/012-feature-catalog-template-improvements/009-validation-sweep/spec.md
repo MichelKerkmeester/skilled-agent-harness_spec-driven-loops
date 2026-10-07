@@ -3,14 +3,19 @@ title: "Phase 009: Validation Sweep — All Skills"
 description: "Final compliance check across all 370 catalog files. Run the validation script, review the report, apply targeted fixes, confirm 95%+ compliance on all 6 checks before closing the rework project."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "validation sweep spec"
+  - "catalog compliance sweep"
+  - "feature catalog validation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 009: Validation Sweep — All Skills
 
 <!-- SPECKIT_LEVEL: 1 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -22,11 +27,15 @@ trigger_phrases: []
 | **Prerequisite** | Phases 002–008 all complete |
 | **Skill targets** | All three skills |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PURPOSE
 
 After 8 phases of scripted and AI-assisted edits, this phase runs a comprehensive compliance check to confirm the retroactive rework is complete. Any remaining gaps identified by the script get fixed in this phase.
+<!-- /ANCHOR:problem -->
 
 ---
 
@@ -45,6 +54,7 @@ After 8 phases of scripted and AI-assisted edits, this phase runs a comprehensiv
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 4. SCOPE
 
 All 370 .md files:
@@ -52,9 +62,11 @@ All 370 .md files:
 - 40 skill-advisor snippets
 - 14 code-graph snippets
 - 3 master catalogs (checks 1, 3 only — no template marker needed in master catalogs)
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 5. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -63,9 +75,11 @@ All 370 .md files:
 | R-002 | Checks 1-3 at 100% | Zero files fail heading, marker, or trigger_phrases checks |
 | R-003 | Overall compliance ≥ 95% | Fewer than 20 files have any remaining gap |
 | R-004 | Remaining gaps documented | Known exceptions listed in `009-validation-sweep/known_exceptions.md` |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 6. SUCCESS CRITERIA
 
 - `validation_report.csv` produced with all 370 files
@@ -73,3 +87,4 @@ All 370 .md files:
 - ≥ 95% overall compliance
 - `known_exceptions.md` documents any accepted remaining gaps with justification
 - `125-feature-catalog-template-improvements` spec folder status set to `complete`
+<!-- /ANCHOR:success-criteria -->

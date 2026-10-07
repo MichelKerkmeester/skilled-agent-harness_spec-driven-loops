@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
-  "spec_folder": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
+  "packet_id": "cli-external-orchestration/z_archive/051-cli-cursor-max-mode-doc",
+  "spec_folder": "cli-external-orchestration/z_archive/051-cli-cursor-max-mode-doc",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -162,7 +162,7 @@
     ],
     "causal_summary": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
     "created_at": "2026-08-19T19:18:37.096Z",
-    "last_save_at": "2026-08-30T15:39:08.194Z",
+    "last_save_at": "2026-10-07T18:11:39.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,13 +171,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6df106b67fa6227e24201eaaa6a784e6aadb784e10aa25ff90a561df8d388eb8",
+    "source_fingerprint": "sha256:2b68294b7673530dfab88cd88eaaef977d63f7b7f0f576d1b9d2b6967221383b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ce931349c1e8424c1d59fb95798bc01994587c38d06c23ca6a6acd61430112c",
-      "plan.md": "6a6a6ee5a227a005846d9ed16949383c73350986a91cd68ea74d4b9aad85a066",
-      "tasks.md": "bcb0abeffb68777468106d14e055a9e2f9c09e5a7623a6014b1b60777baa716c",
-      "implementation-summary.md": "fe39da1a867d0fdb8bc399ab8266761fea6aefe565cbde6d4ca83b2a151808db"
+      "spec.md": "52588d1ace2fee680d00b024a179573da00d6bdf4186b7b4d18989264eec0820",
+      "plan.md": "d17450f3f95062632c1b7b1700f40f16217df8e0f28cea4efa187204a95ff9a1",
+      "tasks.md": "0bca5f7a09a58672c9825aa0a29e46f31a7f6b3bb311c73df06a2f34e07f24e2",
+      "implementation-summary.md": "7b469f3c6d3cb9328486df9085bf11fd825b8fcf4b5cf750072a97033b50d0dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/018-git-subprocess-env-isolation"
+    packet_pointer: "sk-git/z_archive/018-git-subprocess-env-isolation"
     last_updated_at: "2026-07-29T06:46:35Z"
     last_updated_by: "claude"
     recent_action: "Plan executed + extended to all 12 class helpers"

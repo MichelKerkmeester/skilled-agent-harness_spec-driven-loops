@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The D4-R task-outcome instrument and the v1.11.0.0 doc reconciliation shipped functional and suite-green, but a deep review found 8 should-fix and 20 advisory issues",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:23.894Z",
+    "last_save_at": "2026-10-07T18:14:49.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ec75d3b5a05b2a216ed1d44b2280371ff83b29d654e83e58c5f83f5bbc169d5",
+    "source_fingerprint": "sha256:01fc4a81fe5d81e55c0ca3bcab49ab11f1cd3c7da0db3f98e7f1425d8e36b28f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "180c0d67bc278fc8019d85b1aeb5b6e95a1a4d0bf1fe623a83015f803f41a060",
-      "plan.md": "5d910697567ae304348a565f7fa96cc3d96f51d1d1da5617e1f78217e341d8f6",
-      "tasks.md": "b11f0650b2540046deca2850f3ff3595d0eec5b0463da475cab5a4dc588e9580",
-      "implementation-summary.md": "7e1a161580acf9b2347b82d32a1e12becac4d2b0ad515f939a36ece3f208492f"
+      "plan.md": "5ab3d70f60cab19f064d2daac3bc1b4febb88586851505de3f1d57a6f60a7e83",
+      "tasks.md": "942c72816a912c21910237a83e940839ffc42f60a77112e249c42766f40775f2",
+      "implementation-summary.md": "009e1f22da01fc0781f9a3be0032df34f434870feba87763b68180069fca5dfd"
     },
     "last_active_child_id": null,
     "last_active_at": null

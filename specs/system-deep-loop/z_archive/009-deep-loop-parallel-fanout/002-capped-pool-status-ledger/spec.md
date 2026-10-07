@@ -23,16 +23,22 @@ _memory:
 
 # Phase 002 — Capped worker pool + status ledger
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks).
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - New `deep-loop-runtime/scripts/fanout-pool.cjs` (script-entry contract like `scripts/convergence.cjs`: tsx bootstrap, JSON-out, exit 0/1/2/3 via `scripts/lib/cli-guards.cjs`).
 - `runCappedPool({items, concurrency, worker})`: ≤concurrency promises in flight; per-item try/catch (one failure never sinks the pool); allSettled-style results with timing/status (mirror `multi-seat-dispatch.cjs`).
 - Status ledger: `{artifact_dir}/orchestration-status.log` (JSONL per-lineage events) + `{artifact_dir}/orchestration-summary.json` (`total/succeeded/failed/salvaged/perLineage[]`).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - New `tests/unit/fanout-pool.vitest.ts` (modeled on `tests/council/multi-seat-dispatch.vitest.ts`): cap respected; isolation on reject; all-fail summary; ledger shape. Full vitest green.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Per-lineage spawn (003); the `worker` is mockable here.

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/006-validation-and-quality-gate",
   "description": "Five phases have each been spot-verified individually, but the packet as a whole — and the spec-folder tree describing it — has never been run through",
   "keywords": [
     "five",

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/006-pi-agent-bridge",
   "description": "This repo's 13 real `.claude/agents/.md` role files (confirmed via `find .claude/agents -name '.md' | wc -l` = 13, not the 14 files this phase's",
   "keywords": [
     "repo",

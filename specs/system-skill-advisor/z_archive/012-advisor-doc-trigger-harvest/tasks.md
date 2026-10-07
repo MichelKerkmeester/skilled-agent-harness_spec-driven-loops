@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/012-advisor-doc-trigger-harvest"
+    packet_pointer: "system-skill-advisor/z_archive/012-advisor-doc-trigger-harvest"
     last_updated_at: "2026-06-11T12:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "T018+T026 done; 009 campaign complete 355/355; T025 open"

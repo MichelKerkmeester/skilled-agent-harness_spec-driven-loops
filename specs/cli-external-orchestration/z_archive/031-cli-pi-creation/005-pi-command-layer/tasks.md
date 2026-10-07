@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/005-pi-command-layer"
     last_updated_at: "2026-07-27T10:01:30Z"
     last_updated_by: "claude-code"
     recent_action: "All 12 tasks complete; T010/T011 re-derived live, zero drift"

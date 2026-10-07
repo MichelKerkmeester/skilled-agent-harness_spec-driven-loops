@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real `description.json` mutation, and real post-write indexing handoff behavior",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-09-10T21:04:55.363Z",
+    "last_save_at": "2026-10-07T19:24:28.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46eb37a4bc198081df0a29df9fc32fb82bab3447ad024e4c5daa824b01061ed5",
+    "source_fingerprint": "sha256:9991eddd53bfac6efbf295eccf76aeed2b5f6b1e5267edd8c2b16a50bee5a5c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8379f71f60930fe4a0eacc9ab8af7cf3f59445f96eac7b73ed5871783006350f",
       "plan.md": "4e041bbba962aa6508e820216b6b30747a1f548705cf25e41dd5c6f74552b2e8",
       "tasks.md": "09f9ab4b2c59b90cde74277b5f9251f6deee95d1d1552724fea05ae91ba4d768",
-      "implementation-summary.md": "5d7b8ff682d839cf40f85d46b8dcecf42b247fdb16b4a8263d66f745a3b364ff"
+      "implementation-summary.md": "e0f445642e787b0828e8a3e9f48aff1d5a08ed92e17a94851dd5da1c5f520ea2"
     },
     "last_active_child_id": null,
     "last_active_at": null

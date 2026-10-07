@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
     "created_at": "2026-05-15T12:55:00Z",
-    "last_save_at": "2026-08-30T15:39:32.743Z",
+    "last_save_at": "2026-10-07T18:15:49.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6f57a2b743fa06cc860c0d036827ac803f43efd3c5b41f41d0dee38a7a6a23a1",
+    "source_fingerprint": "sha256:5178dcb656e7e0b8ab03e5b8c6ba7022ea2ee7a4e27210b05262db12667d2de5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2aee77c08f6fc7fdd42b208bae1b77f318d58b1ffa83ea3d7d570c44c9b3180",
       "plan.md": "2479ea831b3979cd4620bf7f75c02b4530f6477d10140676b7f12c7e674c8280",
       "tasks.md": "282fb98c2091bd1b3bab12144810c2db086b40181f94f358df363300ea4448db",
-      "implementation-summary.md": "189043557e5ea1ebe99fbb97bde0ffe761fe1e24d4ef4628eb7255213394e67e",
+      "implementation-summary.md": "3e8260b3ed74adefc3d5832de9906feba9a9bbf80688136b1b4717e4c92fa280",
       "resource-map.md": "33f949ff365521738e12e8fcf566450cc8d93b3543ae11c19a13ae1759cc4a4b"
     },
     "last_active_child_id": null,

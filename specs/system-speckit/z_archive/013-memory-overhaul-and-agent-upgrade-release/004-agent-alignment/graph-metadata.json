@@ -11,32 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "task",
-      "agent",
-      "configs",
-      "audit",
-      "spec",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record",
-      "decision record",
-      "summary"
+      "agent alignment audit",
+      "opencode agent review",
+      "agent alignment plan",
+      "agent config audit phases",
+      "agent alignment tasks",
+      "agent config audit checklist",
+      "agent alignment decisions",
+      "agent config scope decision",
+      "agent alignment delivery",
+      "agent config audit completion"
     ],
     "key_topics": [
-      "task",
       "agent",
-      "configs",
+      "alignment",
       "audit",
-      "spec",
-      "implementation",
+      "opencode",
+      "review",
       "plan",
+      "config",
+      "phases",
       "tasks",
-      "decision",
-      "record",
-      "summary",
-      "configuration"
+      "checklist",
+      "decisions",
+      "scope"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -204,7 +202,7 @@
     ],
     "causal_summary": "Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, Codex) to ensure handover model assignment (spec 016), review model-agnostic configuration (spec 015), Codex-native frontmatter format (spec 016), and AGENTS.md routing rules (spec 014) are correct and consistent",
     "created_at": "2026-05-26T19:43:14.239Z",
-    "last_save_at": "2026-09-10T21:04:36.453Z",
+    "last_save_at": "2026-10-07T20:49:08.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de3e099ff10efe194462498b416ba88d9ec3f6ac1c43398fba06cdf3e5f47d2c",
+    "source_fingerprint": "sha256:28b979909c24d478b656898522681e4c4329b08d7f86040d6bde3091b6b50aaf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4f1b8b0c21d06bb2c31dff4bda1214f20f41a077dafc7e0d0c53534c3b78a55",
-      "plan.md": "a842080591afa59fc404efb0fac74993130709229bfbe7826147f8656b08918b",
-      "tasks.md": "4eefaba9e8b74403fe02537cd72887fbb305e876b9afde758bab6bf9fa286f34",
-      "decision-record.md": "9fcc0e4e75de57753727d450b605c91d841e11ddee813ded7f60ba44b0c0a9a1",
-      "implementation-summary.md": "c428694d07cc148390cc82851ddf44112acb3798870004d287e25a4badd751b8"
+      "spec.md": "b0ee3574869479fde1bf34c8c11078eeb832dfc190290882b0ceadf143d32414",
+      "plan.md": "ce763eeb0b959af7bdd921c074ab00f2e7b479e9eca9ac2e51dbe58934d64826",
+      "tasks.md": "b81fa1e68d77e38b5d59b77c4d240cd28c3989b9f2d75081382fbbd9a7d59ab1",
+      "decision-record.md": "2232cc8b449e2577054c7e461a58b37404e4d2ebe74c4ccdf1608b189d0bb3d1",
+      "implementation-summary.md": "ab4f52a1795086ffd5e6e4c8789603e4d12732a2e55021c75bbb073e46643129"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,10 +2,7 @@
 title: "Tasks: The DevPass DeepSeek route moves to V4.1 Flash"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "llmgateway deepseek v4 1 flash tasks"
 importance_tier: "normal"
 contextType: "general"
 ---

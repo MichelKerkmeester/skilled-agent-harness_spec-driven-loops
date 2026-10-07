@@ -7,11 +7,11 @@ trigger_phrases:
   - "skd025-003 build evidence"
 importance_tier: "important"
 contextType: "implementation"
-status: "In Progress"
+status: "Planned"
 version: 1.0.0.0
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
     last_updated_at: "2026-08-02T13:04:05.000Z"
     last_updated_by: "skd025-003-build"
     recent_action: "Recorded final smoke, safety and strict-validation receipts"
@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |---|---|
 | Spec folder | `003-routing-advisor-and-hook-truth` |
-| Status | In Progress |
+| Status | Planned |
 | Scope | Documentation and the bounded CLI smoke expectation only; no scorer, snapshot, hook behavior or user-global installation changes |
 <!-- /ANCHOR:metadata -->
 

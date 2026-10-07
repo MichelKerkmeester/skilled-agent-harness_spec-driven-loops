@@ -12,7 +12,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention"
     last_updated_at: "2026-07-12T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Re-nested completed children 001/002 and migrated sk-doc-owned naming-convention content"

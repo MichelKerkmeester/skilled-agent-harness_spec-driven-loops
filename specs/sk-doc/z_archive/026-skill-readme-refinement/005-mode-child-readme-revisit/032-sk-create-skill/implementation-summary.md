@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill"
     last_updated_at: "2026-08-04T14:45:32Z"
     last_updated_by: "child-032-sk-create-skill"
     recent_action: "Phase 032 complete; gates green"

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 015/003 shipped the lane-weight sweep harness, the type extension, and a 24-prompt corpus, but the sweep run produced byte-identical numbers across all 7 candidate vectors (including V6-cosine-dominant at semantic=0.30)",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.685Z",
+    "last_save_at": "2026-10-07T18:15:44.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dabbdd74fbd2bc10a7c6f8d69b349c4b0c5ee0ae3325e0b45eec3453c50e1a3",
+    "source_fingerprint": "sha256:20ce5d2bb63f250948c05191e9107080d3a792fc1ad7e180bc1b0db3051c54c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33a27ea9ef35410399b700d47c733858d8b9b5f8c27a14b72a434de9bf045e22",
-      "plan.md": "7c38378d5bd36fdfb0b2c3027d119238adac3446d4a9804ac79b35366ed0583d",
-      "tasks.md": "11178835f9d92694fa1b9fd406e41db5b167dc3732aa193e82cbf53cff343a24",
-      "implementation-summary.md": "ab02039673d0fb443cfdbc4c191271a027d56a3adb19bb5ce5482b1eeec26040"
+      "spec.md": "34bb1335d1c785304f2ab7201bf26af6541f6f659c109eb635cd8e402a799d0b",
+      "plan.md": "9f34139a6d78d910cb5260afadd356cf6dd8c0a46ef7d11539bb214323ebf38d",
+      "tasks.md": "fd1884fe67eccf51640ea2783422c32a737bca42b80521477e4573412965f34e",
+      "implementation-summary.md": "cd96b57224447d255cf957b72d28f29fcc7ded1c618aed60d1363f4a595ce9f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

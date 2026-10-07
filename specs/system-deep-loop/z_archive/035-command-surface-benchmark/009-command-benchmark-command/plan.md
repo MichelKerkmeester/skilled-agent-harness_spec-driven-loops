@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/009-command-benchmark-command"
     last_updated_at: "2026-07-15T12:30:47Z"
     last_updated_by: "codex"
     recent_action: "Built launcher, assets, registry alias, and hermetic smoke"
@@ -20,10 +20,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/mode-registry.json"
       - ".opencode/commands/scripts/validate-command-references.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command benchmark command plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

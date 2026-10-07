@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/008-smart-routing-optimization"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented Phase 008 routing vocabulary/prose optimization."

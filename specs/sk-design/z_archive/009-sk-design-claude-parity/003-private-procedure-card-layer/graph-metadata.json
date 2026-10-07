@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/003-private-procedure-card-layer",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -62,9 +62,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer/graph-metadata.json"
+      ".opencode/skills/sk-design/graph-metadata.json"
     ],
     "entities": [
       {
@@ -101,12 +99,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer/description.json",
         "source": "derived"
       },
       {
@@ -210,11 +202,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Local Procedure Cards",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would fragment the `sk-design` surface and create a taxonomy users did not ask for",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:12.133Z",
+    "last_save_at": "2026-10-07T18:11:37.506Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd7648d796b1c1eccd9e625b76057805c26de6736f5a35fb6f800a49e6ce202c",
+    "source_fingerprint": "sha256:22f5fc0b2e26850356b92ca0132e97536d70672e411486f93bbaec49225e6ba5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b249154fae42cd63dc02073a376bf03565ff0250ad2abd26c7602e8d435711fa",
-      "plan.md": "045e02e8aea496c0f35a1e070948b53ac15ba37218de11b1a60551756f47dd6e",
-      "tasks.md": "87aee818552e383c19a58c8540c47e18bcab849caa860b25cb6d4d1e221fb530",
+      "spec.md": "29772182193398b3df7dbc775c40d161d98160f4b941f4e9cc1990962b50261a",
+      "plan.md": "4dba17fb80b240bc0035fc95dc44545df5936c0adb12bf46b56f3d829908a037",
+      "tasks.md": "968414d3d7051357ec0cf675b8e27399484006aee3f19c2ceea50259a6b28503",
       "decision-record.md": "966d4e50ec65cdfc4bff7f175ae09cabe9e81bcd1e3e3369a0fc9b13ebcd7c13",
-      "implementation-summary.md": "5fa8f3a07d092d2f61f9b13788c19b6da6183baa5a6b1c4b9d7358bf633cbc75"
+      "implementation-summary.md": "8e22aff3dbe5959002cfa1e2cf9125685e90f0493023526d35926c3f39608f88"
     },
     "last_active_child_id": null,
     "last_active_at": null

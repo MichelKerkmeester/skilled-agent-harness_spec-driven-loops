@@ -46,8 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-persist-artifacts.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,7 +178,7 @@
     ],
     "causal_summary": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
     "created_at": "2026-05-11T08:10:00Z",
-    "last_save_at": "2026-08-30T15:39:22.756Z",
+    "last_save_at": "2026-10-07T18:14:15.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5d225b243ea8e6698f481c1f058167ea0afd9e58c251888094f7579e105fcf7",
+    "source_fingerprint": "sha256:37be1b7228ef03ac0491ebd06ca802efde1e08043a4a7e513a0f1836e774a95a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a9680a137e78e0ee6878e06f6e9683b9e33f37a2de38e86cb350a562ae95f0d5",
       "plan.md": "16e515cec537f0bca3cce73fb5f5829eeb825b081a0e0020472b9e6c5cc49ce9",
       "tasks.md": "54a20acba3af5571e1db2bdb6ec8a6f89285714dc3746dee8c7f512a97549ac6",
-      "implementation-summary.md": "5079da5f1e9a486062ec4751e8d418ec7e8581f28bb2608373f4f4f533377e36"
+      "implementation-summary.md": "8fb14503c39f89df5ab1bca046e4916c71078a09c0eaa74e91f7ade457019b2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

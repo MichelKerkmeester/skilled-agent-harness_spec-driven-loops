@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The cli- cards opened with `## 1",
     "created_at": "2026-07-15T08:09:50.699Z",
-    "last_save_at": "2026-08-30T15:39:19.291Z",
+    "last_save_at": "2026-10-07T18:14:21.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebdcd2e61265660219d28725c5831876ff9d6bc468ce2bbee79ef1b752e7fbf3",
+    "source_fingerprint": "sha256:934c997023d5555813d7213a6b8d3b5b57677c1f2b74c022a720b6b4fdbd2cd0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e698290bda1153bdc0a942a207f402b266a74bbb21117460f1502909a620f9a4",
-      "plan.md": "b365c0cd1b8363086b062d50b217b9d0650d66d8eb38efe9ef33b46f4687491b",
-      "tasks.md": "36f53931ae1ab48b7b125dd352e7aac0d06e464674bf0e890b88e2db4bc9c5c4",
-      "implementation-summary.md": "77509adc3704909a8257ebd516aa845bd370ed6535fa8980834879b38fbd226f"
+      "spec.md": "152fda926b2f0889e6c9f65e8ccdce9eb6d0ce5e9f05dadbc2b359db39e336b5",
+      "plan.md": "51ce0271a31df05d2b707d888de2f1f8f14be6cd1648dd1d00924e12df24482e",
+      "tasks.md": "36b4ff377b774a6d6861e101e56505ec5a6181ce7df99ad7c660181576726757",
+      "implementation-summary.md": "031ce78cdcb9caca118c59fe04096999bed39d794cbc476edaaac1a03d02f110"
     },
     "last_active_child_id": null,
     "last_active_at": null

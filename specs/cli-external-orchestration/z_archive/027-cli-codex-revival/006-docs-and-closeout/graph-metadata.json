@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/006-docs-and-closeout",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/006-docs-and-closeout",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Runtime, skill, hooks, and agents can drift unless final active documentation and parity evidence describe the same supported contract",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-08-30T15:39:07.168Z",
+    "last_save_at": "2026-10-07T18:11:39.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18562ea79376b984e6af37c6733165a73eca0e1603c3212d62d2e9b545f8f8ec",
+    "source_fingerprint": "sha256:51bc86e69b6ae040045d7312ce4f77380405975b255bc9931c9885e6139e3314",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87db98b9a1db3996b1f8c3e2b1f53224c538355ea2ac7bf2bb30ebdee92b7f2f",
-      "plan.md": "9d975cf5218915441db77f5a340cd5295860bff77b935abc7f801cd2b7664513",
-      "tasks.md": "d284a5e465412434a9bbd3fb23f2b7b46420ca9be89dd3c52b46e296bc72cf99",
-      "implementation-summary.md": "986b0679f76b1fa0e7fbc3d5b41893b949a608a35978342c79babc46324dd7eb"
+      "spec.md": "bfa046750af8005a035a0e38e94283575ae64faab96c457d6252e491aac02eed",
+      "plan.md": "5de91244f5617cde38f01fb98d6c861045461ab21ae50e62081e12041e0ff997",
+      "tasks.md": "66920010af89c599e088f40e30f5065bf8ea2e1d3d07c3460b566815249f77ec",
+      "implementation-summary.md": "a609ebb94234dae96904c2052e1196b4eeb2c17498da4f11c330c4a07d39087c"
     },
     "last_active_child_id": null,
     "last_active_at": null

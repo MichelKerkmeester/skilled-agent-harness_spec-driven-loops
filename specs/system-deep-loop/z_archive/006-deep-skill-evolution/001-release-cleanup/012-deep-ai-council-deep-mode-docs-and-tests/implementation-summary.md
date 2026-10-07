@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.../000-release-cleanup/004-deep-ai-council/001-deep-mode-docs-and-tests` |
+| **Spec Folder** | 012-deep-ai-council-deep-mode-docs-and-tests |
 | **Completed** | [YYYY-MM-DD] |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

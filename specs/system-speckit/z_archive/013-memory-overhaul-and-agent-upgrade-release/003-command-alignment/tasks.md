@@ -2,11 +2,8 @@
 title: "Tasks [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-03-command-alignment/tasks]"
 description: "Task Format: T### Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "task"
-  - "command"
-  - "configs"
-  - "audit"
+  - "command alignment tasks"
+  - "command config audit checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

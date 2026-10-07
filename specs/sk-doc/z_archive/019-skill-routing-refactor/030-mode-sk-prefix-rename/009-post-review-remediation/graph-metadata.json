@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
     "created_at": "2026-07-28T11:56:16.836Z",
-    "last_save_at": "2026-09-11T16:42:08.368Z",
+    "last_save_at": "2026-10-07T18:13:22.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb3d2600e7b71e26fdadcb18327af72e14b2ef935c49441951c5f51f2004fe0c",
+    "source_fingerprint": "sha256:66747b561dd6ebe9b2834b249b667a05151861f1fa86317ae18f278409272fbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c629399fe42966db5f16c5acd0a9b7b25f2835f5afef6910be59b0717d405ac3",
       "plan.md": "891d4e42418d73c861a87b3f46ac6f599b2d99187136893075842c0f9a236167",
       "tasks.md": "36e170c19e1b46c27566a6a8c4f55fa36487db0d5f9598bb3c6faa50e4422d0c",
-      "implementation-summary.md": "9b0a39682cb57071963ce161f1f82b1a900e57740feb925bb6e7371e9af71c4e"
+      "implementation-summary.md": "ff979c7ca116d5da74c7c4c788c489cd3e915a1af1725c8ed397860250a1af57"
     },
     "last_active_child_id": null,
     "last_active_at": null

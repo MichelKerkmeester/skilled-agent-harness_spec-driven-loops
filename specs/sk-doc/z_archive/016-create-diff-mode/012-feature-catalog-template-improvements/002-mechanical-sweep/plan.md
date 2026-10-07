@@ -4,15 +4,14 @@ description: "Script specifications and execution order for the three mechanical
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "mechanical sweep plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 002 — Mechanical Sweep
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Write four Python scripts to the `125/002-mechanical-sweep/scripts/` directory. Execute them sequentially. Review git diff after each. Commit only after all four pass.
@@ -22,9 +21,11 @@ All scripts:
 - Log a summary of files touched vs skipped
 - Are idempotent (re-running them produces no diff)
 - Target only files inside `*/feature_catalog/` directories
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 2. SCRIPT SPECIFICATIONS
 
 ### Script A: `heading_rename.py`
@@ -117,9 +118,11 @@ Logic:
 Output: 002-mechanical-sweep/output/long_sections_audit.csv
 Columns: filepath, skill, category, paragraph_count, h3_count, needs_subheadings
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 3. EXECUTION ORDER
 
 ```
@@ -134,9 +137,11 @@ Columns: filepath, skill, category, paragraph_count, h3_count, needs_subheadings
 9. git diff --stat → review scope
 10. git add + commit: "chore(125-002): mechanical sweep — heading rename, template marker, validation table"
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 4. VERIFICATION COMMANDS
 
 ```bash
@@ -162,6 +167,7 @@ grep -r "| File | Focus |" \
   .opencode/skills/system-code-graph/feature_catalog/ | wc -l
 # Expected: 0
 ```
+<!-- /ANCHOR:testing -->
 
 ---
 

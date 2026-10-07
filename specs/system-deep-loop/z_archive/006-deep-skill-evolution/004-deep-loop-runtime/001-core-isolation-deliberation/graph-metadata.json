@@ -51,7 +51,6 @@
       "ai-council/ai-council-strategy.md",
       "ai-council/council-report.md",
       "ai-council/deliberations/round-001.md",
-      "schemas/tool-input-schemas.ts",
       "ai-council/seats/round-001/seat-D-adjudicator.md"
     ],
     "entities": [
@@ -101,12 +100,6 @@
         "name": "round-001.md",
         "kind": "doc",
         "path": "ai-council/deliberations/round-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Dispatch Seat",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review and deep-research skills are consumers; system-spec-kit/mcpserver is the producer",
     "created_at": "2026-05-22T17:50:00Z",
-    "last_save_at": "2026-08-30T15:39:23.241Z",
+    "last_save_at": "2026-10-07T18:14:23.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e0283f55758ab1f6cc54eb489fed51efdbb49a321e4a38cf92d0bdc3d51aabd",
+    "source_fingerprint": "sha256:b08df278e7608cb1f2153dee33258939b234009029617d3b949f546656744d80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7776a8ab7ee8045e3113fe2ef874c44b55f9efa6a0471ccae68cdaaea1e532e",
       "plan.md": "d19a3ced65644f04bc1886b3c860a844cfc1c1de38415e7a68f1389907960da0",
       "tasks.md": "14150fc0d4ccb52c7fa51929392fa7d653ad900cb15cedc77d91b6f34ba454db",
       "decision-record.md": "f2f9ead01827c913c761ca195eb6ee4fa4cf7471d58a7807e368c7a64d915e39",
-      "implementation-summary.md": "623ee2230b500888644b27ff73aa60bc37980d95c1f046945cc1c0e2ad1de08d"
+      "implementation-summary.md": "50414c584b99686b5d6c5585ce929121585b9b515a5c8b060bff6cc63cc0e272"
     },
     "last_active_child_id": null,
     "last_active_at": null

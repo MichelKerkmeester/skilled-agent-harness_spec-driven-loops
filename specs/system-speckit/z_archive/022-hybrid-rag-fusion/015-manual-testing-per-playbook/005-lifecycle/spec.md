@@ -184,7 +184,6 @@ Execute all ten Phase 005 lifecycle scenarios, record verdicts and evidence, and
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -203,7 +202,6 @@ Execute all ten Phase 005 lifecycle scenarios, record verdicts and evidence, and
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

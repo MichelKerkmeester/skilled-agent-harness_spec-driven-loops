@@ -7,7 +7,6 @@ trigger_phrases:
   - "speckit"
   - "level"
   - "based"
-  - "implementation summary"
   - "071"
 importance_tier: "normal"
 contextType: "implementation"
@@ -137,8 +136,8 @@ Implementation complete - no immediate follow-up needed.
 *Generated from Spec 071: SpecKit Level-Based Template Alignment*
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

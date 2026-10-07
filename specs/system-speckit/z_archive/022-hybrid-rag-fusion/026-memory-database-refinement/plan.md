@@ -199,7 +199,6 @@ Autonomous deep-research review loop with externalized state. Each iteration get
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -218,7 +217,6 @@ Phase 1 (Setup) --> Phase 2 (Review, 30 iters) --> Phase 3 (Synthesis + Fix Spri
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -38,7 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -63,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No skill exists for AI assistants to delegate tasks to GitHub's Copilot CLI (`copilot`)",
     "created_at": "2026-04-12T09:02:50.204Z",
-    "last_save_at": "2026-08-30T15:39:08.302Z",
+    "last_save_at": "2026-10-07T19:23:41.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +198,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:691c4be851d8c9a7890aec92e05fc7a1a71572437edd88dc4f99d5d3628e1460",
+    "source_fingerprint": "sha256:fed217d46936ece7d0c366deb40a622f4277b83c618fe3077d67697fa5663309",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35be0d784c5451809c044a5a21eca570e678d0e43336c806218763442925f790",
-      "plan.md": "44795ab0ff2c5bbd76a2799637c0988d9caf2c41a38503d16124f8566c10cc86",
+      "plan.md": "2f9b7a343d139cf889937e9fa06fc01c46b101da4ff2481e175daae72cbc20c5",
       "tasks.md": "fa7ec7cf62e4b1c9ff67215a3dc928b43fc2386b9448a502d7af8ed8c7d85d25",
       "implementation-summary.md": "298907e4170f8d78cee249ef022026b49187e7eb60fdc7711cfe67675f33db70"
     },

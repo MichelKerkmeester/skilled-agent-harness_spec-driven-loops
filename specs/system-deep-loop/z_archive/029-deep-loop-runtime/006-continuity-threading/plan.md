@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/006-continuity-threading"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading"
     last_updated_at: "2026-06-19T10:30:00+02:00"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored implementation plan for the continuity-threading cluster"

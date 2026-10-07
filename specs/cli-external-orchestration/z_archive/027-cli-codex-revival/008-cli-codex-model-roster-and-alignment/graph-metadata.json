@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The cli-codex skill documented a single-model contract — \"the skill dispatches `gpt-5.5` for every task\" — even though the `fast` service tier exposes three additional GPT-5.6 models (`luna`, `terra`, `sol`) that reach reasoning-effort levels (`max`, `ultra`) the docs never named",
     "created_at": "2026-07-13T16:41:33.164Z",
-    "last_save_at": "2026-08-30T15:39:07.189Z",
+    "last_save_at": "2026-10-07T18:11:40.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:316789971725a339c2e66f19b76dcf672ba519227b2c8299d3513c85c692da44",
+    "source_fingerprint": "sha256:77173c4d6e4c6f662a3cefbe3d3d1afcf9fc9f3f41d8e09391b194d6804a2b2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62745d3d05b9c9902f33476a682e4c59af0ef6afe7fa33358b9d64a96182cfdb",
-      "plan.md": "2da9802fb46d66cf93a370c87d5ca8d7d7345e6fdeb3d0e4cd543c6e307b8d9a",
-      "tasks.md": "fd512bc8ed4607fc796a09b0423db16d3f24aba55c1e80d60ff2e90bf4bdf480",
+      "spec.md": "07349e79bfcc94ae45067490a6f14f53176b49f4bc471e06cd0ce858795bf620",
+      "plan.md": "2f34668affeab92ed0a0d38210102850d0b8fe1038e8e405c8f3847350af6c6b",
+      "tasks.md": "d09d5b7f59fdd93a905645752df2bed7f82aece72977c5383efdd35affdd40da",
       "decision-record.md": "00224e2fc5d61efd08a60cff99119127792e23f93b1084a1e96639d5fe619f7b",
-      "implementation-summary.md": "bcc656cf20ad07a601b830c178bbec9970a82c20f45ef267ba82870addd127a6"
+      "implementation-summary.md": "57715e4193fa413a94d2f141bfe7ed2bcfd50920e535f2df0df6195431593fd4"
     },
     "last_active_child_id": null,
     "last_active_at": null

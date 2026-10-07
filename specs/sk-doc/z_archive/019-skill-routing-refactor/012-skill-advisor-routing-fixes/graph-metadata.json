@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,18 +46,8 @@
       "tasks.md",
       "decision-record.md",
       ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
       ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/fixtures/executor-delegation-cases.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/executor-delegation.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/bench/scorer-calibration-baseline.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts",
       "hooks/claude/user-prompt-submit.ts"
     ],
     "entities": [
@@ -92,75 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "claude-user-prompt-submit-hook.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "skill-advisor-cli-fallback.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
         "source": "derived"
       },
       {
-        "name": "skill-advisor-cli-fallback-envelope.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-delegation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fusion.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-delegation-cases.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/fixtures/executor-delegation-cases.json",
-        "source": "derived"
-      },
-      {
-        "name": "executor-delegation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/executor-delegation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scorer-calibration-baseline.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/bench/scorer-calibration-baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "scorer-eval-baseline.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "scorer-eval-baseline-ratchet.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "scoring-constants.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts",
         "source": "derived"
       },
       {
@@ -204,11 +134,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Section",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Correctness",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Covers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often than not",
     "created_at": "2026-07-16T08:23:16.276Z",
-    "last_save_at": "2026-09-11T16:42:04.357Z",
+    "last_save_at": "2026-10-07T18:13:21.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +207,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:03be829fad98c0d173fcf0322ee8068126caa3d2f18f6938c821d88b26e81b82",
+    "source_fingerprint": "sha256:f4642fc401261a17615845184e5e9f2701db3053d12ecc5bd961c5ee566726c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1de8e735bf7c452a84f7c8c32aa163f30e1a489ffedfc713c46ae46778be3695",
-      "plan.md": "dbf136062275311b400bc3a57f7d985211e5a556e900c704793b80c79c05636b",
-      "tasks.md": "5b4734caf68a268909656b76a3043fadda937f5bb75781ad2dd1d15749af3fa9",
+      "spec.md": "47ff4a0d0c2bb903aac2a06510e0bb8ddc163fd3593a4a56b4ff87ab7b803e77",
+      "plan.md": "f1c2d2ab32f12fd7060bfe727e36596509b912c286a4a71fa8d9d2c3c138f35c",
+      "tasks.md": "ce76e47be15a8f18468bdac6fe4fad524de79fd71f364c5111deb0b5006fa6c7",
       "decision-record.md": "858797cd100b33b1a666f2aff8a68b2e843bdfbb23b66dac56c980694e2c67d3"
     },
     "last_active_child_id": null,

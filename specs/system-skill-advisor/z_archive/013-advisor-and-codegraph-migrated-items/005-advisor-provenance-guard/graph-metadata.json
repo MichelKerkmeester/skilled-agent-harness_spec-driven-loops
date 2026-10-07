@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no manual-protection guard (`lib/cross-skill-edges/apply-graph-metadata-patch.ts:25-29` and `:63-80`)",
     "created_at": "2026-06-10T19:24:09Z",
-    "last_save_at": "2026-08-30T15:39:27.258Z",
+    "last_save_at": "2026-10-07T18:16:06.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:264a5b4ebe497332805552e4bf224d4fdf00e721e376996a64b129eca977e149",
+    "source_fingerprint": "sha256:4453756643b8fcbc8531c33774a691b205bf65ba6a522c46011e150a8c8ccdff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2da76528c1a0846a1df8883724119770c7f2decdfd6a2fa30c9090906ba54a9",
-      "plan.md": "490daa946ac2279665fa4df6d4f2723b3ee97841761926ef35a66db0db0e3f01",
-      "tasks.md": "888548feee18623766b803156488a3ec500f62ff7233b7cd0de9e9e6abe1c016",
-      "implementation-summary.md": "cf507b03aa036cd9f886718718cb18f6ede398fde2c4a522f7da3fc9370d0a6a"
+      "spec.md": "a79005d128d76dab0be3e1a0083e1d6492211006727239d9c298f2f5065f3a5e",
+      "plan.md": "5386d10caa4a07e486420d5e6c45e562df09fe1506ca89ef51134ec579d87209",
+      "tasks.md": "3ea565ac467abba721d6300442ad23118faac199eda064d0ea1f0f3f080a17e1",
+      "implementation-summary.md": "ad8084fc3b04cb6649248ddc81c52b1433b86c030948fd49350124b49e4f1308"
     },
     "last_active_child_id": null,
     "last_active_at": null

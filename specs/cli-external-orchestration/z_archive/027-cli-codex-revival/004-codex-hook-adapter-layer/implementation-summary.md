@@ -6,7 +6,7 @@ importance_tier: important
 contextType: implementation
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/004-codex-hook-adapter-layer"
     last_updated_at: "2026-07-13T09:30:00Z"
     last_updated_by: "opencode"
     recent_action: "Created Codex hook adapters and project registration"

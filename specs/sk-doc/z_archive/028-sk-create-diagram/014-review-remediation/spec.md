@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/014-review-remediation"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/014-review-remediation"
     last_updated_at: "2026-08-13T05:55:33.000Z"
     last_updated_by: "claude"
     recent_action: "All 4 P1 findings fixed; validate_skill_package.py PASS"

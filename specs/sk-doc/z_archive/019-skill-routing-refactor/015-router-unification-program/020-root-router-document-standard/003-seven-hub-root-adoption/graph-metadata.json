@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Six class-H hubs still load their stage-two router from `shared/references/smart-routing.md`, while mcp-tooling already serves a root `ROUTER.md`",
     "created_at": "2026-08-15T13:45:00Z",
-    "last_save_at": "2026-09-11T16:42:06.872Z",
+    "last_save_at": "2026-10-07T18:13:24.466Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e5a21d3be0dde4a53bd8f941e3b84dd917f66839b0114797c55a26e7672d62c",
+    "source_fingerprint": "sha256:2a104c1706ccbf701b6441e7b47ee4c359f6ceec3b588ce065795ebf6414c9ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e5d6268cf27e4d105e93b371cf8e1a7b049b12ecbb80fc81a0da20fcb345bde4",
-      "plan.md": "6c280aad9ce52c74d9286ed2f66e0c9fde0df9b5f0f037bec52f6290b87ee360",
-      "tasks.md": "1a64dd51e94a5358568dd68e822301162f49075347a4bdd13062bf8d460a1407",
+      "spec.md": "576b2e1c3e7b43a9aecdeeaec00babc7b5ea1d3008eaf77d5899fe6c1e50f8ca",
+      "plan.md": "5119d5272fa7b7503d102a92b2baba740ffae8e912708863a579ec22622b015d",
+      "tasks.md": "b3d10e8fec751379a1d7ead8df23bf57795bcd31f21deaa944043e508bc875ad",
       "decision-record.md": "462a2a3e21b24e3ffa267e632a4dadffafc91dbdf4b8e2982d59979ebc97028b",
-      "implementation-summary.md": "e6f95a567b201058d714333c6c7981ed2ef637b5ced2af0839172cd3a302219f"
+      "implementation-summary.md": "5708c01bd4738467f827c041e95bb26512f9bb64a024293f6bef1097939d6f71"
     },
     "last_active_child_id": null,
     "last_active_at": null

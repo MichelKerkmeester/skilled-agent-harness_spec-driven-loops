@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,15 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-      ".opencode/bin/compiled-route.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts"
+      ".opencode/bin/compiled-route.cjs"
     ],
     "entities": [
       {
@@ -78,57 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "compiled-routing-parity.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-        "source": "derived"
-      },
-      {
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".opencode/bin/compiled-route.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-report.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-routing-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +140,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "child-process",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Requirement",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
     "created_at": "2026-07-20T17:46:53.368Z",
-    "last_save_at": "2026-08-30T15:39:15.175Z",
+    "last_save_at": "2026-10-07T18:13:27.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92bb747905c0b45d0e4d5c55354a9f9c3f1d8045e73d63ecb9bf02efd05cdc16",
+    "source_fingerprint": "sha256:6b6f729e7118e9d610b460fb1fdefe0dc4c2f28ae784a4592cc4eec0ef9c3766",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3e35156987984eac920d09c6528508e9897b248b4fbbbc1e15b85de62871c98",
-      "plan.md": "25ef9cfb5540273e0f36fabcd49947aaaef4136734e74694693f6ba4a37d9451",
-      "tasks.md": "501ece460a52a13829a40c76871f9244d390690de43329dfebcdacda194b19e5",
-      "implementation-summary.md": "597afced748daf35dced30ac669a858c1d3e5d6011d0372cc506aca1dab8acd4"
+      "spec.md": "bbd9190ac97cc150d370927e001e7396b5827e2a8bdc7818099399391f240b6a",
+      "plan.md": "c982d920919556bc1bdc879d125ae60259de39808528ede1d64bd3160bcec12e",
+      "tasks.md": "5729aef4567fdea2ad3a4521d47cdce6218f4b68f47ed976c0abdacc8f966dac",
+      "implementation-summary.md": "92733f75ea11932a49c53a6042e98b81f3b8edcd92f2abdea1b495d801314580"
     },
     "last_active_child_id": null,
     "last_active_at": null

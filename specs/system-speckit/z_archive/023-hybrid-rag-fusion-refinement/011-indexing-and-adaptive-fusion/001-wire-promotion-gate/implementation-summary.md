@@ -2,7 +2,6 @@
 title: "...kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate/implementation-summary]"
 description: "Wired PromotionGate outcomes to adaptive threshold tuning so successful shadow evaluations can adjust thresholds automatically."
 trigger_phrases:
-  - "implementation summary"
   - "promotion gate wiring"
   - "adaptive tuning trigger"
 importance_tier: "important"

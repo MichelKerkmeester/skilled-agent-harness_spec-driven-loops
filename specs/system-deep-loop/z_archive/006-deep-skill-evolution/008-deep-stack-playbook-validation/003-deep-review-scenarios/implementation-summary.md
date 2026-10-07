@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/003-deep-review-scenarios |
+| **Spec Folder** | 003-deep-review-scenarios |
 | **Completed** | PENDING — scaffold only; verdicts filled post-run |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

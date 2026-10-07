@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
-  "spec_folder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
-  "parent_id": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind",
     "created_at": "2026-06-06T06:46:12.386Z",
-    "last_save_at": "2026-08-30T15:39:14.360Z",
+    "last_save_at": "2026-10-07T18:12:25.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9efc0ee614e587ea259342a6288ef54ffc16449154011f6b1be24bbe86e3eaf4",
+    "source_fingerprint": "sha256:efb8d86c13fe24a87842ea397df4d1f9dbef4ef0a0b7fb0161b1c0114bb4327b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9c3a22c419ea905a982dd034cb38dde860d786fb58b0e7c4503a172fc15512e",
-      "plan.md": "67c1570e7131cdef87f976fb1be419e545708488b71323f4a2edba68416b54b1",
-      "tasks.md": "b26baea9a5c3db39031ec8a9a8ba0fe0764de0f00c7e8a24e5e97d52f5bf14f7",
-      "implementation-summary.md": "e43a48df07d5891562169236f6bd8145ecdf872ab713d4886087ccdd367cd442"
+      "spec.md": "1a3cbeccc14e601a8ccbfef9a5b41ecef3e3100209ef8242e2865d39d260e636",
+      "plan.md": "17df43b3c74cbc0697984b463f46066396420714acf597ca5a65be65b962e49b",
+      "tasks.md": "773fa20083789d972dcb7b25f2706ad19bb9e4c3007080719c16f9744a0ca770",
+      "implementation-summary.md": "511c23247c9a1776ebf2c19555dd1b0e4df0fae18e03d142d9bcde1d298fed0a"
     },
     "last_active_child_id": null,
     "last_active_at": null

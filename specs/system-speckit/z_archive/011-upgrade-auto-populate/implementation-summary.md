@@ -3,7 +3,6 @@ title: "Implementation Summary"
 description: "Archive normalization summary for Upgrade Auto Populate."
 trigger_phrases:
   - "011-upgrade-auto-populate"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/003-advisor-rrf-fusion"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/003-advisor-rrf-fusion"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the harness and the labeled set, run complete"

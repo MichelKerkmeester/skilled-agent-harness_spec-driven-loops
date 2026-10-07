@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram",
-  "spec_folder": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram",
   "parent_id": "sk-doc",
   "parent_id_review_required": true,
   "children_ids": [
-    "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
-    "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system",
-    "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library",
-    "sk-doc/028-sk-create-diagram/004-import-export-tooling",
-    "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
-    "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
-    "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-    "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-    "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
-    "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
-    "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
-    "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
-    "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
-    "sk-doc/028-sk-create-diagram/014-review-remediation",
-    "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
-    "sk-doc/028-sk-create-diagram/016-command-mirror-restoration"
+    "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract",
+    "sk-doc/z_archive/028-sk-create-diagram/002-skill-scaffold-and-design-system",
+    "sk-doc/z_archive/028-sk-create-diagram/003-diagram-type-reference-library",
+    "sk-doc/z_archive/028-sk-create-diagram/004-import-export-tooling",
+    "sk-doc/z_archive/028-sk-create-diagram/005-command-and-hub-wiring",
+    "sk-doc/z_archive/028-sk-create-diagram/006-validation-and-quality-gate",
+    "sk-doc/z_archive/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+    "sk-doc/z_archive/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+    "sk-doc/z_archive/028-sk-create-diagram/009-manual-playbook-execution",
+    "sk-doc/z_archive/028-sk-create-diagram/010-benchmark-artifact-embedding",
+    "sk-doc/z_archive/028-sk-create-diagram/011-reference-template-alignment",
+    "sk-doc/z_archive/028-sk-create-diagram/012-flowchart-capability-merge",
+    "sk-doc/z_archive/028-sk-create-diagram/013-deep-review-grok-deepseek",
+    "sk-doc/z_archive/028-sk-create-diagram/014-review-remediation",
+    "sk-doc/z_archive/028-sk-create-diagram/015-flowchart-deprecation",
+    "sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration"
   ],
   "manual": {
     "depends_on": [],
@@ -58,8 +58,6 @@
       "scripts/README.md",
       "008-resource-reorganization-and-code-alignment/implementation-summary.md",
       "014-review-remediation/implementation-summary.md",
-      "context/skills/diagram-design/SKILL.md",
-      "context/README.md",
       "001-inventory-and-skill-contract/spec.md",
       ".opencode/skills/sk-doc/sk-create-skill/SKILL.md"
     ],
@@ -79,7 +77,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": "context/skills/diagram-design/SKILL.md",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
         "source": "derived"
       },
       {
@@ -121,16 +119,16 @@
     ],
     "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-30T15:39:17.943Z",
+    "last_save_at": "2026-10-07T18:14:22.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2460e253811cfe59f48e6b94989d81ecdf8b3568792698a534f059d700218d91",
+    "source_fingerprint": "sha256:72112515c2f5d5b82aa99b5775c39c2a562b70f288fa94b2e6d2ebfecfcba0ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "611fc5aadc21261a177216648c7d49c0d3659a1c2f535c44bf08b49546b37240"
+      "spec.md": "98961df8b828f30d800d4919ea1c8f131f74abd85b07de94bed99e201a213044"
     },
     "last_active_child_id": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
     "last_active_at": "2026-08-13T17:15:00.000Z"

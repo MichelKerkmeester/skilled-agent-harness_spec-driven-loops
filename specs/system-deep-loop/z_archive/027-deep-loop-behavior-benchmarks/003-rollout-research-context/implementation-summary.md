@@ -2,14 +2,13 @@
 title: "Implementation Summary: Rollout Behavioral Benchmarks -- deep-research + deep-context"
 description: "42-run rollout complete: RSB (8) + CXB (6) packages scored across claude-cli baseline + both GPT-5.5-fast legs. Headline: effort raises the floor but the load-bearing difference is delegation INTEGRITY -- gpt-high never absorbs the LEAF role (it halts honestly when it will not dispatch) where gpt-med fakes delegation. Two calibrations + a fixture-contamination purge landed in-flight; scorecard.md carries the corrected transcript readings and phase-005 backlog."
 trigger_phrases:
-  - "implementation"
-  - "summary"
+  - "rollout research context implementation summary"
   - "research context behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/003-rollout-research-context"
     last_updated_at: "2026-07-02T19:55:00Z"
     last_updated_by: "claude-code"
     recent_action: "42 runs scored, scorecard published, fixture contamination purged, env_error hardened"

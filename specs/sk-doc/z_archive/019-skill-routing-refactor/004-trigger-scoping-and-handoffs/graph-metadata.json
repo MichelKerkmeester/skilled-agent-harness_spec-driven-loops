@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-08-30T15:39:14.809Z",
+    "last_save_at": "2026-10-07T18:12:36.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d542cf2efc4a04f84dabc2ef2cee2b70623b2c7828f7baf5c4945b3ec5b9a111",
+    "source_fingerprint": "sha256:41b35c043cb4be006549588bef0385369d2db74a031f3ba5c034ad7f9593eb29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d15b557d56f69a1f3a46f91e2f563100cab4c886ed4ab386fe32db9a55ccf059",
-      "plan.md": "af30bab8458ebc51498f169a7dbf0788f23de03a328576bcc32b3b6c6cb6ee17",
-      "tasks.md": "ee09c5c22501713ad780f75f2204256e2f056c625bd1fee9f5fd0ea43101082d",
+      "spec.md": "4d959c44a9d18e3b5cfef09b0771303935b0e29bbf28ae35b34f6e3ffc43fd2c",
+      "plan.md": "2a9b8ae01e47777d7808fd87f71e0d2f471062797ed921138b15b4006fd5ffdb",
+      "tasks.md": "0392d0efc7a315ad19c090ca9343bfe37fbc026590c5a944380bd89bcdc716b0",
       "decision-record.md": "ece89c5c8b32ce85b8d2e0666a5c77083525023e082f6efdef827ca21920e4d0",
-      "implementation-summary.md": "c46616d7d87f40e8c98cd679d2cacdf62873e09d2a68d844c89e587a24eb481b"
+      "implementation-summary.md": "1a93f196086a36ff1b3f57a9169a83734f66fe091938986e41c333cdad81945e"
     },
     "last_active_child_id": null,
     "last_active_at": null

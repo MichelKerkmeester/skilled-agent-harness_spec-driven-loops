@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/042-improved-communication"
+    packet_pointer: "cli-external-orchestration/z_archive/042-improved-communication"
     last_updated_at: "2026-08-11T06:40:41Z"
     last_updated_by: "codex"
     recent_action: "Defined the phased epic and opened its research-strategy child."

@@ -40,7 +40,7 @@
     "023-system-spec-kit-readme",
     "024-skills-index-readme"
   ],
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "description": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At",
   "keywords": [
     "repo",

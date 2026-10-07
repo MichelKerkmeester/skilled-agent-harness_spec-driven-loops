@@ -398,5 +398,5 @@ Action:
 ## 11. Related Documents
 
 - [spec.md](./spec.md) - Research findings and gap analysis
-- [AGENTS.md](/AGENTS.md) - Gate system documentation
-- [SKILL.md](/.opencode/skills/system-spec-kit/SKILL.md) - SpecKit skill definition
+- [AGENTS.md](AGENTS.md) - Gate system documentation
+- [SKILL.md](.opencode/skills/system-spec-kit/SKILL.md) - SpecKit skill definition

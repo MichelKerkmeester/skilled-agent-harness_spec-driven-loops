@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 015/002 promoted the cosine lane to a live weight of 0.05 by following a single conservative weight vector",
     "created_at": "2026-05-13T20:45:00Z",
-    "last_save_at": "2026-08-30T15:39:26.679Z",
+    "last_save_at": "2026-10-07T18:15:42.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T20:45:00Z",
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e78dad6a306c7b3e10c0ab3114e3bddabb5c9177eb8e308fb7a3e2c85cb1fc93",
+    "source_fingerprint": "sha256:19346474e07d28cddf5bbacc34e6fe22a737c6676432d74fd06af04a749ac9b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1da03df6db7409d4a4da3069ec5761b8ab38637f8c4b5946003dc57e4121b916",
-      "plan.md": "21ae7491a1b9422b048447676f9a4b98add427ac4fdf15c72de04ce34eb6ceca",
-      "tasks.md": "5f256540700a43124602a71f6699c29c4b61cc82dbafb63af3dd7520fa65308c",
-      "implementation-summary.md": "35a6566d5c82416b76122c4af9652e4657d952db4901857887f3f14e88a2a6ef"
+      "spec.md": "0914bcb8c15cbdac828e18966a627e99528ff3a12769f2230c2b0fd6e489c184",
+      "plan.md": "2eb81158b4d19c5b35a2d76bc1b2bc573866fcc9759dc81ce045b404c39ba41f",
+      "tasks.md": "984adfafefeb38e069a013786d49bcf69beedff825cca8924ca851072e410206",
+      "implementation-summary.md": "fd6eed96099486683fd263c208e2d79a99ba1077d502e7c57bf87e6d58abc17c"
     },
     "last_active_child_id": null,
     "last_active_at": null

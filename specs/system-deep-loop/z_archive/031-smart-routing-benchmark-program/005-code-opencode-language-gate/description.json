@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
   "description": "Split code-opencode's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops",
   "keywords": [
     "split",

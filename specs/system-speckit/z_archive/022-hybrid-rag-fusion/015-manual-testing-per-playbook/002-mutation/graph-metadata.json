@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-09-10T21:04:59.826Z",
+    "last_save_at": "2026-10-07T19:24:31.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd640c01f45908dd719c69292f9b5fef917054f368fd2c89b6ea7d45d33d1cec",
+    "source_fingerprint": "sha256:6d6f367196395f6e697ce3eeb92c77535eddc31592baa824363876cd0c56ccde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "475ae7af6dccb52bcc8c8291b2d6f3c89cc037dcd4e90bd1501d7cf1580f7b97",
-      "plan.md": "1d03031a7753e94b7f139b98816a17230d910e6ea50ebca354f17e5036ee4a31",
+      "plan.md": "059f10f8108038a13bdd7a07db2a55fa772a8edeaa8550ab6fe77be662ee1d83",
       "tasks.md": "19aa67a909d77ff4df622593f3e294f73254cd9be9ba6675774f63ebbf8461dc",
       "implementation-summary.md": "9ebe39bac6673b5c6351ad6d34a1a2fd879d924ae1604b897978d8c722753346"
     },

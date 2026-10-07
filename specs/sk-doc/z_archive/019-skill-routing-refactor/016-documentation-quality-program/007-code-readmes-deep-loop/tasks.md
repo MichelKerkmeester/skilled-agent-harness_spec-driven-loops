@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop"
     last_updated_at: "2026-07-22T15:15:43Z"
     last_updated_by: "claude"
     recent_action: "All fifty-three READMEs authored and the two catalogs refreshed."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code readmes deep loop tasks"
 ---
 
 # Tasks: Code READMEs (System-Deep-Loop Batch)

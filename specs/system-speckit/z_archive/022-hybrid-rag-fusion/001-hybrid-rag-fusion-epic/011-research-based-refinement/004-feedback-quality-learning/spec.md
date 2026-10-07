@@ -23,6 +23,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->
 # Feature Specification: Feedback & Quality Learning
 
+<!-- ANCHOR:metadata -->
 ## Phase Context
 
 | Field       | Value                                              |
@@ -32,14 +33,17 @@ _memory:
 | Predecessor | `../003-graph-augmented-retrieval/spec.md`          |
 | Successor   | `../005-retrieval-ux-presentation/spec.md`          |
 | Priority    | P0 (foundational — event ledger unlocks learned features across all dimensions) |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Overview
 
 Feedback & Quality Learning closes the loop between retrieval and ranking by collecting implicit signals from the calling AI and using them to improve future results. The D4 deep-research agent discovered the system is **more mature than expected**: quality gates already exist in `save-quality-gate.ts` (0.4 density, 0.92 dedup, 50 char min), reconsolidation exists in `reconsolidation-bridge.ts` (opt-in, checkpoint-gated), and learned feedback exists in `learned-feedback.ts` with 10 safeguards. The real gap is **signal collection from the calling AI**, not safeguard design.
 
 Six requirements span event logging, decay policy, gate exceptions, batch learning, reconsolidation, and shadow evaluation.
+<!-- /ANCHOR:problem -->
 
 ---
 
@@ -245,6 +249,7 @@ for (const query of holdoutQueries) {
 <!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 4. Risks
 
 | Risk                          | Mitigation                                          |
@@ -254,6 +259,7 @@ for (const query of holdoutQueries) {
 | Quality gate bypass abuse     | Restricted to decision + 2 structural signals, warn-only |
 | Reconsolidation data loss     | No destructive action below 0.88, checkpoint before merge |
 | Shadow scoring overhead       | Holdout slice only, not full query volume            |
+<!-- /ANCHOR:risks -->
 
 ---
 
@@ -265,23 +271,7 @@ for (const query of holdoutQueries) {
 - [ ] Integration test: quality gate exception for short decisions
 - [ ] Shadow scoring comparison report produced for at least 2 weekly cycles
 - [ ] No ranking side effects observable while in shadow mode
-- [ ] Existing test suite (4876+) passes without regressions<!-- ANCHOR:metadata -->
-<!-- /ANCHOR:metadata -->
-
-<!-- ANCHOR:problem -->
-<!-- /ANCHOR:problem -->
-
-<!-- ANCHOR:scope -->
-<!-- /ANCHOR:scope -->
-
-<!-- ANCHOR:requirements -->
-<!-- /ANCHOR:requirements -->
-
-<!-- ANCHOR:success-criteria -->
-<!-- /ANCHOR:success-criteria -->
-
-<!-- ANCHOR:risks -->
-<!-- /ANCHOR:risks -->
+- [ ] Existing test suite (4876+) passes without regressions
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS

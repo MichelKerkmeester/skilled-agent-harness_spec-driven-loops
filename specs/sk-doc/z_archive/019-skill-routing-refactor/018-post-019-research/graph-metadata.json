@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/018-post-019-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/018-post-019-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/018-post-019-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/018-post-019-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 019 surfaced high-value questions about fleet-wide routing decomposition, confidence calibration, leaf-use telemetry, route-budget selection, and fixture generalization, but did not settle them with operational evidence",
     "created_at": "2026-07-25T07:41:40.340Z",
-    "last_save_at": "2026-08-30T15:39:15.625Z",
+    "last_save_at": "2026-10-07T18:13:30.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d45d9be5373287317df3c6fafc0b8effccc432e47da3064cc3afe7220e7c8876",
+    "source_fingerprint": "sha256:20033e9091a0c532c716cc954f9f6eaa457a5a295fee5fb8fce21896191178c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "faf4c9c63de2a938b2219f69deafd865e6f6377ec464f956943f4415bdf425e9",
-      "plan.md": "d41371b20a8d7ca105b65265d5921b6f66f84bdce3ec251ccbfe39ec97a60402",
-      "tasks.md": "7b91df5106449fe85f2718fab6b0c7981d353b8c5db53f38092bc18f8ef7ab02",
-      "implementation-summary.md": "a205bed200fc2462d5ea73bf6f06b0038b3db56083e950f9e07815994ca5a844",
+      "spec.md": "838c75390dc820ae5fdc0d3a57c6f786b7a09c6111533d91da297eecc855afea",
+      "plan.md": "bb2ef2129e41b1faf003ed2889044a81a7110aa6e176956655bed32042c30d14",
+      "tasks.md": "d53d574c93f513e379ef8ffdb8f945bbcb03b5b64bf17a4309489e7dab2629df",
+      "implementation-summary.md": "4b9ccd66e6964da850fd82ca553c477a74f82d6e104d61bb3785f6fc8059b8ef",
       "research/research.md": "b91f3c05f14494700cc42e2bedf2ab2a6772d3d43c07cf36dfbd9ca8eba89705"
     },
     "last_active_child_id": null,

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename",
   "description": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
   "keywords": [

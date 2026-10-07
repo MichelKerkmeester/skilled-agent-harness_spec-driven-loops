@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
   "description": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole",
   "keywords": [
     "fold-in",

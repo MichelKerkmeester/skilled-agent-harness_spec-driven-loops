@@ -4,16 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
   "parent_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution",
   "children_ids": [
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/009-round3-review-remediation",
-    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
     "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
     "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
     "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor",
@@ -197,7 +187,7 @@
     ],
     "causal_summary": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
     "created_at": "2026-04-12T09:02:50.190Z",
-    "last_save_at": "2026-08-30T15:39:24.449Z",
+    "last_save_at": "2026-10-07T20:02:30.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +195,10 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:83ce151388fa0f2d0ed75ebe3c3f7eff37a72ac2e951ef79984322ac5e47cc2f",
+    "source_fingerprint": "sha256:6d368c14ddc671637075c7aba05b9d0b2aa6b63b7d7f674810e96b507fa53893",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26985b8d52a3944a70d724935a8ef7bdfc8704b0b3dca3b17afacc1289ab635a",
+      "spec.md": "5321a86aca01eef9e85d04292d9fc5638f96de9f35ceba8d70b945d9b00ffe7e",
       "research/research.md": "d6f2654d2016ce7b6f7acba36ccbbc7a4556de00876b95721312f8e42008c20e",
       "resource-map.md": "2a60cac2c335c29288adb6ec81f0a4a5ef11d37cc47126301e0df670931ed2fa"
     },

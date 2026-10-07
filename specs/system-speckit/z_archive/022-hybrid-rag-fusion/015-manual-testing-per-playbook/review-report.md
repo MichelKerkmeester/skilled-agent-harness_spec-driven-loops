@@ -1,3 +1,13 @@
+---
+title: "Deep Review Report — Feature Catalog ↔ Playbook ↔ Spec Phase Traceability"
+description: "Traceability review across feature catalog entries, playbook scenarios, and spec phases for the 015 manual-testing-per-playbook packet."
+trigger_phrases:
+  - "manual testing traceability review"
+  - "feature catalog playbook traceability"
+importance_tier: "critical"
+contextType: "research"
+---
+
 # Deep Review Report — Feature Catalog ↔ Playbook ↔ Spec Phase Traceability
 
 ## 1. Executive Summary

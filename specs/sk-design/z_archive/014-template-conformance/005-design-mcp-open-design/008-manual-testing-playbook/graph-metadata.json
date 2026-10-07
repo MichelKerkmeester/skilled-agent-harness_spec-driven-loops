@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
-  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
-  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "packet_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
+  "parent_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "design-mcp-open-design manual-testing-playbook conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -25,11 +24,11 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
       "skills",
-      "sk-design"
+      "sk-design",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/manual-testing-playbook/` has not been audited against `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md`",
     "created_at": "2026-07-27T15:02:59.572Z",
-    "last_save_at": "2026-08-30T15:39:13.256Z",
+    "last_save_at": "2026-10-07T18:12:32.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f635d6538d5023d95734a2146c731abf4bebe4a75465e7246a85c55eb689839",
+    "source_fingerprint": "sha256:004fb3b21f65c3e76636e0167eaed360f399a67c9065846b286309af39546d87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cafa4505fbd0e843cb3e4bcb2000a3b4058a3d676be5816d6404693950da2cae",
-      "plan.md": "2e6eaee809549629ecadd1a197f23623da7f38cc2af29146eefb7bab6aed9e92",
-      "tasks.md": "d51944e84ba8bf6af82682a642f5dcd4eeec789f943d433a1f801ba555c12165",
-      "implementation-summary.md": "341a637339afed6083f4aec586840fbec1760ed7917e1a8b5b87d6e9e2e2d76c"
+      "spec.md": "0f9a578d0d2921d54aef63f680e97bc0b277bbd50902678a2c1e62f3bc380af4",
+      "plan.md": "256001ffde74ccddc23f6701077b90dc443f53485eea143fd17e2aa0235ef54e",
+      "tasks.md": "5d1fb6be615f78495e7498cf0eb55504595722945f2cda9444c053d114ecc9a2",
+      "implementation-summary.md": "02b6f89e77a82519072a12a35a850466ef918adecdf9c2074142b8b5f23dd813"
     },
     "last_active_child_id": null,
     "last_active_at": null

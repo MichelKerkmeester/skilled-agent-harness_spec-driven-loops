@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill"
     last_updated_at: "2026-07-07T13:10:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "All implementation tasks completed"

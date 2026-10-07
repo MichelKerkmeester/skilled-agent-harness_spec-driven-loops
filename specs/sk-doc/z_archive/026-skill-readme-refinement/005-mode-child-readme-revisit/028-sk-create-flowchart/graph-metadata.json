@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -55,19 +52,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-flowchart/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:49.243Z",
-    "last_save_at": "2026-08-30T15:39:17.819Z",
+    "last_save_at": "2026-10-07T18:13:47.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:082ace14e729ae6b9c51a40b78c98e99a672d5c09fdfe658493c380cfd0af57f",
+    "source_fingerprint": "sha256:f8527a2149cf5846aadb8cc86d313e5fb474d4bb41d271d49a4c62b420dd89e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19df49bef6e7ebc1f2bd3a891db1b6a27b2462f7182b150b2b8c77135747659d",
-      "plan.md": "0ec02117fe4b9c6ad4890fd6f6de1eeca5549e5ef5cc1936e5e6e91d8d9dca95",
-      "tasks.md": "1cb482a180e471554f97309bae03808ff8247ed447add71a64a65fed25426daa",
-      "implementation-summary.md": "9dbbae7e04519633cbfae523b3e0bb1a3cede76fb5a136607adc78a49614fc90"
+      "spec.md": "fd8a74db99387e7d6ec743f983b960058a4a16020160782b0319806febfff449",
+      "plan.md": "a744754d52a4908bb963d353b7b1f83432e2d6bddac255fa73821e349d6eb104",
+      "tasks.md": "d611e7c0e909d9946bde74ed3d00161527fd26c1e67772f00bdf30f4ade0d4e8",
+      "implementation-summary.md": "f3bafc19c81aba12bc3eab7642d2675029259c4addc105e980593f7ec99e4681"
     },
     "last_active_child_id": null,
     "last_active_at": null

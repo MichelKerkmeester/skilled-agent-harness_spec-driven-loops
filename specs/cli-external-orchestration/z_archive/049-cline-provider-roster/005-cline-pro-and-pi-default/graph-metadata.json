@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default",
-  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/z_archive/049-cline-provider-roster/005-cline-pro-and-pi-default",
+  "spec_folder": "cli-external-orchestration/z_archive/049-cline-provider-roster/005-cline-pro-and-pi-default",
+  "parent_id": "cli-external-orchestration/z_archive/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
     "created_at": "2026-08-18T14:19:31.420Z",
-    "last_save_at": "2026-08-30T15:39:08.110Z",
+    "last_save_at": "2026-10-07T18:11:15.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4789222512ea7b20f2f6d03fd43fece425c7b6715af1f7d3f123d6fe37f54bd1",
+    "source_fingerprint": "sha256:e3b0eff57a0949cebda491ae3aa5d655b9aa341b1277c50c03d3bc22ec60ebc8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9145107eef4745fb87674cf408fa077d619837870a94424194f0ecfc876be2e",
-      "plan.md": "4640dc691dafd0059fb64d5e14c66d8b32e6574fe9fd97734c55e682e2fb3e93",
-      "tasks.md": "aa63d1b1c4d05a786b3f96ea3ad15e6d31493723e1f9fc347aecb17a7fa0adca",
-      "implementation-summary.md": "69f1ba73579125221a3b7d0c1cb37c670d37046636cb75d1a0c5d61764851c14"
+      "spec.md": "c46b51778780149a19c7e473fc1bab44437340eaf9314a9832e928657840bdde",
+      "plan.md": "58cbce125c9ff81348ff6e42a583b8a893a70493e7165e46cba801bacc1b9136",
+      "tasks.md": "978f98e2f91a907a9f68cfe6c06c62e553e3ef06e0ce58b6549a6088da47a1e8",
+      "implementation-summary.md": "aee74f86f73eae84b707e67a7d40e2fce6410c9666d9862a2cb5553febf80b60"
     },
     "last_active_child_id": null,
     "last_active_at": null

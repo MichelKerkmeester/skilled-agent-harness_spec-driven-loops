@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/032-sk-design-recall-investigation"
     last_updated_at: "2026-07-29T03:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Wired two recall intents; sk-design PASS 95; committed 3dd5e19efb"

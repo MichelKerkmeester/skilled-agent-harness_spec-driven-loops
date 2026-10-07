@@ -1,3 +1,7 @@
+---
+title: "Test Summary: Dynamic Complexity-Based Template Scaling"
+---
+
 # Test Summary: Dynamic Complexity-Based Template Scaling
 
 **Spec Folder**: `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity`

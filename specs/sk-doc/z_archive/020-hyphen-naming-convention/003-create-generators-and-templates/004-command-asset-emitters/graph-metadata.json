@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,6 @@
       "implementation-summary.md",
       ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
       ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md"
     ],
@@ -73,7 +72,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-08-30T15:39:16.116Z",
+    "last_save_at": "2026-10-07T18:13:22.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d145d1f17195a346627e8baf69802c5c4e7dd2b1f737a64beb006981d4ceafd",
+    "source_fingerprint": "sha256:ca2c277671384ad3c5774a11f7a04247b5c5cf2099976b52e7651824d1c8e2d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "483e41e460f4220b767042c8ce863df6cfecf1f677e49843aaf1ada694564095",
-      "plan.md": "c5b838fb234138b759adb9aa67b8817cf35cf5c739d562219925a00db7e56d1b",
-      "tasks.md": "8031f495d6db0fd24a036e77b578ad06bc697d4cfec5b53bbaa19d63342e7f8d",
-      "implementation-summary.md": "bbfce8b1b75ac1949beb2ae3fe59f24712acfbf63fd564db22e4816742eada4b"
+      "spec.md": "a7d78f4c84d66de55bbbca095bae0f6c3c8e52e1bd1a3ac0fe077f93554fe273",
+      "plan.md": "f5e86ea7bb5600701aae31a543ca5aa1f9c144eae69b7acbfcc18153d7245646",
+      "tasks.md": "48b4ea338a795ddd7408c3097aa72976c29c5275abbe1ac36718e498a614e965",
+      "implementation-summary.md": "2e228e9086963900e30d83ee7f87f7be8a512f1956a525345d65a4dc04174917"
     },
     "last_active_child_id": null,
     "last_active_at": null

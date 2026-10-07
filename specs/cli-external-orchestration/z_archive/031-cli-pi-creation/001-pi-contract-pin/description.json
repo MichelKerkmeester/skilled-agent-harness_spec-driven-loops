@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin",
   "description": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
   "keywords": [
     "downstream",

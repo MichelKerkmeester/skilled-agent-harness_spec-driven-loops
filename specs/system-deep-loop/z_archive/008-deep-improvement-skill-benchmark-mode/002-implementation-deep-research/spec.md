@@ -30,12 +30,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Purpose
 
 Run a GPT-5.5-primary deep-research loop (with Opus 4.8 agent verification) to determine the best WAY TO IMPLEMENT the `deep-agent-improvement` → `deep-improvement` rename and Lane C ("skill-benchmark"). Phase 001 converged the DESIGN (what to measure, scoring, harness, fixtures, report, rename impact map); this phase produces the build-ready IMPLEMENTATION PLAYBOOK consumed by Phase 003 (rename) and Phase 004 (Lane C build).
 
 Research only — no implementation. Report findings, cite sources, never implement fixes during research.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:requirements -->
 ## 2. Implementation research questions
 
 - **IQ1.** Lane C module architecture & seam reuse within the FIXED per-lane layout (`skill-benchmark/` subdir under `assets/`/`references/`/`scripts/` + `shared/`): what is genuinely shared vs Lane-C-specific, and how much of Lane B's scorer/grader/cache + `dispatch-model.cjs` to reuse vs fork.
@@ -46,6 +50,8 @@ Research only — no implementation. Report findings, cite sources, never implem
 - **IQ6.** Scorer + report-builder: D1–D5 computation reusing Lane B shapes; render `report.md` FROM `report.json`; bottleneck ranking by funnel attrition; remediation taxonomy.
 - **IQ7.** Rename execution runbook from the 001 impact map (atomic advisor TS+Python update, index-regen LAST, validation gate) + resolve the 4 decision-record items (agent identity; `deep-model-benchmark` alias; command verbs [keep]; narrow-vs-wide [operator chose NARROW]).
 - **IQ8.** Pilot skills to dogfood Lane C on first; weight/verdict-band calibration; vitest/integration test patterns for the new lane; external prior art for harness implementation.
+
+<!-- /ANCHOR:requirements -->
 
 ## 3. Method — GPT-5.5 primary, Opus verify (operator doctrine)
 
@@ -67,6 +73,7 @@ Per the CLI dispatch rule, `cli-codex/SKILL.md` is read before composing executo
 - `research/gpt55/{deltas,state-parts}/*.jsonl` — per-iteration findings + state.
 - `research/orchestration-status.log` — per-iteration driver ledger.
 
+<!-- ANCHOR:success-criteria -->
 ## 5. Success criteria
 
 - 5/5 GPT-5.5 iteration artifacts present; `orchestration-status.log` shows every iteration `exit=0`; the Opus verification pass is complete.
@@ -74,6 +81,10 @@ Per the CLI dispatch rule, `cli-codex/SKILL.md` is read before composing executo
 - The 4 rename decision-record items are resolved (including a documented narrow-vs-wide recommendation).
 - Findings are concrete enough to drive Phase 003 (rename) and Phase 004 (Lane C build).
 
+<!-- /ANCHOR:success-criteria -->
+
+<!-- ANCHOR:scope -->
 ## 6. Out of scope
 
 No implementation, no rename execution, no Lane C build, no skill mutation, no change to the fixed per-lane directory layout or the fixed (narrow) rename scope. This phase produces evidence and a build playbook only.
+<!-- /ANCHOR:scope -->

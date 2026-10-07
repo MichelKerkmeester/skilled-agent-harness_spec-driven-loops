@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/001-gate-model-reconciliation` |
+| **Spec Folder** | 008-deep-review-gate-model-reconciliation |
 | **Completed** | 2026-05-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

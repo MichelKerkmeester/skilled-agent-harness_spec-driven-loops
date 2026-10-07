@@ -132,8 +132,8 @@ Three fixes from deferred deep research findings (Q1, Q3, Q5) plus an ALIGNMENT_
 Reference links: [spec.md](spec.md) and [plan.md](plan.md).
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
     last_updated_at: "2026-07-14T16:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored phase 001 tasks"

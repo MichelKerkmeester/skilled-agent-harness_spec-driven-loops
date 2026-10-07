@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/003-fanout-failure-recovery"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery"
     last_updated_at: "2026-06-19T12:10:00+02:00"
     last_updated_by: "codex"
     recent_action: "Implemented the 5-candidate resilience sequence"

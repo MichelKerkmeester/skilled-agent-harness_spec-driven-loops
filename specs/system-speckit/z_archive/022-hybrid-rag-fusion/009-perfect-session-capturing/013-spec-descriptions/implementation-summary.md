@@ -124,8 +124,8 @@ Code hardening: 8 fixes (C1-C8), 3 test fix groups, 13 findings from GPT 5.4 tri
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

@@ -183,7 +183,6 @@ Execute all 11 playbook scenarios for the retrieval enhancements category and re
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -197,7 +196,6 @@ Execute all 11 playbook scenarios for the retrieval enhancements category and re
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Scenario Boundaries

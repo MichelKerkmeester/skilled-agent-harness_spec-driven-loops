@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/011-smart-router-alignment",
-  "spec_folder": "sk-doc/014-sk-doc-parent/011-smart-router-alignment",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/011-smart-router-alignment",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/011-smart-router-alignment",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Roughly 24 skills across the repo carry router pseudocode or keyed routing logic inside their `SKILL.md`, but only the handful of full parent hubs (`sk-code`, `sk-design`, `deep-loop-workflows`, `sk-doc`) follow the canonical 4-pattern smart-router contract documented at `.opencode/skills/sk-doc/create-skill/assets/skill/skillsmartrouter.md`",
     "created_at": "2026-07-07T04:51:44.678Z",
-    "last_save_at": "2026-08-30T15:39:13.646Z",
+    "last_save_at": "2026-10-07T18:12:10.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa0cdfbdeea127543ed4e001151cacdaf87b20b975e428d42be114211302dbfe",
+    "source_fingerprint": "sha256:730adcafd372c95820801607e5affb86e4981d34efb580169e75a2cff66261db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1aed3e2c18bf8fe235ca10c022358e514722897fce44f4674138cc2e0073dce6",
-      "plan.md": "c0cbbb1ac6a566bb89b377d3f0a1b7c50f3ad87e6e41053622a1a58450a4b9f1",
-      "tasks.md": "15723900f628025a9e59e94fcfb45fcfe7f548bd71980d5c32e6380bc61cf54e",
-      "implementation-summary.md": "0eefa7afdb0d8a60301c30e4e31fb574eb4406d072ed15205a1c32b57ebcc5d9"
+      "spec.md": "ca6a9ef37a1fd343fc9f4f09ee99477c93369d505c49acb815ca2a6589ebc080",
+      "plan.md": "26d7af8dd55ec1ac488a991380653545f3ec4357c0d6bb0e4a6720f3d8d6e663",
+      "tasks.md": "38b53a0d434b67a5385cec5c8b72d7eac476966f84577a74fceff3c9e84310fa",
+      "implementation-summary.md": "27dc4e51370f1515eb6c38f19e4fb9902e214844649f955806169a21ab2e099b"
     },
     "last_active_child_id": null,
     "last_active_at": null

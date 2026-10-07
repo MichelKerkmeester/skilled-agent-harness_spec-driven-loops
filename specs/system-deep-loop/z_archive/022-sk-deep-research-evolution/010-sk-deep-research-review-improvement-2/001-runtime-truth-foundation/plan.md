@@ -3,7 +3,6 @@ title: "Implementation [system-deep-loop/z_archive/022-sk-deep-research-evolutio
 description: "Deliver the eight deep-loop improvements in dependency order, starting with shared runtime truth and ending with optional advanced orchestration modes."
 trigger_phrases:
   - "042"
-  - "implementation plan"
   - "deep research"
   - "deep review"
   - "runtime truth"

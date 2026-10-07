@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire",
+  "specFolder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/002-register-and-wire",
   "description": "A new reference file is invisible to the advisor until the manifest registers it, and undiscoverable to a reader until the mode's docs link it",
   "keywords": [
     "new",

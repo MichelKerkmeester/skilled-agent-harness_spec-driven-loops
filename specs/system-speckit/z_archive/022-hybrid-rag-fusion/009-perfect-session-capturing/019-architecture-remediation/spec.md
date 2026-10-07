@@ -70,7 +70,7 @@ Global architecture, bug fix, and alignment deep dive across the entire `009-per
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-<!-- ANCHOR:problem -->
+<!-- ANCHOR:problem-2 -->
 
 ### Problem Statement
 The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit passes. No single comprehensive architecture audit has examined the full system for: structural bugs, alignment drift between spec docs and implementation, dead code from deleted files, type safety gaps, and cross-phase consistency issues. Wave 1 analysis (10 agents) produced 135 findings requiring synthesis and prioritization.
@@ -78,7 +78,7 @@ The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 
 ### Purpose
 Produce a prioritized findings report that identifies every actionable bug, misalignment, dead reference, and architecture violation — enabling targeted remediation in subsequent phases. Wave 3 synthesis agents consolidate and validate all 135 findings, produce a decision record, and generate the remediation sprint plan.
 
-<!-- /ANCHOR:problem -->
+<!-- /ANCHOR:problem-2 -->
 <!-- /ANCHOR:problem -->
 
 
@@ -87,7 +87,7 @@ Produce a prioritized findings report that identifies every actionable bug, misa
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 
 ### In Scope
 - All TypeScript source files under `scripts/` (core, extractors, lib, utils, memory, renderers, spec-folder, evals, types, tests) — 96+ files
@@ -102,7 +102,7 @@ Produce a prioritized findings report that identifies every actionable bug, misa
 - Modifying any source files
 - Editing existing spec folder documents outside of 019
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 <!-- /ANCHOR:scope -->
 
 
@@ -111,7 +111,7 @@ Produce a prioritized findings report that identifies every actionable bug, misa
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 
 ### P0 - Blockers (MUST complete)
 
@@ -156,14 +156,14 @@ Produce a prioritized findings report that identifies every actionable bug, misa
 | OPUS-B4 | Claude Opus | Opus 4.6 | Checklist generation |
 | OPUS-B5 | Claude Opus | Opus 4.6 | Research compilation |
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-<!-- ANCHOR:success-criteria -->
+<!-- ANCHOR:success-criteria-2 -->
 
 Each workstream produces findings in this format:
 - **ID**: FINDING-NNN
@@ -183,7 +183,7 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 - **SC-005**: **Given** this phase is documentation-first, **When** strict validation runs, **Then** the Level 3 doc set passes without structural or evidence warnings.
 - **SC-006**: **Given** a maintainer starts Sprint S1-S8 work from this phase, **When** they read the plan, checklist, and ADR summary, **Then** they can trace each sprint back to validated findings.
 
-<!-- /ANCHOR:success-criteria -->
+<!-- /ANCHOR:success-criteria-2 -->
 <!-- /ANCHOR:success-criteria -->
 
 
@@ -192,7 +192,7 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-<!-- ANCHOR:risks -->
+<!-- ANCHOR:risks-2 -->
 
 ### Dependencies
 - Wave 1 scratch outputs (all 10 files in `scratch/`) must be present before Wave 3 runs
@@ -209,13 +209,13 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 | R-004 | Wave 3 synthesis diverges from Wave 1 raw data | Low | High | OPUS-B1 explicitly cites scratch file + finding ID for every verified finding |
 | R-005 | Type rename decisions (R-002/003/004) break callers not in scope | Medium | Medium | ADR-002 decision gates the rename; full call-site audit before execution |
 
-<!-- /ANCHOR:risks -->
+<!-- /ANCHOR:risks-2 -->
 <!-- /ANCHOR:risks -->
 
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-3 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Completeness**: All 8 subsystems (core, extractors, lib, utils, memory, renderers, spec-folder, tests) covered by at least one Wave 1 agent
@@ -223,7 +223,7 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 - **Consistency**: Finding IDs follow `{AGENT}-{NNN}` format throughout all scratch files
 - **Auditability**: All Wave 3 synthesis decisions recorded in `decision-record.md` with alternatives
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-3 -->
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -281,7 +281,7 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 
 | ID | Question | Owner | Resolution |
 |----|----------|-------|------------|
@@ -289,7 +289,7 @@ Raw findings go to `scratch/`, synthesis goes to `plan.md`.
 | Q-002 | Does OPUS-B5 research compilation require a standalone research file or is it embedded in decision-record.md? | Agent author | Pending Wave 3 start |
 | Q-003 | Are the 44 MCP handlers fully covered by CODEX-A4, or does a separate Wave 2 MCP agent need to be added? | Audit scope owner | To be confirmed before Wave 3 |
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 

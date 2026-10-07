@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/062-devpass-pi-custom-provider"
+    packet_pointer: "cli-external-orchestration/z_archive/062-devpass-pi-custom-provider"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "All tasks complete; verified against a scrubbed environment"

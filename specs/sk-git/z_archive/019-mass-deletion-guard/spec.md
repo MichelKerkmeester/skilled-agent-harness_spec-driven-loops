@@ -1,9 +1,22 @@
+---
+title: "Spec — Mass-Deletion Guard for Commits and Pushes"
+description: "Block a commit (primary) or push (backstop) that deletes more than a configurable number of tracked files unless the operator explicitly authorizes that operation, fail-open so a guard bug can never wedge git."
+trigger_phrases:
+  - "mass deletion guard"
+  - "commit deletion threshold"
+  - "push deletion backstop"
+importance_tier: "important"
+contextType: "implementation"
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec — Mass-Deletion Guard for Commits and Pushes
 
+<!-- ANCHOR:metadata -->
 ## Status
 Complete
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 A `git add -A && commit` taken against a working tree that is **behind** the branch
@@ -21,7 +34,9 @@ is the cheapest place to stop the next one before it reaches history or origin.
 Refuse any single commit (primary) or push (backstop) that removes more than a
 configurable number of tracked files, unless the operator explicitly authorizes
 that one operation. Never disrupt normal work; never wedge git on a guard bug.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 - **R1** — Block a commit whose staged index deletes more than the threshold of
@@ -38,7 +53,9 @@ that one operation. Never disrupt normal work; never wedge git on a guard bug.
   machine's `core.hooksPath` omits `pre-push` — see Constraints.
 - **R6** — Blocked operations print how to authorize/raise the ceiling and append
   an audit line to `<git-dir>/mass-deletion-guard.log`.
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:risks -->
 ## Constraints
 
 - This machine sets `core.hooksPath` to `~/.config/git/hooks`, which symlinks the
@@ -47,13 +64,17 @@ that one operation. Never disrupt normal work; never wedge git on a guard bug.
   and disrupt in-flight worktree pushes, so it is intentionally left unwired; the
   push code ships ready for when `pre-push` is wired.
 - Fail-open is mandatory: the guard is defense-in-depth, not a correctness gate.
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:scope -->
 ## Non-goals
 
 - Server-side (GitHub) enforcement, or catching tools that push via a git library
   (libgit2/isomorphic-git) that never invokes local hooks.
 - Removing the external orchestrator that caused the incident (done separately).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Acceptance criteria
 
 1. Commit deleting >threshold tracked files is blocked; with the override it
@@ -61,3 +82,4 @@ that one operation. Never disrupt normal work; never wedge git on a guard bug.
 2. Commit adding any number of files, or deleting ≤threshold, is never blocked.
 3. Empty/non-numeric counts and a missing lib fail open (allow).
 4. The commit guard runs on the real repo via the effective hooks path.
+<!-- /ANCHOR:success-criteria -->

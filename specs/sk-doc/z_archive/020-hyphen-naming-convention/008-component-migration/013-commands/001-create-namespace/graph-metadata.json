@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The `.opencode/commands/create/assets/` tree has maintained filenames such as `createagentauto.yaml`, `createfeaturecatalogconfirm.yaml`, and `createmanualtestingplaybookpresentation.txt`",
     "created_at": "2026-07-14T15:18:31Z",
-    "last_save_at": "2026-08-30T15:39:17.025Z",
+    "last_save_at": "2026-10-07T18:13:27.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8eac7bdc92511df5fba2026da40c8cc6a6d21a0040b041d36bb18e1211ce5ace",
+    "source_fingerprint": "sha256:6e1df73fc38141697093c14dcc909394fc6b2a5b612cdb0305e22d538456a091",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cce32c761ab97fc32d9b2d4bc43340f239e4f829dfa0ee0a0fe41844192eac3",
-      "plan.md": "4aec195498ae4e49089f37fff526b44a17792496d0fb269145a9507bf83f91ce",
-      "tasks.md": "28b7864a3a495f25dc0b704cadec86e020a564df966a3b89ee9104a21ff5e918"
+      "spec.md": "5c321070c26c77aa62f8fce08a8099805f7dbdf4be944abef3a019876478366c",
+      "plan.md": "56c3c1bf16ebdb8350518c69793bb6f8df9d24baa053939bdf8aa48b97bc7375",
+      "tasks.md": "3b053f891057422613254dd00d2bcb03f0d9ca8ab646a959e8265f21f99d4053"
     },
     "last_active_child_id": null,
     "last_active_at": null

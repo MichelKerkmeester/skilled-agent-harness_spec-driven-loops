@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 004 distills a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, design-token vocabulary, and a design-principles digest) from the soon-to-be-deleted sk-design hub into references/design-knowledge/ of the standalone md-generator, and repoints the 3 dangling ../shared/* links to the local copies.",
     "created_at": "2026-08-19T06:07:45.237Z",
-    "last_save_at": "2026-08-30T15:39:13.506Z",
+    "last_save_at": "2026-10-07T18:12:33.703Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c1262311d1fb864249754c77528677f4b8b224b0aaa5ac04ce93ae78f80b33e",
+    "source_fingerprint": "sha256:c1be1067450a7f911661458a4f1081e44ba7a1456a91ae86df0e7dd381b0268c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c98e5790da662e31df5cd4a71d7b6d19f82a0beeaa247a85561a9593a2e6fd24",
-      "plan.md": "0dddb36703c434447af77609756d3ece78007d8e6fa2e6eb0f5847fbd9245bd2",
-      "tasks.md": "f9007e5d4c63c66f707520980d6a903e7b6105a1758bad5986cb411fd7f6e268",
-      "implementation-summary.md": "e825e103b4b4f0e02ae628fdec975d81cb05b84d6849b008e95f32edbeeb6d15"
+      "spec.md": "d34da575964c0b015d52dace96768c9b0613a168266dea5ded703ede47d507cd",
+      "plan.md": "a9b8656c3525bd31baae5ba5e389c49b2ca82e78dbbabcc898e20b658329a951",
+      "tasks.md": "6cf24c719e080f4035eab38d1e50ea45ad0a75c98ea48a94aa044792826f6fdc",
+      "implementation-summary.md": "7c0281c79e6223f6c33dacba1c417264cc2f40e135cc9a3529eaedb5d4da1dcd"
     },
     "last_active_child_id": null,
     "last_active_at": null

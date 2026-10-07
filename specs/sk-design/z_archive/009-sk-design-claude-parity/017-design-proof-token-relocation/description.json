@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/017-design-proof-token-relocation",
   "description": "`sk-design`'s hub root had a `references/` folder containing exactly one file, `designprooftoken.md`, while every other cross-cutting design doc",
   "keywords": [
     "sk-design",

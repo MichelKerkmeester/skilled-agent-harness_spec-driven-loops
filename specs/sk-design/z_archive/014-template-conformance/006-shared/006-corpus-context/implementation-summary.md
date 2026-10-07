@@ -3,12 +3,11 @@ title: "Implementation Summary: sk-design shared corpus-context conformance"
 description: "Audit complete — see Verification for evidence."
 trigger_phrases:
   - "sk-design shared corpus-context conformance"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/006-shared/006-corpus-context"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/006-shared/006-corpus-context"
     last_updated_at: "2026-07-27T16:17:26Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffold Planned implementation-summary placeholder"

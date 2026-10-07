@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/004-no-wrong-door-handoff",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/004-no-wrong-door-handoff",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,10 @@
     "trigger_phrases": [
       "no wrong door handoff deep dive",
       "bounded routing handoff protocol",
-      "acceptance vs completion routing"
+      "acceptance vs completion routing",
+      "no-wrong-door handoff plan",
+      "no-wrong-door handoff tasks",
+      "bounded routing handoff verification tasks"
     ],
     "key_topics": [
       "wrong",
@@ -26,19 +29,33 @@
       "protocol",
       "acceptance",
       "completion",
-      "one-shot",
-      "recovery"
+      "no-wrong-door",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +93,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode",
     "created_at": "2026-07-18T04:39:05.270Z",
-    "last_save_at": "2026-08-30T15:39:14.749Z",
+    "last_save_at": "2026-10-07T19:46:27.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:901ff5d600a7a1ada0e914e4fcb8db14eff4ac28a61c5e2e6b3a0a802d32c48e",
+    "source_fingerprint": "sha256:62eefc75f617d95edee021cc1c76ed548812b434046c61684266a9718a4876f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "245fb9ea5cbf6398f199f4ec978c24f71ae58450fccdf0f99cce6e7e3d2429be"
+      "spec.md": "245fb9ea5cbf6398f199f4ec978c24f71ae58450fccdf0f99cce6e7e3d2429be",
+      "plan.md": "350eebfbaa8d6ab1a44f00a1e0c9c4d0dedf91df4931951a9920da538236f937",
+      "tasks.md": "e4a67a589f332ac46392f8cb5610b3a767a2eb9c23206330ac2bc91e5dd90425"
     },
     "last_active_child_id": null,
     "last_active_at": null

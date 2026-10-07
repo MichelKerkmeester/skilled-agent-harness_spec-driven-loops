@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move design-interface, design-md-generator and design-mcp-open-design to their sk-design-* names, holding the pre-existing BLOCKED-BY-ROUTE-GOLD 91 verdict constant rather than fixing it.",
     "created_at": "2026-07-28T05:34:10.180Z",
-    "last_save_at": "2026-09-11T16:42:07.986Z",
+    "last_save_at": "2026-10-07T18:13:21.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b880ddbcb600b7954d1ea60f3fad747345cc930fa6998add17e613511c3ab8ed",
+    "source_fingerprint": "sha256:398ad6e4ffbdcbd514dd8b29a0f5870a549ddb2496e960fabac57d4b27fb4d69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "732b9a829192a283770d39d44183366a8de735f537a0f86ecd320933fd9f6b63",
       "plan.md": "874ef9d9cefc8166a85d96723729da5c54ea1d106c712bd9b4543e86bdc31246",
       "tasks.md": "feb30bd6e641c8d4fb70b9b55f7237e14fcca94a6badb98e64d6b948e9107b36",
-      "implementation-summary.md": "e985e927b1485af56fa8b1ab4033318bc73707c260b3d4af6d9680e16950edee"
+      "implementation-summary.md": "c34324a7b64eb04f6ba0ebbe1da957f62c24d2b865d37ea94604979603567ec3"
     },
     "last_active_child_id": null,
     "last_active_at": null

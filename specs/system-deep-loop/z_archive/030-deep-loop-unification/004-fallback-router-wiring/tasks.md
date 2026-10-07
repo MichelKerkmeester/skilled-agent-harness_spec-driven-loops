@@ -7,7 +7,7 @@ importance_tier: "low"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/004-fallback-router-wiring"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/004-fallback-router-wiring"
     last_updated_at: "2026-07-08T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored task ledger, not yet executed, optional"

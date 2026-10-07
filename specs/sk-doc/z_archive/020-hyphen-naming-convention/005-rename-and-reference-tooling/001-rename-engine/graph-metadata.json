@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-30T15:39:16.140Z",
+    "last_save_at": "2026-10-07T18:13:22.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ff93d89a635472c1e10bbd63b23a36a016dfc3db33221895c7efa34c1313d26",
+    "source_fingerprint": "sha256:77092e92bf4513d46277cb7d0f4d79352e92984509f745f6e0d12aa7dba350f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33e73b1f5ca3ce3e8343134880c10434fe9bca144a978137d1ab43adc9729a8e",
-      "plan.md": "7c03239bb0f02867e92c609931eed31bee7c573898ab06bfdd744ffbb1d0abb2",
-      "tasks.md": "9f3eb46827394262dd4680f49a0d46ecad227afee132fac2da3b3e193f4d1734",
+      "spec.md": "fb31f771568a8c5b33fd97ed6b3ef0ccd3a475cfabbf1858dfa78d03acfa1cc7",
+      "plan.md": "40f82287aa89d008c2a2bd16c5808bb0668b4d09572555f5df2e45417fa9329a",
+      "tasks.md": "03b3595d1a5126cf0402d3df63e0e9f0457755e62f1303a40c8906e73b68ee39",
       "decision-record.md": "c103e058f681007d903113933c3af6af9581e16d282e249da8f40965e548f7e0",
-      "implementation-summary.md": "b515f112850ed8dbb8c783aeae21abe55e3ac1d10b86e774bd7134812a67688e"
+      "implementation-summary.md": "a9b12a5bc35e4d87a0ea3ecea100013b36e42889a013105c9495141b27cdabcc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions.",
     "created_at": "2026-07-14T15:18:01Z",
-    "last_save_at": "2026-08-30T15:39:16.772Z",
+    "last_save_at": "2026-10-07T18:13:28.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,12 +176,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8181dd06c0f9794cbc82065444f6f1647d4c3aa21957e19fb7128a04160e8b41",
+    "source_fingerprint": "sha256:ea8fbe151f375332a2b0ee08280bca5b34995839a8413deca65af720313ad82b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "194a084b538041c406b114b6ee6277efeb788c0448afb11e75d33b49f242f3e4",
-      "plan.md": "ce51a9a40719a75d7fcc86c0dd3be6a01dfe24bc7f9a1cd68751bb1287e65ed4",
-      "tasks.md": "862dd996da4dd677c1112b5efe09b7d4cee584d4ce409a0d9592194244704809"
+      "spec.md": "9a237479f42ad0d5b1fef9adc0e8f6aafadff38b706558839759265118eaa469",
+      "plan.md": "8bd195dd9fbe4e72de655cbe337b8047d96f5c0042ddd8d2f87f40ec28508b4a",
+      "tasks.md": "c9e18b0bbfca3b242adff4e4fcd48efa5ff233d96e1f6e6f1b1ebf9fbf43bce7"
     },
     "last_active_child_id": null,
     "last_active_at": null

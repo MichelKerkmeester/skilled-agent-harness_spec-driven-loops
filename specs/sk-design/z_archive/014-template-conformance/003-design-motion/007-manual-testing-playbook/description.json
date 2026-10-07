@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/007-manual-testing-playbook",
   "description": "`manual-testing-playbook/` is the largest folder in `design-motion`: a root `manual-testing-playbook.md` plus 7 subdirectories (`advanced-craft/`,",
   "keywords": [
     "manual-testing-playbook",

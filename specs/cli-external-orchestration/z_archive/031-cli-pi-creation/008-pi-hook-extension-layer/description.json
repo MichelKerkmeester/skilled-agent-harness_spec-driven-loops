@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/008-pi-hook-extension-layer",
   "description": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores",
   "keywords": [
     "repo",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint.",
     "created_at": "2026-07-14T15:18:20Z",
-    "last_save_at": "2026-08-30T15:39:16.920Z",
+    "last_save_at": "2026-10-07T18:13:11.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6ca320edcbd7d8271c772d420e82638cc814c63ce641163e5196740a226aa039",
+    "source_fingerprint": "sha256:b10c5277da6b2be340b02dc9a975f82c8e962810df636b2b1493b8f146ac3eb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9234cb829efd98c7e3740606eef46d05e135b63b6162c7e118107f33abc51127",
-      "plan.md": "9b4db52e47455be0e44ae613b7685831114438a8dcd396a0e737b3b599d8196a",
-      "tasks.md": "37e03af0cffd4b81dfc457799367fae2a2f2d60e6af927395d288ca296710678",
+      "spec.md": "e04216b33eaa48fdf3a31ebf2070fcb6e9c806f505d6c87855c12baff919f00b",
+      "plan.md": "363c900f7da57b535eb35e72e883d167eb1d166676345f396f19fd85d46ed454",
+      "tasks.md": "cf7cebed6c7fc0a58cf232cfd050090560efc4e00f8e2139f4680da3de104db2",
       "decision-record.md": "9f16b6e28d2c167f61152ae22788c1680fabd27b4866728fd098ba4cca3adb5e"
     },
     "last_active_child_id": null,

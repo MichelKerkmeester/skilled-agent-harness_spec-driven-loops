@@ -107,7 +107,7 @@ _memory:
 
 ---
 
-<!-- ANCHOR:phase-3 -->
+<!-- ANCHOR:phase-3-2 -->
 ## Phase 3: Verification
 
 - [x] T005 Enable R4 in dark-run mode — three-measurement sequence: (a) Sprint 0 baseline MRR@5, (b) R4-only with A7 at 0.1x, (c) R4+A7 with A7 at 0.25-0.3x; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T003a, T004, T005a} — R4 (REQ-S1-001)
@@ -139,10 +139,11 @@ _memory:
   - Auto-fix strategies: re-extract triggers, normalize anchors, trim content to budget
   - Rejection logging: track rejection rate per spec folder for drift monitoring
 
+<!-- /ANCHOR:phase-3-2 -->
+
 ---
 
 <!-- ANCHOR:completion -->
-<!-- /ANCHOR:phase-3 -->
 ## Completion Criteria
 
 - [x] All tasks T001-T008 (including T003a and T005a) marked `[x]`

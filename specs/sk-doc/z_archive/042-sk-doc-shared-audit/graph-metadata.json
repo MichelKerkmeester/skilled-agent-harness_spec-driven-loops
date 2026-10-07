@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/042-sk-doc-shared-audit",
-  "spec_folder": "sk-doc/042-sk-doc-shared-audit",
+  "packet_id": "sk-doc/z_archive/042-sk-doc-shared-audit",
+  "spec_folder": "sk-doc/z_archive/042-sk-doc-shared-audit",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -46,21 +46,19 @@
       "tasks.md",
       "implementation-summary.md",
       "shared/README.md",
-      ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md",
       ".opencode/skills/sk-doc/shared/references/quick-reference.md",
       ".opencode/skills/sk-doc/shared/references/core-standards.md",
       ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
       ".opencode/skills/sk-doc/shared/README.md",
       "repo-rules/communication.md",
       ".opencode/skills/sk-doc/ROUTER.md",
-      ".opencode/skills/sk-doc/leaf-aliases.json",
-      "specs/sk-doc/042-sk-doc-shared-audit/spec.md"
+      ".opencode/skills/sk-doc/leaf-aliases.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/sk-doc/042-sk-doc-shared-audit/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -85,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-versioning.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md",
         "source": "derived"
       },
       {
@@ -200,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-doc/shared/` accumulated a standards backbone over many packets without anyone re-asking whether each file still has consumers, still sits in the right place, and still tells the truth",
     "created_at": "2026-08-31T19:49:30Z",
-    "last_save_at": "2026-08-31T20:01:16.442Z",
+    "last_save_at": "2026-10-07T18:14:05.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed681f4bbef09b7d3008b6d3592ae159104e09672198146413415c5f4f292dde",
+    "source_fingerprint": "sha256:3094459986a2cb7e372eaa0b8bde96a24520c2e264aab872dbdcb4a9422b745e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "154fd41307271700630b1275598d4f83fc4e15d9b7f393deb76e8fc32bedfda9",
       "plan.md": "83e9998847f5dba104d24f50201a8abb682721c57c19caafaa0c7c6b5f52e47e",
       "tasks.md": "466a8a5631e197a3cd129b6da617c053c5c4cdd811715b591f12391270350a70",
-      "implementation-summary.md": "bb976a2ec7122e06cf30bce396e35c8be18129574b1fbe713c9ef3804ad022a0"
+      "implementation-summary.md": "7dc7d9d7b1aa2a0e3da52a1e0139cb8a889ea3cb3c0e981ab59bda8fae6cc2e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

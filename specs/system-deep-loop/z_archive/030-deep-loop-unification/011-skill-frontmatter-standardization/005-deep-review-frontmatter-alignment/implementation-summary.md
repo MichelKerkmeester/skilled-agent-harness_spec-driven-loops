@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/005-deep-review-frontmatter-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/005-deep-review-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:50:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 12 docs conform and smoke passed"

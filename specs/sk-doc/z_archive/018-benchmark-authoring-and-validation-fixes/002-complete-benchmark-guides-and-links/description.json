@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
+  "specFolder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links",
   "description": "Parent packet 015 made `sk-doc/create-benchmark` the single home for benchmark-document templates and standards for four families (MCP promotion,",
   "keywords": [
     "parent",

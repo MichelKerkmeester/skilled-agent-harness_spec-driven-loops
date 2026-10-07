@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge"
     last_updated_at: "2026-07-02T11:30:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Recorded post-completion incident and recovery evidence"

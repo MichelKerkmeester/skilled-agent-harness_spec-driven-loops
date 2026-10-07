@@ -11,31 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "voyage",
-      "model",
-      "upgrade",
-      "analysis",
-      "spec",
-      "067",
-      "plan",
-      "tasks",
-      "implementation",
-      "summary",
-      "implementation summary"
+      "voyage 4 model upgrade spec",
+      "embedding provider analysis spec",
+      "voyage 4 upgrade plan",
+      "embedding model migration plan",
+      "voyage 4 upgrade task list",
+      "embedding model upgrade tasks",
+      "voyage 4 upgrade implementation record",
+      "embedding model migration summary"
     ],
     "key_topics": [
       "voyage",
       "model",
       "upgrade",
-      "analysis",
       "spec",
+      "embedding",
+      "provider",
+      "analysis",
       "plan",
-      "tasks",
-      "implementation",
-      "summary",
-      "objective",
-      "evaluate",
-      "current"
+      "migration",
+      "task",
+      "list",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,7 +192,7 @@
     ],
     "causal_summary": "Objective: Evaluate and plan the upgrade from current Voyage models to the newly released Voyage 4 model family for both Spec Kit Memory MCP and Narsil MCP systems.",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-08-30T15:39:37.347Z",
+    "last_save_at": "2026-10-07T20:19:35.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:503f271166680885983c687ebbf55fdca5c01d8a9f33ff05c12fe28aedd48c0c",
+    "source_fingerprint": "sha256:e49f1922f21e9fd13349ffe12f8bce7ca43ea08059b59f4b690b472863ff163c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3856254918138de10ab8e772dcf7bb4085c9fd71d1888a95d93616524bb5462e",
-      "plan.md": "429e9bcbe6e1752936f8a48e3420ca5eefe3307c7e3722e65862b96e8204a436",
-      "tasks.md": "9a63d14339d8674854e14393c55db88b226c85e9778c2e8c2a480ee31726b54e",
-      "implementation-summary.md": "4e3ef1f0a1db3d598a3b329aafc113230388cffee23f779ea05a8e6df776b663"
+      "spec.md": "1df8155f341031835bdb4c1f275743c82dfe387253faee21663ba750f1f4440f",
+      "plan.md": "2f61c4d57b7101e85bd8ea2f4a818f9c45d97386a6fcf3e7f13507bad4faed07",
+      "tasks.md": "aec955f38da890bf206a31f9ec5f5af3fd05790d74c6d79a7d897ce2e3028232",
+      "implementation-summary.md": "673a9195373249f652cbe20dc6d2a7d3b45a52836ced2cd5fbde1c9a6bd81606"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "One frozen contract and machine-readable map: 21 workflowModes, 20 packet directories, the shared-packet exception, gate definitions and history exclusions.",
     "created_at": "2026-07-28T05:34:09.175Z",
-    "last_save_at": "2026-09-11T16:42:07.818Z",
+    "last_save_at": "2026-10-07T18:13:23.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a614d6b43c8c54d92db372e023a761ce2877fec141a57efa0b58bbc6e9a3a4b",
+    "source_fingerprint": "sha256:39a030ad06797b7399c2ab3c9d28ced3fd314c20d2e5cdd279381f1526961649",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9e5665c6648f529e25c81c2275e3e91047d374c9af8121cffe99590c144502c",
       "plan.md": "1671ac8ac1e3303a0934e84e9d9f3d3737ae9f9f811be8d99ccf38cb8097f951",
       "tasks.md": "c58fb0de8e4c6cfff5d6042b9ba26e4437f447d90797c163ac6ade9497d68ee1",
-      "implementation-summary.md": "c06cf8e7b16eb7d2b4cd5c6a2fdfd3483d9986e65535796f93ec86f5ea270bac"
+      "implementation-summary.md": "c9c3f7ebb598a5b2148b240fa7a13a71282e37be9102b01791a6f2b4b770df34"
     },
     "last_active_child_id": null,
     "last_active_at": null

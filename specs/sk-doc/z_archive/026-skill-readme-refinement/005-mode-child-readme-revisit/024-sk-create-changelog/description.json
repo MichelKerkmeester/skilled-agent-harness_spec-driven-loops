@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
   "description": "The sk-create-changelog README at `.opencode/skills/sk-doc/sk-create-changelog/README.md` still carries the older tabular reference-card style",
   "keywords": [
     "sk-create-changelog",

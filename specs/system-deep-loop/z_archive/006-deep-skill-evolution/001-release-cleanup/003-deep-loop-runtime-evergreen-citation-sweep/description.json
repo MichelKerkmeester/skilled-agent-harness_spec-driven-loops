@@ -31,5 +31,6 @@
   "memorySequence": 0,
   "memoryNameHistory": [
     "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep"
-  ]
+  ],
+  "level": "1"
 }

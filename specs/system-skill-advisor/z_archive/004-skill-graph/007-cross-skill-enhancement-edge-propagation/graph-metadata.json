@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges",
     "created_at": "2026-05-15T15:30:00.000Z",
-    "last_save_at": "2026-09-07T16:17:28.167Z",
+    "last_save_at": "2026-10-07T18:15:43.719Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9479f582cf14bf762fb0a31bcb1c21d82dc0a0c81313f5d2b343eb01a53b0e07",
+    "source_fingerprint": "sha256:8550c43b4165366fcca5bc4749df90ddeb47e1f26201c0b9910a79171073ffda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6219b9c63d3d498c6d43075b417826a4b256f7c4db6ff9bbbaf31f73c135da3",
-      "plan.md": "03b66905970b0fcccee9d222e393f1277f870cfb1a0797cf2e4af2cf9cf15994",
-      "tasks.md": "3209a5e9aed650946a21a83ecaa189df028e4eba984df96ea6f833ed44dfe0f3",
-      "implementation-summary.md": "e13b8a424132d2ec31af2d2c28b5040cda6b0b4ed19d19f5fc3c2d7d71332e79"
+      "spec.md": "8d92aef4843a3f77a36c513d962c748fcf7ee5406481d23e93ca0cde46ce0437",
+      "plan.md": "1466a1f1535826922607b5d7430070b74ce903dc3ea0a1adaa740492c8026c2a",
+      "tasks.md": "8e8e193dfc84000835a280fc744fc0cd29dee2a9fca69b8e9b030ecd488207ab",
+      "implementation-summary.md": "d9615a93f71c462b4a1112e8c95328288258a89b262d54602fd78a28a9c39860"
     },
     "last_active_child_id": null,
     "last_active_at": null

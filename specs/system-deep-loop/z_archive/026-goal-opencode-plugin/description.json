@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/026-goal-opencode-plugin",
   "description": "OpenCode has no goal/completion-condition system",
   "keywords": [

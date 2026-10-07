@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/010-pi-manual-testing-playbook"
     last_updated_at: "2026-07-27T11:36:00Z"
     last_updated_by: "claude-code"
     recent_action: "Coverage plan re-verified against phases 001-009's real facts; phase complete for its own scope"

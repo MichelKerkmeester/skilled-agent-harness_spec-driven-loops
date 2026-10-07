@@ -2,13 +2,7 @@
 title: "UX Deep Analysis - Memory [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/033-ux-deep-analysis/spec]"
 description: "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness. A dev team cloning this repo should have a seamless first-..."
 trigger_phrases:
-  - "deep"
-  - "analysis"
-  - "memory"
-  - "speckit"
-  - "systems"
-  - "spec"
-  - "033"
+  - "ux deep analysis spec"
 importance_tier: "important"
 contextType: "planning"
 ---

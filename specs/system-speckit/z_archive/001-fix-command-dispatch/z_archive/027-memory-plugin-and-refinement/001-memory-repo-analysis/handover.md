@@ -13,6 +13,7 @@ contextType: "general"
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 | Field | Value |
@@ -21,9 +22,11 @@ contextType: "general"
 | **To Session** | Next AI session |
 | **Phase Completed** | IMPLEMENTATION (Plugin Bug Fixes) |
 | **Handover Time** | 2025-12-17T15:30:00Z |
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Decisions Made
@@ -46,9 +49,11 @@ contextType: "general"
 | `opencode.json` | Added plugin registration | COMPLETE |
 | `.opencode/plugin/memory-context.js` | Fixed SQL query (removed `content` column) | COMPLETE |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/015-roampal-analysis/checklist.md` | Updated to 92% complete | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
@@ -65,9 +70,11 @@ contextType: "general"
 - [ ] Memory file: `memory/17-12-25_14-10__roampal-analysis.md`
 - [ ] Checklist: `checklist.md` (92% complete, P1 items remain)
 - [ ] This handover document
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
 Before handover, verify:
@@ -76,9 +83,11 @@ Before handover, verify:
 - [x] No breaking changes left mid-implementation
 - [x] Tests passing - `node --check .opencode/plugin/memory-context.js` passed
 - [x] This handover document is complete
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
 ### What Was Accomplished This Session
@@ -145,3 +154,4 @@ sqlite3 .opencode/skills/system-memory/database/memory-index.sqlite ".schema mem
 ### Known Limitations
 - **Layer 3 (exchange recording)** is deferred - needs OpenCode SDK enhancement
 - **Workaround**: Use manual `/memory:save` command or "save context" phrase
+<!-- /ANCHOR:session-notes -->

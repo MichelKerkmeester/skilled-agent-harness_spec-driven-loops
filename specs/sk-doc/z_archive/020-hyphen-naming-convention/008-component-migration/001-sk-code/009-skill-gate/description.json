@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
   "description": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
   "keywords": [
     "independent",

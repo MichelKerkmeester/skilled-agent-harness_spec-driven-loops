@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
   "description": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
   "keywords": [
     "take",

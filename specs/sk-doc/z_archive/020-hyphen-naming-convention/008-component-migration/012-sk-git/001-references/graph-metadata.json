@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-08-30T15:39:16.976Z",
+    "last_save_at": "2026-10-07T18:13:27.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:300c3b6cac4d55e5eb125cd456c205383767f07aa9baef89a9a948be9d0e49ba",
+    "source_fingerprint": "sha256:855f9d741e574fbcfabc1b37e4102e1d049656c7ceb9d765412243d3422a0847",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2802645b3f5aa93b63cffbe4984a1f23b05153e0cd9524cf9411b7442b3938e",
-      "plan.md": "b3dd836761ec2483c550788e3a94055da8fcca5cfc53f75ddc8f25808194f89e",
-      "tasks.md": "69270d15693b4454680ee34c96f74f15729d44bb1293f129f2bcb3b25b15b58e"
+      "spec.md": "8fada4004017f74f2887643e9a2f780e62c31658721962932244dbbac2ae2b68",
+      "plan.md": "d43ec5bb962fd30f4cf0e11b6c54f40c17cd482061d4bfdae811447ab944b7ad",
+      "tasks.md": "402b59e1779840f813e574e452c60e0c777b9c6c11da9331c8ab6520504aabff"
     },
     "last_active_child_id": null,
     "last_active_at": null

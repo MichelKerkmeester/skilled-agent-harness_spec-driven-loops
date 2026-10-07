@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/001-reference-research"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/001-reference-research"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed 51 proper iterations; synthesized research.md (40 recommendations)"

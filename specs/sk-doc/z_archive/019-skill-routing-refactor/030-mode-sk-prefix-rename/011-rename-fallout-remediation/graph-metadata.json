@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,10 @@
       "rename fallout remediation",
       "compiled routing drift",
       "stale create-skill import",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "router-sync stale import fixed"
+      "rename fallout remediation plan",
+      "rename fallout remediation tasks",
+      "router-sync stale import fixed",
+      "compiled routing operator-gated"
     ],
     "key_topics": [
       "rename",
@@ -34,11 +29,11 @@
       "stale",
       "create-skill",
       "import",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "router-sync"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -196,7 +191,7 @@
     ],
     "causal_summary": "Close the three rename-fallout follow-ups the LUNA review surfaced: a stale pre-rename test import, sk-doc compiled-routing drift, and the blocked strict-validation dist.",
     "created_at": "2026-07-29T16:39:37.878Z",
-    "last_save_at": "2026-09-11T16:42:08.443Z",
+    "last_save_at": "2026-10-07T21:54:05.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +201,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e0b83988027e23a460f104958c049e0f9a471b157a4f18e47f06c42d2fb5311b",
+    "source_fingerprint": "sha256:c3846ca9e54e53252d67e8fde98e838661c903ce8f64c3a77630e4dc8ff1a0af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e06b284bbd6f2dafacf419bcd3c4e9ef984d3bd8afaa87af26505adc1424a7e2",
-      "plan.md": "aa48d5de9b06b4d71eaf40e57b3c63183771def65ecf5aeccc9df8f25bcc92e1",
-      "tasks.md": "99f7126fb3884d8bdd351fd44bc6be61f8e9962f1b31f66874ea2875a4f12c67",
-      "implementation-summary.md": "bbe833ea30a78eede0ee094fbc3d5599d2e8b14b91d1a915bc3720632b9d55fb",
-      "handover.md": "e28418fd9af46b05d09d9492d4c287d1f5c40a0c3578902c144703ff258a2bbc"
+      "spec.md": "5c4f0f6565352e0725870c7a12001fa4b4a6100498160d2a005cdc782bb4e676",
+      "plan.md": "f3580268320b323656d0fd81d710a44322eaa3def0fd616f17641464af464cee",
+      "tasks.md": "82dd759f9e8a748049fb737c44f3ac44dfad75c813ce3a6f1a72516391274b54",
+      "implementation-summary.md": "f62b57b61285dfe81bf7340eab84a1c3d24a0dea962235458990a2faf06da333",
+      "handover.md": "267921ac3814d6078705bee4104bdc55172514318f2f9cd3a297fd2a4f931ae5"
     },
     "last_active_child_id": null,
     "last_active_at": null

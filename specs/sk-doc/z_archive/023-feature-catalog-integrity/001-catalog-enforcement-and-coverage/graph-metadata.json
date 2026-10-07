@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
-  "spec_folder": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
-  "parent_id": "sk-doc/023-feature-catalog-integrity",
+  "packet_id": "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "spec_folder": "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "parent_id": "sk-doc/z_archive/023-feature-catalog-integrity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
     "created_at": "2026-07-30T19:29:14.546Z",
-    "last_save_at": "2026-08-30T15:39:17.303Z",
+    "last_save_at": "2026-10-07T21:56:19.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4596eaad18ccc94deaaff312c8561536e48150d667aa7f0c095399f2038a4a87",
+    "source_fingerprint": "sha256:9700f2fd107607a5ff576a005de173ee8ddc68012762f3eb76bfe4c9455586cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a018be311897f22aa6b3a6bb999e911226449287d76df86f50f16ca717d5845",
-      "plan.md": "6e7173c7a93d165c1b29714180585db838ecebecff874f9914f52a45102dd848",
-      "tasks.md": "f40b719fd560145b7606ddf15895cdca57e1db5217231bcf86060a1a39bdd2f0",
+      "spec.md": "1db09bdc60ce5d2fd4e804394761b7f59339381b4286924903727ae6205dd3af",
+      "plan.md": "b5efa64db10aadd5815eeee978419d031765a167f209187ada73c9cbb47ac3a0",
+      "tasks.md": "c4727b8e2cca379e095e7d0bfc34e48aa2baacf4d6bd922c4bfb42185d67b651",
       "decision-record.md": "78255dfe418281ca94f3dd0a4a86f889998ba31db6e718ef95ef1f3cf9f0d25c",
-      "implementation-summary.md": "1d2b1eb4329210791c437c69162a08e62ddb63e0c833a499f287ca79ddf7941e"
+      "implementation-summary.md": "ee631927b55f297b77b9af4ffc36542160288fba9c6c6fad83ea48689c6e59dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

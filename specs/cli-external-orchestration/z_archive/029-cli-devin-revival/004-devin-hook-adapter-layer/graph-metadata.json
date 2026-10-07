@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
-  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "packet_id": "cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer",
+  "spec_folder": "cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer",
+  "parent_id": "cli-external-orchestration/z_archive/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,18 +46,18 @@
       "decision-record.md",
       "implementation-summary.md",
       ".devin/hooks.v1.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
-      "lib/hooks/completion-evidence-sentinel.cjs",
-      ".devin/config.local.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
+      ".devin/config.json",
+      ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
       "hooks/devin/shared.ts",
       "hooks/codex/shared.ts",
       "hooks/devin/session-start.ts",
       "hooks/devin/user-prompt-submit.ts",
+      "runtime/hooks/devin/spec-gate-classify.mjs",
+      "runtime/hooks/codex/spec-gate-enforce.mjs",
       "hooks/devin/README.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/shared.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/session-start.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.ts",
+      "runtime/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs",
       ".claude/settings.json",
       ".codex/hooks.json"
     ],
@@ -99,21 +99,15 @@
         "source": "derived"
       },
       {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "completion-evidence-sentinel.cjs",
-        "kind": "file",
-        "path": "lib/hooks/completion-evidence-sentinel.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "config.local.json",
-        "kind": "config",
-        "path": ".devin/config.local.json",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
         "source": "derived"
       },
       {
@@ -132,6 +126,18 @@
         "name": "user-prompt-submit.ts",
         "kind": "code",
         "path": "hooks/devin/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/devin/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
         "source": "derived"
       },
       {
@@ -199,17 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-08-30T15:39:07.297Z",
+    "last_save_at": "2026-10-07T18:11:37.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b751d1f14e59da415b31f2eb54719babd33ade72e65d9ab2948e7ae80cc7911",
+    "source_fingerprint": "sha256:ccf2ce250f075d8f7259e7b6fe04aee29ac7264b2b24a27684a0b98316144811",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1910936c68f5e504a36d8fed18829785c57dcb6b90d87e0e63f24f133cd8205c",
-      "plan.md": "a457b95672319fc470429e030c1c728c5ade82630781b8fa59305974261d0be6",
-      "tasks.md": "567e0824716c6c820fc04aec7727252c557c26d181cd8d8819a943694c0b9222",
+      "spec.md": "ed3dcd054d41290a4c3ce4c9c861895dc019154719ae212fe063b7f1323555e1",
+      "plan.md": "d58495ecb3d1a7f0cb099442af676c3db77168dec76b428ad954525515bccb67",
+      "tasks.md": "d8036b4072846f99635aacf028ac1ed1e0d3afad68e02dabc08e748ee9323a48",
       "decision-record.md": "cce2b4a362f73cc26fc2c5885662bc2e1eb6b9d7089caa08ac3a3aac55b178e2",
-      "implementation-summary.md": "2e04995c483edbb4764940bff3eeca145f836b9d3a945317b211629c7ebb31c7"
+      "implementation-summary.md": "9abdc884bd003e44f9c4c39bf61b79bf28dd21bb5900720f693d712961e83609"
     },
     "last_active_child_id": null,
     "last_active_at": null

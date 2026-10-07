@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
   "description": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still",
   "keywords": [
     "stage",

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-09-07T16:17:10.050Z",
+    "last_save_at": "2026-10-07T18:14:20.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd3258ae2bb5bc09605efeff76da23cc6d14f00f5bdd1aa6390b5d8943d88509",
+    "source_fingerprint": "sha256:3af5df4605d056301a21c5413babe8e085bf402044c7c87a944417b8768770fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15c28d740bc86b0e2ffab222939f222fb445249e1bd455f0f89d1f9f23715a2a",
-      "plan.md": "7be55466786d3f89c5c6f31c7faab84a967b995265862e70d48b24b09949c94c",
-      "tasks.md": "e183b58f630ab76302cfb42dffe390565f29d05b3451eda6ad0dce6bbf0dda05",
-      "implementation-summary.md": "4849cf1bfb8f820b040d16b66f8eca538a982d349fe897d89d8a152305bcfac4"
+      "spec.md": "e1fb27cd56cf71a11b25d87af5335077362db15d09dd345684cdaf6548d800a8",
+      "plan.md": "23cac6ce5cfbff3ccc126063eb3bcb8ff298969ef2ee3ca18a23b177a3642250",
+      "tasks.md": "f76231137cc4af44e4512a0a0e5ddc641b25da877db3a702834911ad06ddc222",
+      "implementation-summary.md": "94d71d1711dfa371b05706fa3de5407cad08d56b83943d6bbd79f690286fe593"
     },
     "last_active_child_id": null,
     "last_active_at": null

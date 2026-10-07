@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
     "created_at": "2026-07-18T13:13:20.991Z",
-    "last_save_at": "2026-08-30T15:39:15.085Z",
+    "last_save_at": "2026-10-07T18:13:23.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04303f4dda6627ef8673ba4ba4059a609990f1c9c30cd77702957304ee6f5790",
+    "source_fingerprint": "sha256:3781df20ba22030f76119f046ce3afdacd2d2359be70e07b5b95214c1fbead07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6315421393ebb6b833d5e772ded81bc11d5a38cba4039dbc7b22826120b46f7",
-      "plan.md": "a013c36f7817480a64acd52a2d5a60e44479b297ddef077d39d4dc3750bcf58d",
-      "tasks.md": "2a856eced13961099912b06c936f5e4e3f58bf53681e68f405b834acdc671714",
-      "implementation-summary.md": "0c6d4bd11ffe61c501c2ded6ba8d3952451184f712a3946d1d064081723f4529"
+      "spec.md": "1c4b5f4756f6f06208feb5d305fc0284924964d608e7fc6594eb149b9204e098",
+      "plan.md": "58e43714f5d995b2408abffa47385ae43b2b79e8b211d3a49aa24b6529e6f90c",
+      "tasks.md": "32737f6252db25dc8bb113aeafd1828205b5dcfa55ecd8bb598363b150e6a017",
+      "implementation-summary.md": "18051cccfedba3ffaf17170a9e1c93ee210d976c2a9c226a9350a9cfc03add63"
     },
     "last_active_child_id": null,
     "last_active_at": null

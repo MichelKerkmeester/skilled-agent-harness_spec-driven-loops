@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
-      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json"
+      ".opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json"
     ],
     "entities": [
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Commit `d474140721b` added a machine-checkable stdin-redirect rule to five `cli-` packet",
     "created_at": "2026-08-29T20:46:06.689Z",
-    "last_save_at": "2026-09-11T16:42:07.177Z",
+    "last_save_at": "2026-10-07T18:13:17.611Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e755064eac44f0255c77054a0b23648c644f39bd3f9b95fdb0a875ebcfc0357b",
+    "source_fingerprint": "sha256:c8b7b0da8c29eceba283a3a71903f5591cbc6c8d6cb98128a7dad5768a8742ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bbdc28e1a87a18589f45b6b6304e21f9b03fc14ece2217abf34264826d32267e",
-      "plan.md": "95a23ab0329fd11fc072b9974c834cf6917c7eed5373681674309d43d5d96b08",
-      "tasks.md": "bfaf6f2ebb22de49d3dd6e915196f8aa7fb2ffbad51db8e634b470d9d022fe95",
-      "implementation-summary.md": "66a89e6b800b71a728ef504127fb2b2ba915631eba3bab54f27b33195fbab875"
+      "spec.md": "8ee064781e0e232b00094b409eded31091185750115475c1542464bbe6a089ef",
+      "plan.md": "60ee1c496a3bd20816503ffffd479e41b8655c85812aa46205ea7bc1e08d3ee6",
+      "tasks.md": "5c714b42b5ab2dc1e300c92817a534ceb652cfea1ddefb7d4414e97004936ab9",
+      "implementation-summary.md": "979c55a051c4ee735a98ea39ea720d576e18e3f2cfff9afeb8f18881af6d6117"
     },
     "last_active_child_id": null,
     "last_active_at": null

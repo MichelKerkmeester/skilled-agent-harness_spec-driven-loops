@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`mk-deep-loop-guard.js` persists a per-session JSON state file (`recordLoopDispatch`/`writeLoopStateAtomic`) and appends to `guard-warnings.log` on every warning, but registers only a `tool.execute.before` hook -- no lifecycle event handler exists to ever clear, archive, or age out either",
     "created_at": "2026-07-04T17:52:16.734Z",
-    "last_save_at": "2026-08-30T15:39:25.513Z",
+    "last_save_at": "2026-10-07T18:15:16.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6eee4e5db7a9b8857dd9ccfae1420f74186d9641a2ebab154148254059fcc9a6",
+    "source_fingerprint": "sha256:47cfda17de682d7b5117a4b2878dda6e05db9af93dad543401b6f4771893839c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5fbe5f601c08899ee5f9e8c2de9a4d955e296de47496aae9d89806580ff2287f",
-      "plan.md": "4c4b6c4102419af8e13a30c79175a09ba920e7e6b3b1b7daba234f1b0d2014c8",
-      "tasks.md": "7496ceeec6e52b529caa391480c14799df68e784616bc1eaf5c27e32f4737924",
-      "implementation-summary.md": "0ac0b1bacb1ba93ef2f8ff6674a47ca68d1ae44f55dbbf50755f230ad3800d84"
+      "spec.md": "5c367fa1856ecfaa267a29da20443f5bef495020186768308155854c42f8fa88",
+      "plan.md": "ae87e7cd2f46e09ffd802ab5923e6a3eb1d25135636ad4b973f5744e93c85d32",
+      "tasks.md": "8865c808e8cae9618c3fa4d420cbc710c8ee23f1733964f10db754ad5f2293f0",
+      "implementation-summary.md": "f925cfac24ab11d478f17e7a329eee97144384aae36845d795c08b33c8b4bb89"
     },
     "last_active_child_id": null,
     "last_active_at": null

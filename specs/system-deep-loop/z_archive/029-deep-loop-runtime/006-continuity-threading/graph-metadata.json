@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reducer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode, each iteration rebuilding its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found",
     "created_at": "2026-06-19T06:20:37.820Z",
-    "last_save_at": "2026-08-30T15:39:26.013Z",
+    "last_save_at": "2026-10-07T18:15:13.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45b787dc2df2583e8639f58452daef8cb9a51981c1c48928331b306622349611",
+    "source_fingerprint": "sha256:e3314415bd55bf927793d0c7aa06f5b0266c652b343b75096461fa0a56b73d6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2207e76d9eaf0b829467d8538024175d608d8a7aa6751f93da720c6a3df91f6",
-      "plan.md": "cbacf22bfdb8b193615921cdcabac372d35fd14b3640fa446c262aa9b1e68838",
-      "tasks.md": "df54ff311b03af6ff62386ead5185d61aba274ec80d2c0e1f5c338bb536efe30",
-      "implementation-summary.md": "7fff6854604672471c78191ce8ddec17bf6f54bbbef2df5128d0db01e84a46f3"
+      "spec.md": "94a47db12c782a7130a90e1b773de8bf6c9b5b1dcd4110af9eaeacb7f413afaa",
+      "plan.md": "c097a7975e272eb68850a6da82d4ca4ca937f8d66a1c25f4216051c204d2bd63",
+      "tasks.md": "fbd2cba5142017880e3703a0fa8dfd38da47e759451ba343fd396c91c24489cc",
+      "implementation-summary.md": "0d7fde7032703c423455dab1a41dda3d34dd645f94ccb099e4dc6dce01ade673"
     },
     "last_active_child_id": null,
     "last_active_at": null

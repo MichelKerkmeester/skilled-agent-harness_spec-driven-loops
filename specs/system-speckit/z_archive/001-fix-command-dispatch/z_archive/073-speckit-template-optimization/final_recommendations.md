@@ -1,3 +1,7 @@
+---
+title: "SpecKit Template Optimization: Final Recommendations"
+---
+
 # SpecKit Template Optimization: Final Recommendations
 
 > **Analysis Date:** 2026-01-19

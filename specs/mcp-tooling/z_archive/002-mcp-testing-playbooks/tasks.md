@@ -32,6 +32,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -42,9 +43,11 @@ _memory:
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Scaffold spec 049
 
 - [x] T001 Create spec.md with 4-skill matrix and 12 sections (`spec.md`)
@@ -55,9 +58,11 @@ _memory:
 - [ ] T006 Create research.md with Phase-1 test-data inventory (`research.md`)
 - [ ] T007 Run `generate-description.js` to create `description.json` and backfill `graph-metadata.json` (`description.json`, `graph-metadata.json`)
 - [ ] T008 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh ... --strict` and confirm exit 0
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Author CM playbook (mcp-code-mode, ~26 scenarios)
 
 - [ ] T010 Create folder structure: 7 category folders under `.opencode/skills/mcp-code-mode/manual_testing_playbook/`
@@ -72,9 +77,11 @@ _memory:
 - [ ] T019 Run `validate_document.py` on CM root; iterate until exit 0
 - [ ] T020 Verify CM ID count (root index) == per-feature file count (`find ... | wc -l`)
 - [ ] T021 Freeze CM-001..CM-026 IDs (no renumbering after this point)
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Author BDG playbook (mcp-chrome-devtools, ~22 scenarios)
 
 - [ ] T030 Create folder structure: 6 category folders under `.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/`
@@ -88,9 +95,11 @@ _memory:
 - [ ] T038 Run `validate_document.py` on BDG root; iterate until exit 0
 - [ ] T039 Verify BDG ID count == per-feature file count
 - [ ] T040 Verify all `CM-NNN` references in BDG-014..BDG-018 resolve to existing CM scenarios
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:phase-4 -->
 ## Phase 4: Author CU playbook (mcp-clickup, ~25 scenarios)
 
 - [ ] T050 Create folder structure: 6 category folders under `.opencode/skills/mcp-clickup/manual_testing_playbook/`
@@ -104,9 +113,11 @@ _memory:
 - [ ] T058 Run `validate_document.py` on CU root; iterate until exit 0
 - [ ] T059 Verify CU ID count == per-feature file count
 - [ ] T060 Verify all `CM-NNN` references resolve
+<!-- /ANCHOR:phase-4 -->
 
 ---
 
+<!-- ANCHOR:phase-5 -->
 ## Phase 5: CCC audit (mcp-coco-index, audit-only)
 
 - [ ] T070 Read existing `mcp-coco-index/manual_testing_playbook/manual_testing_playbook.md` + all 23 per-feature files
@@ -115,9 +126,11 @@ _memory:
 - [ ] T073 [P] If 1-3 gaps confirmed, append per-feature files at next free numeric slot in matching existing categories (preserve all 23 existing IDs)
 - [ ] T074 If files appended, run `validate_document.py` on CCC root; confirm still exit 0
 - [ ] T075 Verify CCC root playbook byte-unchanged unless explicit gap-driven update (no prose freshening)
+<!-- /ANCHOR:phase-5 -->
 
 ---
 
+<!-- ANCHOR:phase-6 -->
 ## Phase 6: Verification + completion
 
 - [ ] T080 Cross-skill reference audit: grep all `CM-NNN` and `CCC-NNN` references in BDG/CU files; verify each resolves
@@ -132,18 +145,22 @@ _memory:
 - [ ] T089 Fill `implementation-summary.md` with per-task evidence + V7 smoke verdicts + per-skill scenario counts
 - [ ] T090 Memory save: run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<spec-049-data>' .opencode/specs/mcp-tooling/002-mcp-testing-playbooks/`
 - [ ] T091 Verify `description.json` and `graph-metadata.json` refreshed (new `last_updated_at` timestamp)
+<!-- /ANCHOR:phase-6 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] V1-V8 verification matrix all GREEN (see checklist.md)
 - [ ] V7 smoke evidence captured for all 4 selected scenarios (PASS/FAIL/SKIP with rationale)
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
@@ -151,3 +168,4 @@ _memory:
 - **Checklist**: See `checklist.md`
 - **Decisions**: See `decision-record.md`
 - **Research / CCC audit findings**: See `research.md`
+<!-- /ANCHOR:cross-refs -->

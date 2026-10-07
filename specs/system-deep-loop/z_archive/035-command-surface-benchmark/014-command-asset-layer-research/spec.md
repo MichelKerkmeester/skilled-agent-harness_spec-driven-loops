@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research"
     last_updated_at: "2026-07-16T08:42:19Z"
     last_updated_by: "claude"
     recent_action: "Completed 2-lineage asset-layer deep-research run; synthesized cross-model backlog"

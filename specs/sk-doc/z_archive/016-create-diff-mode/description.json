@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode",
   "description": "AI-assisted document edits often happen outside a Git repository",
   "keywords": [
     "ai-assisted",

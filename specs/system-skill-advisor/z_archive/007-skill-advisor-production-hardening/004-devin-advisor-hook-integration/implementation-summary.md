@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/004-devin-advisor-hook-integration"
     last_updated_at: "2026-05-15T16:25:00Z"
     last_updated_by: "claude-opus-4-7-phase-e"
     recent_action: "Phase D verification + Phase E reconciliation complete"

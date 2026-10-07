@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command"
     last_updated_at: "2026-08-04T14:55:00Z"
     last_updated_by: "025-sk-create-command-executor"
     recent_action: "Completed the README rewrite, version bump, changelog entry and verification"

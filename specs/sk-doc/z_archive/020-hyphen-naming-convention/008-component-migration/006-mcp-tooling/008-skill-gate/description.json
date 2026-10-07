@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
   "description": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases.",
   "keywords": [
     "mcp-tooling",

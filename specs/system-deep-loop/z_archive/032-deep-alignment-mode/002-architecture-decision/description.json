@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/002-architecture-decision",
   "description": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather",
   "keywords": [
     "frozen",

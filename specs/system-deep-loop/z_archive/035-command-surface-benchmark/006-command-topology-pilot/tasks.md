@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/006-command-topology-pilot"
     last_updated_at: "2026-07-15T10:01:39Z"
     last_updated_by: "codex"
     recent_action: "Completed scenario and fixture authoring for the four-topology pilot"
@@ -16,10 +16,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "command topology pilot tasks"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

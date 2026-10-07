@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update",
-  "spec_folder": "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update",
-  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "packet_id": "sk-git/z_archive/014-gitkraken-mcp-integration/004-advisor-routing-update",
+  "spec_folder": "sk-git/z_archive/014-gitkraken-mcp-integration/004-advisor-routing-update",
+  "parent_id": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill router ever runs — has no GitKraken vocabulary",
     "created_at": "2026-07-15T04:22:50.451Z",
-    "last_save_at": "2026-08-30T15:39:18.557Z",
+    "last_save_at": "2026-10-07T18:14:21.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da7117987b649294e949482264585b61acc2d695b7b84f062b073ce93d1b944a",
+    "source_fingerprint": "sha256:1a6a4513c327403b66f110f091516ede12729eea549edf9132fcdf50162c1f5f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6e742a67209785b78b34a3e99b717d6c58429ef34d9966c5da01e2fe1805bdc",
-      "plan.md": "814444a82bc65db08c86af2e2342a388ed39f11e87c55c3ccc70d8b63df1d2ee",
-      "tasks.md": "c891942ac4598931c754d37f086e77f1c84434b1080954cff795869e3e07a9e1",
-      "implementation-summary.md": "a6a942eefc45dd15dd78a8fa8514f1d5c42e8ec8f8d8b20b6504bfb3bca12a50"
+      "spec.md": "7778f8187931560ab85bd8e75c5c7dc11634432f5d1a61e9a448e4142a2c238d",
+      "plan.md": "932d3d1802301e28c9e5431a4bccb4e1bd10b02430e5533586ba81a4f635ddc2",
+      "tasks.md": "a4a33fee10541246808a6202347c0f44059dcf4ab2b14a228048d6fa7c4c54f5",
+      "implementation-summary.md": "59ab0b58c48355cebe00cf5005956f6eec7d236e3799f582b0c0be576b1f8fbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

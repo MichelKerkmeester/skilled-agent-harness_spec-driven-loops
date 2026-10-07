@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The scripts tree is mostly already compliant, but its regression dataset is named",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-30T15:39:16.822Z",
+    "last_save_at": "2026-10-07T18:13:04.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:44591c984148bd761172b899d9045e113bd54d67a89223feb45c78897f618508",
+    "source_fingerprint": "sha256:ca1efe1f35d5423aa24ce90286b894765290670ea68f7b0d89b1e0375d3bcafe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "367d0f16ac4fd4cf7192112c2efeaef8550cba30eece0b74d31aa6374b38e95e",
-      "plan.md": "6d95792da6bbe9954d0aa2cdf5a0357416a638895c73a23de65b466a070aa0c6",
-      "tasks.md": "fdb11579341c5211ece815aed0b3528328613a1e6b356122f281d49c884ccb44"
+      "spec.md": "2a84d92fa931af36ec3c6e8bf899999cad0dbed951a18c370d4c7789bd4702a8",
+      "plan.md": "d08c7c28c00149908147be9fb35cbbb6db356042e39be76fe721fcfad1905007",
+      "tasks.md": "bc72eff5d36ecf71d6b363541ddceed35921c06338574db9e14d9c4776e816dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

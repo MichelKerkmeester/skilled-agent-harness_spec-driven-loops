@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation"
     last_updated_at: "2026-05-15T11:00:00Z"
     last_updated_by: "codex"
     recent_action: "Plugin bridge unit isolation implemented"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `022-plugin-bridge-unit-test-isolation` |
+| **Spec Folder** | 022-plugin-bridge-unit-test-isolation |
 | **Completed** | 2026-05-15 |
 | **Level** | 2 |
 | **Status** | Complete |

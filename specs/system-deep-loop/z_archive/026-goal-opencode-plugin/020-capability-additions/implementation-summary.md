@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/020-capability-additions"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/020-capability-additions"
     last_updated_at: "2026-07-03T16:33:00Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Implemented capability additions"

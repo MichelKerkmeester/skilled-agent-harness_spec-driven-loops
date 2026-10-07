@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
-  "spec_folder": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
+  "packet_id": "cli-external-orchestration/z_archive/033-deepseek-v4-flash-pi-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/033-deepseek-v4-flash-pi-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The operator asked to add DeepSeek V4 Flash to four cli-external-orchestration modes: cli-cursor, cli-devin, cli-opencode, cli-pi",
     "created_at": "2026-08-02T05:51:35.282Z",
-    "last_save_at": "2026-08-30T15:39:07.832Z",
+    "last_save_at": "2026-10-07T18:11:38.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecf95bf5201bac49b6fe4c5920955187e4bbd39e3d881470b6b3e88c6b942dc6",
+    "source_fingerprint": "sha256:a1aab2ce1c28233f26f69c1860d6bdde1b754b96b3c77538a981e0b36d182bad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97237c92d7fe67cb88b9e7c066e4f52726fd22b9145361a490d410f73eaf9929",
-      "plan.md": "0fd2334fed168e5ed99575403c97abe7e4075383691d43ecfcb2b3346c8057a7",
-      "tasks.md": "66977bfeaca117558d6553172e3ae5e48ace8d6be8d0356dc96acc756eebd8cd",
-      "implementation-summary.md": "764d6af4afe3843732ccb9ce4c78103c0bc2e5c8bb623228154e7f7dc4c3066d"
+      "spec.md": "83885f407ab989a41e47dc47b1df9507e1eab9ead54bc355fdf067c189b14aca",
+      "plan.md": "131ada69c483279bd69569ca267eb01021a296567945ae9051b8aef78b7ab45c",
+      "tasks.md": "4f977fde793e6a70184da0bbc85f02d02b60f57a8d34d0e757c65aad86eaa706",
+      "implementation-summary.md": "037741784ac0d884ba0a92aac1e562ddf141c925fd7879d6dba61b3971bc9665"
     },
     "last_active_child_id": null,
     "last_active_at": null

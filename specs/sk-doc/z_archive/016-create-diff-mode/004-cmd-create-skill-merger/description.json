@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/016-create-diff-mode/004-cmd-create-skill-merger",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/004-cmd-create-skill-merger",
   "description": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`,",
   "keywords": [
     "command",

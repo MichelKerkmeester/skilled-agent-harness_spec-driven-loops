@@ -28,6 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch | v2.2 -->
 
+<!-- ANCHOR:notation -->
 | ID | Task | Status |
 |----|------|--------|
 | T001 | Initialize deep-research packet under `research/` (config, strategy, state.jsonl, iterations/, deltas/, logs/) | Pending |
@@ -45,3 +46,4 @@ _memory:
 | T013 | Emit ≥ 3 ADRs to `decision-record.md` | Pending |
 | T014 | Fill `implementation-summary.md` Status=Completed | Pending |
 | T015 | Strict validate exit 0 | Pending |
+<!-- /ANCHOR:notation -->

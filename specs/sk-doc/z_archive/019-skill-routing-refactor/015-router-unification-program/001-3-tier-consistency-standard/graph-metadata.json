@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
     "created_at": "2026-07-18T14:47:46.609Z",
-    "last_save_at": "2026-09-11T16:42:04.387Z",
+    "last_save_at": "2026-10-07T18:13:01.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2c5082680f91bb28cc3110de53b45984a18571c339090512ba943f59eef5b8f",
+    "source_fingerprint": "sha256:a987abf163fbb6958532d65ac079bd12c825662b399221350c604fd4ef48eb74",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edcb689ffb2cdcff7853570b06361e13ba3b496926c63b09bd54506fbffdbc5a",
-      "plan.md": "31718c72dd3c0f835fde18b4dba5722d2be1f4e49f6fe397f7b69e326982a480",
-      "tasks.md": "17dd1f241226922af7597a973659249ef79140ec6011235cf2f01fdacf510e07",
+      "spec.md": "38ebdf0331d8b7b23b7ba4daa8dc8648e0e8a21cac0abbab93d76348454dab8c",
+      "plan.md": "15b0347fc41a3d485af3a15541cf5ca585a70a11a5aa59f7568226834645e2e1",
+      "tasks.md": "1fee2dd522ab53456361b9c046e703ae202fa532bcab2482d747636498472f02",
       "decision-record.md": "d1bf4d46c25a4cf062e4dacdff92b91ac93cb9be5a4bbf53fc8262925f03d97d",
-      "implementation-summary.md": "1cc1c65f5d47c0f9f49c0921aaa1b4ba04a0448b89dccc30b18f08743b53cc0b"
+      "implementation-summary.md": "d555e8a5057425492f3771bf2e3be835be17899d6d4487e3ba8f42250554f0c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

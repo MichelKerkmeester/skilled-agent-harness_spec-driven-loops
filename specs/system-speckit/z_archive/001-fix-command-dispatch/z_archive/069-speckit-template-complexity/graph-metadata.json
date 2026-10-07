@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Current templates use a single set of files for all documentation levels:",
     "created_at": "2026-04-12T09:02:53.542Z",
-    "last_save_at": "2026-08-30T15:39:37.370Z",
+    "last_save_at": "2026-10-07T20:10:52.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,15 +213,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1f0e36e7d4da629dcf47220740214fab8d3f51f779261052a6f10ffe277c809c",
+    "source_fingerprint": "sha256:54651022b9a97a8c461f1d4316fd2be051416dc25e90eb0b4027fdfa06e439fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e59143a895625fdb19514d73737facc03ad8c5f5ece3b3de0e0e9194a58286d7",
+      "spec.md": "0f5bec128835bdb74cc92807c32a79859299f4f2b595c0619bc6310cfa287b94",
       "plan.md": "8d0588ec0dd80c7132ed64a1db614da0fb3cbd52739b777a191b862133173323",
       "tasks.md": "da8d0f4c539d9f07fdb3669f25be7795290136c02146d5e40ec0520466ac8047",
       "decision-record.md": "212b22ccd5fbcd4d29e3a86d0675fef786603404d947d8de7a98322b630e1477",
-      "implementation-summary.md": "86cb33b575827265bd56d8c0e42a557e9ea4fdec3d78eeb5cd90dea22eb26482",
-      "handover.md": "22b0dde11a9bbaae7d90835179f70023b9a007e428032805d28ba4031de1e07e"
+      "implementation-summary.md": "1f84b14ccbaedd5c629a45b3ff70d862aa87aa0b1ddac012c1515c1ad55f26e8",
+      "handover.md": "77ff113570350605939b6b5d4101a610f6f9c283d052ba201d6ecf03b33f8563"
     },
     "last_active_child_id": null,
     "last_active_at": null

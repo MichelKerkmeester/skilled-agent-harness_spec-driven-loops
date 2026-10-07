@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/004-cursor-hook-adapter-layer"
     last_updated_at: "2026-07-24T11:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented and live-verified Cursor hook adapters; registration deferred"

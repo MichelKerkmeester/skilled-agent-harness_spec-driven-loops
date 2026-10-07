@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-design/017-design-skill",
+  "specFolder": "sk-design/z_archive/017-design-skill",
   "description": "Root packet for the sk-design authoring skill and the surfaces that route to it, phased by delivery.",
   "keywords": [
     "root",

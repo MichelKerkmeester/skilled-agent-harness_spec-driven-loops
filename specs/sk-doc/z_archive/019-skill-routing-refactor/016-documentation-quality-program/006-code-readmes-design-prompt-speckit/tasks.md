@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit"
     last_updated_at: "2026-07-22T13:46:50Z"
     last_updated_by: "claude"
     recent_action: "All thirty-eight in-scope code READMEs authored and validated."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "code readmes design prompt speckit tasks"
 ---
 
 # Tasks: Code READMEs (Design, Prompt, Spec-Kit Batch)

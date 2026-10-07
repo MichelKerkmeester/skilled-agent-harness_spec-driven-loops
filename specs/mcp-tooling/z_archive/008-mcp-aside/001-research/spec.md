@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/008-mcp-aside/001-research"
+    packet_pointer: "mcp-tooling/z_archive/008-mcp-aside/001-research"
     last_updated_at: "2026-07-16T12:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the phase 001 research-gate spec docs"

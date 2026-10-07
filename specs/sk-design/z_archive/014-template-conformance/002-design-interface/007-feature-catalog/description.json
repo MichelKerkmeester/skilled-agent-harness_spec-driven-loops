@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/007-feature-catalog",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/007-feature-catalog",
   "description": "`feature-catalog/` has 5 kebab-case category directories with no numeric prefix (`adaptation-and-data/`, `aesthetic-direction-process/`,",
   "keywords": [
     "feature-catalog",

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout",
   "description": "Final gate for the skill/advisor JSON optimization implementation program: rerun the pinned routing-accuracy corpus end-to-end and report the",
   "keywords": [
     "final",

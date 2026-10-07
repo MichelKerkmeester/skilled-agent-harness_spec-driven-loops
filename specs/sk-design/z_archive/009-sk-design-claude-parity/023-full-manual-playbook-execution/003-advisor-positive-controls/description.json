@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls",
   "description": "`AI-001: Positive Design Controls` defines a single 6-probe battery (P1-P6) verifying that the advisor picks the single public `sk-design` identity —",
   "keywords": [
     "ai-001",

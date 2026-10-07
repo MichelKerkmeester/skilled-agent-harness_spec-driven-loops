@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The existing `cli-gemini` skill referenced multiple Gemini model variants, which created avoidable decision overhead",
     "created_at": "2026-04-12T09:02:50.202Z",
-    "last_save_at": "2026-08-30T15:39:08.285Z",
+    "last_save_at": "2026-10-07T18:11:30.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5ba28e7ef43e31f5dafd0217c029253a60a6876c04e0fe43846a728372101a5",
+    "source_fingerprint": "sha256:398176a5b56ea67e067f14f8e2d7aeb1ba543e7db13f8ddb58b37aa8c2d6f965",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a632634021c2927b0f7fd30c6319309383032ab9cece896516ed807ca2f389ae",
       "plan.md": "b7da56b5bae7b6f76171a2492bf2cf09fd1813bd0816b839a50cb68d76b3e0b8",
       "tasks.md": "da37d4bf551f0882369254e9991f69f6ff2ecafb338419bfa7da98a6494b11d8",
-      "implementation-summary.md": "d4fd5e96758a629c6d10a0c982d5bd172ebac4c0a38389c31e524f5c4ddfbfe2"
+      "implementation-summary.md": "82a6eec358c6f31bdfb2caf539564391b8dd8e256c7eb435df5da50d0c55514f"
     },
     "last_active_child_id": null,
     "last_active_at": null

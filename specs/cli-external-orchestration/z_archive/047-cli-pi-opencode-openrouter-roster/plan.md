@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/047-cli-pi-opencode-openrouter-roster"
     last_updated_at: "2026-08-17T18:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Added both OpenRouter ids to cli-pi runtime and both skills' rosters."

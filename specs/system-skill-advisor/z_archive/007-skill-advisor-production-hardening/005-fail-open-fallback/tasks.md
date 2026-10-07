@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/005-fail-open-fallback"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/005-fail-open-fallback"
     last_updated_at: "2026-04-28T15:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed remediation task list"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
-  "spec_folder": "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
-  "parent_id": "sk-doc/018-benchmark-authoring-and-validation-fixes",
+  "packet_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
+  "spec_folder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime",
+  "parent_id": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "A three-model GPT-5.6 SOL audit of `sk-doc/create-benchmark` confirmed the packet is structurally complete (all five families present, packager PASS, zero broken links) but that its authoring templates and guides describe an intended contract that drifts from what the deep-improvement (Lane B) and deep-alignment runtime actually implement or accept",
     "created_at": "2026-07-14T16:34:01.669Z",
-    "last_save_at": "2026-08-30T15:39:14.568Z",
+    "last_save_at": "2026-10-07T18:12:21.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1112b8720e7b8ccb2d8f7b5821fcd7aa59ef169508a8cf76b38d2dd868fdfedd",
+    "source_fingerprint": "sha256:1b50a519ed9184d997c6f1af857fa69c7834a511179831260541b8ab22c3864c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df90765857e23706470820bb0bf2a980711ba3df2a9fd45eda728e9e55f46249",
-      "plan.md": "f9c749cd1d6029d48990983ac3074f6adcb518ede271d636e8e07585109f8d36",
-      "tasks.md": "889ecac571373181ae33650f1ec31d86c0f2c0131234cd79f13a51cdb31fdc95",
-      "implementation-summary.md": "280f33656774799cd691d12f1fb2fbdb3d70e82fe1b0e2a82b3a535a4f0cbc11"
+      "spec.md": "3c09131951064d314231a752d4580457bb066235d5d996f0719404cd9f94ac42",
+      "plan.md": "7cf824f310c5096fd781b623e4cae7d3340ddad21aad32bd7a3318cfc18aea2a",
+      "tasks.md": "db32f74ecff810e78fb3de063a9a28631bdfec06e85e8355c4e183e6454629da",
+      "implementation-summary.md": "a5bef49a1e47959041fca95540309f49fc06d3dafed4b88c0ce33e5270c5b420"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.936Z",
+    "last_save_at": "2026-10-07T18:15:46.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89a456d5d000e5f55e0332a683d80fe9c8e6108548ca1150e2c56cd2e2716d24",
+    "source_fingerprint": "sha256:32fdebe1083c29e37d62f48f18d1d887e9b580bc30a0373046032ca5a64a0968",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2847537552bb217874fb20a474ed9ca50783065f8ab7227ac325cee1718ff8e7",
-      "plan.md": "f2f64f9736abc775e4444a9acdb1329c75de96b259024acfd5eebb0abb4aa129",
-      "tasks.md": "79a6a5055e755f1c5a6887a5fd687335d9a6b4c8bc63fd7c600de855240d9b21",
-      "implementation-summary.md": "480c5b6ae5982e8c444f19ac35f7558d9e663967bf596b310ea9d7bb23137b1c"
+      "spec.md": "384f421fea3b0c71c635eff89e8212bdd72be3701f44d0532c8308eef5e74e61",
+      "plan.md": "89c605662e04cecce76681f563af4095ac0fede2027ab51bbe1b2793f8635338",
+      "tasks.md": "bc418068b02a97f4349942152f5439a7aaa8c2650033e5c3879e1168bee9fedd",
+      "implementation-summary.md": "53da39e5870fdc0f404089664378773fc419806a48467034ea5f71d2b12a8796"
     },
     "last_active_child_id": null,
     "last_active_at": null

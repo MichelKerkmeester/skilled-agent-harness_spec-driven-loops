@@ -190,7 +190,6 @@ rg -n "KISS|DRY|SOLID|module|adapter|interface|abstraction|responsibility|depend
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -211,7 +210,6 @@ Phase 1 (Preparation) -> Phase 2 (Core Policy) -> Phase 3 (Checklist/Optional Re
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -319,7 +317,6 @@ Phase 1 (Preparation) -> Phase 2 (Core Policy) -> Phase 3 (Checklist/Optional Re
 
 ---
 
-<!-- ANCHOR:architecture -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Inline Comment Policy and AI Semantics Contract
@@ -342,7 +339,6 @@ See `decision-record.md` for full ADR set and tradeoffs.
 ---
 
 <!-- ANCHOR:ai-execution -->
-<!-- /ANCHOR:architecture -->
 ## L3+: AI EXECUTION FRAMEWORK
 
 ### Tier 1: Sequential Foundation

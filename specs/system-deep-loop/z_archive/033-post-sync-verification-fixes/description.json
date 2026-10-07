@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/033-post-sync-verification-fixes",
+  "specFolder": "system-deep-loop/z_archive/033-post-sync-verification-fixes",
   "description": "A large operator-directed sync of outstanding working-tree state (3,801 files, from concurrent sessions on `skilled/v4.0.0.0`) was committed and",
   "keywords": [
     "large",

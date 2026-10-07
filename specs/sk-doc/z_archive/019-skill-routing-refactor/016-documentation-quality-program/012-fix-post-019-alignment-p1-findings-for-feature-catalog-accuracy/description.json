@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy",
   "description": "Correct ten confirmed feature-catalog claims that disagree with current registries, hooks, command metadata, validation anchors, or the live",
   "keywords": [
     "correct",

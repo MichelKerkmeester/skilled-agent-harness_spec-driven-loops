@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration/001-research-and-context",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration/001-research-and-context",
   "description": "The GitKraken MCP integration program (see `../spec.md`) needs ground truth before any file changes: the GitHub README under-documents the real tool",
   "keywords": [
     "gitkraken",

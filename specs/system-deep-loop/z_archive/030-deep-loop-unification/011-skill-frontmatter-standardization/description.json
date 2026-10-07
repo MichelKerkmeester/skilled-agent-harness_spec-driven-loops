@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization",
   "description": "The deep-loop skill family has five completed frontmatter-alignment phases, each covering one deep-loop sub-skill and the same canonical",
   "keywords": [
     "deep-loop",

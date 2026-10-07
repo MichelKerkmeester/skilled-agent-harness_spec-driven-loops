@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "Root-level and .opencode infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-08-30T15:39:16.194Z",
+    "last_save_at": "2026-10-07T18:13:21.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:70da4909e7fe4be1e030291c66f1563a5fdc2ab9ef1e8fcc63c865c6cbe352bc",
+    "source_fingerprint": "sha256:b9786fdd66e17f8272edad389a0418eb494dce59d1f25cd58f69e4085051d589",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23a314e60510590ad49d7df3dda5e38879c91bea3e0332429583249168ab87b2",
-      "plan.md": "7a0f0c9f4653d26b3d24d5538b4c6fde4d21c1edd6b5356eab77c6ea07fa51db",
-      "tasks.md": "3daf8c576c4ab1823d206803fd0c4b6922b81e1dc7f88508597fe6beaaba83c2"
+      "spec.md": "14478ea4b00c70aeb58bfb8926804932a5206315d4daa22d05eb8c38be6f05fb",
+      "plan.md": "7898150d501ec04bb8dc409131b301c8eeafed4026e3f0917b154d875895bb2f",
+      "tasks.md": "2f37887d02515d7b9aed39e63b7d79b651ac747465f83dd5fa909022c7c5cf2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

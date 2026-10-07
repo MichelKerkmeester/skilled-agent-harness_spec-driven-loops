@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/002-md-generator-upgrade"
     last_updated_at: "2026-07-18T11:00:00Z"
     last_updated_by: "claude"
     recent_action: "Research converged at 5 iters; ranked upgrade levers delivered"

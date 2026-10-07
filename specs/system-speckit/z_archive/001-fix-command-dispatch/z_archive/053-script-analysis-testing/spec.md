@@ -12,7 +12,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 2 -->
 # Feature Specification: Script Analysis Testing - End-to-End Workflow Validation
 
 Complete feature specification defining the end-to-end testing requirements for the Spec Kit Memory workflow.

@@ -19,6 +19,9 @@ _memory:
 ---
 # Spec: Agent-Improver Self-Test
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
@@ -27,15 +30,19 @@ _memory:
 | Parent | 041-sk-improve-agent-loop |
 | Phase | 009 |
 | Estimated LOC | 0 (test-only phase, no new code) |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The agent-improver's own agent definition (`.opencode/agents/agent-improver.md`) has never been a target. This is the only agent in the system that describes the improvement workflow itself, creating a unique self-referential case where the integration scanner discovers its own surfaces, the profile generator extracts its own rules, and the scorer evaluates its own quality.
+<!-- /ANCHOR:problem -->
 
 ## Solution
 
 Execute a real end-to-end `/deep:start-agent-improvement-loop` run targeting `.opencode/agents/agent-improver.md` using the Phase 009 spec folder as the runtime root. Run the full loop (scan, profile, candidate, score, benchmark, reduce, stop-check) for 3 bounded iterations in `:confirm` mode with dynamic scoring. Record all runtime artifacts and document self-referential observations.
 
+<!-- ANCHOR:scope -->
 ## Scope
 
 ### In Scope
@@ -55,7 +62,9 @@ Execute a real end-to-end `/deep:start-agent-improvement-loop` run targeting `.o
 - Promotion of any candidate to canonical (observation/test phase only)
 - Changing agent-improver.md based on test results
 - Fixing any issues discovered (those become Phase 010 work)
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 | ID | Requirement | Acceptance Criteria |
@@ -67,7 +76,9 @@ Execute a real end-to-end `/deep:start-agent-improvement-loop` run targeting `.o
 | REQ-005 | Reducer generates a dimensional dashboard | Dashboard shows per-dimension progress and stop status |
 | REQ-006 | Stop condition fires correctly | Loop exits via plateau detection, max iterations, or operator decision |
 | REQ-007 | Self-referential edge cases are documented | Observations about scoring bias, circular discovery, and anomalies are recorded |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success Criteria
 
 - SC-001: The improvement loop completes without `infra_failure` status in any script output
@@ -76,3 +87,4 @@ Execute a real end-to-end `/deep:start-agent-improvement-loop` run targeting `.o
 - SC-004: At least 1 candidate is generated, scored across 5 dimensions, and reduced into the dashboard
 - SC-005: The final dashboard and registry are present and readable
 - SC-006: Self-referential observations are documented in the implementation summary
+<!-- /ANCHOR:success-criteria -->

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/010-sk-design-styles-from-refero",
+  "specFolder": "sk-design/z_archive/010-sk-design-styles-from-refero",
   "description": "`sk-design` holds exactly one extracted design reference (`.opencode/skills/sk-design/styles/cursor/`), captured by hand from a styles.refero.design",
   "keywords": [
     "sk-design",

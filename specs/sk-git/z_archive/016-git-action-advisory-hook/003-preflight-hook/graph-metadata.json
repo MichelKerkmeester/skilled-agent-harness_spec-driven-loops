@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/003-preflight-hook",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/003-preflight-hook",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Encoded rules do nothing until something evaluates them against a real command",
     "created_at": "2026-07-27T18:47:26Z",
-    "last_save_at": "2026-08-30T15:39:18.615Z",
+    "last_save_at": "2026-10-07T18:14:22.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:149eb7aa26a2dcb8540a5b06150fe37a8c8b7f6046d2fbc9760d2f9dedf3d2d3",
+    "source_fingerprint": "sha256:2cd4838282e91c335a13250abd0078c1a7a492a3d6f9df76a078fc7576629042",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76ea9660894f4592df05e26d8d09f3dd1b04f51ef213dd03c73bfcddc3a96803",
-      "plan.md": "d292929b926d677a89f03c8539db0639114fd7246bb311c826d326c80ab39f56",
-      "tasks.md": "28dd4d2d38677bfa7f61698a59cfd5fb8bc04dbd8eba9b1ba914f4c012a9d008",
-      "implementation-summary.md": "63b77b967a97d4e2ecccb1a5766d26307531d493307f4c71236c84e32d5b3891"
+      "spec.md": "3b576bcd8d3dcf3cc210ac7bf7fe7dc23d220e2f4bdd5d68e77c1b8effcd3ff9",
+      "plan.md": "e866be1409ce51c4fabe986b01f71c73cd4fbc4e5df63ba634bd747caa0ae8af",
+      "tasks.md": "f829f6f10b6ce49d69ac2e0d497fbc78a090fb11ea12a31f9b307f75caf415cb",
+      "implementation-summary.md": "8a5a5b5f765a5084551bac97e2ce4c641ccb6b510fedd26e6ca9eda5d0e9a2e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

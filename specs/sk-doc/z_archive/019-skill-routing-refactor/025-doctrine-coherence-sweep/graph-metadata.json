@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The doc-coherence lens found 22 places where older prose contradicts the metadata contract",
     "created_at": "2026-07-28T15:14:09.404Z",
-    "last_save_at": "2026-09-03T22:29:09.284Z",
+    "last_save_at": "2026-10-07T18:13:24.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e8090f56d97c400f36e96dd7301b85fa3bea0d7ca38064deee4c66e56cd9e3b",
+    "source_fingerprint": "sha256:d847ff645a9f765e958ed0f3bbb1129c78fddae30af62c3d65a12d055ffbbf1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "954ca370800f3d886094e930a88251ff5a378acd338280410e5a2e6c07040900",
-      "plan.md": "26897b7295c913ebebad702612bb6124a3b46a900983f1e6e4bd2ceafa3a49d0",
-      "tasks.md": "82f5411db1799e5bbc451a6bf0efc1d09366490949c11cda154f673df24d3d81",
-      "implementation-summary.md": "80d8d8396d676d8f732176187ce6dc19cb17dd99afdf4d2f2323dbc0bd12cbce"
+      "spec.md": "97636ab5ba57aa1c330a95a9dd27524f51ebaea21402d27809fcc653822db4c1",
+      "plan.md": "40f94b04fa9221abc1e417cbe59da49da0e32bf0e13a9692dbc1d97848401ba2",
+      "tasks.md": "70db6221e9db9926f48b772c597c533f59e921183b55bca80a4382bb7245cd5b",
+      "implementation-summary.md": "5a309faaef007c5226037e5e1a066a4919a63261c7904a926eb919db3012b5b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

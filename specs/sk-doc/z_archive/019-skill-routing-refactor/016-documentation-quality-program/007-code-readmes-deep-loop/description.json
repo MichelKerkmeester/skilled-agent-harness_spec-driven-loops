@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
   "description": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
   "keywords": [
     "repo-wide",

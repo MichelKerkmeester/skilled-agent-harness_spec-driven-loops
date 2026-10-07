@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma",
   "description": "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install",
   "keywords": [
     "mcp-figma",

@@ -8,7 +8,7 @@ contextType: "verification"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/007-adherence-audit-and-artifact-completion"
     last_updated_at: "2026-08-12T18:40:07.000Z"
     last_updated_by: "claude"
     recent_action: "Ran 3 dispatches, fixed the gap dispatch 3 left, verified every gate independently"

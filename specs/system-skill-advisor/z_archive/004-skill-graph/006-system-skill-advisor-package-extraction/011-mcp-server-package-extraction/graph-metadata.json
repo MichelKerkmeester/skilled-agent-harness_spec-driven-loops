@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`systemskilladvisor` owned the public `skillgraph` tools, but the SQLite DB/query library and lifecycle still lived in `system-spec-kit/mcpserver`",
     "created_at": "2026-05-18T08:53:19.871Z",
-    "last_save_at": "2026-08-30T15:39:26.490Z",
+    "last_save_at": "2026-10-07T18:16:08.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36e6b10587ce9ab52a1d3b207cdec06593b7702d42ca3cc84bd9477d27e5f727",
+    "source_fingerprint": "sha256:164ecf4e8261bdaa229624cff9d61ae44d7d267ba7fe580171d8045f6d5c6d33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0f61fd28302bb96034d6fe2f61e636f032f243d3528e66a3343a0ac0850e92c",
-      "plan.md": "cad37380015f9e31afb6c0164959f27491aa1ef71d773cd3ce08dcfea467aabe",
-      "tasks.md": "aa1f475f0cd390f2f28572f310f09af223ea0265c12d7c567291bd8b96b30873",
+      "spec.md": "959ceb80d9c272a01cee699ecbdcacb8c4398769cf2e2420f18d1b5d2f905323",
+      "plan.md": "c64c757704b881a215cc9be5806a56c7c04a3e99acf1378a3a9ddd0ab7ce46d1",
+      "tasks.md": "46af27b2d696d342eebc808673b2d97ee9469aea0b86fda4dd290204da7a24f0",
       "decision-record.md": "46cedfbdf3b2653fae58f2a206da47f96b4597b3a9bca455be1af14b3b9df2ba",
-      "implementation-summary.md": "689ffff821b0ad79a0088b3caf4d09488867f67e4c580bcc96ada1a1c452139b"
+      "implementation-summary.md": "37e5efcc8bc07bfadb8d210e5d25af80ed420f36233033a05a97487999135670"
     },
     "last_active_child_id": null,
     "last_active_at": null

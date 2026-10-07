@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency/002-create-skill-canon-self-consistency"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "track-e-spec-author"
     recent_action: "Authored phase spec from the track (e) synthesis proposal"

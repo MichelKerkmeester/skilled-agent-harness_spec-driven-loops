@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
   "description": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its",
   "keywords": [
     "md-generator",

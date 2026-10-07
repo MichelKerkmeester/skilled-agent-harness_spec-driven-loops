@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/001-deep-research",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/001-deep-research",
   "description": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully",
   "keywords": [
     "need",

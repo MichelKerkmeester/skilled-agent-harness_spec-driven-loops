@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
-  "spec_folder": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
-  "parent_id": "sk-doc/037-playbook-family-remediation",
+  "packet_id": "sk-doc/z_archive/037-playbook-family-remediation/002-cli-and-mcp-transports",
+  "spec_folder": "sk-doc/z_archive/037-playbook-family-remediation/002-cli-and-mcp-transports",
+  "parent_id": "sk-doc/z_archive/037-playbook-family-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Fourteen transport playbook roots carried 2,158 operator-scenario violations, and one of the defects found there was in the grader rather than in any document.",
     "created_at": "2026-08-29T11:53:22.349Z",
-    "last_save_at": "2026-08-30T15:39:18.174Z",
+    "last_save_at": "2026-10-07T18:14:01.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1afc5e3e58319d0ca8f1126abba35d815e151700cff5d0a779289494a7987e58",
+    "source_fingerprint": "sha256:15bb7e1f3552f7116d1403235af885c97cc430eaa0c7a00a5e6b063fcb5c6d7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9aed65b6f431de7d77d72e97b94ffc1ea380c7b134bf499c62171db32e9902ad",
-      "plan.md": "cd68b6d8eba49defdef4911522f84dfbd5aff1303e4ebe04a3c5d6618c98a10c",
-      "tasks.md": "a5ffee298e9bc2fd21c0c8685a769941f4ad1a69006969103e5a939a881fdca9",
-      "implementation-summary.md": "69fd1080b7375acf4d7f80c3a65e48daa55c1c27d5707f447c93cc5172070488"
+      "spec.md": "b21757ed4177d35ec19b9cba9d741ee82652de6d78c95a630b1e664709ce5f06",
+      "plan.md": "1e80c43684b1851627498408aa3d0d4390290ba17bf3c9a74f86943195b7936b",
+      "tasks.md": "80423c4eb053b38419ea29b61f2537099762ba1f5ebbe6e61d7a6025748bdb6c",
+      "implementation-summary.md": "c431e94521991f406cb8b4320332dd12c89ae2665eb149d4dd645e8fadd80186"
     },
     "last_active_child_id": null,
     "last_active_at": null

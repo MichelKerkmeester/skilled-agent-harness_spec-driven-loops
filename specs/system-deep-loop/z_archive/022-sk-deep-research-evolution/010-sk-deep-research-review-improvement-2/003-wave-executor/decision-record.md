@@ -2,7 +2,7 @@
 title: "Decision [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor/decision-record]"
 description: "Accepted architecture decision for orchestrator-managed wave execution in deep research and deep review."
 trigger_phrases:
-  - "042.003"
+  - "wave executor decision record"
   - "decision record"
   - "wave executor"
 importance_tier: "important"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/032-sk-design-recall-investigation",
   "description": "Take sk-design to PASS by loading exactly the resources each scenario expects, moving no other scenario",
   "keywords": [
     "take",

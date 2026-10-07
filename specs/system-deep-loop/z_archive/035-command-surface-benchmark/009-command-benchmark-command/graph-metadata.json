@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/009-command-benchmark-command",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/009-command-benchmark-command",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -15,14 +15,11 @@
       "deep command-benchmark launcher",
       "two-axis command benchmark launcher",
       "run command surface benchmark",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "command benchmark command plan",
+      "command benchmark command tasks",
+      "command benchmark launcher implementation",
+      "deep command-benchmark smoke",
+      "command benchmark instrument validity"
     ],
     "key_topics": [
       "command",
@@ -33,10 +30,10 @@
       "two-axis",
       "run",
       "surface",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "smoke"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +193,7 @@
     ],
     "causal_summary": "Ships the /deep:command-benchmark workflow-YAML router that composes the deterministic conformance axis through the deep-alignment peer adapter and the behavioral DAB axis through the matrix scheduler over the shared runner behind one command, generates the Codex mirror, and passes hermetic smoke verification, without implementing adapter, scoring, or scheduling logic itself.",
     "created_at": "2026-07-15T04:42:13.560Z",
-    "last_save_at": "2026-09-11T04:38:01.322Z",
+    "last_save_at": "2026-10-07T18:15:16.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:988bca858217273a155726591ef88bff4c6b1f07f643e3d4834a19830fa6510f",
+    "source_fingerprint": "sha256:8fa6fd538737151fb348823a717692cf57053a7996b7b48b1515febee48fa07a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e5b5eadabe96f84e4541857c71e017d90b6d34a1ac4cf4f7ec524d7047089c52",
-      "plan.md": "c1b511be983dca28cbcebb65ab06beda32e8a18c996d5dcd2febaa28c68cf7d9",
-      "tasks.md": "4c60f9f440dc5ab04152c2feba868ba3d87b5291914f59399a3ffe4c06b2be2d",
-      "implementation-summary.md": "1a12e4dcc299cd6e613f20c11a9f1c7d0fc9b73b57ab9adaacc91f94046374ba"
+      "spec.md": "640b64fa67dc51c7e52132b7bf727aa100225d4452e0bf9799fcf1d472a35038",
+      "plan.md": "877e1433d6dabc05271c7db63923b1e5c45d51f93000664977c4854ff28b3871",
+      "tasks.md": "99a4e53d1600cbf7cc2724030afccdc747e0921f104122c74f1f13b7b60f78ff",
+      "implementation-summary.md": "405b4774b8b98d46c45fbe8afa95a3abe6c9f37eda010ac34fbdf0a7cd73c8a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

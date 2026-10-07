@@ -294,7 +294,6 @@ Playbook-only operator audits without dedicated feature catalog entries: M-009, 
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -309,7 +308,6 @@ Playbook-only operator audits without dedicated feature catalog entries: M-009, 
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Sub-Scenario Boundaries

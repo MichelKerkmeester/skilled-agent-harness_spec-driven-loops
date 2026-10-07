@@ -47,12 +47,7 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
-      "changelog/v3.3.0.0.md",
-      ".opencode/commands/README.txt",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      ".opencode/commands/README.txt"
     ],
     "entities": [
       {
@@ -86,33 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "v3.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -198,11 +169,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Use Sequential Thinking",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Path Convention",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills",
     "created_at": "2026-05-06T07:55:50.002Z",
-    "last_save_at": "2026-08-30T15:39:22.695Z",
+    "last_save_at": "2026-10-07T18:14:12.863Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +207,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:0556ae8993c6222149bc9702a69d7fa2cd921988b2de20057b58b0c4f4e7bcea",
+    "source_fingerprint": "sha256:b18e8264c4ac9e1af2646d3e6a29c92c2ca1716a77579124979fed3451b17e05",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ceacf9b4c1bc164a032ab279f6dbbbb55e59a6761777c75dad84dcac5378b18",
       "plan.md": "88ff2b089ecc14bebfc4b8654ec696524352eed5bc698875a972c11bb11a944c",
       "tasks.md": "d3f7117a476561d21e92af2bee804ebbba0e08dd506d5985c13d2a3c220edae5",
-      "implementation-summary.md": "90ff043f15a2c3642507b8172d83c4d21aed8155e66065224cccaa43d5618547",
+      "implementation-summary.md": "5c0ab23cedb1aa05eef43d9793102c42a4e33be4e0536d10c34ecb4a0cf25ccb",
       "resource-map.md": "e9c8c1b9f7aa725f7f8b3c048463d5010f24fb44a74592b363787d7f0eb921df"
     },
     "last_active_child_id": null,

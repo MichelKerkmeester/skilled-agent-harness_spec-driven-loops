@@ -4,8 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis",
   "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability",
   "children_ids": [
-    "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
-    "system-deep-loop/031-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/002-gpt-reliability-research"
   ],
@@ -88,16 +86,16 @@
     ],
     "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
     "created_at": "2026-07-04T18:47:57.345Z",
-    "last_save_at": "2026-08-30T15:39:25.374Z",
+    "last_save_at": "2026-10-07T18:14:35.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:562d3eefc7d92c9361dba8b754937bd78d23ff2cf087c8c537287f9763ae5795",
+    "source_fingerprint": "sha256:0c0bcfe64b873fe03f2e1ae20f915885f155fed684cc87984848b910dea31b7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75fdac3674b1fca7457f4946e0e6b3c7db65a9bbb067117b30e27e4d5f8e4fc2"
+      "spec.md": "ab6a679e1feceebb1647c8cc095f5f6ee12b816e48cbc4c95f1489343658ecba"
     },
     "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
     "last_active_at": null

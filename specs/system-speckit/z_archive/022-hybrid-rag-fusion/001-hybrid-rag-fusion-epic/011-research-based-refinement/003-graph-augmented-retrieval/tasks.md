@@ -28,6 +28,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase A: Traversal Policy
 
 | #  | Task                                                       | Req     | Size | Status |
@@ -46,8 +47,11 @@ _memory:
 | 8  | Unit tests: density gate enables/disables community        | D3-001  | S    | [ ]    |
 | 9  | Unit tests: per-intent edge priority ordering              | D3-002  | S    | [ ]    |
 
+<!-- /ANCHOR:phase-1 -->
+
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase B: Graph Lifecycle
 
 | #  | Task                                                       | Req     | Size | Status |
@@ -63,8 +67,11 @@ _memory:
 | 18 | Integration test: save document triggers dirty-node refresh | D3-003 | M    | [ ]    |
 | 19 | Integration test: save-time enrichment creates expected entities and edges | D3-004 | M | [ ] |
 
+<!-- /ANCHOR:phase-2 -->
+
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase C: Calibration & Communities
 
 | #  | Task                                                       | Req     | Size | Status |
@@ -79,8 +86,11 @@ _memory:
 | 27 | Unit test: ablation harness produces per-intent metrics    | D3-005  | S    | [ ]    |
 | 28 | Latency benchmark: confirm graph operations < 50 ms        | All     | S    | [ ]    |
 
+<!-- /ANCHOR:phase-3 -->
+
 ---
 
+<!-- ANCHOR:completion -->
 ## Summary
 
 | Phase | Tasks | S | M | Status    |
@@ -89,21 +99,4 @@ _memory:
 | B     | 10    | 4 | 6 | Not started |
 | C     | 9     | 7 | 2 | Not started |
 | **Total** | **28** | **19** | **9** | **Not started** |
-
-<!-- ANCHOR:notation -->
-<!-- /ANCHOR:notation -->
-
-<!-- ANCHOR:phase-1 -->
-<!-- /ANCHOR:phase-1 -->
-
-<!-- ANCHOR:phase-2 -->
-<!-- /ANCHOR:phase-2 -->
-
-<!-- ANCHOR:phase-3 -->
-<!-- /ANCHOR:phase-3 -->
-
-<!-- ANCHOR:completion -->
 <!-- /ANCHOR:completion -->
-
-<!-- ANCHOR:cross-refs -->
-<!-- /ANCHOR:cross-refs -->

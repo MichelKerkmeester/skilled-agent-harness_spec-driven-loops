@@ -51,8 +51,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/system-skill-advisor/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-skill-advisor/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `semanticshadow` lane weight (0.05) had never been confirmed on the full 193-row corpus with real embeddings",
     "created_at": "2026-07-07T09:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.491Z",
+    "last_save_at": "2026-10-07T18:16:09.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:567f8a788026b678c6ab7467ba384bf77189c243b74b83503fb17629ce1b1b78",
+    "source_fingerprint": "sha256:80ff4ae47a848c07e54bd70191e6ac7c6280a10e4461e61ee930cf53a2989be3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "865fb6685cb69b058c16cd821adcee3d076245b1e8641ffae71d45e5dd25cd09",
-      "plan.md": "865bf41af9702179f519539f5d41c049a1a90b01cde18b83c3833dd3d5d3869e",
-      "tasks.md": "8845616027a63f5756a2ba9c4210d619a08fd846526e48cc2462a7f95c5520c5",
-      "implementation-summary.md": "d34b4ddb49ac2015836a7f4f880433067429de7dc397156a900d0dca0b901281"
+      "spec.md": "2910c5ca99cf4f2d7c86a8de5172de912b595bc21170b8887abd3ae35669cf39",
+      "plan.md": "7c1667c89e29e0aa2bfea6f0a02fba6db3eae01069c315ddb240cb5ef44a785d",
+      "tasks.md": "771f06fdae9d563ff46ff843f86ea9d02c181e1eceefb0c8426cd071367e6fb9",
+      "implementation-summary.md": "1ea163f7e52249f410b1268ee48fc3501af5afbf24d4a309431be459f498bb2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

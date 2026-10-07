@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/002-style-database/008-styles-folder-readmes",
-  "spec_folder": "sk-design/012-sk-design-program/002-style-database/008-styles-folder-readmes",
-  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/002-style-database/008-styles-folder-readmes",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/002-style-database/008-styles-folder-readmes",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/002-style-database",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Give every non-data folder under .opencode/skills/sk-design/styles a README.md stating its purpose, key files, and architecture fit — completing the restructured tree's documentation. Preserves existing READMEs; treats library/bundles as data (one top-level README, not per-bundle).",
     "created_at": "2026-07-22T03:18:47.187Z",
-    "last_save_at": "2026-08-30T15:39:12.742Z",
+    "last_save_at": "2026-10-07T18:12:14.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e5541170000416b7a575bfbc92ed156247016a05e9690fb685681fc6628557d",
+    "source_fingerprint": "sha256:63eb0f45206c670c80cfa21670430763f0428a21639ef6f45e22d923292eeeef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2a21dbc09ec4ff8db0eed7df57051d7b4ef26ab3644de5f7d247c92cc4e0622",
-      "plan.md": "68e4400d56cb0d5351c29fd47cdbfa61b651eeed9a0d92e08e4aba3138201f23",
-      "tasks.md": "7fd39d71c5878b7dc3853514b9a889909f70c32eb8e0990664754250a1b6d8d8",
-      "implementation-summary.md": "e6eaea03a1806a883bb9b566b6f899948aa08a9419537b39381830acf26c1b3b"
+      "spec.md": "1662cd12b16ee5afeeaf94d39480502ac9c1352dcb39e7f0611b6530fc7f2dce",
+      "plan.md": "e332eb6504619f126afc8726921257f637e622c020408fba72babc747712c80f",
+      "tasks.md": "f08f65078512faa6dc1acf7376ceae60f76a2a16a106c51e2e655aca4e09e490",
+      "implementation-summary.md": "f4ee9e8561f5157c7442d930e1f991cd5be9e84c7cdee059a7bf486b3b421694"
     },
     "last_active_child_id": null,
     "last_active_at": null

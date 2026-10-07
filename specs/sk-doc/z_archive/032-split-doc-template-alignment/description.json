@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/032-split-doc-template-alignment",
+  "specFolder": "sk-doc/z_archive/032-split-doc-template-alignment",
   "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the",
   "keywords": [
     "conform",

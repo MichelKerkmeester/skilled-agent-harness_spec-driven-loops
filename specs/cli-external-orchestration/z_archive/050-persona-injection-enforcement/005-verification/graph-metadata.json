@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/005-verification",
-  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/005-verification",
-  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "packet_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/005-verification",
+  "spec_folder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/005-verification",
+  "parent_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "P3 and P4 added the persona-injection enforcement rule to the six mode SKILLs, the hub, and the canonical card",
     "created_at": "2026-08-19T11:41:31.457Z",
-    "last_save_at": "2026-08-30T15:39:08.186Z",
+    "last_save_at": "2026-10-07T18:11:38.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acc19d75d6eb88af41e143e1bc86dc35ae6e5d8eac2cb415b589c895733fb15d",
+    "source_fingerprint": "sha256:cec2ae4ba3ca9296bac037e8d05ea7db71f628c184f54ad46ec32b3c4b07b8c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3061540967b997f18a11fa1416c18ffdab9efe4c9bdddb80f9025cacb8e24608",
-      "plan.md": "f931efba5b4918a813bb26c628bab5b3826a642efb43c774d8f733c3aba6f4f3",
-      "tasks.md": "f6594fec1f825547416d996f4aef8277c903b16151737d842c1736cc562c85bd",
-      "implementation-summary.md": "6a83e067e47a8ce232308158f7bc7ce7b221e18971b6ef7068d88e5306f0f96e"
+      "spec.md": "30bcd4b881434113bf635eb32bb7a0df8892a17758b8bb47e60f80b235654ac5",
+      "plan.md": "86357633226359c6dc9420bc91be8cad6b494b0baed32b08c065d5f190ee12c7",
+      "tasks.md": "1119c893b558861bc8a6d33c58739bffb0c600adb74ff33743e47084cb345ca6",
+      "implementation-summary.md": "1ddf117fffe7db0eaf78256cf9638b58ee5b04e2ccdf6caf2a2fb2561e7785c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

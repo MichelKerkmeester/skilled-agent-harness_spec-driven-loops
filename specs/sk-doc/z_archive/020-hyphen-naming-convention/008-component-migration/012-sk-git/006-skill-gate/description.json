@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
   "description": "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface",
   "keywords": [
     "sk-git",

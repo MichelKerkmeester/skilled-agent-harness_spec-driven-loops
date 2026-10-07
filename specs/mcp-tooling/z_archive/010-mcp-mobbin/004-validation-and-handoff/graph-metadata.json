@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/004-validation-and-handoff",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/004-validation-and-handoff",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,28 +44,25 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/spec.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/plan.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been re-validated as a four-mode unit, the spec packet's checklists carry no evidence, and no continuity has been saved",
     "created_at": "2026-07-16T09:39:34Z",
-    "last_save_at": "2026-08-30T15:39:09.992Z",
+    "last_save_at": "2026-10-07T18:11:38.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4ad3b079020adb948627c9ae99c96a102bc43c4617e0dfc0aa4931a99fc4597",
+    "source_fingerprint": "sha256:69f1616911ec1dd4c14603169547f9c83d2a54b02d4cfbb926cea261325f077b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6a3f3f3eaee447b02298b56ce830de6c77c11cb6ad785ff57e15bcf939d62ca",
-      "plan.md": "a70e9c9a826fe55fe013b4415b1a5d4f4c3e79892fcf533cd4523ede7818904e",
-      "tasks.md": "f61ced531524a4ac5b19cf600c13a59e5ebd6c17013b78ebb0a4ae4d53e5db55",
-      "implementation-summary.md": "a056242a22f6e64c6f41b100d072371ad22062c1f437c4b00d21b4a3b1dadb28"
+      "spec.md": "d668561e2ea4b0e9518b064f6ca2bfb5f37898c842c7e22214053e1dddfd099f",
+      "plan.md": "913c30d3d1e61e0607715a798b1a9832a01d087f8d307c2d3c2ba295413e9c45",
+      "tasks.md": "0752ede810a00ade5b0c401b4260309b6b2b4d6b7908d43f7a6ad4311cc9793c",
+      "implementation-summary.md": "ac32b0bda95569a86b8d0e9fd12fb8f07290dd23d68240cc56fb806ec7563d36"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-quality-control/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -55,19 +52,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,7 +196,7 @@
     ],
     "causal_summary": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents in the Human Voice Rules, validated by the sk-doc README validator",
     "created_at": "2026-08-04T08:34:50.001Z",
-    "last_save_at": "2026-09-03T22:19:47.351Z",
+    "last_save_at": "2026-10-07T18:13:49.727Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a73d62747d83d0a48e0bddca0670c6c37b315dd3b359b5cd33bfa5a517fdafc",
+    "source_fingerprint": "sha256:52d7de906b825f8026fddfba5d9f1e5dfa7a0015303d341343989d48a241de52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc90df9a3ef4e6f79f90012806b7dea80c250e7808913ffbbb410cd63f64b111",
-      "plan.md": "1a9e95e92d57dae40682470e8b1283153fc450473d38f3a20c0f5c86da9a5785",
-      "tasks.md": "7b33d8db7091220e1debe4cb31a51be0ac7e0d29d8665e818d80bedbc5590655",
-      "implementation-summary.md": "ad36d443e9d8f5220cdacfea74bc1e797e6c7d46520afd81b36a3d9dd6eecfd4"
+      "spec.md": "281cc9251e719f7ddbc4810ba5668b47660788faa81c6dca8938f7ccfc3e4a15",
+      "plan.md": "8b0c13b6e62388d0c2e48b233e2cb68c7eb30b5f2274768946bbf2284c14a0d5",
+      "tasks.md": "44d437d97758af8df969a770756a339e1bd873536a480f5d3db5eb3dd90f2445",
+      "implementation-summary.md": "3dd7671cdfb034668fd637933e91d4da51b8407c34fcd5857b7fd2290c25d8f4"
     },
     "last_active_child_id": null,
     "last_active_at": null

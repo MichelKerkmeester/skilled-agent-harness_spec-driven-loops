@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
   "description": "A route decision is not an effect",
   "keywords": [
     "route",

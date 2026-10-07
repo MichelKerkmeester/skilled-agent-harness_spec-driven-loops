@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/003-assets",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/003-assets",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/003-assets",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/003-assets",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-md-generator assets conformance",
       "md-generator assets template audit",
       "cardinal rules card conformance",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "assets plan",
+      "assets tasks",
+      "assets implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -34,9 +28,9 @@
       "cardinal",
       "rules",
       "card",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files — `cardinal-rules-card.md`, `design-md-prompt-template.md`, `source-of-truth-router-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:01.812Z",
-    "last_save_at": "2026-09-11T04:35:43.456Z",
+    "last_save_at": "2026-10-07T19:23:37.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55ece760faf462a959cc6473327076c16f3f3bc3e16abc16cdfa031b26009046",
+    "source_fingerprint": "sha256:e272829f870f57d0c979df3ee33b2655c7c08957c3826716be20bcd6fe06d5e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46806a449628cb5971fc676a34877efdd434c6e82e9171c944d390c45a43afc0",
-      "plan.md": "6e9e542fa7b1ab14ee14016ba483cf984b0b2c86fafde89c2ec3dd280c212033",
-      "tasks.md": "4cdc98d7f023ba10fd313a094eaabb1260d637a4f1137e4c4d16acf3a394eb39",
-      "implementation-summary.md": "47cd0b67b096e6d62cb237beafb6ba11f13e85643390ad8a9f5ce2e9b527b7f0"
+      "spec.md": "7c445d42ef47f7adcda3c923b5b47b001f300c5baa81e095773f2e58794f43da",
+      "plan.md": "d58e0991ebe61cf843fe9b32a3cf3ad6fa0f662ac23a990d466dfbc2b3f1bec9",
+      "tasks.md": "33fde4407a724862828f094ac44350606b485155829a7d4fb824ce0669253644",
+      "implementation-summary.md": "18321b856498d78cb948486fab53fba37cf841ecf62749e2e9e0320e12590f8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,14 +2,13 @@
 title: "Implementation Summary: combo-matrix cli-devin arg conformance"
 description: "Appended --respect-workspace-trust false to the cli-devin representative-args expectation in combo-matrix.vitest.ts so it matches fanout-run.cjs's emitted argv (packet-046 devin repair). The stale test now passes; full deep-loop guard suite green."
 trigger_phrases:
-  - "implementation summary"
   - "combo-matrix devin conformance"
   - "respect-workspace-trust test fix"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/054-combo-matrix-devin-arg-conformance"
+    packet_pointer: "cli-external-orchestration/z_archive/054-combo-matrix-devin-arg-conformance"
     last_updated_at: "2026-08-24T15:35:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed cli-devin arg conformance; guard suite green"

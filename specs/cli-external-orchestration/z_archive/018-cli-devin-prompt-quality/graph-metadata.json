@@ -4,13 +4,6 @@
   "spec_folder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/018-cli-devin-prompt-quality/001-council-design",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-    "cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation",
     "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/001-council-design",
     "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/002-eval-rig",
     "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop",
@@ -125,7 +118,7 @@
     ],
     "causal_summary": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic evaluation of which combinations maximize output quality on real coding tasks",
     "created_at": "2026-05-18T07:49:26.948Z",
-    "last_save_at": "2026-08-30T15:39:08.469Z",
+    "last_save_at": "2026-10-07T21:34:07.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -14,6 +14,10 @@
       "deep-improvement three-lane docs",
       "122 phase 005",
       "skill-benchmark validation docs",
+      "deep-improvement three-lane docs plan",
+      "phase 005 validation docs plan",
+      "deep-improvement three-lane docs tasks",
+      "phase 005 validation docs tasks",
       "122 phase 005 implementation summary",
       "three-lane docs results"
     ],
@@ -24,17 +28,19 @@
       "phase",
       "skill-benchmark",
       "validation",
+      "plan",
+      "tasks",
       "implementation",
       "summary",
       "results",
-      "bring",
-      "skill",
-      "readme"
+      "bring"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -42,6 +48,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -87,6 +105,72 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -103,34 +187,26 @@
         "kind": "key_phrase",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "1. What was done (verified + committed)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. Hardening gate (Opus, Phase 005 close-out)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Bring SKILL.md, README, catalog, and advisor metadata up to the three-lane (agent-improvement / model-benchmark / skill-benchmark) reality of the renamed deep-improvement skill; run hardening/deep-review gate; end-to-end validation.",
     "created_at": "2026-05-30T07:27:05.681Z",
-    "last_save_at": "2026-08-30T15:39:23.831Z",
+    "last_save_at": "2026-10-07T20:52:23.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69e0e53e719239f6da87738f6273cc52cfd8ef7a9082bc2e3e6c8a0b2bec5e29",
+    "source_fingerprint": "sha256:3be025e8957682bce09380ca842b57c6e12e1a163fc34f42c134f7a8151a0340",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "659271306a220f9b8304972b41d27cf8fb173d24db5652a220df4bc12d4c0a86",
-      "implementation-summary.md": "91092b03f2e43ceab8dcfa077a15696728cbf0e6939b4ad40097ed6bb8a23ca2"
+      "spec.md": "945644be1f76fbc37ad28ddb249f917260b294176b75e4ce0c33c72a87d920eb",
+      "plan.md": "e43d2096591b923eeff6e823930ef05045e857d26ff7c281c801231e1600f26d",
+      "tasks.md": "498bc8a1f9860b8da752f989d6517224e6ce1e87e036f259d08107747e5436a2",
+      "implementation-summary.md": "9c6021eaf26202b6a8fcee5753aeb3b3fbcb9bdd341ca826e1daf3cbaedc4dc3"
     },
     "last_active_child_id": null,
     "last_active_at": null

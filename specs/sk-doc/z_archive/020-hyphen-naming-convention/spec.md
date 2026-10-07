@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention"
     last_updated_at: "2026-07-20T10:42:52Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Registered follow-on phase 012 in the parent phase map"

@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation"
     last_updated_at: "2026-07-16T07:15:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded remediation phase parent + P0 phases"

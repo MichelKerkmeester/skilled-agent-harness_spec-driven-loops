@@ -3,7 +3,6 @@ title: "Implementation [system-spec-kit/024-compact-code-graph/024-hookless-prim
 description: "All 10 items implemented to optimize session bootstrap for hookless runtimes."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "024"
   - "hookless"
 importance_tier: "normal"

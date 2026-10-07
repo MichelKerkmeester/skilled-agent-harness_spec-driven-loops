@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
     last_updated_at: "2026-07-08T06:58:48Z"
     last_updated_by: "claude"
     recent_action: "Checked off Phase 2-3 tasks; added Phase 4 for Round 2"

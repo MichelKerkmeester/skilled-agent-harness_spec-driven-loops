@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity"
     last_updated_at: "2026-07-13T14:30:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped all three children (001, 002, 003)"

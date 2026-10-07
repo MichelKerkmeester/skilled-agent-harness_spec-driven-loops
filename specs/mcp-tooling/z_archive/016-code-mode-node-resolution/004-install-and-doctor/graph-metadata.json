@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
-  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
-  "parent_id": "mcp-tooling/016-code-mode-node-resolution",
+  "packet_id": "mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+  "spec_folder": "mcp-tooling/z_archive/016-code-mode-node-resolution/004-install-and-doctor",
+  "parent_id": "mcp-tooling/z_archive/016-code-mode-node-resolution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,9 +46,7 @@
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
       ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/install-guides/install-scripts/install-code-mode.sh",
-      ".opencode/install-guides/MCP - Code Mode.md"
+      ".opencode/commands/doctor/mcp.md"
     ],
     "entities": [
       {
@@ -103,18 +101,6 @@
         "name": "mcp.md",
         "kind": "doc",
         "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "install-code-mode.sh",
-        "kind": "script",
-        "path": ".opencode/install-guides/install-scripts/install-code-mode.sh",
-        "source": "derived"
-      },
-      {
-        "name": "MCP - Code Mode.md",
-        "kind": "doc",
-        "path": ".opencode/install-guides/MCP - Code Mode.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
     "created_at": "2026-08-28T16:11:22Z",
-    "last_save_at": "2026-08-30T15:39:10.556Z",
+    "last_save_at": "2026-10-07T18:11:39.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a8d4560c4d7b129806b8675c2109990e0b831c89a020a1b7f15a2321ca663a1",
+    "source_fingerprint": "sha256:3cfa41cee794d1c757c5a3726b9e79c2feabe169eb908bd6e10c3519f3c1425a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "842104cd57311d00938f1e6902b34fdd8065f6102e739a30ac9377f4ceb06944",
       "plan.md": "b5976970158a7cced7972006848261562435e3b30575c92ecd064fc757b349f2",
       "tasks.md": "4908ad5399cf98dc84ef5aa13d5503d67d2a80eb7d3470cece423ae078e11e9e",
-      "implementation-summary.md": "ad6737b7aa99a2883a83eeb73c9d5a9bb4604b94a034a1cf6ebfe830055f4350"
+      "implementation-summary.md": "608be35920e2f9331dd24a914d863bf610572a88fcf434731e45d02268797917"
     },
     "last_active_child_id": null,
     "last_active_at": null

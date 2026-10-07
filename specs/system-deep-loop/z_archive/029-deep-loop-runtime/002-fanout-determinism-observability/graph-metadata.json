@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-loop fan-out runtime merges per-lineage finding registries and pools concurrent CLI lineages on three modules: `fanout-merge.cjs` (merge + dedup), `fanout-pool.cjs` (concurrent dispatch + gauges + summary) and `fanout-run.cjs` (the lineage worker + signal handling)",
     "created_at": "2026-06-19T06:20:37.815Z",
-    "last_save_at": "2026-08-30T15:39:25.977Z",
+    "last_save_at": "2026-10-07T18:15:11.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03db9908167a216fe0797cd62abf930b95ef2736769ba9f26d81fa0f8168938a",
+    "source_fingerprint": "sha256:8502db65184797d605ebf4b9e99037cd91beea2a850dcc9602e5639c91f3c2e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d33085707c1e107eee45f9bbe2a55ca23d382498aef8970bde36d97c06c6af61",
-      "plan.md": "0a318be9ee84680dbad72424424dcb51a3c4d878173ddb5a1597e51d4af39574",
-      "tasks.md": "34d61ea356b8f1694773c8b3c29c667a840f506d94ae33503b2babcb56bfb817",
-      "implementation-summary.md": "46a365e86f4d5a06b4111e4e420b858ccbc8f276ef3e5ce41fb664ce9af4c153"
+      "spec.md": "500b2a500696859d16ca06e54f741610a81d8ddf9df73fe3c9cc75056cf6794e",
+      "plan.md": "91bcbacfa6c083cc01051ae192fa65ae5cab563aadfc40be6b39ecf03076fdc3",
+      "tasks.md": "67338017efc9e37e1d3d830b5be36166825fa76e28df623d0e8a4f70a5d528e4",
+      "implementation-summary.md": "8aad083982d5feb5cad325a564cf63184ec5a74b9c8e77a3ae714accfb32007e"
     },
     "last_active_child_id": null,
     "last_active_at": null

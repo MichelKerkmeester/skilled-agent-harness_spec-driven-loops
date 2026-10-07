@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/008-pi-hook-extension-layer",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/008-pi-hook-extension-layer",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,8 +48,7 @@
       "hooks/codex/shared.ts",
       "hooks/devin/shared.ts",
       "hooks/cursor/shared.ts",
-      ".pi/settings.json",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs"
+      ".pi/settings.json"
     ],
     "entities": [
       {
@@ -98,12 +97,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "completion-evidence-sentinel.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores (`spec-gate-core.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, `post-edit-router.cjs`, `freshness-core.cjs`, `mcp-route-guard.cjs`, `completion-evidence-sentinel.cjs`, `dispatch-guard.cjs`), each already bridged into Claude, Codex, Devin, and Cursor via thin per-CLI adapter directories (`mcp-server/hooks/<cli>/`, `runtime/hooks/<cli>/`, plus guard-owning-packet siblings) registered through each CLI's own external hook-config file (`.codex/hooks.json`,",
     "created_at": "2026-07-27T06:48:18.102Z",
-    "last_save_at": "2026-08-30T15:39:07.704Z",
+    "last_save_at": "2026-10-07T18:11:21.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe8486b4fa5c2a9a81e735a0c682267a8a3371f74490ab924da783b3da52eebf",
+    "source_fingerprint": "sha256:92ac77568e3ad325470091da12b88b5805915372fea007f109464db19b576bef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb4a6a3aef0976cfd313abadb80fb4260ca71274fc43e941301c40b82add772f",
-      "plan.md": "8294c0ea4abdcff062790322473a912ad694b1d4a6709b0b9d5a6fb41edba92f",
-      "tasks.md": "e0614c85b8133b871acdf173ed650e29eb9bd06e5ea51a193c5af8b8063f1a6e",
-      "implementation-summary.md": "32243c77577228d07e5fb01e3e98ca394bb28c7e67c38f2f77b937b1c9ae2a1b"
+      "spec.md": "4fd9ddf65fa0b4968111989d054d947c113c3482173318017f66552b30692240",
+      "plan.md": "694690401dbbddfdb9bd42dc976d6a4eb040c9dc8c078bc3ca9b046ce099b7a0",
+      "tasks.md": "76a93c15f3f3de8230a1de90f6a4daa2939ce5ba18da5204fdf11dda073cb52f",
+      "implementation-summary.md": "84150e20d983a85edc0dd6d04c83a4327eaab3b5877ac4bfd0404d621e3053f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

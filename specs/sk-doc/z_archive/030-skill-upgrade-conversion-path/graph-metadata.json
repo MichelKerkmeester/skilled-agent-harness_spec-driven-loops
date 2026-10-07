@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/030-skill-upgrade-conversion-path",
-  "spec_folder": "sk-doc/030-skill-upgrade-conversion-path",
+  "packet_id": "sk-doc/z_archive/030-skill-upgrade-conversion-path",
+  "spec_folder": "sk-doc/z_archive/030-skill-upgrade-conversion-path",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "This repo is a framework others adopt and customize",
     "created_at": "2026-08-15T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:18.102Z",
+    "last_save_at": "2026-10-07T18:14:19.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:536d44a8feb7188bb77e0a9cff274b215548e90ba95a58d91e84c148e8092cb2",
+    "source_fingerprint": "sha256:52d246dc6597e3c54a295130585d227590f53d67132cdbdf723849e60e7f07ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9fc444447ac9cb3e5ff1dcd1b823f296bac560bee337d0d80f17baf130d53822",
-      "plan.md": "457077e1610c984345d4445102db474083ccb8301fd756dfb56e9d53fe142d9d",
-      "tasks.md": "76d579da8258e4dafb1823d1dd0e49924b2d862f6b749bf159893cef6ef3ef9c",
-      "implementation-summary.md": "60cf44f730a9875c8f3b5ee9a68d3c7747fa88b373c4e67d72f0d6aea999faca"
+      "spec.md": "73b5fc4d5c1b8f68e7a0aef42d13301e45ea49ab767c2b01013908921c5dacc2",
+      "plan.md": "99af9f4df5508079d630e09a2dabfe310da97c84d7c4459ea36ed7fe7028ccf9",
+      "tasks.md": "75f688b47a9dab381ff644aa337d7f98fa2522ad1ccde188b39435137e3b4b05",
+      "implementation-summary.md": "ccf2bd6bf7b2696bb9c02a51f504e2ca0c31e028b705b177db1b51d3d8c080fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

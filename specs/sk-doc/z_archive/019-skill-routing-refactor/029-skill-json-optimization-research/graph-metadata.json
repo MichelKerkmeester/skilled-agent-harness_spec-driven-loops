@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Three-model, 15-iteration deep-research investigation (SOL-high / GLM-5.2-high / Grok-4.5-high, 5 iters each, all lineages concurrent, no early convergence) into whether every skill- and skill-advisor-related JSON across .opencode/skills is optimized, automated, effective, tested, and integrated — and where the highest-leverage gaps are.",
     "created_at": "2026-07-29T06:03:55.087Z",
-    "last_save_at": "2026-09-10T20:44:48.461Z",
+    "last_save_at": "2026-10-07T18:13:24.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ccea1712227ae5eb9318207a50130788bbc658e001be1357601a0c4b1ec37020",
+    "source_fingerprint": "sha256:f1f293233099f74bfb5ddf2b98fcbead2f803bfae68fdd88d059d4b616285086",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7566d4703852aa2bcaa719144096ffb1a1eeeb64cad8b7d3f7b91e0d384e1865",
-      "plan.md": "4e371502718eafa496f4322c7599d12a540d348c6165a7512f76253706050199",
-      "tasks.md": "ec045657c3c2fc195bae2a82100caac2eafe993cd55e8118596bc7b0d1c2af30",
-      "implementation-summary.md": "7f83a06874ec89d1e29b42a4324c43d941f4a252116bdf390aeb1bb2c16e877e",
+      "spec.md": "920447543218b99be59b5b8da859c03ebb12f52d4e1035caf6b63ed0edb59d29",
+      "plan.md": "e53248cb6fa757aa4a9aa1212688ed5e58d3fd3c55b30eae26f61ac03f991906",
+      "tasks.md": "873a4af48b0309c213ae9a775707a4c9a1e290b5a65d17ebb152cd7306f93d15",
+      "implementation-summary.md": "0c9ba7bfa3117683545590a4eb437352cb6461e218e1d8e491e5701fb906ef12",
       "research/research.md": "d55bc50643e0190e5fe95e48724f7ae679a7454bdec1be38e50253a703453db0"
     },
     "last_active_child_id": null,

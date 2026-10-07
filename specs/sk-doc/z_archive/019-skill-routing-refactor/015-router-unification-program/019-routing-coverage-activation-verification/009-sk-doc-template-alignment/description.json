@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
   "description": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
   "keywords": [
     "four",

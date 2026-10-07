@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
-  "spec_folder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
-  "parent_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "384 in-scope skill markdown files carry a `## TABLE OF CONTENTS` block (heading plus a list of anchor links)",
     "created_at": "2026-05-26T09:40:16.337Z",
-    "last_save_at": "2026-08-30T15:39:14.286Z",
+    "last_save_at": "2026-10-07T18:11:58.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ade7cfef8cd2bffdde32b4ab23bd331e847bd611eb38ae08709552c98032ec22",
+    "source_fingerprint": "sha256:deaa830bf8b1670e4858bdfb5d00003fd0a16c75de26f08ba502474b6f66b6a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35165608bedeaf667152b90292c454016881e7757c326c51527ed25af6e0472c",
-      "plan.md": "4d92616f191e43c29e60db004afda7d1261bc1a46e3da7efeb2655fa6d88feb0",
-      "tasks.md": "f48201eba461f87734594d73b655ca2e2decd83dedffe43cc46b7792a5dd33ec",
-      "implementation-summary.md": "c3270f7055f6fea78fc360d110053d710929f960036efd3888d2e9a04a8ed925"
+      "spec.md": "f91d45d31fe2aefc873f7e2e54ac7fd5897d7e6c98a4fc35be7748c56c311091",
+      "plan.md": "2eb9793e1b5ed7112b16366880ec838e51e5be9b7302c8e24a3801adcfe7c97a",
+      "tasks.md": "eb179660bcc5661b5b30eff78d8e9eb6d6fb08337660896cfa195ceb7a134a5d",
+      "implementation-summary.md": "43ee14d62a1e3ae15725bf327fe40b42d5e77580cad7466d9879ee959d2257ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

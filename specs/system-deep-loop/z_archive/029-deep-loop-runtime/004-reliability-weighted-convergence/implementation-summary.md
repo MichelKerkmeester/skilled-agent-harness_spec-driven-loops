@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/004-reliability-weighted-convergence"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence"
     last_updated_at: "2026-07-06T16:24:26.243Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Marked reliability cluster NO-GO. Plan kept as design of record"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/004-reliability-weighted-convergence` |
+| **Spec Folder** | 004-reliability-weighted-convergence |
 | **Completed** | n/a, NO-GO, no implementation this cycle |
 | **Level** | 3 |
 | **Status** | complete |

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
-  "spec_folder": "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
-  "parent_id": "sk-doc/024-playbook-scenario-coverage",
+  "packet_id": "sk-doc/z_archive/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
+  "spec_folder": "sk-doc/z_archive/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
+  "parent_id": "sk-doc/z_archive/024-playbook-scenario-coverage",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,7 +49,6 @@
       ".opencode/skills/sk-git/manual-testing-playbook/owner-first-worktree-tooling/locked-unique-number-allocation.md",
       ".opencode/skills/sk-git/manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
-      ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/context-save-index-update.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
@@ -57,7 +56,6 @@
       ".opencode/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
       ".opencode/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md",
       ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
-      ".opencode/skills/mcp-tooling/manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md",
       ".opencode/skills/mcp-code-mode/manual-testing-playbook/core-tools/call-tool-chain-execution.md",
       ".opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
     ],
@@ -117,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "context-save-index-update.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/context-save-index-update.md",
-        "source": "derived"
-      },
-      {
         "name": "session-recovery-spec-kit-resume.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
@@ -165,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "ordered-bundle-figma-refero-compiled-routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md",
-        "source": "derived"
-      },
-      {
         "name": "call-tool-chain-execution.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-code-mode/manual-testing-playbook/core-tools/call-tool-chain-execution.md",
@@ -205,11 +191,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A dedicated research pass walked existing scenarios against current behavior and found a class the census work",
     "created_at": "2026-07-30T19:29:15.790Z",
-    "last_save_at": "2026-08-30T15:39:17.345Z",
+    "last_save_at": "2026-10-07T18:13:43.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +216,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:51e0e2b04279be1222cce5b4cc441c89cfea52d56f9dd3b1b4163a04f58bef6b",
+    "source_fingerprint": "sha256:25698cccc16c70a1c4991c4eb31f9db7d9e12b67ca8aefba79180ef2a5a3afe9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "98daecc89b4856bea6a63726b5856e9a13b6d32f00ff98fddf00ab3607fb8e15",
-      "plan.md": "bd6832d9eaef6030f8d5a64052afff858bd54363c45b4a14e546bc23b74a6aaf",
-      "tasks.md": "191c865b7dbab35a02b03ea9e29d683f2bbc8f953cfbea6ad06a9091f11b4e44",
+      "spec.md": "1d415bd59b3bf45b5e6290453a1f83d386e4524255808b4ea5913fdea59ae50e",
+      "plan.md": "6ec4a9ed734ab968da13cdad0bcdf5ac061d1cba205e886c1e2c3633abce7c3a",
+      "tasks.md": "6803240e353eebf9ad967d4cd4c72774509382683d154055efeb82f3e43f9287",
       "decision-record.md": "84eb10a6918f30dcc3242b0d5724db50444a5be2b5ebb7b3c6ee8a2d8df8a509"
     },
     "last_active_child_id": null,

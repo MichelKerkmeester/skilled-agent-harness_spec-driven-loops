@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/017-design-skill/001-skill-build",
-  "spec_folder": "sk-design/017-design-skill/001-skill-build",
-  "parent_id": "sk-design/017-design-skill",
+  "packet_id": "sk-design/z_archive/017-design-skill/001-skill-build",
+  "spec_folder": "sk-design/z_archive/017-design-skill/001-skill-build",
+  "parent_id": "sk-design/z_archive/017-design-skill",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,20 +47,13 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/README.md",
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/leaf-manifest.config.json",
       ".opencode/skills/sk-design/leaf-manifest.json",
-      ".opencode/skills/sk-design/leaf-aliases.json",
-      ".opencode/skills/sk-design/references/color-system.md",
-      ".opencode/skills/sk-design/references/build-procedure.md",
-      ".opencode/skills/sk-design/references/hierarchy.md",
-      ".opencode/skills/sk-design/references/ux-laws.md",
-      ".opencode/skills/sk-design/references/diagnosis-table.md",
-      ".opencode/skills/sk-design/references/depth-and-detail.md",
-      ".opencode/skills/sk-design/references/interaction-craft.md",
-      ".opencode/skills/sk-design/references/motion-principles.md",
-      ".opencode/skills/sk-design/references/review-checklist.md"
+      ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "feature-catalog/governance/feature-flag-governance.md"
     ],
     "entities": [
       {
@@ -100,21 +93,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
-      {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.config.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/leaf-manifest.config.json",
         "source": "derived"
       },
       {
@@ -124,63 +105,27 @@
         "source": "derived"
       },
       {
-        "name": "leaf-aliases.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/leaf-aliases.json",
+        "name": "feature-flag-governance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
         "source": "derived"
       },
       {
-        "name": "color-system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/color-system.md",
+        "name": "skill-root-metadata-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
         "source": "derived"
       },
       {
-        "name": "build-procedure.md",
+        "name": "skill-root-metadata-contract.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/build-procedure.md",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
-        "name": "hierarchy.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/hierarchy.md",
-        "source": "derived"
-      },
-      {
-        "name": "ux-laws.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/ux-laws.md",
-        "source": "derived"
-      },
-      {
-        "name": "diagnosis-table.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/diagnosis-table.md",
-        "source": "derived"
-      },
-      {
-        "name": "depth-and-detail.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/depth-and-detail.md",
-        "source": "derived"
-      },
-      {
-        "name": "interaction-craft.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/interaction-craft.md",
-        "source": "derived"
-      },
-      {
-        "name": "motion-principles.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/motion-principles.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/references/review-checklist.md",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -206,11 +151,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Scaffold",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Progressive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400 is round",
     "created_at": "2026-08-28T10:50:34.606Z",
-    "last_save_at": "2026-08-30T15:39:13.546Z",
+    "last_save_at": "2026-10-07T18:12:34.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c07e2a201bbd311788b05db29d7c8a050e0d7eedcc8be9dff9dab27eb1a26d40",
+    "source_fingerprint": "sha256:69032ecb1a1622b546f732a6296927a35c84d0351e1239e72da9d5fe21972c2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddabe67af1fce267c18f706751e44046e862b8f369b7f96a8a5145b2f2adbe0f",
       "plan.md": "8ccadacfc8f00902148b3de9239170d27b13de91fc245559008e0e9b2bdaf83c",
       "tasks.md": "e39fee12da021037044a68d796709d94132e7f5bf2a6b7e6b2809534536f3557",
       "decision-record.md": "cd074b4c99745932db63f9a61ff09d6beecf4f15162c82bc5ce72cf03a009403",
-      "implementation-summary.md": "6f9ef8df8d006ecd202864d2f41430177647e47b0a68217452a9f32bdafe7092"
+      "implementation-summary.md": "f67ae18d7da4105b7ea211d5569ba341d66814d18e286dd41bc50ab9581dae55"
     },
     "last_active_child_id": null,
     "last_active_at": null

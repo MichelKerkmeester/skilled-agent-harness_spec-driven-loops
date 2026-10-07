@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode"
     last_updated_at: "2026-07-13T18:30:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded six implementation phases from the completed research synthesis"

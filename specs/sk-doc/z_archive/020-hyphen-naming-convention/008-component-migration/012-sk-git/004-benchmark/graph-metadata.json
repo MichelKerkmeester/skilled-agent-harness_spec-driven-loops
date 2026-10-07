@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers. This phase moves the benchmark filesystem names to kebab-case and proves that benchmark evidence, fixture discovery, and storage-guide references remain intact.",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-08-30T15:39:16.998Z",
+    "last_save_at": "2026-10-07T18:13:25.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e9bdfddc1d7fc499dc8a0924c33a227583dd356bc2f18d2545357e2c5ba3eeaf",
+    "source_fingerprint": "sha256:4fbb09795e5b1db385f285675828432e1551e00de2766b682b8999efd8de1bc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06133d0270d65b8a6f21e1730ba4fa90a981d785f6381d01b9e493a5c236b1a1",
-      "plan.md": "e2f096a5915c4c2ccb3120c7f4e1c360aee8fa08c31e01565250db0062e46d7b",
-      "tasks.md": "8683a6e8776eb28b69633340de8ce128dc535eb7bedbd38c34068577a9e0a4db"
+      "spec.md": "db7f73cc74255b4edcd7213cbdf3c32df9916fd1becb91f682909d8e67fd1f68",
+      "plan.md": "da256e653f09ad467dfbde52f07b6cb2d2a2fdef08a909844960f56dd5569762",
+      "tasks.md": "92669c6062bd4008cc4ef6727ef6ac01d11b9e96911f8fd97f94b2f5a0cd2100"
     },
     "last_active_child_id": null,
     "last_active_at": null

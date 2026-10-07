@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded impl-summary"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research` |
+| **Spec Folder** | 001-documentation-quality-audit-research |
 | **Completed** | [PENDING] |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

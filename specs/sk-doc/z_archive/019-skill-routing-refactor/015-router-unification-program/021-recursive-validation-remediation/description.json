@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/021-recursive-validation-remediation",
   "description": "The plan-named gate `validate.sh .../015-router-unification-program --recursive --strict` exited 2 and blocked publication of the completed",
   "keywords": [
     "plan-named",

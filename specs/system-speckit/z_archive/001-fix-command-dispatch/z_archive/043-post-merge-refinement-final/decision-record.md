@@ -2,13 +2,8 @@
 title: "Decis [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/decision-record]"
 description: "This document records architecture decisions made during the post-merge refinement phase, including accepted technical debt and deferred improvements."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "post"
-  - "merge"
-  - "refinement"
   - "decision record"
-  - "043"
+  - "post merge refinement final decision record"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -19,6 +14,7 @@ This document records architecture decisions made during the post-merge refineme
 
 ---
 
+<!-- ANCHOR:adr-009 -->
 ## DR-009: SKILL.md/YAML Parity Gap (P2-007)
 
 ### Context
@@ -39,9 +35,11 @@ There is a structural "parity gap" between SKILL.md documentation and the YAML e
 ### Files Affected
 - `.opencode/skills/system-spec-kit/SKILL.md`
 - `.opencode/commands/spec_kit/assets/*.yaml`
+<!-- /ANCHOR:adr-009 -->
 
 ---
 
+<!-- ANCHOR:adr-010 -->
 ## DR-010: Maintenance Tax (P2-008)
 
 ### Context
@@ -69,9 +67,11 @@ When changing SpecKit workflows:
 - [ ] Update relevant command .md files
 - [ ] Update YAML assets if execution changes
 - [ ] Run validation on affected spec folders
+<!-- /ANCHOR:adr-010 -->
 
 ---
 
+<!-- ANCHOR:adr-011 -->
 ## DR-011: Level 0 Protocol (P2-009)
 
 ### Context
@@ -95,9 +95,11 @@ Level 0 could include:
 ### When to Revisit
 - If users frequently complain about overhead for small fixes
 - If we see patterns of skipping documentation for small changes
+<!-- /ANCHOR:adr-011 -->
 
 ---
 
+<!-- ANCHOR:adr-012 -->
 ## DR-012: YAML Quote Escaping Fix (P3-002)
 
 ### Context
@@ -122,9 +124,11 @@ command: 'Read(".opencode/skills/system-memory/SKILL.md")'
 
 ### Verification
 All YAML files now pass `python3 -c "import yaml; yaml.safe_load(...)"`
+<!-- /ANCHOR:adr-012 -->
 
 ---
 
+<!-- ANCHOR:adr-013 -->
 ## DR-013: P3 Code Issues Assessment
 
 ### P3-001: Deprecated substr() Call
@@ -136,6 +140,7 @@ All YAML files now pass `python3 -c "import yaml; yaml.safe_load(...)"`
 - `vectorSearchEnabled: vectorIndex.isVectorSearchAvailable()`
 
 The `formatSearchResults` function already includes `importanceTier` in results. No changes needed.
+<!-- /ANCHOR:adr-013 -->
 
 ---
 

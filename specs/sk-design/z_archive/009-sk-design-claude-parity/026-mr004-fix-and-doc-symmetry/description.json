@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
   "description": "Phase 025 closed `PB-002` but left four items explicitly open or deferred: `MR-004`'s newly-discovered live-daemon-path advisor conflict (out of that",
   "keywords": [
     "phase",

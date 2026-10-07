@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/001-author-per-mode-references"
     last_updated_at: "2026-08-11T07:16:29.084Z"
     last_updated_by: "implementer"
     recent_action: "Authored six per-mode providers-and-models.md catalogs"

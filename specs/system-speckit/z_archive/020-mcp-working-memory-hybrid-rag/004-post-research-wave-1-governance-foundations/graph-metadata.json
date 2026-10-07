@@ -18,8 +18,7 @@
       "archive normalization",
       "validation",
       "tasks",
-      "decision record",
-      "implementation summary"
+      "decision record"
     ],
     "key_topics": [
       "004-post-research-wave-1-governance-foundations",
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 1 Governance Foundations",
     "created_at": "2026-04-12T09:02:53.572Z",
-    "last_save_at": "2026-08-30T15:39:37.908Z",
+    "last_save_at": "2026-10-07T18:16:26.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfbc153a49ee6256257cd5bf5165ebad669710856abe09158cc51fc3cba4170a",
+    "source_fingerprint": "sha256:1c8002797ed8b5966fd3a35bf4ffe1a6d8d01c947c85a6c6fccb5e0755c8d592",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0b47c5bc0dddf49347d3d4f76f3db0357dcc3841371be968ca05173ec9ce1f2",
       "plan.md": "9f6bfba3ffe1b295b8ae79f31782058fbc95318d5907c94ada0fae69c341d39d",
       "tasks.md": "3379cea270240b5397a854f66f36e187cc29852fd322a88ab2bdc4e79e4ab777",
       "decision-record.md": "2f21dc46191583ca9d2dc660b88e0efbfd09a046b280e40ab5d0c6e2a0a4cbfc",
-      "implementation-summary.md": "c8c7fec4d66255042b26fd04da0526c91bbb189b3b3b1867f19965c8cc528353"
+      "implementation-summary.md": "b182bbcfc0c7b8452f37361a1c34e210c9cf1f379760ddf689718f47720f1347"
     },
     "last_active_child_id": null,
     "last_active_at": null

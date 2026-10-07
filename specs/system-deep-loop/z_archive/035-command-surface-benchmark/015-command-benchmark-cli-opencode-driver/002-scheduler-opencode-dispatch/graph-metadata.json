@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The runner `behavior-bench-run.cjs` builds a leg's spawn command from a fixed `LEGTABLE`",
     "created_at": "2026-07-22T06:16:27.208Z",
-    "last_save_at": "2026-08-30T15:39:20.377Z",
+    "last_save_at": "2026-10-07T18:15:30.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:515d36888c5d01cb82ecc0e859119c0a0441ccf402d264f5f6177d36f2b109cc",
+    "source_fingerprint": "sha256:dccacb04bf0ca80dc7148ab56b408b668b7351966522cac0bb539e9c3c852b79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4f3e38a29457cebd58e7f4f7d67ad884d9d298657e7ef1744e37a958fb40abb",
-      "plan.md": "258b368aa56cfc17078a0f6e2256785954ae85b462f0ca7040a0b01835cf73af",
-      "tasks.md": "67646d8fb5cfb2a14e603d1ad0921836463f2a1cdbfd3320566feaa50f2e1d5e",
-      "implementation-summary.md": "7e59e7d3b57c959b098cfabe801e4e36e53bdeda56fcb15acafb65a60a336288"
+      "spec.md": "8091f9f0520565ddbfb58115ffacdb7f4e7c92c094a0c25f2d1fff3687303982",
+      "plan.md": "4a177ad63cc0bae17e62cbec8fc11dfc802bb651dbdd71ceb50630fd1fce598d",
+      "tasks.md": "17cdb7e65a02b9501c21eed2ef7715a8332ca498be4def83653179f77769ba96",
+      "implementation-summary.md": "18257f3cc43102239087d5cb345491787b810c8352c1c885d46abf17c73ca5cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

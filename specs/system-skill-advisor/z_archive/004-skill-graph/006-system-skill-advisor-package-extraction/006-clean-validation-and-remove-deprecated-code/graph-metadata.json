@@ -48,9 +48,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "tools/index.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      "dist/context-server.js",
       ".claude/mcp.json"
     ],
     "entities": [
@@ -82,24 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Remains Authoritative",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Parent",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standalone Advisor",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-08-30T15:39:26.440Z",
+    "last_save_at": "2026-10-07T18:16:08.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -211,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61a0232e1acffd72aaa23479e613b58a4c3d78fb3eac9bcc696de6fc198a7375",
+    "source_fingerprint": "sha256:b230accc0a5904651a47a2f0e16e22ab8c372e5ab59c4e22ebd3cad9b10a0e78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f569e04697e709514f10e3afcfffc4d1e036cbda969735d047968b5edba24b98",
-      "plan.md": "2a6659618cb2699b7593e15d711c0b2962db13bf455ce9540d2f350863d3c3d5",
-      "tasks.md": "28a0d28193f5206c95f330b7bbc6da852229be4c41dfe7d2b5d5cdc6be8c7ed1",
+      "spec.md": "fee6bb80c3c57da1492df0ac92362e5a33b105f67f02d43d2088ba299c2b7c92",
+      "plan.md": "0a6794d378b3c37ba829f823d55c0910a9172054d16e6810a282692a014ab5d5",
+      "tasks.md": "540e94dc173dda2d5582c6f1d25a9d61ce939aad96bf2944d472adbf719811c3",
       "decision-record.md": "32f53851540d402de809e00e5be05f658d471c9d00a29ae518c2f000e4346e91",
-      "implementation-summary.md": "1af63d6aac52166c4ad9996c64990051eb0debf9f5f7055f1c57548576da3d13"
+      "implementation-summary.md": "c1e0d53d7e3304a9daa76bc2ca8b4c355d4ecfe23f7da596241c14dc6b1c67e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

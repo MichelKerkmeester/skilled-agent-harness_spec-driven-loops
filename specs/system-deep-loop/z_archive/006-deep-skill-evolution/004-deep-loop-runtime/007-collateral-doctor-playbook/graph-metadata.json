@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After phases 003 (script shims), 004 (MCP tool surface removal), and 005 (workflow YAML migration), 4 collateral files still reference the deleted `mcpmkspecmemorydeeploopgraph<X>` MCP tools",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-08-30T15:39:23.306Z",
+    "last_save_at": "2026-10-07T18:14:05.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c32f653ed9922fbb94a7df008ddda324d53377162d9395389e407c40b50a1914",
+    "source_fingerprint": "sha256:67cacebe58ae24e0ea0eb52a510858b11b2f362d8d7e1366fdc766010d01f8c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "912673080552fbed490dd5d3e04e2ab512f7019a05d5b8d788627ed01f288d7c",
       "plan.md": "e1f3af6a8e4f560f3849651221b3a82644ac8816abc1200d1463559cb2c45521",
       "tasks.md": "af5cb06a31882bc2b97d88e50eb903d14e972e224b11ebdd7a5c4458c5ae44e6",
-      "implementation-summary.md": "b954d95eee80bbc64ae3a65619f8a6c312ecc390d1c8d6a19fe0d352639fd7f7"
+      "implementation-summary.md": "957f785839c46c4007b21598e26a1f1743d6f648a8c0b144c8c12cd910d32a1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

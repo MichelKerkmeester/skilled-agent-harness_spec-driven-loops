@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "description": "Phase parent for seven per-plugin deep-research legs (GLM-5.2 via cli-devin for the first five, ox-alpha via cli-opencode/OpenRouter for the last two)",
   "keywords": [
     "phase",

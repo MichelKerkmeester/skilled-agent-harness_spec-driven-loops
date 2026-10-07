@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/009-deep-router-agent-rename"
     last_updated_at: "2026-07-04T17:50:32Z"
     last_updated_by: "claude-code"
     recent_action: "Executed and verified the scoped rename"

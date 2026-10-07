@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex"
     last_updated_at: "2026-08-04T13:50:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 002 task list inside 005-mode-child-readme-revisit"

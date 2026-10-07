@@ -70,10 +70,11 @@ This phase turns retrieval from a static scoring pipeline into a system that can
 - Shadow-mode adaptive ranking path
 - Guardrail metrics, rollback controls, and promotion criteria
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -168,7 +169,7 @@ Create a safe adaptive-retrieval layer that can learn from feedback in shadow mo
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -187,7 +188,7 @@ Create a safe adaptive-retrieval layer that can learn from feedback in shadow mo
 - **NFR-O41**: Maintainers can inspect why an adaptive update was proposed.
 - **NFR-O42**: Promotion decisions are documented and reproducible.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

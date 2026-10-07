@@ -3,7 +3,6 @@ title: "...kit/022-hybrid-rag-fusion/009-perfect-session-capturing/015-runtime-c
 description: "Phase 015 shipped the explicit write/index contract for session capturing."
 trigger_phrases:
   - "phase 015"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"

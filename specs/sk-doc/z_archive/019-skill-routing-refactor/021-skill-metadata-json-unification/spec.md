@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification"
     last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
     recent_action: "Post-ship audit: active fleet 11/11; historical 12-root evidence retained"

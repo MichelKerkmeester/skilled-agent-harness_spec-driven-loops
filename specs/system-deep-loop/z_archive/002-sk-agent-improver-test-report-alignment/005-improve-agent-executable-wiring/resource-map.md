@@ -23,11 +23,13 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## Scope
 
 Wired the executable producers + consumers across sk-improve-agent's command-flow pipeline so legal-stop, benchmark, and stop-reason evidence is grep-checkable and reducer-compatible. Decisions locked in 060/003 research §5: static skill assets, materializer alongside `run-benchmark.cjs`, auto+confirm YAML lockstep, nested `legal_stop_evaluated.details.gateResults`, SKILL canonical stop-reason enum.
 
 Shipped on commit **`6374d5806`**.
+<!-- /ANCHOR:summary -->
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/063-devpass-gpt-5-6-luna",
-  "spec_folder": "cli-external-orchestration/063-devpass-gpt-5-6-luna",
+  "packet_id": "cli-external-orchestration/z_archive/063-devpass-gpt-5-6-luna",
+  "spec_folder": "cli-external-orchestration/z_archive/063-devpass-gpt-5-6-luna",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The operator asked for GPT-5.6 Luna on the DevPass route, then for both CLI rosters to carry it",
     "created_at": "2026-09-04T17:36:54.270Z",
-    "last_save_at": "2026-09-05T06:46:19.179Z",
+    "last_save_at": "2026-10-07T18:11:36.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f5264404b7c8ee195198a2c3bb5fd982aa94807959cbac571a577e5651e0122",
+    "source_fingerprint": "sha256:bed16c01f4e87f1d59af856d22db4ecdb825d5614e67ca1f7eac046a9d066689",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a5d5c4998db64a6c34432a15187d146a02ecf52af2d21a1d968608eb5c8c6dcd",
-      "plan.md": "1ee2101f7a3f018d06ee8a142b487a31b6e38535e1d7b9dfa894aef2cc395814",
-      "tasks.md": "e864cd782bd3d6d609e166e144797c61f1c9c12414ed7a594ff9aecfd403cefe",
-      "implementation-summary.md": "5b6784d8a96c4bee2c7d6969ab3eeeb378a6439f15d0c05f2a208b044022926d"
+      "spec.md": "22880dce23420ae4db3f769095edff82f75553f4b761bb4910efcbaa7e73ead7",
+      "plan.md": "b6d4934a4b86ea8f13b5631c03d2bd586fb27b963f2ce82ec460755ca6a220fd",
+      "tasks.md": "776ee19a713e219812eaae6431410c9e5e9eb58979ba56b3e9f9c33b1c96be57",
+      "implementation-summary.md": "b7274e2c6ff724764c09354396b215750be46598ba1497b470d58198cdbbe390"
     },
     "last_active_child_id": null,
     "last_active_at": null

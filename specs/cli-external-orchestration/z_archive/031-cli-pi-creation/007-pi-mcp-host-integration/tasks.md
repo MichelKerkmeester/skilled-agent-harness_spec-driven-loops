@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/007-pi-mcp-host-integration"
     last_updated_at: "2026-07-27T14:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "All tasks executed with live evidence; phase Complete"

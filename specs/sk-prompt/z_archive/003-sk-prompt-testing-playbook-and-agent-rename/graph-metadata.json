@@ -4,8 +4,6 @@
   "spec_folder": "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename",
   "parent_id": null,
   "children_ids": [
-    "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-    "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
     "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
     "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
   ],
@@ -44,7 +42,6 @@
       "spec.md",
       "001-prompt-improver-rename/spec.md",
       "002-sk-prompt-testing-playbook/spec.md",
-      ".opencode/specs/descriptions.json",
       ".codex/config.toml"
     ],
     "entities": [
@@ -52,12 +49,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -105,16 +96,16 @@
     ],
     "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-08-30T15:39:19.055Z",
+    "last_save_at": "2026-10-07T18:13:39.933Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5ee62fefc2eff3885d9a7749c8fdf5c239652269e4ca9cce026632093385f1f2",
+    "source_fingerprint": "sha256:48c69ffa7155c937bb96ad855ec5f1684e71fbef8a8973fb6adf0741d4c027be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b481291a2959f02ae2cf7c638ec97cd31b8e65bff1b1b0988a1d0568b9622fde"
+      "spec.md": "5cc80a4277419cf4c3ca6f0a32a82372f01a73586596a7c24b59079f433a6b47"
     },
     "last_active_child_id": "sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
     "last_active_at": null

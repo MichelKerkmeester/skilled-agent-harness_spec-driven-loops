@@ -35,11 +35,14 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:handover-summary -->
 ## Current State
 **Phase:** COMPLETE
 **Last action:** Applied R2 scenario cleanup, ran R2 stress via direct Bash (final composite PASS 6 / PARTIAL 0 / FAIL 0).
 **Next:** Methodology campaign complete; consider follow-on packets for @deep-research/@deep-review command-flow stress, or for CP-042 body-discipline gap.
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:session-notes -->
 ## Phase 002 Close-Out
 
 061 closed the loop opened by 060/002. The old prepend-agent-body lane scored PASS 0 / PARTIAL 2 / FAIL 4. The corrected 061 lane scored PASS 3 / PARTIAL 2 / FAIL 1 after R1, then **PASS 6 / PARTIAL 0 / FAIL 0** after R2 cleanup against 062 wiring.
@@ -59,7 +62,9 @@ Body-level scenarios need targeted follow-up:
 |---|---|---|
 | CP-041 | PARTIAL | R2 spec-root fix applied; needs authenticated rerun. |
 | CP-042 | FAIL | R2 spec-root fix applied; rerun before changing bait or agent body. |
+<!-- /ANCHOR:session-notes -->
 
+<!-- ANCHOR:context-transfer -->
 ## R2 Cleanup
 
 R2 applied the three targeted mechanics fixes:
@@ -71,7 +76,9 @@ R2 applied the three targeted mechanics fixes:
 | CP-045 | Replaced the compact-only status grep with an artifact-aware JSON status parse while preserving compact transcript grep evidence. | BLOCKED by missing/invalid Copilot auth. |
 
 `gh auth status` reports invalid GitHub tokens, and no `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` is set. The valid composite stress score remains PASS 3 / PARTIAL 2 / FAIL 1 until an authenticated R2 rerun exists.
+<!-- /ANCHOR:context-transfer -->
 
+<!-- ANCHOR:next-session -->
 ## 062 Readiness Pointer
 
 062's substrate was ready enough for command-flow stress: static benchmark assets resolved, the materializer fed benchmark outputs, nested legal-stop gates were grep-checkable, and improvement-gate delta evidence appeared in CP-044.
@@ -85,3 +92,4 @@ The same layer-selection rule should be applied to `@deep-research` and `@deep-r
 - ~/.copilot/settings.json effortLevel="high" already set
 - Copilot/GitHub auth must be restored before R2 can produce valid model verdicts
 - CP-045's scenario status check now parses `report.json`, so do not revert it to compact-only grep
+<!-- /ANCHOR:next-session -->

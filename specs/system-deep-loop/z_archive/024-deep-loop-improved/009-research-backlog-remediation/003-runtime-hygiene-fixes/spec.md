@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/003-runtime-hygiene-fixes"
     last_updated_at: "2026-07-01T07:20:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from research.md F-002/G-003, F-012/F-014, F-019/G-009 (Tier0 #3,#4,#5)"

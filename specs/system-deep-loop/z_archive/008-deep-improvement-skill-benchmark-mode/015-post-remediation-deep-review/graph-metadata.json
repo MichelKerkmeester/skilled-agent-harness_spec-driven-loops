@@ -179,7 +179,7 @@
     ],
     "causal_summary": "The v1.11.1.0 remediation made substantial changes to the grader (dimension-awareness, `--append-system-prompt`), the live executor (truncation cap, brace-balanced scan), and refactored `scoreScenario`",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:23.902Z",
+    "last_save_at": "2026-10-07T18:14:40.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +188,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c36d80c2ce0395ee07bc642d931b117f311e5c1804cc7600509cb0be01acda81",
+    "source_fingerprint": "sha256:48419d43917a434f2b8dd3e27be34497a1b622cf78df23d74151090fb7348566",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "109216de4c4df5e0a6ce86b56338812f933adf251fcfe944e83b2b212b3cee03",
       "plan.md": "f7855f26aeff5255ab6952789654456aba388db1a380a9e1fcd46def800ca765",
       "tasks.md": "9b5318cf9fa8d683d506c1dbddaa01a4d982d3c8786cfd52659f093aab01485d",
-      "implementation-summary.md": "53dbbf83d0ef9400caf9282600394270dc8d066318e867c2253a928eeea4f0e1"
+      "implementation-summary.md": "3732e45e9f8170a5f6586448d24d5268bfd31b121155bf82d06f46a4f5f07b01"
     },
     "last_active_child_id": null,
     "last_active_at": null

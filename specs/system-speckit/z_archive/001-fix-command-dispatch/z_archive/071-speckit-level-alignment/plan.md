@@ -40,13 +40,14 @@ contextType: "planning"
 ---
 
 <!-- /ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## Executive Summary
 
 Align ALL SpecKit scripts, lib modules, and documentation with the new level-based template architecture from Spec 069. The architecture changed from COMPLEXITY_GATE markers in flat templates to dedicated pre-expanded templates in level folders (`level_1/`, `level_2/`, `level_3/`, `level_3+/`).
 
 **Verified Scope**: 20+ files need updates across scripts, lib modules, documentation, and templates.
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 ---
 
 ## Current State Analysis
@@ -64,7 +65,7 @@ templates/
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-3 -->
 ## Alignment Status Summary
 
 | Category | Files Analyzed | Needs Update | Aligned |
@@ -74,7 +75,7 @@ templates/
 | **Documentation** | 10 | 10 | 0 |
 | **Templates** | 25 | 3 | 22 |
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-3 -->
 ---
 
 ## Phase 1: Script Updates (CRITICAL)

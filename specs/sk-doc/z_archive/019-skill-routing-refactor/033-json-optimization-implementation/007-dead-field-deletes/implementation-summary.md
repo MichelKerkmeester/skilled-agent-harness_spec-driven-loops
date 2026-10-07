@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes"
     last_updated_at: "2026-07-29T19:06:19Z"
     last_updated_by: "claude-code"
     recent_action: "Deleted orphan fields; corpus neutral"

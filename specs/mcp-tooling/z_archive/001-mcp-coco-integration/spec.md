@@ -192,7 +192,6 @@ Install CocoIndex Code (a Python MCP server providing vector-based semantic code
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -221,7 +220,6 @@ Install CocoIndex Code (a Python MCP server providing vector-based semantic code
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

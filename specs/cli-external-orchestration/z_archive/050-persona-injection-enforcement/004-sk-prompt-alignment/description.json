@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
+  "specFolder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/004-sk-prompt-alignment",
   "description": "The six mode `SKILL.md` persona rules added in P3 each reference a canonical \"Persona Injection\" section in",
   "keywords": [
     "six",

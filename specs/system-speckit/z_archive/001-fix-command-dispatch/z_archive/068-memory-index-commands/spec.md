@@ -174,7 +174,7 @@ As a developer, I want to check the health of my memory database, so that I can 
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -193,7 +193,7 @@ As a developer, I want to check the health of my memory database, so that I can 
 - **NFR-U01**: Command help must clearly explain purpose and options
 - **NFR-U02**: Error messages must suggest correct command if user uses wrong one
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -258,7 +258,7 @@ As a developer, I want to check the health of my memory database, so that I can 
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -268,7 +268,7 @@ As a developer, I want to check the health of my memory database, so that I can 
 - MCP tool changes - using existing APIs as-is
 - New MCP tools - not creating new server-side functionality
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
     last_updated_at: "2026-07-30T19:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Ceremony completed: guard fresh x7, gates exact, CI green"

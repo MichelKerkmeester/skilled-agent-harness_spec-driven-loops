@@ -1,3 +1,12 @@
+---
+title: "Testing Suite Handover Document"
+description: "Independent verification guide for the system-spec-kit bug remediation work, with step-by-step test cases an AI can run after an MCP restart."
+trigger_phrases:
+  - "system analysis bugs testing handover"
+  - "bug remediation verification guide"
+importance_tier: "normal"
+contextType: "general"
+---
 # Testing Suite Handover Document
 
 Comprehensive verification guide for another AI to independently validate all implementation work from the system-spec-kit bug remediation project.

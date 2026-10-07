@@ -52,7 +52,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion` |
+| **Spec Folder** | 002-deep-ai-council-reference-expansion |
 | **Status** | Complete |
 | **Level** | 1 |
 | **Completed** | 2026-05-10 |

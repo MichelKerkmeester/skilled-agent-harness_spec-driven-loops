@@ -11,32 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "path",
-      "scoped",
-      "validation",
-      "rules",
-      "spec",
-      "001",
-      "mvp",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record"
+      "path scoped rules spec",
+      "path scoped validation spec",
+      "path scoped rules plan",
+      "path scoped validation plan",
+      "path scoped rules tasks",
+      "path scoped validation tasks",
+      "path scoped rules decision record",
+      "path scoped validation decision record",
+      "path scoped rules implementation summary",
+      "path scoped validation delivery summary"
     ],
     "key_topics": [
       "path",
       "scoped",
-      "validation",
       "rules",
       "spec",
-      "mvp",
-      "implementation",
+      "validation",
       "plan",
       "tasks",
       "decision",
       "record",
-      "quality"
+      "implementation",
+      "summary",
+      "delivery"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "1. No quality enforcement: Incomplete specs pass silently",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-08-30T15:39:37.006Z",
+    "last_save_at": "2026-10-07T20:09:57.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6729600b57bcebaf363053c5ecfe24c495cd50e56a23ecb4c7994c5e485fff8f",
+    "source_fingerprint": "sha256:e4889c7b117b5950fca491e0a03adf477f5537cf5d197e08f8341c1e1e70328b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae9b1fb8e4cce3e407e2aa3d9d6c4f90d4926e404e2efdd5d11801ea00925999",
-      "plan.md": "b3ab9ef03f87a86eec38782fd953ed2c666658a38856e35017faf93a5ff9f320",
-      "tasks.md": "67462265d4f886ea0fa46633eb94f77a2fe40049f3ef82e3be30b007d2603fc9",
-      "decision-record.md": "ecfc422d8d14b1c040bab69ed0a801b75d6b90f03065bb565e1834828ac016cf",
-      "implementation-summary.md": "de65da104ae2f7b8be088a27b48afe8a2c356cdb0fe38527780d1bedad324639"
+      "spec.md": "04042739985d61f600ac23fe886df169d11ae9312caaddcf203e9d9e6ae0b893",
+      "plan.md": "7ad90f66f485c58f20a753a50995843dfe2f474a66c90bc4827ff80e17ee24b1",
+      "tasks.md": "fca2efa974e544702c1eeb8ea4eb438102e4775cfbb95556b4594f32fb1a93a9",
+      "decision-record.md": "e08f416420eb2fc4bb65c66f443dce9f509cb28f0027410c8eaea1b686733639",
+      "implementation-summary.md": "2f37d76044672445369e25053b7061f8bdcb6312e4e3af09026cde29a8e90cec"
     },
     "last_active_child_id": null,
     "last_active_at": null

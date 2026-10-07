@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-06-04T13:19:25.651Z",
-    "last_save_at": "2026-08-30T15:39:14.314Z",
+    "last_save_at": "2026-10-07T18:12:32.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b9db34003890262c32904bdcdf23451a9ce0a4213a3aa93123bdc584756bd28",
+    "source_fingerprint": "sha256:1c43d4e03db620ee286a7009aeab17f727ece96615f5fa9c1e11236558e78f58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3afc81190bc9b097e3b169f04b4ab88e3315418cd1ad19714c0388d0e73b40bd",
-      "plan.md": "de19aee62ee13efe55a1577915c6d50e577e6e1e9c6efdb9e69cd2e820421eb3",
-      "tasks.md": "71768273f3b1d963db77ee398f19a8f4b9ee340ea02904d6d7e16fd3b5b757fb",
-      "implementation-summary.md": "d0b7a7ed9952615dcad2d57a233fe8702843aa47141272109fd91388afbada65"
+      "spec.md": "1a32af2ff36478ae631a8abc411f042d7992ac8a039eccf3957349ac66dfa3c0",
+      "plan.md": "94fc3249fe612e6e46601739524c114bd1f314ecd832fee6a84527e103b3be5f",
+      "tasks.md": "bbc2f68559ada0a808779eb764e75db85fe8831e9d17e920f904d0f9a009ce90",
+      "implementation-summary.md": "9bfef239b255488030d81d47b991425a3d49242d16f0043d6bff23c1970cbe02"
     },
     "last_active_child_id": null,
     "last_active_at": null

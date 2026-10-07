@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/042-improved-communication/001-research-strategy",
-  "spec_folder": "cli-external-orchestration/042-improved-communication/001-research-strategy",
-  "parent_id": "cli-external-orchestration/042-improved-communication",
+  "packet_id": "cli-external-orchestration/z_archive/042-improved-communication/001-research-strategy",
+  "spec_folder": "cli-external-orchestration/z_archive/042-improved-communication/001-research-strategy",
+  "parent_id": "cli-external-orchestration/z_archive/042-improved-communication",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The reference proves that whole-message rewriting, user-question context, a narrow copy-editing prompt, low sampling, and fail-open display can make assistant output noticeably easier to read",
     "created_at": "2026-08-11T06:21:48Z",
-    "last_save_at": "2026-08-30T15:39:07.959Z",
+    "last_save_at": "2026-10-07T18:11:40.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a87dc201703b5a0e848cf0f3ad84b91dc6565dffa146cc118d77854984b85a3",
+    "source_fingerprint": "sha256:083ece4bc31b68651ae5eea008c4fd49fbb0e461d934ad7962550ad4a10c65d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "972cef6f5c651fe6e02a5101d8ce3847a7e03f47aa461990ef15b0d53f17eb5f",
-      "plan.md": "0c0f0d13606131f559601cbbebed469992f9125ac99ea4bb2767ef471398be66",
-      "tasks.md": "a8fd142c58b124739f5ccb6eedbda6bea219ca8950b78643d0934f9e302ead1c",
-      "implementation-summary.md": "e01cef9c01876b128181cb42b167edfa12dd86cb008c3e073c714ef038472ef9"
+      "spec.md": "f743fb824f8e8ea0b5d4089890f909afb6598a029b2a075a41fd2cd6216f2c89",
+      "plan.md": "59eeb4310ef657d916755756928ef3f32da8f511ca7c4687306c86b4f4f1ef2c",
+      "tasks.md": "4d4e68447cc5c90bf905f2f07b22e08de28538944b6e98be6edd7acd9af39a34",
+      "implementation-summary.md": "8d6b7a4cc027e5a2d19eff7582558c36b4938ce619fb067a4cb6d23dafe294c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

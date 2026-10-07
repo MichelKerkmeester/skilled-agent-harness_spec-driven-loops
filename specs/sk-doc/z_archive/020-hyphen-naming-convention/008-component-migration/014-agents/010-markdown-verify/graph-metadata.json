@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for markdown across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:46Z",
-    "last_save_at": "2026-08-30T15:39:17.163Z",
+    "last_save_at": "2026-10-07T18:13:12.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,12 +166,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:346eeb8fa72ef46efed772a27872a49352234d61a2a57961941162cfca671f9b",
+    "source_fingerprint": "sha256:94581deb2a059a83d14da9c740f9a9e9d33d8fcae101150eb25211424cfebf60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0676ce498061f99c4e7aba9d6dfe0dfc2f1d7d8e6e4cce5a80d4c8178e4f1979",
-      "plan.md": "0ee34ecc3e15444add05fe9cf3121d243fb34cd765b682ca1a39ed1677dcabe9",
-      "tasks.md": "104b216852f7d91d6b1385e80d0394536199f27a91c00c573bc7d1830cf15c65"
+      "spec.md": "5e0f477ef242bb344c4d44c3a9bf0f6e654004312bca50d11974496a6a561d32",
+      "plan.md": "a9053f18b5ca688df509de81e22f35c67ec30cd41353baa8b6e4c837ccdd3750",
+      "tasks.md": "1c11aa57bc5f5a2c4803ee7ff30ee86252b4cd9192ccdc12a5f65aa57cef4149"
     },
     "last_active_child_id": null,
     "last_active_at": null

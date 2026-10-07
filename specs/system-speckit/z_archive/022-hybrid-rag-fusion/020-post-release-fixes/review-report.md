@@ -1,3 +1,14 @@
+---
+title: "Consolidated Release-Control Review Report: 020 Pre-Release Remediation"
+description: "Consolidated live release-control review artifact for the 020 pre-release remediation packet."
+trigger_phrases:
+  - "post release fixes review report"
+  - "consolidated release control review"
+  - "pre release remediation verdict"
+importance_tier: "normal"
+contextType: "general"
+---
+
 # Consolidated Release-Control Review Report — 020 Pre-Release Remediation
 
 ## Executive Summary

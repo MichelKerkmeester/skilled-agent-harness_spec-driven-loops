@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
-    "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
-    "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet",
-    "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
-    "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
-    "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
-    "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration",
-    "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
-    "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing",
-    "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
-    "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
-    "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
-    "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
-    "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
-    "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
-    "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
-    "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor"
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/002-deep-loop-executor-support",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/003-cli-pi-skill-packet",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/005-pi-command-layer",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/006-pi-agent-bridge",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/007-pi-mcp-host-integration",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/008-pi-hook-extension-layer",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/009-pi-model-registry-and-routing",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/010-pi-manual-testing-playbook",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/012-pi-runtime-compatibility",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/015-pi-hook-coverage-parity",
+    "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor"
   ],
   "manual": {
     "depends_on": [],
@@ -129,16 +129,16 @@
     ],
     "causal_summary": "This repository already dispatches work to five external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`), each requiring its own contract-pin, deep-loop executor wiring, skill packet, hook/extension bridge, model registry entry, and manual-testing playbook — a pattern proven twice in `029-cli-devin-revival` and `030-cli-cursor-creation`",
     "created_at": "2026-07-27T06:48:17.181Z",
-    "last_save_at": "2026-08-30T15:39:07.610Z",
+    "last_save_at": "2026-10-07T18:10:58.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:008b349e9b8aca313f8fa4fc779a3fa31a2f4f6dba653b2646d903f26663593c",
+    "source_fingerprint": "sha256:cb7d0244346a71497498c26bbb0bfd8f4080be8983a0b1eb21ae102bbb16c265",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afb47eb2b1dd2277411247fb4bd7b75e74a356418181ae55a4b881415c55fd2c"
+      "spec.md": "11fa4b2e721af4605ea160cbfe37757fdbc46394e01cef2644dd53b778407991"
     },
     "last_active_child_id": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
     "last_active_at": null

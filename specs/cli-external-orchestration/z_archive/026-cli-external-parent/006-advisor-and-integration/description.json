@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/026-cli-external-parent/006-advisor-and-integration",
+  "specFolder": "cli-external-orchestration/z_archive/026-cli-external-parent/006-advisor-and-integration",
   "description": "After phases 004 and 005 move the skill content, rewrite the scorer, and dissolve the two identities, a set of documentation, advisor, and",
   "keywords": [
     "phases",

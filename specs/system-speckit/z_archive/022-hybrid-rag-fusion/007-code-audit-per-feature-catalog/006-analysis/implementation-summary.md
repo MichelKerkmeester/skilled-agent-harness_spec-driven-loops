@@ -2,7 +2,6 @@
 title: "Imple [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/006-analysis/implementation-summary]"
 description: "7 features audited: 7 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "analysis"
   - "code audit"
 importance_tier: "normal"

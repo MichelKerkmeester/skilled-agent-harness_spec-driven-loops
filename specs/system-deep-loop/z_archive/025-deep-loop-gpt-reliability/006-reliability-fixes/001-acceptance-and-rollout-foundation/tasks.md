@@ -2,13 +2,13 @@
 title: "Tasks: Acceptance and Rollout Foundation"
 description: "Task stub for phase 001 of packet 035 (unified command-contract architecture); closes F-014, F-025 + rollout mechanism."
 trigger_phrases:
-  - "tasks"
+  - "acceptance and rollout foundation tasks"
   - "035 001 tasks"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Task stub scaffolded from plan-review restructure"

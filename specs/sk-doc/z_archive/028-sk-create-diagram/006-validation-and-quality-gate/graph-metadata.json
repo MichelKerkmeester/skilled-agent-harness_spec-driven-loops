@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
-  "spec_folder": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/006-validation-and-quality-gate",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/006-validation-and-quality-gate",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole — and the spec-folder tree describing it — has never been run through the authoritative strict gates together",
     "created_at": "2026-08-12T05:53:36.000Z",
-    "last_save_at": "2026-08-30T15:39:17.991Z",
+    "last_save_at": "2026-10-07T18:14:22.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb6d5d662e1200e375b93d40af033a4ef5252e18c4104663fa162a13f32f1505",
+    "source_fingerprint": "sha256:9ace625a87e87768ff584495cf8736c1ceacd3865ed94705265ce917f0320cab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3cb7977814c225f4f6808dae8925083719428a18dea4cba141e7027e3209cd0d",
-      "plan.md": "a9a1988aa2fc1583957d004728fc6a9e2a7766f1d4d8c85b905ec2910e40150f",
-      "tasks.md": "3fc8ef7e18cc5ea157f023f9df927d688290d0054cad626ffd61001ecc40f872",
-      "implementation-summary.md": "5ec697f6118f18016eb0943186476953e05939325ca97205fa2aaf0701347fe6"
+      "spec.md": "668b4a252d9080741fda53878702c6d240a765ec01b6241ab68c417f8752e088",
+      "plan.md": "1da2d224a1ea81ff9d3138ca80edd569e4b0132739a2d5bb680fa09f296df486",
+      "tasks.md": "ff2d2e88735a11d1cbb1ae7125d7aade46db3e350fec370a6147415332bf1d00",
+      "implementation-summary.md": "df689bb4ae349f8dc7bdf471806b692ec068623ef6b1369e3267c501f42afe85"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-12T18:40:07.000Z"

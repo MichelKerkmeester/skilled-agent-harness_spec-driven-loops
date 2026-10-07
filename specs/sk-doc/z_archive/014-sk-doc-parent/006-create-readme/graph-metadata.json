@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/006-create-readme",
-  "spec_folder": "sk-doc/014-sk-doc-parent/006-create-readme",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/006-create-readme",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/006-create-readme",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,32 +13,50 @@
     "trigger_phrases": [
       "sk-doc create readme",
       "125 create readme",
-      "sk-doc parent phase 006"
+      "sk-doc parent phase 006",
+      "sk-doc create readme packet plan",
+      "sk-doc parent phase 006 plan",
+      "sk-doc create readme packet tasks",
+      "sk-doc parent phase 006 tasks"
     ],
     "key_topics": [
       "sk-doc",
       "readme",
       "parent",
       "phase",
+      "packet",
+      "plan",
+      "tasks",
       "monolith",
       "parent-hub",
       "conversion",
       "feature",
-      "specification",
-      "create-readme",
-      "packet",
-      "install-guide"
+      "specification"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,96 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:34.837Z",
-    "last_save_at": "2026-08-30T15:39:13.612Z",
+    "last_save_at": "2026-10-07T19:52:26.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:47ec33b4ea2c66ce2cceeeb98fc08521f26484f462ab2f3991c5c05d34aef645",
+    "source_fingerprint": "sha256:a8468cf5bb4e66350275412484e7d1c0dc3820cc7852038c731866f1fff06dde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f9f1c7c5faf9460007c9ee0dd445626a8d5fadc53f32bb4686739a0f8e4cdab"
+      "spec.md": "7d038d3e4e453fb5776c891e18a666d3fc77ac2091790385fd8f1fc8f8f1cb37",
+      "plan.md": "1cc9864ea85c283c41e5c0e314ca77d39f02e24fa4f6fe0031bbbb4c99b3771e",
+      "tasks.md": "937d2c2acd7ae80ad1d1eafa3aa228026ed29a546339d6305a10259a0eb2ae03"
     },
     "last_active_child_id": null,
     "last_active_at": null

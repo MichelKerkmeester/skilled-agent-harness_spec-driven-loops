@@ -1,13 +1,21 @@
 ---
-title: Plan — 017: Deep-Review Campaign 010-016
+title: "Plan — 017: Deep-Review Campaign 010-016"
 description: Execution plan for the 10-iteration autonomous deep review.
 status: complete
 created_at: "2026-05-14"
 completed_at: "2026-05-14"
+importance_tier: "normal"
+contextType: "implementation"
+trigger_phrases:
+  - "deep-review execution plan"
+  - "review iteration loop plan"
+  - "deep-review phase breakdown"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 # Plan
 
+<!-- ANCHOR:phases -->
 ## Phase 1: Initialization ✅
 - Create review packet under `017-deep-review-campaign-010-016/review/`
 - Initialize state files (config, JSONL, findings registry, strategy)
@@ -24,3 +32,4 @@ completed_at: "2026-05-14"
 - Findings deduplication (F011 = F006 duplicate noted)
 - Verdict: CONDITIONAL (0 P0, 1 P1, 19 P2)
 - review-report.md compiled
+<!-- /ANCHOR:phases -->

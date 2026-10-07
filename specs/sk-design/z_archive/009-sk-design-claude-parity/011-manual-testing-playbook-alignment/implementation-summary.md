@@ -2,14 +2,13 @@
 title: "Implementation Summary: Phase 011 — Manual Testing Playbook Full Alignment"
 description: "Completion evidence for the sk-design manual testing playbook alignment pass across hub and five mode playbooks."
 trigger_phrases:
-  - "implementation summary"
   - "manual testing playbook alignment"
   - "phase 011 complete"
 importance_tier: "high"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/011-manual-testing-playbook-alignment"
     last_updated_at: "2026-07-06T09:07:56Z"
     last_updated_by: "opencode-gpt-5-5"
     recent_action: "Implemented 23 playbook scenarios and updated six root playbooks."

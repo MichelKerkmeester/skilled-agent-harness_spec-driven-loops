@@ -128,7 +128,6 @@ Live `system-spec-kit` doc state informed this child alignment pass, then the re
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -145,7 +144,6 @@ Phase 1 (Setup) ──► Phase 2 (Implementation) ──► Phase 3 (Verificati
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/013-deep-loop-workflow-integrity-audit"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/013-deep-loop-workflow-integrity-audit"
     last_updated_at: "2026-04-29T22:30:00+02:00"
     last_updated_by: "codex"
     recent_action: "Completed release-readiness deep-loop workflow integrity audit plan"

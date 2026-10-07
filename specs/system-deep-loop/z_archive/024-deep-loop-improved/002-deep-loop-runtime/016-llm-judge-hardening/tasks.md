@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening"
     last_updated_at: "2026-07-01T21:50:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold tasks with completed LLM judge hardening ledger from spec.md"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -38,8 +38,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design-md-generator/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
       ".opencode/skills/README.txt"
     ],
     "entities": [
@@ -65,18 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design-md-generator/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "command-bridges.generated.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
         "source": "derived"
       },
       {
@@ -186,11 +172,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 reconciles every live cross-skill contract that named the deleted sk-design hub — advisor graph identity + edges, command bridges, advisor/contract tests, and cross-skill docs — reframing the retired judgment capability as out-of-scope rather than falsely repointing it at the surviving extraction leaf, and records the documented-residual set left to main-side regeneration.",
     "created_at": "2026-08-19T11:26:00.779Z",
-    "last_save_at": "2026-08-30T15:39:13.519Z",
+    "last_save_at": "2026-10-07T18:12:35.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d671233d40f797389db06caf8d6e311f83564bcea32f49e3930d8284aeece302",
+    "source_fingerprint": "sha256:ef54e15b5c2c76c8290dbd8add717edb38eaf5a3df42bb977b6a703545b40a52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "238490b6da7bb6dabcb78cf1d3cc2e6ddfdc41b0827afea7f37077bc5b69350e",
-      "plan.md": "09db8e44c799aad6e263fb31257866672aa6efaae519f27de25190da509753fd",
-      "tasks.md": "e67294183017735b773826c128765233061432398a71adf01e14b91e6bdc148d",
-      "implementation-summary.md": "f8323184ea3cd6126b3e17fdb3337414b30dce7bb209311ab4c7c8bcc1a338c2"
+      "spec.md": "f5d2d22e16d687799ab8b3260d2ef04afc50faa32c0398e1ca542d1be64948b8",
+      "plan.md": "928393ba72a742159f04343bebe5f4a84a60de177eeaf0512c8f036fae0d56fd",
+      "tasks.md": "1b0d59d60b224ebf3f2ac9fffe1b74a671738b6f674d566cdc9349d05577e693",
+      "implementation-summary.md": "10053a66313cfcfd7a7e341bb6ea969c79cc6d8634e9adcdd30af92c2019a113"
     },
     "last_active_child_id": null,
     "last_active_at": null

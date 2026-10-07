@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/003-diagram-type-reference-library",
   "description": "The skill's actual value — 27 distinct diagram types, each with its own layout conventions, anti-patterns, and complexity budget — has not been ported",
   "keywords": [
     "skill",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -55,8 +55,7 @@
       "research/iterations/iteration-008.md",
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/benchmark/README.md",
-      ".opencode/specs/sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes/decision-record.md"
+      ".opencode/skills/sk-design/benchmark/README.md"
     ],
     "entities": [
       {
@@ -206,7 +205,7 @@
     ],
     "causal_summary": "sk-design's routing cannot be measured on the canonical typed-pair surface",
     "created_at": "2026-07-17T04:00:35.686Z",
-    "last_save_at": "2026-09-10T20:44:33.768Z",
+    "last_save_at": "2026-10-07T18:12:31.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f1624ac1b370ea2a5779c1d5a13cb5c13a21d990b87eef5968fcc01144374134",
+    "source_fingerprint": "sha256:3441a821842fe0933f8e6f80ae93f7dd007e04072659b545fb88d3e490898c1c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "109d046fc2fc337dd277c089e81cd4d19d43ede1ad3e2cd6c4bfb1124f0c7c52",
-      "plan.md": "cde7d8bef0f417c78b65ad3caff8e5569aea5aee7eb9e0cc4569599dd816dd30",
-      "tasks.md": "c98fbfe575f33134343315337fa90e94f6e21e1e5a414d32bc566f09c747a2d4",
-      "implementation-summary.md": "6f1ed7e37cfc8ee41627cddb47195ef21c7937701a79cc8b0af5751c2b5b2417",
+      "spec.md": "7be1ebe899ae42746ed41fe8554b5772ab02ef5c4651626cf901fd211a10f546",
+      "plan.md": "c01e2177b02b21a45fc84cf5cd860304124c2580ee94c551e90ab1da57ccad89",
+      "tasks.md": "0b0793c99fbafba9cda28f638da9158de29530649b42d3b422cfd29f5c5a5144",
+      "implementation-summary.md": "1ba3ae740a285c667d36ef870d55e2b6a6939297aa249e14704e259179e4d3b0",
       "research/research.md": "9daf7e83542334f4700ac5cdc3a86ad68e63cead34ecdd81f8c7775ffc7808d2"
     },
     "last_active_child_id": null,

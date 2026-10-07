@@ -24,6 +24,7 @@ _memory:
 
 # Feature Specification: Retrieval UX & Result Presentation
 
+<!-- ANCHOR:metadata -->
 ## Phase Position
 
 | Field       | Value                                              |
@@ -32,10 +33,13 @@ _memory:
 | Parent      | `../spec.md`                                       |
 | Predecessor | `../004-feedback-quality-learning/spec.md`         |
 | Successor   | None (last child)                                  |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Important Context
 
 The D5 research agent found the system already has basic empty-result handling, trace envelopes, session transition trace, token budgets, session dedup, and evidence-gap detection. The gap is not raw capability but shaping these signals into an **AI-caller-friendly DECISION CONTRACT** — structured payloads that let the calling AI make informed decisions about retries, abstention, follow-up queries, and presentation depth without parsing free-text or guessing.
+<!-- /ANCHOR:problem -->
 
 ---
 
@@ -258,6 +262,7 @@ The D5 research agent found the system already has basic empty-result handling, 
 <!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## Risks & Mitigations
 
 | Risk                      | Impact | Mitigation                                                     |
@@ -265,22 +270,7 @@ The D5 research agent found the system already has basic empty-result handling, 
 | Context budget bloat      | High   | Default to slim mode; debug/full only on explicit opt-in       |
 | Latency cost              | Medium | V1 uses heuristic scoring only — no model calls in hot path    |
 | Backward compatibility    | Medium | All new fields are additive; existing contracts unchanged       |
-| False precision           | Medium | Use coarse labels (high/medium/low) + drivers, not fine scores |<!-- ANCHOR:metadata -->
-<!-- /ANCHOR:metadata -->
-
-<!-- ANCHOR:problem -->
-<!-- /ANCHOR:problem -->
-
-<!-- ANCHOR:scope -->
-<!-- /ANCHOR:scope -->
-
-<!-- ANCHOR:requirements -->
-<!-- /ANCHOR:requirements -->
-
-<!-- ANCHOR:success-criteria -->
-<!-- /ANCHOR:success-criteria -->
-
-<!-- ANCHOR:risks -->
+| False precision           | Medium | Use coarse labels (high/medium/low) + drivers, not fine scores |
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

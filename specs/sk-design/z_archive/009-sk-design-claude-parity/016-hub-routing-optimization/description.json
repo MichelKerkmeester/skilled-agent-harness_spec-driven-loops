@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/016-hub-routing-optimization",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/016-hub-routing-optimization",
   "description": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json`",
   "keywords": [
     "sk-code",

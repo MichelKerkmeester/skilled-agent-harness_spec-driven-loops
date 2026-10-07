@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption set. It adds no migration work: acceptance depends on sibling evidence, a scope-aware whole-tree scan, reference closure, and coherent release evidence.",
     "created_at": "2026-07-14T15:18:06Z",
-    "last_save_at": "2026-08-30T15:39:16.802Z",
+    "last_save_at": "2026-10-07T18:13:10.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a9f385c5db587bdef7f39962cbed6617c9bf3acea39249b8b3c8d10086e32242",
+    "source_fingerprint": "sha256:ec5c43ee0e14855b23579186508f0de0c37532b8fd94d5101aedfd5a01de244b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b53bbb64fe6d47aa2f783fcb7399faff0c76353096b8182c916b881617d875a",
-      "plan.md": "b4e6fbb0d085406fe5147814e5ed22b0e689c68ebb10f07547b94ace40f15d38",
-      "tasks.md": "683077e19685c5eafc9e745716024dde42977d46c2c70657e0addb023f3ed15c"
+      "spec.md": "afb358a2007f4ce176e12c2f4ccea5e7baa57181f7d2e8c2bf246d88dcc92c20",
+      "plan.md": "85b5c5d181412fd23de5dd6ad6d903d9144e1d3ebe115ac615ae0e43a7c131a3",
+      "tasks.md": "0e6508b098db3f72d0aefb3788d7197d07b78aab6b7c179f27c4a7a3b0cf5b63"
     },
     "last_active_child_id": null,
     "last_active_at": null

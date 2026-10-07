@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/005-corpus",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/005-corpus",
   "description": "`corpus/` is not one of the three canonical bundled-resource categories (`scripts/`, `references/`, `assets/`) documented in",
   "keywords": [
     "corpus",

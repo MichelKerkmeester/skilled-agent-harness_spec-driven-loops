@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc"
     last_updated_at: "2026-08-04T13:30:00Z"
     last_updated_by: "phase-executor"
     recent_action: "Rewrote sk-doc README purpose-first (2.0.0.0) and added changelog entry"

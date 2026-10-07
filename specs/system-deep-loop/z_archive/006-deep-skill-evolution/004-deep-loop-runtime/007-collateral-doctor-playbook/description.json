@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/007-collateral-doctor-playbook",
   "description": "After phases 003 (script shims), 004 (MCP tool surface removal), and 005 (workflow YAML migration), 4 collateral files still reference the deleted",
   "keywords": [

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "New observability-events.cjs (normalizeObservabilityEvent/appendObservabilityEvent) with t"

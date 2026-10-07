@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
   "description": "`.opencode/skills/system-skill-advisor/` has accumulated drift across its 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALLGUIDE.md,",
   "keywords": [

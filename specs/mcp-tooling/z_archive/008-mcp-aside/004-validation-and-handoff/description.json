@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/008-mcp-aside/004-validation-and-handoff",
+  "specFolder": "mcp-tooling/z_archive/008-mcp-aside/004-validation-and-handoff",
   "description": "After phases 001-003 the mode is authored and registered, but nothing yet proves the whole program holds together under strict gates: the packet has",
   "keywords": [
     "phases",

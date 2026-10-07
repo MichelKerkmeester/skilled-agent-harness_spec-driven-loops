@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/008-verification-and-closeout",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/008-verification-and-closeout",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/008-verification-and-closeout",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After Phase 7 the mode is registered but unproven end-to-end: nothing has confirmed the whole packet validates under `--recursive --strict`, that the advisor actually recalls `mcp-tooling` for obsidian prompts, that the CLI and MCP paths execute against a real vault, or that the packet's completion metadata is internally consistent",
     "created_at": "2026-08-02T05:50:30Z",
-    "last_save_at": "2026-09-07T16:16:58.649Z",
+    "last_save_at": "2026-10-07T18:11:07.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d6f491095deba3280eee835cca0d2d61dc10419469db760b393fcd2751b78c8",
+    "source_fingerprint": "sha256:20ac4cb41ee1a5f4c61d965109cd727596a8bf8e51efc21d527aeb8241eef632",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d92fd2f0c3a45cb68f5030880a6b95b310c4733c283542c89b55814b8e731185",
-      "plan.md": "b92ed08cdc31b4819abe76c517ff563aea550486466a1a0297366e3c468ca569",
-      "tasks.md": "9df03491da44626179ac56477cab9ea83cb6d4735c6258c81075b86e3dc1ce3d",
-      "implementation-summary.md": "571b66d2742ada89574affc49ae88f0192106d36ffd657ed3278f4d640502f36"
+      "spec.md": "6f33358eeb81f020d5fbe46baff107ccfa9ce7c7fccb85889a3e130955f255d1",
+      "plan.md": "acbc4368bdb1a13df815d28837f807024f90822972dfdfb96828048a8fbcdba9",
+      "tasks.md": "49c0d5e5ec7ae6fa722be6cc119e99be42ad5449640c374e40e981794c92398a",
+      "implementation-summary.md": "9d718014c0ac5c958188dcd7b302ff46b85fa13e51f09ac98f43e97e45887dc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

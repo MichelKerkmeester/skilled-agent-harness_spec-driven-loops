@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/034-skill-benchmark-codex-executor"
+    packet_pointer: "system-deep-loop/z_archive/034-skill-benchmark-codex-executor"
     last_updated_at: "2026-07-15T15:15:00Z"
     last_updated_by: "claude"
     recent_action: "Spec complete; adapter built, Tier-1 benchmarked, comparison written"

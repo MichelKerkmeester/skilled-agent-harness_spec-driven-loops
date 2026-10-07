@@ -6,6 +6,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: cli-* skill consistency patterns
 
 <!-- SPECKIT_LEVEL: 2 -->

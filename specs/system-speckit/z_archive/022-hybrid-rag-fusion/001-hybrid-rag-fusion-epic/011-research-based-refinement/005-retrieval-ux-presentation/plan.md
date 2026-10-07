@@ -27,12 +27,15 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 
+<!-- ANCHOR:summary -->
 ## Overview
 
 Three phases, ordered by dependency chain and effort. Phase A establishes the foundation (recovery + confidence), Phase B adds explainability and profiles (depends on D1 channel attribution), and Phase C tackles the largest effort (progressive disclosure + session state).
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## Phase A: Recovery & Confidence (REQ-D5-001, REQ-D5-004)
 
 **Goal:** Eliminate silent empty results and give every result a calibrated confidence score.
@@ -142,24 +145,4 @@ Three phases, ordered by dependency chain and effort. Phase A establishes the fo
 - Session state persists across queries
 - Dedup respects `seenResultIds`
 - Follow-up quality improves with session context
-
-<!-- ANCHOR:summary -->
-<!-- /ANCHOR:summary -->
-
-<!-- ANCHOR:quality-gates -->
-<!-- /ANCHOR:quality-gates -->
-
-<!-- ANCHOR:architecture -->
-<!-- /ANCHOR:architecture -->
-
-<!-- ANCHOR:phases -->
 <!-- /ANCHOR:phases -->
-
-<!-- ANCHOR:testing -->
-<!-- /ANCHOR:testing -->
-
-<!-- ANCHOR:dependencies -->
-<!-- /ANCHOR:dependencies -->
-
-<!-- ANCHOR:rollback -->
-<!-- /ANCHOR:rollback -->

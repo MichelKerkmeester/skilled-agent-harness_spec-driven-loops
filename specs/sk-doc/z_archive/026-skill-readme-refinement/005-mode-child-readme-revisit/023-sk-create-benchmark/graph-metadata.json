@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
       ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-benchmark/README.md` predates the pilot standard",
     "created_at": "2026-08-04T08:34:47.400Z",
-    "last_save_at": "2026-08-30T15:39:17.781Z",
+    "last_save_at": "2026-10-07T18:13:54.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31ce6e16a6a06021258ef90298dba898667d45a1cd41b183ce343cc65311f335",
+    "source_fingerprint": "sha256:dc65acb180704847a565839a7d89975764a848a10cbbf8916a2cf2b67390dfe8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "394bdc12fd83d3c76ee07c83058b3bef9abe4061cd27c00d7569071f10b4b53d",
-      "plan.md": "a887ff977c4f08d7b81f68374fd9e0ca369b5e4933434ca93589864993f0d188",
-      "tasks.md": "aa3b1ef2e099cabe0a9df39d70dabb8f53cc8acb6013f0f46505712f605a6009",
-      "implementation-summary.md": "9a519cf2530aeb8495d725a3d4b1d13f308c12c246fbacdb884ae79a50dec114"
+      "spec.md": "bca82316eba627c340a83fdfc8cd52688026f7963220faf38ee2252d3cec0e7f",
+      "plan.md": "6a895a9f741a7d64380a5e34f4e43ba363e21ca23a33e047f28060d61085d2b8",
+      "tasks.md": "bf52349cf501270125003c6b8bfcfb861d27cfffd8eb99eaad638f3473875d5e",
+      "implementation-summary.md": "ea088d2196139d8b4062ce3a8bc57f76092c741cf63551c181884d9b065b5186"
     },
     "last_active_child_id": null,
     "last_active_at": null

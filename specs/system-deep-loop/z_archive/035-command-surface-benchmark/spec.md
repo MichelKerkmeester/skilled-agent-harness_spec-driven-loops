@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark"
     last_updated_at: "2026-07-14T20:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded phase parent plus nine-child decomposition from a three-model design congregation"

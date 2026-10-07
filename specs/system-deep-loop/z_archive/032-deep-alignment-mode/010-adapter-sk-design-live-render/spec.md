@@ -11,7 +11,7 @@ contextType: "general"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/010-adapter-sk-design-live-render"
     last_updated_at: "2026-07-13T07:07:57Z"
     last_updated_by: "claude"
     recent_action: "Built+dry-ran adapter; check() is verified pure-fn wrapper, no chrome-devtools calls"

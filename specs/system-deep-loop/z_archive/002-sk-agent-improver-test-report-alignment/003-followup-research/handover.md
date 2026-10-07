@@ -26,12 +26,15 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:handover-summary -->
 ## Current State
 **current-state:** COMPLETE
 **Phase:** 003 — COMPLETE
 **Last action:** Synthesized 10 cli-copilot iterations into `research/research.md`; updated implementation summary and handover
 **Next:** Start 061 or 062 using the prompts below
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:session-notes -->
 ## Close-Out Summary
 
 Top recommendations:
@@ -41,7 +44,9 @@ Top recommendations:
 - Keep expected-RED methodology evidence spec-local unless active CP-040..CP-045 can honestly pass under cli-copilot release rules.
 - Put benchmark materialization (using **static skill assets** at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/`, materializer alongside `run-benchmark.cjs`), nested legal-stop `details.gateResults`, stop enum truth, YAML parity, and native RT repair in 062.
 - Carry forward the reusable test-layer-selection template: discipline layer, natural entry point, evidence owner, consumer, producer readiness, harness root, evaluator assets, verdict mode, release surface, and stale-state guard.
+<!-- /ANCHOR:session-notes -->
 
+<!-- ANCHOR:next-session -->
 ## 061 Hand-Off Prompt
 
 > Create 004-improve-agent-command-flow-stress-tests. Build a command-capable temp project root containing `.opencode/commands/deep`, `.opencode/skills/sk-improve-agent`, and the `cp-improve-target` fixture. For command-owned scenarios, invoke `/deep:start-agent-improvement-loop ".opencode/agents/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`. Partition CP-040..CP-045 by owning layer: CP-041/042 may remain leaf/body tests with full required inputs; CP-040/043/044/045 need command-flow lanes. Keep expected-RED/PARTIAL methodology evidence packet-local unless active playbook contracts can honestly pass under PASS/PARTIAL/FAIL/SKIP release rules. Reuse CP-040..CP-045 for active corrections; use successor IDs only for spec-local experiments or explicit archival.
@@ -49,7 +54,9 @@ Top recommendations:
 ## 062 Hand-Off Prompt
 
 > Implement 062 executable wiring for sk-improve-agent command-flow GREEN proof. Patch auto and confirm YAML in lockstep or explicitly defer confirm parity. Add benchmark profile/fixture/materializer support **using static skill assets** (`.opencode/skills/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json`, versioned with the skill), wire `run-benchmark.cjs` with required CLI args, emit `benchmark_completed` only after report creation, standardize `legal_stop_evaluated.details.gateResults`, resolve stop-reason enum truth, update SKILL/command/docs/tests, reconcile native RT-028/RT-032, then rerun command-flow scenarios or hand off optional 063 if too large.
+<!-- /ANCHOR:next-session -->
 
+<!-- ANCHOR:context-transfer -->
 ## Gotchas (carried forward)
 - Copilot relative paths are fragile; command-flow tests need a command-capable temp root, not only `--add-dir`.
 - Expected RED is not a cli-copilot release verdict. Keep methodology RED spec-local unless intentionally making the active playbook not release-ready.
@@ -57,3 +64,4 @@ Top recommendations:
 - `~/.copilot/settings.json` effortLevel="high" is set; no `--reasoning-effort` flag.
 - Stay on main; no feature branches.
 - Worktree cleanliness is never a blocker.
+<!-- /ANCHOR:context-transfer -->

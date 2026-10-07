@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`advisorvalidate` matches corpus gold labels to the recommended skill with strict equality (`result.topSkill === expected`, `handlers/advisor-validate.ts` ~lines 266-275 and 361-371) and ignores the alias groups already defined in `lib/scorer/aliases.ts:4-16`",
     "created_at": "2026-05-26T21:12:43.331Z",
-    "last_save_at": "2026-08-30T15:39:27.037Z",
+    "last_save_at": "2026-10-07T18:15:45.436Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85bc1d3c6de6da8df43c528bef0cc66c24b825742efb9f3ba6f187f0161b9c56",
+    "source_fingerprint": "sha256:83131ee2149aa7f5dd19d275cd51b25c473f294eeb2520c694624fda16644fa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4dffb27bf56f2c0afc004d350dcd33c2b3a0f2cff07276159624c376338c14a",
-      "plan.md": "5f27cf4f37c6d7dbcf1b44866e2c7beaa76762ec7c315dd8ff865891e952af8c",
-      "tasks.md": "a8a621ff503eb76b8e5b1c44ee20123ae1a8086d960c2df481eb0fdd8b4ec7bc",
-      "implementation-summary.md": "88957046a7699c26b4605b612be43a20003d2b5d8d5199edc268db5be44dadcc"
+      "spec.md": "3b865143071754ddca139dd243cd4a5f5c3f1b3578169c9f220b51e6d991b687",
+      "plan.md": "f0c7ff8bc97615ca66e47b41db38900a15d498f75283a2bc41d9555495dbc9c4",
+      "tasks.md": "8adebd0a7cfa4dacb7e03a642d00b0835c99cfe5679a233b15369b2030077774",
+      "implementation-summary.md": "a721c012d1290db056f199e9ee1066956c2433dc9fde5d0f06ce24fb901fa856"
     },
     "last_active_child_id": null,
     "last_active_at": null

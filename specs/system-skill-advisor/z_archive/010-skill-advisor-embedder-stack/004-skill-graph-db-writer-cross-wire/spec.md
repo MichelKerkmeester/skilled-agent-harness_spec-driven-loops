@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire"
     last_updated_at: "2026-05-18T00:05:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded packet from 010/002 architecture-gap discovery"

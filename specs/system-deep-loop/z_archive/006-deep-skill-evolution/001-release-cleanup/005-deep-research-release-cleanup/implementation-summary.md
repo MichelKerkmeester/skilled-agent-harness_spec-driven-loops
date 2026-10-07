@@ -3,7 +3,6 @@ title: "Implementation Summary: deep-research skill release cleanup"
 description: "Post-implementation skeleton. Fill the placeholders after the 5-phase workflow completes. The narrative carries Level-3 summaries — no Files Changed table needed."
 trigger_phrases:
   - "deep-research release cleanup summary"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
@@ -40,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research` |
+| **Spec Folder** | 005-deep-research-release-cleanup |
 | **Completed** | [YYYY-MM-DD — filled at completion] |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

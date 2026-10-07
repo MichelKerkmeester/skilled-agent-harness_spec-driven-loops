@@ -1,8 +1,17 @@
+---
+title: "Tasks: Pi Remote Experience Parity Research"
+description: "Task breakdown for the two-lineage deep-research run: config validation, both lineage executions, synthesis, and packet metadata."
+trigger_phrases:
+  - "pi remote experience parity research tasks"
+importance_tier: "normal"
+contextType: "general"
+---
 # Tasks: Pi Remote Experience Parity Research
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
+<!-- ANCHOR:phase-1 -->
 ## P0 Tasks
 
 | ID | Task | Status | Evidence |
@@ -12,12 +21,17 @@
 | T003 | Run lineage 2 (pi deepseek-v4-flash) to 20 iterations | [x] | 20 iterations, synthesis_complete, research.md 177 lines |
 | T004 | Synthesize both lineages (SOL high) into research/research.md | [x] | research/research.md 1079 lines, all 8 axes |
 
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## P1 Tasks
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
 | T005 | Generate packet metadata and pass strict validation | [x] | description.json + graph-metadata.json present; validate.sh --strict |
 | T006 | Record the containment false-positive on the pi lineage | [x] | implementation-summary.md current-state note |
+
+<!-- /ANCHOR:phase-2 -->
 
 ## Notes
 

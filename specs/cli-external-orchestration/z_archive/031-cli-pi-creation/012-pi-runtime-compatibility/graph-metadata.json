@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,20 +41,12 @@
       "implementation-summary.md",
       ".pi/mcp.json",
       ".pi/extensions/README.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".codex/hooks.json",
-      ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
-      ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs",
-      ".opencode/skills/system-spec-kit/scripts/pi/README.md",
       ".pi/settings.json",
       ".opencode/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/README.md",
-      "codex/README.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
-      "scripts/pi/sync-prompts-pi.cjs",
-      "scripts/pi/sync-agents-pi.cjs"
+      "codex/README.md"
     ],
     "entities": [
       {
@@ -94,12 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
@@ -112,18 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-prompts-pi.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents-pi.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs",
-        "source": "derived"
-      },
-      {
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
@@ -133,12 +107,6 @@
         "name": "agent-delegation.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
         "source": "derived"
       },
       {
@@ -200,11 +168,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
     "created_at": "2026-07-27T15:52:18.832Z",
-    "last_save_at": "2026-08-30T15:39:07.747Z",
+    "last_save_at": "2026-10-07T18:11:20.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1f3160f7122df9e0ff0d926cdc37956a0c0eb48ebe23f3a15c022cd21f1655a",
+    "source_fingerprint": "sha256:bc203f1377a8e51ab9461207d527d64c1ead3e885704998ffc20e9c6492f293a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ddd7abfb35e2c816a641e2fe3de9f8e510f06674d746277e12a100b42039a15c",
-      "plan.md": "6d9fc8bd8b418f1465f8518bfe318d6442841016e1d914351dfff30522adc418",
-      "tasks.md": "09aca979fd41f733681e5665a080d03f2915daa7359d7b14f8ecb922e33ac192",
-      "implementation-summary.md": "f10b451b411b7c746a3869e69b15f5697945245dae7caa7f57a4debc917e8c2c"
+      "spec.md": "f549f7bccfd61de09addd68b3cba8df5942db06ee24448713fa3da7b9c4e93f9",
+      "plan.md": "9df3587fba2ca4063d22ba9a5bc6a4e22822717c358baca58423d4b09e1b5e24",
+      "tasks.md": "02e0efc89636761bc29a23cdfda03f9b0aeef31e79547f8b574b84a9d3efa23b",
+      "implementation-summary.md": "205498efad812975e51126daace1735cb62027ad52022739a8e874452438dc81"
     },
     "last_active_child_id": null,
     "last_active_at": null

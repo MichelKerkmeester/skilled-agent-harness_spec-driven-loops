@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
-  "parent_id": "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 3 plugin tie-in scenarios (OBS-011 beancount, OBS-012 tables, OBS-013 brat) at the file layer in the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-opencode.",
     "created_at": "2026-08-03T04:10:02.368Z",
-    "last_save_at": "2026-08-30T15:39:10.134Z",
+    "last_save_at": "2026-10-07T18:11:37.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c7475a436ec3cda28def0a7dcb4f4c6b5b0b42aba16bb49f3dd8f64afa804ac",
+    "source_fingerprint": "sha256:f017002752d00adc3666682078c06834204af5763f7b7741b72466b883d781cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26541544ceacb8cb9760d490254019a340a87e1e7dd639dad1df089391ce267b",
-      "plan.md": "4dc217001a876ec112f3f61089f0f75a13036564b2fb285d7209ad145bffce08",
-      "tasks.md": "095b1864677ec5358dcfd77eb0220a179b73c8bf2661ce6a523eff9cd761fb62",
-      "implementation-summary.md": "fd963d87a3911f8948a199fa10131c78ecbed7cdb98a15ee9c416d6cdfc72dd7"
+      "spec.md": "2b023bde378aab27aa060a3be10dbb63820718db539cac379a13616d99d2ef3f",
+      "plan.md": "45e2a15c7040ae1a9edece6db7e8415fb5ed789c588cdedd836272de97ce86c7",
+      "tasks.md": "06f30da5529ee9c05dfdad9f3ccffb96b91439525da6e13f56bc88700820c201",
+      "implementation-summary.md": "ca45ecb99e21cee7470d997189e3f828dfbb4bd003d41c1a16e9035f459bdb08"
     },
     "last_active_child_id": null,
     "last_active_at": null

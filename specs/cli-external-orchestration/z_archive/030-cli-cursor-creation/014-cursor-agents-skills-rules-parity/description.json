@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity",
+  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity",
   "description": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported,",
   "keywords": [
     "user",

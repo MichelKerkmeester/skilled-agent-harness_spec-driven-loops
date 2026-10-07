@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/006-codex-native-startup-advisor-hooks"
     last_updated_at: "2026-04-23T13:55:57Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Independent review and live re-verification — all claims hold"

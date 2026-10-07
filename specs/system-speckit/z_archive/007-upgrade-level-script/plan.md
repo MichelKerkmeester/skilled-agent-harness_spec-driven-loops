@@ -2,7 +2,6 @@
 title: "Implementation Plan: Spec Folder Level Upgrade Script [system-spec-kit/z_archive/007-upgrade-level-script/plan]"
 description: "Archive normalization plan for the Spec Folder Level Upgrade Script folder."
 trigger_phrases:
-  - "implementation plan"
   - "upgrade level script"
   - "archive"
 importance_tier: "important"

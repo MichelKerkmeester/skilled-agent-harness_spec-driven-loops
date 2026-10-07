@@ -40,7 +40,6 @@ Align JavaScript naming conventions in the OpenCode framework with ecosystem sta
 | **Status** | In Progress |
 | **Created** | 2026-02-06 |
 
-<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->
@@ -127,7 +126,7 @@ Each language in the OpenCode framework uses its ecosystem's most common convent
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -136,7 +135,7 @@ Each language in the OpenCode framework uses its ecosystem's most common convent
 ### Reliability
 - **NFR-R01**: All existing MCP tool calls continue to work via backward-compat aliases
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:nfr -->
 ---
 
 <!-- ANCHOR:edge-cases -->

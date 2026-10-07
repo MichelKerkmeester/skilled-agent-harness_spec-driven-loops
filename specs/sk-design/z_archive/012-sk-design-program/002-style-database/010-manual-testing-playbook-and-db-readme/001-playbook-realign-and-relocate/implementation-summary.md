@@ -9,7 +9,7 @@ importance_tier: "standard"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "orchestrator"

@@ -64,10 +64,11 @@ This is **Phase 14** of the Perfect Session Capturing specification.
 **Scope Boundary**: Phase 014 shipped the quality-gate and CLI updates in the system-spec-kit scripts workspace so legitimate stateless Claude Code saves no longer depend on the `/tmp/save-context-data.json` workaround.
 **Dependencies**: This shipped phase relies on already-landed explicit-CLI alignment warning, technical-context propagation, and string-form decision-confidence extraction in the surrounding runtime. Those surrounding semantics were documented again later in phase `016`, but phase `014` is not chronologically gated on `016`.
 **Deliverables**: Tiered Gate A, `--stdin` / `--json` CLI flags, source-aware contamination filtering, and targeted regression coverage for the affected workflow lanes.
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -183,7 +184,7 @@ This phase fixes the quality gate architecture so stateless saves from Claude Co
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -195,7 +196,7 @@ This phase fixes the quality gate architecture so stateless saves from Claude Co
 ### Reliability
 - **NFR-R01**: `--stdin` / `--json` must handle broken pipe, empty input, malformed JSON, and invalid spec-folder targets without crashing the process; exit codes must remain consistent with file-mode behavior.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

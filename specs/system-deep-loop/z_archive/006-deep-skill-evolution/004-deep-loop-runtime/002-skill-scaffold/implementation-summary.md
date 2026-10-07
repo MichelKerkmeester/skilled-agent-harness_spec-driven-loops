@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold` |
+| **Spec Folder** | 002-skill-scaffold |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | ~35 minutes |

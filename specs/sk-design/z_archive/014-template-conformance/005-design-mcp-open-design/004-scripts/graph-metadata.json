@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/004-scripts",
-  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/004-scripts",
-  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "packet_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/004-scripts",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/004-scripts",
+  "parent_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "design-mcp-open-design scripts conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -25,11 +24,11 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
       "skills",
-      "sk-design"
+      "sk-design",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/scripts/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored scripts/ template)`",
     "created_at": "2026-07-27T15:02:57.971Z",
-    "last_save_at": "2026-08-30T15:39:13.222Z",
+    "last_save_at": "2026-10-07T18:12:34.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f36116d2f6f3ff6701b8e8ad1c584b2d10d93183eed64ed089dd8c74608076e4",
+    "source_fingerprint": "sha256:6db6790d12e972fcfce21af3c03a89376896de02f711bbf23f60596a3cdaf6f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "61d0edb19d7ea15a74676941aee6b4e7f8ba1482545736a418bc9d04b196a439",
-      "plan.md": "32da8e14e642efb74b3dd4bd63a72fb089a2217e15abbc7c048705f0bdd0cb2b",
-      "tasks.md": "8a20097f8c5e0e904d947ade792ff60ca4e6a22c60049c223a9e4748825aaaa3",
-      "implementation-summary.md": "97117da550a254318f87b6b69eae9aaecfc53b95a9243e69b3721fa3e9d1ee2c"
+      "spec.md": "78bae36ba202452e028fa26019319622279bab2f6250bd3b84abbb27bb39f162",
+      "plan.md": "f5fd143e93a5f9e6991471133adc5f6e4701c32107f55c1497d1f5d44af980d7",
+      "tasks.md": "c83447e37f0aad3c1825cd5432f14f92c4b3e8814bd3da310026300092ecd012",
+      "implementation-summary.md": "188f23c12154ed7eb53b32a98b26a8a15bab3cd3737ecc65d47d6579bf7b118c"
     },
     "last_active_child_id": null,
     "last_active_at": null

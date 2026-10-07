@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection"
     last_updated_at: "2026-07-01T16:55:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Implemented by GPT-5.5 xhigh, verified by Sonnet 5"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/010-validate-sh-template-detection` |
+| **Spec Folder** | 010-validate-sh-template-detection |
 | **Completed** | 2026-07-01 |
 | **Level** | 1 |
 | **Implemented by** | `openai/gpt-5.5-fast` (`--variant xhigh`) via `cli-opencode` |

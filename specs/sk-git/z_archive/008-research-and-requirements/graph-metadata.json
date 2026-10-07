@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/008-research-and-requirements",
-  "spec_folder": "sk-git/008-research-and-requirements",
+  "packet_id": "sk-git/z_archive/008-research-and-requirements",
+  "spec_folder": "sk-git/z_archive/008-research-and-requirements",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
     "created_at": "2026-07-15T04:22:47.622Z",
-    "last_save_at": "2026-09-10T20:45:50.494Z",
+    "last_save_at": "2026-10-07T18:14:08.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ab88a5ca7c4b537cab84acaf0a884c5225583ee66e43d3ff7f8aa0f3323a3f41",
+    "source_fingerprint": "sha256:1bc669284afb76b67ddb240dbc0b07f50684e4973c9544f6c83ec7342367dd36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91a8ead5feebb580f947531f3f05ce2b5ba9c05dc820da230e2a09b2648a8333",
-      "plan.md": "2983f057e993b28e0c7e9939d3cc33d25f65bbe7ff52e9a5f08d6aae21aa33f7",
-      "tasks.md": "245fd11d0462387a71f191d159df2bb40b9915d6363e51cb31ca1e5e6bfa7c09",
+      "spec.md": "7ebeae1cbcc07b2f8770c424ad06784fcf21608e2f10763587ebb5de7873a7b3",
+      "plan.md": "946ddc4d3dac50f59cbfcd1c6d24844031f827ede332bc1b1bc541038e3443e7",
+      "tasks.md": "35154f4599751074808a2dc436a9dc59f7797ff49bfa169e0f5bf88558df7469",
       "decision-record.md": "d95f6ee2bbed8957ed786e66db28bbe279f16200db296ac5eee99f935109d34b",
-      "implementation-summary.md": "8c130b4922efed49447b9de1dc0116eed5f611b9ffadb775866c912c9d3394fd",
+      "implementation-summary.md": "024fcd429dfee03c1b42442cc4c4ef09ed8aa23dd39fc8ccd27fa3f6eee5b122",
       "research/research.md": "181bbb4d5347e5ee84f8e22ca8034b311fe2783d2e75b4031e35f60db8be3fc0"
     },
     "last_active_child_id": null,

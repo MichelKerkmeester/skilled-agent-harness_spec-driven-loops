@@ -12,7 +12,7 @@ contextType: "planning"
 parent: "sk-doc/023-feature-catalog-integrity"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation"
+    packet_pointer: "sk-doc/z_archive/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the large-surface reconciliation phase from the track C synthesis"

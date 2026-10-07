@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core"
     last_updated_at: "2026-07-07T17:30:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "All dispatch tasks completed"

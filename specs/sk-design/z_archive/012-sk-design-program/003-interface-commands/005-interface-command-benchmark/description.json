@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/003-interface-commands/005-interface-command-benchmark",
   "description": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a",
   "keywords": [
     "hybrid",

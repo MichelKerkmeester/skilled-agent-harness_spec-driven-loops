@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system",
-  "spec_folder": "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/002-skill-scaffold-and-design-system",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/002-skill-scaffold-and-design-system",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,11 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/assets/icons.html",
-      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,30 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "icons.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/assets/icons.html",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md",
         "source": "derived"
       },
       {
@@ -189,11 +161,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 decided what ports and how `SKILL.md` remaps, but nothing has been written yet — the packet folder does not exist",
     "created_at": "2026-08-12T06:09:18.609Z",
-    "last_save_at": "2026-08-30T15:39:17.960Z",
+    "last_save_at": "2026-10-07T18:14:20.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa67ae029bf8ed9aacca4377358e6e83ad2f2f745a98fbc551e5602c30b223ee",
+    "source_fingerprint": "sha256:33ff0a4312ba4da21353fecd759d1a6eb03cff8554d371c62665a730e04fdf33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15768f5824c625238bece55bcef8850a27df0e3112f97db957198967a3fafe36",
-      "plan.md": "faa8a343082f3c204deb7e7e4fa453f2e24dd39ad754bd25ded15165c74fd01f",
-      "tasks.md": "018fd08c7177e96ccce61531f739fa8123b74ea4be815d1013f14f20cb6fb4ae",
-      "implementation-summary.md": "b8b125d0fced667eae6e33975f621d223626d24845841793dcacc2fb5699feae"
+      "spec.md": "3b669776b91f552a845d02bc7bf967aa5410645e10de5afc47084ca1c12f016d",
+      "plan.md": "821f58332b8d4952621c89f388012e616d62fe2c9d267c544b93c3022da73203",
+      "tasks.md": "07d6ded46e279882e1c8f1817c5805e8d9a565f92889b1ff4d19e23a38547295",
+      "implementation-summary.md": "c3f043c5c09cc7aab258636efcfba9ce321e39829a459ca5692177d3c74a349b"
     },
     "last_active_child_id": null,
     "last_active_at": null

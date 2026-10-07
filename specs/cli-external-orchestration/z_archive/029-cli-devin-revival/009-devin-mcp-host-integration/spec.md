@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/009-devin-mcp-host-integration"
     last_updated_at: "2026-07-24T06:43:46Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase 009 spec/plan/tasks/checklist/decision-record"

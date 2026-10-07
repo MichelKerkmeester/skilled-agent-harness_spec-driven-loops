@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
+    packet_pointer: "sk-git/z_archive/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Authored the gitkraken doc, updated SKILL.md router, fixed 3 review findings"

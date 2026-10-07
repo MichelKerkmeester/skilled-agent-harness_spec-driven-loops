@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/046-cli-devin-current-cli-repair"
+    packet_pointer: "cli-external-orchestration/z_archive/046-cli-devin-current-cli-repair"
     last_updated_at: "2026-08-17T12:45:34Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"
@@ -21,10 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "cli devin current cli repair tasks"
 ---
 
 # Tasks: Repair cli-devin Fan-out Dispatch for the Current Devin CLI

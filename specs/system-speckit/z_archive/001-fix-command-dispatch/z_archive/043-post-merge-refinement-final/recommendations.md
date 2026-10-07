@@ -1,3 +1,11 @@
+---
+title: "Recommendations [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/recommendations]"
+description: "Prioritized action plan for the post-merge refinement final pass."
+trigger_phrases:
+  - "post merge refinement final recommendations"
+importance_tier: "important"
+contextType: "planning"
+---
 # Recommendations: Post-Merge Refinement Final
 
 ## Executive Summary

@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
+    packet_pointer: "system-skill-advisor/z_archive/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
     last_updated_at: "2026-07-06T18:49:53.017Z"
     last_updated_by: "claude-opus"
     recent_action: "Shipped Wave D + A′+B2; both acceptance tests met"

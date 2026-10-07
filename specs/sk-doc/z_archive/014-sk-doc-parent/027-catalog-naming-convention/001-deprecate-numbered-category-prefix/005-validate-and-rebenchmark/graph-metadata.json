@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
-  "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
-  "parent_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,16 +13,9 @@
     "trigger_phrases": [
       "validate de-numbering migration",
       "benchmark regression proof de-numbering",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary",
-      "what shipped"
+      "validate and rebenchmark plan",
+      "validate and rebenchmark tasks",
+      "validate and rebenchmark implementation summary"
     ],
     "key_topics": [
       "validate",
@@ -31,12 +24,12 @@
       "benchmark",
       "regression",
       "proof",
-      "implementation",
+      "rebenchmark",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions"
+      "tasks",
+      "implementation",
+      "summary",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -182,7 +175,7 @@
     ],
     "causal_summary": "Phase 005, the gate. After the migration executes, prove nothing regressed: recursive validate.sh --strict across every touched skill (with catalog/playbook leaves still classified as their typed documents), the whole-workspace markdown-link CI guard, any hard-coded-path tests, and a re-run of the Lane C smart-routing benchmark on affected skills compared against a pre-migration baseline captured before Phase 004. Finally prove the no-new-numbers guard fires by attempting a fresh numbered folder.",
     "created_at": "2026-07-10T18:51:13.165Z",
-    "last_save_at": "2026-09-11T04:36:08.472Z",
+    "last_save_at": "2026-10-07T18:12:29.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:938ac281e3ea73fed701dd6e40eedb55e41794c75468e02ab02b55d66587e8da",
+    "source_fingerprint": "sha256:4d4a3c98298ddeaedb5e3277195044caac24a7b5e866e88b891d745b1bd82154",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1d42f906805880144a763035204397eaa8d54c63dbf793a5feab040fa361790",
-      "plan.md": "b119b71a30abebed571b2efed606ba7711e4d17846351d32a3245331f2495edf",
-      "tasks.md": "45c0384a145c1e4622309b5ebefdc8e45a90dcf71600979e5f27cbcf235fb3be",
-      "implementation-summary.md": "858ca5430db114d35c00b830c38191fd64414a4b232fa56eff9e9bfc8b832c74"
+      "spec.md": "2622a570de1a6d17b14d317eb717a1f9fe6ee391b78f20b74bd4b5ac02d778cd",
+      "plan.md": "3300b14bf12df022c0a02a4f0665d20fa526b600bdd99fbe9d3064a1f2b0dc5b",
+      "tasks.md": "384acb5c3b918c3401ce38d184e5179317dd9fddc52bbd060c6a67fd0086da24",
+      "implementation-summary.md": "538921164edf588e8547bfccd26c36026c0b9123041f1d3f8ca4e6570dbd2d0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

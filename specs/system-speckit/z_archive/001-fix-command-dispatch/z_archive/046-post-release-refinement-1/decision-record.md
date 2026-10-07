@@ -542,7 +542,7 @@ class LRUCache {
 
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-2 -->
 ## APPENDIX: Decision Status Definitions
 
 | Status | Definition |
@@ -552,4 +552,4 @@ class LRUCache {
 | **Implemented** | Code changes complete |
 | **Superseded** | Replaced by newer decision |
 | **Rejected** | Not proceeding with this option |
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-2 -->

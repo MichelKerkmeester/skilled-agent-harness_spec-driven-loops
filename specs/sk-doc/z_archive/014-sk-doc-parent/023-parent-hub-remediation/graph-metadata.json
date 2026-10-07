@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
-  "spec_folder": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/023-parent-hub-remediation",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/023-parent-hub-remediation",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,7 +42,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-doc/014-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/014-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven P1s (surfaceBundle doctrine fiction, unenforced one-identity ingestion, two sk-code tool-contract contradictions, two unguarded advisor command-bridge lanes, sk-design's self-contradicting routing contract), and ten P2s (doctrine/checker/template staleness and cross-hub metadata dialect drift)",
     "created_at": "2026-07-07T15:55:58.850Z",
-    "last_save_at": "2026-09-11T16:42:00.405Z",
+    "last_save_at": "2026-10-07T18:12:33.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c7efeb4b2966d97ab015fdf551406debb029a93a73afd06d79ba8eca263cf34",
+    "source_fingerprint": "sha256:cbf882c75733da15c2247a673531077c1b7bfe2f4ca84f2b02ce9c30e5e83964",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2276c9aad9e91c8b9c9950494f9b932bb24551562117b3577919285c35600f2",
-      "plan.md": "c485b074548689702b95dd06269072fcef5d3e64bca5aa95c5e2f2bb8edda177",
-      "tasks.md": "d5c322f977ae7360c92309e999bf80a67a9f92edbffb1a58fa7982ce1a77128f",
-      "implementation-summary.md": "6e957807029e50ec1b262d1db7e3a61dea161252c95a894afefaca0c399e1ce7"
+      "spec.md": "d30930886b134b04f740ee9e6c0b72aee941e700954ad5533c3efc6643843274",
+      "plan.md": "2f72125376b888370d294f14d1cfb9048785f58b319f1f82f378032f4ec659e3",
+      "tasks.md": "94a7e03ae5b375763a611ad722828de957620598c5cfdab99825467f0884cc9e",
+      "implementation-summary.md": "07011e58b1e9d63ec811ab9f80920aceec6206b74dfe71c852d76ebd20c16042"
     },
     "last_active_child_id": null,
     "last_active_at": null

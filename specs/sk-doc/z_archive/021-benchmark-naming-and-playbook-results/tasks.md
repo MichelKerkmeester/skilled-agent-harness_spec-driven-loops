@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
+    packet_pointer: "sk-doc/z_archive/021-benchmark-naming-and-playbook-results"
     last_updated_at: "2026-07-27T15:43:15Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Collapsed benchmark storage onto the reports layer"

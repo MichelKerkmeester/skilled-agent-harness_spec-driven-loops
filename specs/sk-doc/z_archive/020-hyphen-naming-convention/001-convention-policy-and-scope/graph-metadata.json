@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/001-convention-policy-and-scope",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/001-convention-policy-and-scope",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
-      ".opencode/specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/spec.md"
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md"
     ],
     "entities": [
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co",
     "created_at": "2026-07-13T14:34:05.517Z",
-    "last_save_at": "2026-08-30T15:39:16.069Z",
+    "last_save_at": "2026-10-07T18:13:13.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ed8183bfae5f707d3c3654ace071ffb6e85c57acb5427eb150486f1787ac899",
+    "source_fingerprint": "sha256:9c56c4e637e1d6877905943f120f1e9022ae14ac1da17b96b8b50155ef4c0b96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45db9cd21c556af1084f06c75eb083feccc5cb30ac664dd6626f902635057dc7",
-      "plan.md": "ccb3388f54acb72af9b296cca50c902be209a4ed56ed0fa42f0cc8de63e76272",
-      "tasks.md": "9df6ac87afb72abbcaa5fa834086b384ff25d961c4fab536dc8356070123c3a7",
+      "spec.md": "a45a79ba27113d8b5c2d8b1087e2782577367adb6444c65657b4b6225a0e672e",
+      "plan.md": "b53e0ad9367a04a08d3638918df99bb9f3b61e033782875c35a6a0ecb1db82ad",
+      "tasks.md": "9441264488ca939032e09a8287fbde64eaeb48e098d3b73da3a30fb8986db6e3",
       "decision-record.md": "f9ffa97735be93107c5210e89d47e24e89ef7d543d228724ca66b7246e20343b",
-      "implementation-summary.md": "a181a5ca3b48b401b342358825775b3b3b2012d3f241084d94c2c0e031911b27"
+      "implementation-summary.md": "b1b061729494e1bbf1f88ea2ba15dd326d620428feeb1256e059d8524809dbdd"
     },
     "last_active_child_id": null,
     "last_active_at": null

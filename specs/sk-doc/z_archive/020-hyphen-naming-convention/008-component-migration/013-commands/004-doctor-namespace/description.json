@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
   "description": "The doctor asset tree contains route targets such as `doctormcpdebug.yaml`, `doctormcpinstall.yaml`, `doctorskillgraphfreshness.yaml`, and",
   "keywords": [
     "doctor",

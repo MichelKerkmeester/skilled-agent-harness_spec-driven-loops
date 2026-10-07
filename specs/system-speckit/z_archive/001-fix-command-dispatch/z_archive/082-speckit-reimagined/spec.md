@@ -41,7 +41,6 @@ SpecKit Reimagined synthesizes findings from 25 parallel agent analyses of 8 pre
 | **Status** | Draft |
 | **Created** | 2026-02-01 |
 
-<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->
@@ -243,7 +242,7 @@ The following phrases and patterns should trigger SpecKit skill loading and spec
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -265,7 +264,7 @@ The following phrases and patterns should trigger SpecKit skill loading and spec
 - **NFR-R04**: API key validation at startup with actionable error messages; fail-fast on invalid credentials
 - **NFR-R05**: Fallback chain must complete within 100ms of primary failure detection; no cascading delays
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:nfr -->
 ---
 
 <!-- ANCHOR:edge-cases -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer fixtures, or fenced rollback proof for it",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:15.098Z",
+    "last_save_at": "2026-10-07T18:13:26.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd2e44d153fc135895ea3901fd9e075d43bfb598f131be2d159c88ac7f9703df",
+    "source_fingerprint": "sha256:3cbea98a7184ea74c0a1d26246a9275d30d51d76073d5f938b4c8d6dca639310",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3c9b216a9c57224b304234d27629b916a386f5376fc3cc986a3ec3ac93d6574",
-      "plan.md": "0ab9d79822c013d9694a3bddf8ffd7a31f311d5cac85ccd7ce1253b389b5658a",
-      "tasks.md": "2aa32d09312fbf93223ccd98d74ed75a9fd1a00ff0ef083f8d6a8a97856406bd",
-      "implementation-summary.md": "2206cbafeda4401a11a8eec9ec72203831f5965f419512796225c3ccdc8e7ee1"
+      "spec.md": "9c0684ca3816a08880ac7d4a11ec8a16fc2b14dd934c815369c44207c06a60b6",
+      "plan.md": "bde173aeb6055568f19f16192f08b1811d51e0447de8c06b9ef504b4a4d4469d",
+      "tasks.md": "2cf1cdb1d854bb7981fd0b4fa6f3b53ec9045d84593b5d80085e14516bb986eb",
+      "implementation-summary.md": "ab64b1408acaf19b54ca3cbef60f9ab2aae39fb34eeb90498fdc7e2fed0af905"
     },
     "last_active_child_id": null,
     "last_active_at": null

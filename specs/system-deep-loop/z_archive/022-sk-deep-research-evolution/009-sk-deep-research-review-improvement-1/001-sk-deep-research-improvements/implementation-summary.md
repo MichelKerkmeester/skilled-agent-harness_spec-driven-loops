@@ -2,7 +2,6 @@
 title: "...ent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements/implementation-summary]"
 description: "Phase 1 is now fully complete: the deep-research contract, executable reducer/helper surfaces, runtime parity, and packet verification all land together."
 trigger_phrases:
-  - "implementation summary"
   - "deep research summary"
   - "phase 1 summary"
 importance_tier: "important"

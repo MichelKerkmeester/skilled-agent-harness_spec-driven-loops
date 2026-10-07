@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
-  "spec_folder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
-  "parent_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -175,7 +175,7 @@
     ],
     "causal_summary": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
     "created_at": "2026-05-26T09:40:16.339Z",
-    "last_save_at": "2026-08-30T15:39:14.292Z",
+    "last_save_at": "2026-10-07T18:12:08.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:801d3f5f2aae62f7dd39b116fa037708bfdef448103b703628f6e2d85d311c17",
+    "source_fingerprint": "sha256:7305b4e1963238e394bb7c638f1fb3f116219d75e6b569bd3672dbea93987679",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95aad0c6471ecf46fcdb39dad787d178a13feb443334390abb642d9aee893699",
-      "plan.md": "843b6a306107f4d06fe9c484f3998c0f2f9f10a79d453fbf22afc59dd58213e7",
-      "tasks.md": "1a3607593862ad06da9db2204689df7e3bcc7d3d219209a97aac0fb4e4239121",
-      "implementation-summary.md": "c31751d2c4ba1a652102eb7a31d0c5b0387aaabd45dbd17e40ded2d825d9de33"
+      "spec.md": "8bd537973047f218f148f608c915071db3b7d093767e8e5870c303ba5fa55e7d",
+      "plan.md": "1e3a0fa416d9ca5a21008959b106875674cf77e68b739c9d2907bdf6815f158a",
+      "tasks.md": "ec59d075e4662d07434257f39bb84b1c5cb38dd3580c99d613c0bd48dbad658a",
+      "implementation-summary.md": "22965a8f2c3442e513677d65c09169a6db6a0695216379fe1f21e2454454269c"
     },
     "last_active_child_id": null,
     "last_active_at": null

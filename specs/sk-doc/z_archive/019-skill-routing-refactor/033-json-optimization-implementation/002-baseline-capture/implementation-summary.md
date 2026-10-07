@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture"
     last_updated_at: "2026-07-29T10:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Captured pinned routing baseline; 11/11 compiler pass"

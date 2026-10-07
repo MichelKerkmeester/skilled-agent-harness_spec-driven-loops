@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/008-framework-docs-sweep"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/008-framework-docs-sweep"
     last_updated_at: "2026-06-14T22:20:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Scaffolded from deep-loop-workflows research"

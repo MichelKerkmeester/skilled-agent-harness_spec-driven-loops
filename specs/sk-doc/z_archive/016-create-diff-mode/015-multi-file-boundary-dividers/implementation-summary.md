@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/015-multi-file-boundary-dividers"
     last_updated_at: "2026-07-20T12:17:52Z"
     last_updated_by: "opencode"
     recent_action: "Removed side dividers from aggregate gaps"

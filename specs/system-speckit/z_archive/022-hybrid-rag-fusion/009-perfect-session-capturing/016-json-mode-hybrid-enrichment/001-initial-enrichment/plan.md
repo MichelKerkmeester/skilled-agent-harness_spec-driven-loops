@@ -185,7 +185,6 @@ The caller submits structured JSON data. The shared contract accepts richer summ
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -203,7 +202,6 @@ Types ───► Structured JSON Contract ───► Wave 2 Hardening ──
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

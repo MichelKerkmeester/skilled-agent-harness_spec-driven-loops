@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill"
     last_updated_at: "2026-07-01T15:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Investigated by GPT-5.5 xhigh, dispositions/backfill/rebuild completed by Sonnet 5"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/006-review-registry-and-metadata-backfill` |
+| **Spec Folder** | 006-review-registry-and-metadata-backfill |
 | **Completed** | 2026-07-01 |
 | **Level** | 1 |
 | **Implemented by** | `openai/gpt-5.5-fast` (`--variant xhigh`) via `cli-opencode` (investigation + truncation fix), completed by Claude Sonnet 5 (dispositions, key_files generator fix, backfill) |

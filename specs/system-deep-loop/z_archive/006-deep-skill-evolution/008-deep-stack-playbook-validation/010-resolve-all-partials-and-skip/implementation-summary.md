@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip |
+| **Spec Folder** | 010-resolve-all-partials-and-skip |
 | **Completed** | 2026-05-28 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

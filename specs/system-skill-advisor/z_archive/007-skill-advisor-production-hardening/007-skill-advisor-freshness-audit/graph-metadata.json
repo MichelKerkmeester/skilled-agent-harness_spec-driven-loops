@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Release readiness depends on whether the skill advisor reports freshness honestly, keeps status diagnostic-only, rebuilds graph state on explicit request, and avoids scoring drift or silent stale-context fallback",
     "created_at": "2026-04-29T20:05:20.000Z",
-    "last_save_at": "2026-09-07T16:09:44.634Z",
+    "last_save_at": "2026-10-07T18:16:08.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b135223fe924aac35e3523786fd7644f12cd02c738506de3b91b0f7197e9feb8",
+    "source_fingerprint": "sha256:833e70938ba02d1182662a931095fbbefe4ec5a1cf284d4440f0af8e28317faf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8874f06c47c6e4102a72b399519ac4690fa543a2f8058e23a62c62243d1342d6",
-      "plan.md": "83b639b0dce1e0f450d9b5d31174761587e9ea658ebe522e9270df7c4bf49744",
-      "tasks.md": "aa67afdb9c0a4a98405f1673961622c029fe873ca3c336843f30ffd53a8b9cbb",
-      "implementation-summary.md": "3c8b761f9b18c02383c2038f31a169486f50c1014f9e5ebbedb9db42727db19a"
+      "spec.md": "637894a149f8df4ad8a8b4fe88758c9455902cba8dfd4df9a2c391545ff82b04",
+      "plan.md": "cc48b5d78e9273399a8b4a1787ba2c44b5b33d2a1d83c562c40df7757bef85cb",
+      "tasks.md": "2b3fa39c888425ec4a8255204966391f9b09a227b312dc559d8aa2824e31b151",
+      "implementation-summary.md": "e422d079cf401dfa06594a292e9133e3a1d1c412e2e7b623523d35a0d589c718"
     },
     "last_active_child_id": null,
     "last_active_at": null

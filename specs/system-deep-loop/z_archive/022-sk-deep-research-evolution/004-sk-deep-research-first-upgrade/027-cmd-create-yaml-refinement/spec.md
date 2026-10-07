@@ -48,8 +48,8 @@ This packet defines the refinement pass for `.opencode/commands/create/assets/*.
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -162,7 +162,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -177,7 +177,7 @@ Refine the create-command YAML suite so it reads like one family of workflows: s
 - **NFR-R01**: All refined assets must continue to parse successfully as YAML.
 - **NFR-R02**: The new shared section names should be stable enough to serve as the suite baseline for future create-command work.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

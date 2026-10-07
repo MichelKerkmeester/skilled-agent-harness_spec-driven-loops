@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,8 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,12 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md",
         "source": "derived"
       },
       {
@@ -179,7 +172,7 @@
     ],
     "causal_summary": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom sibling and one real content gap stayed open: the shipped `mcp-obsidian` notion-bases docs had a basic calendar view (`workflows.md` §6a) but no end-to-end Notion-style calendar recipe — no quick date entry, no month/week layout guidance, and no agenda companion",
     "created_at": "2026-08-22T19:53:19.275Z",
-    "last_save_at": "2026-08-30T15:39:10.474Z",
+    "last_save_at": "2026-10-07T18:11:39.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +181,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58caeb63bada70b542277af4c277bad7061fc1561386f50d2e37a33cee25188d",
+    "source_fingerprint": "sha256:c790e3a3513c6f3296e73eec7613836cf3dd164132058b8238cfb8bf8faf06f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fe60edbb974f62306dfeed1b04fa3a4e99ef6427fe146ca9e373e59c235ffa2",
-      "plan.md": "6ca1bda6b8ff6390a2b8df494cd5714cfdfbd7e0133d6c68607d5cf3b396ebf0",
-      "tasks.md": "f4040f92fb6fe2317c3e7c5e7e6a1178ac00e62781fa58bfea789884a8f38ff8",
-      "implementation-summary.md": "dad3e7792b1fc881ebadf09cbfa7a4ed5fb468979ee92a258bb7bd25ddd66d7e"
+      "spec.md": "43fdfd26842dd3c1739777311bf8ca3cfe37c8b3618952a759eff2876afda86b",
+      "plan.md": "1bd670a3ddf437bc72f9d4237e2dcc608ad45cacafedf6ebc1cae3a8a5e3c4b6",
+      "tasks.md": "f94575042afd4d4b98a07ec5f3229874ea502d7bb29999b6feb703088aa65dc7",
+      "implementation-summary.md": "015010169b334e0b58776bea4a2785fbff9450c9aaccdda8e101ea402f29cffa"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,13 +2,7 @@
 title: "Tasks: Spec Kit [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/042-post-merge-refinement-5/tasks]"
 description: "Implementation breakdown for Spec Kit and Memory System bug fixes and refinements."
 trigger_phrases:
-  - "tasks"
-  - "spec"
-  - "kit"
-  - "memory"
-  - "system"
-  - "042"
-  - "post"
+  - "post merge refinement 5 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

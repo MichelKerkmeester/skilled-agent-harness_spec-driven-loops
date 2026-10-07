@@ -1,3 +1,12 @@
+---
+title: "Phase 001 Edge Cases: sk-improve-prompt rename discovery"
+description: "Edge cases found during the read-only reference inventory for the sk-improve-prompt rename: filename embeds, JSON keys, symlinks, links, hardcoded IDs, fixtures, observability data, databases and root instruction docs."
+trigger_phrases:
+  - "sk improve prompt rename edge cases"
+  - "rename discovery edge cases"
+importance_tier: "normal"
+contextType: "research"
+---
 # Phase 001 Edge Cases
 
 1. **Filename embeds.** `find . -name "*sk-improve-prompt*" -not -path "./.git/*"` found active embeds at `.opencode/skills/sk-improve-prompt` and `.opencode/changelog/sk-improve-prompt`; the packet's own `.opencode/specs/skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename` is excluded by scope. It also found nested-copy paths under `barter/coder/.opencode/...`; those are outside the canonical root `.opencode/` surfaces and are not in `inventory.tsv`.

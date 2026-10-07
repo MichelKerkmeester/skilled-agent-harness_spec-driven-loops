@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/023-subprocess-environment-whitelist"
     last_updated_at: "2026-05-15T11:00:00Z"
     last_updated_by: "codex"
     recent_action: "Subprocess env whitelist implemented"

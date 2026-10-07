@@ -196,7 +196,7 @@
     ],
     "causal_summary": "R1 produced two distinct artifacts:",
     "created_at": "2026-05-02T11:15:18.846Z",
-    "last_save_at": "2026-08-30T15:39:22.628Z",
+    "last_save_at": "2026-10-07T21:49:50.806Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,17 +209,17 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:5655a4fb27bd63682979127c79d1dda3aaccfb0113655eecf88fb714a1ecee21",
+    "source_fingerprint": "sha256:47de369ebe9212549f4037ef18492b06485a8ce9fea88d0a357b1b466a36632e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "41c818e1caf7c9eef359a83df92ab3c32fe5d58db925ac73ce8f61ab6d17dc8b",
-      "plan.md": "8a138cfe5a4d9d4eb09b987a8883c7843cd763170a9bb20204792052ffa1ee60",
-      "tasks.md": "99cccaa401b8814ec0f91da3a915c8c3bfff053e4adc35e3f3bada7b482ad643",
-      "decision-record.md": "56980789ea37ff0671758ea6bed095dd994cb3604c2f58dc812cf23e0d8092f8",
-      "implementation-summary.md": "8072c2c5e7992fdbf90867026c74c39a69c698ac700c0f022a43eb14b72e8177",
+      "plan.md": "d890989290e263407cb19df6557c54bd6514db258c00ab77398241b8f9ac9681",
+      "tasks.md": "75cae9991a0c3d7c350fb52c5511cea9dee8cd3f0bb6b0ad400428f9b034fdf2",
+      "decision-record.md": "66b646a5ff062e3321761b214d0aa93360e797802dc4e1ee712e70046b0bbbfd",
+      "implementation-summary.md": "5084c1b4fe000a306d458b7726fae126cfa3a8600c92ad8f70ee390e43e0bf87",
       "research/research.md": "6fdd8c953357b818a9098161a6481c83b0a6eaffc57d4aaf2b5de7e7a1a3cfec",
-      "handover.md": "ca9568fd8770c9bbd1fa527c96a19fd9af5584445235a33f0440b67c7d09c422",
-      "resource-map.md": "cc276605ddaf6907095f69df2ee82228aa108438d2bf6b8bbf4a812b03e7114e"
+      "handover.md": "a7959e1eb1e19f5342d4496682676226dbe31a9eef32869328ec26bc1c1e8051",
+      "resource-map.md": "e0135fb9cd316c06b1856984cb2e015e0d1c4378591d911bf44ddaf02373af97"
     },
     "last_active_child_id": null,
     "last_active_at": null

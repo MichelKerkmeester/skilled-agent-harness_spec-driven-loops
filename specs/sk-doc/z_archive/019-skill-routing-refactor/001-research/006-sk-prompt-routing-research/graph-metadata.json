@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
     "created_at": "2026-07-17T04:07:17.535Z",
-    "last_save_at": "2026-08-30T15:39:14.699Z",
+    "last_save_at": "2026-10-07T18:12:28.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:54930c07403c1a713010f4a03d548cf4e8717ed1a485dda2d28f5fc55f534339",
+    "source_fingerprint": "sha256:ec736eb7e331d63e7aa986db94fee768e5cfddd359e994b93606c0ef6e55d771",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f157a12a978f4ac823f4c5ac9e79d8e6a06ba28211133ff0bbab0c79cfbdab21",
-      "plan.md": "b4196db69a9deb89e5c9b02bf71ac57c22c072378b9a53daac2e5a8003829d91",
-      "tasks.md": "7c2741047911fbb11e36e641989093bc755d949eb5a657ab93cfd7b6773bedfc",
-      "implementation-summary.md": "7fb3042fbc1b120b57c32446f728dffc904794943eea29b3afdfea6982914193",
+      "spec.md": "4a4f253509a796680a33583e869600704bc28995dfd707fed62ddd8de4699de2",
+      "plan.md": "9cb2fdd30be9563a95e1d2304f49298f115e1ac36e26d39f243614564674258e",
+      "tasks.md": "ce5d8330ebdd19f428a2f45e696139e53da15377064386bd8dfa0fd810d93715",
+      "implementation-summary.md": "4e298f9a8d3ca28fa108738d84b2cc4855adb4a17de3d01792eded4798455a0f",
       "research/research.md": "bb6d16eb6950a0eb88f05642df8a9e9aebf492ecb5fe30216e84ea0caf146e18"
     },
     "last_active_child_id": null,

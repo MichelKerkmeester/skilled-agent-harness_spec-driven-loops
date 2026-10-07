@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-motion feature-catalog/ conformance"
 description: "Task breakdown for auditing design-motion's feature-catalog/ root and 3 subdirectories."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/006-feature-catalog"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/006-feature-catalog"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author feature-catalog audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "feature catalog tasks"
 ---
 # Tasks: design-motion feature-catalog/ conformance
 

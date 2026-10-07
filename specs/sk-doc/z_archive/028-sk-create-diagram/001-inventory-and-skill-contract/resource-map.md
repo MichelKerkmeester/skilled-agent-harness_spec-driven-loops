@@ -34,6 +34,7 @@ Bounded known-context inventory for phase 001. Every count below was read direct
 
 ---
 
+<!-- ANCHOR:documents -->
 ## 1. `skills/diagram-design/references/` — 37 files, 6,002 lines total
 
 | File | Lines | Fate |
@@ -80,9 +81,11 @@ Bounded known-context inventory for phase 001. Every count below was read direct
 All 27 `type-*.md` files port with light adaptation only (frontmatter block per `skill-reference-template.md`, cross-reference paths updated, kebab-case filenames already conform). None require restructuring — they are already scoped, single-purpose reference docs, exactly the `references/` shape `sk-create-skill` expects.
 
 `type-flowchart.md` (23 lines) here is the source's SVG decision-tree diagram type, unrelated to `sk-create-flowchart`'s ASCII markdown mode — no naming collision once both live under `sk-doc` since the packet is `sk-create-diagram` and this is an internal reference filename, not a public identity.
+<!-- /ANCHOR:documents -->
 
 ---
 
+<!-- ANCHOR:scripts -->
 ## 2. `skills/diagram-design/scripts/` — 2 files, 2,141 lines total
 
 | File | Lines | Dependencies | Fate |
@@ -91,9 +94,11 @@ All 27 `type-*.md` files port with light adaptation only (frontmatter block per 
 | `mermaid_extract.py` | 1,285 | stdlib only (`argparse`, `html`, `json`, `re`, `sys`, `dataclasses`, `pathlib`, `typing`) | Port as-is |
 
 Zero third-party dependencies — no `pip install` step needed for either script. This satisfies the "prefer available project tools, add a dependency only when required" quality principle without any trade-off.
+<!-- /ANCHOR:scripts -->
 
 ---
 
+<!-- ANCHOR:assets -->
 ## 3. `skills/diagram-design/assets/` — 100 HTML files, 1.4M total
 
 | Category | Count | Fate |
@@ -105,9 +110,11 @@ Zero third-party dependencies — no `pip install` step needed for either script
 | `icons.html`, `index.html` | 2 | `icons.html` ports (icon gallery); `index.html` (tabbed 27-diagram browser) drops — it is a source-repo browsing convenience, not skill content an agent reads |
 
 Net: ~100 source assets → ~34 shipped assets (4 templates + 27 canonical examples + ~7 special-pattern examples + 1 icon gallery, with 2 dropped/absorbed), roughly a 3x reduction while keeping full type coverage.
+<!-- /ANCHOR:assets -->
 
 ---
 
+<!-- ANCHOR:dropped -->
 ## 4. Everything else in `context/` — dropped, out of packet scope
 
 | Path | Reason |
@@ -117,3 +124,4 @@ Net: ~100 source assets → ~34 shipped assets (4 templates + 27 canonical examp
 | `scripts/build-icons.py`, `scripts/fix-mojibake.py`, `scripts/lint-skin.py`, `scripts/lint-skin-baseline.txt`, `scripts/test-lint-a11y.py`, `scripts/verify-drawio-import.py`, `scripts/verify-mermaid-import.py`, `scripts/vendor/`, `scripts/fixtures/` | Source repo's own CI/lint tooling that validates *its* release process, not runtime content this skill's user needs — see spec.md "Out of Scope" |
 | `docs/screenshots/` | README illustration images for the source repo's GitHub page |
 | `README.md` | Source repo's own marketing/install README; this packet gets its own `README.md` from `skill-readme-template.md` in phase 005 |
+<!-- /ANCHOR:dropped -->

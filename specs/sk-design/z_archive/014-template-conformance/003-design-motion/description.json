@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "description": "`design-motion` is the smallest and cleanest sk-design mode (19 dirs, 39 files), but a sample pass already found real conformance gaps in",
   "keywords": [
     "design-motion",

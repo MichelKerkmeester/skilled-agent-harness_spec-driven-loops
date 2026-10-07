@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-18T12:17:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified the frozen rename map executable via the fixed rename engine"

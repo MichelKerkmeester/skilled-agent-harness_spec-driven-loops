@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 008 — Smart Routing Optimization (Hub + Mode Packets)"
 description: "Level 2 plan for sharpening sk-design's SMART ROUTING keyword/alias coverage across the hub and five mode packets, informed by Lane-C benchmark evidence, while keeping registry/router structure frozen."
 trigger_phrases:
-  - "implementation plan"
   - "smart routing optimization"
   - "sk-design routing vocabulary"
   - "hub-router keyword sync"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/008-smart-routing-optimization"
     last_updated_at: "2026-07-06"
     last_updated_by: "markdown-leaf-agent"
     recent_action: "Created planned Level 2 smart routing optimization docs."

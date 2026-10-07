@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -55,10 +55,7 @@
       "research/iterations/iteration-005.md",
       "research/iterations/iteration-006.md",
       "research/iterations/iteration-007.md",
-      "research/iterations/iteration-008.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs"
+      "research/iterations/iteration-008.md"
     ],
     "entities": [
       {
@@ -152,24 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,11 +183,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at all",
     "created_at": "2026-07-17T04:06:39.227Z",
-    "last_save_at": "2026-09-10T20:44:33.679Z",
+    "last_save_at": "2026-10-07T18:12:33.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +215,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e66dc475d8c25ed82a21fc6d93e668aa1cadd900db91f2f4833e38b4e2c08e80",
+    "source_fingerprint": "sha256:7fd0d8804307a82dbc8d1c9280b1ed2890e5ddb0d9d055278847e9085a7cf85e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e7debbf4d4fb010ef0fdefd15c861795aebd937e6ec6adab5e49bd008799e6a",
-      "plan.md": "33609302b2bab44ad0898fd09d05448e20b67b93cd12124d1aca2d84131e2c35",
-      "tasks.md": "c6163b29a7c99f5622e16cb4c72a9c5664fc0cf26cc7b8fe6cdc0d1dedc09837",
-      "implementation-summary.md": "3d38527f8db4723b4a300089cf5425a06e2e7f2e399cfc4da7cfe0ede35a3704",
+      "spec.md": "2ba64724bee630cb28f7c00094fc8fb897a03e5135cbf68f4613a76699f05cac",
+      "plan.md": "bb682cdfd01e25b68ae1f63180fa6a7e2e4cb6f67374b04b214ae30536e3d16b",
+      "tasks.md": "3786b169607838324b6791addeaf9836607e2108df943e5e5628331b96be44a5",
+      "implementation-summary.md": "6e43a57f1969688fd35e1bc3bb86a9be2d25bec3146974d2d7006b5db6cf292e",
       "research/research.md": "95376b0b50c27a9bdf6ab749d15b3d9181bb305339d6348c199db7a25d534183"
     },
     "last_active_child_id": null,

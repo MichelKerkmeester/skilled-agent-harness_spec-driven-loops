@@ -1,3 +1,13 @@
+---
+title: "Phase 027 Scaffold Audit vs Research Synthesis"
+description: "Read-only audit comparing the phase scaffold against the research synthesis, with a coverage matrix and gap findings."
+trigger_phrases:
+  - "scaffold audit versus research synthesis"
+  - "phase 027 coverage gaps"
+importance_tier: "normal"
+contextType: "research"
+---
+
 # Phase 027 Scaffold Audit vs Research Synthesis
 
 ## Executive Summary

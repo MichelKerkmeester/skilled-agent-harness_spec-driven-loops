@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/009-skill-scoped-worktree-naming",
-  "spec_folder": "sk-git/009-skill-scoped-worktree-naming",
+  "packet_id": "sk-git/z_archive/009-skill-scoped-worktree-naming",
+  "spec_folder": "sk-git/z_archive/009-skill-scoped-worktree-naming",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`, and `backup/` branches gives no signal of who owns what",
     "created_at": "2026-07-15T04:22:47.978Z",
-    "last_save_at": "2026-09-11T16:42:14.465Z",
+    "last_save_at": "2026-10-07T18:14:20.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68fe849fdaaf1fe589ffd903d806839840ebbe9a9a8a80211b6f65f550fee306",
+    "source_fingerprint": "sha256:fb5c8e92c30dab221a2a147c6e650fe62bb91b96a152c68be00a9b0ac54804ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e93b9f8b04993098ad787d5c1e25f0f328a78c011b501c596b4e427812b963fa",
-      "plan.md": "d00e747cf010ccc763e17edab8e986b46d0fcf01fa07d55c39936ada6e03df4a",
-      "tasks.md": "60dfa7f86c8de848a66b01e41e663edd950878654fa5ef16d725b539b5c9664b",
+      "spec.md": "66aa114220f2d53565b6f4835d87b14205d0df22671a4f5f6e65794ec8988f78",
+      "plan.md": "dd16503e3fba74d3e2523d75d3c5841e78eec2ec4cfa27e4e9fbcd7d0413f699",
+      "tasks.md": "6f251adc4305fc18ed97a26551200e7968a6dc1ec4da10cf452d1c5b1e17cb06",
       "decision-record.md": "8fbc5b09a4b5ffe6c988d710fb8e48544cf6b3f05a9d36874ddf17927cde9048",
-      "implementation-summary.md": "b95a19b7e1fabd4c49b39e612ee46822d56c2ab97d55ee6881dac4cd9cb0fd07"
+      "implementation-summary.md": "383a6fbc0f7db064aa0c05ab2902a74cf129a9a7fb719ac25cc57b0b52288bac"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian"
     last_updated_at: "2026-08-04T12:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Applied validation-driven doc fixes and pushed v4.0.0.0"

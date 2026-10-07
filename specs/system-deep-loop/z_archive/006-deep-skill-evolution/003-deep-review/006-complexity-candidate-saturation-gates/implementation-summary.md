@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `006-candidate-saturation-and-graphless-gates` |
+| **Spec Folder** | 006-complexity-candidate-saturation-gates |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | Phase F autonomous dispatch |

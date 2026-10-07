@@ -2,7 +2,6 @@
 title: "Implementation Summary: Nested Changelog Per [system-spec-kit/025-nested-changelog-per-spec/implementation-summary]"
 description: "Packet-local changelog generation now ships with system-spec-kit, so packet roots and child phases can keep chronological history beside their implementation summaries."
 trigger_phrases:
-  - "implementation summary"
   - "nested changelog"
   - "phase changelog"
   - "025"

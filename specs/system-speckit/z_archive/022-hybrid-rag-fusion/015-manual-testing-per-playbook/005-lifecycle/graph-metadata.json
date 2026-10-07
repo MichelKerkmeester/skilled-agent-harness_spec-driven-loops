@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 005 lifecycle scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.292Z",
-    "last_save_at": "2026-09-10T21:05:00.466Z",
+    "last_save_at": "2026-10-07T19:24:34.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3220dfc48dbb477459a522bde3a4b46f597532469c6b0700e6f3e76ff44a270",
+    "source_fingerprint": "sha256:7df9d93b96929c0ab20881b0005a76c549ef2a7db54d52c9a80d916d49e1f53a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b81e7b21e3d01d6fa2abcc83add83f3c4d4015d0f2bb3ab113643c325a2e6af7",
-      "plan.md": "094e296772dd192a59a3d73182cdea46c4fb7059150ad53a3848ea7002bc6bf5",
+      "spec.md": "cc2bf60ad493e6b7dac4428192839b4415843153fd59fcba15d41dc842fe09ae",
+      "plan.md": "32960834e69ff21028e2e8b25956f0f1c27ad8be13250323e9290202a82c6ee1",
       "tasks.md": "cce11fde966033c9d754ee73b2c4732860e2ac50816844c28adfc2281e9e1ebb",
       "implementation-summary.md": "25413e18ff621fd69c3c034a1607a6f3b8b85bd78a7e83a3b127e9b78d57fad2"
     },

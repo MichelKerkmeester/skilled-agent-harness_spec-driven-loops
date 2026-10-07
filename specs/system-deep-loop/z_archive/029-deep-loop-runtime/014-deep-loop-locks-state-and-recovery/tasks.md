@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/014-deep-loop-locks-state-and-recovery"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/014-deep-loop-locks-state-and-recovery"
     last_updated_at: "2026-05-22T10:20:00Z"
     last_updated_by: "opencode"
     recent_action: "Scaffolded concrete phase scope for the memory leak remediation arc."

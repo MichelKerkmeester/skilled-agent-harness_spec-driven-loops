@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `016-manual-testing-verification` |
+| **Spec Folder** | 007-030-manual-testing-verification |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 | **Verdict** | PASS (CONDITIONAL, hasAdvisories=true) |

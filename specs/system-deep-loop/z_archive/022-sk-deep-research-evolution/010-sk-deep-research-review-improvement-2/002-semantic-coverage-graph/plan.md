@@ -2,8 +2,7 @@
 title: "Implementation [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/plan]"
 description: "Deliver the deep-loop coverage graph substrate by extracting shared graph primitives, adding dedicated storage and MCP tools, and wiring graph-backed convergence into deep research and deep review."
 trigger_phrases:
-  - "042.002"
-  - "implementation plan"
+  - "semantic coverage graph plan"
   - "semantic coverage graph"
   - "deep_loop_graph_query"
   - "deep_loop_graph_convergence"

@@ -2,7 +2,7 @@
 title: "Feature Specific [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/spec]"
 description: "Define an offline replay optimizer that tunes deterministic deep-loop configs against real packet traces now, while deferring prompt and meta-optimization until replay fixtures, behavioral suites, and broader corpus coverage exist."
 trigger_phrases:
-  - "042.004"
+  - "offline loop optimizer spec"
   - "offline loop optimizer"
   - "replay corpus"
   - "optimizer manifest"

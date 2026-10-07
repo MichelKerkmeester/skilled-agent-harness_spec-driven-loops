@@ -2,13 +2,8 @@
 title: "Feature Specif [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/spec]"
 description: "Decompose the monolithic context-server.js (2,703 LOC) into focused modules following the Spec 058 pattern."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "context"
-  - "server"
-  - "modularization"
-  - "spec"
-  - "066"
+  - "context server modularization spec"
+  - "monolith decomposition spec"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -170,7 +165,7 @@ As a developer, I need isolated modules so that I can unit test handlers and for
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -182,7 +177,7 @@ As a developer, I need isolated modules so that I can unit test handlers and for
 - **NFR-R02**: Startup scan completes successfully
 - **NFR-R03**: SK-004 memory surfacing continues to work
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -234,7 +229,7 @@ As a developer, I need isolated modules so that I can unit test handlers and for
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 - lib/ module changes - already well-organized (28 modules)
@@ -242,7 +237,7 @@ As a developer, I need isolated modules so that I can unit test handlers and for
 - Performance optimizations beyond modularization
 - Database schema changes
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

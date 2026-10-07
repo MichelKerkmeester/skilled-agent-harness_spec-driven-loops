@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation"
     last_updated_at: "2026-08-22T08:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "Ceremony complete; whole gate 794/0; validate Errors:0"

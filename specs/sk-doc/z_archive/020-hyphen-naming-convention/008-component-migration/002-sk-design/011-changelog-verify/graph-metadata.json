@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only.",
     "created_at": "2026-07-14T15:17:22Z",
-    "last_save_at": "2026-09-10T20:44:59.610Z",
+    "last_save_at": "2026-10-07T18:13:03.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:bd7691db7cf2610e79f41b7f03618ef252f0ba5f7de2c04d26e5c2174096f7cc",
+    "source_fingerprint": "sha256:cb48ea72c123b2d2a33496f540ff0c417c65481f07eb7e0670159d5c4ba7860d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84695d77c7af2fcc12e617d7350cab67fb1db7ee2c517d60a05333370f153990",
-      "plan.md": "e6eae767e670031fce8c724938c983bf964665c82fda54b0214915af866376ae",
-      "tasks.md": "310c3b7d1f8e46e2816d9c1d5c2cdcf011091067c1c7566a472ea78ea93601c7"
+      "spec.md": "c2b66f2cc2e5dbead615c73c00501515ee42f90bafdc312475adc49c0293e8d1",
+      "plan.md": "daded75f4722ff220698243c4593f65bb6e19d2dca7eef4dfe21dfedc2a4813f",
+      "tasks.md": "0237e83174641a6a3a6fade2d61cfc6323c1434b2a1edf12c74ea68b5657bda7"
     },
     "last_active_child_id": null,
     "last_active_at": null

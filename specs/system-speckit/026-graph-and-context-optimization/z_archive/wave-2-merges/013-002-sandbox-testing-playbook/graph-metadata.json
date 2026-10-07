@@ -48,8 +48,6 @@
       "implementation-summary.md",
       "handover.md",
       "resource-map.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
-      "scripts/tests/test-validation.sh",
       "dispatch/track-d-sandbox.prompt.md"
     ],
     "entities": [
@@ -93,12 +91,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
         "source": "derived"
       },
       {
@@ -196,11 +188,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Architecture Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0)",
     "created_at": "2026-05-09T14:45:34.083Z",
-    "last_save_at": "2026-08-30T15:39:32.715Z",
+    "last_save_at": "2026-10-07T18:16:05.890Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +210,14 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:96710bcf28d731fc40b1268f0231a6121788f8e54c170bf312b546e716f0c814",
+    "source_fingerprint": "sha256:2e5e47f0f9dc598ada37f21e428cb01e27c4ec6524d63b531eff5273668246a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9d246cae1fcb3859e52386e21e989a2af0df64fdb2dfb8619ea929856467880",
       "plan.md": "9e47bf0e4544bf3d2a830e54ecbfe3248d30ded9b3ffcdeac2d835ea0c6199cb",
       "tasks.md": "d7d43bb02094d3e326aea38b6b8459de2503b5a96e5a450fda4aff3a35dabf4b",
       "decision-record.md": "bb3a07a2ee4874ba100e91447f5c4d69b9e9c2fd09c3f265aebd7bc7cdb9540e",
-      "implementation-summary.md": "e4b577819a6de0bbaa81899885cbc9e5f30246b69ec7ba16e6be976199e9e886",
+      "implementation-summary.md": "1b23ddc4d4d6de0cecfa9e59e6f169a606778b7cfffcdb026c4ff9bd0c0f989e",
       "handover.md": "fc6ddad55a644af61d7723bc2f84b4a90c94809c001d0ad2b7570318e0ec13b9",
       "resource-map.md": "abd4f0bc8bf717fc98a369874cc97465d445da418c0d6e3818bfa32ff7bf3114"
     },

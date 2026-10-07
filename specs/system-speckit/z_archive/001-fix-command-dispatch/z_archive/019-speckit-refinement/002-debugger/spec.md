@@ -2,16 +2,12 @@
 title: "Debug Delega [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/002-debugger/spec]"
 description: "The debug-delegation.md template exists in SpecKit but is underutilized. There's no active workflow that triggers its use, and debugging tasks are handled ad-hoc without structu..."
 trigger_phrases:
-  - "debug"
-  - "delegation"
-  - "integration"
-  - "spec"
-  - "002"
-  - "debugger"
+  - "debug delegation spec"
+  - "debug delegation integration"
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Debug Delegation Integration
 

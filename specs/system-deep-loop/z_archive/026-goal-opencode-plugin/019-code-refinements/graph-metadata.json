@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`mk-goal.js` contains duplication and implicit contracts that made the F-series correctness bugs (fixed in phase 016) possible in the first place: the `sanitizeInlineText(x,160).replace(/\\s+/g,'-')` goal-ID normalization idiom is copy-pasted 7 times as of this phase starting (re-confirmed at mk-goal.js:1265, 1353, 1579, 1598, 1615, 1632, 1823 - grew from the originally-documented 6 sites after phases 016/017 added a 7th; re-verify via `rg` before implementing since this may have shifted further), plus a near-variant at `goalIdFromFactory` (mk-goal.js:487) using the same idiom internally",
     "created_at": "2026-07-03T07:30:49Z",
-    "last_save_at": "2026-08-30T15:39:25.795Z",
+    "last_save_at": "2026-10-07T18:15:15.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebc8ec687b454ddefe4755fde720c0e99d3e042e2d7aace977a50cee278ad44d",
+    "source_fingerprint": "sha256:1d83bd29e2bbb01eb7eab3d07c708bb175980106c0fccb49d1146115b30eb75d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c454c798dac55ecfab2efd84e5e070f8f0644c09bc2362fa3fd5195db1adb798",
-      "plan.md": "5c3a4367c25acee57d40ad5a165b06e7ed234a473f73d1800aa95f07e3398318",
-      "tasks.md": "9c0fc2ca0265d0ca383d18720fc5297a376992b0e3f0a2504ca1a64161a25d0e",
-      "implementation-summary.md": "8aeb9693e29614c5aaff8b087d6f760b7ecf14b40699c0342029b93325e4db16"
+      "spec.md": "c5859fc5b81bec0143262ef79111927f7b472489d6e88c48b289f5582ca3ab1b",
+      "plan.md": "2fac2f80ab7c25bcc6aaa6ddea7edb6239bbbae5a4a2ffe213a98e4ce051ced9",
+      "tasks.md": "97eb63c143328caf327f9a1884ce131b0c069ddb89fd03902539cf21da444275",
+      "implementation-summary.md": "65942c79e8f2b46b25f611784029194684bbfc04a419bfc46426ac66dad86c53"
     },
     "last_active_child_id": null,
     "last_active_at": null

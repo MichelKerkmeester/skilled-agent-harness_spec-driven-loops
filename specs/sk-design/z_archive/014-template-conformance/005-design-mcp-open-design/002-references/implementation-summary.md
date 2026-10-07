@@ -3,12 +3,11 @@ title: "Implementation Summary: design-mcp-open-design references conformance"
 description: "Not yet started — Planned leaf awaiting execution."
 trigger_phrases:
   - "design-mcp-open-design references conformance"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/005-design-mcp-open-design/002-references"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/002-references"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffold Planned implementation-summary placeholder"

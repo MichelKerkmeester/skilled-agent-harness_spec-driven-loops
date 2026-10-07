@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/016-create-diff-mode/009-create-diff-command",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/009-create-diff-command",
   "description": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes",
   "keywords": [
     "create-diff",

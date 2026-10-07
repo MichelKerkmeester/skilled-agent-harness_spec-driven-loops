@@ -172,7 +172,7 @@
     ],
     "causal_summary": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` — `mergeResearchRegistries` does `if (!registry || !Array.isArray(registry.keyFindings)) continue;`",
     "created_at": "2026-07-01T06:22:13.241Z",
-    "last_save_at": "2026-08-30T15:39:25.179Z",
+    "last_save_at": "2026-10-07T18:15:16.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,13 +181,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ea0d879cd3ff3b77b0c9a25075a1f265fcb236d294bafcefd90819d365525c3",
+    "source_fingerprint": "sha256:bfc2d0055d17eb526bafbc374a7b2dde7b06345b3c9b0890378107120b8fab21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76e6bbea1c255c4733be223c1a095d9d3ed8935abe503ed5e9fb86ed14e845cb",
-      "plan.md": "0f3778bc953a142b840c3229cb8f96aaa89622eeee43fa8ae6605f0ae1df0d67",
-      "tasks.md": "8abf50d10835f6da213d5a4feb38ca9c80688f33fa45569c2fe3186945e68e4a",
-      "implementation-summary.md": "df73ba9f163520f9e0250333a0da0f8c8a182bb97c085d6b3342351098b635f3"
+      "spec.md": "f5c7898db5158c18e75d18f4914c6b7900a5f96206141eb6d36dbdc8e76d95d1",
+      "plan.md": "9a6b4ad0b6d74a15b6ff573997ddb77255e1300b942793eed9f9eaca8a9e76b2",
+      "tasks.md": "4ec31934be6c189c7d683b56fa29c398455abf4afe2a0bea91767311f39d6c77",
+      "implementation-summary.md": "c6949ac642f39b9aa31eee2be83649557f56ef720f5358d081c15358d5a1433d"
     },
     "last_active_child_id": null,
     "last_active_at": null

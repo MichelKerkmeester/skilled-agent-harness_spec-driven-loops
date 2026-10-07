@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/015-design-commands-implementation",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/015-design-commands-implementation",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/015-design-commands-implementation",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The five `/design:` commands remain flat single-file commands with routing logic and presentation content (Ask-first wording, STATUS templates, handoff grammar) mixed together",
     "created_at": "2026-07-06T18:57:35.656Z",
-    "last_save_at": "2026-08-30T15:39:12.260Z",
+    "last_save_at": "2026-10-07T18:11:39.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40fbba3c5dbd497b23b260e65d35781cda3b24082d8ecccc8c6896b3bf05967c",
+    "source_fingerprint": "sha256:bd13cfc1b0816c389ae44e99e754e3e4a4fa1b54c725f3ad783e33a91f4d6498",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea0ba9e917b2f7f1dac4ce9ac92d31608def1640f7fa0946b8abbbfbd3bd5187",
-      "plan.md": "bdf17c68c03ce89ba62fe16d991c8557c36184637026ff762dd9cc0d3419310f",
-      "tasks.md": "3413494a71a15a981fbd7a3fe1a8a965028e8706e916620cb3012f7fa7cb5386",
-      "implementation-summary.md": "65e03804e6e55ec9329ac72bbe8c3e11e695e3ac23521ea417f19035768a33c5"
+      "spec.md": "0be1ef71909dc37703fd77452a1e38be835d1010cf86545bdaf0c2d3e46b4adf",
+      "plan.md": "70a079ecbdb42271bf690ffa77a08eeb858dad9cf87e5d9c685c90288c763c1f",
+      "tasks.md": "f03fc2646d0f2c9765c1d1e0ac3f3925b0315df56ba27c3a18e7ddbbebd830f0",
+      "implementation-summary.md": "9049a78c0f31e786953a10182cd82b41341f191393c054256d8247172965a34d"
     },
     "last_active_child_id": null,
     "last_active_at": null

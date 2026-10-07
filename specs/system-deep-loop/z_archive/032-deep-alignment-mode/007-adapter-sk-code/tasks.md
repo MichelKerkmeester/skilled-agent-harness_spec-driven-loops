@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/007-adapter-sk-code"
     last_updated_at: "2026-07-11T14:56:54Z"
     last_updated_by: "claude"
     recent_action: "All 14 tasks executed and CLI-verified"

@@ -2,17 +2,11 @@
 title: "Gate Enforcement [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement/spec]"
 description: "Refine the gate-enforcement.md constitutional memory to cover ALL 4 HARD BLOCK gates (0, 3, 5, 6) instead of just 2 (3, 5)."
 trigger_phrases:
-  - "gate"
-  - "enforcement"
-  - "constitutional"
-  - "memory"
-  - "refinement"
-  - "spec"
-  - "034"
+  - "gate enforcement refinement spec"
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Gate Enforcement Constitutional Memory Refinement
 

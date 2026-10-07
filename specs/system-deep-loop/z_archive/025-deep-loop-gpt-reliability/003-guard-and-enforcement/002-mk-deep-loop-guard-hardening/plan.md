@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening"
     last_updated_at: "2026-07-01T20:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "5-iteration dual-model research complete and synthesized"

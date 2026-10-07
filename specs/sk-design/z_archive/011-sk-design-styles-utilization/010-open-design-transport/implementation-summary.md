@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/010-open-design-transport"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/010-open-design-transport"
     last_updated_at: "2026-07-18T19:45:09Z"
     last_updated_by: "claude"
     recent_action: "Built and verified the transport; 25/25 tests, no-cache + non-authoritative enforced"

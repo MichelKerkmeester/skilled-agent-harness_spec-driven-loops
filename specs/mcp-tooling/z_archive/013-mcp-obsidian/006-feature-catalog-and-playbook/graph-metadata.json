@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After Phase 5 the `mcp-obsidian` mode has a routing contract but no single inventory of what its CLI + MCP tools actually do, and no reproducible way to verify them",
     "created_at": "2026-08-02T05:50:29Z",
-    "last_save_at": "2026-08-30T15:39:10.082Z",
+    "last_save_at": "2026-10-07T18:11:23.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:304f16b5d40d556f3d19538e72cdf3ed6b9c24a3319adeacb977786e7daea89c",
+    "source_fingerprint": "sha256:5613d8774c431936a0601036e0f73bc56af095bdf2d3bd5515c3dff542a7c37d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3e1d3d09d1a6c91464f93f84678b7856aa785d2f66f37dcf4dfb78fcacb59a5",
-      "plan.md": "13ae736aa793b972551a720a36025bf90c32577f8e83a8e633ed7978bbb960d6",
-      "tasks.md": "d77ea262c9813b7846bb887b386ae82970df3487b3e378808bea428143518923",
-      "implementation-summary.md": "b758138ca81c0bfb3aeae6a805eaa9f36b642b6ff621afd1f10d8e8540472920"
+      "spec.md": "61c6f64b3d8196d45df2b04a374bee7cdf77b9d8c3c1ce00b2deb2237ba214e3",
+      "plan.md": "4f5a172dacd780a3bd066a2776827a240d2547d456fed9b9b6e2ccd09ffc2c42",
+      "tasks.md": "963ac3e45bbba0931e3a2a3730431d0b3c83e85b6bc9017f96a2b5399d8fadcb",
+      "implementation-summary.md": "b44578daab2e79e3ead46f88088b8cb60e40e6ad4baa7fb61ad70a95fabc9a29"
     },
     "last_active_child_id": null,
     "last_active_at": null

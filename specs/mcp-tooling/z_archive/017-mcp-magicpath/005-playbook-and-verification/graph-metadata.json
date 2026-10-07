@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/017-mcp-magicpath/005-playbook-and-verification",
-  "spec_folder": "mcp-tooling/017-mcp-magicpath/005-playbook-and-verification",
-  "parent_id": "mcp-tooling/017-mcp-magicpath",
+  "packet_id": "mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+  "spec_folder": "mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification",
+  "parent_id": "mcp-tooling/z_archive/017-mcp-magicpath",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -17,10 +17,7 @@
       "magicpath playbook plan",
       "end to end verification design",
       "magicpath playbook tasks",
-      "acceptance criteria",
-      "closure gate",
-      "ac traceability",
-      "waiver adr"
+      "playbook and verification acceptance criteria"
     ],
     "key_topics": [
       "magicpath",
@@ -34,7 +31,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "closure"
+      "four"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -192,7 +189,7 @@
     ],
     "causal_summary": "Four phases will each have proven their own piece",
     "created_at": "2026-08-29T11:35:17.398Z",
-    "last_save_at": "2026-08-30T15:39:10.608Z",
+    "last_save_at": "2026-10-07T18:11:04.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +198,7 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:339dcf4a6730b3236b58b84b544fd375d6959b9efd8c7b8ecdcb719b85bb22cc",
+    "source_fingerprint": "sha256:17da692c359490a196f789950555e26015b2aa67dbbc7eb831db10021018e167",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d8a3be236f65fad2b369adce0e4fc6fc239231e7c03d0083c0992bdaca7f933",

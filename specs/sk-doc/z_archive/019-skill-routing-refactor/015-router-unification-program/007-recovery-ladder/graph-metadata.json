@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The synthesis named \"two ways to handle uncertainty\" as an open seam: Idea 4 (bounded handoff to a better destination) and Idea 5 (a calibrated one-turn clarification) each independently proposed a recovery mechanism with its own budget (synthesis §4, Seam B)",
     "created_at": "2026-07-18T13:13:17.719Z",
-    "last_save_at": "2026-08-30T15:39:14.985Z",
+    "last_save_at": "2026-10-07T18:12:55.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9be7730e669b25a9456d36b9300f7cf59f8edca9ccc48b60e17b180e3235d79a",
+    "source_fingerprint": "sha256:d7524dca4f7e82a5261ee38bed2a9d0914ec0c88ceaac085ce60947d75999ab5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a3c6f4782041a7b935d9567f1138764613309266efc2c18763104cbe1fbbb3e8",
-      "plan.md": "8b9fcd2c18bf90e3a3c1a8294f7ce8e77ad135900934875c8812ba7ec6b0ccd8",
-      "tasks.md": "5ce88fc239bcf5d83b223e3980c033325f72b6a9bac18bd281171e0ecfd144e3",
-      "implementation-summary.md": "112008d4bd18048e626e871f89b4a5d73d6b414b7d9099375dffac31af52d78d"
+      "spec.md": "4c700ff7cb150ffd53549ac4ba9cbb0ac23634ecc7a27c70c6854c86b614aa8c",
+      "plan.md": "debe2576f676516f217d3a692f3951bd1bbfdd3a380209482db08fc6c5e6173e",
+      "tasks.md": "b5397a37bfe500613eeb1964bc48b0766c9ed9a1d731c2cddfa4cf298062e24d",
+      "implementation-summary.md": "8f0d00189694936dacdff8bdd83fd3bc324a842945e9dd000f1090a94d3f2ce9"
     },
     "last_active_child_id": null,
     "last_active_at": null

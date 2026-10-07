@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact.",
     "created_at": "2026-07-14T15:22:34Z",
-    "last_save_at": "2026-08-30T15:39:16.418Z",
+    "last_save_at": "2026-10-07T18:12:59.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:4937de685b956b676780e8ba608bfd28445691a5e74f4d60374c461e4cbca787",
+    "source_fingerprint": "sha256:38cec36a97986fc71a965fad01b0442f7a87a80e53dc111aa83eb0182b88d937",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da15a992bc85d8fc14c6993a279edf58d151c230970316b4812e116b0cb56fab",
-      "plan.md": "9df79ee2a6b789189e872760e98aff7d540f8df90b77acfd1b56d7208825ad41",
-      "tasks.md": "b5150cb84d1bd594bcead2d391a95df633abbf4d20bd036068d88b247675e50d"
+      "spec.md": "4109c9a5c5b3cda5de54fe5fc99d3e5eacf3d5960095bf1ed72568febbcda303",
+      "plan.md": "d09b8a9df0837e0c12f3fe2d5dd012cc3f5f377c061e714bd0c6970251fa5243",
+      "tasks.md": "682df306c5beb7bdf60f7535bf9d2513f1ca1b34f1ce9531de16e05e840742c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

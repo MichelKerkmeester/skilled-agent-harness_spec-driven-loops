@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification"
     last_updated_at: "2026-07-28T05:53:30Z"
     last_updated_by: "claude-code"
     recent_action: "Applied the eight-fix conformance pass with cross-model verification"

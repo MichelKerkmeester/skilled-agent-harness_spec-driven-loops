@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-09-11T16:42:06.886Z",
+    "last_save_at": "2026-10-07T19:47:56.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,15 +215,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:607e2bd5aecb9c5e03656b84d4334ba83cecb54b854d2f348b91687c868aaab1",
+    "source_fingerprint": "sha256:226ea1667f823365b3a7be277758aea33cdf989986bab2c440a2428b63ea05ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "59863550619af65f5e3a5b050501dfb028a090c4cad7f29272a115c88dcdd0d6",
-      "plan.md": "de98c6ee1725551a4803f4c8b1bb34adc8e8ce895984a87dd67aa071ea452ad0",
-      "tasks.md": "77ffe00823fc9fab5576a39399d82c70bb59ebc0c3d585ff89111546e79c5f4f",
+      "spec.md": "e5b431df2a12ceb0248c90cbfb280e6da350557380bd13b892283b41aa6f6de2",
+      "plan.md": "faa8ceef7cc0780b54b9925c79ab639e3eb34f8af3d1fb5f1b53edbb6b5753d5",
+      "tasks.md": "1f8001bbfa3b68974877f31cffb762f06fc3c5a5e5ed37ffe11495020bef1f89",
       "decision-record.md": "846abaf5fb962cd71b62f31cd1c5aee87ab850c5c2896b8e3af7b7311c40ca8f",
-      "implementation-summary.md": "edf1ad30ecc23bcbae685372153c2722517b92267f6ad259474ffe844a100deb",
-      "handover.md": "1c85160e3e6fd06f630f7df412b96aaf351e1f1f241c61da9e26dda3add5c47e"
+      "implementation-summary.md": "3d9b781c9693244de1c6a51f428bf680f020ad15496850ac839672a1d215f82d",
+      "handover.md": "ed865bf31ce869dac2c30f109cfe8ec42d2ed2c8a5df0b0ce495118769bca8bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

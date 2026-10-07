@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Valid v2 ledger rows are not useful if the reducer drops them",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.183Z",
+    "last_save_at": "2026-10-07T18:14:22.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74e63a496c66676c26e1df2550dd725c9dd1780104e26bb41e054e8fe16e14de",
+    "source_fingerprint": "sha256:b08a914e966ee23856f025d33bc5c251c9f6c187eebd044ee9ee4da197c5d036",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cadbd148a3fff05db20ef032519c30a9520fc1d989129e9d163506bcad2a3d7",
       "plan.md": "13a9cd2183f0910ead6db2b4c1d9b99b208459fcbf875c1d0fdc22844b6beb12",
       "tasks.md": "78987ac483f9b1e0113cf6184c98c581c92b7b4419b793e1452a43bcc9643146",
       "decision-record.md": "fea5ed260ec2b38ae6193e8696d08117fd18636bdd25e9286fe37b6e2299607c",
-      "implementation-summary.md": "6eb01848383935128aa9a43bf2c87e621ec5f573675b6d7cdd7f817392c1a0a7"
+      "implementation-summary.md": "e8f1c24d1ad728954324313e60b9b69bc3b926cfedb84a2d6ea6a092365662f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

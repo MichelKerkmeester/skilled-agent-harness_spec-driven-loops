@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/065-retire-gemini-devin-route"
+    packet_pointer: "cli-external-orchestration/z_archive/065-retire-gemini-devin-route"
     last_updated_at: "2026-09-06T11:45:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Retired the Gemini route from cli-devin and closed the packet"

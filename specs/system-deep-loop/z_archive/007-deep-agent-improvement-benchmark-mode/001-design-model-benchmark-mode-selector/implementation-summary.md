@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 121-deep-agent-improvement-benchmark-mode |
+| **Spec Folder** | 001-design-model-benchmark-mode-selector |
 | **Completed** | 2026-05-28 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

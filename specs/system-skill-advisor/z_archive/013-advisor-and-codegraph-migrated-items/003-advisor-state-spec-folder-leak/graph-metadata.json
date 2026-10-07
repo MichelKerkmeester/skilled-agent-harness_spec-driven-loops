@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The skill-advisor resolves where to write its runtime state via `findAdvisorWorkspaceRoot(start)` (`lib/utils/workspace-root.ts`), which walks up parent directories looking for the canonical sentinel `.opencode/skills/system-spec-kit/SKILL.md`",
     "created_at": "2026-06-18T18:41:11.390Z",
-    "last_save_at": "2026-08-30T15:39:27.241Z",
+    "last_save_at": "2026-10-07T18:16:07.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d69d4fbf9f5a4eb8646d9258dda50ded3316d90e13f0b55158d657bbfb5cda2",
+    "source_fingerprint": "sha256:235eb6b6846ec028d6add873b78dee5cfcfc59b06409f0192015a2992ab31952",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "266eca71173baa6058707098264953caa4e1c56dc14c3936e40875fc4ea49c70",
-      "plan.md": "dbd29c5e986c207083337c006d04677bacbb10254d86a1de30e9cd2d573fece1",
-      "tasks.md": "a4e7ff01811ea844a1cc469a005d373b215f57c9eaa35881adaf4be1b9590518",
-      "implementation-summary.md": "5f86423346604843a296802cd913722264388fb375a9cd9fb409820e4b697f20"
+      "spec.md": "b20d928d5f306c4336c3c245d4776e6a83855d6c51c24dfcd28397eb0a87ba6f",
+      "plan.md": "4c65281a706bdf1b1ece9b8145685f73822f979acceae1000c5318ec3cfa1026",
+      "tasks.md": "d19845d0dc58f8228043e314416130b388425357584af443c98b8b2680d4ae64",
+      "implementation-summary.md": "63676a6d04500e03b53edbcef844c0c36a9f73253680cd9545732295844b2065"
     },
     "last_active_child_id": null,
     "last_active_at": null

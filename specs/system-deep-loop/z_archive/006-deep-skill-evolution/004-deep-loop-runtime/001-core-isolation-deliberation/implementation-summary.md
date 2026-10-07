@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation` |
+| **Spec Folder** | 001-core-isolation-deliberation |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Ruling** | SPLIT (Seat D, confidence 92/100) |

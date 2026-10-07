@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been folded into the skill, references, and tool-surface summaries",
     "created_at": "2026-04-12T09:02:50.285Z",
-    "last_save_at": "2026-08-30T15:39:38.950Z",
+    "last_save_at": "2026-10-07T19:24:33.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c736cee2587d96b6e5924c1b026753108beb22153e3d87c117fb1718c9366fc",
+    "source_fingerprint": "sha256:e960b3bc0d31efc5ca307b6b7f876c5ac762c3d87351404543ae17ed6cc5489b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13bcd009ccc2fd9380669ec88b7e457778796b586b820cc868406983df0bc2e8",
-      "plan.md": "dab5aaf6ce4fad69c5ef1fdc8a156b83c4984941f298a8563cb07df3f2755671",
+      "spec.md": "495bdd9bc2816bd65148f3192e6aecf34a75fcf7ea293a12860da387ba2cec31",
+      "plan.md": "4a5f9105ad2e060ae2cb253ef44b0e0302ca22487133d5135cf93f5ccfd26e2d",
       "tasks.md": "aec36c20c9532b99c87d95c4f9d856445177a6eaf0c59d1b0974a5ab56db1642",
       "implementation-summary.md": "e44b3e9dbdaf32ffeb9c2ac38f72228af0fc28626a41ec7ffc18f7efd2f88238"
     },

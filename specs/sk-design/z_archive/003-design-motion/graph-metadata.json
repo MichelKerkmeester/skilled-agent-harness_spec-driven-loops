@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/003-design-motion",
-  "spec_folder": "sk-design/003-design-motion",
+  "packet_id": "sk-design/z_archive/003-design-motion",
+  "spec_folder": "sk-design/z_archive/003-design-motion",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The shipped motion mode defines the temporal layer for the sk-design family, but its packet was absent from git and memory",
     "created_at": "2026-07-16T09:10:50.637Z",
-    "last_save_at": "2026-08-30T15:39:12.037Z",
+    "last_save_at": "2026-10-07T18:11:15.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,12 +171,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:cae74e61baa097d9edc9886f219962a7b6661a544b840b5467e1e212302487b2",
+    "source_fingerprint": "sha256:3fd21a03f64716f4b9236397a26ca69c4bf56fbbbf250e395a867e2862edfb3a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94a8fb61b56be12416033d787f2c3ed41435e7d9707a75493ef4bf502070819f",
-      "plan.md": "eec7e101bd6a0f33be309abcae100c78c74aca998f0e89d11a40b101ddd65d69",
-      "tasks.md": "d0ae033104448f4a9656090a417dd3d35f2d2d6f18452ee605cca660435300c1"
+      "spec.md": "08aaa48b8f8b4e49328b3a17d94a9fca626f812ddf201153d3e9e6e7f5b40a15",
+      "plan.md": "d4ab3968ae12705588e70e41892dbff445248332267c1291e4d37141d32b0d38",
+      "tasks.md": "9dc90ddd0cd7b4b53261f7cce78793a0d850e8ceeea411743ad0bf6e229cf90c"
     },
     "last_active_child_id": null,
     "last_active_at": null

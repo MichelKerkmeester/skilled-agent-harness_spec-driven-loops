@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
   "description": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic",
   "keywords": [
     "verifies",

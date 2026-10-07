@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The mode's health-md playbook scenario (OBS-014) and feature-catalog card were authored before the deep research and carry the same defects: the scenario uses the invented `health-md` fence with `type: chart`/`metric`/`dateRange` keys, and its verification would pass against the plugin's bundled mock data — proving nothing about real exports",
     "created_at": "2026-08-03T14:18:00.107Z",
-    "last_save_at": "2026-08-30T15:39:10.190Z",
+    "last_save_at": "2026-10-07T18:11:39.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c4a28b8eae8088f07aedcf4fadb9d368edf488232f13228f4141cf74f2c7c78",
+    "source_fingerprint": "sha256:8236fa1a28f0ac93608f5494aa55f1282f5f9b7aea9dcbd79c1fee70a165235a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9e8edb59e84083254d628aaf72324d778c56aed6fae950e4431786480faeaf5",
-      "plan.md": "0593090ed7d5640d5cdd4538ba1f7d2849ffdd2db09192d8555a782eb69fc1e3",
-      "tasks.md": "52011ed2c85673b276eee660c92e1bb6c3b3761264a0bb0cac2926460764502a",
+      "spec.md": "02758f817a132656667e71221a766cb7e411472c81d63a49d56733d72a578b85",
+      "plan.md": "4a009d62691eca6e086cae65e2109ccd60c2d1f023890fdc54503d73f56cfdfc",
+      "tasks.md": "5095eedfba63b39a32afa8d6048da434afa80c165e1d70ff968b7cc3256f25b8",
       "implementation-summary.md": "0c9c14dfe1b81465a3f1b7109acd58386e0074d10cc7cfae6eefa8568b658238"
     },
     "last_active_child_id": null,

@@ -14,8 +14,7 @@
       "runtime contract",
       "indexability",
       "phase 015",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "runtime",
@@ -23,13 +22,13 @@
       "indexability",
       "phase",
       "tasks",
-      "implementation",
-      "summary",
       "session-capturing",
       "one",
       "broad",
       "qualityvalidation",
-      "valid"
+      "valid",
+      "boolean",
+      "last"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "The session-capturing runtime used one broad `qualityValidation.valid` boolean as the last indexing gate",
     "created_at": "2026-04-12T09:02:50.276Z",
-    "last_save_at": "2026-09-10T21:04:55.826Z",
+    "last_save_at": "2026-10-07T18:16:43.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68a1d6b8d7da0c6b6da31fd5732c2156c91d05ef8c9d65a67104f4e7238f1711",
+    "source_fingerprint": "sha256:7dabf332d59d42aa585403f9a62f373834d9b5b28ee7f0ff1d92f1cba7643d48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b648d04b04aa5d9c19d575c73a722a64e765fcfce284267a054ce3cd5423b43",
       "plan.md": "80b56b06207eab65fd649f657254a426b014f3f84864fe5cee2c1fcaa4d08519",
       "tasks.md": "155f285469a12d22036ccb966090470d518bd62609078980c8c4848745072887",
-      "implementation-summary.md": "765198c6d856264e0c4677bbfb7f7d9df6bbeda6b805b6b0aa273fe3ffadbeb6"
+      "implementation-summary.md": "026b3d27a7fb64e301f2ac812791b97c90fb8053b56218b1eea64050e5572a9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

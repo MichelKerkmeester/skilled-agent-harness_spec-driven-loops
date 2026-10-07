@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data"
     last_updated_at: "2026-06-02T18:30:00Z"
     last_updated_by: "agent"
     recent_action: "Populate completion docs"

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`fanout-run.cjs:884-888` `computeLineageTimeoutMs(lineage)` computes `Math.min(iters  timeoutSeconds  2  1000, 4  60  60  1000)` — the `Math.min` saturates to a hardcoded 4-hour ceiling for any lineage whose `iterations  timeoutSeconds  2` exceeds it, with no CLI flag, env var, or config field to raise it",
     "created_at": "2026-07-01T07:15:38.350Z",
-    "last_save_at": "2026-08-30T15:39:25.187Z",
+    "last_save_at": "2026-10-07T18:15:08.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cee0db275f486bf488f456162437cfc0e90ac7f2ed7ba72f04acaa2c14e43030",
+    "source_fingerprint": "sha256:272f6995821a60efcc8d1b7c5b65e3fc0ac237d962f2661f3838419be92b3a1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b9f971169684e694e541fba0af478088a6f072350f2d157693aead9225ea1cb",
-      "plan.md": "75af2e2965b74822f7903bffdda93c64073bc793c931e9e829973ab8b78ec8ec",
-      "tasks.md": "305d1ead50b4aa7eda29ead81cba5345f3fe1371caa6d60ba43744eeba238074",
-      "implementation-summary.md": "594f03f46e79e5eec2ff13386367e0ab3d9ec41b030267813a87d56ac5b85167"
+      "spec.md": "0dd1474e03d2d65d66ae7aa4139c80c94e1452557b746123d1dbbc5e9b21e913",
+      "plan.md": "6769c27070d74892c57435d3fa970dcc9505b04dc1cf00433e580197192fea68",
+      "tasks.md": "513f83da134a3607cc68415ea1ad1cbd64d566882abed0a1bed1b261a2071a1b",
+      "implementation-summary.md": "6d12c2835841235aee17fc749c984fe839607e658f400198790f43a094afb26d"
     },
     "last_active_child_id": null,
     "last_active_at": null

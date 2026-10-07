@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/140-deep-loop-executor-config-dir` |
+| **Spec Folder** | 012-deep-loop-executor-config-dir |
 | **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

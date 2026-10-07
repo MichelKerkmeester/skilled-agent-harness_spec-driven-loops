@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/005-calibrated-negotiation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/005-calibrated-negotiation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/005-calibrated-negotiation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/005-calibrated-negotiation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "calibrated routing negotiation deep dive",
       "selective classification routing",
-      "rank score vs estimated error"
+      "rank score vs estimated error",
+      "calibrated negotiation plan",
+      "calibrated one-turn routing negotiation",
+      "calibrated negotiation tasks",
+      "calibrated negotiation verification tasks"
     ],
     "key_topics": [
       "calibrated",
@@ -27,18 +31,32 @@
       "score",
       "estimated",
       "error",
-      "advisor"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,72 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor's `confidence` is a bounded ranking heuristic, not a probability of correctness",
     "created_at": "2026-07-18T04:39:05.409Z",
-    "last_save_at": "2026-08-30T15:39:14.753Z",
+    "last_save_at": "2026-10-07T19:46:28.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1452a3efbbd9a865b62a5335db061570cc9d22140eb91294b6f83ffa8919662a",
+    "source_fingerprint": "sha256:963adc94ff0778507b18572d1fdb1f8260507264a19306a3111ef9ea9aa2828b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6e9d026f70e79451355a9095660ab30dd0c14b999da6c42b64c3de0ae11e19c"
+      "spec.md": "a6e9d026f70e79451355a9095660ab30dd0c14b999da6c42b64c3de0ae11e19c",
+      "plan.md": "0885e657850483e14e44a6338ae629d79bdcdd54b8ee33d2fc408bd37439ea5f",
+      "tasks.md": "543d428140287237f920cae533bb0d487006990ddde8b856c9ce8dc0a4105c4a"
     },
     "last_active_child_id": null,
     "last_active_at": null

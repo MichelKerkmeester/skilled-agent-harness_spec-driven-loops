@@ -18,7 +18,10 @@
       "agent",
       "plan",
       "tasks",
-      "phase"
+      "phase",
+      "self-test fixes summary",
+      "reducer improvements summary",
+      "agent improver phase 010 fixes"
     ],
     "key_topics": [
       "spec",
@@ -29,17 +32,18 @@
       "tasks",
       "phase",
       "self-test",
-      "found",
-      "issues",
-      "system-deep-loop",
-      "001-sk-recursive-agent-loop"
+      "summary",
+      "reducer",
+      "improvements",
+      "improver"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -58,6 +62,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -131,24 +141,50 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 (self-test) found 5 issues",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-08-30T15:39:22.566Z",
+    "last_save_at": "2026-10-07T21:24:23.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c48561141e5bb765d056518f015c4748dac2fad0fad369b09eaaefe80f2f83b6",
+    "source_fingerprint": "sha256:0a2fa3eff18384ec90e68c93ee1cf67a1ff9f2a0580eab5a998a12c4a016bbd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1dade2e7dd0d964c76fa4a48505fd4b7c4b6f879cd03416bbd88bae93ac8e02e",
-      "plan.md": "ab7f7856b0497ba9521a58da6c631995cc6b83af42580cfeb07d21ae2d26da7b",
-      "tasks.md": "16a64cdc0c37e1c601fb11bc4fc4c5327d81c69299a1943077dc942eb5515fe2"
+      "spec.md": "e99298705da188ea41cd4da55299814c8e0f3818400af63db13b416e2bbb0d21",
+      "plan.md": "3347c3605d9b5a96db61b7e44e781536aa3a4fa01ab77f6c444cea7d2126ba53",
+      "tasks.md": "2ee46d976b21563e98d058a4a55f24f4168690fd62633dc7b2930db3e58cc818",
+      "implementation-summary.md": "cb69650391fa7ff8d765b664bdae5caefbbd3d687b2bed7505dc382ad7f77722"
     },
     "last_active_child_id": null,
     "last_active_at": null

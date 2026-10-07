@@ -1,3 +1,7 @@
+---
+title: "SpecKit Template Simplification Analysis"
+---
+
 # SpecKit Template Simplification Analysis
 
 ## Context

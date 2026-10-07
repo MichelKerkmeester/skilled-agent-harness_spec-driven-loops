@@ -4,8 +4,8 @@ description: "Archived record for Memory Index Txt Support. This version preserv
 trigger_phrases:
   - "014-memory-index-txt-support"
   - "memory index txt support"
-  - "archive"
-  - "validation"
+  - "memory index txt support archive"
+  - "memory index txt support validation"
 importance_tier: "normal"
 contextType: "general"
 ---

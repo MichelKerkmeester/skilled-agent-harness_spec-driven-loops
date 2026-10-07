@@ -10,7 +10,7 @@ contextType: "general"
 status: "in_progress"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization"
     last_updated_at: "2026-07-18T16:10:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the implementation handover for phases 004-010"

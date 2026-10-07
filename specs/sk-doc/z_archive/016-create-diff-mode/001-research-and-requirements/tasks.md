@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/001-research-and-requirements"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements"
     last_updated_at: "2026-07-13T12:36:36Z"
     last_updated_by: "codex"
     recent_action: "Synthesized 30 research iterations"

@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap |
+| **Spec Folder** | 009-cp-copilot-to-opencode-swap |
 | **Completed** | 2026-05-28 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

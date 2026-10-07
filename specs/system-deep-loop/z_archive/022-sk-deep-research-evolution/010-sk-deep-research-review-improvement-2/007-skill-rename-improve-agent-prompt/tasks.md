@@ -2,7 +2,7 @@
 title: "Task [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/tasks]"
 description: "Completed documentation closeout tasks for the improver-skill rename."
 trigger_phrases:
-  - "042.007"
+  - "skill rename improve agent prompt tasks"
   - "skill rename tasks"
 importance_tier: "normal"
 contextType: "implementation"

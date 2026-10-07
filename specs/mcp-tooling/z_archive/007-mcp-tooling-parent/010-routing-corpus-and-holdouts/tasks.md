@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
     last_updated_at: "2026-07-16T14:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 11 tasks complete with evidence; no blocked tasks"

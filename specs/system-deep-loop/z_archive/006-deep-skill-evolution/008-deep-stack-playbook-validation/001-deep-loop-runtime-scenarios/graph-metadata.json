@@ -182,7 +182,7 @@
     ],
     "causal_summary": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, loop lock, permissions gate, Bayesian scorer, coverage-graph DB/query/signals, the four `.cjs` script entry points, and council durability)",
     "created_at": "2026-05-27T07:08:08.391Z",
-    "last_save_at": "2026-08-30T15:39:23.512Z",
+    "last_save_at": "2026-10-07T18:14:21.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a24864d5c534c9c94a904e93436d2d4cf688ce9848338fa7752f4915d2de3649",
+    "source_fingerprint": "sha256:54c9b01f1a50ba445104619d4d3729fe2da797b9f5d97343929cb4152c07c6bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10ef21feb000379412b858e870f011977ac8e4e10caf79c8f052da9848cf8dcb",
       "plan.md": "d1095ddc361634cc3ffa253b4d181459efc65605e70a01b3788230beed8be61a",
       "tasks.md": "51f95f6d879128b7577a0473901b4322c55ba86346a8c7f4ed50362a15eebc33",
-      "implementation-summary.md": "f4ac503fe31807f41a19eb68dc8ffa9bdae123b0ea26775f6606e64dd2b273d7"
+      "implementation-summary.md": "3754d4d0acfd441795aed33018c8e8cca77741c957d0f6efe4532b7308a7a10d"
     },
     "last_active_child_id": null,
     "last_active_at": null

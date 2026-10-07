@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/004-ablation-sweep-and-weight-promotion"
     last_updated_at: "2026-05-13T19:30:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded tasks.md"

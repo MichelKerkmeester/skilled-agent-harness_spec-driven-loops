@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links"
     last_updated_at: "2026-07-20T06:37:55Z"
     last_updated_by: "claude-code"
     recent_action: "Guides authored, links completed, three fixes landed; gates run"

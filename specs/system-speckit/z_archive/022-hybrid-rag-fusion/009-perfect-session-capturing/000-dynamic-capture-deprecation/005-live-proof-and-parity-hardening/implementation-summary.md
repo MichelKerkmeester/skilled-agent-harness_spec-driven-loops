@@ -3,7 +3,6 @@ title: "...perfect-session-capturing/000-dynamic-capture-deprecation/005-live-pr
 description: "This archived live-proof branch remains open and tracks the retained evidence work that still separates automated parity from universal CLI claims."
 trigger_phrases:
   - "retained live proof"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"

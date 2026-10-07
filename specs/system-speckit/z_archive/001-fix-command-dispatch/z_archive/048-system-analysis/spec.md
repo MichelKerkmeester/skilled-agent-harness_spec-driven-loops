@@ -2,12 +2,7 @@
 title: "048: SpecKit & Memory [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/spec]"
 description: "A comprehensive audit of the SpecKit and Memory systems identified 16 verified bugs, 10 alignment issues, and 9 improvement opportunities (35 total tasks). While the systems are..."
 trigger_phrases:
-  - "048"
-  - "speckit"
-  - "memory"
-  - "system"
-  - "remediation"
-  - "spec"
+  - "system analysis spec"
 importance_tier: "important"
 contextType: "planning"
 ---

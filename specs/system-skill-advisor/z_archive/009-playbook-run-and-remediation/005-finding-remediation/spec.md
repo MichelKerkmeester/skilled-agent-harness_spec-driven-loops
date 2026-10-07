@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p0-remediation"
     recent_action: "6 of 7 phases complete; F4 bridge has a cold-env residual"

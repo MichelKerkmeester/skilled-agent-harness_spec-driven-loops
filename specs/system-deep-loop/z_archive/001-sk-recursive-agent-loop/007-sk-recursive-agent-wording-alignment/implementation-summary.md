@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-sk-improve-agent-wording-alignment |
+| **Spec Folder** | 007-sk-recursive-agent-wording-alignment |
 | **Completed** | 2026-04-04 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

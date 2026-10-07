@@ -18,10 +18,12 @@ _memory:
     completion_pct: 35
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Copilot Writer Wiring via Claude Wrapper
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:metadata -->
 ## METADATA
 
 | Field | Value |
@@ -34,7 +36,9 @@ _memory:
 | **Predecessor** | `../006-copilot-wrapper-schema-fix/spec.md` |
 | **Depends on** | `010-copilot-wrapper-schema-fix/` (schema crash must already be resolved) |
 | **Research** | `../../research/002-copilot-hook-followup-deep-review-remediation/research.md` §7 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## PROBLEM
 
 After packet 010 fixed the Copilot schema crash, the `userPromptSubmitted` hook still doesn't refresh the managed block in `$HOME/.copilot/copilot-instructions.md` because:
@@ -43,7 +47,9 @@ After packet 010 fixed the Copilot schema crash, the `userPromptSubmitted` hook 
 2. That file is rewritten on every Copilot launch by the Superset wrapper at `~/.superset/bin/copilot:30-69` — it routes the event to `~/.superset/hooks/copilot-hook.sh` which only posts Superset notifications.
 3. The system-spec-kit Copilot writer at `dist/hooks/copilot/user-prompt-submit.js` never runs from the Copilot side.
 4. Result: `Refreshed:` timestamp stays frozen at whatever last wrote the file (currently the sessionStart hook from a past session).
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## SOLUTION
 
 Option 1 from packet 010 §Known Limitations: replace the no-op `bash: "true"` on the `UserPromptSubmit` and `SessionStart` matcher wrappers in `.claude/settings.local.json` with the actual Copilot writer commands. Because `.claude/settings.local.json` is ALSO merged by Copilot (iter-4 source trace), Copilot executes this top-level `bash` on every prompt/session — pointing it at our writer makes the refresh happen.
@@ -63,7 +69,9 @@ Claude Code still executes only the nested `command` (empirically confirmed in p
 - Patching the Superset wrapper (option 2 from 010) — defers external-tool modification.
 - Patching `.github/hooks/superset-notify.json` directly — gets clobbered on launch.
 - Handling Copilot `sessionEnd`, `preToolUse`, `postToolUse` events — no writer needed.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## REQUIREMENTS
 
 | ID | Requirement | Acceptance |
@@ -72,9 +80,12 @@ Claude Code still executes only the nested `command` (empirically confirmed in p
 | REQ-002 | Copilot writer runs successfully when invoked standalone with a stdin JSON payload | Standalone probe writes the `SPEC-KIT-COPILOT-CONTEXT` block with a fresh `Refreshed:` timestamp. |
 | REQ-003 | Claude Code continues to execute the nested UserPromptSubmit command only | Live in-session evidence: advisor briefs continue to appear on every prompt. |
 | REQ-004 | Live Copilot smoke: `Refreshed:` timestamp advances after a new `copilot -p` prompt | User-run smoke shows the managed block's timestamp newer than the pre-patch value (`2026-04-22T11:08:14.595Z`). |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## SUCCESS CRITERIA
 
 - **SC-001**: `$HOME/.copilot/copilot-instructions.md` `Refreshed:` timestamp advances on every new Copilot prompt.
 - **SC-002**: The managed block's `Source:` line reads `system-spec-kit copilot userPromptSubmitted hook` after a user prompt (not just sessionStart).
 - **SC-003**: No new `Neither 'bash' nor 'powershell'` errors in `~/.copilot/logs/process-*.log` (packet 010 condition still holds).
+<!-- /ANCHOR:success-criteria -->

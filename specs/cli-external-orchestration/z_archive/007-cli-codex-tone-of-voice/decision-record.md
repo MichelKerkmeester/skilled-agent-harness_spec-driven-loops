@@ -32,6 +32,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Split personalization into APP asset + CLI voice module (rather than one unified doc)
 
 **Status**: Accepted
@@ -50,9 +51,11 @@ A single unified document would either (a) be too long for the APP's character-l
 - **Positive**: Each asset is optimized for its surface; no dead text.
 - **Positive**: CLI voice module stays <=800 chars, keeping per-call token overhead negligible.
 - **Negative**: Two files to maintain in lockstep; we mitigate by cross-checking the same seven shifts cover both.
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Use imperative second-person voice ("Do X", not "The assistant should X")
 
 **Status**: Accepted
@@ -70,9 +73,11 @@ Empirically, imperative second-person produces the most reliable compliance in c
 - **Positive**: Stronger behavioral compliance.
 - **Positive**: Terser (each rule is one sentence, not a paragraph).
 - **Negative**: Reads as slightly commanding — acceptable since the reader is the model, not a human.
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Three-tier personalization (tiny / compact / extended) rather than a single version
 
 **Status**: Accepted
@@ -90,9 +95,11 @@ A single "compact" version would either (a) be too long for restrictive UIs, or 
 - **Positive**: User selects the tier matching their UI's limits.
 - **Positive**: Tiny tier is a "try it first" experience with near-zero friction.
 - **Negative**: More content to author and keep consistent; mitigated by treating tiny ⊂ compact ⊂ extended (each tier is a strict superset of its predecessor's semantic content).
+<!-- /ANCHOR:adr-003 -->
 
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Package as assets of the existing `cli-codex` skill (rather than a new standalone skill)
 
 **Status**: Accepted
@@ -110,9 +117,11 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 - **Positive**: No new skill lifecycle to manage; zero routing overhead.
 - **Positive**: Discoverable via existing cli-codex skill advisor routing.
 - **Negative**: Tightly coupled to cli-codex; if we later add `cli-chatgpt` or similar, we'd need to extract. Acceptable given no such surface exists today.
+<!-- /ANCHOR:adr-004 -->
 
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: Deliberately do NOT embed voice rules in AGENTS.md
 
 **Status**: Accepted
@@ -129,11 +138,13 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 - **Positive**: Future runtime additions can ship their own voice modules without touching AGENTS.md.
 - **Positive**: Clear separation of concerns: framework rules vs. runtime voice tuning.
 - **Negative**: One more file for users to discover; mitigated by SKILL.md integration and explicit documentation in the asset headers.
+<!-- /ANCHOR:adr-005 -->
 
 ---
 
 ---
 
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: Remove the CLI voice module asset
 
 **Status**: Accepted (supersedes ADR-001's dual-artifact split for the CLI surface)
@@ -149,9 +160,11 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 - **Positive**: Removes dead code; AI delegations stay lean.
 - **Positive**: User-global AGENTS.md serves both CLI and (indirectly) APP use cases without needing per-surface artifacts.
 - **Negative**: Users who expected a ready-to-alias wrapper have to write their own — acceptable since the content is trivial (~10 lines of bash).
+<!-- /ANCHOR:adr-006 -->
 
 ---
 
+<!-- ANCHOR:adr-007 -->
 ## ADR-007: Remove the Codex APP personalization asset
 
 **Status**: Accepted (supersedes ADR-001 + ADR-003 for the APP surface)
@@ -169,9 +182,11 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 - **Positive**: Version-controlled in the repo (shareable with users); symlinked from home dir (keeps home clean and follows the user's existing `.codex/` symlink pattern).
 - **Positive**: Content no longer needs char-limit compression; can be clearer and more explicit.
 - **Negative**: Users of the Codex APP UI have to manually copy-paste from the file instead of grabbing a pre-sized tier — minor friction, one-time.
+<!-- /ANCHOR:adr-007 -->
 
 ---
 
+<!-- ANCHOR:adr-008 -->
 ## ADR-008: Final deliverable — user-global `<repo>/.codex/AGENTS.md`, symlinked, voice/tone/reasoning-visibility only
 
 **Status**: Accepted (establishes the final architecture)
@@ -196,6 +211,7 @@ Option 1 is over-engineered: two markdown files do not warrant a full SKILL.md, 
 - **Positive**: Zero conflict with the repo's universal `AGENTS.md` framework — scopes never overlap.
 - **Positive**: Follows the user's established `.codex/` symlink pattern.
 - **Negative**: Discovery requires the symlink; if the user moves or renames the repo file, the symlink breaks. Mitigated by a clear note in the file's header.
+<!-- /ANCHOR:adr-008 -->
 
 ---
 

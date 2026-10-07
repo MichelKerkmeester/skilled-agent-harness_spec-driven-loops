@@ -13,10 +13,9 @@
     "trigger_phrases": [
       "council improvement behavior benchmark",
       "deep loop behavior benchmark",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary"
+      "rollout council improvement plan",
+      "rollout council improvement tasks",
+      "rollout council improvement implementation summary"
     ],
     "key_topics": [
       "council",
@@ -25,12 +24,12 @@
       "benchmark",
       "deep",
       "loop",
-      "implementation",
+      "rollout",
       "plan",
       "tasks",
+      "implementation",
       "summary",
-      "extend",
-      "calibrated"
+      "extend"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "Extend the calibrated framework to the two non-runtime-loop dispatch shapes: deep-ai-council (multi-seat orchestration; delegation evidence = seat dispatches + round records rather than iteration LEAF dispatches) and deep-improvement (improvement-host backend; loop owned by loop-host.cjs)",
     "created_at": "2026-07-02T05:53:06.374Z",
-    "last_save_at": "2026-08-30T15:39:25.894Z",
+    "last_save_at": "2026-10-07T21:27:50.012Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2e47b42be8f9b32a78a2248560e25f625f474b431ed59a0c77c8eed05e7a0b5",
+    "source_fingerprint": "sha256:ae62a6aa03a019c2d49ce8ca6198e80fa9acd3f7e44fa235b3e3ebe4d57f8335",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7fbb4857061b01c28744a65d85eae664154d2f6f3e8da683f923116b9d5551f3",
-      "plan.md": "912c700af1a204f9d553adf616a32c665f475993c08b8565623458add64df471",
-      "tasks.md": "b03cef8ec7d0b846c45e7af58612f76c26c1586990b9c26c43d48554c0680102",
-      "implementation-summary.md": "52a2ffa2ea010ce88100543dd31ebf56ffc26a653bdb71e9497d5ab158598f17"
+      "spec.md": "49300058104730994e36e8728348ed8ec19e1f5a2b3e509bdd6e859d35424f4a",
+      "plan.md": "83b842ef18dd4f678e9a028512588e21c283fd9fecd10ae3d1d0dfbf60a2f955",
+      "tasks.md": "c135388fa25c62f0858c863c501923c4908615ca7fc4cd8ad741e0156649e59a",
+      "implementation-summary.md": "8b5d82c517caf9a581d8e5fd43f69e9d57f5da49fcb92853844fce2f0d2d0c57"
     },
     "last_active_child_id": null,
     "last_active_at": null

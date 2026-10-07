@@ -2,7 +2,6 @@
 title: "Implementation Plan: sk-code-review Promotion [03--commands-and-skills/016-sk-code-review-creation/plan]"
 description: "Level 2 implementation plan for promoting sk-code-review to first-class review baseline with baseline+overlay runtime contract across skills, agents, commands, and routing."
 trigger_phrases:
-  - "implementation plan"
   - "sk-code-review"
   - "baseline overlay"
   - "041"
@@ -164,7 +163,6 @@ Review baseline + stack overlay contract.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -186,7 +184,6 @@ Phase 3 + Phase 4 + Phase 5 -> Phase 6 (validation + closure)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

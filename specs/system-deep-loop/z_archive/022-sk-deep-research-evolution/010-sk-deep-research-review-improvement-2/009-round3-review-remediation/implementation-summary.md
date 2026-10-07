@@ -2,7 +2,7 @@
 title: "...d-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation/implementation-summary]"
 description: "Remediated 54 findings from 20-iteration Copilot GPT-5.4 Round 3 deep review via 6 sequential Codex GPT-5.4 batches."
 trigger_phrases:
-  - "042.009"
+  - "round 3 review remediation implementation summary"
   - "round 3 remediation summary"
 importance_tier: "important"
 contextType: "implementation"
@@ -16,8 +16,10 @@ _memory:
     key_files: ["implementation-summary.md"]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Round 3 Review Remediation
 
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 | Field | Value |
@@ -28,6 +30,9 @@ _memory:
 | **Review Session** | `rvw-2026-04-12T16-00-00Z` (generation 3, 20 iterations via Copilot GPT 5.4) |
 | **Fix Engine** | Codex GPT 5.4 high/fast (6 sequential batches, all succeeded, no copilot fallback needed) |
 
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
 ## What Was Built
 
 Remediated all 54 findings (0 P0, 37 P1, 17 P2) from the Round 3 Copilot deep review across 6 sequential batches in 41 files (+843/-1144 lines).
@@ -50,6 +55,9 @@ joinWave() requires explicit session/generation. finalizeBoard() added to wave-c
 ### Batch 6: Maintainability — Playbooks (4 P1, 4 P2)
 DRV-015 rewritten around flat event schema. E2E-022 renamed to flat mutation-coverage artifact. RT-027 verifies via archive separation. RT-030 reworded to last-N-samples range.
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -57,3 +65,5 @@ DRV-015 rewritten around flat event schema. E2E-022 renamed to flat mutation-cov
 | All 6 codex batches | SUCCESS (no fallback needed) |
 | Files changed | 41 files, +843/-1144 lines |
 | Finding coverage | 54/54 addressed |
+
+<!-- /ANCHOR:verification -->

@@ -2,10 +2,7 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement/plan]"
 description: "1. [x] Read current gate-enforcement.md"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "034"
-  - "gate"
+  - "gate enforcement refinement plan"
 importance_tier: "important"
 contextType: "planning"
 ---

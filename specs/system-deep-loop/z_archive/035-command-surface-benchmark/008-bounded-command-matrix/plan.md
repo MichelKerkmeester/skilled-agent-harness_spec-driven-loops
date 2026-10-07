@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/008-bounded-command-matrix"
     last_updated_at: "2026-07-15T11:58:18Z"
     last_updated_by: "codex"
     recent_action: "Built bounded scheduler, 52-cell manifest, and hermetic reconciliation gate"
@@ -17,10 +17,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "bounded command matrix plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

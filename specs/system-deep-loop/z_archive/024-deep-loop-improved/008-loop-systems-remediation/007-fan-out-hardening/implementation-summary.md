@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/007-fan-out-hardening"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/007-fan-out-hardening"
     last_updated_at: "2026-06-30T15:30:00Z"
     last_updated_by: "glm-fanout-review"
     recent_action: "Shipped and verified fan-out hardening fixes"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/007-fan-out-hardening` |
+| **Spec Folder** | 007-fan-out-hardening |
 | **Completed** | 2026-06-30 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

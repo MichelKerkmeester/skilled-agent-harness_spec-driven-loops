@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/017-design-skill/001-skill-build"
+    packet_pointer: "sk-design/z_archive/017-design-skill/001-skill-build"
     last_updated_at: "2026-08-28T12:30:04Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Renamed to sk-design and closed every open note and conflict"

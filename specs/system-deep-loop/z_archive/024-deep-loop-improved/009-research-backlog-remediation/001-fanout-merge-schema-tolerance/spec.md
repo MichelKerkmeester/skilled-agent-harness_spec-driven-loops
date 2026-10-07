@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/009-research-backlog-remediation/001-fanout-merge-schema-tolerance"
     last_updated_at: "2026-07-01T06:35:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Implemented by MiMo v2.5 ultraspeed, independently verified by Claude Sonnet 5"

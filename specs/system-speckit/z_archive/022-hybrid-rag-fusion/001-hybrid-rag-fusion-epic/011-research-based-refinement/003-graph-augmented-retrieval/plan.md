@@ -28,6 +28,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:phases -->
 ## Phase A: Traversal Policy (REQ-D3-001, REQ-D3-002)
 
 **Goal:** Establish the sparse-first typed traversal foundation and intent-aware edge prioritization.
@@ -85,6 +86,7 @@ _memory:
 | C.7  | Tests: ablation produces per-intent metrics; Louvain skipped below threshold | D3-005/006 |
 
 **Exit Criteria:** Ablation report covers at least two intent categories; graph bonus within target range; Louvain only runs on qualifying components.
+<!-- /ANCHOR:phases -->
 
 ---
 
@@ -97,25 +99,4 @@ _memory:
 | Existing `SPECKIT_CAUSAL_BOOST` flag             | Incoming  |
 | Phase 4 (Feedback & Quality Learning)            | Outgoing  |
 
-<!-- ANCHOR:summary -->
-<!-- /ANCHOR:summary -->
-
-<!-- ANCHOR:quality-gates -->
-<!-- /ANCHOR:quality-gates -->
-
-<!-- ANCHOR:architecture -->
-<!-- /ANCHOR:architecture -->
-
-<!-- ANCHOR:phases -->
-<!-- /ANCHOR:phases -->
-
-<!-- ANCHOR:testing -->
-<!-- /ANCHOR:testing -->
-
-<!-- ANCHOR:dependencies -->
 <!-- /ANCHOR:dependencies -->
-<!-- /ANCHOR:dependencies -->
-
-
-<!-- ANCHOR:rollback -->
-<!-- /ANCHOR:rollback -->

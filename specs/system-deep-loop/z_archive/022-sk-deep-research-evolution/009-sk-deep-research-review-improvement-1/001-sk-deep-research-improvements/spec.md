@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-03 |
 | **Branch** | `040-sk-deep-research-review-improvement-1` |
 | **Parent Spec** | [../spec.md](../spec.md) |
-| **Parent Plan** | [../plan.md](../plan.md) |
+| **Parent Plan** | ../plan.md |
 | **Phase** | 1 of 2 |
 | **Predecessor** | None |
 | **Successor** | `002-sk-deep-review-improvements/` |
@@ -111,9 +111,9 @@ Make Phase 1 the durable contract for research lineage, reducer-owned state, and
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Define and propagate a canonical lineage contract for deep-research packet state. | [../../../../skill/sk-deep-research/references/state_format.md](../../../../skill/sk-deep-research/references/state_format.md), [../../../../skill/sk-deep-research/references/loop_protocol.md](../../../../skill/sk-deep-research/references/loop_protocol.md), the config asset, and both YAML assets all use `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`. |
+| REQ-001 | Define and propagate a canonical lineage contract for deep-research packet state. | [../../../../../../.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md](../../../../../../.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md), [../../../../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md](../../../../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md), the config asset, and both YAML assets all use `sessionId`, `parentSessionId`, `lineageMode`, `generation`, and `continuedFromRun`. |
 | REQ-002 | Freeze canonical research artifact naming and the pause sentinel. | Skill docs, references, assets, runtime mirrors, and both YAML assets consistently use `deep-research-*`, `findings-registry.json`, and `research/.deep-research-pause`; migration handling is documented for legacy names. |
-| REQ-003 | Establish reducer-owned packet surfaces and runtime parity expectations. | Strategy/dashboard/registry ownership is documented, runtime mirrors read registry as input, and [../../../../skill/sk-deep-research/references/capability_matrix.md](../../../../skill/sk-deep-research/references/capability_matrix.md) defines invariant parity rules. |
+| REQ-003 | Establish reducer-owned packet surfaces and runtime parity expectations. | Strategy/dashboard/registry ownership is documented, runtime mirrors read registry as input, and [../../../../../../.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md](../../../../../../.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md) defines invariant parity rules. |
 
 ### P1 - Required
 

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-remediation"
     recent_action: "Shipped NC-004/NC-005 vitest path correction"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix |
+| **Spec Folder** | 006-playbook-vitest-path-fix |
 | **Completed** | 2026-05-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

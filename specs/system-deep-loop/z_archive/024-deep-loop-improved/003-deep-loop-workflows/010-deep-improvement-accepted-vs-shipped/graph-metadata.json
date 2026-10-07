@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
     "created_at": "2026-06-28T14:02:13Z",
-    "last_save_at": "2026-08-30T15:39:24.977Z",
+    "last_save_at": "2026-10-07T18:15:06.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcced59fb957a61db0c64ebc031bc97baba9416d0506a873f527ce5cdb39f4a2",
+    "source_fingerprint": "sha256:4e486c214a262cc24ee124acab7451affb78540ad3ef5e421c77dfc660b1d4a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d393670cc2f13ed61e63398079e519b42890b28cd94f48342a0dbc0396534dd8",
-      "plan.md": "ed73cd39724b7a7346390e3bf760d1a8856becbb9ba2af974d3034814be33296",
-      "tasks.md": "6e56e08eba732fd6e2554fb6e1c44d384e9c2d88fdf801f41c52596261c93f03",
-      "implementation-summary.md": "d7a8f65d274b850b197e9aa8f1ae570c514cf2960be14aa0b368695e3ec6a243"
+      "spec.md": "05ed0b545b807bb6e10a0b371422add53eb92f50101508e33fcaa8f4066acff0",
+      "plan.md": "de89331a273c74fb0d23afcbd10012e804a7bb5836555acb2940e6cd297536d5",
+      "tasks.md": "2deace2a303a061facf16c50b702562f42b070c51b607853bf75950fa3a50ee2",
+      "implementation-summary.md": "3e673c36c3bf7bd887b262a0b5b2a4630d0e4b7fb75195ce1c3ed639b5121534"
     },
     "last_active_child_id": null,
     "last_active_at": null

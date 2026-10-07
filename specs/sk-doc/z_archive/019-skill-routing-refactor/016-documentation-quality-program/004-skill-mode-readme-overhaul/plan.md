@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul"
     last_updated_at: "2026-07-22T13:08:26Z"
     last_updated_by: "claude"
     recent_action: "Reconciled and validated all fourteen READMEs."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill mode readme overhaul plan"
 ---
 
 # Implementation Plan: Skill and Mode README Overhaul

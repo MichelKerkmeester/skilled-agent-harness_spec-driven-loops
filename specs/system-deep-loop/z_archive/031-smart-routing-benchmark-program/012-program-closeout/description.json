@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/012-program-closeout",
   "description": "Converge the 054 program: reconcile stale child statuses and refresh the parent rollup (children_ids + last_active_child_id), wire a Mode-A +",
   "keywords": [
     "converge",

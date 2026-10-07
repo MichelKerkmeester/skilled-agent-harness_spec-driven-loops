@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/001-research-and-context"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context"
     last_updated_at: "2026-07-09T22:30:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted pending tasks for the read-only research gate"

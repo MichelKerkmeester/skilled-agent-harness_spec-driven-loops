@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard"
     last_updated_at: "2026-07-04T16:33:20.324Z"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Implementation completed"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/README.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md"
+      ".opencode/skills/cli-external-orchestration/README.md"
     ],
     "entities": [
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-08-30T15:39:16.574Z",
+    "last_save_at": "2026-10-07T18:13:02.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c7846db17da8cbc74e510826e7e86d985223f2438eb3f5367dc3528f726506cc",
+    "source_fingerprint": "sha256:0ccafbc0a0f53e44e6102f901b9143e67cf09ddee209d15b9b70840737c180db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec477e782396b3fe8dbafc810d308740d543d9e3fb291ac2175b54d9395c74b1",
-      "plan.md": "7287a7cbca1e3445332343f5a8dc2d632363ddf4f022d96a6d789cb6532d6495",
-      "tasks.md": "6aae2155c827d9ead2508ef3c44a3e786f7b8728d883fc78605a78cd0f23fb4f",
+      "spec.md": "0f4aa9428308d1ee094214e49f9cf9481216f6adef0fbc42c5e7a835f801edd8",
+      "plan.md": "ef3ce876f9cd7d376c44b566ac4faad7fa8e98baec06b9650bfd005c20a37a9d",
+      "tasks.md": "bc54c78577af1ca74251965ed8f3871b74f5f05c2286cd79ccb2a4d772256e9c",
       "decision-record.md": "e64456812b29f9fad70c86eafbec54e5b6b05c2bbde96bf0e172a31143ffabd5"
     },
     "last_active_child_id": null,

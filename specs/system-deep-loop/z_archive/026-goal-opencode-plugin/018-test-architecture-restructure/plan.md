@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/018-test-architecture-restructure"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/018-test-architecture-restructure"
     last_updated_at: "2026-07-03T07:30:49Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan from spec.md and audit dossier TEST-1/TEST-2/e-2.11 items"

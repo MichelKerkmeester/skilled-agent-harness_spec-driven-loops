@@ -133,7 +133,6 @@ Open packet context -> run the exact playbook sequence -> capture raw evidence -
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -150,7 +149,6 @@ Phase 1 (Preconditions) ---> Phase 2 (Execute) ---> Phase 3 (Verify)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

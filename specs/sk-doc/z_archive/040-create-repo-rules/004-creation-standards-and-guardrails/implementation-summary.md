@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/004-creation-standards-and-guardrails"
     last_updated_at: "2026-08-31T11:33:10Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Derived the quality bar and validated it in both directions"

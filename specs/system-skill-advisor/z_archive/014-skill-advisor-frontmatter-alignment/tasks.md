@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/014-skill-advisor-frontmatter-alignment"
+    packet_pointer: "system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:31:00Z"
     last_updated_by: "claude-fable"
     recent_action: "All tasks complete and checks green"

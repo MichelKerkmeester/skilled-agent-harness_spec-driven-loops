@@ -3,7 +3,6 @@ title: "Implementation Summary [system-spec-kit/z_archive/018-mcp-issues-after-u
 description: "Archive normalization summary for MCP Issues After Update."
 trigger_phrases:
   - "018-mcp-issues-after-update"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

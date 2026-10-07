@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob pattern...",
     "created_at": "2026-04-12T09:02:53.516Z",
-    "last_save_at": "2026-08-30T15:39:37.015Z",
+    "last_save_at": "2026-10-07T18:16:05.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20300eb26587024eca175b2dcbabad74e505ec40dffca88020cd2b2065f21069",
+    "source_fingerprint": "sha256:e188c53eab0046411595f935cb387905439e356ebf3bb5f93fb6c4a7a926dfe3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92618cea6977e3fb744ed889545d042b61b23003487effdfd624e231ff5b8193",
       "plan.md": "ed5a4658e8cba7b055244348af49243ad02a14d5f091590b5c1e576353b4898c",
       "tasks.md": "10b5a25bb871ba8a7aa211a8af2b2dbc806c8f10957f448a7c06edf7c341b98a",
       "decision-record.md": "d1222bda5ccf4f870b18a7eca9ba3c08b0ed27004ae3e0b27258826b45a554bd",
-      "implementation-summary.md": "c03eb43377d9d74b49d018fa2450c7715410943869a09e6275196faed5debbf2"
+      "implementation-summary.md": "98ce80eee56b6a88b0de22bfb3d0ee27a176602d1a8fb1335a05e12fdd03623c"
     },
     "last_active_child_id": null,
     "last_active_at": null

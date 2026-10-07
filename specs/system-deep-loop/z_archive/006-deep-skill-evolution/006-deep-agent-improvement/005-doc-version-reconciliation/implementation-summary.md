@@ -41,7 +41,7 @@ _memory:
 
 || Field | Value |
 ||-------|-------|
-|| **Spec Folder** | 116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation |
+|| **Spec Folder** | 005-doc-version-reconciliation |
 || **Completed** | 2026-05-23 |
 || **Level** | 2 |
 || **Actual Effort** | 3 hours (estimated: 3-4 hours) |

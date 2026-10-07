@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Plan phase to normalize accepted aliases between command ids and skill ids in router scenarios and advisor outputs.",
     "created_at": "2026-05-18T07:49:27.134Z",
-    "last_save_at": "2026-08-30T15:39:26.261Z",
+    "last_save_at": "2026-10-07T18:15:36.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e5f55dbf1b058cad200556ed0e8901f2e9d5c8ebd48ba7b06e2ddf5e29b448d7",
+    "source_fingerprint": "sha256:421c98be4d7e00ffc252450d9e7a5178aabfbda3fc2b3a0c75cd20a25f5063bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b5442efd0cb7d9a4b69fa45d85ca3c61a354844506d2d454abb59c4b21eccff",
-      "plan.md": "eced1a8d1c37bad99c4fb8a5ae170d5ee04ac0ce9c1b42dcff6c8553ffd2481e",
-      "tasks.md": "32bb5146fabb05f7055ad986cd90e70ee96110e40f38077f12c9a3a1a8115f0e",
-      "implementation-summary.md": "71d40f89af0a3ec8aa2f02a6fb13cdf8001b682ffad4bb1c48beabc7fe5acafc",
+      "spec.md": "65f9971a292d0ead351ef3eb1aaec96e969ace568e28056b34fa88697f14f026",
+      "plan.md": "82d2a9e03cea044c5fe0212717b22797e5f203234ff6dd883ead97389e02a8db",
+      "tasks.md": "a35670b2a3770595bd9c1535bb8bcce012819392cb92ec1ac78567a1eff55fe6",
+      "implementation-summary.md": "d41d2e2c0ef5672d27ba9829cd2d6a4eefb2853fb3320839f70cacae7dd84e59",
       "resource-map.md": "9dbd8f68c01373479d2b30da6fd725aa9d91d353ac0c863d543513e0248df0e2"
     },
     "last_active_child_id": null,

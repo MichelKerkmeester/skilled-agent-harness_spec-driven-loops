@@ -194,7 +194,7 @@
     ],
     "causal_summary": "An adversarial four-reviewer post-ship audit (2026-07-03) of the goal plugin found 12 code defects and 3 command-doc contract mismatches that none of the prior remediation phases 010-014 covered",
     "created_at": "2026-07-03T07:30:48Z",
-    "last_save_at": "2026-08-30T15:39:25.766Z",
+    "last_save_at": "2026-10-07T18:15:15.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:312491e16a9fa48c05d01ca0b67d5340e4a1099c5b50add46c8b119fe0dea2db",
+    "source_fingerprint": "sha256:b71c8ee17d33a00cdd9309f35b132f0a3e89bf2666f8aecff66cf382d8279e45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ffe62124d99c9692c0262b62deb8d4709953ab60765c0d058802970d73e7949a",
-      "plan.md": "8c75cdb98fbfcdcc980d4a16da47f6c81554b8d58fa29683d7b872f8b635e986",
-      "tasks.md": "034f47548b0c279ed4d75ef2ca3ad20ff2fdb1a5114cb8f2391c679ed9fe36a0",
-      "implementation-summary.md": "9309e6d0df5268b15abb9e7b45e9ee184546244fd17e6385177e86bedda37972"
+      "spec.md": "e3d3cc25747f8fd135ef0217cbd67a145d713af38524dc0ffc2d276481e85584",
+      "plan.md": "3621b8eaed6eaacd219474ff457b0c453ebb054899d51da2bb6d8f4d5b767df3",
+      "tasks.md": "b784949c78f046f00d989f168e432ac162f80e8b137f304a9738b9496122f85a",
+      "implementation-summary.md": "44788a2d2307adb303ec554ab711c3742bb070498b77d02a617e559982dcb078"
     },
     "last_active_child_id": null,
     "last_active_at": null

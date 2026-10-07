@@ -142,8 +142,8 @@ Define the parent coordination layer for Packet 042: summarize the eight-phase s
 | REQ-004 | Phase 4a remains the source of truth for active deterministic replay/config optimization work. | [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md) |
 | REQ-005 | Phase 4b must remain explicitly deferred until replay fixtures, behavioral suites, and corpus prerequisites exist. | [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md) |
 | REQ-006 | The parent packet must map every major requirement cluster to the correct child phase instead of duplicating child detail. | This file plus child packet links |
-| REQ-007 | Parent milestones and handoff criteria must reflect the child phase dependency order `001 -> 002 -> 003 -> 004 -> 005 -> 006 -> 007 -> 008`, with the archived closing audit routed after Phase 008. | [./plan.md](./plan.md) |
-| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | `checklist.md`, [./decision-record.md](./decision-record.md) |
+| REQ-007 | Parent milestones and handoff criteria must reflect the child phase dependency order `001 -> 002 -> 003 -> 004 -> 005 -> 006 -> 007 -> 008`, with the archived closing audit routed after Phase 008. | ./plan.md |
+| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | `checklist.md`, ./decision-record.md |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -267,16 +267,16 @@ Define the parent coordination layer for Packet 042: summarize the eight-phase s
 
 ## RELATED DOCUMENTS
 
-- **Parent Plan**: See [./plan.md](./plan.md)
-- **Parent Task Index**: See [./tasks.md](./tasks.md)
+- **Parent Plan**: See ./plan.md
+- **Parent Task Index**: See ./tasks.md
 - **Parent Verification Index**: See `checklist.md`
-- **Parent ADR Index**: See [./decision-record.md](./decision-record.md)
+- **Parent ADR Index**: See ./decision-record.md
 - **Phase 1**: See [./001-runtime-truth-foundation/spec.md](./001-runtime-truth-foundation/spec.md)
 - **Phase 2**: See [./002-semantic-coverage-graph/spec.md](./002-semantic-coverage-graph/spec.md)
 - **Phase 3**: See [./003-wave-executor/spec.md](./003-wave-executor/spec.md)
 - **Phase 4**: See [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md)
 - **Phase 5**: See [./005-agent-improver-deep-loop-alignment/spec.md](./005-agent-improver-deep-loop-alignment/spec.md)
 - **Phase 6**: See [./006-graph-testing-and-playbook-alignment/spec.md](./006-graph-testing-and-playbook-alignment/spec.md)
-- **Phase 7**: See [./007-graph-aware-stop-gate/spec.md](./007-graph-aware-stop-gate/spec.md)
+- **Phase 7**: See ./007-graph-aware-stop-gate/spec.md
 - **Phase 8**: See [./008-further-deep-loop-improvements/spec.md](./008-further-deep-loop-improvements/spec.md)
 - **Closing Audit Report**: See [./review/archive-rvw-2026-04-11/review-report.md](./review/archive-rvw-2026-04-11/review-report.md)

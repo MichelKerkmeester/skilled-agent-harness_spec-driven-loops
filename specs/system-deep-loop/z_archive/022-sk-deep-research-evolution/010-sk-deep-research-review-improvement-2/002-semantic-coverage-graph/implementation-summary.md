@@ -2,8 +2,7 @@
 title: "...led-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/implementation-summary]"
 description: "Coverage-graph substrate for deep-loop convergence: 4 CJS shared libraries, dedicated SQLite database, 4 MCP tools, reducer integration seam, and 101 graph tests."
 trigger_phrases:
-  - "042.002"
-  - "implementation summary"
+  - "semantic coverage graph implementation summary"
   - "semantic coverage graph"
   - "deep-loop-graph.sqlite"
   - "coverage graph"

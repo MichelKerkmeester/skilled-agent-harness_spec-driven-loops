@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes ...",
     "created_at": "2026-04-12T09:02:53.529Z",
-    "last_save_at": "2026-08-30T15:39:37.191Z",
+    "last_save_at": "2026-10-07T19:24:29.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c49203d796a91282024e0cc69fb92a529c0824504f6b5ff984f5df5eedb80e4b",
+    "source_fingerprint": "sha256:a64d5c6600ce65336e75f367598e12b449dd947dba24c614f2927074bede41a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "240ee7cae674b06f1acd1fb003920e2477b5755759538116c85a30522d37e591",
-      "plan.md": "07ffd4052030c6541bcd25bc9c0ebc30a1ec806069e4b1e4175845548c48c714",
+      "spec.md": "f9b2b9a4849c86592288a53504e07204deb97cbad4346de40751e3a0d9b9db0d",
+      "plan.md": "4126ac8544921d31011a8fcc014214569cb50120124698c3db4afcdb7efc72ec",
       "tasks.md": "636ad0f1d4aa6287fd7186542e84d6c126804c38df169a672f7e816694c0ef78",
-      "decision-record.md": "623d873bb5765001bce721156af9c9aae6efb01d69e63aa2dec85d034d3b4314"
+      "decision-record.md": "17f072871564575d217f8755ceff9e0254fa2c004423d550153853a3e579a6a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

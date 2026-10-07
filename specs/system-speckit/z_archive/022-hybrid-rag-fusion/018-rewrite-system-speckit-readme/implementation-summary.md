@@ -3,7 +3,6 @@ title: "Implementation [system-spec-kit/022-hybrid-rag-fusion/018-rewrite-system
 description: "Summary of the System Spec Kit README rewrite."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "018"
   - "rewrite"
 importance_tier: "normal"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "playbook-run-operator"
     recent_action: "All phases complete: playbook run, finding remediation, P1 routing tuning"

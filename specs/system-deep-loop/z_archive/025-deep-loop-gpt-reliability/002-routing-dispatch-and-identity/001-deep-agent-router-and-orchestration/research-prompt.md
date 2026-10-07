@@ -1,3 +1,13 @@
+---
+title: "Research Prompt: Deep-Agent Router & Orchestration Hardening"
+description: "Goal prompt seeding the deep-research run that designed the DEEP primary agent, orchestrate hardening and GPT-safe command and skill refinements."
+trigger_phrases:
+  - "deep agent router orchestration research"
+  - "gpt deep primary agent research"
+  - "orchestrate hardening research prompt"
+importance_tier: "critical"
+contextType: "research"
+---
 # GOAL PROMPT — Deep-Agent Router & Orchestration Hardening for GPT-backed OpenCode
 
 > Seeds a `/deep:research:auto` run in this spec folder. The research loop should use this document as its initial scope, key questions, and known context. Target spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/001-deep-agent-router-and-orchestration`

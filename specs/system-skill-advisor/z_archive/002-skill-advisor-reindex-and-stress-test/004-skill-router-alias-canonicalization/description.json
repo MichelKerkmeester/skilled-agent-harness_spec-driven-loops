@@ -27,5 +27,6 @@
     "002-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 4,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

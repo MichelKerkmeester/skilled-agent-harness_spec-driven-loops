@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/017-hot-path-optimization"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/017-hot-path-optimization"
     last_updated_at: "2026-07-03T07:30:49Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan from spec.md and audit dossier e-1 items"

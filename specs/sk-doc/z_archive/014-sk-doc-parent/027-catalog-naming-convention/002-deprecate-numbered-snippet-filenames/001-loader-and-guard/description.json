@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard",
   "description": "Phase 001 of the numbered-snippet-filename deprecation program (026).",
   "keywords": [
     "phase",

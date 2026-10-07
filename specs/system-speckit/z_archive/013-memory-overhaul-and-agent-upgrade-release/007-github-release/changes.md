@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 07: Tagged Release"
+description: "Tagged release edit list for task 07 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "github release changes"
+  - "release tagging edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 07: Tagged Release
 
 <!-- SPECKIT_LEVEL: 3+ -->

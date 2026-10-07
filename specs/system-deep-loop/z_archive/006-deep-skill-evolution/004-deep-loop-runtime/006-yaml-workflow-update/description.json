@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/006-yaml-workflow-update",
   "description": "The four `speckitdeep-{review,research}{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcptool:` block",
   "keywords": [

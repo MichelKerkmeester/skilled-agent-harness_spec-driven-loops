@@ -2,13 +2,8 @@
 title: "Path-Sc [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic/spec]"
 description: "1. No quality enforcement: Incomplete specs pass silently"
 trigger_phrases:
-  - "path"
-  - "scoped"
-  - "validation"
-  - "rules"
-  - "spec"
-  - "001"
-  - "mvp"
+  - "path scoped rules spec"
+  - "path scoped validation spec"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -220,4 +215,4 @@ contextType: "planning"
 - [tasks.md](./tasks.md) - Task breakdown
 - `checklist.md` - Verification checklist
 - [decision-record.md](./decision-record.md) - Architectural decisions
-- [path_scoped_rules.md](/.opencode/skills/system-spec-kit/references/path_scoped_rules.md) - Original design document
+- [path_scoped_rules.md](.skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md) - Original design document

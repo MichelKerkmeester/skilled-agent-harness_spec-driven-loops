@@ -316,7 +316,7 @@ cp .opencode/skills/system-memory/references/*.md \
 
 ---
 
-<!-- ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-1-2 -->
 ## Phase 10: Update Skill Advisor
 
 ### T10.1: Update skill_advisor.py mapping
@@ -335,10 +335,10 @@ cp .opencode/skills/system-memory/references/*.md \
 - [ ] `python3 skill_advisor.py "create spec folder"` → `system-spec-kit`
 - [ ] No `system-memory` skill in output
 
-<!-- /ANCHOR:phase-1 -->
+<!-- /ANCHOR:phase-1-2 -->
 ---
 
-<!-- ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-1-3 -->
 ## Phase 11: Validation
 
 ### T11.1: Validate MCP server starts
@@ -408,10 +408,10 @@ grep -r "system-memory" .opencode/ --include="*.md" --include="*.js" --include="
 **Acceptance:**
 - [ ] Returns empty (no matches outside archive)
 
-<!-- /ANCHOR:phase-1 -->
+<!-- /ANCHOR:phase-1-3 -->
 ---
 
-<!-- ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-1-4 -->
 ## Phase 12: Archive Old Skill
 
 ### T12.1: Move system-memory to archive
@@ -427,7 +427,7 @@ mv .opencode/skills/system-memory .opencode/skills/z_archive/
 - [ ] `.opencode/skills/z_archive/system-memory/` contains all original files
 - [ ] Final smoke test: memory commands still work
 
-<!-- /ANCHOR:phase-1 -->
+<!-- /ANCHOR:phase-1-4 -->
 ---
 
 ## Rollback Procedures

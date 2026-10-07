@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/009-remove-transition-aliases"
     last_updated_at: "2026-07-14T17:28:50Z"
     last_updated_by: "codex"
     recent_action: "Defined the alias-removal sequence, consumer sweep, and negative verification matrix"

@@ -2,7 +2,6 @@
 title: "Implementation Summary: Phase 001 — Baseline Ownership Gate"
 description: "Completed implementation summary for the baseline ownership gate before sk-design refactor work."
 trigger_phrases:
-  - "implementation summary"
   - "complete"
   - "baseline ownership"
   - "sk-design"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation-summary"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate"
     last_updated_at: "2026-07-05T20:56:33Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Closed baseline ownership gate; preserved packet-124 baseline."

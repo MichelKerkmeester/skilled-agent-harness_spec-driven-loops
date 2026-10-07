@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide fix-versus-accept — before any re-pin, status flip, or metadata regeneration is allowed to run.",
     "created_at": "2026-07-30T08:10:27.110Z",
-    "last_save_at": "2026-09-11T16:42:10.164Z",
+    "last_save_at": "2026-10-07T18:13:33.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13dfcf16ada7afb4ae35159475b2a6722d6aa8747db1bf071df7dcbaba0492a7",
+    "source_fingerprint": "sha256:21699e826c7c356b58f6aec4f34b1e0d5d8fb3ced21744e25c2751b3887a74ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f330facfd5d49ee3c39d6adaddbddc4faf6aafb9d15e9f7392501977ac5c8f67",
-      "plan.md": "513f3ed56b8225b65c752aa0ebff434ff7349f580138f22929b43f3d51648054",
-      "tasks.md": "bb6fa9cc17b8635becadc5b40595d922924945bc3eb9a7fd92c5bd3dd6d3cac6",
+      "spec.md": "c8055edcb1d1edcd1aa239220f9e03f76474cfaf3e1f6a9a3c85be3bd1068d83",
+      "plan.md": "ffe038d54c12ac65a9f71a6be0c05d6beb80e7082027948b22a322d521b6f04d",
+      "tasks.md": "8ccf8d2d44c0fb73a6265dd0fd2dc83b742fb04f14f4639b3297d370418d390e",
       "decision-record.md": "8d65142083eabde2b3efd9fb0c052748b169c6fee4ebad24f0b228f86d93fd89",
-      "implementation-summary.md": "3c1ea3a8c5e4bd5e63417114368871a1160d3d89c0c51d017b829580bd9a7354"
+      "implementation-summary.md": "c9df1871d48b302aa0f93a1da19b6c8d875b5c8bd88b6ddb5fb7b52b0517cec1"
     },
     "last_active_child_id": null,
     "last_active_at": null

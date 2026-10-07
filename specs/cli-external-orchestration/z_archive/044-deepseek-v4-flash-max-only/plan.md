@@ -2,9 +2,10 @@
 title: "Implementation Plan: DeepSeek V4 Flash pinned to the Max thinking tier"
 description: "Force-to-max effort pin for deepseek-v4-flash in the fan-out builders, plus catalog corrections and tests."
 contextType: "implementation"
+importance_tier: "normal"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/044-deepseek-v4-flash-max-only"
+    packet_pointer: "cli-external-orchestration/z_archive/044-deepseek-v4-flash-max-only"
     last_updated_at: "2026-08-16T17:34:05Z"
     last_updated_by: "implementer"
     recent_action: "Authored implementation plan"
@@ -12,10 +13,7 @@ _memory:
     blockers: []
     completion_pct: 100
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deepseek v4 flash max only plan"
 ---
 # Implementation Plan: DeepSeek V4 Flash pinned to the Max thinking tier
 

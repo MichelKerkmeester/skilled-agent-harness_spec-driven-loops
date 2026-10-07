@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/009-create-benchmark-routing-fix",
   "description": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`,",
   "keywords": [
     "benchmark",

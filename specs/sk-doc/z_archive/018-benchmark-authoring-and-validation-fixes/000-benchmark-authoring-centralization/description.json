@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization",
+  "specFolder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization",
   "description": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families.",
   "keywords": [
     "sk-doc",

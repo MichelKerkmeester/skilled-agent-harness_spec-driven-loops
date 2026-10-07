@@ -3,9 +3,9 @@ title: "Implementation Plan: Memory Index Txt Support [system-spec-kit/z_archive
 description: "Normalize the archived system-spec-kit archive folder for Memory Index Txt Support so current validation passes without reopening implementation scope."
 trigger_phrases:
   - "014-memory-index-txt-support"
-  - "plan"
+  - "memory index txt support plan"
   - "archive normalization"
-  - "validation"
+  - "memory index txt support validation"
 importance_tier: "normal"
 contextType: "general"
 ---

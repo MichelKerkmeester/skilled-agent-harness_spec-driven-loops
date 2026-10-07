@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `generate-context.js` script is a 4,837-line monolithic file containing 84 functions across 18 sections",
     "created_at": "2026-04-12T09:02:53.536Z",
-    "last_save_at": "2026-08-30T15:39:37.293Z",
+    "last_save_at": "2026-10-07T20:13:09.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,16 +209,16 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:dabaa89333cbbf9057e5ee0529aef420c5352708099955f4533bb5059770722b",
+    "source_fingerprint": "sha256:2e2ae8f2101c7af78e2030d07a2f347f9e1494a60c742a9b7297248428d3e0c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44f42867918b85c437aa12255c333e34be06d3cb003c06e774d8a558c2bd467f",
       "plan.md": "2ccb05babeb024808682056e539e6770c253cf26413d6c269e9536997dc7da90",
       "tasks.md": "210d09b250c4fc82d1a82eb325df17e6370ce5f86138142a4745b4d14ed6522e",
       "decision-record.md": "77c5ba40ea54ee6a000313d0ab04ec8ad962d5e3df02dd53657a6199c1036ded",
-      "implementation-summary.md": "62a27a0bb04527793abc1c32d1fa19f1e46bb7f392a87e1f80838d1f3273e4e7",
+      "implementation-summary.md": "2463cf5f0bab9ea91aa239ffe06a47ff2bab0574585e45fcfa4257b773c62826",
       "research/research.md": "7bbe243aa79f66efa729eb61a25fdb9223701e4b496cfe9dd7f1f2ffed5bceb2",
-      "handover.md": "ddded4ea4ca67163cf30b32c35dc90f7e2251b8a44e8d30eb87362d94e612406"
+      "handover.md": "da82bb2ed2323d4ca7bcfd2cc59888049b4b096f977d878fa0e8b043ed6466e6"
     },
     "last_active_child_id": null,
     "last_active_at": null

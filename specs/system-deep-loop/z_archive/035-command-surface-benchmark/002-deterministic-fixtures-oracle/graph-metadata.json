@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/commands/scripts/validate-command-references.cjs",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       "oracle/reference-oracle.cjs",
       "fixtures/build-fixtures.cjs",
       "fixtures/mutation-manifest.json",
@@ -81,12 +80,6 @@
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "References Parent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself.",
     "created_at": "2026-07-14T20:36:58.868Z",
-    "last_save_at": "2026-08-30T15:39:20.238Z",
+    "last_save_at": "2026-10-07T18:15:11.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84294cc9027982ff33de60fa86b73e2d08319e397c637d72116bace0a304fd57",
+    "source_fingerprint": "sha256:82f7c78ee7868a5f7be6ca1526a2e27b96a7dddd3a2d35bf0346b4758218a595",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8040fab0c8aec41ac503bba12883019eb832ffe2416428b4dc9e5b14bb3c980",
-      "plan.md": "07160c33cabf1d42e465ff67f380ebe10f76cefc23f2e1d0a9b37713c96de8e5",
-      "tasks.md": "d3cdeee43d6cb757a8a6cc46ede7084727c6a8c8b007217740d7c3eaeff86ad5",
-      "implementation-summary.md": "90143248f4dde78c30246108e5752b904ceb8338f23494a70cac143d3f6aacc8"
+      "spec.md": "184deded1c8af89996243b531ddcc6c164598ea1debeb9eff2557411ff9bfaa7",
+      "plan.md": "bc3b048574dd95352d41486fc68989f5cb0ad8d7ee1529094c54eb99f0cb6392",
+      "tasks.md": "ff8623f9db86329fc91ee827924b7e19b495306ffc9f91d6c670730a2e34f566",
+      "implementation-summary.md": "59c726c2bacd91f915784db2603a14fecc16a4c8da8be1f0b13516779970e7cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

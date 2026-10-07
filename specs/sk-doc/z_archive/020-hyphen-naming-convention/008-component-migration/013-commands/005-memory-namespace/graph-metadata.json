@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -166,7 +166,7 @@
     ],
     "causal_summary": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and `searchpresentation.txt`",
     "created_at": "2026-07-14T15:18:34Z",
-    "last_save_at": "2026-09-10T20:45:16.303Z",
+    "last_save_at": "2026-10-07T18:13:08.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,12 +174,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:59d57295582abbc613c33f42c18de2689993115a595729c9dba56ef43f90f25f",
+    "source_fingerprint": "sha256:c16c34705e23581257b79c807613e8f92e0fcc6dced95ee4b5828a804ea4837b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7c9e511b98f8b9c2b5cbd3b68256e5da89b80ac6dd57c505e59401782b8ef6b",
-      "plan.md": "0948bff85213ec1243515708b563d427b3ec2b9d914ce78b75c9322f00dce87d",
-      "tasks.md": "25873700db36acdb6c0689dfe0aaf9edfa64011dd4e8e9f3d51108d6dfb5c1cd"
+      "spec.md": "000e29c4cf2ee8ada500fe6eedab146ed5a2971552b17e8720f1a56b3fcb9707",
+      "plan.md": "4126cf1d690775282af5d74296dc6aa7d3ac13c218a356fd9fa99aee6d8e4734",
+      "tasks.md": "017cace55145ddc6cd760fd440247a65df287595edc0a7dce1dbef9c276261db"
     },
     "last_active_child_id": null,
     "last_active_at": null

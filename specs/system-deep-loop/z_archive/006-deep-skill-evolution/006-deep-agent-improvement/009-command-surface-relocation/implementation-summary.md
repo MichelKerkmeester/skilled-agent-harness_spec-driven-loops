@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/009-command-surface-relocation` |
+| **Spec Folder** | 009-command-surface-relocation |
 | **Completed** | 2026-05-24 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

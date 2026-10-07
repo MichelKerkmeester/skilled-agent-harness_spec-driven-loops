@@ -156,7 +156,7 @@ Verify that all 24 Memory Quality and Indexing features are accurately documente
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -165,7 +165,7 @@ Verify that all 24 Memory Quality and Indexing features are accurately documente
 ### Reliability
 - **NFR-R01**: Findings must be reproducible by re-reading same sources
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -267,6 +267,7 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 
 ---
 
+<!-- /ANCHOR:complexity -->
 <!-- ANCHOR:questions -->
 ### Acceptance Scenarios
 
@@ -274,9 +275,8 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 - **Given** the listed source files for a feature, **when** maintainers spot-check them against the repo, **then** the packet either confirms them or records the drift.
 - **Given** a release-control follow-up session, **when** the packet is reopened, **then** the category verdict and summary statistics remain easy to find.
 - **Given** the companion packet documents, **when** a validator checks cross-references, **then** the phase remains reusable inside the recursive `007` validation run.
-<!-- /ANCHOR:complexity -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - Should `entity-linker.ts` (F13) be added to the catalog source list, or is it intentionally omitted?
@@ -292,5 +292,5 @@ Audit completed 2026-03-22. 24 features verified. Overall result: **19 MATCH, 5 
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 <!-- /ANCHOR:questions -->

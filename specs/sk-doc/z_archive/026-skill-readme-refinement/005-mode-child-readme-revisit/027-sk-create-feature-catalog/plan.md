@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog"
     last_updated_at: "2026-08-04T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 027 plan inside 005-mode-child-readme-revisit"

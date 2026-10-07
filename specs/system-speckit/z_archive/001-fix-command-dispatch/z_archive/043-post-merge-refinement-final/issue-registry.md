@@ -1,3 +1,11 @@
+---
+title: "Issue Registry [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/043-post-merge-refinement-final/issue-registry]"
+description: "Master deduplication registry consolidating issues from specs 035-042 and z_archive 001-034, generated 2025-12-25."
+trigger_phrases:
+  - "post merge refinement final issue registry"
+importance_tier: "important"
+contextType: "planning"
+---
 # Issue Registry - Post-Merge Refinement Final
 
 > **Generated:** 2025-12-25

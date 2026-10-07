@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration",
   "description": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real",
   "keywords": [
     "catalog",

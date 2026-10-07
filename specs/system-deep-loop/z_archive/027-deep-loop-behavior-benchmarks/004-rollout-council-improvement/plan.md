@@ -2,14 +2,13 @@
 title: "Implementation Plan: Rollout Behavioral Benchmarks -- deep-ai-council + deep-improvement"
 description: "Author and execute the deep-ai-council (ACB-001..005) and deep-improvement (IMB-001..005) behavior_benchmark packages -- the multi-seat and improvement-host dispatch shapes, most expensive modes, hardened 25-minute budgets, fewest scenarios (20 GPT runs)."
 trigger_phrases:
-  - "implementation"
-  - "plan"
+  - "rollout council improvement plan"
   - "council improvement behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase plan authored; not started"

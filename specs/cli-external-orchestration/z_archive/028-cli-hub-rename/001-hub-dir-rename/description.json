@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename",
+  "specFolder": "cli-external-orchestration/z_archive/028-cli-hub-rename/001-hub-dir-rename",
   "description": "The external CLI hub used a directory identity that no longer matched the canonical parent-skill name",
   "keywords": [
     "external",

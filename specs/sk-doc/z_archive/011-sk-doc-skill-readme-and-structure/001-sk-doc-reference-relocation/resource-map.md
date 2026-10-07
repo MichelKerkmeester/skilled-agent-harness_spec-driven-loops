@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource Map: sk-doc reference relocation
 
 ## Expected Read Paths
@@ -41,17 +42,23 @@ _memory:
 - `.opencode/commands/README.txt`
 - `.opencode/commands/create/**`
 
+<!-- ANCHOR:verification -->
 ## Verification Commands
 
 - `rg -n "sk-doc/references/specific|references/specific" .opencode/skills/sk-doc .opencode/agents .opencode/commands`
 - `rg -n "\.opencode/skill/sk-doc|\.\./\.\./skill/sk-doc|\.\./skill/sk-doc|/skill/sk-doc" .opencode/skills/sk-doc .opencode/agents .opencode/commands`
 - `test ! -d .opencode/skills/sk-doc/references/specific`
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:risks -->
 ## Risks
 
 - Stale references can remain if exact searches are too narrow.
 - Runtime or documentation mirrors can drift if only one surface is updated.
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 - Follow the parent phase order unless the user explicitly changes sequencing.
+<!-- /ANCHOR:dependencies -->

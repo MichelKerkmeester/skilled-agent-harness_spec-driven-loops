@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+  "specFolder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
   "description": "Introduces the final-boundary Pi approval extension, containment, shared redaction, and evidence-gated remote mutation",
   "keywords": [
     "introduces",

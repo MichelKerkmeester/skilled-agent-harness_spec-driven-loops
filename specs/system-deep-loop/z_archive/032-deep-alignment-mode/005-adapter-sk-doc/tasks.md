@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/005-adapter-sk-doc"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc"
     last_updated_at: "2026-07-11T14:16:14Z"
     last_updated_by: "claude"
     recent_action: "All 12 tasks executed and verified; T006-T012 unblocked once 004 landed concurrently"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook"
     last_updated_at: "2026-08-04T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 029 docs (spec, plan, tasks, checklist) inside 005-mode-child-readme-revisit"

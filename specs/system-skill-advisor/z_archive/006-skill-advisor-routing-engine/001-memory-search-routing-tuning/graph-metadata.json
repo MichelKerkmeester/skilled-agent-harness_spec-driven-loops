@@ -17,6 +17,10 @@
       "search tuning coordination parent",
       "content routing accuracy",
       "graph metadata validation",
+      "search and routing tuning plan",
+      "routing engine coordination plan",
+      "search and routing tuning tasks",
+      "routing engine coordination tasks",
       "search and routing tuning",
       "search fusion reranker tuning"
     ],
@@ -31,15 +35,16 @@
       "graph",
       "metadata",
       "validation",
-      "fusion",
-      "reranker"
+      "plan",
+      "engine"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      "scripts/graph/backfill-graph-metadata.ts"
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -49,15 +54,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": "scripts/graph/backfill-graph-metadata.ts",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -97,6 +108,66 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Coordinate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-path",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -119,34 +190,26 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "See Sub",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This packet root was active in the 026 phase map, but its root identity lived only in `description.json`, `graph-metadata.json`, and the child folders",
     "created_at": "2026-04-13T16:01:59Z",
-    "last_save_at": "2026-08-30T15:39:26.716Z",
+    "last_save_at": "2026-10-07T22:11:15.106Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f41238c0c133b708fa024f8a4ce45dfcf6303271930956a95da2714d4664f91e",
+    "source_fingerprint": "sha256:fe7ba20670c322498ef9e70e6bf956e63fc6e7f1dd729bc58c78f3e08f8ac848",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb3b5611de54399374acb973607586a51a5141927f948fce37f40779381f2fff",
-      "implementation-summary.md": "585dedb59c3a406384dcfc1aa2d0b2aadacf74b034eccca7cecc21071fc14320"
+      "spec.md": "442653cda8ffab13e16752a4695d838052d95f2a2657fd6d78dcbaf75dfcfa84",
+      "plan.md": "6699036b7019c1a8a3fcadd6b8b537929e215dc88c4897d1fe35b998ef2eaa85",
+      "tasks.md": "dc4cdfb2410349af44ea71ace4dc651f2e09d5ff5cc7c9e9e1ce20869c453715",
+      "implementation-summary.md": "5328e2e2fc586f4e6c3fc57620e429b7d462f2c1c3526a42fcf3f11f2199cfb4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/002-direct-dispatch-to-yaml"
     last_updated_at: "2026-07-13T14:15:00Z"
     last_updated_by: "claude"
     recent_action: "WS3 + WS4 conversions implemented and verified byte-identical"

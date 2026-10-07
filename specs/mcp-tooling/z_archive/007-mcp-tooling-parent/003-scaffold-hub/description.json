@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/007-mcp-tooling-parent/003-scaffold-hub",
+  "specFolder": "mcp-tooling/z_archive/007-mcp-tooling-parent/003-scaffold-hub",
   "description": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
   "keywords": [
     "phases",

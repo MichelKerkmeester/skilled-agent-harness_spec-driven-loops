@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
     "created_at": "2026-07-29T06:55:51.972Z",
-    "last_save_at": "2026-09-11T16:41:47.088Z",
+    "last_save_at": "2026-10-07T18:11:26.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db8c9b658cf3dbc05fb0f5fe4e5275a8e983f34b079ab29d0bfe04bde0729357",
+    "source_fingerprint": "sha256:5eca2eb504178a330cb0533e30b75ef02ae917243005179ce79339600907840a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d64b84c8f97d32e5396103a5e2efd1e7894990d80288c64d66c5ec164ba10534",
       "plan.md": "d0df2c8ac919d8d67cd529d49ee5caf4fab953c87ce77fcf6bfe7640ef8447ea",
       "tasks.md": "0c554b543bf3781d63f9a27e21c5d5556580b0ad2eb5eeacfc5d92ee2d77e2cc",
-      "implementation-summary.md": "f53391d98bd410dcc73ac3f2b6660ddf6e7db55b18f52658dc883ef2471747fa"
+      "implementation-summary.md": "187ef9a75c1861b7c0bf0e631e726af38326df55e0cdda77ca498d250f362de9"
     },
     "last_active_child_id": null,
     "last_active_at": null

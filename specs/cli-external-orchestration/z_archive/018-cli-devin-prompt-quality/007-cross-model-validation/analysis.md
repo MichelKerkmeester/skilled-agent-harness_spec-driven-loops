@@ -1,3 +1,28 @@
+---
+title: "Cross-Model Validation Analysis"
+description: "Aggregate scores and decision-gate outcomes for the SWE-1.6 prompt variants across deepseek-v4-pro and kimi-k2.6, with cross-CLI propagation recommendations."
+trigger_phrases:
+  - "cross-model validation analysis"
+  - "deepseek kimi comparison"
+  - "cross-model decision gates"
+importance_tier: "normal"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation"
+    last_updated_at: "2026-10-07T00:00:00Z"
+    last_updated_by: "packet-reconstruction"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "packet-reconstruction"
+      parent_session_id: null
+    open_questions: []
+    answered_questions: []
+---
 # Cross-Model Validation Analysis
 
 **Generated**: 2026-05-17T20:05:06.707Z

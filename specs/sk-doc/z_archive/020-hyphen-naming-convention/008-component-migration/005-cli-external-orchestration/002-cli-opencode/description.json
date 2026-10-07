@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
   "description": "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active",
   "keywords": [
     "cli-opencode",

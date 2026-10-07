@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:42Z",
-    "last_save_at": "2026-08-30T15:39:16.613Z",
+    "last_save_at": "2026-10-07T18:13:19.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,12 +173,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:3aea3240abf9267c84435801cbddbf2ef2aa79ecdc89cc43cb97862fb0e85c1c",
+    "source_fingerprint": "sha256:5ee7c319f1e155bd7ae40e16f38e3bc2ab4cd61e7b36075983d646edf301d244",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "828985d438a7d2dbe1a4c3516a2f97233132f9fef3222714f78869f7c629161c",
-      "plan.md": "d830d64110b3ba0a5bb0548a6529679161f9ff1fc76adedcb25bbbec5d417662",
-      "tasks.md": "16ca69fa7372b50b92db905e069be90e3b851f59958fefa24a38c14bd95bbf61"
+      "spec.md": "1a01d06a3b6131fa5733a2ea95236866f86941ebb418e28d58f4bb5490d99347",
+      "plan.md": "9c4d94ccb77aefd150e833b819655442edbc4f978618886c58a9218e0cea03ec",
+      "tasks.md": "bcdf887ab7df6d9c4707c8d2bd90e20e9ca591203c9e6f8817d95478cb5413ec"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -152,7 +152,7 @@ Analysis Reports → Prioritized Bug List → Phase 1 (Critical) → Phase 2 (Mo
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Standardize on SKILL.md Section 4 for Template Counts
@@ -193,7 +193,7 @@ Analysis Reports → Prioritized Bug List → Phase 1 (Critical) → Phase 2 (Mo
 - Negative: Memories from different projects share one database
 - Mitigation: Note in opencode.json explains how to enable project isolation
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK
@@ -217,6 +217,30 @@ Analysis Reports → Prioritized Bug List → Phase 1 (Critical) → Phase 2 (Mo
 **Agent**: Primary agent
 **Duration**: ~2 min
 **Task**: grep verification + threshold tests
+
+### Pre-Task Checklist
+
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership above
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the task list before moving on
+3. Continue with the next unblocked task; escalate after two blocked tasks
 
 ---
 

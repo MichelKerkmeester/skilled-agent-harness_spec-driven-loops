@@ -18,8 +18,7 @@
       "archive normalization",
       "validation",
       "tasks",
-      "decision record",
-      "implementation summary"
+      "decision record"
     ],
     "key_topics": [
       "006-post-research-wave-3-outcome-confirmation",
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 3 Outcome Confirmation",
     "created_at": "2026-04-12T09:02:53.573Z",
-    "last_save_at": "2026-08-30T15:39:37.924Z",
+    "last_save_at": "2026-10-07T18:16:32.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +201,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:033296693334842d498d4bb550192685ff7c8854891c9d1af08b71360f1482bd",
+    "source_fingerprint": "sha256:12482b1d620230eb77dd67a07c7c62c90763954558b3a960ba3bac018a37870d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "123246b3221dd4c068aebca0603a9277a845a6edd28f7d50ff881c6a0ab79757",
       "plan.md": "4cc2170cb0cffcf294716f3d6f24a5ef605f53c4149a06b1094366608dddfc4f",
       "tasks.md": "07ac6c3df37a6105202e3b3100eb2d14b3cbf621018c7a38f0606c43bced951e",
       "decision-record.md": "9897d84606bb1ed2ac7f8caa8048d2336decf8ef988fd436ffc69a27206a6a27",
-      "implementation-summary.md": "bfa70849888086e1955769dd3f67769d233056352e5d39dd95ade0d76f8dbfed"
+      "implementation-summary.md": "8b0e9e93b68cbdaa414f4f41092570256d4903cf7c25cd3a1ff2eda4dbd79300"
     },
     "last_active_child_id": null,
     "last_active_at": null

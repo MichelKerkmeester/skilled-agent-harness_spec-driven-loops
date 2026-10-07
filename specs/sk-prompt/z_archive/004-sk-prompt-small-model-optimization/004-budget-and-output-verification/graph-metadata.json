@@ -192,7 +192,7 @@
     ],
     "causal_summary": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction priority",
     "created_at": "2026-05-18T12:36:32.578Z",
-    "last_save_at": "2026-08-30T15:39:19.135Z",
+    "last_save_at": "2026-10-07T18:14:19.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9fe6ce696ca1076ab95a032231763e5de132bacbb61607826098ebb131cb3fc",
+    "source_fingerprint": "sha256:e27f29dd0a3349c848771fcf405e858fad5957001d5a6d051ecf9cb13dac4e88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21f52a2ceac23fe04b0709bd92c21e8617b6639f29d29aa29e0cdd500a821a09",
-      "plan.md": "007ac002edb2d04aa60b77e2ef85c991803ee265651d3e8d71db72acc8bcc7ff",
-      "tasks.md": "bd4fa7a1519c0989272e722e1103bb3332e9a98e77ae451125fd0956d728a502",
+      "spec.md": "8cbfab61c80bd874b77b2c09d21709d97e9b5ff01d17ba606c5a87a1973bc679",
+      "plan.md": "7fc35a971f4154ff51130f5b8b2faf88a5db87f421da485bd3381bf5311f828b",
+      "tasks.md": "2aff91e54801f1314075e1fd821ee2dffda8694cc482f77bad7050ca1fbfbd11",
       "decision-record.md": "de7ba28013fe9c7af20eca6a77bce10bba127b46d6a07371948a123a86fdd9d5",
-      "implementation-summary.md": "371429dfedef956fb1e7aefb379cfe7694071101708264bcdf0b9475658b7d1a"
+      "implementation-summary.md": "8b36e4236f03225f7e4c8f5e16fb91c26612c81aee1bbd00952590c6be90ce28"
     },
     "last_active_child_id": null,
     "last_active_at": null

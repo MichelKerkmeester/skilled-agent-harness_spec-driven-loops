@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
   "description": "The skill README at `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` still carries the older tabular reference-card style and predates the",
   "keywords": [
     "skill",

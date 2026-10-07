@@ -6,7 +6,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
     last_updated_at: "2026-07-16T13:20:00Z"
     last_updated_by: "claude"
     recent_action: "Materialized Level-2 doc set for semantic-validation phase"
@@ -18,10 +18,7 @@ _memory:
       - ".opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs"
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "semantic validation and fixtures plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 

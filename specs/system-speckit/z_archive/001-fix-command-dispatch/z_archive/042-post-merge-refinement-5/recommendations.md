@@ -1,3 +1,11 @@
+---
+title: "Recommendations [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/042-post-merge-refinement-5/recommendations]"
+description: "Prioritized action plan for fixing the issues found in the Spec Kit Memory system."
+trigger_phrases:
+  - "post merge refinement 5 recommendations"
+importance_tier: "important"
+contextType: "planning"
+---
 # Recommendations: Post-Merge Refinement Phase 5
 
 > Prioritized action plan for fixing identified issues in the Spec Kit Memory system

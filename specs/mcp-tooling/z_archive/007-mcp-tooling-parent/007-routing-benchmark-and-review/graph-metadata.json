@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,28 +45,25 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md",
       ".opencode/skills/mcp-tooling/hub-router.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -198,7 +195,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly through the single hub identity (especially the figma transport, whose routing carve-out was deferred here), and whether the full diff is free of correctness regressions",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-08-30T15:39:09.779Z",
+    "last_save_at": "2026-10-07T18:11:38.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcfe713b86c52652b38e0c56b93260a569d6bcd572526cad736414a6124025e8",
+    "source_fingerprint": "sha256:0af87cb2c33ac0874c555b29d1655e6724124834b11a395a06e16f9ef41641ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46b54c92b44df81164277d62eb0e52e1d67afe94d814819fd47ca2ae96b3d512",
-      "plan.md": "8577a50ba868b4303948271da6533b36e63f1c46890fe9cbf2f9b59ba9984668",
-      "tasks.md": "ce776205bbac5f17480c009c46eb9dc2dacb912b02a05a63055def6c865cb0af",
-      "implementation-summary.md": "e5b95f15047daa62f76ad3b5508feab2c4d1695c473ff8804010b6bb9964bd24"
+      "spec.md": "6865cf6c34a2ded3a1c625224c9323353b69e413d2f53c386c1bdadfdb20e53d",
+      "plan.md": "4487da91bb11bb85ff7db01a840614461a15bf26bcfe86122c9d1807acfbd4f8",
+      "tasks.md": "323a81783932c70d4b2f133a13e2dc7c648178460376a60ad4c9b1e31755241a",
+      "implementation-summary.md": "b15c9926b278060b1292b0e482fa75d3528f68014c5e8d730531189057ce0762"
     },
     "last_active_child_id": null,
     "last_active_at": null

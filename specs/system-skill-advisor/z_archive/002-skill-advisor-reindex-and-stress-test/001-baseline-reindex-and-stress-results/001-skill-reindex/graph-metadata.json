@@ -44,7 +44,7 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
+      ".opencode/commands/doctor/skill-advisor.md"
     ],
     "entities": [
       {
@@ -78,9 +78,9 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/skill-advisor.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Refresh skill advisor memory system: run skill graph rescan, advisor rebuild, and memory index scan; capture before/after snapshots for verification",
     "created_at": "2026-05-18T07:49:27.128Z",
-    "last_save_at": "2026-08-30T15:39:26.225Z",
+    "last_save_at": "2026-10-07T18:15:33.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d5ad690b2816aeb868eac456bccf5274494027d940b58681ad55e17ff38037e9",
+    "source_fingerprint": "sha256:c3162aa7145fdbe43ac79913222d7a2e39c08735f49c7c73fade54cfcc7b90fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02b28aa2e4308ff5890cbddd71887269c996773f1e2cbf0d9d221dfaf15c1ebf",
-      "plan.md": "c3ac0d90673eedb56622b076d7c336953138eb6d8d5a3c5782f6507a9b3bef4b",
-      "tasks.md": "d955804f2253cb677443ac2e5d6e41aa669b7f651dae9f3f037c683bc59cd589",
-      "implementation-summary.md": "969eb52fc6a8b6efa23d7625ac400a6fbb2e718761e94178d0c6fbecf452eb9f",
+      "spec.md": "aab263e4adbad9547cb74eb3b9a69bfd60760e63645d49b8b9385f9cdca5ea29",
+      "plan.md": "004fcbc54061cc2641c7570273711893699dec902e7928fa61088f9ce22ae07e",
+      "tasks.md": "4e213312da83a964ee06263fc2057ac346ee9238a00b2da915f2f93b1c839aa1",
+      "implementation-summary.md": "3df8c820b8b4a80d17ba6f5625a15ec3cae8910e139ca33a114c6b04410151af",
       "resource-map.md": "b0b4097edbad55e649a8e6a84916c35ee9e6077db7396c692c3f1793b05fadf9"
     },
     "last_active_child_id": null,

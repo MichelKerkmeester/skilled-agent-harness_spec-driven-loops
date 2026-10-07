@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Runs the independent whole-system, security, performance, device, accessibility, rollback, and sign-off gates for staged release",
     "created_at": "2026-08-10T18:28:44Z",
-    "last_save_at": "2026-08-30T15:39:07.944Z",
+    "last_save_at": "2026-10-07T18:11:40.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:616bfc4a2f70d5c9cceb5ec37953d5761c0465cf4f23a824096e2a043177a835",
+    "source_fingerprint": "sha256:b2e159f1153d8b7b5370f36188761992b13cd964daae854f5f393126a7de82a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a39a2e706bcbf49bb96d65b226984cfd6d6a3f0a8526d2cbaa0ef6da78c62e4",
-      "plan.md": "feea06929c55f1eda7e4e9dfe51008e7ceb68585fc7fac92793dd427f09807c1",
-      "tasks.md": "656098bb5eb0330e9563be666e2590cceec77a970acf9afaf9a530e079166b5a",
+      "spec.md": "a08393e964fa1d84557fc2cb2459d0eb0552d1c6838ce25a03362bde4494b18c",
+      "plan.md": "894e4b52ec14b739dd3a8165a08a677d9ab41c587891f94d72b724ae94d3044a",
+      "tasks.md": "febed09deeac09b3830ec97ba7c2a885e9e29b7056cea874ebe874c6b86896ca",
       "decision-record.md": "218a7d9c101d35e0519ecf38d772d07bb6ce49c88e6575017519c8060e1baddd",
-      "implementation-summary.md": "cb5fb8d5ea09bd00a1c4ecbea661b10a310a059233c5729b4b7ae2787fc561f1"
+      "implementation-summary.md": "8a248826220043e0d14ac28ffbdfec5e3737d28f5701eb2662a361d3660195a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

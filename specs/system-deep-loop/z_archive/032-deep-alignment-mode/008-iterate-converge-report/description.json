@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/008-iterate-converge-report",
   "description": "`deep-alignment` is specified to MAXIMALLY reuse the deep-review/runtime engine rather than rebuild a loop from scratch, but the runtime's convergence",
   "keywords": [
     "deep-alignment",

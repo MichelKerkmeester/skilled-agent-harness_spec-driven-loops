@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/010-whole-repo-gate"
     last_updated_at: "2026-07-14T17:28:50Z"
     last_updated_by: "codex"
     recent_action: "Authored the whole-repo gate contract and its evidence domains"

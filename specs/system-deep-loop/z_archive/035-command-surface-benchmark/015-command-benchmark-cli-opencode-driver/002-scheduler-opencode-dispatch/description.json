@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch",
   "description": "The runner `behavior-bench-run.cjs` builds a leg's spawn command from a fixed `LEGTABLE`",
   "keywords": [
     "runner",

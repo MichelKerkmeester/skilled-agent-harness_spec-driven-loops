@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts",
   "description": "Add a joined parent-then-mode golden-prompt acceptance suite to routing-registry-drift.yml, grounded in a live 029 research miss (a parent-hub",
   "keywords": [
     "joined",

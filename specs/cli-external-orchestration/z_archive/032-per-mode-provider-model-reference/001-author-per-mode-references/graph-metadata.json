@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references",
-  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references",
-  "parent_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "packet_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/001-author-per-mode-references",
+  "spec_folder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/001-author-per-mode-references",
+  "parent_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Each cli mode scatters its provider/model/invocation facts across its `SKILL.md` roster, its `references/cli-reference.md` model section, and model pins in `integration-patterns.md` / `assets/prompt-templates.md`",
     "created_at": "2026-07-29T08:35:28Z",
-    "last_save_at": "2026-08-30T15:39:07.802Z",
+    "last_save_at": "2026-10-07T18:11:40.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9b3e54303b2b1d7b566cbabb4b0d0f272dfa4f7b877bcf2b0f3783eed232fb2",
+    "source_fingerprint": "sha256:c4af3278fb51da9674ca36d346c3b3b305e5cf57b0a4c3c16d724942b9a0c2a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8ce85e54d5062a82a2a0b1908ab73dc9ed75cdae6a8e9f0d362993d76fe9c99",
-      "plan.md": "726b1c6ef8cf3bf669e250d29b616fc0979862edb4f800316d402fca4fbd9881",
-      "tasks.md": "485acb9a800d3a953c83bbce850f6f95264e4b7b9188ea08284df028119f6bdf",
-      "implementation-summary.md": "28cd34aaf9a669bdb34d7816714f2e4e54ca01549f262c68d4e7b6d9ad8a7d77"
+      "spec.md": "58f06f2ac4d8c867eedcaa069cccaa561e4f4d0446ff27f597000b09efc32ee2",
+      "plan.md": "8a44eee6161c46c65b0e829ef96bda44283d790ee3e25da67249f0c0d10700ee",
+      "tasks.md": "b5d3409ea392d9befcb418e273050fbe1b8bc37476a38b81158589afad257501",
+      "implementation-summary.md": "02588ac84ec7465c76d64e21a156f71eeda9554025d855089ca65c5caaa1874b"
     },
     "last_active_child_id": null,
     "last_active_at": null

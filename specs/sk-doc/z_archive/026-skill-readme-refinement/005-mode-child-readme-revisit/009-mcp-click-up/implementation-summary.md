@@ -2,14 +2,13 @@
 title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/implementation-summary]"
 description: "The mcp-click-up README now opens purpose-first with a one-line pitch and a problem-first overview, carries a ClickUp Operation Layer capability table, and versioned at 1.1.0.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "mcp click up readme rewrite"
   - "click up readme summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up"
     last_updated_at: "2026-08-04T15:46:00Z"
     last_updated_by: "phase-executor-009"
     recent_action: "Phase documentation complete"

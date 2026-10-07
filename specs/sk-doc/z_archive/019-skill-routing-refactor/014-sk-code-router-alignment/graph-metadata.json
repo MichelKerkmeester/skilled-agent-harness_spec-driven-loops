@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/014-sk-code-router-alignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/014-sk-code-router-alignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-09-11T16:42:04.310Z",
+    "last_save_at": "2026-10-07T18:12:58.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4884c8b040da99020b93246962148635613c0f05e43106ed2c968fe60d1e5c0e",
+    "source_fingerprint": "sha256:23e5539573411937559b57f1a8cacd3ed9ce226247af4a796fa4efdf143bab89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7b4d54d14ec189ffc305b33fbe579e1056842fb25459ed66f12176cdb4cbf02",
-      "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
-      "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
-      "implementation-summary.md": "cf0b8471f3143e2391eb1fe0d2fc55b943b55df5775cd6d5dd99e03ab6c143a7"
+      "spec.md": "0678a98470a580d977bf99b964222fda582da74df836769bc5f7f1f51848fc9e",
+      "plan.md": "6fb1ee38d0fbfa21211bbb605cc398c6334cc02fe27d0959c79a1fdf80282196",
+      "tasks.md": "ab0fdafcbeaff6ac1be1b7e4272fd88c4e5f104c65839ac6f2c685d11e85f9ae",
+      "implementation-summary.md": "d829d85cec68c55ce7d401362e26af6439bcf16ab19661d4c02dac9b9766e9f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

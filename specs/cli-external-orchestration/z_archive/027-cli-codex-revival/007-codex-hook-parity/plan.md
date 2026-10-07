@@ -6,7 +6,7 @@ importance_tier: normal
 contextType: planning
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity"
     last_updated_at: "2026-07-13T20:11:19Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the Level 3 implementation plan"

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/002-deep-loop-executor-support"
     last_updated_at: "2026-07-24T09:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented, tested, and validated phase 002 (cli-cursor executor wiring)"

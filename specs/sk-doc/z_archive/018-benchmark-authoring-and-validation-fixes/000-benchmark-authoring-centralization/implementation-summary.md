@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
     last_updated_at: "2026-07-20T09:23:08Z"
     last_updated_by: "claude-code"
     recent_action: "Centralization complete; templates, guides, family table, pointer-only rewire shipped"

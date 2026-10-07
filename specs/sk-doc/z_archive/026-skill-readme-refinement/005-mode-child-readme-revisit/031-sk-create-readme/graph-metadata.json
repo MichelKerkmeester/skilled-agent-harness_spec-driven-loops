@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,30 +47,27 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-readme/README.md",
       ".opencode/skills/sk-doc/sk-create-readme/changelog/v1.1.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/tasks.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/plan.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-readme/README.md` still carries the older tabular reference-card style with an AT A GLANCE table, a tabular TROUBLESHOOTING section and a tabular FAQ",
     "created_at": "2026-08-04T08:34:50.395Z",
-    "last_save_at": "2026-08-30T15:39:17.841Z",
+    "last_save_at": "2026-10-07T18:13:51.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ac2e870a81df2d9e7b9748b33bbc66fab4a610ff046ea6c4bcfcfef92cbc043",
+    "source_fingerprint": "sha256:32d917c4c7fc5abce299ed6266b3454f44cb0a807425764ecec91980a9e231eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d55a4619325535de546266bedab6ed7d8437c9c79a8425cc1436aa8c0d1b8f7b",
-      "plan.md": "cf7ae1661bbfbc21d0f918c7e138c2857e51dfcc4af517d8d02e4f25b74314b2",
-      "tasks.md": "7708691d981dbd6012835209bd2b30a5f719b2e3bb9b3748f8597f520cf57c78",
-      "implementation-summary.md": "2bb4f942b10480e29051516a772ffe142093028b212725c32e5df08afb73fc85"
+      "spec.md": "3144ceb3a9ac61ce4f7949030d4eee0feb12fad278969ab4053f780f2f6e96a6",
+      "plan.md": "a00864b7d0eccf3021622cb7a7a1ef0cc3843231a40ba15cd5d1f23ec9ee9317",
+      "tasks.md": "76ae6d973ffa1dcc9aa8901984099e0b8cd219f6348c77fc56055fdb984b927e",
+      "implementation-summary.md": "a4cc4338c01f6fa83fa2fc8bcede4f35d2354dac5a3f9ecb701dac17ff88341c"
     },
     "last_active_child_id": null,
     "last_active_at": null

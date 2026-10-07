@@ -3,7 +3,6 @@ title: "...t/z_archive/020-mcp-working-memory-hybrid-rag/004-post-research-wave-
 description: "Archive normalization summary for Post Research Wave 1 Governance Foundations."
 trigger_phrases:
   - "004-post-research-wave-1-governance-foundations"
-  - "implementation summary"
   - "phase"
   - "archive"
 importance_tier: "normal"

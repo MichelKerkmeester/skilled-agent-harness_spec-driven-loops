@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
-  "spec_folder": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
-  "parent_id": "mcp-tooling/009-mcp-refero",
+  "packet_id": "mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
+  "spec_folder": "mcp-tooling/z_archive/009-mcp-refero/006-live-verification-capture",
+  "parent_id": "mcp-tooling/z_archive/009-mcp-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only indirectly, a single-prefix derivation still circulated, and several docs gated callable confirmation on completed operator OAuth",
     "created_at": "2026-07-16T12:58:33Z",
-    "last_save_at": "2026-09-10T20:43:43.486Z",
+    "last_save_at": "2026-10-07T18:11:36.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcb7ca38b59f3e867db1be7ec3878fd01d4c968e7c0597b2136dc23cd3f1b04b",
+    "source_fingerprint": "sha256:6f0981f3a60c5aa11826250760468371e183cadd2ccaf236cb263f8e715c0a4c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da0504ed91e43d6ca42338bda6bd8102c5a58d2a3fdfca1e0d3a658ea5157911",
-      "plan.md": "d4d80839f00decb54f5e0609e2479f7280cc934e76e3b55d61275447340bdbf5",
-      "tasks.md": "dde67c063175e9958e154d1e2d237f27764abe90dc7361a3cbb45f6309f1239f",
-      "implementation-summary.md": "8a7f10e10cca5230bda0c5b971976f98425b21760c1ead754901f41736504af9"
+      "spec.md": "4824bcecc51562b2f600b8a6c68fc0fa0f95a1fbd126a0e30119ca93ef9fad66",
+      "plan.md": "09b1bf1b04fd8b9fa47ff1ff37fdd8d046b28a5c37fd9d6fb3b19707ab081721",
+      "tasks.md": "4e76853b694b46954387635c5f411dee3698aad648d3faa96b919a7af44dad8d",
+      "implementation-summary.md": "299d9d759fc4551db66864847f5b77520143c0515272ad837f7e70993c7ff189"
     },
     "last_active_child_id": null,
     "last_active_at": null

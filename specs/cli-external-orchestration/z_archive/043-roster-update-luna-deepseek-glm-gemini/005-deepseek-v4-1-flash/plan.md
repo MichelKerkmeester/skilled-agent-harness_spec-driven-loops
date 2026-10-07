@@ -2,10 +2,7 @@
 title: "Implementation Plan: Phase 5: DeepSeek V4.1 Flash on Devin"
 description: "Two ids into two mirrored lists, a fixture that binds itself to the source, and one guidance paragraph that names a silent failure."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deepseek v4 1 flash plan"
 importance_tier: "normal"
 contextType: "general"
 ---

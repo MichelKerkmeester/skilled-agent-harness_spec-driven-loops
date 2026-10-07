@@ -6,7 +6,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing"
     last_updated_at: "2026-05-03T12:05:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed CP-105 testing-playbook routing tasks"

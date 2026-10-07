@@ -2,9 +2,9 @@
 title: "I [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/010-root-level-review-research-convention/plan]"
 description: "3-phase plan: shared resolver, consumer updates, documentation alignment"
 trigger_phrases:
-  - "plan"
-  - "010"
-  - "root"
+  - "root level review research convention plan"
+  - "root level artifact placement plan"
+  - "root level folder plan"
 importance_tier: "important"
 contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
@@ -25,6 +25,7 @@ status: complete
 
 ---
 
+<!-- ANCHOR:phases -->
 ## Phase 1: Shared Path Resolver
 
 Create `review-research-paths.cjs` in `.opencode/skills/system-spec-kit/shared/`:
@@ -67,9 +68,14 @@ Fallback: if no parent spec.md found, treat specFolder as root (standalone spec)
 - sk-deep-research/README.md: same
 - sk-doc readme_template.md: add convention note
 
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:testing -->
 ## Verification
 
 1. Unit test the resolver with standalone, child, grandchild paths
 2. Verify `grep -r '{spec_folder}/review/' .opencode/commands/speckit/assets/` returns 0
 3. Verify all 8 agent files reference root-level convention
 4. `npx tsc --noEmit` passes
+
+<!-- /ANCHOR:testing -->

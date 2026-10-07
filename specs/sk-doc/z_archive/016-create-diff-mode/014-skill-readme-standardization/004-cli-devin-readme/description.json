@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
   "description": "The cli-devin README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a version of 1.0.2.0 (the skill is",
   "keywords": [
     "cli-devin",

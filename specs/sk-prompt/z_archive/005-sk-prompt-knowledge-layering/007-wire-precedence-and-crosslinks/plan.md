@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/007-wire-precedence-and-crosslinks"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/007-wire-precedence-and-crosslinks"
     last_updated_at: "2026-06-02T18:04:15Z"
     last_updated_by: "agent"
     recent_action: "Plan completed — all phases done"

@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios"
     last_updated_at: "2026-06-29T14:30:00Z"
     last_updated_by: "claude"
     recent_action: "Authored and verified the adversarial regression scenarios"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/004-adversarial-playbook-scenarios` |
+| **Spec Folder** | 004-adversarial-playbook-scenarios |
 | **Completed** | 2026-06-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

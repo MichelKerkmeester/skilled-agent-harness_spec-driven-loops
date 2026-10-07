@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/039-create-with-human-voice"
+    packet_pointer: "sk-doc/z_archive/039-create-with-human-voice"
     last_updated_at: "2026-08-31T22:20:00Z"
     last_updated_by: "stream-1"
     recent_action: "Shipped the packet, wired ten section 7 surfaces, ran all three gates green"

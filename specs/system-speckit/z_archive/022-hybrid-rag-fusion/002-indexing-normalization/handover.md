@@ -40,6 +40,7 @@ SPECKIT_TEMPLATE_SOURCE: "handover | v2.2"
 
 CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` | Last: retroactive scans + validation alignment | Next: runtime verification and cleanup
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Session Summary
 
 - **Date**: 2026-02-22
@@ -53,7 +54,9 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 - Reproduced remaining runtime symptom: chunk-heavy list output still appears in live `memory_list` checks.
 - Validated this spec folder and fixed `TEMPLATE_SOURCE` pre-check failures for core docs.
 - Created structured handover for controlled resume without losing context.
+<!-- /ANCHOR:handover-summary -->
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Current State
 
 | Field | Value |
@@ -82,7 +85,9 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 ### Verification Executed
 - [x] `.opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/003-index-tier-anomalies` -> PASS (0 errors, 0 warnings)
 - [x] Memory query checks confirm descriptive titles now dominate reindexed records.
+<!-- /ANCHOR:context-transfer -->
 
+<!-- ANCHOR:next-session -->
 ## 4. Pending Work
 
 ### Immediate Next Action
@@ -94,7 +99,9 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 - [ ] [P1] Execute final global sanity search for remaining generic-title regressions.
 - [ ] [P1] Reconcile `.opencode/specs` vs `specs` path duplication effects in active workflows.
 - [ ] [P2] Optional: add one integration test for live list behavior parity assumptions.
+<!-- /ANCHOR:next-session -->
 
+<!-- ANCHOR:session-notes -->
 ## 5. Key Decisions
 
 ### Decision A
@@ -121,7 +128,9 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 - Restart MCP runtime before final claim.
 - Keep verification commands scoped and logged.
 - Avoid touching unrelated dirty files during completion.
+<!-- /ANCHOR:session-notes -->
 
+<!-- ANCHOR:validation-checklist -->
 ## 7. Continuation Instructions
 
 ### To Resume
@@ -140,6 +149,7 @@ CONTINUATION - Attempt 1 | Spec: `.opencode/specs/system-spec-kit/022-hybrid-rag
 - [ ] Run focused `memory_list` checks with and without `includeChunks`.
 - [ ] Re-run one `memory_search` sanity query for generic titles.
 - [ ] Update checklist/handover with final verification evidence.
+<!-- /ANCHOR:validation-checklist -->
 
 ## Source: `former child spec 004-frontmatter-indexing -> handover.md`
 

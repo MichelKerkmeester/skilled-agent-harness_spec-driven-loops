@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/004-sk-design-rename",
   "description": "Move design-interface, design-md-generator and design-mcp-open-design to their sk-design-* names, holding the pre-existing BLOCKED-BY-ROUTE-GOLD 91",
   "keywords": [
     "move",

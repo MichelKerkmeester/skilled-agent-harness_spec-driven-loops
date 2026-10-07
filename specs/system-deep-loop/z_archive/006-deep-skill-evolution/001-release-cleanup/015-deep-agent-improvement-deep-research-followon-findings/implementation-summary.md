@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement/002-deep-research-followon-findings` |
+| **Spec Folder** | 015-deep-agent-improvement-deep-research-followon-findings |
 | **Completed** | 2026-05-24 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

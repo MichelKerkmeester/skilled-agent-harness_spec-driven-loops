@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime"
     last_updated_at: "2026-07-04T16:45:49.357Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Wired Deep Loop Runtime as a phase parent with 6 implementation sub-phases"

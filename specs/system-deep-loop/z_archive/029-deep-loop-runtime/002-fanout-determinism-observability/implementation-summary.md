@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/002-fanout-determinism-observability"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability"
     last_updated_at: "2026-07-06T16:24:26.523Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Wave-1 tail implemented"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/002-fanout-determinism-observability` |
+| **Spec Folder** | 002-fanout-determinism-observability |
 | **Status** | complete |
 | **Level** | 2 |
 | **Actual Effort** | Trio shipped in Wave-0 (commit `ba632c340c`). Wave-1 tail with 9 new unit tests implemented locally, uncommitted per instruction (order-invariance tests, label/metadata sorting, default-off near-dup dedup) |

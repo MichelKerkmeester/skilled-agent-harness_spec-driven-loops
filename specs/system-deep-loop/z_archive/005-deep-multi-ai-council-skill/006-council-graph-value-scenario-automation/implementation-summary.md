@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation` |
+| **Spec Folder** | 006-council-graph-value-scenario-automation |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

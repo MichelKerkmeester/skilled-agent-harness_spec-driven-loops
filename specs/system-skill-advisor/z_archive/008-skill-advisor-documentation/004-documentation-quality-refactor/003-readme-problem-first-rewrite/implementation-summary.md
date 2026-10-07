@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite"
     last_updated_at: "2026-05-16T00:00:00Z"
     last_updated_by: "claude-opus-4-7-1m"
     recent_action: "Scaffolded impl-summary"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite` |
+| **Spec Folder** | 003-readme-problem-first-rewrite |
 | **Completed** | [PENDING] |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

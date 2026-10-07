@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/038-authoring-hardening/002-validator-false-positives",
+  "specFolder": "sk-doc/z_archive/038-authoring-hardening/002-validator-false-positives",
   "description": "The playbook validator scanned raw markdown for links without excluding fenced code, so ordinary bracket-index call syntax in a code sample was",
   "keywords": [
     "playbook",

@@ -165,14 +165,14 @@ The module header documents the feature as OFF (disabled), but the runtime defau
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
 Phase 1 (Prep) ──► Phase 2 (Audit 19 features) ──► Phase 3 (Synthesis)
 ```
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/005-md-generator-schema-contract"
     last_updated_at: "2026-07-18T18:22:32Z"
     last_updated_by: "claude"
     recent_action: "Built and verified the v3 schema authority; 149/149 tests pass, typecheck clean"

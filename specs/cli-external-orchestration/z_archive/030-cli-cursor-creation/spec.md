@@ -6,7 +6,7 @@ importance_tier: important
 contextType: implementation
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation"
     last_updated_at: "2026-07-27T11:30:00Z"
     last_updated_by: "claude"
     recent_action: "Phase 014 built: .cursor/rules populated, gaps documented."

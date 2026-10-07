@@ -3,7 +3,6 @@ title: "...n-capturing/000-dynamic-capture-deprecation/004-source-capabilities-a
 description: "Phase 019 shipped typed source capabilities and updated the operator contract for structured saves."
 trigger_phrases:
   - "phase 019"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"

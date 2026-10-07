@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/003-seven-hub-root-adoption"
     last_updated_at: "2026-08-16T07:40:46.607Z"
     last_updated_by: "markdown-agent"
     recent_action: "Adopted root ROUTER.md across all seven hubs; all checkpoints closed."

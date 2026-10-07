@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research"
     last_updated_at: "2026-07-29T08:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Fan-out complete (15/15 iters); synthesized the cross-lineage ranked opportunity map"

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-design/015-deprecate-open-design",
+  "specFolder": "sk-design/z_archive/015-deprecate-open-design",
   "description": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being",
   "keywords": [
     "open",

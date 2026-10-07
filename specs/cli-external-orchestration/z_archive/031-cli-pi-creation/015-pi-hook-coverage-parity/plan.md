@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/015-pi-hook-coverage-parity"
     last_updated_at: "2026-07-27T20:30:34Z"
     last_updated_by: "claude-code"
     recent_action: "Authored plan.md: direct-authorship pass, GLM-5.2 independent review"

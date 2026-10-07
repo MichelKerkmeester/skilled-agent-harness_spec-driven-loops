@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/012-regression-test-backfill"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/012-regression-test-backfill"
     last_updated_at: "2026-07-01T10:04:52Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec from deep-review DR-009 cluster and deep-research F-013/018/019/020/021/022"

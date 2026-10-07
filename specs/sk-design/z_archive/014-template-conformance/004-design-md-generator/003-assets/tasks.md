@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-md-generator assets/ conformance"
 description: "Task breakdown for auditing design-md-generator's 3 assets/ files."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/003-assets"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/004-design-md-generator/003-assets"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author assets audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "assets tasks"
 ---
 # Tasks: design-md-generator assets/ conformance
 

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/006-design-mode-consolidation"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/006-design-mode-consolidation"
     last_updated_at: "2026-07-27T07:52:44.000Z"
     last_updated_by: "claude"
     recent_action: "Superseded NFR-S01 by ADR-002; corrected checklist.md frontmatter description"

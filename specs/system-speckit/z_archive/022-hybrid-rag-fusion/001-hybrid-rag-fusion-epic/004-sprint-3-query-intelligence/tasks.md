@@ -109,7 +109,7 @@ _memory:
 
 ---
 
-<!-- ANCHOR:phase-3 -->
+<!-- ANCHOR:phase-3-2 -->
 ## Phase 3: Verification
 
 - [x] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
@@ -117,10 +117,11 @@ _memory:
 - [x] T-FS3 Feature flag sunset review at Sprint 3 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T004} — NFR-O01/O02/O03
 - [x] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007, T-FS3}
 
+<!-- /ANCHOR:phase-3-2 -->
+
 ---
 
 <!-- ANCHOR:completion -->
-<!-- /ANCHOR:phase-3 -->
 ## Completion Criteria
 
 - [x] All P1 tasks T001a-T001d, T002a-T002c, T003a-T003c, T004-T007 marked `[x]`

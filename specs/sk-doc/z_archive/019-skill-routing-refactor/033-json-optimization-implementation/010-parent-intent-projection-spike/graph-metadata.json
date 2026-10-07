@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,8 +44,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/schemas/skill-derived-v2.ts"
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md"
     ],
     "entities": [
       {
@@ -82,12 +81,6 @@
         "name": "skill-root-metadata-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-derived-v2.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/schemas/skill-derived-v2.ts",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gated design spike (O8, single-lineage hypothesis): design a way to project high-specificity per-mode vocabulary from hub-router.json/mode-registry.json into an existing parent-selection scorer input, without changing scorer math, and measure it against a pinned corpus before deciding to ship.",
     "created_at": "2026-07-29T08:00:32.153Z",
-    "last_save_at": "2026-08-30T15:39:15.924Z",
+    "last_save_at": "2026-10-07T18:13:33.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96be045c35058924457b5fc83af6e77fd0e139fdcb917b15e1d1cea1891e68f9",
+    "source_fingerprint": "sha256:9a40097256655225dd8ff70b23b7bcd2a1211a0222b852d2b692ff7a658b4802",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa8d8768fb0f88c0fec6e610eb1cabf24f05da41e9b3610f52b8e32844535ec9",
-      "plan.md": "fb536f2abdb84bf89e408ae480053f14065cfec67c947c7a09ed8c69ff058423",
-      "tasks.md": "cc778313fc62fea9082ba61ae2b1633ecfe3bd38357d98b2e9669b79691e8fd9",
+      "spec.md": "53a32bec754239b1ef28a56ba1a2727e38cd9f7c341e2748b5645c2dcfeba341",
+      "plan.md": "cf669ca3cd04fbab3728982f4c0618709fdd68f1aecf1997933979314196a07c",
+      "tasks.md": "d9b8db06a541541a7da3dd7975b5b8b78877e5c202c8889d75ee6d74ed073190",
       "decision-record.md": "6f4bf6caf67cad863730b7b81dc84c74475f51469801f3ec42b575949bc65579",
-      "implementation-summary.md": "6092df81f2bfbd20684e859beb778141f3361f0d3fb4578188825ff802679ae1"
+      "implementation-summary.md": "cfd8799e0bed3452efd0a59b348149ca62021967846153c2a206be73258edb5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

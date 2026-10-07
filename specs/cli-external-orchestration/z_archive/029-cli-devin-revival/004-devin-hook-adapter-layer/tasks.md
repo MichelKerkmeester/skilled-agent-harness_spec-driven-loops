@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/004-devin-hook-adapter-layer"
     last_updated_at: "2026-07-24T17:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "T009 revised: hooks.v1.json now committed per operator direction"

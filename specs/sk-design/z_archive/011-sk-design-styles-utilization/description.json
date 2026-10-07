@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/011-sk-design-styles-utilization",
+  "specFolder": "sk-design/z_archive/011-sk-design-styles-utilization",
   "description": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md +",
   "keywords": [
     "packet",

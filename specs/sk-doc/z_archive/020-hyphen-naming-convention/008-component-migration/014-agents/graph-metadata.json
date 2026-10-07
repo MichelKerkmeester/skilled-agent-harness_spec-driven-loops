@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/006-deep-improvement-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/008-deep-review-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/012-prompt-improver-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/013-review-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/006-deep-improvement-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/008-deep-review-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/012-prompt-improver-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/013-review-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -96,16 +96,16 @@
     ],
     "causal_summary": "The 020 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy.",
     "created_at": "2026-07-14T15:17:05Z",
-    "last_save_at": "2026-08-30T15:39:17.105Z",
+    "last_save_at": "2026-10-07T18:12:47.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7451a097dcea4de2b40a6ad5de7b90d741f10780b6ace510fdba433e457ecb90",
+    "source_fingerprint": "sha256:5a7975c3420b1441ce0e5c985bb1801b3a0ca7a6be9518234de43a5662c5b3d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2403f95a0170d237e476dfa04f652bd69c0a5da5b665372569c9ffaabdd9dc09"
+      "spec.md": "6364382a4150cfb4b2daa8db39ae3e63c4e0961e9b0fa194f0ec933a41188ac6"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
     "last_active_at": null

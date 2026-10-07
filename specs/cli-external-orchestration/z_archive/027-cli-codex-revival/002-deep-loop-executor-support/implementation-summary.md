@@ -6,7 +6,7 @@ importance_tier: important
 contextType: implementation
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/002-deep-loop-executor-support"
     last_updated_at: "2026-07-13T11:23:00Z"
     last_updated_by: "opencode"
     recent_action: "Implemented and focused-tested Codex executor support"

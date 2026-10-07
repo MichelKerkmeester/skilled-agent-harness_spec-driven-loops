@@ -1,9 +1,11 @@
 ---
 title: "Plan: design-md-generator references/ conformance"
 description: "Plan to fix the importance_tier and H2-casing defects, decide the vendor exemplar placement, and audit the remaining references files."
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/002-references"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/004-design-md-generator/002-references"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author references audit plan"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "references plan"
 ---
 # Plan: design-md-generator references/ conformance
 

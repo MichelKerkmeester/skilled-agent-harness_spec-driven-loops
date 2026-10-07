@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Hook paths are consumed by runtime settings, install guides, plugin bridges, and the hook reference",
     "created_at": "2026-07-14T15:18:09Z",
-    "last_save_at": "2026-08-30T15:39:16.833Z",
+    "last_save_at": "2026-10-07T18:13:20.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a600632a97780345ef6742299dd37f6155011e3ee1fded65c41faa691fa3ec72",
+    "source_fingerprint": "sha256:e19bf690fcef6e837f470fe23827ed65141e99a874b5474efa4d9a7de01c5078",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3eb3422dc3906a739b32ff4f9453ebef126a6aa281bb2d32dfe53b8a04b1e56a",
-      "plan.md": "0a030573a6d156ab315f976024e3d1443134b043832f3ceacfcc88023e442729",
-      "tasks.md": "212aa4128645e7add6ee269fbee9747278c9ad5b2b480e3043de87763e7f06bf"
+      "spec.md": "5e0ca3a1c34f4bb52ca3cced17b7bdbeed3487fa75f413bed95d98bf799e06a1",
+      "plan.md": "e1d34771aa3ebdba37b4145989a18754171ad5e6504e0ed8eb08d089a51f0d0f",
+      "tasks.md": "3e36f6353842a0c116fb255e3d1153bef732bb41e81e114d57b77ee3edc704d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

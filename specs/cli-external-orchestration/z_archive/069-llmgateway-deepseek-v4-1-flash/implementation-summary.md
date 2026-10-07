@@ -2,15 +2,12 @@
 title: "Implementation Summary"
 description: "LLM Gateway had switched off the DeepSeek id the cli-pi fan-out defaulted to, so every lineage that omitted a model was dispatching at a dead route. The gateway route is DeepSeek V4.1 Flash now, across the runtime, both CLI rosters and the Pi config."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "llmgateway deepseek v4 1 flash implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash"
+    packet_pointer: "cli-external-orchestration/z_archive/069-llmgateway-deepseek-v4-1-flash"
     last_updated_at: "2026-09-11T09:00:00Z"
     last_updated_by: "implementer"
     recent_action: "Reopened: opencode-go dispatch-verified and moved, cline-pass wired listing-only with its fallback named"

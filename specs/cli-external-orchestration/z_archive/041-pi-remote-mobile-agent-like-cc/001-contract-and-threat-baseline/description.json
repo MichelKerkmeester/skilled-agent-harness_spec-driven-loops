@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+  "specFolder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
   "description": "Pins the live Pi, host, ingress, browser, storage, and extension contracts and freezes the threat model before production implementation",
   "keywords": [
     "pins",

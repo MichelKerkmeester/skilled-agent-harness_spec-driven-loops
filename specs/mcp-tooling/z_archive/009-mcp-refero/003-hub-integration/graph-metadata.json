@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/009-mcp-refero/003-hub-integration",
-  "spec_folder": "mcp-tooling/009-mcp-refero/003-hub-integration",
-  "parent_id": "mcp-tooling/009-mcp-refero",
+  "packet_id": "mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
+  "spec_folder": "mcp-tooling/z_archive/009-mcp-refero/003-hub-integration",
+  "parent_id": "mcp-tooling/z_archive/009-mcp-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
       ".opencode/skills/mcp-tooling/SKILL.md"
@@ -56,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +197,7 @@
     ],
     "causal_summary": "After phase 002 the `mcp-refero` packet exists but is invisible: the hub's mode registry, router signals, parent SKILL.md, and graph identity all describe a three-mode hub, so no route can reach the new transport and the advisor's skill graph carries no refero awareness",
     "created_at": "2026-07-16T09:39:29Z",
-    "last_save_at": "2026-08-30T15:39:09.916Z",
+    "last_save_at": "2026-10-07T18:11:41.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf1e9eaadd9e4e21a330c824014c1fecc8f59688e922018ee4c339c4a3d00d2a",
+    "source_fingerprint": "sha256:98f6a1612c39539697dc5cd571a700e3fa55d6548ba2ec7c8d55034b8f3a9846",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "493761b834b42184dee5d15d7f42be12a51fb9df9424ca25baef89c46246dc30",
-      "plan.md": "1c8ed43ddf15871682cccd705f464b812dc0a1ab3bf6e9f695f6ce1755f8f76d",
-      "tasks.md": "4eb4975987026406db62437012adf0f8167c9a94aa5f45b7d333ce03a4bdc285",
-      "implementation-summary.md": "35e122d81d3324140552eb13123de2d18d3bce38a4ea4938f6cd5cedbf49b76f"
+      "spec.md": "aa097a506cb2f38101deccfd77775fef52f311048b5bc8752d855ed12713ed98",
+      "plan.md": "44798db7ff8bd2bdbe662d05d7265263aeec235a4ef4e5ab21df4090ebf6f842",
+      "tasks.md": "0316bdf23f6f9f1979f06d763f2466fddb55c6689aeb34bbc72821baa0bacecc",
+      "implementation-summary.md": "7d94efe240a16ea3592415bba94b1833bd0e119b775ca20ff08ac439bf15ded7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -162,7 +162,7 @@
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-09-10T20:45:09.396Z",
+    "last_save_at": "2026-10-07T18:13:28.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -170,12 +170,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:7f486f74b689624d2388b2c94e610eac548ac3107188f0e286db678e0744e326",
+    "source_fingerprint": "sha256:f981b72c31b1afd22053c2df0ae3200da117769b392e2ecdbcd8b3421c928e16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d22349cc537a70e8bb7ac03b791943627d819217514e3674aa0e26db4489f46",
-      "plan.md": "f92fd9b547e02bb739512ec7dcab8b3bc948c758236a2544532fbc8c1ff596c8",
-      "tasks.md": "beef3491f66a66590e2357d914d7319afa0ce296906490a9f359892be285ddf8"
+      "spec.md": "8520602acee70e9770eb51e49ddfdd7a21ef7c62671a4aad811aa88683a679d3",
+      "plan.md": "b6373ccca1c29fdfddea35047f005f37f3ad3a2ffcdd6c02ba80d8ec4c0fc3fb",
+      "tasks.md": "69383de019a0891c5d6b965bdcfded7f99898de0928b02038240ac3eaa7e137e"
     },
     "last_active_child_id": null,
     "last_active_at": null

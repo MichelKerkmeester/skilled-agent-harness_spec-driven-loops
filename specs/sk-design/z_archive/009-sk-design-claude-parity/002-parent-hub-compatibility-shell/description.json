@@ -15,7 +15,7 @@
   "level": 2,
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/002-parent-hub-compatibility-shell",
   "description": "The parent `sk-design` hub needed the feel of a design manager: context first, visible plan, proof expectations, and verifier cadence before mode",
   "keywords": [
     "parent",

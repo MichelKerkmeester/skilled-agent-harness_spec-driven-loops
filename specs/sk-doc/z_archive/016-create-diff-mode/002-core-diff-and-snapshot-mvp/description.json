@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
   "description": "The research has selected an architecture, but no reusable comparison engine exists",
   "keywords": [
     "research",

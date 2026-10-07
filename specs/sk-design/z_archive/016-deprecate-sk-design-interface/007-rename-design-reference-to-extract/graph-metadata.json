@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,9 +39,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
       ".claude/commands/design/extract.md",
       ".cursor/commands/design-extract.md",
       ".codex/agents/design.toml",
@@ -49,7 +46,6 @@
       ".opencode/agents/design.md",
       ".claude/agents/design.md",
       ".opencode/commands/README.txt",
-      ".opencode/commands/rewrite/response.md",
       ".cursor/agents/design.md",
       ".devin/agents/design/AGENT.md",
       ".opencode/commands/design/extract.md",
@@ -82,24 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-runtime-mirrors.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts-pi.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
-        "source": "derived"
-      },
-      {
         "name": "extract.md",
         "kind": "doc",
         "path": ".claude/commands/design/extract.md",
@@ -127,12 +105,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "response.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response.md",
         "source": "derived"
       },
       {
@@ -200,11 +172,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 007 renames the surviving design-reference command to /design:extract (file, owned assets, all six runtime mirrors), and closes the interface->design mirror residue that 016/006 documented but did not fully clean: broken .claude/commands/interface symlinks and stale, never-synced .codex/.pi interface-*.md prompt copies.",
     "created_at": "2026-08-20T18:58:22.797Z",
-    "last_save_at": "2026-08-30T15:39:13.527Z",
+    "last_save_at": "2026-10-07T18:12:34.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd9335e6c1bc1c3aea75c8cee8c0d889e7d6bdfa461e9ae004e2a94872e5755a",
+    "source_fingerprint": "sha256:4fff7437a34c6ed013d228d138bda2a8a9c9922fd04e67776b64c6bdffc8a59f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8abc6fe367b914f341e20772fd7947044fc84fc284b590776812db2bf0a588ec",
-      "plan.md": "304bc313ed73471051d13ed8433b9e04bdb02af27713c91204a901f5afab06a6",
-      "tasks.md": "69f44f4b290b9cdba5663d2676b452516bdcde14e0fb653619a6691839c73ce5",
-      "implementation-summary.md": "7363d91277d15ca5a26edbd2938c32e6b2061737e3e39851ff31aa7de025bb58"
+      "spec.md": "3f6fd62d849e083d78fae3da66ac4086ba2a50e864c93073be7b096803022142",
+      "plan.md": "7f193d2a3f9d45b78f790ee8ae250bd75bf73b11aee1d79f9ae2dccbbbfbe258",
+      "tasks.md": "d7c9ab4ec5cd0aaebe80263fee2dc5273c8d0dd45a59840e279208130b9a6657",
+      "implementation-summary.md": "c6261f67bb69a96985d83f29e25b5701a4ddfc13b04b01ab5d0165b1402e8104"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,7 +19,6 @@
       "phase 037 tasks",
       "deep improvement readme tasks",
       "deep-improvement readme rewrite tasks",
-      "implementation summary",
       "deep improvement readme",
       "deep-improvement readme rewrite summary"
     ],
@@ -33,9 +32,9 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
       "summary",
-      "opencode"
+      "opencode",
+      "skills"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -46,9 +45,6 @@
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/README.md",
       ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.1.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
@@ -57,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +197,7 @@
     ],
     "causal_summary": "The deep-improvement README at `.opencode/skills/system-deep-loop/deep-improvement/README.md` still carries the older tabular reference-card style, opens with an AT A GLANCE table before the OVERVIEW and predates the pilot standard proven by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:52.681Z",
-    "last_save_at": "2026-09-03T22:19:49.364Z",
+    "last_save_at": "2026-10-07T18:13:48.976Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90556478ff3eba097a809eeda3c1139f3673115b208ccdce83f03eb034ee2fb6",
+    "source_fingerprint": "sha256:2bcf656c428317b45935bb64d80cd5ecdf0eef64d5ac50e6e7b209c5ecf9e4b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e60a781e8c319ada4ffa12237c2572c0ae6e201e525b4f16eefb2580d030e9e",
-      "plan.md": "ae3516b8c4e723b8668f2188af23798c425ec1b439bdbee3faca5283670df4ac",
-      "tasks.md": "0e286ae927aff1b3f2d8b57475523c541d23b34ed0f1043afa9d3811ea61809c",
-      "implementation-summary.md": "299bef8cd8ad4d6c5c914fddce1f784d09f4d6577437fbd4cfd343636019e4ba"
+      "spec.md": "8cfba16caa9a3b6fdedb1dd054d7e14f6c1e5c02274dcf598dc7681f367ac257",
+      "plan.md": "75e6745a739dfb3ceffa33bd669434c8e08b7a9fbd718d1cc23514a1d94f74d8",
+      "tasks.md": "72ccc912b792453b7627adbdf0cdd67bf23284a57397d7509a2e4f067f3ee42b",
+      "implementation-summary.md": "a3453fa5b33477a7eb3ffd140a9bcbc51add4f3803b5464ea35a94ea758273ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

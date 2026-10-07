@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.299Z",
-    "last_save_at": "2026-08-30T15:39:39.132Z",
+    "last_save_at": "2026-10-07T20:38:17.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cbdb399cb98da5c9bb4f1b53d51fc8065919e1eda0e7047f5178c6b92ecfc4b",
+    "source_fingerprint": "sha256:7da9b9dbfb77b9d4fbce1311bdaa65defc1ad8eb68410da2fda63865c4ac929d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a91bbd592e7e7d51e04e7a4024b88ed69b5cd5ea5dc08dd35090fe16b7c8215",
-      "plan.md": "319d90f4e9435b9f94a1ac37ad63ee762085190057b62b30aba693a92f4f7cb8",
+      "spec.md": "9df88a13af4f7c07053e2b629ce6b021f31e87ec6f8c425431965c0b96441919",
+      "plan.md": "781bce3dbfe384e73cbdebdd05bf45cb8bcc41047ecf1443ca50f1c203111e08",
       "tasks.md": "f6f7dc110a9b556de96c8bcb03f9392b3a8fc6e4c8cbe07a5fae170e28ce51f8",
       "implementation-summary.md": "8821b5849fa01b455d5720a7924bf405afb4cf204df6f9b2af9ae5a3b0f3d505"
     },

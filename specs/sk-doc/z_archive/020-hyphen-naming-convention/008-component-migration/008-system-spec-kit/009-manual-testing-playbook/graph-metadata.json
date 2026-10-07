@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -161,7 +161,7 @@
     ],
     "causal_summary": "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-08-30T15:39:16.787Z",
+    "last_save_at": "2026-10-07T18:13:28.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,12 +169,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:301d329e931c940c9f5ee59c36f73260b7d744300775462099eb0209768abb3b",
+    "source_fingerprint": "sha256:72e53afc294ea2b0f72e1ff2bfa5afd9a834cdf05409560086017873cc53e637",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af2972d92f76fe23474de083ac5027bf05fb437607320d56165ab2343cdb12ad",
-      "plan.md": "157e406ba54e705542289827b3fd90c03e4a71c0d4668d87409c12cce5e352b7",
-      "tasks.md": "63435c3645e41d5be2c9938e1ecfbd83d10500971501e7f5f28b70660199b5b7"
+      "spec.md": "fc794e27031dcaf5792a2900cf14f09223780e05184bc6ba3930e7666ddf5a8f",
+      "plan.md": "ed3801c6afb742f2408a365134dd1e1dd209874cde5ed032026987e944a3e96a",
+      "tasks.md": "759e0b0205ecb93eb4dca97eb19577cd57dd5b40de2b0e53d18ec65b12e47b3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

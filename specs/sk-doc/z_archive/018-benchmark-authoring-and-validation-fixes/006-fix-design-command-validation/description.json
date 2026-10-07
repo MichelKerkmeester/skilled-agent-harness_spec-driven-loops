@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation",
+  "specFolder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation",
   "description": "Packet 005 removed a false-positive from the Lane C scorer's `validateRecipeChoreography()`: the \"wrapper `## CHOREOGRAPHY` section is missing\"",
   "keywords": [
     "packet",

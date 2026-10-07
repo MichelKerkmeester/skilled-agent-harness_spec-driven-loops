@@ -2,12 +2,8 @@
 title: "System-Spec-Kit Bug [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/049-system-analysis-bugs/spec]"
 description: "A comprehensive 20-agent parallel analysis of the system-spec-kit skill revealed 1 CRITICAL bug, 2 HIGH severity issues, and 6 MEDIUM issues that impact the memory indexing syst..."
 trigger_phrases:
-  - "system"
-  - "spec"
-  - "kit"
-  - "bug"
-  - "analysis"
-  - "049"
+  - "system spec kit bug remediation"
+  - "memory indexing dimension bug"
 importance_tier: "important"
 contextType: "planning"
 ---

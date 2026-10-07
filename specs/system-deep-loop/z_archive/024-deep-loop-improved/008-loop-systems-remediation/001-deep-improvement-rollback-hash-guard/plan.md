@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard"
     last_updated_at: "2026-06-29T10:50:10Z"
     last_updated_by: "codex"
     recent_action: "Planned and implemented rollback guard"

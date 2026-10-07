@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/006-mode-consolidation-research"
     last_updated_at: "2026-07-24T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author mode-consolidation research charter"

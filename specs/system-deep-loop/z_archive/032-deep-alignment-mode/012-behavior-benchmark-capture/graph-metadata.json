@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/012-behavior-benchmark-capture",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/012-behavior-benchmark-capture",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The deep-alignment DAB benchmark existed only as scenario contracts and an all-pending `claude-baseline.md` — no leg had ever been captured, so nothing about the mode's real behavior (invocation, presentation, delegation, completion, latency) was measured",
     "created_at": "2026-07-12T12:39:55.000Z",
-    "last_save_at": "2026-08-30T15:39:20.162Z",
+    "last_save_at": "2026-10-07T18:15:13.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66b8148fded251bd496187c9341323ee872b0010fc980d558352d278aebb27de",
+    "source_fingerprint": "sha256:1d0821e2efd2ba3cc4d255d442006855097e098bb722d779addbcbb81971f5a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93972ded3ee14c39658a23ab61606766194048c2da56bd9074f8f7e3c457fab6",
-      "plan.md": "19da4ea7f6c131bbd2638b7f927026b3456aaf76c5c7156e32f8ef37bd3502b6",
-      "tasks.md": "debab35e52d039aa0989c0e3c2f7980d3e30bb344985d4e5320fe402662fc11c",
-      "implementation-summary.md": "e9fb08eaacfa58f0534d07ff183c88c2fae39242611387a724beba29749abaf3"
+      "spec.md": "da11dbd5ac0e7e659f71df1d959427e9c1d44981a2765d29a839f2fb50270bba",
+      "plan.md": "c54a8bab8468e671cfe560720652289d62cdf281abc8b3b64eac0b4445c42831",
+      "tasks.md": "825efbd833c59592a3451987b93567018b35f9633d3bfdb84681143bbb3e2999",
+      "implementation-summary.md": "efe007e77992228d1206d70e5db660902cc1deb129745ede0c6d8e2e62dd8b35"
     },
     "last_active_child_id": null,
     "last_active_at": null

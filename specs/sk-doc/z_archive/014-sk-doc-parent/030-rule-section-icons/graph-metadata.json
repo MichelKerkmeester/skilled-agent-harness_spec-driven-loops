@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/030-rule-section-icons",
-  "spec_folder": "sk-doc/014-sk-doc-parent/030-rule-section-icons",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/030-rule-section-icons",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/030-rule-section-icons",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "SKILL.md rule sections carried an inconsistent icon convention: 13 files used `✅ ALWAYS / ❌ NEVER / ⚠️ ESCALATE IF` while the remaining rule sections were plain text",
     "created_at": "2026-07-14T17:23:02.116Z",
-    "last_save_at": "2026-08-30T15:39:13.949Z",
+    "last_save_at": "2026-10-07T18:12:27.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24b3361fefd92ef1b7182a8203e8fa868c1915cd1caafe0022a05896a40f37eb",
+    "source_fingerprint": "sha256:8a1d5e129325b6d1ee1752f1e0892f19ceea3e5201bbc435ec09252281d60267",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9fc40af2a7fd04da963d7a7392e3eb8a9ad4b5627f32b3591e9d05df75885633",
-      "plan.md": "08c69b9e28f9850e0659357f4fdb079a36e6ce8fa67137027c98bac4c23e2855",
-      "tasks.md": "5b88c90d206997c10a74692cf04f7ac61c485549f42e2f874bb9d244e50f0d4c",
-      "implementation-summary.md": "b0f624cfbde796d8bfba796a0ef1f1c968fd6fc2d23c1721a9d9d50e19bf1a01"
+      "spec.md": "b564d29a47e693d7aa4b5c6cbd8ce4a601022694731f57f850c6703595218ac4",
+      "plan.md": "66c0fdc06d35e179eedfa289cc77a19611e905e6e61283e8e039fae2e5257bee",
+      "tasks.md": "17e8c37c045e44110b41e72a71278678ed24f601f8f4991a35e63bdf9b961ee0",
+      "implementation-summary.md": "95d616cd240356225d620fd02b5d731d8874453640c9cd8c049328b3736ddef4"
     },
     "last_active_child_id": null,
     "last_active_at": null

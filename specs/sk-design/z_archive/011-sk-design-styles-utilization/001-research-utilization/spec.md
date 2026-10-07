@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/001-research-utilization"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/001-research-utilization"
     last_updated_at: "2026-07-18T09:22:48Z"
     last_updated_by: "claude"
     recent_action: "Research converged at 8 iterations; ranked strategies synthesized"

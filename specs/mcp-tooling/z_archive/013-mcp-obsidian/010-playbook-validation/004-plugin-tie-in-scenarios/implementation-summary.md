@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios"
     last_updated_at: "2026-08-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Ran OBS-011/012/013 via cli-opencode deepseek: 3/3 PASS"

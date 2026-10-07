@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
     last_updated_at: "2026-07-18T06:38:11Z"
     last_updated_by: "codex"
     recent_action: "Completed the command asset emitter migration and verification plan"

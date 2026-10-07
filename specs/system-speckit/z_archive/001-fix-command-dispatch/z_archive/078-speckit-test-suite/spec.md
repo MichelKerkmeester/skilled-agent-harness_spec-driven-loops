@@ -152,7 +152,7 @@ Achieve comprehensive test coverage by creating 8 new test files (~3,000 LOC) th
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L3: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -170,7 +170,7 @@ Achieve comprehensive test coverage by creating 8 new test files (~3,000 LOC) th
 - **NFR-M02**: Test fixtures are reusable and documented
 - **NFR-M03**: Error messages are descriptive for debugging
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

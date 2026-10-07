@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/050-persona-injection-enforcement",
+  "specFolder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
   "description": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor,",
   "keywords": [
     "orchestrator",

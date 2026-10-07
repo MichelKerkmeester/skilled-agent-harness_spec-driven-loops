@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration` |
+| **Spec Folder** | 008-complexity-playbooks-calibration |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | Phase H autonomous dispatch |

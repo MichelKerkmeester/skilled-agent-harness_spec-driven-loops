@@ -195,7 +195,7 @@
     ],
     "causal_summary": "All five skills ship a featurecatalog and a manualtestingplaybook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council)",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-08-30T15:39:24.627Z",
+    "last_save_at": "2026-10-07T18:15:06.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c189232f09ef463ccde3eba7563a7d2ea1815424358ffb289e42eb6d5b232f3",
+    "source_fingerprint": "sha256:9acc2ac8ea5270eb71f82619e4ad2e5f38eaf5612e25fc83a057165dda134469",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e97c54c8994af20179aa26eb98aaf4b802148c40c4efc1a23cab82e21a3d37a",
-      "plan.md": "7c253bdba94cc087c6e97ea617112caf23d8fbdcb0f49fd2dccf22dc231bfc8e",
-      "tasks.md": "fb3727dd39759c4acf9770f2f3820b83f972b69d08e6090ad6838c36e3e7d369",
+      "spec.md": "dc77a5238e9ba16f64c4429d6204187cf0222fe6a6b73671040d087c237cb218",
+      "plan.md": "d698785404c5d478e7fa6824619194166989de30cf898b2600611f858a7a8e97",
+      "tasks.md": "238260c6410c6c519a2d1e41b1765fa19c35ad080dd59032a31d143760287024",
       "decision-record.md": "9cbbbfbc35b2bf040040107dc4a2416b34374d8a90a8072a739de3afaef1e443",
-      "implementation-summary.md": "9cae5534d45353dc9c622270a0b0d1d7e33988d82db8c35b7b9d88e7d93a52fe"
+      "implementation-summary.md": "e552cf945a082a658cd76261a6fa33c856e958244422ff7b8057d15c9a6e5af9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc"
+    packet_pointer: "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc"
     last_updated_at: "2026-08-10T18:43:21Z"
     last_updated_by: "codex"
     recent_action: "Defined the approved nine-phase implementation program"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/006-continuity-threading"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading"
     last_updated_at: "2026-07-06T16:24:27.687Z"
     last_updated_by: "codex"
     recent_action: "Implemented Q5-carried-forward and DL-iterative-retrieval-loop"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/006-continuity-threading` |
+| **Spec Folder** | 006-continuity-threading |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 | **Status** | complete |

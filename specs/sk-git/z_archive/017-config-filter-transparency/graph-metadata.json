@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/017-config-filter-transparency",
-  "spec_folder": "sk-git/017-config-filter-transparency",
+  "packet_id": "sk-git/z_archive/017-config-filter-transparency",
+  "spec_folder": "sk-git/z_archive/017-config-filter-transparency",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "A `maintainer-flags` clean filter maps four config files so that the committed blob differs from the file on disk: the working copies carry `\"true\"` for five indexing keys while every commit records `\"false\"`",
     "created_at": "2026-07-28T03:58:40.567Z",
-    "last_save_at": "2026-08-30T15:39:18.655Z",
+    "last_save_at": "2026-10-07T18:14:22.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6088d93559dee17f719767d15e929503992a8aa46363efa1d05e3d49d6d912e2",
+    "source_fingerprint": "sha256:f19feef667e06968b8edb38ae2a9930ca74a0966bcbb2354ca8259559b93faec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "192e2bb27a5d0ac1cfc9c75c517ce5e4d071a4d1848b2fb925fe70fa73c6eeda",
-      "plan.md": "22f8d46b8a70d2e782bbbf9b8b8984f75170c868574b33d299571b5998c073ea",
-      "tasks.md": "9e10e84d92a2e4f49af14f7f7cbc588e46330153d783a47e5c0a411317d315be",
-      "implementation-summary.md": "9aa3b99c5fcefae749088e9494d588a2e8517f7b7933d9f38b055b74f12a10e9"
+      "spec.md": "c6c216ed879cb065fda355d4b10ecca22c8b8ed4917a6650cf38cf8a45d07181",
+      "plan.md": "1263014072a4173ea2f5dbc3f497f67e8e71092bdba7dd56d3e5b3b1c48c1077",
+      "tasks.md": "3cd015d46dd8c67153be693e31957eb3c84218c7d40b53303ae0261458337cfc",
+      "implementation-summary.md": "94d11ab51ba3f87d78ee7166f302226039f75b03a8fcedf62c22dc8ec774c544"
     },
     "last_active_child_id": null,
     "last_active_at": null

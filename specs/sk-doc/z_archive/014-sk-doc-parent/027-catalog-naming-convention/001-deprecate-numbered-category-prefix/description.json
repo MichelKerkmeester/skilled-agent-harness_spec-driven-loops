@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix",
   "description": "Every skill's feature_catalog/NN--<name>/ and manual_testing_playbook/NN--<name>/ category folders carry a two-digit NN-- ordinal prefix.",
   "keywords": [
     "every",

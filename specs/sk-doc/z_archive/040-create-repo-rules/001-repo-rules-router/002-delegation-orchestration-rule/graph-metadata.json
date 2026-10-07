@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
-  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
-  "parent_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The six shipped rule files govern the AI working alone: what to build, what to touch, what counts as proof, what can break, how to diagnose, what to admit",
     "created_at": "2026-08-31T05:37:22Z",
-    "last_save_at": "2026-08-31T11:37:32.792Z",
+    "last_save_at": "2026-10-07T18:14:22.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0ed7abee699f62573aef3538989b8e07e1e5f95f5dc72beb54fd36cc044168d",
+    "source_fingerprint": "sha256:2b9510613fde5f4015c0531e0078ba659cd11776039ef4d7f4050152a43822b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2cc093d3b687ca96e3a9534756cb1c4d43c86be5ed00e07bebc4ccd5af96802c",
       "plan.md": "bafa6e76fbc661d6911b2c8f9a747b763b9a82f9fa283a0a7600eb90d18f6f89",
       "tasks.md": "9ec77357c6d476e5ebb577454e12ba5942400760e8d08863f48578c125fc7d80",
-      "implementation-summary.md": "6c25031c4ded9ead62bdc5d0348e702cba9e1d0986062303acbf81f0602dc4af"
+      "implementation-summary.md": "d5768d18c1b9231e7ef9f00622c91fc2ba7e0009931509be7f7f9cb24d8af7e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

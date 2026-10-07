@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/026-advisor-ingestion-seam"
     last_updated_at: "2026-07-28T16:27:03Z"
     last_updated_by: "claude-code"
     recent_action: "Delivered the watcher mechanism with the real-chokidar proof green"

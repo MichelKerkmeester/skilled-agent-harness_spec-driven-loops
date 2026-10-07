@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The dual-model review confirmed one real runtime defect and a broad documentation-drift cluster",
     "created_at": "2026-07-04T08:06:24.170Z",
-    "last_save_at": "2026-08-30T15:39:25.834Z",
+    "last_save_at": "2026-10-07T18:15:15.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da47fb95cc1a3938f78e67d69402bcd91e597e4656eab9866501dc1b929b4a32",
+    "source_fingerprint": "sha256:f802b358c4495e690dc5c910cb16ab27b01caf91fa5971f4a956a96595c501ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "951cd6974e467323cc994d253edc674301b41b3bc6c8832a661fb41af88cb7b0",
-      "plan.md": "7c5fbacc85945b12a4ed785d699333c5cc4d48649395e4a408c9344591e9c869",
-      "tasks.md": "0295e514ce4a730f670a9b073a61af4147552917d8d1168cfd287ecaf05e6188",
-      "implementation-summary.md": "5cc10e2309a24035d108d0b45e42631f6c273526a620d1d456bd8149e764260d"
+      "spec.md": "904754e55028ca348e45037aa0def66a2eb082551d8879ab4dfc7f11d6c8c1b1",
+      "plan.md": "68f270b78628f9cf91e5710159e999dca8e2428a0db2f1223b656ee8dc0cfe52",
+      "tasks.md": "3f8e5daa505ddc09f4aa8ee1b06a13d557b7a5386ccdd682b90cbb713c8a63fe",
+      "implementation-summary.md": "d39a1975613e164dbb1386aa1003a84c191ef900e0f4f4e08b2d87e6cf6a5899"
     },
     "last_active_child_id": null,
     "last_active_at": null

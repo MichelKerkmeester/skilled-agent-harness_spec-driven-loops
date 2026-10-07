@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/004-html-docx-and-move-detection",
   "description": "Text-only extraction cannot represent headings, lists, tables, links, repeated blocks, or moves in HTML and DOCX reliably",
   "keywords": [
     "text-only",

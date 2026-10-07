@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
   "description": "The authored hub declares three equally weighted external CLI executors and supports explicit multi-executor dispatch, but its compiled contract needs",
   "keywords": [
     "authored",

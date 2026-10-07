@@ -281,7 +281,7 @@ BUG-012 identified magic numbers in scoring weights that should be configurable.
 <!-- /ANCHOR:decision -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-2 -->
 ## Decision Summary
 
 | ID | Decision | Status |
@@ -294,7 +294,7 @@ BUG-012 identified magic numbers in scoring weights that should be configurable.
 | DEC-006 | Fail explicitly in non-interactive mode | Proposed |
 | DEC-007 | Scoring weights in search-weights.json | Proposed |
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-2 -->
 ---
 
 ## Future Considerations

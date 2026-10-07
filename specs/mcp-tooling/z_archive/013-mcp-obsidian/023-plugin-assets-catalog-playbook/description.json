@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
   "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
   "keywords": [
     "mode",

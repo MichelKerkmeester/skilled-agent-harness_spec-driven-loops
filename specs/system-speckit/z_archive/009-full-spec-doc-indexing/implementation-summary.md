@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/009-full-spec-doc-indexing/implementation-summary]"
 description: "Archive repair summary for the Full Spec Folder Document Indexing folder."
 trigger_phrases:
-  - "implementation summary"
   - "full spec doc indexing"
   - "archive"
 importance_tier: "normal"

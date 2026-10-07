@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration"
     last_updated_at: "2026-06-30T15:00:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Research complete; implementation decomposed into flat sibling phases 002-007"
@@ -128,7 +128,7 @@ Audit-trail only; per-phase detail lives in each child's own plan.md.
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 4. AGGREGATE SCOPE (audit trail — per-phase detail lives in each child)
 
 ### Files touched across all phases
@@ -143,7 +143,7 @@ Audit-trail only; per-phase detail lives in each child's own plan.md.
 | 4× prompt templates + 4× YAML dispatch | Modify | 003 | `Resolved route:` headers per mode |
 | (none — procedure doc) | Create | 004 | verification-smoke.md |
 | (deferred — host runtime) | — | 005 | PARKED until triggered |
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 
 ---
 

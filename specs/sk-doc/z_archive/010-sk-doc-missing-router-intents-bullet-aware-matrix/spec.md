@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: 076 sk-doc Router Coverage v3"
 description: "Extend sk-doc router test matrix coverage from 15 to 17 scenarios by adding OPTIMIZATION + INSTALL_GUIDE intents (the 2 of 11 router intents not exercised in 071), introduce a markdown-bullet-aware v3 extractor, and produce matrix_v3.csv across all 51 cells (17 × 3 CLIs)."
-trigger_phrases: ["076", "sk-doc-router-coverage-v3", "extract_metrics_v3"]
+trigger_phrases: ["sk doc missing router intents spec", "sk-doc-router-coverage-v3", "extract_metrics_v3"]
 importance_tier: "important"
 contextType: "implementation"
 _memory:

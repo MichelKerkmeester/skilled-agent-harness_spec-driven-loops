@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes outputs to and promotes from `sk-prompt-small-model/benchmarks/{runlabel}`, and the context workflow loads `promptframing` from the SKILL.md",
     "created_at": "2026-06-28T13:47:21.858Z",
-    "last_save_at": "2026-08-30T15:39:19.358Z",
+    "last_save_at": "2026-10-07T18:14:14.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a2ef79bc8dee39d1ae81223de912f8447b45f7479ea8fa1bf951451e110e93f",
+    "source_fingerprint": "sha256:5069459e9fd2f6ce155b6ba659fd7c99ce971f32adaf5d9c37109e7cfb40678f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07bf5f8e077a4d1f1c764fffbc46cd429a4f900de16c0761439b14436c282fa1",
-      "plan.md": "19732dabaaf620ad178ded8abf7a840fdd60c332e5ebe1baecce60049bd42251",
-      "tasks.md": "2f0bbad61b87182e2a077e9674deff168ca12cf9c1e9e11a375034c752431c31",
-      "implementation-summary.md": "68597feee2689a8144c33ff051a8cc74aad0acd14cecba542244a378ab6d1a44"
+      "spec.md": "3a1b29d15841d6da72b16dff6198812452da326492ae397a0485fe0a8bc654b8",
+      "plan.md": "11574480eac699a3172a022ea63062f097c9b1cbfd7eddc7394129b2f2e13dd1",
+      "tasks.md": "558801db243c70a60c0364680651ce03a0833a8aac8435faf5e8fe48663e1344",
+      "implementation-summary.md": "ec8540896346c6f0e592d9c3b27673aed3b6c57053f99604e6a1816709651281"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace",
   "description": "The `.opencode/commands/speckit/assets/` tree contains `speckitcompleteauto.yaml`, `speckitimplementpresentation.txt`, `speckitplanconfirm.yaml`, and",
   "keywords": [
     "opencode",

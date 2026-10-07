@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-    "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
-    "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
-    "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
+    "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
+    "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
+    "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+    "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
   ],
   "manual": {
     "depends_on": [],
@@ -86,16 +86,16 @@
     ],
     "causal_summary": "Several in-scope filesystem names are not owned by one component subtree",
     "created_at": "2026-07-14T15:16:50Z",
-    "last_save_at": "2026-08-30T15:39:16.188Z",
+    "last_save_at": "2026-10-07T18:13:19.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9dfaa15fdba11ad7f6071726378f36d8a941c184e6c37fa2cfee6a18d916bb1e",
+    "source_fingerprint": "sha256:94bf4257710fd808d4fffc117ee2d76de4fa35b1e9141f1d54ea6a30c0e67c42",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bec418033f72ed59f2de5963f618c900f2f442bf575e4d123b256f0395526737"
+      "spec.md": "b1823f085d675b03d4dc4816ed6d2730edcc7ab96ff9ad082db2c10852b65263"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
     "last_active_at": null

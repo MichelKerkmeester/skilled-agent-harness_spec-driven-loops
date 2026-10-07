@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit"
     last_updated_at: "2026-07-22T13:46:50Z"
     last_updated_by: "claude"
     recent_action: "Filtered the exclusions and dispatched four family authors."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code readmes design prompt speckit plan"
 ---
 
 # Implementation Plan: Code READMEs (Design, Prompt, Spec-Kit Batch)

@@ -2,14 +2,13 @@
 title: "Implementation Summary: Pilot Behavioral Benchmark -- deep-review"
 description: "24-run pilot complete: RVB package (GLM-5.2-max authored), 3-round-calibrated Claude baseline (6 pass, 1 nuance, 1 long-tail), both GPT-5.5-fast legs scored. Headline: reasoning effort is the load-bearing variable -- gpt-med stalls silently and absorbs the LEAF role where gpt-high posts perfect passes on the hardest delegation cells. Six harness calibrations landed in-flight; scorecard.md carries the corrected transcript readings and the remediation backlog seeds."
 trigger_phrases:
-  - "implementation"
-  - "summary"
+  - "pilot deep review implementation summary"
   - "deep review behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
     last_updated_at: "2026-07-02T13:55:00Z"
     last_updated_by: "claude-code"
     recent_action: "Pilot complete: 24 runs scored, scorecard published, retro landed"

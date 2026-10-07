@@ -1,3 +1,12 @@
+---
+title: "Verification Test Plan: Lib Consolidation"
+description: "Execution plan for verifying that the shared module consolidation preserves CLI and MCP server behavior, with baseline metrics and regression checks."
+trigger_phrases:
+  - "lib consolidation verification plan"
+  - "shared module regression tests"
+importance_tier: "normal"
+contextType: "general"
+---
 # Verification Test Plan: Lib Consolidation
 
 ## Metadata

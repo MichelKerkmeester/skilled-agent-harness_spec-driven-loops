@@ -2,13 +2,8 @@
 title: "Feature Specifi [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/065-anchor-system-implementation/spec]"
 description: "Complete feature specification defining requirements, user stories, and success criteria for the Anchor System implementation."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "anchor"
-  - "system"
-  - "implementation"
-  - "spec"
-  - "065"
+  - "anchor system implementation spec"
+  - "targeted memory retrieval spec"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -111,11 +106,10 @@ Implement the backend logic to enable **targeted retrieval** of specific memory 
 - **REQ-FUNC-006:** The response MUST include metadata indicating the token savings achieved.
 
 <!-- /ANCHOR:requirements -->
-<!-- /ANCHOR:id -->
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -126,7 +120,7 @@ Implement the backend logic to enable **targeted retrieval** of specific memory 
 - **NFR-R01**: The system MUST handle malformed anchors gracefully (e.g., missing closing tag) without crashing.
 - **NFR-R02**: If a requested anchor is not found, the system MUST NOT fail the entire request.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

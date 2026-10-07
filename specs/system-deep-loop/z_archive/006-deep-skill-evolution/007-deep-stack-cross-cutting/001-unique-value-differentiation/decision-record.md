@@ -30,6 +30,7 @@ _memory:
 
 > Populate after deep-research convergence. Each ADR must cite file:line evidence + at least one fixture prompt.
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Differentiation strategy verdict — Strategy D (Hybrid)
 
 **Status**: Accepted
@@ -53,9 +54,11 @@ _memory:
 - Strategy cost/risk analysis: iter-006 strategy enumeration <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-006.md" lines="43-84" />.
 - Cost-latency analysis: iter-007 F77 (wrong-skill dispatch cost waste, DANGEROUS) <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-007.md" lines="68-73" />, iter-007 F78 (convergence-threshold cost expectation mismatch, DANGEROUS) <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-007.md" lines="74-79" />.
 - Advisor routing accuracy: iter-008 Candidate 3 (87.5% with prior-art context, 0% wrong-with-high-confidence) <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-008.md" lines="310-340" />.
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Skill-advisor routing rule — Candidate 3 (Lexical + Structural + Prior-Art)
 
 **Status**: Accepted
@@ -109,9 +112,11 @@ def score_lexical_structural_prior_art(prompt: str, context: Dict) -> Dict[str, 
 - Iter-005 fixture suite: 8 fixtures with expected winners and confidence bands <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-005.md" lines="23-168" />.
 - Iter-008 Candidate 3 evaluation: accuracy analysis, comparison table, implementation recommendations <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-008.md" lines="186-340" />.
 - Cost-latency urgency: iter-007 F77 (wrong-skill dispatch cost waste, DANGEROUS) <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-007.md" lines="68-73" />.
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Parity-test invariants — 5 invariants for routing boundary detection
 
 **Status**: Accepted
@@ -172,3 +177,4 @@ def score_lexical_structural_prior_art(prompt: str, context: Dict) -> Dict[str, 
 - Iter-009 invariant definitions with test skeleton <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-009.md" lines="23-408" />.
 - Overlap point coverage: iter-004 F51 (INV-001), F52 (INV-005), F58 (INV-002), F59 (INV-004), F60 (INV-003) <ref_file file=".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation/research/iterations/iter-004.md" lines="27-76" />.
 - Existing skill-advisor vitest patterns: advisor-recommend.vitest.ts <ref_file file=".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts" />.
+<!-- /ANCHOR:adr-003 -->

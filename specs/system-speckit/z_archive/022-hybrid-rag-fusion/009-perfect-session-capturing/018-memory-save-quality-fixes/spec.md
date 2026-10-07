@@ -170,7 +170,6 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -189,7 +188,6 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -222,12 +220,12 @@ Eliminate the eight root causes, preserve the existing pipeline shape, and raise
 
 ---
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - No open questions remain for this completed phase; any newly discovered save-quality regressions should start a new follow-up phase.
 - The unrelated `memory-render-fixture.vitest.ts` failures tied to separate `workflow.ts` work remain outside this phase's ownership boundary.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 <!-- /ANCHOR:questions -->

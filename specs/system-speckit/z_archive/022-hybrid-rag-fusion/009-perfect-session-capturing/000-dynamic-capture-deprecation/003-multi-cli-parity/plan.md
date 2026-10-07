@@ -134,7 +134,6 @@ Additive regression-hardening on existing seams
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## 8. L2: PHASE DEPENDENCIES
 
 N/A. Phase 016 does not decompose into sub-phases. The implementation phases in section 4 are sequential steps within a single pass.
@@ -143,7 +142,6 @@ N/A. Phase 016 does not decompose into sub-phases. The implementation phases in 
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## 9. L2: EFFORT ESTIMATION
 
 | Phase | Estimated | Actual |

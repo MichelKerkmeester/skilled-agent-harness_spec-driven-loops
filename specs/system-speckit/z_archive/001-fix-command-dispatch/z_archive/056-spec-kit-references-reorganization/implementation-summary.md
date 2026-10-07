@@ -7,7 +7,6 @@ trigger_phrases:
   - "system"
   - "spec"
   - "kit"
-  - "implementation summary"
   - "056"
 importance_tier: "normal"
 contextType: "implementation"
@@ -164,7 +163,7 @@ chmod +x .opencode/skills/system-spec-kit/scripts/check-completion.sh
 
 ---
 
-<!-- ANCHOR:verification -->
+<!-- ANCHOR:verification-2 -->
 ## Phase 2: Deep Verification Audit
 
 ### Audit Methodology
@@ -220,7 +219,7 @@ chmod +x .opencode/skills/system-spec-kit/scripts/check-completion.sh
 | Phase 1 | 40 | 69 links + 3 P3→P2 |
 | Phase 2 | 7 | 10 links + 6 other |
 | **Total** | **47** | **88** |
-<!-- /ANCHOR:verification -->
+<!-- /ANCHOR:verification-2 -->
 ---
 
 <!-- ANCHOR:limitations -->

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/011-command-surface-normalization"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/011-command-surface-normalization"
     last_updated_at: "2026-07-01T11:29:29Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Amended: operator confirmed goal_opencode.md as final, not goal.md"

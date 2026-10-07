@@ -18,11 +18,20 @@ _memory:
     completion_pct: 35
     status: "reverted-needs-reapply"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks
 
+<!-- ANCHOR:phase-2 -->
 - [ ] **T-01** — Reapply the `UserPromptSubmit` top-level writer command plus `timeoutSec: 5`. *Note*: reverted in `6cd00aa51b` — reapply required.
 - [ ] **T-02** — Reapply the `SessionStart` top-level writer command plus `timeoutSec: 5`. *Note*: reverted in `6cd00aa51b` — reapply required.
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
 - [ ] **T-03** — Re-validate `.claude/settings.local.json` after the top-level writer commands are restored.
 - [ ] **T-04** — Re-run the standalone writer probe after the wrapper commands are restored so the current packet evidence is live again.
 - [ ] **T-05** — User runs live `copilot -p "wiring smoke"` from a fresh shell after packets 010 and 011 are reapplied.
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:docs -->
 - [x] **T-06** — `implementation-summary.md` truth-synced to record the landing commit, revert commit, and reapply dependency.
+<!-- /ANCHOR:docs -->

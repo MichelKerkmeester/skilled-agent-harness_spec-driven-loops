@@ -11,7 +11,7 @@ contextType: "planning"
 parent: "sk-doc"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/022-code-readme-coverage"
+    packet_pointer: "sk-doc/z_archive/022-code-readme-coverage"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored the phase-parent spec from the track-A research synthesis"

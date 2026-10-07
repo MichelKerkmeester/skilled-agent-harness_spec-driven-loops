@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment"
     last_updated_at: "2026-07-27T21:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Built directly, GLM-5.2 reviewed, all 4 findings fixed, closed Complete"

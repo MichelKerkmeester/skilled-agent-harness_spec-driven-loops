@@ -14,7 +14,7 @@
   "level": 3,
   "status": "complete",
   "parentPacket": ".opencode/specs/sk-design/009-sk-design-claude-parity/",
-  "specFolder": "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/004-mode-packet-refactor",
   "description": "The five `sk-design` mode packets currently provide the public execution lanes for design work, but they have not yet been refactored to consume the",
   "keywords": [
     "five",

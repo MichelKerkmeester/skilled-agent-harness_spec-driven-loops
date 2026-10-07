@@ -146,7 +146,7 @@ Central governance layer with shared policy checks, lifecycle jobs, and audit ou
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -159,7 +159,7 @@ Phase 2 lineage -> Policy model -> Governed ingest/retrieval -> Lifecycle jobs -
 | Governed ingest/retrieval | Policy model | Lifecycle validation |
 | Lifecycle jobs and validation | Policy model, governed ingest | Phase 6 rollout |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -257,7 +257,7 @@ Phase 2 lineage -> Policy model -> Governed ingest/retrieval -> Lifecycle jobs -
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-501: Centralize Governance Before Shared Rollout
@@ -272,7 +272,7 @@ Phase 2 lineage -> Policy model -> Governed ingest/retrieval -> Lifecycle jobs -
 - Stronger safety posture and cleaner rollout gates.
 - Requires more upfront engineering before collaboration features.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/034-skill-benchmark-codex-executor"
+    packet_pointer: "system-deep-loop/z_archive/034-skill-benchmark-codex-executor"
     last_updated_at: "2026-07-17T13:33:12Z"
     last_updated_by: "claude"
     recent_action: "Tier-2 luna breadth + SOL-ULTRA deep-review landed; 12 recs reconciled"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "reference asset template alignment",
       "all caps header conformance",
       "parent-skill smart routing template fix",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "reference asset alignment summary"
+      "reference asset template alignment plan",
+      "reference asset template alignment tasks",
+      "reference asset alignment summary",
+      "all caps header fix",
+      "smart routing template restructure"
     ],
     "key_topics": [
       "reference",
@@ -35,8 +31,8 @@
       "parent-skill",
       "smart",
       "routing",
-      "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -194,7 +190,7 @@
     ],
     "causal_summary": "sk-doc's reference/asset standard requires numbered ALL-CAPS H2 headers (`## 1",
     "created_at": "2026-07-22T09:47:50.164Z",
-    "last_save_at": "2026-09-11T04:36:33.421Z",
+    "last_save_at": "2026-10-07T18:13:27.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:373a108d64dcd962a7484188d62e21aad574afe44f0442d902ad8b096dc8a2bd",
+    "source_fingerprint": "sha256:03d1d8e31f6432265ed64f53bbf837e98f32be00f145b51e46249d7e0a7b4593",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54edeccacb256db002018aa0074bf55e4567fcb5b8172354d54c0aaad52e0bd5",
-      "plan.md": "93762fca1c56500782ee5c9f769f03be100259c74b3a337e33d7d5fc754cce4a",
-      "tasks.md": "e5d6f2fa2c93fe7f5f803f35be64a269d8009ff185097cbbcc1b1b67ebcb7335",
-      "implementation-summary.md": "9992596e158b414f7c58015251f1a5261857216a69fb55a5ac60a9326b85779b"
+      "spec.md": "d4374f37efd95a73a03e24120baa4f4747dba2a65048b917e920c1e105fca170",
+      "plan.md": "dc90a9f627627211bf03d14c8491cb62bb4226c87dd981bb5f18b82083d2dabf",
+      "tasks.md": "8f8c3465aedb8412091cbf96c7ad4f995b9dac8ebdfb46fd048718888eb6b402",
+      "implementation-summary.md": "350355d7871b403a93d75a0e04fbfa502dbfc84522f7ed88732da2ad79f3b050"
     },
     "last_active_child_id": null,
     "last_active_at": null

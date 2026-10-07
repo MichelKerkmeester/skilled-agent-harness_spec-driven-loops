@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation"
+    packet_pointer: "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation"
     last_updated_at: "2026-05-18T15:04:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored 006 tasks.md"

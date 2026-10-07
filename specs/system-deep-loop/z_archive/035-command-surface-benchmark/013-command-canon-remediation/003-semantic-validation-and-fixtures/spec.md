@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/003-semantic-validation-and-fixtures"
     last_updated_at: "2026-07-16T15:00:00Z"
     last_updated_by: "claude"
     recent_action: "Built both checks + coverage fix; re-froze corpus to 15 trees; gates green"

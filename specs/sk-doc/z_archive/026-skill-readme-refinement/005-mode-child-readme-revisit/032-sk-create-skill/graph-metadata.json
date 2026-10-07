@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,31 +47,27 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/README.md",
       ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.1.1.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -96,12 +92,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -199,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "numbered ALL-CAPS H2",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-create-skill README still carries the older tabular reference-card style, opens with an AT A GLANCE table and predates the pilot standard proven by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:50.785Z",
-    "last_save_at": "2026-08-30T15:39:17.848Z",
+    "last_save_at": "2026-10-07T18:14:03.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d01422e01fdb61cb2dffecee53099257500e2caca93e2f9be1c83b792006a39b",
+    "source_fingerprint": "sha256:01687fdf74b1a3cd14a10cda3683713aa58c16ec5d1dc080ed19e1abab39f802",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0069bc350fe4f18ee050928e44777c3c43ef44adf7cedaa3f43310fbebbf8e9d",
-      "plan.md": "c7aac7bffc920e11bab3cf0b98dbeb755d29c96fa09949a898d5286a8256b838",
-      "tasks.md": "bb0ba6b1b909881fb551a2630625b0278f31e3359b1a9c291b891082f876e328",
-      "implementation-summary.md": "e23ffcd850c3cd9f9de646ec72dc71e090f9f0f8b7562824de2497184c62f245"
+      "spec.md": "480def5bfd81ffd450f3774a0ab9061f59453ad3b33bde2995ba4b1707fdf7ac",
+      "plan.md": "eae18d52161a2b61e91190f294e38b9db17161331af25b892cefdf0b672b2e4e",
+      "tasks.md": "55b666bc22d914e8e9b60a2bb2f00ac8f3d52052a08fd66e67381e9ecfd453b9",
+      "implementation-summary.md": "533241874748029611292e4772ce9f1b8e12548ae0ea41928a71629a148017df"
     },
     "last_active_child_id": null,
     "last_active_at": null

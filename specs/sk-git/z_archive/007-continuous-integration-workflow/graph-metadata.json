@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/007-continuous-integration-workflow",
-  "spec_folder": "sk-git/007-continuous-integration-workflow",
+  "packet_id": "sk-git/z_archive/007-continuous-integration-workflow",
+  "spec_folder": "sk-git/z_archive/007-continuous-integration-workflow",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The launch wrapper `worktree-session.sh` isolates every top-level AI session into its own worktree on a dead-end `work/<runtime>/<slug>` branch with isolated MCP databases",
     "created_at": "2026-07-15T04:22:47.296Z",
-    "last_save_at": "2026-08-30T15:39:18.443Z",
+    "last_save_at": "2026-10-07T18:14:18.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:955f7f13aac83fee51d4d63a61edeb1ca74320c49305f2a44949be4e94fff8c9",
+    "source_fingerprint": "sha256:8371555b3b70ec6044678ce9d37a6d1f29d69af023625ecd90480a4651af90e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdfd61abba0f40ec4141fa2b5a37a0c040b7c3fed2b5ccf17bc33594c2edb71a",
-      "plan.md": "d2cda667ea9e636f48a0c4de6a7962e710e8573135e00e90fa8a565db10b5eee",
-      "tasks.md": "cdf4588943202a280352047ba074162e1c505d86341336edc5cb7a2603cbb3c3",
-      "implementation-summary.md": "a59c4572db742a2b52e6de41ac286e5aa7805dccc682866877b38773fce9a196"
+      "spec.md": "a945a7ee6e212de969ffb5aa264160a9bfcd4e15a813babcb2959111ab49bb67",
+      "plan.md": "2456e31fc13944f25080cc6762792f21077decf37ea07cfdca4dd0f18e48fe28",
+      "tasks.md": "d1e6bf2ef42ee8b76460ca675e261a578c383d90086d03c8aac6ba48729c9941",
+      "implementation-summary.md": "f46b5f72ee2fe43b6f48165b2d863e312132ca42c6c9ffe50f04c3a3344e4112"
     },
     "last_active_child_id": null,
     "last_active_at": null

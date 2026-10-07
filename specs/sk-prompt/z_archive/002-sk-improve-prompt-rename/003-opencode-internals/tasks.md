@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/003-opencode-internals"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/003-opencode-internals"
     last_updated_at: "2026-05-06T11:12:38Z"
     last_updated_by: "codex"
     recent_action: "Phase 003 source refs rotated; rebuild blocker documented"

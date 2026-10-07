@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/003-ambiguity-window-confidence-fix"
+    packet_pointer: "system-skill-advisor/z_archive/003-ambiguity-window-confidence-fix"
     last_updated_at: "2026-05-06T13:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec authored"

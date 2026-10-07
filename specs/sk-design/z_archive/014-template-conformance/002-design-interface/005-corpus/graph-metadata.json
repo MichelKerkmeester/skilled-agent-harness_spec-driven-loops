@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/005-corpus",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/005-corpus",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/005-corpus",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/005-corpus",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`corpus/` is not one of the three canonical bundled-resource categories (`scripts/`, `references/`, `assets/`) documented in `create-skill/references/shared/overview.md` §2, so no authored template governs it directly",
     "created_at": "2026-07-27T14:56:08.426Z",
-    "last_save_at": "2026-08-30T15:39:13.020Z",
+    "last_save_at": "2026-10-07T18:12:30.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e34891ad3fa1159c372721b761667e0cffcc9d7505de80ace81f754cd0f5eea8",
+    "source_fingerprint": "sha256:c41123fa87f9a721a1f6d13b480f27a627f1a5f97c4ff87cda0e79a980e58546",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87851933b5b2244fd7767aeb3622d3cd0328a5ef37a6d967a3ba6775080558c4",
-      "plan.md": "e1e8d581926b362e4732931d391db67ac8ea11fa8abf575ab149338f6498773e",
-      "tasks.md": "c9cd495a4fa5068db4a305a1775b5e081543268bd4503126458e5de48e840286",
-      "implementation-summary.md": "be41c09478eea5c138d13b2c98f820ef210c6a98c7b8f301d4a715da8e7546ae"
+      "spec.md": "21279e18765c8d5f4c5c1e061aff040d2e38dcaf1148c742c8aefd27ae6efc99",
+      "plan.md": "876d034f7d86fc66aded62bb760db70af323b99ba1d463cbfdb4e731ed127ca6",
+      "tasks.md": "4a3458fa148ed7f97bcfa4d04210d96c1b227a8f9fec6883ce3c620af0555e99",
+      "implementation-summary.md": "67a14c5b2fe2c42ea7a6f01d5e94e8bc7c05eb53ef72cf5f2ff01837d3ad699d"
     },
     "last_active_child_id": null,
     "last_active_at": null

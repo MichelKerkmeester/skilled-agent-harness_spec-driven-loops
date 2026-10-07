@@ -23,20 +23,24 @@ _memory:
     completion_pct: 100
     status: "complete"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Documentation Impact Remediation for 009 Hook/Daemon Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:how-delivered -->
 ## 1. STATUS
 
 **Complete.** All 13 flagged documentation files updated on 2026-04-23. Dispatch strategy: 13 parallel cli-codex gpt-5.4 agents (reasoning=high, service_tier=fast, sandbox=workspace-write), one per target file. 12 completed cleanly; slot 12 (`ENV_REFERENCE.md`) hung at dispatch with no output and was completed manually with identical evidence base. Per-file applied-change reports live in `applied/` and contain the Changes Applied + Evidence Links + Verification per target.
 
 Net diff across the 13 targets: **+151 lines / −69 lines** (per `git diff --stat HEAD`).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## 2. WORK LOG
 
 Each row links to its detailed applied report in `applied/`. Evidence base: merged-impact-report.md rows + impact-analysis/NN-impact.md per-subpacket findings + underlying sub-packet implementation-summary.md files when cited.
@@ -160,9 +164,11 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 ### T-017 (P2) — Post-05 Codex reconciliation sweep
 
 - **Prompt-embedded guard applied in all 13 agent prompts.** The dispatcher's POST-05 CODEX RECONCILIATION RULE instructed every agent to write the post-05 state (`codex_hooks`-gated native `SessionStart` + `UserPromptSubmit`, `/spec_kit:resume` as fallback) wherever its target file discusses Codex runtime hook capability. Drift check: `grep -n "no lifecycle hook" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/references/config/hook_system.md AGENTS.md` returns no results (verified post-edit).
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:decisions -->
 ## 3. KEY DECISIONS
 
 1. **Parallel fan-out by target file.** 13 agents instead of phased sequential execution. Rationale: each target file is independently owned, diff scope is modest, cross-linking concerns were handled by embedding the POST-05 reconciliation rule in every prompt. Worked — 12/13 agents completed with useful edits.
@@ -174,6 +180,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 4. **Cross-file consistency gates verified inline.** Rather than a separate verification pass, `grep` gates from checklist §Cross-File Consistency Gates were run after all agents completed:
    - `skill_advisor.py` survivors in `.opencode/README.md` (4), `AGENTS.md` (5), system-spec-kit/README.md (0). Every surviving mention describes compatibility/fallback context — verified by line sample.
    - `.github/hooks/scripts` count in `mcp_server/hooks/copilot/README.md` = 0 and in `mcp_server/INSTALL_GUIDE.md` = 0. Confirmed stale Copilot example is fully removed.
+<!-- /ANCHOR:decisions -->
 
 ---
 
@@ -189,6 +196,7 @@ Each row links to its detailed applied report in `applied/`. Evidence base: merg
 
 ---
 
+<!-- ANCHOR:limitations -->
 ## 5. FOLLOW-UPS
 
 None required for this packet. Potential adjacent work for future packets (not in scope here):
@@ -196,6 +204,7 @@ None required for this packet. Potential adjacent work for future packets (not i
 - If `SPECKIT_CODEX_HOOK_TIMEOUT_MS` turns out to be internal-only after operator survey, move from §2 INFRASTRUCTURE to §17 DEPRECATED or prefix with "(internal)".
 - If the 009 tree ever adopts strict template-anchor compliance, this packet (plus siblings 001–011) will need an anchor backfill pass. Low priority — template compliance not currently enforced at merge.
 - Canonical `/memory:save` with structured JSON can be run at any time to refresh `graph-metadata.json.derived.last_save_at` and propagate this packet into the memory index.
+<!-- /ANCHOR:limitations -->
 
 ---
 
@@ -210,6 +219,7 @@ None required for this packet. Potential adjacent work for future packets (not i
 
 ---
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 - All 13 target files modified with non-empty diffs (git status shows `M` for each, cumulative +151 / −69).
@@ -217,6 +227,7 @@ None required for this packet. Potential adjacent work for future packets (not i
 - Cross-file consistency gates (checklist §Cross-File Consistency Gates) pass: surviving `skill_advisor.py` references all describe fallback context; zero `.github/hooks/scripts` references remain in Copilot hook README or INSTALL_GUIDE.
 - `validate.sh` exits 2 with 5 errors / 4 warnings, matching sibling baseline (e.g. 010 exits 2 with 5 errors / 3 warnings). Same template-anchor-schema violations; no semantic regression introduced.
 - Parent `009/graph-metadata.json` lists `012-docs-impact-remediation` in `children_ids`, `aliases`, and `migration.child_phase_folders` (count = 12 on all three).
+<!-- /ANCHOR:verification -->
 
 ---
 

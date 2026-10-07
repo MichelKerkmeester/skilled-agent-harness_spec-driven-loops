@@ -7,7 +7,6 @@ trigger_phrases:
   - "graph"
   - "and"
   - "context"
-  - "implementation summary"
   - "010"
   - "copilot"
 importance_tier: "important"
@@ -22,16 +21,20 @@ _memory:
     completion_pct: 100
     status: "implemented"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Copilot Wrapper Schema Fix
 
 <!-- SPECKIT_LEVEL: 1 -->
 
+<!-- ANCHOR:what-built -->
 ## Current State
 
 Commit `162a6cb16c` landed the packet-010 patch and added the top-level `type`, `bash`, and `timeoutSec` fields to all four matcher wrappers in `.claude/settings.local.json`. Commit `6cd00aa51b` later removed those same top-level fields while normalizing the Claude hook config.
 
 Current `.claude/settings.local.json` again carries those top-level fields. `UserPromptSubmit` and `SessionStart` now expose top-level Copilot writer commands with `timeoutSec: 5`, while `PreCompact` and `Stop` expose the defensive `bash: "true"` wrappers with `timeoutSec: 3`. The nested Claude `hooks[0].command` entries remain unchanged, so the Copilot-safe wrapper shape described in the original packet is live again.
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:verification -->
 ## Verification
 
 | Check | Result |
@@ -44,6 +47,7 @@ Current `.claude/settings.local.json` again carries those top-level fields. `Use
 | `jq '.hooks.PreCompact[0] | {type, bash, timeoutSec}' .claude/settings.local.json` | **PASS** — current file restores the defensive top-level Copilot-safe wrapper on `PreCompact`. |
 | `jq '.hooks.SessionStart[0] | {type, bash, timeoutSec}' .claude/settings.local.json` | **PASS** — current file restores the top-level Copilot writer wrapper on `SessionStart`. |
 | `jq '.hooks.Stop[0] | {type, bash, timeoutSec}' .claude/settings.local.json` | **PASS** — current file restores the defensive top-level Copilot-safe wrapper on `Stop`. |
+<!-- /ANCHOR:verification -->
 
 ## Restored Shape
 
@@ -65,11 +69,13 @@ Current `.claude/settings.local.json` again carries those top-level fields. `Use
      "Stop":          [ { +"type"/+"bash"/+"timeoutSec: 3", "hooks": [...] } ]
 ```
 
+<!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **Cross-runtime smoke still needs a fresh rerun.** The wrapper shape is restored, but the parent parity packet should still rerun its smoke matrix before claiming full operational closure.
 2. **`PreCompact` remains a defensive field-add.** The research evidence still suggested it was harmless insurance even if Copilot does not ingest that event.
 3. **Historical revert evidence remains relevant.** Packet 010 now documents both the original revert and the live reapply so future parity reviews can trace why this wrapper shape matters.
+<!-- /ANCHOR:limitations -->
 
 ## References
 

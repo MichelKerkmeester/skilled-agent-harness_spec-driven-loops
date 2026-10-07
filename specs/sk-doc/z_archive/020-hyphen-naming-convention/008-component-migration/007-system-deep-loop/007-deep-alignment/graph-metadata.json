@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names.",
     "created_at": "2026-07-14T15:17:53Z",
-    "last_save_at": "2026-08-30T15:39:16.707Z",
+    "last_save_at": "2026-10-07T18:13:21.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a9569eb765d9079f941d11978da9018dc7dcdf8532b1dd301eaf4d528951b8e0",
+    "source_fingerprint": "sha256:c89f64e15955d0eb817892e79b287a0a80531d5c0beab393896d30447e58707e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f7b7b82d65de2d0b82854bf1f9da2521c50d9f5d226d3029dd367f3cca35943",
-      "plan.md": "efebc9e614eaa3a851d4364d492eba19a53695fe2172281d009130394c5dc1a7",
-      "tasks.md": "373c225974f3b5ce063a4cef19b85a4c29b168fb78805e99a344085d4b8e2bfa",
+      "spec.md": "9bed86bd256f9d73e6beeac23bacaf53069a054d8aafaad2ab90bcb66e534a2f",
+      "plan.md": "93357c060fb109cd4aca23fa1cd739f92cf57427a012b80484cae161272815e6",
+      "tasks.md": "e682cada35334c58dbd917023c055ddd7eabbbfa2a03d6b80ffe29dd54da9115",
       "decision-record.md": "a80124b719bf083bfcfac4e52f4818a535521240731b02c9e5b85fc587460507"
     },
     "last_active_child_id": null,

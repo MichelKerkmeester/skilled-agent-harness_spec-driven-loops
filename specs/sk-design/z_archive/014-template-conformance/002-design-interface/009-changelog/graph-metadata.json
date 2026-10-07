@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/009-changelog",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/009-changelog",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/009-changelog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/009-changelog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`changelog/` holds exactly 2 files: `v1.0.0.0.md` (65 lines, titled \"interface v1.0.0.0 - Data-backed and Claude Design parity\", genuinely about `design-interface`) and `v1.0.0.0-foundations.md` (21 lines, titled \"foundations v1.0.0.0 - Initial Release\")",
     "created_at": "2026-07-27T14:56:09.053Z",
-    "last_save_at": "2026-09-11T16:41:57.253Z",
+    "last_save_at": "2026-10-07T18:12:33.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e74f202de6bf4628b095198a1af0054450dab90e7bd15a264ef0d89aedb8c45e",
+    "source_fingerprint": "sha256:740b67616f1726c62c77c55604660362bfdb88824d73374e059bb39d00c01961",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eec73461aeaf69f79a5df05cda8a063ac7e95486b115aa0160bd214752a23f47",
-      "plan.md": "921f5582a00ea8501a5cc2add8e2000b7626498ed4f2de37a740d19849286353",
-      "tasks.md": "760b46cde91c7d36e60e90bc2a39e83511d9aaad58d66d1cb42b06e1cb8d0417",
-      "implementation-summary.md": "1682c771fbbde6536b43398bdedad89f867e9dc1637673c609459c90fed716b3"
+      "spec.md": "017036eb87a440274ae95f4dbecc3f07137e41d4fb87c9464d5cc8e7bc0634ba",
+      "plan.md": "1d20c93cb45789a284121b75a599510534cd6c37395034b9dda24469389024a8",
+      "tasks.md": "a84b43d9a3db6dcd937fb54445c6f52652abc5457cabec3b606a214c8286c037",
+      "implementation-summary.md": "214c11292d595edff1e3e7351c78c33dc6a6c6b4203eb62a1b2a17796269ba98"
     },
     "last_active_child_id": null,
     "last_active_at": null

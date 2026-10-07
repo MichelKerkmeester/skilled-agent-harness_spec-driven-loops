@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/007-manual-testing-playbook",
   "description": "`manual-testing-playbook/` is the largest folder in `design-md-generator`: a root `manual-testing-playbook.md` plus 12 subdirectories",
   "keywords": [
     "manual-testing-playbook",

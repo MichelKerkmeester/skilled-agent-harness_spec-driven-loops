@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/024-retention-tightening"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/024-retention-tightening"
     last_updated_at: "2026-07-04T19:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Landed retention default change and manual archive migration"

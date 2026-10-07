@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/004-mcp-server-integration",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
   "description": "The `mcp-obsidian` mode needs an MCP path so agents (Code Mode) can reach Obsidian operations the CLI cannot, exactly as `mcp-click-up` routes",
   "keywords": [
     "mcp-obsidian",

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/018-post-019-research"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/018-post-019-research"
     last_updated_at: "2026-07-25T07:47:34Z"
     last_updated_by: "opencode"
     recent_action: "Completed all approved eight-iteration research and closeout tasks"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak"
     last_updated_at: "2026-06-18T00:00:00Z"
     last_updated_by: "opus-agent"
     recent_action: "Plan finalized; fix + test + cleanup implemented and verified"

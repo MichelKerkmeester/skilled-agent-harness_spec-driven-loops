@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/003-cli-devin-skill-packet"
     last_updated_at: "2026-07-26T17:30:00Z"
     last_updated_by: "devin-cli"
     recent_action: "Phase complete: all 3 implementation phases executed, validators 0/0"

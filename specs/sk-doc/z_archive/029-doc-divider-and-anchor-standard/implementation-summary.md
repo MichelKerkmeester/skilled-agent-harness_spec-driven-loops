@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/029-doc-divider-and-anchor-standard"
+    packet_pointer: "sk-doc/z_archive/029-doc-divider-and-anchor-standard"
     last_updated_at: "2026-08-13T06:20:00Z"
     last_updated_by: "spec-author"
     recent_action: "Closed: flag-gated validator + 1,009-file divider normalization + TOC/anchor strip, shipped"

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/006-command-topology-pilot"
     last_updated_at: "2026-07-15T10:01:39Z"
     last_updated_by: "codex"
     recent_action: "Completed contract and fixture authoring for all four command topologies"
@@ -16,10 +16,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command topology pilot plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

@@ -1,3 +1,14 @@
+---
+title: "Release-Readiness Matrix: Deep-Loop Skills Playbook Validation"
+description: "Aggregate verdict ledger for the 177 deep-loop playbook scenarios: 177/177 PASS across five skills, all critical-path scenarios PASS, remediation lineage for children 007 through 010, and the final READY release verdict."
+trigger_phrases:
+  - "deep-loop release readiness matrix"
+  - "playbook verdict rollup"
+  - "release readiness remediation lineage"
+importance_tier: "important"
+contextType: "implementation"
+---
+
 # Release-Readiness Matrix — Deep-Loop Skills Playbook Validation
 
 > **Executed run (2026-05-27):** all 177 scenarios dispatched and verdicted via `cli-devin` SWE-1.6 + `cli-codex` GPT-5.5, orchestrator-verified. **177/177 recorded, 0 PENDING, 0 FAIL.** Authoritative per-scenario detail lives in each child's `checklist.md` verdict ledger; orchestrator spot-verification evidence in each child's `scratch/evidence/`.

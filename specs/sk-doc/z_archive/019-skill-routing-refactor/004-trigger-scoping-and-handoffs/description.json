@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
   "description": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
   "keywords": [
     "bare",

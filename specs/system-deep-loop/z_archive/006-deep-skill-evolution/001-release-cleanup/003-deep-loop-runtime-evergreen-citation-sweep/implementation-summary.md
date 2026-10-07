@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep` |
+| **Spec Folder** | 003-deep-loop-runtime-evergreen-citation-sweep |
 | **Completed** | 2026-05-24 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

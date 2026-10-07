@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/008-smart-routing-optimization",
   "description": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21",
   "keywords": [
     "sk-design",

@@ -2,12 +2,7 @@
 title: "Tasks: Post-Merge [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/tasks]"
 description: "Task list for resolving 75+ issues identified by 10-agent analysis across documentation, code, UX, and integration."
 trigger_phrases:
-  - "tasks"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "implementation"
-  - "041"
+  - "post merge refinement 4 tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -457,7 +452,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 <!-- /ANCHOR:phase-2 -->
 ---
 
-<!-- ANCHOR:phase-2 -->
+<!-- ANCHOR:phase-2-2 -->
 ## Phase 2: High Priority Code Fixes (P1-CODE)
 
 **Purpose**: Fix code bugs that impact reliability
@@ -561,10 +556,10 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
   - [ ] Clean exit message logged
 - **Verification:** `kill -TERM <pid>` exits cleanly without error
 
-<!-- /ANCHOR:phase-2 -->
+<!-- /ANCHOR:phase-2-2 -->
 ---
 
-<!-- ANCHOR:phase-2 -->
+<!-- ANCHOR:phase-2-3 -->
 ## Phase 2: High Priority UX Fixes (P1-UX)
 
 **Purpose**: Reduce friction in common workflows
@@ -631,7 +626,7 @@ Tasks organized by priority tier (P0 → P1 → P2) then by category (Documentat
 
 ---
 
-<!-- /ANCHOR:phase-2 -->
+<!-- /ANCHOR:phase-2-3 -->
 ---
 
 <!-- ANCHOR:phase-3 -->

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral fallback card or quarantine boundary",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-08-30T15:39:24.866Z",
+    "last_save_at": "2026-10-07T18:15:05.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afd66979589b83621b5079848842438941a0a97fd002d98d8c060a623ef941e7",
+    "source_fingerprint": "sha256:d9c735304a5fdc6914a05582320d686ec516af39ff890c108375f1aa14530b95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfd0df063be33550e028f79e37ab63339c12c6da6cde84d5ca3efb6cbdbd2e3b",
-      "plan.md": "5d954ff54a3eaaabd3fd104040042ea93b37f24dea6cb82d18f8ccb381b03b79",
-      "tasks.md": "c011cdd03fbe413ec755cde32cab6671630be42934226de749a4c7c489afc295",
-      "implementation-summary.md": "5ce0988f1d5b82d23dbeca7052467feed422a5b185ea8292d6233293b494048d"
+      "spec.md": "a5a78d8f24a1b27c32b710ba7bbbcbaec3933dfc9995967c71ac6e6b5d9ed764",
+      "plan.md": "396590d1935e47c1e993d079301cfad515e72d966a700968adb1e9d514a975a7",
+      "tasks.md": "84c120c499870e1a295028240031e7ed7fd291c6d5dccdb091ae517c3af4b8b6",
+      "implementation-summary.md": "167707020a63247d0493f529d76ea22b7d05db72b98eea9356d5c59850abd577"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+  "specFolder": "cli-external-orchestration/z_archive/052-opencode-go-ox-alpha-free-roster",
   "description": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
   "keywords": [
     "alpha",

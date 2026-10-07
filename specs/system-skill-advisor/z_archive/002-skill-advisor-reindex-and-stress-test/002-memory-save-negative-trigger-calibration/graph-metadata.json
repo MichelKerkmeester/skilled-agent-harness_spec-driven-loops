@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Plan phase to reduce memory:save false positives for ordinary file-save prompts while preserving context-preservation routing.",
     "created_at": "2026-05-18T07:49:27.132Z",
-    "last_save_at": "2026-08-30T15:39:26.242Z",
+    "last_save_at": "2026-10-07T18:15:35.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:4f1a322d9b91435d99e61cd9262837aa4b0ef41a30634cc699bf30db510e166d",
+    "source_fingerprint": "sha256:dbff597fb9a3ad5e5e479c5c87fda90722ef1ce6cb0407916139990e302a6cbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc2618abf0682af76b1cc627f54a808a920cf49779cb26762935e22dd97b55d5",
-      "plan.md": "03ff065e0205d1784598f14ff3f2dff576081bb8f5d8f6c000ef9646e6f0fd9a",
-      "tasks.md": "d346100165ea2a9f626e63c9634d77afa7bf64e020e8c420675ba13e3ef0e9ac",
-      "implementation-summary.md": "09a9627a5a448a866da72a5f4f681d71037428f8efce17ecd25f9a19fbd3cb41",
+      "spec.md": "06ca87c28856a2b9566dbce03f15adb3d79f61ccfba71db884a498ef893ed2a3",
+      "plan.md": "fa4b67c9c506095014358e6b2ee10117599a48d2c2994768d3ab3e4dff288e24",
+      "tasks.md": "4557c7d639cd5ed44887de401929d4d4a71380e443fc32cde8105aa867319b5b",
+      "implementation-summary.md": "0fbf3c3b769f145e38c5d10a2a9418413efcd40f57425a227877092359909f54",
       "resource-map.md": "0537476d4eb47f662ac03b6967de61473d8237ff660a8a637fd11abde4b1e469"
     },
     "last_active_child_id": null,

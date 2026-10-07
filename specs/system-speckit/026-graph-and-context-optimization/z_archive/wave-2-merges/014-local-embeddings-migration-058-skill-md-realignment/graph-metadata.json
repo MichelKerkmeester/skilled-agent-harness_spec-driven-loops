@@ -204,7 +204,7 @@
     ],
     "causal_summary": "20 cli-devin SWE 1.6 deep-review iterations identify drift + gaps",
     "created_at": "2026-05-15T15:00:00Z",
-    "last_save_at": "2026-08-30T15:39:32.755Z",
+    "last_save_at": "2026-10-07T18:15:43.804Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:535886d0d585f5738092f91ca8d99fbfaa32673ae2383eb78b50c520da268526",
+    "source_fingerprint": "sha256:429a93d41d9628fd390efecb07d45095fdaf22e64c5f5f97dee657cdfaf33ba4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2959c30e59258b3d50912d5d1cd20e31e076c8fed6267af8f7d4c60fba4935f4",
       "plan.md": "829215443dee625481232a83b785c808ed5e8beb67cda02c99ed042e365a6fc7",
       "tasks.md": "16e64aff0362248ce3d57176244ce9de5292e31d7f22fd635f17d6f848e48960",
-      "implementation-summary.md": "bbc3b7f7cdfb3116d55341840a22251fc08835152d45693376106a6ebc231194",
+      "implementation-summary.md": "66041fc134d2d7d2780c60d48cfaf5aafa09a89240dbfc41f904d2f3b6753454",
       "research/research.md": "586be93dad1f5a28b251cdfb99b3f0d0e53f22046411708f5ebd1ec52f0b5e74",
       "resource-map.md": "ec31c2c28996569a7c5ce017f27707f2d64c02f91c1aad2d3d4b14fead5f69ae"
     },

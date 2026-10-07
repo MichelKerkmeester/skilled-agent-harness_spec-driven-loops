@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
-  "parent_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/003-deep-agent-family-reconciliation",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The `sk-doc/create-agent` authoring guide and template prescribe one canonical agent section skeleton (`CORE WORKFLOW` / `CAPABILITY SCAN` / `RUNTIME PARAMETERS` / … / `SUMMARY`)",
     "created_at": "2026-07-13T14:34:02.945Z",
-    "last_save_at": "2026-08-30T15:39:19.913Z",
+    "last_save_at": "2026-10-07T18:15:13.797Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1395f7a643f929cc845f477721f5c897b5ff52c203e04f7058ea2b33efc5443",
+    "source_fingerprint": "sha256:dbdc78e8c6fd8131a06a8f0beb538078ed3fe7c6257714c97ee219e42c2db380",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c3fd8e3fea9d3bf64bbe2dc3bf835cfab0e76d58d02eb9e266967ee49197b03",
-      "plan.md": "431c3fe471bf34c5379c177ec03abbaf4aa267a125e67a79b9d39de257cfce55",
-      "tasks.md": "4d689eab9d595c71e8ecc2b3d9a71fa8ae5366b4fa6cb4235b860e7551721e8a",
-      "implementation-summary.md": "3d82dd72b3d1ed750f0a79c37c79363ccac6681f7fd4468463cb6401320497f5"
+      "spec.md": "30ee8b3e4dc20a9a87e30f222d0daf1fa852d07d57a2452c3429519b54337acf",
+      "plan.md": "0e44517215c4b1e1ef5bda9f99c763d68cda467cc542902dcb3cb7149b93e2b2",
+      "tasks.md": "c56128ba46fcbff3eb737cb6494f47d7e4a0652f303fd707d02937ba6ce1baed",
+      "implementation-summary.md": "b6d91c6e13583f13c502c4fc2f99dfb4541fd4a5e98893b07fa748af19e011a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

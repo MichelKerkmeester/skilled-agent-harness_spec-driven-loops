@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/012-program-closeout",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/012-program-closeout",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -12,32 +12,50 @@
   "derived": {
     "trigger_phrases": [
       "054 program closeout",
-      "smart-routing benchmark CI"
+      "smart-routing benchmark CI",
+      "054 program closeout plan",
+      "smart-routing benchmark CI gate plan",
+      "054 program closeout tasks",
+      "smart-routing benchmark CI gate tasks"
     ],
     "key_topics": [
       "program",
       "closeout",
       "smart-routing",
       "benchmark",
+      "plan",
+      "gate",
+      "tasks",
       "converge",
       "reconcile",
       "stale",
       "child",
-      "statuses",
-      "refresh",
-      "parent",
-      "rollup"
+      "statuses"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,60 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Job",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Converge the 054 program: reconcile stale child statuses and refresh the parent rollup (children_ids + last_active_child_id), wire a Mode-A + drift-guard CI job (the named only-remaining follow-up), and run a daemon-health-gated canonical memory reindex of the renamed trees — strictly last, after the migration lands.",
     "created_at": "2026-07-09T12:18:01.999Z",
-    "last_save_at": "2026-08-30T15:39:19.991Z",
+    "last_save_at": "2026-10-07T20:53:24.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:929dffd617f8f68c840419a25a55ba96bd399014cb5b3cebd5c0fc47dbc4eb07",
+    "source_fingerprint": "sha256:9850c40d5b267709285e50d9e6c6a8e30a7a53a46da906370be304fcd5ae7344",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "23587225fa18961ccb382651697d702a285f553ecbc10b4adf5df77f88894132"
+      "spec.md": "78a270c644b3b048d957fb6838127705d1d98d3e3dd0a2231e7a152885019fa3",
+      "plan.md": "98624b7d7a60e0a17f51a0d84123854a87a1f2666938b766cbf5c21488ba2dcd",
+      "tasks.md": "8f767d0f2e6d28c732e8d7bb4c25ec588301505114594e83f1f8879908fd7b72"
     },
     "last_active_child_id": null,
     "last_active_at": null

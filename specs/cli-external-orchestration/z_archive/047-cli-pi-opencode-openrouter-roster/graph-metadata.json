@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/047-cli-pi-opencode-openrouter-roster",
-  "spec_folder": "cli-external-orchestration/047-cli-pi-opencode-openrouter-roster",
+  "packet_id": "cli-external-orchestration/z_archive/047-cli-pi-opencode-openrouter-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/047-cli-pi-opencode-openrouter-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -40,7 +40,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster/spec.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".pi/settings.json",
@@ -53,7 +52,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "DeepSeek V4 Flash and GPT-5.6 Luna already exist in both rosters, but only via non-OpenRouter providers (`opencode-go`, `openai-codex`, `openai`)",
     "created_at": "2026-08-17T17:46:03.046Z",
-    "last_save_at": "2026-08-30T15:39:08.046Z",
+    "last_save_at": "2026-10-07T18:11:14.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:251600c89876d1c7c4b99df5bf85d75055e97f49825f6e617c5a758c0a51d25a",
+    "source_fingerprint": "sha256:2603238270471f1981fcbf0b631b535df62e5e548daa09628258a7b1fa2286a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2066df590a90649863c5a9544b62981f6acf7a4673d9662428b11648af95ac6",
-      "plan.md": "084feee1052ca8830e3cf0af6cf730bdb4e618df248cc8116fe934b1458384b5",
-      "tasks.md": "42bd78f300b8079563f3bc31c6758107e86ed2940c2ef3e6e37ae6a1ab1e85e8",
-      "implementation-summary.md": "55862b280dfef8b8ea1e6e8379bd627a8a45c4373aa1c63c368623c21c58564a"
+      "spec.md": "60867b4c826b59a8ba0220192e7f7af00b29cb0b42d9d16625aae56a1b9063a3",
+      "plan.md": "52aed131c4efcf0729ef143f56eadacbe405c8f75b8391421940fecad4eb3699",
+      "tasks.md": "2d3a4f8c141de36f144f810c384b30100c03445cd092baed6146c746f06f3249",
+      "implementation-summary.md": "de1df2dfe9e8be5374aab16d826f7396c303df135ea8d180e05545883dd831b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

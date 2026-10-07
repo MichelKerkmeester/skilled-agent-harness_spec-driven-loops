@@ -1,9 +1,11 @@
 ---
 title: "Tasks: Rust opportunities research"
 description: "Research task record for the Rust styles-DB study."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -20,10 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "styles database rust opportunities tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

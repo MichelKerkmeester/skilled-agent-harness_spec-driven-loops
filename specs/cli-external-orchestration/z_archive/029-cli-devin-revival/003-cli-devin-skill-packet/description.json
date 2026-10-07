@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet",
+  "specFolder": "cli-external-orchestration/z_archive/029-cli-devin-revival/003-cli-devin-skill-packet",
   "description": "`cli-devin` never previously existed as a mode inside `cli-external-orchestration` — before its 2026-06-08 deprecation it was a standalone top-level",
   "keywords": [
     "cli-devin",

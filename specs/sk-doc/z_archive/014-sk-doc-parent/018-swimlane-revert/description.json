@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/014-sk-doc-parent/018-swimlane-revert",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/018-swimlane-revert",
   "description": "The `systemarchitectureswimlane.md` flowchart example was box-widened wholesale (~40 borders) to satisfy the old box-width validator, which counted",
   "keywords": [
     "systemarchitectureswimlane",

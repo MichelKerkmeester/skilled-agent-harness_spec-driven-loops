@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/cli-external-orchestration/047-cli-pi-opencode-openrouter-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/047-cli-pi-opencode-openrouter-roster"
     last_updated_at: "2026-08-18T16:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Reconciled the OpenRouter DeepSeek-Flash-only restriction with origin/v4 via merge."

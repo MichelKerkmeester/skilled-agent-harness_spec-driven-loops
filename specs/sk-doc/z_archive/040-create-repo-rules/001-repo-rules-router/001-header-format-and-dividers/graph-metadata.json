@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
-  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
-  "parent_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,11 +46,9 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "repo-rules/overengineering.md",
       "repo-rules/scope-discipline.md",
       "repo-rules/evidence-and-proof.md",
       "repo-rules/blast-radius.md",
-      "repo-rules/root-cause.md",
       "repo-rules/uncertainty-and-honesty.md"
     ],
     "entities": [
@@ -85,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "overengineering.md",
-        "kind": "doc",
-        "path": "repo-rules/overengineering.md",
-        "source": "derived"
-      },
-      {
         "name": "scope-discipline.md",
         "kind": "doc",
         "path": "repo-rules/scope-discipline.md",
@@ -106,12 +98,6 @@
         "name": "blast-radius.md",
         "kind": "doc",
         "path": "repo-rules/blast-radius.md",
-        "source": "derived"
-      },
-      {
-        "name": "root-cause.md",
-        "kind": "doc",
-        "path": "repo-rules/root-cause.md",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The seven governance files carry 50 numbered `##` section headers written in sentence case (`## 1",
     "created_at": "2026-08-31T05:37:21Z",
-    "last_save_at": "2026-08-31T11:37:33.154Z",
+    "last_save_at": "2026-10-07T18:14:20.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdfd20f62ae94e343b28574bf9b33a340f6574ef73db186f4ae5b53c6a81f0db",
+    "source_fingerprint": "sha256:c08c4d6da0f3c4aaa8841c5fb7122ec1ea43ce5274ce61e66d0875fc5be112bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3453de2ef4979ed1a2eab7c0d7e5ad9df5b79382b33cda0113e973c0727b07c3",
       "plan.md": "4cf69099a3425eb94a3e09b738df6eb17bb45249a1f4b095e68ca1b4fc0d07e1",
       "tasks.md": "cf997a6a9f4493a97060cf2eb1aa1dd48d1869f264e7b3b0ca183a28541d2379",
-      "implementation-summary.md": "868df72ddd827fca84bed8bf2f285c4145796e560f883d5a7a13fe7f43eac317"
+      "implementation-summary.md": "d0d09d021f8ccee3f0c4b7f5a537dc6ffb7be7fb29b4d7d4ff31ab44c6f6b762"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,8 @@
 title: "...c-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/implementation-summary]"
 description: "[Implementer: Summarize what was completed for this task. Document all files audited/created/modified and the nature of changes made.]"
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "task"
-  - "skill"
-  - "references"
-  - "implementation summary"
+  - "skill speckit alignment delivery"
+  - "skill reference audit completion"
 importance_tier: "normal"
 contextType: "implementation"
 ---

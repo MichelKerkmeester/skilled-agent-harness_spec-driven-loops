@@ -1,3 +1,11 @@
+---
+title: "Bug: Checkpoint Database Connection Returns Null [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/BUG-checkpoint-database-null]"
+description: "Bug record for SPECKIT-001, the checkpoint database connection returning null."
+trigger_phrases:
+  - "speckit test suite checkpoint database null bug"
+importance_tier: "important"
+contextType: "planning"
+---
 # BUG: Checkpoint Database Connection Returns Null
 
 | Field | Value |

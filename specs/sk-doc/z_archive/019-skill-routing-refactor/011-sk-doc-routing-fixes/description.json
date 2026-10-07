@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/011-sk-doc-routing-fixes",
   "description": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
   "keywords": [
     "sk-doc",

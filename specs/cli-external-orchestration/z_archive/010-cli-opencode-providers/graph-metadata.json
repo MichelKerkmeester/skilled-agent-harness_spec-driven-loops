@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.md, README.md, references, prompt templates, and the manual testing playbook",
     "created_at": "2026-04-29T10:45:14Z",
-    "last_save_at": "2026-08-30T15:39:08.382Z",
+    "last_save_at": "2026-10-07T22:03:13.134Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27c6ae453d9840a5afe41868a9f29d29f2279db7a2ea52731f9c5cb9cd9ed48b",
+    "source_fingerprint": "sha256:56f29bfe7a51928aed745798c954615dd19d3f666b75b55bc09c39c272398e15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1529b703e967204d628637bcf1d00916bbab8f91ce9b4a6825d269a91ab8454a",
-      "plan.md": "b0bdef2e029bad79ef61257bcbdfcb02603d4466cd5cd9e2314dc6bf8699026a",
-      "tasks.md": "0f1fb70a796304f584235ba90df1775bdb93f2fe999e83fd1dad23810238d166",
-      "implementation-summary.md": "1971861df7d8f1378d9ed6a7e103e2189160aa1e15e7468d4953de99efd34866"
+      "plan.md": "f5911813c0b85fc297964891045daebc1fed7caa31d7b3c446ee5c4e1b7bcba6",
+      "tasks.md": "20947da392714191a72b27ec03d27f5c3d5584a4b7880b341b248d4c2f1cf58d",
+      "implementation-summary.md": "22ddcf2a88f1c01ed006be71af5937a799e272a3b68e036c8695404a672d032c"
     },
     "last_active_child_id": null,
     "last_active_at": null

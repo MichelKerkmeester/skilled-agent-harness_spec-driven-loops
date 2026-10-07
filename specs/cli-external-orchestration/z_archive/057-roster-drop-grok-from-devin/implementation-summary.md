@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/057-roster-drop-grok-from-devin"
+    packet_pointer: "cli-external-orchestration/z_archive/057-roster-drop-grok-from-devin"
     last_updated_at: "2026-08-29T20:10:00Z"
     last_updated_by: "ai-agent"
     recent_action: "Filled all packet docs and completed the Grok removal from cli-devin allowlists and docs"

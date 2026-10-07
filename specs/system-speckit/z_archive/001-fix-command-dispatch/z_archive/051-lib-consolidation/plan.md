@@ -2,11 +2,8 @@
 title: "Implementation Plan: Lib [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/051-lib-consolidation/plan]"
 description: "mkdir -p .opencode/skills/system-spec-kit/lib"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "lib"
-  - "consolidation"
-  - "051"
+  - "lib consolidation migration plan"
+  - "shared module extraction plan"
 importance_tier: "important"
 contextType: "planning"
 ---

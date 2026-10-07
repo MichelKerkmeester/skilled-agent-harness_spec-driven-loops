@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Wait calls are scattered across the deep-loop executor as bare `setTimeout` promises with no cancellation support — a cancelled run must wait the full timeout before cleanup can begin and crash-resume restart can proceed",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-08-30T15:39:24.754Z",
+    "last_save_at": "2026-10-07T18:15:15.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce1616a884a528013fb44b8634f79bd6cfc05f0f31a8903951f9d488a60dc4a0",
+    "source_fingerprint": "sha256:80c53a03b0509759f113c77f90f21c753cbf0c75d7652a43abdb05fbad01aae1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93b07297c9352ce5333d2739f925edf2f97c82c661c09bd84a0874b13059afa4",
-      "plan.md": "e8d52094427d62af7da4a7123a2e4691f8292177441ad4a35898d40b9e300b8a",
-      "tasks.md": "ba9fe8367e92e6314dfbc0816b3c7d0ace809bea781121a15bb870261f6c6cc2",
-      "implementation-summary.md": "8b37cf58917f9d500a9d86ef498ecbdb627ffe5377279cb8108facf03aede157"
+      "spec.md": "55cef4f0111f5d2a8ffdf8052550c93faf4e76410e5271d5e9f20d6fc2a7741f",
+      "plan.md": "6064f54fc00106892dcd70dccbb82478737b27cd7cf95a50459fb17013be435e",
+      "tasks.md": "ed439cfa2a83cdfece2eb5ba630298393010614663d90ee498caa462757bd51d",
+      "implementation-summary.md": "1e36878b40f566c7ebd72f2ba299677fd51935ada5ccd91e238cbe214fe205b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

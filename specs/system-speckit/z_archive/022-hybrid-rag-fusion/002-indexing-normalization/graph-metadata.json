@@ -15,7 +15,6 @@
       "002-indexing-normalization",
       "implementation",
       "summary",
-      "implementation summary",
       "002",
       "indexing",
       "indexing normalization audit",
@@ -208,7 +207,7 @@
     ],
     "causal_summary": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
     "created_at": "2026-04-12T09:02:50.237Z",
-    "last_save_at": "2026-09-10T21:04:46.126Z",
+    "last_save_at": "2026-10-07T20:33:07.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,16 +219,16 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b423dbdeb2d3cd5af765368fdc77bdb935f9252f13ad4dd37cb6512ebb32ad18",
+    "source_fingerprint": "sha256:d70377d41ba0a9d397328707c7ac3ba3aac96ccad7ebd2d1cfcb21237500c87c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54699e178b338f0a0ff68df564265399c3d584f4c0dd7a2af924d4029c8ba9b6",
-      "plan.md": "feafe3ad0e25a7faa2959a78c964e16cee09b626662705f26a1cf048d89fc554",
+      "spec.md": "20e1adf9495174603da6398df198cf15a84ab3c295dd61da52255db7b2d19c86",
+      "plan.md": "7f3789faaedaf30ece3cbf844779ad6039e08bdb9ac1c818f2308299c301955d",
       "tasks.md": "55cfdc8ce632e570df52c59681660073c05f2f9b8911c86ed372f2311594b4da",
-      "decision-record.md": "6519c09c05ec4dd01d7778866ce769817d9287d7061ca93df51d2a920d9fff25",
-      "implementation-summary.md": "fd3fa2612a5ae4c8d9ccb9baeb8054d448bceaabb7851d85e58e9b1c714ed055",
+      "decision-record.md": "4c3acec2bbf3470245c31b430596a4c3c12daba4abb416507060c8856ae51100",
+      "implementation-summary.md": "e9ea0d5f04ade3a4fdd3f6e88b58591ffdd2f773774f4af2b72666aba3bbe21f",
       "research/research.md": "9916bd6a09b634d22b907be20f12feb0a1e5d1a76852041090f6502d8b3c2a21",
-      "handover.md": "77050f4970f9609549ae59d87fa87a346fc84a2a077d55d20952d7e0c41db3f2"
+      "handover.md": "838d5084eb8bb275c17713b9eeb6efb05adff4ffa69f6793b7736b164e7d9794"
     },
     "last_active_child_id": null,
     "last_active_at": null

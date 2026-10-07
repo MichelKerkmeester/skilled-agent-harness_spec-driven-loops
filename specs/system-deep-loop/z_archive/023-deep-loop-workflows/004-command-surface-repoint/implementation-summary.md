@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/004-command-surface-repoint"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/004-command-surface-repoint"
     last_updated_at: "2026-06-16T07:20:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Wrote phase 004 impl-summary from spec/plan/tasks/checklist evidence"

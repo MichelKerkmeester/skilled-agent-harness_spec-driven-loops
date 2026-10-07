@@ -206,7 +206,6 @@ Tester reads playbook → Executes scenarios in dependency order → Captures ea
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -234,7 +233,6 @@ EX-015 ──► EX-016 ──► EX-017 ──► EX-018
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

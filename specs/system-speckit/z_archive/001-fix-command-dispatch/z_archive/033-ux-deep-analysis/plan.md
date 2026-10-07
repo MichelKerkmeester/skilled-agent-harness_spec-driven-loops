@@ -2,11 +2,7 @@
 title: "Fix Plan - UX Deep [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/033-ux-deep-analysis/plan]"
 description: "1. Fix MCP tool naming in all memory commands"
 trigger_phrases:
-  - "fix"
-  - "plan"
-  - "deep"
-  - "analysis"
-  - "033"
+  - "ux deep analysis plan"
 importance_tier: "important"
 contextType: "planning"
 ---

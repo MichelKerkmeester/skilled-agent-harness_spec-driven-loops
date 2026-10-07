@@ -2,12 +2,8 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/plan]"
 description: "Implementation plan for decomposing context-server.js (2,703 LOC) into focused modules."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "context"
-  - "server"
-  - "modularization"
-  - "066"
+  - "context server modularization plan"
+  - "service decomposition plan"
 importance_tier: "important"
 contextType: "planning"
 ---

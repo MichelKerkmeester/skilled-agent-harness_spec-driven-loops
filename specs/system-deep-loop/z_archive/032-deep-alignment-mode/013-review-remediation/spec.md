@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/013-review-remediation"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/013-review-remediation"
     last_updated_at: "2026-07-13T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Fixed F001-F010; all deep-alignment tests green; parent topology reconciled"

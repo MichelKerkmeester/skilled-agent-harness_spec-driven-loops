@@ -81,7 +81,7 @@ contextType: "implementation"
 <!-- /ANCHOR:phase-2 -->
 ---
 
-<!-- ANCHOR:phase-2 -->
+<!-- ANCHOR:phase-2-2 -->
 ## Phase 2b: Extended AGENTS.md Migration
 
 - [x] T029 [P] Replace AGENTS.md in `handover.md` (2 locations)
@@ -94,7 +94,7 @@ contextType: "implementation"
 - [x] T036 Replace AGENTS.md in `skill_advisor.py` comments (4 locations)
 - [x] T037 Replace AGENTS.md in `README.md` (1 location)
 
-<!-- /ANCHOR:phase-2 -->
+<!-- /ANCHOR:phase-2-2 -->
 ---
 
 <!-- ANCHOR:phase-3 -->

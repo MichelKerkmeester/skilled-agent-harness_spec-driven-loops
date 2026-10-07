@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource Map: markdown agent rename
 
 ## Expected Read Paths
@@ -64,18 +65,24 @@ _memory:
 - `AGENTS.md`
 - `AGENTS_Barter`
 
+<!-- ANCHOR:verification -->
 ## Verification Commands
 
 - `rg -n "@create|create\.md|create\.toml|Create-Doc Agent|name: create|name = \"create\"|\[agents\.create\]|agents/create\.toml" .opencode/agents .claude/agents .codex/agents .codex/config.toml .gemini/agents .opencode/commands/create .opencode/commands/speckit/assets/speckit_implement_auto.yaml AGENTS.md AGENTS_Barter README.md`
 - `rg -n "/create:" .opencode/commands .opencode/skills README.md AGENTS.md AGENTS_Barter`
 - `test -f .opencode/agents/markdown.md && test -f .claude/agents/markdown.md && test -f .gemini/agents/markdown.md && test -f .codex/agents/markdown.toml`
 - `test ! -e .opencode/agents/create.md && test ! -e .claude/agents/create.md && test ! -e .gemini/agents/create.md && test ! -e .codex/agents/create.toml`
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:risks -->
 ## Risks
 
 - Stale references can remain if exact searches are too narrow.
 - Runtime or documentation mirrors can drift if only one surface is updated.
+<!-- /ANCHOR:risks -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 - Follow the parent phase order unless the user explicitly changes sequencing.
+<!-- /ANCHOR:dependencies -->

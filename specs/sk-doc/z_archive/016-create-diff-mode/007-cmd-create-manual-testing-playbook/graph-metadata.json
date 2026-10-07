@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
-  "spec_folder": "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/007-cmd-create-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,7 +47,8 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/create/README.txt",
-      ".opencode/commands/README.txt"
+      ".opencode/commands/README.txt",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -84,6 +85,12 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-08-30T15:39:14.194Z",
+    "last_save_at": "2026-10-07T18:12:37.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ecd78b91e9340b7edb6670688853952fdb1757985baf96f7050843b0e7e86fa",
+    "source_fingerprint": "sha256:c1ac8cb1caf5565402545b3cacd6b84a91488684ba2dba0f8f9b0525a6b52934",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ec7c38f3057b812a4a9bb860a1f791a75af65dfaef35260257080c480089f2c",
-      "plan.md": "984b28c9e3438c09b5c3681522ecaf7ac4b9f5a8ac1757530e14b5fb93ebc321",
-      "tasks.md": "ab6249f7ebfde0ef2b6a986c2b306cf2acdb197414d457d5fa97f70cb5d2eec3",
+      "spec.md": "499b32369c909abcec97cfcc98316702f7313ec9a136cca38b26ac7c93658d4b",
+      "plan.md": "a2ec47fe4c8abda373b2dd71b64cf4883292f81521f6cb10e93c61ea50bbc41d",
+      "tasks.md": "deabe6af7b12702726da40941d4258e756fe1786259d21cdb3e68f40ffbbf2a5",
       "decision-record.md": "e8ba446280391b963c9d109bb70cf6e134f26eca41ac83caf66503c831d24469",
-      "implementation-summary.md": "3ae9af36a6fed3081d755696144e2ddfad3cc7d8f389961f2a7e8ed190962de7"
+      "implementation-summary.md": "18174355887ed282082900fa497ce896dd2c19100e2040557fc1c7dde9f58f0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

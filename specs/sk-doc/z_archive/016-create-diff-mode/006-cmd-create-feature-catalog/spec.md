@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/006-cmd-create-feature-catalog"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -47,10 +47,10 @@ This packet defines the implementation contract for a new `/create:feature-catal
 | **Updated** | 2026-03-19 |
 | **Branch** | `025-cmd-create-feature-catalog` |
 
+<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -169,7 +169,7 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -184,7 +184,7 @@ Add `/create:feature-catalog` so authors can generate or update a canonical `fea
 - **NFR-R01**: The generated root catalog and per-feature files use stable folder and file naming conventions from the shipped contract.
 - **NFR-R02**: All declared command paths and asset references resolve cleanly in documentation validation and path sweeps.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

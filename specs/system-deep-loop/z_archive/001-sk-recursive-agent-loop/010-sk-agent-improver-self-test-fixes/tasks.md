@@ -19,6 +19,9 @@ _memory:
 ---
 # Tasks: Phase 010 — Self-Test Fixes and Reducer Improvements
 
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+
+<!-- ANCHOR:phase-1 -->
 ## Bug Fix: Stale Command Path (D1)
 
 - [x] T001: Fix command slug and path in `.opencode/agents/agent-improver.md` line 156
@@ -26,7 +29,9 @@ _memory:
 - [x] T003: Sync fix to `.agents/agents/agent-improver.md`
 - [x] T004: Sync fix to `.codex/agents/agent-improver.toml`
 - [x] T005: Verify `score-candidate.cjs --dynamic` scores systemFitness=100
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Candidate Promotion (D2)
 
 - [x] T006: Reorder Required Inputs (charter/manifest before canonical target)
@@ -37,7 +42,9 @@ _memory:
 - [x] T011: Add scan-integration.cjs provenance note to Step 2
 - [x] T012: Update summary box Step 2 label
 - [x] T013: Sync all promoted changes to 3 runtime mirrors
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Reducer: Family Fix (D3)
 
 - [x] T014: Refactor `inferFamily()` in reduce-state.cjs line 66
@@ -53,7 +60,9 @@ _memory:
 ## Reducer: Fix Accepted Counting (D5)
 
 - [x] T020: Update counting logic in reduce-state.cjs lines 207-215 to count candidate-acceptable/candidate-better as accepted and candidate-worse/candidate-rejected as rejected
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:completion -->
 ## Verification (D6)
 
 - [x] T021: All 8 .cjs scripts parse OK
@@ -61,3 +70,4 @@ _memory:
 - [x] T023: Integration scanner: all mirrors aligned (including .gemini/ if mirror exists)
 - [x] T024: Re-run reducer with Phase 009 ledger: correct family, working plateau, non-zero accepted
 - [x] T025: Update parent 041 spec.md phase map with Phase 10
+<!-- /ANCHOR:completion -->

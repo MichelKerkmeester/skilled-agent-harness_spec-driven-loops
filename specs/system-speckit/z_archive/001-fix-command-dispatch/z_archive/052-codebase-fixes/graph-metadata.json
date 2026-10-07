@@ -20,8 +20,7 @@
       "implementation",
       "plan",
       "tasks",
-      "summary",
-      "implementation summary"
+      "summary"
     ],
     "key_topics": [
       "spec",
@@ -43,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "shared/embeddings.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.js",
-        "kind": "code",
-        "path": "shared/embeddings.js",
         "source": "derived"
       },
       {
@@ -194,7 +186,7 @@
     ],
     "causal_summary": "1",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-08-30T15:39:37.244Z",
+    "last_save_at": "2026-10-07T18:16:27.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:712734522ddcc6cadc8830536221bc845be09cdcb5b0c0601583886076206501",
+    "source_fingerprint": "sha256:6a106cf6fc4ac5f4842533622f2ce3a6d5ac0bb304e6e990fdf94f49b2178525",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6d71a61f11d8e2c0d574db6fa6657eb0652a6833258b5a97bc42d09338580cd",
       "plan.md": "af7de4087d4b7ddd241abdca417397e89c54372a881a9ab4d71fe70972c5235a",
       "tasks.md": "6a4ff4a9d600a66871837c7f6158d1ba260d1face759b35db7c0e22cc3da53ea",
-      "implementation-summary.md": "7ba5c4d1b5490a3a47db40924792ac1d672c43e93384457371637e102f21fdb9"
+      "implementation-summary.md": "9482f963bb90e30e233a5686f60c50db096070ac99606dea0a1517556fa85dcc"
     },
     "last_active_child_id": null,
     "last_active_at": null

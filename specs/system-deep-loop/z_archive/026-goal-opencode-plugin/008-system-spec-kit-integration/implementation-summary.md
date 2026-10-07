@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/008-system-spec-kit-integration"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/008-system-spec-kit-integration"
     last_updated_at: "2026-06-30T18:05:00Z"
     last_updated_by: "opencode-gpt"
     recent_action: "Completed system-spec-kit goal plugin docs integration"

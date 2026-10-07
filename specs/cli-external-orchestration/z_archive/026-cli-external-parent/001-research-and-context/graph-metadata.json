@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/026-cli-external-parent/001-research-and-context",
-  "spec_folder": "cli-external-orchestration/026-cli-external-parent/001-research-and-context",
-  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "packet_id": "cli-external-orchestration/z_archive/026-cli-external-parent/001-research-and-context",
+  "spec_folder": "cli-external-orchestration/z_archive/026-cli-external-parent/001-research-and-context",
+  "parent_id": "cli-external-orchestration/z_archive/026-cli-external-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about two live skills and their referrers",
     "created_at": "2026-07-09T18:58:24Z",
-    "last_save_at": "2026-08-30T15:39:07.054Z",
+    "last_save_at": "2026-10-07T18:09:11.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:692a78f1649151cd5bbdc0f1ac3f061aadaaf869b9fe50083ce6cfaa2b23ee7f",
+    "source_fingerprint": "sha256:e2cba0c5e4c433c9daf9353c3f338627468c8f30bb9786f5df8c247d26ab1491",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b61aa7a004219171a28efe58a593e42164b08fdeab9ca955424c75f8696f6230",
-      "plan.md": "ff65d348cf4350ae320939e46c10162821f697073d9f95bc8b3387d3ff8bf208",
-      "tasks.md": "af5c92789df13f9f96674511f780e0038e8e726c7f3cae74cbaabf41123b2416"
+      "spec.md": "b410abddc2817977b7bc309c95c6ced06893e690ce54464c3022dd5d3e3eed86",
+      "plan.md": "1b7e32cc317bcda2c7c1e49bad29146b0fb81eacc81d62d68f4c06604d226dbe",
+      "tasks.md": "2bd30a3939095a829d4e88c9f792ea29ecd443e01b1d02577fda28f544db9161"
     },
     "last_active_child_id": null,
     "last_active_at": null

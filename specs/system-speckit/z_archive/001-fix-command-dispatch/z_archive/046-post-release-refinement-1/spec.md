@@ -211,7 +211,7 @@ Systematically address all bugs, misalignments, and technical debt identified du
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## NON-FUNCTIONAL REQUIREMENTS
 
 ### NFR-001: Reliability
@@ -233,7 +233,7 @@ Systematically address all bugs, misalignments, and technical debt identified du
 - Bug fixes MUST NOT degrade performance by more than 10%
 - Database migrations MUST be idempotent and safe to run multiple times
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:success-criteria -->

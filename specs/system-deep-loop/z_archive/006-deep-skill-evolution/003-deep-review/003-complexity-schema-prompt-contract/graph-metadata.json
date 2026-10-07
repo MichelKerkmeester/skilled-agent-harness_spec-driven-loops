@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`deep-review` records findings and graph events, but it has no versioned way to prove target selection, bug-class search coverage, ruled-out candidates, or remaining search debt before a no-finding or low-finding review counts as deep enough",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:23.159Z",
+    "last_save_at": "2026-10-07T18:14:21.988Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d639c663910bec29cfb336b5b1671f506aca56debd2dd6162b6cd8d0a05f7fe",
+    "source_fingerprint": "sha256:502c932362892801b0aae16995a88d62256f4f458e58bdc93c59bae58962bb17",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1199598f4b3178992ab5a20095acba8e1d419ff1da195c0900546db6ab4f256b",
       "plan.md": "123f03e464d5771b9384c4dd2b4eea3a353b03591e929b911550819aa4530d20",
       "tasks.md": "ab352c59109a0011fc9ece485b69f51061335f5490e2b54806f62a5866d7e674",
       "decision-record.md": "18e45ad26f68f49d2722a39663590414955feae98308e7d4e6139e87dda7ac24",
-      "implementation-summary.md": "02124ec31c1550ff9ab5d7a0d29c2d311e0f38693d9773ab64530fe8312d50bb"
+      "implementation-summary.md": "49e2cd39d1deb6397bdac9c2e3d65d253de148fc3969c0375a014d480af1b72c"
     },
     "last_active_child_id": null,
     "last_active_at": null

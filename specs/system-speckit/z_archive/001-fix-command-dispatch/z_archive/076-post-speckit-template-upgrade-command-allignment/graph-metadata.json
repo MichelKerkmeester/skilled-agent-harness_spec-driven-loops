@@ -16,31 +16,34 @@
       "post",
       "speckit",
       "template",
+      "command alignment implementation plan",
+      "post template upgrade rollout",
+      "command alignment task list",
+      "post template upgrade tasks",
       "decision",
       "record",
-      "decision record",
-      "implementation",
-      "summary",
-      "implementation summary"
+      "decision record"
     ],
     "key_topics": [
       "spec",
       "post",
       "speckit",
       "template",
-      "decision",
-      "record",
-      "implementation",
-      "summary",
-      "comprehensive",
+      "command",
       "alignment",
-      "opencode",
-      "commands"
+      "implementation",
+      "plan",
+      "upgrade",
+      "rollout",
+      "task",
+      "list"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -49,6 +52,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -100,6 +115,54 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -124,25 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Executive Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Changes Applied",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Section Header Standardization",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -150,20 +195,24 @@
     ],
     "causal_summary": "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture upgrade.",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-08-30T15:39:37.448Z",
+    "last_save_at": "2026-10-07T20:21:15.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e27e82a5665f002c4d52dc010672e5c51146b6a41cefaeb24adf595d9a2f963d",
+    "source_fingerprint": "sha256:9e18195b2fd08a448a4f065d742177ddd3973c05075d14648836715a5216ff4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebd2dfced4e537ac2c53de33e9b973a003fffa085863e0fa15f4ce099fb84a37",
-      "decision-record.md": "fe62ac4de07560e30a7444c5b082b91b4b4147209ed26dd5cc5a494d5670f188",
-      "implementation-summary.md": "2119caebdf27b5369dfa9e8b580348cd1a76a571c111fde2c4d6fb4c4b704516"
+      "spec.md": "1dcb1dbad1d882549f7f664eac20db079817ac1db58e156361bbec08a4f49b2b",
+      "plan.md": "ec316988d52798b5c6e188d896f192557de2f5ae60cf4d31c193e6dbbb853c5a",
+      "tasks.md": "aadc62a6bd3867c98d7da8548592928d469950df562611c2dd47497b12d59cb5",
+      "decision-record.md": "660039b900936a478b38c43bcc8d1fa58f4778d57d3b55abc8aa3612ffced308",
+      "implementation-summary.md": "7e5460d4ca6c0b948dc82f63ce35b43eaf35a5adc181a12181432ecc34484767"
     },
     "last_active_child_id": null,
     "last_active_at": null

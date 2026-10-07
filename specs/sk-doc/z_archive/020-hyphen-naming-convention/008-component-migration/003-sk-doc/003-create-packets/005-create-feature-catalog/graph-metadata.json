@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-feature-catalog packet contains snake_case asset template filenames and a shared pitfalls reference. This phase renames those non-exempt resources to kebab-case and updates packet-local path references without changing catalog schema fields or feature identifiers.",
     "created_at": "2026-07-14T15:22:36Z",
-    "last_save_at": "2026-08-30T15:39:16.436Z",
+    "last_save_at": "2026-10-07T18:13:00.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ab2084d1b1a424f3437f75ec7339d899d7f8fe3dd89a6da666f23bfcfe550f6b",
+    "source_fingerprint": "sha256:2f3219024034cbe951d75064d212b66ea046aa2a9787f6f406bf6162bbecff52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76d302a96b61875c6950955138651e01fc6e68735734cdef7fdb975cd8ea610d",
-      "plan.md": "bc4804190da23c7b80502c57962787de53d4cf385ec1f215b91943eb9fe78fec",
-      "tasks.md": "a63a0a768c0aacb14bebb6def500553e02ef3f89b1c4d242f530256ef93aa7e1"
+      "spec.md": "d4a379116bf373da85e41b1ebd65bd8c6bab58b2898ce8e078b42172539b54dd",
+      "plan.md": "35ead0d446cdb8b832dd88e85c8b8109885fe43ca66571060eae56a66f44b3e7",
+      "tasks.md": "4ea2a5e26f673842cbd33b13bcf7428ba349032160dbcd95f9edb5c0e8132d4c"
     },
     "last_active_child_id": null,
     "last_active_at": null

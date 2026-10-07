@@ -19,8 +19,7 @@
       "archive normalization",
       "tasks",
       "decision record",
-      "normalization",
-      "implementation summary"
+      "normalization"
     ],
     "key_topics": [
       "011-upgrade-auto-populate",
@@ -34,7 +33,7 @@
       "tasks",
       "decision",
       "record",
-      "implementation"
+      "archived"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to Upgrade Auto Populate",
     "created_at": "2026-04-12T09:02:53.565Z",
-    "last_save_at": "2026-09-07T16:19:12.561Z",
+    "last_save_at": "2026-10-07T18:16:40.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35587ae4e42325aea74b47969046c64f864e7835204cb1d7f9d0a662f74784d6",
+    "source_fingerprint": "sha256:275dce091f62a04665954dac3c5a83dc0af33dcbdc28ff840c1cdf3d3f21d098",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c96bc9d7d5d6cc39a6b31cef3f36cbf4735958a18e9b4e98137ab0086737c0d",
       "plan.md": "5d606b4d4bc87d61da9c1b98ab32e74796b3343c4e671eee1234ef142ae07b0f",
       "tasks.md": "4141cae5b4ca890999b78cb8b1adbd33e144dc21dfa27fc2daa934881e5d3a5b",
       "decision-record.md": "bf0e59e7a0da21c6109f5df52f5cddb9422f6867b2d25af6f85ca1371e1918e1",
-      "implementation-summary.md": "e150469ff8a44fd9c490da4fa62601d4a3b70144ee87ff12470663e8b4a62891"
+      "implementation-summary.md": "0c2265ad4b96a29b943b4c8eaf03bf0e552306f0346041c6aec711a4871137c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

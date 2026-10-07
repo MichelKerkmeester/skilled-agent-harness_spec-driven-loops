@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "Executed all seven work units; reconciled packet docs to shipped state"

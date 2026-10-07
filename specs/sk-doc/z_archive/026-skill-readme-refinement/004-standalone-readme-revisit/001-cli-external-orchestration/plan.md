@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration"
     last_updated_at: "2026-08-04T12:45:00Z"
     last_updated_by: "phase-executor-001"
     recent_action: "Plan executed: README rewrite complete"

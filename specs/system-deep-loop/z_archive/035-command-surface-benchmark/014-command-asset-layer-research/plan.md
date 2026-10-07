@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research"
     last_updated_at: "2026-07-16T08:31:41Z"
     last_updated_by: "claude"
     recent_action: "Completed 2-lineage asset-layer deep-research run; synthesized cross-model backlog"
@@ -19,10 +19,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command asset layer research plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/003-node-modules-relocation/implementation-summary]"
 description: "Archive repair summary for the Node Modules Relocation folder."
 trigger_phrases:
-  - "implementation summary"
   - "node modules relocation"
   - "archive"
 importance_tier: "normal"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
-  "spec_folder": "sk-doc/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/029-smart-router-pseudocode-retrofit",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The nested `sk-doc` mode packets carried simplified prose smart-router sections (call-sequence text blocks or terse routing notes) instead of the canonical `def route…` pseudocode that `create-skill` defines in `assets/skill/skillsmartrouter.md` (runtime discovery + in-skill sandbox guard + multi-tier `UNKNOWNFALLBACK`)",
     "created_at": "2026-07-14T16:48:38.460Z",
-    "last_save_at": "2026-08-30T15:39:13.941Z",
+    "last_save_at": "2026-10-07T18:12:33.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:272e7d1df880c8a0a6744d97fa9f84bd63654d753dc5b64631a7f02f39feedab",
+    "source_fingerprint": "sha256:946e29cf891f6cbbfcc6725ba105fc0fe5f3a9cf99a84ab65f25b8f0ec3a5498",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a1bc7376305ec3cb14042b9c370e6e35dcb6b158ca7df92ff05614035a850bf",
-      "plan.md": "3f67c29f141e61e933ba7b5a59da349ebb172c0e6937ddb9b8e8a94793f8b230",
-      "tasks.md": "05ea27c7c69439f392964491b199963369bab210ba70e87859904482d5e8d49b",
-      "implementation-summary.md": "c85392b1c00635b1f59d023086cea4859a369df7df1552ba692e752c855103ae"
+      "spec.md": "b86d46da4e28b00fe527db0a12c48a375e51ecef34b641a6c245993a096f0ef7",
+      "plan.md": "62fb1be83f3bc3acea9e23d198c9105d55138ec8f48036b2892aa6c844d77f14",
+      "tasks.md": "225047f815e2da67738aaf72f1cd37458ba54438e9e68c785afd8e4fbb4c4ec7",
+      "implementation-summary.md": "dac700cf10d5d2664a03c6ac93bb3d53ef33c0c9d55a57b7d70a9b4c9f685020"
     },
     "last_active_child_id": null,
     "last_active_at": null

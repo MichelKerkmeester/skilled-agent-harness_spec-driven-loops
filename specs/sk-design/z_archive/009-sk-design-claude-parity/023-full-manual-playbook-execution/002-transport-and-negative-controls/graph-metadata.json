@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -175,7 +175,7 @@
     ],
     "causal_summary": "Phase 023's parent scoped this child wave to 5 dispatches spanning two different playbook categories: the Open Design transport mode's routing contract (`MR-007`) and four advisor-integration boundary checks (`AI-002`, `AI-003`, `AI-004`, `SR-001`) that prove `sk-design` neither false-fires on pure-code/documentation/backend-review prompts nor skips its own mandatory shared-resource loading contract when it does legitimately win",
     "created_at": "2026-07-07T15:18:40.673Z",
-    "last_save_at": "2026-08-30T15:39:12.338Z",
+    "last_save_at": "2026-10-07T18:12:15.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61df1853ca9d40f44286c3dfb6ec64eeb879ed5196d3035badb627abb605674a",
+    "source_fingerprint": "sha256:47faf83bf04b160fbaa02bd579b2e5fad3850d2fd649519eda17618c8860104f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecea4574a1a11f16da1f25e93c4d4722c009293db76247487a321afc1c4264e7",
-      "plan.md": "6c7a31f76ac609132ab66891894509e559213dc46e803766f1aaec38127f642e",
-      "tasks.md": "bfc646149b0fa2f4bc4d3d71c5f0b5c2f60ed115913a745a368e7c4404b4bc7f",
-      "implementation-summary.md": "4b0420fc0dc4450944a8888da37a48e999e1589ee7054f3e74e8142d24f675e1"
+      "spec.md": "9ab56bc161ede6c3687053b5b9d7f4b19b0bb1f4186a1a097e083aeeba5dd418",
+      "plan.md": "1cb89afd7b8efc87f11c292e2e12ddab430b58b6c131190aab2dad320b8d9a36",
+      "tasks.md": "6b499a1a8edce0166f535d6c6470433356760bdd100bb6f61e224f4d5206a1a1",
+      "implementation-summary.md": "8ee2c3842da1f7536aa49ab8192a05e51879621d824fd5ffe50f1d22687212f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

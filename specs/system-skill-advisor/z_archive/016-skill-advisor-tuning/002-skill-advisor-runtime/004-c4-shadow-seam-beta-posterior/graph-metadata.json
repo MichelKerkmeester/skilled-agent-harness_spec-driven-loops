@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The Skill Advisor's shadow learning pipeline is structurally half-built and disconnected",
     "created_at": "2026-06-19T06:06:27.153Z",
-    "last_save_at": "2026-08-30T15:39:27.386Z",
+    "last_save_at": "2026-10-07T18:16:07.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +199,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7167cdf1fa994729133162c06934c7683a9b67e8f31ccd766a16925e93241f3e",
+    "source_fingerprint": "sha256:a30f64566c1c366bdfa233746377bf544d1e630cf51b99fac1ee5cd288497301",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f54f050ea28b6199fef2a9c274d9e7badcadf1f4ec4021bbb512ea04b017a0ad",
-      "plan.md": "927e0100817caa3f433aa39351f684c239447d31690f4351d461b860bbe598f0",
-      "tasks.md": "a77125ab27da2ac1bd514759aef64a948378162d3321c81fa177dc4b4a98ceef",
-      "decision-record.md": "046236ea8ee43fb25400de57eec1f2fd0dd35411a59d504d208e1bb7cc0ea638",
-      "implementation-summary.md": "c219d2fa2659fc4efc73da234f334f665a6299a863c2dd29719d27c4f3e5b5a2"
+      "spec.md": "dbbbf6ab75f87af158c07bb3335d271881224c8cfe60f2fc4c0b4f358c86b3ea",
+      "plan.md": "5ac3f1a452724380a4f7db2470402c7a3baea0797a1ccc2683f2a8849c31a702",
+      "tasks.md": "f44e5ace7e42935886daeb4ecb55cca23c91a85def3956b8d73b36fa089248bd",
+      "decision-record.md": "f88ef5c87c9acd96e71364e8741d55e310b893e415fc99a7554b45073f1e4040",
+      "implementation-summary.md": "11b55ca0677f76633a503ac2f15701f05d5dfd732b912b57e42cea97aafa2e56"
     },
     "last_active_child_id": null,
     "last_active_at": null

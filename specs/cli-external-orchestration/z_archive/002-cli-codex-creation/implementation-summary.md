@@ -4,7 +4,6 @@ description: "Closeout summary for cli-gemini model consolidation and cli-codex 
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "005"
   - "cli"
 importance_tier: "normal"

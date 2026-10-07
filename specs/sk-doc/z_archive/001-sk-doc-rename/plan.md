@@ -158,7 +158,6 @@ Preflight artifacts established baseline -> ordered path migration executed -> f
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -175,7 +174,6 @@ Phase 1 (Setup) -> Phase 2 (Core) -> Phase 3 (Verify)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

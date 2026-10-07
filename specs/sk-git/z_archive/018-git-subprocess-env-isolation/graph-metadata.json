@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/018-git-subprocess-env-isolation",
-  "spec_folder": "sk-git/018-git-subprocess-env-isolation",
+  "packet_id": "sk-git/z_archive/018-git-subprocess-env-isolation",
+  "spec_folder": "sk-git/z_archive/018-git-subprocess-env-isolation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -49,9 +49,7 @@
       ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
       ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py",
       ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     ],
     "entities": [
       {
@@ -145,18 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "session-enrichment.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-detection-fixes.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C <dir>` to git",
     "created_at": "2026-07-29T06:06:33.668Z",
-    "last_save_at": "2026-08-30T15:39:18.663Z",
+    "last_save_at": "2026-10-07T18:14:23.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b89fa96e2e526c80c5453c6d8d02cbdc9d7110e8c03b4bdd1af8c38c50e5261",
+    "source_fingerprint": "sha256:09d5d34190556ba26aad24a1629df111304a8443d9e9b45ee7beb35e529151c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20816f6d87aac04c0a8b3fb42dc3afe7ae94caa46dba8cc40609ae41ca603391",
-      "plan.md": "c0226b0f4e762e88c3dafced4676980daacb2a2bd803c21206dfa3201decd18d",
-      "tasks.md": "cfafa14a4e7c315be8b8b4d47b1e18559ed285b0f25d7832479cc347aa8cbbb4",
-      "implementation-summary.md": "a26f4c16b0c4cd6ee13230734d4dcf8c9c49098f124f65a2b22a1b16f5ca8ac5"
+      "spec.md": "fb5c0121af9e8bc6411c48974b9b5a3e982cbe386593ccc5528078ecb4917fad",
+      "plan.md": "0a84c7d864728ed92386b4493bc0b7c03310a64c0e0628c9ab3f5afab53fb621",
+      "tasks.md": "53ae5c34fd1d72a477f0c496f2d179507a2daaceccc6e3a3ecf5201d1a02658c",
+      "implementation-summary.md": "318448f6dfce525f04c87765ef0a5590484aa4b050f3cefdda215408ecaee9bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

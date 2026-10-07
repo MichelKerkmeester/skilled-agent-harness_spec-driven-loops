@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/004-design-md-generator",
+  "specFolder": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "description": "`design-md-generator` is the largest and most structurally varied sk-design mode: a 3-file packet root (`SKILL.md`, `README.md`, and an",
   "keywords": [
     "design-md-generator",

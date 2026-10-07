@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep",
-  "spec_folder": "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep",
-  "parent_id": "sk-doc/025-skill-doc-currency",
+  "packet_id": "sk-doc/z_archive/025-skill-doc-currency/004-hub-surface-drift-sweep",
+  "spec_folder": "sk-doc/z_archive/025-skill-doc-currency/004-hub-surface-drift-sweep",
+  "parent_id": "sk-doc/z_archive/025-skill-doc-currency",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +39,7 @@
       "disagreement"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,17 +48,15 @@
       "baselines/link-resolver-pre-edit.txt",
       "baselines/link-resolver-post-edit.txt",
       "baselines/install-entries-post-edit.txt",
-      ".opencode/install-guides/README.md",
-      ".opencode/install-guides/install-scripts/install-all.sh",
       ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
       ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
       ".opencode/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
       ".opencode/skills/sk-code/sk-code-webflow/references/performance/third-party.md",
       ".opencode/skills/sk-code/benchmark/README.md",
+      ".opencode/skills/sk-design/sk-design-md-generator/SKILL.md",
       ".opencode/skills/sk-git/references/quick-reference.md",
       ".opencode/skills/sk-git/assets/worktree-checklist.md",
-      ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
-      ".opencode/install-guides/MCP - Chrome Dev Tools.md"
+      ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md"
     ],
     "entities": [
       {
@@ -104,18 +102,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install-guides/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "install-all.sh",
-        "kind": "script",
-        "path": ".opencode/install-guides/install-scripts/install-all.sh",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
@@ -134,6 +120,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
         "name": "quick-reference.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/quick-reference.md",
@@ -149,12 +141,6 @@
         "name": "gitkraken-mcp-integration.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
-        "source": "derived"
-      },
-      {
-        "name": "MCP - Chrome Dev Tools.md",
-        "kind": "doc",
-        "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
         "source": "derived"
       },
       {
@@ -204,11 +190,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
     "created_at": "2026-07-30T19:29:17.197Z",
-    "last_save_at": "2026-08-30T15:39:17.408Z",
+    "last_save_at": "2026-10-07T21:19:44.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:737d5f8ecfcbf3cd1928789cea5ced0b3fa97effe911e8c772ff743fdf6b18d0",
+    "source_fingerprint": "sha256:e80d53503211557d0395941fe3dd3dd7c437b81982ecdaedf0367dfd2600d9d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8392f20928db5ade89b0be604f3311f13dc404720f64e84d3fd2e7e032c5bfb3",
-      "plan.md": "80048765bac8e03d31c5c216fc2e00dce8416d8359ff01357b7f0d9b7c133aaa",
-      "tasks.md": "a916d53efa7a71440fc2321f01fd6825c0c4fb1fd64d5d1ef9b040df37794355",
-      "implementation-summary.md": "07ac62316d7b012dda93bb0e8ad7b7700d01e022522e1fe1af44751cfbd9c274"
+      "spec.md": "b0c9a92b9369652031f4ea386dd10b3d7fd12c955a0fa48d3cb8cbb0bdd07677",
+      "plan.md": "2e9dc93a4f6c6934ef867d2d91fdccade0076cf69104828283e43cf53bc3f3e9",
+      "tasks.md": "9cbe276c5aac27709411ee428c62f96b34085107a7aa3bf696f95876915f6b78",
+      "implementation-summary.md": "613e38b5fac06bce7aa2e4c61fb9a5d172d7c23972944f579a41fb79c9e3b87a"
     },
     "last_active_child_id": null,
     "last_active_at": null

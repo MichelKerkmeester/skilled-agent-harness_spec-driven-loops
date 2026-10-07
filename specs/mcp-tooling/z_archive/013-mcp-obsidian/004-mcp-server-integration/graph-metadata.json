@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/004-mcp-server-integration",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/004-mcp-server-integration",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/004-mcp-server-integration",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` mode needs an MCP path so agents (Code Mode) can reach Obsidian operations the CLI cannot, exactly as `mcp-click-up` routes documents/chat to its `clickupofficial` MCP",
     "created_at": "2026-08-02T05:50:28Z",
-    "last_save_at": "2026-09-07T16:16:57.232Z",
+    "last_save_at": "2026-10-07T18:11:22.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbbc34e16c3e22896cb1eabf0414b1ecba8466de49158feae5f9dcfde4005a94",
+    "source_fingerprint": "sha256:a9af6ea35960c3e6c4097de7adbb247d7f3cf8c4f3fd3eb9170657f9b13427c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9348f6e151fd7cbe2e7375a8f8e824a72a848a733f1189ceb4a606f3cf595547",
-      "plan.md": "4d971665ff62cae287fc01c9b2aede8c06acdbe4aaba3cded7ff65916b70027b",
-      "tasks.md": "4d8f6b781a2ff3bd732895a1a87e4a57350683b8380adde4ca8a5a58e46b8aca",
-      "implementation-summary.md": "6bee5fe9fdd9ea4256e09ff570629a67754c43debc25c00827d5822523cc5cb6"
+      "spec.md": "0f7c622090e36f22b9167e926cf5bd10be2e18c95c3ec291c6a5909ca4dbe79b",
+      "plan.md": "4578f484d21e8fe7f96c6d89013e7b82e3cd5cce0d05baf42f057a384a9607fd",
+      "tasks.md": "2e4a175df16a8d27519b8f0fabc1a80f61eb16a96e75e5c99416762c8e11acb5",
+      "implementation-summary.md": "6c1416365f38bec37d99158e3db38005a0b4f6bd39b454fab316627e1f9124a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

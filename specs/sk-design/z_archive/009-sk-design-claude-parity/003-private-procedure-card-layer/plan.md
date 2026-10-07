@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/003-private-procedure-card-layer"
     last_updated_at: "2026-07-05T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Implemented private procedure cards and verified the phase evidence."

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode",
-  "parent_id": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/003-routing-optimization-mode",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/003-routing-optimization-mode",
+  "parent_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,7 +42,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
-      ".opencode/commands/deep/skill-benchmark.md",
       "assets/cross-skill-routing-audit.md"
     ],
     "entities": [
@@ -74,12 +73,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/skill-benchmark.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Lane",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane C skill-benchmark (`/deep:skill-benchmark`) diagnoses routing quality but is diagnostic-only — it emits a ranked report and never proposes or applies fixes",
     "created_at": "2026-05-23T13:10:01Z",
-    "last_save_at": "2026-08-30T15:39:19.958Z",
+    "last_save_at": "2026-10-07T18:14:47.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0b910689c4bdb2b3e66fe148bc04d9e0604388c41bc818ec348230be19f86d8",
+    "source_fingerprint": "sha256:daf51ff96d259b5cc92b9b20f98454cf27d651263ba33d0f39a9d8c535c58815",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9a3ea387744b9623266add32d30212f160583ca1fcd92512d4fadc5e0a4b032",
-      "plan.md": "da61a6e8fc63775bf8d42fd39770f041e15b7af90adaf56b4dd95b3117ec4ab5",
-      "tasks.md": "9300336aec8a8fca9a6c46fa0435bf6cacfab9fd8277c61d7d2084686e6d5899",
-      "implementation-summary.md": "16a547100459806b8228ae024f1b5017577c008357c06e4416ccd6cd5a997fdd"
+      "spec.md": "a948f8a661ba9af98e853815fc18fabe47e59bd4b528cb618225527a4b173442",
+      "plan.md": "01bf24f785c78cf06d0c85656573f84baba09f5e76eedea2fbc709318c1dc78e",
+      "tasks.md": "016a0474aa088a76b8c582e3501085026d5bcaa59e2b303dda746ee2d22dae82",
+      "implementation-summary.md": "675deb161cb60b8f987250376145fd76401674f648d6dd2ce3bcf6498f9598c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

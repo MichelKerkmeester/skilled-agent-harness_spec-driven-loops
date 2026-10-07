@@ -7,6 +7,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: cli-opencode provider realignment
 
 <!-- SPECKIT_LEVEL: 1 -->

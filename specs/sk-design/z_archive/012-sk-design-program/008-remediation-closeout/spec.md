@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/008-remediation-closeout"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/008-remediation-closeout"
     last_updated_at: "2026-07-27T09:00:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Executed Phases 1-4 (styles, benchmark, 006-warning, --level fix); Phase 5 Planned"

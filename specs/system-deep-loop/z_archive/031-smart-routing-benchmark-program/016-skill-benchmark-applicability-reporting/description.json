@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+  "specFolder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
   "description": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an",
   "keywords": [
     "lane",

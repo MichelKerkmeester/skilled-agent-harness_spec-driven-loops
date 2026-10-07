@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes only numeric lane fields and Gate 2 routing decisions are hard to debug (`handlers/advisor-recommend.ts:177-184`)",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-08-30T15:39:27.249Z",
+    "last_save_at": "2026-10-07T18:16:07.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a848d85c3e2183b3876f1d539fe4a05a804c4b2b3f77d8d52bdcd26202c094a",
+    "source_fingerprint": "sha256:fce27e4a39d17c846e41f5b226d32d2b57df5858ea471d17fa31aa8cce1b9fbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4719dc909200faaee2003b69a45ea5d7be9bd9d421a1d18431017f9b74959d49",
-      "plan.md": "5b8057aac45ed62eebf6f32d7cfedeca8314da65d47aeb30f40b85ba9964305c",
-      "tasks.md": "5f45752d06543fef38339b9d6c71895d14dcb1e568e57fc796767a71d1a65067",
-      "implementation-summary.md": "66bf947646b8e40e7c1bcec4de4248d7028b6f5a2c6616f543391d704388f733"
+      "spec.md": "15cd27dacac8b183841e2b6d136b916c9cd764328e48ef3aac0fcd6bfe2d691d",
+      "plan.md": "9f9a4d37ba5c134250a802c2e52b74a99ca10c3133b5617ff0030ee99b34634d",
+      "tasks.md": "83d437775d7dfe9e54bee21105d2b284c6b652cfe23f959d3ececf49a6c750ec",
+      "implementation-summary.md": "c4c8a37b6deb9dbd7e46502ae5e16d6481360589f7ce8ec9cd86b5c3ab1fe1f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

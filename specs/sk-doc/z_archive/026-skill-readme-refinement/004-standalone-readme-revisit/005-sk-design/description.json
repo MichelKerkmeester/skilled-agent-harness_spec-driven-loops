@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
   "description": "The sk-design README at `.opencode/skills/sk-design/README.md` still carries the older tabular reference-card style",
   "keywords": [
     "sk-design",

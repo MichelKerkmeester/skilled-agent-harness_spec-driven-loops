@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/001-playbook-realign-and-relocate",
   "description": "The styles manual-testing playbook lives at `.opencode/skills/sk-design/styles/docs/manual-testing-playbook.md` (~49 lines, version `1.0.0.0`)",
   "keywords": [
     "styles",

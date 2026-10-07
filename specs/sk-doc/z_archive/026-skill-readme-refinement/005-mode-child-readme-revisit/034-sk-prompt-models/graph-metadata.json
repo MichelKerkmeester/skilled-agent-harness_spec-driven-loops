@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,29 +46,25 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/tasks.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -87,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -196,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-prompt-models README still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:51.614Z",
-    "last_save_at": "2026-08-30T15:39:17.862Z",
+    "last_save_at": "2026-10-07T18:13:49.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de6d6af6d3e327ef7b09eaff6c58bdc25bdb2de1d8b4c80249024818d6521e9d",
+    "source_fingerprint": "sha256:f527c4095855b4bc7b018a6038011e75c849856b75524144da96821f8599df8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3935449e7c734b4d167a16c4767cf864b2d7a2a091a87d207d2c47c58e1a5c3b",
-      "plan.md": "59090c643bc2b2190377a4c157ad359c57de06d43985d326a759de4b64391bb3",
-      "tasks.md": "2932c13b2d3c218ae0e6b7999793d57886c3622752f647bfcb75fbc2ab7cee1a",
-      "implementation-summary.md": "59ebee27f08cf0cf444bc4e4c84685899f5e5765aeddfc374bae7d511b6a6267"
+      "spec.md": "f0d3e0037d7abe2ca0d4ec9dc146f7d6ba94a77e7d69e44446824b0a9bad1d31",
+      "plan.md": "0b9da1e8b20e5d97507820fe26d17d18ceff784d8da4fa066e88dd0d75b3f2e3",
+      "tasks.md": "7ecf42b0acc8ac0607a3e03f6033e43f1bef40dfa13db7a0824a99c5bcee511a",
+      "implementation-summary.md": "8b8928d0964ba4da9eb60b202a56d2047c65ea1704283edb4d228288bd5a515c"
     },
     "last_active_child_id": null,
     "last_active_at": null

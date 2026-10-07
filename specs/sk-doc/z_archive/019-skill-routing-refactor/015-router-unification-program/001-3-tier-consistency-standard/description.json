@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
   "description": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
   "keywords": [
     "routing",

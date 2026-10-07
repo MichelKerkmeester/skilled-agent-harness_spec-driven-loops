@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/004-no-new-snake-guard",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/004-no-new-snake-guard",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-08-30T15:39:16.125Z",
+    "last_save_at": "2026-10-07T18:13:04.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4cf15ae9f6cd5efc5267793c6c88ec5ac033c3efd923cf7ab77c7ef57367fb2b",
+    "source_fingerprint": "sha256:ef7ff08584c26066c805b5cdffd146716242a95a6fd2414c8850d5c4537da610",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd33f000df0f410ef98577247569ff7fc00b1a921dc0ee483575c41bc2394755",
-      "plan.md": "792056ee9bf332a8c07442a67067d546225a2555e05b215232fc63ab406cb364",
-      "tasks.md": "6ce18fb3d601f4ad44a033b151e6a0ce549164ca585442a798d1fabe921321fe",
-      "implementation-summary.md": "a6e65e3537f4400bd16f977745e5fda9d8129a634659b81a5ebc04ce67d2d553"
+      "spec.md": "701829214eb0c43356176f212368b669d40b5c02554d7e545c43cd148014d68d",
+      "plan.md": "eb73ded292c5a745d7113ef1e4e055c27f2a4e8310e77c3c9b480043d21b2eff",
+      "tasks.md": "6025b8e17176e84b6364d583a1f42bbccf890402be85357d43bead300999efb9",
+      "implementation-summary.md": "fabe9a3f663412a160c969c786aae45cbb874d9cfd6b5705d5b0b7579c79c382"
     },
     "last_active_child_id": null,
     "last_active_at": null

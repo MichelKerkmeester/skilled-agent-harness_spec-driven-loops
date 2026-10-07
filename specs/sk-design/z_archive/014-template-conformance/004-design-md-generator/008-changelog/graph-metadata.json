@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/008-changelog",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/008-changelog",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/008-changelog",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/008-changelog",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -20,8 +20,7 @@
       "changelog",
       "008",
       "tasks",
-      "implementation",
-      "implementation summary"
+      "implementation"
     ],
     "key_topics": [
       "design-md-generator",
@@ -43,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
@@ -190,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:03.095Z",
-    "last_save_at": "2026-08-30T15:39:13.185Z",
+    "last_save_at": "2026-10-07T18:12:35.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09a64fc0510f74551dda7b3deda9f60a2e5c3c6772509b86990e3d60d2bd9a26",
+    "source_fingerprint": "sha256:6b37641d593cfaf807cfcf24904daee4c90bd4a96fab9d0ac9f4e85488ae7821",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78b405bf4b9e4d154fbc12643d4a9029fe1abc5ea26299bc80fb1e400039e993",
-      "plan.md": "0d292895d217f1db74bcc9ce83571bdec327620f400a090615745c975c41f04b",
-      "tasks.md": "e91488223ec370fc8789b7ee3008966676ce89af42d0267d27419b48b6f1672b",
-      "implementation-summary.md": "7c445e7825ca1bf7316e1e14c016551c5ccb466095b1f3b7c4aa4e9382da9ac2"
+      "spec.md": "07c6473b76683c2df34875ebcf8353ea5eba60881befaddd748d20196c0eb692",
+      "plan.md": "a2050a9124250e05702576691c3969fe12f9fbaccece85a05df3efee5c1f260b",
+      "tasks.md": "93d07bf4b7b83fdf54406c45237c04cf680e90e8ff9d3c3bdee75cfbc029e588",
+      "implementation-summary.md": "f3a650907c65421e32c2920e9e3d940eec1c8c6d55af82c2e13b8af4e50a6905"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "draft"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/004-html-docx-and-move-detection"
     last_updated_at: "2026-07-13T18:30:00Z"
     last_updated_by: "codex"
     recent_action: "Created the rich-structure task scaffold"

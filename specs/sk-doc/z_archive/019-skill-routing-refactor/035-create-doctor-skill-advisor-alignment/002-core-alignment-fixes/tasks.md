@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
     last_updated_at: "2026-07-31T03:57:25Z"
     last_updated_by: "claude-code"
     recent_action: "Gap remediation (T015-T020) closed all 5 flagged gaps; all 20 tasks complete"

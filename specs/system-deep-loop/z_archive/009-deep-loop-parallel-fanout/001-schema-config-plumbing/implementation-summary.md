@@ -18,7 +18,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Implementation Summary — Phase 001: Fan-out schema + config plumbing
@@ -28,6 +28,7 @@ _memory:
 > flaky shell transport). The edits were then re-applied with verified anchors and the numbers below are
 > grep/git/test-run verified.
 
+<!-- ANCHOR:what-built -->
 ## What changed (verified on disk + by test run)
 
 1. **`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`** (git: +118 lines):
@@ -46,17 +47,30 @@ _memory:
    - +7 `parseFanoutConfig` cases (parse+defaults; concurrency/count/iterations; cli-codex model reuse; cli-gemini flag reuse; empty-array reject; non-dir-safe-label reject; duplicate-label reject).
    - +2 `expandLineages` cases (count-1 base; count>1 numbered).
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:decisions -->
 ## Backward-compat rule
 Config carries EITHER `config.executor` (single, default, unchanged) OR `config.fanout` (multi). No call site writes both yet; the both-present guard lands with the command surface in Phase 006.
 
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
 ## Verification (observed, clean runs)
 - `executor-config.vitest.ts`: **36/36 pass** (isolated).
 - `executor-config` + `executor-audit` together: **60/60 pass**.
 - Full `deep-loop-runtime/tests/unit/`: **161/161 pass** (EXIT 0). Parity preserved — pre-existing single-executor tests unchanged and green.
 - One UNRELATED flake observed in a later full-suite run: `loop-lock.vitest.ts > allows exactly one fresh cross-process acquire to win` (a cross-process timing test). Confirmed flaky — passed 7/7 in one isolated run, failed 1/7 in another; `loop-lock.ts` is NOT in this phase's diff (git-verified). Not caused by Phase 001.
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:how-delivered -->
 ## Scope (git)
 Exactly 3 files changed under `deep-loop-runtime/`: `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `tests/unit/executor-config.vitest.ts`.
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:limitations -->
 ## Spec-folder validation note
 The 001 child still FAILS `validate.sh --strict` (missing `checklist.md`; lean hand-authored docs lack full SPECKIT template anchors — same pattern as packet 122 children). Template-scaffolding only, not code; to reconcile before the packet's overall completion claim.
+<!-- /ANCHOR:limitations -->

@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".claude/settings.local.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Affordance Allowlist Allowed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
     "created_at": "2026-04-25T10:48:08.547Z",
-    "last_save_at": "2026-08-30T15:39:26.765Z",
+    "last_save_at": "2026-10-07T18:16:08.720Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2624e55f8b78b4bfa46b6cf234aa5358a5f03cdf031077dd08c314df8bd5aa8b",
+    "source_fingerprint": "sha256:b0ad45a34848ef661bea2b84af172e815f48c7363b0a7f3f8db974e5d5679fce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca7fa1fe1d0d511c50db242bd41cbc3842a58b984cf1950f86c122b398ec9118",
-      "plan.md": "ed827013ef840b67171ea802e3ccaddd1ef6fb3f43535929c6383d34811c4763",
-      "tasks.md": "106924666fb713d1fcf69fb4c6bdbdb330e7cecca64a1d74fdb1b21a02bcd602",
-      "implementation-summary.md": "f876c7edd9b6431c6ba6336d7c2ea9742a1ca872ab6bc68fd3635a4c89a03326"
+      "spec.md": "966eab458e3a1734d46c9d6df457de68516e82bceb5ebdf70dfc32132dd72e16",
+      "plan.md": "656b9a5620ace1bc6e0636c34bf5f059068a92c3c5f50e1404a8748a6dd3c7e2",
+      "tasks.md": "8165ea3e323470fe1f26c2c3499ff3f35a51ea7235e1f51ae9f1b11b1f2b6478",
+      "implementation-summary.md": "459ad311a090c47852569079aa625e0260a9b887b406f336c7ecf807b20048f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

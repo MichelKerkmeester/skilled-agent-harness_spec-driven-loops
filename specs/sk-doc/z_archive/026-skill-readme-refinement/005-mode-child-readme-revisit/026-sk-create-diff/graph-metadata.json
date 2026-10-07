@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,28 +48,25 @@
       ".opencode/skills/sk-doc/sk-create-diff/README.md",
       ".opencode/skills/sk-doc/sk-create-diff/changelog/v1.1.2.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/tasks.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The sk-create-diff README at `.opencode/skills/sk-doc/sk-create-diff/README.md` still reads in the older tabular reference-card register and predates the pilot standard set by the mcp-obsidian README and by the refined template from phase 001",
     "created_at": "2026-08-04T08:34:48.487Z",
-    "last_save_at": "2026-08-30T15:39:17.803Z",
+    "last_save_at": "2026-10-07T18:13:47.383Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2a32f449a58c98e41abe7e33d6cdec231c5b6a9e113f86a4910aed6f5747ab6",
+    "source_fingerprint": "sha256:5738143b4b66ab3771b610a281baa2e4c3fc1a7b186026d38128e170a4fb18ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abefe4bcba9f99988610dcddb3ef9b771fb7c7ada18032e6dfff45da4b142c1c",
-      "plan.md": "53160c733ac99e68b6fa6a0bb0b2141d27efd2e1df0e7f49fd1882ee5faa74ee",
-      "tasks.md": "b1f85752f27fcbcfe1725118d32fdda5a84456914317649db148d8e299bdc94e",
-      "implementation-summary.md": "8b3df7b51a20988258a767683b81b0aa5970c723ea94b2fd223682399e04fb56"
+      "spec.md": "8f25c2924c1e8d3f9a9914999b9caf89ff536bfae255674ae336bb005a804fe6",
+      "plan.md": "b0833987086936b9d721a51dd3c454159ee42f548f93ec90d7bb619b4041c55c",
+      "tasks.md": "3566e12dcbb0659e58d73f9ad1a10ce012ad7116590b14322117f1c02e1da76c",
+      "implementation-summary.md": "e79bce0c558b0c7433ec65fc3ef6a38b8b0520040875ce851e9ad0a2414cfc41"
     },
     "last_active_child_id": null,
     "last_active_at": null

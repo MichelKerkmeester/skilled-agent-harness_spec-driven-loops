@@ -11,7 +11,7 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening"
     last_updated_at: "2026-07-01T16:07:00Z"
-    last_updated_by: "openai/gpt-5.5"
+    last_updated_by: "openai-gpt-5.5"
     recent_action: "Recorded sliding-window convergence decision"
     next_safe_action: "Implement sliding-window convergence in a follow-up phase if approved"
     blockers: []

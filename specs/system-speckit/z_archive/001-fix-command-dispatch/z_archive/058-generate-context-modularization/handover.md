@@ -23,15 +23,18 @@ Next: Phase 5 - Extract renderers/template-renderer.js
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 - **From Session:** 2026-01-02 (generate-context modularization session)
 - **To Session:** Next continuation
 - **Phase Completed:** IMPLEMENTATION (Phase 4 - Extractors)
 - **Handover Time:** 2026-01-02
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Decisions Made
@@ -57,9 +60,11 @@ Next: Phase 5 - Extract renderers/template-renderer.js
 | `.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.js` | New: extractDiagrams + extractPhasesFromData (240 lines) | COMPLETE |
 | `.opencode/skills/system-spec-kit/scripts/extractors/decision-tree-generator.js` | New: generateDecisionTree (180 lines) | COMPLETE |
 | `.opencode/skills/system-spec-kit/scripts/extractors/index.js` | New: re-export file (18 lines) | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
@@ -76,9 +81,11 @@ Next: Phase 5 - Extract renderers/template-renderer.js
 - [ ] Checklist: `checklist.md` (Phase Sign-off table shows current progress)
 - [ ] Plan: `plan.md` (Phases 5-8 details)
 - [ ] Spec: `spec.md` (Architecture and module boundaries)
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
 Before handover, verify:
@@ -87,9 +94,11 @@ Before handover, verify:
 - [x] No breaking changes left mid-implementation
 - [x] Tests passing: 4/4 snapshot tests pass
 - [x] This handover document is complete
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
 ### Progress Summary
@@ -126,3 +135,5 @@ cd .opencode/skills/system-spec-kit/scripts && ./test-snapshot-modularization.sh
 - `populateTemplate`, `renderTemplate`, `cleanupExcessiveNewlines`, `stripTemplateConfigComments`, `isFalsy` → renderers/
 - `detectSpecFolder`, `validateContentAlignment`, `validateFolderAlignment`, `setupContextDirectory` → spec-folder/
 - `main()` orchestration → core/workflow.js
+
+<!-- /ANCHOR:session-notes -->

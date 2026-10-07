@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook/005-destructive-tier"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook/005-destructive-tier"
     last_updated_at: "2026-07-28T07:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Built and verified in one pass"

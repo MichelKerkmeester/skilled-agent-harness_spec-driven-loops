@@ -24,12 +24,16 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: resource-map | v1.1 -->
 # Resource Map: 097 — cli-opencode `</dev/null` stdin-redirect fix
 
+<!-- ANCHOR:summary -->
 Path ledger for every file the 097 packet touched, read, or referenced. Use this to audit the fix surface area and to scope any future packet that needs to revisit the same code paths.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:inputs -->
 ## 1. INPUTS — Files read (research / context)
 
 ### Discovery sources
@@ -56,9 +60,11 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/{010-stress-test-rerun-v1-0-2,001-search-intelligence-stress-test/001-scenario-design}/scripts/dispatch-cli-opencode.sh` | Verified already had `</dev/null` from prior packets |
 | `barter/.opencode/skill/cli-opencode/SKILL.md` (§4 rule 5) | Mirror target |
 | `barter/.opencode/skill/cli-opencode/references/integration_patterns.md` (§6) | Mirror target |
+<!-- /ANCHOR:inputs -->
 
 ---
 
+<!-- ANCHOR:outputs -->
 ## 2. OUTPUTS — Files written / modified
 
 ### Spec-folder docs (this packet)
@@ -115,9 +121,11 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 |------|--------|
 | `~/.claude/projects/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/memory/feedback_opencode_run_requires_dev_null_stdin.md` | Authored 2026-05-08 |
 | `~/.claude/.../memory/MEMORY.md` (index entry) | Updated 2026-05-08 |
+<!-- /ANCHOR:outputs -->
 
 ---
 
+<!-- ANCHOR:external-references -->
 ## 3. EXTERNAL REFERENCES
 
 ### Provider regex specs (no URLs from external/ — this is a fix, not research)
@@ -129,9 +137,11 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 ### Upstream filing target
 
 - `https://github.com/opencode-ai/opencode/issues` (recommended follow-up, out of scope for 097)
+<!-- /ANCHOR:external-references -->
 
 ---
 
+<!-- ANCHOR:cross-packet-dependencies -->
 ## 4. CROSS-PACKET DEPENDENCIES
 
 | Packet | Relationship |
@@ -139,9 +149,11 @@ Path ledger for every file the 097 packet touched, read, or referenced. Use this
 | `027-xce-research-based-refinement` (`.opencode/specs/system-spec-kit/`) | Discovered the bug during iter-1 dispatch hangs; provides the production validation that the fix works (10-iter run completed post-fix) |
 | `096-rename-opencode-dirs-to-plural` (`specs/skilled-agent-orchestration/`) | Sibling packet on cli-opencode infrastructure; predecessor in numbering |
 | Future `028-code-graph-hld-lld` through `032-code-graph-adoption-eval` (proposed in 027 sub-packet-proposals.md) | Will rely on the cli-opencode dispatch path being reliable; this fix unblocks them |
+<!-- /ANCHOR:cross-packet-dependencies -->
 
 ---
 
+<!-- ANCHOR:non-dispatch-automation -->
 ## 5. NON-DISPATCH AUTOMATION REVIEWED (NOT TOUCHED)
 
 Surveyed but determined out-of-scope for 097 (no `opencode run` calls inside or already correctly written):
@@ -151,9 +163,11 @@ Surveyed but determined out-of-scope for 097 (no `opencode run` calls inside or 
 - All `Bash` tool invocations from agent definitions — not packaged automation, runtime composition
 
 If a future packet adds new automation that calls `opencode run`, the SKILL.md §4 rule 5 (now generalized) is the canonical reference.
+<!-- /ANCHOR:non-dispatch-automation -->
 
 ---
 
+<!-- ANCHOR:audit-trail -->
 ## 6. AUDIT TRAIL
 
 ```bash
@@ -181,9 +195,12 @@ $ grep -c "</dev/null" .opencode/specs/system-spec-kit/026-graph-and-context-opt
 .../010-stress-test-rerun-v1-0-2/scripts/dispatch-cli-opencode.sh:1
 .../001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh:1
 ```
+<!-- /ANCHOR:audit-trail -->
 
 ---
 
+<!-- ANCHOR:position-in-timeline -->
 ## 7. POSITION-IN-TIMELINE
 
 This packet was authored on 2026-05-08 in parallel with the active 027-xce-research-based-refinement deep-research run. The 027 run discovered the stdin-deadlock as a side-effect of trying to dispatch its 10 research iterations. iter-15 attempt-15 (using `</dev/null`) became the production validation: it succeeded in 4 m 36 s and unblocked the remaining 9 iterations + synthesis, which all completed successfully. Total fix-to-validation feedback loop: ~3 hours of debugging + 30 minutes of mechanical edits + 50 minutes of validating against the live deep-research run.
+<!-- /ANCHOR:position-in-timeline -->

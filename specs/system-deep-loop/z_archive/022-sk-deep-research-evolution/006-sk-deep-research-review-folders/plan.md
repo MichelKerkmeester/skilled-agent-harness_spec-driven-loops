@@ -213,7 +213,6 @@ Contract-first folder relocation with targeted legacy migration.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -231,7 +230,6 @@ Contract Freeze -> Workflow and Agent Updates -> Docs and Playbook Sync -> Valid
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -326,7 +324,7 @@ review_mode_contract.yaml -----> review auto YAML ----\
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Move the full review packet under `review/` and keep current review-mode basenames
@@ -361,4 +359,4 @@ Use `DONE`, `IN_PROGRESS`, or `BLOCKED`, always paired with the file family or v
 1. Stop on legacy-migration ambiguity, runtime parity drift, or unresolved report-path consumers.
 2. Record the blocked surface and the failing validation or dependency.
 3. Resolve the blocker before moving to downstream doc or playbook sync work.
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
-  "spec_folder": "sk-git/014-gitkraken-mcp-integration/005-verify-and-rollout",
-  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "packet_id": "sk-git/z_archive/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "spec_folder": "sk-git/z_archive/014-gitkraken-mcp-integration/005-verify-and-rollout",
+  "parent_id": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phases 001-004 each verified their own scope in isolation",
     "created_at": "2026-07-15T04:22:50.746Z",
-    "last_save_at": "2026-08-30T15:39:18.563Z",
+    "last_save_at": "2026-10-07T18:14:21.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fc23f8f28b174a1599fa72313abe4833053beb2a5d1c3a05b7c9da9e62d17d5",
+    "source_fingerprint": "sha256:406ee28384e51b59d6652619442c2ef2d845378674a94436d8bf159812735f31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42b5eb91f4b9072c007ea2f32fe82fa6ec3cbff98cebd46691c88515b0c90239",
-      "plan.md": "a5c022bc6cdcca26a45c7a6ae79d957a9c827f5158f4498c5ac78a66eee9cbd1",
-      "tasks.md": "aa916656fc10531b8c2c875ab3b1c6fa2dbbac608c69ddda665f4254996b53d0",
-      "implementation-summary.md": "8cf90a337aec67668dd14c97acd3b5148177af10c0b297dc04f71a6235a916b9"
+      "spec.md": "bd50d0a37a2218e4ac8c59d8ad619dd57b78ffb0791df92b06a461bd810aa074",
+      "plan.md": "78b891d964e7f3a8bdcfc3022f8b0b6219db84f5474fc5847c5cbf0c50978d6e",
+      "tasks.md": "d2c3c9f6bf28031f7642b57e05efbc5457ad29276b260a1286ea9bb084aa7bac",
+      "implementation-summary.md": "ac11ba67c8b5b9cf02b6eb129e0b4f51ec614daae0e71c355fbcc92958295f86"
     },
     "last_active_child_id": null,
     "last_active_at": null

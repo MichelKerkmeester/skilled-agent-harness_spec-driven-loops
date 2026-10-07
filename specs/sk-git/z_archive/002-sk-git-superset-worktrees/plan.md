@@ -342,7 +342,6 @@ Priority: P1 | Estimated LOC: ~160
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -366,7 +365,6 @@ Phase 2 (SKILL.md) ────────────────┤
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated LOC |
@@ -466,7 +464,7 @@ Phase 2 (SKILL.md) ────────────────┤
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ### Architecture Decision Record Summary
 
 ### ADR-001: Centralized Worktree Storage
@@ -526,5 +524,5 @@ Phase 2 (SKILL.md) ────────────────┤
 - No sanitization: Leads to invalid branch names with special characters
 - Strict validation (reject invalid): Poor UX — better to auto-fix than reject
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---

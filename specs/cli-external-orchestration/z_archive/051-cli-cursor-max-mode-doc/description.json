@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/051-cli-cursor-max-mode-doc",
+  "specFolder": "cli-external-orchestration/z_archive/051-cli-cursor-max-mode-doc",
   "description": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
   "keywords": [
     "request",

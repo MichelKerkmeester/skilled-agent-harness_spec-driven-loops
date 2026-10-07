@@ -1,37 +1,62 @@
 ---
 title: "Decision Record: FIX-5 / Host Hard Identity Escalation Trigger"
+description: "Decision record defining the escalation trigger that would unpark FIX-5 host hard identity, and its final closure as agent-layer fix sufficient."
+trigger_phrases:
+  - "host hard identity decision"
+  - "fix-5 escalation trigger"
+  - "process isolation decision"
 status: "Closed — agent-layer fix sufficient (2026-07-01, see Final Resolution)"
 deciders: "operator + research (research/research.md §5, §8b) + phase 013 gate evaluation"
 date: "2026-06-30"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/005-host-hard-identity-fix5"
+    last_updated_at: "2026-07-01T00:00:00Z"
+    last_updated_by: "operator"
+    recent_action: "FIX-5 closed as agent-layer fix sufficient; no trigger met"
+    next_safe_action: "None, the packet is archived"
+    blockers: []
 ---
 # Decision Record: FIX-5 / Host Hard Identity Escalation Trigger
 
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+
 ## Context
 
+<!-- ANCHOR:adr-001-context -->
 The research (`../001-deep-agent-router-and-orchestration/research/research.md`) established two structural-prevention ceilings for GPT deep-skill mis-dispatch:
 
 1. **Host-runtime hard identity** — a dispatch-primitive change binding `agent_slug` as runtime identity (auto-load, reject unknown, stamp provenance). Architectural, not PR-sized (research §8b, F33-F35).
 2. **FIX-5** — native→CLI subprocess executor, process isolation (research §5).
 
 The agent-layer fix (phases 001-003: route-proof validation + deep.md + orchestrate field + pre-route headers) is attempted first because of its smaller blast radius. This decision record defines **when** the agent-layer fix is proven insufficient and this phase (005) is unparked.
+<!-- /ANCHOR:adr-001-context -->
 
 ## Decision
 
+<!-- ANCHOR:adr-001-decision -->
 **005 stays PARKED unless and until phase 004's GPT first-dispatch smoke fires this trigger:**
 
 > After phases 001 + 002 + 003 land, run one GPT-backed `cli-opencode` first dispatch per deep mode against a tiny packet (phase 004 procedure). **If, for any mode, the GPT dispatch produces a route-mismatched artifact** — i.e., the iteration/delta record's `mode`/`target_agent`/`agent_definition_loaded`/echoed `Resolved route` does not match the requested mode, OR a `dispatch_failure`/`jsonl_wrong_type`/missing-artifact signal fires while the native/Claude baseline passes — **then the agent-layer fix is insufficient and 005 is mandatory.**
 
 This trigger is observable against real dispatch behavior (per research §5), so it does NOT depend on the missing operator-asserted mis-route taxonomy.
+<!-- /ANCHOR:adr-001-decision -->
 
 ## Alternatives Considered
 
+<!-- ANCHOR:adr-001-alternatives -->
 - **Unpark immediately (do not attempt agent-layer first):** rejected — larger blast radius; the agent-layer fix may suffice at much lower cost (research F36).
 - **Never unpark (accept agent-layer as the ceiling):** viable only if phase 004's smoke passes for all modes; then 005 stays permanently parked and is closed.
+<!-- /ANCHOR:adr-001-alternatives -->
 
 ## Consequences
 
+<!-- ANCHOR:adr-001-consequences -->
 - If triggered: choose at unpark time between minimal 4-agent hard identity vs full FIX-5 process isolation (open question in `spec.md` §5).
 - If not triggered: 005 is closed as "agent-layer fix sufficient"; host hard identity / FIX-5 remain documented structural ceilings, not implemented.
+<!-- /ANCHOR:adr-001-consequences -->
 
 ## Residual Risk
 

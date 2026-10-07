@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "via",
-      "implementation summary"
+      "deep research refinement summary"
     ],
     "key_topics": [
       "feature",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-08-30T15:39:24.345Z",
+    "last_save_at": "2026-10-07T18:15:12.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:656c0e349269862067d7fb6ca4d91945527c37843e238a9f373b3b6a4caa0cbb",
+    "source_fingerprint": "sha256:cba570630d192d231895ee0ad7bc5ca4fe2927dddd228893ed40f3aedfd0be0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62b2abaaa56c01e18a96df4e4d4afbed0ba4e65e1bdf0bd858bef27d52973807",
       "plan.md": "94ea2ae4be67d52bc14f9afba582f523189bc87408754aeb1563812eda265850",
       "tasks.md": "8318de3ad1027595992c56feed711bfa8478944af642a91b99cea24d5b648a83",
-      "implementation-summary.md": "2f621a9a3fcfd6c257dcfc2b90716d09ebf654c2e098e168606d14d64f4e7770",
+      "implementation-summary.md": "aac5a133825ad9a6657212c86bfc3bbf920a6a49311cafe390769069a64b6cc3",
       "research/research.md": "6a608ccee32b5b54928218f3158ab6d5322e615719292ce065ef7a7382da1862"
     },
     "last_active_child_id": null,

@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results"
+    packet_pointer: "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results"
     last_updated_at: "2026-05-03T10:35:00Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Source-build remediation done; live MCP reload pending"

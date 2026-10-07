@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/006-skillmd-template-conformance"
     last_updated_at: "2026-07-08T18:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Plan executed and verified complete"

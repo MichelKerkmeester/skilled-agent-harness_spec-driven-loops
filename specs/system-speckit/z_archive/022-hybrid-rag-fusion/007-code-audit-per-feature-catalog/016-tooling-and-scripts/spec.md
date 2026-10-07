@@ -156,7 +156,6 @@ Verify that each Tooling and Scripts feature remains accurately described, trace
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -172,7 +171,6 @@ Verify that each Tooling and Scripts feature remains accurately described, trace
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Cross-Cutting Features

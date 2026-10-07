@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API surface does not fully expose this richness",
     "created_at": "2026-04-12T09:02:50.232Z",
-    "last_save_at": "2026-09-10T21:04:41.919Z",
+    "last_save_at": "2026-10-07T20:27:16.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:715e9f626bcc4e63dcb5d13a65483166fe6781ddcf97fe5622973068bca3d0b5",
+    "source_fingerprint": "sha256:9d75317332423c06dd228ccd20624ae04f8d02a44774278b775a90b1486e415e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c183ab2621533ad15174f1dcac0cf4930f5343f2a57f4360af5bc7fd2dbe6c9",
-      "plan.md": "125da544dca9aef1cbca98e9671e664afca77ff3102d35fd75a98b2bf970a842",
-      "tasks.md": "12678fee2853d85d9c5a90da5faaa32a31de921099f6de648d5a0ceabaea33cf",
+      "spec.md": "7ed5719eb2fcc12284d6f8fe63f63f29efbea6a5cd7b29bea7b1f54e890c1aa9",
+      "plan.md": "39fdf7c5b62ca6dc0656654a981737e7ef43880e30b6ee8d53a34e6d33c3c8df",
+      "tasks.md": "ab4bc714ff1e9d1e42d488ad2552c92f18f66c5dff12a79330f446e6aa6cf974",
       "implementation-summary.md": "f87dca6e1c35cd2b494b6b1491ec0135d58a4c4c680ee4de46c98709fa7a285f"
     },
     "last_active_child_id": null,

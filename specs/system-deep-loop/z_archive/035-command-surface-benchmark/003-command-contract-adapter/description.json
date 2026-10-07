@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter",
   "description": "Implements the sk-doc-command peer adapter on the deep-alignment three-method contract, extends the reusable reference checks to every command",
   "keywords": [
     "implements",

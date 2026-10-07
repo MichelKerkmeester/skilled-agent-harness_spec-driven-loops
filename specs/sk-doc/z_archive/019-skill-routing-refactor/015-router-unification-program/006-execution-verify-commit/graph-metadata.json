@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A route decision is not an effect",
     "created_at": "2026-07-18T13:13:17.358Z",
-    "last_save_at": "2026-08-30T15:39:14.972Z",
+    "last_save_at": "2026-10-07T18:12:57.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3491ad77aefa3b18c1eb07dd32847a23c0e59fa24e11600844439420322ccbfc",
+    "source_fingerprint": "sha256:75a26c2e3f95fba83194bd158bc67ede1c894878b3fde792bdea6186d137b604",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9cdc01eb0d74249e4c968983112de16705fc084e20759561a09636c91bb34f5",
-      "plan.md": "46e15ecc57498e05b005cf8683e518334c4f430a78a862e855ac2268b6fa0833",
-      "tasks.md": "3fdcf5b1974370b0b99c9a1c33d7e4c2c19cf470ba853727a561c482d48e24cb",
-      "implementation-summary.md": "9d4e6fb35c70879636b1ea2fa7334c854097602ad90154aed601ffc7d61c7054"
+      "spec.md": "eb22d2548fbdf474d6cee251a6579bf610d9a343c04157545c8bb00a1ce2184d",
+      "plan.md": "32f702391fa65df0acdbaa48f98293834f1db714f24f58ebb8ef66231de60dcd",
+      "tasks.md": "cf7e42892fc7e9adb428ddc640f145a18be4986122b190edf64a4bd1c7cc85ba",
+      "implementation-summary.md": "1e08a2274c333fce8a60040df78ee3dd33ad008a97ad52c8ae8d22ba67e20f6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

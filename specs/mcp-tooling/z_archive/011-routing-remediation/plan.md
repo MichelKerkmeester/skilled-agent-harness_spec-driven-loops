@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/011-routing-remediation"
+    packet_pointer: "mcp-tooling/z_archive/011-routing-remediation"
     last_updated_at: "2026-07-16T19:05:00Z"
     last_updated_by: "claude"
     recent_action: "Completed Phase 3 WS3 (F006, F007) and Phase 4 WS4 (F009-F011)"

@@ -4,15 +4,14 @@ description: "Execution plan for applying H3 sub-headings to long HOW IT WORKS s
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "subheadings spec kit plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 005 — Sub-headings, system-spec-kit
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Phase 002 produces `long_sections_audit.csv`. This phase:
@@ -20,6 +19,7 @@ Phase 002 produces `long_sections_audit.csv`. This phase:
 2. Processes flagged files category by category with AI agents
 3. Each agent adds H3 sub-headings to group related paragraphs
 4. Prose is never rewritten — only headings inserted
+<!-- /ANCHOR:summary -->
 
 ---
 
@@ -48,6 +48,7 @@ print(f"Total flagged: {len(flagged)} files across {len(by_category)} categories
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 3. AGENT EXECUTION MODEL
 
 For each category with flagged files:
@@ -74,9 +75,11 @@ For each HOW IT WORKS section exceeding 3 paragraphs:
 - Flagged files per category with 1-5 flagged: single agent pass
 - 6-15 flagged: two agent passes
 - 15+: three passes
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 4. EXECUTION ORDER
 
 Process categories with the most flagged files first (highest value):
@@ -86,9 +89,11 @@ Process categories with the most flagged files first (highest value):
 3. Process remaining categories in descending order by flagged count
 4. Re-run audit script after each category batch to confirm h3_count > 0
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. VERIFICATION
 
 ```bash
@@ -107,6 +112,7 @@ print(f'Remaining flagged: {len(flagged)}')
 "
 # Expected: 0
 ```
+<!-- /ANCHOR:testing -->
 
 ---
 

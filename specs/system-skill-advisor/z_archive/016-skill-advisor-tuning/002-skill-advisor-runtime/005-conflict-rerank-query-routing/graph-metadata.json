@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -153,7 +146,7 @@
     ],
     "causal_summary": "The Skill Advisor fuses five lanes, `explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05` (`lane-registry.ts:8-19`), via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKITADVISORRRFFUSION`",
     "created_at": "2026-06-19T06:06:27.154Z",
-    "last_save_at": "2026-08-30T15:39:27.398Z",
+    "last_save_at": "2026-10-07T18:16:06.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,13 +155,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fc5c0ff2363d7b2fbe36e044621bd477cefe7c6ed79b9f65748d5f7e0a39813",
+    "source_fingerprint": "sha256:b6c62d4ecb5407264aba1aec632fb8630a512bf79ca4d5f85ead55ea82968b75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b31e61fc8fc21212fd13577ca8df3b328fee617cae9bdc2b208f3f49b8648c28",
-      "plan.md": "5ef206702334592fcede984e6cefcab5719756948ba7c248663c683f0fd5fb4c",
-      "tasks.md": "f1bfbda9df6806ab6428a835fe7ef5c6fcb1e172ae3077491f9541dfcec3583e",
-      "implementation-summary.md": "1879636eb468484c721886799f04cb10c82211582a66c1d7eacc69f10ce98722"
+      "spec.md": "28f18a93a7e3a08d6ecda454e3c1b1c988087d49d59f5854992818811351854c",
+      "plan.md": "b46042e9defd00c1c8f4e7a066fb907c8f69907f2a8fe29d47f5324015da6806",
+      "tasks.md": "94b0fb1b3f92b291b9cc0403019d42ffbf0375abc20fe29a64ce6f20d205203d",
+      "implementation-summary.md": "a187446b51e7eaebce5257c6c96cf97860dfef7fbf7392ae044d082f24931e0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

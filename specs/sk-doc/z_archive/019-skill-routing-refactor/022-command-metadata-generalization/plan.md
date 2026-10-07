@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/022-command-metadata-generalization"
     last_updated_at: "2026-07-28T13:08:48Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the executed plan"

@@ -2,11 +2,8 @@
 title: "Imple [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/plan]"
 description: "system-spec-kit SKILL.md and reference docs audit/creation for spec 130 umbrella. Systematic review of SKILL.md + references/ directory to ensure alignment with post-implementat..."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "task"
-  - "skill"
-  - "references"
+  - "skill speckit alignment plan"
+  - "skill reference audit phases"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -126,7 +123,6 @@ Systematic file-by-file audit/creation
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -143,7 +139,6 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -218,6 +213,29 @@ Phase 1 (Audit) ──► Phase 2 (Documentation) ──► Phase 3 (Verificatio
 **Task**: Checklist validation
 **Duration**: ~15 minutes
 **Agent**: Primary
+
+### Pre-Task Checklist
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership below
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the tasks.md blocked section
+3. Continue with the next unblocked task; escalate after two blocked tasks
+
 <!-- /ANCHOR:ai-execution -->
 
 ---

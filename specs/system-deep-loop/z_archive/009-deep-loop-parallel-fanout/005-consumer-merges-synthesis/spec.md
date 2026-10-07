@@ -23,19 +23,25 @@ _memory:
 
 # Phase 005 — Consumer-specific merges + synthesis hooks
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Consolidate the N isolated lineage packets into ONE canonical output per consumer, reusing the existing synthesis compilers.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - New `deep-loop-runtime/scripts/fanout-merge.cjs` (`--loop-type research|review`), reads every `{artifact_dir}/lineages/{label}/` registry + iterations + state log.
 - New `step_fanout_merge` at the TOP of each `phase_synthesis` (4 YAMLs), gated on `config.fanout`:
   - research: dedup (reuse reducer content-hash) + cross-model attribution → consolidated `deep-research-findings-registry.json` → existing `step_compile_research` emits canonical 17-section `research.md`.
   - review: severity rollup, **strongest-restriction** (any-lineage active P0 ⇒ merged FAIL) → consolidated `deep-review-findings-registry.json` → existing synthesis emits 9-section `review-report.md` + verdict.
   - Both write `{artifact_dir}/fanout-attribution.md` (per-lineage convergence, iters, salvage events, model attribution).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - Unit: research dedup/attribution; review rollup + strongest-restriction (A clean, B P0 ⇒ merged FAIL).
 - Integration: 2-lineage fixture → merged registry → existing synthesis → canonical report unchanged in shape.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Command flags + docs + final parity (006).

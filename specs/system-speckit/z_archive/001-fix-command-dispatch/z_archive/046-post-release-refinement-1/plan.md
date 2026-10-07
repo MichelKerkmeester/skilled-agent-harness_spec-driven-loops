@@ -398,7 +398,7 @@ Phase 3 (Medium) - Depends on Phase 2
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## APPENDIX: File Change Summary
 
 | File | Changes | Phase |
@@ -416,4 +416,4 @@ Phase 3 (Medium) - Depends on Phase 2
 | `search/index.md` | Cross-platform commands | 3 |
 | `generate-context.js` | Temp file cleanup, JSON validation | 3 |
 | `check-files.sh` | L1 enforcement | 3 |
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->

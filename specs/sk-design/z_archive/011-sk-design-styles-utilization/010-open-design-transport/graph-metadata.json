@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/010-open-design-transport",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/010-open-design-transport",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/010-open-design-transport",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/010-open-design-transport",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `design-mcp-open-design` transport moves design work between the sk-design modes and an external Open Design daemon, but it has no way to carry the styles-library provenance that the earlier phases (007 shared seam, 008 pilots) settled",
     "created_at": "2026-07-18T14:14:53.230Z",
-    "last_save_at": "2026-08-30T15:39:12.588Z",
+    "last_save_at": "2026-10-07T18:12:33.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6aa2b564edc93b3fba7a2f2a0bf3d7a2b48441f0aa07d8e10afc5848bf7b7008",
+    "source_fingerprint": "sha256:86044488e0b944d92b3f5825661298b0b17bec48a5acc4fb71f8545f31056a36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afc307696570ad9b92aea8b2ecd8367d1478e50cbad7b2558ded57d405207c55",
-      "plan.md": "33b9824567d29fc2f00a909f4b1724596eb1d7f6b32af2affff15978ce5a37a5",
-      "tasks.md": "4b20a30d5e36bf47bfb48a7c42ad58d0fc537ae987fd36a9f085fb2cdc2cff8d",
-      "implementation-summary.md": "7b99616d820137f88237dcc3ec7189a162f018a51066fe050c7b19ef38897b36"
+      "spec.md": "3d4d3a6fe9272dcdd70aed1710ff45d1c8217ab42a38017a7e3f9f5674c265ad",
+      "plan.md": "c9ba4fff478bcb38de5c2324f4a59def9d62f15d28c915a59a72490a20511512",
+      "tasks.md": "ea9dfb13145d95a0af0c52df55cbfed930c3f96b8b4513e2e10bf164ce30f657",
+      "implementation-summary.md": "b0070afb3c22bea3ec8832f27adbf1f84961ed90a0fa9f18677bec9d8825007e"
     },
     "last_active_child_id": null,
     "last_active_at": null

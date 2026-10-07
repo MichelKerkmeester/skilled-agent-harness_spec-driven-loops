@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance"
     last_updated_at: "2026-07-13T13:00:00Z"
     last_updated_by: "claude"
     recent_action: "Executed six-group conformance; verified checkers green"

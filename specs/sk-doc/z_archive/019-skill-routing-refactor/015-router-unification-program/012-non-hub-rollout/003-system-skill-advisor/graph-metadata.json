@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The authored `system-skill-advisor` inline router had no target-local compiled policy, typed scorer projection, exact positive-route shadow-parity proof, or fenced rollback evidence",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:15.114Z",
+    "last_save_at": "2026-10-07T18:13:25.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05a3ba37ea2fb8cae0e720aa6cc5787198a708f4ff8b2ff0ff86d0de426be5e8",
+    "source_fingerprint": "sha256:24ea4ab5d4d86a6c8c5a74bd76aa0824935d5f7fb6bafee5045c11e75d81ae14",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7c81e97d7de23177b149879ce848bc92802d9db0a26d6bb67e130ad58a61bf3",
-      "plan.md": "d0e55e8528f8094a486f3a573070ce59f821645eaf0ae770db46d58b381304af",
-      "tasks.md": "d2559eda5358e8b44e41de5d6a7c7d6cdf8cc5d75cc96f38acabfcf1eabc53e4",
-      "implementation-summary.md": "bd781fe039559e53b590e72e05b17e9650b059c338c714edae9aec2066e3e349"
+      "spec.md": "694e21a5317df7a21c3a31c709bf46af9bc2fb8de8e7018892379197fe1434f4",
+      "plan.md": "2911e0d869d9fb8180d42250346e6d65dc836006f2ad64d06e0fced87d71bdf4",
+      "tasks.md": "57a1c5c258d08d17664fbaddf7b29e2b9ca0b200e25e4c0542dcd5da3fad1501",
+      "implementation-summary.md": "85d15f3ca0b3f4e401cc9fce41fa8c133a081810aecfff71991f54df282f6523"
     },
     "last_active_child_id": null,
     "last_active_at": null

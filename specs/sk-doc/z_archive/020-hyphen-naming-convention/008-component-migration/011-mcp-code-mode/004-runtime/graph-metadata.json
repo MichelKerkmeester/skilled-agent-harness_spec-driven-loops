@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The runtime tree must be checked independently because hook and library paths are executed by Node and referenced by manual scenarios. The current runtime names are already kebab-case, so this phase records a zero-candidate proof at the pinned baseline and closes any runtime path references if a later inventory reveals an eligible name.",
     "created_at": "2026-07-14T15:18:22Z",
-    "last_save_at": "2026-08-30T15:39:16.940Z",
+    "last_save_at": "2026-10-07T18:13:23.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:685c702a3d7f78e70f1745c2821baa9545ba6e6f4b79e5bdc651ff58e25d014a",
+    "source_fingerprint": "sha256:10d64d3c3ddf9e05bac2c0aa7ed79ae4197aa27995d50fb241d50c26ad9b0a72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f40e727d1f5f201a6e41946ed3a10c58512224694cdd2541c671b54e6e5aa9ce",
-      "plan.md": "99ad10ec92e642dd52e2fd4e8571425ab0db56b4c0fa4c0eb2be1037f6c34574",
-      "tasks.md": "25b9a911307cbb7337a1f49cf044a45915a30aa82337359191cf06ed13363025"
+      "spec.md": "8c5f55016e90bf27dcba8b9c6b35b58212488feae1f4dc448c58987fcf2c10cc",
+      "plan.md": "71a93b034e6f18c298375feaca9bd2f3fb57f31f7faa71beeeead1148689b5ed",
+      "tasks.md": "1066a55fae44910e0432a3c5de5bdf91b51321d44eecfc7ea700a5cc4d45b6ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

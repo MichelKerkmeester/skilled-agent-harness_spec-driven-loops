@@ -30,6 +30,7 @@ _memory:
 
 # Implementation Summary — Phase 001: Skill-benchmark deep research
 
+<!-- ANCHOR:what-built -->
 ## 1. What was done
 
 A multi-model deep-research sweep investigating the design of **Lane C ("skill-benchmark")** for the `deep-improvement` skill and the `deep-agent-improvement → deep-improvement` rename. Per the user's directive, **20 iterations** were run, **5 per model** across four executors, with **2 executors in parallel at all times**:
@@ -43,10 +44,16 @@ A multi-model deep-research sweep investigating the design of **Lane C ("skill-b
 
 Each model ran the same 5 foci: iter1 = RQ1 (scoring dimensions) + RQ7 (prior art); iter2 = RQ2 (hint-free dispatch harness); iter3 = RQ3 (advisor-vs-router activation) + RQ4 (scenario authoring); iter4 = RQ5 (report/remediation); iter5 = RQ6 (rename impact map).
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
 ## 2. How it ran
 
 A background driver (`run_one.sh` + an `xargs -P 2` worker pool) dispatched each iteration to its executor in its own sandbox; each executor acted as a LEAF `@deep-research` agent for one iteration, reading the strategy/topic and writing its own packet. A salvage fallback recovers the model's reply into the iteration `.md` when an executor's sandbox blocks the in-repo write (notably codex/gpt-5.5 and intermittently MiniMax), so every iteration produced a usable artifact.
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:verification -->
 ## 3. Outputs
 
 - `research/research.md` — **canonical cross-model synthesis** (≈352 lines, 24 sections): executive summary, per-RQ synthesis across the 4 models, recommended Lane C design, rename impact map, cross-model observations, and actionable next steps for Phases 002/003.
@@ -55,16 +62,23 @@ A background driver (`run_one.sh` + an `xargs -P 2` worker pool) dispatched each
 - `research/<model>/deltas/iter-00N.jsonl` — ~187 structured findings across all models.
 - `research/orchestration-status.log` — full per-iteration driver ledger (START/DONE, exit, duration, md/json).
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:decisions -->
 ## 4. Headline finding (see research/research.md for full detail)
 
 Lane C should measure whether a skill is **discovered, routed to, and used effectively by an AI in situ** — distinct from `sk-doc` (doc shape) and `system-skill-advisor` (which skill to pick). Recommended five scoring dimensions with weights: Routing/Activation Accuracy (0.25), Unprompted Reference/Asset Discovery (0.25), Efficiency/Bottlenecks (0.20), Usefulness-via-Ablation (0.20), Structural Connectivity (0.10); captured via a hint-free dispatch harness; reusing the existing candidate/dispatcher/scorer seams under `loop-host.cjs --mode=skill-benchmark`.
+
+<!-- /ANCHOR:decisions -->
 
 ## 5. Next steps
 
 - **Phase 002** — execute the rename using the impact map in `research/research.md` §4.
 - **Phase 003** — design + build Lane C from the recommended design in `research/research.md` §3.
 
+<!-- ANCHOR:limitations -->
 ## 6. Notes / caveats
 
 - The deep-research loop was driven via a packet-local background worker pool rather than a single `/deep:start-research-loop` invocation, because the canonical command runs one executor per invocation while the user required 4 models × 5 iters with 2 in parallel. The externalized-state, fresh-context-per-iteration, and per-iteration JSONL contracts were preserved.
 - `research.md` was salvaged from the synthesizer's output because the codex sandbox blocked the direct in-repo write; content is complete.
+<!-- /ANCHOR:limitations -->

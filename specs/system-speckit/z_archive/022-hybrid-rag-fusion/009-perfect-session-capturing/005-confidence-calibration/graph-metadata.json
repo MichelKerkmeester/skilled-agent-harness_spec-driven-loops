@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The single `CONFIDENCE` field on `DecisionRecord` conflates two independent dimensions: certainty about the chosen option and certainty about the captured rationale",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-09-10T21:04:53.831Z",
+    "last_save_at": "2026-10-07T19:24:32.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:caa78cacedffed50c02fb4f3a6dc23e7ce698f651847a50873c3e6a3949f40e3",
+    "source_fingerprint": "sha256:78b285c71bea08854bddc2125b974cdfa2be9c06d93897e21c2e6d55d4b5899e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5bc60326d086ef943fff7bb9f7489a498a623318ed5c6c2c9e0aa28d40be2231",
       "plan.md": "62514190f1901048c668700f70ab865b70586bb182977a39438f14cf298a67d5",
       "tasks.md": "469cc226736cb5854300d51171dd90bb14ecaf9a884cbb0264b2e8c4b64fcec5",
-      "implementation-summary.md": "32a70f0b72964442bf9c9a126498ca9c3e76364976952747f9f0135429e278aa"
+      "implementation-summary.md": "c99619d3e6d663517a1a05641116794d3ff5733e792f2b7de3c0df6b0d6e89a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

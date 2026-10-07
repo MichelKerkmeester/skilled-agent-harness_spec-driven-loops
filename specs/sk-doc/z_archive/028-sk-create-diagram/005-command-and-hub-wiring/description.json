@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/005-command-and-hub-wiring",
   "description": "The packet exists on disk but is invisible to the advisor and unreachable by any command — `sk-doc` doesn't know it exists",
   "keywords": [
     "packet",

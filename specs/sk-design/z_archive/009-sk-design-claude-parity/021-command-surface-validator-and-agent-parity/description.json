@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity",
   "description": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting",
   "keywords": [
     "deep-research",

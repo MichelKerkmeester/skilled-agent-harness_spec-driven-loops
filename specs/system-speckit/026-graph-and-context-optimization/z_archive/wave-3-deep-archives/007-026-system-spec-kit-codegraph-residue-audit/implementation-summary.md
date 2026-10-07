@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-system-spec-kit-codegraph-residue-audit |
+| **Spec Folder** | 007-026-system-spec-kit-codegraph-residue-audit |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

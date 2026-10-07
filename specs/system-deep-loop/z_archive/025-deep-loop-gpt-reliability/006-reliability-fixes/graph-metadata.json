@@ -4,9 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes",
   "parent_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability",
   "children_ids": [
-    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
-    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
-    "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
     "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress"
@@ -102,16 +99,16 @@
     ],
     "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion.",
     "created_at": "2026-07-05T02:24:11.224Z",
-    "last_save_at": "2026-08-30T15:39:25.563Z",
+    "last_save_at": "2026-10-07T18:14:36.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5bf3841edeb752901779f93358f1c304f6a55d05635cd762dac966519204761b",
+    "source_fingerprint": "sha256:b480526cea0bd6d34797de94f9f26347915bf547ec95d5e1b9722b8b1b7b2b00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37370c6342d5e08a0df4fd334ba0b0349ea3a9a501628f81ee709a382622ea66"
+      "spec.md": "3e5628839af999da4bef3a2034a70d8f7bb64ea3f0500df750671c157be3cd31"
     },
     "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
     "last_active_at": null

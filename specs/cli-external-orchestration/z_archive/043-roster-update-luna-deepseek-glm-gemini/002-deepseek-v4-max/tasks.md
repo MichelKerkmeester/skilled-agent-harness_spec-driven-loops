@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max"
+    packet_pointer: "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max"
     last_updated_at: "2026-08-15T13:00:00Z"
     last_updated_by: "pi"
     recent_action: "Authored task list; all implementation tasks complete"

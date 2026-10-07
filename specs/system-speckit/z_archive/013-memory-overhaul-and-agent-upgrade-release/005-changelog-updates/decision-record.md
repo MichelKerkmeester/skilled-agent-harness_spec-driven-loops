@@ -2,12 +2,8 @@
 title: "...2--system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-05-changelog-updates/decision-record]"
 description: "Task 05 requires systematic audit/creation of 3-track changelog files (spec-kit, agent, environment). The scope must be clearly defined to ensure complete coverage while avoidin..."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "task"
-  - "changelog"
-  - "creation"
-  - "decision record"
+  - "changelog updates decisions"
+  - "release changelog scope decision"
 importance_tier: "important"
 contextType: "planning"
 ---

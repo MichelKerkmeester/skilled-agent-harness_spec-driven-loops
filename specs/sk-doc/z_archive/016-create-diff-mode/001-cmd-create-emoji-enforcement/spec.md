@@ -141,7 +141,7 @@ Remove all emoji enforcement logic from `/create` command while maintaining back
 ---
 
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -157,7 +157,7 @@ Remove all emoji enforcement logic from `/create` command while maintaining back
 ---
 
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ## 8. EDGE CASES
 
 ### Data Boundaries

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state, convergence, playbooks, and assets. This phase renames those in-scope paths to kebab-case and repairs their consumers without changing review findings, convergence, state, or tool contracts.",
     "created_at": "2026-07-14T15:17:50Z",
-    "last_save_at": "2026-08-30T15:39:16.687Z",
+    "last_save_at": "2026-10-07T18:13:16.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:bb4e9d22f0ced00e89bc2d32d0233f95787b6e53dcd0c8164467fb9f150e7b78",
+    "source_fingerprint": "sha256:e9248c5685dc322840f6edd28207d8ddbab939bd42212d52610090ac2495317b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc12a2e60d89b2657db6bbac0ef55af9c9683c23e7d62449f2f7b2d364979594",
-      "plan.md": "33762b688544dff8bc752ed485a5729c20a17831fb8897d3a8ceb2fc108a7cec",
-      "tasks.md": "345b2685969971c8dff7562a0398fd7b772dfdefa991cc6cf87bc4f109841d53"
+      "spec.md": "5f8d1d3c47c21a4e627b31c25bd9f7684be6f9f7fa4f1bc3b4d854e5908b0f41",
+      "plan.md": "5ac38e3b22206494cebd9a5e30877e32933660c89fbae1307d994618f43938b0",
+      "tasks.md": "43c6a7e66a136ed2c4378b7f30c0104312a799ac4e766da92e6935c151d6c8fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

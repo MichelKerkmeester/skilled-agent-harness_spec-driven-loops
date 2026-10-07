@@ -1,0 +1,163 @@
+---
+title: "Implementation Plan: Calibrated One-Turn Routing Negotiation"
+description: "Reconstructed delivery plan for the 005-calibrated-negotiation research packet, derived from spec.md and git history."
+trigger_phrases:
+  - "calibrated negotiation plan"
+  - "calibrated one-turn routing negotiation"
+importance_tier: "important"
+contextType: "research"
+---
+> Reconstructed on 2026-10-07 from spec.md and git history. It was not written at the time.
+
+# Implementation Plan: Calibrated One-Turn Routing Negotiation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+### Technical Context
+
+| Aspect | Value |
+|--------|-------|
+| **Language/Stack** | Markdown research documents |
+| **Framework** | Not recorded |
+| **Storage** | Not recorded |
+| **Testing** | Not recorded |
+
+### Overview
+
+Define an honest selective-classification contract that always exposes rankScore and scoreMargin, permits estimatedError only with a matching held-out validation certificate, and bounds uncertainty handling to one typed clarification before defer or reject.
+
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
+
+### Definition of Done
+
+- [ ] All acceptance criteria met
+- [ ] Evidence recorded without implementation claims
+- [ ] Docs updated (spec/plan/tasks)
+
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+
+Not recorded. The packet retained a research charter and a synthesis document, not a system design.
+
+### Key Components
+
+- **`spec.md`**: research charter and calibrated-control requirements
+- **`presentation.md`**: retained synthesis of the ranking, risk, and decision contracts
+
+### Data Flow
+
+Not recorded.
+
+<!-- /ANCHOR:architecture -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Follow the ordered tasks in `tasks.md`.
+
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+Not recorded. The retained sources describe a research synthesis, not a tested implementation.
+
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| Versioned held-out corpus | Internal | Not recorded | Calibrated error estimates and thresholds cannot be promoted without it |
+| Pinned policy, candidate, and tokenizer snapshots | Internal | Not recorded | Scores and friction limits are not replayable across changing inputs |
+
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+- **Trigger**: Not recorded.
+- **Procedure**: N/A. This packet is research-only and changes no runtime behavior.
+
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Evidence review | None | Synthesis |
+| Synthesis | Evidence review | Verification and retention |
+| Verification and retention | Synthesis | None |
+
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Evidence review | Not recorded | Not recorded |
+| Synthesis | Not recorded | Not recorded |
+| Verification and retention | Not recorded | Not recorded |
+| **Total** | | **Not recorded** |
+
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+
+- [ ] Backup created (if data changes)
+- [ ] Feature flag configured
+- [ ] Monitoring alerts set
+
+### Rollback Procedure
+
+1. Not recorded.
+
+### Data Reversal
+
+- **Has data migrations?** No.
+- **Reversal procedure**: N/A. Research-only packet; no data changes.
+
+<!-- /ANCHOR:enhanced-rollback -->

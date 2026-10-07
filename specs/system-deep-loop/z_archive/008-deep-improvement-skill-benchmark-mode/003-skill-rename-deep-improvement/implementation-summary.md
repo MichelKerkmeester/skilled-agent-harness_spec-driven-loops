@@ -23,6 +23,7 @@ _memory:
 
 # Implementation Summary — Phase 003: Narrow rename
 
+<!-- ANCHOR:what-built -->
 ## 1. What was done
 
 Executed the NARROW rename `deep-agent-improvement` → `deep-improvement` per the Phase 002 playbook (`../002-implementation-deep-research/research/research.md` §4). The executor history is recorded honestly below — the originally-intended "GPT-5.5 edits, Opus verifies" doctrine broke down mid-phase (codex was operationally unreliable), and the operator switched to "native Opus subagents + main loop only" partway through.
@@ -36,12 +37,18 @@ Executed the NARROW rename `deep-agent-improvement` → `deep-improvement` per t
 | Rebuild + recompile + validate | Opus main loop | `tsc` typecheck (exit 0) + build (exit 0); `skill_graph_compiler.py` SQLite recompile (exit 0); Python route-checks; `validate.sh --strict` |
 | Final integrity audit | Opus 4.8 subagent (read-only) | **RENAME COMPLETE & CLEAN** — all 7 integrity properties PASS |
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
 ## 2. Scope honored (NARROW)
 
 - **Renamed:** skill package id + dir, `SKILL.md name:`, agent id `@deep-agent-improvement` → `@deep-improvement` (all 4 runtime mirrors + `.codex/config.toml` registry), advisor canonical id (TS `aliases.ts`/`explicit.ts`/`fusion.ts` + Python `skill_advisor.py`), command `skill:` fields + hardcoded paths (both `.opencode` and `.claude` runtimes), cross-skill refs, root docs.
 - **Kept (lane tokens, not package):** command verbs `/deep:start-agent-improvement-loop` + `/deep:start-model-benchmark-loop`; `assets|references|scripts/agent-improvement/`; `agent-improvement-state.jsonl`; the `model-benchmark` lane token.
 - **Back-compat:** `deep-agent-improvement` + `sk-deep-agent-improvement` retained as LEGACY ALIASES in advisor alias arrays + regression fixtures, so old prompts still resolve.
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:verification -->
 ## 3. Verification evidence (all green)
 
 - **Opus final-integrity audit (subagent `af02ab3b46fd00eb2`):** all 7 properties PASS — A1 package move, A2 four mirrors, A3 advisor canonical (not split-brain), A4 inert-penalty fix (`'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]]`), A5 compiled rebuilt (dist gitignored + rebuilt, sqlite present), A6 8 residuals all intentional-keep / zero missed-active, A7 scope clean.
@@ -51,6 +58,9 @@ Executed the NARROW rename `deep-agent-improvement` → `deep-improvement` per t
 - **Active-residual census:** 0 unintended `deep-agent-improvement` refs; the 8 remaining are legacy aliases, legacy phrase keys, regression/native-scorer fixtures, an explicit.ts comment, and one `it.skip` historical test assertion.
 - **validate.sh --strict:** parent PASSED (0 errors).
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
 ## 4. Notes / caveats
 
 - **Honesty correction:** an earlier draft of this summary claimed GPT-5.5 completed the full ~180-file rename and was verified clean. That was wrong — codex did a partial pass and the advisor layer was completed by the Opus main loop. This record is the accurate one.
@@ -59,3 +69,4 @@ Executed the NARROW rename `deep-agent-improvement` → `deep-improvement` per t
 - **Pre-existing tech debt left alone (SCOPE LOCK):** a `command-deep-agent-improvement` command-bridge key (slash_markers use the retained verb) and the `it.skip` remediation-008 assertion are intentional keeps.
 - **Committed at `123ef15261`:** the rename spans shared infra across ~180 files; it was committed scoped to the surface (excluding daemon `graph-metadata.json` churn + parallel-session artifacts). The earlier parallel-session-revert hazard no longer applies — the commit is in HEAD history and Phase 004 built on it.
 - **MCP down:** advisor rebuild/validate used CLI fallbacks (`npm build`, `skill_graph_compiler.py`, `skill_advisor.py`) instead of `advisor_rebuild`/`advisor_validate` MCP tools.
+<!-- /ANCHOR:limitations -->

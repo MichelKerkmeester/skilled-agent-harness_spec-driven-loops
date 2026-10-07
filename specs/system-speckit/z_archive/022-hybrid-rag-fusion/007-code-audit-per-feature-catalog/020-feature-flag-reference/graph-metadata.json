@@ -15,8 +15,7 @@
       "feature flag reference",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -27,10 +26,10 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -190,7 +189,7 @@
     ],
     "causal_summary": "The feature catalog for Feature Flag Reference has evolved significantly",
     "created_at": "2026-04-12T09:02:50.256Z",
-    "last_save_at": "2026-08-30T15:39:38.452Z",
+    "last_save_at": "2026-10-07T20:25:19.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74fa939042be8190211a7492f4f5f0988127c9c16b6c597bd3dce1459998c06f",
+    "source_fingerprint": "sha256:7f55bf12e3ce00b9739deeb943ea44e0719c660e61847c718758b249cc206ba5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "017756cb85b05d712a1dfe7f09303fb06d0bf0de2ec5ad3034aa7d21de0d0c44",
-      "plan.md": "aad053fc5e7b98a14039657b422fe5fb1fd6ee7c9f256436b026ff0e8c74221b",
+      "spec.md": "fad495e18d50c4c21ba40da23288432e69ec8b03a3184398c18d7ca4b0c2f509",
+      "plan.md": "b7e136d98144c2507446d162f09b6d61299b04381a1ecaea8156be465ca898cc",
       "tasks.md": "65f571022212ddbbb57434bc090e59842e69eb468de027f2fffde3fdaad2ef04",
-      "implementation-summary.md": "6ce7404efd21fab07caa1588cbb28430637e89e79c12de1393a9296ae867b616"
+      "implementation-summary.md": "4a708a9daacdc0db0fa4842b50520ecc8a5ae2cb49f05c340d7a62a4dca5d38c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/009-deep-router-agent-rename",
   "description": "The primary deep-loop router agent was named `deep`",
   "keywords": [
     "primary",

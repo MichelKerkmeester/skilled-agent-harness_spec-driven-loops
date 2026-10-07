@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
-    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
+    "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -88,16 +88,16 @@
     ],
     "causal_summary": "The sk-doc surface uses snakecase in several directory and filename families, while the 020 program defines kebab-case as the sole canonical form for in-scope filesystem names",
     "created_at": "2026-07-14T15:16:56Z",
-    "last_save_at": "2026-08-30T15:39:16.385Z",
+    "last_save_at": "2026-10-07T18:12:45.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f564b0c3dcd680a1ce884c481fccb60d7a0657d75fcbbc925d5a19d3eb1c3101",
+    "source_fingerprint": "sha256:f2e0a2a5b05322d7f014cb084ba528b3e56ed0384165d2129f5eb8d76b50eae8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5778a5e6b70333e10b5c66b5d78ce6f50c679994017883f527e483b61ed21d33"
+      "spec.md": "5a39f26289f1ed0721b05bd2bc9f06d82c9e0de253ef0173294ef41715151cf2"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
     "last_active_at": null

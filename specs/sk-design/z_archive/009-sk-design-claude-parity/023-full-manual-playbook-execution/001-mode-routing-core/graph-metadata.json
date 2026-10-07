@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
-  "parent_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook`'s `mode-routing` category has never been dispatched for real",
     "created_at": "2026-07-07T15:09:43.419Z",
-    "last_save_at": "2026-08-30T15:39:12.330Z",
+    "last_save_at": "2026-10-07T18:12:08.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5a20d329177fb2ce8efc3498ef1023a803aa7d4d467e6d024ec2506f1f77816",
+    "source_fingerprint": "sha256:8993a23eeb57de21f167317149cce5e2bfeae0c9dd635dceb90695fec3a145c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7181dbde2a62ceee5ba80baa083c25246bcfaab82e174b38223b7fb0df431f7d",
-      "plan.md": "3e6543bc79a9d0110d46077d225296a6230ee6fccd99502aa0eda1fa963ef6fa",
-      "tasks.md": "b1177a870fb410fd0c756cd46be0e00190eec45876e56aafeb714533aab6177f",
-      "implementation-summary.md": "e65dfba662c32bb16c03578e5b8ea0de29049e53b707192aaa161fa2382a8714"
+      "spec.md": "5341d48864c1509ae56596ee82d359411f4c4c632efc5bee41ddac7c877de77e",
+      "plan.md": "dd387b4a488354de4c2de7e700b2b70dbd3dad27a66292ceaf6d6ffbf5631bc0",
+      "tasks.md": "b12bbf91a057f167ff87b704b1e0bf88f6e7688df0e078d2f86f5b1b441805d6",
+      "implementation-summary.md": "7d5837f937e447a601f1202220c43eb36a62349c17c5b1343a718a732417dd29"
     },
     "last_active_child_id": null,
     "last_active_at": null

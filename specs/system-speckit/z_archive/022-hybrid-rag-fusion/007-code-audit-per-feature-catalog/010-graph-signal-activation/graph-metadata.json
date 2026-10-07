@@ -15,8 +15,7 @@
       "graph signal activation",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -28,9 +27,9 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "catalog"
+      "catalog",
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -176,7 +175,7 @@
     ],
     "causal_summary": "The feature catalog for Graph Signal Activation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-08-30T15:39:38.348Z",
+    "last_save_at": "2026-10-07T20:28:57.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +184,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5de5e5237f093cf35801a16a1134bde670fb7d02dccbdbf909be67f3cd0339f",
+    "source_fingerprint": "sha256:25fc9fa2ff411c07c2a12fe64df2a10aca9ccabe505b3b2e60a2d4f3f6b913b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8dbca38d4b8b3b615c7315f398dbade9053d8502ef68fd32ac5885d0822911c7",
-      "plan.md": "09ffe9ebc4c3d6870e4b87ed38364fb2bd115134d7e28e4b6551edf78d7783f6",
+      "spec.md": "df6404a6c8d49c7a7a41a1b6eb9c3f42176da00c8b040283b8a9cf1c20474203",
+      "plan.md": "d4326c9a710b988944098e085af6bfd3c48c1ef4ab20d6300ad578fab24e96d5",
       "tasks.md": "579e5b334ad6eae7d8accb3104945738b75e272a1ee3e141de42e1d40ae80d4d",
-      "implementation-summary.md": "bfbd6c05ccbaa0695d132ff4d0ae8f1dae8bcc95ed0c736df2c5252d7ef0e92d"
+      "implementation-summary.md": "4b3879c0e8e99420e5d23ce05dac676f9374745893ed72f1c183291ff99fc43d"
     },
     "last_active_child_id": null,
     "last_active_at": null

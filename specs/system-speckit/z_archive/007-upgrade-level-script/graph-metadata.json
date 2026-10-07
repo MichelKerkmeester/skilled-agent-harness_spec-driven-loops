@@ -14,9 +14,7 @@
       "upgrade level script",
       "spec folder level upgrade",
       "archive",
-      "implementation plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "upgrade",
@@ -25,12 +23,12 @@
       "spec",
       "folder",
       "archive",
-      "implementation",
-      "plan",
       "tasks",
-      "summary",
       "archived",
-      "captures"
+      "captures",
+      "work",
+      "refined",
+      "feature"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +186,7 @@
     ],
     "causal_summary": "This archived folder captures work that added or refined a spec folder level upgrade script",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-08-30T15:39:37.703Z",
+    "last_save_at": "2026-10-07T18:16:39.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2958a4747eb4fd95bcc72d9abaf42438b2de00adbc53401543d4c80bcc6172d3",
+    "source_fingerprint": "sha256:bc0a2feb591749f161d456578cb18d98465526d2bfb7565f6dceebae3de22785",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae47d8a881543ee0b4ff18db3f27802129925bfc499b09a2b2ef99b176cdc785",
-      "plan.md": "4d715655a3451c1ff4846c83c05a0b503d38d8acf10cbb2391b318c9a1a81ad6",
+      "plan.md": "69718157bdb2a0ffbc785b26a3647ff6dca019c6e9ce63da7df432d79cd93679",
       "tasks.md": "1371146400ba9c507379b38d8e00a1eed232b048e15e4eb1ce81dd573ab9c459",
-      "implementation-summary.md": "a7b65c2427b84025ec587f13dc89e940643e1372646e45796dc03e4301f711bf"
+      "implementation-summary.md": "67d8469686f968fee290fc5d260f8e6c674cdb5fe9b9e60264fb760c17b71cb1"
     },
     "last_active_child_id": null,
     "last_active_at": null

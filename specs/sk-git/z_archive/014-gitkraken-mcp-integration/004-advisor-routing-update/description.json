@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration/004-advisor-routing-update",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration/004-advisor-routing-update",
   "description": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill",
   "keywords": [
     "even",

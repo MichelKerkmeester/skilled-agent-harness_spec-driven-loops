@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,6 @@
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/speckit.md",
       ".opencode/commands/create/skill-parent.md",
-      ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml",
       ".opencode/commands/create/assets/create-skill-parent-auto.yaml",
       ".opencode/commands/create/assets/create-skill-parent-confirm.yaml",
       ".opencode/commands/create/assets/create-skill-parent-presentation.txt",
@@ -54,7 +53,8 @@
       ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs",
       ".opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
       ".opencode/skills/sk-doc/leaf-manifest.json",
-      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs"
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "skill-parent.md",
         "kind": "doc",
         "path": ".opencode/commands/create/skill-parent.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-skill-advisor.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml",
         "source": "derived"
       },
       {
@@ -178,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command proves a newly created skill reached the live advisor index, `/doctor:skill-advisor` omits the live `skillgraphvalidate` tool from its own declared surface, `leaf-manifest.json` generation is inconsistently owned, and three small but real, fully-diagnosed defects sit in the doctor/create surfaces (route-validate parity, a stale template cross-reference, a missing tool declaration)",
     "created_at": "2026-07-31T03:21:54.016Z",
-    "last_save_at": "2026-09-11T16:42:10.379Z",
+    "last_save_at": "2026-10-07T18:13:25.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d05f704e909c6e357fa2f7b58d06c88a34087effdb5de1c27e5b826b4282812",
+    "source_fingerprint": "sha256:4c3a96721ad0b54ed32847826d6beab296bdb92c79ffeaeda5c688f6026f26b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e240bafdda3d18a4b2c387d1af94da5610e2f60055986c7bc52d4efe876b4dc",
-      "plan.md": "7fae8818336b80fcfc5e030388a09d585f701bea68f2e3e3bf623f4c75573b0b",
-      "tasks.md": "898e578edb344dc3dd64c0740d15d1b19a42e8a0d672ce3b69e915cc57c01003",
-      "implementation-summary.md": "da3f345a2a3c71b5d6ec7ed6fe4bef306efa0a11f31a1948164a55a8c9d27871"
+      "spec.md": "aea698b7afc95caac0794a68c11f3ffb96bccfdf8ee6db9ceb14cb51cfdd4d44",
+      "plan.md": "fb68037062dafa44ba7481ca9a6cef2d290c08a3300101c1baea382dbf238f69",
+      "tasks.md": "9cee4c24c7e0aa104854efcd5e5175fcd82d2867c24644eec16f0931106e5f01",
+      "implementation-summary.md": "c1afe1b75b96cc68bb3d5c522a44d694d33d12258f69e92fb87ee4572e97eacd"
     },
     "last_active_child_id": null,
     "last_active_at": null

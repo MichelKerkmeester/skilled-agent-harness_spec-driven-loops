@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade"
     last_updated_at: "2026-07-06T16:57:20.332Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented runtime lane-health degrade unit and recorded verification evidence"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade |
+| **Spec Folder** | 002-runtime-lane-health-degrade |
 | **Status** | complete |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

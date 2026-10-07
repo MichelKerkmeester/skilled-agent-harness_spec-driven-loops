@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8"
+    packet_pointer: "cli-external-orchestration/z_archive/060-devpass-roster-vision-gemini-3-8"
     last_updated_at: "2026-09-04T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Planned three workstreams against live-captured provider evidence"

@@ -15,8 +15,7 @@
       "ts header normalization",
       "sk-code follow-on",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "header",
@@ -25,12 +24,12 @@
       "follow-on",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "packet",
       "recorded",
       "unresolved",
-      "violations"
+      "violations",
+      "readme",
+      "coverage"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -38,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/memory-tools.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-tools.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-tools.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Finding State",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
     "created_at": "2026-05-15T11:56:28Z",
-    "last_save_at": "2026-08-30T15:39:26.608Z",
+    "last_save_at": "2026-10-07T18:16:05.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b53881175365dcd207c131c3944d0667fbd88090ecc72f745ca0875010773f24",
+    "source_fingerprint": "sha256:a7aa17c378f3a156b929cdc16fa33fca08af40b1f58c0a0c8e2fb84e142f2cd9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a83cea6e8ad0b35e359c1319d4b6a883a424110a16fca4b2682783c7d28f907e",
-      "plan.md": "7620203630c600550594249176c0c8bb19e7c2d2449629cd50cb9d46b8563d16",
-      "tasks.md": "df4d6c1a44f9c277938ba203fc211679e465128b4e1ada3098ff36f8709af1d6",
-      "implementation-summary.md": "9ad365d40bbbaf02a7b98a83a2962b2a92d2c93d06cd25dcf9f7d5a51257867d"
+      "spec.md": "7350cb040621a8bceeb0f5239d60679a48a6ba6c1cd4c38f906acc2f7403864d",
+      "plan.md": "7dfbf306abe73495453c2244c8dac7b4246b34d37d2f43e9e3f252700bc7d863",
+      "tasks.md": "0216bad69189ead644b721e9806296a11f2f1d4bac1fbdaed3b8df7702a3c7d2",
+      "implementation-summary.md": "1aaa707a41d17145d7874f02f2a1cedab9040cede50d4fe2736d373c598eb365"
     },
     "last_active_child_id": null,
     "last_active_at": null

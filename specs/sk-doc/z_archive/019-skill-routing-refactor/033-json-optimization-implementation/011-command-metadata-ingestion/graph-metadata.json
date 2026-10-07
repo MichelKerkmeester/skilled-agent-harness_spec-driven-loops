@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Derive both the TS COMMAND_BRIDGES array (projection.ts) and the Python COMMAND_BRIDGES dict (skill_advisor.py) from the fleet's 7 command-metadata.json files instead of two hand-maintained, already-drifted authorities; add a drift-guard asserting all three sources agree, plus denser command-metadata/leaf-aliases e2e tests. High-blast: live routing rewire on the advisor's hottest file, shipped shadow-mode-first with a documented rollback.",
     "created_at": "2026-07-29T08:00:35.400Z",
-    "last_save_at": "2026-09-11T16:42:09.376Z",
+    "last_save_at": "2026-10-07T18:13:32.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d2ffe6431062e0d7a8b11284c898a17f692d0f8af86a95f8dd79152d5c614f5",
+    "source_fingerprint": "sha256:ff737e996c5ba877fd696ff0035c54efc32e497332c293ab94a447de68be6b16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "54e9d50cb9453f0df38be119e49d3fc4a7ccab160e545484121480c0955c5ba0",
-      "plan.md": "d14591148caa6deca6999f90c2415103ecdc84ba57214086bb239ba6f1e53705",
-      "tasks.md": "0e599cdfcca3e00d32e94813a19324f3ce93f773df12f1b1cc608abe908b361f",
-      "implementation-summary.md": "2880e366c4863ce041a21afec0bb8f4e84cc92f6352c2af34eee42174296c8a7"
+      "spec.md": "976c20b60af77154e9d0a644006dabdb116243e11141496b731a6f72d1cc02a1",
+      "plan.md": "c2747d2808ff7528e7aa48f28463a9d46bcdc77d700a09553efa1b73bfa9138e",
+      "tasks.md": "1a739261bd3e774847ebd89fb0736dfe45109407ec9df7735441161a98fe6efc",
+      "implementation-summary.md": "4efd25a31be96646b85485e015ff2b7e6f732ec8351086495100280ce7b29899"
     },
     "last_active_child_id": null,
     "last_active_at": null

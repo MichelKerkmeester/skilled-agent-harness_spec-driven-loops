@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 003 discovery scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-08-30T15:39:39.043Z",
+    "last_save_at": "2026-10-07T19:24:35.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b80b10a284ed3f72587488870d04a85913772de65b22af3f2469dd817f9d11a9",
+    "source_fingerprint": "sha256:375d5f6c34363d43234e2f491df5a7f824feff566acfefd38548275496af8385",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53dd7bb5168264c7ff05e3014404d4dceed86d13ffbd6a648d3c3a2cb7ef6cf8",
-      "plan.md": "399cb0be65b6b99bac6789c225cd2d9ca000301e9415b8bd5201411e7bf853d8",
+      "spec.md": "45608ab907395218cf89ed8945505fa88602cb2c6801128047c98b625f2bafe2",
+      "plan.md": "4d781777700c8e3be44c87987bdc8a92c6f2b6d158f65545092144cd69d5d863",
       "tasks.md": "1e8526cfe264d870fcc057fc433b28a0db661c03a2073d90cbdbcc56c70218a2",
       "implementation-summary.md": "72e00323d88cc729f10682a249440b90c4603448a88b30a43ba156e456d3f3f1"
     },

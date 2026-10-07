@@ -14,7 +14,15 @@
       "deep-loop migration closeout",
       "011 migration closeout cli verification",
       "deep-loop cli verification cli-devin",
-      "mcp tool surface removal closeout"
+      "mcp tool surface removal closeout",
+      "deep-loop migration closeout plan",
+      "CLI verification closeout plan",
+      "MCP remnant deletion plan",
+      "deep-loop migration closeout tasks",
+      "CLI verification closeout tasks",
+      "MCP remnant deletion tasks",
+      "deep-loop migration closeout summary",
+      "cli-devin CLI verification results"
     ],
     "key_topics": [
       "deep-loop",
@@ -27,13 +35,15 @@
       "tool",
       "surface",
       "removal",
-      "runtime",
-      "isolation"
+      "plan",
+      "remnant"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".claude/mcp.json",
       ".codex/config.toml",
@@ -45,6 +55,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -114,50 +136,84 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Verdict The",
+        "name": "Reconstructed Level",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Part A — Closeout + configuration (committed `2a64da03d5`)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
+        "name": "Pattern Closeout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Closeout of the deep-loop runtime isolation arc: reconcile stale tool-count config/README references, delete deprecated-MCP remnants (orphan README dirs + relocated DB copy), record the now-green test sweep, and prove the deep-loop skills use the new .cjs CLI by running their CLI-exercising playbook scenarios through cli-devin SWE-1.6.",
     "created_at": "2026-05-25T11:00:44.830Z",
-    "last_save_at": "2026-08-30T15:39:23.349Z",
+    "last_save_at": "2026-10-07T21:08:11.113Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaf8a3bd41b52d960fb042e48f6c3ac55f20a5f3f54dda99b03dcd305c4484fb",
+    "source_fingerprint": "sha256:bc13c93a14059463f173909e238a451f1a44442661b474f84cbafa2e87bd46fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bd22c3d2e0c911664f03a7e9510d0730466032c99f79da392aab6110da73262",
-      "implementation-summary.md": "dca2195fe2d8cc192b297cf97ddd7ad80c84237de5bb6e3746c215de5adebff6"
+      "plan.md": "2b01c5cdc1a81d2e5cb4facfc4b4865ec0da49f2efe6abda94b2c2559dab2953",
+      "tasks.md": "79183fcea2ae380cec53ec9169fd2a37b202076f716ed5f1889a99d190dc77d9",
+      "implementation-summary.md": "a12645455382a2dc5433780290156c4a6dcb3c71851b89d7b2a7a6d29bdcf67c"
     },
     "last_active_child_id": null,
     "last_active_at": null

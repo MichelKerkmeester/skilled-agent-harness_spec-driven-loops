@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/010-mcp-mobbin/001-research",
+  "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/001-research",
   "description": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
   "keywords": [
     "phases",

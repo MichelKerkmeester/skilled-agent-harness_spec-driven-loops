@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/001-packet-root",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/001-packet-root",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/001-packet-root",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/001-packet-root",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-md-generator packet root audit",
       "design-md-generator INSTALL-GUIDE conformance",
       "md-generator root template check",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "packet root plan",
+      "packet root tasks",
+      "packet root implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -34,9 +28,9 @@
       "md-generator",
       "template",
       "check",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`design-md-generator`'s packet root is unusual among sk-design modes: it carries three root markdown files, not two",
     "created_at": "2026-07-27T15:10:01.252Z",
-    "last_save_at": "2026-09-11T04:35:43.024Z",
+    "last_save_at": "2026-10-07T19:23:34.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68659d78fcc2995dc1b946941677999699d605271cb08474bc2364053cf98d19",
+    "source_fingerprint": "sha256:daf1454518817c840861b7e8f1392097df8133561df924a65a30d59829ffbadc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b51dcb946eccc4bf365cdef6636e846c4b38a95940c7c8d396d14ca2a035345a",
-      "plan.md": "8771d8d044462ea8f6448baa9916cb0d3d6b763825bfbfd32d3ce174e4040eec",
-      "tasks.md": "ee1ee9b24d12ee4f838309494346c18e19914d793fe4616aeacbf0528b8793ad",
-      "implementation-summary.md": "05eed3f5afa9f73bb7e6910f661465cb6a45645bd6218cd4838d559bbdadd74e"
+      "spec.md": "663212dbb106fc8d64c9cb34394576981c32429abb0dccb8fdc13b2059115e4a",
+      "plan.md": "2bc8e17391efda658ecc8f9019e88611f0c7a83b1a393d6e6872b63aecdaa19d",
+      "tasks.md": "3be90a5eedbdded6492cd603b671e14f337dd9bd70bfd89f85802c57f06518ed",
+      "implementation-summary.md": "ab1efea84b1aa8edfcce0e5faccc9e26a660522adce89345f8fad887cdba5355"
     },
     "last_active_child_id": null,
     "last_active_at": null

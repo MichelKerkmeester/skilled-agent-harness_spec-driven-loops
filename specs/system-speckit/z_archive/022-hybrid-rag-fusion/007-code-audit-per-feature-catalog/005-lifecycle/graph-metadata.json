@@ -15,8 +15,7 @@
       "lifecycle",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -26,11 +25,11 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
       "evolved",
-      "significantly"
+      "significantly",
+      "specification",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Lifecycle has evolved significantly",
     "created_at": "2026-04-12T09:02:50.247Z",
-    "last_save_at": "2026-08-30T15:39:38.308Z",
+    "last_save_at": "2026-10-07T20:28:50.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b5c6d39ab5a8c06e01f8e5f304f03fac52d36df1f98e98870d2c4ee62478e5b",
+    "source_fingerprint": "sha256:2c3535ccc3fb1bf61bf52d44ea635005fc8d58f7b7cb383c75969f4a0450323a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97aecf88be2e216364dec41161dbe58a1c7961b94647de0919f4c4512ff5040b",
-      "plan.md": "1541a6ef70221dc9a8aa0b9d4f2133b120e9cc175054b207ce00b9d237e3f2a6",
+      "spec.md": "be56127a139c3c8b912428bd93b9f9e7e0e46cf16a7c0d5a1003468787289e16",
+      "plan.md": "258aac4981c6d78243e714ea5d59bf067278fe07837421460b0920890bb77300",
       "tasks.md": "7de7d852adc1ddd2d64eb39ad20d8d03eb511b6cb3b6618817ff7b78c1fdbb09",
-      "implementation-summary.md": "c612fb60f6f76912365207ed22bd7d6532703df17b27626496586a71b0e0fec9"
+      "implementation-summary.md": "89beae318a9d54cfe1fc8f2653019c2ca5c5a8b4cb07d7b93ada2ead7963e73a"
     },
     "last_active_child_id": null,
     "last_active_at": null

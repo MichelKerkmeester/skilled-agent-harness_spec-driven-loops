@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-09-10T21:04:51.506Z",
+    "last_save_at": "2026-10-07T19:24:34.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34192aa914d8eed5f32381040ba5016d99e5eccfb21b5a92bcfedbbeb59b88a4",
+    "source_fingerprint": "sha256:0d36fef28383f5fa455c1ad56213bbebab209a6ea303994c0b3b2e78c9584158",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "339e024ca6b333784f5fe4c2fad38c65e239f7eae69f0855b6f53c2b8ae36a07",
       "plan.md": "16f44bd48be019e07681cb6e5b4271c0516cab7a95959f7ea4f920d3c4795fff",
       "tasks.md": "5fb19f58a6d20d7ec74bb5663b28a34d750250fc4c799dd6680a2e516eb47f09",
-      "implementation-summary.md": "fecf12d3c451c9a71daa4326dce3afe2f91ebe9787bb3a58c31ae4f9b468bdb7"
+      "implementation-summary.md": "0657563390e518aba3bd08cc6af93e62b0fdc6f771959b15db92276b3591a635"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/003-fanout-failure-recovery"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery"
     last_updated_at: "2026-07-06T16:24:27.369Z"
     last_updated_by: "codex"
     recent_action: "Implemented C1-C5 fan-out failure recovery with deterministic unit coverage"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/003-fanout-failure-recovery` |
+| **Spec Folder** | 003-fanout-failure-recovery |
 | **Status** | complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |

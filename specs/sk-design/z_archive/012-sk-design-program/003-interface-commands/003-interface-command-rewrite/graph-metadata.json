@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/003-interface-commands/003-interface-command-rewrite",
-  "spec_folder": "sk-design/012-sk-design-program/003-interface-commands/003-interface-command-rewrite",
-  "parent_id": "sk-design/012-sk-design-program/003-interface-commands",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/003-interface-commands/003-interface-command-rewrite",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/003-interface-commands/003-interface-command-rewrite",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/003-interface-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/command-metadata.json"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five `/interface:` command bodies (`design`, `foundations`, `motion`, `audit`, `design-reference`) are substantive thin routers: each carries a 7-section router contract (route proof, owned assets, mode routing, visible output, execution targets, presentation boundary, workflow summary) and references the shared lifecycle by a Read-imperative at line 9 rather than a runtime include",
     "created_at": "2026-07-21T11:08:43.954Z",
-    "last_save_at": "2026-08-30T15:39:12.824Z",
+    "last_save_at": "2026-10-07T18:12:25.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1481146e2d6d2955af086a263de7784055edd7d0e1a265f69d40e1197bce07ea",
+    "source_fingerprint": "sha256:385e68db02db68972d667154f3673b90003191b0636980b758e742e2e1f45d1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1a81845183907031dbcf746f516d93e8a25d1b3570d44a8c065211c6d0d3a53",
-      "plan.md": "fcdbb6247bf18c558371a5f246d83dd0b65d844fcc00ba362b35166044306ba8",
-      "tasks.md": "2375a9615c20c00b99150cd9541ca0e0042eeb16bc94a6d0717f8bc36ed06731",
-      "implementation-summary.md": "dcd74466135377928d37e15dc3df37b0564365c4e30d4df3d09134635b57d4d4"
+      "spec.md": "d937b9a8734f1fa4ba8852171441f1c0c2e8f8ead4c82b9214f0efb73933336f",
+      "plan.md": "bb17f76d3fc1bfa37414914a50de4a943f7b8a1e644882d643e0deb3dd55fc5d",
+      "tasks.md": "15d641da0f7f50f74999fa95796b309c655201c3a50b5a9b85b215bf43c60df4",
+      "implementation-summary.md": "e0200ca9c028a3888198fb4c63df0a3dd8cde925d1947369ea1caa217326aeff"
     },
     "last_active_child_id": null,
     "last_active_at": null

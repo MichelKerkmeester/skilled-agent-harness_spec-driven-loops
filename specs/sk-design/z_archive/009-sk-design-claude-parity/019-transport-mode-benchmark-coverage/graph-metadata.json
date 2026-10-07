@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
     "created_at": "2026-07-07T08:32:09.549Z",
-    "last_save_at": "2026-09-11T16:41:54.004Z",
+    "last_save_at": "2026-10-07T18:12:06.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4ad79e19739999da0b0e3672e5531c5783d0b3b3f85c20700df6827d0286d09",
+    "source_fingerprint": "sha256:484d787a51075333d761570f3697577dde8b67ab71d70c26d25d3178b49152dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c23ace4eb72bfbb3defefe316b77efbb4c1a1b8caf252a15a3d661f0d53e5111",
-      "plan.md": "2272a31878140641d0c301928882afecab7f9e5abefa59e0a8eb06e48b650844",
-      "tasks.md": "a4d4e1072f0fee773e97d9cd379c6b34f10722cc6a7dbde8c029106b63ff0b4a",
-      "implementation-summary.md": "80d206c1a9532faafe997eb2fca0223f02ec7aeb87dc6812b909ed34a5fdc61f"
+      "spec.md": "90a28c544d034d7a3a842e6c8199c80f43dd3df82adf8714cd14c551966bb96a",
+      "plan.md": "860860dfe292b7d548fe4e748a8528bffa110e8ed24602d406c66ebf7b4ad61b",
+      "tasks.md": "c09eba57c6812d76a214ec1c41951001e3c843d08174811eadaf300b636a78b8",
+      "implementation-summary.md": "6defc0388c793ee49a6130b352a4f3ee6aa8d830cf8c2517d7448c772cd81697"
     },
     "last_active_child_id": null,
     "last_active_at": null

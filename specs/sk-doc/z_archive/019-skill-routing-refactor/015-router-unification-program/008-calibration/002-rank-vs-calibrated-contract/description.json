@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract",
   "description": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
   "keywords": [
     "compiled",

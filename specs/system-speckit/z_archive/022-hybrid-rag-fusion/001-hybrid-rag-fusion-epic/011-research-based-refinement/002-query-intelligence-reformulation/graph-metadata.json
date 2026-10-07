@@ -157,7 +157,7 @@
     ],
     "causal_summary": "The current retrieval pipeline treats every user query as a single opaque string — one embedding lookup, one keyword expansion, one graph probe",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-08-30T15:39:38.134Z",
+    "last_save_at": "2026-10-07T20:28:26.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -165,12 +165,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:cf529265e2f347e39852eab94ba95f1e10464e3f9f1fd6c07c5dcc41c7b0224f",
+    "source_fingerprint": "sha256:683bd2f7889545f19372ed9f2bbe1e8ffc344313f668a27c055e35a5d7ada4c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dee822b6374c88a93ef21ecb3229d4ec1257fd3913df84565bca7ddbc6898b2d",
-      "plan.md": "c3f6c66dcf128dccc66a806c555cf2803f7cb8000d696fb996389f0f3e8a0ded",
-      "tasks.md": "c827d83fb4b50bc29185f5e9ba901e98d63ed4ef7e94b17bbd1c771f8746dfae"
+      "plan.md": "8d1233b8eb5aa138fc3a033301f588f3a16f2474dcc32819ba6e0c8c2ecd030f",
+      "tasks.md": "1d069ea72cc674503ab7d579a3352a9f1e27eccd834fc9c002d5cc38c62e6681"
     },
     "last_active_child_id": null,
     "last_active_at": null

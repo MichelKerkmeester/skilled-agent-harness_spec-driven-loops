@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "description": "GitKraken publishes an MCP server (`gitkraken/mcp`, npm package `@gitkraken/gk`, stdio transport) exposing 31 tools spanning local git operations,",
   "keywords": [
     "gitkraken",

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute"
     last_updated_at: "2026-07-01T21:48:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold plan with shipped fallback-router typed-reroute content from spec.md"

@@ -14,8 +14,7 @@
       "deep-research",
       "uncovered questions",
       "DR-003",
-      "ADR",
-      "implementation summary"
+      "ADR"
     ],
     "key_topics": [
       "deep-research",
@@ -23,13 +22,13 @@
       "questions",
       "dr-003",
       "adr",
-      "implementation",
-      "summary",
       "convergence",
       "references",
       "question",
       "coverage",
-      "saturation"
+      "saturation",
+      "signal",
+      "operator"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -38,8 +37,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reducer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,11 +177,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained uncovered",
     "created_at": "2026-05-23T03:56:52.598Z",
-    "last_save_at": "2026-08-30T15:39:23.367Z",
+    "last_save_at": "2026-10-07T18:14:21.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +197,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d9f45b751edfab0181cc3a436e8eadad9b762d3d8bd9e0a0705f72d7cc9df90",
+    "source_fingerprint": "sha256:f1bdf00c932ce7c879803452a0314db705c221fb58e5dbab7d64361c3c6ee64c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8305c604314dac4c7e4611c0e129318857067aece38e4d37a88ec078e8a6f50",
       "plan.md": "a24d1c06fa36e29fc8fd09d65cf8eb060b2629c218088e6ebca0efa9d6453d0a",
       "tasks.md": "2f4942eb7329048788c3243e0dcf5dc511f7cbd2204c70b0d86c99cfdcb50913",
       "decision-record.md": "79459690ec78e8b78c8ff4070313a261321a9da787575bef82e865b91e60d497",
-      "implementation-summary.md": "bb43bd957bbd361143be057da2a762b887370ff7a6fac5b5eef81d4e2b3e832d"
+      "implementation-summary.md": "627b0518d8d92391e7e445e35fa71ad698835fb6d7cb074e74132e97a31a6a46"
     },
     "last_active_child_id": null,
     "last_active_at": null

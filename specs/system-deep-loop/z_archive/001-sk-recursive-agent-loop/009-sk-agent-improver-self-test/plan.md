@@ -19,12 +19,17 @@ _memory:
 ---
 # Plan: Agent-Improver Self-Test
 
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+<!-- ANCHOR:summary -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
 | Phase | 009 |
 | Approach | Execution-first: run the real command, observe, document |
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## Deliverables
 
 ### D1: Pre-Flight Verification
@@ -67,7 +72,9 @@ Document the self-referential test results:
 ### D5: Write Implementation Summary
 
 Write `implementation-summary.md` with full observations, scores, edge-case findings, and recommendations for future phases.
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 ```
@@ -76,6 +83,7 @@ D2 (loop execution) ← D3 (observations)
 D3 (observations) ← D5 (implementation-summary)
 D2 + D3 ← D4 (parent updates)
 ```
+<!-- /ANCHOR:dependencies -->
 
 ## Self-Referential Edge Cases
 

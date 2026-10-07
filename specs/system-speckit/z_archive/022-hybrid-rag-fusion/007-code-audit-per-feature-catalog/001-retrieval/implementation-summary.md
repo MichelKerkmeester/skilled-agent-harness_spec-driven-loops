@@ -2,7 +2,6 @@
 title: "Impl [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/001-retrieval/implementation-summary]"
 description: "11 features audited: 11 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "retrieval"
   - "code audit"
 importance_tier: "normal"

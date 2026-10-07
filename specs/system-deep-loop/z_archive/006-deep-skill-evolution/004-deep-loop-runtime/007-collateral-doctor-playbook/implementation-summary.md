@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 116-deep-skill-evolution/003-deep-loop-runtime/006-collateral-doctor-playbook |
+| **Spec Folder** | 007-collateral-doctor-playbook |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | ~1 hour |

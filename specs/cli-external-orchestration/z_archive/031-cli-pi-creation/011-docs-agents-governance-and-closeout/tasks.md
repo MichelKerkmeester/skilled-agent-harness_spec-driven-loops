@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
     last_updated_at: "2026-07-27T16:50:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 18 tasks executed and checked off with evidence; whole-packet closeout validated"

@@ -4,7 +4,6 @@ description: "Comprehensive remediation of the system-spec-kit ecosystem in two 
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "087"
   - "speckit"
 importance_tier: "normal"

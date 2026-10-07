@@ -1,3 +1,14 @@
+---
+title: "SpecKit Reimagined Refinement: Feature Summary"
+description: "37 remediation tasks organized by functional area with before/after state analysis, impact assessment, and session execution model."
+trigger_phrases:
+  - "speckit refinement feature summary"
+  - "remediation task breakdown"
+  - "before and after state analysis"
+importance_tier: "normal"
+contextType: "planning"
+---
+
 # SpecKit Reimagined Refinement: Feature Summary
 
 > **37 remediation tasks** organized by functional area with before/after state analysis, impact assessment, and session execution model.

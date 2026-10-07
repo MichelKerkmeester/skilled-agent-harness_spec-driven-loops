@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/028-cli-hub-rename/003-reference-sweep",
+  "specFolder": "cli-external-orchestration/z_archive/028-cli-hub-rename/003-reference-sweep",
   "description": "After a hub rename, active docs and generated prompt surfaces can continue speaking the old path",
   "keywords": [
     "hub",

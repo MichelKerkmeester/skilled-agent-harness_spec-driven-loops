@@ -2,7 +2,6 @@
 title: "...agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements/implementation-summary]"
 description: "Phase 2 now gives sk-deep-review one canonical review contract across docs, workflow assets, runtime mirrors, and packet-local tests, so the review mode can be audited and resumed without naming drift or reducer ambiguity."
 trigger_phrases:
-  - "implementation summary"
   - "deep review summary"
   - "phase 2 summary"
 importance_tier: "important"

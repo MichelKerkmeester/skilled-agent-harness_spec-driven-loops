@@ -8,7 +8,7 @@ contextType: "implementation"
 status: "draft"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/003-diagram-type-reference-library"
     last_updated_at: "2026-08-12T06:31:38.000Z"
     last_updated_by: "claude"
     recent_action: "Authored plan ahead of executor dispatch"

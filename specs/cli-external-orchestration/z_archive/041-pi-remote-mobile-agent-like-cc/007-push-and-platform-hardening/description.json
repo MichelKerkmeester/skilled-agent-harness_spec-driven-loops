@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+  "specFolder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
   "description": "Adds privacy-minimized Web Push hints and hardens installation, lifecycle, revocation, and stale-state behavior across supported mobile platforms",
   "keywords": [
     "privacy-minimized",

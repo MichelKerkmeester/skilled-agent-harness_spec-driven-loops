@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/001-research-utilization",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/001-research-utilization",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design runtime",
     "created_at": "2026-07-18T09:21:31.414Z",
-    "last_save_at": "2026-08-30T15:39:12.498Z",
+    "last_save_at": "2026-10-07T18:12:30.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5e2cc92385026733c64e09b549dbdda7e222c645d5c0b36405e43909285c6a0",
+    "source_fingerprint": "sha256:35cbced73216aef2a0f54defd7b4ff43023f949e468a61246fc8a705fe245060",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "094c7919b5d429401edcf857cefc4ede0e610846f033640c009e8bf185e3d922",
-      "plan.md": "55e2a492b50fb59a2073d7df001f1d58f8732d1194e2f8a144515d0715179ecd",
-      "tasks.md": "18d27673b86c87faa4f7768ce3e78cc85650ee6a506beaec427442c0336b9c7e",
-      "implementation-summary.md": "0b5fea96a644dc0a6e57c49713fb63137ed60f1a7132e8c365ae3940e37d7efa"
+      "spec.md": "93a44895ca750a389bcc8184c7c48e050e266ba309514b06291136dc85c97f2a",
+      "plan.md": "7bde8bc27316d5a2f8fa319d046044a396d5f13c6f53d4e66c820a80e57c6834",
+      "tasks.md": "6a06aafec6b6e6da10d454db1b6e47168629edbb49c9b30a64456a77b4809eb6",
+      "implementation-summary.md": "72f23d8e184d6a3b1e1933531fd2b53059a4ebaa5ef195f01473e6a88763e148"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -15,9 +15,7 @@
       "benchmark integrity",
       "fts5 retune",
       "recall@20 collapse",
-      "implementation plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "ablation",
@@ -27,11 +25,11 @@
       "retune",
       "recall",
       "collapse",
-      "implementation",
-      "plan",
       "tasks",
-      "summary",
-      "current"
+      "current",
+      "path",
+      "report",
+      "invalid"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +189,7 @@
     ],
     "causal_summary": "The current ablation path can report invalid Recall@20 values because the benchmark still allows chunk-ID scoring on the CLI path, live token-budget and confidence truncation can cut results below `K=20`, and the active database may not match the parent-memory ID universe encoded in `ground-truth.json`",
     "created_at": "2026-04-12T09:02:50.312Z",
-    "last_save_at": "2026-09-10T21:05:06.811Z",
+    "last_save_at": "2026-10-07T19:24:30.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41aa86b358f59d8306ba92faad4d2991e44a9af0e54f8b142b64580e62ba30f6",
+    "source_fingerprint": "sha256:c3e592707dd766d329fa8ae4694d0a13555c3941c37aef044b87b81de347456c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1dcdf47e60558da471d4bee1ca3a05a5eec998732ac6e3e8ca0cfa0a488daa21",
-      "plan.md": "a110da38eb6f69e7e7ec0c81c6bd4d8164035ebe650a650ebe532765044b5519",
+      "spec.md": "78251d23d3a4b09a49f24ce9c9029e1a51623ba0b6cb1422eab325bc8b18e615",
+      "plan.md": "ca7662dbb6582cdb4fee5441af5c38d0e3cc9f2b5babd662e174463bb8b08864",
       "tasks.md": "6bfe4e52716fe064983000be2530f1a46644c975481fb06d11a0864522979106",
-      "implementation-summary.md": "0fc69abca2cc68eb3e499529f9c5168a29945a1dfbf9087aeebad171ab6205cc"
+      "implementation-summary.md": "412dde218a4da5d09c1c368875e94b1c880c1e25c25755fc2c08c88d2ffa67e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

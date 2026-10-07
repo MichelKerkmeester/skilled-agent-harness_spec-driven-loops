@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
+  "specFolder": "cli-external-orchestration/z_archive/029-cli-devin-revival/009-devin-mcp-host-integration",
   "description": "This repo runs 3 stdio MCP servers (spec-kit-memory, code-graph, skill-advisor) that every other CLI executor (Claude Code, OpenCode) can already",
   "keywords": [
     "repo",

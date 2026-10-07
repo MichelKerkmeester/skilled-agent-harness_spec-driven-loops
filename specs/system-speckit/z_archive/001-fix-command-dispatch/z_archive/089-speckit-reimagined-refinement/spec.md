@@ -24,7 +24,6 @@ status: "Active"
 
 ---
 
-<!-- ANCHOR:metadata -->
 <!-- ANCHOR:scope -->
 ## 1. SCOPE
 
@@ -53,9 +52,8 @@ status: "Active"
 
 ---
 
-<!-- /ANCHOR:metadata -->
-<!-- ANCHOR:requirements -->
 <!-- /ANCHOR:scope -->
+<!-- ANCHOR:requirements -->
 ## 2. REQUIREMENTS
 
 ### Functional Requirements

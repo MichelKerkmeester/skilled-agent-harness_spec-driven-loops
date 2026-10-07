@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
-  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention",
   "children_ids": [
-    "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
-    "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance"
+    "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
+    "sk-doc/z_archive/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -90,16 +90,16 @@
     ],
     "causal_summary": "The kebab-case naming canon (`shared/references/filesystem-naming-convention.md`) is enforced by the code but not by the standard docs or the gates",
     "created_at": "2026-07-20T09:49:51Z",
-    "last_save_at": "2026-08-30T15:39:17.224Z",
+    "last_save_at": "2026-10-07T18:13:26.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:36e341a70c0fe19700f6b8271ca307b77e8a67d0636e25e0ee7a71c7e3d713b6",
+    "source_fingerprint": "sha256:34c85becc628081cbb90b9ef625b4b04c174194165d6d43db0f494b5fba53998",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f364eccc0fd93ea0df0cc77b30013343d8975b42778d4d65f26246f489c31cd"
+      "spec.md": "734c0f7fd91960bc12eb45422ad6dc7e1a95dac50cd6446e6885b49d79fd96e3"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
     "last_active_at": null

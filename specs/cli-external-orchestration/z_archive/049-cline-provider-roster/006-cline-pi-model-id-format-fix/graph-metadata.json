@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
-  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+  "spec_folder": "cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix",
+  "parent_id": "cli-external-orchestration/z_archive/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 3 and 5 declared the cline-pass models in `.pi/models.json` with bare ids (`deepseek-v4-flash`, `deepseek-v4-pro`)",
     "created_at": "2026-08-18T17:42:19.098Z",
-    "last_save_at": "2026-08-30T15:39:08.116Z",
+    "last_save_at": "2026-10-07T18:11:21.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5843bfa3afe300a78deee08dd68112c45351809293a0bd36c2cd98a49228026d",
+    "source_fingerprint": "sha256:a01706fee8f5573dc9cfb2e6894c334e8224141b77cc2a18a45dbf6646d665e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0dfbf4e146fbebe741c14d7ea88b379a64467c3161f370617fb0783068241ea7",
-      "plan.md": "4e204e73234d07720fd91e35db5016c53f049226e098a0a90cf16aceb8047740",
-      "tasks.md": "6431162adc009fd09471f841f910e8442f074600bc3a179568239f7afddfea12",
-      "implementation-summary.md": "222d012acef35d4f65f103365e2375bc807f0f8bc2b9cf926314b4d95f4f474b"
+      "spec.md": "1c4b34794f996abe2304db243e47b50364ad0fd3d801d30dcc1b39e416fa4195",
+      "plan.md": "23acb4120bbd3ad4deead04504a69bd0676088eaf4f4f57c0f15c4d42729b381",
+      "tasks.md": "3045667ccd32201f591766f3e9f62b9aa1ccbf1f1bc0129f5fbcdc30e33f70d4",
+      "implementation-summary.md": "091f7a49803c065d67f7b96593c9deee096ef4162bea73c0862f8be7daf9e174"
     },
     "last_active_child_id": null,
     "last_active_at": null

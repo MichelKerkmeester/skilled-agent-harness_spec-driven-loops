@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
     last_updated_at: "2026-07-18T06:46:43Z"
     last_updated_by: "codex"
     recent_action: "Completed and verified catalog and playbook generator output naming"

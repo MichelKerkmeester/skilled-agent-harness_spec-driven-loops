@@ -2,11 +2,8 @@
 title: "Task 07 — [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-07-github-release/spec]"
 description: "Specify the GitHub tagged release for spec 130, following PUBLIC_RELEASE.md conventions. This is the final task in the dependency chain — all documentation alignment work must b..."
 trigger_phrases:
-  - "task"
-  - "tagged"
-  - "release"
-  - "spec"
-  - "github"
+  - "github release audit"
+  - "release tagging review"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -182,4 +179,4 @@ gh release create v2.1.0.0 \
 
 - **Parent**: [../spec.md](../spec.md)
 - **Changes**: [changes.md](changes.md)
-- **Dependency**: [../task-06-global-readme-update/changes.md](../task-06-global-readme-update/changes.md)
+- **Dependency**: [../006-global-readme-update/changes.md](../006-global-readme-update/changes.md)

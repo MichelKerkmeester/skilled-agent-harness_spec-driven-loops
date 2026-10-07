@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Canonical typing is partial and inverted",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-09-10T21:04:53.724Z",
+    "last_save_at": "2026-10-07T19:24:35.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10f924cb1b1756bd906b44f64b566a2dd80ebbae10de4b79d16babebf4eb6e3a",
+    "source_fingerprint": "sha256:51bdac8183c8505b877d52bd5e6cd2995f826c62d17872d74fbf44bf43cb5353",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc918f503bcd80e56fb6adcb04a1441dc4323353efa6f54eefdb7f1ce977923b",
       "plan.md": "a97629882408d3243c720bf5ccbabbe086d8a2479132c98c5bbe406b41bc413c",
       "tasks.md": "8fa67ea76b863e3e6757aaa70a1e341f919f8cd64cf5bbc9a1d531025b40b75d",
-      "implementation-summary.md": "7d7691333350833ad55134c219a87edde7cd2fdb4819db7cbc4bd68e58b23d15"
+      "implementation-summary.md": "f4e657596cdc85a19b541d8597e307bfac3e3c13676f3869491c68c59c4ff7c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,11 +18,12 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Implementation Summary — Phase 002: Capped worker pool + status ledger
 
+<!-- ANCHOR:what-built -->
 ## What changed (verified)
 
 1. **`.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs`** (NEW):
@@ -37,12 +38,22 @@ _memory:
    - `runCappedPool`: cap-not-exceeded (deterministic gated worker via macrotask flush + entered/in-flight tracking), input-order preserved under out-of-order completion, single-failure isolation, all-failed summary, empty pool, concurrency<1 clamps to 1, per-item ledger events (started+completed / started+failed), invalid-args TypeErrors.
    - status ledger: JSONL append (incl. mkdir of nested dir), pretty-JSON summary write (round-trips via tmpdir).
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:decisions -->
 ## Note on a fixed test bug
 The cap-not-exceeded test first FAILED (9/10) due to a races-the-pump assertion (counted microtask ticks). Fixed the TEST (not the pool): switched to a macrotask `flush()` and asserted on an append-only `entered` list + live `inFlight` set. The pool code was correct throughout. Re-run: 10/10 pass.
 
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
 ## Verification
 - `fanout-pool.vitest.ts`: 10/10 pass.
 - Full `deep-loop-runtime/tests/unit/`: **171/171 pass, 18 files, 0 failures** (EXIT 0) — no regressions; the `loop-lock` cross-process flake did not recur in this run. `fanout-pool.cjs` is a new standalone module no existing file imports; only it + its new test changed.
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
 ## Out of scope (Phase 003+)
 Per-lineage spawn worker (Option B: shell the existing command into `{artifact_dir}/lineages/{label}/`); `--artifact-dir-override` YAML branch; salvage; coverage-graph per-sessionId; consumer merges; command flags; docs.
+<!-- /ANCHOR:limitations -->

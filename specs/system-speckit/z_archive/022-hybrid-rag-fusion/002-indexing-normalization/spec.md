@@ -78,8 +78,8 @@ The same workflow also shows tier inconsistencies when parsed metadata and docum
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -168,7 +168,7 @@ Make indexing deterministic by deduplicating canonical file paths before indexin
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -180,7 +180,7 @@ Make indexing deterministic by deduplicating canonical file paths before indexin
 ### Reliability
 - **NFR-R01**: Re-running scans on unchanged trees remains idempotent.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

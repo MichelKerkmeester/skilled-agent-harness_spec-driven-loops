@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor hand-rolls BFS twice for `transitivepath` and `subgraph` (`lib/skill-graph/skill-graph-queries.ts:296-354` and `:376-423`), duplicating caps and visited logic with no shared truncation signal",
     "created_at": "2026-06-10T19:24:10Z",
-    "last_save_at": "2026-08-30T15:39:27.273Z",
+    "last_save_at": "2026-10-07T18:16:06.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58cba361290880311d4e24a72e0fad51cf7e625ed627da3274834ea6e403e157",
+    "source_fingerprint": "sha256:fd54efd72288807e93990014a19ab0e0ecf9e050192e2d636e5ceb27e21825d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f5b8a2929d8db0f1d02ccc24c2261c96b05320139d0dc3760db6a488e329b7cc",
-      "plan.md": "3c30b6377dd45a43bc8ab608602cc72ac9237d82d4c49c42b730acd964282fbf",
-      "tasks.md": "666a8fafb26714c846480e5d3db832249a8d3e9016f74a4df5e7e97665862bd1",
-      "implementation-summary.md": "645eb615ffb54f5f72f9e1d3c43faf8f656348fc89b91e08fa910788db3efd61"
+      "spec.md": "d55acbb5fe1d8714f33c6ff349649d08aa8c8f3fecca40a229a4187c0b46d479",
+      "plan.md": "f169dc51cb9f452ea25cc854fe11f1e16b6a454c11e173f85f84c39859613585",
+      "tasks.md": "d4dad81725ea7e41aeeb17a5d7bdd64851f8d445272bd2dec25d80e0f79788c4",
+      "implementation-summary.md": "342d04a0d31b342e8ed6f02add80e940526a135e97c2e693c2b13f1aa55402d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

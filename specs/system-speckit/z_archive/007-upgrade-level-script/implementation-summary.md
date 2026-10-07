@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/007-upgrade-level-script/implementation-summary]"
 description: "Archive repair summary for the Spec Folder Level Upgrade Script folder."
 trigger_phrases:
-  - "implementation summary"
   - "upgrade level script"
   - "archive"
 importance_tier: "normal"

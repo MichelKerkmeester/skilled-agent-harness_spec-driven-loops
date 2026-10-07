@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/002-deep-loop-executor-support",
   "description": "The deep-loop runtime's typed executor union currently has 5 members — confirmed live at `executor-config.ts` line 11: `['native', 'cli-codex',",
   "keywords": [
     "deep-loop",

@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/004-mode-packet-refactor"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/004-mode-packet-refactor"
     last_updated_at: "2026-07-06T00:23:55.000Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Reconciled tasks.md; all 42 tasks and 5 completion criteria checked."

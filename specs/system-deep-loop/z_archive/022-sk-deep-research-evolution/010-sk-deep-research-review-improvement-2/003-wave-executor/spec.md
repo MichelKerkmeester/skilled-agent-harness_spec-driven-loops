@@ -2,7 +2,7 @@
 title: "Feature Specification [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor/spec]"
 description: "Define orchestrator-managed parallel wave execution for deep research and deep review so large targets can be segmented, converged, and merged without turning LEAF agents into sub-agent managers."
 trigger_phrases:
-  - "042.003"
+  - "wave executor spec"
   - "wave executor"
   - "segment planner"
   - "coordination board"

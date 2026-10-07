@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
-  "spec_folder": "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment",
-  "parent_id": "cli-external-orchestration/050-persona-injection-enforcement",
+  "packet_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/004-sk-prompt-alignment",
+  "spec_folder": "cli-external-orchestration/z_archive/050-persona-injection-enforcement/004-sk-prompt-alignment",
+  "parent_id": "cli-external-orchestration/z_archive/050-persona-injection-enforcement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -159,7 +159,7 @@
     ],
     "causal_summary": "The six mode `SKILL.md` persona rules added in P3 each reference a canonical \"Persona Injection\" section in `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`, but that section did not yet exist — the references were forward-looking",
     "created_at": "2026-08-19T11:34:03.325Z",
-    "last_save_at": "2026-08-30T15:39:08.180Z",
+    "last_save_at": "2026-10-07T18:11:38.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -168,13 +168,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0262e84ae52363aafb214bfe26ddd11107f8b356b641622a2767c61a099df52",
+    "source_fingerprint": "sha256:8a012546c434b0f5559880392fc84148dd2cf70107d590c3e8e7e86691cf8134",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f085a78ed5bfa61d460f56fe36cf4a6cbf08ba355f12f07b9db68e54d86211f",
-      "plan.md": "a6e172f35d2106fcd9da9e0af6bf740a6a40115b235da3675e6c8ea32e128f3d",
-      "tasks.md": "bfe4195b4ef0b9980bab8801dab7d512a3425c3b7d45d03d327d87311323f8e1",
-      "implementation-summary.md": "9f5692a41bdf189881f249d7411a1087ffbf9befa9a8576cdb2f19217059f522"
+      "spec.md": "f812cf10acbf05333182c68f9790b78316d1476831d5f846fe377d6dd408d7ae",
+      "plan.md": "aba761749720bfbd35a5632fb9c8dfd35ab2044c7926938086ac2de8176f4b27",
+      "tasks.md": "229dba82eda43ec1a73d308b9383b9c55a83fef912b85005b284e199b04dff86",
+      "implementation-summary.md": "0891b38322e06969a74f6c3462c007c25cf1f938ee5ba1374825601ee21317b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

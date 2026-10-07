@@ -41,8 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/descriptions.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,12 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-08-30T15:39:22.528Z",
+    "last_save_at": "2026-10-07T18:14:19.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcd6360a69057a0a414a6d17252394e9fff736fffba17394f2a70227a653fccb",
+    "source_fingerprint": "sha256:41b25d063aba85220c88cb6c0adeeef2b7a8d4be1ea1acca9239029aade4feb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f7aff53e159a295f4535ba6d8f78b34ded00217bd3fa2cf399cc2040114b8fb",
       "plan.md": "ca9106789dacd2e7435a63aa1d1d58cd3ea1e690e2c79893ed7c8a56a30bf907",
       "tasks.md": "9d14cdfa71860d086303e58cf455ed190e965e8904fec270c111ad12bed21630",
-      "implementation-summary.md": "0498e279f25029cb154b3e2b5c8130a925c7ccd6bc94515ceca99616f8e6ee29"
+      "implementation-summary.md": "974dd733d2bf749e2d0780b3218931649c9b008b303d0e33ab71680333361d27"
     },
     "last_active_child_id": null,
     "last_active_at": null

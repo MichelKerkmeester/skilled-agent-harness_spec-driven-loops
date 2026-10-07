@@ -2,14 +2,13 @@
 title: "Implementation Plan: Phase 4: model-hub-and-priority-profiles"
 description: "Rewrite sk-prompt-models SKILL.md (hub architecture, version 0.2.0), create references/models/_index.md, and author the two priority profiles minimax-m3.md and mimo-v2.5-pro.md following the fixed 6-section template with empirical benchmark evidence."
 trigger_phrases:
-  - "implementation plan"
   - "model hub plan"
   - "priority profiles plan"
 importance_tier: "normal"
 contextType: "spec-completion"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles"
     last_updated_at: "2026-06-02T18:30:00Z"
     last_updated_by: "agent"
     recent_action: "Plan marked complete — all phases done"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-09-06T16:47:51.642Z",
+    "last_save_at": "2026-10-07T18:13:24.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4afde77467764de2b7bc0528e07efd592dcda9afb42626ee35792a09d4546ff7",
+    "source_fingerprint": "sha256:2a4926d4b51f08501015e31216b0e36c840a46ab59bd1751192d38565f2ceddd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7c19d7aaf9f3afd478b08c2b3c6666d22e826711640e3ba4df1ca7213d01ca32",
-      "plan.md": "d64eaab8d0e55feb0d45b0e4de48d9afee3c8dcc33011c70f65a6a3d9158202f",
-      "tasks.md": "ea19f6ac21d340f749323718f5f7ca01affe639e7f8d80ccddaa210afd10d6b6",
-      "implementation-summary.md": "7e71c6dc8ee04c69e959fee14b8de08ac75b6eb6aca8ae30285bfb47d6173a2e"
+      "spec.md": "bc4ca17c9cd81d87cd1035f1da2931ff067b150622a9f56a5afd674fd47a633b",
+      "plan.md": "05730cb94263eb15a7a060474431bc2738c738695745c8ce77f60d4984a33396",
+      "tasks.md": "aa1806122c59cc0abd35fea7b68d1d68a27f68b2e4fa083ea5f82e9894398bc4",
+      "implementation-summary.md": "bdfd79a37e0cef7c74093257569d40c78a41128aa0934c444589cf5ed149ea15"
     },
     "last_active_child_id": null,
     "last_active_at": null

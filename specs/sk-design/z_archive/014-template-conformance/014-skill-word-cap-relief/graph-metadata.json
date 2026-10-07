@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/014-skill-word-cap-relief",
-  "spec_folder": "sk-design/014-template-conformance/014-skill-word-cap-relief",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/014-skill-word-cap-relief",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/014-skill-word-cap-relief",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "`design-interface/SKILL.md` measured 4,991 words against the 5,000-word hard cap enforced by `packageskill.py` (`MAXSKILLMDWORDS`) — nine words of headroom",
     "created_at": "2026-07-27T18:44:01.993Z",
-    "last_save_at": "2026-08-30T15:39:13.448Z",
+    "last_save_at": "2026-10-07T18:12:30.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:095ebef1a22a258c360a73933c9576db9843e05255dc6036545e7bf8fc476c40",
+    "source_fingerprint": "sha256:2d09124283e21e8511ae630c4a091900913887d8ea0ca3d03f1d938b6ffd74d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37c0b275e701f697d917f2dd2026c93b4c56edc03e50d9ab1ed271d20b8bb225",
-      "plan.md": "75f25e716691929694ae775e030a019e44f6c7720049be84b9b4b92f3bc4dfd0",
-      "tasks.md": "840b622ccfa1a9a03e2c2c16dbaa0499e07c56ba01feadfddd9a2f9829307021",
-      "implementation-summary.md": "a1e0e0f3873f78005dc4edd530448ec166179163fb6d80360b687ee85cd63136"
+      "spec.md": "311ba83627cbcf60093af48d9698a5d493fbf1d3d139297f40ff5f52f10bd6f3",
+      "plan.md": "d3e29ea491e6531213676909ac01a7e96c75df7d73e5b73c6bf8134bc87a2da5",
+      "tasks.md": "039ccbbcf194a8eb730a493ef6cea4461984d60792e2cb6a1b6e8576c1567a62",
+      "implementation-summary.md": "480e95fdf59e6884690b2acc5bf5086f1ed349dc79371d9a04f573f9d4f1a534"
     },
     "last_active_child_id": null,
     "last_active_at": null

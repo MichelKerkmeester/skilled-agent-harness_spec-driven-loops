@@ -18,7 +18,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Implementation Summary — Phase 007: Native per-iteration model schedule for deep-loop fan-out
@@ -27,12 +27,16 @@ _memory:
 > planned design and the verification the future build must satisfy; it makes no completion or
 > test-pass claims because nothing has been implemented.
 
+<!-- ANCHOR:what-built -->
 ## What changed (so far)
 Documentation scaffold only. Five canonical Level-2 docs authored under this phase folder
 (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md) plus description.json and
 graph-metadata.json. No files outside this phase folder were touched. No source, YAML, or SKILL
 files were modified.
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
 ## Planned design (to be specified by T2-T9, built later)
 1. **iterationPlan flag (a.k.a. model-schedule)** — ordered bands (from-to or count; executor
    kind and model; optional focus/dimensions; optional dependsOn/order) that desugar one-to-one
@@ -51,10 +55,16 @@ files were modified.
 6. **Merge precedence** — ordered band-priority list in `fanout-merge.cjs` for conflict
    resolution, with severity rollup preserved as an invariant above band priority.
 
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
 ## Backward-compat intent
 All new fields opt-in/absent-by-default. Single-executor and existing homogeneous fan-out must
 remain byte-identical when the plan is unset. The future build must prove this as a parity gate.
 
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
 ## Verification (for the future build, NOT yet performed)
 - Confirm every desugaring entry point against the real interfaces (T2) before implementing.
 - Prove byte-identical single-executor and homogeneous fan-out output when iterationPlan is
@@ -63,8 +73,12 @@ remain byte-identical when the plan is unset. The future build must prove this a
   forces merged FAIL).
 - Map each deep-review forbidden pattern to a satisfied check.
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
 ## Spec-folder validation note
 Like sibling phases 001/005/006, these lean hand-authored docs may report TEMPLATE_HEADERS /
 ANCHORS_VALID warnings under `validate.sh --strict` because they intentionally follow the lean
 sibling shape rather than the full SPECKIT template anchor set. The hard requirements
 (required-file set for Level 2, continuity field discipline, graph metadata presence) are met.
+<!-- /ANCHOR:limitations -->

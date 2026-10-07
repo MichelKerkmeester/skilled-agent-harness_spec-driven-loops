@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The cli-opencode README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a skill version of 1.0.0 (the skill is 1.3.13.0) and a provider count that contradicts itself (three in section 1, two in the FAQ, when the skill documents seven)",
     "created_at": "2026-06-07T11:30:00Z",
-    "last_save_at": "2026-08-30T15:39:14.437Z",
+    "last_save_at": "2026-10-07T18:12:33.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:842188109c3d9c1892eeaa0d3a1dfd3bf50dc86554241be760fe4b96416295db",
+    "source_fingerprint": "sha256:dc0e36898ccb9e8f9969d1b19672930052271647f91f9a4189a626d8bca1c43c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "555166641c631b6cc0a5766d3bc446841051a9abb858d82f4a2abf0e40c98700",
-      "plan.md": "41e9fe7376b4680b3bbdde75c2658893f8c9aa412d0c48412527056cd1483c93",
-      "tasks.md": "f4c04d87e0c3db2fade26b4a7e9861850a430e668d3a651e11d2aeb09f8d8692",
-      "implementation-summary.md": "16318db99bc7ccae1113a9919fc454e284785b857b5eed163abb86a57ed81f04"
+      "spec.md": "767012face55c74464400b3a7cccb1792efefdac95f166fc0577846b3fe80721",
+      "plan.md": "d15e8ad41c2762bf94a3f6948422ca82bda55aa28afc10d468e9ea3acdeb339b",
+      "tasks.md": "ade13c323684f1247a47be056a0cf0a5c97d233677e5ef2f804b637778dc113d",
+      "implementation-summary.md": "47cc9557d565f63fdd6864f05b11a712a44d0faf6ce6aff0b540327791174802"
     },
     "last_active_child_id": null,
     "last_active_at": null

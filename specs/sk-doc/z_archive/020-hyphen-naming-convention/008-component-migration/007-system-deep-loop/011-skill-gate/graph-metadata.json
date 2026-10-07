@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-08-30T15:39:16.730Z",
+    "last_save_at": "2026-10-07T18:13:26.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:8227a9895e0937843cba1a5d7d8962dcb5a315a71e2b42fe9079686996ba4740",
+    "source_fingerprint": "sha256:91019b808dda9beb07963485528162eeb72b54d419f61ce61e6a93b0fa9ba1c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf59a050384c1ae1cad80381ef96f27d1773c6975f10b6eb6f388300e4ed388d",
-      "plan.md": "50c959a8170a9165a4ce34b5a0918ae9f91d4a0683d47ebecd1830dbe58069fa",
-      "tasks.md": "986546142d375f4e6513aec3ebef2c6f0f12901f75d2194a6482ab1cd8a8752f"
+      "spec.md": "87a02c81f577ef1734e59a3a9bcfe8914fb993b643d875ade5413b7fa6691157",
+      "plan.md": "a2f8fb708c04a05b7c5266f95da68fcc3e0c7f76c7e15acdcbf82e01ca2491f1",
+      "tasks.md": "2a1ec2a78efc55da086ee2a0f4c35908439c29684fc5a39085d3817d0d2d0fc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

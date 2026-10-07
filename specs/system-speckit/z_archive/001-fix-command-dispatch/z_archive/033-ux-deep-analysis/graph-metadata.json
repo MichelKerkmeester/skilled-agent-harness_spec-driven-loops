@@ -11,37 +11,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deep",
-      "analysis",
-      "memory",
-      "speckit",
-      "systems",
-      "spec",
-      "033",
-      "fix",
-      "plan",
-      "tasks"
+      "ux deep analysis spec",
+      "ux deep analysis plan",
+      "ux deep analysis tasks",
+      "ux deep analysis implementation summary"
     ],
     "key_topics": [
       "deep",
       "analysis",
-      "memory",
-      "speckit",
-      "systems",
       "spec",
       "plan",
       "tasks",
+      "implementation",
+      "summary",
+      "memory",
       "skill",
       "server",
-      "commands",
-      "need"
+      "speckit",
+      "commands"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -60,6 +56,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -151,24 +159,50 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The Memory Skill",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Analysis And Fix Pass The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-08-30T15:39:37.104Z",
+    "last_save_at": "2026-10-07T20:12:07.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf3bc6f0591d8a28604fbbad594b5fdf339f4e6600071280bfa81ee5465f5f30",
+    "source_fingerprint": "sha256:289de8a21f04215e49131fb0ae2a657fe22e66adbb8382ab01edfa98c1349c39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39ce22178ff9ce0cc431d4f05927b7356288ac3fbf0bc9662bb1538fd9da47b7",
-      "plan.md": "de16aaa40cd73cb9fac6d592a95f837138c757f32da8d2854a98e9c856e59457",
-      "tasks.md": "66bc68c2dc1ed10eb1b5c9fcf740031e628017f303dadb5c429668db8d5df164"
+      "spec.md": "806f1e6f145519d818332483a70a85bec6fc6160beaec7de1df72d51d253ab01",
+      "plan.md": "8d02810fcc676054612470201809395e19d53f3da9efdabd6743fad246b99c4b",
+      "tasks.md": "7a5f0a303d34bfd2690ba2f63a9b75473b9ca34a0a1e363ac7990ae6d7adca70",
+      "implementation-summary.md": "1801bbf87c3ecbd282f4228a55bda88cd8835b0b5eaf0d44c0e28efe6dcf9413"
     },
     "last_active_child_id": null,
     "last_active_at": null

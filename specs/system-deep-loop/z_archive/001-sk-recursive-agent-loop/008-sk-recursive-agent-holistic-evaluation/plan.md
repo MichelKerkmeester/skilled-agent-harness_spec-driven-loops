@@ -19,10 +19,15 @@ _memory:
 ---
 # Plan: Phase 008 — Holistic Agent Evaluation
 
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+
+<!-- ANCHOR:summary -->
 ## Approach
 
 Build bottom-up: foundation scripts first, then refactor existing scripts to use them, then update documentation to reflect new architecture.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## Deliverables (Execution Order)
 
 ### D1: Integration Scanner (NEW)
@@ -74,7 +79,9 @@ Build bottom-up: foundation scripts first, then refactor existing scripts to use
 
 ### D12: Runtime Mirror Sync
 - Claude, Codex, .agents mirrors updated after canonical changes
+<!-- /ANCHOR:phases -->
 
+<!-- ANCHOR:dependencies -->
 ## Dependencies
 
 ```
@@ -85,7 +92,9 @@ D3 (scorer) ←── D5 (reducer tracks dimensions)
 D1-D5 ←── D6-D11 (docs reflect implementation)
 D6-D8 ←── D12 (mirrors sync from canonical)
 ```
+<!-- /ANCHOR:dependencies -->
 
+<!-- ANCHOR:testing -->
 ## Verification
 
 1. `node scripts/scan-integration.cjs --agent=handover` → finds all surfaces
@@ -94,3 +103,4 @@ D6-D8 ←── D12 (mirrors sync from canonical)
 4. `node scripts/score-candidate.cjs --candidate=.opencode/agents/handover.md --profile=handover` → backward-compatible
 5. `node scripts/run-benchmark.cjs --profile=handover` → existing fixtures pass
 6. `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-improve-agent/ --check` → PASS
+<!-- /ANCHOR:testing -->

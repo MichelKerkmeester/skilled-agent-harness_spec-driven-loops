@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/035-command-template-conformance",
-  "spec_folder": "sk-doc/035-command-template-conformance",
+  "packet_id": "sk-doc/z_archive/035-command-template-conformance",
+  "spec_folder": "sk-doc/z_archive/035-command-template-conformance",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -44,10 +44,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/commands/design/extract.md",
-      ".opencode/commands/rewrite/response.md",
-      ".opencode/commands/prompt/improve.md",
-      ".opencode/commands/rewrite/explain-visually.md",
-      ".opencode/commands/rewrite/response-by-external-agent.md"
+      ".opencode/commands/prompt/improve.md"
     ],
     "entities": [
       {
@@ -81,27 +78,9 @@
         "source": "derived"
       },
       {
-        "name": "response.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response.md",
-        "source": "derived"
-      },
-      {
         "name": "improve.md",
         "kind": "doc",
         "path": ".opencode/commands/prompt/improve.md",
-        "source": "derived"
-      },
-      {
-        "name": "explain-visually.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/explain-visually.md",
-        "source": "derived"
-      },
-      {
-        "name": "response-by-external-agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built An",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory input gate and a missing allowed-tools declaration.",
     "created_at": "2026-08-29T09:43:41.000Z",
-    "last_save_at": "2026-08-30T15:39:18.142Z",
+    "last_save_at": "2026-10-07T18:14:07.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e973ec0a46dd2d25982701f69e8f5e5fe0b0c6f21b58003e5ae5ba1de10a4557",
+    "source_fingerprint": "sha256:2c35c9f12d1f891ae04d308b7c83112ed4eb9d4531809548fe6bbad2ea224fba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36918b640765d3f46a81562651dae5c7d7419607a98b268e35578524cf7b94f0",
-      "plan.md": "a818b12d99b9e7bdf3d435fc06c7daab40c95ac64efcf7a3ca72cb4cc468d58f",
-      "tasks.md": "410b06e26093ac98cdcb8f84a86a2cbab17cb5cf170b895dcae20c061a2dfd33",
-      "implementation-summary.md": "10aceb3ecf4f8cd0680c45b35a6e23df33f7bb4592ded9eec6ce6c915285025b"
+      "spec.md": "7b29c1220d795dcc71e884d4822e6dc337325ff6d77a6d8c8289b7ca6f5c2053",
+      "plan.md": "1c0d034db5861f429023e38bce5ed2c3c52e9e2a52927238b9223bcbfb701419",
+      "tasks.md": "c51634ae10ce4d0d150b811adfb7ced4032846425540de700eda379286e1d163",
+      "implementation-summary.md": "59a0e62953ada121630357e4fab3e857ed8b0e9d3ce22556487e71807eecad2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

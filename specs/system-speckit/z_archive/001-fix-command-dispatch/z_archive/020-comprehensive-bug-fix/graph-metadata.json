@@ -17,38 +17,55 @@
       "system",
       "spec",
       "020",
+      "comprehensive bug fix plan",
+      "system spec kit fix approach",
+      "comprehensive bug fix tasks",
+      "system spec kit fix task breakdown",
       "implementation",
-      "summary",
-      "implementation summary"
+      "summary"
     ],
     "key_topics": [
       "comprehensive",
       "bug",
       "system",
       "spec",
+      "plan",
+      "kit",
+      "approach",
+      "tasks",
+      "task",
+      "breakdown",
       "implementation",
-      "summary",
-      "analysis",
-      "system-spec-kit",
-      "skill",
-      "commands",
-      "work",
-      "identified"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/scripts/README.md"
+      "scripts/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -106,6 +123,60 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Task",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Step",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -122,28 +193,26 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Fixed Task",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Comprehensive analysis and fix of the system-spec-kit skill and all spec_kit commands. This work identified and resolved 36+ issues across P0-P3 priority levels, using 40 parall...",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-08-30T15:39:36.989Z",
+    "last_save_at": "2026-10-07T20:07:27.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:882c2336740c454c7f1f40f60ecb06b9571b6f404e82e36cfab6d386290ed801",
+    "source_fingerprint": "sha256:c8bf45adafddda627565ea882fd26aac31eedb91ab3d676a2c754fda5a54ac12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3e976f349fd33fa14f28b8651fe208f3a81b8e85edcf1e60f7026596de73597e",
-      "implementation-summary.md": "46c116d7c6e98fb28e8dc216e0d5651e584fe23d481f339c028d89ce835340e6"
+      "spec.md": "d76bde4bf6a00970d606f755331bbe81e5ad73cf2ded77ce9800a0dfe2262442",
+      "plan.md": "9f363931dd7899925f7bb89a8cddf5091931703169ce2d15f26c212134fcf212",
+      "tasks.md": "330a7448b69eac57f7dbaf9a697fd757884c5a3396a43705970644e7cf0e3767",
+      "implementation-summary.md": "97b5254de09631724dd90fda7292c62a68d8b7f675be615870379a1cb8802a1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

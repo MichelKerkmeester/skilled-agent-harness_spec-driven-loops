@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Deep-loop fan-out can dispatch `cli-claude-code` seats with a selected model, but it had no per-executor way to select a Claude account directory",
     "created_at": "2026-06-10T16:35:59Z",
-    "last_save_at": "2026-08-30T15:39:24.057Z",
+    "last_save_at": "2026-10-07T18:15:13.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-10T16:50:00Z",
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c433366d3e9811ea7f2cc38d3aa00e60e55c56eb6ad911d097e7def850e64c5",
+    "source_fingerprint": "sha256:e9a03f3ca02acde5a3401d47270adf280d420cb1004e328e2a3132a8841a7197",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec951a010bd7db15db30f1321d82d41a52f876c6c5823da4be4df9f3730b98dd",
       "plan.md": "87430e996ca8d32b742ced31809a6b3e921fe75bd37a5062c95a5bad2ab099b4",
       "tasks.md": "b025bbd3fb24b1342767c9bc473d1104543e078e24c83589516a6c9799d6957d",
-      "implementation-summary.md": "7579f4b80cd32eef03ac4dbf75bf0590177e6dc5fa4ac74551e66fada7416357"
+      "implementation-summary.md": "533a07073163d91d9f6045788d5800aef62eb2a076dafaee7dbc78e30bd1d6c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

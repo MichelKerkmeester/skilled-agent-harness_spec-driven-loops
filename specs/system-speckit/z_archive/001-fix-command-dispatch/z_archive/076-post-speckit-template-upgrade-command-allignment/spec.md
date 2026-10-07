@@ -10,7 +10,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec 076: Post-SpecKit Template Upgrade - Command Alignment
 

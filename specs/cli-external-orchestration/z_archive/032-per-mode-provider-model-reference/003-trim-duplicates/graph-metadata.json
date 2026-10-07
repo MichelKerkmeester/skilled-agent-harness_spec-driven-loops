@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates",
-  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates",
-  "parent_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "packet_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/003-trim-duplicates",
+  "spec_folder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/003-trim-duplicates",
+  "parent_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Now that each mode has a dedicated `providers-and-models.md`, the exhaustive model enumerations still living in that mode's `cli-reference.md` model section and `SKILL.md` roster are redundant duplicates that will drift out of sync",
     "created_at": "2026-07-29T08:35:29Z",
-    "last_save_at": "2026-08-30T15:39:07.816Z",
+    "last_save_at": "2026-10-07T18:11:37.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da19e7e78813b7ddecf1656956c9cb3014296391ad22f29f81ac354b2aea3795",
+    "source_fingerprint": "sha256:772b85060251a6d1e4347f818f2fde791c68c8e0c081e0bc068347ea3f643283",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8175b73e35e78789cc193da7e8ee63b0c18953ecc65be29b85d5162404cd47c7",
-      "plan.md": "2ead03ed87ce4a67e667ccd3f598ae072b27bbb47b9762f5a3b684bf1a0d0d0e",
-      "tasks.md": "cd315eb84a6864d0a9001da0f3f37d7f8a1f5f5fca7c430191dcb2bb4afc97f7",
-      "implementation-summary.md": "2587b9d0f797d643a3a903d86c0893f453dc60ff9a3aab66a5f90c4d79719a70"
+      "spec.md": "fe0a2b0015643a11c7497c0994355fdb63e559db1141bdd4bba7cac7864aad6d",
+      "plan.md": "318dc0c909c06b41167a120ef495dc8f4202b7f554100cb6a2c04f6c81393018",
+      "tasks.md": "d49d7f99f43755c7a59e086dd63c36b19d96a4bafee73ceab53041cf0db69153",
+      "implementation-summary.md": "c6b3be7165be8299dff7c1121e840e331322a670884153da6f51761a81a846f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

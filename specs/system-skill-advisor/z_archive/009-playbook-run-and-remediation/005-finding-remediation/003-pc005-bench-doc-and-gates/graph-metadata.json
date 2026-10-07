@@ -176,7 +176,7 @@
     ],
     "causal_summary": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms)",
     "created_at": "2026-05-26T21:20:44.527Z",
-    "last_save_at": "2026-08-30T15:39:27.049Z",
+    "last_save_at": "2026-10-07T18:15:59.796Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd98992a6b3ece5d192917faa178499ab9cc8d64c6e64714c3dcb4a4d400f0cb",
+    "source_fingerprint": "sha256:beadd60a558cea18e9c2170c66ce5cd49f307dfb7a24e3d94d2732aef29d7b27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe527d5fd35a1f6c534968f8fb2da4749fac89dab4822d9b34101ff34d0931fb",
-      "plan.md": "3efe7db5ec1fa1fbe6f35266f55e3755563444789b3ab6178ec6fc4b95a3b6a2",
-      "tasks.md": "0454d870286ace834b122e21af452f76b8400d50529ca23d6c735b4fd08e66e8",
-      "implementation-summary.md": "bdecd30623771e185f9dae3d26838baad14f697d604badd5094ac1917b12bf4e"
+      "spec.md": "08136160f9597f67ff0570aca9fac38672ca7a2057d6740ca516148c33cb3b21",
+      "plan.md": "3c5d35b32043946604feb2d3909ee14aaa3351e80ada718bc31d53de27f424ad",
+      "tasks.md": "2eb62101665a79d6472abf9ea537e753335fc2f55a366f466d66b6b60ba999ce",
+      "implementation-summary.md": "deadf7f2164a7172318c63c26db9cc25174e9a9123e0244103ffdf75ab42eb18"
     },
     "last_active_child_id": null,
     "last_active_at": null

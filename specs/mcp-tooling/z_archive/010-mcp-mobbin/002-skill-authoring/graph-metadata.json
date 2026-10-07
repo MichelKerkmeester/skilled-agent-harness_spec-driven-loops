@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/002-skill-authoring",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/plan.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/tasks.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/002-skill-authoring/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the Mobbin MCP server",
     "created_at": "2026-07-16T09:39:33Z",
-    "last_save_at": "2026-09-10T20:43:44.523Z",
+    "last_save_at": "2026-10-07T18:11:35.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f10c9acb216d3e5f22da720176cd775f579a42de313f4c4e78ec775338acca5",
+    "source_fingerprint": "sha256:3079801e072a18e3e715caed2b70afa04d4e75cb7547e38ddc6ab44b87891a12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "42e67ac9f66d92b331933a35d70e17f776c165a5d992e0f79147c6163a6ff05b",
-      "plan.md": "dc87767e2bc6efb7a46528a9e5906d09134372ca689bddc84709e242f5fab4c5",
-      "tasks.md": "8cf16d4a201e1373abdf5be1bc6d20ddafed300e8f5c97646ae649db4bdf8b75",
-      "implementation-summary.md": "56a13cc2b431a61cd991b2525e091233fd222c5e3b5908d09ff653842662f4c8"
+      "spec.md": "c9fd37d738c5cc2462f542f28bd65693986e94dbeb776512e3f119a10c72931b",
+      "plan.md": "884871401d75de6a7cddfd17e34bc80a7b56991cb0ba25326158d0e78fc4ee30",
+      "tasks.md": "b684caa9ddbd1b876d14ca2a628569f5c524ec5bdfca181e5782bb0643d93cff",
+      "implementation-summary.md": "a7b1530a600f35b7d42b4eac974383f93ee550ca43bea4a8770f3d5aecb443f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

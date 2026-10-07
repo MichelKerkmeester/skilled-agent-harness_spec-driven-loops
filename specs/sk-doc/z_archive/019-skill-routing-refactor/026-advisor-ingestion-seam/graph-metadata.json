@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/026-advisor-ingestion-seam",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/026-advisor-ingestion-seam",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The creation journey ends at \"gates pass\" — but passing gates does not make a skill routable",
     "created_at": "2026-07-28T15:16:01.067Z",
-    "last_save_at": "2026-09-03T22:29:04.320Z",
+    "last_save_at": "2026-10-07T19:46:36.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4395204eebd801c8cd775135c096e728d4fb643e470d08148daab30c75460572",
+    "source_fingerprint": "sha256:1f48249e4c92052e19b82492fd688c5b35013c5f33c73e23c7b7e35b8ee4f473",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa63dcb507f4d1ce9db805d04de39c18685252df04954b3f88e4f6d9f3a3f29f",
-      "plan.md": "a3edaa72c1ff0e3eaa3bbdeadb93125c3fbe4284993edceea843bb9d71759ff8",
-      "tasks.md": "dabba4e2dc2959696c9c19a51f4107c8d0f6a5eb0b945695e9a75318f5ae2af3",
-      "decision-record.md": "fa938a8ae4c9cbc34a13e40ec465773bcf397f5ac129ffae9422c339d39481a2",
-      "implementation-summary.md": "324a8b34b3b701c36e97257f06d75cc0ab9c8c7f64c69a5c741ed5b776e4ba0f"
+      "spec.md": "682dfa6ed64349cef99ea46743dbaf49ae8fdbe30709919a55d3dbdc05966e23",
+      "plan.md": "e933ba94499ff79f39b2994b057941a18dbee4ba0a4bd5f719205fbbd49793dc",
+      "tasks.md": "e0cd0cba1f63a084b4d1541257a30d42e7f409825c7a3c85b7d7156a5187031c",
+      "decision-record.md": "d0fa1d5d41366de3f980d5c5f9763869087d42a16e10110a47ffe34ba3c10c1c",
+      "implementation-summary.md": "8bb1c3e4f67c6248d7c5072229c6056ee0f1960d116f57a61efe4d3f6822226b"
     },
     "last_active_child_id": null,
     "last_active_at": null

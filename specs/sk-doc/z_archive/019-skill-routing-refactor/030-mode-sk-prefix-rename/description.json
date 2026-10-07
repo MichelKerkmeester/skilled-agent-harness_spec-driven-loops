@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "description": "Rename 20 mode packets and 21 workflowMode keys across the four sk- hubs so a mode's directory name and its routing key are the same string, and every",
   "keywords": [
     "rename",

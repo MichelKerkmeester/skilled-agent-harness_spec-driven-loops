@@ -4,7 +4,6 @@ description: "Summary of the complete repository README rewrite from scratch wit
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "019"
   - "rewrite"
 importance_tier: "normal"

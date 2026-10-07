@@ -19,6 +19,7 @@ to harden the system so a critical skill hard-rule (the `</dev/null` stdin rule)
 before acting — and, explicitly, to cover dispatch reliability beyond the skill-advisor angle. This
 record captures the decisions the design commits to and the questions it deliberately leaves open.
 
+<!-- ANCHOR:adr-001 -->
 ## Decision 1 — Ship D + B (enforcement core), A′ as substrate; defer C; reject E standalone
 
 **Chosen.** D (flip the shipped-but-off fan-out stall detectors + truthful abnormal-exit) and B (a
@@ -43,6 +44,9 @@ new `cli-X` skills appear.
 acceptance tests, and (c) reuses existing shipped code/patterns (the doc-frontmatter harvest, the three
 detectors, the existing hook-wiring convention) rather than inventing new infrastructure.
 
+<!-- /ANCHOR:adr-001 -->
+
+<!-- ANCHOR:adr-002 -->
 ## Decision 2 — Home the plan in `002-skill-advisor`, in full, with a cross-reference
 
 **Chosen (provisional — see open Q1).** The plan is genuinely cross-cutting: D is pure `004-deep-loop`,
@@ -51,6 +55,8 @@ hardening ("check that skill next time"), with dispatch reliability as the expli
 is one cohesive thesis, so splitting it into twin phases would fragment it. It is therefore homed here in
 `002-skill-advisor/009` in full, with an explicit cross-reference to the `004-deep-loop` track for the D
 thread. The operator may re-home it (open Q1) — as a plan doc it moves cleanly with `git mv`.
+
+<!-- /ANCHOR:adr-002 -->
 
 ## Confirmed-vs-inferred evidence ledger
 

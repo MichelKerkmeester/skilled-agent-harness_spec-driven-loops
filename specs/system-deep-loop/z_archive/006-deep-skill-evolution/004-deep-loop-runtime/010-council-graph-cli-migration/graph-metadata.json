@@ -44,9 +44,7 @@
       "implementation-summary.md",
       "handover.md",
       ".opencode/agents/ai-council.md",
-      ".claude/agents/ai-council.md",
-      "tools/index.ts",
-      "schemas/tool-input-schemas.ts"
+      ".claude/agents/ai-council.md"
     ],
     "entities": [
       {
@@ -89,18 +87,6 @@
         "name": "ai-council.md",
         "kind": "doc",
         "path": ".opencode/agents/ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Query Lib",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prior deep-loop-runtime arc removed the four `deeploopgraph` MCP tools and replaced them with direct CLI scripts, but the council graph family remains in `system-spec-kit/mcpserver/`",
     "created_at": "2026-05-24T05:40:34Z",
-    "last_save_at": "2026-08-30T15:39:23.340Z",
+    "last_save_at": "2026-10-07T18:14:21.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +205,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:659fca126f84f725711cc7f1cd7514aa9d0b222afdc7825734795df3d6be1f87",
+    "source_fingerprint": "sha256:b1a090d9a583f1918077852a7b5fadedacb20970040bc1a0e02a253b41e1b308",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ac63e322de401093b2bf1abd6d8901cca5b405a02e4a47c5b27fca6485746c7",
       "plan.md": "4c9acdc1f8e3a6f71019730d2737ee623f557cdb39319bd2e7ed3713fab6f461",
       "tasks.md": "b69bdc6d60ef88fb86041e2fc6520c35915ced67df844631f812b0a7b251dbf8",
       "decision-record.md": "b2ff3b16633ba1bd4bc382aae0f8f1010d9037133ea3f92c092487495dcca45e",
-      "implementation-summary.md": "e751e84169af54ab7ab1a418882d2d8a02d9154b89c31947ab8de2e4b5bd668e",
+      "implementation-summary.md": "5e3fcddab2986cb29c11e3481bea73724d1a190ef2beb05f2a2ec564063f9fe5",
       "handover.md": "2577504008aea588e26157ee5a0f9c801545b595702594582419acba2ef6f145"
     },
     "last_active_child_id": null,

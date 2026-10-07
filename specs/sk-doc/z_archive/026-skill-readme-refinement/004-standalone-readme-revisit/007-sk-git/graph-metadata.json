@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,28 +49,25 @@
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md"
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and validated by the sk-doc readme validator",
     "created_at": "2026-08-04T08:34:37.362Z",
-    "last_save_at": "2026-08-30T15:39:17.513Z",
+    "last_save_at": "2026-10-07T18:13:43.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2eb68683e4528c110db595f91d5eebea108f09ca350ab8dc48f01bc801a3806",
+    "source_fingerprint": "sha256:409f0dbd03afa6aca3837c09315e7b1648f394296505fba982282906321cf25d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb6e8e15a056617ea7345d36ee0e63fcc9f578175f8b15dc58d74bb2663d69dc",
-      "plan.md": "80159d0a5747cfc078122d016e618aa0d8c309ca40281e72339a428d398920e2",
-      "tasks.md": "0f03a25e62f5ce3efabdfa33cdb38481c2c561aafafb42a6b055c9f02251ac35",
-      "implementation-summary.md": "8124b97755bd7e7f908e6457059b156a55dbdef1e55e099a101ffc665fb66e73"
+      "spec.md": "a017300d874e9fb54c51e2a6d23758fcde0fc6c9fa27ca2a504ddba47846948f",
+      "plan.md": "4908f7ede212c8a24152a82cc58b207d54547e83ed8993f1df3ab6fb38080dc7",
+      "tasks.md": "5ea62e4c6b95bbbd227132ef4640964e7378c803a0a500ae68e17be04f1cd956",
+      "implementation-summary.md": "49bd3915ded44e5800047034ffd031d1925fb18b198bd7988fe9d0cae6b13ba3"
     },
     "last_active_child_id": null,
     "last_active_at": null

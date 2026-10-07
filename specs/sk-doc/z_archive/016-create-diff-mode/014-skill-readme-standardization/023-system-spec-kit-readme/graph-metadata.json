@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive house-voice violations (double-hyphen separators, Oxford-comma lists, prose semicolons)",
     "created_at": "2026-06-07T17:55:00Z",
-    "last_save_at": "2026-08-30T15:39:14.494Z",
+    "last_save_at": "2026-10-07T18:12:28.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f78b6741bea65aa1e55fc7bcb7e7555ba0b0fe2ced718b76d52b2ed99ea3cc0e",
+    "source_fingerprint": "sha256:25ca7192d4428ffc6f5bafd31a4936e083db63d9ad92729525435329b34608a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "205492dbad7814bbe0eb38ade40e1df32cb0f5ce09512621cf7bbe96bf991d06",
-      "plan.md": "fa00c93437fb979c0d99b2b8a9cdbd1c75df7717b5bfea93d1ed467bde1826fa",
-      "tasks.md": "e1591b5505543b3ee5b5a7df96f88087d44b2b7e60e4243995a372ebd9fd1d68",
-      "implementation-summary.md": "1a106840eadbfebd7917489ef55a32fc91234b8b8705907879cfead1a72b66a6"
+      "spec.md": "1b763b00dec494781dba7ea55abfa8da384035bfe54e9dea6671dde4bbd3526e",
+      "plan.md": "fff6cb641af0dfff0c84b5b543720877a7602340aa9758563dee498052a4d3b9",
+      "tasks.md": "545221226e767f2573a12115d1f36e89a3f42f1b0d48294f639a81e00fd65e29",
+      "implementation-summary.md": "44d0e2c44b42ef51037f00f52ec2ad03a906e5449ad5c9de5952e73d73a8371f"
     },
     "last_active_child_id": null,
     "last_active_at": null

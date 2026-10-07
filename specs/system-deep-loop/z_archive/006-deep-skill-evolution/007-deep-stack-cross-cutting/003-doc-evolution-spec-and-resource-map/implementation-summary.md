@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-deep-skill-doc-evolution/001-spec-and-resource-map |
+| **Spec Folder** | 003-doc-evolution-spec-and-resource-map |
 | **Completed** | In Progress |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

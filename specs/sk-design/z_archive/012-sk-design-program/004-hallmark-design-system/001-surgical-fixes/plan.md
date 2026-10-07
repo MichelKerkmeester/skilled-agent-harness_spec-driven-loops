@@ -1,9 +1,11 @@
 ---
 title: "Implementation Plan: Surgical Fixes to Existing sk-design Modes"
 description: "Phase 1 implementation plan for landing five Hallmark-grounded heuristic adaptations directly into existing sk-design mode reference files, with no new modes or commands."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
     last_updated_at: "2026-07-22T18:00:04Z"
 
     last_updated_by: "implementation-agent"
@@ -21,10 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "surgical fixes plan"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

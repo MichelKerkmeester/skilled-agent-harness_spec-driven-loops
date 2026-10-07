@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the very next iteration's next-focus candidates, wasting an iteration slot and polluting the convergence signal",
     "created_at": "2026-06-28T14:02:10Z",
-    "last_save_at": "2026-08-30T15:39:24.944Z",
+    "last_save_at": "2026-10-07T18:15:11.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f521aab1f840cc8ebcdc8375275466b108e5ec6cd2fb78c1d31898b6f67a6d3",
+    "source_fingerprint": "sha256:41b50e3a4b0ab9d8e895031c1189f495e484df03c5dd3cb9e96a7d4350cbda5f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95b71fd6bd13ceff8b2c05ff32ed45355229ade23441cc3be25b08531798e4bb",
-      "plan.md": "8f143479fe45c604112f9041d835c744444aa5bb73df614574cfb13c71eb18f4",
-      "tasks.md": "69027cd7e7577bb54a8238a87bf4189871a846d6bcd116f9ee6f835a336f8e46",
-      "implementation-summary.md": "a610759bbbe6a8bad675e4838c39c49bfeb5e0ac6c264216ea926e86ac4f9d6e"
+      "spec.md": "f4d63a7aee08f1340a2e10ff08f37254d3e85fdb3d4036abb1d45e6d12f92612",
+      "plan.md": "046ffcb39a793220459c4ae87205938ccc86147aa327b3dc1cd4c7f642de0ebc",
+      "tasks.md": "03fba91d3eae2fd1f700dde6015b3c204f510f5bcb22e5dc29cb365c112a05bb",
+      "implementation-summary.md": "f7a8a3946170b075ebfc291747d020bec93d2e9aeec69d66235818598d840a1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

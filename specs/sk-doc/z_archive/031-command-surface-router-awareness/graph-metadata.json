@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/031-command-surface-router-awareness",
-  "spec_folder": "sk-doc/031-command-surface-router-awareness",
+  "packet_id": "sk-doc/z_archive/031-command-surface-router-awareness",
+  "spec_folder": "sk-doc/z_archive/031-command-surface-router-awareness",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -18,7 +18,10 @@
       "ci fleet gate hardening plan",
       "router md remediation phases",
       "router awareness remediation tasks",
-      "router md remediation task list"
+      "router md remediation task list",
+      "router awareness remediation summary",
+      "root router fleet gate summary",
+      "command surface router awareness closeout"
     ],
     "key_topics": [
       "command",
@@ -40,9 +43,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/dsflashgo/research.md",
+      "implementation-summary.md",
       ".github/workflows/routing-registry-drift.yml",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".opencode/skills/sk-code/shared/references/phase-detection.md",
+      "research/lineages/dsflashgo/research.md",
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/assets/doctor-parent-skill.yaml",
       ".codex/agents/markdown.toml"
@@ -67,15 +73,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
         "source": "derived"
       },
       {
+        "name": "skill-root-metadata-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+        "source": "derived"
+      },
+      {
         "name": "ci-skill-root-metadata.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/phase-detection.md",
         "source": "derived"
       },
       {
@@ -161,24 +185,38 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The root `ROUTER.md` parent-skill standard is functionally live: all seven class-H hubs carry a conformant `routerstate: active` root `ROUTER.md`, the create-skill commands scaffold it, and `initskill.py` writes it",
     "created_at": "2026-08-30T15:39:18.108Z",
-    "last_save_at": "2026-09-11T16:42:11.804Z",
+    "last_save_at": "2026-10-07T22:08:41.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a5fc50c610dfe4c9ce2ae8322d815b313d80e509159e6f7490afc0eb7bdeb25",
+    "source_fingerprint": "sha256:c0e74579594d229478b99e1a5a3a6b48ac821ba852ce7e26f2124151a12844c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72de287fd38905816c7c45ca303274f4c70e19c66c5cdbccaea0ac92356d906d",
       "plan.md": "ec8a931cc6dbe578206d747f4e9a8c9ab8004dc441b0a3c6bf8ada2b614491d0",
-      "tasks.md": "2982cc0ce47b4df49f2fcd3577a34474206dad8badd63744b620bce3cb4418b4"
+      "tasks.md": "2982cc0ce47b4df49f2fcd3577a34474206dad8badd63744b620bce3cb4418b4",
+      "implementation-summary.md": "02477b6d5c165e511b91da80d5f4bb0a4cbe279749db4e23829895b4fbf2719a"
     },
     "last_active_child_id": null,
     "last_active_at": null

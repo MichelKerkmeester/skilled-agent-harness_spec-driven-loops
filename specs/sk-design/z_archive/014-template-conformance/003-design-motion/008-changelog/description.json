@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/003-design-motion/008-changelog",
+  "specFolder": "sk-design/z_archive/014-template-conformance/003-design-motion/008-changelog",
   "description": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
   "keywords": [
     "changelog",

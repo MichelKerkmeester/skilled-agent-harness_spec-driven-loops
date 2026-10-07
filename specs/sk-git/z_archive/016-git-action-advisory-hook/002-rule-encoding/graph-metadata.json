@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
-  "spec_folder": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
-  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook/002-rule-encoding",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook/002-rule-encoding",
+  "parent_id": "sk-git/z_archive/016-git-action-advisory-hook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "sk-git declared no `hardrules:`, so the evaluator that already runs on every Bash command had nothing to read for git",
     "created_at": "2026-07-27T18:47:25Z",
-    "last_save_at": "2026-08-30T15:39:18.605Z",
+    "last_save_at": "2026-10-07T18:14:21.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d6315125fc0d5c5ba52e7f5d228b7d487d65c683a755926de8055394ebb9dd8",
+    "source_fingerprint": "sha256:133e4f078c9818a4ffb239b5be9dd413c72942732316cb36a025dd90cd795d1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "086788682c332681a8839974c116f2bfdc6088162128926e248f0e2a88341e50",
-      "plan.md": "4bbea3e1e8692e658066fbb8311e506db2fb8cea523a0b271d4f6a97d71ea0d3",
-      "tasks.md": "5b09576fa78afb417042bea6e6ed9f5806f907de2604fdeba89c1277c5cf7184",
+      "spec.md": "f5a885fa0b99c8e774048449803abcd96329039d5ca24fceac42e45576de8174",
+      "plan.md": "10daefb96473c95aaeb1591db3ac177acff0cb06eb3f3d7acdc495af631dd9ec",
+      "tasks.md": "e2a7b29710e51c544f536278c90b14396b2d41227b37b5dda4d2ad9d67013363",
       "decision-record.md": "1d3be4645973ecb8f44f9cc4096b9d07dbcde28128245e426abc54223cf9f0f2",
-      "implementation-summary.md": "bdd8962e72cfba32ce041d06484461a66a922f703bb2a95971f834c7012cad07"
+      "implementation-summary.md": "e36ecf8840d092a67d966dbb1189fa20dfc3285e892383a0046261582f7bcfd2"
     },
     "last_active_child_id": null,
     "last_active_at": null

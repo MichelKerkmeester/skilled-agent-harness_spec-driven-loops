@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema + vec_metadata pointer",
     "created_at": "2026-05-18T08:07:25.979Z",
-    "last_save_at": "2026-08-30T15:39:27.092Z",
+    "last_save_at": "2026-10-07T18:16:08.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:827a71e87c998ffab21028da986295dd2998522781a795f3d98d825e6711425b",
+    "source_fingerprint": "sha256:0f182aee46b0e257549a4e8238a9cdcaae27d861f694a14385b103f7920bbb2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3683a3bcd3192b720bbe87616d06a83dc4e43a27f12e518f50f3fafb9042787",
-      "plan.md": "af8523a154061d02ad1c3aeb9a91eadf1144e31e7df5cf255c155d8320ee51c2",
-      "tasks.md": "99630fd64c05042d488ff336abbe1c2c3e253c92bea9571d7742fac43846d48c",
-      "implementation-summary.md": "bfd11c672c9e63acc7c0d411d7df63aa91e7ffdc472eb923b50b23e4afac6c57"
+      "spec.md": "3cc387549437430feb5b9824ec7ba121f1aac3d6afb06f17d6c626259367a736",
+      "plan.md": "3d22660b8400c01fca00c19c41d52b4e51a8acc132d1c39e1f348580fe1ee503",
+      "tasks.md": "94d3836f3effd296628fbb9251f2fd5da2daf38f04977601953257f0eca4cf95",
+      "implementation-summary.md": "90e22d286e21cd76c2e67753e078567d55d72f8202787d601cd38bd1b955e99f"
     },
     "last_active_child_id": null,
     "last_active_at": null

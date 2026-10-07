@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The install guide (mcpserver/INSTALLGUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilized",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-08-30T15:39:39.295Z",
+    "last_save_at": "2026-10-07T18:16:43.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e2c251bd199ff4337862c123448ccb08dd0f4608c6a8f26972f3936052ba5c7",
+    "source_fingerprint": "sha256:a0c4d2560fbb41271ca5a8cab7cfa290ebb7e0ca03f147ecb9f6fbc4fb10c354",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82e3c6bbd0a6d2899ab02915d086040eea06848bd444514aa426f50c194e94f3",
       "plan.md": "96115841d5f785c4512f7565efa198efb73313172ced34de999de37915dcdbd3",
       "tasks.md": "f244cfeec59eadcc970cddf94cfd21f2e8d964d875deee4f3dce4eda28ad6994",
-      "implementation-summary.md": "ca5c33015bf65209233434072a3eed31beb373e7be4ed2554c65e33394d2a68a"
+      "implementation-summary.md": "3d8e4047ef6e6b26b42f86f7b4e40b0885691fadc1d67d727289cc223c42b2a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

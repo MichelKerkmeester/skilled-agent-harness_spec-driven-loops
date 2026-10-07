@@ -2,13 +2,7 @@
 title: "Post-Merge Refinemen [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2/spec]"
 description: "We have a \"Split-Brain\" issue with two versions of vector-index.js"
 trigger_phrases:
-  - "post"
-  - "merge"
-  - "refinement"
-  - "phase"
-  - "library"
-  - "spec"
-  - "037"
+  - "post merge refinement 2 spec"
 importance_tier: "important"
 contextType: "planning"
 ---

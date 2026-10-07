@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/005-command-behavior-evaluator"
     last_updated_at: "2026-07-15T09:13:11Z"
     last_updated_by: "codex"
     recent_action: "Completed the shared behavior-benchmark schema v2 upgrade"

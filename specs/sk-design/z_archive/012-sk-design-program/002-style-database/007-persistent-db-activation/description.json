@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
+  "specFolder": "sk-design/z_archive/012-sk-design-program/002-style-database/007-persistent-db-activation",
   "description": "The `003-db-fate` gap research recommended shelving the SQLite styles database: the JS math is tiny and parity-sensitive over 1,290 style bundles, and",
   "keywords": [
     "003-db-fate",

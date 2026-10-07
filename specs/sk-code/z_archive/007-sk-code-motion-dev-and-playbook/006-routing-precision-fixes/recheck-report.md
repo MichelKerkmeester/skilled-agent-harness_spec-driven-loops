@@ -1,3 +1,9 @@
+---
+title: "Recheck Report — Phase 005 Findings After Phase 006 Fixes"
+trigger_phrases:
+  - "routing precision recheck report"
+  - "phase 005 findings recheck"
+---
 # Recheck Report — Phase 005 Findings After Phase 006 Fixes
 
 **Date**: 2026-05-05

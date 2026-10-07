@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/001-analysis-inventory"
     last_updated_at: "2026-08-19T09:25:00Z"
     last_updated_by: "claude"
     recent_action: "All inventory + verification tasks complete"

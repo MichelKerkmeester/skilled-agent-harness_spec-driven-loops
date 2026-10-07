@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/007-testing/001-hermetic-test-isolation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/007-testing/001-hermetic-test-isolation"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented createHermeticEnv + wired fanout-run.vitest.ts; 23/23 tests pass in parallel"

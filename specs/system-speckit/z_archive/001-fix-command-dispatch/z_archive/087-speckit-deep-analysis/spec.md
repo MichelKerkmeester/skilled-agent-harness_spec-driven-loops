@@ -40,7 +40,6 @@ Comprehensive audit and remediation of the entire system-spec-kit ecosystem: MCP
 | **Status** | Complete |
 | **Created** | 2026-02-05 |
 
-<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->
@@ -150,7 +149,7 @@ Eliminate all identified bugs and misalignments so that AI agents loading any pa
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Correctness
@@ -158,7 +157,7 @@ Eliminate all identified bugs and misalignments so that AI agents loading any pa
 - **NFR-C02**: All gate numbers must match AGENTS.md as source of truth
 - **NFR-C03**: All file name references must point to files that exist
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:nfr -->
 ---
 
 <!-- ANCHOR:edge-cases -->

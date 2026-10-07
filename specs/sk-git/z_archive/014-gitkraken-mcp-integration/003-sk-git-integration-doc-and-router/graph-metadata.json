@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-  "spec_folder": "sk-git/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
-  "parent_id": "sk-git/014-gitkraken-mcp-integration",
+  "packet_id": "sk-git/z_archive/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "spec_folder": "sk-git/z_archive/014-gitkraken-mcp-integration/003-sk-git-integration-doc-and-router",
+  "parent_id": "sk-git/z_archive/014-gitkraken-mcp-integration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing warns against using its local-mutation tools in place of sk-git's existing safety-gated Bash workflow",
     "created_at": "2026-07-15T04:22:50.155Z",
-    "last_save_at": "2026-08-30T15:39:18.549Z",
+    "last_save_at": "2026-10-07T18:14:22.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c7ea9afd853ad624139c76a10fc420af360363ac16814ad1e88276ef8cf52e2",
+    "source_fingerprint": "sha256:b165c96ebafc91eea74ade4c610a69cc5b1a1ac29866618480e5f743e308c5ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5191b4741f41d7a694edea031f9b9b70e4454e75509624c2ccd603c1dd9de7da",
-      "plan.md": "71714ceb19ca4cae148496c989f2c3082f77c8e0ca9f20beb1293e66698ace33",
-      "tasks.md": "46991c58eedd7ff3743fa11055f558c075158ba17c3c77f23022c733fc741f92",
-      "implementation-summary.md": "8b5b93064cd998b31f92352a63513fade49283411564ad28166b6d2b58b75557"
+      "spec.md": "42bc0cc564489deb0a0de39232103d3054fb5de2b237df218b696f822555f184",
+      "plan.md": "21161018a3ac53604a72d12c10b81c541964043de6d670cdeaa9ce6f905890f0",
+      "tasks.md": "c60c1e4a95cee462cb582608acfbba64c67cf1cb98ab46a3812b6c4612b47cc3",
+      "implementation-summary.md": "d393d61f7282ed69c725c012a697eace4572d6769f0eca6803851987dab88efc"
     },
     "last_active_child_id": null,
     "last_active_at": null

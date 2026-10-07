@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-advisor-and-validate"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate"
     last_updated_at: "2026-05-06T10:23:38Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

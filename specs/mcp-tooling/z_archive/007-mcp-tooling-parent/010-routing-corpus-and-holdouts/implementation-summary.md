@@ -3,13 +3,12 @@ title: "Implementation Summary: Phase 10: routing-corpus-and-holdouts"
 description: "The six-mode mcp-tooling hub now has blind-holdout coverage for every mode, an explicit chrome-vs-aside boundary contract, seven new labeled corpus rows, and a re-captured scorer baseline that also healed a pre-existing fixture-hash drift; the ratchet gate is green at 7/7."
 trigger_phrases:
   - "routing corpus holdouts summary"
-  - "implementation summary"
   - "six mode holdout coverage shipped"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts"
     last_updated_at: "2026-07-16T14:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase complete; gates green"

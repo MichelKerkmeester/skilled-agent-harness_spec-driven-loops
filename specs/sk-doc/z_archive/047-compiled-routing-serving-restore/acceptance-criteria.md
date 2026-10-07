@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: Restore compiled routing to serving authority and give the human voice vocabulary to its owning mode"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "compiled routing serving restore acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-08-30T15:39:32.804Z",
+    "last_save_at": "2026-10-07T18:15:45.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b901e79854c855ca828c296a118006b25e7406bcddca2bb6850ec3d0ee8f544",
+    "source_fingerprint": "sha256:ec1f7bf39b333654a6a35712049652e8a54c502898fdac9b6ffd3a1b698b77d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1116e0c2fb7806c2c4eb6fda783cddab9ef3617e3ce5121dd6298aaf7968446e",
       "plan.md": "4d6bb6546362106fef722bc77166a3d69017b4ede91b75b39cacafb9faaf9d81",
       "tasks.md": "f44844b5554d624d3fed98de7cba5b22686ac39a9e1ce859b182407aef5a85d1",
-      "implementation-summary.md": "35dea1cbccefa13adeae0f7599231efc333d1b6a2b2e8cedaf682e626e7cc73a"
+      "implementation-summary.md": "1eeb397229a89e6e8e5f19b22a4c52bd5871e9a7e5d93d70d7ba38b0e736a41b"
     },
     "last_active_child_id": null,
     "last_active_at": null

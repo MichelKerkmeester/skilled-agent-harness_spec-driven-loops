@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "is_phase_parent": true,
   "specFolder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "description": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected",

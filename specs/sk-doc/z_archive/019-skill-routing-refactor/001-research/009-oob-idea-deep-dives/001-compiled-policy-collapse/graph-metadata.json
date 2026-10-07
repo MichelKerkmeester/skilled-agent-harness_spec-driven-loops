@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,7 +13,11 @@
     "trigger_phrases": [
       "compiled routing policy deep dive",
       "collapse intent signals resource map",
-      "registry-derived routing policy"
+      "registry-derived routing policy",
+      "compiled policy collapse plan",
+      "compiled routing policy collapse",
+      "compiled policy collapse tasks",
+      "compiled policy collapse verification tasks"
     ],
     "key_topics": [
       "compiled",
@@ -27,18 +31,32 @@
       "resource",
       "map",
       "registry-derived",
-      "parent-hub"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,20 +94,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deepen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Parent-hub routing is represented in both prose tables and JSON metadata, so equivalent rules can drift and no single immutable artifact identifies the active policy",
     "created_at": "2026-07-18T04:39:04.885Z",
-    "last_save_at": "2026-08-30T15:39:14.735Z",
+    "last_save_at": "2026-10-07T19:46:23.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:94c7c0d740d4273a8fdb24937bd31982037805d0ef8c812d6587e946349def13",
+    "source_fingerprint": "sha256:ded63d96e3c97fe20d11c15b3bb97d38192db8a18f426b71f7e3fd5e73d95351",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be47cc0cdd1781175ca08fef9cd3c3a373a97401310a90f15727832c17de99b7"
+      "spec.md": "be47cc0cdd1781175ca08fef9cd3c3a373a97401310a90f15727832c17de99b7",
+      "plan.md": "66a7108d7f7855f94a36ba31f0ecd35dcc84e636af1a65ffe4e18cc53996322f",
+      "tasks.md": "d40908d096331ff3d87618bf0c927d1842dcf482a00a2d4611389de569fc66ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

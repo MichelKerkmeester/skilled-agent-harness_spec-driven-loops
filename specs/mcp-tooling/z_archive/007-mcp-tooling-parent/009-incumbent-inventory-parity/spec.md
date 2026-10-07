@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/009-incumbent-inventory-parity"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/009-incumbent-inventory-parity"
     last_updated_at: "2026-07-16T13:17:05Z"
     last_updated_by: "claude-opus"
     recent_action: "Shipped full inventory parity across the three incumbent packets; all gates green"

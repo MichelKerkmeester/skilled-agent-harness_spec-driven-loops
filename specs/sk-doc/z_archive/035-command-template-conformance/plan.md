@@ -11,7 +11,7 @@ contextType: "plan"
 parent: "sk-code"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/035-command-template-conformance"
+    packet_pointer: "sk-doc/z_archive/035-command-template-conformance"
     last_updated_at: "2026-08-29T09:43:41Z"
     last_updated_by: "claude"
     recent_action: "Fixed the two command-template gaps; audited all five files against sk-create-command"

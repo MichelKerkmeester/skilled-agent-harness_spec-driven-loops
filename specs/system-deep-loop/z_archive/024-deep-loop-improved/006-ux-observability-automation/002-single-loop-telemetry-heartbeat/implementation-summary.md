@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/002-single-loop-telemetry-heartbeat"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added step_telemetry_heartbeat (started/progress/terminal lifecycle rows) to deep_research"

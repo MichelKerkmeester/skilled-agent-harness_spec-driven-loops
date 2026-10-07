@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios` |
+| **Spec Folder** | 005-deep-ai-council-fixups-and-graph-value-scenarios |
 | **Status** | Complete |
 | **Level** | 1 |
 | **Completed** | 2026-05-11 |

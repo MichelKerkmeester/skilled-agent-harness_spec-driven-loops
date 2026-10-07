@@ -17,12 +17,12 @@
       "020 plan",
       "post-review remediation plan",
       "canonical review implementation plan",
-      "tasks",
-      "020",
-      "pre",
-      "release",
-      "remediation",
-      "post"
+      "post release fixes task list",
+      "post release fixes remediation tasks",
+      "pre release remediation task plan",
+      "post release remediation tasks",
+      "hybrid rag fusion task backlog",
+      "hybrid rag fusion remediation tasks"
     ],
     "key_topics": [
       "pre-release",
@@ -32,11 +32,11 @@
       "review",
       "plan",
       "implementation",
-      "tasks",
-      "pre",
-      "release",
       "post",
-      "now"
+      "release",
+      "task",
+      "list",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
     "created_at": "2026-04-12T09:02:50.310Z",
-    "last_save_at": "2026-08-30T15:39:39.330Z",
+    "last_save_at": "2026-10-07T20:38:27.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab4aaf6eda659b4b7bb25a6f11e9711fddd318a11ed15ce02f0f333971e13c71",
+    "source_fingerprint": "sha256:c7d04b307838e695ff4d78581763b755c600afdc50ee7160bd15ff4860a161a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e8f7eebb5b94ced062d7b828a4b242c3c223ca2d05d69d32aae72f7cd724e58",
-      "plan.md": "7a5f0e02220d23f4ad37ee82ff555af7c8a28a3cba02943f3322e9f9fdda267e",
-      "tasks.md": "cf343369f98683d3e78b89f8800877efde7c08247c360e6b895f7e89609d4f9b",
-      "decision-record.md": "82d0504b05f7aa76da963ef48b77ed4056f58c9019932e5d32dd43d3b50821f9",
+      "spec.md": "9dd6d193fffe6d278c1059ef4a9e99814488cd1976b4aac046253af8910978ac",
+      "plan.md": "1a7574a6b394e519fc65619f86acbc4cd3b5b82106d57bff87bca98d633421c0",
+      "tasks.md": "50d0152b92488f250adb2d24462afcabcec20d175b4656af9bcd37f9b6aa6fd4",
+      "decision-record.md": "4230737ee6542b8cdc6e484c55dbb66659871ac7b2668846abeeb89a005aa491",
       "implementation-summary.md": "f1abd1df236e0ded5a76787de9ea851c342fb609bfe104ab24d8fd38309fc166"
     },
     "last_active_child_id": null,

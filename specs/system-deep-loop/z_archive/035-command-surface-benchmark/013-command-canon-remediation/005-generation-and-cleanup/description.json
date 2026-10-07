@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/005-generation-and-cleanup",
   "description": "The command contract is machine-readable and versioned, but the router surfaces that must obey it are still authored by hand-copying prose across six",
   "keywords": [
     "command",

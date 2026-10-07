@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/006-cline-pi-model-id-format-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/006-cline-pi-model-id-format-fix"
     last_updated_at: "2026-08-18T18:42:01Z"
     last_updated_by: "claude"
     recent_action: "Restored slashed cline-pass model ids and updated pi config + both doc surfaces"

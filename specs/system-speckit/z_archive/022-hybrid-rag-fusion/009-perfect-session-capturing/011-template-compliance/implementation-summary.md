@@ -106,8 +106,8 @@ The work landed in three passes. First, the shared template helper and validator
 Reference links: [spec.md](spec.md) and [plan.md](plan.md).
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/007-consolidation-remediation"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/007-consolidation-remediation"
     last_updated_at: "2026-07-27T08:07:00.762Z"
     last_updated_by: "orchestrator"
     recent_action: "Shipped nine remediation fixes; full gate set green"

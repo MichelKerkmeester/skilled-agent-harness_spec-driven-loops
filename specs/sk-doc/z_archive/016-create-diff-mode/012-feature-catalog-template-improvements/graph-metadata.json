@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
-    "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep"
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/005-subheadings-spec-kit",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/008-master-catalog-enrichment",
+    "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/009-validation-sweep"
   ],
   "manual": {
     "depends_on": [],
@@ -106,16 +106,16 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-05-31T00:00:00.000Z",
-    "last_save_at": "2026-09-06T04:27:44.656Z",
+    "last_save_at": "2026-10-07T18:11:53.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ebb7c8ffbd77fd1f7bf37f04681417674b2909d472d07cf20f2dc9632cbb8a9e",
+    "source_fingerprint": "sha256:6d8f44ebf9c927628a048db6defab31d8f20e92fcd030fa31e503963317a1329",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a8b2f5e7a5db4d478f9aac3d96c4414ab885c309fd5bd87eb2906f2f804b15e"
+      "spec.md": "bf97a96e0d844de22d9ef9369b5bbbdca01779455ebcd27a4ada9f9ac4767e4f"
     },
     "last_active_child_id": "sk-doc/012-feature-catalog-template-improvements/001-template-improvements",
     "last_active_at": null

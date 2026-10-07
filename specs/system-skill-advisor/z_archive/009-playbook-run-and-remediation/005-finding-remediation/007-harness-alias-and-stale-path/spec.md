@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-p0-remediation"
     recent_action: "Implemented and verified harness alias-awareness plus stale-path fix"

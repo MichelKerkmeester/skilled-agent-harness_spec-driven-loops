@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing",
+  "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/009-pi-model-registry-and-routing",
   "description": "`sk-prompt/prompt-models` is this repo's canonical per-model prompt-craft registry (`assets/model-profiles.json` + `references/models/.md`), consulted",
   "keywords": [
     "sk-prompt",

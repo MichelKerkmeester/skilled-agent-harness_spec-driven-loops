@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates"
     last_updated_at: "2026-07-29T16:41:01Z"
     last_updated_by: "claude-code"
     recent_action: "Wired compiler + accuracy gates into CI; floors calibrated to the no-sqlite regime"

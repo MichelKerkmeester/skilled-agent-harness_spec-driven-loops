@@ -15,8 +15,7 @@
       "maintenance",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -26,11 +25,11 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
       "evolved",
-      "significantly"
+      "significantly",
+      "specificatio",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for Maintenance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.246Z",
-    "last_save_at": "2026-08-30T15:39:38.300Z",
+    "last_save_at": "2026-10-07T20:28:49.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3368241fa19ef4d30ba8de02dad9dd514da74fe65852a3994681f412fe9ee199",
+    "source_fingerprint": "sha256:8b01225d8505714bc23d236696afbbff1d838992271b0830c4d878079d3bc841",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "25e1e3d4bb0e4ef610085f735c4cd8c26b9512a72b09d1e292fde4cfda22a67b",
-      "plan.md": "610fd55c92b4c788da48ad11511abc978a9a29165957d7e3a0d8b801c3376100",
+      "spec.md": "5a773e26744c30f45e94e06d9b47b10fa6683f8812845693fea32b58d4e4fa13",
+      "plan.md": "d0ecc6e354a9dcdd0752905ee39e6897254cefbc04bfd894e50982cbb5f7580b",
       "tasks.md": "466ebaddc871db6074e154c2b697d8cda25a8aeea9f471f95cc86aa8c4293ce1",
-      "implementation-summary.md": "9bf26cc15435a2738e5ceae67b978d3fcd12820f58619922095bbb7d474b43ea"
+      "implementation-summary.md": "32019b407e95452455d9f73ab903ea5963824a1ef649414291047d080b6c87bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

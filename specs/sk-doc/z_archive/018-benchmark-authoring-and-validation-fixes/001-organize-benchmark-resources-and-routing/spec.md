@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
+    packet_pointer: "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
     last_updated_at: "2026-07-20T09:07:18Z"
     last_updated_by: "claude-code"
     recent_action: "Reorg + reference migration + link repair + family routing vocab complete"

@@ -4,7 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/005-skill-interconnection",
   "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
   "children_ids": [
-    "system-deep-loop/030-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection",
     "system-deep-loop/z_archive/024-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection"
   ],
   "migrated": true,
@@ -88,16 +87,16 @@
     ],
     "causal_summary": "New deep-loop lexical modes added to `mode-registry.json` are born inert: the advisor's alias tables and drift-guard test are not automatically regenerated, so the advisor scores against stale projections and `advisorrecommend` responses omit the resolved `workflowMode` field that callers need",
     "created_at": "2026-06-29T05:08:45.945Z",
-    "last_save_at": "2026-08-30T15:39:25.008Z",
+    "last_save_at": "2026-10-07T18:14:34.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:16970d7c4b6ecad38562fb8bcbd949ba62ae808ad36708d2215ac7c25f923059",
+    "source_fingerprint": "sha256:cef521fa2828d8edbbd8ab6bf181cfb75a01f9ea069e13e90308c0919447922a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5467dcfa51d595e46379aab0deb4e7d2321b0f669c5b2703d943d820d6567733"
+      "spec.md": "2864da0845e9be38ca290c9529ceb59601c88bf40c5454e52c72d02d9cd17009"
     },
     "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/005-skill-interconnection/001-advisor-routing-projection",
     "last_active_at": null

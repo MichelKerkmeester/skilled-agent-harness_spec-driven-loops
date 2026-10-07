@@ -1,3 +1,14 @@
+---
+title: "Template Contributions"
+description: "Novel documentation patterns introduced in this packet and proposed for the system-spec-kit templates."
+trigger_phrases:
+  - "template contribution patterns"
+  - "documentation pattern proposals"
+  - "spec kit template innovations"
+importance_tier: "normal"
+contextType: "general"
+---
+
 # Template Contributions
 
 > **Purpose:** This document captures novel documentation patterns introduced in 082-speckit-reimagined that could be contributed back to the system-spec-kit templates.

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
+  "specFolder": "cli-external-orchestration/z_archive/049-cline-provider-roster/009-cline-pi-apikey-env-syntax-fix",
   "description": "Dispatched and non-interactive pi sessions could not reach the cline-pass models",
   "keywords": [
     "dispatched",

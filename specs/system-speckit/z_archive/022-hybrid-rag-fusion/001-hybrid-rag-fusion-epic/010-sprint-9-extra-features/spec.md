@@ -36,7 +36,7 @@ The 023 refinement program built a sophisticated 5-channel hybrid retrieval pipe
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-<!-- ANCHOR:metadata -->
+<!-- ANCHOR:metadata-2 -->
 
 | Field | Value |
 |-------|-------|
@@ -50,7 +50,7 @@ The 023 refinement program built a sophisticated 5-channel hybrid retrieval pipe
 | **Predecessor** | ../009-sprint-8-deferred-features/spec.md |
 | **Successor** | ../011-research-based-refinement/spec.md |
 | **Research** | `006-extra-features/research/` (16 files) |
-<!-- /ANCHOR:metadata -->
+<!-- /ANCHOR:metadata-2 -->
 <!-- /ANCHOR:metadata -->
 
 
@@ -215,7 +215,7 @@ interface PipelineRow {
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -232,7 +232,7 @@ interface PipelineRow {
 - **NFR-R01**: Async job queue persists state to SQLite — crash recovery within 1 restart
 - **NFR-R02**: All new features gated behind feature flags (opt-in, not breaking)
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

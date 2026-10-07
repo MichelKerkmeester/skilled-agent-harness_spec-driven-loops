@@ -17,7 +17,7 @@
     "012-routing-benchmark-rigor",
     "013-design-commands-asset-refactor"
   ],
-  "specFolder": "sk-design/009-sk-design-claude-parity",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity",
   "description": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes,",
   "keywords": [
     "research",

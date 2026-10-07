@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts coverage and under-reports actual convergence",
     "created_at": "2026-06-28T14:02:02Z",
-    "last_save_at": "2026-08-30T15:39:24.852Z",
+    "last_save_at": "2026-10-07T18:15:16.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a0c00ce0c86b8eccfeadebe645ebbf1fa7ac052770e8cfb8f65fe3dca19ac94",
+    "source_fingerprint": "sha256:070f4a8e6945f3ae9bf16b498306bcb822e83555a5f21a37bb0b3eccd136f2af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35a4c24f8eae800246925df81f128392ced2fff6f00fa864f90dca0991277954",
-      "plan.md": "1a2d141a5bc6ea1a779b2e7cd3cbbc30e8a3c9f01b931c94ed18f0cab5ebed01",
-      "tasks.md": "374fdf1799aaa42458f41f6746e1323153133b463636b1caec7c12772e3dee1c",
-      "implementation-summary.md": "fbdf1bf1a333f072841983102ff00e3cd9798070bcabe605f478ec35e5795b15"
+      "spec.md": "04ddbd5873e9a3a21b8c86fbcf1fb967504a32be601fe55c2356b9a8caf4561e",
+      "plan.md": "879ebab1825c5ee6c3abe47b05fe5ba3b9d322641edf8dc96e17fd55f68c09d6",
+      "tasks.md": "665ba6fbc8e0b7b3062f4601e807ac0a66ece0d5687f66d8977e950e6e33c66e",
+      "implementation-summary.md": "d78e7195f4e2a2718381251efa8a03f88f7add3189427f6fe12a9094b0d63321"
     },
     "last_active_child_id": null,
     "last_active_at": null

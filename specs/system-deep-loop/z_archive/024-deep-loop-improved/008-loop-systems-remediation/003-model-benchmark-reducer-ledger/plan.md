@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/003-model-benchmark-reducer-ledger"
     last_updated_at: "2026-06-29T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed explicit state-log forwarding plan"

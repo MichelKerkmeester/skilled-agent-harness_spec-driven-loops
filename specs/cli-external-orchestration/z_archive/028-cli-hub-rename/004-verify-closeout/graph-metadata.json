@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout",
-  "spec_folder": "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout",
-  "parent_id": "cli-external-orchestration/028-cli-hub-rename",
+  "packet_id": "cli-external-orchestration/z_archive/028-cli-hub-rename/004-verify-closeout",
+  "spec_folder": "cli-external-orchestration/z_archive/028-cli-hub-rename/004-verify-closeout",
+  "parent_id": "cli-external-orchestration/z_archive/028-cli-hub-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are absent",
     "created_at": "2026-07-13T03:34:32Z",
-    "last_save_at": "2026-08-30T15:39:07.238Z",
+    "last_save_at": "2026-10-07T18:11:25.988Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24d57be3606d78b507f0a9160f4605807dfed4b29e776ef9d7fe7333f5731dc6",
+    "source_fingerprint": "sha256:8490dacc6c1b3d5198c90cabbd118d21701d49532cc8f4d42334b55217783cd1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19d4aefca90746a1cf3a1aa5683c439e1c8259fe2bd4d0461198851c6a7fb80b",
-      "plan.md": "c248dd74d3beae185d9107645ea714045829c2619ec9357add3bead9f4a2d92e",
-      "tasks.md": "9182217e402dc84a00a87cd78fc334610e900c7bc96e5b05abbfef711c660043",
+      "spec.md": "022101cec635cb1c50c933c0f97fa7ba92ee2e47a3b801dfa4e54febf3447575",
+      "plan.md": "86922c58d7066e9474fe0c330388c03d03a3ea6b6048affea8b47096ed4adcf4",
+      "tasks.md": "9939260ab3246e916932217208407114ca2852826856d4002a25d79aef3bc3f3",
       "decision-record.md": "9d77548d0317e931e8f567c0675a700f3301ce379625fb31c0628b3140176ae2",
-      "implementation-summary.md": "59f200b24159469cadc708b704aa74dda698c272e38104dc62c4bd2d2771e225"
+      "implementation-summary.md": "462a49e33b791cb48a94c373a045423a949c495cff3cd07d2caf5174c67a81c0"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-13T06:00:00Z"

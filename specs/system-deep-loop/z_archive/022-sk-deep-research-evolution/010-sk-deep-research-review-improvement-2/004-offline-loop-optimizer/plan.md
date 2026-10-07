@@ -2,8 +2,7 @@
 title: "Implementation [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/plan]"
 description: "Deliver Phase 4a as a deterministic offline config optimizer with advisory-only outputs now, and defer Phase 4b prompt/meta optimization until replay fixtures, behavioral suites, and broader corpus coverage exist."
 trigger_phrases:
-  - "042.004"
-  - "implementation plan"
+  - "offline loop optimizer plan"
   - "offline loop optimizer"
   - "phase 4a"
   - "phase 4b"

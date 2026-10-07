@@ -6,7 +6,6 @@ trigger_phrases:
   - "summary"
   - "codebase"
   - "fixes"
-  - "implementation summary"
   - "052"
 importance_tier: "normal"
 contextType: "implementation"

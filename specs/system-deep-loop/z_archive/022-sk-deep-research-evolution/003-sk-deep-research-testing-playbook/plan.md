@@ -187,7 +187,6 @@ Live deep-research docs are audited for shipped behavior and guardrails -> stabl
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -206,7 +205,6 @@ Contract Lock -> Package Scaffolding -> Root Playbook Authoring -> Per-Feature A
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -308,7 +306,7 @@ sk-deep-research command + skill + references + assets + Codex agent
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Build the playbook first and document the missing feature catalog explicitly
@@ -360,4 +358,4 @@ LEVEL 3 PLAN
 - Aligned to the approved 19-scenario implementation plan
 - Greenfield playbook implementation is in scope
 -->
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

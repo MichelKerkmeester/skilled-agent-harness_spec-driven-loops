@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
-  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "packet_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
+  "spec_folder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max",
-    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
-    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
-    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
-    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash"
+    "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max",
+    "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+    "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+    "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+    "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash"
   ],
   "manual": {
     "depends_on": [],
@@ -102,16 +102,16 @@
     ],
     "causal_summary": "The external-CLI orchestration modes enforce curated model rosters: cli-cursor and cli-devin hard-reject any `--model` id outside `CURSORSUPPORTEDMODELS` / `DEVINSUPPORTEDMODELS` (mirrored byte-identical in `fanout-run.cjs`), and cli-opencode's catalog documents the opencode-go gateway's curated scope",
     "created_at": "2026-08-14T08:26:34.014Z",
-    "last_save_at": "2026-09-15T18:50:14.919Z",
+    "last_save_at": "2026-10-07T18:10:57.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4d9b82cce69d2fb6dae68b74b0986abdd427645e9d89559e75d42fed7507f224",
+    "source_fingerprint": "sha256:8510db34a38a1e3c6a3de432596b5cae96ce423494e7c0baf8d5baa9f16423db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90a1d42a5512cbd9f92c97765747ea19e5bc5a6a18e5c69363359c1597a40a30"
+      "spec.md": "38dc7a4fbae51f0d1a487e983c70dee85e3cfeb235b90bffb8eda5c37647232b"
     },
     "last_active_child_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
     "last_active_at": null

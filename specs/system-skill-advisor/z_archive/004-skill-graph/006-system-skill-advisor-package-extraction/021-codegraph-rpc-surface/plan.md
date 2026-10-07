@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/021-codegraph-rpc-surface"
     last_updated_at: "2026-05-15T09:20:31Z"
     last_updated_by: "codex"
     recent_action: "Planned classifier RPC implementation"

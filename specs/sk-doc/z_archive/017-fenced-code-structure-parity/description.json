@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/017-fenced-code-structure-parity",
+  "specFolder": "sk-doc/z_archive/017-fenced-code-structure-parity",
   "description": "Four sk-doc authoring templates each contain a fenced example that shows a copy-pasteable document skeleton",
   "keywords": [
     "four",

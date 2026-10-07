@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
   "description": "Phases 14-16 ship remediated docs, assets, and a scenario — but none of it has run against a real vault",
   "keywords": [
     "phases",

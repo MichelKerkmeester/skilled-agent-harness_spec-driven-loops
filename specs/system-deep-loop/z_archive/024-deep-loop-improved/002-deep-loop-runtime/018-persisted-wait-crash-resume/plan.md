@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/002-deep-loop-runtime/018-persisted-wait-crash-resume"
     last_updated_at: "2026-07-01T21:54:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Replaced scaffold plan with shipped persisted-wait crash-resume content from spec.md"

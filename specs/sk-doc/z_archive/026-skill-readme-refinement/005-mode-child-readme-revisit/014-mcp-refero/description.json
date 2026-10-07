@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero",
   "description": "The mcp-refero skill README at `.opencode/skills/mcp-tooling/mcp-refero/README.md` still carries the older tabular reference-card style and predates",
   "keywords": [
     "mcp-refero",

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/048-test-surface-reconciliation"
+    packet_pointer: "sk-doc/z_archive/048-test-surface-reconciliation"
     last_updated_at: "2026-09-01T06:54:10Z"
     last_updated_by: "implementation"
     recent_action: "Brought the benchmark, validation, advisor and canary surfaces to green"

@@ -1,3 +1,7 @@
+---
+title: "Output Examples: Complexity Detection & Template Scaling"
+---
+
 # Output Examples: Complexity Detection & Template Scaling
 
 This document demonstrates the complexity detection system across all levels with real examples showing how task descriptions affect recommended levels and template output.

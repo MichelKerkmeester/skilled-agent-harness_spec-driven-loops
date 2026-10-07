@@ -2,10 +2,8 @@
 title: "Tasks: Task [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-07-github-release/tasks]"
 description: "Task Format: T### Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "task"
-  - "github"
-  - "release"
+  - "github release tasks"
+  - "release tagging tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---

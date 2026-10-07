@@ -3,7 +3,6 @@ title: "Implementation Summary"
 description: "Unified create-skill command surfaces into one canonical entrypoint with mode and operation routing, aligned and expanded canonical artifacts, removed legacy command/workflow files, and completed memory indexing."
 # SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 trigger_phrases:
-  - "implementation summary"
   - "create skill merger"
   - "canonical command"
 importance_tier: "important"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
-  "spec_folder": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
+  "packet_id": "cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -42,7 +42,6 @@
       "implementation",
       "plan",
       "tasks",
-      "implementation summary",
       "retire ox-alpha glm gemini openrouter"
     ],
     "key_topics": [
@@ -225,7 +224,7 @@
     ],
     "causal_summary": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode and cli-pi",
     "created_at": "2026-08-27T06:45:48.119Z",
-    "last_save_at": "2026-09-11T16:41:47.250Z",
+    "last_save_at": "2026-10-07T18:11:39.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,13 +233,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:124898c573a63e4bba69734b819f7de8f2859c78807c2012794b1a65e18b6418",
+    "source_fingerprint": "sha256:d3ab4fd04da1e991180048ea666ba38e481478a56be1c0369959de07a8295710",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c068d297dff35b4bc6689d18fd7820899d12dbdfd59762623a2bb00d85613183",
-      "plan.md": "a5062589f1b2e59d888b9ba5ac0b6bea5a63368c035b4cd69c7f0c311b4ae735",
-      "tasks.md": "856f7c1e05d84edc46ff15dcd2d70dd7bcce3284ef6a180a029870a70d08d919",
-      "implementation-summary.md": "d02d25bef77d48e142a51ad77fc3080a2253f561f1de90d847b440e759dbbb3f"
+      "spec.md": "8ee65cb7400baf441277369db98042421017139722d331efe6b612925f0198b5",
+      "plan.md": "9bed5428563bca5f499f487f84daedebf2efa39e6362f203a58f3ab266acbeea",
+      "tasks.md": "06e33b30e5668da7e7470641e9e3ccbd5bccd95bf6a3e494af3f7d09e5091b4f",
+      "implementation-summary.md": "8f65a59022525d5fc84f9fbfed98e43c284dbbedf8b121f0d83b5c11d1fd901c"
     },
     "last_active_child_id": null,
     "last_active_at": null

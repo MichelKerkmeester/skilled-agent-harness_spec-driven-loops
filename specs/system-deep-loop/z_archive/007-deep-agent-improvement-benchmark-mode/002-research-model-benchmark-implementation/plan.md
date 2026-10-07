@@ -2,10 +2,7 @@
 title: "Implementation Plan: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
+  - "research model benchmark implementation plan"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"
@@ -14,8 +11,8 @@ _memory:
     packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation"
     last_updated_at: "2026-05-28T14:32:16Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
     blockers: []
     key_files: []
     session_dedup:

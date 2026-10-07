@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation",
-  "spec_folder": "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation",
-  "parent_id": "sk-doc/037-playbook-family-remediation",
+  "packet_id": "sk-doc/z_archive/037-playbook-family-remediation/004-fail-closed-graduation",
+  "spec_folder": "sk-doc/z_archive/037-playbook-family-remediation/004-fail-closed-graduation",
+  "parent_id": "sk-doc/z_archive/037-playbook-family-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Empty the grandfather list that made ten parent packages non-blocking, name all 41 cleaned roots in a fail-closed allowlist, and assert in CI that each named root is still actually scanned.",
     "created_at": "2026-08-29T11:53:22.792Z",
-    "last_save_at": "2026-08-30T15:39:18.193Z",
+    "last_save_at": "2026-10-07T18:13:57.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bea936001a9b7d25ce6e5159c5424db30644f33bd2701125890a08705ca795c9",
+    "source_fingerprint": "sha256:856c9a95432d10f8664e96e7fee7b13dde450a560368004e52dbc48d998888e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4877fa508503cbc84e6a65878db5a18c9f2d4af98500b083745250cb959386c7",
-      "plan.md": "8e322e32f30db699b8b9b3e586ccef585a7489cff1c4268ed60d7a5014636f90",
-      "tasks.md": "fa752415b70cd47172d58ceb4653f4509d5bb9d2a6f8fdf28bf664528367af86",
-      "implementation-summary.md": "af0297dd2c8b1d414805520a14dbe23b34bd71152941cbdedb75b5b57f34cbf0"
+      "spec.md": "f430432c7ac6b3d2086b5a9db6a801cb91820d4439153e48327370dec0b3b28f",
+      "plan.md": "a0046f87ab1380c2f56632f9d59d1735bea5b4b94ce860edf3e50f3f67570861",
+      "tasks.md": "cd271a3bed99d24ddd3572e8618661e816b20015f6e0e3c42567480adf4cde97",
+      "implementation-summary.md": "561a1f4d8e676aa2628a2b75b5432548faf008a9196d93b12049a07158341212"
     },
     "last_active_child_id": null,
     "last_active_at": null

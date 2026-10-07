@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/000-worktree-baseline-and-census"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase spec authored for the 020 phased tree"

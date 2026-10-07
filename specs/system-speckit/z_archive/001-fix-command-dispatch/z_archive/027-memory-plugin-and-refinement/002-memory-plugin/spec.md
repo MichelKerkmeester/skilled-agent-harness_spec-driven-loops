@@ -2,13 +2,8 @@
 title: "...system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin/spec]"
 description: "Optimize the semantic memory plugin to inject a compact \"memory dashboard\" instead of full content, reducing token consumption while maintaining context visibility."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "memory"
-  - "plugin"
-  - "dashboard"
-  - "spec"
-  - "002"
+  - "memory plugin dashboard spec"
+  - "memory plugin dashboard optimization"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -185,7 +180,7 @@ LOAD: memory_load({ memoryId: # })  SEARCH: memory_search("...")
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -206,7 +201,7 @@ LOAD: memory_load({ memoryId: # })  SEARCH: memory_search("...")
 - **NFR-M02**: Dashboard format MUST be modular (separate format function)
 - **NFR-M03**: Time formatting MUST be in dedicated helper function
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -277,7 +272,7 @@ LOAD: memory_load({ memoryId: # })  SEARCH: memory_search("...")
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions**:
@@ -288,7 +283,7 @@ LOAD: memory_load({ memoryId: # })  SEARCH: memory_search("...")
 - Dashboard styling/colors - ASCII only
 - Memory priority scoring changes - uses existing tier system
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->

@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-git/015-remote-branch-policy",
+  "specFolder": "sk-git/z_archive/015-remote-branch-policy",
   "description": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those",
   "keywords": [
     "local",

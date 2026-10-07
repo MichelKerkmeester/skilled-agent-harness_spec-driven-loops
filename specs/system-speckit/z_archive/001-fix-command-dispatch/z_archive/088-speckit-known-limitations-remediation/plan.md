@@ -165,7 +165,7 @@ Phase 2b — Legacy install guide:
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -185,7 +185,7 @@ Phase 4 (Signals) ─── (independent) ┘
 
 Phases 1-4 are fully independent and can be executed in parallel.
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

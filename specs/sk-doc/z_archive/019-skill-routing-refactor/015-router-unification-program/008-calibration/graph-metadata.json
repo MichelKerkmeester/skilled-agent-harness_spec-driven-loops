@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller"
+    "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
+    "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract",
+    "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller"
   ],
   "manual": {
     "depends_on": [],
@@ -84,16 +84,16 @@
     ],
     "causal_summary": "Phase parent integrating Idea 5 (calibrated negotiation) into the unified router refactor as a first-class build — NOT deferred. Three children: build the sealed held-out routing corpus (the artifact whose absence made the synthesis park calibration), specify the rank-vs-calibrated route contract (rankScore/scoreMargin always, estimatedError only with a validated certificate), and build the selective-classification controller that auto-routes under a validated risk budget else clarifies/defers.",
     "created_at": "2026-07-18T13:13:19.110Z",
-    "last_save_at": "2026-08-30T15:39:14.992Z",
+    "last_save_at": "2026-10-07T18:12:43.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:35812b5de941773c5c3d86ddc9b70ab3ccbc622a90572389d1e71acd68a76751",
+    "source_fingerprint": "sha256:9a669ab58433c5a840b65874c1f21c87ae3550f8d016e6113d6bf2db581d21b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "333ce2946959a4c5c4ee8f1409dc4d721415fdbbe78d24e0e2cb7f3af6df2f8c"
+      "spec.md": "7bfb43c387dcfac7983362aefe71679e1b3cd3e06ef00c0e31312064452856f3"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
     "last_active_at": null

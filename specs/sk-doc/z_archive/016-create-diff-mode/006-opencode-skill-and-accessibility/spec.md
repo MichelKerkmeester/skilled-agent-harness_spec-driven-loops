@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "draft"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/006-opencode-skill-and-accessibility"
     last_updated_at: "2026-07-15T10:07:01Z"
     last_updated_by: "codex"
     recent_action: "Delivered the create-diff mode with an embedded engine"

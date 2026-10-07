@@ -1,3 +1,13 @@
+---
+title: "Contract Compiler — Verified Design"
+description: "Consolidated, verified design for the build-time command-contract compiler, merging three independently verified design passes with four verification corrections."
+trigger_phrases:
+  - "contract compiler verified design"
+  - "command contract compiler design"
+  - "compiled command contract"
+importance_tier: "important"
+contextType: "planning"
+---
 # Contract Compiler — Verified Design
 
 > Consolidated, verified design for the build-time command-contract compiler (packet 036, carved from 035). This supersedes the original GPT-produced seed (retained in git history). It merges three dispatched design passes — each independently Sonnet-verified — with four corrections found during verification. Detailed evidence lives in the sibling working docs:

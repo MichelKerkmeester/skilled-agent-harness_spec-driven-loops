@@ -2,16 +2,14 @@
 title: "Session Handover [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/handover]"
 description: "1. Comprehensive Parallel Testing"
 trigger_phrases:
-  - "session"
-  - "handover"
-  - "044"
-  - "speckit"
+  - "speckit test suite handover"
 importance_tier: "normal"
 contextType: "general"
 ---
 # Session Handover
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 | Field               | Value                                      |
@@ -21,9 +19,11 @@ contextType: "general"
 | **Phase Completed** | Parallel Testing & Bug Fixes               |
 | **Timestamp**       | 2025-12-26                                 |
 | **Status**          | Ready for verification after MCP restart   |
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 What Was Accomplished
@@ -70,6 +70,7 @@ contextType: "general"
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md` | Created with full test findings | COMPLETE |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md` | Updated with test evidence | COMPLETE |
 | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md` | Created as reminder | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
@@ -91,6 +92,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 4. For Next Session
 
 ### 4.1 Recommended Starting Point
@@ -128,9 +130,11 @@ memory_search({ specFolder: "044-speckit-test-suite", includeContent: true })
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md` - Test evidence and status
 - `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md` - Restart reminder
 - `.opencode/skills/system-spec-kit/mcp_server/lib/checkpoints.js` - SPECKIT-003 fix location
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 5. Validation Checklist
 
 ### Completed
@@ -147,9 +151,11 @@ memory_search({ specFolder: "044-speckit-test-suite", includeContent: true })
 - [ ] Checkpoint restore verified (no duplicates)
 - [ ] T6.6 and T10.2 tests pass
 - [ ] 100% test pass rate achieved
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 6. Session Notes
 
 ### Performance Improvements
@@ -169,6 +175,7 @@ memory_search({ specFolder: "044-speckit-test-suite", includeContent: true })
 - 20 parallel Opus agents ran successfully without interference
 - Sandbox isolation (unique scratch dirs) prevented test collisions
 - Live database testing revealed real-world edge cases
+<!-- /ANCHOR:session-notes -->
 
 ---
 

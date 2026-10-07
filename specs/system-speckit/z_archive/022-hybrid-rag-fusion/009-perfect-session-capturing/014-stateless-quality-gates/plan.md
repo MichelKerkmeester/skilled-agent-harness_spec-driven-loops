@@ -227,7 +227,6 @@ Memory file written
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## 8. L2: PHASE DEPENDENCIES
 
 ```
@@ -249,7 +248,6 @@ Phase 3 (Source-aware filter) ────┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## 9. L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -345,7 +343,7 @@ Phase 3 (Source-aware filter) ────┘
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Tier Rules Rather Than Disable Gate A
@@ -403,4 +401,4 @@ Phase 3 (Source-aware filter) ────┘
 **Alternatives Rejected**:
 - Remove the tool-title-with-path pattern entirely: would miss real contamination from other CLI sources.
 - Lower the contamination cap threshold globally: blunt instrument; would allow other genuinely contaminated saves through.
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

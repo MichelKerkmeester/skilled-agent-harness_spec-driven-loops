@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-runtime-mirrors"
+    packet_pointer: "sk-prompt/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors"
     last_updated_at: "2026-05-06T10:23:37Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

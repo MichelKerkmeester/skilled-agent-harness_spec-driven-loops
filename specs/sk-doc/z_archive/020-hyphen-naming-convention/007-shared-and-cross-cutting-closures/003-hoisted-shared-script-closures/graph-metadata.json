@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree.",
     "created_at": "2026-07-14T15:16:52Z",
-    "last_save_at": "2026-08-30T15:39:16.209Z",
+    "last_save_at": "2026-10-07T18:13:24.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:41f3799238d229d64ab7699313ac32e00c98518f43f146b969c48deba6338d06",
+    "source_fingerprint": "sha256:a515d8bde0855366442fe1aab7bcaecdc0e2a31e3443fb47d1506428a9f2bb82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3d79ee1ea16984a1c740dbe334fc3de3e0794a57ac4870f576a3f3e32dadb8f",
-      "plan.md": "7151fa2b01ef408567adc8b89656e330e80a1df03756a8559f8f5f03b3a5512f",
-      "tasks.md": "49d34637894d7dec0e3104b3c19844c33b3252c387937e13e4c2e559fc847c65"
+      "spec.md": "3a0cbfa026f0a70a59c58aae48fb818f6f6c72317bc4a8b7f7d0cb09524411b8",
+      "plan.md": "bfde7185dc97df921854175132720d8a345ba9033516bd76336d549502ed7e9a",
+      "tasks.md": "b4d074e7c16e87bf6187b1fd5ca6268efe6403a48f8ac974da5493b527ee662f"
     },
     "last_active_child_id": null,
     "last_active_at": null

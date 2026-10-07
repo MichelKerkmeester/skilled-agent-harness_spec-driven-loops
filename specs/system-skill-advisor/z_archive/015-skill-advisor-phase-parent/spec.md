@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/015-skill-advisor-phase-parent"
+    packet_pointer: "system-skill-advisor/z_archive/015-skill-advisor-phase-parent"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Wired Skill Advisor as a phase parent with 8 implementation sub-phases"

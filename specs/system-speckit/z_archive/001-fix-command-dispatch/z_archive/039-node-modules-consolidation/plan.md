@@ -2,10 +2,7 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/039-node-modules-consolidation/plan]"
 description: "id: 039-node-modules-consolidation"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "039"
-  - "node"
+  - "node modules consolidation plan"
 importance_tier: "important"
 contextType: "planning"
 id: 039-node-modules-consolidation

@@ -2,14 +2,13 @@
 title: "Implementation Summary: Acceptance and Rollout Foundation"
 description: "PLANNING ONLY — phase 001 not started. Closes F-014, F-025 + rollout mechanism (effort M)."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "031 006 001"
+  - "acceptance and rollout foundation summary"
+  - "reliability fixes rollout foundation"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase scaffolded from plan-review restructure; not started"
@@ -56,7 +55,6 @@ Partial — 5 of 8 REQs implemented and independently Sonnet-verified (GPT-5.5-f
 - **REQ-008 ✅** — `fx-002-research-target` made valid in place against deep-research's ACTUAL scoped pre-init rule set (not plain `--strict`; REQ-008 corrected accordingly). RSB-001/006/007/008 now validate deterministically; Unicode probe preserved.
 
 **Phase-001 code is complete (7/8 REQs, all Sonnet-verified).** Remaining, both deferred with cause: **REQ-005** — the full 32×3 re-score is an acceptance *run* of ~96 benchmark legs (hours of compute), scheduled for acceptance time, not implementation; **REQ-007 wiring** (manifest capture + comparator + plugin emitter integration) is blocked until the concurrently-churning injection plugins settle.
-<!-- /ANCHOR:what-built -->
 <!-- /ANCHOR:what-built -->
 
 ---

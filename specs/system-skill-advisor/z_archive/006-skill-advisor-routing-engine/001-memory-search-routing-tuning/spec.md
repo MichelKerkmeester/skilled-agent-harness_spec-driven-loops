@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/001-memory-search-routing-tuning"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/001-memory-search-routing-tuning"
     last_updated_at: "2026-04-18T22:00:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Restored coordination-parent root spec for canonical save invariants"

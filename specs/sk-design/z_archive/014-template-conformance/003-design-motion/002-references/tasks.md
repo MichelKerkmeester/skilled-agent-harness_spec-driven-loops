@@ -1,9 +1,11 @@
 ---
 title: "Tasks: design-motion references/ conformance"
 description: "Task breakdown for fixing the two known separator-discipline defects, the H2-casing defect, and auditing the remaining 4 references files."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/002-references"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/002-references"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author references audit tasks"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "references tasks"
 ---
 # Tasks: design-motion references/ conformance
 

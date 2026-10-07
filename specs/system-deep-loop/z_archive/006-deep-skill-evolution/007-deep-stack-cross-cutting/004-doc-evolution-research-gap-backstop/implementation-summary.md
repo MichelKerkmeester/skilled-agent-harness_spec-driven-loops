@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-deep-research-gap-backstop |
+| **Spec Folder** | 004-doc-evolution-research-gap-backstop |
 | **Completed** | 2026-05-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

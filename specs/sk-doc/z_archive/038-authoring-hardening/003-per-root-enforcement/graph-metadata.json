@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
-  "spec_folder": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
-  "parent_id": "sk-doc/038-authoring-hardening",
+  "packet_id": "sk-doc/z_archive/038-authoring-hardening/003-per-root-enforcement",
+  "spec_folder": "sk-doc/z_archive/038-authoring-hardening/003-per-root-enforcement",
+  "parent_id": "sk-doc/z_archive/038-authoring-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A fleet validator run could report success over playbook roots it never opened, so a sub-package could carry hundreds of violations behind a green build; the first gate written to fix this was itself false-green and was caught by control before shipping.",
     "created_at": "2026-08-29T11:34:45.439Z",
-    "last_save_at": "2026-08-30T15:39:18.223Z",
+    "last_save_at": "2026-10-07T18:14:03.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45e6d963a01cf77d8bb15d464a1c5401792bdf9f4ebfb2461b16ad2b16729368",
+    "source_fingerprint": "sha256:422c5cce12c8c3c12d3c64f9ee7c4eca785b68a742963e84bc1a6702257e8242",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e836f56e21fcb9e7bb001ba42b265ff70fff404461f9ffe3a82abcbdd94f34c",
-      "plan.md": "d25766b30c6bbe70e132f65487af7e428ffc9e7b1f0f63447f11ed41786b403f",
-      "tasks.md": "82b4307926ebc1c3ba25e9fd809931c7bfd6d87e0bd6bc32e1de931fb43cb9bf",
-      "implementation-summary.md": "704693081bdcfd3e0e4507b524cfbfbeabb77f5fe19dd2d051202050207c5b81"
+      "spec.md": "a4088a40474cc1a6d5d35d20bb69b5e53f44558e3a4fbdf4f61cfb780924af0d",
+      "plan.md": "f8cd538e5246018f31abf38383fa56588f0141595e97827e9db61f15d8a197b1",
+      "tasks.md": "e011f3074d96286232de3a8d78ffb683b0921dd4ee65639913659e78a7489873",
+      "implementation-summary.md": "f64d8289a9b8c99226fb533b29e86b6c58a3794c580eb64117345cc1f00f8203"
     },
     "last_active_child_id": null,
     "last_active_at": null

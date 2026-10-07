@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/010-sk-design-styles-from-refero"
+    packet_pointer: "sk-design/z_archive/010-sk-design-styles-from-refero"
     last_updated_at: "2026-07-18T10:25:46Z"
     last_updated_by: "claude"
     recent_action: "Initialized lean phase-parent for the Refero styles extraction"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/006-design-mcp-open-design"
+    packet_pointer: "sk-design/z_archive/006-design-mcp-open-design"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "gpt-5.6-luna"
     recent_action: "Read source templates and exemplar"

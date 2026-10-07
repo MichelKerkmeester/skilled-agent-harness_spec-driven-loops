@@ -2,14 +2,13 @@
 title: "Implementation Summary: Rollout Behavioral Benchmarks -- deep-ai-council + deep-improvement"
 description: "30-run rollout complete: ACB (5) + IMB (5) packages scored across claude-cli baseline + both GPT-5.5-fast legs. The D-010 evidence-kind design (seat_artifacts / candidate_evidence) prevents false absorption on in-CLI councils and structured improvement loops -- zero role_absorption across 30 runs. Headline: GPT's Gate-3 documentation halt is the dominant failure at BOTH efforts across ALL four command surfaces, and high is NOT stall-free in the structured modes."
 trigger_phrases:
-  - "implementation"
-  - "summary"
+  - "rollout council improvement implementation summary"
   - "council improvement behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/004-rollout-council-improvement"
     last_updated_at: "2026-07-02T23:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "30 runs scored, scorecard published, 3 detector calibrations landed"

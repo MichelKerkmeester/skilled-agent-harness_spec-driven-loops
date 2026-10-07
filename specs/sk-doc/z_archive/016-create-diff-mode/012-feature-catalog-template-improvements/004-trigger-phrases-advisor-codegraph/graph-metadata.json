@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "trigger phrases advisor codegraph spec",
+      "skill advisor trigger phrases",
+      "code graph trigger phrases",
+      "trigger phrases advisor codegraph plan",
+      "trigger phrases advisor codegraph tasks",
+      "advisor trigger phrases task list"
     ],
     "key_topics": [
-      "implementation",
+      "trigger",
+      "phrases",
+      "advisor",
+      "codegraph",
+      "spec",
+      "skill",
+      "code",
+      "graph",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "improve",
-      "skill-advisor",
-      "snippets",
-      "code-graph"
+      "tasks",
+      "task",
+      "list"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -110,22 +119,54 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add or improve trigger_phrases in 40 skill-advisor snippets and 14 code-graph snippets. Audit existing phrases for quality; fill all gaps.",
     "created_at": "2026-07-09T10:02:46.128Z",
-    "last_save_at": "2026-09-11T04:36:15.336Z",
+    "last_save_at": "2026-10-07T20:38:23.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1a14c869e6c56eee55f3eb06f7c3120eaa2d2412a142ae021919986b1a049b82",
+    "source_fingerprint": "sha256:360026597b176f83cb9bda2704a3036dc68fe5bf0ea011bf2ebcdbd2c411e8a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "de8515ab4d193fff79d22dccd06dd9aec1b4335aabd8a4d4af9efb20659211bd",
-      "plan.md": "15d9741d7ab5a8cef03e74d0fc7772b48ca715959f4bf471c013407b5648bff7"
+      "spec.md": "54ca14bded071c01412120828d5028843d83f0df5f8cbf3c5ea86e7582d99c45",
+      "plan.md": "f5c6035b6e3d582fac1a9ecc73c4f6a2430e2d123b144f93ede5b84d4c58eb98",
+      "tasks.md": "e1862c41fc02b62548b688382b87075de0da5813c16039c3cfadb0e6ecfa88a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

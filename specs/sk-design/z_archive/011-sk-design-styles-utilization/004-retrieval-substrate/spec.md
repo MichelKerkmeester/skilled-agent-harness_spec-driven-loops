@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/004-retrieval-substrate"
     last_updated_at: "2026-07-18T13:40:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the retrieval-substrate L3 scaffold"

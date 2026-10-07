@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored feature-catalog docs"

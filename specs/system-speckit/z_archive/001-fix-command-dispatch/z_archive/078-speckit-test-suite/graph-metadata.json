@@ -44,10 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/tests/test_dual_threshold.py",
-      "scripts/tests/test-extractors-loaders.js",
-      "scripts/tests/test-five-checks.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,24 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "test_dual_threshold.py",
-        "kind": "file",
-        "path": "scripts/tests/test_dual_threshold.py",
-        "source": "derived"
-      },
-      {
-        "name": "test-extractors-loaders.js",
-        "kind": "code",
-        "path": "scripts/tests/test-extractors-loaders.js",
-        "source": "derived"
-      },
-      {
-        "name": "test-five-checks.js",
-        "kind": "code",
-        "path": "scripts/tests/test-five-checks.js",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Created",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete",
     "created_at": "2026-04-12T09:02:53.549Z",
-    "last_save_at": "2026-08-30T15:39:37.477Z",
+    "last_save_at": "2026-10-07T19:24:35.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:927be4d165f6d0bdc7c10622c5d4ad14e895aa052ae2075c82b6557f069c4426",
+    "source_fingerprint": "sha256:3d680b04a7bd98d3577fbab927fd442c4c11c6431a2b934fae687e08435934fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a16f97a55f15439f275331391ea92073dc3625c2ba31d66fc0d3fe2dd613ac03",
-      "plan.md": "2787f2618684b79a467ce41320dca89c276d448a9e11af21561e20ec5c841e09",
+      "spec.md": "49d3e004a55cfdcacec24b175b71156b610ee1a65b838737e13c52dd6f3bb179",
+      "plan.md": "4cab74d06aa678d7d3fb4e65365aa1c557e97e10482d148d9a2b8e4c31aaa628",
       "tasks.md": "28cb5962ed9207de3db5928da5c28a8689dc971e843cc22e58cfa2a5c5dbb0b1",
-      "implementation-summary.md": "d5b4b0d8630371f48c4baf940d821bb7719bec8b4bfc69641c4324b7d9493e1d"
+      "implementation-summary.md": "0f2e6fd8087e5f9f6800f32b9a2d4615bd5f9117c72fa14c71b666a502d28c6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

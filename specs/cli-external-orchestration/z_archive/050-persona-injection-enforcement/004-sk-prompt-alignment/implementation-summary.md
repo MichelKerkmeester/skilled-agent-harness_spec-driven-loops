@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/004-sk-prompt-alignment"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/004-sk-prompt-alignment"
     last_updated_at: "2026-08-19T11:31:00Z"
     last_updated_by: "claude"
     recent_action: "Canonical section installed; cline APPROVE 96/100; Devin-path note reconciled"

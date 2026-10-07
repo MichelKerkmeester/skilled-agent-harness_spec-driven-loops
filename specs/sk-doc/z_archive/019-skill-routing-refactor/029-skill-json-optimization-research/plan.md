@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/029-skill-json-optimization-research"
     last_updated_at: "2026-07-29T08:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the 3-lineage fan-out plan"

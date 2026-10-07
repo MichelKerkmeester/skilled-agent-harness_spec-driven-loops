@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
     "created_at": "2026-04-12T09:02:50.239Z",
-    "last_save_at": "2026-09-10T21:04:46.141Z",
+    "last_save_at": "2026-10-07T19:24:35.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:198029b2ee251cd899861b78bf9543a5f6368ea3671b668209e40ebba5914bf6",
+    "source_fingerprint": "sha256:4282e9e6754f9696e674cf4935c0ae737eae8115803c24b24cd10c25467f061b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37a10539177b9c1186c4d3ab934a242e88bbccbf592a11f42d47e2b32f5e519f",
-      "plan.md": "8f4283360f42e7c0d62c5e2b7f99ca3c750778f4feb9f31be4b569bc5bd9d700",
+      "spec.md": "7068e373e672672aab1b75c5bbca37b03411e9ddc08d9db82d35a5bd50097356",
+      "plan.md": "abe9f58690910bbbb36b7299ec244bfe67951e3342fb4cd459ef2866a3a7ec9f",
       "tasks.md": "dc6019e42fc5ecfd346c1d468a59fe6c072bbd103a8a6daaa86b40c4259b2f7e",
-      "implementation-summary.md": "7cd23205c73cbf4997e3c90b3499e5c7cbc23e0fdda171b5902d25bdc9717740",
+      "implementation-summary.md": "32ab0fd783a8fbb64b25cadaa8e188484505b6d6eeb2bec62fa7bc63952e6c53",
       "research/research.md": "d300847320da9872cb8d669238ddb7e0ecb867682932e320a6cc0fad9f9f15b2"
     },
     "last_active_child_id": null,

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin"
     last_updated_at: "2026-07-27T08:03:00Z"
     last_updated_by: "claude-code"
     recent_action: "Executed T001-T016; all tasks complete except T006/T007 skill/prompt discovery"

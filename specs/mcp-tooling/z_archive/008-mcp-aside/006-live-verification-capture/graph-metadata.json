@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
-  "spec_folder": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
-  "parent_id": "mcp-tooling/008-mcp-aside",
+  "packet_id": "mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
+  "spec_folder": "mcp-tooling/z_archive/008-mcp-aside/006-live-verification-capture",
+  "parent_id": "mcp-tooling/z_archive/008-mcp-aside",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run against the registered manual",
     "created_at": "2026-07-16T12:58:31Z",
-    "last_save_at": "2026-09-10T20:43:40.933Z",
+    "last_save_at": "2026-10-07T18:11:41.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97d44047d51f24a4f59824171ad8ba88280a7e66f9d3bd28fe456b63f184ab63",
+    "source_fingerprint": "sha256:6464db56d926c983c3f1e01ae3c9dbc77eac6a1111a42981835e22fd6cab072a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36839bd5ebb9bd37e0488c19ad348ace83950aadaee445c1c31abf2c11ca4d20",
-      "plan.md": "cd5db1f482b4863b99a46e57d33e3cf3c4e8d2246e46d74b3cce8ea26c765148",
-      "tasks.md": "31cc89276610eeb3ba541800f928ec840e70cc4d6b2f453e162428731fb51bdc",
-      "implementation-summary.md": "194f5d617314579aad23c0f907b1fd37522bf6a7143521ea55816ab07ba87733"
+      "spec.md": "70c6104b44625c533b51cdffa54b5c6b28c010d262f0a6cc1b606af9a38b857b",
+      "plan.md": "77f618ac87b1d69cb603a04dc76f5f1d1eed0b4e38f9e3b047145363005344a5",
+      "tasks.md": "5dda2c5081cdb6e57cba2068cc17412b9b66bc636fe9f88f4cd8810d535fc913",
+      "implementation-summary.md": "af8b8fd8d80ffd63f239b35ad970372037a4515c477642a030181d2d5f7cc5fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

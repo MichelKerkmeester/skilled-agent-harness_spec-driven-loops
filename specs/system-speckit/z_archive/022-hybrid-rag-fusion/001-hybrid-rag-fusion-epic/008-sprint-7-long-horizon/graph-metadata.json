@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
     "created_at": "2026-04-12T09:02:50.230Z",
-    "last_save_at": "2026-08-30T15:39:38.081Z",
+    "last_save_at": "2026-10-07T19:24:35.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:101a3d9c9e90c9b31ca563f788668186ba99d241d827647d892a6d6702fa3a38",
+    "source_fingerprint": "sha256:c014eadce3717ce2dcc7d38d3bda8be6612e7abae174bbd418b19c9da6f0ef49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fbfdb892a0bba9fa1b913e763016913419b839ead9317aeb1640e343274ae664",
-      "plan.md": "151423c7b05b8498315b2c5056fb3b2eae845364952246f85d05ffdf6ac1f82e",
+      "spec.md": "31cd4ab5264612b493183b997fa8c0463a176484966b0be22c0fa701f2942eab",
+      "plan.md": "bc5685c5ee2bde1e5e2500e6cf750d1569f7cab5bed7551a5bce2685ec20f32e",
       "tasks.md": "6aa894d746897af00dab4722a5d4817593b03d94f485f72748c2b3a2ec05ab8c",
       "implementation-summary.md": "683d89e6bf70cbf75afb9f9d0d4d2c9871067b5e4bb5c6a12b8cddf6df5b9e55"
     },

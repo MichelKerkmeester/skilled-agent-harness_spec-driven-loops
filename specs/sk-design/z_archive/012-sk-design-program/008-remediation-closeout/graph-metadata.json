@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/008-remediation-closeout",
-  "spec_folder": "sk-design/012-sk-design-program/008-remediation-closeout",
-  "parent_id": "sk-design/012-sk-design-program",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/008-remediation-closeout",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/008-remediation-closeout",
+  "parent_id": "sk-design/z_archive/012-sk-design-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "styles.sha256.before",
-        "kind": "file",
-        "path": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`007-consolidation-remediation` shipped nine fixes and reached a full green gate set, but it explicitly recorded five items as deferred rather than dropped: two verification gates were never run (styles SHA-256 equality, the design benchmark), one validator warning on the sibling `006` packet was never diagnosed, and one capability decision (AI-tell fixture restoration) was left for the operator",
     "created_at": "2026-07-27T08:54:36.515Z",
-    "last_save_at": "2026-09-11T16:41:56.735Z",
+    "last_save_at": "2026-10-07T18:12:34.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1531d64ce3388cf5c7be9bc436c19937022d82d7f753f0bc0342e42901f123c",
+    "source_fingerprint": "sha256:791bcd5a463def1dc3b62444e2d6057f6ed0d16343c98e0fe58aca97adf59863",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fd792ba3ce8569aba7f63cc93eea15e8a8d00ae6aee96c75ba8e732518d6cbf",
-      "plan.md": "16c354d1ee0875dd275acc95eb555ccec06e0fb3f4af7aaa864d94818da8d0b2",
-      "tasks.md": "8afab904430c617226067a275e4b4f9346f0c8c076eccd4f51fde8d59cf4c735",
-      "implementation-summary.md": "ff9a765fad0afef3bab255ee316b7ad9d414534d77c6e0dce61f3bc4d7ea1870"
+      "spec.md": "0215b85f12a0fc50f2706344bffed59539ef9f063e9975220cdc8f64d971ca69",
+      "plan.md": "a543e859c977fcdb0f89f95af1eb65c7e510cc1fb563ad9e4b6dbd011544fca2",
+      "tasks.md": "b7f63620f537abceb6ff7b2e4f2445327a7ec59be12878c8033c3c55171cbde8",
+      "implementation-summary.md": "1432341a78f9c631d561443af66f56f9781615e8592639593c0ef6b4701d1f15"
     },
     "last_active_child_id": null,
     "last_active_at": null

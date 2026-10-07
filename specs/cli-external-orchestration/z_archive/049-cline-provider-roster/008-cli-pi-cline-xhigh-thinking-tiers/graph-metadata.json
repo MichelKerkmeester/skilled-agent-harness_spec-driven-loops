@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
-  "spec_folder": "cli-external-orchestration/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
-  "parent_id": "cli-external-orchestration/049-cline-provider-roster",
+  "packet_id": "cli-external-orchestration/z_archive/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+  "spec_folder": "cli-external-orchestration/z_archive/049-cline-provider-roster/008-cli-pi-cline-xhigh-thinking-tiers",
+  "parent_id": "cli-external-orchestration/z_archive/049-cline-provider-roster",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "In pi's interactive model picker, the cline-pass DeepSeek V4 Flash (and Pro) effort could not be cycled past `high` — `xhigh` was unreachable — while opencode's official cline-pass support reaches `xhigh`",
     "created_at": "2026-08-22T11:36:23.896Z",
-    "last_save_at": "2026-08-30T15:39:08.130Z",
+    "last_save_at": "2026-10-07T18:11:37.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61603138d6d9d8a210b9c348441894fb8368c475998050feda2373958cfac720",
+    "source_fingerprint": "sha256:bf76e41416fc069be391e84f06db408183c1d72066fc89ca3e697eaab3205f16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a367c5b5591c663c6f07b7ee314837b36cb4e3f2afb040d2252c2605ff87f38",
-      "plan.md": "8cc85ccbe0fff5f9e5e067aae66f89943b5aaaea4a04aa90c08b346ab502fcfa",
-      "tasks.md": "181316770fdfeb0d56b4afad1798c6b70b226667cfa80c28f466319f9e09116e",
-      "implementation-summary.md": "0ed33c61a09db91e0442eca63753f91fa5f32801a514d86f618cf7dfa59b99d5"
+      "spec.md": "aae3114e8ab10340bcade75f80a5c8c694bd94907733fced28aefa5ee05cff70",
+      "plan.md": "44bb4c2d053c8d3e4680d2561c4a66e646ce83b8d29933b67d31d73290359d7f",
+      "tasks.md": "a99d126c3f78647cb6cc2ea98a24840c54a97695bf77d0120aa5dfd0511ca03b",
+      "implementation-summary.md": "d352b7710db5e41eceed33515f0e47c712c63f32ee040a069ed3db03cf107a80"
     },
     "last_active_child_id": null,
     "last_active_at": null

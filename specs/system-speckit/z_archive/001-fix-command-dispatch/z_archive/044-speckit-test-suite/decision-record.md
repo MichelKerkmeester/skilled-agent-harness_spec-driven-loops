@@ -2,14 +2,8 @@
 title: "Decision [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/decision-record]"
 description: "This document captures architectural and framework decisions for the Spec Kit test suite implementation based on research from 4 specialized agents."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "spec"
-  - "kit"
-  - "test"
   - "decision record"
-  - "044"
-  - "speckit"
+  - "speckit test suite decision record"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -69,7 +63,7 @@ Need to select appropriate test frameworks for 4 distinct components with differ
 <!-- /ANCHOR:decision -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-2 -->
 ## Decision 2: Coverage Targets
 
 ### Context
@@ -94,10 +88,10 @@ Need to establish realistic coverage targets that balance thoroughness with impl
 - 100% command coverage ensures no untested user-facing functionality
 - May need to adjust if targets prove unrealistic during implementation
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-2 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-3 -->
 ## Decision 3: Mock Strategy
 
 ### Context
@@ -121,10 +115,10 @@ Create comprehensive mocks for:
 - Some integration issues may only surface in real-world usage
 - Significant upfront effort to create comprehensive mocks
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-3 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-4 -->
 ## Decision 4: Performance Targets
 
 ### Context
@@ -147,10 +141,10 @@ Agent 3 specified performance requirements for memory operations.
 - May need optimization work if targets not met
 - CI/CD needs consistent hardware for reliable benchmarks
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-4 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-5 -->
 ## Decision 5: Test Directory Structure
 
 ### Context
@@ -182,10 +176,10 @@ Need organized structure for ~830 test cases across 4 domains.
 - Cross-domain tests go in integration/
 - Directory structure must be created before implementation
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-5 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-6 -->
 ## Decision 6: CI/CD Pipeline Design
 
 ### Context
@@ -210,10 +204,10 @@ Tests need automated execution with appropriate triggers.
 - May need test parallelization to meet time targets
 - Need strategy for flaky test handling
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-6 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-7 -->
 ## Decision 7: Test Priority Classification
 
 ### Context
@@ -244,10 +238,10 @@ P0 breakdown by agent:
 - P2 can be implemented as time permits
 - Priority may shift as implementation reveals issues
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-7 -->
 ---
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-8 -->
 ## Decision 8: Implementation Timeline
 
 ### Context
@@ -274,7 +268,7 @@ Need realistic timeline for 830 test cases.
 - Week 1 is critical path - delays cascade
 - Parallel agent work in Weeks 2-3 maximizes efficiency
 
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-8 -->
 ---
 
 ## Open Questions

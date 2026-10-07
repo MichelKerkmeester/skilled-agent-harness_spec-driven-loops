@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/017-health-md-live-validation-closeout",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phases 14-16 ship remediated docs, assets, and a scenario — but none of it has run against a real vault",
     "created_at": "2026-08-03T14:18:00.416Z",
-    "last_save_at": "2026-08-30T15:39:10.197Z",
+    "last_save_at": "2026-10-07T18:11:39.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b806e9f0eed4af5202f833e1f5a1dc84e3ffda28f3c4e7a14b9c31afc6110323",
+    "source_fingerprint": "sha256:0923feaba6c7c3680ab1a5cdeb4a25ce20f5fe6e3315a06045267778cd5f71ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4772ddac0339de785fdc01b7bca4ba50632e40b815ceca1689a6a3fd57bd7a05",
-      "plan.md": "91796397478ac3e7a805cbd97a7ff3b520acd54c7e516fb11fd7fd4aefd9b886",
-      "tasks.md": "8774a59d548183bfed75c7110d3c6f980ba38f855e13fe2ec4e6550a01a9320e",
+      "spec.md": "a978fe4ad8c3f524231ef422f0806974e00754835d1b1efd95e2129971f07379",
+      "plan.md": "8f5fcab18e52b1b02bb91a6ab7945eaadfadbc6627efad109323678a2be17e18",
+      "tasks.md": "1fc3ae7ecae2633e95b4c43beab21b5496d5c9dd0f63b820b0ec2621ad905369",
       "implementation-summary.md": "44d6a915b822d884895addbfd75fb79e7c31f5247935b97e2820af3f63da5802"
     },
     "last_active_child_id": null,

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/006-thin-and-standardize-cli-cards"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/006-thin-and-standardize-cli-cards"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "sonnet-impl"
     recent_action: "All tasks complete"

@@ -2,17 +2,15 @@
 title: "Session Handover [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/handover]"
 description: "MCP Server Changes (semantic-memory.js)"
 trigger_phrases:
-  - "session"
-  - "handover"
-  - "document"
-  - "030"
-  - "gate3"
+  - "gate3 enforcement handover"
+  - "gate3 enforcement session handover"
 importance_tier: "normal"
 contextType: "general"
 ---
 # Session Handover Document
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 | Field | Value |
@@ -22,9 +20,11 @@ contextType: "general"
 | **Phase Completed** | IMPLEMENTATION |
 | **Handover Time** | 2025-12-25 ~12:30 UTC |
 | **Spec Folder** | `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement` |
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Changes Made This Session
@@ -62,9 +62,11 @@ contextType: "general"
 | `.opencode/skills/system-memory/SKILL.md` | Document includeContent, update workflows | COMPLETE |
 | `.opencode/skills/system-memory/constitutional/gate-enforcement.md` | New constitutional memory file | COMPLETE |
 | `AGENTS.md` | Gate 4 → MEMORY CONTEXT | COMPLETE |
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 3. For Next Session
 
 ### 3.1 REQUIRED: Restart MCP Server
@@ -124,9 +126,11 @@ memory_match_triggers({ prompt: "I want to implement a new feature" })
 const result = memory_search({ query: "constitutional", includeContent: true, limit: 1 })
 // EXPECT: result.content is a string with file contents
 ```
+<!-- /ANCHOR:next-session -->
 
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
 ### Before Restart
@@ -146,6 +150,7 @@ const result = memory_search({ query: "constitutional", includeContent: true, li
 - [ ] memory_load returns "Unknown tool" error
 - [ ] Old constitutional file cleaned up
 - [ ] README.md references to memory_load updated (optional)
+<!-- /ANCHOR:validation-checklist -->
 
 ---
 
@@ -193,6 +198,7 @@ If working: memory_load is successfully replaced by search with includeContent
 
 ---
 
+<!-- ANCHOR:session-notes -->
 ## 7. Session Notes
 
 ### Changes to memory_search
@@ -238,3 +244,4 @@ The `handleMemoryLoad` function still exists in the code (not removed) but is no
 *Handover Version: 3.0.0*
 *Created: 2025-12-25*
 *Major Change: memory_load → includeContent in search*
+<!-- /ANCHOR:session-notes -->

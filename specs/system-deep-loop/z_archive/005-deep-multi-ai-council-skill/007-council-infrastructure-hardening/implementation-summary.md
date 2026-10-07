@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening` |
+| **Spec Folder** | 007-council-infrastructure-hardening |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

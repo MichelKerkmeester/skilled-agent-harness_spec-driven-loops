@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak",
+  "specFolder": "mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak",
   "description": "A browser verification window for Mobbin reopened every few minutes with no user action",
   "keywords": [
     "browser",

@@ -23,14 +23,22 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-1: cli-copilot --model=gpt-5.5 executor
 Match 060/001 + 059 + 060/002 success pattern. High reasoning via ~/.copilot/settings.json. Fewest unknowns.
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-2: 10-iter cap + convergence detection
 Same shape as 060/001. Convergence rarely fires before iter 5; 10 is comfortable headroom.
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-3: Research-only scope
 This packet produces recommendations. No source-file edits. Implementation lives in 061 + 062.
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-4: Build on 002 R1 transcripts as primary evidence
 Don't re-run CP-040..CP-045. The transcripts in 002/stress-runs/ are the input to this research, not the target.
+<!-- /ANCHOR:adr-004 -->

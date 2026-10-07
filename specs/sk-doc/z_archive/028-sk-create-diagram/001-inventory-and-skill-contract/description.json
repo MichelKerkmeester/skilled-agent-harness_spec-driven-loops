@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/001-inventory-and-skill-contract",
   "description": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests",
   "keywords": [
     "source",

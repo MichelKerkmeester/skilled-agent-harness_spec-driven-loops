@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,30 +47,26 @@
       "implementation-summary.md",
       ".opencode/skills/sk-code/sk-code-quality/README.md",
       ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -95,12 +91,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -198,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code-quality README still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:44.799Z",
-    "last_save_at": "2026-08-30T15:39:17.728Z",
+    "last_save_at": "2026-10-07T18:13:49.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0716e03b56b01dd0f571a28ddbd8148d92d133e3d16ccfb71188fd5d9460139",
+    "source_fingerprint": "sha256:c1b6b6127b71b00048e4a334425d430e42b0b3d41b727a7d46953ae96e20d150",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29152402788533a6ccdf0b96780f1d0049889064b9be9136d36f90809179f3c6",
-      "plan.md": "1dac042bae84b70a6b07ef72ce0d2ba37211b099628281a0fe7ce2154731111a",
-      "tasks.md": "f7df1380e364b9f9b49e8e54fd768484ea104f05ee63ebc8b8741498f719e554",
-      "implementation-summary.md": "7dee7c8d3d5cc3ecda9f910f94f3f87f6c3c476b744d0a1769b75f9e2d10885e"
+      "spec.md": "d255208d87d3e3533ff170f10fa0c37a3c24fa87896abff26213e7df05db18ca",
+      "plan.md": "5f338d72bfdbf6013dd1fbd08bbb366c235fdb823b785aa75cf84fbeeea4cf47",
+      "tasks.md": "c5a9473c2118b642556890c638a38db634cda772dd63535d55f60b12cb224c66",
+      "implementation-summary.md": "71e2e81145f7be82cfd59a77285606b946b5aee248ece3cee9da94bb9a5fb6d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

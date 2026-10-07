@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
     "created_at": "2026-07-17T04:07:04.548Z",
-    "last_save_at": "2026-08-30T15:39:14.686Z",
+    "last_save_at": "2026-10-07T18:12:16.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ed02741ab8a8c26e1f03af12745a21e7173a89f06c3c35aa02b953af7851a0de",
+    "source_fingerprint": "sha256:44a67b1f9e84312113239f5af7ddab967c6ab43b240ab0c0282f0d50d6691bb5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0223f1f0da0ea769f9a054c875a21237519833fe3ba298f0e386d3097ec913a9",
-      "plan.md": "ad2f5e841e3460e761b8ec266bab69576812eb8ea8633d541a1b141e6c1a4fb7",
-      "tasks.md": "d0bb84d8e7c3d2f686761f0e7d92a2751898f53b22e9918884687776a5daa545",
-      "implementation-summary.md": "c5119f37812f4a933699d8d7ed1ef11a68e87839194ea49ba39ca576f84b6c4b",
+      "spec.md": "a1d635ccfb3c33a7fc10b75e0a1fc2e695aa900513dc7b831477185d8e929246",
+      "plan.md": "154433a5fa08269a9bf85410b7b9e00664e9788b31e06a7b086816f8f05bfb75",
+      "tasks.md": "b19cb02cbd465183d00d4813ca904d914f4b2418204ffb24f3486c4a029d7c0a",
+      "implementation-summary.md": "ed78fa2e7dce1e224e8508545350e51fa5cf21f10892da7480692e6c5de523e5",
       "research/research.md": "cd188b8803bfad347ac0e67d43c5add9198ca5aef45a6df417d4702bf952815b"
     },
     "last_active_child_id": null,

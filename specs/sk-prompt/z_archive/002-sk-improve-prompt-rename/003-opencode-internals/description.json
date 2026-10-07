@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/003-opencode-internals",
   "description": "After the skill folder is renamed, active `.opencode/` consumers still load, score, document, or test the old skill ID",
   "keywords": [

@@ -6,10 +6,10 @@ trigger_phrases:
   - "skd025-004 build receipts"
 importance_tier: "important"
 contextType: "implementation"
-status: "In Progress"
+status: "Planned"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep"
+    packet_pointer: "sk-doc/z_archive/025-skill-doc-currency/004-hub-surface-drift-sweep"
     last_updated_at: "2026-08-02T14:32:45Z"
     last_updated_by: "skd025-004-build"
     recent_action: "Recorded BUILD receipts and kept the child status In Progress"
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |---|---|
 | Spec Folder | `sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep` |
-| Status | In Progress |
+| Status | Planned |
 | Verification Date | 2026-08-02 |
 | Level | 2 |
 

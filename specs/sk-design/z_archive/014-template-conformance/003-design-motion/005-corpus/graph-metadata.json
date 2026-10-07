@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/003-design-motion/005-corpus",
-  "spec_folder": "sk-design/014-template-conformance/003-design-motion/005-corpus",
-  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "packet_id": "sk-design/z_archive/014-template-conformance/003-design-motion/005-corpus",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/003-design-motion/005-corpus",
+  "parent_id": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-motion corpus conformance",
       "motion-evidence corpus structure audit",
       "corpus tests directory rules",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "corpus plan",
+      "corpus tasks",
+      "corpus implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -34,9 +28,9 @@
       "tests",
       "directory",
       "rules",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`corpus/` has no authored sk-doc template — it holds `README.md`, `motion-evidence.mjs`, and `tests/` (`README.md`, `fixtures.mjs`, `motion-evidence.schema.test.mjs`, `motion-evidence.test.mjs`)",
     "created_at": "2026-07-27T14:53:13.735Z",
-    "last_save_at": "2026-09-11T04:35:42.346Z",
+    "last_save_at": "2026-10-07T19:23:28.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a731cdaef1d0ac50d103c125655d5e62bafb66fdf9d9f36212bd12a9aa74b7b",
+    "source_fingerprint": "sha256:a906781fb437b702d8ba25a0b3ceb9c161ccb32479b9eaf4c7fc1de03538826a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "69c3263ddb88a7bb1a513508c6b1a4065976f52462c9ca466e29be5e17821043",
-      "plan.md": "78aa1c327650ddf8b16d4faddaee700855dad674b5fc39b406cb3e733999a2ae",
-      "tasks.md": "632c58465aa520fa38bf0bfd65573e7df28f8f500e6c06e4bba5d268c5cfeba6",
-      "implementation-summary.md": "5c3a9ae8b3ef0eccb3d7d25af1b65f6d101cd96657ac34702eb4bb82c0f5fc53"
+      "spec.md": "f75020d08052f96f858c130669812002dfa29845905451d1566005e864a24480",
+      "plan.md": "03ceb5a043a7244018432ff2bd420da0fd8e9d79a093fb1ed20e4f433410f58c",
+      "tasks.md": "dea70bae586e5deb4d8050ba9718ec60e0053903242ed04c7061823adfceb8fb",
+      "implementation-summary.md": "1b20b7ad04f21c4d1bddf8df59f5b469616e062c19046342406693cee3b1ad42"
     },
     "last_active_child_id": null,
     "last_active_at": null

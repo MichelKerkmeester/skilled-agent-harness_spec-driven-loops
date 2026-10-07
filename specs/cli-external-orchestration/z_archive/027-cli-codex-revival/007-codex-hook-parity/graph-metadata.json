@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
-  "spec_folder": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
-  "parent_id": "cli-external-orchestration/027-cli-codex-revival",
+  "packet_id": "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity",
+  "spec_folder": "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity",
+  "parent_id": "cli-external-orchestration/z_archive/027-cli-codex-revival",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
     "created_at": "2026-07-13T16:41:33.164Z",
-    "last_save_at": "2026-09-11T16:41:47.118Z",
+    "last_save_at": "2026-10-07T18:11:37.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3d7d2a8c7d72c336cf7f207f022dd511ad5b6e7ac24da29499e26ae2c1bc4d3",
+    "source_fingerprint": "sha256:7b2ebbbc2afeb99f071b6c952f2ba2338e76e088c9bc17526cdc979291f93369",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb96545d69931c0032125e53b006d67c5c4b371637c76c2e17c11cdaeaa456c5",
-      "plan.md": "bc697ccac26f624115eb7d56291fc6292f0a047ed3fab558da836832cbda8f53",
-      "tasks.md": "ed41d2b3c7b7e9806e96ae3e48d61c81a3b74eaebcae18367f4c5c1c2116a216",
+      "spec.md": "5a17cfe0b08bafc7cce8ae5f5deb9308c3a18d3586500f4ebafc31f78579bcc7",
+      "plan.md": "db91136b80960dfab611463cd049c65932dab29d290dc16a897ed0a654abccf0",
+      "tasks.md": "c004a6218f35e98b897fbce3c677e3779eca45f046b3278075503b0fe5a1a258",
       "decision-record.md": "d47ab9ef87e24dcb7add1dbdb4608393185716e3465a3200c8386ba8d04fc88a",
-      "implementation-summary.md": "e563a387a4d2530141c9d56e7bffed03025da196061ed6f56b57e9b33c742594"
+      "implementation-summary.md": "c8ae34edaa0365431123daa2cc4f98181639d1c36d2a1d97408f3cab164ec992"
     },
     "last_active_child_id": null,
     "last_active_at": null

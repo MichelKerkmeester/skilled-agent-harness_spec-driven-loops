@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
   "description": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer",
   "keywords": [
     "sk-git",

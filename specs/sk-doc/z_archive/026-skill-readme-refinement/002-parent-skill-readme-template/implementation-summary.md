@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/002-parent-skill-readme-template"
     last_updated_at: "2026-08-04T12:45:00Z"
     last_updated_by: "spec-author"
     recent_action: "Phase 002-parent-skill-readme-template executed"

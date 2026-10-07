@@ -30,6 +30,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Teach the harness to follow a referenced router doc (Option 3a-structured)
 
 ### Metadata
@@ -40,6 +41,7 @@ _memory:
 | **Date** | 2026-06-01 |
 | **Deciders** | User (chose Option 3, then 3a-structured), Claude |
 
+<!-- ANCHOR:adr-001-context -->
 ### Context
 
 The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_MAP`. `sk-code` delegates its authoritative router to `references/smart_routing.md` as a deliberate "template customization surface" design, so it reported `router_unparseable` → `BLOCKED-BY-STRUCTURE` and could not be benchmarked.
@@ -50,12 +52,18 @@ The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_M
 - Must keep genuinely router-less skills gating (a real, useful signal).
 - User constraint: prefer fixing the harness over forcing `sk-code/SKILL.md` to inline a router.
 
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- ANCHOR:adr-001-decision -->
 ### Decision
 
 **We chose**: make `parseRouter` reference-following — when `SKILL.md` has no inline dictionaries, locate the referenced router doc (explicit pointer near a routing keyword, else conventional `references/smart_routing.md`) and parse the same dictionaries from it; and add one machine-readable `INTENT_SIGNALS`/`RESOURCE_MAP` block to `smart_routing.md` as the single source its prose tables already describe.
 
 **How it works**: inline parse runs first and always wins; the fallback fires only when inline is empty and a `skillRoot` is supplied; the referenced block must itself yield dictionaries or the skill stays `parseable:false`. `skillRoot` is threaded to all three `parseRouter` call sites.
 
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
@@ -67,6 +75,9 @@ The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_M
 
 **Why this one**: it unlocks Mode A scoring deterministically while keeping the prose maps authoritative for humans and not duplicating the router into `SKILL.md`.
 
+<!-- /ANCHOR:adr-001-alternatives -->
+
+<!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
 **What improves**:
@@ -83,6 +94,9 @@ The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_M
 | Shared parser change regresses inline skills | H | Inline-first; fallback guarded; full 218-test suite re-run green |
 | Block drifts from prose maps | M | Automated drift guard `sk-code-router-sync.vitest.ts` (filesystem + explicit-prose-path coverage), not just a manual sync note |
 
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -95,14 +109,20 @@ The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_M
 
 **Checks Summary**: 5/5 PASS
 
+<!-- /ANCHOR:adr-001-five-checks -->
+
+<!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
 **What changes**: `router-replay.cjs` (`parseRouter` + `findReferencedRouterDoc`), `d5-connectivity.cjs`, `contamination-lint.cjs`, `sk-code/references/smart_routing.md` §11.
 
 **How to roll back**: `git revert` the 3 harness-script edits; the §11 block and fixtures become inert (no behavior change to sk-code itself).
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Empty-gold fixtures for sk-code Mode A
 
 ### Metadata
@@ -113,16 +133,23 @@ The Lane C parser literal-scans only `SKILL.md` for `INTENT_SIGNALS`/`RESOURCE_M
 | **Date** | 2026-06-01 |
 | **Deciders** | Claude (mirrors the shipped deep-improvement fixture convention) |
 
+<!-- ANCHOR:adr-002-context -->
 ### Context
 
 Mode A replays **prompt text only**, but sk-code routes primarily on CWD + target file paths (surface detection FIRST). Worse, the contamination linter bans every router token, so a contamination-clean prompt by construction matches no router keyword and routes only to `DEFAULT_RESOURCE`. Positive intent/resource gold therefore cannot be fairly scored in Mode A.
 
+<!-- /ANCHOR:adr-002-context -->
+
+<!-- ANCHOR:adr-002-decision -->
 ### Decision
 
 **We chose**: ship 2 lint-clean fixtures with **empty** `intentKeys`/`resources` gold (the shipped `deep-improvement` convention), documenting the ideal routing in each private `notes` and deferring positive gold to live Mode B.
 
 **How it works**: empty gold is non-penalizing for D1-intra/D2 (treated as 1.0). The resulting `D3=0` is the empty-array over-routing artifact, explicitly flagged as NOT a real efficiency measurement.
 
+<!-- /ANCHOR:adr-002-decision -->
+
+<!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 
 | Option | Pros | Cons | Score |
@@ -133,12 +160,18 @@ Mode A replays **prompt text only**, but sk-code routes primarily on CWD + targe
 
 **Why this one**: it produces a real, non-blocked verdict (`CONDITIONAL`) without overclaiming or maligning sk-code's actual routing.
 
+<!-- /ANCHOR:adr-002-alternatives -->
+
+<!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 
 **What improves**: the pipeline runs end-to-end on sk-code (contamination-lint → router-replay → score → aggregate), proving the optimization works.
 
 **What it costs**: D1-intra/D2/D3 are not yet a true routing-quality measure for sk-code. Mitigation: documented as a live-Mode-B follow-on; the structured block already encodes the gold mapping for when Mode B lands.
 
+<!-- /ANCHOR:adr-002-consequences -->
+
+<!-- ANCHOR:adr-002-five-checks -->
 ### Five Checks Evaluation
 
 | # | Check | Result | Evidence |
@@ -151,8 +184,13 @@ Mode A replays **prompt text only**, but sk-code routes primarily on CWD + targe
 
 **Checks Summary**: 5/5 PASS
 
+<!-- /ANCHOR:adr-002-five-checks -->
+
+<!-- ANCHOR:adr-002-impl -->
 ### Implementation
 
 **What changes**: `sk-code/benchmark/fixtures/sk-code/*.json` (2 pairs; skill-local, runs pass `--fixtures-dir`).
 
 **How to roll back**: delete the fixtures dir; sk-code then reports `NO-SCENARIOS` with the D5 gate still passing.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->

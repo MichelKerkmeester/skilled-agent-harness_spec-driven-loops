@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
   "description": "Skill authoring, skill diagnostics, and skill-advisor routing are three surfaces that evolved somewhat independently: the `/create:` commands and",
   "keywords": [
     "skill",

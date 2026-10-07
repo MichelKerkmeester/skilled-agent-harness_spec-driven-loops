@@ -6,7 +6,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard"
     last_updated_at: "2026-07-11T17:41:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase tasks authored"
@@ -16,10 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "loader and guard tasks"
 ---
 # Tasks: Make the Lane C Playbook Loader Number-Agnostic + Add a No-New-Numbered-Snippet Guard
 

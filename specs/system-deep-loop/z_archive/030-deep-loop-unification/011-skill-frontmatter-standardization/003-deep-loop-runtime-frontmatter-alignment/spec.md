@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment"
     last_updated_at: "2026-06-11T11:40:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 4 docs normalized and verified"

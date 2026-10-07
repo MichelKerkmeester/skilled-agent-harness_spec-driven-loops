@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/009-foundations-motion",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/009-foundations-motion",
-  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "packet_id": "sk-design/z_archive/011-sk-design-styles-utilization/009-foundations-motion",
+  "spec_folder": "sk-design/z_archive/011-sk-design-styles-utilization/009-foundations-motion",
+  "parent_id": "sk-design/z_archive/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003 research settled that the styles library is a mode-owned evidence system and ranked `design-foundations` (rank 4) and `design-motion` (rank 5) as the highest-semantic-complexity consumers, but neither mode has a wired path to the library",
     "created_at": "2026-07-18T14:16:42.726Z",
-    "last_save_at": "2026-08-30T15:39:12.578Z",
+    "last_save_at": "2026-10-07T18:12:33.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcc07eb5757456392adaa09498d486ddbab0c4b45d34da900ae85ec9314d361a",
+    "source_fingerprint": "sha256:620a65760c4c3753af5f6b5619b06f4965221731e72890b8c9a0a582068af23e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d681d6cdede69da139e66b3ec6928cb12747ed4e6c9646c2bcb9a3e62ae3cc0c",
-      "plan.md": "8914ba5a7224005e7bc1a777449b20e4baac96b7fbc5a0c7e6f49a744c5d5f0c",
-      "tasks.md": "f13d66bd0b2685c4e7b5232f103980bc6e5b3febfdd3e284ca21931e6c19672e",
+      "spec.md": "48bd8bc162fde6df921014a2c3b327e4d73d811fc141e3f0d13d6d2d9eda0d49",
+      "plan.md": "b8eeb0eb9123ebcfa295d147f63bc45b4422a881d0500ae71e6d5f4cd06dbfe4",
+      "tasks.md": "8eb4f545c9538d74d2c7481fa5e67bd2a5ca767b99a3354ea78c90883f61d668",
       "decision-record.md": "af05f812a9707e94dbe80faf9fa90526de227a7b73ac75e2e42739c8c66a660e",
-      "implementation-summary.md": "38dffa3dfd0c358a6d9dd91966ddf758b53b83af35b35f41c8f8fd44d67e53a1"
+      "implementation-summary.md": "bbf9caa61051aee1262bd9af892385060f60b075b6805e4755fd69d4f7df0f0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/006-always-loaded-routing-compression",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/006-always-loaded-routing-compression",
   "description": "Four sections of the always-loaded document were suspected of being routing content that had outgrown its value: the Gate 2 artifact trigger, the",
   "keywords": [
     "four",

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` package had grown through extraction packets",
     "created_at": "2026-05-18T08:53:19.989Z",
-    "last_save_at": "2026-08-30T15:39:26.498Z",
+    "last_save_at": "2026-10-07T18:16:07.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f97617c4786de66ea44322473f353055d70afbe56db2161ea76783a32dfd5953",
+    "source_fingerprint": "sha256:24069cd28f2550f5628cc3120777a565196ecdbf00edad0f1e2c91c8f15d2bac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d6f0864eeae894b733ceb99ef189da69860ab45b11314d4c7c006dd15470389",
-      "plan.md": "64ccd5eddcaf18e29a9e1cd02f8667beb54c66874480e27dcb6570f19ad9074c",
-      "tasks.md": "972a6d06e6140d0dc3d08e457e8c5f0cbe78e73dedca5107e7f69108d6c1381f",
-      "implementation-summary.md": "97cf3232486387f6b4d9cba178547e81ba9a91dee35b4339b0d03490095619d4"
+      "spec.md": "89a8f05f6a17b8490e43d6c3bb188efc31183bc124da2b39ec879534ea9bf230",
+      "plan.md": "cb552dd5a5d8638676f332ec85e41544bff4d7cadde04ab771a194c069245425",
+      "tasks.md": "914a960bdd82cfbfd25d9f362e96e52cba869f8b227804249e72222c1b7f6c9d",
+      "implementation-summary.md": "6ac2d66266173487201e524b570dc59c9a38675e2be9dbffd0ef99327de3eb93"
     },
     "last_active_child_id": null,
     "last_active_at": null

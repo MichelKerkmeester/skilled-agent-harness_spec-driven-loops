@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract"
     last_updated_at: "2026-08-20T19:00:01Z"
     last_updated_by: "spec-author"
     recent_action: "Authored phase spec"

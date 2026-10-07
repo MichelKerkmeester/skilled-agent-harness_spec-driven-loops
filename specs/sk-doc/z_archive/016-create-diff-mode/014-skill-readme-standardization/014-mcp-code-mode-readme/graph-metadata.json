@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The mcp-code-mode README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T13:05:42Z",
-    "last_save_at": "2026-08-30T15:39:14.456Z",
+    "last_save_at": "2026-10-07T18:12:34.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93c282301759b22bffdf90e7879afe8700f8e4e2d3ea77caf24543da32f3cac2",
+    "source_fingerprint": "sha256:4b367bb002cdc7244779288c0f217401ce8f9856d017b70c1b6c66d8f623a57e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbcb0a5ca631446e6385372c1082d81bb2f7dd602b5a4d81c7e895c83e578a13",
-      "plan.md": "0dd77b77b26fca0a6d101c42ef4706bc3f4b3e18c87b1eda8e9ab9056159f02c",
-      "tasks.md": "33201a4efaa461862dfdd237b8c3b5fae9be372573e5e725f64322d339d9d84f",
-      "implementation-summary.md": "bf84bdc8d9c24542874c17d015f2147cb10f81c6ee5512a1c24bc276b224d4bc"
+      "spec.md": "07fda17b74488495a51f9ef7947e0591668c3a91dc4249e2e0e2c9700666d23b",
+      "plan.md": "f3462803ab0cfa67dafb9c42772245ecadd15078fbcbded5b30b31a11ccfc2ea",
+      "tasks.md": "6211762114942c181651cac2f45101cdc50a70d0fe09869a817b44add297f206",
+      "implementation-summary.md": "0410a40d176cac536bc73a338c526ae82db6fdcc4683bfaf06244d9da3d864d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

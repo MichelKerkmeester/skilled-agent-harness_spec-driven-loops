@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix"
     last_updated_at: "2026-07-07T21:30:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Completed implementation-summary.md; all tasks and checklist items done"

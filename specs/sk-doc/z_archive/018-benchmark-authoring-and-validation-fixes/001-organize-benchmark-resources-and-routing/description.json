@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
+  "specFolder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing",
   "description": "The create-benchmark packet keeps unrelated benchmark-family resources in flat `assets/` and `references/` directories",
   "keywords": [
     "create-benchmark",

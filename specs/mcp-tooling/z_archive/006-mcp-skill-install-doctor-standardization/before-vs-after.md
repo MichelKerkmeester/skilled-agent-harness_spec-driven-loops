@@ -1,3 +1,12 @@
+---
+title: "Before/After Record: MCP Skill Install And Doctor Standardization"
+description: "Record of what changed in the MCP install and doctor standardization: the shared install, verify and doctor contract across the mcp-* skills, the mcp-figma 1.0.0.0 promotion, the Open Design install surface, design-skill cross-references and the /doctor:mcp cli_skill_diagnostics class."
+trigger_phrases:
+  - "mcp skill install doctor standardization before after"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
 # What Changed in 148: MCP Skill Install And Doctor Standardization
 
 > The five `mcp-*` skills now present one install and diagnostic contract, with `/doctor:mcp` wired to recognize their CLI checks.

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/006-advisor-and-integration",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/tasks.md",
       ".opencode/skills/mcp-tooling/graph-metadata.json",
       ".opencode/skills/mcp-code-mode/graph-metadata.json",
       ".opencode/skills/sk-design/graph-metadata.json",
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at the old flat skill-folder paths",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-08-30T15:39:09.770Z",
+    "last_save_at": "2026-10-07T18:11:36.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6906cbfa462f0df41525933dd70c2ba169b4a137958e03c8427fc68e1ff8ede",
+    "source_fingerprint": "sha256:245e225c98b9e0bf69d881a7e7ff07f318447745eae96f6c5f2bb089f034e74b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "84226826c6a65d56fd892fdf6afe42828241d7c1b00ec7225a960d360823e354",
-      "plan.md": "60e20a0c7428cf631eb699bd6bd9acce3fdd5c7625699a6d3de9b679f0066566",
-      "tasks.md": "355ff90f4d4fade1e5732912421353ee687f2d1d2bee373f0edd9a868916a6b4",
-      "implementation-summary.md": "2b3917281c2a4afadcbb4a1623dd5327774e40f659d240f4a7520e75b9dca061"
+      "spec.md": "c873f8f124a7e3b96efc2f29fe9dbd4c30bcdb8e8ecd207dc88f97cfcbe2b0ec",
+      "plan.md": "bf546e7190ea6f40641264c613e9e12a494d81df286043012780b8a371bcbd6e",
+      "tasks.md": "92f937b3794d567d64491a7233e423bfd8dc84240bd9af1f80ac1b1a22056be2",
+      "implementation-summary.md": "7661470ef575fe5cf23c39798d5f3c1cbf4772f930b60e42c2e58b04af848bd4"
     },
     "last_active_child_id": null,
     "last_active_at": null

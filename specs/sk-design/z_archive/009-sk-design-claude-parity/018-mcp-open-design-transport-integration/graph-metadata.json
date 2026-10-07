@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,6 +45,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-code/mode-registry.json"
     ],
@@ -74,15 +76,21 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
+        "name": "mode-registry.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
+        "name": "hub-router.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -186,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
     "created_at": "2026-07-07T07:42:15.977Z",
-    "last_save_at": "2026-08-30T15:39:12.285Z",
+    "last_save_at": "2026-10-07T18:11:57.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57486efec0acf5ff9e011202da735aa75b8d74f66f9fd5437647f18154401717",
+    "source_fingerprint": "sha256:0d376eb9ab6f1f669f6ba3e09bcbff48ca26b55698e1e77ec7ce483fa9f87454",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d3254710bf13f113f461983b30328f7c49b33bdca4a48d7dc01d65dd7ddb5bd",
-      "plan.md": "aaa9371574796e822be480c6b4f7d2ca11768e92e5ee3f0423420b8faf61d138",
-      "tasks.md": "e0d7eb0f9860921d6364168948be393639b970b5cefc2101bbcfecbcfee5c942",
-      "implementation-summary.md": "9fd94009c15a5b73bbfefff32aaf1e35d055a16bcbf2476bfeed5c161095c8a0"
+      "spec.md": "9406d65e3ff39b5207836ade06b7d5c313d3e7c9b457c3b8de9dd83eba9f2569",
+      "plan.md": "b9343b995c4314ac3558bc8cd61ba2a5400bd62d59bf8edf7032cda6220dde85",
+      "tasks.md": "8f5f51b23d0e5a17481e6d38bd02509c207a152fd03df8441c6dcfffa628d1fb",
+      "implementation-summary.md": "8312097e66a451e526e3f2f8543508b192e8db7688edd36ffb52a93ffd381cd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

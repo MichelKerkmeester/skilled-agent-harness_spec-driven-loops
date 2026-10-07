@@ -29,7 +29,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-sk-improve-agent-command-rename |
+| **Spec Folder** | 006-sk-recursive-agent-command-rename |
 | **Completed** | 2026-04-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

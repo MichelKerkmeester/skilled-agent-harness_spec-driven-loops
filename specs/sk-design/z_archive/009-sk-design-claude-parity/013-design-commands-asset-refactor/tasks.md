@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor"
     last_updated_at: "2026-07-06T10:00:05.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Completed T001-T022 with evidence for the Phase 013 asset refactor plan"

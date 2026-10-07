@@ -2,7 +2,7 @@
 title: "Feature Specifi [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec]"
 description: "Define the coverage-graph substrate for deep research and deep review by extracting reusable graph primitives from the Spec Kit Memory MCP server and applying them to deep-loop convergence."
 trigger_phrases:
-  - "042.002"
+  - "semantic coverage graph spec"
   - "semantic coverage graph"
   - "deep-loop graph"
   - "deep_loop_graph_convergence"

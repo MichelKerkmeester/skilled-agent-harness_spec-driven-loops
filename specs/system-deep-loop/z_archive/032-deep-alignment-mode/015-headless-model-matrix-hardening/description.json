@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/015-headless-model-matrix-hardening",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/015-headless-model-matrix-hardening",
   "description": "The `deep-alignment` loop has never had a full live end-to-end run (its own README names this \"the remaining acceptance step\")",
   "keywords": [
     "deep-alignment",

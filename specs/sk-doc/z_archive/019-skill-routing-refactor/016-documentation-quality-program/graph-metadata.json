@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy"
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/007-code-readmes-deep-loop",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+    "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy"
   ],
   "manual": {
     "depends_on": [],
@@ -93,16 +93,16 @@
     ],
     "causal_summary": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs, reference/asset template alignment, per-folder code READMEs repo-wide, and bare skill/mode READMEs) plus the doc-tooling bugs the audits surfaced. Phases sequenced hardest and highest-leverage first, each a reviewable commit, with agent-swarm authoring against the current templates.",
     "created_at": "2026-07-22T08:55:19.119Z",
-    "last_save_at": "2026-08-30T15:39:15.489Z",
+    "last_save_at": "2026-10-07T18:13:14.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f66c72a1513b24892701fc9ca6c42aa94161efe34b457bf2e9b9303d36c8657d",
+    "source_fingerprint": "sha256:dcbefdc68582a927ad93ced0b19d6c71256e4a3aedba6f23c16b861103c0b181",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8d2f687dc7eb32e427a7dee8e869ce1edcebe04564d8077001e9a2796100b6ec"
+      "spec.md": "9b5686cca2bd360b945f10b15027ee97fccbfc2c9214b4aa63917c8cc6c25020"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
     "last_active_at": null

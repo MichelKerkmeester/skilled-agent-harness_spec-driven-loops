@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/015-multi-file-boundary-dividers",
   "description": "When multiple files are combined into one explicit before/after pair, lines such as `===== BEGIN FILE: path =====` and `===== END FILE: path =====`",
   "keywords": [
     "multiple",

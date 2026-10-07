@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`deep-research/references/convergence.md` and `deep-research/references/stateformat.md` have become long monoliths",
     "created_at": "2026-05-24T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:22.883Z",
+    "last_save_at": "2026-10-07T18:14:06.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef817c289d020d76d46bd62c60eb45544a7c7f74460301b2ecf55d1e73bad6fb",
+    "source_fingerprint": "sha256:d88625f4460c7db37122b02f782e55d6a850150149394e9d077e79faa1985c90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f451632df8d48f9642078f78e2f5f2cc6fd6670c7c17f90264c27c8933507b8e",
       "plan.md": "c25502b7e87c2d9370d7e6c0414d78ae3eadf72aebee9934ddcd61f896b2ba73",
       "tasks.md": "0102574749af0d7d50b953fa86ed3ed5c8ae191fc4b995c486ecfd4a5f256d19",
-      "implementation-summary.md": "650ba8a1e954a84658e16613bac2fcee0a08933645db3b8330ed6ac6bd2a0037"
+      "implementation-summary.md": "3cd23c334246d2f612d416a5207f632a093f1f0794e14458c443bbfcead5eb54"
     },
     "last_active_child_id": null,
     "last_active_at": null

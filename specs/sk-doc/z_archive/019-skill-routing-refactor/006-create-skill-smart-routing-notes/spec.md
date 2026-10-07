@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/006-create-skill-smart-routing-notes"
     last_updated_at: "2026-07-12T14:23:42Z"
     last_updated_by: "claude-code"
     recent_action: "Complete; verified and pushed to v4"

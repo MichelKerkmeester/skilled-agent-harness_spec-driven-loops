@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows"
     last_updated_at: "2026-06-15T22:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Merged + functional; 009 gate sign-off 12/18 P0; 007 R1 descoped by decision"

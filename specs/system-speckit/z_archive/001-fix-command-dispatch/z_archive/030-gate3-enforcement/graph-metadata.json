@@ -11,32 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "gate",
-      "enforcement",
-      "preventing",
-      "spec",
-      "folder",
-      "030",
-      "gate3",
-      "implementation",
-      "plan",
-      "tasks",
-      "session",
-      "handover"
+      "gate3 enforcement spec",
+      "spec folder question enforcement",
+      "gate3 enforcement plan",
+      "gate3 enforcement implementation plan",
+      "gate3 enforcement tasks",
+      "gate3 enforcement task breakdown",
+      "gate3 enforcement handover",
+      "gate3 enforcement session handover"
     ],
     "key_topics": [
-      "gate",
+      "gate3",
       "enforcement",
-      "preventing",
       "spec",
       "folder",
-      "gate3",
-      "implementation",
+      "question",
       "plan",
+      "implementation",
       "tasks",
-      "session",
+      "task",
+      "breakdown",
       "handover",
-      "comprehensive"
+      "session"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "During a comprehensive bug fix session (63+ bugs, 25+ files, 15 parallel agents), the AI",
     "created_at": "2026-04-12T09:02:53.521Z",
-    "last_save_at": "2026-08-30T15:39:37.086Z",
+    "last_save_at": "2026-10-07T20:16:09.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e8d1856fa264765011ad38bf24b1904ad522ad5e3fc788721cd7ab6992aec6bd",
+    "source_fingerprint": "sha256:00a4b2d55e657ad45d21d46c9874679ad8639059175b0751c94e40a9144ed876",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d3b28b6a5426d05ba653f1a30484770f1fc00e4d3d580eb6bf5d5fd1a59b7a5",
-      "plan.md": "f3aeb954a25b35a77f0837a262434abf00727b380420fc0e5b78bfd806ff0d60",
-      "tasks.md": "ba75214993d05e535326ff53e2209a59a3fd8ce282f5e6d8b924cce13efc7b6d",
-      "handover.md": "c2fbe06d586ffb9ad1c5568966a9f363c94f9831cd29180ac500beef7fe1a051"
+      "spec.md": "3b11c7c4c1f87a82ef84f7d433368acbcfab0cc053974dfff65a4d76b5eef7f7",
+      "plan.md": "df09f092e51fdf58df2a2e194fb1837681de33c7d2dd4c84973682001dbdb206",
+      "tasks.md": "5cd17f7702d748ba48f9d73642df066df2be9d975f9bea6e968b0051e854077c",
+      "handover.md": "47b361f25762ff5b2600036e68cb9f4f32db90326e2a5bdbd0ca6c987688d88c"
     },
     "last_active_child_id": null,
     "last_active_at": null

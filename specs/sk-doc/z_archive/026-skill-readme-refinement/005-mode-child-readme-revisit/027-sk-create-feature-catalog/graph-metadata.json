@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,9 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/README.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -56,19 +53,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +197,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-feature-catalog/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README established",
     "created_at": "2026-08-04T08:34:48.824Z",
-    "last_save_at": "2026-08-30T15:39:17.811Z",
+    "last_save_at": "2026-10-07T18:13:49.049Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9753e87198ea5db31648dc9da1f43626c846f4aff79cfab5cf3424575329e875",
+    "source_fingerprint": "sha256:ffdb5b32b217cbcb26e9a85dada34cb5483f7a366c3a19e2974efc77a4861303",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d4778f1d7412ca08bef426ae005cd3a73ae45dc74e7e49827c290b9d8fa13670",
-      "plan.md": "4acac31189f0343fe31090b6c2e3d5a546bf58741a8e03ee26c379e9e65fc4d9",
-      "tasks.md": "1de296e4a0a3b7950b2d46c2319b233b1978c5e015110d4a57e042e0d48222fa",
-      "implementation-summary.md": "b035f82dbcd08d0f25e45381ec2701cc2e3a58d960c0dad25d34266ad24d9fd8"
+      "spec.md": "d0cf7fc1418be4629246a1c9943ba7247df6cd2941eb2450a941b579d7657ade",
+      "plan.md": "a6ec87761efb764720aabaf7146de7baf07a51eac441a65c3e35bd55ad5b929e",
+      "tasks.md": "dde07af86e62a4cc21f87fd020f5ecb595603ea64e200a624f0dc976b78b7a48",
+      "implementation-summary.md": "8620d65114e04738a3f78ae57960f0cdd74f68c290e6bf2d44c100c3a55b1801"
     },
     "last_active_child_id": null,
     "last_active_at": null

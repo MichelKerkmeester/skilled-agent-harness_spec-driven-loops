@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/038-authoring-hardening/002-validator-false-positives",
-  "spec_folder": "sk-doc/038-authoring-hardening/002-validator-false-positives",
-  "parent_id": "sk-doc/038-authoring-hardening",
+  "packet_id": "sk-doc/z_archive/038-authoring-hardening/002-validator-false-positives",
+  "spec_folder": "sk-doc/z_archive/038-authoring-hardening/002-validator-false-positives",
+  "parent_id": "sk-doc/z_archive/038-authoring-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The playbook validator scanned raw markdown for links without excluding fenced code, so ordinary bracket-index call syntax in a code sample was reported as a missing path, and three remediation agents contorted correct source to satisfy the regex before the root cause was fixed.",
     "created_at": "2026-08-29T11:34:45.436Z",
-    "last_save_at": "2026-08-30T15:39:18.217Z",
+    "last_save_at": "2026-10-07T18:14:03.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b99e6d222e4e8c7bd9c30745314afd8623ca33da57155ddbca63252025d36340",
+    "source_fingerprint": "sha256:ac7491e6f9d0a055367c98d06b0e8c1b7513828a37fc0fa6cbc173a2f5f0db63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c02672d28ea4ea5f3fd61e3e1b39e7776d264a861d81a9f5f0db1d6d8d7aacf3",
-      "plan.md": "f891bc170067da40d891ca1f8a20ca983aafc2113b866b28f41e986229d2ca2e",
-      "tasks.md": "deb5d6c303697c40b6ed39d6bd45e37ec1d8e12044f6312b41208a1f2511246f",
-      "implementation-summary.md": "e2016e8b35631c7e0bae98e1cb3a1b014fccc5f98cdb63f646bdaaa077fd4a53"
+      "spec.md": "99fcdf7a5c5dd1188a5fbf55d3156a6e9c7384b783ec2ed84c2d4c6886e6fc8b",
+      "plan.md": "9252f3d6a51457fb7e9c95495d5f933d9006e0679419944bfa39101a958cb921",
+      "tasks.md": "2ba5b40699e4cb1bd9d34af405eedf6f8f74a1a88b96aaf04f14cf62bde9ab82",
+      "implementation-summary.md": "e47ee9b64c7b3e2e2f390e42f77852e861eef9bf90e0dfac70ed88672c84ddaf"
     },
     "last_active_child_id": null,
     "last_active_at": null

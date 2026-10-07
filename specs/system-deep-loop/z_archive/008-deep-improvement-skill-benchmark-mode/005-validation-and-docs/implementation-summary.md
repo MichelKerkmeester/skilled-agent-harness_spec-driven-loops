@@ -23,6 +23,7 @@ _memory:
 
 # Implementation Summary — Phase 005: Three-lane docs + validation
 
+<!-- ANCHOR:what-built -->
 ## 1. What was done (verified + committed)
 
 - **SKILL.md → three lanes**: WHEN-TO-USE table + triggers, lane-awareness note, smart router (new `SKILL_BENCHMARK` intent + RESOURCE_MAP + RUNTIME_ASSETS), and Lane C pointers to `references/skill-benchmark/`. Verified: the in-skill router parses (9 intents; skill-benchmark → its 3 references). Dangling section references were corrected (commit `3f809a8550`).
@@ -30,6 +31,9 @@ _memory:
 - **feature_catalog.md → three lanes**: lane legend, category row ("Skill-benchmark mode | 6 features | Lane C"), the full §6 SKILL-BENCHMARK MODE section (6 features), and the intro enumeration.
 - **Advisor routing verified**: `skill_advisor.py` routes a skill-benchmark prompt to `deep-improvement`; the skill-benchmark advisor phrases were added during the Phase 003 rename and route correctly.
 
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:verification -->
 ## 2. Hardening gate (Opus, Phase 005 close-out)
 
 A dedicated Opus 4.8 read-only hardening review covered the three areas the Phase 004 code review did not fully cover: docs-vs-code accuracy, the new D1-inter advisor probe, and non-regression. **Verdict: SHIP — 0 P0, 0 P1.**
@@ -40,6 +44,9 @@ A dedicated Opus 4.8 read-only hardening review covered the three areas the Phas
 
 This, plus the Phase 004 adversarial code review (which found + fixed 2 P0 + 2 P1), constitutes the hardening/deep-review gate for Lane C.
 
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
 ## 3. Scope — complete vs documented follow-on
 
 **Complete (this packet):** Lane C ships and works — rename, the deterministic Mode A engine, D1-inter advisor scoring, the command, and all three-lane docs + advisor routing. Four of five dimensions are scored deterministically.
@@ -48,6 +55,8 @@ This, plus the Phase 004 adversarial code review (which found + fixed 2 P0 + 2 P
 - **D4 usefulness ablation** — needs live skill-on/off model dispatch through the grader.
 - **Mode B live trace capture** — per-executor `.out` parsing for live discovery/efficiency.
 - Three P2 cosmetics from the hardening review (advisor-probe `--`-prefixed-prompt edge; opt-in D1-inter not exercised by default CI → periodic run suggested). Recorded, non-blocking.
+
+<!-- /ANCHOR:limitations -->
 
 ## 4. Notes
 

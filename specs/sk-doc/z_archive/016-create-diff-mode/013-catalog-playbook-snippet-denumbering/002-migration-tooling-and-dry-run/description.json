@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
   "description": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link",
   "keywords": [
     "renaming",

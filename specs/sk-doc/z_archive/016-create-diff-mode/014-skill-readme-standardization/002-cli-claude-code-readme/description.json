@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
   "description": "The cli-claude-code README is a tabular reference card with no problem-first entry point, and it carries a stale fact: it lists 11 delegatable agents",
   "keywords": [
     "cli-claude-code",

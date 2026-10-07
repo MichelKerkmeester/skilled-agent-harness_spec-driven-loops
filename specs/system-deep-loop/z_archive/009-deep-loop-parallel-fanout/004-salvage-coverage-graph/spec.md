@@ -23,16 +23,22 @@ _memory:
 
 # Phase 004 — Salvage sweep + coverage-graph per-sessionId
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Make every iteration yield a usable artifact even when an executor doesn't write its file (weak CLIs / sandboxed writes), and ensure parallel lineages don't collide on the shared coverage SQLite.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - `fanout-pool.cjs` salvage step: after each lineage sub-loop, sweep with `post-dispatch-validate.ts#validateIterationOutputs`; on `iteration_file_missing/empty`, parse `{sub-packet}/logs/iter-NNN.out` (opencode `--format json` text parts, else raw) → write missing `iterations/iteration-NNN.md` + append `salvaged_from_stdout` event; re-validate; still-missing ⇒ failed marker (loop's stuck-recovery handles persistence).
 - Coverage-graph: confirm each lineage's own `session_id` scopes `convergence.cjs` + coverage writes (PK/UNIQUE already include session_id) — no schema change; rely on WAL + existing writer lock.
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - Unit: missing-md+stdout ⇒ salvaged; still-missing ⇒ failed marker.
 - Integration: two lineages, distinct sessionIds, shared `deep-loop-graph.sqlite`, explicit no-collision assertion.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Merge (005); docs (006).

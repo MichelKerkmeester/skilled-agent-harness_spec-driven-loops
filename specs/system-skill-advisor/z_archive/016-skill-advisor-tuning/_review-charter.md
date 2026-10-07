@@ -1,3 +1,13 @@
+---
+title: "Deep-Review Charter: skill-advisor scorer program"
+description: "Read-only review charter ranking the angles for the skill-advisor scorer program and its spec subtree."
+trigger_phrases:
+  - "advisor scorer review charter"
+  - "advisor program review angles"
+importance_tier: "important"
+contextType: "research"
+---
+
 # Deep-Review Charter — skill-advisor scorer program
 
 **HARD READ-ONLY.** Findings and reports only. NEVER edit, write, or commit anything under `mcp_server` or the advisor Python — it is a live gated lane with another agent's staged changes. Write only to the review artifacts under this spec folder. Test everything; check spec-vs-code alignment; find issues and refinements.

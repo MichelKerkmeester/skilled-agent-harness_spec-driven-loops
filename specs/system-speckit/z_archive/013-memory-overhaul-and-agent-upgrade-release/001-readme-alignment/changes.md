@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 01: README Audit & Alignment"
+description: "README audit alignment edit list for task 01 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "readme alignment changes"
+  - "readme audit edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 01: README Audit & Alignment
 
 <!-- SPECKIT_LEVEL: 3 -->

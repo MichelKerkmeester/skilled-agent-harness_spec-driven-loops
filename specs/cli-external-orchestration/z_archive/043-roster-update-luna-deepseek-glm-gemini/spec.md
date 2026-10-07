@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini"
+    packet_pointer: "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini"
     last_updated_at: "2026-08-15T00:00:00Z"
     last_updated_by: "pi"
     recent_action: "Phase parent authored; children 001-003 extracted, 004 planned"

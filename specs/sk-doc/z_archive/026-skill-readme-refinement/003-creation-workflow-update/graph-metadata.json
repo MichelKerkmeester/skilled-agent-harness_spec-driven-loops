@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/003-creation-workflow-update",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/003-creation-workflow-update",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,8 +45,7 @@
       ".opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md"
     ],
     "entities": [
       {
@@ -95,12 +94,6 @@
         "name": "parent-skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The create-skill workflow at `.opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` predates the README refinement program",
     "created_at": "2026-08-04T07:12:16.927Z",
-    "last_save_at": "2026-08-30T15:39:17.442Z",
+    "last_save_at": "2026-10-07T18:13:48.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4b07a77a04b16dca2e3a9339103dc9b7bfa267f39add900b2ee99b37f0f9e55",
+    "source_fingerprint": "sha256:dea9f73d86ab72dd9f8eeeb3fbea56009e412df8f8948839484dd3ed235effa1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b813378f2ec2531b699d7de0afa253dcca24bdf46952cb804798c62139b1adff",
-      "plan.md": "b450b82cc69683029d4cd8104d71b89ab0cb2d16779c8ad92b5fd480468debfc",
-      "tasks.md": "0332d62d1dcc423dea6ea3622ba1f4aac06f79f06922d7c878517aa7906d2aed",
-      "implementation-summary.md": "f7c0535e20d83463bb4981bd0ad4bd3f0bdb941aa7a61f50be615bdccaca8116"
+      "spec.md": "4e35092fcfff1b05816be84ce88c896482ef2198b4cb67fd49cc372d8481b198",
+      "plan.md": "30aa54d498b095238cec115417ef409686a5d60172d0aaaa537c06d383281c0c",
+      "tasks.md": "a45debc05e922048b5a65880cdb097a3bca950275261714ab89298f627034362",
+      "implementation-summary.md": "f0d830ec11a222c4712f4dd6a641a433f99fae15ca925d13d1f1e9522291b89a"
     },
     "last_active_child_id": null,
     "last_active_at": null

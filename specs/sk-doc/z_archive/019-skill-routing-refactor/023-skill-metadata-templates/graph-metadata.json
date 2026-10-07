@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/023-skill-metadata-templates",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/023-skill-metadata-templates",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -183,7 +183,7 @@
     ],
     "causal_summary": "Close the template gap for the skill-root metadata contract: JSON scaffolds for command-metadata, hub leaf-aliases, standalone graph-metadata, and leaf-manifest.config under create-skill/assets, with a per-class template map in the canonical doc and pointers from the advisor and parent-hub doctrine.",
     "created_at": "2026-07-28T14:02:48.967Z",
-    "last_save_at": "2026-08-30T15:39:15.661Z",
+    "last_save_at": "2026-10-07T18:13:25.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc2b3605c1e57b93ce1dd4d711993e9a8b72cffeacb43fe62aab3bd666fb9765",
+    "source_fingerprint": "sha256:1ba2c9d2348642bc60b79b6a4f9ab01c3c3b33251c95719ed9646ded4bb9ae86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "562bec0d24ba50cca650dc7d5b458c4f1513ec3132cc13db421d757b2a94413c",
-      "plan.md": "0eba54bf7159a723849604684bf80ccd3265e18235400fb42c0d76f5dd5d739b",
-      "tasks.md": "cfa8e4af95c0e4b671485339f4a62febfd697598ab98b627ae55297139be112a",
-      "implementation-summary.md": "698fba76d5325bd4993afa8112d4f011c3667275ade6ac9958eaa8c154753738"
+      "spec.md": "0d6b5b9d5faba0c32567ba13bcaedb1ca508c08c91f2ff2315e4c6a38b5a2419",
+      "plan.md": "3212b71e534ef117a191737fdf91cefe600070f65e2272a9d9cb4045bb7a56d9",
+      "tasks.md": "6c81bef14dfe6251e7d7de4e6bd21bb48cb8224e04ff42f2cee4f87c1c78142e",
+      "implementation-summary.md": "10a8715d08df40f44104a9d1081af5d8b3e2a563e36b576776393824491ad575"
     },
     "last_active_child_id": null,
     "last_active_at": null

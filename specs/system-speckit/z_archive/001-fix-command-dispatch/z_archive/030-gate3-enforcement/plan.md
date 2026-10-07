@@ -2,12 +2,8 @@
 title: "Implementation Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/plan]"
 description: "Status: COMPLETE"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "gate"
-  - "enforcement"
-  - "030"
-  - "gate3"
+  - "gate3 enforcement plan"
+  - "gate3 enforcement implementation plan"
 importance_tier: "important"
 contextType: "planning"
 ---

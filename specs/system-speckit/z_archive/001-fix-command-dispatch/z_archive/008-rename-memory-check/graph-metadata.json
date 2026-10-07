@@ -18,7 +18,10 @@
       "008",
       "plan",
       "tasks",
-      "two"
+      "two",
+      "memory command rename summary",
+      "memory check to search rename",
+      "dashboard command rename delivery"
     ],
     "key_topics": [
       "spec",
@@ -28,11 +31,11 @@
       "plan",
       "tasks",
       "two",
-      "unified",
-      "dashboard",
+      "summary",
       "check",
-      "references",
-      "across"
+      "search",
+      "dashboard",
+      "delivery"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -40,8 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,15 +65,9 @@
         "source": "derived"
       },
       {
-        "name": "save.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,24 +165,50 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Rename the unified memory dashboard command from /memory to /memory:check and update all references across the codebase.",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-08-30T15:39:36.920Z",
+    "last_save_at": "2026-10-07T20:15:00.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a1fa8d43b920ae8871505f76f372e5488e706358ebff381228a3c27f4b75fcc",
+    "source_fingerprint": "sha256:e9e9392a4d33ee1e8924f2c80691916e4278e2b6435d2278ac2fc6796a59b4ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dc3e5267571494f506eb4a3a239dc1889472f6e06a3594c18764d6c5472e906",
       "plan.md": "052289cb71056057502dcebe9cad86eb9e23f8a40ce20a11e18e321e889ef7a9",
-      "tasks.md": "e20a210683da5ef2e93f9e56f87490f695ccb10de865e190d70a69b0bf4e6d4e"
+      "tasks.md": "9e157156db15581bfa6be3226a153d29ca8188f986a81aa14f99734715d63253",
+      "implementation-summary.md": "2102e22186c645abfb06a4509dae21913d1043596e1b68f87b9ccf324b280911"
     },
     "last_active_child_id": null,
     "last_active_at": null

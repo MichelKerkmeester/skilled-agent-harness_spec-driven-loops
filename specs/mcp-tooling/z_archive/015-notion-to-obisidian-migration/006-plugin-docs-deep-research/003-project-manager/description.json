@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/003-project-manager",
   "description": "This leg was originally scoped to optimize `references/plugins/project-manager/` — the pm-task frontmatter schema, `customFields` non-scalar encoding,",
   "keywords": [
     "leg",

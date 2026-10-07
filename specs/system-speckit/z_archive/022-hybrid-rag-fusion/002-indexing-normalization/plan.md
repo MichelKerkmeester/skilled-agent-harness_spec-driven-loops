@@ -158,7 +158,6 @@ Targeted pipeline hardening with deterministic normalization stages.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -175,7 +174,6 @@ Phase 1 (Setup) ---> Phase 2 (Core) ---> Phase 3 (Verify)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -272,7 +270,7 @@ Phase 1 (Setup) ---> Phase 2 (Core) ---> Phase 3 (Verify)
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Canonical dedup and explicit tier precedence
@@ -527,10 +525,10 @@ Schema Definition ──► Parser/Compose ──► Migration Apply ──► R
 | M2 | Migration Ready | Dry-run shows deterministic rewrites with no schema violations | Day 3 |
 | M3 | Release Ready | Reindex + regression suite pass on normalized corpus | Day 4 |
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-3 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Canonical frontmatter first, migration second
@@ -572,4 +570,4 @@ Schema Definition ──► Parser/Compose ──► Migration Apply ──► R
 1. Mark task as BLOCKED with concrete command output.
 2. Attempt one bounded workaround that does not expand scope.
 3. Escalate with evidence and options if still blocked.
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-3 -->

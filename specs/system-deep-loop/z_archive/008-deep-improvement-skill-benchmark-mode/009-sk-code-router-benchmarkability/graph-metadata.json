@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark harness parses a skill's router by literal-scanning `SKILL.md` for `INTENTSIGNALS = {` and `RESOURCEMAP = {`",
     "created_at": "2026-06-01T10:15:07.917Z",
-    "last_save_at": "2026-08-30T15:39:23.849Z",
+    "last_save_at": "2026-10-07T20:58:14.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f6777cf9267d5279e857842c3d642d926cd2d04c5eeb448d08821410e46ac39",
+    "source_fingerprint": "sha256:c49b682a905634291e28dbc2c6e0a7dcddf37e4be11ada4eceb0f768826ba5bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "855f87cdb801705f1ac0b3719dff3e7b396ba944dcd843f78f322592afacc341",
       "plan.md": "8451cbff259b56238ffc78759f8ba6ee1d9b79c01c7b62b4b9ab58d456c1730d",
       "tasks.md": "e42978c223f09847af3312887f060922d33829807c6ecee328a52066b0b772ad",
-      "decision-record.md": "76e4811d97e025d5e0287c5c2675a1b3a4152ba38dbfa39618c9c8bc650fae3e",
+      "decision-record.md": "5eacee4e742923bb3f2f2cfa1afbaa314ec564677c459ad68991e33a85fabedd",
       "implementation-summary.md": "cc6e9a1dd6d6c73fcaf98c2d39a9a480e5b3f1a780680753a0eba52a7e5525fc"
     },
     "last_active_child_id": null,

@@ -51,8 +51,8 @@ This completed Level 3 spec captures the architecture audit of `.opencode/skills
 | **Successor** | ../006-feature-catalog/spec.md |
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -141,7 +141,7 @@ Define the boundary contract clearly, remediate the highest-risk violations, aut
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -154,7 +154,7 @@ Define the boundary contract clearly, remediate the highest-risk violations, aut
 - **NFR-R01**: Verification should catch new cross-boundary regressions before they become default behavior.
 - **NFR-R02**: Source-of-truth docs and enforcement scripts should remain synchronized enough for maintainers to trust the contract.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

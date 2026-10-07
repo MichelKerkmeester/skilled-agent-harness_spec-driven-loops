@@ -2,7 +2,6 @@
 title: "Implementati [system-spec-kit/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation/implementation-summary]"
 description: "Phase 5 summary for the final remediation sweep that fixed the remaining test regressions, aligned manual playbook truth, and ended with a 100 percent pass rate across mcp_server and scripts."
 trigger_phrases:
-  - "implementation summary"
   - "phase 5 remediation summary"
   - "100 percent pass rate"
 importance_tier: "normal"

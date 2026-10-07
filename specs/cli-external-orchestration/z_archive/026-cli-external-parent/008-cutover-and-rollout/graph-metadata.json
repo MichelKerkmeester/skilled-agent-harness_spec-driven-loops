@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout",
-  "spec_folder": "cli-external-orchestration/026-cli-external-parent/008-cutover-and-rollout",
-  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "packet_id": "cli-external-orchestration/z_archive/026-cli-external-parent/008-cutover-and-rollout",
+  "spec_folder": "cli-external-orchestration/z_archive/026-cli-external-parent/008-cutover-and-rollout",
+  "parent_id": "cli-external-orchestration/z_archive/026-cli-external-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,9 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
-      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -64,18 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -189,7 +175,7 @@
     ],
     "causal_summary": "The cli-external parent-hub merge is not provably done until it clears the same strict enforcement bar the canonical parent hubs clear, AND until the fail-open PreToolUse dispatch hook is proven to still fire from its new path",
     "created_at": "2026-07-09T18:58:29Z",
-    "last_save_at": "2026-08-30T15:39:07.108Z",
+    "last_save_at": "2026-10-07T18:11:38.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +183,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:2fb574358bf1ddf16185e4b9de65452aecfe2646618ec8755036e52e2f5bea04",
+    "source_fingerprint": "sha256:4fcb2ef28f1f7eb18307aa25243b3f8693b7eb3987a1a9326f89d9bdd5bafb02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e34410e3807d25d28476819c190ff53cb0c37e1500100f6a18d9a52d99cb96cb",
-      "plan.md": "5dcc7d725495813f4eac22f8e2c0aa8cd3a422eab78dc373767baabf03bb75e4",
-      "tasks.md": "1e684614313e17ab6c854b03db36efe9fcb19a208d8548a5edc111b7cba196f4"
+      "spec.md": "cab318a3d91e40f1355334911fdc43464241037d0720647b177c41a795a5a633",
+      "plan.md": "55a8eaa07bb860f165b3d74890ed02fb44649ebfdddab40a7a3631aaddb2c5ff",
+      "tasks.md": "9945ed938f35582d2adcedcadff1b276cc65a680714d4dc7b03f6e2ebe86dd7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

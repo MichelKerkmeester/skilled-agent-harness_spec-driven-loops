@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The system-deep-loop hub root and shared boundary contain exact routing and metadata contracts that a broad rename could damage. The current inventory is already kebab-clean in this boundary, so this child verifies the no-op candidate set, renames any baseline drift only if present, and proves hub/shared references remain intact.",
     "created_at": "2026-07-14T15:17:48Z",
-    "last_save_at": "2026-08-30T15:39:16.665Z",
+    "last_save_at": "2026-10-07T18:13:24.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:27b1af1371db9ec2b123bf76edba83a1ad759e569754f43ac90d473b9d014469",
+    "source_fingerprint": "sha256:df0d54639f9fe2f639efc68c051cec3d7218446e4a21f88550e6c491b0c48812",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8de914aa8af4fce35332b5c58c75aa0b2dfc614fa1c2b058ac9771cdecb8038f",
-      "plan.md": "cc2ad32adf0731d329d6a972b55a7dd3ce84abe4cfeefda42d1a1944aeaf4a97",
-      "tasks.md": "3198636a724774cdfaf39dfae236f0776dc3c1e2d866423e794c34387d81a42c",
+      "spec.md": "1b1ff3dc10505c0ee05c233df0d907fff4b8c016a8fd935293fb66b10841ecef",
+      "plan.md": "902f7d32882f677feb24aef95df59d7411cdad41c49ac9c87dd969649b1aa05e",
+      "tasks.md": "3c7a95a14002d08af521a0af0f853c18dc3f47b9fb019cf3543fbe01fa70c48a",
       "decision-record.md": "128202797f1cbe492087d0b33264ef5f10b4f13b56508eff7de838722860ac76"
     },
     "last_active_child_id": null,

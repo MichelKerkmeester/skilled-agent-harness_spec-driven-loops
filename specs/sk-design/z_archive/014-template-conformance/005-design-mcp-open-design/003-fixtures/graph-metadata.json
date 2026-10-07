@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/003-fixtures",
-  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/003-fixtures",
-  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "packet_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/003-fixtures",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design/003-fixtures",
+  "parent_id": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "design-mcp-open-design fixtures conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -25,11 +24,11 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "opencode",
       "skills",
-      "sk-design"
+      "sk-design",
+      "audited",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/fixtures/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + packageskill.py file-type gates (no authored fixtures/ template)`",
     "created_at": "2026-07-27T15:02:57.567Z",
-    "last_save_at": "2026-08-30T15:39:13.215Z",
+    "last_save_at": "2026-10-07T18:12:32.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aed352a00af4562fb5df4511445a3270e8ad55bb25030ce72dfadd229371cf38",
+    "source_fingerprint": "sha256:deacefb4002045b69566118c97666e4db281843fde24788e4eaca12548101f41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d70766d175d6b893462b3411f17c5b77763f188b7406816196ff7bee9d0919bd",
-      "plan.md": "29024883405b4eed69f30552a197e2b4a36c13964f756382a444cd62539334b7",
-      "tasks.md": "2318a18ee9c6d1f0eae99987d9855307051a4f9522773f01db520d1a178a79b2",
-      "implementation-summary.md": "56c159665fc7417e67a6322fc3f7e999617e5fdd175d016f9d0fbf0dc2c01263"
+      "spec.md": "ed85cb18065686ff53cf084edece1cb0adc327e913b8af0a6ed805620ef0f24a",
+      "plan.md": "7fbe73215257a9e8fba0b6cd7bd28cf79b86eb3817e135ecb3e986a420015bde",
+      "tasks.md": "bb84f875a924bfdd22a358dbf6549ed2e873396acfcef99cd7aa4ea893efb243",
+      "implementation-summary.md": "89136a98aaac2c3301e8f353e25617b7c1f9f7484124670b6e5529496bd280f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,7 +2,7 @@
 title: "...-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt/decision-record]"
 description: "Architectural decision for the improver-skill rename closeout: canonical sk-improve-* naming, runtime-agent filename boundary, and historical spec-folder slug preservation captured as one compound ADR."
 trigger_phrases:
-  - "042.007"
+  - "skill rename improve agent prompt decision record"
   - "skill rename decision record"
   - "sk-improve-agent"
   - "sk-improve-prompt"

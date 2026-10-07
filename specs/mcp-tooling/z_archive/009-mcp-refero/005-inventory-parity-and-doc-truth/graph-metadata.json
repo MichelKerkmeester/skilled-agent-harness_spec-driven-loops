@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
-  "spec_folder": "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
-  "parent_id": "mcp-tooling/009-mcp-refero",
+  "packet_id": "mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+  "spec_folder": "mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth",
+  "parent_id": "mcp-tooling/z_archive/009-mcp-refero",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no `scripts/install.sh`, a 6-scenario playbook where the research section D supports more workflow coverage, and a feature catalog whose 8 tools share only 3 grouped domain files",
     "created_at": "2026-07-16T12:58:32Z",
-    "last_save_at": "2026-08-30T15:39:09.932Z",
+    "last_save_at": "2026-10-07T18:11:11.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:337bc0689c0af26d9887c15824f4701fc3cdd689c269c5ad8565a939aa0744fa",
+    "source_fingerprint": "sha256:d74dcf7a44d627e0aa0c21170aafee6c85c1f1b4baf634c9976dbfedb4fa7b58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0f2bce477291047ec08eeefe36f3e10e3280d51287a1fad2423eb3ffdd9204b",
-      "plan.md": "c63f130696afe36750c21843fb0f03635d57e8e315110628450be455d1ae7c5e",
-      "tasks.md": "cb7abf9befe596ec0a5a0d37d50994458683c717e876ca75460d0e630c1d179c",
-      "implementation-summary.md": "037620cc7dec78873ae4fdb235adabe9ca3e94857acf9f35252b6190c354b801"
+      "spec.md": "0c445e6684c36ae6bb9eced1a8c12e8725dae4b7e048bb243abafea7a8e59326",
+      "plan.md": "38e212fd3faf8561a666eada03f96361ca2a0f06446fbe986e06891f3c6d1ce9",
+      "tasks.md": "5176f55dd2c9fd0c57eebf80d2c0ad3b034d40771489a19d44a6f7cc48106403",
+      "implementation-summary.md": "786ab268224f633a1a5ee149851fe03b6427258321f75d6b9242a957751da9c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

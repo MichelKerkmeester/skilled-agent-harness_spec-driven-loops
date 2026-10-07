@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
-  "spec_folder": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
-  "parent_id": "sk-doc/023-feature-catalog-integrity",
+  "packet_id": "sk-doc/z_archive/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
+  "spec_folder": "sk-doc/z_archive/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
+  "parent_id": "sk-doc/z_archive/023-feature-catalog-integrity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,9 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      "handlers/session-bootstrap.ts",
-      "handlers/memory-context.ts"
+      ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -78,18 +76,6 @@
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-bootstrap.ts",
-        "kind": "code",
-        "path": "handlers/session-bootstrap.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Spine Rollout Labeling",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Classification",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Both surfaces are structurally outside the validator: `system-spec-kit` because it is a single skill rather than a mode",
     "created_at": "2026-07-30T19:29:15.080Z",
-    "last_save_at": "2026-08-30T15:39:17.320Z",
+    "last_save_at": "2026-10-07T18:13:27.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +204,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0f3985f57d05b99944129150980e1e2847f82fc4b9f118fe166165afc333f61f",
+    "source_fingerprint": "sha256:7440807df53b32225dc9d95af8f264d372946bb0d1cccba1475a30c88bf23ebf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95b9b16adc1932863e82094a08b42b68029c033b4bef378231887bd25ff7e6c2",
-      "plan.md": "62d994173730af0539c85d966154a218f1bcacad3a5c5fcf605fd368e8673c78",
-      "tasks.md": "361c967bd3d0e3ef8552742d8bb0ac4b8ff6f727d2d4567f46aec7281e4325db",
+      "spec.md": "53c48c941129eb8385d47fbdaaf86737d0d81b46afa30a2fb5757f1826a2df40",
+      "plan.md": "d77926171ff782a109739d00dba13407e962edfb9365bae66cfe3cf0a9b6c134",
+      "tasks.md": "7e35aa03d7cb3fa889ab7a8ff782a11ed086802c5059d78efa3eaa2e2dd3a6aa",
       "decision-record.md": "9b57f71d066e60f9468a07c2444aeeffa20aba4dcb2e48689c4c4ffe1947826e"
     },
     "last_active_child_id": null,

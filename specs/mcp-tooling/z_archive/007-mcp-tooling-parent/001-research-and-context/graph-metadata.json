@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/001-research-and-context",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/001-research-and-context",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/001-research-and-context",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,9 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/tasks.md",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       ".claude/mcp.json"
     ],
@@ -54,19 +51,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -186,7 +183,7 @@
     ],
     "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
     "created_at": "2026-07-09T20:18:21Z",
-    "last_save_at": "2026-08-30T15:39:09.726Z",
+    "last_save_at": "2026-10-07T18:11:10.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +191,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:96aca1d17697d61ab4559cb178d64e0debac0cdf19daacbf3ef0a72d76133fc8",
+    "source_fingerprint": "sha256:5a6e16d7bef07e29b7a7ed75f3059b267b3d8829731e2043ea92838506b57e06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14907663541d99bd761e49e0e21f22866d6bbcc7561289a34223ed8981136a9d",
-      "plan.md": "0fe244e7fca55a23cc7b55c194a37fa475733c11e7e1ba5bd13c4a73f3c5b1ac",
-      "tasks.md": "da5d59b5853b95eb8778e9d7016b9482d5d2a6c24455515992630e1ee4c466a4"
+      "spec.md": "d64f2f410ee12969a469a653f35d1da92cdc29fd947685ec8a0287d0e1cd3297",
+      "plan.md": "b277177355523387a60151f4a80ac4d8425301a30c9ea754cf114c5a330a5f7a",
+      "tasks.md": "63accec966e90c6ff296a7d80d7b87db08a19ff055bd6fa7d662b55da3c1e626"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
   "description": "The sk-create-command skill README still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README",
   "keywords": [
     "sk-create-command",

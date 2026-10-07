@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate"
     last_updated_at: "2026-06-02T18:04:11Z"
     last_updated_by: "completion-agent"
     recent_action: "Phase complete — duplication guard shipped, path reference fixed"

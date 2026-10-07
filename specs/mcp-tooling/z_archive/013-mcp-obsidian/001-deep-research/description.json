@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/001-deep-research",
   "description": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and",
   "keywords": [
     "obsidian",

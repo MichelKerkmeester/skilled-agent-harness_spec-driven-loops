@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation"
     last_updated_at: "2026-07-04T18:45:00Z"
     last_updated_by: "glm-fanout-review"
     recent_action: "Finalized 009 parent spec from completed children; closed placeholder scaffolding"

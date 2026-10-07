@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout",
   "description": "Phase 003 leaves seven canonical hubs on root `ROUTER.md` with byte-preserved policy, but the fleet is not yet proven: rollout artifacts must be",
   "keywords": [
     "phase",

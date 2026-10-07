@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/028-cli-hub-rename/004-verify-closeout"
     last_updated_at: "2026-07-13T13:50:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded create-skill conformance pass over the renamed hub and modes"

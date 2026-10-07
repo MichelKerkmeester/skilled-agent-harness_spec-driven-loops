@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/018-code-mode-variable-prefixes",
+  "specFolder": "mcp-tooling/z_archive/018-code-mode-variable-prefixes",
   "description": "Five of the fourteen manuals registered in this repository's Code Mode configuration never reached the server",
   "keywords": [
     "five",

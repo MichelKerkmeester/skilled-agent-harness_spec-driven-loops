@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared//.ts` and a project `references` entry for `../system-spec-kit/shared`",
     "created_at": "2026-05-14T16:26:51Z",
-    "last_save_at": "2026-08-30T15:39:32.778Z",
+    "last_save_at": "2026-10-07T18:16:04.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e47b9c1b384d9739c3cad318484ec237a079c5c4304df8ff0d2cdafa956f954c",
+    "source_fingerprint": "sha256:97a137f14d4d4cad784c03d430b2ff137ad25a9b22fa38b1be0891e106f9a535",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9171039f13eb38818f293dc1a594bb2a16fb1c5cdaa3df0e26d16116f359cd6b",
       "plan.md": "4a50b3261362667072d659728fa3d1c0f0f8cb108aeb2a854285b265f0555c56",
       "tasks.md": "46e79a07c4733acd3932f0bdcb3b7e7643586e3fc4b942aab8bf2c87200cb517",
-      "implementation-summary.md": "472a3a9accf06ec3c47d2f72c6facff0a97d9488c89bd442a7b3b48e93201517"
+      "implementation-summary.md": "a41a2040431afa1d6afdc2058f832a44cea6eacef0fdfe4b9f8708c2c452dde8"
     },
     "last_active_child_id": null,
     "last_active_at": null

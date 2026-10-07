@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/010-mcp-mobbin/007-code-mode-transport-leak"
+    packet_pointer: "mcp-tooling/z_archive/010-mcp-mobbin/007-code-mode-transport-leak"
     last_updated_at: "2026-08-25T06:54:48Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored spec for the Code Mode transport release fix"

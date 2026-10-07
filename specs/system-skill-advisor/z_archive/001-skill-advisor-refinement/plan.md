@@ -132,7 +132,6 @@ CLI input -> normalize intent -> load cached skills/metadata -> score real skill
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -152,7 +151,6 @@ Phase 1.5 (Fixture Lock) ──┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -244,7 +242,7 @@ Phase 1.5 (Fixture Lock) ──┘
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Dual-threshold remains default; confidence-only is explicit override
@@ -262,7 +260,7 @@ Phase 1.5 (Fixture Lock) ──┘
 **Alternatives Rejected**:
 - Keep confidence-only behavior tied to explicit `--threshold`: rejected due to hidden safety downgrade.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ### AI Execution Protocol

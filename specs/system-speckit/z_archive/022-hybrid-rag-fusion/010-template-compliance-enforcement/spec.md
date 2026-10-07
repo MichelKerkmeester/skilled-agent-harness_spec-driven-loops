@@ -140,7 +140,6 @@ Achieve 100% structural template compliance at generation time through a 2-layer
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -156,7 +155,6 @@ Achieve 100% structural template compliance at generation time through a 2-layer
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/037-playbook-family-remediation",
-  "spec_folder": "sk-doc/037-playbook-family-remediation",
+  "packet_id": "sk-doc/z_archive/037-playbook-family-remediation",
+  "spec_folder": "sk-doc/z_archive/037-playbook-family-remediation",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/037-playbook-family-remediation/001-sk-code-family",
-    "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
-    "sk-doc/037-playbook-family-remediation/003-deep-loop-and-spec-kit",
-    "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation"
+    "sk-doc/z_archive/037-playbook-family-remediation/001-sk-code-family",
+    "sk-doc/z_archive/037-playbook-family-remediation/002-cli-and-mcp-transports",
+    "sk-doc/z_archive/037-playbook-family-remediation/003-deep-loop-and-spec-kit",
+    "sk-doc/z_archive/037-playbook-family-remediation/004-fail-closed-graduation"
   ],
   "manual": {
     "depends_on": [],
@@ -100,16 +100,16 @@
     ],
     "causal_summary": "Manual testing playbooks are the only executable statement of what each skill package promises an operator",
     "created_at": "2026-08-29T11:53:28.220Z",
-    "last_save_at": "2026-08-30T15:39:18.159Z",
+    "last_save_at": "2026-10-07T18:13:41.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c8ffbc6d042837da2938db9fd633559a2d04ebfabf3486b1219fc8d25724cee0",
+    "source_fingerprint": "sha256:d05297954b244dde62dacfe4a25b9d18b77b3d613a9df47d733809203c809b39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51af58912bfa834bb155701c308b57b008791c20f4ccf65809bc5d592559c325"
+      "spec.md": "96d4d91e9f99a18e29ca3ca2ad5348b6ea61f80b527e75360377ba573ecef2a3"
     },
     "last_active_child_id": "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation",
     "last_active_at": null

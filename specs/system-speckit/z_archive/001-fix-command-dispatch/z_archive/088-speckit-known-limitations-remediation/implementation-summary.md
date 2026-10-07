@@ -4,7 +4,6 @@ description: "Level 2 Summary (+Verify) is appropriate when"
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "088"
   - "speckit"
 importance_tier: "normal"
@@ -34,7 +33,7 @@ DO NOT use Level 2 Summary if:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | [###-feature-name] |
+| **Spec Folder** | 088-speckit-known-limitations-remediation |
 | **Completed** | [YYYY-MM-DD] |
 | **Level** | 2 |
 | **Checklist Status** | [All P0 verified / Partial / Deferred items] |
@@ -116,7 +115,7 @@ DO NOT use Level 2 Summary if:
 
 ---
 
-<!-- ANCHOR:verification -->
+<!-- ANCHOR:verification-2 -->
 ## L2: VERIFICATION EVIDENCE
 
 ### Code Quality Evidence
@@ -133,7 +132,7 @@ DO NOT use Level 2 Summary if:
 - **Edge cases**: [List of edge cases tested]
 - **Error scenarios**: [Error handling verified]
 
-<!-- /ANCHOR:verification -->
+<!-- /ANCHOR:verification-2 -->
 ---
 
 ## L2: NFR COMPLIANCE

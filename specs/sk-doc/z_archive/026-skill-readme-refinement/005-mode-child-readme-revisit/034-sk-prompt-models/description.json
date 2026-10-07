@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
   "description": "The sk-prompt-models README still carries the older tabular reference-card style",
   "keywords": [
     "sk-prompt-models",

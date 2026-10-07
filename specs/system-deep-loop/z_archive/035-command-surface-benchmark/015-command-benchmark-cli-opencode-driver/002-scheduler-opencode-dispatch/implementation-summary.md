@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/002-scheduler-opencode-dispatch"
     last_updated_at: "2026-07-22T11:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored L2 implementation stub"

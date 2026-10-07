@@ -1,11 +1,19 @@
 ---
 title: "Re-architect deep-improvement feature_catalog + manual_testing_playbook for 3 lanes"
+description: "Re-architect the deep-improvement feature_catalog and manual_testing_playbook into one mirrored, lane-grouped taxonomy that covers lanes A, B and C plus the shared surface, conforming to the sk-doc templates."
+trigger_phrases:
+  - "deep-improvement 3lane doc rebuild"
+  - "feature catalog playbook rebuild"
 status: in-progress
 level: 2
+importance_tier: "normal"
+contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 # 007 — Deep-Improvement 3-Lane Doc Rebuild
 
+<!-- ANCHOR:problem -->
 ## 1. PURPOSE
 
 Re-architect both `.opencode/skills/deep-improvement/feature_catalog/` and
@@ -16,6 +24,9 @@ surface. Conform to the sk-doc templates. Lane C is currently partial (catalog
 landing §6 only, no category dir) / absent (playbook), despite being a larger
 code surface than the fully-covered Lane B.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## 2. SCOPE (operator-locked decisions)
 
 1. **Architecture** = lane-grouped, MIRROR both docs (renumber categories +
@@ -36,6 +47,9 @@ code surface than the fully-covered Lane B.
 - `git add -A` is banned (daemon mass-writes graph-metadata); scope every commit
   by explicit pathspec.
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:success-criteria -->
 ## 4. ACCEPTANCE
 
 - Both trees share an identical lane-grouped category dir set (mirror check).
@@ -49,3 +63,4 @@ code surface than the fully-covered Lane B.
 
 See `handover.md` for the full execution contract, taxonomy mapping, dispatch
 command, and per-file source inventory.
+<!-- /ANCHOR:success-criteria -->

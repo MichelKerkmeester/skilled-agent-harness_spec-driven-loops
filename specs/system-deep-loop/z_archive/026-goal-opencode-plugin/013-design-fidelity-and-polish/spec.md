@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/013-design-fidelity-and-polish"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/013-design-fidelity-and-polish"
     last_updated_at: "2026-07-01T10:04:53Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Recorded operator decision: wire a real usage_limited detector"

@@ -2,12 +2,7 @@
 title: "Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/042-post-merge-refinement-5/plan]"
 description: "Implementation plan defining technical approach, project structure, and execution strategy for Spec Kit Memory system bug fixes and refinements."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "post"
-  - "merge"
-  - "refinement"
-  - "042"
+  - "post merge refinement 5 plan"
 importance_tier: "important"
 contextType: "planning"
 ---

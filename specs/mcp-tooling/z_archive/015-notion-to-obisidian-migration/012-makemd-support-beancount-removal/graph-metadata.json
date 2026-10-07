@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/012-makemd-support-beancount-removal",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/make-md.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v0.22.0.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
@@ -74,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "make-md.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/make-md.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance workflow, and the plugin is `isDesktopOnly` so it cannot serve the mobile use case the skill targets",
     "created_at": "2026-08-23T17:58:57.913Z",
-    "last_save_at": "2026-08-30T15:39:10.515Z",
+    "last_save_at": "2026-10-07T18:11:39.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11c0626d7801478628042c9168dfd4e4f17d9b9012d38a34076cb083c55713ab",
+    "source_fingerprint": "sha256:0319acacdaadc64c1fc0e5c0aaada7709ccfdd996c9bd5cbae2f43d59231ff33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e8952feeb105f8ed95ed64e59692481d93d427a1f556692ca99a16b3e6fb278",
-      "plan.md": "61e07f54b413906cdd2f40ec76a45a370e2401eafd36beb18b7d9837c87440e7",
-      "tasks.md": "2e6584aa97827f5a0b45809089d801b52e9d97ae2a5b3089ea4c5d286d46f231",
-      "implementation-summary.md": "583d3b9ece8f0e60a51b329cd0a2e50b1bdb2955c8ba44310a01b5ffce639df9"
+      "spec.md": "3a359f30bc1a0b2269ab82fb164a7ae74531ce876815d5488635bdc0eb9b1a05",
+      "plan.md": "e060e16db251250aff6ddd1cbf9edb0ff7d540fb83cd2b0d7c7a2cbb794f2b87",
+      "tasks.md": "f0d9957eb62497c99ee25e2109c8866dfc7a56f1ed9db9cb2340e086785f137f",
+      "implementation-summary.md": "06519e8a8292bc0aa9db626d6b7c285885ed1d4e11255f57b538d2ddbb209e43"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract",
-    "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family",
-    "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
-    "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter",
-    "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration",
-    "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator",
-    "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot",
-    "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout",
-    "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix",
-    "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command",
-    "system-deep-loop/035-command-surface-benchmark/010-scorecard-and-closeout",
-    "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation",
-    "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
-    "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
-    "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research",
-    "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver"
+    "system-deep-loop/z_archive/035-command-surface-benchmark/000-command-benchmark-contract",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/001-create-benchmark-conformance-family",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/002-deterministic-fixtures-oracle",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/004-command-lane-integration",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/005-command-behavior-evaluator",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/006-command-topology-pilot",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/008-bounded-command-matrix",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/009-command-benchmark-command",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/010-scorecard-and-closeout",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/011-create-benchmark-completeness-remediation",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/012-command-improvement-research",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research",
+    "system-deep-loop/z_archive/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver"
   ],
   "manual": {
     "depends_on": [],
@@ -113,16 +113,16 @@
     ],
     "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-09-06T04:27:46.391Z",
+    "last_save_at": "2026-10-07T18:14:38.901Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:58830ad205f3d8c99ebff5877e996c53ac44ef53aee7293c033b06684576a508",
+    "source_fingerprint": "sha256:7cc25c16d10c255ae7ee03963dbcb3311bf38d2d52b1b37383b9499a9ff56f28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "607e9452fe009c9244de4de2663e83652c8137716dc284f8a6a5eeeca68afca7"
+      "spec.md": "61da686166cc5830f84c05099aacb85f1771966cacfcc4697aaee4e2a8e680df"
     },
     "last_active_child_id": "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
     "last_active_at": "2026-07-15T15:06:01.185Z"

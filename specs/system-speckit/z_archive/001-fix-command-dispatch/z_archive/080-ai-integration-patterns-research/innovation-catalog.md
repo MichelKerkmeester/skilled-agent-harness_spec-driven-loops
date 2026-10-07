@@ -1,3 +1,7 @@
+---
+title: "Innovation Catalog: Unique Approaches from dotmd, seu-claude, and Drift"
+---
+
 # Innovation Catalog: Unique Approaches from dotmd, seu-claude, and Drift
 
 **Research ID:** innovation-catalog-three-repos

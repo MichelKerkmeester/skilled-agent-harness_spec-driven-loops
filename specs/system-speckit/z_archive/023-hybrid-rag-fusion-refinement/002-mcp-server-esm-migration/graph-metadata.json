@@ -18,7 +18,6 @@
       "023 phase 2 plan",
       "mcp server esm tasks",
       "023 phase 2 tasks",
-      "implementation summary",
       "phase 2 closeout"
     ],
     "key_topics": [
@@ -29,11 +28,11 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "closeout",
       "spec-kit",
-      "mcp-server"
+      "mcp-server",
+      "type",
+      "module"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +190,7 @@
     ],
     "causal_summary": "`@spec-kit/mcp-server` has no `\"type\": \"module\"` in its `package.json`, inherits the root CommonJS compiler baseline, uses 839 relative import/export statements with only 3 `.js`-suffixed (all external SDK), and has 16 non-test files using CommonJS-only globals (`dirname`, `filename`, `createRequire`, `require()`)",
     "created_at": "2026-04-12T09:02:50.317Z",
-    "last_save_at": "2026-09-10T21:05:07.359Z",
+    "last_save_at": "2026-10-07T18:16:40.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3791875db84f98bf02328918c466ed4054a97fd7604d701e9266cda41cbce66",
+    "source_fingerprint": "sha256:ae2c558979dad49743d8bd4d8bf13da7809877bce01d7159017810ed5c047d0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9fb281fdbeb80860a2a152ce5b381f3dba1de2b00c0df29629decf507db009e",
       "plan.md": "1fd02c7d79c6b62533b8035805f218bc13f78b9946df395409eb3e4d8011a493",
       "tasks.md": "639d22bafc7bfbedcff03e17f8c6e192da61c3af89c75d5a5daf06130d2597dc",
-      "implementation-summary.md": "63d3c5d3ff97e5b9ee1a2a12bf4623a476a01c0ebaab7dde30b96012ff293946"
+      "implementation-summary.md": "62bf7a8faf49e5daec3fac6c9d9262abbaa5d8083482c2cfc31103ce5460062a"
     },
     "last_active_child_id": null,
     "last_active_at": null

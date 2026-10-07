@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/040-create-repo-rules/005-agents-md-integration",
+  "specFolder": "sk-doc/z_archive/040-create-repo-rules/005-agents-md-integration",
   "description": "A rule file that nothing points at is inert: the router's trigger table is the only thing that loads one, and the pointer from the governed",
   "keywords": [
     "rule",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts.",
     "created_at": "2026-07-14T15:17:52Z",
-    "last_save_at": "2026-08-30T15:39:16.700Z",
+    "last_save_at": "2026-10-07T18:13:18.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e1f68f3c019dc1102cc595c34996216633f5f17d9afec3af825a158b974eebaf",
+    "source_fingerprint": "sha256:01505ae673c09b2bbd09e13fd20dedf8a7e7e95a6a5eb1b920f0c87c8b91dfba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2757327f1f37efc0f67e9b0de91f9057aae7a571be5701973fcead093450598e",
-      "plan.md": "2e37510ee34f279e216bfdaacbbde2c0b6feadabe6b308aa189c0cbdf789b212",
-      "tasks.md": "28f5883befeee4f25fd57271991e72497ccb70affa5eb52c7b393eb9cf7657fb",
+      "spec.md": "755808d0bdee741fffe486266a94d513626cc3ac0abe059795429ea539f612ed",
+      "plan.md": "93e696eedf09d1196659ec035f908b3c558c426cd9e0de7103edf7530a2bbafe",
+      "tasks.md": "179bf1c55960010c1b431385f9ba5ceb3e9ee13916b0d18f5d20240cd2df81d5",
       "decision-record.md": "934fbbaa3fd5ff3223ca3504595d15e1a9eac45d6849fcd58f478ae48ca07f9e"
     },
     "last_active_child_id": null,

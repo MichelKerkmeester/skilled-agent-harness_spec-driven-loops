@@ -154,7 +154,7 @@ Incremental schema extension over the current MCP storage model. Immutable linea
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -167,7 +167,7 @@ Phase 1 baseline -> Lineage schema and contract -> Backfill/write path -> Tempor
 | Backfill and write path | Contract design | Query resolution and Phase 3 |
 | Temporal reads and verification | Write path | Phase 3 and Phase 5 |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -265,7 +265,7 @@ Phase 1 baseline -> Lineage schema and contract -> Backfill/write path -> Tempor
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-201: Separate Immutable Lineage from Active Projection
@@ -280,7 +280,7 @@ Phase 1 baseline -> Lineage schema and contract -> Backfill/write path -> Tempor
 - Improves clarity and query performance.
 - Requires extra integrity validation to keep projection and lineage synchronized.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

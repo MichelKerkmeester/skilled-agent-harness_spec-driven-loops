@@ -1,3 +1,14 @@
+---
+title: "Bug Inventory: Complete List"
+description: "Comprehensive inventory of all bugs discovered in the 15-agent audit, organized by file."
+trigger_phrases:
+  - "spec kit bug inventory"
+  - "audit bug list"
+  - "bug findings by file"
+importance_tier: "normal"
+contextType: "research"
+---
+
 # Bug Inventory: Complete List
 
 > Comprehensive inventory of all bugs discovered in the 15-agent audit, organized by file.

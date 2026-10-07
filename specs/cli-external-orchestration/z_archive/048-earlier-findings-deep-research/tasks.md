@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/048-earlier-findings-deep-research"
+    packet_pointer: "cli-external-orchestration/z_archive/048-earlier-findings-deep-research"
     last_updated_at: "2026-08-17T19:45:00.000Z"
     last_updated_by: "claude"
     recent_action: "Ran the 10-iter cli-pi research; research.md synthesizes all five findings."

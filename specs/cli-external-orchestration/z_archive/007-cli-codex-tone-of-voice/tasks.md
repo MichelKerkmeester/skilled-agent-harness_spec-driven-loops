@@ -35,6 +35,7 @@ _memory:
 
 ## TASKS
 
+<!-- ANCHOR:phase-1 -->
 ### Phase 1 — Spec Folder (6 tasks)
 
 - [x] **T-01** — Create spec folder directory at `.opencode/specs/cli-external-orchestration/007-cli-codex-tone-of-voice/`.
@@ -43,24 +44,32 @@ _memory:
 - [x] **T-04** — Author `tasks.md` (this file).
 - [x] **T-05** — Author `checklist.md` with P0/P1/P2 items mapped to each REQ.
 - [x] **T-06** — Author `decision-record.md` with 5 ADRs (later extended to 8 after pivots).
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ### Phase 2 — Initial Deliverable Assets (later removed, see ADR-006/ADR-007)
 
 - [x] **T-07** — ~~Author `.opencode/skills/cli-codex/assets/codex_app_personalization.md`~~ — CREATED then REMOVED. Superseded by `<repo>/.codex/AGENTS.md` (ADR-007).
 - [x] **T-08** — ~~Author `.opencode/skills/cli-codex/assets/codex_voice_module.md`~~ — CREATED then REMOVED. Superseded — orchestrators govern their own voice; humans use shell wrappers or the global AGENTS.md (ADR-006).
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ### Phase 3 — SKILL.md Integration (3 sub-edits, later revised)
 
 - [x] **T-09** — Edit `cli-codex/SKILL.md` §2 Resource Domains block. (Later reverted after asset removal.)
 - [x] **T-10** — Edit `cli-codex/SKILL.md` §2 LOADING_LEVELS pseudocode. (Later reverted.)
 - [x] **T-11** — Edit `cli-codex/SKILL.md` §4 ALWAYS rules (Rule #10). Now states that AI-orchestrated delegations must NOT inject user-global voice content into delegated prompts.
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:phase-4 -->
 ### Phase 4 — Validation & Memory Save
 
 - [x] **T-12** — Run `validate.sh --strict` on spec folder. Template-shape deviations documented as known strict-mode noise; no blocker correctness issues.
 - [x] **T-13** — Walk `checklist.md` with evidence. Final state recorded in `implementation-summary.md`.
 - [x] **T-14** — Author `implementation-summary.md` + compose save-context JSON + invoke `generate-context.js` to index the spec folder.
+<!-- /ANCHOR:phase-4 -->
 
+<!-- ANCHOR:phase-5 -->
 ### Phase 5 — Scope Pivot: User-Global Voice Addendum (replaced T-07/T-08)
 
 - [x] **T-15** — Write `~/.codex/AGENTS.md` with Compact-tier voice content. (Later relocated — see T-18.)
@@ -69,6 +78,7 @@ _memory:
 - [x] **T-18** — Move source-of-truth to `<repo>/.codex/AGENTS.md` for version control and sharing; replace `~/.codex/AGENTS.md` with a symlink to the repo file. Update the file's header to document the symlink architecture and cite the Claude Constitution + Soul Document as content grounding.
 - [x] **T-19** — Delete `codex_app_personalization.md` and strip all remaining references from `cli-codex/SKILL.md` + `README.md`. Final cli-codex state: no voice-related assets; Rule #10 rewritten as a non-injection directive for AI orchestrators.
 - [x] **T-20** — Finalize spec folder: update `spec.md` EXECUTIVE SUMMARY and frontmatter (completion_pct=100, status=Complete), append ADR-006/007/008 to `decision-record.md`, rewrite `implementation-summary.md`, annotate `tasks.md` (this file) with Phase 5. Regenerate `description.json` and `graph-metadata.json` via memory save.
+<!-- /ANCHOR:phase-5 -->
 
 ---
 
@@ -86,8 +96,10 @@ T-12 → T-13 → T-14                       (Phase 4, validation before summary
 
 ---
 
+<!-- ANCHOR:completion -->
 ## COMPLETION CRITERIA
 
 - All `[ ]` above flipped to `[x]`.
 - Every task has verifiable evidence (file path, byte count, exit code) cited in `checklist.md` or `implementation-summary.md`.
 - No outstanding blockers in `_memory.continuity.blockers`.
+<!-- /ANCHOR:completion -->

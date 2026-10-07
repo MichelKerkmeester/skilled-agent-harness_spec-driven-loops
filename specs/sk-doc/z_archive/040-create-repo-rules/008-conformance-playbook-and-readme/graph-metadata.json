@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
-  "spec_folder": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
-  "parent_id": "sk-doc/040-create-repo-rules",
+  "packet_id": "sk-doc/z_archive/040-create-repo-rules/008-conformance-playbook-and-readme",
+  "spec_folder": "sk-doc/z_archive/040-create-repo-rules/008-conformance-playbook-and-readme",
+  "parent_id": "sk-doc/z_archive/040-create-repo-rules",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "conformance playbook and readme acceptance criteria",
+      "summary"
     ],
     "key_topics": [
       "feature",
@@ -34,9 +34,9 @@
       "implementation",
       "plan",
       "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "conformance",
+      "playbook",
+      "readme"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
     "created_at": "2026-08-31T14:06:06Z",
-    "last_save_at": "2026-09-10T20:45:42.151Z",
+    "last_save_at": "2026-10-07T18:14:23.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7593da0f3ece3d9456e4acdd6dd5ecbe5751050cc06e03f033fa45e90d4f01e",
+    "source_fingerprint": "sha256:67c013015c5a89d23a59a46cc5585c8a5ca252e3a97cfdc71e5074f6568884da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e799cd8aedaf400bc257b914031f1459978f57b8b8e26b611d5e664df0cf23e",
       "plan.md": "304bf76cb712427b0d5eedc1b56b9602f2b2ec32160982bd5cc562eae863bc6b",
       "tasks.md": "22f06d72e0c9d23478ae12e55284c870a3f927e0a685553d8a4c19a6356e199b",
-      "implementation-summary.md": "40ce9373e7631757b7d405f730129881b6e74d408c8fdc2028ad984a657da0f4"
+      "implementation-summary.md": "65557a9d421fd5fa53e46f1d1adf05831f53b70fc82de33002614a86f93c5e6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

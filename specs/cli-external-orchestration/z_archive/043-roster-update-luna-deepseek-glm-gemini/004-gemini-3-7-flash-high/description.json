@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+  "specFolder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
   "description": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS`",
   "keywords": [
     "gemini",

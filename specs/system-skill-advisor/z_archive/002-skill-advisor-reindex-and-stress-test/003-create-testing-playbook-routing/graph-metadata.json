@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Plan phase to route testing-playbook creation prompts to create:testing-playbook instead of generic documentation skills.",
     "created_at": "2026-05-18T07:49:27.133Z",
-    "last_save_at": "2026-08-30T15:39:26.251Z",
+    "last_save_at": "2026-10-07T18:15:33.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:775ae8bcf4b637d21735cd31860ddf15c11ed5bd172e3cad62ed40364a604764",
+    "source_fingerprint": "sha256:9d12e81a7bad438c68cc485723c771bed025bd50bba4805a5e44b526e34a244f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "237a795df35b0d91237d0d5f03cd97d01844a69f313f27614faba1ad639a9181",
-      "plan.md": "502c7be98cf7bf8a025a90acdc0ebe1ef7714f3be88f833a2be24b9b5ec16c47",
-      "tasks.md": "1d29d0c0952cc72a15986068882ed473637568061d6ba8eae63f67f02269f4ba",
-      "implementation-summary.md": "0dea3030a0214cdb277d9b6c4e7b2b57b5767ec0f072781b3e54c7496a503805",
+      "spec.md": "5a06a035cd42aae7c16e1ae930122e5096c458c772a4beef7567b624ead0ede3",
+      "plan.md": "06eb724d1da931d93e837b9e9e8170190c61d9715b4be4f07e6cf6938161e0d3",
+      "tasks.md": "3285ff59dc3e1546eec265c32beacf23dcac287daeb294441ac76068693531b9",
+      "implementation-summary.md": "1453a7a561301d536ec6f3e3870d28af5680ecebb6109e2a1657b1dfe92757c1",
       "resource-map.md": "e8c55552adbefb7f6731808d75ed4d2c43b257be90900c8077174b2062126a09"
     },
     "last_active_child_id": null,

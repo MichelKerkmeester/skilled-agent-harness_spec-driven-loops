@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Two findings from the packet 008 audit:",
     "created_at": "2026-04-23T10:30:00.000Z",
-    "last_save_at": "2026-08-30T15:39:26.799Z",
+    "last_save_at": "2026-10-07T18:16:09.369Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a79b17eba2ac5e330099cb2e76654409623d00ebb9792e82159179662283febd",
+    "source_fingerprint": "sha256:fff2ca8c89c8fb901ac7f70a2edc5655cd0fd3e190d8d9a56299bf674e42e640",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01df2d3a688d0b74caa44bc7b54b7e9472b08bbbee81b2223e59fda6e5ab9bd9",
-      "plan.md": "ef0d225ef33eb87c43b1103c6fe8adbbb9eb666d4bedbeb868ec16976e24b6df",
-      "tasks.md": "ffac53019e56d0d24b93032df7e73fb3af749e3532eaf0da41e0ddf92b84fcaa",
-      "implementation-summary.md": "3ed026cdbefe7a25deeb19e26f2093050b471ec4456aa1363575160badf12df8"
+      "spec.md": "00cfd5d091f792a43905fc756aaa09fc0bc8784a4cb5d16ea25767c63fae0f59",
+      "plan.md": "ffef3abeb202024137be544249d7c377024be6508968c3b4b723c90cd87da0e3",
+      "tasks.md": "f7282de999b4a1eb16e524466105e68ec101e3b9853c7a3888268aa73ac1512b",
+      "implementation-summary.md": "c09b5a4e8f75c4321e7fae7040ab893300fbfea438fb2638eca25a534ae15940"
     },
     "last_active_child_id": null,
     "last_active_at": null

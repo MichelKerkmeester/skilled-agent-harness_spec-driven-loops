@@ -188,7 +188,7 @@
     ],
     "causal_summary": "When a loop iteration overruns its scheduled fixed-rate slot, the next slot starts immediately without any record of the overrun; missed slots are silently dropped and there is no `skippedCount` in the persisted state",
     "created_at": "2026-06-28T14:01:58Z",
-    "last_save_at": "2026-08-30T15:39:24.821Z",
+    "last_save_at": "2026-10-07T18:15:15.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09f205ce11a903ad0e367fe70fdfc80c3f171357619e77166a63479805824932",
+    "source_fingerprint": "sha256:87a87aa7f21c645d03fc93e63ccc4563ed533502c0643214e552f4da390a5c10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4f0a462f946b63d8deca000b3ce975ce0ddc1af4c1747ec290ec7f398bfe27a",
-      "plan.md": "7c6899b06be4e7ac2c1c6451d9b44ec7c778d554d3b0ebe0e12d8ab7167f4490",
-      "tasks.md": "519555d4630498c497abdf210b69ae77985e463077c2f647add2392c4a889503",
-      "implementation-summary.md": "aef422f84812e521b12c46ecd402951fea07f1d5b31f88f4be9725f6fade55f2"
+      "spec.md": "59f7c9aff07cb09e2d4d8033c1738dc9ddd0fcc24c7d339b7ba09bacf92ae747",
+      "plan.md": "d21c0f8a4e949e50c07889382bf2fb6e27477d4866ed32c20a4884f705b4bf62",
+      "tasks.md": "828487d4a7a052cda8c30b02f7cb7750086e7a354541e0816875d7cec2f461be",
+      "implementation-summary.md": "1361c80a9b0369190baa394369427b400a16e9bfe2b771a6446ce22bb95f7c38"
     },
     "last_active_child_id": null,
     "last_active_at": null

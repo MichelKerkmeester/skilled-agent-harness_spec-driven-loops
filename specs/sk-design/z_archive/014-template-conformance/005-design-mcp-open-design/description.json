@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "specFolder": "sk-design/z_archive/014-template-conformance/005-design-mcp-open-design",
   "description": "The Open Design MCP transport packet (`design-mcp-open-design/`) has not been audited against the create-skill template family",
   "keywords": [
     "open",

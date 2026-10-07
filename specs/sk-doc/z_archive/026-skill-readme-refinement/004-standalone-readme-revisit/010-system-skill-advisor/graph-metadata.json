@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,10 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/README.md",
       ".opencode/skills/system-skill-advisor/changelog/v0.11.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/implementation-summary.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/plan.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -58,25 +54,25 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,7 +198,7 @@
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome the skill delivers, written in the Human Voice Rules and validated by the sk-doc README validator",
     "created_at": "2026-08-04T08:34:38.389Z",
-    "last_save_at": "2026-08-30T15:39:17.540Z",
+    "last_save_at": "2026-10-07T18:13:48.152Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50d395ada556e30ffe8f52ae85682701d01ba86d95828d9aa7e5920cd3df42ac",
+    "source_fingerprint": "sha256:f281d4411706d238e5dd663ea002345fe997ebed0308f32b22ff40ceb9379e69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dd286d3cc501d88f410a30ecba1111c6a0fd04b484ef138d683bd7f7b2427fbd",
-      "plan.md": "ea1c51392763efc1d3c01c48d11a6b203fec27b64e8e75e6a400ca6cc4101179",
-      "tasks.md": "61a582a9b9f321ee6b9e9eaa6a2e79270deadab617126b40db2f893343a85d51",
-      "implementation-summary.md": "b18b7e09a5f75ea5e7f76a810472b834a0bc4bda1d11e8ecde7c70c5257f92bb"
+      "spec.md": "eaca45b261a8c4e920217fe1d159dfad4d8de20bb3c30bd1a1ce43dcf30f1b60",
+      "plan.md": "a66476738a6e40d9c48518e107b2896aba4f537ffb16ec714efffdfcae72f6fa",
+      "tasks.md": "a70ef66c0bd1b26ddfb83cccf03cf174e01ba950d5b33230bc951fc4b0ce9046",
+      "implementation-summary.md": "0d1180f1c919dd65979d4d112b597687d432f793e8530c47d847b912fc51aacd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/014-mcp-notion/002-skill-authoring",
-  "spec_folder": "mcp-tooling/014-mcp-notion/002-skill-authoring",
-  "parent_id": "mcp-tooling/014-mcp-notion",
+  "packet_id": "mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
+  "spec_folder": "mcp-tooling/z_archive/014-mcp-notion/002-skill-authoring",
+  "parent_id": "mcp-tooling/z_archive/014-mcp-notion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth), which of the 24 tools serves which operation, where the 5 direct-API gaps are, or how the API 2.0 data-source model differs from a plain database id",
     "created_at": "2026-08-21T15:00:45.750Z",
-    "last_save_at": "2026-08-30T15:39:10.294Z",
+    "last_save_at": "2026-10-07T18:11:17.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d064c5233a7849fc4a2e9820095524c7f64cceae5ee17243c4e76ce465f59c98",
+    "source_fingerprint": "sha256:bb38abf5e38d6c3a0fd2d2805de94a0ba070fc258b0ef29d69a793f0632c0291",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ded9527fa690fc6732af0f476fafe225aaf03f35e5c66319fe6baed36077176",
-      "plan.md": "f95e6c1f08fc330713c325c20ecbdba264c58c506a6c3901711702138a62c2e3",
-      "tasks.md": "98fd19dc7f0b1fd1a18569a7b85bd078a34e16043d5b71ed4a609114edca0d24",
-      "implementation-summary.md": "e29e15cf3587ccb091e7c0fe5cd962a0ecef7d2cd6e65d2e1193327b5e9b0f4d"
+      "spec.md": "acae8e8099cebba24a8e10a151f2d2c9277c32c9b0093912f7f50bff28a05780",
+      "plan.md": "0f7fcdd78bfdc4a036518c8931edff84e9beef8e246332041eb667041c84a1e7",
+      "tasks.md": "55c405a73efaf3c45115e1072bfefe92bba38326aaaccb070af6309f859a8db9",
+      "implementation-summary.md": "eaf355661349b887547fa58b82c0c3ae5ab1dbbd2496f555ff625fce1c348eec"
     },
     "last_active_child_id": null,
     "last_active_at": null

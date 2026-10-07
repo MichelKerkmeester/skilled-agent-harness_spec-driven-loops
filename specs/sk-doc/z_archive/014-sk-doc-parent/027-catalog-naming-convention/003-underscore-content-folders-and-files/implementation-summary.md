@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled 003 to a completed Level-2 leaf; residual hyphenated tracked = 0"

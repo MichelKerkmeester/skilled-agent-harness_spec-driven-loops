@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`sk-deep-research` previously handled both investigation workflows and iterative review-mode auditing",
     "created_at": "2026-04-12T09:02:50.180Z",
-    "last_save_at": "2026-09-07T16:09:39.779Z",
+    "last_save_at": "2026-10-07T18:15:13.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09f389c3435069389c6bb7574a546c79609bda78ae9d78bd6f4892ed61904bda",
+    "source_fingerprint": "sha256:923ce211860864b0a32b73fda935ae9b1a8341155a6f8c8c0bb825b9c6a4d81c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ab4ced1f5610704b5dbbe012a63cae8d4b0b993e036c9a3a22e0ee1ab1d1e1c",
       "plan.md": "4926de8b1eb80a3bae120b11688df7d76423e0cd42bbf2f7152ca66c634dc6d7",
       "tasks.md": "a662609be33ef24b547e119cff1002fde32ba7d0e69424bd4ac0ca2e982762ab",
-      "implementation-summary.md": "2140ef1ff8032ea0a57169b45fa1e03f64ac9a2c1a44e7d09f73a0e747030edb"
+      "implementation-summary.md": "5d82610bdf4b1125254306353de14b34eca5055deadb9270c02fc6e24240b584"
     },
     "last_active_child_id": null,
     "last_active_at": null

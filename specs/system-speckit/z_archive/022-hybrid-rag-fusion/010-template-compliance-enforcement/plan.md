@@ -145,7 +145,6 @@ Agent receives task -> Reads inline contract (Layer 1: headers + anchors per doc
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -167,7 +166,6 @@ Phase C (Directive Consolidation) ─────────┘
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

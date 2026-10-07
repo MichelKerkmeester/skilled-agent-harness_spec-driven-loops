@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-preflight-and-rename-plan |
+| **Spec Folder** | 001-rename-preflight-and-plan |
 | **Completed** | 2026-05-23 |
 | **Level** | 2 |
 | **Direction** | `sk-ai-council -> deep-ai-council` |

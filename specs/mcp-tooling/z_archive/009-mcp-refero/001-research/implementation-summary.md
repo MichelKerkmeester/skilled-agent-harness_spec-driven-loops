@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/009-mcp-refero/001-research"
+    packet_pointer: "mcp-tooling/z_archive/009-mcp-refero/001-research"
     last_updated_at: "2026-07-16T15:05:07Z"
     last_updated_by: "claude"
     recent_action: "Compiled canonical research.md + resource-map.md from 3 completed lineages"

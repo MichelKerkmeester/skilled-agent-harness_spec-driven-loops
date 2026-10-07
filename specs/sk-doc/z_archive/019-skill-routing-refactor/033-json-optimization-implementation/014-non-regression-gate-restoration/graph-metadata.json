@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Repair the scorer-eval baseline ratchet — the only test that pins holdout accuracy exactly and enforces the release floors — and wire it into CI, so the hole that let a -2 routing regression ship undetected closes behind this program.",
     "created_at": "2026-07-30T08:10:27.264Z",
-    "last_save_at": "2026-09-11T16:42:10.214Z",
+    "last_save_at": "2026-10-07T18:13:33.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6635b9540841e82e0dc36adba453c537c934b84811dfa39ee073023030455fa7",
+    "source_fingerprint": "sha256:3d443d72cdf047860a129f0f112f57bf2d03febc6b5ea9962d9a6b516a3e5400",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10dff411aed8530a13313de736c93363351ef53a71c3bfada056f0f362f9452b",
-      "plan.md": "abaa4edd079b7d77274422693a49637edfd07c299fe7baa4413b9e619979b4b5",
-      "tasks.md": "057cd955b80616f52eae21505bdba1e057a9fef59b1296b02ae312a858892e85",
-      "implementation-summary.md": "d71128b06dc36d1e3f53ad0600ecfd3760892df1eb1a7143821a54f93344849d"
+      "spec.md": "08016e7dccf2117a8368a0ff86866c2ed4624fa0b353d547065e5823e297af5f",
+      "plan.md": "5962a0865b79fd8da87c8f7a07a5e2249752026e3068c839211c75ca01e8eeb9",
+      "tasks.md": "de5a4aed6aea3ab3df7d2ee328913f545c90c077c6656a0c54e35a17bdfc9d88",
+      "implementation-summary.md": "5cf134da45f13a0aecb21f11872c1f27830421096190c92e424748959355d6b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

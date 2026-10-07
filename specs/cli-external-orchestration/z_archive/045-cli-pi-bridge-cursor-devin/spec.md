@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/045-cli-pi-bridge-cursor-devin"
+    packet_pointer: "cli-external-orchestration/z_archive/045-cli-pi-bridge-cursor-devin"
     last_updated_at: "2026-08-17T11:46:00Z"
     last_updated_by: "claude"
     recent_action: "Research child 001 complete; not-feasible-now verdict"

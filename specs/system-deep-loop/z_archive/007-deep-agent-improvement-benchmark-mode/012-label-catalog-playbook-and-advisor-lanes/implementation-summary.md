@@ -6,7 +6,6 @@ trigger_phrases:
   - "lane note"
   - "mode mix"
   - "reduce-state"
-  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

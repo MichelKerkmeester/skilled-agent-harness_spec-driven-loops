@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/012-devin-hook-hardening"
     last_updated_at: "2026-07-27T07:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Hardening pass complete: 10 adapters unified, test suite 10/10 green."

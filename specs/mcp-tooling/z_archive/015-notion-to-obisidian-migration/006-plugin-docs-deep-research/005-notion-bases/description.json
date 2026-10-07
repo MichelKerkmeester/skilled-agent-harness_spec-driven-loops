@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/005-notion-bases",
   "description": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
   "keywords": [
     "mcp-obsidian",

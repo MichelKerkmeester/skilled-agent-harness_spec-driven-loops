@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover"
+    packet_pointer: "mcp-tooling/z_archive/016-code-mode-node-resolution/003-host-config-cutover"
     last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
     recent_action: "Cut code_mode over to the launcher"

@@ -42,8 +42,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "optimizer-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
     "created_at": "2026-06-28T14:02:08Z",
-    "last_save_at": "2026-08-30T15:39:24.920Z",
+    "last_save_at": "2026-10-07T21:19:54.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:845873e84d0a9e4809252eccde0cd618ce1323f7dcc63df1650b69aba991dd3d",
+    "source_fingerprint": "sha256:8e6e496b0904598e8daec8973b53978256ac7eceb83f7c26ba6ac9ba9bdbc34d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "daa68c4f52291238afa7dd3f29f468cb9be008ae03de1b97d9f0cc78cffc292e",
-      "plan.md": "f143383c774090b4664f6e1dd6b831528e7337caed26fdba334d166489c66c41",
-      "tasks.md": "c218fcf8067c30a122a6674c8a65c593d9083da0b40f612b3343c32dff91144e",
-      "decision-record.md": "728aa272ab42ac6274f7bec71b2b8818326c8389d2e88f2fb25769cfff6c285a",
-      "implementation-summary.md": "8c910ed5a908e275f8bd17290f71c1df5b250ea68e08b5f98fd84082091b532d"
+      "spec.md": "549cd12e2fe8269c51188f975dc6df793a392d053c7b4928d1c2cafa39314f51",
+      "plan.md": "ed92b52941c721860a6b48e60622c9408fa6f02c0a0f5e3efc6b3d29262f2711",
+      "tasks.md": "51fe9a1aed2aba8b2a867e788d2ac58c494d1d4caf9f4bb9d8c3d5f2945b0887",
+      "decision-record.md": "f1a0661d79aaa1d5df23575837e4853e2739e461056eb285fb8b4c8c2bbfd17c",
+      "implementation-summary.md": "f834e632f7d067c5d633fc43ae54467abe9a2cc5ddf5b46b08da37dab383cd98"
     },
     "last_active_child_id": null,
     "last_active_at": null

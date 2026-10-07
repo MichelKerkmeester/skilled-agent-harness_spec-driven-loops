@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/011-sk-design-styles-utilization/007-shared-context-seam"
+    packet_pointer: "sk-design/z_archive/011-sk-design-styles-utilization/007-shared-context-seam"
     last_updated_at: "2026-07-18T18:07:37Z"
     last_updated_by: "claude"
     recent_action: "Built and verified the corpus-context seam; 28/28 tests pass, authority order enforced"

@@ -10,7 +10,7 @@ contextType: "planning"
 parent: "sk-doc/019-skill-routing-refactor"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor"
     last_updated_at: "2026-07-25T07:50:37Z"
     last_updated_by: "opencode"
     recent_action: "Corrected both reducers, synthesized the existing alignment and research evidence, and strictly validated phases 017 and 018"

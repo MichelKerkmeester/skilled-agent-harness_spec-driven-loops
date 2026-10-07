@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
-  "spec_folder": "cli-external-orchestration/060-devpass-roster-vision-gemini-3-8",
+  "packet_id": "cli-external-orchestration/z_archive/060-devpass-roster-vision-gemini-3-8",
+  "spec_folder": "cli-external-orchestration/z_archive/060-devpass-roster-vision-gemini-3-8",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three distinct truth gaps sit in the CLI hub at once, and each one makes a document lie about what a dispatch will do",
     "created_at": "2026-09-04T11:49:59.788Z",
-    "last_save_at": "2026-09-06T07:10:48.419Z",
+    "last_save_at": "2026-10-07T18:11:40.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9684cf3d15c3406fdbaffd428597a01a5649884acf1b3f2d0369b340347f640",
+    "source_fingerprint": "sha256:2597995b5c63ead2d494478897edf863d0261d3fcabaedd196e15ca2445f8c6b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4fc09d66eca30f9da0f8facdfbd7e5e0e38ac1431634c341e6237450fc51199a",
-      "plan.md": "5c3cd5198f8b0bcec8d8147e0cd09efc45ec082e0f6dd5299f46d6057508ec79",
-      "tasks.md": "56eec8aa95f762ff99ad76056021cae5ac873c10a49a364edfd60ecdf2f945da",
+      "spec.md": "9817032d55b96b948bf6827ed36819070de2eceb77af4a52c1c85465f60212a8",
+      "plan.md": "2b611fa97e0c3d5b258f478b89a5e585a6903c0967c4513c26d83455a73c55cb",
+      "tasks.md": "16b55627608eb02ebe2f02b7d0118894dc278023f9ee544cf46caef59dcf2315",
       "decision-record.md": "70d5f48c3eb30a60c0be86c338058230c6dfe821fc9f6ad98bf0ea39182410a6",
-      "implementation-summary.md": "e70669992ebf3275aa8f689e5bb1cfdcc6d9f245b7f7a5398125523adefe4d98"
+      "implementation-summary.md": "3df7ac30562f4f8c1016cc53fe4e8514af4bec24215d4c3568512545bb9a4e82"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/001-packet-root",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/001-packet-root",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/001-packet-root",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/001-packet-root",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The `design-interface` packet root has `SKILL.md` (345 lines, 4,336 words per `wc -w`, 36,702 bytes) and `README.md` (202 lines, 2,260 words, 16,826 bytes)",
     "created_at": "2026-07-27T14:56:07.692Z",
-    "last_save_at": "2026-08-30T15:39:12.994Z",
+    "last_save_at": "2026-10-07T18:12:06.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60196942443397f1a735795be7ea0b9b359c9c9fc7fa591f895a5e3c846ca40b",
+    "source_fingerprint": "sha256:99b4f705030efbe17b655ebeec59db9bea7934b593b494211917f5396fa30c38",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0cc8be11d614dcba418c3719b24bd2c7d33d76e9fdc7a963a3762bbe1d5f8d4a",
-      "plan.md": "d9aabc66b15eaaa34d8c309a8e42bc98b0667a4ff694a0295bf4631b3f671d4f",
-      "tasks.md": "3a1c02bd823581eafd0aef57d065771ae81ece0be336ad4ef7f2ac65ffa54390",
-      "implementation-summary.md": "83fb0de0744a6680372f3fcd2bab7b4860968991fa695a1e5182e25923897302"
+      "spec.md": "fea25a70ecb5563bef91ef5db2e37542873f3966cb37e644cb11e329f320158c",
+      "plan.md": "c3c51c954a80bf44394b206cff61ed8a3b8c8ffe4547a9b7b2032ad574db3baf",
+      "tasks.md": "8f26f1d148c46a83760c636b1bca1f4917593a9a8a5772f03d923aa0579c44a0",
+      "implementation-summary.md": "06eca935d05c7943e6c945e14b8eb04d9e8a4ade9087215d1506de7a8c16d3bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

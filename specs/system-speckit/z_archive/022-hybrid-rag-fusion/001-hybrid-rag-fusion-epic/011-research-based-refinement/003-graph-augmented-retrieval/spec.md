@@ -24,6 +24,7 @@ _memory:
 
 # Feature Specification: Graph-Augmented Retrieval
 
+<!-- ANCHOR:metadata -->
 ## Phase Context
 
 | Field       | Value                                              |
@@ -32,14 +33,17 @@ _memory:
 | Parent      | `../spec.md`                                       |
 | Predecessor | `../002-query-intelligence-reformulation/spec.md`  |
 | Successor   | `../004-feedback-quality-learning/spec.md`          |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Overview
 
 Graph-Augmented Retrieval adds a knowledge-graph layer to the Hybrid RAG Fusion pipeline. Rather than treating the graph as a first-class ranker from day one, this phase adopts a **sparse-first** posture: typed 1-hop expansion by default, communities only when density justifies it, and deterministic save-time enrichment that keeps the graph fresh without runtime LLM calls.
 
 Six requirements span traversal policy, lifecycle management, enrichment, calibration, and community detection.
+<!-- /ANCHOR:problem -->
 
 ---
 
@@ -217,6 +221,7 @@ if (component.density > threshold && size > minSize) {
 <!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 4. Risks
 
 | Risk                          | Mitigation                                          |
@@ -225,6 +230,7 @@ if (component.density > threshold && size > minSize) {
 | Computation cost              | Local recompute only for small components; global is scheduled |
 | Stale `degree_snapshots`      | Dirty-node tracking triggers refresh                 |
 | Enrichment noise flooding     | `explicit_only` evidence; LLM backfill gated and async |
+<!-- /ANCHOR:risks -->
 
 ---
 
@@ -235,23 +241,7 @@ if (component.density > threshold && size > minSize) {
 - [ ] Integration test: save-time enrichment round-trip
 - [ ] Ablation report produced for at least two intent categories
 - [ ] Latency benchmark confirms < 50 ms graph operations
-- [ ] No stale community data observable in hot-path test<!-- ANCHOR:metadata -->
-<!-- /ANCHOR:metadata -->
-
-<!-- ANCHOR:problem -->
-<!-- /ANCHOR:problem -->
-
-<!-- ANCHOR:scope -->
-<!-- /ANCHOR:scope -->
-
-<!-- ANCHOR:requirements -->
-<!-- /ANCHOR:requirements -->
-
-<!-- ANCHOR:success-criteria -->
-<!-- /ANCHOR:success-criteria -->
-
-<!-- ANCHOR:risks -->
-<!-- /ANCHOR:risks -->
+- [ ] No stale community data observable in hot-path test
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS

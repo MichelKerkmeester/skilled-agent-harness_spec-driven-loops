@@ -178,7 +178,7 @@
     ],
     "causal_summary": "`fanout-run.cjs:846` hardcodes `const convergenceThreshold = options.convergenceThreshold ?? 0.1;` as the fallback when no explicit value is supplied to a CLI-executor fan-out lineage, while `deepresearchconfig.json`'s own documented default is `0.05` — confirmed distinct from (though related to) the separate \"the flag doesn't propagate at all\" bug already fixed in child 001's dispatch",
     "created_at": "2026-07-01T07:26:03.619Z",
-    "last_save_at": "2026-08-30T15:39:25.241Z",
+    "last_save_at": "2026-10-07T18:14:59.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aee1b283b9cb8bc27caabe45902e85e95aae0bf0c7109921c786c36536e3dee7",
+    "source_fingerprint": "sha256:01a1c4ff6400eecedc37954b9aa27c7df6d5aeb739e8ecd882a92d9dee91775d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a38e7807377d4c00a6020efb3709e7316677e9f27c2c3dd9d82d7b951f57a1a3",
-      "plan.md": "e5d24d298f11617c41b82b64c2aaf663fdc7c105875e1d28376c114b5219a7f1",
-      "tasks.md": "03787b04ed4e8da809aa8f16c61f7cca0701729b9b25952722ab56dd7e47fabc",
-      "implementation-summary.md": "4cd3d3985a925aa9fe579d2ec360c972af603501ca45abe27a35e6574ffaa61b"
+      "spec.md": "b9bbf381a14fdedb360090b160b61267ee06cb7b09d28040f4868acc1cc68185",
+      "plan.md": "abb6f379475ab3031cfd3bd5681cffc65e3b40e2547a7863cbd2e0cc6330eccc",
+      "tasks.md": "a060cab88d70e5fde5b21f10f3d4ab0b69f415bb1e48e1274e27bc7318e1ed77",
+      "implementation-summary.md": "a2820b3d06943c239152a8e873e6a67829b20a533418101813ec3e11bf79c8af"
     },
     "last_active_child_id": null,
     "last_active_at": null

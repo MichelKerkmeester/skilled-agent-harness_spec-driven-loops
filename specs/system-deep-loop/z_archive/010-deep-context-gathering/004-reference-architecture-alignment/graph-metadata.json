@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-context skill is structurally behind its three mature siblings",
     "created_at": "2026-06-07T07:05:28Z",
-    "last_save_at": "2026-08-30T15:39:24.009Z",
+    "last_save_at": "2026-10-07T18:14:57.704Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0787a6cb0e3b3d33f07dd2de4b566dc6148b85038ac5fa6bb84873d96798a2e5",
+    "source_fingerprint": "sha256:518774825c29af39975d13a0ab04eefcb1fff3bbd7aa01df09443c7390735854",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37c5554b1e7a0f65237813c7a4ccd5840527669d48a0f411c99f21579358322a",
+      "spec.md": "4f6e91193fd80f36ac3d2c60fbe2763250ebadeeb39ad2eb28e2dc39b28f2d1c",
       "plan.md": "29af5044ee7506cd61eab578e9915f3e7d4992a0c3a6e83cd602b795cae7599b",
       "tasks.md": "1b51fa1f659b984720cbda58e64ea149ae9dc2f33b9cb75b3136767509b4e72d",
       "decision-record.md": "a28af58cab79d07cbf950a35c51f41bf7147653e6a95d5f4e7d8a67e179fe529",
-      "implementation-summary.md": "003d969e00d8517734bcab25cf4d8e860c94db59307b0f2ed0840fa9cf93ec33"
+      "implementation-summary.md": "e892c49c155ede52a47a42f0412a20d9ed9ec579009a0675fe94cb5adf7f4266"
     },
     "last_active_child_id": null,
     "last_active_at": null

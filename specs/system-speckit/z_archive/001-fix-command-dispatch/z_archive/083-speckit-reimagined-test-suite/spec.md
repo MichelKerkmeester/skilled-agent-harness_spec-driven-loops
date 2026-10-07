@@ -41,7 +41,6 @@ This specification defines comprehensive test coverage for the SpecKit Reimagine
 | **Created** | 2026-02-01 |
 | **Parent Spec** | 082-speckit-reimagined |
 
-<!-- /ANCHOR:metadata -->
 ---
 
 <!-- ANCHOR:problem -->
@@ -210,7 +209,7 @@ Create a comprehensive test suite that:
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -234,7 +233,7 @@ Create a comprehensive test suite that:
 - **NFR-T11**: Mock implementations in `tests/mocks/` directory
 - **NFR-T12**: Test utilities in `tests/helpers/` directory
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:nfr -->
 ---
 
 ## 8. TEST CATEGORIES

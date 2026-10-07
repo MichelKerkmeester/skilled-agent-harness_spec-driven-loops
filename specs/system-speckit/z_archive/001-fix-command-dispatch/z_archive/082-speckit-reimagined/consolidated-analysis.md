@@ -1,3 +1,15 @@
+---
+title: "SpecKit Reimagined: Consolidated Analysis & Recommendations"
+description: "Consolidated analysis synthesizing 25 parallel agent analyses of 8 pre-analysis documents into prioritized recommendations."
+trigger_phrases:
+  - "speckit reimagined consolidated analysis"
+  - "competitor research synthesis"
+  - "memory system analysis findings"
+  - "implementation recommendations synthesis"
+importance_tier: "normal"
+contextType: "research"
+---
+
 # SpecKit Reimagined: Consolidated Analysis & Recommendations
 
 ## Executive Summary

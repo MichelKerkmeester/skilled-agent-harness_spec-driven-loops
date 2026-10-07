@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/022-legacy-hub-compiled-routing-refresh",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests; `sk-prompt`, originally in this set, has since been refreshed to `compiled`/`fresh`",
     "created_at": "2026-08-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:15.459Z",
+    "last_save_at": "2026-10-07T18:12:58.657Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b525900c0d8f0c02af52fd26fd067a4b4797bf58d920095670ef9a8f475908ff",
+    "source_fingerprint": "sha256:5045b317b48c561a40cacb8b1c277a003ad1db56fcb2cf05977848c532fcff0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edb20a9a01f63d9e242283c894864e5f0b333c1eb00bf182d368130a641838cb",
-      "plan.md": "1f82500df3000eb1594a30d30d697bcb60bd2458fc9fad0aea8f69b40222d1c3",
-      "tasks.md": "438f0922fd83aea4d8f018b3dcd78e262ccfb8260d4a13832e33c5f0b78b7273",
-      "implementation-summary.md": "e9b6c47912a8ca6510a3d08af2d3d5fddedea1f9c676d68a64a1128468af2aaa"
+      "spec.md": "05bede1dbdaaaf899630e4214d0cad5219b96a978783f96936e5185ac7d69299",
+      "plan.md": "606f564b3990abee37c7c3d56e339a05b9764528ef129decda32c5b8afcb68db",
+      "tasks.md": "afdd30d8094128f3abe78cc81b670be46bc17cc25fe6792faf8165b7957a0864",
+      "implementation-summary.md": "dc7deb276706d9b3bf494c6494e4331e2832fb455da0819706b72c195c72bfcc"
     },
     "last_active_child_id": null,
     "last_active_at": null

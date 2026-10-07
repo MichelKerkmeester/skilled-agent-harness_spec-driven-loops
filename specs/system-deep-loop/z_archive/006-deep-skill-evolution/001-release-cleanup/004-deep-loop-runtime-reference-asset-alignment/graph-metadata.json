@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The three deep skills now share a runtime family but their references and assets were uneven",
     "created_at": "2026-05-25T06:37:29.559Z",
-    "last_save_at": "2026-08-30T15:39:22.855Z",
+    "last_save_at": "2026-10-07T18:14:18.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0f4fd938f688d378de7b77292c006d57051478e5a2a8a19c57cc30b767d70c1",
+    "source_fingerprint": "sha256:446935fb8f89e09b147155f4c9735584c2855330f879942493c33428ea85c4b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e164cda365a4f8761fe1dfe8b68c7ee598c2b44b7cabeac0a6c5d5cbece33d04",
       "plan.md": "4037a7f34b53e249adf4cdb6a7215392cd5cefbed03c5d0518a3b7a6ae282639",
       "tasks.md": "4c6680d135a729f2d614ce021fd16c9f8ac67512567d6b98a082e7c4625fb30c",
       "decision-record.md": "5ce0ecefcd60c925f297588f6fb16225d3eeb86734c175ef15fca73756fb72f6",
-      "implementation-summary.md": "a1e7140e5b1ed2e9616490cf7fcb5049a6d36dc9f438d90dd41828e40e4d2826"
+      "implementation-summary.md": "093b1199141b08157898b3d27ac9bddf62c8cb43b99c650231cf0c11df4cb4b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -53,8 +53,8 @@ Phase 020 could land as a direct-implementation spec folder (research inline, sh
 
 **Research-first umbrella.** Scaffold `020/001-initial-research` first. Dispatch deep-research on architecture + budget + runtime parity. Spawn implementation children per finding cluster.
 
-<!-- ANCHOR:adr-001-alternatives -->
 <!-- /ANCHOR:adr-001-decision -->
+<!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
 | Alternative | Why rejected |

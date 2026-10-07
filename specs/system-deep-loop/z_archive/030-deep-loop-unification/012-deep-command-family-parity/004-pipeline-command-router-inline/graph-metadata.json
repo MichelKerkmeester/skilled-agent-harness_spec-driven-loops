@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
-  "parent_id": "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/004-pipeline-command-router-inline",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes",
     "created_at": "2026-07-13T19:00:49.829Z",
-    "last_save_at": "2026-08-30T15:39:19.922Z",
+    "last_save_at": "2026-10-07T18:14:56.709Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b049062a51e35f119f90c43760b13bbfd93624b2f7cf428ca83783512f6c77a9",
+    "source_fingerprint": "sha256:f5b26f99bdd1d61e63c3734ec7e770f1f02f5729bb996d88171f73f5dbbc8a40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d22b2048a28eae253054ff99cf0b95f0022c4b6e596c13672c1e5bf12cc3356e",
-      "plan.md": "e981fc54a598ded35ce3adec69d17a0187a0d9450aa2e7aad1974f49b2f56ac5",
-      "tasks.md": "33df976f05e8aefb0abd64e0c4719a62e6d75b36e6ad87b9efd88b97aa37adde",
+      "spec.md": "b16523962fdfbcacab9c060171f7128f88b0030aaadda1ca51c551a4080492b3",
+      "plan.md": "c1566d3e13a96f9735adeb16d7fd41292b46079896ec8549fd84a59de58477c9",
+      "tasks.md": "d62a72be3f193284bd2ceee4d8ac3152beca14feece86d02c959b45923ff4b77",
       "decision-record.md": "52c1c1d742751d4855caeda4c382e5313d92389588fffcd40a26bd80d3f6a793",
-      "implementation-summary.md": "87fd5c1b7b82bc3d2d2d8a14443e650f137ecc877802ffc6cf80e1331555118d"
+      "implementation-summary.md": "969a922005a203a8dedbddb21c93ffc55bd89597709c42410a43bca5bf3e3bb0"
     },
     "last_active_child_id": null,
     "last_active_at": null

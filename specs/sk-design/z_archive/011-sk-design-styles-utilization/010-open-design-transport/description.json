@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/011-sk-design-styles-utilization/010-open-design-transport",
+  "specFolder": "sk-design/z_archive/011-sk-design-styles-utilization/010-open-design-transport",
   "description": "The `design-mcp-open-design` transport moves design work between the sk-design modes and an external Open Design daemon, but it has no way to carry",
   "keywords": [
     "design-mcp-open-design",

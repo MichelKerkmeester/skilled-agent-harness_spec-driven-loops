@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/006-design-authority"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority"
     last_updated_at: "2026-08-29T19:22:00Z"
     last_updated_by: "session"
     recent_action: "Bound sk-design unconditionally; reverted crossHubPairing per ADR-001"

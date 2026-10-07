@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 006 — Parent-Skill Canon Verification & Procedures Pattern Formalization"
 description: "Executed Level 2 plan re-verifying sk-design against the canon parent-hub checker and deciding whether the procedures/ companion-directory pattern becomes sk-doc canon or stays sk-design-local."
 trigger_phrases:
-  - "implementation plan"
   - "parent-skill canon verification"
   - "sk-design canon re-verification"
   - "procedures pattern formalization"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/006-parent-skill-canon-verification"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Executed the Phase 006 plan and accepted ADR-001."

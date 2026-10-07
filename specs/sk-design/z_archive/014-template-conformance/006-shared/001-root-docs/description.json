@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/006-shared/001-root-docs",
+  "specFolder": "sk-design/z_archive/014-template-conformance/006-shared/001-root-docs",
   "description": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root",
   "keywords": [
     "opencode",

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/000-command-benchmark-contract"
     last_updated_at: "2026-07-14T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded the contract child from the reconciled three-model benchmark design"
@@ -17,10 +17,7 @@ _memory:
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "command benchmark contract tasks"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

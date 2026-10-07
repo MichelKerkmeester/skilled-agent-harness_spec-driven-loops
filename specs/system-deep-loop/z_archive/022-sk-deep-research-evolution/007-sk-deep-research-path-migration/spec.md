@@ -52,8 +52,8 @@ This is a repo-wide contract migration. The implementation must update command w
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -177,7 +177,7 @@ Define the Level 3 migration packet that makes `research/` the canonical researc
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -192,7 +192,7 @@ Define the Level 3 migration packet that makes `research/` the canonical researc
 - **NFR-R01**: Both research and review workflows must converge on a single canonical packet root after migration, even when legacy packet artifacts are present.
 - **NFR-R02**: The shell helper surface must expose stable path variables so follow-on scripts do not infer packet structure independently.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

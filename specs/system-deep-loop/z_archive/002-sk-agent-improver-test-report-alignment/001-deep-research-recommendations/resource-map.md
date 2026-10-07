@@ -23,9 +23,11 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## Scope
 
 Research-only packet. **No source-file changes outside the packet folder.** All outputs are research artifacts inside `001-deep-research-recommendations/`.
+<!-- /ANCHOR:summary -->
 
 ---
 

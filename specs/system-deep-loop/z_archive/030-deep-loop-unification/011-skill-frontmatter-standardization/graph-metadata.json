@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [
-    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
-    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment",
-    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
-    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/004-deep-research-frontmatter-alignment",
-    "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/005-deep-review-frontmatter-alignment"
+    "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
+    "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment",
+    "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
+    "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/004-deep-research-frontmatter-alignment",
+    "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/005-deep-review-frontmatter-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -86,16 +86,16 @@
     ],
     "causal_summary": "The deep-loop skill family has five completed frontmatter-alignment phases, each covering one deep-loop sub-skill and the same canonical reference/asset frontmatter contract",
     "created_at": "2026-07-08T05:57:34.075Z",
-    "last_save_at": "2026-09-06T04:27:45.468Z",
+    "last_save_at": "2026-10-07T18:14:36.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a9854a3c302623780ace40d9df7beb751d471eac3b4ece2b166076fd498def90",
+    "source_fingerprint": "sha256:dd30a9d384143bb3a4893dd7a8b6ba5d593639cc95f53a6962bd217d69585492",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a4b3f0a19142b40bbc1f3283396f7344bf343c162ae2d92b37ba3b36bc056960"
+      "spec.md": "055e294075deb0dd20cf9c659bf1827fcc940259a33d5fbe56c0e1c9ff4f0a01"
     },
     "last_active_child_id": "004-deep-research-frontmatter-alignment",
     "last_active_at": "2026-06-11T12:30:00Z"

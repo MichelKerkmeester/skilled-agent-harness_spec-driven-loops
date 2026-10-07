@@ -3,14 +3,13 @@ title: "Implementation [system-deep-loop/031-smart-routing-benchmark-program/017
 description: "Records the wiring of the benchmark scenario stage axis (fitted/holdout split, generalization gap, stage-driven negatives) under a score-preserving invariant, verified by a before/after Mode-A re-baseline that surfaced real generalization gaps on 7 corpora."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "017"
   - "stage"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/017-stage-aware-scorer"
     last_updated_at: "2026-07-11T23:57:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Stage-split wired + re-baselined; 28 holdout-free 0-delta, 7 holdout-bearing surface gaps"

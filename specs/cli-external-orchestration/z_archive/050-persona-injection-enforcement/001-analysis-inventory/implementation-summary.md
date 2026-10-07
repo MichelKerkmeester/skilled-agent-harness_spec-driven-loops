@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/050-persona-injection-enforcement/001-analysis-inventory"
+    packet_pointer: "cli-external-orchestration/z_archive/050-persona-injection-enforcement/001-analysis-inventory"
     last_updated_at: "2026-08-19T10:48:00Z"
     last_updated_by: "claude"
     recent_action: "cline verified tool-free; cursor P0 correction reconciled into inventory + contract"

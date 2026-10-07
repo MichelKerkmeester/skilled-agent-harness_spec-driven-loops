@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
+    packet_pointer: "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the phased task breakdown"

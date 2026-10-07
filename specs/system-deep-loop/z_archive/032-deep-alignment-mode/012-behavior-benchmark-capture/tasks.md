@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/012-behavior-benchmark-capture"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/012-behavior-benchmark-capture"
     last_updated_at: "2026-07-12T14:40:00Z"
     last_updated_by: "claude"
     recent_action: "All capture tasks executed and verified"

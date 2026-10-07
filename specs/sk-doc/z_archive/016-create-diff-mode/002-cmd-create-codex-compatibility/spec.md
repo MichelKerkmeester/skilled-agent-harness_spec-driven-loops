@@ -176,7 +176,7 @@ All 7 verification checks must pass:
 ---
 
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 N/A -- This is a configuration refactoring spec with no runtime components. All changes are to static `.md` and `.yaml` files that are read at command invocation time. No performance, security, or reliability implications.
@@ -185,7 +185,7 @@ N/A -- This is a configuration refactoring spec with no runtime components. All 
 ---
 
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ## 8. EDGE CASES
 
 ### Two Complexity Levels of .md Files

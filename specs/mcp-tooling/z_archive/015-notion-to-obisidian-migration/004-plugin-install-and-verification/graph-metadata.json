@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/004-plugin-install-and-verification",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,7 +40,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh",
       ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/README.md",
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "notion-bases-dataview-install.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
     "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-30T15:39:10.394Z",
+    "last_save_at": "2026-10-07T18:11:35.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e5e59ae54242efca38622c40c66865ef63ab99abbe68c8ff8ebb8de8d0f9ab9",
+    "source_fingerprint": "sha256:f74d4a242bf65ba06f70cce896ddcd8a5267400c73b7f1f978a34e0912141b27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ed4f554569f6a5ebe3acfecfa219807004c531c9a1497a6c3d2ab1b1be21dcf",
-      "plan.md": "6bc31f5698406252fd6d6070869b22b1771233ae7dae33e8c1fbaf2bcc6f224b",
-      "tasks.md": "2c4099483f7e06d01fcf0df832ea1ef1b55465ff638d318f757fd41863f29a47",
-      "implementation-summary.md": "0244f8d99088779e043d8893ae1ceca7d9b283823b35f1f566c1aa3331acf187"
+      "spec.md": "67a9a1b8d2846b7c525ecfcb30bcce81e7050f6e186d16a32ac6da38e6ab8d26",
+      "plan.md": "a5b6500b99e944c23ba2aadb7e90ae4bece26a1f9c1ebf920288cb2508153799",
+      "tasks.md": "826cf2b93702199497bb8c0d2c26dd8d4cd9c9f9ac3811e53001072f5b7d8759",
+      "implementation-summary.md": "ef6cc50678622ca85b34efd8e1bc73f4b2ec39bb362bd1e693fc95a1ce00fd3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

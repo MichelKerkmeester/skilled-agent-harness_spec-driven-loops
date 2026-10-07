@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook"
     last_updated_at: "2026-08-22T03:41:25Z"
     last_updated_by: "claude"
     recent_action: "All 3 implementation phases executed and verified"

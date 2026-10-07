@@ -8,7 +8,7 @@ importance_tier: "supporting"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/010-deep-loop-parent-skill-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/010-deep-loop-parent-skill-alignment"
     last_updated_at: "2026-06-26T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "R5 gates green; runtime reachability confirmed by registration; optional live-loop e2e not run"

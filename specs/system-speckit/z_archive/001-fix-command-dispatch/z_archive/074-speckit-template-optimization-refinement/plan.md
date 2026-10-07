@@ -167,7 +167,7 @@ User Request → Orchestrator → [W-A] Research (10 parallel)
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -195,7 +195,7 @@ Phase 5 (Release) ──────────────────┘ SYNC
 | Verification [SYNC] | Implementation | Release |
 | Release | Verification pass | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -293,7 +293,7 @@ Phase 5 (Release) ──────────────────┘ SYNC
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-001: Multi-Agent Parallel Dispatch
@@ -313,7 +313,7 @@ Phase 5 (Release) ──────────────────┘ SYNC
 - Sequential single-agent: Too slow for scope
 - Manual review: Not feasible for file count
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK
@@ -346,6 +346,24 @@ Phase 5 (Release) ──────────────────┘ SYNC
 **Task**: Merge 10 findings into analysis documents, resolve conflicts
 **Duration**: ~60s
 **Output**: analysis.md, review.md, refinement-recommendations.md
+
+### Pre-Task Checklist
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership below
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Blocked Task Protocol
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the tasks.md blocked section
+3. Continue with the next unblocked task; escalate after two blocked tasks
 
 ---
 

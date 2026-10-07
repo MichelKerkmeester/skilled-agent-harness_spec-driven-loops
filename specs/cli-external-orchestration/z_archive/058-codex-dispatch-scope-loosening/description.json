@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/058-codex-dispatch-scope-loosening",
+  "specFolder": "cli-external-orchestration/z_archive/058-codex-dispatch-scope-loosening",
   "description": "Say what the runtime is for, and leave a legal path for what it is not for,",
   "keywords": [
     "say",

@@ -2,7 +2,6 @@
 title: "Implementation Plan: Comprehensive Script Audit [system-spec-kit/z_archive/004-script-audit-comprehensive/plan]"
 description: "Archive normalization plan for the Comprehensive Script Audit folder."
 trigger_phrases:
-  - "implementation plan"
   - "comprehensive script audit"
   - "archive"
 importance_tier: "important"

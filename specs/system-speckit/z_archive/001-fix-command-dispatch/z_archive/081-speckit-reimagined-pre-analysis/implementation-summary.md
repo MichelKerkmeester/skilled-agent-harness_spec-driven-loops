@@ -7,7 +7,6 @@ trigger_phrases:
   - "081"
   - "pre"
   - "analysis"
-  - "implementation summary"
   - "speckit"
 importance_tier: "normal"
 contextType: "implementation"

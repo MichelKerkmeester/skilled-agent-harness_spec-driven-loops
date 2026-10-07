@@ -6,7 +6,7 @@ importance_tier: important
 contextType: planning
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/003-cli-codex-skill-packet"
     last_updated_at: "2026-07-13T06:25:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored planned phase stub for the cli-codex skill packet"

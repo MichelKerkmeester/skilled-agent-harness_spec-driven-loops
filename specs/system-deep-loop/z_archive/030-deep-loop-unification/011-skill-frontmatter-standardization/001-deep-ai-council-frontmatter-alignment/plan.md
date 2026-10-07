@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment"
     last_updated_at: "2026-06-11T09:45:08Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase executed: 18 docs conform and checks green"

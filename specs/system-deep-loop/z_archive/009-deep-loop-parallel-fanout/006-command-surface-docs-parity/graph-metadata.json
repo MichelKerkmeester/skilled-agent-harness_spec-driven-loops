@@ -12,7 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "123 phase 006 command docs parity",
-      "fan-out command flags"
+      "fan-out command flags",
+      "command surface docs parity plan",
+      "fanout command flags parity plan",
+      "command surface docs parity tasks",
+      "fanout command flags parity tasks"
     ],
     "key_topics": [
       "phase",
@@ -21,23 +25,37 @@
       "parity",
       "fan-out",
       "flags",
+      "surface",
+      "plan",
+      "fanout",
+      "tasks",
       "expose",
-      "via",
-      "entrypoints",
-      "opt-in",
-      "document",
-      "consumers"
+      "via"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,84 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Expose",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Opt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Command surface",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Expose fan-out via the command entrypoints (opt-in), document it for both consumers, and prove single-executor parity",
     "created_at": "2026-05-30T10:12:01.129Z",
-    "last_save_at": "2026-08-30T15:39:23.939Z",
+    "last_save_at": "2026-10-07T20:46:13.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:2a18285c4ef48597547371a04bf8ad6aed4dde5348d09378f76ba68f2f7e8a37",
+    "source_fingerprint": "sha256:629267a2069d5852f46ce5aff589f15c567ac0bb7ca3ccde45b3c2565863f2e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eecb2d50c03cd3c42804adef84731ac4a94d2ad28a75b34dc1d30f86958ba1ee"
+      "spec.md": "3f2089256232ed48c9e3bd6343020e4afe0836e0f9fc9e6e79bf7c6f212a720f",
+      "plan.md": "ed80c6bbcd4dd914eddd062ab4404ca4c39eacf06525d6537b5352298fe4e149",
+      "tasks.md": "43a96e71b7831c47bdd3ffe9e1318f556d5c75e18354aad720ff02070a3ca518"
     },
     "last_active_child_id": null,
     "last_active_at": null

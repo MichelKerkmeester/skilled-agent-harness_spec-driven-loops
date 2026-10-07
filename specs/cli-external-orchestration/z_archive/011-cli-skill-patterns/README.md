@@ -72,7 +72,7 @@ Use `/speckit:plan --intake-only` to run the shared intake contract. It classifi
 /speckit:plan --intake-only --level=2
 ```
 
-The intake contract ([`../../references/intake-contract.md`](../../references/intake-contract.md)) handles folder classification, trio publication, graph-metadata scaffolding, and continuity initialization — none of which the manual copy path performs.
+The intake contract ([`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md`](.skilled/skills/system-spec-kit/references/workflows/intake-contract.md)) handles folder classification, trio publication, graph-metadata scaffolding, and continuity initialization — none of which the manual copy path performs.
 
 ### Manual Fallback (Advanced)
 
@@ -98,9 +98,9 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature
 
 ## 7. PHASE DECOMPOSITION
 
-Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/speckit:plan :with-phases` to create the phase structure. If that target phase packet is still `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade`, `/speckit:plan` delegates to the shared intake contract in [`../../references/intake-contract.md`](../../references/intake-contract.md) before phase setup continues.
+Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/speckit:plan :with-phases` to create the phase structure. If that target phase packet is still `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade`, `/speckit:plan` delegates to the shared intake contract in [`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md`](.skilled/skills/system-spec-kit/references/workflows/intake-contract.md) before phase setup continues.
 
-See the Phase System in the [main templates README](../README.md#phase-system) for full details.
+See the Phase System in the [main templates README](.skilled/skills/system-spec-kit/templates/README.md#phase-system) for full details.
 
 ---
 

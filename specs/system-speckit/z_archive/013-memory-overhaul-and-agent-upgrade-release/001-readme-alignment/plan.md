@@ -2,11 +2,9 @@
 title: "Implementati [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-01-readme-alignment/plan]"
 description: "Audit 60+ README.md files in .opencode/ directory tree for stale source counts (4→5), stale intent counts (5→7), outdated schema versions, missing feature references (upgrade-le..."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "task"
-  - "readme"
-  - "audit"
+  - "readme alignment plan"
+  - "readme audit phases"
+  - "readme remediation plan"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -138,7 +136,6 @@ Manual audit with systematic file-by-file review
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -159,7 +156,6 @@ Phase 1 (P0) ──────► Phase 2 (P1) ──────► Phase 3 (P
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -274,6 +270,29 @@ Phase 1 (P0) ──────► Phase 2 (P1) ──────► Phase 3 (P
 **Agent**: Primary
 **Task**: Consolidate findings into changes.md
 **Duration**: ~30 minutes
+
+### Pre-Task Checklist
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership below
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the tasks.md blocked section
+3. Continue with the next unblocked task; escalate after two blocked tasks
+
 <!-- /ANCHOR:ai-execution -->
 
 ---

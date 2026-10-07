@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/009-deep-router-agent-rename",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/009-deep-router-agent-rename",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/009-deep-router-agent-rename",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The primary deep-loop router agent was named `deep`",
     "created_at": "2026-07-03T19:59:02.276Z",
-    "last_save_at": "2026-08-30T15:39:19.836Z",
+    "last_save_at": "2026-10-07T18:15:12.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:811c25a25e63d791bfd82c48531b20cdacc32a1453b84c6346918db60d8ef7d5",
+    "source_fingerprint": "sha256:04dbd1544165a35463628101d3c8f50fb525c48ffe6aec9a89d42fb0afd69f08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f13a074facfcd0c627ed9955b215dfb1ab5547c3d07066c4477ba4cc802f10bd",
-      "plan.md": "c81dbfb328f453e3cf8c5699d3b86a642ffb9dbfb870f8360cb0bbfd19a0efc3",
-      "tasks.md": "d716ee41332d80856669968b68d9e035a95fb24ee6c16f6e09ac2260ca658122",
-      "implementation-summary.md": "5c457190cdfd1beb6dc6878cf1df318dc81f035011112e435988abdae343a249"
+      "spec.md": "b02178cfeed673f26c391c750c473b16efd9a570c33e3eebc1fc3232160a1850",
+      "plan.md": "506385dc143c4735e10633f9846db8b60a82c2f84a692bd5b2c5b2a70f0a920c",
+      "tasks.md": "e228e43037ab7a7db16daeb1802b354686ad538b66810ca68009a8349e20d077",
+      "implementation-summary.md": "a45a13ebbf9c8a01de21efe222033f36957c4857672fefdfb61c9e8d8f91f30e"
     },
     "last_active_child_id": null,
     "last_active_at": null

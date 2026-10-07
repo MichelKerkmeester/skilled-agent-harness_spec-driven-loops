@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
+  "specFolder": "sk-design/z_archive/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
   "description": "Phase 005 deletes the sk-design judgment hub (.opencode/skills/sk-design/) and the /interface command namespace (.opencode/commands/interface/) after",
   "keywords": [
     "phase",

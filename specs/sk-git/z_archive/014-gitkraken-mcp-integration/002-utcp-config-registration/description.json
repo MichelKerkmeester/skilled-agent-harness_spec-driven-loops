@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
+  "specFolder": "sk-git/z_archive/014-gitkraken-mcp-integration/002-utcp-config-registration",
   "description": "Code Mode has no path to the GitKraken MCP server: `.utcpconfig.json` has no `gitkraken` entry, so `calltoolchain` cannot reach it regardless of what",
   "keywords": [
     "code",

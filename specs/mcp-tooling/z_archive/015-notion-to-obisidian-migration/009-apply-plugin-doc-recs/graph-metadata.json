@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/009-apply-plugin-doc-recs",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The shipped `mcp-obsidian` plugin docs carried real correctness defects the 006 research surfaced: advanced-canvas told the AI to never author cross-portal edges (a now-resolved, operation-blocking `VERIFY`); every notion-bases `database.md` column key was a wrong guess the plugin silently ignores, and the mandatory `notion-bases: true` marker was documented nowhere; meta-bind taught a `=now()` timestamp the plugin has no function for; claudian instructed operators to author `.claude/mcp.json`, a file Claudian deletes; dataview stated two facts (inline-field multiline, fixed DQL command order)",
     "created_at": "2026-08-22T17:53:35.681Z",
-    "last_save_at": "2026-08-30T15:39:10.483Z",
+    "last_save_at": "2026-10-07T18:11:38.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd524aef3a3b2f61f1775722bf6bec679d37cb39f45768b2a424c9167b34050c",
+    "source_fingerprint": "sha256:c0cbaabc1377a11f8fff08063cd5af747ee6cb7be000c0665eb5081d3b96c8dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d18b0c08a7836578ea1d682e6d025347a009a4040dfd814d5db142df4adb14fd",
-      "plan.md": "36fcaad24716c890e4d5a73bd3344d79e38e151a71f896bcbc05d734d7784562",
-      "tasks.md": "74e22e0f7d000bf3b1f0073c0d60673732409f4da0c20b622d3bb3d8e89f92d3",
-      "implementation-summary.md": "432a98b8a2731979a9653340a2f7028f70318bdd6a34fb1bf044b59a423b290c"
+      "spec.md": "ec24fa2161ac59fdb6865b33fd9999f821ceaf98b2847efd17564e8dc3917fb8",
+      "plan.md": "520e00d959364b6afe14e8b372ed87754f045917e79e459e0893b3d4f804e9c8",
+      "tasks.md": "3c5615830b53b4d6d9625dc98173b794d82381c819c6be9341a001913e0bd57e",
+      "implementation-summary.md": "77eb64626bf97260ee2d2ea19a79742e658c0dae8f0be13008c3a1960a00783c"
     },
     "last_active_child_id": null,
     "last_active_at": null

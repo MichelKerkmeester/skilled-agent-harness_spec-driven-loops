@@ -47,9 +47,7 @@
       "implementation-summary.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
-      ".codex/agents/deep-review.toml",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts"
+      ".codex/agents/deep-review.toml"
     ],
     "entities": [
       {
@@ -86,18 +84,6 @@
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-reducer-schema.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-deep-review` still described review mode with mixed `deep-review-` and `deep-research-` artifact names, partial lifecycle semantics, and uneven runtime-mirror coverage even after Phase 1 established the lineage and reducer model",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-08-30T15:39:24.434Z",
+    "last_save_at": "2026-10-07T20:02:29.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cc4d6ae5d552feeedffc91d5eaf6a607d22f76e4e056de3599a6aabb3475775",
+    "source_fingerprint": "sha256:e72cdbfefaf450d7f4a0403c468b9bc1f8799007f93d635f72a61ee7dee235ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "58ee74fb8470e701a249f18e9336fe25955858054e973b30804cd2cfc9eae161",
-      "plan.md": "cc05a1692298705bf0003b1c955a1deda919d84da58e4c28bcb7c7c7c5494a55",
-      "tasks.md": "3c9a48c5370e3ceddb181a4d50fe962e31a703785dcc50bd3a0302f4f8103868",
-      "implementation-summary.md": "df7f56e4eb760bf6d2ba0e9085a139ca18df561a345195313e47b43013303247"
+      "spec.md": "a2d20fe3bb474c3c9072d3c163ab0619fcd15d810efa3f6a5adebdc6752b7be4",
+      "plan.md": "a3b76f92e7cca527e38988d6ec9bd355edd7c7fbb121f6fea47902b881ff25fa",
+      "tasks.md": "1a75e84d2b1745eca978ac95a728b245cd5c482484a3077cae41d2bc3db9196f",
+      "implementation-summary.md": "16aeb3e77319e2f4ba217c92aa1febbc82b2d27fb11a85b57cc15fd704561559"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,13 @@
+---
+title: "Generalization Probe Results"
+description: "Generalization probe results for the compiled-command-contract flip beyond review and research, plus the leaf-reliability check's effect."
+trigger_phrases:
+  - "generalization probe results"
+  - "compiled contract generalization"
+  - "contract flip probe results"
+importance_tier: "important"
+contextType: "research"
+---
 # Generalization Probe Results
 
 Compiled-command-contract flip generalization beyond review/research, plus the

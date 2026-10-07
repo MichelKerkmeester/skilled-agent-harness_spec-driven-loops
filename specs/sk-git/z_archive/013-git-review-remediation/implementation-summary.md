@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-git/013-git-review-remediation"
+    packet_pointer: "sk-git/z_archive/013-git-review-remediation"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "All six concerns fixed + independently verified; validate --strict pending final run"

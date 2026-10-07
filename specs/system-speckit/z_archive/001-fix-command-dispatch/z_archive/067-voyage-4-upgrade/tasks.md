@@ -1,17 +1,16 @@
 ---
 title: "Tasks [067-voyage-4-upgrade/tasks]"
-<!-- ANCHOR:notation -->
 description: "tasks document for 067-voyage-4-upgrade."
 trigger_phrases:
-  - "tasks"
-  - "067"
-  - "voyage"
+  - "voyage 4 upgrade task list"
+  - "embedding model upgrade tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks
 
+<!-- ANCHOR:notation -->
 - [ ] **Phase 1: Code Updates** <!-- id: 1 -->
     - [ ] Update `voyage.js` with new model definitions and dimensions <!-- id: 1.1 -->
     - [ ] Update `factory.js` to change default model to `voyage-4` <!-- id: 1.2 -->

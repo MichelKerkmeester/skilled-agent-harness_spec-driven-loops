@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "handover"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/013-cursor-spec-gate-prebind"
     last_updated_at: "2026-07-26T08:12:44Z"
     last_updated_by: "opencode"
     recent_action: "Captured completed delivery state and an independent audit brief."

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
     "created_at": "2026-08-04T06:00:17.679Z",
-    "last_save_at": "2026-08-30T15:39:10.235Z",
+    "last_save_at": "2026-10-07T18:11:40.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84a3503e357c8332d484050fc9524dc6b42f2a2649a1eeeeb80157ad00ef0c1a",
+    "source_fingerprint": "sha256:00524a7f984f82675e1f1aede66da3f075b5ae992163f126bad4f9cf98af3b30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87c97f470197ff05a401acd4462ae829ca141d2a0c70eee2db00c6e802852073",
-      "plan.md": "1e76add8e484fa67235dad45d9f6a540a8b20fc0b2a3fe779560219eaba687f9",
-      "tasks.md": "20d6beaedd9138d077e6ec05afe335cea26803a0941b25a4cfad1b9c014d3551",
-      "implementation-summary.md": "897d8e54fa20dbf9a078e3271e5002abea705abafd29dfd3155b07cae38c8561"
+      "spec.md": "bec66f8072b8d94e6f1b475d1e5794bcfa0e3006302d1f66920452150e71bdc1",
+      "plan.md": "c6f0f3c22575e6146caeafbf01f40892a7bb10217883f9de3b80f255aec17c54",
+      "tasks.md": "ffa50c4395e971278d79e4e6101e2fa2e12c5fba47a3c595d871298aeec83a1d",
+      "implementation-summary.md": "67a6e7b68213a650b388bb46411eb83ddfc6ae3f9cf09b45ae8e5519bd455776"
     },
     "last_active_child_id": null,
     "last_active_at": null

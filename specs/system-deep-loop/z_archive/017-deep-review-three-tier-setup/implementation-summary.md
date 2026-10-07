@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 033-deep-review-three-tier-setup |
+| **Spec Folder** | 017-deep-review-three-tier-setup |
 | **Completed** | 2026-05-11 |
 | **Level** | 2 |
 | **Status** | Complete |

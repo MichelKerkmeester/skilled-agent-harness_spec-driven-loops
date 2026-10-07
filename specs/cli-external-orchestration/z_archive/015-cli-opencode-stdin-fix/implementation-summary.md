@@ -1,6 +1,18 @@
 ---
 title: "Implementation Summary — 097 cli-opencode stdin-redirect fix"
 description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/deep-review YAML workflow if_cli_opencode dispatches + cli-opencode skill (SKILL.md/README/references/assets) + Barter sibling mirror. 2 stress-test scripts already had the redirect."
+trigger_phrases:
+  - "cli-opencode stdin redirect fix summary"
+  - "dev null dispatch hang implementation summary"
+importance_tier: "important"
+contextType: "fix"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix"
+    last_updated_at: "2026-10-07T00:00:00Z"
+    last_updated_by: "packet-reconstruction"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 # Implementation Summary: 097 cli-opencode stdin-redirect fix
@@ -15,6 +27,7 @@ description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## SUMMARY OF CHANGES
 
 | File | Lines Changed | Change |
@@ -35,9 +48,11 @@ description: "Mechanical fix packet: append `</dev/null` to all 4 deep-research/
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | NO CHANGE | Already has `</dev/null` (line 49) — verified |
 
 **Total**: 11 files modified + 1 new file + 2 verified-already-correct = 14 files touched.
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## REQUIREMENT VERIFICATION
 
 ### REQ-001 — All 4 YAML workflows include `</dev/null`
@@ -122,6 +137,7 @@ After the fix landed in the YAMLs (as part of this packet's iterative authoring)
 
 Pre-fix: 14 dispatch attempts, all hung at 0% CPU with 0 bytes output, total wasted wallclock ~3 hours.
 Post-fix: full 10-iteration deep-research loop completed in ~50 minutes wallclock.
+<!-- /ANCHOR:verification -->
 
 ---
 

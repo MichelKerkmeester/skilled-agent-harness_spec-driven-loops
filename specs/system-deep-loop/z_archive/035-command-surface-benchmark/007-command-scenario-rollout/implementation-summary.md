@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout"
     last_updated_at: "2026-07-15T11:35:00Z"
     last_updated_by: "claude"
     recent_action: "Authored DAB-016 to 027; fixed 6 sentinels + direct_dispatch min_task_events"

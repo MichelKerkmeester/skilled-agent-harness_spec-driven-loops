@@ -23,11 +23,13 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## Scope
 
 Research-only packet. Took the 060/002 R1 results (0/2/4 score + test-layer-selection meta-finding) and the existing 060/001 synthesis as input; produced a new synthesis with 11-dim rubric, 13-question authoring preflight, and packet sketches for 061 (command-flow stress) + 062 (executable wiring). **No source-file changes outside the packet folder.**
 
 Shipped as part of the trilogy commit bundle (`f061a654d` for renumbering 063→061 / 064→062).
+<!-- /ANCHOR:summary -->
 
 ---
 

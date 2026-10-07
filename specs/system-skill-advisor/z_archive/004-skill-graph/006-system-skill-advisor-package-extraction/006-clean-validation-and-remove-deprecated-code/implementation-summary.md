@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code"
     last_updated_at: "2026-05-14T12:45:00Z"
     last_updated_by: "codex"
     recent_action: "Validation cleanup landed; P0 tests blocked"
@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `006-clean-validation-and-remove-deprecated-code` |
+| **Spec Folder** | 006-clean-validation-and-remove-deprecated-code |
 | **Status** | Implemented-with-blockers |
 | **Level** | 3 |
 | **Created** | 2026-05-14 |

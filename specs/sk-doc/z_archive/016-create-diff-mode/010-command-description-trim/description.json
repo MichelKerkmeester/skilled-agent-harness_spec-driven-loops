@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/016-create-diff-mode/010-command-description-trim",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/010-command-description-trim",
   "description": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit:",
   "keywords": [
     "packets",

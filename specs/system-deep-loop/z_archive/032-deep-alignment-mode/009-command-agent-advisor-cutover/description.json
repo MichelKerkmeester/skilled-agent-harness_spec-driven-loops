@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover",
+  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/009-command-agent-advisor-cutover",
   "description": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command",
   "keywords": [
     "every",

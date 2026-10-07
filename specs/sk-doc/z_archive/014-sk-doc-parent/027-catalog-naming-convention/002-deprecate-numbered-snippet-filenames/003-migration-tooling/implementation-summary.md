@@ -7,14 +7,13 @@ trigger_phrases:
   - "naming"
   - "convention"
   - "002"
-  - "implementation summary"
   - "003"
   - "migration"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "denumber-snippet-filenames.mjs authored; dry-run clean; commit 28a2569b4c"

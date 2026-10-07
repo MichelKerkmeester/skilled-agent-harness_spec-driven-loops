@@ -16,13 +16,13 @@
       "review at spec root",
       "no nested review folders",
       "consolidate review folders",
-      "plan",
-      "010",
-      "root",
-      "killed",
-      "agent",
-      "orchestration",
-      "042"
+      "root level review research convention plan",
+      "root level artifact placement plan",
+      "root level folder plan",
+      "root level review research convention",
+      "agent orchestration convention",
+      "spec tree orchestration",
+      "root level artifact placement tasks"
     ],
     "key_topics": [
       "root",
@@ -36,7 +36,7 @@
       "folders",
       "consolidate",
       "plan",
-      "killed"
+      "artifact"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) inside the child phase folder",
     "created_at": "2026-04-18T07:39:57.335Z",
-    "last_save_at": "2026-08-30T15:39:24.547Z",
+    "last_save_at": "2026-10-07T20:55:19.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c33bc36b70f90c1e3fbfd98477b2a20076ceebe6e93c1e934594aa82bc18f990",
+    "source_fingerprint": "sha256:5ae92d1b379d127209142e7802d95ba188c5b3866b7fc35235fa4ab6b6a6d9c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3383a259673cda3ddcd87aae42b38d7df9bbb1da5fb6fe6add0fff99e23948ae",
-      "plan.md": "695cd50736550ca9c4a7dda3a3810760a52ff297ec3db6ad07e86210d136b60a",
-      "tasks.md": "70e4f83a8762c8bfe01fdbbd14a4ca2e339cb86eebb3fa744885af0fd7bf854e",
-      "implementation-summary.md": "6423f58053a0f101b8b636bb03347401f93d9d3521ded0c7262b600bf6c96dac"
+      "spec.md": "284d3665f25b8d40e2b1b20bf80927c1238e969622b64aed4599c11dd9019d30",
+      "plan.md": "c01764ad792265dc05d3ee459d3b78d1e9c8b38fb0ae312898d927517ecb29ef",
+      "tasks.md": "6c00a969c64058076fc73289300a339981fb758136a1d82fbb633d813823fdb6",
+      "implementation-summary.md": "be513a424a9fe7af4918803cd0a215182c4901f2a590e2c517e312587b492104"
     },
     "last_active_child_id": null,
     "last_active_at": null

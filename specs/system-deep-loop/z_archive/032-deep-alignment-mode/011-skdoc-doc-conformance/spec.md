@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/011-skdoc-doc-conformance"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/011-skdoc-doc-conformance"
     last_updated_at: "2026-07-13T07:07:57Z"
     last_updated_by: "claude"
     recent_action: "Fixed sk-doc gaps, renamed folders to snake_case, reconciled build-state claims"

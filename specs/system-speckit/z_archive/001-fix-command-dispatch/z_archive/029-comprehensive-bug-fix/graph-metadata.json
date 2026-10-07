@@ -20,7 +20,9 @@
       "029",
       "implementation",
       "plan",
-      "fix"
+      "fix",
+      "comprehensive skills bug fix tasks",
+      "mcp server bug fix task breakdown"
     ],
     "key_topics": [
       "comprehensive",
@@ -31,16 +33,17 @@
       "spec",
       "implementation",
       "plan",
-      "codebase",
-      "accumulated",
-      "technical",
-      "debt"
+      "tasks",
+      "task",
+      "breakdown",
+      "codebase"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -53,6 +56,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -126,22 +135,42 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skills and MCP server codebase had accumulated technical debt including:",
     "created_at": "2026-04-12T09:02:53.521Z",
-    "last_save_at": "2026-08-30T15:39:37.079Z",
+    "last_save_at": "2026-10-07T20:14:54.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:85ecc245d8d19c32faf8a4b70f324fa0bf8c38d4b7251342cdaeaca67620c4ea",
+    "source_fingerprint": "sha256:5276bbafbe3934ecc861d1c7fc27cd6e001d0c4ab2758c8caef5a4b7d23a9bb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ccc0ec9b266e18a56d543013e4171e622f57c09b3e1d6fdcaa4ae02dc9c8d78d",
-      "plan.md": "675bceb92d0da4be0dc83e96b7e556bc9aacb29eb76639760783e9c5ceb0f762"
+      "spec.md": "a66aaf4ca2d544b4c936129bba5e7ec1ee3ff6ef4ed245cc601c2efe32b8982b",
+      "plan.md": "675bceb92d0da4be0dc83e96b7e556bc9aacb29eb76639760783e9c5ceb0f762",
+      "tasks.md": "131cd42f64b8dea34320975090d8996752771c94f80908d25a467429a14f1e4d"
     },
     "last_active_child_id": null,
     "last_active_at": null

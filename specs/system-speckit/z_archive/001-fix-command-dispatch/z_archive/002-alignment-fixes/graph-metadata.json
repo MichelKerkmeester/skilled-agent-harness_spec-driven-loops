@@ -16,32 +16,51 @@
       "alignment",
       "fixes",
       "spec",
-      "002"
+      "002",
+      "memory command alignment plan",
+      "memory command UI alignment",
+      "memory command MCP matrix plan",
+      "memory command alignment tasks",
+      "memory command alignment verification"
     ],
     "key_topics": [
       "memory",
       "command",
       "alignment",
       "spec",
+      "plan",
+      "mcp",
+      "matrix",
+      "tasks",
+      "verification",
       "documents",
       "applied",
-      "files",
-      "ensure",
-      "consistency",
-      "system-spec-kit",
-      "001-fix-command-dispatch",
-      "002-alignment-fixes"
+      "files"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -79,20 +98,84 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Align",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "single-line",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the HOME SCREEN",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This spec documents the alignment fixes applied to memory command files to ensure consistency with",
     "created_at": "2026-04-12T09:02:53.507Z",
-    "last_save_at": "2026-08-30T15:39:36.887Z",
+    "last_save_at": "2026-10-07T20:14:55.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:8900bb49de4a648dd721e87bd1c0a226a3901e7353d33935c114c477d35cc829",
+    "source_fingerprint": "sha256:4cc6882cd3a63f9af41ed0a02f644873210def1838599f0d8e0da316b2715212",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ba343654a3f3654b68a58594611a58f4c41234ffaae1591f0821e020f42972e"
+      "spec.md": "9f79ad0d2497d940bb7164431baf492530f157b09607b480d766ebd390201444",
+      "plan.md": "bb49994ae2eb8a03d714d932bf42a3d1aaff96e4f8438cc13fd49a7aae1f4f32",
+      "tasks.md": "e0b1aa03ba4379bd53e7e1b0cbdd34d298b3dfd40a09867cb0cdd1b2000fbb03"
     },
     "last_active_child_id": null,
     "last_active_at": null

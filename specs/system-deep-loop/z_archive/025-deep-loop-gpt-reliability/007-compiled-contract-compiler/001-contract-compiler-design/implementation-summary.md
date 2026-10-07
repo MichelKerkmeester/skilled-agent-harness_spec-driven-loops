@@ -1,12 +1,12 @@
 ---
 title: "Implementation Summary: Contract Compiler Design"
 description: "Phase 001 of the compiled-contract-compiler track (007) delivered a verified, implementable design for the build-time command-contract compiler plus an 8-phase build/retrofit decomposition. Three bounded design passes (GPT-5.5-fast), each independently Sonnet-verified; consolidated and re-verified. Design-only — no build."
-trigger_phrases: ["implementation", "summary", "031 007 001"]
+trigger_phrases: ["contract compiler design summary", "compiled contract design implementation"]
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design"
     last_updated_at: "2026-07-04T07:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Design verified + decomposed; Sonnet-confirmed; committed"

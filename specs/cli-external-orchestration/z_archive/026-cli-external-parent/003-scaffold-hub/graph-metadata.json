@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
-  "spec_folder": "cli-external-orchestration/026-cli-external-parent/003-scaffold-hub",
-  "parent_id": "cli-external-orchestration/026-cli-external-parent",
+  "packet_id": "cli-external-orchestration/z_archive/026-cli-external-parent/003-scaffold-hub",
+  "spec_folder": "cli-external-orchestration/z_archive/026-cli-external-parent/003-scaffold-hub",
+  "parent_id": "cli-external-orchestration/z_archive/026-cli-external-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "No parent-hub skeleton exists yet for the approved `cli-external` merge",
     "created_at": "2026-07-09T18:58:26Z",
-    "last_save_at": "2026-08-30T15:39:07.074Z",
+    "last_save_at": "2026-10-07T18:11:03.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e7c6c17f1361c2ff546cbef8a38cb360cfd5b07683732716e9a9951cefc3e63a",
+    "source_fingerprint": "sha256:18bd4df0385c46567ee30eebfad9d3699346460c727f5b84347a79dfb416b1a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdcbbfc665e60e42c4dafc50e836bf8ef62075a7529d33bc44f9e852205886b3",
-      "plan.md": "6df0077c9f34455e1a15b131ee3dfcce8c11ab4e7acdb71a4b29c749b1ec2dbc",
-      "tasks.md": "48579892e54d041c05e670ab31d0fef878166d5de3f95b66c2ce4138feef376d"
+      "spec.md": "ad0ba64ead74747422df428f0fb34c9d94f2d45a8c1cbafc4abdaa91b31e219a",
+      "plan.md": "bf3c2ad51889c5261d552332427bd7758d7639ed349f1fac5d1c0b077fa5e71b",
+      "tasks.md": "5580ed52f913cdbb3275d3d5836b29be5c3fdc944a5559b0bf11ebd5b27160fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

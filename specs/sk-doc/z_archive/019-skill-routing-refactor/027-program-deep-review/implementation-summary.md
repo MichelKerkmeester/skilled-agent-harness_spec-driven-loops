@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/027-program-deep-review"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review"
     last_updated_at: "2026-07-29T04:21:25Z"
     last_updated_by: "claude-code"
     recent_action: "Synthesized both lineages; fixed the single P1 CI-trigger gap"

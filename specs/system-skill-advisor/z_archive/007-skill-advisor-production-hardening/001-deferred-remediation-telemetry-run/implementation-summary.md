@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run"
     last_updated_at: "2026-04-19T18:10:00Z"
     last_updated_by: "codex"
     recent_action: "Tracks 2-4 shipped; strict validation passed; Track 1 blocked"

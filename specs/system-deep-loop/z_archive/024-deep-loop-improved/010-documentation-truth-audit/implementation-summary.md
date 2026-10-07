@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/010-documentation-truth-audit"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/010-documentation-truth-audit"
     last_updated_at: "2026-07-01T20:30:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "All findings resolved; README fixed"

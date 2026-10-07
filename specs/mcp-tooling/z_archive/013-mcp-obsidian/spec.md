@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian"
     last_updated_at: "2026-08-02T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author phase-parent spec + 8-phase documentation map"

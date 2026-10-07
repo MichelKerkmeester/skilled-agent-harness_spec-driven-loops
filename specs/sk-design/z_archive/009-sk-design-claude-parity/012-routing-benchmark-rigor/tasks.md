@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/012-routing-benchmark-rigor"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Reconciled tasks: T018-T020/T024-T025 done; rest descoped per ADR-003"

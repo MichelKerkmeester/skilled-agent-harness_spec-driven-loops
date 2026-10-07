@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes"
     last_updated_at: "2026-07-22T16:53:38Z"
     last_updated_by: "claude"
     recent_action: "Applied and verified the deferred fixes."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "deferred code and checker fixes plan"
 ---
 
 # Implementation Plan: Deferred Code and Checker Fixes

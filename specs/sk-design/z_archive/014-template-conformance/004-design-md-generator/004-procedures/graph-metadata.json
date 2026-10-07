@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/004-procedures",
-  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/004-procedures",
-  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "packet_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator/004-procedures",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/004-design-md-generator/004-procedures",
+  "parent_id": "sk-design/z_archive/014-template-conformance/004-design-md-generator",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-md-generator procedures conformance",
       "design-system-extraction template audit",
       "md-generator procedure template check",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "procedures plan",
+      "procedures tasks",
+      "procedures implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -34,9 +28,9 @@
       "md-generator",
       "procedure",
       "check",
-      "implementation",
       "plan",
-      "technical"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`procedures/` holds exactly one file, `design-system-extraction.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:02.062Z",
-    "last_save_at": "2026-09-11T04:35:43.456Z",
+    "last_save_at": "2026-10-07T19:23:35.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd0f80c8125d32c812a1e3b7316d38c7981a878db8d09df40ca7bfb8e8659f8c",
+    "source_fingerprint": "sha256:046ac8a4fdad9b7bd052821b14eb54376d7e1f255ee83b04f74dbdb825dae4d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bbe0584e35ba945333ad2fdbf81571ed8b271c5076149059a49c4e1b3a6ee64a",
-      "plan.md": "ea62486f9e344401d8e1c58163c8cbb51c97278c6e988d889894df51460e94c0",
-      "tasks.md": "de3593bffeabe429d37981e5cf1c0dd06889b6cc83b3eb0205f5c47600639a58",
-      "implementation-summary.md": "fcbdfb34a5c8af59625d81f1f3d9fc37414f4f8a4a7c1e30b4d680887bc60219"
+      "spec.md": "249f0c5dca8a32117b4ced17ff56f3811280d6d1e2464af6ac4126aaf74b3855",
+      "plan.md": "8ba4c0cec5b8cf79cd5178220d6ce0cd78298f90c7d120c67b67ebfe22d4753e",
+      "tasks.md": "ad385926bf50a02700e53a52b681a6a91e35b99de169d3e03a0c07a91e958bdc",
+      "implementation-summary.md": "8c248a26c53066459866cac679181a0731ddb21af9a3433305cb65508cb4a1a5"
     },
     "last_active_child_id": null,
     "last_active_at": null

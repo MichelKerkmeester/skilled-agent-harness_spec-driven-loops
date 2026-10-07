@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/007-docs-agents-governance-and-closeout"
     last_updated_at: "2026-07-23T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored plan.md covering doc/agent restoration and the closeout validation sequence"

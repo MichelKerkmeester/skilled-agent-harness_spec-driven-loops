@@ -2,7 +2,6 @@
 title: "Implementation Plan: Phase 001 — Baseline Ownership Gate"
 description: "Level 2 plan for baseline capture, touched-file inventory, ownership decisions, and rollback gating before sk-design refactor work."
 trigger_phrases:
-  - "implementation plan"
   - "baseline ownership"
   - "sk-design"
   - "gate"
@@ -10,7 +9,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate"
     last_updated_at: "2026-07-05"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Executed baseline gate: clean status, frozen benchmark, authority, rollback, thresholds recorded"

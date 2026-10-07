@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
-  "spec_folder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
-  "parent_id": "sk-doc/022-code-readme-coverage",
+  "packet_id": "sk-doc/z_archive/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+  "spec_folder": "sk-doc/z_archive/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+  "parent_id": "sk-doc/z_archive/022-code-readme-coverage",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -49,16 +49,13 @@
       ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
       ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
       ".github/workflows/README.md",
-      ".opencode/install-guides/install-scripts/README.md",
       ".opencode/hooks/git/README.md",
       ".opencode/scripts/git-hooks/tests/README.md",
       ".opencode/commands/doctor/scripts/README.md",
       ".opencode/plugins/README.md",
       ".opencode/plugins/tests/README.md",
       ".opencode/scripts/README.md",
-      "scripts/README.md",
-      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/README.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/README.md"
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -208,7 +205,7 @@
     ],
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-08-30T15:39:17.273Z",
+    "last_save_at": "2026-10-07T18:13:27.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fba437843bd0fd07448b1de0ba7a81ebdb58e2b48b5284e1161ad78b08c4d8a7",
+    "source_fingerprint": "sha256:53547d28bc99ee33ba2171ea149e71e823cff01fb1a67dd3ab42b521e4290c5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7eda66dda27bac369fcf3994cc6b2fa6d91d227b208b2c91228253f3822ad691",
-      "plan.md": "b0976586f49245d266dc0c0206a8d4d73376c8c949393fdc67cd598c07476e6b",
-      "tasks.md": "fe9782dee970f6a094c1e3b77502b63748fd2c58252a4e40b6e58ca5e69430ac",
-      "implementation-summary.md": "cffc89de18f48335db2385f6e343ca72c5f5c009f9555c04cf2a05ae1515648b"
+      "spec.md": "6c4b7bf6cab807c3a526f6af737923f23e986884233f72c07983f20441ee1a51",
+      "plan.md": "08f5007ce856c01db978c248c2dca4b4a75ef53021910c936ceba5b8ddb5ed2d",
+      "tasks.md": "d5147e698442dd1029217c0fe0ba41b8cc8bc0b392aa06225729471cb15ab62f",
+      "implementation-summary.md": "d47d23a244ec6e1b5afb351bb6e091002b1fd703daafe1450db7cf4055c0ff34"
     },
     "last_active_child_id": null,
     "last_active_at": null

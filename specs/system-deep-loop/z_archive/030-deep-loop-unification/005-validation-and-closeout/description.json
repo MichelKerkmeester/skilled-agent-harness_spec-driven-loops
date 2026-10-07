@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/005-validation-and-closeout",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/005-validation-and-closeout",
   "description": "Phases 002-004 each carry their own exit gates, but nothing has yet confirmed the WHOLE packet is internally consistent, that the phase-parent's own",
   "keywords": [
     "phases",

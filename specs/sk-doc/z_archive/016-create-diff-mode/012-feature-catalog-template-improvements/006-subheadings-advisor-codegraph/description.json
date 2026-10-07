@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
   "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files).",
   "keywords": [
     "apply",

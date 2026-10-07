@@ -3,7 +3,6 @@ title: "Implementation Summary: Deep Research Uncovered Questions Tracking"
 description: "Packet 121 implementation summary and commit handoff."
 trigger_phrases:
   - "DR-003"
-  - "implementation summary"
 importance_tier: "high"
 contextType: "general"
 _memory:
@@ -31,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 116-deep-skill-evolution/004-deep-research/005-uncovered-questions |
+| **Spec Folder** | 005-uncovered-questions |
 | **Completed** | 2026-05-23 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

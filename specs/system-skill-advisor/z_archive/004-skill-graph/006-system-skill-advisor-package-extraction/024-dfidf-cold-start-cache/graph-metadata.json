@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time",
     "created_at": "2026-05-15T10:50:17Z",
-    "last_save_at": "2026-08-30T15:39:26.592Z",
+    "last_save_at": "2026-10-07T18:15:59.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +194,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:550af68e0a1b5fd2207d0f7aed62e74b4b13201ad862485d371160f7bb22d074",
+    "source_fingerprint": "sha256:bf6114b9246a63bb74f2718cf586d016a15ad29efe3804ba4dc0af6a6082ad46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb100d319198f3011aa7ab6a26063eadaf67d67a88b3bf4a8e4017d3e4f30a62",
-      "plan.md": "6177f994b31ef5e8aa9cd687604bebef7a1c86d29680610fb8ddb83eeedebf4b",
-      "tasks.md": "1b8a8ace3a391af8bee178254749c01ab42bde5724e43974314e834523d7dcf1",
-      "implementation-summary.md": "45e234acebe2d4b9623c7aa13ad3607d27fc83a04fecce1194fc43ec02d35691"
+      "spec.md": "51f07ad8467b27d1e0cfed36cf0decf51939dc099da99b10d603fa038d457d3f",
+      "plan.md": "88617b527b6d7bb638a41ba57674dd19fa013e2fe8bed14ee43ad0b486cfed03",
+      "tasks.md": "ad565b48458d0f79ea17e8a87caeff13e23687019575e65a52fda57effe30cf1",
+      "implementation-summary.md": "0d38cf86374d300b8b2af5f3b6a4843f93e4b1328ecbe681aab0cb58c1f52adf"
     },
     "last_active_child_id": null,
     "last_active_at": null

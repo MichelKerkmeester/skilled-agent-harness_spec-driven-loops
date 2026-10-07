@@ -8,7 +8,7 @@ contextType: "planning"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding"
+    packet_pointer: "sk-doc/z_archive/028-sk-create-diagram/010-benchmark-artifact-embedding"
     last_updated_at: "2026-08-12T18:40:07.000Z"
     last_updated_by: "claude"
     recent_action: "Copied 7 artifacts, edited 9 source.md files, verified checksums"

@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
   "description": "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip",
   "keywords": [
     "implement",

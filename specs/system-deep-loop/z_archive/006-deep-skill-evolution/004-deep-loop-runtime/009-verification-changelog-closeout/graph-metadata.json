@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts replace the MCP tool surface, YAML workflows + collateral point at scripts, tests are split, and the MCP server no longer ships deeploopgraph tools",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-08-30T15:39:23.327Z",
+    "last_save_at": "2026-10-07T18:14:19.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:731da8e00e8ef3818da4b026749aa335f0b5483af074fa1d4ecbe2e4857e7a4e",
+    "source_fingerprint": "sha256:d496405e52b5c856d6f0b398d18e9b0967bbcbe4e5556ce4a6ff30450a39b2ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0c4910ca7310819052ea18f1feed8cba437ffed376b82c16a0fcd0e55e8b752",
       "plan.md": "de9c3af4797f7fefd89ae4dc49ac772e2b28ca7a46d6b14b5d1c30280c9b579c",
       "tasks.md": "048e97eb60e4cf5d17e06d5b1b761da671b545b4263e4cfea51a7fce1dfff8ed",
-      "implementation-summary.md": "75f81724a559b61c3cc1ba9e813bb8459a93cd7411c99263d5a8f1e2f7309016"
+      "implementation-summary.md": "c53391b13b3e59e0067307f7cfc89677ce628f40eb9cc8016e1787e0a58ae8c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

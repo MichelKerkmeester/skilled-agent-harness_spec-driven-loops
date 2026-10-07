@@ -2,14 +2,13 @@
 title: "Implementation Summary: Drop DeepSeek API provider, V4 Pro, and GPT-5.6 Terra"
 description: "Removed the direct DeepSeek API provider, every DeepSeek V4 Pro entry, and every GPT-5.6 Terra slug from the cli-pi and cli-opencode rosters, playbooks, and deep-loop fan-out enforcement; default repointed to opencode-go/deepseek-v4-flash --variant max; 205/205 unit tests green; packet validated --strict."
 trigger_phrases:
-  - "implementation summary"
   - "drop deepseek api pro terra"
   - "opencode-go default deepseek flash"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra"
+    packet_pointer: "cli-external-orchestration/z_archive/056-roster-drop-deepseek-api-pro-terra"
     last_updated_at: "2026-08-29T10:35:00Z"
     last_updated_by: "pi"
     recent_action: "Shipped the roster retirement across both CLI skills + fan-out enforcement; validated --strict"

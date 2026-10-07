@@ -57,12 +57,12 @@
       "research/convergence-summary.md",
       "research/resource-map.md",
       "findings/audit-findings.jsonl",
-      "database/README.md",
       "tests/README.md",
       ".opencode/skills/system-spec-kit/README.md",
-      "scripts/spec/validate.sh",
       "validation/validation-report.jsonl",
-      "findings/audit-summary.md"
+      "findings/audit-summary.md",
+      "validation/validation-report.md",
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -146,13 +146,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "database/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
+        "path": "tests/README.md",
         "source": "derived"
       },
       {
@@ -165,6 +159,18 @@
         "name": "audit-summary.md",
         "kind": "doc",
         "path": "findings/audit-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.md",
+        "kind": "doc",
+        "path": "validation/validation-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-loop-runtime` skill carries 266 lines of SKILL.md, 174 lines of README, 4 references (732 lines), 18 feature-catalog files plus 1 index (1019 lines), 17 manual-testing-playbook entries plus 1 index (1830 lines), 8 sub-READMEs (lib + lib/council + lib/coverage-graph + lib/deep-loop + scripts + tests + tests/helpers + storage), and 1 changelog version (v1.0.0.0)",
     "created_at": "2026-05-23T14:30:00.000Z",
-    "last_save_at": "2026-08-30T15:39:22.817Z",
+    "last_save_at": "2026-10-07T18:14:18.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,14 +224,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b9c36435dcfc7b8b437d33e6289423b212140fd5807c6e34bf9475c287731f15",
+    "source_fingerprint": "sha256:06d8b4acf05f04a5906a78c4134910fe9afd5466dcc548932eb643d286a1154c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ef67fd51bca5ffb0dfd3154e12c566cccab622d748659bc29e6036d1bd6f3c8",
       "plan.md": "e9b6c08dada40f90c934f4f96f470aa4e06b5b1987bf13ea2d78525986acba04",
       "tasks.md": "a209b4f802368be690a64ec449efb5b84c4fd2e94ee438098b0afa2e524791a4",
       "decision-record.md": "ee20d1c658fd123f1d60c8eea62ef0de6777111260d1569e9742770445afdd0f",
-      "implementation-summary.md": "59bbe556b07bba834d7e396ae97ac5147cc60ace8d245619f11f7281fc0c2818",
+      "implementation-summary.md": "c890cff36e90d7fde26b34643c95151453339d36034f57e76d6e40effc5d859e",
       "research/research.md": "d20eb1d876d72737f7927f64cc9995e42ea7ad4121e2e176cc76876bda9e8d5c",
       "resource-map.md": "e914f781ddd65433645b9e5bb30a6dbede74dc95dcbf5edc337b03610e49deb4"
     },

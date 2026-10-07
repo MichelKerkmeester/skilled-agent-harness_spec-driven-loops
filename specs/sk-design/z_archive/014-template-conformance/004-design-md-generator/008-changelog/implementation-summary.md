@@ -3,14 +3,13 @@ title: "Implementation [sk-design/014-template-conformance/004-design-md-generat
 description: "Planning stub — audit not yet performed for design-md-generator's single changelog file."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "008"
   - "changelog"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/008-changelog"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/004-design-md-generator/008-changelog"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author changelog audit implementation-summary stub"

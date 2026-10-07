@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/029-doc-divider-and-anchor-standard"
+    packet_pointer: "sk-doc/z_archive/029-doc-divider-and-anchor-standard"
     last_updated_at: "2026-08-13T06:10:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored plan: standard -> tooling -> normalization"

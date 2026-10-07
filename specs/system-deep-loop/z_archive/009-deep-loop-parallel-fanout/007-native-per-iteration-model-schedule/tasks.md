@@ -1,7 +1,19 @@
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+---
+title: "Tasks: Phase 007 — Native per-iteration model schedule for deep-loop fan-out"
+description: "Design-only task breakdown for the per-iteration model schedule phase: sibling convention, front-loaded research, schema and desugaring design, sequencing, audit, merge precedence and contract mapping."
+trigger_phrases:
+  - "model schedule design tasks"
+  - "per-iteration schedule task breakdown"
+  - "fan-out band sequencing checklist"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Tasks — Phase 007: Native per-iteration model schedule for deep-loop fan-out
+
+<!-- ANCHOR:phase-1 -->
 
 All tasks are design/spec only. No code is written in this phase.
 
@@ -15,3 +27,4 @@ All tasks are design/spec only. No code is written in this phase.
 - [ ] T8: Specify merge precedence — ordered band-priority list in fanout-merge.cjs for conflict resolution (Opus band overrides MiniMax band), preserving the severity-rollup invariant for review and dedup/attribution for research.
 - [ ] T9: Map contract compliance + backward compatibility — enumerate each deep-review forbidden pattern and show the mode satisfies it; preserve read-only/externalized-state/per-iteration-JSONL; opt-in absent-by-default; byte-identical guarantee; list regression checks.
 - [ ] T10: Author the Level-2 docs (lean trio plus checklist), populate _memory.continuity, generate description.json + graph-metadata.json, run strict validate.sh.
+<!-- /ANCHOR:phase-1 -->

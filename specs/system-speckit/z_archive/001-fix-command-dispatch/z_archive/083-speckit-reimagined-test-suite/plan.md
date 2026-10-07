@@ -333,7 +333,7 @@ Test Runner (Jest)
 <!-- /ANCHOR:rollback -->
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -353,7 +353,7 @@ Phase 1 (Unit Tests) ───────────────────�
 | Phase 3: E2E | Phase 1 + Phase 2 | Phase 4 |
 | Phase 4: Coverage | Phase 1 + 2 + 3 | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -483,7 +483,7 @@ Phase 1 (Unit Tests) ───────────────────�
 
 ---
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
 ### ADR-001: Jest Over Node:test
@@ -522,7 +522,7 @@ Phase 1 (Unit Tests) ───────────────────�
 - Positive: Fast tests, no API dependency, deterministic results
 - Negative: Doesn't test real embedding quality (covered by manual validation)
 
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

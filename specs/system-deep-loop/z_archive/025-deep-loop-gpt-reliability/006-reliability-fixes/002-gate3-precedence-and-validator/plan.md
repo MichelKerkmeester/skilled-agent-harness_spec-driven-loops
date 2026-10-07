@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator"
     last_updated_at: "2026-07-03T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Plan stub scaffolded from plan-review restructure"

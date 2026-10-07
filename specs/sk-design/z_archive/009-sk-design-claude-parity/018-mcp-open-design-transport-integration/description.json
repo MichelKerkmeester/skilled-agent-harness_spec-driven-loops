@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/018-mcp-open-design-transport-integration",
   "description": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv`",
   "keywords": [
     "operator",

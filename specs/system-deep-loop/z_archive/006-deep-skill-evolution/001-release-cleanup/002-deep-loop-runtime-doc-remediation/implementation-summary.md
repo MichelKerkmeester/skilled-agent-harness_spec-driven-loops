@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation` |
+| **Spec Folder** | 002-deep-loop-runtime-doc-remediation |
 | **Completed** | [YYYY-MM-DD — filled at completion] |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

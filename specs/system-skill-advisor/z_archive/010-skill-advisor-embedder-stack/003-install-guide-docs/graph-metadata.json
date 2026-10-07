@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
     "created_at": "2026-05-18T08:07:25.980Z",
-    "last_save_at": "2026-08-30T15:39:27.105Z",
+    "last_save_at": "2026-10-07T18:16:08.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed75140aa986f45531e81090a0141b06771f993792bbd2fdcbf79a4d8333c301",
+    "source_fingerprint": "sha256:a3abd629dcbab570ee5b4d5794697b6e3c08ff6cb6e6be9939149813fc4203e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45fe999479a617a006866a16f19ecff30c932ac786750ceb5fd06728a337ad5e",
-      "plan.md": "c8bc83a62f7d378144cce5af3a05942b26991506a33fe8f5d6ca621759e0f96c",
-      "tasks.md": "8043bc9501ab8527e4f2a071eb7e7b83a16519b0281671f04508041d62e6ba69",
-      "implementation-summary.md": "873c492adab8d0450c5c140f935846d67a7362b97136a628c3f8fc71f3cf3121"
+      "spec.md": "c1b2c41dd5acd45d7d89f412a8bec84c40484d8100825f14226a0d7d64fef6de",
+      "plan.md": "fe1bf12456fe9381297d7ccfdc25091039ac9d07755bcf8d91b42f9d21c1dbb2",
+      "tasks.md": "930eab60307d99cb56d715674ae66fa1ab046669f34d14e039a9f76dc5eb544e",
+      "implementation-summary.md": "13f4a851e355c0375474b31180c4bc2f251d5b91d99567961307c9e9a58796f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

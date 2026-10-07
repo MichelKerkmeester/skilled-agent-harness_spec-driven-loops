@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 05: Changelog Creation"
+description: "Changelog creation edit list for task 05 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "changelog updates changes"
+  - "release changelog edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 05: Changelog Creation
 
 <!-- SPECKIT_LEVEL: 3+ -->

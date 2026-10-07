@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
     last_updated_at: "2026-07-08T06:58:48Z"
     last_updated_by: "claude"
     recent_action: "Retro-documented Round 2: provider persistence, DB-leak fix, onnx mitigation"
@@ -347,7 +347,7 @@ Not independently re-run in this doc pass: the onnx crash live A/B (10/10 SIGABR
 - Shared host: [`@spec-kit/shared/embeddings/`](../../../../skills/system-spec-kit/shared/embeddings/)
 - Shared cascade: [`auto-select.ts`](../../../../skills/system-spec-kit/shared/embeddings/auto-select.ts)
 - Bootstrap wiring: [`advisor-server.ts`](../../../../skills/system-skill-advisor/mcp_server/advisor-server.ts) (`ensureActiveEmbedder` call between `initSkillGraphDb` and `startupSkillGraphScan`)
-- Docs: [`system-skill-advisor/INSTALL_GUIDE.md` §12](../../../../skills/system-skill-advisor/INSTALL_GUIDE.md)
+- Docs: `system-skill-advisor/INSTALL_GUIDE.md` §12
 - Predecessor (writer cross-wire): `../004-skill-graph-db-writer-cross-wire/`
 - Sibling follow-ups: [`../FOLLOW-UPS.md`](../FOLLOW-UPS.md) (this work closes #1 shared-factory, partially closes #2 production active pointer — note: `FOLLOW-UPS.md` itself still cites the pre-re-nest spec-folder path and was not updated in this pass, out of scope for this packet's own docs)
 - Round 2 (2026-07-08): [`mk-skill-advisor-launcher.cjs`](../../../../bin/mk-skill-advisor-launcher.cjs) (FIX-A), [`hf-model-server.cjs`](../../../../bin/hf-model-server.cjs) (onnx shutdown-crash mitigation), [`schema.ts`](../../../../skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts) (provider persistence)

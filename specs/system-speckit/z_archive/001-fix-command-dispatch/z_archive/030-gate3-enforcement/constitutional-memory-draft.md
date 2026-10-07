@@ -1,3 +1,12 @@
+---
+title: "Constitutional Memory Draft - Gate 3 Enforcement [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/constitutional-memory-draft]"
+description: "Draft content for a constitutional-tier memory that surfaces at the top of every memory search and enforces the Gate 3 spec folder question."
+trigger_phrases:
+  - "gate3 enforcement constitutional draft"
+  - "constitutional memory draft"
+importance_tier: "normal"
+contextType: "general"
+---
 # Constitutional Memory Draft - Gate 3 Enforcement
 
 > Draft content for a constitutional-tier memory that surfaces at the top of every memory search.

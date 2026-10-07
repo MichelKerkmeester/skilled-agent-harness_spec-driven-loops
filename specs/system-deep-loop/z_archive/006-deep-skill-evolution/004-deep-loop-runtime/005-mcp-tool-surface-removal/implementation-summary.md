@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-mcp-tool-surface-removal` |
+| **Spec Folder** | 005-mcp-tool-surface-removal |
 | **Status** | Complete |
 | **Level** | 3 |
 | **Actual Effort** | Bundled with phases 002, 003, and 005 |

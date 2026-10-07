@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/005-validation-and-closeout"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/005-validation-and-closeout"
     last_updated_at: "2026-07-08T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan, not yet executed"

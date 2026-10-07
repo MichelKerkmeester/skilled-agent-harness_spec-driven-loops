@@ -1,3 +1,11 @@
+---
+title: "Phase-003 Scorecard -- deep-research + deep-context Behavioral Benchmarks"
+trigger_phrases:
+  - "rollout research context scorecard"
+importance_tier: "high"
+contextType: "implementation"
+---
+
 # Phase-003 Scorecard — deep-research + deep-context Behavioral Benchmarks (3 legs × 14 scenarios, 42 scored runs)
 
 > **Legs**: `claude-cli` (baseline: claude v2.1.198) | `gpt-fast-med` (`openai/gpt-5.5-fast --variant medium`) | `gpt-fast-high` (`--variant high`), all via the shared runner with hardened fixture restores. Run evidence: `runs/baseline/`, `runs/gpt-fast-med/`, `runs/gpt-fast-high/` in this folder; quarantined round-1 baseline cells in `runs/baseline-rl-poisoned/`.

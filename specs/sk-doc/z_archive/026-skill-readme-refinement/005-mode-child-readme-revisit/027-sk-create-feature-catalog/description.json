@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
   "description": "The skill README at `.opencode/skills/sk-doc/sk-create-feature-catalog/README.md` still carries the older tabular reference-card style and predates",
   "keywords": [
     "skill",

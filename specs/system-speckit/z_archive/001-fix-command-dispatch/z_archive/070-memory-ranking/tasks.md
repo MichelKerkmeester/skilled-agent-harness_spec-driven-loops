@@ -19,7 +19,6 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Quick Wins (No MCP Changes)
 
@@ -293,9 +292,8 @@ Add option to show/hide archived folders in dashboard.
 
 ---
 
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: MCP Enhancements
 
 ### P2-1: Add Ranking Parameters to memory_stats()

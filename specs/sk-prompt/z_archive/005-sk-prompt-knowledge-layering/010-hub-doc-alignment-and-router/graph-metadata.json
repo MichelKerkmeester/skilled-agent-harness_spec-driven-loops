@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The hub's `SKILL.md` §2 declared \"this skill has no runtime router of its own\" — a no-op that",
     "created_at": "2026-07-15T08:09:49.926Z",
-    "last_save_at": "2026-08-30T15:39:19.274Z",
+    "last_save_at": "2026-10-07T18:14:21.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4405a010e503f497caf10bfd1ae1948f17828483fe8b0d3dcb23fb79ae262c80",
+    "source_fingerprint": "sha256:ba8c339da34b0c32ac84de15e39aaaea4ef8eb04fa3252ff5de9a01a79d6a3b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fde64e2fd837dfe0c93471cea475d345c174ac275195284b8ff0ac6d739d49da",
-      "plan.md": "c0d5696b6dc464e4ad0d5f725a78247fe058c1cbad524bd30f449f901c9d3fb3",
-      "tasks.md": "7d4b220852f419f43245600dea0ea5d633cb417fe5d0e168380b5a99740fe39a",
-      "implementation-summary.md": "dba85afb301f4819ef634ec3afaa361cf09912e70e7bb8dbc32f0125f0b9a716"
+      "spec.md": "b29be6903c40cdc9181892db71805929edfc3b84c7546d8d702b2efa85843390",
+      "plan.md": "99e823804ed5344c004e7ab13cddbb24b25622f9c994872301f4d21228f39d8d",
+      "tasks.md": "706a96a122a9590b80876952b47cc68f2a65738b089b9fbc07d3375e96b6d9d8",
+      "implementation-summary.md": "45c755a8df3bd0d77063f5382ebed282f6a22e85be17af7d406646d861de5bf8"
     },
     "last_active_child_id": null,
     "last_active_at": null

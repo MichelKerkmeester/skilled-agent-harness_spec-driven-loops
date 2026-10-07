@@ -40,6 +40,7 @@ _memory:
 
 ## 2. TASK BREAKDOWN
 
+<!-- ANCHOR:phase-1 -->
 ### Phase A: Query Enhancement (REQ-D2-001, REQ-D2-002)
 
 #### A.1 — Facet Detection Heuristic
@@ -115,9 +116,11 @@ _memory:
   - Alias matching: exact match, partial match, no match
   - Latency: simple query path unchanged
   - **Req:** REQ-D2-001, REQ-D2-002 | **Est:** 1d
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ### Phase B: LLM Integration (REQ-D2-003, REQ-D2-004)
 
 #### B.1 — Cheap Seed Retrieval
@@ -189,9 +192,11 @@ _memory:
   - Caching: hit/miss, TTL expiration, shared cache
   - LLM call budget: ≤ 2 calls per deep query
   - **Req:** REQ-D2-003, REQ-D2-004 | **Est:** 1.5d
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
+<!-- ANCHOR:phase-3 -->
 ### Phase C: Index-Time Surrogates (REQ-D2-005)
 
 #### C.1 — Surrogate Schema Design
@@ -244,9 +249,11 @@ _memory:
   - Flag gating: on/off behavior for both index and query paths
   - Recall impact: measure improvement on test corpus
   - **Req:** REQ-D2-005 | **Est:** 1d
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## 3. TASK SUMMARY
 
 | Phase | Tasks | Requirements | Est. Total |
@@ -255,9 +262,11 @@ _memory:
 | **B** | T-D2-B01 through T-D2-B08 (8 tasks) | REQ-D2-003, REQ-D2-004 | 8d |
 | **C** | T-D2-C01 through T-D2-C06 (6 tasks) | REQ-D2-005 | 5.5d |
 | | **23 tasks total** | **5 requirements** | **20.5d** |
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## 4. TASK DEPENDENCIES
 
 ```
@@ -275,6 +284,7 @@ A06 (alias table reuse) ──► C01 (schema)
 C01 ──► C02 (generation) ──► C03 (storage) ──► C04 (matching) ──► C05 (wire)
 C01–C05 ──► C06 (Phase C tests)
 ```
+<!-- /ANCHOR:cross-refs -->
 
 <!--
 TASKS — D2: Query Intelligence & Reformulation
@@ -284,20 +294,4 @@ TASKS — D2: Query Intelligence & Reformulation
 - Phase C: 6 tasks (index-time surrogates)
 -->
 
-<!-- ANCHOR:notation -->
-<!-- /ANCHOR:notation -->
 
-<!-- ANCHOR:phase-1 -->
-<!-- /ANCHOR:phase-1 -->
-
-<!-- ANCHOR:phase-2 -->
-<!-- /ANCHOR:phase-2 -->
-
-<!-- ANCHOR:phase-3 -->
-<!-- /ANCHOR:phase-3 -->
-
-<!-- ANCHOR:completion -->
-<!-- /ANCHOR:completion -->
-
-<!-- ANCHOR:cross-refs -->
-<!-- /ANCHOR:cross-refs -->

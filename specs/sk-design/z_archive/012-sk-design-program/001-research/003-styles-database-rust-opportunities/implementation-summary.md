@@ -1,9 +1,11 @@
 ---
 title: "Implementation Summary: Rust opportunities research"
 description: "Completed 20-iteration deep-research study on what Rust could add/improve for the sk-design styles database. Verdict: no Rust now."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/003-styles-database-rust-opportunities"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"
@@ -22,10 +24,7 @@ _memory:
     answered_questions:
       - "Should the styles DB be rewritten in Rust? No — the hot path is already native; value is in new JS-first capabilities, Rust only if measured."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "styles database rust opportunities implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

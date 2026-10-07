@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [
-    "sk-design/014-template-conformance/002-design-interface/001-packet-root",
-    "sk-design/014-template-conformance/002-design-interface/002-references",
-    "sk-design/014-template-conformance/002-design-interface/003-assets",
-    "sk-design/014-template-conformance/002-design-interface/004-procedures",
-    "sk-design/014-template-conformance/002-design-interface/005-corpus",
-    "sk-design/014-template-conformance/002-design-interface/006-scripts",
-    "sk-design/014-template-conformance/002-design-interface/007-feature-catalog",
-    "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
-    "sk-design/014-template-conformance/002-design-interface/009-changelog"
+    "sk-design/z_archive/014-template-conformance/002-design-interface/001-packet-root",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/002-references",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/003-assets",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/004-procedures",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/005-corpus",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/006-scripts",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/007-feature-catalog",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+    "sk-design/z_archive/014-template-conformance/002-design-interface/009-changelog"
   ],
   "manual": {
     "depends_on": [],
@@ -90,16 +90,16 @@
     ],
     "causal_summary": "The `design-interface` mode (`.opencode/skills/sk-design/design-interface/`) grew nine top-level folders — packet root, `references/`, `assets/`, `procedures/`, `corpus/`, `scripts/`, `feature-catalog/`, `manual-testing-playbook/`, `changelog/` — under different authoring passes",
     "created_at": "2026-07-27T14:56:07.560Z",
-    "last_save_at": "2026-08-30T15:39:12.988Z",
+    "last_save_at": "2026-10-07T18:11:51.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8a9070cf958b98361d25fcd7ca10b742565b506df3921d6a5c4b0ff634e12fa1",
+    "source_fingerprint": "sha256:48dbf75e1ce6db302dd5b399e8eb970c39a9ddbd995837660247388fdfbb9bd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf896134628c355d2af3a2b8b5e96325ba9ea1a08ad7ce19be34fc83903d022c"
+      "spec.md": "3cab88dc15dd4185ab6440521e1a15a7e8a938f489db999d0fa62018663364ad"
     },
     "last_active_child_id": "sk-design/014-template-conformance/002-design-interface/005-corpus",
     "last_active_at": null

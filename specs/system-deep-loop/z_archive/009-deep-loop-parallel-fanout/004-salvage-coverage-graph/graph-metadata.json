@@ -12,7 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "123 phase 004 salvage",
-      "coverage-graph per-session isolation"
+      "coverage-graph per-session isolation",
+      "salvage coverage graph plan",
+      "fanout salvage coverage isolation plan",
+      "salvage coverage graph tasks",
+      "fanout salvage coverage isolation tasks"
     ],
     "key_topics": [
       "phase",
@@ -20,24 +24,38 @@
       "coverage-graph",
       "per-session",
       "isolation",
+      "coverage",
+      "graph",
+      "plan",
+      "fanout",
+      "tasks",
       "every",
-      "iteration",
-      "yield",
-      "usable",
-      "artifact",
-      "even",
-      "executor"
+      "iteration"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -75,20 +93,96 @@
         "kind": "quoted",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconstructed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "distinct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Salvage sweep",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Make every iteration yield a usable artifact even when an executor doesn't write its file (weak CLIs / sandboxed writes), and ensure parallel lineages don't collide on the shared coverage SQLite",
     "created_at": "2026-05-30T10:12:01.128Z",
-    "last_save_at": "2026-08-30T15:39:23.933Z",
+    "last_save_at": "2026-10-07T20:45:25.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e59ad9b6b52bad99fccf9ae1e3702ef1f31855eefc82b95200b37584ec9bf18e",
+    "source_fingerprint": "sha256:2233f84c4d350098b27059553e3a9ae8cb1e96bb8d6cab34e17573bada69dde8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33782f1afc504614ee4fe1f5ddd80a285fa0d7f298dce5c17e685bf55f0009f0"
+      "spec.md": "b7ae87280b42bd80b9a96d7292e5510fd3e8f2b1c2d4820b86da817b96bb4810",
+      "plan.md": "529c6b02d83af797013cff9c27496f29e04d4753500523751062e6dda3f2b5e0",
+      "tasks.md": "f14b06fb03d6f10c6731a3e0494f6dec38d9d63a10390098e8ceea19d0425fb8"
     },
     "last_active_child_id": null,
     "last_active_at": null

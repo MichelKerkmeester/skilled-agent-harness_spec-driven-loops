@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Even after public and discoverability cleanup, test fixtures, behavior benchmarks, generated source lists, and shared runtime branches can keep standalone `deep-context` alive as an active compatibility path",
     "created_at": "2026-07-04T14:32:37Z",
-    "last_save_at": "2026-08-30T15:39:25.946Z",
+    "last_save_at": "2026-10-07T18:15:10.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +199,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee4ec2ebc13eb201d84fe5fe062c8fa58d1b738cec90cff6a125b541ae7bff67",
+    "source_fingerprint": "sha256:7692f713c7bda511ec9f9ae3dbf7799919cea21bbeb2d06415a219eca89951d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6816c2a4f819d1cfa9ebe23dbd22480b22bcfd93e6e2a4d2758b9624799eaf67",
-      "plan.md": "c3ca3d85ca4a5c869761881b4d211e48f5f54f684635d03bebfa0b7f79043fcd",
-      "tasks.md": "90fbcb101189079c34a8ddb9708056a7c43f5123c87fd3245b14b224aba6ccbd",
+      "spec.md": "4f779672dc7606d47f523a610ceefb81492732ce39d447fc2e52353b37162c34",
+      "plan.md": "ae8dee4a1a486c04706b845e5b6272aa233f4585ef59ac0e42b718a5084485c1",
+      "tasks.md": "d98559e330d441a318481b33ba8cb02f2336639a8f6a02407b9180ea3fd83db1",
       "decision-record.md": "4d3334a50a97ce00affd467a4f977c2cbae072472f0731c0a253b9ec206b19aa",
-      "implementation-summary.md": "ab83ce627a93b5567a2cef2a6971189d9079ce17de2ab05c280fa79d0ff9cb9a"
+      "implementation-summary.md": "47949080a606a8aac5bfcdc9a5b17eb3a17c8088a8ee429658df2e32184d6f20"
     },
     "last_active_child_id": null,
     "last_active_at": null

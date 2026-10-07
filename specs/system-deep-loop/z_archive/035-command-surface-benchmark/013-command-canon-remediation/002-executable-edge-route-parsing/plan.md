@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/002-executable-edge-route-parsing"
     last_updated_at: "2026-07-16T13:00:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped structural edge parser; comment-derived route cycles 3 to 0"
@@ -18,10 +18,7 @@ _memory:
       - ".opencode/commands/create/assets/create_readme_auto.yaml"
       - ".opencode/commands/doctor/_routes.yaml"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "executable edge route parsing plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

@@ -4,13 +4,6 @@
   "spec_folder": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation",
   "parent_id": "system-deep-loop/z_archive/024-deep-loop-improved",
   "children_ids": [
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/004-scaffold-content-003-deep-loop-workflows",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/005-scaffold-content-004-through-007",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/006-validate-sh-registry-bridge",
-    "system-deep-loop/030-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode",
     "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation",
     "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation",
     "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/003-scaffold-content-002-deep-loop-runtime",
@@ -46,7 +39,7 @@
       "authoring"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -96,16 +89,16 @@
     ],
     "causal_summary": "Phase 009's own changelog (`changelog-009-root.md` Follow-Ups) documented 4 deliberately-deferred items: 2 review findings that remained genuinely active in the prior codex deep-review lineage, a sliding-window convergence mode a decision record recommends building next, a validate.sh architectural gap where the default invocation path never runs 2 rules shipped this packet, and scaffold-marker content debt across phases 002-007 that becomes blocking (not cosmetic) the moment the validate.sh gap is fixed",
     "created_at": "2026-07-01T19:38:04.125Z",
-    "last_save_at": "2026-08-30T15:39:25.283Z",
+    "last_save_at": "2026-10-07T18:14:35.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:77ecd4293badbc78d9f53ead18d0222556a8f7247187406ba7a5893ad43081c0",
+    "source_fingerprint": "sha256:8801857423e067c5258c028cbe043b5f78a0073f518ffa7abaad350277bd7448",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73c91107d336e6b889995091708216c966e8b432ba49bf81b83cd2d86fcd05fc"
+      "spec.md": "063442d9ca22ea542af4ce0f054d11583fa2e1958278afa32f1badf28d1a86ec"
     },
     "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/001-fanout-session-id-propagation",
     "last_active_at": null

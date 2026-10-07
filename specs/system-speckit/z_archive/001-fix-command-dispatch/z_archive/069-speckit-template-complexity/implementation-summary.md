@@ -7,7 +7,6 @@ trigger_phrases:
   - "dynamic"
   - "complexity"
   - "based"
-  - "implementation summary"
   - "069"
   - "speckit"
 importance_tier: "normal"

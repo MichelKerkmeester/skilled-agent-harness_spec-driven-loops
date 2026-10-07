@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/032-split-doc-template-alignment"
+    packet_pointer: "sk-doc/z_archive/032-split-doc-template-alignment"
     last_updated_at: "2026-07-13T07:19:48Z"
     last_updated_by: "claude-code"
     recent_action: "All 163 files conformed across 11 batches; pushed to v4"

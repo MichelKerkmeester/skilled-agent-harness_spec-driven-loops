@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/017-mcp-magicpath/003-skill-packet",
+  "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/003-skill-packet",
   "description": "A registered manual is reachable but not discoverable",
   "keywords": [
     "registered",

@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "implemented"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/012-deep-loop-divergent-mode"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode"
     last_updated_at: "2026-07-11T03:54:49Z"
     last_updated_by: "claude"
     recent_action: "Shipped divergent-mode phases 1-5 to skilled/v4.0.0.0 from wt/0026-deep-loop-divergent-mode"

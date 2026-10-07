@@ -47,9 +47,9 @@ This plan converts the five governance scenarios in the manual testing playbook 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Exact prompts, command sequences, and pass criteria are loaded from [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md).
+- [ ] Exact prompts, command sequences, and pass criteria are loaded from `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`.
 - [ ] Feature mappings for all 5 governance tests are confirmed against the cross-reference index and governance feature files.
-- [ ] Verdict rules from [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) are loaded for PASS/PARTIAL/FAIL handling.
+- [ ] Verdict rules from `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` are loaded for PASS/PARTIAL/FAIL handling.
 - [ ] Sandbox expectations are identified for stateful scenarios 122, 123, and 148.
 
 ### Definition of Done
@@ -125,8 +125,8 @@ Manual governance test execution pipeline with review-gated evidence collection.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Internal | Green | Exact prompts, commands, evidence targets, and pass criteria cannot be verified |
-| [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Internal | Green | Verdicts and coverage rules cannot be applied consistently |
+| `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Internal | Green | Exact prompts, commands, evidence targets, and pass criteria cannot be verified |
+| `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Internal | Green | Verdicts and coverage rules cannot be applied consistently |
 | [`../../feature_catalog/17--governance/`](../../feature_catalog/17--governance/) | Internal | Green | Test-to-feature context and review triage lose their canonical reference |
 | MCP runtime for governance and shared-memory tools | Internal | Yellow | Stateful governance scenarios cannot be executed or compared |
 | Disposable sandbox tenant/user IDs and clean DB config state | Internal | Yellow | Scoped-ingest and shared-memory tests cannot run safely without cross-contamination |
@@ -144,7 +144,6 @@ Manual governance test execution pipeline with review-gated evidence collection.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -162,7 +161,6 @@ Phase 1 (Preconditions) ──► Phase 2 (Non-Destructive) ──► Phase 3 (S
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

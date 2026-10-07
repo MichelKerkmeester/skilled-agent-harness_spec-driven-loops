@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
+  "specFolder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
   "description": "The hub-level docs do not yet point readers at the new per-mode catalogs",
   "keywords": [
     "hub-level",

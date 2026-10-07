@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/008-cutover-and-rollout",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,41 +44,31 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -194,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
     "created_at": "2026-07-09T20:18:26Z",
-    "last_save_at": "2026-09-11T16:41:50.486Z",
+    "last_save_at": "2026-10-07T18:11:38.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eee134928f9465ca11aaf9da7ddd84be3359313f164c79891d67b86560eeac81",
+    "source_fingerprint": "sha256:2c7e9c08740b7ed97d31746ad02c050c83f6a6db41969091a480795f3d708477",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8d1e1f56a1f49aa6e51b4a6830119da3cfc1ed540be07545296d434b7530d2e7",
-      "plan.md": "69e92630b99e9ddb6dba592f4c558f54abf844ad0e315ef8f05ca11721d89fbe",
-      "tasks.md": "fdd262a6873fd76719e319a164b716358aa0875443cf1c2bbb77b52392c79375",
-      "implementation-summary.md": "74920fd975836a832ef7919fe5b0d20791a6ab9d67cbe7d50dd1d1744c974ff0"
+      "spec.md": "242dd70728f8b7de378a192fe6cbb79bfaf2fb3cc3ab108a363b8807e1d138bb",
+      "plan.md": "f469b38e7ea7963b97efb01a281de6e826b6e574251e268df46cba405d3ce432",
+      "tasks.md": "5316a946756c5682d76deeb70ce9269be0f97136e76cf329d18d2a95e33dcf83",
+      "implementation-summary.md": "7c741e1cc7af12937f30a6f95f145786e48bd0414de6566ec0491f6366c98a98"
     },
     "last_active_child_id": null,
     "last_active_at": null

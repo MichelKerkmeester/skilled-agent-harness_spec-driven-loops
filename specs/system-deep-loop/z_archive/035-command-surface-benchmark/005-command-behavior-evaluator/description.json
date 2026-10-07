@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/005-command-behavior-evaluator",
   "description": "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary",
   "keywords": [
     "shared",

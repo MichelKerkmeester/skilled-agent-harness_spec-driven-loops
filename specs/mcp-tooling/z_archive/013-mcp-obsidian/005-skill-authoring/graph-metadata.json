@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/005-skill-authoring",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/005-skill-authoring",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/005-skill-authoring",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After Phases 3 and 4 the CLI and MCP surfaces exist, but nothing tells an agent or human when to use the CLI versus the MCP, how to install the mode, or how to reach its references",
     "created_at": "2026-08-02T05:50:29Z",
-    "last_save_at": "2026-09-07T16:16:57.696Z",
+    "last_save_at": "2026-10-07T18:11:32.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1875260386208a1d265cccce71753b0f2340f3d1a1381583f45b6fc2351425f8",
+    "source_fingerprint": "sha256:b1f0bfa666952004fea616c770195d7872ad24f0b686759b5e72b5e36d167bb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26cdd65ed7bd3017b5658b59ac8a6dbceb7ef3e825d7af83110850d8a31f4597",
-      "plan.md": "c0e440b0e097870a0b4b2d33fe6912dc658efdd735a8236bb48939dc98fb57f3",
-      "tasks.md": "10dd406a171843d713cea43fd87fea29d33cced32d00adb48d338167e6aea7df",
-      "implementation-summary.md": "b99e1f405517232cfc6843432f411106b22c850a7d30bc749e7e0c70221d4b07"
+      "spec.md": "2edcee3fd20927c4825e6e7f019002554b6c8a4f757fc11724b37b5b8c6b5a2c",
+      "plan.md": "fa3f153540e7014befd75c202054df179812640b9e105cb7c293a9b80f97e48f",
+      "tasks.md": "7399fe8780e992d0af05e36e4c224819ab905f2092d95f91d14c5210e958d524",
+      "implementation-summary.md": "1d7128137b345ac875fc44489044195cb6129aacc60b9f72468e7e00ab4384d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

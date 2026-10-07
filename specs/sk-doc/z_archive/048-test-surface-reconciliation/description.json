@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/048-test-surface-reconciliation",
+  "specFolder": "sk-doc/z_archive/048-test-surface-reconciliation",
   "description": "Ninety-eight test failures across seven suites, almost none of them a code regression: renamed packets, a renumbered runtime layout, a retired hub and a withdrawn mode all landed without updating the tests that named them.",
   "keywords": [
     "test",

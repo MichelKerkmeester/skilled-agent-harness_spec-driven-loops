@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra"
+    packet_pointer: "cli-external-orchestration/z_archive/056-roster-drop-deepseek-api-pro-terra"
     last_updated_at: "2026-08-29T10:35:00Z"
     last_updated_by: "pi"
     recent_action: "Documented the retirement plan (rosters + playbooks + fan-out enforcement)"

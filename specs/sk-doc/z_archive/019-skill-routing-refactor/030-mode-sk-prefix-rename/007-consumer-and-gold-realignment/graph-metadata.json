@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Sweep live surfaces outside the four hubs — runtime mirrors, agent definitions, commands, workflows, cli-orchestration docs, metadata — to the sk- names, leaving history untouched.",
     "created_at": "2026-07-28T05:34:11.431Z",
-    "last_save_at": "2026-09-11T16:42:08.313Z",
+    "last_save_at": "2026-10-07T18:13:23.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f6bf8e09e049e5f6516051c28b9bd3b5ff7c522ccdb315b6e2bdfe8af57458b",
+    "source_fingerprint": "sha256:025884e4ff858aa33f1c0cf68729345c79261b55d29ae84bee5f3132f3098c21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3c04cc24fef9ec61816745304bba63358432761171e957e83edc4c5d72ba4f7b",
       "plan.md": "62b20cb823b63ebee9d329e369d3b74ed26e95c4bfd2894aa22efa66a9fad055",
       "tasks.md": "2caabeaac5c3f565a6b61abc7de0405769564939121d7fbe5dd68a3ad381e801",
-      "implementation-summary.md": "00b34781690c15ec810033370715220edbb83f1bca7fab192f8cf50fc0f03440"
+      "implementation-summary.md": "ee7bdf4f719aec9b699810fa999fd12f30171f77ff13a18e2cae75de3f936dc3"
     },
     "last_active_child_id": null,
     "last_active_at": null

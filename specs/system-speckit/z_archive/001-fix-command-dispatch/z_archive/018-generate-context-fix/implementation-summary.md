@@ -7,7 +7,6 @@ trigger_phrases:
   - "parallel"
   - "agent"
   - "backward"
-  - "implementation summary"
   - "018"
   - "generate"
 importance_tier: "normal"

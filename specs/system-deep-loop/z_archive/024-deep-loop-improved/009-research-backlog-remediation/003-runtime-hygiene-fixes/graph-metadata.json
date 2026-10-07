@@ -39,12 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-comment-hygiene.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "scripts/rules/check-comment-hygiene.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,30 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-comment-hygiene.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-comment-hygiene.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation-extended.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -190,11 +161,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three related but distinct hygiene defects, all confirmed live:",
     "created_at": "2026-07-01T07:19:07.520Z",
-    "last_save_at": "2026-08-30T15:39:25.195Z",
+    "last_save_at": "2026-10-07T18:15:08.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2ae9d34a85e1dc73b8ff5862a7f4f010c61a04e5b217f419cdc64708080144d",
+    "source_fingerprint": "sha256:4633f6428e930f7385dcf685d79a7fc753bc404dd17ab1069d434e4c29828123",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53b71e54b263d83ee7a57e4818153a102a1d0b61782d7eec441559a2bf96154d",
-      "plan.md": "14e7c32b62d8b84877b9ccfd11fe370f74881c55ad96d040200de37e26573348",
-      "tasks.md": "703c5d5fde52c73cf4bcf437ab813cd6791ba74e90bcf794dc52e56149f172ea",
-      "implementation-summary.md": "9494abcf76240bba7e546f16ee2fcda5d4db59a53dcce954573c6282b06b4221"
+      "spec.md": "6056adabfcb8ee160e88b4498951a578a4b70a852c95df3ea52704710a6e5578",
+      "plan.md": "736c2b1812307a14c1b70b4b225fbeba03ee40dd581b707d8989f121d66393a5",
+      "tasks.md": "30b32f30e8319852c61c0b35c897b671b69be42b1e1b54c1ad9ff043af284969",
+      "implementation-summary.md": "490bfebcf27cdb93e3e055f56f3a0224020ef6c6332dcde57f8b79f9e4cacc3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

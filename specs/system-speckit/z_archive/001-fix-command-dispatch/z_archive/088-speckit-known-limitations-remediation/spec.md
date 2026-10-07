@@ -135,7 +135,7 @@ All 4 known limitations resolved: conflict tracking data writes succeed, gate nu
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Data Integrity
@@ -146,7 +146,7 @@ All 4 known limitations resolved: conflict tracking data writes succeed, gate nu
 - **NFR-C01**: Migration v12 must work on databases at any version from v4 to v11
 - **NFR-C02**: New databases (fresh install) must create the unified schema directly
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

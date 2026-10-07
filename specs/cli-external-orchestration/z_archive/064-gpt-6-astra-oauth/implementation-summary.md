@@ -3,13 +3,12 @@ title: "Implementation Summary: Astra on the OAuth route"
 description: "Nothing is implemented yet. This records the twelve live dispatches the specification was built from, including the one that overturned the answer the catalogs gave, so the next session starts from evidence rather than repeating them."
 trigger_phrases:
   - "astra oauth summary"
-  - "implementation summary"
   - "astra verification evidence"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/064-gpt-6-astra-oauth"
+    packet_pointer: "cli-external-orchestration/z_archive/064-gpt-6-astra-oauth"
     last_updated_at: "2026-09-05T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Recorded the pre-implementation dispatch evidence"

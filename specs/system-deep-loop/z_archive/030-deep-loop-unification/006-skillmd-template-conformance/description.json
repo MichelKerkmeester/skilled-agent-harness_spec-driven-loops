@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/006-skillmd-template-conformance",
   "description": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically",
   "keywords": [
     "following",

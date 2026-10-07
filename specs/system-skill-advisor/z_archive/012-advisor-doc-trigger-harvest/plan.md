@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/012-advisor-doc-trigger-harvest"
+    packet_pointer: "system-skill-advisor/z_archive/012-advisor-doc-trigger-harvest"
     last_updated_at: "2026-06-11T08:45:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phases 1-3 executed; rollout phase pending"

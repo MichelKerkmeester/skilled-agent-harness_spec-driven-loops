@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit"
+    packet_pointer: "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit"
     last_updated_at: "2026-04-29T22:05:20+02:00"
     last_updated_by: "codex"
     recent_action: "Completed audit task ledger"

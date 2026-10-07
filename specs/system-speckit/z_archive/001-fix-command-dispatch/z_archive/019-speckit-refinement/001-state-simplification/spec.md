@@ -2,12 +2,8 @@
 title: "...2--system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification/spec]"
 description: "Current implementation has 3 context mechanisms"
 trigger_phrases:
-  - "state"
-  - "simplification"
-  - "integrate"
-  - "into"
-  - "spec"
-  - "001"
+  - "state simplification spec"
+  - "integrate state into memory files"
 importance_tier: "important"
 contextType: "planning"
 ---

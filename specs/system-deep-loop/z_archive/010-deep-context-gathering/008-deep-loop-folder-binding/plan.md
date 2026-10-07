@@ -2,7 +2,6 @@
 title: "Implementation Plan: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone guard across the /deep:* command family"
 description: "Add a Tier-1 positional-scope spec-folder extraction source plus a fail-closed standalone guard to the shared auto-mode contract, then reconcile the three /deep:* commands to it."
 trigger_phrases:
-  - "implementation plan"
   - "deep loop folder binding"
   - "scope extract plan"
   - "plan core"

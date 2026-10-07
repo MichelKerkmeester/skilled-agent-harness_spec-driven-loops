@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment"
     last_updated_at: "2026-07-30T20:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "001-research complete: 20/20 iterations, research.md synthesized"

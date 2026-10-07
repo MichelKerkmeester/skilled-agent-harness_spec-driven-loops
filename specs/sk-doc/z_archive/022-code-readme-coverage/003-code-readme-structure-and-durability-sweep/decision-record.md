@@ -1,3 +1,14 @@
+---
+title: "Decision Record: Code README Structure And Durability Sweep"
+description: "Three execution decisions for the structural and durability sweep: truth defects escalate to the sibling truth phase, lanes run smallest-first, and the durability gate ships regardless of how many lanes run."
+trigger_phrases:
+  - "code readme structure sweep"
+  - "durability sweep decision"
+  - "truth defect escalation"
+  - "lane order decision"
+importance_tier: "normal"
+contextType: "general"
+---
 # Decision Record: Code README Structure And Durability Sweep
 
 <!-- SPECKIT_LEVEL: 3 -->

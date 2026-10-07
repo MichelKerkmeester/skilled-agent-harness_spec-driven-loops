@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/012-fix-deep-loop-workflow-state"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/012-fix-deep-loop-workflow-state"
     last_updated_at: "2026-04-30T00:00:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Plan authored after spec"

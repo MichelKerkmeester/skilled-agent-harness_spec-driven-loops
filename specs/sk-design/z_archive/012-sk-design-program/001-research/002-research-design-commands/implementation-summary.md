@@ -3,14 +3,13 @@ title: "Implementation [sk-design/012-sk-design-program/001-research/002-researc
 description: "Converged recommendation for the /interface:* creation commands, and handoff to phase 004-interface-commands."
 trigger_phrases:
   - "implementation"
-  - "implementation summary"
   - "002"
   - "research"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/002-research-design-commands"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "deep-research-orchestrator"

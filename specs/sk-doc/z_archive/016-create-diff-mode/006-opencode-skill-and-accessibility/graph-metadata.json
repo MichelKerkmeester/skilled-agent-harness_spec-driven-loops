@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility",
-  "spec_folder": "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/006-opencode-skill-and-accessibility",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/006-opencode-skill-and-accessibility",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
     "created_at": "2026-07-15T10:56:00.016Z",
-    "last_save_at": "2026-08-30T15:39:14.163Z",
+    "last_save_at": "2026-10-07T18:12:36.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55cec7a586f1644dee6a3aaffb57202f7c60b8f745616e602cfce34fc6b22e8d",
+    "source_fingerprint": "sha256:7712aecaf93c15c3ffae2dfa1c00b7aa59c8b9e45934706eecf8efa72c598a3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89fc0e677f9947b985fb26af7bafa07e69797ba335801d0d4556b601363982d5",
-      "plan.md": "112383350729c26ff6931f2f8b4c737e28c3295bd9b40eaf6c445bee95368944",
-      "tasks.md": "eb19854114e234d679a624099b2fa20815cc37dbc3170facbf7e738f180c2e97",
-      "implementation-summary.md": "ea05b31e145553bdfffc4bc70111e2a891b32d79c03c1f4b37633d7f14bcc00a"
+      "spec.md": "1ea6485891448dabbba79308407c98fc35336755fc6f656fd968512147272f76",
+      "plan.md": "a22c7e03a280e76e54dabef52d52da1d9193ade43809fba30fd6b2f45e38e64a",
+      "tasks.md": "12c5325256caa06039470406df83bef6f80812823efdf380b532c9c3ba542f1e",
+      "implementation-summary.md": "15f2f2e003ef33df225fd7ee2ab9c6cd56c061b5add9c8b98df74e1409008d36"
     },
     "last_active_child_id": null,
     "last_active_at": null

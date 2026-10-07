@@ -2,7 +2,6 @@
 title: "Implementation Plan: Full Spec Folder Document [system-spec-kit/z_archive/009-full-spec-doc-indexing/plan]"
 description: "Archive normalization plan for the Full Spec Folder Document Indexing folder."
 trigger_phrases:
-  - "implementation plan"
   - "full spec doc indexing"
   - "archive"
 importance_tier: "important"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/017-design-proof-token-relocation"
     last_updated_at: "2026-07-07T04:20:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored spec.md after the move + reference repoint was completed and verified"

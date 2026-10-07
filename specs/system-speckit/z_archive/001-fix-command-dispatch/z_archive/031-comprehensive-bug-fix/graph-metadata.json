@@ -43,7 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -165,24 +172,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "id: 018-comprehensive-bug-fix",
     "created_at": "2026-04-12T09:02:53.522Z",
-    "last_save_at": "2026-08-30T15:39:37.093Z",
+    "last_save_at": "2026-10-07T20:18:23.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3247c2df90fe33df547354d38e151bef7ebea937f6a9c84fec8b372737fd25e0",
+    "source_fingerprint": "sha256:6f155c561b2363f612844378af190fcc17700da1315841947aa853d2ff013cc5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcc1d24316b0ab013a1ccb00e36ba1588169741d88cf3d17ebc0213271895852",
       "plan.md": "fe52d992898385c68e5543b5bd6a60eed3c8053977235a4f49731911c20696f3",
-      "tasks.md": "b4213aa3107ee1b69386e5275d4d536558d009f85bd2c5c24fb1f2ccafc0225d"
+      "tasks.md": "b4213aa3107ee1b69386e5275d4d536558d009f85bd2c5c24fb1f2ccafc0225d",
+      "implementation-summary.md": "6e777269721751c2b3e8b9d98ad6f81ee319391a82f8a8b45a7a98d3760d72ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

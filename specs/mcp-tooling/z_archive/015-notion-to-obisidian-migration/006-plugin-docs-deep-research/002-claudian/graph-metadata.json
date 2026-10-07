@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The shipped mcp-obsidian Claudian reference docs contained two load-bearing factual errors: they instruct operators to author/merge `.claude/mcp.json` to add an MCP server, while Claudian actively deletes that exact file at storage init and its own AGENTS.md forbids reading, writing, injecting, or migrating it — so following the shipped recipe produces a file Claudian removes",
     "created_at": "2026-08-23T03:40:39.545Z",
-    "last_save_at": "2026-09-10T20:43:52.277Z",
+    "last_save_at": "2026-10-07T18:11:24.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4e28a34777e9265ddaaa6ee8b2e91f87ac2cfbbbcb13a053b931ac627f883127",
+    "source_fingerprint": "sha256:7f0ff839744ee583bc5aaf62448168099f04f02996515bfd7511e94d93f07565",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3638a95efc72f54a08679d60727e8bcad335d9615961082795dac3e00f54be60",
-      "plan.md": "858c8d370fdac6f62fabc7d57c60e99611b7c26390deb81fb22b6b970a8abee1",
-      "tasks.md": "6bba3b95a2e725822fb330148af0ffc09b954b64a03fd0c5d57403bdac2a6367",
+      "spec.md": "deb8d3a8b10eca9a6452fe2e9840ad7da9465a30744aef2538eeaa1f2698c48a",
+      "plan.md": "517b6cc1fc8a86fa78eb199c453f3612f2a11d5c9272ba0e1a1ece8fad2e04d6",
+      "tasks.md": "6f0c6f503b496967ed639f20f8bfec06942ec9d7598d35b0bd250c9346128778",
       "research/research.md": "eb1ede7ac7049efb682041ccf477c3637d8953afa1d57b36e6680af99a5c3713"
     },
     "last_active_child_id": null,

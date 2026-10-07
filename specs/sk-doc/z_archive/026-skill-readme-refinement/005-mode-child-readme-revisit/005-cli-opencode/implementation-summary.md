@@ -2,14 +2,13 @@
 title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/implementation-summary]"
 description: "The cli-opencode README now opens purpose-first with a one-line pitch and a problem-first overview, documents the full-runtime dispatch surface and the four-provider roster, and versioned at 1.4.1.0 with a changelog entry."
 trigger_phrases:
-  - "implementation summary"
   - "cli opencode readme rewrite"
   - "opencode mode readme summary"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode"
     last_updated_at: "2026-08-04T13:50:00Z"
     last_updated_by: "phase-executor-005"
     recent_action: "Phase documentation complete"

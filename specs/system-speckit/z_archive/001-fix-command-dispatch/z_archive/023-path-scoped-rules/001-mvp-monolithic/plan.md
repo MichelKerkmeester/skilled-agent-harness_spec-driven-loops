@@ -2,13 +2,8 @@
 title: "Impleme [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic/plan]"
 description: "┌─────────────────────────────────────────────────────────────────┐"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "path"
-  - "scoped"
-  - "validation"
-  - "001"
-  - "mvp"
+  - "path scoped rules plan"
+  - "path scoped validation plan"
 importance_tier: "important"
 contextType: "planning"
 ---

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/007-command-scenario-rollout"
     last_updated_at: "2026-07-15T10:49:30Z"
     last_updated_by: "codex"
     recent_action: "Authored DAB-016 through DAB-027 and reconciled the sixteen-cell command suite"

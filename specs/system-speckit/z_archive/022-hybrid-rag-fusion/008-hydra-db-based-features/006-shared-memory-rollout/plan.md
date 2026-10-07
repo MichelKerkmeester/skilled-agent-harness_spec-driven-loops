@@ -146,7 +146,7 @@ Opt-in collaboration layer on top of governed memory state. Phase 6 introduces s
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -159,7 +159,7 @@ Phase 5 governance -> Shared-space model -> Conflict handling -> Staged rollout 
 | Conflict handling and telemetry | Shared-space model | Staged rollout |
 | Staged rollout and rollback | Conflict handling | Final roadmap sign-off |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->
@@ -257,7 +257,7 @@ Phase 5 governance -> Shared-space model -> Conflict handling -> Staged rollout 
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ## L3: ARCHITECTURE DECISION RECORD
 
 ### ADR-601: Keep Shared Memory Opt-In and Deny-by-Default
@@ -272,7 +272,7 @@ Phase 5 governance -> Shared-space model -> Conflict handling -> Staged rollout 
 - Safer release and clearer operator control.
 - Slower broad adoption until evidence supports expansion.
 
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->
 ---
 
 ## L3+: AI EXECUTION FRAMEWORK

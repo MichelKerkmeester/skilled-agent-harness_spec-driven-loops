@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The authored hub declares three equally weighted external CLI executors and supports explicit multi-executor dispatch, but its compiled contract needs a deterministic representation that the shared decision parser, projector, scorer, and execution plane can all consume",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:15.060Z",
+    "last_save_at": "2026-10-07T18:13:24.446Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9892554b5f6bfcce857a63893ac9f091dca69eea6104faf92a8970730433c91",
+    "source_fingerprint": "sha256:0f19d6aded83e1cdfca12a4c4a42e8bff4ac1727f6a03b6862cee5fe9c01a4d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96bbbf62b0b762c188390bfef81b3d799c4dcbc1eac2a3b63ad6f60eb0380091",
-      "plan.md": "3fe6703e8f708cf63b90de6528361e55edce40854b0e1cd2692d5e509da9fcbb",
-      "tasks.md": "7ecb4b487c18c237af6a4f418ed8dbc2f02cf861e83be581cc7d9509246ee64c",
-      "implementation-summary.md": "47e429153b78833ba0820c910b81031647d6c01aca277f3d32ced25aa0e447e1"
+      "spec.md": "d5d03179520aa3f189e653d428d631244421bdb3fb06f42bdd7d25979afbc273",
+      "plan.md": "3cb048e6f332bce2f147f6a36e890e6f40644de52baf964f5670edbe7eb1e696",
+      "tasks.md": "b153ed14befbc73b315d771649dccc2b4d8fe264bf6de8926582ed9503050007",
+      "implementation-summary.md": "1f06b6737fda15c25a93253aa06644a5ec4d801b78db58f0d108c0c894210481"
     },
     "last_active_child_id": null,
     "last_active_at": null

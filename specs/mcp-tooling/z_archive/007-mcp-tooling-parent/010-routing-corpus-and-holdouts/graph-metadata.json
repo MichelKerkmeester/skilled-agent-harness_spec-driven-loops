@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02), so routing regressions in the four other modes had no blind detection",
     "created_at": "2026-07-16T12:58:36Z",
-    "last_save_at": "2026-09-11T16:41:50.421Z",
+    "last_save_at": "2026-10-07T18:11:40.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef2fc0d151d463b6956d1ea498fc81b73633a071186b00d1d20419e34dad38df",
+    "source_fingerprint": "sha256:94c930e8c7530e198948d387d11af75b4e91a71f2494734bdf1becfa14727efe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "019bbf312f4d807e42d5ec7f04d0fa5996ef50cc5cb611d5eadf343f0782ae89",
-      "plan.md": "6bfdf8009a88fe38400820404d2e6dcb80a7d3e378f783b92900114fc25e9ce3",
-      "tasks.md": "5b6941ae72bdca444115b9884237c17c98de541a5ec269e0ee585a539ed232d9",
-      "implementation-summary.md": "8bccef512cf03b96a5f19685c988b55604ba96a7768695872ed3ebf470127c34"
+      "spec.md": "6c0162ee94eaa4fd37c34d36fb95e65a8e2d8a9083612bad1f06e1409f335eae",
+      "plan.md": "14d8cdf9153914ed7b6362a27b7e4b2bff5b2e5ae93cdff59a9761ed03f973d9",
+      "tasks.md": "79ec8d6cbb1f94fc2fe421c2dc3ae3ff9f467a58e8d943fedbcf1e258b826b13",
+      "implementation-summary.md": "e5833f119e214f95fc3c856ac6afdccd2576160233c937b689067077c743afd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

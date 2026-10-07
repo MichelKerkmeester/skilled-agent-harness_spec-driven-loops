@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance"
+    packet_pointer: "sk-design/z_archive/014-template-conformance"
     last_updated_at: "2026-07-27T14:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Extended phase map to 12 children; 009 Complete, 010 in progress"

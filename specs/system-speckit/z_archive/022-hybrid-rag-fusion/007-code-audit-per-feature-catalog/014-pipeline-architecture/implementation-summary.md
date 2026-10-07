@@ -2,7 +2,6 @@
 title: "...m-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/014-pipeline-architecture/implementation-summary]"
 description: "22 features audited: 22 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "pipeline architecture"
   - "code audit"
 importance_tier: "normal"
@@ -52,6 +51,9 @@ All 22 pipeline architecture features were audited — from the 4-stage refactor
 2. F07: source list bloated for a 3-bug fix
 3. F12: .ts source files only exist as compiled .js
 4. F14: source list ~200 files for a 3-4 file feature
+
+Per-feature findings are recorded in `spec.md` under the audit findings section.
+
 <!-- /ANCHOR:what-built -->
 
 ---

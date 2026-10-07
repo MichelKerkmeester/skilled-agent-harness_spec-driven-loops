@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity",
+  "specFolder": "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity",
   "description": "Child 004 shipped only the four Codex session-lifecycle adapters (SessionStart, UserPromptSubmit, Stop, PreCompact)",
   "keywords": [
     "child",

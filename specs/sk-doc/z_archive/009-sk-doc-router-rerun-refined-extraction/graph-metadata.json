@@ -12,7 +12,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "072",
+      "sk doc router rerun refined extraction spec",
       "sk-doc-router-rerun-refined-extraction",
       "P1-001 fix",
       "072 plan",
@@ -20,18 +20,18 @@
       "072 summary"
     ],
     "key_topics": [
+      "doc",
+      "router",
+      "rerun",
+      "refined",
+      "extraction",
+      "spec",
       "sk-doc-router-rerun-refined-extraction",
       "p1-001",
       "plan",
       "tasks",
       "summary",
-      "packet",
-      "003-synthesize",
-      "review-report",
-      "flagged",
-      "cli-copilot",
-      "resource",
-      "accuracy"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,8 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,12 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract_metrics.py",
-        "kind": "file",
-        "path": ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 071's 003-synthesize/review-report.md flagged P1-001: cli-copilot's resource accuracy was reported as 5.6%, but this number is inflated-low because the detectresources() heuristic in extractmetrics.py captures ANY `references/` or `assets/` path mention — including ones in cli-copilot's verbose \"Not loaded:\" / \"would NOT load\" sections",
     "created_at": "2026-05-05T14:41:58Z",
-    "last_save_at": "2026-08-30T15:39:18.355Z",
+    "last_save_at": "2026-10-07T22:00:54.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:10:00Z",
     "source_docs": [
@@ -199,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6add01ae283137a7e3b4b8d363b60fac562f984d41e90532772f0838af425e82",
+    "source_fingerprint": "sha256:380643e58ce904815b60274d1d03df0cf39d870fef52bd83252673716cedc82e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14a95e7c54b260c78f0375334c9f2b26d0b4fb9bca8d00c5ed37529b398ed963",
+      "spec.md": "4a1b8b678c670a5676fe8ba3f8736dbc9ac6591866837422a9f4548e260093e4",
       "plan.md": "a902ab49f448de6684f53f94a68dfe0d81cfa2f7c8f0f6df4af5d91a0b5b132e",
       "tasks.md": "8654da6346697370ce7ffcda5f0d1ed6be1a33bc50f75ba2cd77850dbb3d7e65",
       "implementation-summary.md": "622ef98c5e53ea30c4f2ab7f752982a38a3b5d197655cde8f9aff411af13ace2"

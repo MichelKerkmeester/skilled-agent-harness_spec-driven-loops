@@ -1,9 +1,11 @@
 ---
 title: "Plan: design-motion manual-testing-playbook/ conformance"
 description: "Plan to audit design-motion's 14-file manual-testing-playbook/ tree against manual-testing-playbook-template.md."
+importance_tier: "normal"
+contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/003-design-motion/007-manual-testing-playbook"
     last_updated_at: "2026-07-27T10:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author manual-testing-playbook audit plan"
@@ -18,10 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "manual testing playbook plan"
 ---
 # Plan: design-motion manual-testing-playbook/ conformance
 

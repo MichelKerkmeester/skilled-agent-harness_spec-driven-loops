@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/memory/save.md",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {
@@ -167,7 +160,7 @@
     ],
     "causal_summary": "Remove all system reliance on the .spec-active marker file, enforcing a strictly stateless architecture. This aligns with AGENTS.md Gate 5: \\\"NEVER create/write to .spec-active f...",
     "created_at": "2026-04-12T09:02:53.513Z",
-    "last_save_at": "2026-08-30T15:39:36.963Z",
+    "last_save_at": "2026-10-07T20:10:46.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +168,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:9e015ea71f1025aca9546648945ae8b3a9140aa5ce47850a89c18941261e509a",
+    "source_fingerprint": "sha256:19b12c9dc36147e20daed346e87e15d1b1dfd689ccc208ecde392b817a1db367",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cbd6085648ac2fffd4843913386589f0d0494d8f112e7a9b2a88a663d9505d0",
       "plan.md": "0eb2dad5f9a8adb046963bff8d3e0f5ff1e56098f8ed81e0efe7cc793136d1d2",
-      "tasks.md": "ca3d7c2606c374fc776c6190f559ac146689735da1d6cc1f7109c6f9ab65bebb"
+      "tasks.md": "cf5fcfce24e5faedb672f6af74bf1fe4875e2fd268ed2dcf2d84179e7c5e20e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

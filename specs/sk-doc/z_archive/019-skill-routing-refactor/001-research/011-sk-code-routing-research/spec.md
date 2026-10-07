@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/001-research/011-sk-code-routing-research"
     last_updated_at: "2026-07-24T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Extracted the sk-code routing research into its own research phase under 001-research"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
     last_updated_at: "2026-07-08T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Executed all Phase 1-3 tasks with evidence"

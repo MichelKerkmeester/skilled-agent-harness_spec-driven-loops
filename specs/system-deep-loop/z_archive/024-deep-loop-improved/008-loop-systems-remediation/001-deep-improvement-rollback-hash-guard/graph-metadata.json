@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored accepted-state hash",
     "created_at": "2026-06-29T10:43:17Z",
-    "last_save_at": "2026-08-30T15:39:25.110Z",
+    "last_save_at": "2026-10-07T18:15:16.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77827ee81e811a2ae6627d0dfeb7df952be9df85cf0259461c41a8bca80dcb9d",
+    "source_fingerprint": "sha256:cfd9ef4f8e495f0e698bb26b6aa1cec7e6a14ab776111dea6601fc8f20b37e07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "098cda3f59442795a5afb9cc3ae411a2125da2bb11f9356c18c6416d02fdc05f",
-      "plan.md": "75eee79d865887acdea42f9b5358715db702c2203724b45a7d90b65c99b1cf0c",
-      "tasks.md": "754915317d401d792a99e4966923f338cdee56c54586a4fb32fa5937b4d26441",
-      "implementation-summary.md": "d3fb149d2b9f437821e40d4a48c09101fad1727f2e720f8db7d85dddd5d31e26"
+      "spec.md": "494487d0ad8819ef96c4f7939bac414b9fc095ed366660ea83ef5c45a973ae62",
+      "plan.md": "d4f6bd92530af1bfb890b61f1de2e7258c9fc7fd84a44835cf1e639a81be8f7c",
+      "tasks.md": "9f05daceb6e96a4d7c0c7076889b871048dab6dfbbacaf70c5b63a087b317e8d",
+      "implementation-summary.md": "1dc9ee93a2f275e5de001e744f82235ac13095432cdaa0d62d3117d4355f2373"
     },
     "last_active_child_id": null,
     "last_active_at": null

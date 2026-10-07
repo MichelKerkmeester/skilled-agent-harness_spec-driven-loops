@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/002-migration-playbook",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/002-migration-playbook",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -50,7 +50,6 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-notion/SKILL.md",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md",
       ".opencode/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md"
     ],
     "entities": [
@@ -100,12 +99,6 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "dataview.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/dataview.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
     "created_at": "2026-08-21T21:51:45.157Z",
-    "last_save_at": "2026-08-30T15:39:10.371Z",
+    "last_save_at": "2026-10-07T18:11:36.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e25c485581d4cbbe120ccc5cfee70b80f1beae15614531b26bb7dae421ab352a",
+    "source_fingerprint": "sha256:13726132c4b01769609c7a71cf041727f4b61fa30fadc7b12a1f8ed49bd4d05f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d625506551b632e0979bdf65fb5cb114d3117594670a3e44a9086bb70fdb5135",
-      "plan.md": "5a27faf38b31d3c070f5c77940da4734d5a50ada9065fa211213ee7cfbcc3c3d",
-      "tasks.md": "c59575587aa38cac63e7df92fe8c17b7ef0c01df903c26de0c9d413713d036d5",
-      "implementation-summary.md": "7fc3668cdec26f2554ec7fd5185dafedd9d7b15a0fce892dff01feaeac0d6c49"
+      "spec.md": "7f95f37e84b9b200c09069bac31355ebb15aa77ae2d545353fc7c9a141dd5703",
+      "plan.md": "32512719c42459aa6c3a20c7427d474a27cc2d27b15cb739615bca2fd714b4c6",
+      "tasks.md": "e3fa557ec3c5b9f50213c13e19acc93946a3fbc74bdc3d63258e69ca2083b50d",
+      "implementation-summary.md": "515d9133f5e6399dd339144e5820ad05d4948072fc2133f5613848831ad37ad6"
     },
     "last_active_child_id": null,
     "last_active_at": null

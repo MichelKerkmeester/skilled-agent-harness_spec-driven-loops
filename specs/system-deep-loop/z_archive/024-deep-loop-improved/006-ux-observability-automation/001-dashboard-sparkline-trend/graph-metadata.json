@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The deep-research dashboard reports iteration scores and newInfoRatio as raw numbers but provides no visual trend summary",
     "created_at": "2026-06-28T16:46:11.837Z",
-    "last_save_at": "2026-08-30T15:39:25.035Z",
+    "last_save_at": "2026-10-07T18:14:55.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c561c5e115c310300ebc53a509036564dadba6d43d6c31b81370d83095bb127",
+    "source_fingerprint": "sha256:4a2281bcc6c8d1f1d6baebd4bc985ae9b6f5d59d3d5ee8853869bfdf5494abc8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b4ed1b9d1501dbbfafb1e6fbc8f069361dbf77e0fb105c665341e91f9052f309",
-      "plan.md": "1a0d13e981b67fadac0969323489f715d382e07e286158c6704c363cb2d4d05d",
-      "tasks.md": "86e00be827e1268d35de9631fa57e3ec375d82938fc4c9e060a5a581e24573cd",
-      "implementation-summary.md": "8f3177d97383a826902f0bd44aa73ed54f3c6c063a945713539ad1c17a36255d"
+      "spec.md": "62402d422d21ce661176addc7071627a091713dda029fbd06667ad9fd1c27ceb",
+      "plan.md": "bbeee4d94236b94ad210d7d512a141a2af7685690cddb1687a4f793cb3e44db4",
+      "tasks.md": "6fb4ddeb201d4462cdeec678b2b83686121b05a4270f467821655c54302f7784",
+      "implementation-summary.md": "a5ce62f1e23dab24b90aefdcb7eadc8a80ca29ada09baf59ece577023ab10c78"
     },
     "last_active_child_id": null,
     "last_active_at": null

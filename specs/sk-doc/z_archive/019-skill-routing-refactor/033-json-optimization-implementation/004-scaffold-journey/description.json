@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey",
   "description": "Make init_skill.py auto-run the H/S class gate --fix and write a compiler-valid derived block so a new skill is born complete, generate S-class",
   "keywords": [
     "auto-run",

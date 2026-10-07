@@ -47,8 +47,7 @@
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
       ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/system-skill-advisor/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
+      ".opencode/skills/system-skill-advisor/graph-metadata.json"
     ],
     "entities": [
       {
@@ -97,12 +96,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-001 (`015/009/001/decision-record.md`) locked the \"Standalone Advisor MCP With Legacy Tool Bridge\" shape and committed to a 5-phase migration sequence",
     "created_at": "2026-05-14T03:30:00Z",
-    "last_save_at": "2026-08-30T15:39:26.399Z",
+    "last_save_at": "2026-10-07T18:15:31.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T03:30:00Z",
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20c4c1f3823dd19e2a4b967f3e5e42629f489af5a5d4207ccdef14ee43002d0c",
+    "source_fingerprint": "sha256:63831102d7c1de39ebdcc82cd69b8671777a9f28a6be6dc4a8def9e2209f01b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd18758bd6c9f9455615441858c55c5c0ba7aad4ff247ebe9d4d197d16cf5b61",
-      "plan.md": "836b56d65a905c6f473f99ce08dac0d31987423d53dc599a47316c9be07e69d0",
-      "tasks.md": "cc2aba872277bbb81913f0f50175c605b33afb79c0ebbd3f326ad11b09bb262a",
-      "implementation-summary.md": "4e3b647a498a93820cc5f00bd789290e861b985e7599ca15ed62c19c56ab0f3a"
+      "spec.md": "b62bd613017a9936b76d2e3fcd5884977202eb301cb337f36197ea007a60c333",
+      "plan.md": "1d70b91fbab0fdae2b8ae9fe2e3fd3fa26a6a12071ba23a3d5686f1427f8f359",
+      "tasks.md": "b27499303b9ba5ada446f8246be6bc9261f93893a37febd646f6b71dbc77d850",
+      "implementation-summary.md": "cb844fde21e58bcac503ba74b923522304564834888d54ebcc553bbbe4366345"
     },
     "last_active_child_id": null,
     "last_active_at": null

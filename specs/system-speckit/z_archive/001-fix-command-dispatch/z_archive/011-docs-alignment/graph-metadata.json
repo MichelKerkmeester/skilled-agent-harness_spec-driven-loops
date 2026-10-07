@@ -32,10 +32,10 @@
       "implementation",
       "plan",
       "tasks",
-      "yourvaluehere",
-      "one-sentence",
-      "outcome",
-      "statement"
+      "recorded",
+      "system-spec-kit",
+      "001-fix-command-dispatch",
+      "011-docs-alignment"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -94,7 +94,7 @@
         "source": "derived"
       },
       {
-        "name": "Assumptions Validation Checklist",
+        "name": "Purpose Not",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,13 +124,13 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Summary Not",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Primary Dependencies",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,9 +172,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: One-sentence outcome statement describing what this achieves",
+    "causal_summary": "Not recorded",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-08-30T15:39:36.934Z",
+    "last_save_at": "2026-10-07T20:10:49.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:55aca0bea4cf0b6d7e905f5b3c735bf3f8cea1114f718661106e6d074c3f90e1",
+    "source_fingerprint": "sha256:683469cf0aa664c828675c163e7e1537708f124ed609bb617c41e2e7ecac96b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f54db5327a8dbf772a3bafbfa640888019eba8dceac61796d3863ff1e6f14be0",
-      "plan.md": "12b67f0798b6c1953171f0d5eca85d5895f6d696d56b2b7b4356ff0442404501",
-      "tasks.md": "6f39652cb3bf395e0cfe8bba328b0bf5aa860cec71f66fed78c7528788c9ebde"
+      "spec.md": "7b00b32ec460030f6cf8e92fd4684de41d4db1ec00f9c8b964a48c7405cd3696",
+      "plan.md": "b40489923f48a11e3f41adfe5208dd5403f080be57deaed2dfd38429bc7e3fb8",
+      "tasks.md": "ebe2c67fec3904e61a4b7e21b1ddf697d0d83bae12d31bde3113708a44b225d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

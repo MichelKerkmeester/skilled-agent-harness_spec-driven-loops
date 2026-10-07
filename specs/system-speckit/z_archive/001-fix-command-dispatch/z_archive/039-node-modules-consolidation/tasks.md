@@ -2,11 +2,7 @@
 title: "Task Breakdown [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/039-node-modules-consolidation/tasks]"
 description: "id: 039-node-modules-consolidation"
 trigger_phrases:
-  - "task"
-  - "breakdown"
-  - "tasks"
-  - "039"
-  - "node"
+  - "node modules consolidation tasks"
 importance_tier: "normal"
 contextType: "implementation"
 id: 039-node-modules-consolidation
@@ -14,7 +10,6 @@ id: 039-node-modules-consolidation
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Preparation
 
@@ -23,9 +18,8 @@ id: 039-node-modules-consolidation
   - Test generate-context.js --help
   - Document current sizes
 
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
 - [ ] **TASK-002**: Create root package.json

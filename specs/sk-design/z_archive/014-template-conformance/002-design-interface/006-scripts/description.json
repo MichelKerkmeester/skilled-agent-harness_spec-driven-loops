@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/006-scripts",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/006-scripts",
   "description": "`scripts/` holds `README.md`, three deterministic Python checkers (`baselinerhythmcheck.py`, `contrastcheck.py`, `namingdoccheck.py`), and",
   "keywords": [
     "scripts",

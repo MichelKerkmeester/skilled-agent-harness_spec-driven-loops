@@ -8,7 +8,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation"
     last_updated_at: "2026-07-28T10:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All four lanes committed and gated"

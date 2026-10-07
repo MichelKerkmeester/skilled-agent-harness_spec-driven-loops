@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
   "description": "The deep-alignment README at `.opencode/skills/system-deep-loop/deep-alignment/README.md` still carries the older tabular reference-card style and",
   "keywords": [
     "deep-alignment",

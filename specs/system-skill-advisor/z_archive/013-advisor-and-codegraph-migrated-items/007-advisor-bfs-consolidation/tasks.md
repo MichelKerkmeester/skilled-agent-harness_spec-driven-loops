@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation"
+    packet_pointer: "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/007-advisor-bfs-consolidation"
     last_updated_at: "2026-06-10T23:30:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed BFS helper extraction, call-site cutovers, parity tests, and verification"

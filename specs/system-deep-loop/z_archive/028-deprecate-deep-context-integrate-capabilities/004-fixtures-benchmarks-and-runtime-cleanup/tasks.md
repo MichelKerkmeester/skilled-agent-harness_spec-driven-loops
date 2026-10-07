@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup"
+    packet_pointer: "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup"
     last_updated_at: "2026-07-04T18:32:06Z"
     last_updated_by: "opencode"
     recent_action: "Validated phase 004 fixture, benchmark, generated-contract, and runtime cleanup"

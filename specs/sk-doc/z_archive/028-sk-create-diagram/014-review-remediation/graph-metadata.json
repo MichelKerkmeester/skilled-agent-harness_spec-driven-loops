@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/014-review-remediation",
-  "spec_folder": "sk-doc/028-sk-create-diagram/014-review-remediation",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/014-review-remediation",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/014-review-remediation",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,14 +40,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/leaf-manifest.json",
       ".opencode/skills/sk-doc/command-metadata.json",
-      ".opencode/skills/sk-doc/hub-router.json",
-      ".opencode/skills/sk-doc/sk-create-diagram/feature-catalog/feature-catalog.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-      ".opencode/commands/create/assets/create-diagram-auto.yaml",
-      ".opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
-      ".opencode/skills/sk-doc/sk-create-diagram/references/types/type-sequence.md"
+      ".opencode/skills/sk-doc/hub-router.json"
     ],
     "entities": [
       {
@@ -90,48 +83,6 @@
         "name": "hub-router.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-diagram-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create-diagram-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "import-drawio.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "type-sequence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-diagram/references/types/type-sequence.md",
         "source": "derived"
       },
       {
@@ -193,11 +144,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 013 deep-review (5 iterations Grok 4.6 + 5 iterations deepseek-v4-flash, merged strongest-restriction) returned CONDITIONAL: 0 P0, 4 P1, 12 P2",
     "created_at": "2026-08-12T19:55:45.000Z",
-    "last_save_at": "2026-08-30T15:39:18.062Z",
+    "last_save_at": "2026-10-07T18:13:59.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e9319756113c7f09ef6ee9e0df159e80ed5cd7e393199b72f9d95d8fcb5093e",
+    "source_fingerprint": "sha256:0098d045a8eef552037148becac151a88fc1f564e35008bcd214cb24bd8b2757",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "739bb3828be4ac83ef76384d9a50ce76ac6465a0af7e65d83c580c62c86d31db",
-      "plan.md": "311b9046b5203016483589deb1b96f1ec231900f40012b8d2ce99ca96839ccd6",
-      "tasks.md": "0e8c65a0a15a0d19dcbb40629cbd5cf2c0f7c164f715f4d8bc6a26c12819bd5d",
-      "implementation-summary.md": "139c666c9e9d49813ac1a4787365bb19711a77fd7505c2310b46540f02edbd2e"
+      "spec.md": "2031b1cc86fecb17220e79d3e1a57e8ad1795752031dfc08e3d7527354cfa8ed",
+      "plan.md": "fa90551aa469b2e33548d5bd5bcb769a79466d61f29302b360595e800e97dfc2",
+      "tasks.md": "a0c5a0cfe4fba0349a3b79ba60480ae947a35c98e46a763bd005dd1189448ff3",
+      "implementation-summary.md": "3d2566c58224f685eec37dfb163e4870233c7e71ef70da18004cc4414e467c27"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-13T05:55:33.000Z"

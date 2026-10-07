@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory aggregation, schema validation, DB path standardisation, cross-process rebinding, and lineage projection",
     "created_at": "2026-04-12T09:02:50.301Z",
-    "last_save_at": "2026-09-10T21:05:02.030Z",
+    "last_save_at": "2026-10-07T19:24:35.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +197,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:089c3e9d458e6903b27dc5279dc467326e53909d76502ff0499c15656c046e7b",
+    "source_fingerprint": "sha256:34fbaa22c57b378340ef8aac545be3eeb28b8e6f5d098dc76fef604111e612db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d46387e1403c1b07afbcfc163083f7c5dada558e790971a3a40db9a76c566bb1",
-      "plan.md": "b74af0d3790a103282fe048fa0bd34498cc97a8aed660fb7b0e11a30f14016b5",
+      "spec.md": "dd3dd217ba41fcbc5851b7efec88e9bc747aabfdf1159bfebec23b340720f900",
+      "plan.md": "db1e6b079b4ec405c9fd83f458dec7bd6ec3cd50d05eca543b06b490b8d2c03f",
       "tasks.md": "a4a305ecfebdb603a9ae0304fb32d38a6537c641fd55a623e48dd4d59f448f3c",
       "implementation-summary.md": "46e7a7de799c0f399271a9014335fff7183bfb65c7f1d2fe27129533b0df99d0"
     },

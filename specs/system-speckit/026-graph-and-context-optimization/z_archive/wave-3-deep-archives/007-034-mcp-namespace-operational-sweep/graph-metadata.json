@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Closes three missed rename spots from packet 010 where MCP namespace references remained as the legacy mcp__system_code_graph__* in operational files (doctor router, doctor update command frontmatter, system-spec-kit tool-schemas descriptions).",
     "created_at": "2026-05-14T21:55:00Z",
-    "last_save_at": "2026-08-30T15:39:32.861Z",
+    "last_save_at": "2026-10-07T18:16:07.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73a3db5c04deddbcc0a735cf50c32f27d4a77e914f82329a94aa30affba55396",
+    "source_fingerprint": "sha256:f25192e799c21a381337cd234b558a10d6bc404a7e4b786c05d57681aafa4c6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d625020ae18c35e618b3fc3d8cc3daee0776337c489a3ec7913e8a0e3f5d2f7",
       "plan.md": "53f774be9fc3a4d4a352146b7a4a15bf48918c9bfc093e050819c8e0d68a0481",
       "tasks.md": "a076a834175ca9cd90c6513b31308d5b1a246afb837207d9c8a69a73e2ffd177",
-      "implementation-summary.md": "ccdc52795d1ef30530ab0dc52483945a1fc41c47a7f50983e687cab8b74d1548"
+      "implementation-summary.md": "5b6d0fc16d833620f0b7bd293b44766db65c9fd5c41e90e3fd8723a09b420abf"
     },
     "last_active_child_id": null,
     "last_active_at": null

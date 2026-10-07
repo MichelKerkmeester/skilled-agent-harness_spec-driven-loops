@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor"
     last_updated_at: "2026-08-04T12:52:05Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 010 plan inside 004-standalone-readme-revisit"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/006-validation-and-closeout"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/006-validation-and-closeout"
     last_updated_at: "2026-08-04T19:25:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 006 tasks"

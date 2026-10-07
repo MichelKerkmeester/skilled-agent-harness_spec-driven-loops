@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Standalone `deep-context` has many active and historical references",
     "created_at": "2026-07-04T14:32:34Z",
-    "last_save_at": "2026-08-30T15:39:25.919Z",
+    "last_save_at": "2026-10-07T18:15:04.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bd955d7ab7618a22c75d3240da2abdf31104211f08d92be2a9092a9165ef69fd",
+    "source_fingerprint": "sha256:fbbe436d5e80d2826ceb8b4528d80fa5fa7b125299fe757ab43ef0dddf210554",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b972dc3692d50f06d3107de7640a6575f50fa9c0787506a2656de6a110a3b1c",
-      "plan.md": "1802d42383751ce511218444a07997d7e631d5ec9a247d931a92d99d790c142b",
-      "tasks.md": "5d093ca4efa09ba41d61099e436aace86ca20c58786870bf9a366c2470fb762c",
+      "spec.md": "3f2709c2daf9c17e9f7d80b62515c74163361ac46836f5c1ddf8e0d7bc0155bf",
+      "plan.md": "dd15727d322a4d21a4989a695aad3d46b105be3dee87e6a9d7a318d9020d4701",
+      "tasks.md": "e0143447b1a5ccb30cdc8b58905aa7867c88379206e0a5c3b71116bb7fd31a4e",
       "decision-record.md": "52ae1b5df26b124d47653311b4ce0a2bea6e372343318dfcb291e511ea2e330c",
-      "implementation-summary.md": "289825b177c31c3a61198c3746c53e7b18d059a2580225f2b511fd468a979f42",
+      "implementation-summary.md": "bc4e4e0c67c52356efdb232b047bb719e0572ca6f3e734e769727e1a2648b014",
       "research/research.md": "3977ccc8a84bad3efc9990483e0ca2d84f4eb24c0091ee9b91f953c9eccec488"
     },
     "last_active_child_id": null,

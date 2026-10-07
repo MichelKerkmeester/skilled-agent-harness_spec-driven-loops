@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/009-aesthetics-retirement"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/009-aesthetics-retirement"
     last_updated_at: "2026-07-27T17:17:23.686Z"
     last_updated_by: "spec-author"
     recent_action: "Committed a4b707cddd, 10 files; reverify found 2 residual citing-site gaps"

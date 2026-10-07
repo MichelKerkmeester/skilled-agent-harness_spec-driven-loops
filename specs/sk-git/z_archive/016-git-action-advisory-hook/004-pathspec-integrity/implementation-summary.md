@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-git/016-git-action-advisory-hook/004-pathspec-integrity"
+    packet_pointer: "sk-git/z_archive/016-git-action-advisory-hook/004-pathspec-integrity"
     last_updated_at: "2026-07-27T23:50:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Measured the real fire rate with a control group"

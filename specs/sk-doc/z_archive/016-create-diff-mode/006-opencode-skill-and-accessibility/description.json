@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/006-opencode-skill-and-accessibility",
   "description": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
   "keywords": [
     "portable",

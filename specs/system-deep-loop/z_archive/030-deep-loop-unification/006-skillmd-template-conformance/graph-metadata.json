@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/006-skillmd-template-conformance",
-  "parent_id": "system-deep-loop/030-deep-loop-unification",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/006-skillmd-template-conformance",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/006-skillmd-template-conformance",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically verified that every SKILL.md under the new `system-deep-loop` tree (the hub itself, plus its 4 workflow packets — `deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`) actually conforms to the canonical templates defined in `sk-doc`'s `create-skill` module (`skillmdtemplate.md` for leaf/packet skills, `parentskillhubtemplate.md` for the two-axis hub)",
     "created_at": "2026-07-08T16:18:08.385Z",
-    "last_save_at": "2026-09-11T16:42:16.114Z",
+    "last_save_at": "2026-10-07T18:15:18.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2efa4f04bc45330579af6211b28f2f45672a22eca846611ada9c8af3974628a",
+    "source_fingerprint": "sha256:13cf8bc50b03978a41d39cc11cf3f1a999ad89be49169216b59b53b378125682",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0bd1b2be7bee7f04da169fdd119a44c0f5268f797950d9746278c7eb9e7db14f",
-      "plan.md": "dc9eb7b30a27786f8dd7b3506845256b6c9831f9ad134361070dc63f2bc3f118",
-      "tasks.md": "21967997aaaab77248100de547f26f0a04762fcc3a31a4bbc053567c3a41c2a6",
-      "implementation-summary.md": "74acf0ef8e02e5882a12b70858bbd1b0ee97b5ca78b7b2197b99829bff826798"
+      "spec.md": "af6b30b1cdaed5e505ff1dc42236cb094f62d9b2de5bb7f9b5d05bd61f3c5556",
+      "plan.md": "b557bead29ba8ece0f710d8dbbc0ae609708d5d60d2f5dc10320658e08b5b55f",
+      "tasks.md": "1eae3fdbf75c2ada85d1311c70eac8abdc9c9c0cc07b48367735918e421a9155",
+      "implementation-summary.md": "a17b7aba6d8b18f1c4b263048e512dc81caec6ffae79efd8d5c961d296385e99"
     },
     "last_active_child_id": null,
     "last_active_at": null

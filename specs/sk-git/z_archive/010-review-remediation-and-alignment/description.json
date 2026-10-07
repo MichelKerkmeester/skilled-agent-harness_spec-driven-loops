@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-git/010-review-remediation-and-alignment",
+  "specFolder": "sk-git/z_archive/010-review-remediation-and-alignment",
   "description": "The owner-first worktree tooling passed its own harnesses (31/9/8) but the harnesses never exercised adversarial inputs",
   "keywords": [
     "owner-first",

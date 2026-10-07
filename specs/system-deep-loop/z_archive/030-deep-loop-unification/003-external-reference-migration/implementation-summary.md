@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/003-external-reference-migration"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/003-external-reference-migration"
     last_updated_at: "2026-07-08T12:45:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Doc finalized, all evidence recorded"

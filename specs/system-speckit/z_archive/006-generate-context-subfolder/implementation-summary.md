@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/006-generate-context-subfolder/implementation-summary]"
 description: "Archive repair summary for the Generate Context Subfolder Support folder."
 trigger_phrases:
-  - "implementation summary"
   - "generate context subfolder"
   - "archive"
 importance_tier: "normal"

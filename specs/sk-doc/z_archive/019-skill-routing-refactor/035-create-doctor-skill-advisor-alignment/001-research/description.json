@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
   "description": "It is not currently easy or reliable to create a new skill: the `/create:` command family and `sk-create-skill`'s guides describe authoring, `/doctor`",
   "keywords": [
     "currently",

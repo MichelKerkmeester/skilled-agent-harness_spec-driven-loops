@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-08-30T15:39:16.752Z",
+    "last_save_at": "2026-10-07T18:13:28.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:4d64d35875cab4b1c1adf5a6fa76a5f408add00f304b3de0a17c92e960d249fc",
+    "source_fingerprint": "sha256:89b37398663325e04ac84a3f2ace851d6f86aacd9bd2905206ff01ee96e8e734",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ef6d67f7f59cd5691ee9e92a131f0058ac515b65d0923548d4f659e24e9cdc6",
-      "plan.md": "a0c9bf3aba2dcac0a86fa2021bf6483ca1c1c3e2bf9e35f916ca397b65f61d9b",
-      "tasks.md": "db6c6a5301169ab4ac4f9d7c2bb251ba6f5196979ec9bd3600aa489fd5687e8f",
+      "spec.md": "b030a99f2d8a8e0376ca5258847ad53daba4674944f3687a9482da7a1ac37ba0",
+      "plan.md": "19daa20a1432ac5c327afa24d003e1c4e9aa8bfcf9a50b0534f20568ff8f17d1",
+      "tasks.md": "f8aabfc0365a73ccb12e30a1e1a0a8bf8d106d0ea3900e99ed42474129535f6e",
       "decision-record.md": "03822238130933e4215d1ddb5ddae504137eb0db4396fb124c894342e4c5a477"
     },
     "last_active_child_id": null,

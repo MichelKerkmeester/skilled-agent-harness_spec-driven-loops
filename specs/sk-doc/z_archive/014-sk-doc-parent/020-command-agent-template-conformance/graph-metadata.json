@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
-  "spec_folder": "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/020-command-agent-template-conformance",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/020-command-agent-template-conformance",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
     "created_at": "2026-07-07T14:28:17.730Z",
-    "last_save_at": "2026-08-30T15:39:13.726Z",
+    "last_save_at": "2026-10-07T18:12:33.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ea4e433f7b46ff41539b2f1c51b4e6d067d9e8d1db7a6c75c78d83f0a157fa2",
+    "source_fingerprint": "sha256:a1fbff99a53b7224b317364c52a6d1b0f9726d03a3c6a03e1e9ed158784ab64a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82354261ab8eece970bcbf311a4f5ea92d62e0cabfc14f99eaa8ebfe6cbb6d1f",
-      "plan.md": "02cdaf117bee67dea65618fad5ca185c6310c95c4d698322f0ec808672f97fb2",
-      "tasks.md": "12cb2c5877d7fc2ccfe785957af2919b4ee3d4d35b7d5a918837ef17ccd78f35",
-      "implementation-summary.md": "07fe5d761dbf6052c5c13d155a774199ed212e5002c0e67a9b557b31f72545d1"
+      "spec.md": "a5b8ccfa8de3385ff6858544d6b705782f407791238492f9bd65ab969fe237f9",
+      "plan.md": "c96626445011221f50a67a36acd751bac7c6fe605eeba289e756a6f5c20ef608",
+      "tasks.md": "52e53da93b25e9532dfcdbd2c48731c1425bb6537ed7c9943bf37a13034ffb66",
+      "implementation-summary.md": "4d948972a1f9c59f52d5f828f7c9e2b79f88eca58ea87eb9aff0c4fe35ebd5f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

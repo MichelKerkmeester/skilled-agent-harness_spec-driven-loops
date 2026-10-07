@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions"
     last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "Shipped all four changes and verified rule 2b."
@@ -14,10 +14,7 @@ _memory:
     blockers: []
     key_files: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "json cleanup and conventions plan"
 ---
 
 # Implementation Plan: JSON Cleanup and Advisor-Metadata Conventions

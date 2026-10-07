@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization"
+    packet_pointer: "sk-doc/z_archive/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization"
     last_updated_at: "2026-08-02T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Corrected mixed-hub corpus classification with the topology-gate typed-gold signature"
@@ -32,7 +32,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-playbook-standard-and-fleet-normalization |
-| **Status** | In Progress |
+| **Status** | Planned |
 | **Updated** | 2026-08-02 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

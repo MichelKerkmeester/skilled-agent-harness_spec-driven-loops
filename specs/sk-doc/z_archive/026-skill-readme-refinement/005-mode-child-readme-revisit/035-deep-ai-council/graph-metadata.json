@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,30 +46,26 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/README.md",
-      ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.4.1.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/tasks.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -82,12 +78,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/deep-ai-council/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v2.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.4.1.0.md",
         "source": "derived"
       },
       {
@@ -197,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-ai-council README at `.opencode/skills/system-deep-loop/deep-ai-council/README.md` predates the full pilot standard",
     "created_at": "2026-08-04T08:34:51.974Z",
-    "last_save_at": "2026-08-30T15:39:17.870Z",
+    "last_save_at": "2026-10-07T18:13:58.096Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8691fb57ec28a272f49b34a1cef839520e4921aa071d697e576578985a32e07",
+    "source_fingerprint": "sha256:4227d56ba3a08837a8cce15bc49792a8bb2cd7bc31fa1ea952f893a6fc67a5e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "50ab9f6a62b05a196ac96ba491643403b78e74ba768b06036c975b7c2c37640a",
-      "plan.md": "b73a6045bc94886b84f47443ad03ec19455583f598487672a5c7054345575f70",
-      "tasks.md": "bc76244019c76b23d7a7a523582f711a59f60478dd0ffcf7cfa733fcef3887ee",
-      "implementation-summary.md": "b9eea9fc878ea2f39f531bc2a543471c0ddad1e3c2744fabe2220099fd363869"
+      "spec.md": "082ffdca9e3a7f36218b3bccc22635859d9d718b7723eb03d96a62b0516acf81",
+      "plan.md": "210bd69a7ea5179606bf46e0494d8bc1742d3cf3f576c8835ba622b651038cc2",
+      "tasks.md": "c9b7e63be75491afdb172b9ac751bc7f7716783f4625bf9b9f7cfc5099032c98",
+      "implementation-summary.md": "150ab6de0d420715bc0969b187a6f5d7d29e1c8f7ff37ee169f80b1e304791a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

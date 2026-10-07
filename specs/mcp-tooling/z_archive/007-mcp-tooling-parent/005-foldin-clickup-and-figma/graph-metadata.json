@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
-  "spec_folder": "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
-  "parent_id": "mcp-tooling/007-mcp-tooling-parent",
+  "packet_id": "mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+  "spec_folder": "mcp-tooling/z_archive/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
+  "parent_id": "mcp-tooling/z_archive/007-mcp-tooling-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,28 +44,25 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/plan.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "The hub has one workflow packet (chrome-devtools) but still needs its second workflow bridge (click-up) and its transport (figma)",
     "created_at": "2026-07-09T20:18:24Z",
-    "last_save_at": "2026-08-30T15:39:09.761Z",
+    "last_save_at": "2026-10-07T18:11:32.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bde2bd736f2f566fa0570d863c90402e9236ed393be90143972d413b22d73bfe",
+    "source_fingerprint": "sha256:d4cba24238ae6ae09100c5c81ada53cbbfc21986eac36f7b1b2a2e1d8296cf68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26dea8e6412a25a530d492b625e33bf33a9aafc1aa863e2969fa2e92fb2ba644",
-      "plan.md": "292da9aa381dc783749c973e2472b4667ea4947734d5e48cef1d5646590412cc",
-      "tasks.md": "005283a88a5c86c0b166c5493e56975f7a340821d51b8970393013fa92e1801d",
-      "implementation-summary.md": "4aa1b95aee5c994f18b98a435e0e166477a177b73d2bf6da451446f09d75d9b7"
+      "spec.md": "fbfe7e04220c800726bf7fbd9d1399fea0ff5a913197fd43ac56979bfc325fb4",
+      "plan.md": "388bfc31fe8abffa0e0dae0802bd0f97fdafff0828755532bc08cb390af740f4",
+      "tasks.md": "30ea8efb9dfc5de57ca3e7d3012bf606243e85d39e17e71cfb34fbd3618daf34",
+      "implementation-summary.md": "99c0f222c8ccf4ab99634dcc9eb16db786375f2072ab887b5251a464e2acc30b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/010-feature-catalog-completeness"
     last_updated_at: "2026-07-06T10:36:46.256Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored 18 feature_catalog files and reconciled all phase docs."

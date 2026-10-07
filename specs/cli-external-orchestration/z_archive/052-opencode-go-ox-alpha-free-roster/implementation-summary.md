@@ -2,14 +2,13 @@
 title: "Implementation Summary: Ox Alpha via OpenRouter for cli-pi & cli-opencode"
 description: "Registered openrouter/stealth/ox-alpha in the cli-pi roster and both CLI docs, removed the earlier opencode-go/ox-alpha-free route, and relaxed the cli-pi OpenRouter=Flash-only policy to Flash+Ox-Alpha. Zen has no ox model. Guard tests green; both CLIs live-verified."
 trigger_phrases:
-  - "implementation summary"
   - "ox-alpha roster"
   - "openrouter stealth ox-alpha"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/052-opencode-go-ox-alpha-free-roster"
     last_updated_at: "2026-08-22T11:20:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Swapped opencode-go ox route for openrouter/stealth/ox-alpha; both CLIs live-verified"

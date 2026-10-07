@@ -1,3 +1,13 @@
+---
+title: "Test Report - 065/002 skill-router-stress-tests"
+description: "Six skill-router stress scenarios covering ambiguous routing, false-positive resistance, low-confidence honesty, multi-skill workflow, novel phrasing and adversarial confusables. Aggregate: PASS 1, WARN 1, FAIL 4."
+trigger_phrases:
+  - "skill router stress tests"
+  - "skill advisor routing scenarios"
+  - "ambiguous routing stress report"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Test Report - 065/002 skill-router-stress-tests
 
 **Campaign date:** 2026-05-03T10:45:00Z

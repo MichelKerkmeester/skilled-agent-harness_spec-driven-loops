@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/005-tighten-playbook-pass-criteria"
     last_updated_at: "2026-06-29T13:09:46+02:00"
     last_updated_by: "codex"
     recent_action: "Completed task list after implementation and verification."

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/006-inventory-and-frozen-map"
     last_updated_at: "2026-07-13T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Added executable per-batch touch-sets and the epochal map cadence to phase 006"

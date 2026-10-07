@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/004-parity-regression-and-closeout"
     last_updated_at: "2026-08-16T07:53:20.991Z"
     last_updated_by: "markdown-agent"
     recent_action: "Executed the serial Phase 004 parity, promotion, and closeout plan end to end."

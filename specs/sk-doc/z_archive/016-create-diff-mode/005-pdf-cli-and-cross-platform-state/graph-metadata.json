@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/005-pdf-cli-and-cross-platform-state",
-  "spec_folder": "sk-doc/016-create-diff-mode/005-pdf-cli-and-cross-platform-state",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/005-pdf-cli-and-cross-platform-state",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/005-pdf-cli-and-cross-platform-state",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "PDF text extraction and automatic snapshots both fail in subtle ways when their limitations are hidden",
     "created_at": "2026-07-15T09:48:16.509Z",
-    "last_save_at": "2026-08-30T15:39:14.089Z",
+    "last_save_at": "2026-10-07T18:12:36.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f1d2d652e4a99c65ec64bcbf45176a4df18910bc1a7a4d9a6d99499406b2198",
+    "source_fingerprint": "sha256:a9d0b1425dcd2eadfb2b2cfdd1db41cb177be468d302ff2866ba72f126818551",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "719e75dfe59fc0081197df80d55ef5d6a07687c61082d3150a5cf77a8d964704",
-      "plan.md": "03b98c63b03034a35f77100c05b7036b2faa009fd289ac4fd66f852a904d43fc",
-      "tasks.md": "85f2bc7497dda2ba9539a78607b7a3d5752908b0c309f5dd1e07f0e387e235f0",
-      "implementation-summary.md": "f027f5b9d1bcc090c8c9938478e96afac4883921d3f543ceaa5685e3cb6afcec"
+      "spec.md": "0a1c2e1f5360a8fc9b867e51d933d83a835e5d59776b3955c872e3a786154438",
+      "plan.md": "d4238fb0b48349868d9269ceb5644ede2d185a1f7b1c5db8379c1a3a7f4ac41e",
+      "tasks.md": "50c19922997437de45ce38c112dfad7277e79a17db1ebe51915ecad1ddfc0d82",
+      "implementation-summary.md": "feb1a72e4e61ea2a19c4dafec91ce6d1ccef3aa4749cac0eccbcb7b3b2dcffd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

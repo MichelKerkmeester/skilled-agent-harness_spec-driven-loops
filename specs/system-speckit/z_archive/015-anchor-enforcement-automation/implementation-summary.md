@@ -3,7 +3,6 @@ title: "Implementation Summary [system-spec-kit/z_archive/015-anchor-enforcement
 description: "Archive normalization summary for Anchor Enforcement Automation."
 trigger_phrases:
   - "015-anchor-enforcement-automation"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

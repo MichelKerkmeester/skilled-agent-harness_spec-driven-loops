@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/009-mcp-refero/003-hub-integration"
+    packet_pointer: "mcp-tooling/z_archive/009-mcp-refero/003-hub-integration"
     last_updated_at: "2026-07-16T15:25:00Z"
     last_updated_by: "claude"
     recent_action: "Registered mcp-refero across all hub surfaces"

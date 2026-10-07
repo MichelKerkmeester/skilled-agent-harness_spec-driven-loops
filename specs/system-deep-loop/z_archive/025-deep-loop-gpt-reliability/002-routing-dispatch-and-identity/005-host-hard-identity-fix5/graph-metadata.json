@@ -17,9 +17,12 @@
       "fix-5 process isolation",
       "subagent_type specialization",
       "deep dispatch ceiling",
-      "plan",
+      "host hard identity fix5 plan",
       "host-hard-identity-fix5",
-      "tasks"
+      "host hard identity fix5 tasks",
+      "host hard identity decision",
+      "fix-5 escalation trigger",
+      "process isolation decision"
     ],
     "key_topics": [
       "host",
@@ -32,8 +35,8 @@
       "deep",
       "dispatch",
       "ceiling",
-      "plan",
-      "host-hard-identity-fix5"
+      "fix5",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -165,12 +168,6 @@
         "source": "derived"
       },
       {
-        "name": "Context The",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "Alternatives Considered",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -181,11 +178,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task boundary, auto-load/enforce, reject unknown, stamp provenance) — NOT a frontmatter-only or config-only change (F33)",
     "created_at": "2026-06-30T15:25:00Z",
-    "last_save_at": "2026-08-30T15:39:25.435Z",
+    "last_save_at": "2026-10-07T20:32:29.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +197,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:122a4d8cb3d904f19e831bc32250612c740402c6b573d9d9d46b5b2f7153c215",
+    "source_fingerprint": "sha256:a05e90003758d2230208e50ce09dd54c2fcb03123a90454cb750a3f074b6c23e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33d2dd65dcd9a4e9fa55ba61cabeb03fc46f8dbb4b6bfa555498184ffadc96c2",
-      "plan.md": "3f75af95b38f9f41eeb6511cb8e7b0d0b3b8a282f03bb409bd4bfafeda21d63e",
-      "tasks.md": "bc3fe62672d093cc22f7ee454e5507a3bf2df567a0879640b722c26594b32216",
-      "decision-record.md": "fdd57400820add63655d3bbde74c3cf16e53f99d5cb3b45482133b8f76a4512a"
+      "spec.md": "6addca864fff74812ea1963798b5f58d9f5912a376d6f5fe1f0b1849ec67bdb0",
+      "plan.md": "524ab08a867b5e5e0202ef1aaa103e0a18c8ffb7f47144f3072423b0b47abcc8",
+      "tasks.md": "f622c8b64c95d7e90965dfd4899ce6a410b5cac33cdc3e50d2cffd16aa4ceab7",
+      "decision-record.md": "39c7d2c24edb9bc8271c6f746c719efb80284f4f0363a4a4f8ffa3377e969349"
     },
     "last_active_child_id": null,
     "last_active_at": null

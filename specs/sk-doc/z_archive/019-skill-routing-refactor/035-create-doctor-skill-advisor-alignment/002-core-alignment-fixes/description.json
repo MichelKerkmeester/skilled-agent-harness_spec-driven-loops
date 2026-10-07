@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
   "description": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command",
   "keywords": [
     "001-research",

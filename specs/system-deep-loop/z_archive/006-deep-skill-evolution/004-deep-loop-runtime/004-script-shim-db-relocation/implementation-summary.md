@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation` |
+| **Spec Folder** | 004-script-shim-db-relocation |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | Bundled with phases 002, 004, and 005 |

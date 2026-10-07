@@ -3,7 +3,6 @@ title: "Imp [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/007-doc
 description: "Archive normalization summary for Documentation Alignment."
 trigger_phrases:
   - "007-documentation-alignment"
-  - "implementation summary"
   - "phase"
   - "archive"
 importance_tier: "normal"

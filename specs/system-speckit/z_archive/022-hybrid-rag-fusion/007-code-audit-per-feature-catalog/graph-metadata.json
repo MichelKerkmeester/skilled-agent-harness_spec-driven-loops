@@ -42,10 +42,10 @@
       "tasks",
       "code audit decisions",
       "audit methodology",
-      "implementation summary",
       "deep",
       "research",
-      "code"
+      "code",
+      "audit"
     ],
     "key_topics": [
       "code",
@@ -59,7 +59,7 @@
       "tasks",
       "decisions",
       "methodology",
-      "implementation"
+      "deep"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -223,7 +223,7 @@
     ],
     "causal_summary": "Feature Specification: Code Audit per Feature Catalog",
     "created_at": "2026-04-12T09:02:50.243Z",
-    "last_save_at": "2026-09-10T21:04:46.186Z",
+    "last_save_at": "2026-10-07T18:16:42.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,14 +235,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c09ae06df509e0e2b617b98eb34114416fd05d2be56870d1d21166d0c54c5d05",
+    "source_fingerprint": "sha256:79587557bd03b2ae6f4bd44ebc1684afda2dccfe745a81a9d08d16f48853a848",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5c029f79bb3eb8cc1606c8510006467c6b897b15c4d462128f0a9899c9b624f",
       "plan.md": "2381263e15e02af830f220aa14a2e2aabfb66715e68ed0733820da10cf9a561a",
       "tasks.md": "e14843b82a0c0a5da2024cf170a2a8372a304be9709a1e42d1f9f0a5a7766fea",
       "decision-record.md": "c550fa84180add9621fb1aecbf444adb049e07c91c2ac79e5b2118f3db2448ca",
-      "implementation-summary.md": "cad6cbd2d1f2d4c9df1f7096a16c8449cc787509ad3811527196064a7be1612b",
+      "implementation-summary.md": "dabe0cbc6c42c6a5cc01fccb144d3f5f9eb572cd61ba606b868454b9ea156106",
       "research/research.md": "3bbeb72e49166921d7e3e9ce3ade3cd2d595d1fb309e5b3d9db5236bff86e0f1",
       "resource-map.md": "a90078a6c754c85c56352c2c055134d2449f1ad6c6e87ce60486565b47aca847"
     },

@@ -14,7 +14,6 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: system-spec-kit References Reorganization
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Analyze Current Structure
 
@@ -22,10 +21,9 @@ contextType: "implementation"
 - [x] Read each reference file to understand purpose
 - [x] Document file inventory with descriptions
 - [x] Identify logical groupings based on content domains
-
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Design Sub-folder Organization
 
 - [x] Define sub-folder categories based on Phase 1 analysis

@@ -3,7 +3,6 @@ title: "Implementation Summary: Rename sk-improve-agent → deep-agent-improveme
 description: "Skill folder rename complete. ~116 files migrated across the renamed skill folder, advisor scoring tables (156 phrase entries), command surfaces in 4 runtimes, agent definitions in 4 runtimes, root docs, and install guides. Active-code residual grep returns 0 hits. SQLite advisor cache rebuilt (skillCount=18). On main branch with no auto-branch created."
 trigger_phrases:
   - "rename complete"
-  - "implementation summary"
   - "deep-agent-improvement done"
   - "079 complete"
 importance_tier: "normal"
@@ -42,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `specs/skilled-agent-orchestration/079-sk-deep-agent-improvement` |
+| **Spec Folder** | 004-sk-deep-agent-improvement |
 | **Completed** | 2026-05-06 |
 | **Level** | 2 |
 | **Implementation executor** | mixed: cli-copilot gpt-5.5 high (Phases 2-4) + Claude shell-driven sed substitution (Phases 5-8 after cli-copilot/codex dispatches went silent) |

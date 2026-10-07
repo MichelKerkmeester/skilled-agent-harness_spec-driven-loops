@@ -2,10 +2,7 @@
 title: "Acceptance Criteria: The mcp-magicpath mode packet"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
-  - "acceptance criteria"
-  - "closure gate"
-  - "ac traceability"
-  - "waiver adr"
+  - "skill packet acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

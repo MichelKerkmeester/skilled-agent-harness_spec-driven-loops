@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase C lands the budget engine in cli-devin only",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-08-30T15:39:19.155Z",
+    "last_save_at": "2026-10-07T18:14:13.821Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e23545040d4c6fe1f83c7f90fc76941c4d497696f2249571256496d95bd0897d",
+    "source_fingerprint": "sha256:242e7fd94f5a305bae064b147ae2094a6ff420c65b5be8f15f5a95d0781cec13",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e9086263e0c0fe320ca2f8bcb107b5284ba310cf54e97931931925862df1e7b9",
-      "plan.md": "797f9237294e7959b8dc90bc559f35e831ccca304850ad734e737512dc96b2ce",
-      "tasks.md": "361a27590e3d9bd7b78d238273e4f7289052f0546777603a6c484c05c977ad58",
-      "implementation-summary.md": "0fca3a38d5dc1c00ee370eb465b2db40945734f42e0824d8992b90a8015024a7"
+      "spec.md": "07668348717f1030969e751edde7074b2bf13864229f1b350f0c884f3dcb3381",
+      "plan.md": "0a1e74034677d921e3a5a648afb7b2e08e64ac0757dcf9a05a29974ab6ac0318",
+      "tasks.md": "fb53e3f4774e4938d5eb61907c39292c0b4f223f42dec9906bf6d133995e7e40",
+      "implementation-summary.md": "01e039b36913bb1c80455617dcfd2bd7f4b1276150b73727f9dcff1306f1178e"
     },
     "last_active_child_id": null,
     "last_active_at": null

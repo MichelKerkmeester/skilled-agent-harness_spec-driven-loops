@@ -31,6 +31,7 @@ _memory:
       - "Q1 filename casing: lowercase manual_testing_playbook.md (ADR-001)"
       - "Q2 smoke-run scope: all 4 against real env, results 3 PASS + 1 SKIP"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 # Implementation Summary: MCP Testing Playbooks for Four Skills
 
@@ -38,6 +39,7 @@ This packet authored 3 new manual testing playbooks (`mcp-code-mode`, `mcp-chrom
 
 ---
 
+<!-- ANCHOR:what-built -->
 ## 1. Outcome by skill
 
 | Skill | Files | Validator | V7 smoke | Notes |
@@ -48,9 +50,11 @@ This packet authored 3 new manual testing playbooks (`mcp-code-mode`, `mcp-chrom
 | **mcp-coco-index (CCC, audit)** | 1 root (append-only) + 23 existing + 3 appended = 27 files | ✅ VALID (0 issues) | ✅ PASS — `ccc status` returned indexed-project metadata (1.17M chunks, 95K files) | Audit appended MCP-008 (concurrent refresh race), CFG-004 (root-path env var override), DMN-003 (helper-script readiness); existing 23 IDs unchanged |
 
 **Total per-feature files authored or appended:** 78 (CM 26 + BDG 22 + CU 27 + CCC 3).
+<!-- /ANCHOR:what-built -->
 
 ---
 
+<!-- ANCHOR:verification -->
 ## 2. Verification results (V1-V8 from spec.md §5 / checklist.md)
 
 | # | Check | Result | Evidence |
@@ -131,9 +135,11 @@ Appends are at the next free numeric slot in matching existing categories. CCC r
 - `.opencode/specs/mcp-tooling/002-mcp-testing-playbooks/research.md` — §5 CCC Audit findings populated.
 
 **Total markdown files authored/appended in this packet: 90 (9 spec + 27 CM + 23 BDG + 28 CU + 3 CCC).**
+<!-- /ANCHOR:verification -->
 
 ---
 
+<!-- ANCHOR:decisions -->
 ## 7. Decisions honored (decision-record.md)
 
 | ADR | Decision | Honored? |
@@ -159,3 +165,4 @@ Appends are at the next free numeric slot in matching existing categories. CCC r
 **Spec 049: COMPLETE.** All P0 + P1 requirements met. V8 (cross-reference resolution) PASS. V7 smoke meets SC-003 (3 of 4 PASS, 1 SKIP with documented blocker).
 
 Next safe action: memory save via `generate-context.js`.
+<!-- /ANCHOR:decisions -->

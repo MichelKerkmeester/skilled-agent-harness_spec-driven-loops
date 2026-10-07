@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The research (§1, §2) established that `subagenttype` is normalized to `\"general\"` with identity prompt-injected, so a DEEP agent file buys first-dispatch prompt identity (not hard runtime identity)",
     "created_at": "2026-06-30T15:10:00Z",
-    "last_save_at": "2026-08-30T15:39:25.424Z",
+    "last_save_at": "2026-10-07T18:15:15.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:162e792f0da1866d55518b51ab095358ad6a9a266a8faf77510ef3d67d962253",
+    "source_fingerprint": "sha256:209a3276449d1bce794f719cf1d45e481d7a1dfc100ead46952892c149df94f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bec91d2270b3d888ebc8824f0d8c9e9368f8ec11b1efdb752266ab7a6d509a0d",
-      "plan.md": "d9baec8613b76c6cadadde3c16d1ea03cdeee848392f728273463e5c3d6209c1",
-      "tasks.md": "94b526c8eaf01a85b3b4423e6784b8a7fc5b159fe09519ca01a3b443422e477b",
-      "implementation-summary.md": "9470aa4c8b97e7474514f0b458be34eaac382dcded3e637155a42398a85d8dc8"
+      "spec.md": "33e6c5ab59a87d432e92423bc08fd27f5cd48008ab160c5685a7f0a4526efd88",
+      "plan.md": "cb02428eb2d060f40ba54da4ba4f7a210ddb56d51bfebf1c295c993a8e6a71b7",
+      "tasks.md": "8081cc822fe17caf60e7e7be3d7020096d02b1dd2f5ae1e129617afe2fb09c85",
+      "implementation-summary.md": "888f70bf08dfb3f9e06bbc309bb35ebec3037883fadd6859743b867c409a5135"
     },
     "last_active_child_id": null,
     "last_active_at": null

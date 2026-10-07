@@ -5,12 +5,16 @@ trigger_phrases: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: roadmap | v2.2 -->
 
+<!-- ANCHOR:metadata -->
 # Roadmap: Feature Catalog Retroactive Rework
 
 > **Scope**: 370 .md files across 3 skills (system-spec-kit: 314, system-skill-advisor: 41, system-code-graph: 15), 39 category directories, 3 master catalogs.
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:milestones-targets -->
 ## Gap Summary (as of 2026-05-31)
 
 | Gap | Files affected | Phase that fixes it |
@@ -22,9 +26,11 @@ trigger_phrases: []
 | Long HOW IT WORKS without H3 sub-headings | TBD (audit in 002) | 005 + 006 |
 | Missing `Related references` in SOURCE METADATA | 315 | 007 |
 | Master catalogs missing `trigger_phrases` + `last_updated` | 3 | 008 |
+<!-- /ANCHOR:milestones-targets -->
 
 ---
 
+<!-- ANCHOR:now-next-later -->
 ## Phase Overview
 
 | # | Name | Method | Files | Status |
@@ -38,9 +44,11 @@ trigger_phrases: []
 | 007 | Related references — all skills | Python script + frontmatter lookup | 315 snippets | Planned |
 | 008 | Master catalog enrichment | AI edits | 3 master catalog files | Planned |
 | 009 | Validation sweep | Verification script + targeted fixes | All 370 files | Planned |
+<!-- /ANCHOR:now-next-later -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## Phase Dependencies
 
 ```text
@@ -56,6 +64,7 @@ trigger_phrases: []
 ```
 
 Phases 003–008 can run in any order after 002. Running 003+004 before 005+006 is recommended so trigger_phrases are visible during sub-heading review.
+<!-- /ANCHOR:dependencies -->
 
 ---
 

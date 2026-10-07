@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/014-mcp-notion/003-knowledge-references",
-  "spec_folder": "mcp-tooling/014-mcp-notion/003-knowledge-references",
-  "parent_id": "mcp-tooling/014-mcp-notion",
+  "packet_id": "mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
+  "spec_folder": "mcp-tooling/z_archive/014-mcp-notion/003-knowledge-references",
+  "parent_id": "mcp-tooling/z_archive/014-mcp-notion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
     "created_at": "2026-08-21T15:00:46.060Z",
-    "last_save_at": "2026-08-30T15:39:10.306Z",
+    "last_save_at": "2026-10-07T18:11:38.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aee865efe9c5d87c9cd082028fdcfa839ee65d61e2994e6e8fe5dc95feb594f9",
+    "source_fingerprint": "sha256:1d7668975f7b944a2bf81ed296adb1159194d767fa52835ba7909b64c2ab8a6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ae9af48fc5e39375391cadf046e727be331956bf19b420ca9172830db8c9cf9",
-      "plan.md": "c8bda3fdf13c9f69eee424b6af9941f4659eb26e2ee8e5e9cb8ef63940436857",
-      "tasks.md": "48ea3efcd4b2ff471282e5e3bb5a0ff4d3e5ff6fbb3b30acf5ba31559fbb9403",
-      "implementation-summary.md": "748722cc20c41af17acf5a135d1413cbb5a5ec62e3cdd8fc4d345520073fb5af"
+      "spec.md": "7907262b9bef2b809f6bc9984cd4551604cbde5c479a7dbeb888259f0b61e039",
+      "plan.md": "bc00a703a441fecb50c50eaf49f2e85bf6084bfd7e3ed4dafcb30faccb555343",
+      "tasks.md": "ee2a751dbc8bae64123ca861ef46eb283ec8661ce1a3d199777585fad24587ab",
+      "implementation-summary.md": "a62db3790f1ac408f84196963144ef8fa752861395e02cde87e8b2d2de2753be"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,3 +1,13 @@
+---
+title: "Job 3 Report: Phase 4 Deep-Review Remediation"
+description: "Parallel-job report recording the P0 deep-review remediation: child strict validators, checklist evidence and review state backfill."
+trigger_phrases:
+  - "job 3 deep review remediation report"
+  - "child strict validator compliance"
+importance_tier: "normal"
+contextType: "implementation"
+---
+
 # Job 3 Report — Phase 4 Deep-Review Remediation
 
 **Job:** 3 of 3  

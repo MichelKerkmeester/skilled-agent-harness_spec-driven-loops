@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/005-cline-pro-and-pi-default"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/005-cline-pro-and-pi-default"
     last_updated_at: "2026-08-18T17:51:54Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"

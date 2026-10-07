@@ -2,12 +2,8 @@
 title: "...em-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-05-changelog-updates/implementation-summary]"
 description: "[Implementer: Summarize what was completed for this task. Document all files audited/created/modified and the nature of changes made.]"
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "task"
-  - "changelog"
-  - "creation"
-  - "implementation summary"
+  - "changelog updates delivery"
+  - "release changelog completion"
 importance_tier: "normal"
 contextType: "implementation"
 ---

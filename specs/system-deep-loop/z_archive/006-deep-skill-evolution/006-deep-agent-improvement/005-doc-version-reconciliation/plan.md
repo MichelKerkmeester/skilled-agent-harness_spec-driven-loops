@@ -3,7 +3,6 @@ title: "Implementation Plan: Packet 125 Deep-Agent-Improvement Doc Version Recon
 description: "Sk-doc canonical alignment + remaining documentation drift for deep-agent-improvement skill."
 trigger_phrases:
   - "packet 125"
-  - "implementation plan"
   - "deep-agent-improvement doc"
 importance_tier: "important"
 contextType: "general"

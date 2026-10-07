@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/007-excalidraw-deprecation",
   "description": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing",
   "keywords": [
     "mcp-obsidian",

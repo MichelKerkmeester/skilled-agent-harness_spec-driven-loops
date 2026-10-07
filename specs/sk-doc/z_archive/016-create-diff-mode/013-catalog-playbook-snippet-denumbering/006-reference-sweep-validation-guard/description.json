@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard",
   "description": "After the migration waves, snippets are de-numbered but cross-cutting references outside the per-skill trees may still point at old numbered paths:",
   "keywords": [
     "migration",

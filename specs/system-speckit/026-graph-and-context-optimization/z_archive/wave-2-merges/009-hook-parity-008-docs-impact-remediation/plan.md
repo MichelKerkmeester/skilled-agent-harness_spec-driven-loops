@@ -15,12 +15,14 @@ _memory:
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["plan.md"]
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 # Implementation Plan: Documentation Impact Remediation for 009 Hook/Daemon Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Documentation-only phase. No code changes, no test harness, no schema migrations. Every edit must cite its driving sub-packet(s) from `../impact-analysis/merged-impact-report.md`. The merged report is the single source of truth for scope, severity, and flagging rationale — do not re-analyze sub-packets independently.
@@ -32,9 +34,11 @@ Documentation-only phase. No code changes, no test harness, no schema migrations
 3. **Canonical-surface first.** `hook_system.md`, `SKILL.md`, `ARCHITECTURE.md`, and top-level `AGENTS.md` are consumed by operator docs downstream. Update them first so per-package READMEs can cross-link to fresh text.
 4. **No scope creep.** If a file is accurate but could be improved, skip it. The impact analysis did not flag it — trust the analysis.
 5. **Reconcile Codex carefully.** Sub-packets diverge on whether Codex has a native lifecycle hook: 03 and 04 predate the native-SessionStart reconciliation landed in 05. `hook_system.md` and `SKILL.md` must describe the *post-05* state (native `SessionStart` gated by `codex_hooks` + `~/.codex/hooks.json`). Earlier packet summaries that still say "Codex has no lifecycle hook" are superseded.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 2. PHASES
 
 ### Phase 1 — Canonical Runtime Contracts (P0, sequential)
@@ -84,17 +88,21 @@ Goal: make the upstream truth documents correct before any package/README touche
 12. **`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`** — add `SPECKIT_CODEX_HOOK_TIMEOUT_MS` entry.
 
 13. **`.opencode/skills/system-spec-kit/mcp_server/README.md`** — short hook-surface summary + cross-links.
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 3. DEPENDENCIES
 
 - **Upstream:** All 11 sibling sub-packets (001-011) implementation complete. Verified by merged impact report generation time (2026-04-23).
 - **Downstream:** None within this packet. External dependants (operator runbooks, onboarding guides) are out of scope.
 - **Parallel tracks:** Phase 2 files can be edited in parallel once Phase 1 lands, because they cross-link to Phase 1 text.
+<!-- /ANCHOR:dependencies -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 4. VERIFICATION STRATEGY
 
 1. **Per-file:** After each edit, verify the change addresses the specific reason recorded in the merged report for that path (not a related-but-different observation).
@@ -105,9 +113,11 @@ Goal: make the upstream truth documents correct before any package/README touche
    - `grep -rn "CommonJS entrypoint.*plugin" .opencode/skills/system-spec-kit/ARCHITECTURE.md` should be empty.
 4. **Validator:** `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation/ --strict` must exit 0 or 1.
 5. **Parent graph metadata:** 009's `graph-metadata.json` must list 012 in `children_ids` after implementation.
+<!-- /ANCHOR:testing -->
 
 ---
 
+<!-- ANCHOR:effort -->
 ## 5. EFFORT ESTIMATE
 
 - Phase 1 (4 files): ~120–180 LOC of edits. Mostly structural rewrites of small sections (matrix rows, startup paragraphs).
@@ -116,6 +126,7 @@ Goal: make the upstream truth documents correct before any package/README touche
 - Phase 4 (3 files): ~20–50 LOC. Additive only.
 
 **Total estimate:** ~240–410 LOC. Level 2 sizing (100-499).
+<!-- /ANCHOR:effort -->
 
 ---
 

@@ -4,7 +4,6 @@ description: "This phase removed eight backend root causes that were polluting m
 trigger_phrases:
   - "memory save quality summary"
   - "018 memory save quality fixes"
-  - "implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: level_2/implementation-summary.md | v2.2 -->"

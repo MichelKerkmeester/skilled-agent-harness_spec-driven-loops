@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/000-command-benchmark-contract"
     last_updated_at: "2026-07-15T06:01:53Z"
     last_updated_by: "codex"
     recent_action: "Froze the command census, topology taxonomy, verdict boundary, layouts, and phase gates"

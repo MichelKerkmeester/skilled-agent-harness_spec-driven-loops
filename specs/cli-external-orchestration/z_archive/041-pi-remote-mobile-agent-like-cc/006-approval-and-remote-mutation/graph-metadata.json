@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Introduces the final-boundary Pi approval extension, containment, shared redaction, and evidence-gated remote mutation",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-08-30T15:39:07.920Z",
+    "last_save_at": "2026-10-07T18:11:39.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8055c1a374974eb5be7b6fe0d3a47cf30ca0629cde02e543c85305210422d6c",
+    "source_fingerprint": "sha256:74fc2d4e898b9888b80c51dad89def22a4f41c8f1a8ef21ec2ba2707911496ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a039bb36b50e71f0e26d69efc9b4d82c16014e571d42394729fe3aecbdb4ff6f",
-      "plan.md": "2691d1c1037573981c0338388df1d2a6105739aadf44cb513bfb9d9b5169a537",
-      "tasks.md": "c381af91db7338faf1f18ea2dfa4d7f32e25aaecf8096244ee6277cd0b88704b",
+      "spec.md": "0343748e506c22dce7092dc368da1eafe17f920f2f512591d037689848658fe6",
+      "plan.md": "7bc6ab16d1aac251537ff5fd59911281bc33a8523640d92ca898bc63e5f18db5",
+      "tasks.md": "4f39bd95bd06d005dde400a24ccd220effd6b57391d4233635979e93665676ce",
       "decision-record.md": "06a0c08fc4f858604e618f8713f39b788f23c67461f850bf6496b546a1f446f7",
-      "implementation-summary.md": "2575a58e2483e3658a721adce237354d2b2927e970d4c9bdd149d1e286a0b452"
+      "implementation-summary.md": "0e6130eb69d559e33131858c77bf7bfaca14cc2e1c1692a2e909ab0a9cac83f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

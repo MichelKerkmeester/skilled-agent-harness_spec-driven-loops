@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
     last_updated_at: "2026-07-27T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented static rules and parity findings."

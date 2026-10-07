@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
     last_updated_at: "2026-07-14T17:28:55Z"
     last_updated_by: "codex"
     recent_action: "Reconciled to v4 - added .opencode/bin family (already kebab; entry points tool-mandated)"

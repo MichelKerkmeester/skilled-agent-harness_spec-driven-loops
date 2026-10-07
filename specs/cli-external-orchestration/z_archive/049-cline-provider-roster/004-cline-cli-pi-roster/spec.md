@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster/004-cline-cli-pi-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster/004-cline-cli-pi-roster"
     last_updated_at: "2026-08-18T14:15:43Z"
     last_updated_by: "claude"
     recent_action: "Added cline-pass section to the cli-pi roster, xhigh-only"

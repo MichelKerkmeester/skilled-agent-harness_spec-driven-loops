@@ -10,17 +10,20 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/001-skill-graph-metadata-routing-boosts"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/001-skill-graph-metadata-routing-boosts"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["handover.md"]
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
 # CONTINUATION - Attempt 1 | Spec: 011-skill-advisor-graph | Last: Phase 003 spec created | Next: Write playbook snippets + feature catalog
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
 - **From Session:** 2026-04-13
@@ -28,9 +31,11 @@ _memory:
 - **Phase Completed:** IMPLEMENTATION (core) + PACKAGING (in progress)
 - **Handover Time:** 2026-04-13T18:30:00Z
 - **Overall Progress:** ~75% (core system done, documentation packaging pending)
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## 2. Context Transfer
 
 ### 2.1 Key Decisions Made
@@ -69,6 +74,7 @@ _memory:
 - `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` — fixed 3 expectations, added 3 graph cases (44 total)
 - 4 graph-metadata.json files with new edges (system-spec-kit, sk-doc, mcp-coco-index, sk-improve-prompt)
 - 2 graph-metadata.json files with removed siblings (sk-deep-review, sk-deep-research)
+<!-- /ANCHOR:context-transfer -->
 
 ---
 
@@ -139,6 +145,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:next-session -->
 ## 6. Resume Instructions
 
 ```
@@ -148,3 +155,4 @@ _memory:
 Then continue with Phase 003 tasks T005-T016. Use `cli-copilot --model gpt-5.4 --allow-all-tools` for bulk file creation if desired.
 
 **Key context:** The 01--routing-accuracy playbook files are already correctly formatted. Use `001-git-routing.md` as the reference pattern for the remaining 16 playbook files. For the feature catalog, use the system-spec-kit catalog as the reference.
+<!-- /ANCHOR:next-session -->

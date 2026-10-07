@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-design/008-design-shared-backbone",
+  "specFolder": "sk-design/z_archive/008-design-shared-backbone",
   "description": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet",
   "keywords": [
     "sk-design",

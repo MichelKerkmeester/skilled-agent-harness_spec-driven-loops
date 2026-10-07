@@ -1,3 +1,13 @@
+---
+title: "Contract Compiler Design Expansion: Deliverables 5-7"
+description: "Expands the seed contract-compiler design with pacing and resume, the rollout flag live consumer, and the 035 T002 unblock."
+trigger_phrases:
+  - "contract compiler design expansion"
+  - "pacing resume design"
+  - "rollout live consumer design"
+importance_tier: "normal"
+contextType: "planning"
+---
 # Contract Compiler Design Expansion - Deliverables 5-7
 
 This document expands the seed design in `design.md` with the three omitted deliverables requested for phase 001:

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/011-followup-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation"
     last_updated_at: "2026-07-02T15:46:36Z"
     last_updated_by: "claude-fable-5"
     recent_action: "All 7 children complete; phase closed"

@@ -7,7 +7,6 @@ trigger_phrases:
   - "speckit"
   - "reimagined"
   - "refinement"
-  - "implementation summary"
   - "089"
 importance_tier: "normal"
 contextType: "implementation"

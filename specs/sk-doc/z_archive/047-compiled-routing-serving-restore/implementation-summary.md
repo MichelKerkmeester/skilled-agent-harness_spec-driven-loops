@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/047-compiled-routing-serving-restore"
+    packet_pointer: "sk-doc/z_archive/047-compiled-routing-serving-restore"
     last_updated_at: "2026-09-01T05:38:12Z"
     last_updated_by: "implementation"
     recent_action: "Restored all five hubs to compiled serving and rehomed the human voice vocabulary"

@@ -148,7 +148,6 @@ Prove the shipped multi-CLI parity behavior with direct regression tests and rec
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## 7. L2: NON-FUNCTIONAL REQUIREMENTS
 
 N/A. This phase adds regression tests and documentation only. No new runtime performance, scalability, or availability requirements apply.
@@ -157,7 +156,6 @@ N/A. This phase adds regression tests and documentation only. No new runtime per
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## 8. L2: EDGE CASES
 
 N/A. Edge case handling is covered by the test assertions themselves (empty XML wrappers, low-signal exchanges, empty next-steps arrays).

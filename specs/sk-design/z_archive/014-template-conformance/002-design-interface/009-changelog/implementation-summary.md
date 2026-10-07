@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/002-design-interface/009-changelog"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/002-design-interface/009-changelog"
     last_updated_at: "2026-07-27T20:00:00Z"
     last_updated_by: "worker-session"
     recent_action: "Applied keep-as-historical-record disposition; verified all 3 on-disk files"

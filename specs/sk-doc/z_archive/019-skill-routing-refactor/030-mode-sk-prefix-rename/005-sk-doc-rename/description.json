@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/005-sk-doc-rename",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/005-sk-doc-rename",
   "description": "Move all eleven create-* packets to sk-create-* and twelve routing keys including the shared-packet pair sk-create-skill and sk-create-skill-parent,",
   "keywords": [
     "move",

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/005-backfill-remaining-profiles"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/005-backfill-remaining-profiles"
     last_updated_at: "2026-06-02T18:04:14Z"
     last_updated_by: "agent"
     recent_action: "Phase complete — all 6 profiles authored and validated"

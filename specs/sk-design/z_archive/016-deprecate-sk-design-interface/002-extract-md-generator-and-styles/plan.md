@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles"
     last_updated_at: "2026-08-19T05:04:07Z"
     last_updated_by: "spec-author"
     recent_action: "Authored extraction plan"

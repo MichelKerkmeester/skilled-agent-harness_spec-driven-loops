@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,8 +47,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py",
       ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py",
-      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md"
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py"
     ],
     "entities": [
       {
@@ -72,7 +71,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
     "created_at": "2026-07-15T09:35:26.640Z",
-    "last_save_at": "2026-08-30T15:39:16.171Z",
+    "last_save_at": "2026-10-07T18:13:22.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:460ec719b40d68a88bea2d1807682482932b4b3a7c49b3b5c0fda243ad1a8efd",
+    "source_fingerprint": "sha256:cf4f2f78073059971ccabcd23e578a0b5e622c59d51a0543758b22f4ced33605",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "efa0da94de1f73e38bc7e85d665f66461911a9075b89a8a5ae973789bcfdd97e",
-      "plan.md": "7d5a22892cbd1a06a37ce15449765d9ab8c2febeb158517d826d1b56c565f030",
-      "tasks.md": "db320ac66f78eb432877a70fb02728c6ec183fd0c66682545563d97912bc381a",
-      "implementation-summary.md": "71e486aeed5baaf9383579fe799731984589e9b0fcd79802730b825a01e27bf9"
+      "spec.md": "77545731a146199b18708e595d61a2f3d3fd1de0a39b90c7b0c2fc37cbe9a6c6",
+      "plan.md": "3733b530181a36ee2a87de82222a3435b48a35e89d722c86ae342ef74f34590f",
+      "tasks.md": "fa46874d27296888587d1b121bcb03b4a24bfc8006e8f504e4b08b96e1060430",
+      "implementation-summary.md": "d4ad3e5bcf04d4d93da7015d90919ef237e06d9a7c1dee10209c820962f2d41a"
     },
     "last_active_child_id": null,
     "last_active_at": null

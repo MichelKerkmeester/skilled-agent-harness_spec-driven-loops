@@ -133,14 +133,14 @@ Read feature catalog entry → Locate source files → Compare description to im
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
 Phase 1 (Prep) ──► Phase 2 (Audit 2 features) ──► Phase 3 (Synthesis)
 ```
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

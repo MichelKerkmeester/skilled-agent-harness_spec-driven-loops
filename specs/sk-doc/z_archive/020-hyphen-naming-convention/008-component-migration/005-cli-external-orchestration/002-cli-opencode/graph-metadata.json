@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,8 +46,7 @@
       "tasks.md",
       "decision-record.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md"
+      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md"
     ],
     "entities": [
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership.",
     "created_at": "2026-07-14T15:17:36Z",
-    "last_save_at": "2026-08-30T15:39:16.550Z",
+    "last_save_at": "2026-10-07T18:13:15.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:893b3b45d3f947c99065e196bbe1cb5374bb3dfd4b7d6884342887ce7fde65ed",
+    "source_fingerprint": "sha256:c9cc31d27292cdb846c7dacd094c485611d1cb28ea99aa45561c21e6a71d69a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a34923899fbb68cfb9619ed67f44816fa06cee1bcb7f1331d9c4c197a631e3b6",
-      "plan.md": "8b90f6ce8cd261888fd2ecb91cb4559489426c8ac528112ea9e4f39727e8b4d5",
-      "tasks.md": "633d494ad784d5527e60348b9980c962cf076ad0292d18618f1ba1df80d16916",
+      "spec.md": "c24810086a5954bd90892c2b7f27c9773d551676afc950860b99db794b947b77",
+      "plan.md": "dfc0152a43066e319c27cd75f93716035cb6b6e2ccf6a48b4bddba99769c913c",
+      "tasks.md": "9c486923361bcbb7ee5dc729a1af0268ce7c8e43e3117fc17117ff690abf8c92",
       "decision-record.md": "3c0ad86f8e2c2059c10b1fdabb001c47c0089936c4e39e1b791658cec6bdbd7f"
     },
     "last_active_child_id": null,

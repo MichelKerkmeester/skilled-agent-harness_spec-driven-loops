@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening"
+    packet_pointer: "mcp-tooling/z_archive/016-code-mode-node-resolution/005-resolution-hardening"
     last_updated_at: "2026-08-29T10:18:53Z"
     last_updated_by: "session"
     recent_action: "Closed the review findings and reconciled the packet records"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule"
     last_updated_at: "2026-08-31T05:37:23Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Wrote and wired the delegation and orchestration rule, and corrected the router scope statement"

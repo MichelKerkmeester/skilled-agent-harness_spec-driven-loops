@@ -158,7 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Cache Fixes",
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase",
     "created_at": "2026-04-12T09:02:53.551Z",
-    "last_save_at": "2026-08-30T15:39:37.522Z",
+    "last_save_at": "2026-10-07T20:35:52.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14600edb6b55fcf5074a3041593b7b9eb79fd338d21dadc6e52c13d72a5390f8",
+    "source_fingerprint": "sha256:b7c663b8c56b7fab29d3ddce4ba39e49a0d4f88219f3090555eec9d3bf521230",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15c51185a3cc2c665c9a31d9b10a013e1be2cff59d5251544dbd0ec1b58eded3",
       "plan.md": "c4a470fcec67f37a6dd6a6650145e09d866d26f89df68a7ca6fb3fb794fc696d",
-      "tasks.md": "4ec1b4292f38e27316dc2ade9c15f247755e61ea412c86dfef0f040b54dbd3b6",
-      "decision-record.md": "8f3e129b02f81e4ccfcf5bd786892dcb002f2705bf9dfb50e233d719fe11b4dc",
-      "implementation-summary.md": "d5c8b1a185448ec5262fdb52d983af80227298cdc95e0b478913566034a80091"
+      "tasks.md": "53961e2bd786fa659ed8b6196db71a60504e1eae23fef8001088e5607c527e9d",
+      "decision-record.md": "ae1efb5d8ad4d60883696ddd328fa995d6baa0395d41c9615340d393b42a63dc",
+      "implementation-summary.md": "2e0767540be4883a4582e7d69a56daff1bbe78f16493e20ef3f2c3e4c9342c6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

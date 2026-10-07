@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter"
     last_updated_at: "2026-07-15T07:22:15Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the command contract adapter"
@@ -19,10 +19,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "command contract adapter plan"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

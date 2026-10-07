@@ -169,7 +169,7 @@
     ],
     "causal_summary": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories (`.opencode/speckit/` and `.opencode/skills/workflows-spec-kit/`)",
     "created_at": "2026-04-12T09:02:53.508Z",
-    "last_save_at": "2026-08-30T15:39:36.907Z",
+    "last_save_at": "2026-10-07T20:10:43.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,12 +177,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:1d95fd8b483c1ff5c9334e5d93cb15e39c6341c64255f4d5c8992e3c607abb27",
+    "source_fingerprint": "sha256:a6d3b0e8f139361e59cbffc1c6898f97b7f56530aa85553b682b5eb0d4f33582",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac4aeadcaa29feaef4520dd80aef78118b645864fdf1fe5498003154c4175ba4",
       "plan.md": "ee701a440fa08359ab8792d973144f4739c2fa910c00f54d0476e641a0b59239",
-      "tasks.md": "78835a63e62d3eea77bd4bc6c30fc8e831ff3e7f0b627d760f24f2794687f9ce"
+      "tasks.md": "c4336c1b2ce323e2f60b621415251fc7af3227e1e4d39fcb9feaedebb0dba16e"
     },
     "last_active_child_id": null,
     "last_active_at": null

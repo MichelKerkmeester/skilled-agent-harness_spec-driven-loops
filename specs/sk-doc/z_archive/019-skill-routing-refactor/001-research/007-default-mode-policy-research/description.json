@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
   "description": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
   "keywords": [
     "defaultmode",

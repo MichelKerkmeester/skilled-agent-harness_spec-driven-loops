@@ -1,3 +1,12 @@
+---
+title: "Gate 3 Enforcement Test Suite [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/030-gate3-enforcement/test-suite]"
+description: "Tests that verify the constitutional memory system correctly enforces the Gate 3 spec folder question before file modifications."
+trigger_phrases:
+  - "gate3 enforcement test suite"
+  - "gate3 enforcement verification"
+importance_tier: "normal"
+contextType: "general"
+---
 # Gate 3 Enforcement Test Suite
 
 > **Purpose**: Verify that the constitutional memory system correctly enforces Gate 3 (spec folder question before file modifications).

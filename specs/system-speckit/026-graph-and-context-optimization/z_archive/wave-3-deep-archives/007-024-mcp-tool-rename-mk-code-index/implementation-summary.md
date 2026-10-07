@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-mcp-tool-rename-mk-code-index |
+| **Spec Folder** | 007-024-mcp-tool-rename-mk-code-index |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

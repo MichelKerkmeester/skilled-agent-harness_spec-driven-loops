@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract` |
+| **Spec Folder** | 003-complexity-schema-prompt-contract |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |
 | **Actual Effort** | 2.5 hours |

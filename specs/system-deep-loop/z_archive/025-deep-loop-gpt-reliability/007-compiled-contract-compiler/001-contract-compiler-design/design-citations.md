@@ -1,3 +1,13 @@
+---
+title: "Design Citation Verification"
+description: "Line-level verification of the seed design's cited deep-review authority-chain sources, with corrected paths and current line contents."
+trigger_phrases:
+  - "design citation verification"
+  - "contract compiler citations"
+  - "review authority chain citations"
+importance_tier: "normal"
+contextType: "research"
+---
 # Design Citation Verification
 
 Scope: verify the seed design's line-cited `/deep:review` authority sources. The seed names the 14-file authority chain at `design.md:3`, lists evidence at `design.md:7`, lists compiler inputs at `design.md:48`, cites `spec.md:55-57` at `design.md:52`, cites the command allowlist at `design.md:70`, and cites setup-loader anchors at `design.md:76`.

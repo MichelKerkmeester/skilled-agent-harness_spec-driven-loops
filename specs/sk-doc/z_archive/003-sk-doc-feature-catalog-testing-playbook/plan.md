@@ -153,7 +153,6 @@ Audit shipped contracts -> normalize feature catalogs and playbooks -> align tem
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -172,7 +171,6 @@ Contract Lock -> Package Alignment -> sk-doc Modernization -> Runtime Consumer A
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

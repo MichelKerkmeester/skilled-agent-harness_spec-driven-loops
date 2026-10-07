@@ -2,14 +2,13 @@
 title: "Implementation Plan: Pilot Behavioral Benchmark -- deep-review"
 description: "Author RVB-001..008, capture Claude baselines, run both GPT-5.5-fast legs, score/classify, then calibrate the framework via retro before rollout."
 trigger_phrases:
-  - "implementation"
-  - "plan"
+  - "pilot deep review plan"
   - "deep review behavior benchmark"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/002-pilot-deep-review"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Pilot executed and scored; retro landed"

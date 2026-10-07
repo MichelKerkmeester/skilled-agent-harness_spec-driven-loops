@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -10,22 +10,35 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [
-      "verify",
-      "every",
-      "community",
-      "plugin",
-      "theme",
-      "supported",
-      "mcp-obsidian",
-      "skill",
-      "properly",
-      "completely",
-      "covered",
-      "across"
+    "trigger_phrases": [
+      "mcp-obsidian plugin coverage review",
+      "plugin coverage matrix",
+      "plugin playbook scenario testing",
+      "mcp-obsidian plugin coverage plan",
+      "deep review remediation plan",
+      "headless plugin scenario execution",
+      "mcp-obsidian plugin coverage tasks",
+      "review remediation task record",
+      "scenario execution task list",
+      "mcp-obsidian coverage review summary",
+      "plugin coverage remediation record",
+      "headless scenario test outcome"
     ],
-    "importance_tier": "important",
+    "key_topics": [
+      "mcp-obsidian",
+      "plugin",
+      "coverage",
+      "review",
+      "matrix",
+      "playbook",
+      "scenario",
+      "testing",
+      "plan",
+      "deep",
+      "remediation",
+      "headless"
+    ],
+    "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
@@ -119,8 +132,38 @@
         "source": "derived"
       },
       {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "cli-codex",
         "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -147,23 +190,11 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "2. Remediation shipped to v4",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. Scenario test outcome (10 PASS · 0 FAIL · 1 SKIP)",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces, remediate the gaps, and headlessly test every plugin playbook scenario",
     "created_at": "2026-08-05T19:56:29.576Z",
-    "last_save_at": "2026-09-20T04:34:13.726Z",
+    "last_save_at": "2026-10-07T21:21:34.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5726e6e92ee5c19e06e07e84afc21c6a6880c8cf00bfbdc73dde43a4b60a5edb",
+    "source_fingerprint": "sha256:cf552a6dae9267f8ccd4085f7fe0bce7c7a93c08128ad9300bc4a0b58095cfe1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf6be368b00d9f86b568de84a5e070c1e5857f1b74311a44b5098ebcc9380f0a",
-      "plan.md": "7bf8afba2cf98f3e3adb164242ae4416836aa45cece0ceaa8c6f3fdacb63d16f",
-      "tasks.md": "0f8df5c8d1e41f91a11c533985a1753a18e6b76d2182fe3815aa87bfa1e761f1",
-      "implementation-summary.md": "eff92bdcd07f3d7e264a69a26d25a3484d4f58ac39714a1d7b98a7e52ae48890"
+      "spec.md": "b0f452c7b0a55afd29410cc2d3e90217ab857fd78729de6186e162ad667c7098",
+      "plan.md": "6072128fed2a9539c13fec39a2f9ff6de604165a85c8d834aa50693eee09b762",
+      "tasks.md": "1ddd578bc1af8b7e95a904183426bddb19adb36ae1a21994c00d9c57d69a2fd5",
+      "implementation-summary.md": "b747cb91777751b762b44b384957251a1fdc69b837425dec63210a82f8d3c003"
     },
     "last_active_child_id": null,
     "last_active_at": null

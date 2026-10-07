@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Today the skill-advisor has no routing target for small-model concerns",
     "created_at": "2026-05-18T12:27:06.089Z",
-    "last_save_at": "2026-08-30T15:39:19.112Z",
+    "last_save_at": "2026-10-07T18:14:06.942Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46f3a34d7dbd26696da0323cb39509aa3c8adf8eba8e2875e1a17342be2ec012",
+    "source_fingerprint": "sha256:c5c9a54a8841c2b9c70d8b94b4be06dcb1a8cdd07f403ab2fb8a199d0ba09322",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0784946987b9ba4c4f80ba5c9d48471736d677e1d315079228ebe4e6d806ff1",
-      "plan.md": "3dd0c87da62b2ceab42974449a98a9d38da95e9793f3cec883f25a21eb503832",
-      "tasks.md": "d071762ddfb88ef2db5961fe67f51c83f3f4d5a842cd02e23de3e9b1fce92892",
-      "implementation-summary.md": "177de4b92a325562ea40d50e44ca2ea2649a36c85996b7665cdde3803515764b"
+      "spec.md": "ef5c57c6e2e6e418435e11baabface3402d5c719c54f0e4be1d7a7ae9bf449b4",
+      "plan.md": "ca34fa431a16e26403787eca600d2ca2dfa6c95ebf2350fe91d10d6c190cdf7c",
+      "tasks.md": "c9f64de9c08ce519ee4ceabb100c3758161030f21aee2077902995530420712f",
+      "implementation-summary.md": "e27b16d9b7d27564ccbb640c5780bdf55d6c9e291d21219de040e34544b26b21"
     },
     "last_active_child_id": null,
     "last_active_at": null

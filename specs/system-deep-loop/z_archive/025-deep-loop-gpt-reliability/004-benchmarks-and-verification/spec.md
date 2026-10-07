@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/004-benchmarks-and-verification"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification"
     last_updated_at: "2026-07-04T00:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Regrouped verification smoke and GPT/Claude benchmark into one track"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
     last_updated_at: "2026-07-14T16:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored phase 002 from the Chrome DevTools path census"

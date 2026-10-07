@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof"
     last_updated_at: "2026-08-29T11:48:56Z"
     last_updated_by: "session"
     recent_action: "Proved the cli transport and recorded four properties that reshape phase 002"

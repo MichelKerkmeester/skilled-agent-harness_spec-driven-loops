@@ -2,14 +2,13 @@
 title: "Implementation Plan: Cross-Skill Scorecard & Integration"
 description: "Aggregate all rounds into the 5-mode x 3-executor scorecard (bucket histograms, per-checkpoint latency ratios, dimension means), confirm or refute packet 031's headline findings per mode, rank a remediation backlog, and wire discoverability pointers into all five sub-skills."
 trigger_phrases:
-  - "implementation"
-  - "plan"
+  - "scorecard and integration plan"
   - "behavior benchmark scorecard"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
+    packet_pointer: "system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/005-scorecard-and-integration"
     last_updated_at: "2026-07-02T07:45:00Z"
     last_updated_by: "claude-code"
     recent_action: "Phase plan authored; not started"

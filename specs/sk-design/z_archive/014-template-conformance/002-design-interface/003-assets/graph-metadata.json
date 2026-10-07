@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/002-design-interface/003-assets",
-  "spec_folder": "sk-design/014-template-conformance/002-design-interface/003-assets",
-  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "packet_id": "sk-design/z_archive/014-template-conformance/002-design-interface/003-assets",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/002-design-interface/003-assets",
+  "parent_id": "sk-design/z_archive/014-template-conformance/002-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files (`interface-preflight-card.md`, 210 lines; `foundations/contrast-pair-inventory.md`, 55 lines; `foundations/token-starter.md`, 147 lines), governed by `skill-asset-template.md`",
     "created_at": "2026-07-27T14:56:08.126Z",
-    "last_save_at": "2026-08-30T15:39:13.008Z",
+    "last_save_at": "2026-10-07T18:12:30.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f408ef509091871e66e32d78f9b1d2cf6bfbfa5d8407c45b83b20491ac83c1d",
+    "source_fingerprint": "sha256:acceb28a1db47f91e23471d11b6dbad1ff0dda90f3a794e7ea1204c5916d6230",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "339f4d8cc539d47bc869027a34568f2dfda6de8454f25ae0997a055a7bd127a1",
-      "plan.md": "2604e0eb9fc454f4b77cb1611f492a69bf51ebdc0596b4597bbafded7e62cefa",
-      "tasks.md": "68545b920c783602a35f7ffa859983cae1ec3122c2dc1c947fe8c700a0b03454",
-      "implementation-summary.md": "eb91c943fc3efd1cedf6461829f4b573f57d65bb022beecab6c8bd2cdea268b3"
+      "spec.md": "285bfc875b9a6fda5e3b3f3f78662b2378e60be5870d04d5ff7a20d93c61b0d1",
+      "plan.md": "0dd1968734f4bb1c2dfb3ba8f574fff15ac0c28e4f9e2a510fa0da0dc307bfb2",
+      "tasks.md": "a144ebcd06ce3b866dc146db249cca5583c13c7a00c732b7dcf88562f79791ab",
+      "implementation-summary.md": "a2acbdfbd6c5c26db6140460ca2617e237a8063cb998e40eb866ab91f613b668"
     },
     "last_active_child_id": null,
     "last_active_at": null

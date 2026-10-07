@@ -1,3 +1,13 @@
+---
+title: "Cross-Hub Vocabulary Collision Report"
+description: "Read-only measurement mapping normalized routing vocabulary across the four hubs and classifying every cross-hub overlap."
+trigger_phrases:
+  - "cross hub vocabulary collisions"
+  - "parent hub vocab overlap"
+importance_tier: "important"
+contextType: "research"
+---
+
 # Cross-Hub Vocabulary Collision Report
 
 **Scope:** read-only measurement. **Status:** analysis artifact — recommends classifications, changes nothing.

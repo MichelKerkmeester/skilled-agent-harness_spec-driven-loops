@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases",
-  "spec_folder": "sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/009-cmd-create-changelog-and-releases",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/009-cmd-create-changelog-and-releases",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `create:changelog` command generates changelog markdown files but stops there",
     "created_at": "2026-04-12T09:02:50.181Z",
-    "last_save_at": "2026-08-30T15:39:14.234Z",
+    "last_save_at": "2026-10-07T19:23:29.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1551e573d445b22c65362fc93401b5e63f69f7d2c5d6fd71a9a865f8eec32dbc",
+    "source_fingerprint": "sha256:2ac5f469d9817324b737b8e57ce82eb1b6d2f3cf0fe9925ebbedadc0e4a5df0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4660c8d41481aba683d409832ac25a8d087c6405b47dddedb48e862523fd04c6",
-      "plan.md": "4f1f257ca3e350a0cb4c82264fe50649e2830a9d2f04ef0761326cd9f5350ec1",
-      "tasks.md": "fef7f4de852e02a12b7642070b2507899450fd42b42bf7c33f68c22871b00514",
-      "implementation-summary.md": "c52c7ad3449467cf77dca6351b6fb6194df10d161a60eb78242cbeb4feae3b93"
+      "spec.md": "249949b1464534e3044ec68106b71674fe0773c859bbd663442a9fe1da83004e",
+      "plan.md": "cbd7cf2e83b13a1c5d986759507f481df363d9b5a181745a076401c0a188d12f",
+      "tasks.md": "899b67cb0e7617b3442fe1d04ecc7265dad0c522bd68962459bc06f4084f2468",
+      "implementation-summary.md": "9b8800bd38d4e950b207f1f54a9723583ee5ea35827081c4ac45b3d23d584d30"
     },
     "last_active_child_id": null,
     "last_active_at": null

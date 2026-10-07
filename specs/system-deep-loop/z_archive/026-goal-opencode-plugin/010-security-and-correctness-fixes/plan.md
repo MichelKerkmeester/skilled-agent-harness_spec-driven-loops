@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/010-security-and-correctness-fixes"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/010-security-and-correctness-fixes"
     last_updated_at: "2026-07-01T10:04:51Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored plan from deep-review findings"

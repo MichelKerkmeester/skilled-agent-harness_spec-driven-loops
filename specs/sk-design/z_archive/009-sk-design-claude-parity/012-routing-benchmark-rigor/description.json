@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/012-routing-benchmark-rigor",
   "description": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at",
   "keywords": [
     "phase",

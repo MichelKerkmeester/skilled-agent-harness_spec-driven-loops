@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `041-llama-cpp-metal-investigation` |
+| **Spec Folder** | 014-041-llama-cpp-metal-investigation |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

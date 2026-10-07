@@ -18,7 +18,6 @@
       "023 phase 3 plan",
       "scripts interop tasks",
       "023 phase 3 tasks",
-      "implementation summary",
       "memory-save hardening"
     ],
     "key_topics": [
@@ -29,11 +28,11 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "memory-save",
       "hardening",
-      "spec-kit"
+      "spec-kit",
+      "intentionally",
+      "pinned"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "`@spec-kit/scripts` is intentionally pinned to CommonJS (`\"type\": \"commonjs\"`) and owns 20 files that consume `@spec-kit/shared` and `@spec-kit/mcp-server`",
     "created_at": "2026-04-12T09:02:50.318Z",
-    "last_save_at": "2026-09-10T21:05:07.392Z",
+    "last_save_at": "2026-10-07T18:16:39.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d626dca22450b90e70c1838f480e0fb49c37c2a5c766e1cf94fc73e8f9b30881",
+    "source_fingerprint": "sha256:05c1fd8f113fdf2f971a01d1f17140c01db6800958102f3cbe64a5f2cfe80a1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13b41ae0fd6fcb87be6317fa4c462fa8d25b6d63c3250a303d3404a7b934ab51",
       "plan.md": "05d9c02ee10d42ad29ab4b45f1616d777afe5fdf74c0ede99b796edb1f472bd3",
       "tasks.md": "a7fb653e082dc667ad41cea500df5eec6d1dff0d87015c4dddfd228c8807617d",
-      "implementation-summary.md": "d34c51738288915871e4659d9e9103addb86cd4ca7d272e8cb23f8acfc10097d"
+      "implementation-summary.md": "17fc8e170008b015d32eae11e044cd7b155b65deb7d5b7085a3e46c73e597089"
     },
     "last_active_child_id": null,
     "last_active_at": null

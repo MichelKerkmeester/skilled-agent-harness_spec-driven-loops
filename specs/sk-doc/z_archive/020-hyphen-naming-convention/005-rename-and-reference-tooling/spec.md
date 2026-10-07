@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling"
     last_updated_at: "2026-07-14T17:28:50Z"
     last_updated_by: "codex"
     recent_action: "Added the reference-rewrite executor child (004) to the tooling phase map"

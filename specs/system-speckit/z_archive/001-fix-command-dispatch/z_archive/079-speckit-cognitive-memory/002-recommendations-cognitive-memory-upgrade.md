@@ -1,3 +1,7 @@
+---
+title: "Actionable Recommendations: Cognitive Memory Upgrade"
+---
+
 # Actionable Recommendations: Cognitive Memory Upgrade
 
 > **Research ID:** 079-speckit-cognitive-memory

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/008-notion-bases-closeout",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/008-notion-bases-closeout",
   "description": "Phase 007 deferred four consolidation items to `008-notion-bases-closeout`, but that folder was never built, so 007's prose pointed at a phantom",
   "keywords": [
     "phase",

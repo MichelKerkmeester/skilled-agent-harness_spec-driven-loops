@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "scripts/spec/create.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The existing SpecKit templates suffered from three critical issues:",
     "created_at": "2026-04-12T09:02:53.545Z",
-    "last_save_at": "2026-08-30T15:39:37.405Z",
+    "last_save_at": "2026-10-07T20:14:32.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d84427d0cbfd039d94d5d8a34fcf94723dfa74bb60608f718835ad421f0f4f9a",
+    "source_fingerprint": "sha256:801e4147aea36829d77ad0aad54dd42e23f95f1da4ccd8d224856c23d2faa61e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37892e408abeecd2b2f610832de9f6678d2cd6a7e7cd0f94738494a49685db48",
-      "plan.md": "3d0e88b6c64c551073114c316246bb4acad4a82d762a4662d1ef5360a54fb687",
+      "spec.md": "4b363dbeb9a3950566ed5373a64e1662313f54f1fb4ba245595c0fd4c3ef49a4",
+      "plan.md": "c06c84130685931406f53fb986d17b149adbb46858ef29cb7d0559c9176e3538",
       "tasks.md": "bb6e5feaf4b4fd4caba778b6746c73f115fb7c910a7946c97aeeafb81a7934a9",
-      "decision-record.md": "889a4432817e29cdc67e9ad15d0460a7f220cf8e709f06d0005b60c262afb4f2",
-      "implementation-summary.md": "73eb134ff265d9c62580e95c9170c0cf6696b73b46d799c1951d2699e3d3488a"
+      "decision-record.md": "b3f46713f171c08c465f4fba0b4629275a070a86128ae987dd1f11c4d8e28227",
+      "implementation-summary.md": "287f908c815938aa0e5e0a1fa9646088d48639e3dade72f84022725d61499469"
     },
     "last_active_child_id": null,
     "last_active_at": null

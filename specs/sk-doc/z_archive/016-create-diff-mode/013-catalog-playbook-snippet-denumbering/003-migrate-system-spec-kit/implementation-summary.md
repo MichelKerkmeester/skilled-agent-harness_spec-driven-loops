@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit"
+    packet_pointer: "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase complete and merged to main"
@@ -93,8 +93,8 @@ Gate command: `find .opencode/skills/system-spec-kit/{feature_catalog,manual_tes
 
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 1. Cross-tree references (catalog<->playbook) were rewritten in the phase-006 global sweep, not this phase.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

@@ -175,7 +175,6 @@ Manual retrieval test execution pipeline with review-gated evidence collection.
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -194,7 +193,6 @@ Phase 1 (Preconditions) ──► Phase 2 (Baseline) ──► Phase 3 (Fallback
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -2,11 +2,8 @@
 title: "Task [system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/task-02-skill-speckit-alignment/tasks]"
 description: "Task Format: T### Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "task"
-  - "skill"
-  - "references"
-  - "audit"
+  - "skill speckit alignment tasks"
+  - "skill reference audit checklist"
 importance_tier: "normal"
 contextType: "implementation"
 ---

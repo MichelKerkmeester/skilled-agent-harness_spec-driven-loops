@@ -3,7 +3,6 @@ title: "Implementation Summary"
 description: "Archive normalization summary for Command Adherence."
 trigger_phrases:
   - "017-command-adherence"
-  - "implementation summary"
   - "archive"
   - "validation"
 importance_tier: "normal"

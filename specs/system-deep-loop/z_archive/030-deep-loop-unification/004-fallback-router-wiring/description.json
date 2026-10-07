@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/030-deep-loop-unification/004-fallback-router-wiring",
+  "specFolder": "system-deep-loop/z_archive/030-deep-loop-unification/004-fallback-router-wiring",
   "description": "`deep-loop-runtime/lib/deep-loop/fallback-router.ts` is a fully shipped, unit-tested pure-function library",
   "keywords": [
     "deep-loop-runtime",

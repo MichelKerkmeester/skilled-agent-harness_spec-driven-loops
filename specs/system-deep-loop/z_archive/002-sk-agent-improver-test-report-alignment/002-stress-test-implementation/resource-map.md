@@ -23,11 +23,13 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## Scope
 
 First implementation packet. Applied 5 P0 + 1 P1 diff sketches from `001/research/research.md`, authored 6 stress-test scenarios + a fixture target, then ran R1 stress (scored 0/2/4 — surfaced the test-layer-selection meta-finding).
 
 Shipped on commit **`3b5f00ee4`**.
+<!-- /ANCHOR:summary -->
 
 ---
 

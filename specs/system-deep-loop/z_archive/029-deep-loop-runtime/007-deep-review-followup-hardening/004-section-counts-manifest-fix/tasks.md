@@ -7,7 +7,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix"
     last_updated_at: "2026-07-04T16:33:21.084Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Completed implementation and verification tasks"

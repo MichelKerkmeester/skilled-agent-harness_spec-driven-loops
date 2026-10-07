@@ -2,8 +2,7 @@
 title: "Implementation Plan [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor/plan]"
 description: "Deliver orchestrator-managed wave execution for deep research and deep review by adding segment planning, coordination-board tracking, and deterministic merge behavior on top of the Phase 002 graph substrate."
 trigger_phrases:
-  - "042.003"
-  - "implementation plan"
+  - "wave executor plan"
   - "wave executor"
   - "segment planner"
   - "coordination board"

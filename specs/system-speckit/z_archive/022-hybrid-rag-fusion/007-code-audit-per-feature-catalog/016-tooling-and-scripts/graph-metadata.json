@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-09-10T21:04:49.344Z",
+    "last_save_at": "2026-10-07T19:24:30.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b817b3238153a0800a33e0b1555a5b4b6f5db460144ecb580375fdf4587f1133",
+    "source_fingerprint": "sha256:9de2ad4d6700a8400fea69c4dd575f179aa293fc62a124ab5936e57e61f4d52a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "195cf99b6289b1eea0457e5ff1d2a148dbeb6b40d921aa70cde6b5deff12702b",
-      "plan.md": "b2e404e16f5170a6c6da0ef7e418a343e8aee288c93160c4c682194e038e53f5",
+      "spec.md": "6a5a15f044939d11ef60cdcf29b9a2c03cdbc968c0675cfd2c825312a7a58760",
+      "plan.md": "98c350acc58ef753b891bcd6fc315f17a81ba9e068c74f691ae9d32a2763f5ed",
       "tasks.md": "686a6c8fd3d329deb8f9aab8e3d0ef8f1a6ba31469b05a47964ba403e2fb4f44",
-      "implementation-summary.md": "387b950817d8858511de423379db1ec3119cdc5e01bc24907f009b42c823e04c"
+      "implementation-summary.md": "65127476ee00b3e88bb19196c93af639c98955d9be7be7adfef00bcea3e22701"
     },
     "last_active_child_id": null,
     "last_active_at": null

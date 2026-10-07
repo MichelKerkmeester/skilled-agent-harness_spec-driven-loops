@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement",
   "description": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README",
   "keywords": [
     "phase",

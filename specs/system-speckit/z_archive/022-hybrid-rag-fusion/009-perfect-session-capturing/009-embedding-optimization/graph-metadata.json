@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but still treated the document as a flat body",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-09-10T21:04:55.297Z",
+    "last_save_at": "2026-10-07T19:24:31.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f59ee16fdef54448d4e9a21d6c491a5cd2f1cdd36cdcc643b9cfc0b9d8a07e64",
+    "source_fingerprint": "sha256:a2ae04fd020220fc1075050dbaeaed36b74e884055b5f5c57946476cefeb71b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "711a800847f64b6c71838636ed2e42666721ad6ad2fb1aa143bd01cda12f3f12",
       "plan.md": "8fc3cbab180190ad79ed7fcbcf6eda49b1b4a972e3fee6a6f9881e8a0c23f1bd",
       "tasks.md": "1abc9f38f2bc67cf3e6aa53351bd185c746aea19156aa5967b20e578151bcbfa",
-      "implementation-summary.md": "26d4619afeb7a959fe0a587b1c09bf59df3979e895df012efdbf6df53e452bcb"
+      "implementation-summary.md": "f6df74d9596f3e16a2ffdba3a5dbc13c4d0c23db11e5c8173ee9b84aed10fd3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

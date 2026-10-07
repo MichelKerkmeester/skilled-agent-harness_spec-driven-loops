@@ -2,12 +2,7 @@
 title: "Implementation Plan [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/048-system-analysis/plan]"
 description: "This plan addresses 35 verified issues identified in the system analysis, organized into 9 work streams across 4 phases. The approach prioritizes critical bug fixes first, follo..."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "speckit"
-  - "memory"
-  - "system"
-  - "048"
+  - "system analysis plan"
 importance_tier: "important"
 contextType: "planning"
 ---

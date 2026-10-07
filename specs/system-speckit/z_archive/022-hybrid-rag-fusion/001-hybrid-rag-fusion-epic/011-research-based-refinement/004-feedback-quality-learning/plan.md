@@ -156,6 +156,7 @@ Search Query
 | **Total** | **3S + 3M** | **~4 weeks** | |
 <!-- /ANCHOR:effort -->
 
+<!-- ANCHOR:dependencies -->
 ## 7. RELATED DOCUMENTS
 
 - [Spec](spec.md) — D4 feature specification
@@ -163,9 +164,4 @@ Search Query
 - [Parent Spec](../spec.md) — Research-Based Refinement coordination
 - [Parent Plan](../plan.md) — Cross-phase implementation waves
 - Research (historical, path removed) — Full 29-recommendation synthesis
-
-<!-- ANCHOR:dependencies -->
 <!-- /ANCHOR:dependencies -->
-
-<!-- ANCHOR:rollback -->
-<!-- /ANCHOR:rollback -->

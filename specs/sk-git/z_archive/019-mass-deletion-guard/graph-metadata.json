@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/019-mass-deletion-guard",
-  "spec_folder": "sk-git/019-mass-deletion-guard",
+  "packet_id": "sk-git/z_archive/019-mass-deletion-guard",
+  "spec_folder": "sk-git/z_archive/019-mass-deletion-guard",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -21,17 +21,33 @@
     ]
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "mass deletion guard",
+      "commit deletion threshold",
+      "push deletion backstop",
+      "mass deletion guard plan",
+      "deletion guard design plan",
+      "pre commit deletion threshold plan",
+      "mass deletion guard tasks",
+      "deletion guard task list",
+      "commit hook guard tasks",
+      "mass deletion guard summary",
+      "deletion guard implementation summary",
+      "commit guard validation evidence"
+    ],
     "key_topics": [
-      "spec",
-      "mass-deletion",
+      "mass",
+      "deletion",
       "guard",
-      "commits",
-      "pushes",
+      "commit",
+      "threshold",
+      "push",
+      "backstop",
       "plan",
+      "design",
+      "pre",
       "tasks",
-      "implementation",
-      "summary"
+      "task"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -141,9 +157,33 @@
         "source": "derived"
       },
       {
-        "name": "Why a threshold of 100",
-        "kind": "heading",
-        "path": "plan.md",
+        "name": "Tasks — Mass-Deletion Guard",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -163,23 +203,11 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What shipped",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Configuration",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Spec — Mass-Deletion Guard for Commits and Pushes",
+    "causal_summary": "Block a commit (primary) or push (backstop) that deletes more than a configurable number of tracked files unless the operator explicitly authorizes that operation, fail-open so a guard bug can never wedge git.",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-09-20T04:36:02.250Z",
+    "last_save_at": "2026-10-07T22:14:55.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90a443f8a6b7c18ab41575790e208224c5dd8868b1e04215482879dddb8b048a",
+    "source_fingerprint": "sha256:1da5f335221e697c45e8798d8a93f4b8ab538386c6e499332fa9c1acf0d15938",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9b9b747d0756f2f806536e4dd6eba598b74344df747fa05c3a2dc53d2366b8e",
-      "plan.md": "3217f1c6f700e71cc0edd1b7aad943c8b3b2727c78f3c1013fc0e90e2f926198",
-      "tasks.md": "cd97d0972de08ca52a36b26d40f2f1815aebd334f5fe6e14fb1d9f6775b5d6f1",
-      "implementation-summary.md": "468719cb80f9381aea2e31885cb9de397b6adae79bdd785b84dc51b64739835b"
+      "spec.md": "bd5bcc9c0cc64a76c388555524b99bcd2a33c3575042d0023d1dd113d12ad945",
+      "plan.md": "9d27a49cdce0062e91eeeaa92c5d23115107241e7ba8fd74741a9bd8273e37f8",
+      "tasks.md": "9e1e9fa7b1ae391407a67fde0b9ddbc640314c1bb3dc20ff2b4c75e75bade29f",
+      "implementation-summary.md": "0bf746e3c04e808fff73a8225c3de97aaafd62b2b0c4bf30e6f771b49af47dbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

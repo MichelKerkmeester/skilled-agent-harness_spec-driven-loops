@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog"
     last_updated_at: "2026-08-04T14:42:00Z"
     last_updated_by: "phase-executor"
     recent_action: "Closed phase 024: README rewritten, version 1.0.1.2, changelog entry added"

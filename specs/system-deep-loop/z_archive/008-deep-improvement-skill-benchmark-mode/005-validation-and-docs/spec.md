@@ -30,10 +30,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 1. Purpose
 
 Bring all documentation and metadata up to the three-lane (A: agent-improvement, B: model-benchmark, C: skill-benchmark) reality of the renamed `deep-improvement` skill, and run the hardening/deep-review gate.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## 2. Scope
 
 - `deep-improvement/SKILL.md`: two-lane → three-lane (WHEN-TO-USE table, smart-router intents/RESOURCE_MAP for `skill-benchmark`, lane-aware references/assets, integration points).
@@ -42,6 +46,9 @@ Bring all documentation and metadata up to the three-lane (A: agent-improvement,
 - Cross-skill references (sentinel, root docs) consistent with the rename + new lane.
 - Hardening/deep-review: run `/deep:start-review-loop` (or equivalent) over the new Lane C code; fix findings.
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:success-criteria -->
 ## 3. Success criteria
 
 - Docs accurately describe three lanes; no two-lane-only stragglers.
@@ -49,6 +56,8 @@ Bring all documentation and metadata up to the three-lane (A: agent-improvement,
 - Deep-review findings triaged/fixed.
 - `validate.sh --strict` green for parent + all active children.
 - Completion metadata reconciled across parent `spec.md`, child docs, and continuity.
+
+<!-- /ANCHOR:success-criteria -->
 
 ## 4. Out of scope
 

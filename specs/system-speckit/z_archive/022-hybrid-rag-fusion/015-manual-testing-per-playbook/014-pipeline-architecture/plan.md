@@ -175,7 +175,6 @@ Preconditions confirmed → execute exact scenario prompt and commands → colle
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -196,7 +195,6 @@ Phase 1 (Preconditions) ──────┤
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

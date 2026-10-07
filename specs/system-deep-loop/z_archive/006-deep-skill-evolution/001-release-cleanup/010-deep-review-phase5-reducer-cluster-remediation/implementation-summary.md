@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.../002-phase5-backlog/002-reducer-cluster-remediation` |
+| **Spec Folder** | 010-deep-review-phase5-reducer-cluster-remediation |
 | **Completed** | 2026-05-23 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

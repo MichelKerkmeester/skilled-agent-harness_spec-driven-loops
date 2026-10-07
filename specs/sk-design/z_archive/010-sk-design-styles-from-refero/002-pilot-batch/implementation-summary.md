@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-design/010-sk-design-styles-from-refero/002-pilot-batch"
+    packet_pointer: "sk-design/z_archive/010-sk-design-styles-from-refero/002-pilot-batch"
     last_updated_at: "2026-07-18T10:25:46Z"
     last_updated_by: "claude"
     recent_action: "Ran the 50-style pilot, validated the shape, recorded GO"

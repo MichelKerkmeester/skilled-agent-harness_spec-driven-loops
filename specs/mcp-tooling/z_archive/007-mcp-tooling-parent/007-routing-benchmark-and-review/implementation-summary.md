@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review"
     last_updated_at: "2026-07-16T18:29:00Z"
     last_updated_by: "claude"
     recent_action: "Added dated six-mode amendment to spec/plan/tasks"

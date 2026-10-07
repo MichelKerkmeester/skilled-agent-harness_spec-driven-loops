@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
   "description": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR`",
   "keywords": [
     "sk-doc",

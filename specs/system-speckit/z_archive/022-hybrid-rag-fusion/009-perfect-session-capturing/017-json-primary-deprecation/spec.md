@@ -145,7 +145,6 @@ Make AI-composed JSON the routine save contract, hard-deprecate direct positiona
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -164,7 +163,6 @@ Make AI-composed JSON the routine save contract, hard-deprecate direct positiona
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/002-claudian",
   "description": "The shipped mcp-obsidian Claudian reference docs contained two load-bearing factual errors: they instruct operators to author/merge `.claude/mcp.json`",
   "keywords": [
     "shipped",

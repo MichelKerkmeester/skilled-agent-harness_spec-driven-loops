@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 137-deep-context-workflow-adoption |
+| **Spec Folder** | 011-deep-context-workflow-adoption |
 | **Completed** | 2026-06-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

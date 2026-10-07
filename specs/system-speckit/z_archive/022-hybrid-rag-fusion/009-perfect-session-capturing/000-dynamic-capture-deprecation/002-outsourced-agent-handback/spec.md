@@ -180,7 +180,6 @@ Ensure the outsourced agent handback protocol produces saves that survive the fu
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## 7. L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -199,7 +198,6 @@ Ensure the outsourced agent handback protocol produces saves that survive the fu
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## 8. L2: EDGE CASES
 
 ### Data Boundaries

@@ -1,3 +1,11 @@
+---
+title: "Fix Summary [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/fix-summary]"
+description: "Executive summary of the 34 fixes made on 2025-12-25."
+trigger_phrases:
+  - "system health audit fix summary"
+importance_tier: "important"
+contextType: "planning"
+---
 # Fix Summary - System Health Audit
 
 ## Executive Summary

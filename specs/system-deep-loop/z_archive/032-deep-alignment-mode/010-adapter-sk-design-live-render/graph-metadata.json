@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/010-adapter-sk-design-live-render",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "ADR-004 locked `sk-design`'s v1 adapter (phase 006) to static `DESIGN.md`/token checks only — live-render (chrome-devtools-driven) accessibility/performance/responsive audits were explicitly out of that phase's scope",
     "created_at": "2026-07-11T09:41:59.522Z",
-    "last_save_at": "2026-08-30T15:39:20.147Z",
+    "last_save_at": "2026-10-07T18:15:13.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e299c5cbd896572b7d9f2a892577778aeafdee331c43fbcaf0a75a5d7a4acf6",
+    "source_fingerprint": "sha256:16f7f09125676b2a609ff0ace3f86a757289b969dcc6c5581cf9964c8700d957",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "856d95c5a5d794c5b8022e1829ef887fd046f18e84891da834693c4717abdf71",
-      "plan.md": "c086a941843bc9c34cefdfc04ff04878bb1619f8a1eda2ce40028995426f220d",
-      "tasks.md": "66ec654ffb61773df401df16118f6b3fe37e795084a3f9955ab305603d201ae3",
-      "implementation-summary.md": "24544fb19d9ac4a1cb5d1efa9cc910ab338c15bf3552bf084e5c6f340e4d7e6d"
+      "spec.md": "93d5046247558e52c7254c81d42025aade5f8b8517cd5a7ec9507bfc163294d7",
+      "plan.md": "3bf48d5dba0032c87f0fccf6ac682cdec53ee15f99283b738fb9b8a391510170",
+      "tasks.md": "24c936a5480854fde4774262f2a16261c44a2a1989e45e3e4d9d8bd796c754d4",
+      "implementation-summary.md": "5e13e25bf0793c4f640ffb89ff5179ecbc77971f39b47a8778ba329266a03ff4"
     },
     "last_active_child_id": null,
     "last_active_at": null

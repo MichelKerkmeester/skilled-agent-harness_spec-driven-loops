@@ -32,6 +32,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:summary -->
 ## 1. APPROACH
 
 Three sequential phases, each producing a verifiable artifact. Prose-only deliverables (no code), so validation is structural (files exist, char counts within budget, markdown renders) and qualitative (content covers the seven target shifts; no AGENTS.md contradictions).
@@ -40,9 +41,11 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 1. **Spec folder first** — lock the contract before authoring content so reviewers can trace each rule back to a requirement.
 2. **Assets second** — author the two deliverables in parallel (they are independent files) and compare for consistency.
 3. **SKILL.md integration last** — only after assets are finalized do we wire them into routing; otherwise a SKILL.md reference to a missing file would break the ALWAYS-load contract.
+<!-- /ANCHOR:summary -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 2. PHASES
 
 ### Phase 1 — Spec folder scaffolding (THIS phase, already in progress)
@@ -120,9 +123,11 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 5. Address any POST-SAVE QUALITY REVIEW HIGH issues via manual Edit.
 
 **Exit criteria**: Checklist fully verified; validate.sh exits 0; memory save succeeds with no HIGH issues.
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:dependencies -->
 ## 3. DEPENDENCIES
 
 | Dependency                                                      | Required For         | Status    |
@@ -131,9 +136,11 @@ Three sequential phases, each producing a verifiable artifact. Prose-only delive
 | `.opencode/skills/cli-codex/assets/` directory exists            | Phase 2              | Confirmed |
 | `generate-context.js` available at dist path                    | Phase 4              | Assumed present (standard Spec Kit Memory path) |
 | `validate.sh` script available                                  | Phase 3, Phase 4     | Assumed present                                 |
+<!-- /ANCHOR:dependencies -->
 
 ---
 
+<!-- ANCHOR:rollback -->
 ## 4. ROLLBACK STRATEGY
 
 Prose-only deliverables with no runtime coupling. Rollback is trivial:
@@ -142,9 +149,11 @@ Prose-only deliverables with no runtime coupling. Rollback is trivial:
 3. `rm -rf` the spec folder if the feature is being discarded entirely.
 
 No data migration, no cache invalidation, no downstream consumers beyond Codex sessions that chose to adopt the personalization.
+<!-- /ANCHOR:rollback -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 5. VALIDATION STRATEGY
 
 **Structural (automated):**
@@ -157,6 +166,7 @@ No data migration, no cache invalidation, no downstream consumers beyond Codex s
 - Dispatch one `codex exec` call with and without voice module appendage; compare responses.
 
 Qualitative verification is **SC-002 evidence** but is not gated by this spec — it is a recommended next step the user can run.
+<!-- /ANCHOR:testing -->
 
 ---
 

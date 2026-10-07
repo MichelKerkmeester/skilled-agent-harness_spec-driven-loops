@@ -2,13 +2,12 @@
 title: "Implementation Summary: GPT Behavioral Hardening — Follow-Up Research"
 description: "Two-round, six-lineage deep-research investigation completed; round 2 (operator-directed critical re-review) caught and corrected a real error made by round 2's own first lineage; final consolidated research.md written with a recommended phase 008-012 breakdown."
 trigger_phrases:
-  - "implementation summary"
   - "gpt behavioral hardening"
 importance_tier: "critical"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research"
     last_updated_at: "2026-07-01T11:35:00Z"
     last_updated_by: "claude-code"
     recent_action: "Two-round research complete (6 lineages); final consolidated research.md written"

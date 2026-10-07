@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After 009 the 007 matrix stands at 145 PASS / 31 PARTIAL / 0 FAIL / 1 SKIP",
     "created_at": "2026-05-28T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:23.585Z",
+    "last_save_at": "2026-10-07T18:14:23.409Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:523afd83f29cde0ef87aa2b193a2f5d25eea9f1be3c53a8eeb397223817fd8d5",
+    "source_fingerprint": "sha256:7acbc2b63d5a203812374ce9210191dd43ded3ff000cd294186bff9089deae57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bd35ed3b6f50ac33ae7951bac0f52dd9da31ba1cb1449809652e5d9050ef4bb",
       "plan.md": "4c10a5848dd937d1af0cecc7efafbe587eb07ee20d07a84f4eb2d044478d316d",
       "tasks.md": "d573878af4a5cf6fa7988e24a6e6bfdd55f316602dd0bdc363dc557b27a6f8ad",
-      "implementation-summary.md": "4fa2d303fb5d75f001de1a54993a9e1ec452208171081eb219fe54dd027f5668"
+      "implementation-summary.md": "3614da67a83868e8202f036272733dfb2aafb5bdd82478ea84d0d6b65a81a9f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

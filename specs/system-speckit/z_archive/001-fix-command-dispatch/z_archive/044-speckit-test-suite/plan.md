@@ -2,14 +2,7 @@
 title: "Spec Kit Test Suite [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/plan]"
 description: "Comprehensive test suite covering 4 domains"
 trigger_phrases:
-  - "spec"
-  - "kit"
-  - "test"
-  - "suite"
-  - "implementation"
-  - "plan"
-  - "044"
-  - "speckit"
+  - "speckit test suite plan"
 importance_tier: "important"
 contextType: "planning"
 ---
@@ -179,7 +172,7 @@ Comprehensive test suite covering 4 domains:
 - Coverage reporting to PR comments
 - Performance regression tracking
 
-<!-- ANCHOR:summary -->
+<!-- ANCHOR:summary-2 -->
 ## 7. Agent Deliverables Summary
 
 | Agent | Component | Test Cases | Status |
@@ -188,7 +181,7 @@ Comprehensive test suite covering 4 domains:
 | Agent 2 | Skill Advisor | ~250 | Complete |
 | Agent 3 | Memory MCP Server | 239 | Complete |
 | Agent 4 | Integration & E2E | 209 | Complete |
-<!-- /ANCHOR:summary -->
+<!-- /ANCHOR:summary-2 -->
 
 <!-- ANCHOR:dependencies -->
 ## 8. Dependencies

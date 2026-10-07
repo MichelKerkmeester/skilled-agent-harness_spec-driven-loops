@@ -20,6 +20,9 @@ _memory:
 ---
 # Spec: Self-Test Fixes and Reducer Improvements
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
 | Field | Value |
 | --- | --- |
 | Status | Complete |
@@ -28,7 +31,9 @@ _memory:
 | Parent | 041-sk-improve-agent-loop |
 | Phase | 010 |
 | Estimated LOC | 80-120 |
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 Phase 009 (self-test) found 5 issues:
@@ -42,6 +47,7 @@ Phase 009 (self-test) found 5 issues:
 4. **Accepted vs acceptable confusion**: The reducer counts `accepted` only when `record.type === 'accepted'` (line 207). Normal scored records get `recommendation: "candidate-acceptable"` but are never marked `type: 'accepted'`. The dashboard always shows "Accepted candidates: 0" even when candidates score well.
 
 5. **Candidate-001 improvements not promoted**: The self-test produced 3 candidates with useful improvements (halt condition, merged checklists, fixed command path, precision fixes) that should be reviewed and selectively applied to the canonical `agent-improver.md`.
+<!-- /ANCHOR:problem -->
 
 ## Solution
 
@@ -53,6 +59,7 @@ Fix all 5 issues:
 4. Count `candidate-acceptable` and `candidate-better` recommendations as accepted in the dashboard
 5. Promote the best candidate improvements to the canonical agent file
 
+<!-- ANCHOR:scope -->
 ## Scope
 
 ### In Scope
@@ -71,7 +78,9 @@ Fix all 5 issues:
 - New scripts or new dimensions
 - Changes to scorer, benchmark, or scanner logic
 - New test fixtures for agent-improver
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 | ID | Requirement | Acceptance Criteria |
@@ -82,10 +91,13 @@ Fix all 5 issues:
 | REQ-004 | Accepted counting fixed | Dashboard shows non-zero accepted count when candidates score well |
 | REQ-005 | Candidate improvements promoted | Canonical agent-improver.md includes halt condition, merged checklists, 4th anti-pattern |
 | REQ-006 | All mirrors in sync after changes | `scan-integration.cjs --agent=agent-improver` shows all mirrors aligned |
+<!-- /ANCHOR:requirements -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success Criteria
 
 - SC-001: `score-candidate.cjs --candidate=.opencode/agents/agent-improver.md --dynamic` scores 100 across all 5 dimensions
 - SC-002: Re-running Phase 009 loop would show correct family, configurable plateau, and proper accepted counts
 - SC-003: All 8 scripts parse OK
 - SC-004: `scan-integration.cjs --agent=agent-improver` shows all mirrors aligned
+<!-- /ANCHOR:success-criteria -->

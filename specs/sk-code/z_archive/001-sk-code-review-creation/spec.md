@@ -137,7 +137,6 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -156,7 +155,6 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

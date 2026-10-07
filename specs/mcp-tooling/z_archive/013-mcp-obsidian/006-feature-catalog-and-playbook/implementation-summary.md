@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/006-feature-catalog-and-playbook"
     last_updated_at: "2026-08-02T10:45:00+02:00"
     last_updated_by: "codex"
     recent_action: "Author and validate the mcp-obsidian feature catalog and manual testing playbook"

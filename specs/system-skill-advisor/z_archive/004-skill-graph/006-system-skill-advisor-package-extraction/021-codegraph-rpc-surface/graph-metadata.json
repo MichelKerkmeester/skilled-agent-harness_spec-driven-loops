@@ -181,7 +181,7 @@
     ],
     "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call",
     "created_at": "2026-05-15T09:15:19Z",
-    "last_save_at": "2026-08-30T15:39:26.574Z",
+    "last_save_at": "2026-10-07T18:15:42.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:20:31Z",
     "source_docs": [
@@ -190,13 +190,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fadeb19e10e5ff31734411cc69a31da41f6617f13ed1dc113d849679893d31c9",
+    "source_fingerprint": "sha256:da9cd852ac8de2b019ef27c62c5afbfc00de87b5a45097f02b478dec20e402c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecb7d829e523ce12e92e11e477f8fabf0e529bfe2a444a1a61033dd2ef8316f6",
-      "plan.md": "fc97821f0325192b1c9fc4bc67097d62eef879335117af24e8519e0d92b26a46",
-      "tasks.md": "c7b37a3b6c20a9e7a6a07a896f70b7d6d2f9e4288418cd843d97006c712c5464",
-      "implementation-summary.md": "881655e7bfaff8caab4d1ce962f727c86330d606553f6bbc4a8d18eed39bf312"
+      "spec.md": "1f4903d644479ee0a68bc2e4a77b636d05ef4aa36f7f454beacbbad4e321a5e6",
+      "plan.md": "6f4b598e6c5dc383be37042616675ee758cd62863c93a7961758c7b41d2c72e0",
+      "tasks.md": "2e57714655f0ff69235dcb9b79745deb2514f8d07408196d93024034f34bdcde",
+      "implementation-summary.md": "13ad133a9b07e39bdf15387d1832f0b6b0ba2f329c72297b74f3fc81548820c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

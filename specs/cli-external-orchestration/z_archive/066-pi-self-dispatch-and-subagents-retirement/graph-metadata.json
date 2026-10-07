@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
-  "spec_folder": "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement",
+  "packet_id": "cli-external-orchestration/z_archive/066-pi-self-dispatch-and-subagents-retirement",
+  "spec_folder": "cli-external-orchestration/z_archive/066-pi-self-dispatch-and-subagents-retirement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Two facts changed under the `cli-pi` packet and neither is reflected in it",
     "created_at": "2026-09-08T12:09:08.809Z",
-    "last_save_at": "2026-09-09T05:49:40.926Z",
+    "last_save_at": "2026-10-07T18:11:38.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ee8ebed14398796f46673634f1c324e46f91e0ee3ca048b882094affa1592be",
+    "source_fingerprint": "sha256:3926f6a9eeb0ff64b0dd74252edbf3d54f139226b86bc497bd1bab0f1b6210f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f8cb5c73040953a363118cf6fbc30a03601fad59d34f4a4ccf31f2adae025d8",
-      "plan.md": "74b02b455f0aeef9c0142b10a1a371334b0e22b8d5fb61290c53cd871d154957",
-      "tasks.md": "1f20afb7479b2a532598fbd8d544640039714f52be7195fdfa1604d4b075c9b6",
+      "spec.md": "37f91068493d7162ecb1d65dbdb7e3b157e30031ce2412f16be34cffd81a8a99",
+      "plan.md": "db9ea28ab4ab8866bfe53b98d3efc8c45a8e4292857717e3012358a15ebfe9be",
+      "tasks.md": "172ce29d385d5b3d29fa27590b420c14dc55a89a616ffdcb84a229a5a920609a",
       "decision-record.md": "2f1aec087964ddd2437abe4f9e5d8cd9a29163352917c285bdaa6c08bd3c23bb",
-      "implementation-summary.md": "10340cfcb6cec16c3d48685af2cb8c9cdac7aa00cf790e77689c7012b4e4f23c"
+      "implementation-summary.md": "8da523958dc1241522cc0b8f7b3e1549fac16f29d41ac89404a8646abf5c9f88"
     },
     "last_active_child_id": null,
     "last_active_at": null

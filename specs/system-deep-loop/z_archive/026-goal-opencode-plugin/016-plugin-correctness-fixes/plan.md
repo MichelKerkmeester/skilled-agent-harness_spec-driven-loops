@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/016-plugin-correctness-fixes"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/016-plugin-correctness-fixes"
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Authored plan from spec.md and the dossier's remedy shapes"

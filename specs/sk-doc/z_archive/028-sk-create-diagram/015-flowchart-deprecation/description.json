@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
+  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/015-flowchart-deprecation",
   "description": "Phase 012 merged `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram` and left the source skill as a redirect stub, matching the",
   "keywords": [
     "phase",

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
   "description": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
   "keywords": [

@@ -166,7 +166,6 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -185,7 +184,6 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -218,12 +216,12 @@ Ship predictable post-mutation automation for memory handlers, expose structured
 
 ---
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 - Which deferred follow-on should lead the next phase: structured response actions or a shared success-hint composition layer? See `research/research.md` for the ranked recommendation set and evidence.
 - Should broader hook expansion stay incremental (Option A) or move to a small lifecycle registry (Option B) once the current startup and reliability hardening is stable? See `research/research.md` for the synthesis and tradeoffs.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->
 
 ---
 

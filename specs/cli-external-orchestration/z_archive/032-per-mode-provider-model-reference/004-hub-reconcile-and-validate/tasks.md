@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate"
+    packet_pointer: "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate"
     last_updated_at: "2026-07-29T09:18:46Z"
     last_updated_by: "implementer"
     recent_action: "Reconciled hub docs, fixed adjacent defects, ran conformance battery"

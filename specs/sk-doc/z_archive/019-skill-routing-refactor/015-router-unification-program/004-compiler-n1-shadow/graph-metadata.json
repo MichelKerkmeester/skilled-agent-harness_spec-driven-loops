@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The fleet has no single, verifiable representation of routing policy",
     "created_at": "2026-07-18T13:13:16.652Z",
-    "last_save_at": "2026-08-30T15:39:14.955Z",
+    "last_save_at": "2026-10-07T18:13:01.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:471ee0d6b125cad59f862a8f0fa99d8f9d1b8f25c2ec2dd7a7df62bca4482a21",
+    "source_fingerprint": "sha256:c016d9fe562db8643422b199efdcfccb9206621dd2b050f8c70fd5a0b2549bca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0c6719c7445ef197c542c84e0a7cfd5063373935bb67d65991cd16fcb111db0",
-      "plan.md": "d6ff2f51081a3a462e987d9c6846fa5860ce53a351c57429a185e41232c9ef0a",
-      "tasks.md": "db9d6440d5be08395d9b71b6b0d6de9b7b436c42b374ceafeaaccaff16f0a24f",
-      "implementation-summary.md": "880cc3d0b6725095d1d9c3e4fbf5fc10a395aa1d5fb3da7aad4789dbb4bc0c81"
+      "spec.md": "b78cbdc89d8c0c0528d16392b71cfb64b40a76cd084a2f9104b12c1342548e9f",
+      "plan.md": "7717ea77ecfcc616a5c474fae5bd609f08f6a36a9c2a110f33b62056fb5ad89e",
+      "tasks.md": "ebe3ddf0d9e401388569ccbeedb6330ebaa465b80354d37d994f428515029add",
+      "implementation-summary.md": "04a9c5d6d577a70efdb0b21e9c5c6a87d9d86cf72e8b3d46796aaa7b999e1e94"
     },
     "last_active_child_id": null,
     "last_active_at": null

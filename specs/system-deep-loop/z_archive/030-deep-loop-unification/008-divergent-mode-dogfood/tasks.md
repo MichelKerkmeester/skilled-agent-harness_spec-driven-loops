@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/008-divergent-mode-dogfood"
     last_updated_at: "2026-07-11T10:30:00Z"
     last_updated_by: "claude"
     recent_action: "Retry complete: both loops reached 10/10 real iterations, no pivot fired either side"

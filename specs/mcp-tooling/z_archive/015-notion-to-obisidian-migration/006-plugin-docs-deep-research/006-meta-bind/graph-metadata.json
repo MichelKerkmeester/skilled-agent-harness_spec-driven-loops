@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
-  "spec_folder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
-  "parent_id": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
+  "packet_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+  "spec_folder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/006-meta-bind",
+  "parent_id": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented pattern.\" Meta Bind has no `now()` function and no `=`-prefixed expression language — `=now()` is a Dataview convention misapplied",
     "created_at": "2026-08-23T03:46:01.410Z",
-    "last_save_at": "2026-09-10T20:43:52.473Z",
+    "last_save_at": "2026-10-07T18:11:16.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:aceb289138d8d461405d3d77abbedc6055a6ba5a93c71993449804424d02d682",
+    "source_fingerprint": "sha256:ce8a2da2a8dc4224493cb7addc8cc9c10a6e4ef09080d54a8bab6b3e8787003b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3df34f92e98649ccd9a7787685f4c412147d59451a849c18d7008f35207b6ccf",
-      "plan.md": "adfe9de40febc580888b337c571d53c26f581c2992e5b22f217ab81ecb0da0d8",
-      "tasks.md": "83468d99469f15d0ecc5d3f0afc5db7f1a87ea2b08d7258e555a2089830fed72",
+      "spec.md": "7e3c631da5b37b304e7a3485747f436964c9623f82a369ef47c3005ae0fe8e34",
+      "plan.md": "d49394296e5ce3953a11dd42f28630ff88c741413263c10e4d99c8d37c4e116f",
+      "tasks.md": "5928c1f2bf5c6734d86c430e7b85c3dc9752f40d43dbbd2eb4e39fcbfee8d110",
       "research/research.md": "1028fdb81c8257f9df7f704bb33d83923bbb667a943c9ca3a01525f4c2f33c80"
     },
     "last_active_child_id": null,

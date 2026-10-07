@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/009-aesthetics-retirement",
-  "spec_folder": "sk-design/014-template-conformance/009-aesthetics-retirement",
-  "parent_id": "sk-design/014-template-conformance",
+  "packet_id": "sk-design/z_archive/014-template-conformance/009-aesthetics-retirement",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/009-aesthetics-retirement",
+  "parent_id": "sk-design/z_archive/014-template-conformance",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,8 +47,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/command-metadata.json",
       ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/leaf-manifest.json",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      ".opencode/skills/sk-design/leaf-manifest.json"
     ],
     "entities": [
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "`design-interface/references/aesthetics/` holds 5 hand-written look descriptions (`minimalist.md`, `brutalist.md`, `soft.md`, `apple-bento.md`, `README.md`, ~290 lines total) and a paired `--mode aesthetic` argument lane wired through `SKILL.md`'s `AESTHETICS` intent, `command-metadata.json`'s task-lane table, `commands/interface/design.md`'s lane row and `argument-hint`, its 2 YAML assets, and `hub-router.json`'s vocabulary",
     "created_at": "2026-07-27T16:52:20.774Z",
-    "last_save_at": "2026-09-11T16:41:57.276Z",
+    "last_save_at": "2026-10-07T18:12:18.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13cac164171eb01a088c6f15bda7ea2423dcf42392cbeec4146f02daa9ba17b9",
+    "source_fingerprint": "sha256:0152ee8be113597488a5fe6c74666d8ef452d878b4dcadbe8261cce98998f386",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75a555afa659c0555b5c48fa772d6619f75aba8470d53a090e47def8fb6967cf",
-      "plan.md": "73d494b69eefe60d475dc4e7c766a9275dfe20c80012662489f7224a5e2e11da",
-      "tasks.md": "c81523930c529258f77e1176f6507a28f43b7bb4ebbe7337231b2f269770dac7",
-      "implementation-summary.md": "3989679a89828fd0f811e08fe842690d8fda5c558e856258cb418d0741ead782"
+      "spec.md": "323b78aa19e61426ade9b82e9894d66114d1dd73f0ab732265c4eb89f46fd9f4",
+      "plan.md": "99fb1f68b1710c7210f39148efac0adb9dcbe6c8fc8c0770a0a776b49cda5fb4",
+      "tasks.md": "e0a83b3546671ad277b0831f4c37383345adcd8acc675efd8f03862c05f41038",
+      "implementation-summary.md": "3ac0f77789b6c2befb04df9763f1bae83505481d316e4afbd66a5ab29512abd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

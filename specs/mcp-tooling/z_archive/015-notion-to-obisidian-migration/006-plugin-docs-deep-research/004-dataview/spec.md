@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/004-dataview"
     last_updated_at: "2026-08-22T09:30:00Z"
     last_updated_by: "claude"
     recent_action: "Synthesized findings into synthesis.md prioritized edit table"

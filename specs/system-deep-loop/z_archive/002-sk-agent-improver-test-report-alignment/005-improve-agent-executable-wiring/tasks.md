@@ -23,34 +23,45 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:phase-1 -->
 ## Stage 1 — Scaffold
 - T-001 Author 8 markdown files — done in Stage 1
 - T-002 Bootstrap description.json + graph-metadata.json — done in Stage 1
 - T-003 Strict-validate — exit 2 at wrap with template header/anchor errors only
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## Stage 2 — Static Assets + Materializer
 - T-004 Create benchmark-profiles/default.json — done
 - T-005 Create 2-3 benchmark-fixtures/*.json — done
 - T-006 Author materialize-benchmark-fixtures.cjs — done
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## Stage 3 — Run-Benchmark + YAML Lockstep
 - T-007 Modify run-benchmark.cjs to consume materialized fixtures + emit report.json — done
 - T-008 Patch auto YAML benchmark step — done
 - T-009 Patch confirm YAML benchmark step (lockstep) — done
 - T-010 Add benchmark_run state-log row — done
+<!-- /ANCHOR:phase-3 -->
 
+<!-- ANCHOR:phase-4 -->
 ## Stage 4 — Legal-Stop + Reducer + Stop-Reason
 - T-011 Patch both YAMLs for nested legal_stop_evaluated.details.gateResults — done
 - T-012 Update reduce-state.cjs to consume nested shape — done
 - T-013 Update improvement-journal.cjs validation — done
 - T-014 Reconcile stop-reason enum (SKILL canonical) — done, Option A
 - T-015 Update existing tests for new shapes — done
+<!-- /ANCHOR:phase-4 -->
 
+<!-- ANCHOR:phase-5 -->
 ## Stage 5 — Native RT + SKILL Docs
 - T-016 Audit + reconcile RT-028 / RT-032 scenarios — done
 - T-017 Run RT-028 + RT-032 end-to-end (confirm GREEN) — helper/static checks green; full command-flow run deferred to 061
 - T-018 Update SKILL.md docs — done
+<!-- /ANCHOR:phase-5 -->
 
+<!-- ANCHOR:phase-6 -->
 ## Stage 6 — Playbook + Wrap
 - T-019 Update CP-040..045 expected-signal shapes — done
 - T-020 Run test suite (no regressions) — done
@@ -58,3 +69,4 @@ _memory:
 - T-022 Update handover.md (061 ready-state pointer) — done
 - T-023 Optional GREEN cli-copilot single-scenario check (REQ-201) — deferred to 061
 - T-024 Commit + push — skipped; no publication requested
+<!-- /ANCHOR:phase-6 -->

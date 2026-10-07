@@ -181,7 +181,6 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -208,7 +207,6 @@ Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

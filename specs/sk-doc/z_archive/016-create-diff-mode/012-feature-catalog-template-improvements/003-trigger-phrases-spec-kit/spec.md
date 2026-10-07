@@ -2,10 +2,9 @@
 title: "Phase 003: [sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/spec]"
 description: "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents."
 trigger_phrases:
-  - "phase"
-  - "003"
-  - "spec"
-  - "trigger"
+  - "trigger phrases spec kit spec"
+  - "catalog trigger phrases"
+  - "spec kit snippet phrasing"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -16,6 +15,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -27,14 +27,19 @@ contextType: "general"
 | **Prerequisite** | Phase 002 complete |
 | **Skill target** | system-spec-kit |
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 `trigger_phrases` drive skill-advisor routing and memory search. Without them, feature catalog snippets are invisible to search. 309 of 366 snippets across all skills are missing this field. system-spec-kit alone accounts for ~256 of those gaps across its 313 snippets (57 partial-adoption files are in advisor/code-graph).
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### Target
@@ -58,9 +63,11 @@ contextType: "general"
 12--query-intelligence (13 files)             24--local-llm-query-intelligence (varies)
 13--memory-quality-and-indexing (30 files)
 ```
+<!-- /ANCHOR:scope -->
 
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 | ID | Requirement | Acceptance Criteria |
@@ -70,11 +77,14 @@ contextType: "general"
 | R-003 | Phrase #1 matches root catalog H3 heading | Canonical name is always present verbatim |
 | R-004 | Tool/command name included where applicable | H1 parenthetical term is a trigger phrase |
 | R-005 | No duplicate phrases within a file | Each phrase is unique |
+<!-- /ANCHOR:requirements -->
 
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
 - 313 snippets have `trigger_phrases:` with ≥ 3 phrases
 - Root catalog H3 headings are represented in every matching snippet
 - MCP tool names and CLI command names appear as trigger phrases where H1 contains them
+<!-- /ANCHOR:success-criteria -->

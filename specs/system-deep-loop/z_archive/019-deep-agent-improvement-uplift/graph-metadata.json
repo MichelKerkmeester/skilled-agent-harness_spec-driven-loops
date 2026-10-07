@@ -203,7 +203,7 @@
     ],
     "causal_summary": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-08-30T15:39:24.210Z",
+    "last_save_at": "2026-10-07T18:15:12.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:569d94103f88a35a3582050aea2f99f19e9678e3192b5f57ebf31f32b83c4498",
+    "source_fingerprint": "sha256:d083a967d7ac6410b9cd57ccf675d3df72722795b31fee50f1f493ef8501b5bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "949035c7fc1d3d838332263b3eb0219cf7f689ccc91c75544e251be5f545d378",
       "plan.md": "bf33bccdd0986a62c76de590f3d874f93fd8e768becdf2b64d625a3c2cb15e57",
       "tasks.md": "a005a786ce0633f632691a14b81f04d9bc122b8b42f2464012c72bc5a5f0da9b",
-      "implementation-summary.md": "4a4c48a5f8c0b7e23fc1762ae6901867998051e17043d9d7f910cde58380f778"
+      "implementation-summary.md": "4beeaf823bc2f42035f9a47b21bf7c066313f411b87b3b681703421c353c70e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

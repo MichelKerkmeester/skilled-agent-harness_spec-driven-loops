@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/004-scoping-and-discovery"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/004-scoping-and-discovery"
     last_updated_at: "2026-07-11T14:19:08Z"
     last_updated_by: "claude"
     recent_action: "Independently re-confirmed T001-T009; advanced T010 partially via a live phase-005 check"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/013-card-relocation-and-guard"
+    packet_pointer: "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/013-card-relocation-and-guard"
     last_updated_at: "2026-06-03T11:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Card moved to hub; refs + guard repointed"

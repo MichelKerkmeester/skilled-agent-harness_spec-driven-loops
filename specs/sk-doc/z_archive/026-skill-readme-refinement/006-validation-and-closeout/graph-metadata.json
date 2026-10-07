@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/006-validation-and-closeout",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/006-validation-and-closeout",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,76 +45,37 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/implementation-summary.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/description.json",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -200,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "pre-existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 through 005 refined the shared README template, created the parent-skill README template, updated the creation workflow, and rewrote every standalone and child-mode skill README on the new standard",
     "created_at": "2026-08-04T07:12:18.076Z",
-    "last_save_at": "2026-08-30T15:39:17.905Z",
+    "last_save_at": "2026-10-07T18:14:20.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9605d6726fceaf363f8c85792c5deee0a8789461b64d97e509db3c74773f174",
+    "source_fingerprint": "sha256:c8fba214ba2288fbc3b7f395fb3dfca646321e8fb0a1d0a9de12d78d6fa30328",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3576d633a830d92d10a0bc3e426cf88b51c320584ddc12c39eb7208788c4d21d",
-      "plan.md": "e79939eb2d6d77b1d3eabf3305de2b8b76d7b282210665cc9d78f89a44bed891",
-      "tasks.md": "d49a55cba64955c9f4a0cd0cef42aa94930ef7eabcd50cd10c0da17176374328",
-      "implementation-summary.md": "e5c72eebacb565fd96adb236f01bae80094520e7e4e240f6c98e3855b650adb1"
+      "spec.md": "0d94c28eb31ba8c612e1b4c98b296414dd3139cc1029d791406d4ff7f9c13ab7",
+      "plan.md": "922c50883d3280dcdb23a5e5ba2e7dee0dfd40f417d28ddaba1709f7a2c438f3",
+      "tasks.md": "25e77440482265f9a5b4719cff5a25457cff85729c2bc7e264f6f42086588bbe",
+      "implementation-summary.md": "678dd682fb3edd10a7b2e76e8544d3f47a5b6e458791379275caee3229807b3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

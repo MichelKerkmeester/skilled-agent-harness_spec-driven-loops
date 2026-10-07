@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Migrate graph-metadata.manual.* (depends_on/related_to) into typed edges.* across the ~10 fleet roots that carry it, reconcile the live cli-external-orchestration drift, and add an unknown-key lint so manual.* cannot silently return. Routing-changing; gated behind the 006 routing-accuracy CI gate.",
     "created_at": "2026-07-29T08:00:25.630Z",
-    "last_save_at": "2026-08-30T15:39:15.904Z",
+    "last_save_at": "2026-10-07T18:13:31.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6c5f2b43f5019a2be658f9d26631868c7be5a11381dcb12a871c8ae5dce3ec3",
+    "source_fingerprint": "sha256:384ec2e94da3aae5351f04558cdd113dcca84d2ca23cb9aa2e7b992a689a2339",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c45d97bc1b5501ff3b9c16b79f717d7f0144f31023f78f6b7f7101eb5946b47c",
-      "plan.md": "014d9a073148998b1a7525091cfd65f95c5fa3a5ce3a647d1d32952a9c75a7f7",
-      "tasks.md": "5121f865fd141b9f9dc5177fb438364da56c01f7dfcdfe6771fb0907c0b7a86e",
-      "implementation-summary.md": "fcc261ebd9c644b5cd7dad4850a093945457a230a0f2681aec8d0942b74e734d"
+      "spec.md": "b13b0208bdc4227036a2570b0f8e02eb92f66d60d61979cb227a06c285c028e9",
+      "plan.md": "044502531a0b9937ac8080c5b8f319eb4f565c52bb839bd0256d49366866ad86",
+      "tasks.md": "9948b6a10883e5b597468d74309148abef95b50674d3b0092f587183b0a49355",
+      "implementation-summary.md": "7efc2e6df30ddbb0b8ae952359a2c77daf7436073b6a830424348d3761556956"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -6,7 +6,6 @@ trigger_phrases:
   - "summary"
   - "speckit"
   - "template"
-  - "implementation summary"
   - "074"
 importance_tier: "normal"
 contextType: "implementation"
@@ -194,7 +193,7 @@ This implementation established a reusable pattern for enterprise-scale analysis
 <!-- /ANCHOR:limitations -->
 ---
 
-<!-- ANCHOR:decisions -->
+<!-- ANCHOR:decisions-2 -->
 ## Key Decisions
 
 ### What Worked Well
@@ -220,7 +219,7 @@ This implementation established a reusable pattern for enterprise-scale analysis
 4. **Build in verification phase** with parallel agents matching research count
 5. **Document deferrals explicitly** to distinguish from completions
 
-<!-- /ANCHOR:decisions -->
+<!-- /ANCHOR:decisions-2 -->
 ---
 
 ## Performance Metrics

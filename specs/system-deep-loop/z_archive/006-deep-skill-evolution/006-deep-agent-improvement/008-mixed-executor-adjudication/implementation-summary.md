@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication |
+| **Spec Folder** | 008-mixed-executor-adjudication |
 | **Completed** | 2026-05-23 |
 | **Level** | 3 |
 | **Actual Effort** | ~4.5 hours (estimated: 4.5 hours) |

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/006-pi-agent-bridge"
     last_updated_at: "2026-07-27T10:08:00Z"
     last_updated_by: "claude-code"
     recent_action: "Inventory/mapping re-verified live, zero drift; dependency table refreshed"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
-  "spec_folder": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
-  "parent_id": "mcp-tooling/010-mcp-mobbin",
+  "packet_id": "mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
+  "spec_folder": "mcp-tooling/z_archive/010-mcp-mobbin/006-live-verification-capture",
+  "parent_id": "mcp-tooling/z_archive/010-mcp-mobbin",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be invented, the `deep` search question preserved as an unresolved conflict, and the callable name marked INFERRED",
     "created_at": "2026-07-16T12:58:35Z",
-    "last_save_at": "2026-09-10T20:43:44.723Z",
+    "last_save_at": "2026-10-07T18:11:25.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09688c32cb9dadfa1da629153e0a384594be54617d43db5280b6e46243caf712",
+    "source_fingerprint": "sha256:d24fc5f5b5ed1d61c01cf7f185e8a62f202595e0c8032886c36a766849da2e33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d7995533c13f91fdfbc4430c5da32ba415b9da1ebdb216d2134973c33c686107",
-      "plan.md": "35482064b894731ad91c6ee8b427bb2c3fa2fc10a329d474288d57795b31bf87",
-      "tasks.md": "1c23f59dd2cc41934ca4cd4c9679fdc70afa5ebd22c330130007f8c31cc6102c",
-      "implementation-summary.md": "f136706e4c35ab2122e44874069a38bce22f99f65eeb584184d83ff7b0a6d36b"
+      "spec.md": "642e27ad909cbf2d8096fbbe0afa7bf2323bf94f2194b5ebd81a2f6c845a5236",
+      "plan.md": "17b07093ae0738fbd45266f2653472e53be18d82d660398531ab3ae0d5c965ef",
+      "tasks.md": "7087fbfdc478f182d834dc00cf3e4e2f387f1da687e649caff0ea4b36b915c80",
+      "implementation-summary.md": "0431222bf06db700bbf435ba8428088b86d9f38c3e73e51aeb39c62856de76b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

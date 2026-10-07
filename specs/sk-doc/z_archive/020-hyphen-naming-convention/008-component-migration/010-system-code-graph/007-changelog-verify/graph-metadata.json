@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -160,7 +160,7 @@
     ],
     "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-30T15:39:16.898Z",
+    "last_save_at": "2026-10-07T18:13:16.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -168,12 +168,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:59bf4168de3fecb4d2762dff1ca7327b8bc9e37bdf75bbed16480102671f27dd",
+    "source_fingerprint": "sha256:ec03cb73e17b5ca41cba9c28ed784e51c543e1d4f874fff154bad5fae6a0e709",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7e6742683c824c4bb16ca26fb4fd893a4ee4a8d055a8d3e814d87b1ffa669e7",
-      "plan.md": "ce10d69da41ffa32e6f3760706ac63d3d3488dcf6465b12dfbdfc726b866fe64",
-      "tasks.md": "543990e788a3dab41a9456cefe69a1ae1815aabfcacb60ac26b404eb8cf43f7b"
+      "spec.md": "ea43069a56e572913338a52654b77c82f3f8ffd0846fb88625c7b3f474d10594",
+      "plan.md": "2078905f1cee960910808039e409f9f452a30fcee32db77e15e61f659728496c",
+      "tasks.md": "005aa348b157baf460d6febae7b3e9ac93f910ad1ad6d8fd12ec0692038e2573"
     },
     "last_active_child_id": null,
     "last_active_at": null

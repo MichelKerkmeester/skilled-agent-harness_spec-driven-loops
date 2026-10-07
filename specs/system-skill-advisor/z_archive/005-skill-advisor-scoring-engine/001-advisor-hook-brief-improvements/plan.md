@@ -12,7 +12,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
+    packet_pointer: "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements"
     last_updated_at: "2026-04-24T08:05:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Synthesized pt-02 research and merged Bucket B inputs into a Level-2 implementation plan"

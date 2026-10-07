@@ -192,7 +192,6 @@ Command file read by agent --> `.md` read for instructions --> YAML loaded for w
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -213,7 +212,6 @@ Phases 2-7 (Per-command changes) ──► Phase 8 (Emoji cleanup) ──► Pha
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |
@@ -322,7 +320,7 @@ Phases 2-7 (Per-command changes) ──► Phase 8 (Emoji cleanup) ──► Pha
 
 ---
 
-<!-- ANCHOR:architecture -->
+<!-- ANCHOR:architecture-2 -->
 ### Architecture Decision Record Summary
 
 ### ADR-001: Reuse Three-Pronged Approach from Spec 010
@@ -369,4 +367,4 @@ LEVEL 3 PLAN
 - Dependency graphs, milestones, ADRs
 - Status: COMPLETE (2026-02-17)
 -->
-<!-- /ANCHOR:architecture -->
+<!-- /ANCHOR:architecture-2 -->

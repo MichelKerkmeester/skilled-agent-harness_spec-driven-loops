@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/016-git-action-advisory-hook",
-  "spec_folder": "sk-git/016-git-action-advisory-hook",
+  "packet_id": "sk-git/z_archive/016-git-action-advisory-hook",
+  "spec_folder": "sk-git/z_archive/016-git-action-advisory-hook",
   "parent_id": null,
   "children_ids": [
-    "sk-git/016-git-action-advisory-hook/001-advisory-research",
-    "sk-git/016-git-action-advisory-hook/002-rule-encoding",
-    "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-    "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
-    "sk-git/016-git-action-advisory-hook/005-destructive-tier",
-    "sk-git/016-git-action-advisory-hook/006-runtime-parity",
-    "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
-    "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks"
+    "sk-git/z_archive/016-git-action-advisory-hook/001-advisory-research",
+    "sk-git/z_archive/016-git-action-advisory-hook/002-rule-encoding",
+    "sk-git/z_archive/016-git-action-advisory-hook/003-preflight-hook",
+    "sk-git/z_archive/016-git-action-advisory-hook/004-pathspec-integrity",
+    "sk-git/z_archive/016-git-action-advisory-hook/005-destructive-tier",
+    "sk-git/z_archive/016-git-action-advisory-hook/006-runtime-parity",
+    "sk-git/z_archive/016-git-action-advisory-hook/007-runtime-coverage",
+    "sk-git/z_archive/016-git-action-advisory-hook/008-docs-and-playbooks"
   ],
   "manual": {
     "depends_on": [],
@@ -97,16 +97,16 @@
     ],
     "causal_summary": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-08-30T15:39:18.586Z",
+    "last_save_at": "2026-10-07T18:14:22.202Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2911ca94ed528d3d3e23c26fe4747d000dc22dd0351835793c3fe9628f1f3a9e",
+    "source_fingerprint": "sha256:868258e19c2f2546775df32bb285de2190fe9f7317306f7d78b1216f32ba7b40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6b82bb4e0594feeb3fe3afd3e283603c72792b28a3623e996113ea06a48039e"
+      "spec.md": "6618939f15bd51634b7f8152fdfa049cc7811dedac72c0de72a5c3bc6981033f"
     },
     "last_active_child_id": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
     "last_active_at": "2026-07-28T13:26:56.868Z"

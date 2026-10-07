@@ -2,7 +2,6 @@
 title: "...id-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features/implementation-summary]"
 description: "Documentation normalization summary for the final deprecated-feature remediation child packet in the 007 audit chain."
 trigger_phrases:
-  - "implementation summary"
   - "deprecated feature remediation"
   - "022 implement and remove deprecated features"
 importance_tier: "normal"

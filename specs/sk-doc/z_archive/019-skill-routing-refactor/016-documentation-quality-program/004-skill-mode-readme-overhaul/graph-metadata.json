@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
-  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "skill mode readme overhaul",
       "bare readme rewrite",
       "skill readme template migration",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "readme overhaul summary"
+      "skill mode readme overhaul plan",
+      "skill mode readme overhaul tasks",
+      "readme overhaul summary",
+      "skill readme swarm",
+      "fourteen readmes validated"
     ],
     "key_topics": [
       "skill",
@@ -33,10 +29,10 @@
       "rewrite",
       "template",
       "migration",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "summary",
+      "swarm"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +191,7 @@
     ],
     "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
     "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-09-11T04:36:33.799Z",
+    "last_save_at": "2026-10-07T18:13:26.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad6c00b001a7ec061376e40e13e7cd14effbd486987bfea7b97815f634734eab",
+    "source_fingerprint": "sha256:5d93dda52381cb112944ee64e709533a07a5fcc1f0774f1eb038af56faf2ea98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba2a79b8bb8fd95afdb72eafbaf843e218dc552c9017fa72eb22ca352292cecd",
-      "plan.md": "aec3218aee2870b7c0723445c686398d09de4fb4d7389b8cdfdc3ac76abfc500",
-      "tasks.md": "5a506aa884a14485ac85dbfd5aa25b1fd371a17dafec0d7c3cea8bd52d945150",
-      "implementation-summary.md": "01960d0f6540e6020459626be3b9ecac9d3f0b42ea6160b0adb20c6b90948c1a"
+      "spec.md": "5c8e1f44f490aa3e15a91d9fc63887cb77ac284f8c87da04ad1381ab0cf44f96",
+      "plan.md": "0e479ba6e434660de3a423397aa2ed56b555f0b8dbd57c7492a424510507b35a",
+      "tasks.md": "53b023d443217ce6b1d0af88010344817bf1201e40fd9a8aa3c1b5a54254c461",
+      "implementation-summary.md": "fb34e7d55444ae0e6b0113c6d1fc72066f5095f3970742df9562978899837420"
     },
     "last_active_child_id": null,
     "last_active_at": null

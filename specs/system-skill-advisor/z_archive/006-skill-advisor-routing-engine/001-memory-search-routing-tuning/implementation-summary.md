@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/006-skill-advisor-routing-engine/001-memory-search-routing-tuning"
+    packet_pointer: "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/001-memory-search-routing-tuning"
     last_updated_at: "2026-04-24T12:00:00Z"
     last_updated_by: "flatten-restructure"
     recent_action: "001/002/003 sub-phase folders deleted; detail merged into parent"

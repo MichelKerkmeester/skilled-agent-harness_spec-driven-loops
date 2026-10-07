@@ -1,9 +1,11 @@
 ---
 title: "Tasks: Shared Evidence Envelopes"
 description: "Completed task breakdown for the owned-asset manifest, motionCharacter handoff, and conditional measured Motion section."
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
     last_updated_at: "2026-07-23T07:04:12Z"
 
     last_updated_by: "implementation-agent"
@@ -21,10 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "evidence envelopes tasks"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

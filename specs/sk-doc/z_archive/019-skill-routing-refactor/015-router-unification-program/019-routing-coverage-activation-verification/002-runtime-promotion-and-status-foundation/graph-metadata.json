@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-09-11T16:42:04.859Z",
+    "last_save_at": "2026-10-07T18:13:23.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f8dbbc1c8cde1454466f25aecd6a3842ee09b2bf1ca760656bdb33b7abe0bb6",
+    "source_fingerprint": "sha256:7c127b5e024ecd54639c93ece3fc292501e695b68c2fe470e28a00d370e0550e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d03c80b9fb00d44785a8326a39421e1a4ef07142d4d31271070353fff41d44e4",
-      "plan.md": "210877132a4912489dcfd61da32c7b8bfe4c44c9aa75dd0ca8a5b4c847697c3e",
-      "tasks.md": "93672945960988758efdbf0458f5bbf1b3345794320ca371c780746f09540b64",
+      "spec.md": "aeef71752aa7960d5d3983421006ebea22001618f0296c9113f3a6104e99e3b3",
+      "plan.md": "0fe9751d911e2dc7ec53a1cd4e5da71302ea05facc73993b6bb8ef2b763799ca",
+      "tasks.md": "834b92fba0ea0bf470ea406922670c30c24fc4c0d07c7cd1dba36b0f80a3575a",
       "decision-record.md": "3d0966187b456dbb6881301d56c9964c878d09f7ce31954fc3bc301bebeba923",
-      "implementation-summary.md": "cf10379a9e7f8021ce782344b865349db658d30641caa564303a346a2fae9062"
+      "implementation-summary.md": "a4727fcc7d6a0e0685667b8f8fb60b04ef308d81691027a3105acec60bd9ef23"
     },
     "last_active_child_id": null,
     "last_active_at": null

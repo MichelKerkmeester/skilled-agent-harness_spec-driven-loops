@@ -183,7 +183,7 @@
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched waves 2-4: RoutingCalibration interface expansion, env-var overrides (SPECKIT_ADVISOR_*), prompt-policy externalization to JSON. 9 P1 + 2 P2 closed. Bundle gate PASSED.",
     "created_at": "2026-05-23T18:00:00.000000Z",
-    "last_save_at": "2026-08-30T15:39:27.145Z",
+    "last_save_at": "2026-10-07T18:16:08.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19d164d36e85672dba7a58741cb0cd11500f7169dc10c05f2844c4d09c6fa913",
+    "source_fingerprint": "sha256:f2f8ec2e10ee2e9789292d8ca72cd21828d34e20bb5083ad21d17e41e378f431",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "931bd9c77e26bf7e81f1dea87e61dec259885afb866b7b0ab8a6bae5e47241f9",
-      "plan.md": "fe7396075d52438a35389611750a90be7b8f282d1c80b520f2acb7576a59b50f",
-      "tasks.md": "ccaa2421e55a09ef40e43ac29533f43b6779cbb1eb8d4ea7ad95320441eb716b",
-      "implementation-summary.md": "8c78b57492d2db75efc806845e2c49d400c72d90369a73453e3625f3f77619ee"
+      "spec.md": "5b3212b0877a814d2c13fa30048294d964e32e22799a62b2d474c8d5909f4936",
+      "plan.md": "164ff90a24b496029860421f79a8194aa00137c4ee08220b477681d9450224d5",
+      "tasks.md": "1f906cc482d6715e17bf5dc072a0ee6761c226ff9d2478c09cea6bf7c6760027",
+      "implementation-summary.md": "abaa7905f127a7417503ff7e33c34c63e2142fbaa86b91eaa2e8ccdd42a4b491"
     },
     "last_active_child_id": null,
     "last_active_at": null

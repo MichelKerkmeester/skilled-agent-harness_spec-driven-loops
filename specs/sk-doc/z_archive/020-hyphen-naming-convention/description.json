@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/020-hyphen-naming-convention",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention",
   "description": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
   "keywords": [
     "repo",

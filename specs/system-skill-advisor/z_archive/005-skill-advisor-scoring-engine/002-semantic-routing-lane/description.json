@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane",
   "description": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal",
   "keywords": [

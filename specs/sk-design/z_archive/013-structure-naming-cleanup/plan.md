@@ -4,10 +4,7 @@ description: "Phased plan for removing the styles/docs stray, renaming dunder fo
 importance_tier: "standard"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "structure naming cleanup plan"
 ---
 # Implementation Plan: sk-design Structure & Naming Cleanup
 

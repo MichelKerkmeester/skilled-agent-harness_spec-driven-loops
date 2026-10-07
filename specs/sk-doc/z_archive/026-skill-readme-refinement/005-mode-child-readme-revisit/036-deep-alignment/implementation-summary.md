@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment"
     last_updated_at: "2026-08-04T18:40:00Z"
     last_updated_by: "deepseek-v4-flash"
     recent_action: "Rewrote README purpose-first, bumped to 1.0.0.2, added changelog entry"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for code across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:40Z",
-    "last_save_at": "2026-08-30T15:39:17.118Z",
+    "last_save_at": "2026-10-07T18:13:15.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,12 +166,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:97687c82b5a899e0feadfb5611d5068efad8c860ee8d3ef34fbdd5516bd22799",
+    "source_fingerprint": "sha256:1322acc4138becfe924533ea2e98b0be90b9cae8c0928defc7f9ad39519c933a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9534e4efcb2461b363017ca9781e738f3b8a597af58ffc5eba09a53caab20b8e",
-      "plan.md": "fb39ddcccd4297a82d9c6514b8a7e9389d47afafc897bb0f9af6db5f5fd36a30",
-      "tasks.md": "9510695ce03746d0439bb575c53862c4769b236fe7dbc4a3d3de5e54aa52393d"
+      "spec.md": "cfd69fb4027643955ffc30e5196faf8600f15bda33d9fddcb14f752ff97a0d93",
+      "plan.md": "45be26e1f10fcde047e51dfb2f0c14f8b7139c995844a7645337491edd81cf67",
+      "tasks.md": "7c1fdf716500c7125a92597a502bb313d049b6b5914c4a22e6b57cd6a1557ee8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
-  "spec_folder": "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
-  "parent_id": "sk-doc/015-hub-doc-conformance-fixes",
+  "packet_id": "sk-doc/z_archive/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
+  "spec_folder": "sk-doc/z_archive/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
+  "parent_id": "sk-doc/z_archive/015-hub-doc-conformance-fixes",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,7 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-findings-registry.json",
       ".opencode/skills/mcp-tooling/SKILL.md"
     ],
     "entities": [
@@ -78,12 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-findings-registry.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-findings-registry.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `cli-external` and `mcp-tooling` hub docs (feature catalogs, testing playbooks, references, vendored server READMEs, SKILL.md prose) have drifted from the live CLI/MCP surfaces they document",
     "created_at": "2026-07-10T16:47:22.469Z",
-    "last_save_at": "2026-08-30T15:39:13.971Z",
+    "last_save_at": "2026-10-07T18:12:33.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec78b639f8cb5654560a0894071e8a400de2dea5ff5748de1b4bf6a2a9499b0b",
+    "source_fingerprint": "sha256:5d5e454399be4e98c9193bb980bfb8e4755ba73d509a73da7d6440a1e589d5a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1ee75a91decbe4ae16c461ec58aa6037fcef70f46c888a851468526c6337d27",
-      "plan.md": "f37e72d1e6dd9f5e058572f6f4425780598644131343fd97b1a9797b41f02750",
-      "tasks.md": "077cadb342c7cd1baf93711ca2f5ed18a1a87295ff649957a3c0c932c85c5cb1",
+      "spec.md": "11ec1d8af3346bf9a1c47ec0d27fcd1c51cc3bf061f3497d0ade6dd978f05340",
+      "plan.md": "abb81527d8dce0688282f457512c18a4d3beeb5fbf60f7e6f8d747f3f33ad725",
+      "tasks.md": "34ef8a0abd2ef66a42c7877f5530045c10eb379cd72f5b74c7c9f8c066ec2e44",
       "decision-record.md": "d8e61b86f55e941bcf16c41eaac2e95ccf8111987845cfed46f15b888a4f0e1b",
-      "implementation-summary.md": "2dfffa1b7262c830b0efbefa27c949d71975ff9f7707604eeb22461d471f79f3"
+      "implementation-summary.md": "9e6046b55d43dce302e3f39ad95f474129b966fbac8042a590236517587aefa5"
     },
     "last_active_child_id": null,
     "last_active_at": null

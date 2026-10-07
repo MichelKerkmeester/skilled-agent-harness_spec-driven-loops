@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
-  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
-  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/007-fresh-verify-remediation",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A fresh Sonnet-5 xhigh review of all 46 SKILL.md surfaced 11 pre-existing content defects (none from the prior conformance sweep); this phase remediates them and closes the packetKind:surface validator gap, each fix re-verified by a fresh Sonnet-5 xhigh agent.",
     "created_at": "2026-07-14T07:00:03.277Z",
-    "last_save_at": "2026-09-11T16:42:03.413Z",
+    "last_save_at": "2026-10-07T18:12:28.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96375728babc70b653f1ac69e19a39fcf361d28e921fa2895e9314969a285f02",
+    "source_fingerprint": "sha256:0f47a291ea062df2f54f099f8aa9686fe112375fc9dc30ccd954f9023c34bf61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "96089a6f4b58d6e67b62c3cf58035df040a3974aacbb49714a3eed127bf890d7",
-      "plan.md": "59560377daf46e8a7c6f6bd268ecab1bc5e50fe6226e888a10d3822abe46ed7b",
-      "tasks.md": "d71c8ad2f223d10a227a984ed49496e85e98105bbe945ef98be245cb743937b5",
-      "implementation-summary.md": "453cd933bbd3992ea5b71621706651621c37015b2e66babc8780bb5e223bd35d"
+      "spec.md": "9fd092dc69dcb01f156a5905783a624ffbc2220f2d6315c86e0ad343802c6a8d",
+      "plan.md": "fd722344b32523dec07f785ec78547febc9c83bc7c16a9a5c4fb402cdbc47ad8",
+      "tasks.md": "7e616ca034408f9b67e7c1af3c39cf66431edb5d774fff4328b8ae7b3ddbddcf",
+      "implementation-summary.md": "5db6c2640e0971297e45d276a7285fa79f4bb94bbbcc86924ad99c672cb7e920"
     },
     "last_active_child_id": null,
     "last_active_at": null

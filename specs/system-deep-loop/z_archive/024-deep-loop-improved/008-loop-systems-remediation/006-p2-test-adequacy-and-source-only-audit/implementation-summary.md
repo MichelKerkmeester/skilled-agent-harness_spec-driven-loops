@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit"
     last_updated_at: "2026-06-29T14:45:00Z"
     last_updated_by: "claude"
     recent_action: "Implemented and verified the concurrent append harness"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit` |
+| **Spec Folder** | 006-p2-test-adequacy-and-source-only-audit |
 | **Completed** | 2026-06-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

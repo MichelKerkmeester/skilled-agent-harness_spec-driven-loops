@@ -173,7 +173,6 @@ Manual mutation test execution pipeline with checkpoint-gated destructive scenar
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -192,7 +191,6 @@ Phase 1 (Preconditions) ──► Phase 2 (Non-Destructive) ──► Phase 3 (S
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

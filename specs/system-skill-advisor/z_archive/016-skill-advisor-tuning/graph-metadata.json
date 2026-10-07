@@ -2,18 +2,8 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning",
   "spec_folder": "system-skill-advisor/z_archive/016-skill-advisor-tuning",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/016-skill-advisor-tuning/001-scorer-saturation-root-fix",
-    "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
-    "system-skill-advisor/016-skill-advisor-tuning/003-advisor-rrf-fusion",
-    "system-skill-advisor/016-skill-advisor-tuning/004-advisor-penalty-contract",
-    "system-skill-advisor/016-skill-advisor-tuning/005-executor-delegation-resolver",
-    "system-skill-advisor/016-skill-advisor-tuning/006-graph-causal-visited-guard",
-    "system-skill-advisor/016-skill-advisor-tuning/007-eval-hardening",
-    "system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
-    "system-skill-advisor/016-skill-advisor-tuning/009-parent-hub-vocab-compat",
     "system-skill-advisor/z_archive/016-skill-advisor-tuning/001-scorer-saturation-root-fix",
     "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime",
     "system-skill-advisor/z_archive/016-skill-advisor-tuning/003-advisor-rrf-fusion",
@@ -102,16 +92,16 @@
     ],
     "causal_summary": "The shared skill-advisor scorer — the weighted five-lane fusion that ranks which skill a prompt should route to — carries a saturation-class defect: explicit-lane disambiguation penalties are pre-clamp additive offsets and the fusion floors net-negative lane matches to zero, so durable negative evidence is erased the moment saturating positive support reappears",
     "created_at": "2026-07-06T11:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:27.316Z",
+    "last_save_at": "2026-10-07T22:00:33.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f704dec2515cab436ff1bc499667813162cffad98a2df9aba3bb50f562f2bf7a",
+    "source_fingerprint": "sha256:20f4d1f55ac06f625fe5b0d6e8217d44a4ab56734021163cd79636577dd76ab3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a41178911a6e009bbc30c1a5889da09c82a75c669a36137b43e413864a4fc78"
+      "spec.md": "d608fcdaedd2dc8b319aa30edd5675f4ed23539abd65f02dd665752f4af99052"
     },
     "last_active_child_id": "009-parent-hub-vocab-compat",
     "last_active_at": "2026-07-07T18:21:01.000Z"

@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
-  "spec_folder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/001-create-skill",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/002-create-readme",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/003-create-agent",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/004-create-command",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/005-create-feature-catalog",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/007-create-benchmark",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/008-create-flowchart",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
-    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/010-doc-quality"
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/001-create-skill",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/002-create-readme",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/003-create-agent",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/004-create-command",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/005-create-feature-catalog",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/007-create-benchmark",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/008-create-flowchart",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "sk-doc/z_archive/014-sk-doc-parent/010-subskill-doc-review/010-doc-quality"
   ],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`, `readmecreation.md`, `agentcreation.md`, `commandcreation.md`, `featurecatalogcreation.md`, `manualtestingplaybookcreation.md`, `benchmarkcreation.md`, `flowchartcreation.md`, `changelogcreation.md`, plus `doc-quality`'s `workflows.md`/`optimization.md`)",
     "created_at": "2026-07-07T04:51:44.516Z",
-    "last_save_at": "2026-09-06T04:27:44.245Z",
+    "last_save_at": "2026-10-07T18:12:13.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34fa06084d61ccd52feaed88d330be1fdb33d16decbd53f609b4c41312e56b13",
+    "source_fingerprint": "sha256:227f5f2fe3e3a82e6d57961b9ea78bd6d733f1ddde352439f7f8a5096b1800ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e842d14dd8c1ac774a8722d51b512723437a40247fe19fb31fe0434223801043",
-      "plan.md": "45e32e74e1c330ed9e82423cdfb7b740527867a8ae55d6cae0fd9443a926cbd5",
-      "tasks.md": "ef505b138cbf965b2944d860a320fe650b1972fb4f0fa0ecf35ed9060e3dbb7c",
-      "implementation-summary.md": "378f947aa0dd77f661fb0a1e63de1890ab6217fd9785aa9b05002b23d56998bc"
+      "spec.md": "baad0ae9fa84f2fe1760e0afcf206d4cb50388db3ed589a8736363cd0733a9c2",
+      "plan.md": "0ab13882f2f08e383b62947c316eb11b426c4d664a28509b6d9f198ce16578c4",
+      "tasks.md": "419ceac9c57aa236eb73b4c8d50533845d55d7657c0cfc84c6ecdeb444be38b2",
+      "implementation-summary.md": "e639595d2ca65111b3d17a0b130f587feb84f897763383d79755db47b2920cec"
     },
     "last_active_child_id": null,
     "last_active_at": null

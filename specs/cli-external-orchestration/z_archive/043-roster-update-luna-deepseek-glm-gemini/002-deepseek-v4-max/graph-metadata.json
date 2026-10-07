@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
-  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
-  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "packet_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+  "spec_folder": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+  "parent_id": "cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Devin's live roster carries DeepSeek V4 max thinking tiers (`deepseek-v4-pro-max`, `deepseek-v4-flash-max`) that `DEVINSUPPORTEDMODELS` does not include, so cli-devin hard-rejects them",
     "created_at": "2026-08-15T08:28:38.040Z",
-    "last_save_at": "2026-08-30T15:39:07.994Z",
+    "last_save_at": "2026-10-07T18:11:28.268Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8ce0ebc65d6630b54b5929050900ca88ba5a1aa21ff81d4f1876628c26824c0",
+    "source_fingerprint": "sha256:347acc14c108ee6c84fa931b2a66fd302b35cb73da0cd008c84b13a49122abe0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "401ce78d203cb58878c0b428798a3cde313acd0bc68a7620c1696261fcedd4f0",
-      "plan.md": "6cb7d460cf3b6f4d35663966597050e4ad17f12f79e7b91478f2b4151b6642ef",
-      "tasks.md": "5a8fd66c403a253b4e164fbbda5e71961a0658d2e3f23f5c1a5b15b70d1c0269",
-      "implementation-summary.md": "767c422934efe267f1eac37bb4ba8c791c4219b9cbf5229e8c9600599791ec7f"
+      "spec.md": "c035607b18aecfae9018bfec7ee1148d5112daae13e8d48bf2dc0bbb6e84170f",
+      "plan.md": "bde201570e76d441b0c033d940bf98905a10b82706aa708342e358d2bb4b819e",
+      "tasks.md": "85413fc81c4ae3d5297ab6c7cf27c80d3174d3fe292062a7c8c17ea70fdc8e12",
+      "implementation-summary.md": "60e32ec013b82d2b3ae5e8ebb912dd29d4ef47da46d85e006c4110369c62986a"
     },
     "last_active_child_id": null,
     "last_active_at": null

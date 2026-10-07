@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
-  "spec_folder": "sk-design/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
-  "parent_id": "sk-design/012-sk-design-program/003-interface-commands",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/003-interface-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 004 shipped the five `/interface:` creation commands but kept a full `/design:` alias layer for backward compatibility: five thin alias wrappers under `.opencode/commands/design/`, fifteen alias assets, `canonicalCommand` + `compatibilityAliases` fields across the command registries, and alias-reconciliation machinery in the surface checker",
     "created_at": "2026-07-20T18:20:43.509Z",
-    "last_save_at": "2026-09-11T16:41:54.537Z",
+    "last_save_at": "2026-10-07T18:12:18.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1bd3a2aa0870525eba998509b8f182e8bb7d931e75a12f9372fb38f4017afd4",
+    "source_fingerprint": "sha256:c5b7fda2e2097c7bdedbfe81d0877701f8d8a4ca42502200327a127fc4a4e05b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4d3e84c30b50ec5afe08aaa35171b1827d145cef446990b9f794bb8297687ff",
-      "plan.md": "8a09bbcffba57018b7ee3330e4f0b28f5998a97be58bfef426cc60fea30cd483",
-      "tasks.md": "35db4ddb11790815199cbf874287f36400220cafa967ed7a50f4a385a65b75f6",
-      "implementation-summary.md": "4d54c14802f238afcc0204aebadc543a1bc42974205595c99a94c4bbe5754235"
+      "spec.md": "2a8b08d0688a40ee4350ab0251944299ea953cbce928ad678350950a49136e06",
+      "plan.md": "833cdd00bb0b3e905d00f9be4fd5f76dd88560cb0fc13090b8b42a89de990c2e",
+      "tasks.md": "b12f5c781377bbcf4a0871de51d107f9fd9fab6927a93eeb3839c68a998f3fcc",
+      "implementation-summary.md": "1e67b9f23a5a24368b055fa00d96aafb21914300c57e76ac2b842680c2a1e12a"
     },
     "last_active_child_id": null,
     "last_active_at": null

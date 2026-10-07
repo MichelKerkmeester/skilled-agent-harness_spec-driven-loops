@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract.",
     "created_at": "2026-07-14T15:17:49Z",
-    "last_save_at": "2026-08-30T15:39:16.682Z",
+    "last_save_at": "2026-10-07T18:13:10.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ceb0d5fa261fedf01a743680ea38d17ff02dd1b47b3d28ac4366ad0022ad8a75",
+    "source_fingerprint": "sha256:d2b4080aeb1d30745b24356b4306c12b28e02c350eaf8f62bc770d3dd5b20a3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed5a65989061d7d21661ef4efe3e7847b06559f82bf8e3c51a2807fe0a0d0a42",
-      "plan.md": "4feb01272536ff74e8631e6bc28503d74be9bfd49c5dc0e567e90cf4168e3d1c",
-      "tasks.md": "a0b3d46fda4ae8c9934f30d40cf149ec3943d7a63201144b1cef926324bc03f1"
+      "spec.md": "1978f163afb75e6e614bbf618d48d78d1bb07624107ee450663408aeb74b6ad0",
+      "plan.md": "c3a620babf6f9ecf2f55e60a89919805fd9710ae17272e61e5660f056f693157",
+      "tasks.md": "dd8f6917081e57c8530e07ea00949cfac3742b1bb366cbd4a627a9db11fe9ae9"
     },
     "last_active_child_id": null,
     "last_active_at": null

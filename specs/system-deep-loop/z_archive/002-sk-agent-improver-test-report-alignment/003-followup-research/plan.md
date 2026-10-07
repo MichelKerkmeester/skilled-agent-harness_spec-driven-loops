@@ -23,10 +23,13 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:summary -->
 ## 1. OVERVIEW
 
 Two stages. Stage 1 scaffolds spec + state files. Stage 2 runs 10 cli-copilot iterations + synthesis. Total wall-time ~30-45 min.
+<!-- /ANCHOR:summary -->
 
+<!-- ANCHOR:phases -->
 ## 2. STAGE 1 — SCAFFOLD + STATE
 
 1. Author 8 markdown files at packet root
@@ -42,3 +45,4 @@ Two stages. Stage 1 scaffolds spec + state files. Stage 2 runs 10 cli-copilot it
 3. Convergence detection: 3 consecutive `convergence_signal: yes` → stop
 4. After loop: dispatch cli-codex synthesis to produce `research/research.md`
 5. Update implementation-summary.md + handover.md
+<!-- /ANCHOR:phases -->

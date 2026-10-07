@@ -8,7 +8,7 @@ importance_tier: "medium"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/011-followup-remediation/007-sliding-window-convergence-mode"
     last_updated_at: "2026-07-02T15:45:24Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Sliding-window mode shipped and independently verified; 0 new failures vs baseline"

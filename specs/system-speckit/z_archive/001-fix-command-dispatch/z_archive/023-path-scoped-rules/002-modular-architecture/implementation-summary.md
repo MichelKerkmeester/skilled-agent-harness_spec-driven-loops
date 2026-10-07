@@ -7,7 +7,6 @@ trigger_phrases:
   - "modular"
   - "validation"
   - "architecture"
-  - "implementation summary"
   - "002"
 importance_tier: "normal"
 contextType: "implementation"

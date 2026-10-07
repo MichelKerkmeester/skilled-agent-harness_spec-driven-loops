@@ -15,7 +15,14 @@
       "gpt deep agent router",
       "orchestrate deep loop",
       "deep agent invocation",
-      "gpt deep skills slow"
+      "gpt deep skills slow",
+      "deep agent router orchestration plan",
+      "gpt deep primary agent hardening",
+      "gpt deep agent routing plan",
+      "deep agent router orchestration tasks",
+      "gpt deep agent dispatch tasks",
+      "deep agent router orchestration summary",
+      "gpt deep router hardening summary"
     ],
     "key_topics": [
       "deep",
@@ -28,8 +35,8 @@
       "invocation",
       "skills",
       "slow",
-      "gpt-backed",
-      "models"
+      "orchestration",
+      "plan"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -190,7 +197,7 @@
     ],
     "causal_summary": "GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council)",
     "created_at": "2026-06-30T11:47:52.750Z",
-    "last_save_at": "2026-08-30T15:39:25.409Z",
+    "last_save_at": "2026-10-07T20:32:26.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:878565c196538c10f6b71daac82d63aa9dfac6dc51b2c27cc0fc61b0e06cb8fa",
+    "source_fingerprint": "sha256:1579550f3560d8f4ca8dff8d96d8ea9e26c49fd711ecdd7b8d0aac2610932b3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47e519fdae20795b7c80960a8ee4374f17541034c59b52a79997b11035bccf3c",
-      "plan.md": "4d96b88a9f7f3b64e86676f7ae3e64daddd6b02ec194978e0282f64889efd3de",
-      "tasks.md": "8fedff72ee1d6126e207390afe4d5ee76f9dc6f7c296f94a7453bc5c36667b5c",
-      "implementation-summary.md": "1c95bf4e8d47d5b9dc1f096c3f2a5d537dca41cf4ceb52bfa57496cba65a68cf",
+      "spec.md": "4c845ff727a656ab138fb6bf4a5993e96756027d1c29ea45caa34854d742f955",
+      "plan.md": "4460721c8f34b7921bcc3db4906c5b8db2d458190d98615c3186f4a6b0a5a233",
+      "tasks.md": "594c2e565c47ac6bfcf7578d5ee0e8415372262dd4122cb59a215b88f179e6ee",
+      "implementation-summary.md": "b5ff4f76a38644641a2b21df4f857bb9ae1b14faec599296fd551223df7318da",
       "research/research.md": "075024bd0222550a7cabe9996cd7617b00455b6798917c472c6512beaf6167e3"
     },
     "last_active_child_id": null,

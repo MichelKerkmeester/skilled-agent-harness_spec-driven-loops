@@ -138,7 +138,6 @@ codex agents (parallel) -> new test files + code changes + doc updates
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -155,7 +154,6 @@ Phase 1 (Agents A,B,C,D parallel) -> Phase 2 (Validation) -> Phase 3 (Finalize)
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -25,6 +25,7 @@ _memory:
 
 Scope guard for the implement step. All paths relative to repo root.
 
+<!-- ANCHOR:scripts -->
 ## Surface 1 — fan-out scripts (`.opencode/skills/deep-loop-runtime/scripts/`)
 
 | File | Findings | Notes |
@@ -41,6 +42,9 @@ Scope guard for the implement step. All paths relative to repo root.
 | `deep-loop/executor-audit.ts` | REUSE | `runAuditedExecutorCommandAsync:663` (C-01/TIMEOUT-ORPHANS), `buildExecutorDispatchEnv:466` (ENV-LEAK) |
 | `council/session-state-hierarchy.cjs` | REUSE | `pad3:25` (C-04) — export it or inline `padStart(3,'0')` |
 
+<!-- /ANCHOR:scripts -->
+
+<!-- ANCHOR:commands -->
 ## Surface 3 — command surface (`.opencode/commands/deep/`)
 
 | File | Findings | Notes |
@@ -52,6 +56,9 @@ Scope guard for the implement step. All paths relative to repo root.
 | `start-review-loop.md` | U-01 (:141,157,164) | doc writes `.kind` |
 | `start-research-loop.md` | U-01 | doc writes `.kind` |
 
+<!-- /ANCHOR:commands -->
+
+<!-- ANCHOR:tests -->
 ## Surface 4 — tests (`.opencode/skills/deep-loop-runtime/tests/unit/`)
 
 | File | New/Changed test | Catches |
@@ -64,6 +71,9 @@ Scope guard for the implement step. All paths relative to repo root.
 
 Run: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/<file>.vitest.ts`
 
+<!-- /ANCHOR:tests -->
+
+<!-- ANCHOR:specs -->
 ## Surface 5 — sibling docs (DOC-STALENESS)
 
 | Target | Action |
@@ -72,9 +82,13 @@ Run: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../dee
 | `123/00{3,4,5,6}/graph-metadata.json` | Regen `status: planned`→actual |
 | `123/spec.md` (parent) | Refresh continuity (stale `completion_pct:33`) |
 
+<!-- /ANCHOR:specs -->
+
+<!-- ANCHOR:summary -->
 ## Reuse-first summary
 
 - **Async spawn + group kill** → `executor-audit.ts:663` (do NOT hand-roll).
 - **Env allowlist** → `executor-audit.ts:466` (do NOT write a denylist).
 - **Filename padding** → `session-state-hierarchy.cjs:25` `pad3`.
 - **Content-hash dedup** → reuse reducer `content_hash` if present; else a small `computeFindingHash`.
+<!-- /ANCHOR:summary -->

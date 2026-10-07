@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/003-interface-commands/001-interface-commands"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/003-interface-commands/001-interface-commands"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "implementation-engineer"

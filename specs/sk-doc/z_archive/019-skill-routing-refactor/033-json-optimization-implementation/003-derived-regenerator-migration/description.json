@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration",
   "description": "Build a skill-root analog to the spec-folder backfill-graph-metadata regenerator: derive key_files/source_docs/entities/trigger_phrases/key_topics",
   "keywords": [
     "skill-root",

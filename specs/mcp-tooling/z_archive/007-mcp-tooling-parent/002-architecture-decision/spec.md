@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent/002-architecture-decision"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision"
     last_updated_at: "2026-07-09T22:30:00Z"
     last_updated_by: "claude"
     recent_action: "Authored planned decision-gate spec and six ADRs"

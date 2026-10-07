@@ -12,7 +12,7 @@ importance_tier: "high"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/013-design-commands-asset-refactor"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored the Phase 013 planning packet for the design command router+assets refactor."

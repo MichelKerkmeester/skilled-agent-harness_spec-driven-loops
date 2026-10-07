@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration",
   "description": "Migrate graph-metadata.manual.* (depends_on/related_to) into typed edges.* across the ~10 fleet roots that carry it, reconcile the live",
   "keywords": [
     "migrate",

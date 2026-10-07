@@ -2,8 +2,8 @@
 title: "Tasks: Semanti [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "042.002"
-  - "tasks"
+  - "semantic coverage graph tasks"
+  - "coverage graph task list"
   - "semantic coverage graph"
   - "deep loop graph"
 importance_tier: "important"

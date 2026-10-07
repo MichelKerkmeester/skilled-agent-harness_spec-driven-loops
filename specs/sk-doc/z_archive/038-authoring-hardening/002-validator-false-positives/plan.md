@@ -11,7 +11,7 @@ contextType: "plan"
 parent: "sk-doc/038-authoring-hardening"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/038-authoring-hardening/002-validator-false-positives"
+    packet_pointer: "sk-doc/z_archive/038-authoring-hardening/002-validator-false-positives"
     last_updated_at: "2026-08-29T12:40:00Z"
     last_updated_by: "claude"
     recent_action: "Added the masking helper, applied it at both sites, ran the three-way control"

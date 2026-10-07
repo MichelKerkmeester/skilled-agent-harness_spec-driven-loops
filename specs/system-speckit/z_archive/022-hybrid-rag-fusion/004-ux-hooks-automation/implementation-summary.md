@@ -4,7 +4,6 @@ description: "Summary of shared mutation-hook automation, UX hint wiring, and ve
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "004"
   - "hooks"
 importance_tier: "normal"

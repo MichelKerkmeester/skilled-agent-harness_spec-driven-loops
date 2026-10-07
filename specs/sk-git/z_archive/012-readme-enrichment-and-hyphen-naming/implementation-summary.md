@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-git/012-readme-enrichment-and-hyphen-naming"
+    packet_pointer: "sk-git/z_archive/012-readme-enrichment-and-hyphen-naming"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Executed rename + ref-update + READMEs; all gates green"

@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/001-contract-and-fleet-audit",
   "description": "Six class-H hubs still expose their second-stage router at `shared/references/smart-routing.md`, while mcp-tooling already uses root `ROUTER.md`",
   "keywords": [
     "six",

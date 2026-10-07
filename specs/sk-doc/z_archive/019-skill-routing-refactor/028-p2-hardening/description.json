@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/028-p2-hardening",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/028-p2-hardening",
   "description": "Close the ten P2 findings from the skill-metadata program deep review: fleet-gate silent-failure hardening (exit 2 on bad input), standalone-packet",
   "keywords": [
     "close",

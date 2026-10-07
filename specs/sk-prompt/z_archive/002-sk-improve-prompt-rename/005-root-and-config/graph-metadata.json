@@ -43,9 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-      ".opencode/specs/descriptions.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,18 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -191,11 +177,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-09-07T16:17:11.451Z",
+    "last_save_at": "2026-10-07T18:13:56.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c71961b282b39cad8c92e92e86b822c47bdb4520f3c47fb58e14e6a8c13b5fc",
+    "source_fingerprint": "sha256:7611edd709306c4a7159f4d3d19b28f3d9caf4eb25867d792e0feae3767ac18a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9dacf6c71be2409315c8c55b6466e19140bd7d6253992616fcce71986af0c2a",
-      "plan.md": "65317045abe80c10ec06afb4ccb32f04a04f17fe046b4e526b79f03f2628928c",
-      "tasks.md": "a5088fb3ceb0455380dac04842e5a36ba431d6ca6634fdea660e975b03e50bb7",
-      "implementation-summary.md": "6ee4a17e353b86e001e3b01e49c81b560c787c22bc7dc3969b8ae37327305c5d"
+      "spec.md": "a02ff1b82f4dc5a93330b6a753011b029345e37ace414e7c4c7cf50debe5ee5b",
+      "plan.md": "846fb140125f16cde0e53935d5d87f3d2e5dd5055226c8b189e6f4e3579e6152",
+      "tasks.md": "70193f7d556ecc22be94c0ef8a42735c60c31411e3dd82dfb5d0b453b5b21df2",
+      "implementation-summary.md": "861044552f9d9ff06e2524c96befc6cbd332ed351ba91c9cd238c0a06be1ea32"
     },
     "last_active_child_id": null,
     "last_active_at": null

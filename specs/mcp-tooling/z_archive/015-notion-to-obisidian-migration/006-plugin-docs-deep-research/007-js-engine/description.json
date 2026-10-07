@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine",
   "description": "The mcp-obsidian reference docs depend on the JS Engine plugin for Meta Bind `js` button actions, but the engine API, execution context, and",
   "keywords": [
     "mcp-obsidian",

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
+  "specFolder": "cli-external-orchestration/z_archive/029-cli-devin-revival/006-devin-manual-testing-playbook",
   "description": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking,",
   "keywords": [
     "cli-codex",

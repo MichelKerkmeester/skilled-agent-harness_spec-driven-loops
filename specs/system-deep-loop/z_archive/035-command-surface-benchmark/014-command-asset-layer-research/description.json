@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/014-command-asset-layer-research",
   "description": "A two-lineage deep-research fan-out (5x GPT-5.6-Sol xhigh/fast via cli-codex + 5x GLM-5.2 max via cli-opencode, 10 forced iterations, non-convergence)",
   "keywords": [
     "two-lineage",

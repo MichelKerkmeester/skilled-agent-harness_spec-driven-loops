@@ -46,8 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "research/iterations/iteration-009.md",
-      ".claude/settings.local.json"
+      "research/iterations/iteration-009.md"
     ],
     "entities": [
       {
@@ -84,12 +83,6 @@
         "name": "iteration-009.md",
         "kind": "doc",
         "path": "research/iterations/iteration-009.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Agents across all 4 CLI surfaces (Claude Code, Copilot, ChatGPT, Codex) produce structurally non-compliant spec folder documents",
     "created_at": "2026-04-12T09:02:50.283Z",
-    "last_save_at": "2026-09-10T21:04:56.571Z",
+    "last_save_at": "2026-10-07T19:24:19.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +206,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:518a8e65fa02220b05c478b022648072b1d02002509193a9aa768d73879123c1",
+    "source_fingerprint": "sha256:f02ccdafec10586fba14a1262ab816bd4fb4a2d47d36be8e1c2defb08d5cf095",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f75da9abf3466ab461303eee5afb1d8c286a08300ca5fdff37aa9a793282b04",
-      "plan.md": "e0c269e4be75961da6f028415ce1236f1ae6d42067cb5f2f9b69fc079f1cb918",
+      "spec.md": "e9474286ebd04d4b34cb4a41860d603c787f54aeacce759e582d5c9d02750fa3",
+      "plan.md": "d96d1a1672a8157bd56b4ff7b2aca738e4f3c3b597c4d4e4223377d5f967298f",
       "tasks.md": "9b6c008c8575f61317d91e4506ec3ac27848145a4d414d8ca6b5f30714ccbddc",
       "implementation-summary.md": "d1a869be10405bd964d395ba555211505250c680fe6dc4b567d83e0f61e5769f",
       "research/research.md": "b1d7b69ee87a25dadbe38f7033664051e830825645e28e659cc7ad44c138279e"

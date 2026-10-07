@@ -25,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 # Decision Record: MCP Testing Playbooks for Four Skills
 
@@ -32,6 +33,7 @@ This document captures architectural decisions made during plan-mode design (202
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Root playbook filename casing — adopt observed-precedent lowercase
 
 **Status**: Accepted (2026-04-26, confirmed by user)
@@ -61,9 +63,11 @@ This is a doc-vs-practice divergence that has persisted across multiple shipped 
 
 - *Adopt uppercase per standards doc*: Would diverge from every shipped example, require renaming the existing CCC playbook (breaks links from per-feature files), and create a 1-of-7 inconsistency
 - *Punt on the question and use whatever the validator accepts*: Validator accepts either; lack of decision creates ambiguity for future maintainers
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: mcp-coco-index disposition — audit only, no rewrite
 
 **Status**: Accepted (2026-04-26)
@@ -86,9 +90,11 @@ This is a doc-vs-practice divergence that has persisted across multiple shipped 
 - *Refresh CCC playbook in full*: Rewriting prose without ID changes adds churn without functional gain; risk of subtle introduction of contract drift
 - *Skip CCC entirely*: User asked for "every MCP skill"; an explicit audit decision satisfies the spirit of the request without unnecessary file churn
 - *Create a parallel "CCC v2" playbook*: Confuses operators about which one is canonical; no precedent for versioned playbook coexistence
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Spec 049 packet shape — flat Level-3, no phase folders
 
 **Status**: Accepted (2026-04-26)
@@ -110,9 +116,11 @@ This is a doc-vs-practice divergence that has persisted across multiple shipped 
 
 - *Phased spec with 4 sub-folders*: 4× scaffold cost for zero isolation gain since no architectural divergence between skills
 - *4 separate spec packets (049, 050, 051, 052)*: Loses the cross-cutting decision context; future maintainers can't see why all 4 chose lowercase filename together
+<!-- /ANCHOR:adr-003 -->
 
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Authoring sequence — CM first, then BDG and CU in parallel, then CCC audit
 
 **Status**: Accepted (2026-04-26)
@@ -139,9 +147,11 @@ If CM is authored last (the original draft proposed BDG → CU → CM → CCC), 
 
 - *BDG → CU → CM → CCC* (original draft): Inverts the cross-reference dependency direction; would force broken links or placeholder cleanup
 - *All 3 skills authored in parallel*: ID coordination would be brittle; first-commit cross-refs likely broken
+<!-- /ANCHOR:adr-004 -->
 
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: V7 smoke run scope — all 4 against real environments
 
 **Status**: Accepted (2026-04-26, confirmed by user)
@@ -169,3 +179,4 @@ Two alternative scopes were considered: (a) all 4 against real env, (b) only the
 
 - *Only CM + CCC (local-safe)*: Leaves BDG and CU smoke unexercised; risk of shipping commands that don't actually work
 - *No smoke runs at all*: Violates the playbook's EXECUTION POLICY rule; would let bad commands ship to operators
+<!-- /ANCHOR:adr-005 -->

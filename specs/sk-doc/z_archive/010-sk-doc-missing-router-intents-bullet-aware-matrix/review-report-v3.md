@@ -1,3 +1,12 @@
+---
+title: "Review Report v3 — sk-doc Router Coverage Extension"
+description: "v3 review of the sk-doc router stress matrix: 17 scenarios × 3 CLIs with the bullet-aware extractor, confirming the v2 per-CLI ranking and reproducing cli-copilot hallucination behavior on the two new intents."
+trigger_phrases:
+  - "sk doc router coverage review"
+  - "sk doc router coverage v3 review report"
+importance_tier: "normal"
+contextType: "review"
+---
 # Review Report v3 — sk-doc Router Coverage Extension
 
 **Packet**: 076-sk-doc-missing-router-intents-bullet-aware-matrix

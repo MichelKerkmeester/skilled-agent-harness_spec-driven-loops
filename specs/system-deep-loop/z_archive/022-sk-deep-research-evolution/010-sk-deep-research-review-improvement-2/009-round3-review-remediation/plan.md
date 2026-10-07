@@ -16,14 +16,19 @@ _memory:
     key_files: ["plan.md"]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Round 3 Review Remediation
 
+<!-- ANCHOR:summary -->
 ## Approach
 
 Sequential batch execution via cli-codex (`codex exec --model gpt-5.4 -c model_reasoning_effort="high" -c service_tier="fast" --full-auto`). If any batch fails, retry once via cli-copilot (`copilot -p --model gpt-5.4 --allow-all-tools`) as fallback.
 
 Max 1 codex process at a time to stay within memory limits.
 
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:phases -->
 ## Batch Plan
 
 ### Batch 1: Correctness Fixes (findings 1-10)
@@ -77,6 +82,9 @@ Max 1 codex process at a time to stay within memory limits.
 - Improve-agent command doc: remove stale static-mode language
 - level_specifications.md: add stakeholder tracking to Level 3+
 
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:testing -->
 ## Verification Plan
 
 After all 6 batches:
@@ -84,3 +92,5 @@ After all 6 batches:
 2. `npx vitest run` on scripts/tests
 3. Grep sweep for stale references
 4. Commit and push to 026 branch
+
+<!-- /ANCHOR:testing -->

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling"
     last_updated_at: "2026-08-04T12:52:00Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffolded phase 3 plan inside 004-standalone-readme-revisit"

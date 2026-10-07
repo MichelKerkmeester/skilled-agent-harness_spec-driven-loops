@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/003-command-contract-adapter"
     last_updated_at: "2026-07-15T07:22:15Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the command contract adapter"

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references",
+  "specFolder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/001-author-per-mode-references",
   "description": "Each cli mode scatters its provider/model/invocation facts across its `SKILL.md` roster, its `references/cli-reference.md` model section, and model",
   "keywords": [
     "cli",

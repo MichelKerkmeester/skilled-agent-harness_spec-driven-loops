@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes"
     last_updated_at: "2026-05-26T20:40:00Z"
     last_updated_by: "deep-research-remediation"
     recent_action: "Specced tasks"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
-  "spec_folder": "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/013-deep-review-grok-deepseek",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/013-deep-review-grok-deepseek",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Every prior phase in this packet was orchestrator-verified against real files, but never run through an independent, adversarial multi-model review",
     "created_at": "2026-08-12T19:55:45.000Z",
-    "last_save_at": "2026-08-30T15:39:18.055Z",
+    "last_save_at": "2026-10-07T18:13:57.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b175683b9176b7d2b234f28a9779b73793f095bc901d30ee67e39c64909e3561",
+    "source_fingerprint": "sha256:b3411e36e7bc9dee50507a2c160030e3dfed7d5397d2611caf1c5fb885abac0a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01f0211bc323cf5e3d92b977a55b4abfa17565b1059b20bd72ae40ac326b3043",
-      "plan.md": "9c5b23405c539f5b0c5e0380518b0a9b1111d9afd6a4fdeab316ad8489cd9e30",
-      "tasks.md": "65b643d34be21386190f3a943e795ace976b2e9526061fae330f1fce7ae7c57e",
-      "implementation-summary.md": "ec16320183a54391240e5bdc42a2207ce1363a7d42d127be8d98b1a2fbd95b02"
+      "spec.md": "83a38ff5728a8c97ed933f677672257b66c22421b30815c4a9abb576440ff6a9",
+      "plan.md": "e23bd624d238e31ae8cd0fe7c5c54da774fd9e69b65097533fab1c52301bb9e0",
+      "tasks.md": "ab6d24efb177c94e0c722f7207907de619091f997f59940cc2741b86a9d4ed73",
+      "implementation-summary.md": "e8c90367576a455d7a4644290e9ce1336460d1523bc2cfb1c5f48f7a225b49eb"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-13T05:55:33.000Z"

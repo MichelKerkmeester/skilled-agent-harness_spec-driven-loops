@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/026-goal-opencode-plugin/001-state-store"
+    packet_pointer: "system-deep-loop/z_archive/026-goal-opencode-plugin/001-state-store"
     last_updated_at: "2026-06-29T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Completed state store task documentation"

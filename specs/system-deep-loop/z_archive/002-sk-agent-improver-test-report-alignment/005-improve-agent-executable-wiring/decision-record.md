@@ -23,6 +23,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-1: Benchmark assets are static skill assets
 
 **Decision:** Benchmark profiles + fixtures live at `.opencode/skills/sk-improve-agent/assets/benchmark-profiles/*.json` + `assets/benchmark-fixtures/*.json`. NOT packet-local.
@@ -30,7 +31,9 @@ _memory:
 **Why:** Versioned with the skill. Reused across improvement runs (every dispatch shares the same baseline benchmark contract). Doesn't bloat each spec packet. User-decided after 060/003 research surfaced both options.
 
 **Source:** 060/003/research/research.md §5 062 sketch (user-confirmed).
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-2: Materializer ships alongside run-benchmark.cjs
 
 **Decision:** `materialize-benchmark-fixtures.cjs` lives at `.opencode/skills/sk-improve-agent/scripts/`, adjacent to the runner that consumes its output.
@@ -38,7 +41,9 @@ _memory:
 **Why:** Adjacent ownership keeps the materializer + runner contract obvious. Both update together. Easier code review.
 
 **Source:** 060/003/research/research.md §5 062 sketch.
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-3: Auto + confirm YAML patched in lockstep
 
 **Decision:** Every emission/wiring change applies to both `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml` in the same diff. No "auto-only first, confirm later."
@@ -46,7 +51,9 @@ _memory:
 **Why:** Producer/consumer compatibility — reducer/dashboard/tests can't fork by execution mode. One source-of-truth shape across both modes.
 
 **Alternatives considered:** Defer confirm parity to a follow-on. Rejected because it creates a known-stale surface that the next packet has to reconcile.
+<!-- /ANCHOR:adr-003 -->
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-4: Legal-stop emission shape is nested details.gateResults
 
 **Decision:** YAML emits `legal_stop_evaluated` with nested `details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` — NOT flat `gateName/gateResult` fields.
@@ -54,7 +61,9 @@ _memory:
 **Why:** Reducer (reduce-state.cjs:213-217) reads `details.gateResults`. The flat shape is producer/consumer incompatible. Nested is what the consumer expects.
 
 **Migration:** Optional flat-field reducer tolerance for one release if needed; deprecate after.
+<!-- /ANCHOR:adr-004 -->
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-5: Stop-reason enum truth lives in SKILL.md
 
 **Decision:** SKILL.md is canonical for the stop-reason enum. `plateau` and `benchmarkPlateau` (currently in helper + tests, not in SKILL) get reconciled — either removed from helper/tests OR explicitly documented as deprecated compatibility aliases in SKILL.md.
@@ -62,3 +71,4 @@ _memory:
 **Why:** Three surfaces disagreeing is a recipe for silent drift. One canonical source forces alignment.
 
 **Open question for 062 implementation:** which reconciliation direction (remove from helper/tests, or document as aliases). Let cli-codex propose based on actual usage during T-014.
+<!-- /ANCHOR:adr-005 -->

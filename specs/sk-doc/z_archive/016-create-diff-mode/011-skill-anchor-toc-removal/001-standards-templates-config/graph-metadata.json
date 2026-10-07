@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
-  "spec_folder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
-  "parent_id": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/011-skill-anchor-toc-removal",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-08-30T15:39:14.279Z",
+    "last_save_at": "2026-10-07T18:12:11.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94e92a21a5f67da47b3d586088951b5ce03926a5ae3aab294acef40163ac0884",
+    "source_fingerprint": "sha256:ae331d7a4a995bbd75ae5656e22802b422064b0a712abf725782f1abb4d1afea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89d73db5a881b53a85b2ba256cdb74b968e4713e709971e591b9461c167f9519",
-      "plan.md": "985a209eeb681bbe093567933b414f20eb9e92739d7efb90cd50df3eec73b737",
-      "tasks.md": "ce079cf87983ca7ff58daea93c15412490bbbb8bfd908e18470cc95168780328",
-      "implementation-summary.md": "9e5de0d015c4a0eab2d913e963aab1679dd2624554d233592a50af0ed8a60bed"
+      "spec.md": "8fa2b0e9b40e5a6f0153770611f13b5ef55fb962f56a34a9938f1be9b41391ae",
+      "plan.md": "b4c8c5edfb9ecb2422f54f085efc83f337b4c58153221558c4c083e63b16ce2e",
+      "tasks.md": "956556377f225e271d18e42249afa9babf91bba62234eed9eb746988fe302d37",
+      "implementation-summary.md": "850542fccd7ff3859e8be23e1cd003a364ef515807bccd9cc9c88d7d9ed4f14d"
     },
     "last_active_child_id": null,
     "last_active_at": null

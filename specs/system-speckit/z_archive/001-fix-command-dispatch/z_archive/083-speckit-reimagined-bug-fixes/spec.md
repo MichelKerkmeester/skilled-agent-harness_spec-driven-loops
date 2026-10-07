@@ -389,5 +389,5 @@ This specification covers remediation of:
 - [Bug Inventory](./bug-inventory.md)
 - [Spec 082: SpecKit Reimagined](../082-speckit-reimagined/)
 - [Spec 083: Memory Command Consolidation](../083-memory-command-consolidation/)
-- [system-spec-kit README](/.opencode/skills/system-spec-kit/README.md)
-- [system-spec-kit CHANGELOG](/.opencode/skills/system-spec-kit/CHANGELOG.md)
+- [system-spec-kit README](.skilled/skills/system-spec-kit/README.md)
+- system-spec-kit CHANGELOG

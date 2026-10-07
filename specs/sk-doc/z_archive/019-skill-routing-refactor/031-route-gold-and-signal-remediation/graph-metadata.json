@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
     "created_at": "2026-07-29T04:42:54.262Z",
-    "last_save_at": "2026-09-11T16:42:08.786Z",
+    "last_save_at": "2026-10-07T18:13:25.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96d9af20a223fd8d78f7acabd65a0616caf526c76d939e0d6026e57f9d16c714",
+    "source_fingerprint": "sha256:9506b12c85693e69f19226130c49315189785f0aa890510d9747da35ef6a4ea0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56e6ecdfeabdacaa999f01b95e110248cb48173fb9dadc045867da0804927217",
       "plan.md": "b9a4c0dbb848d34ce1ee979d80f359bd676bfdb65bd72e824f6fcf966b975a05",
       "tasks.md": "f1a982dbf392aa31d9ae1df9e0d7bc53f2a7f41f8de8e980f7d9b19d57224f3f",
-      "implementation-summary.md": "cbc00314e4dfb242b5c1d76296e407800d7d463917f6cefb7eb3d40349f9f325"
+      "implementation-summary.md": "8087897339be805e337eff014aa640c227e52d5bfeb2d90af359713e01bf4e02"
     },
     "last_active_child_id": null,
     "last_active_at": null

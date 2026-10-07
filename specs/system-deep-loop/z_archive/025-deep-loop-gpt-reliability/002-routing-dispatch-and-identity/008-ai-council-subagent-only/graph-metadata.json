@@ -14,10 +14,14 @@
       "ai-council subagent only",
       "ai council mode conversion",
       "remove primary agent reachability",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary"
+      "ai-council subagent conversion plan",
+      "ai council mode override plan",
+      "ai-council subagent conversion tasks",
+      "ai-council subagent decision",
+      "ai council mode override",
+      "mode subagent conversion rationale",
+      "ai-council subagent conversion summary",
+      "ai council mode override summary"
     ],
     "key_topics": [
       "ai-council",
@@ -30,8 +34,8 @@
       "primary",
       "agent",
       "reachability",
-      "implementation",
-      "plan"
+      "plan",
+      "override"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -183,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Context Research",
+        "name": "Claude Sonnet",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -191,7 +195,7 @@
     ],
     "causal_summary": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode (like a primary agent) AND dispatchable as a Task-tool sub-agent",
     "created_at": "2026-07-01T10:56:26.917Z",
-    "last_save_at": "2026-08-30T15:39:25.459Z",
+    "last_save_at": "2026-10-07T20:33:06.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29d67f5157fa24e58804a01a9a97e240d5b1043aa3178f226dd232f0b72c52b0",
+    "source_fingerprint": "sha256:4522176282530016041233c83d1367a12f94317d3da1a144fa609f63720a84d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfb9b620a963636d6d6408afbb0656d4d06c32a4b9464d0369ef5b86a1969f48",
-      "plan.md": "68d7d5e0c58ce57428294a99b11db3c704026bcb1fc18f0389b7cad958a8d709",
-      "tasks.md": "29ff17faed1384d8bd9a07c776d5d0784cb7859e8e98680f62b2ba3cdd2f7148",
-      "decision-record.md": "d5280979f235b1ab9a71edd86a931d7451f859ac7180d256210aeb48c149c6b6",
-      "implementation-summary.md": "b1ed38a914f65cc2d38e0214287a80d11e262c9bf3f2e62ee5abc9c0195d3a4b"
+      "spec.md": "f86f9f05654b32fa9e9cbc4b1380891706818356ab1d1e6cc851d9111174cbcf",
+      "plan.md": "a10479ebdd15159b6dbd56f548087708525ba4e03d1a566423983977742ac853",
+      "tasks.md": "9663d84c4cd32e93fcdd1f479f08bfc2f88a37da40b43a0f9fb5e492ed8c4142",
+      "decision-record.md": "0b87d10a941b6f0e0cd1302dd215a05c0bc069b688185a6d6f3eb214ab758c47",
+      "implementation-summary.md": "9b6312e6e3d0d445f9a65f9d77e5e58525625e5bf349c5f3bfc42176bfd8e8b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "specFolder": "sk-design/z_archive/014-template-conformance/002-design-interface/008-manual-testing-playbook",
   "description": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the",
   "keywords": [
     "manual-testing-playbook",

@@ -149,7 +149,6 @@ Track the six deprecated-feature remediation targets, record their release-contr
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -165,7 +164,6 @@ Track the six deprecated-feature remediation targets, record their release-contr
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Historical Drift

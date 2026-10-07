@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation` |
+| **Spec Folder** | 007-shared-runtime-deliberation |
 | **Completed** | 2026-05-23 |
 | **Level** | 3 |
 | **Verdict** | HYBRID |

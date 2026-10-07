@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Resolve the pi-contract track's open live-dispatch item: document the confirmed openai-codex/gpt-5.6-* + --thinking invocation.",
     "created_at": "2026-07-29T06:40:16.956Z",
-    "last_save_at": "2026-08-30T15:39:07.772Z",
+    "last_save_at": "2026-10-07T18:11:16.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f386f0f52e99e0682e6cdff4cf98653db2ae62f06240ae15f94e5ac64b2445a8",
+    "source_fingerprint": "sha256:27b4a84d1a9b7383fd82a4389924c17bc02503e0547fb7817628635689c8cada",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01f015ed6feb07bd519f162b6173f69622a3f96f9247738d518c0bbe8f2bff38",
       "plan.md": "552a71a70cfcf7245a0aaa9868887511f57042b5fd1eb5015f99de5379acacc3",
       "tasks.md": "7eb5bd384288d6df864fb3e1077f81895c2af830f414b9da4cfd1b0119487f92",
-      "implementation-summary.md": "10dba2e94f2ec7d336d9749797bd51fee493acd5057daece8dbbabedf46f5c40"
+      "implementation-summary.md": "e875a7273c25307b971e7451c1940e7f9f4d551919c27e10e470dbab61cea071"
     },
     "last_active_child_id": null,
     "last_active_at": null

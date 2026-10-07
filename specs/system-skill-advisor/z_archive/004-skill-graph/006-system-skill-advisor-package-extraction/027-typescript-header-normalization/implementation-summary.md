@@ -4,12 +4,11 @@ description: "Normalize TypeScript source module headers found by the packet 026
 trigger_phrases:
   - "027"
   - "ts header normalization"
-  - "implementation summary"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization"
     last_updated_at: "2026-05-15T12:04:51Z"
     last_updated_by: "codex"
     recent_action: "Closed packet 026 sk-code follow-on ledger"
@@ -35,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `027-typescript-header-normalization` |
+| **Spec Folder** | 027-typescript-header-normalization |
 | **Completed** | 2026-05-15 |
 | **Level** | 2 |
 | **Status** | Complete |

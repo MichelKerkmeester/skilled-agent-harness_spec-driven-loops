@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/002-research-design-commands"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "spec-author"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/030-deep-loop-unification/012-deep-command-family-parity/001-pipeline-command-parity"
+    packet_pointer: "system-deep-loop/z_archive/030-deep-loop-unification/012-deep-command-family-parity/001-pipeline-command-parity"
     last_updated_at: "2026-07-13T14:15:00Z"
     last_updated_by: "claude"
     recent_action: "Implemented and verified alignment pipeline parity + ai-council fix flip"

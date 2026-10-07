@@ -61,14 +61,14 @@ Provide a single feature-flag-reference-focused specification that maps all eigh
 
 | Test ID | Scenario Name | Feature Catalog | Exact Prompt | Exact Command Sequence |
 |---------|---------------|-----------------|--------------|------------------------|
-| EX-028 | Flag catalog verification | [`../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md`](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md) | `List SPECKIT flags active/inert/deprecated` | `memory_search({ query:"SPECKIT flags active inert deprecated", limit:20 })` -> `memory_context({ mode:"deep", prompt:"Classify SPECKIT flags as active, inert, or deprecated", sessionId:"ex028" })` |
-| EX-029 | Session policy audit | [`../../feature_catalog/19--feature-flag-reference/02-2-session-and-cache.md`](../../feature_catalog/19--feature-flag-reference/02-2-session-and-cache.md) | `Retrieve dedup/cache policy settings` | `memory_search({ query:"DISABLE_SESSION_DEDUP session cache policy settings", limit:20 })` |
-| EX-030 | MCP limits audit | [`../../feature_catalog/19--feature-flag-reference/03-3-mcp-configuration.md`](../../feature_catalog/19--feature-flag-reference/03-3-mcp-configuration.md) | `Find MCP validation settings defaults` | `memory_search({ query:"MCP_MAX_MEMORY_TOKENS validation settings defaults", limit:20 })` |
-| EX-031 | Storage precedence check | [`../../feature_catalog/19--feature-flag-reference/04-4-memory-and-storage.md`](../../feature_catalog/19--feature-flag-reference/04-4-memory-and-storage.md) | `Explain DB path precedence env vars` | `memory_search({ query:"SPEC_KIT_DB_DIR SPECKIT_DB_DIR database path precedence", limit:20 })` -> `memory_context({ mode:"focused", prompt:"Explain DB path precedence env vars", sessionId:"ex031" })` |
-| EX-032 | Provider selection audit | [`../../feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md`](../../feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md) | `Retrieve embedding provider selection rules` | `memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 })` |
-| EX-033 | Observability toggle check | [`../../feature_catalog/19--feature-flag-reference/06-6-debug-and-telemetry.md`](../../feature_catalog/19--feature-flag-reference/06-6-debug-and-telemetry.md) | `List telemetry/debug vars and separate opt-in flags from inert flags` | `memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 })` |
-| EX-034 | Branch metadata source audit | [`../../feature_catalog/19--feature-flag-reference/07-7-ci-and-build-informational.md`](../../feature_catalog/19--feature-flag-reference/07-7-ci-and-build-informational.md) | `Find branch env vars used in checkpoint metadata` | `memory_search({ query:"GIT_BRANCH BRANCH_NAME checkpoint metadata", limit:20 })` |
-| 125 | Hydra roadmap capability flags | [`../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md`](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md) | `Validate memory roadmap flag snapshots without changing live graph-channel defaults.` | `1) cd .opencode/skills/system-spec-kit/mcp_server 2) SPECKIT_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-a')))" 3) SPECKIT_HYDRA_PHASE=graph SPECKIT_HYDRA_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-b')))"` |
+| EX-028 | Flag catalog verification | `../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | `List SPECKIT flags active/inert/deprecated` | `memory_search({ query:"SPECKIT flags active inert deprecated", limit:20 })` -> `memory_context({ mode:"deep", prompt:"Classify SPECKIT flags as active, inert, or deprecated", sessionId:"ex028" })` |
+| EX-029 | Session policy audit | `../../feature_catalog/19--feature-flag-reference/02-2-session-and-cache.md` | `Retrieve dedup/cache policy settings` | `memory_search({ query:"DISABLE_SESSION_DEDUP session cache policy settings", limit:20 })` |
+| EX-030 | MCP limits audit | `../../feature_catalog/19--feature-flag-reference/03-3-mcp-configuration.md` | `Find MCP validation settings defaults` | `memory_search({ query:"MCP_MAX_MEMORY_TOKENS validation settings defaults", limit:20 })` |
+| EX-031 | Storage precedence check | `../../feature_catalog/19--feature-flag-reference/04-4-memory-and-storage.md` | `Explain DB path precedence env vars` | `memory_search({ query:"SPEC_KIT_DB_DIR SPECKIT_DB_DIR database path precedence", limit:20 })` -> `memory_context({ mode:"focused", prompt:"Explain DB path precedence env vars", sessionId:"ex031" })` |
+| EX-032 | Provider selection audit | `../../feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` | `Retrieve embedding provider selection rules` | `memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 })` |
+| EX-033 | Observability toggle check | `../../feature_catalog/19--feature-flag-reference/06-6-debug-and-telemetry.md` | `List telemetry/debug vars and separate opt-in flags from inert flags` | `memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 })` |
+| EX-034 | Branch metadata source audit | `../../feature_catalog/19--feature-flag-reference/07-7-ci-and-build-informational.md` | `Find branch env vars used in checkpoint metadata` | `memory_search({ query:"GIT_BRANCH BRANCH_NAME checkpoint metadata", limit:20 })` |
+| 125 | Hydra roadmap capability flags | `../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` | `Validate memory roadmap flag snapshots without changing live graph-channel defaults.` | `1) cd .opencode/skills/system-spec-kit/mcp_server 2) SPECKIT_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-a')))" 3) SPECKIT_HYDRA_PHASE=graph SPECKIT_HYDRA_GRAPH_UNIFIED=false node -e "const { getMemoryRoadmapDefaults } = require('./dist/lib/config/capability-flags.js'); console.log(JSON.stringify(getMemoryRoadmapDefaults('manual-125-b')))"` |
 
 ### Out of Scope
 - Executing the eight feature-flag-reference scenarios and assigning final run verdicts.
@@ -150,8 +150,8 @@ No P1 items are defined for this phase; all eight feature-flag-reference scenari
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Canonical source for exact prompts, commands, evidence targets, and pass/fail criteria | Treat the playbook as source of truth; update this phase packet only from that document |
-| Dependency | [`../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md`](../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md) | Verdict rules determine PASS, PARTIAL, FAIL, and coverage requirements | Apply the protocol during evidence review; do not invent alternate verdict logic |
+| Dependency | `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Canonical source for exact prompts, commands, evidence targets, and pass/fail criteria | Treat the playbook as source of truth; update this phase packet only from that document |
+| Dependency | `../../manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md` | Verdict rules determine PASS, PARTIAL, FAIL, and coverage requirements | Apply the protocol during evidence review; do not invent alternate verdict logic |
 | Dependency | [`../../feature_catalog/19--feature-flag-reference/`](../../feature_catalog/19--feature-flag-reference/) | Supplies feature context for each flag-reference scenario | Keep every test row linked to its mapped feature-flag-reference file |
 | Dependency | MCP runtime and `dist` build of `capability-flags.js` | Required to execute `memory_search`, `memory_context`, and 125 node-based snapshot scenarios | Verify the dist build is current before executing 125 and confirm `memory_search` is available |
 | Risk | 125 requires a freshly compiled dist build; stale builds produce incorrect snapshot results | High | Run `npm run build` inside the mcp_server directory before executing 125 and inspect `capability-flags.ts` if snapshots diverge from expectations |
@@ -170,7 +170,6 @@ No P1 items are defined for this phase; all eight feature-flag-reference scenari
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -188,7 +187,6 @@ No P1 items are defined for this phase; all eight feature-flag-reference scenari
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries

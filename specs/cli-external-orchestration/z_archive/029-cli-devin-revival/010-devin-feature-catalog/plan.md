@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/010-devin-feature-catalog"
     last_updated_at: "2026-07-24T17:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored Level 3 plan: dependency graph, LUNA dispatch mechanism, milestones"

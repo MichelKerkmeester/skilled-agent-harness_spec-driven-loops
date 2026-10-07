@@ -23,17 +23,23 @@ _memory:
 
 # Phase 001 — Fan-out schema + config plumbing
 
+<!-- ANCHOR:problem -->
 ## Purpose
 Add the opt-in multi-executor config representation without changing any behavior. Foundation for all later phases.
+<!-- /ANCHOR:problem -->
 
+<!-- ANCHOR:scope -->
 ## Scope
 - `deep-loop-runtime/lib/deep-loop/executor-config.ts`: add `lineageExecutorSchema` (= `executorConfigSchema` + dir-safe `label`, `count`, nullable `iterations`), `fanoutConfigSchema` (`executors[]`, `concurrency` default 2), `parseFanoutConfig` (delegates per-entry to existing `parseExecutorConfig`), `expandLineages` (count→labels). Do NOT modify `executorConfigSchema`/`parseExecutorConfig`.
 - Backward-compat: config carries EITHER `config.executor` OR `config.fanout`, never both; both-present fails fast.
 - `deep-loop-runtime/lib/deep-loop/executor-audit.ts`: optional `lineageId` on `buildExecutorAuditRecord` + `RunAuditedExecutorCommandInput` (absent ⇒ unchanged records).
+<!-- /ANCHOR:scope -->
 
+<!-- ANCHOR:success-criteria -->
 ## Success
 - New unit tests cover fan-out parse / both-present conflict / count-expansion / per-entry kind validation reuse.
 - **Parity gate:** existing single-executor `parseExecutorConfig` tests byte-identical; full vitest green.
+<!-- /ANCHOR:success-criteria -->
 
 ## Out of scope
 Pool, spawn, merge, YAML, docs (later phases).

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet"
+    packet_pointer: "cli-external-orchestration/z_archive/031-cli-pi-creation/003-cli-pi-skill-packet"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "pi-cli-authoring"
     recent_action: "All 23 tasks completed via LUNA, reviewed by GLM-5.2, findings fixed"

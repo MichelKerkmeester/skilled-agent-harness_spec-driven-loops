@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement"
+    packet_pointer: "cli-external-orchestration/z_archive/066-pi-self-dispatch-and-subagents-retirement"
     last_updated_at: "2026-09-08T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "All four workstreams shipped and verified"

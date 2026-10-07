@@ -1,3 +1,12 @@
+---
+title: "Phase 001 Inventory: sk-improve-prompt rename discovery"
+description: "Canonical file-by-file inventory of active sk-improve-prompt references, grouped by the phase that will rename them."
+trigger_phrases:
+  - "sk improve prompt rename inventory"
+  - "sk improve prompt reference inventory"
+importance_tier: "normal"
+contextType: "research"
+---
 # Phase 001 Inventory
 
 Measured with `rg -c 'sk-improve-prompt' <path>` after excluding frozen historical scopes and the packet's own docs. The canonical inventory includes hidden runtime mirrors and root `AGENTS.md`; the provided final sanity command counts 52 files because it does not surface those hidden/runtime/root instruction paths.

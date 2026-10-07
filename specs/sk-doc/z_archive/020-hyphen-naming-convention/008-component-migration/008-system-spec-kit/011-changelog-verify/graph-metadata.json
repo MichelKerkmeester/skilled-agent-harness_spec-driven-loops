@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -155,7 +155,7 @@
     ],
     "causal_summary": "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries.",
     "created_at": "2026-07-14T15:18:05Z",
-    "last_save_at": "2026-08-30T15:39:16.798Z",
+    "last_save_at": "2026-10-07T18:13:09.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,12 +163,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:117a471cae7125404df6e5fc6f5ce1ad1cbcf8fe4ec2342f9df779aacccd7c18",
+    "source_fingerprint": "sha256:a8d9febddfd3020387d1505a61fac8c390dbe4af8753a2228c73b150650714d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "59b1ec3630a201c5a2a326980eff717dacf7ad0c63939d63f40a66f883f458b1",
-      "plan.md": "d9a2d6b9651b49a5571bae25b14da09f8a0ae78fef9e6a0768c6e1f43181d1da",
-      "tasks.md": "b3a481b90cfe12344923207bee49307ac3af083248766616f60679aab0b4813a"
+      "spec.md": "b51464f42e97b788c04c855a8081b382f91bc0759b5deea4afd1a198c1262ee5",
+      "plan.md": "524ddbdc58762c8617688626cf8143040851692c0bb653816c9456297b6f3374",
+      "tasks.md": "671348e8709afc44384dc72d88075a54ac0f830b0904683afb4993a2ed7f67ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

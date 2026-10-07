@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
+    packet_pointer: "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
     last_updated_at: "2026-07-08T11:05:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Implemented and verified F1-F4"

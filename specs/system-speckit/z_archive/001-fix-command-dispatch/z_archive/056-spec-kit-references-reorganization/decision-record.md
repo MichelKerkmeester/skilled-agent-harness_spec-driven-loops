@@ -37,14 +37,14 @@ The `system-spec-kit` skill is a core skill used across all spec folder operatio
 The `workflows-code` skill recently underwent a similar reorganization (spec 001-workflows-code-codebase-alignment) with positive results, establishing a pattern worth following.
 <!-- /ANCHOR:context -->
 
-<!-- ANCHOR:decision -->
+<!-- ANCHOR:decision-2 -->
 ## Decision Drivers
 
 - **Consistency**: Other skills use organized sub-folder structures
 - **Discoverability**: Flat structures scale poorly as documentation grows
 - **Maintainability**: Logical groupings make updates easier
 - **User Experience**: Clearer navigation improves skill usability
-<!-- /ANCHOR:decision -->
+<!-- /ANCHOR:decision-2 -->
 
 ## Alternatives Considered
 

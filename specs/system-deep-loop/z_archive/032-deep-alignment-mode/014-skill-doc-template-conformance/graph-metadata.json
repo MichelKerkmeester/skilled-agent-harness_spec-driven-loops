@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance",
-  "spec_folder": "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance",
-  "parent_id": "system-deep-loop/032-deep-alignment-mode",
+  "packet_id": "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance",
+  "spec_folder": "system-deep-loop/z_archive/032-deep-alignment-mode/014-skill-doc-template-conformance",
+  "parent_id": "system-deep-loop/z_archive/032-deep-alignment-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The deep-alignment skill shipped with its build phases but its authored docs drifted from the sk-doc `create-skill` templates",
     "created_at": "2026-07-13T11:01:03.072Z",
-    "last_save_at": "2026-08-30T15:39:20.178Z",
+    "last_save_at": "2026-10-07T18:15:13.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b626d16faa46bcfc8ca4da6205451ff6ecbac14d54b7a2a5615cc738758b97a",
+    "source_fingerprint": "sha256:2a1ac989921674aeaa8bcb860bbba3aacf7036bc5e11a9f90aee6548dbd88ff2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4749fa08f0f312d0a9c1745cb69e4b7b44617e79a71f3e89f22fb0c3810d98b",
-      "plan.md": "3d9c7f9d672a6dd5559580ab3ff39962ae58231129e4c29da8b022fa8ffbc5c2",
-      "tasks.md": "f7b6acdc0719f6ec8e2246f292ef788ddeb072b6d11756a1edb27bab0314d78e",
-      "implementation-summary.md": "de7f600306fdbcaa3f6564720e2ed455a4598729c7d3eea4fbaae9d09b1e1258"
+      "spec.md": "879abdaeda5621e988497c0b4f0a18e5f61d24a4a9fd155275e179f2fd905b34",
+      "plan.md": "169e1270515d0326de07fdf39f08f1abea08dc0dac376cfb25dc3bdc555e0465",
+      "tasks.md": "41bf634b34db5a668f8daf9b173391419f1acc050e8003c9730d4340ad2d3039",
+      "implementation-summary.md": "da3e59b06067fd6036f5e6a000291319d50fca6253e0c926a04fa6589c63e8e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

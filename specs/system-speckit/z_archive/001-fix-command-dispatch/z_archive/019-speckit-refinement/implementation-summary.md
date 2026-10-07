@@ -6,7 +6,6 @@ trigger_phrases:
   - "refinement"
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "019"
 importance_tier: "normal"
 contextType: "implementation"

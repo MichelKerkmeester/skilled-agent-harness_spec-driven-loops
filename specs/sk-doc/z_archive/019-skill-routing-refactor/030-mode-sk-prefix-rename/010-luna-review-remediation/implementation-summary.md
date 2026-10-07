@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation"
     last_updated_at: "2026-07-29T17:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented all three phases via cli-codex GPT-5.6-SOL agents; conductor-verified each; sanitized evidence paths; evidenced checklist"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "continuity"
 _memory:
   continuity:
-    packet_pointer: "sk-design/014-template-conformance/013-design-command-decomposition-research"
+    packet_pointer: "sk-design/z_archive/014-template-conformance/013-design-command-decomposition-research"
     last_updated_at: "2026-07-27T18:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Both lineages converged 10/10; verdict recorded, 3 defects fixed."

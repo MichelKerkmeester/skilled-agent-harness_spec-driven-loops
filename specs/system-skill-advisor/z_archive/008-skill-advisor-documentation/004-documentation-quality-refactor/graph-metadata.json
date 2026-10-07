@@ -4,14 +4,6 @@
   "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
   "parent_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation",
   "children_ids": [
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
-    "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
     "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
     "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
     "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite",
@@ -63,8 +55,6 @@
       ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
       ".devin/hooks.v1.json",
       ".opencode/skills/system-skill-advisor/hooks/claude/README.md",
-      ".opencode/skills/system-skill-advisor/changelog/v0.1.0.md",
-      ".opencode/skills/system-skill-advisor/changelog/v0.2.0.md",
       ".opencode/skills/system-skill-advisor/graph-metadata.json"
     ],
     "entities": [
@@ -102,18 +92,6 @@
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "v0.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/changelog/v0.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v0.2.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/changelog/v0.2.0.md",
         "source": "derived"
       },
       {
@@ -197,17 +175,17 @@
     ],
     "causal_summary": "`.opencode/skills/system-skill-advisor/` has accumulated drift across its 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALLGUIDE.md, references/, featurecatalog/, manualtestingplaybook/)",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.910Z",
+    "last_save_at": "2026-10-07T18:15:29.416Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f757d99355eef2347c1acad38f8654665f388fe0925d88bdf103692730305c8d",
+    "source_fingerprint": "sha256:02a21419d201ca5a5bf3ea9f3c040d9a1afacce79dc3bdf274f26cd4d9d990a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb5c7424e28242bff815d730a35fe33acbb7edfaf01a6147798c2b49e6af7f70",
+      "spec.md": "52a9658ff3f20924991b4df74bf68ec9f5571ec51f4b3adf08faab889a3b32bf",
       "resource-map.md": "30eeb43ee5290b990561b498635b30c490eb419c30a291fffcad62adda4283f7"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",

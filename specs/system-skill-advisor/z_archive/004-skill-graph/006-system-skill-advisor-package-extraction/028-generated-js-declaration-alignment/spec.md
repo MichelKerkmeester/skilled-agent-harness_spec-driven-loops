@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment"
+    packet_pointer: "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/028-generated-js-declaration-alignment"
     last_updated_at: "2026-05-15T12:04:51Z"
     last_updated_by: "codex"
     recent_action: "Closed packet 026 sk-code follow-on ledger"

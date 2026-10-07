@@ -1,3 +1,12 @@
+---
+title: "deep-improvement Playbook — Manual Test Run Results Matrix"
+description: "Verdict matrix for the deep-improvement manual testing playbook run: per-scenario PASS/FAIL/PARTIAL/SKIP verdicts with decisive evidence, plus the release-readiness roll-up and FAIL/SKIP details."
+trigger_phrases:
+  - "deep-improvement playbook results matrix"
+  - "manual test run verdicts"
+importance_tier: "normal"
+contextType: "general"
+---
 # deep-improvement Playbook — Manual Test Run
 
 - Date: 2026-05-31

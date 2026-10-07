@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `018-deep-review-remediation` |
+| **Spec Folder** | 007-032-deep-review-remediation |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 | **Findings Fixed** | 14 (1 P1 + 13 P2s) |

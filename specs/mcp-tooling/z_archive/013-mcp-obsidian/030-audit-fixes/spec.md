@@ -1,16 +1,48 @@
+---
+title: "Spec — mcp-obsidian + hub post-audit fixes"
+description: "Fix the three defects from the two fresh-Opus bug audits: playbook SOURCE closers, hub version drift, and the unregistered mcp-magnific scaffold removal."
+trigger_phrases:
+  - "mcp-obsidian post-audit fixes"
+  - "playbook source closers"
+  - "mcp-magnific scaffold removal"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes"
+    last_updated_at: "2026-10-07T00:00:00Z"
+    last_updated_by: "packet-reconstruction"
+    recent_action: "No continuity update was recorded"
+    next_safe_action: "None, the packet is archived"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "packet-reconstruction"
+      parent_session_id: null
+    open_questions: []
+    answered_questions: []
+---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec — mcp-obsidian + hub post-audit fixes
 
+<!-- ANCHOR:metadata -->
 ## Status
 
 - **Level:** 1
 - **State:** complete
 - **Type:** Documentation conformance + hub metadata + scaffold removal (no runtime code)
 
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:problem -->
 ## Purpose
 
 Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## Scope
 
 - **Fix 1 (mcp-obsidian):** 8 of 11 plugin tie-in playbook files were missing their required `## SOURCE FILES` + `## SOURCE METADATA` closers and failed `validate_document.py` (type `playbook_feature`). Append both sections to each, mirroring `brat-headless-install.md`.
@@ -18,11 +50,16 @@ Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` m
 - **Fix 3 (hub gate, operator-directed):** `mcp-magnific/` was an unregistered scaffold mode dir failing `parent-skill-check` rule 6a (exit 1). Per operator decision, remove the scaffold skill dir **and** its related spec packet `014-mcp-magnific`, and repair the track parent's `graph-metadata.json`.
 - **Out of scope:** the two minor audit observations (SKILL.md §8 human index lists 4/11 plugins; 27123-vs-27124 port mentions) — both confirmed non-bugs.
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:success-criteria -->
 ## Acceptance criteria
 
 - AC1: all 8 tie-in files pass `validate_document.py`, additive-only (0 content lines removed), 0 dangling links in the new sections.
 - AC2: `mcp-tooling/SKILL.md` and `description.json` both read `1.4.2.0`.
 - AC3: `mcp-magnific/` + `014-mcp-magnific/` removed; `parent-skill-check` on the hub exits 0; no dangling `mcp-magnific` reference remains except the intentional historical mention in `013-mcp-obsidian/handover.md`.
+
+<!-- /ANCHOR:success-criteria -->
 
 ## Outcome
 

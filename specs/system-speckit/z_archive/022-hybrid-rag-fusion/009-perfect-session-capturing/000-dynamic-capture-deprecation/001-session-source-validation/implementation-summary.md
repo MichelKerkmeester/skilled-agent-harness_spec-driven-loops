@@ -92,8 +92,8 @@ The closeout work focused on reconciliation, not new runtime code. The shipped c
 Reference links: [spec.md](spec.md) and [plan.md](plan.md).
 ---
 
-<!-- ANCHOR:limitations -->
+<!-- ANCHOR:limitations-2 -->
 ## Known Limitations
 
 No known limitations.
-<!-- /ANCHOR:limitations -->
+<!-- /ANCHOR:limitations-2 -->

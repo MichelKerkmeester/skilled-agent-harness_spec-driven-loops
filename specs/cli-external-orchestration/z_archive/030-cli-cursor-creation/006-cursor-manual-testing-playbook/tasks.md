@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
     last_updated_at: "2026-07-24T11:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 11 tasks complete; 19 scenarios authored, validate_document.py clean"

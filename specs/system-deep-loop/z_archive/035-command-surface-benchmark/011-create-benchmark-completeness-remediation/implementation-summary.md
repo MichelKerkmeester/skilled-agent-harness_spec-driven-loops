@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/011-create-benchmark-completeness-remediation"
     last_updated_at: "2026-07-16T04:35:00Z"
     last_updated_by: "claude"
     recent_action: "Closed all T016 structural findings as doc/template edits; strict validate 0/0"
@@ -18,10 +18,7 @@ _memory:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
       - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/conformance_benchmark.md"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "create benchmark completeness remediation implementation summary"
 ---
 # Implementation Summary
 

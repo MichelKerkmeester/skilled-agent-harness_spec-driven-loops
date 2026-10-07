@@ -17,7 +17,6 @@
       "mixed-executor pattern",
       "adjudication iter",
       "128 deep-agent-improvement",
-      "implementation plan",
       "mixed-executor",
       "tasks",
       "decision",
@@ -32,12 +31,12 @@
       "pattern",
       "adjudication",
       "iter",
-      "implementation",
-      "plan",
       "tasks",
       "decision",
       "record",
-      "summary"
+      "implementation",
+      "summary",
+      "currently"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Deep-agent-improvement currently lacks the methodology patterns proven in arc 119's deep-research uplift: (1) mixed-executor dispatch for multi-iter sweeps, and (2) adjudication-iter false-positive filtering",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-08-30T15:39:23.434Z",
+    "last_save_at": "2026-10-07T18:14:20.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbcede4583b3803f60a3a8fe777a1c57488599b94063a95bef726ebf53d58241",
+    "source_fingerprint": "sha256:23fdd1bf6f9c01f016db0061e1722adace5d1f43fb104d69ff9c8425728357ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eca925981af5d9b90af2dee31d7fe295b35fc9b1e41c573f0d572b2997bfbdbc",
-      "plan.md": "6caa67ed0cdec31a6ed536644ac4c3ad98888ca4892188da65c375aa3445945e",
+      "plan.md": "5a466c2f90ec20c636b3498e78a136e652e69f6a7bf215cd15a60b93fd901f44",
       "tasks.md": "f2ea19fe4d8d9d066fdb180f0792df7081fbdd4cab467cc105ba9b86e044189c",
       "decision-record.md": "71387581b406c94a985d681394a46ca537066ba174288f1e404dd23894a898f8",
-      "implementation-summary.md": "e0e374fe94e4965d91b07f18c86e5db38e11db9d680df128f7069c42c4fdeb4a"
+      "implementation-summary.md": "fb2ade7dace34a17072594edcdb3a35f3d83c6c518f1a53a4b602b0e6f24c0c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

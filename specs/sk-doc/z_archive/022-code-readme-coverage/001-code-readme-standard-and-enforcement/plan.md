@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"
+    packet_pointer: "sk-doc/z_archive/022-code-readme-coverage/001-code-readme-standard-and-enforcement"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the two-halves plan (ruling then enforcement) for the code README standard"

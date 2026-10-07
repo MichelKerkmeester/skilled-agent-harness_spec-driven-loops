@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/002-deep-loop-executor-support",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/002-deep-loop-executor-support",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The deep-loop runtime's typed executor union currently has 5 members — confirmed live at `executor-config.ts` line 11: `['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor']`",
     "created_at": "2026-07-27T06:48:17.397Z",
-    "last_save_at": "2026-08-30T15:39:07.636Z",
+    "last_save_at": "2026-10-07T18:11:16.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3316286c770ac5a6002b4b712779f6c454e70b1df5e0e23773832320a578a05b",
+    "source_fingerprint": "sha256:f930459984d0247ec052aecb90c7e4b4986154613a1dd413cc13884b074a2807",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2db2cabd75e705b45096bbefc197bccd3bdfc233765e09b14605228c2a7af97",
-      "plan.md": "e79e429c302d92c026fb99514f143a0caed4cf8094d8f0bb0c0f5e9f3168c5a3",
-      "tasks.md": "8386422528bc7627824f65f0abe6a6b77db64a7f1ce8159626c93d8f1048beeb",
-      "implementation-summary.md": "b300a601f283842f8cef62d1eb96ee1f6ae4c768aab8761d53608cba70c0957b"
+      "spec.md": "cccc7ccaf96194545d3a763e3e4c535ebd73f704a0e93ab461a16a3465329e85",
+      "plan.md": "ed56b460e96ce0e0f68d4f4544d9b400e9fe7644bf31e5d003deb9c971ce3600",
+      "tasks.md": "44b4abe6d4bf79f09b0461fd83b8b9b5d29dbc408a989c687c0b628c2da8b9f7",
+      "implementation-summary.md": "022180242cb1264e91f80f4ce64258d800a85b1aa3b5b844ab72e43d2c2f3f08"
     },
     "last_active_child_id": null,
     "last_active_at": null

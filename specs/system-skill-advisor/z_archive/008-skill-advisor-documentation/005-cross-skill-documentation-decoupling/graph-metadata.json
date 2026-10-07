@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad",
     "created_at": "2026-05-16T12:33:24Z",
-    "last_save_at": "2026-08-30T15:39:26.966Z",
+    "last_save_at": "2026-10-07T18:15:55.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ce44b7efc1d53665393464bd08d71adbdbe2d83dc0832108a24b1e501885e30",
+    "source_fingerprint": "sha256:cf6360d5d1a4639e1e2a03ed7f3292d39bd5abe97d1206643329206258767c4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b43dde3bdb92e563dd6ed60e950623e94ee8021114428babc8833decabd3e12",
-      "plan.md": "63c62c5a5ad5203ea855f902498f165185867bee414bd3880c9d12d84b8378dd",
-      "tasks.md": "4310fa7183a6b9677b214d74004f47ff5c810d59fb37c500ab3bb8c304d73eac",
-      "implementation-summary.md": "e71bda26925990116e0115971f3571dd627cf83f11bb81761b3ece26dafa99ba"
+      "spec.md": "4986d9ceb961538a3eddd405d3c968bcc041729ab7196a0411fbe44d41907f10",
+      "plan.md": "1a4487aba2501d9a90e699fcd3e3a77e5e0ec97e68bd1113026c67d4f0ffad75",
+      "tasks.md": "d09774f37649abdbc76899dcba5c2e72c8bfbdba8ad2ffcca8267ba5a944a984",
+      "implementation-summary.md": "8886b83540d84349af99dd5d3bc8a369ba8f45d9515d1b41d96fb7df16cde3cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

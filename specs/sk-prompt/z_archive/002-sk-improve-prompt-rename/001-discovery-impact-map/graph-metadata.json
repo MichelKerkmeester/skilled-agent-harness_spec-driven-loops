@@ -13,11 +13,9 @@
     "trigger_phrases": [
       "082 phase 001",
       "sk-improve-prompt discovery inventory",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
+      "sk improve prompt rename discovery plan",
+      "sk improve prompt discovery impact map",
+      "phase 001 discovery impact map plan",
       "082 phase 001 tasks",
       "sk-improve-prompt inventory tasks",
       "082 phase 001 complete",
@@ -28,14 +26,14 @@
       "sk-improve-prompt",
       "discovery",
       "inventory",
-      "implementation",
+      "improve",
+      "prompt",
+      "rename",
       "plan",
-      "name",
-      "template",
-      "core",
+      "impact",
+      "map",
       "tasks",
-      "complete",
-      "summary"
+      "complete"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-09-07T16:17:09.555Z",
+    "last_save_at": "2026-10-07T22:25:16.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79f789217043b1a0aa09faea11435f4bfb3798bf18d54a02858809c1999e6bb3",
+    "source_fingerprint": "sha256:d9e0ccff1097ead72f7c928338c86d9f8ffff7085971bb534415f3798e7ebbe8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae3c7b605d572450fc4b597a60ec6e5ca6a459e983c6c4e54f2e25cda81071cc",
-      "plan.md": "a858f86dad28dbf09b05ae511c70b5a628a48bcf056c93e08cf82482d7f79ac4",
-      "tasks.md": "4d46738637838167f786ec2383ffbff5f8a1c8767e6eb24dffd89022e595e7c0",
-      "implementation-summary.md": "05ee3cb5be750806c5e9a8f25c58392f94a27c165786599cfa02049f143e44b5"
+      "spec.md": "d50759af2876af23b6b983aa373b3b316ae682d62e21e21f76cffab823391520",
+      "plan.md": "8aa6625c6fb137635c08e7a8d4bdc544c94a0dc3ae3028cbe46b0779723b2264",
+      "tasks.md": "6b1cf73201cf0ae2f30b1fc08f1bf99cdf3202a7b007e10ee5f0d8346bdce31e",
+      "implementation-summary.md": "ea03967f1505d25940864a7ba540b2493a871d51b515056fcad5fc6e8b906cdb"
     },
     "last_active_child_id": null,
     "last_active_at": null

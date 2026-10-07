@@ -2,7 +2,7 @@
 title: "...nt-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/implementation-summary]"
 description: "Completed implementation summary for Phase 008, grounded in the shipped research, review, and improve-agent releases plus the later closing-audit remediation."
 trigger_phrases:
-  - "008"
+  - "further deep loop improvements implementation summary"
   - "phase 8 implementation summary"
 importance_tier: "critical"
 contextType: "implementation"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance.",
     "created_at": "2026-07-14T15:17:16Z",
-    "last_save_at": "2026-08-30T15:39:16.328Z",
+    "last_save_at": "2026-10-07T18:13:08.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,12 +180,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:84a983bfffa6bf00875c244a2852c93418c8cb63d646125fe03477d3e122283a",
+    "source_fingerprint": "sha256:09af19be23c4452134bcdf26cfcca05bc805fa7a39810d2730030934e5d45a6a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2038d8614d880536f2145614edfe78584bab72ee4ad2167a7db8a8a657cbf94",
-      "plan.md": "4e414d03edde83d025b449c1b3a8b379d248cb7068815bb5144ed9e32b301d62",
-      "tasks.md": "5163bea41673a219adbe2afde48bd186f5eea97a37db2f24c8af5a4f803cc8e2"
+      "spec.md": "bcbe8dfdc18c31c78d86d06f41079c29ead9834321a9e781016639ec46917afa",
+      "plan.md": "c09419340024cf0569e0abc3dccc00f3e32a1be9256687ef481889ff10009b52",
+      "tasks.md": "2c7e3f940b3523c290c93a9ed18585244726a8c2d0d22ff4aa3dd15be3c9162c"
     },
     "last_active_child_id": null,
     "last_active_at": null

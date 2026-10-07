@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth"
+    packet_pointer: "mcp-tooling/z_archive/009-mcp-refero/005-inventory-parity-and-doc-truth"
     last_updated_at: "2026-07-17T06:03:03.357Z"
     last_updated_by: "claude"
     recent_action: "Shipped parity + dedup; all gates green"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
-  "spec_folder": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
-  "parent_id": "system-deep-loop/030-deep-loop-unification/011-skill-frontmatter-standardization",
+  "packet_id": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
+  "spec_folder": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
+  "parent_id": "system-deep-loop/z_archive/030-deep-loop-unification/011-skill-frontmatter-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-ai-council reference/asset frontmatter is inconsistent with the repo-wide contract: 15 of 15 references and 2 of 3 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:24Z",
-    "last_save_at": "2026-08-30T15:39:19.858Z",
+    "last_save_at": "2026-10-07T18:15:05.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6b64fc52f71aacc7ced8a06b2bdbd4278e9a6a97a7d2179b28de82029fce235",
+    "source_fingerprint": "sha256:0802a7ebe71150fb1b7f529f3b4c2282d0ca3700116eec6d335feb09b2c4584b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f5f147187856a4fcbe143b4c35a472c6b77c7a3d2fbc2ec4109afc4eeb4cf21",
-      "plan.md": "601b6dd91541484f6d4cbc3f9694be74531f63b67890f6325ecaead229570eca",
-      "tasks.md": "b96a4a0d2aba30bc83a0ab1717965ff79f35808ec5d8469dfd41b9093e6811cd",
-      "implementation-summary.md": "0cba39b6939271be8ceb9c19f8e79f02ecbfae942fc4ffa249183a44236eda41"
+      "spec.md": "76a2ac3bd7e094d900c11318c3927b62d9a4a2286c2ebf17cc18072949c81685",
+      "plan.md": "e2d90f7e4591d270a4a7854a7d47dac9ba988cf40af4bd4eb26c9339e90fecda",
+      "tasks.md": "0b4671b411314d03aff6acac0ce90ea94a4edc515db2eb34dfca2a8101d14e59",
+      "implementation-summary.md": "dde3c212f1851878ef81d2c4d6dc8131c35a83225bbc456650f3288449d2e9e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

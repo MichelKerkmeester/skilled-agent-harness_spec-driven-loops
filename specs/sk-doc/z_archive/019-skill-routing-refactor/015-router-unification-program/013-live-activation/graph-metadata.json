@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The compiled router contract is shadow-complete but never bound",
     "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-09-11T16:42:04.743Z",
+    "last_save_at": "2026-10-07T18:13:26.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6e7fbf77074c1ef421a49bc7860162a4732b3d5856374dd9a69b780842e5741",
+    "source_fingerprint": "sha256:4b733d53dbcd2cdc22d034121e4491e4a5bca9e8c796fb7966e5a7f1c3cf040d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fec3394b93871a06e3ea61b835188f02962d3e5e0c6fe77714138f763a2bec67",
-      "plan.md": "8652d749958462b5b2a35bd20812bd995f35acd48e057371304074a1b0ffcd40",
-      "tasks.md": "347bdaf2802a916f07131da38b2e7941d777db5cb2098517520ebffa0e49a9ba",
-      "implementation-summary.md": "c4a2f1fb7094d1820095f87d1da05ce650c6c9183ea0c881a8ba1df8758b3e4b"
+      "spec.md": "30bc13c57bc394ae888b873f5d626272b70e5211851bbcf00685fac1177e7509",
+      "plan.md": "1db592e05240d20b0cab834d4883359be3a4889a242ea65e9846a1d7ac6573ec",
+      "tasks.md": "1c2669849157602dbe83ea28626b6dbff003b95826f7c77f2863c3750e4aebfa",
+      "implementation-summary.md": "405f04f3526c57ba2284b4ad3e6d85c9e5054da6ea15e8f7eb4dd00aaba523cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

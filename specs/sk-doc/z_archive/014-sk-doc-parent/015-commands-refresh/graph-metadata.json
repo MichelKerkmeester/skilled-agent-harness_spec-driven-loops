@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/014-sk-doc-parent/015-commands-refresh",
-  "spec_folder": "sk-doc/014-sk-doc-parent/015-commands-refresh",
-  "parent_id": "sk-doc/014-sk-doc-parent",
+  "packet_id": "sk-doc/z_archive/014-sk-doc-parent/015-commands-refresh",
+  "spec_folder": "sk-doc/z_archive/014-sk-doc-parent/015-commands-refresh",
+  "parent_id": "sk-doc/z_archive/014-sk-doc-parent",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `.opencode/commands/` surface (the `/create:` and `/doc:` command files plus their `assets/` presentation and resource YAMLs) cited the pre-refactor sk-doc layout: hub-root `assets/`/`references/` facades, the deleted `creation.md` monoliths, the pre-regroup `create-skill/references/skillcreation/` path, the `doc-quality` packet name, and `shared/references/global/`",
     "created_at": "2026-07-07T06:36:20.172Z",
-    "last_save_at": "2026-08-30T15:39:13.691Z",
+    "last_save_at": "2026-10-07T18:12:33.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:479d7976700982db71df655e765be82ba226f456fc693483b1ad6ee5186f8d28",
+    "source_fingerprint": "sha256:bd7d3c55d385a38c04ab0bd25594d19194abfd81baf22ff2f71fafeee2962a50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f2526a3419bb2218c22ca2071cb42d6f6a3ce7b3754495b61e6434abbecb782",
-      "plan.md": "be285e20caeea22480de85cd7201833e8cc356d76fbb6ed008ace669142b32db",
-      "tasks.md": "9a9f08c20e1bf273329746123b237f845b224a8974414c28222b56538655f98f",
-      "implementation-summary.md": "29290760669e5481a18de0337fe12d1a114130e2c83d9055fd9c121013a68e1d"
+      "spec.md": "92c82b8c3a069572111146e1cbb4b6215fad5573c509b0180b92e0a20e7ca038",
+      "plan.md": "409a08884856cc9cfba63a8dc9cceeb20ab3a8a4bac21736dc0eb057acb39a86",
+      "tasks.md": "699cfd9278ee35542197c9a20acc45e1012276080cd2e4584046e1ccc98473f2",
+      "implementation-summary.md": "0ec4e7fccf21579917a2c07a5e205de18074faa4ffdf11df71c355b8c38155ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

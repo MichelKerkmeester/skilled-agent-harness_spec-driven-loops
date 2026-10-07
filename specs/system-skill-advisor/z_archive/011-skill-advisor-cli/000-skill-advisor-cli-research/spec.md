@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/011-skill-advisor-cli/000-skill-advisor-cli-research"
+    packet_pointer: "system-skill-advisor/z_archive/011-skill-advisor-cli/000-skill-advisor-cli-research"
     last_updated_at: "2026-06-06T14:15:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Research complete: GO verdict with terminal KQ answers"

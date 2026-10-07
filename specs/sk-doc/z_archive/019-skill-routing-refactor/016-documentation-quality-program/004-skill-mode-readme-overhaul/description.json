@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
   "description": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
   "keywords": [
     "sk-doc",

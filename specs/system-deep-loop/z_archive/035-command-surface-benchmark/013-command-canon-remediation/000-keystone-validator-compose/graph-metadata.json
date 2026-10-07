@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
-  "spec_folder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
-  "parent_id": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
+  "packet_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "spec_folder": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/000-keystone-validator-compose",
+  "parent_id": "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,11 @@
       "keystone validator compose",
       "frontmatter validation type command",
       "quick_validate compose",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "keystone composition implementation"
+      "keystone validator compose plan",
+      "keystone validator compose tasks",
+      "keystone composition implementation",
+      "frontmatter validation compose status",
+      "type command frontmatter checks"
     ],
     "key_topics": [
       "keystone",
@@ -32,11 +28,11 @@
       "validation",
       "type",
       "command",
-      "implementation",
       "plan",
-      "technical",
-      "approach",
-      "architecture"
+      "tasks",
+      "composition",
+      "implementation",
+      "status"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -196,7 +192,7 @@
     ],
     "causal_summary": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, so every canon frontmatter rule fires on the one path command authors validate against while section-presence behavior and every currently-conformant command are preserved.",
     "created_at": "2026-07-16T07:51:58.280Z",
-    "last_save_at": "2026-09-11T04:38:01.855Z",
+    "last_save_at": "2026-10-07T18:15:18.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16307850dbeea450a350a2af6bc61025beb4a510a22564393c30ddf6b37a48a2",
+    "source_fingerprint": "sha256:ad03cbea53229e94f717cd226eb9c164fa6031a8be23687c762354e57148bc4e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8dfe80872a9912d014441f439a0566d0b3b615787d46f048009119b93ea91e1",
-      "plan.md": "1c3bea2adc5086e989f80b4f1da1717fae13ae38ea297cc6ba58452a35597bad",
-      "tasks.md": "921a6d8b6bf42e355a01578a8277119509f9b1d0dce88162a89d07d542bcd3c3",
-      "implementation-summary.md": "8f40cd616df3b52334f41bf362969b5823fc1955223bc280ba5a246800f4127f"
+      "spec.md": "ea76a4e8992d950ed29dabc62ddb941b6c8a8b07cfba6dcde2a8db60b42653e2",
+      "plan.md": "f210ddc395c2f1bd71142814d4de0049d67d28dcd0901b0b4037799eed27962b",
+      "tasks.md": "9c95dc08f4c1554085e7ecbeb4a68ef29a35c47a315a95343983330afd415fc8",
+      "implementation-summary.md": "3ea99266cd0cfeeddcd7d4cf24e169f2ae67161b44c5d88929755448a6f0e588"
     },
     "last_active_child_id": null,
     "last_active_at": null

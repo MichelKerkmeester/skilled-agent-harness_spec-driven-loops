@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
-  "parent_id": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
+  "parent_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,9 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design-md-generator/backend/scripts/output-policy.ts",
-      ".opencode/skills/sk-design-md-generator/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,18 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "output-policy.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design-md-generator/backend/scripts/output-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design-md-generator/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -185,11 +171,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 repairs the code paths broken by the 002 move, authors the standalone-root metadata (graph-metadata + leaf-manifest.config, generated leaf-manifest + leaf-aliases), and proves the skill functional (173/173 backend tests, styles engine resolves, Class-S contract passes).",
     "created_at": "2026-08-19T05:52:32.952Z",
-    "last_save_at": "2026-08-30T15:39:13.499Z",
+    "last_save_at": "2026-10-07T18:12:34.937Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c91f5640ed1bfa57f5ee23a596fd430f68e8f5bc4b2bf561aa51e0ec1f840f8",
+    "source_fingerprint": "sha256:db99b59dd3165a3622a2356b580216a8fa8f916489e87767ff595d17534f75eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51c5886290c7b9840ba9d5a7d023bb3c122974be3a22ebf28f989edeef677408",
-      "plan.md": "bb931966bad741f6a5e23e52b552c533e52a815f2281886bd5b2a4b97949f7cf",
-      "tasks.md": "aa8803f4858c34d031b079aa544272fd937c1c8a7f7a634216113928dd5893a3",
-      "implementation-summary.md": "1b736c58c25536f3e9293548951195aa3a2001a3bd6b85bc33df7e23c6241a5b"
+      "spec.md": "656d5862b858cb86091f9ac85dc8329740ed793a2b94393d8fecdac40e34479f",
+      "plan.md": "b21d3c956a2a445fc674643f0e3108ec2b801070fa87ae7324ef1a48892154de",
+      "tasks.md": "e002225d1e3a7104075181bccf9c403b866300d13d418a0a2d1d64ce84b2cce8",
+      "implementation-summary.md": "8a391951e1c2af8e775c2944ce62cca8fb1b540d0e1ebdfabe3a685608097fbf"
     },
     "last_active_child_id": null,
     "last_active_at": null

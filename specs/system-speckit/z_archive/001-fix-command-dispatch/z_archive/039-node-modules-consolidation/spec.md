@@ -2,11 +2,7 @@
 title: "Node Modules [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/039-node-modules-consolidation/spec]"
 description: "id: 039-node-modules-consolidation"
 trigger_phrases:
-  - "node"
-  - "modules"
-  - "consolidation"
-  - "spec"
-  - "039"
+  - "node modules consolidation spec"
 importance_tier: "important"
 contextType: "planning"
 created: 2025-12-25

@@ -4,7 +4,6 @@ description: "Closeout summary for CLI self-invocation guard normalization."
 trigger_phrases:
   - "implementation"
   - "summary"
-  - "implementation summary"
   - "009"
   - "cli"
 importance_tier: "normal"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync"
+    packet_pointer: "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "scorer-remediation"
     recent_action: "Shipped semantic_shadow doc + comment sync to the live lane"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync |
+| **Spec Folder** | 004-semantic-shadow-doc-sync |
 | **Completed** | 2026-05-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

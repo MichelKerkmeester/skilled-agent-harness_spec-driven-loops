@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+  "specFolder": "mcp-tooling/z_archive/017-mcp-magicpath/001-cli-transport-proof",
   "description": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
   "keywords": [
     "every",

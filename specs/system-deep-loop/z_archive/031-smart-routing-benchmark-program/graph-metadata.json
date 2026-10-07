@@ -1,27 +1,27 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/031-smart-routing-benchmark-program",
-  "spec_folder": "system-deep-loop/031-smart-routing-benchmark-program",
+  "packet_id": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
+  "spec_folder": "system-deep-loop/z_archive/031-smart-routing-benchmark-program",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/031-smart-routing-benchmark-program/001-live-scoring-fix",
-    "system-deep-loop/031-smart-routing-benchmark-program/002-code-review-optimization",
-    "system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode",
-    "system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
-    "system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
-    "system-deep-loop/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
-    "system-deep-loop/031-smart-routing-benchmark-program/007-router-keyword-precision",
-    "system-deep-loop/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
-    "system-deep-loop/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
-    "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
-    "system-deep-loop/031-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
-    "system-deep-loop/031-smart-routing-benchmark-program/012-program-closeout",
-    "system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
-    "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
-    "system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
-    "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
-    "system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer",
-    "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/001-live-scoring-fix",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/002-code-review-optimization",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/003-routing-optimization-mode",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/007-router-keyword-precision",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/008-code-webflow-router-completion",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/012-program-closeout",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/017-stage-aware-scorer",
+    "system-deep-loop/z_archive/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
   ],
   "manual": {
     "depends_on": [],
@@ -64,8 +64,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -96,12 +95,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-code-router-sync.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
         "source": "derived"
       },
       {
@@ -211,11 +204,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill routing quality was only partially measured",
     "created_at": "2026-07-08T18:22:20.553Z",
-    "last_save_at": "2026-09-06T04:27:45.918Z",
+    "last_save_at": "2026-10-07T18:15:04.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,14 +224,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7dad17179a0fd0f84a742f570c882df5a317d104ecb79a52812fc99f82c214f",
+    "source_fingerprint": "sha256:e310bfc1348c32ccebd8dc28c33e1ad045a95a07733b80ae5e9a191ecd6ca0d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "21ad65ef2857f81d104066a8bfb2d65ef18b1a8f21ed87986753823303347f78",
-      "plan.md": "167e918f509f92e95d2d628ef7e6100c951a75adb31393fc3a07a67cfcaba55b",
-      "tasks.md": "2944017130812aa7ec62a9a0e9df91661509b9827a425f89d3c12d9c548b4fbe",
+      "spec.md": "7307a2f848a124e99ade9dc3a2317bc5122ef117e92d3986378544fe1f879ce1",
+      "plan.md": "31238422142d892a0ef0406ab4396903bcd583584e1dfa07b9a0979d4f774e2a",
+      "tasks.md": "56765eab03f03461dd73c4db25bec1f83141e23df0eee596ab14a768615726e3",
       "decision-record.md": "ec884e0bc9d8db01662cf12deb3b22382412aac50c44fa3bffc599fcab12d19b",
-      "implementation-summary.md": "467c4cb240b19d56648f68995277092dc2e7ee20229906a6d2b2646dd0c0371c"
+      "implementation-summary.md": "ac2c21f64f61d3426350bbc896ec72c76f8828b484720f2f226500acb41835b7"
     },
     "last_active_child_id": "system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync",
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-30T15:39:16.290Z",
+    "last_save_at": "2026-10-07T18:13:30.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:16f7b7162611d79342a695e1ae6868c689fda1ee813ee075cdb99ba672a299b2",
+    "source_fingerprint": "sha256:8b8be09f551bf97712f6cf3f87e453093c07f034859b627e2069bcd754f5c292",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "268779a24688f91c83097401d4599949747a9e8b5e858458f216934e40033804",
-      "plan.md": "e44ed501e74bceb8650905c9da7747a1e635c5e330b307af582e574f1883c4c0",
-      "tasks.md": "7c51bb39d2371b3ad50adc69c091292a546bfb7103614dfc58cceef4ab9832cf"
+      "spec.md": "e9427c6f72f750adb3ada991b6548e2ff069c851ebb6260a358f7b418c5ece86",
+      "plan.md": "b589ad7d0051aee294205d2fab487885fdc963daabd2b3de128d6993b18eff79",
+      "tasks.md": "c8a80f40d954e05ca0e4588659ed36975b700b7e2481ea1d10b05cfd33e7194d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,9 +1,11 @@
 ---
 title: "Plan: code-opencode Language-Slice Intent Gate"
 description: "Atomic per-language intent split in code-opencode + mirrored parent projection, verified against the three sk-code drift guards and before/after benchmark baselines."
+importance_tier: "normal"
+contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-opencode-language-gate"
     last_updated_at: "2026-07-09T10:45:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the atomic split plan"
@@ -13,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "code opencode language gate plan"
 ---
 # Plan: code-opencode Language-Slice Intent Gate
 

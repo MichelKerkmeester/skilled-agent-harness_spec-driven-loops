@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility",
-  "spec_folder": "sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/002-cmd-create-codex-compatibility",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/002-cmd-create-codex-compatibility",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Codex misinterprets agent routing metadata in create command files in three ways:",
     "created_at": "2026-04-12T09:02:50.215Z",
-    "last_save_at": "2026-08-30T15:39:14.037Z",
+    "last_save_at": "2026-10-07T19:23:49.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abaaab83956998e37790ce0e66ea2f54fbb873abe322d144711c9a12c0bffc04",
+    "source_fingerprint": "sha256:0bc82f4d23cc5e6cf49bc361540abb5b2641eb8fc00e20c564ba7fc099258bfb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2308c329af7e4f77b60baae8a735f436743b1c6ecbd11f558f4e657e8830289c",
-      "plan.md": "05b220e1b60190f3cace5d661c5a1eee602681bb502c77599c3b6a873d554d41",
+      "spec.md": "66ec4e726cc5f2217dc2978e336f60b9f7155616fc1a0b63fe73a03cb2716f0d",
+      "plan.md": "df45e61407c40466ea4df4669b87fbccdf26b05c44eb8652aeb8ab63fa6df41f",
       "tasks.md": "84ae19023a486145383f79025d108478009e45471562f598943559e0d5cd43f2",
       "decision-record.md": "33552ed2dd1d95552e2ffd08a7d68b86a2bc2f43fa5e7001d15c068837e6c4fb",
-      "implementation-summary.md": "29817351d9924d3ea43e96d2c3a53adb16ea34011562029d74a398481f0c6155"
+      "implementation-summary.md": "de792ddcc07844b846c81b4c5c7adaea35a10930f0ee905f1e654d55b4ab95b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

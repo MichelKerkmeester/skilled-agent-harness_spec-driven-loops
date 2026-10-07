@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
-  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "phase 009 tasks",
       "mcp click up readme tasks",
       "click up rewrite tasks",
-      "implementation summary",
-      "mcp click up readme rewrite"
+      "mcp click up readme rewrite",
+      "click up readme summary"
     ],
     "key_topics": [
       "mcp",
@@ -35,8 +35,8 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "summary",
+      "skill"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,9 +47,6 @@
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/README.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/changelog/v1.1.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
@@ -57,19 +54,19 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -201,7 +198,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/mcp-tooling/mcp-click-up/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:42.137Z",
-    "last_save_at": "2026-08-30T15:39:17.671Z",
+    "last_save_at": "2026-10-07T18:14:21.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fa6273b1bf7e7e365860845da7ce0ab589f51fe1b1f8524f1fa9793a4160893",
+    "source_fingerprint": "sha256:de710ef5c2079e4e56d563cd956178387164e5a4682941d4e48cd2a22f766613",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19c44d9eb992179f7c4df0bccbdbe3dc66203f517e479731f7cb2560b415ae97",
-      "plan.md": "5c6e8b32296d6feb63ee60766d42b6ff08a2f63b3b866f13d2f12341f80bf5e7",
-      "tasks.md": "651c2487ef45d0f2846d229b074a22708bb7c39276503403c24c8efa67fb87c1",
-      "implementation-summary.md": "cc7921047b93a65ac6557a6452c66cd16ba991e9e8a2efb8f561ff14df37ab97"
+      "spec.md": "9b50e54f62d2891bf6b493a998d2ba8a87b06ef368145add3ba83c682128b21f",
+      "plan.md": "4066164a9876f91e80c4c0cc9042e88f716e0846a5f972d0b157e84ead7623fc",
+      "tasks.md": "8d0a178ebec0d78f9f0794c2d7e5edfdca62349d495a4cdfa735c827bbdd52a4",
+      "implementation-summary.md": "e6a1ccfc5dfcf85e57f5a691b23ae985ff3d87477181c5622f06aef346f45c86"
     },
     "last_active_child_id": null,
     "last_active_at": null

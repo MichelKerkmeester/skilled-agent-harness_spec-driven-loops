@@ -2,8 +2,7 @@
 title: "...lled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer/implementation-summary]"
 description: "Phase 4a: offline replay optimizer with deterministic config tuning, advisory promotion gate, and full audit trail. Phase 4b prompt/meta optimization remains deferred."
 trigger_phrases:
-  - "042.004"
-  - "implementation summary"
+  - "offline loop optimizer implementation summary"
   - "offline loop optimizer"
   - "replay corpus"
   - "advisory promotion"

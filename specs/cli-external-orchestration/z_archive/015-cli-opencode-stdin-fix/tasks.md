@@ -1,6 +1,11 @@
 ---
 title: "Tasks — 097 cli-opencode stdin-redirect fix"
 description: "Per-file task list for applying </dev/null to all 4 YAML workflows + cli-opencode skill files + 2 stress scripts."
+trigger_phrases:
+  - "cli-opencode stdin redirect fix tasks"
+  - "dev null dispatch hang task list"
+importance_tier: "important"
+contextType: "fix"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: 097 cli-opencode stdin-redirect fix
@@ -9,6 +14,7 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## P0 — Mandatory (REQ-001 through REQ-006)
 
 | # | Task | File | Method | Done |
@@ -23,7 +29,9 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 | T8 | Patch stress script (001-scenario-design) | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/001-scenario-design/scripts/dispatch-cli-opencode.sh` | Edit: add `</dev/null` to opencode run line | [ ] |
 | T9 | Update CHANGELOG with §Fix 4 | `.opencode/skills/cli-opencode/CHANGELOG-2026-05-08-tool-name-regex-fix.md` | Edit: add §Fix 4 entry, update §TL;DR to "three issues", correct §Symptom B diagnosis | [ ] |
 | T10 | Mirror to Barter (conditional) | `barter/.opencode/skill/cli-opencode/SKILL.md` (if exists) | Edit: same ALWAYS rule | [ ] |
+<!-- /ANCHOR:phase-1 -->
 
+<!-- ANCHOR:phase-2 -->
 ## P1 — Required (REQ-007, REQ-008)
 
 | # | Task | File | Method | Done |
@@ -31,7 +39,9 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 | T11 | Update cli_reference.md flag-reference note | `.opencode/skills/cli-opencode/references/cli_reference.md` | Edit: add stdin note near `--format`/`--dir` | [ ] |
 | T12 | Update prompt_templates.md copy-paste | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Edit: add `</dev/null` to background-dispatch templates | [ ] |
 | T13 | Update README.md (if has dispatch snippets) | `.opencode/skills/cli-opencode/README.md` | Edit: add `</dev/null` to example | [ ] |
+<!-- /ANCHOR:phase-2 -->
 
+<!-- ANCHOR:phase-3 -->
 ## P0 — Validation
 
 | # | Task | Method | Done |
@@ -41,3 +51,4 @@ description: "Per-file task list for applying </dev/null to all 4 YAML workflows
 | T16 | Smoke test 1 modified YAML pattern | Run a 30-second PONG dispatch through the modified deep-research auto YAML pattern | [ ] |
 | T17 | Run strict validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/015-cli-opencode-stdin-fix --strict` | [ ] |
 | T18 | Write implementation-summary.md | All tasks above complete + file:line evidence per task | [ ] |
+<!-- /ANCHOR:phase-3 -->

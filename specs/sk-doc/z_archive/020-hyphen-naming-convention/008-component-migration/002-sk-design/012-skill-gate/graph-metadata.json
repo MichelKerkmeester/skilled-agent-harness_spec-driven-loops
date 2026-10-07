@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path remains in sk-design.",
     "created_at": "2026-07-14T15:17:23Z",
-    "last_save_at": "2026-09-10T20:44:59.822Z",
+    "last_save_at": "2026-10-07T18:13:21.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:a2e4cb4a9e052484e261598a43262600d0a5e4ef061aecf47e320b62737a0d42",
+    "source_fingerprint": "sha256:b6e573e4dbee63cbfcff2eef25cf8cc0f6b93b5cd862a2b5540f7e800cdc7259",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9d8a6197f304292bfa9719d4fcab189df4846db535b3659eb969fae2bf5d15d",
-      "plan.md": "898618d4264cf43f3c6872ece3a821c0c6c48dfd089a4cfc7359a49b9eee6366",
-      "tasks.md": "043cfd8f66b6d3c19b939b5d6c37a765f330336d7810c80e2b09f61913a2b5f7"
+      "spec.md": "43382ed7b99e33404678661f08d95a41478362374d5bab563ab93d161e7db6fa",
+      "plan.md": "bd4a81ccb18a8ad46c5c2c19c57d56beddbe031024095e5c19541b067e058443",
+      "tasks.md": "47e7e0e21f4fa8ea29090c103e5267ae2ab90ffbb65dc54a745cc45f3ea517db"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `014-runtime-engine`, the activation layer `013-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
     "created_at": "2026-07-20T05:26:38.974Z",
-    "last_save_at": "2026-09-11T16:42:04.791Z",
+    "last_save_at": "2026-10-07T18:13:24.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0de06af5ea30731d6cbeea014f7a16d3ecdc603f7195974c66fef2a79f51891a",
+    "source_fingerprint": "sha256:6511fd11fd1e5477831cc79b4232e781da209458c6b8c8a953ea761d7d3a7514",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "323c6f287052c67972bfad8a356dc098e07369c9bed0b63447b54a3b70ee6a26",
-      "plan.md": "40105389f2f7ce45efb4ea1e4e117aab720e573b534ab61a7d7437648b0bcb84",
-      "tasks.md": "8cade41e423c99876f6ee655487d78a7334819e0b2b73ea97229c1bfc9843801",
-      "implementation-summary.md": "d847e72477d99dedc600b8f1e9707c91f94576f3bc17dda003e1219931e68e8a"
+      "spec.md": "1e82c155207bd7863b24762c672e4b5d2afa55a4abfb052b2b04c6400e29d082",
+      "plan.md": "735f697c1bad8bee101404322a7792b733d7b32468f7d57296f87783535956e2",
+      "tasks.md": "7b626bd1501f45c31bc81f4b8e7c1801df9eb56827bc2bb52ba726dc3b0695fa",
+      "implementation-summary.md": "9dff7d514a4bedd7b5d9a70fe4be986547d0e7690598e36401b50b3012903af7"
     },
     "last_active_child_id": null,
     "last_active_at": null

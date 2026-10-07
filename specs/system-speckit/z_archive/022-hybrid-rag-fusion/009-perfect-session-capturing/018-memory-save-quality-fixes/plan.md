@@ -163,7 +163,6 @@ Structured or normalized session data enters the extraction layer first, quality
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -182,7 +181,6 @@ Phase 1 (Root-Cause Confirmation) ---> Phase 2 (Code Fixes) ---> Phase 3 (Verifi
 ---
 
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/004-hub-integration"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/004-hub-integration"
     last_updated_at: "2026-08-29T13:24:01Z"
     last_updated_by: "session"
     recent_action: "Completed every hub surface: routing, catalog, playbook, changelog"

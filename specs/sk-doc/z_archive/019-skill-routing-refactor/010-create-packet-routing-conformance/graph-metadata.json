@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/010-create-packet-routing-conformance",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/010-create-packet-routing-conformance",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check): split the merged 'WHEN TO USE + SMART_ROUTING' header into separate WHEN TO USE and SMART ROUTING H2s, ensure a REFERENCES H2, add missing keyword-trigger and SUCCESS CRITERIA content, renumber, version-bump, and changelog. Fix the files, not the validator.",
     "created_at": "2026-07-12T10:23:20.067Z",
-    "last_save_at": "2026-08-30T15:39:14.847Z",
+    "last_save_at": "2026-10-07T18:13:25.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2f28248d3e4de2d30d14aac1d37b31beef2b2279fcb6688998cce8f33b99f12",
+    "source_fingerprint": "sha256:b0102e4828e89357be8b9ed9604096c3ca9787698e369732ecf8999410f839f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18428b7375d388978ed2adc9d9a2976113361d34daea7af9b7501b194a1b159b",
-      "plan.md": "4d8f0e07220aae5d2258716621b438d38ce536a0a7c1d01b4b1cf59eaa3bf603",
-      "tasks.md": "893912e8dbe45b08e9d25da4d797316efdbbe8aa2ae3f0dc4ea0e8c8b3ee7f40",
-      "implementation-summary.md": "e682d00eef35f0d7082822b4867d3c39cfc7c6b9a295c8c2e5bb197691d7a635"
+      "spec.md": "620dd701344cb0b2d80f54e7792ace26e0f7a5b426b3bd479fc5e15a5774ef61",
+      "plan.md": "ffe24632cbf129d8e43d3f82cf1b7a664ba37c34511bb730ffbd287921757d58",
+      "tasks.md": "98d4238c8eb62035497674e0fb18d0cfc8ca757f8372c0b625b0bd11d5b86958",
+      "implementation-summary.md": "737a6472823c7ac1ac60bb72a3fcf20d09bbd537d4034bb90b674a5c5417d8ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

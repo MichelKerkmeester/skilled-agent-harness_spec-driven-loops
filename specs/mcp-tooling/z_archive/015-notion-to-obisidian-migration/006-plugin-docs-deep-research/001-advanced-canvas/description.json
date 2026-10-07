@@ -1,5 +1,5 @@
 {
-  "specFolder": "mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
+  "specFolder": "mcp-tooling/z_archive/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/001-advanced-canvas",
   "description": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the",
   "keywords": [
     "shipped",

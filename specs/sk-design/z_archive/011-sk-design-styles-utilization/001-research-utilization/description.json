@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/011-sk-design-styles-utilization/001-research-utilization",
+  "specFolder": "sk-design/z_archive/011-sk-design-styles-utilization/001-research-utilization",
   "description": "The extracted styles library (`.opencode/skills/sk-design/styles/`, ~1,290 real design systems as DESIGN.md + token files) is unused by the sk-design",
   "keywords": [
     "extracted",

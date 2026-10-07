@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/003-cli-tool-integration",
   "description": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it,",
   "keywords": [
     "phase",

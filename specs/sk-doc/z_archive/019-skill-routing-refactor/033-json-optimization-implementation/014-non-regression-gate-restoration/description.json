@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
   "description": "Repair the scorer-eval baseline ratchet — the only test that pins holdout accuracy exactly and enforces the release floors — and wire it into CI, so",
   "keywords": [
     "repair",

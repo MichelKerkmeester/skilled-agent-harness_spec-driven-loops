@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior"
+    packet_pointer: "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior"
     last_updated_at: "2026-07-06T16:57:20.003Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented commit and deletion hashes"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior |
+| **Spec Folder** | 004-c4-shadow-seam-beta-posterior |
 | **Authored** | 2026-06-19 |
 | **Level** | 3 |
 | **Status** | complete (CHK-120 rollback satisfied by store deletion at 6b99eb68d2) |

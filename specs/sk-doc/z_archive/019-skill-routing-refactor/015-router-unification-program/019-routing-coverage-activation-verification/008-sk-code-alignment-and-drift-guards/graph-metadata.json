@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,7 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
       ".opencode/skills/sk-code/leaf-manifest.json"
     ],
     "entities": [
@@ -69,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-code-router-sync.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-09-11T16:42:05.154Z",
+    "last_save_at": "2026-10-07T18:13:13.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:363da0b3c065d9e7ddb0e163e7713f4cdc87c495fd320a2698a7a12116bc6471",
+    "source_fingerprint": "sha256:2ce2d3adbd08c0105bbed5c8cf0aa8b428132f8c88bb99792ff81a7e77978283",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc57bd931b1712d9eade15d3420ac1b926725efe1fe0ae99334eaa1814098b1b",
       "plan.md": "efac94677d71b3b24684a622ec5f8b79922e027f28c166a68c62b57ee88e04cf",
       "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
-      "implementation-summary.md": "62c356592003b155b543b91fce26345042d582a317eed4f3820dac27cb3f9f03"
+      "implementation-summary.md": "6579e0bad362ca1fcef8e5aadf01fc9e65bb4b314d93502e4b074711e79be2e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

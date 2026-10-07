@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The MCP server README (mcpserver/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the 022-hybrid-rag-fusion epic",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-08-30T15:39:39.287Z",
+    "last_save_at": "2026-10-07T18:16:42.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f938343d3497b3acd9da1baddce197446006042e8a3809a013c3e2c1a13381d",
+    "source_fingerprint": "sha256:2f8aabc06f4fe0049de970dc51d375e4c748fdffdbd9371b8e015fe2b128733d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13ac3118882ec3eb0906db2c5c29db7c2ab8a20d6351da6151f7e575de160c6a",
       "plan.md": "bd5e624db095b075c854ff2ce853e2cee70b166643819eadb922af69ed2e7a7a",
       "tasks.md": "d5c6f486f49640485788f27295b932ac1331c7d6a261b7c3456c93d7a9ef0f68",
-      "implementation-summary.md": "047f23743fbf0c5a5935cc99d19fee7bacf94b88c1ff57a490fcdadc2c61494c"
+      "implementation-summary.md": "21b20c7506f0820a6ae526aa85fde47d8e3f642907037dc7a796ea32c953cf54"
     },
     "last_active_child_id": null,
     "last_active_at": null

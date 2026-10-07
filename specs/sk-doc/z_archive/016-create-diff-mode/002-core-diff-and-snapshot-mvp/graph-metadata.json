@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
-  "spec_folder": "sk-doc/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
-  "parent_id": "sk-doc/016-create-diff-mode",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/002-core-diff-and-snapshot-mvp",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The research has selected an architecture, but no reusable comparison engine exists",
     "created_at": "2026-07-15T09:48:15.439Z",
-    "last_save_at": "2026-08-30T15:39:14.045Z",
+    "last_save_at": "2026-10-07T18:12:33.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffd32eb08ca0b44fe9c15d8ce9b58f90d831f759ff5e2d527d51611cd32f9ddd",
+    "source_fingerprint": "sha256:9d30978d7f2d3e544f3704041084ffc2141e3d804cd7c58315f1014c3317cdcd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35bbea85b7243a9a7b17aa22eeec5132d3d6dd9208ae5275496b69293e4b3fc8",
-      "plan.md": "f851257ecd13e7743fd2651bd2eb95532b520b262adbe0ba786be020e7e4e67c",
-      "tasks.md": "ac8103e451112391ef52742b34be42d5bc067e2cd97283e7b115535367fd0c9e",
-      "implementation-summary.md": "eea2f779c529ad2a0e35659dabd0ed401d7d853b4ab5b3b5ccfebc4688d8180f"
+      "spec.md": "2af5af243ef2d47796646bfd022b588b942f4ab2a863662c72f60fe9596d7093",
+      "plan.md": "f6aea9539a225fd8cfcfe7e2eaef988d1f7235ffd022d18d4540b4f1a1d2df2a",
+      "tasks.md": "0026c2e7f674c5ac18b7a0f07a48ccff7318fcf44f70c7cca0e6e2dfd873e0ec",
+      "implementation-summary.md": "1338a120cb0824a0c5d5b56b24ba282d80e680f0f5c5804f766998d7466f9170"
     },
     "last_active_child_id": null,
     "last_active_at": null

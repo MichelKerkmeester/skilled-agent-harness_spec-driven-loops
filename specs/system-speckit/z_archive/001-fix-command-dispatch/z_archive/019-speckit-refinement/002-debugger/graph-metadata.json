@@ -11,34 +11,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "debug",
-      "delegation",
-      "integration",
-      "spec",
-      "002",
-      "debugger",
-      "implementation",
-      "plan"
+      "debug delegation spec",
+      "debug delegation integration",
+      "debug delegation plan",
+      "debug delegation command",
+      "debug delegation tasks",
+      "debug command task breakdown"
     ],
     "key_topics": [
       "debug",
       "delegation",
-      "integration",
       "spec",
-      "debugger",
-      "implementation",
+      "integration",
       "plan",
+      "command",
+      "tasks",
+      "task",
+      "breakdown",
       "debug-delegation",
       "template",
-      "exists",
-      "speckit",
-      "underutilized"
+      "exists"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -51,6 +50,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -118,22 +123,36 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `debug-delegation.md` template exists in SpecKit but is underutilized",
     "created_at": "2026-04-12T09:02:53.514Z",
-    "last_save_at": "2026-08-30T15:39:36.983Z",
+    "last_save_at": "2026-10-07T20:04:17.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:821d9026626270e9a3e38f63eadcee0d76ae6336aafc20a8ac5b590a3023be52",
+    "source_fingerprint": "sha256:f1a2caa1724532e292cc984e3a986b9b461907b02f0b3b147712b236a23e3c78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b23bbf523c511d9d7c53cef8097e9fd4b42835cfcc5f1167547cd880c6d78e05",
-      "plan.md": "7cf6a06dad6117a8c86a48d7bbf7fc7277ae551d96bbfb9d2bc74d5bb0ec8d0a"
+      "spec.md": "a0242924a988d83adfa4829a499fa37e277c137fe5a03c43a7d4f83dd73611e9",
+      "plan.md": "54a8ce9fbdef63adbde90556af19dc8457aeae17b91c220c2640180343452149",
+      "tasks.md": "f6296c2285a11ec8700d53d732523f444ee466bb609e664fb7fefc81d31c4d04"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,7 +5,6 @@ trigger_phrases:
   - "implementation"
   - "summary"
   - "feature"
-  - "implementation summary"
   - "006"
 importance_tier: "normal"
 contextType: "implementation"

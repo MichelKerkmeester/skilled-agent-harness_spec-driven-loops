@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/008-loop-systems-remediation"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation"
     last_updated_at: "2026-07-01T16:35:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Wrote real parent aggregate plan from seven completed children"

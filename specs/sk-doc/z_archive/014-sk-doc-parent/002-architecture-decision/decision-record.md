@@ -4,10 +4,22 @@ description: "Locks the sk-doc monolith-to-parent-hub architecture from the phas
 contextType: "implementation"
 importance_tier: "high"
 parent: "skilled-agent-orchestration/125-sk-doc-parent/002-architecture-decision"
-trigger_phrases: []
+trigger_phrases:
+  - "sk-doc architecture decision"
+  - "sk-doc parent hub facade map"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/z_archive/014-sk-doc-parent/002-architecture-decision"
+    last_updated_at: "2026-07-06T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "ADR authored from 001 research (8-packet set + facade map)"
+    next_safe_action: "None, the packet is archived"
+    blockers: []
+    key_files: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
+<!-- ANCHOR:adr-001 -->
 # ADR — sk-doc Parent-Hub Architecture
 
 **Status:** Approved-pending-review — operator decided D4=B (create-flowchart packet) and requested an ADR review before build phases 003+ begin.
@@ -16,12 +28,15 @@ trigger_phrases: []
 
 ---
 
+<!-- ANCHOR:adr-001-context -->
 ## 1. Context
 
 `sk-doc` is a 6-mode monolith and the last major authoring skill not on the canonical two-axis parent-hub pattern. The phase-001 deep research (94 breadth rulings + 8 adversarial verdicts, all `file:line`-cited) settled the packet set, invariants, and the dominant migration constraint (external-path coupling). This ADR converts those findings into locked decisions + concrete specs.
+<!-- /ANCHOR:adr-001-context -->
 
 ---
 
+<!-- ANCHOR:adr-001-decision -->
 ## 2. Decisions
 
 ### D1 — Packet set: **9 workflow packets** (HIGH; D4 resolved to a live flowchart packet)
@@ -89,25 +104,33 @@ Additionally reconcile the two fail-open code sites explicitly (not via facade a
 4. Rewrite `graph-metadata.json` + create `description.json` + advisor boosters; regenerate `skill-graph.json`.
 5. ONLY THEN any optional explicit command-repoint (isolated later commit).
 **Never** move `parent_skill_*` templates before their facades exist (`missing_hub_template` hard-stop for `/create:sk-skill-parent`). **Never** edit workflow YAML mid-run. Command YAMLs are **facade-preserved** in the split commit, not repointed.
+<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
+<!-- ANCHOR:adr-001-consequences -->
 ## 3. Consequences
 
 - **Zero external edits** for the ~14K doc mentions and the 36 runtime refs (facade-covered).
 - `sk-doc` presents one advisor identity; 8 create-* + doc-quality routes reachable by verb.
 - Reversible: the split is symlink-based; rollback = restore the monolith tree from VCS.
 - Open risk retired: the research's "facade gap" is closed by the enumerated 35-leaf map + the preserve-root-dir-shape strategy.
+<!-- /ANCHOR:adr-001-consequences -->
 
+<!-- ANCHOR:adr-001-alternatives -->
 ## 4. Alternatives rejected
 - 6-packet fold (folding command/benchmark) — rejected by adversarial evidence (distinct lifecycles).
 - Surface axis for doc-quality — category error (universal doctrine, not orthogonal stack-evidence).
 - 3-symlink facade — insufficient (misses 33 of 36 runtime leaves).
 - Explicit-repoint in the split commit — breaks the self-hosting `/create:sk-skill-parent` flow.
+<!-- /ANCHOR:adr-001-alternatives -->
 
 ## 5. Open for operator
 - **D4 flowchart — RESOLVED to B** (`create-flowchart` packet, 9 total).
 - Remaining: operator **review sign-off** on `001/research.md` + this ADR before the build phases (003+) mutate `sk-doc`.
 
+<!-- ANCHOR:adr-001-impl -->
 ## 6. Next
 On approval: phase 003 scaffolds the hub shell via `/create:sk-skill-parent` (templates read at their current path, pre-facade); phase 004 builds `shared/` + the facades; 005–012 build the packets; 013 repoints commands; 014 advisor; 015 verifies external couplings; 016 benchmark; 017 cutover + rollup.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->

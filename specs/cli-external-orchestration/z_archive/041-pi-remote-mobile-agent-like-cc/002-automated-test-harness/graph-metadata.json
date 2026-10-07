@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
-  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
-  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "packet_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+  "spec_folder": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+  "parent_id": "cli-external-orchestration/z_archive/041-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Builds the recorded, live, integration, security, browser, and crash harness that proves the remote control plane fails closed",
     "created_at": "2026-08-10T18:28:39Z",
-    "last_save_at": "2026-08-30T15:39:07.887Z",
+    "last_save_at": "2026-10-07T18:11:39.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,14 +196,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c0ef1f690fd4f1491ad5f5c7bb7076d798d6319e5ce08cc92235ba5be1c255e",
+    "source_fingerprint": "sha256:77e79d5fd1be6ba416d0038e000b0cef60de4a2eaf9da1fdcfef696a38ec07a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2450244d97b101f1488d08e10e0865f3b8fb6970e20beb02ae1487b76a2bf53a",
-      "plan.md": "7e7d7e2a0949f1d0044709044046e3a2ff501a83e527b6aa9d00c69aab49b823",
-      "tasks.md": "a537fc52fbc1254a603556b41b9d66182cd29ca204a7fc87b87e1d7f35302b79",
+      "spec.md": "5cb521312083e9b97ebab93454d287409f83a16b85a15a36cac193cd5b98c9f4",
+      "plan.md": "033962333a341247c43d7e24c8608118c79bf4680bb2b2b593d6469c93f24025",
+      "tasks.md": "9a34c36e10c93bb24773423c859293db121bd048222afdd059438c4b4c192ef3",
       "decision-record.md": "4db06636643e4c2f4a8ec40bc6f3cce9bc008323a676855b4d696ede174e10d3",
-      "implementation-summary.md": "ee004cec64d44f6f417334f444b029a47b1c9ff41e63b000ea0ebc330adaa4dc"
+      "implementation-summary.md": "0a5ea40579f516e1c3eb6d2bc5a89d03dde08a2458f969ae69527c72280c9ad3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,7 +2,7 @@
 title: "Tasks [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements/tasks]"
 description: "Completed Level 3 task record for the delivered Phase 008 runtime-truth, graph, reducer, fixture, and release-closeout work."
 trigger_phrases:
-  - "008"
+  - "further deep loop improvements tasks"
   - "phase 8 tasks"
 importance_tier: "critical"
 contextType: "implementation"

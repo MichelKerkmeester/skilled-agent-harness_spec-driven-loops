@@ -14,7 +14,7 @@ importance_tier: "important"
 contextType: "planning"
 ---
 <!-- SPECKIT_LEVEL: 1 -->
-# Feature Specification: [YOUR_VALUE_HERE: Feature-Name] - Requirements & User Stories
+# Feature Specification: Not recorded - Requirements & User Stories
 
 Complete feature specification defining requirements, user stories, and success criteria.
 
@@ -27,26 +27,26 @@ Complete feature specification defining requirements, user stories, and success 
 
 ### Metadata
 - **Category**: [FORMAT: Spec | Feature | Enhancement | Fix]
-- **Tags**: [YOUR_VALUE_HERE: feature-area], [YOUR_VALUE_HERE: component]
+- **Tags**: Not recorded, Not recorded
 - **Priority**: [FORMAT: P0 | P1 | P2 | P3]
 - **Feature Branch**: `[FORMAT: ###-feature-name]`
 - **Created**: [FORMAT: YYYY-MM-DD]
 - **Status**: [FORMAT: Draft | In Review | Approved | In Progress | Complete]
-- **Input**: [YOUR_VALUE_HERE: Original user request or requirement source]
+- **Input**: Not recorded
 
 ### Stakeholders
-- [YOUR_VALUE_HERE: List key stakeholders/roles - Product, Engineering, Design, QA, etc.]
+- Not recorded
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement describing what this achieves. Keep technology-agnostic and focus on user/business value.]
+Not recorded
 
 [example: Enable users to track their usage metrics and export data in multiple formats for analysis]
 
 ### Assumptions
 
-- [NEEDS CLARIFICATION: What browser/platform requirements must be supported? (a) ES6+ modern browsers only (b) IE11+ legacy support (c) Mobile-first responsive (d) Other - specify]
-- [NEEDS CLARIFICATION: What are the expected data volume limits? (a) <1,000 records (b) 1,000-10,000 records (c) 10,000-100,000 records (d) 100,000+ records]
-- [NEEDS CLARIFICATION: What existing systems can this feature depend on? (a) Existing auth (b) Existing database (c) Existing API gateway (d) None - greenfield]
+- Not recorded
+- Not recorded
+- Not recorded
 
 **Assumptions Validation Checklist**:
 - [ ] All assumptions reviewed with stakeholders
@@ -61,18 +61,18 @@ Complete feature specification defining requirements, user stories, and success 
 ## 2. SCOPE
 
 ### In Scope
-- [YOUR_VALUE_HERE: Specific deliverable or feature component 1]
-- [YOUR_VALUE_HERE: Specific deliverable or feature component 2]
-- [YOUR_VALUE_HERE: Specific deliverable or feature component 3]
+- Not recorded
+- Not recorded
+- Not recorded
 
 [example: User interface for viewing metrics dashboard]
 [example: API endpoints for fetching metric data]
 [example: Export functionality for CSV and JSON formats]
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Explicitly excluded item 1 - explain why]
-- [YOUR_VALUE_HERE: Explicitly excluded item 2 - explain why]
-- [YOUR_VALUE_HERE: Explicitly excluded item 3 - explain why]
+- Not recorded
+- Not recorded
+- Not recorded
 
 [example: PDF export format - deferred to Phase 2]
 [example: Real-time metric streaming - different architectural approach needed]
@@ -99,35 +99,35 @@ Complete feature specification defining requirements, user stories, and success 
   If you then add Story 2, it should enhance but not depend on Story 1's internals.
 -->
 
-### User Story 1 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 1 - Not recorded (Priority: P0/P1/P2/P3)
 
-[YOUR_VALUE_HERE: Describe this user journey in plain language - what the user wants to accomplish and why]
+Not recorded
 
 [example: As a user, I need to view my daily usage metrics so that I can monitor my consumption patterns]
 
-**Why This Priority**: [YOUR_VALUE_HERE: Explain the value this delivers and justify the priority level]
+**Why This Priority**: Not recorded
 
 [example: P0 because viewing metrics is the core value proposition - without it, the feature provides no value]
 
-**Independent Test**: [YOUR_VALUE_HERE: Describe how this story can be tested independently and what standalone value it provides]
+**Independent Test**: Not recorded
 
 [example: Can be fully tested by displaying metrics dashboard with sample data. Delivers value even without export functionality by providing visibility into usage.]
 
 **Acceptance Scenarios**:
-1. **Given** [YOUR_VALUE_HERE: initial state], **When** [YOUR_VALUE_HERE: user action], **Then** [YOUR_VALUE_HERE: expected outcome]
-2. **Given** [YOUR_VALUE_HERE: initial state], **When** [YOUR_VALUE_HERE: user action], **Then** [YOUR_VALUE_HERE: expected outcome]
+1. **Given** Not recorded, **When** Not recorded, **Then** Not recorded
+2. **Given** Not recorded, **When** Not recorded, **Then** Not recorded
 
 [example: **Given** user is logged in, **When** they navigate to metrics page, **Then** they see usage data for the last 30 days]
 
 ---
 
-### User Story 2 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 2 - Not recorded (Priority: P0/P1/P2/P3)
 
-[YOUR_VALUE_HERE: Describe this user journey in plain language]
+Not recorded
 
-**Why This Priority**: [YOUR_VALUE_HERE: Explain the value and justify priority]
+**Why This Priority**: Not recorded
 
-**Independent Test**: [YOUR_VALUE_HERE: Describe independent testing approach]
+**Independent Test**: Not recorded
 
 **Acceptance Scenarios**:
 1. **Given** [initial state], **When** [action], **Then** [outcome]
@@ -135,13 +135,13 @@ Complete feature specification defining requirements, user stories, and success 
 
 ---
 
-### User Story 3 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 3 - Not recorded (Priority: P0/P1/P2/P3)
 
-[YOUR_VALUE_HERE: Describe this user journey in plain language]
+Not recorded
 
-**Why This Priority**: [YOUR_VALUE_HERE: Explain the value and justify priority]
+**Why This Priority**: Not recorded
 
-**Independent Test**: [YOUR_VALUE_HERE: Describe independent testing approach]
+**Independent Test**: Not recorded
 
 **Acceptance Scenarios**:
 1. **Given** [initial state], **When** [action], **Then** [outcome]
@@ -166,30 +166,30 @@ Complete feature specification defining requirements, user stories, and success 
   - REQ-INTG-XXX: Integration requirements
 -->
 
-- **REQ-FUNC-001:** System MUST [YOUR_VALUE_HERE: specific capability - example: "allow users to create accounts with email/password"]
-- **REQ-FUNC-002:** System MUST [YOUR_VALUE_HERE: specific capability - example: "validate email format before account creation"]
-- **REQ-FUNC-003:** Users MUST be able to [YOUR_VALUE_HERE: key interaction - example: "reset their password via email link"]
-- **REQ-DATA-001:** System MUST [YOUR_VALUE_HERE: data requirement - example: "persist user preferences across sessions"]
-- **REQ-FUNC-004:** System MUST [YOUR_VALUE_HERE: behavior - example: "log all authentication attempts for security audit"]
+- **REQ-FUNC-001:** System MUST Not recorded
+- **REQ-FUNC-002:** System MUST Not recorded
+- **REQ-FUNC-003:** Users MUST be able to Not recorded
+- **REQ-DATA-001:** System MUST Not recorded
+- **REQ-FUNC-004:** System MUST Not recorded
 
 **Requirements Needing Clarification**:
-- **REQ-FUNC-005:** System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth, magic link?]
-- **REQ-DATA-002:** System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified - 30 days, 1 year, indefinite?]
-- **REQ-FUNC-006:** System MUST [NEEDS CLARIFICATION: unclear requirement - provide specific details]
+- **REQ-FUNC-005:** System MUST authenticate users via Not recorded
+- **REQ-DATA-002:** System MUST retain user data for Not recorded
+- **REQ-FUNC-006:** System MUST Not recorded
 
 ### Traceability Mapping
 Map User Stories to Functional Requirements to ensure all stories are supported by specific requirements.
 
 | User Story | Related Requirements | Notes |
 |------------|---------------------|-------|
-| Story 1 - [YOUR_VALUE_HERE: Title] | REQ-FUNC-001, REQ-FUNC-003 | [OPTIONAL: additional notes] |
-| Story 2 - [YOUR_VALUE_HERE: Title] | REQ-FUNC-002, REQ-DATA-001 | [OPTIONAL: additional notes] |
-| Story 3 - [YOUR_VALUE_HERE: Title] | REQ-FUNC-004, REQ-FUNC-005 | [OPTIONAL: additional notes] |
+| Story 1 - Not recorded | REQ-FUNC-001, REQ-FUNC-003 | [OPTIONAL: additional notes] |
+| Story 2 - Not recorded | REQ-FUNC-002, REQ-DATA-001 | [OPTIONAL: additional notes] |
+| Story 3 - Not recorded | REQ-FUNC-004, REQ-FUNC-005 | [OPTIONAL: additional notes] |
 
 <!-- /ANCHOR:requirements -->
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 <!--
@@ -199,35 +199,35 @@ Map User Stories to Functional Requirements to ensure all stories are supported 
 
 ### Performance
 
-- **NFR-P01**: [NEEDS CLARIFICATION: What is the acceptable API response time? (a) <100ms p95 - real-time interactive (b) <200ms p95 - standard web (c) <500ms p95 - background tasks (d) Best effort]
-- **NFR-P02**: [NEEDS CLARIFICATION: What throughput must the system handle? (a) <100 req/sec - low traffic (b) 100-1,000 req/sec - moderate (c) 1,000-10,000 req/sec - high (d) Not performance critical]
-- **NFR-P03**: [NEEDS CLARIFICATION: How many concurrent users must be supported? (a) <100 - small team (b) 100-1,000 - department (c) 1,000-10,000 - enterprise (d) 10,000+ - public scale]
+- **NFR-P01**: Not recorded
+- **NFR-P02**: Not recorded
+- **NFR-P03**: Not recorded
 
 ### Security
 
-- **NFR-S01**: [NEEDS CLARIFICATION: What authentication method is required? (a) JWT tokens (b) OAuth 2.0/OIDC (c) Session-based (d) API keys (e) Existing system auth]
-- **NFR-S02**: [NEEDS CLARIFICATION: What data protection is required? (a) TLS only (b) TLS + encrypted at rest (c) TLS + AES-256 at rest + field-level encryption (d) Follow existing standards]
-- **NFR-S03**: [NEEDS CLARIFICATION: What compliance requirements apply? (a) None specific (b) GDPR (c) SOC2 (d) HIPAA (e) PCI-DSS (f) Multiple - specify]
+- **NFR-S01**: Not recorded
+- **NFR-S02**: Not recorded
+- **NFR-S03**: Not recorded
 
 ### Reliability
 
-- **NFR-R01**: [NEEDS CLARIFICATION: What uptime SLA is required? (a) 99% - ~7h downtime/month (b) 99.9% - ~43min downtime/month (c) 99.99% - ~4min downtime/month (d) Best effort]
-- **NFR-R02**: [NEEDS CLARIFICATION: What error rate is acceptable? (a) <1% - standard (b) <0.1% - high reliability (c) <0.01% - mission critical (d) Not specified]
-- **NFR-R03**: [NEEDS CLARIFICATION: What recovery requirements apply? (a) RTO <24h/RPO <24h - standard (b) RTO <1h/RPO <1h - business critical (c) RTO <5min/RPO <5min - real-time (d) Follow existing DR plan]
+- **NFR-R01**: Not recorded
+- **NFR-R02**: Not recorded
+- **NFR-R03**: Not recorded
 
 ### Usability
 
-- **NFR-U01**: [NEEDS CLARIFICATION: What accessibility level is required? (a) Basic keyboard support (b) WCAG 2.1 Level A (c) WCAG 2.1 Level AA (d) WCAG 2.1 Level AAA (e) Not specified]
-- **NFR-U02**: [NEEDS CLARIFICATION: What browsers must be supported? (a) Latest Chrome only (b) Chrome, Firefox, Safari, Edge latest 2 versions (c) Including IE11 (d) Follow project standards]
-- **NFR-U03**: [NEEDS CLARIFICATION: What mobile support is required? (a) Desktop only (b) Responsive design ≥768px (c) Full mobile support ≥320px (d) Native mobile app required]
+- **NFR-U01**: Not recorded
+- **NFR-U02**: Not recorded
+- **NFR-U03**: Not recorded
 
 ### Operability
 
-- **NFR-O01**: [NEEDS CLARIFICATION: What monitoring is required? (a) Basic /health endpoint (b) Prometheus metrics (c) Full APM integration (d) Follow existing monitoring setup]
-- **NFR-O02**: [NEEDS CLARIFICATION: What deployment strategy is required? (a) Manual deploy with downtime (b) Blue-green zero-downtime (c) Canary/progressive rollout (d) Follow existing CI/CD]
-- **NFR-O03**: [NEEDS CLARIFICATION: What logging requirements apply? (a) Basic console logs (b) Structured JSON logs (c) Centralized logging with correlation IDs (d) Follow existing logging standards]
+- **NFR-O01**: Not recorded
+- **NFR-O02**: Not recorded
+- **NFR-O03**: Not recorded
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
@@ -239,19 +239,19 @@ Map User Stories to Functional Requirements to ensure all stories are supported 
 -->
 
 ### Data Boundaries
-- What happens when [YOUR_VALUE_HERE: boundary condition - example: "user submits empty form"]?
-- What happens when [YOUR_VALUE_HERE: boundary condition - example: "input exceeds maximum length of 1000 chars"]?
-- How does system handle [YOUR_VALUE_HERE: data issue - example: "special characters in user input, Unicode, null values"]?
+- What happens when Not recorded?
+- What happens when Not recorded?
+- How does system handle Not recorded?
 
 ### Error Scenarios
-- What happens when [YOUR_VALUE_HERE: external dependency fails - example: "payment API returns 503"]?
-- How does system handle [YOUR_VALUE_HERE: network issue - example: "timeout after 30 seconds, connection drops mid-request"]?
-- What happens when [YOUR_VALUE_HERE: concurrent issue - example: "two users update same record simultaneously"]?
+- What happens when Not recorded?
+- How does system handle Not recorded?
+- What happens when Not recorded?
 
 ### State Transitions
-- What happens during [YOUR_VALUE_HERE: partial completion - example: "user closes browser mid-checkout"]?
-- How does system handle [YOUR_VALUE_HERE: rollback - example: "undo of multi-step operation when step 3 of 5 fails"]?
-- What happens when [YOUR_VALUE_HERE: state issue - example: "user session expires during form submission"]?
+- What happens during Not recorded?
+- How does system handle Not recorded?
+- What happens when Not recorded?
 
 <!-- /ANCHOR:edge-cases -->
 ---
@@ -261,10 +261,10 @@ Map User Stories to Functional Requirements to ensure all stories are supported 
 
 ### Measurable Outcomes
 
-- **SC-001**: [NEEDS CLARIFICATION: What is the primary user task and acceptable completion time? (a) <1 min simple action (b) <2 min standard workflow (c) <5 min complex process (d) Specify custom target]
-- **SC-002**: [NEEDS CLARIFICATION: What is the primary performance target? (a) <100ms p95 latency (b) <200ms p95 latency (c) <500ms p95 latency (d) Throughput-focused instead]
-- **SC-003**: [NEEDS CLARIFICATION: What first-attempt success rate is acceptable? (a) >80% - standard usability (b) >90% - good usability (c) >95% - excellent usability (d) Not measured]
-- **SC-004**: [NEEDS CLARIFICATION: What business impact should this feature achieve? (a) Reduce support tickets by X% (b) Increase conversion by X% (c) Decrease time-to-value by X% (d) Define custom metric]
+- **SC-001**: Not recorded
+- **SC-002**: Not recorded
+- **SC-003**: Not recorded
+- **SC-004**: Not recorded
 
 ### KPI Targets
 
@@ -272,10 +272,10 @@ Select relevant KPIs and define measurable targets:
 
 | Category | Metric | Target | Measurement Method |
 |----------|--------|--------|-------------------|
-| Adoption | % of target users using feature | [NEEDS CLARIFICATION: (a) 25% (b) 50% (c) 75% (d) 90%+?] | [YOUR_VALUE_HERE: Analytics tool - GA4, Mixpanel, Amplitude, etc.] |
-| Quality | P0/P1 defect rate | 0 within [NEEDS CLARIFICATION: (a) 7 days (b) 14 days (c) 30 days (d) 90 days?] | [YOUR_VALUE_HERE: Jira, Linear, GitHub Issues, etc.] |
-| Performance | p95 latency | ≤ [NEEDS CLARIFICATION: (a) 100ms (b) 200ms (c) 500ms (d) 1000ms?] | [YOUR_VALUE_HERE: DataDog, New Relic, Grafana, etc.] |
-| Reliability | Error budget impact | ≤ [NEEDS CLARIFICATION: (a) 1% (b) 5% (c) 10% (d) N/A?] | [YOUR_VALUE_HERE: PagerDuty, Prometheus, CloudWatch, etc.] |
+| Adoption | % of target users using feature | Not recorded | Not recorded |
+| Quality | P0/P1 defect rate | 0 within Not recorded | Not recorded |
+| Performance | p95 latency | ≤ Not recorded | Not recorded |
+| Reliability | Error budget impact | ≤ Not recorded | Not recorded |
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -286,8 +286,8 @@ Select relevant KPIs and define measurable targets:
 
 | Dependency | Type | Owner | Status | Impact if Blocked |
 |------------|------|-------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/API name] | External/Internal | [YOUR_VALUE_HERE: Team] | [FORMAT: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact description] |
-| [YOUR_VALUE_HERE: Library/Tool] | Technical | [YOUR_VALUE_HERE: Team] | [FORMAT: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact description] |
+| Not recorded | External/Internal | Not recorded | [FORMAT: Green/Yellow/Red] | Not recorded |
+| Not recorded | Technical | Not recorded | [FORMAT: Green/Yellow/Red] | Not recorded |
 
 ### Risk Assessment
 
@@ -295,41 +295,41 @@ Select relevant KPIs and define measurable targets:
 
 | Risk ID | Description | Impact | Likelihood | Mitigation Strategy | Owner |
 |---------|-------------|--------|------------|---------------------|-------|
-| R-001 | [YOUR_VALUE_HERE: Risk description] | High/Med/Low | High/Med/Low | [YOUR_VALUE_HERE: Mitigation plan] | [YOUR_VALUE_HERE: Name] |
-| R-002 | [YOUR_VALUE_HERE: Risk description] | High/Med/Low | High/Med/Low | [YOUR_VALUE_HERE: Mitigation plan] | [YOUR_VALUE_HERE: Name] |
+| R-001 | Not recorded | High/Med/Low | High/Med/Low | Not recorded | Not recorded |
+| R-002 | Not recorded | High/Med/Low | High/Med/Low | Not recorded | Not recorded |
 
 ### Rollback Plan
 
-- **Rollback Trigger**: [YOUR_VALUE_HERE: Conditions that require rollback - example: "Error rate exceeds 1% or critical bug discovered"]
-- **Rollback Procedure**: [YOUR_VALUE_HERE: Step-by-step rollback process]
-  1. [YOUR_VALUE_HERE: Step 1]
-  2. [YOUR_VALUE_HERE: Step 2]
-  3. [YOUR_VALUE_HERE: Step 3]
+- **Rollback Trigger**: Not recorded
+- **Rollback Procedure**: Not recorded
+  1. Not recorded
+  2. Not recorded
+  3. Not recorded
 - **Data Migration Reversal**: [OPTIONAL: If applicable, describe how to reverse data migrations]
 
 ---
 
-<!-- ANCHOR:scope -->
+<!-- ANCHOR:scope-2 -->
 ## 9. OUT OF SCOPE
 
 **Explicit Exclusions** (reduces ambiguity and scope creep):
 
-- [YOUR_VALUE_HERE: Item explicitly not included - explain why]
-- [YOUR_VALUE_HERE: Item deferred to future phase - explain reasoning]
-- [YOUR_VALUE_HERE: Item handled by another team/system - clarify ownership]
+- Not recorded
+- Not recorded
+- Not recorded
 
 [example: PDF export format - deferred to Phase 2 due to complex formatting requirements]
 [example: Real-time collaboration features - owned by Platform team]
 
-<!-- /ANCHOR:scope -->
+<!-- /ANCHOR:scope-2 -->
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- [NEEDS CLARIFICATION: Question 1 - provide specific details needed]
-- [NEEDS CLARIFICATION: Question 2 - provide specific details needed]
-- [NEEDS CLARIFICATION: Question 3 - provide specific details needed]
+- Not recorded
+- Not recorded
+- Not recorded
 
 [example: NEEDS CLARIFICATION: Should we support Internet Explorer 11? Impacts development timeline by 2 weeks]
 

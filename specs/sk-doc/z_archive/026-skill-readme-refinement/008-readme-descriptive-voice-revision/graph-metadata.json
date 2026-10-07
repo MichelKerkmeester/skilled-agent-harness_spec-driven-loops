@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
-  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,37 +43,31 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-      ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -92,12 +86,6 @@
         "name": "v1.2.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -195,11 +183,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Capability Section Pattern",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 and 002 refined the standalone and parent-hub README templates and phases 004 and 005 rewrote the fleet against them",
     "created_at": "2026-08-05T11:48:45.584Z",
-    "last_save_at": "2026-08-30T15:39:17.922Z",
+    "last_save_at": "2026-10-07T18:14:21.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b02d97dca4bdede4348b8c5f7216bd9483da9daa43760e920169268a34c8acfd",
+    "source_fingerprint": "sha256:71d07faccdb55db189773f4d71162fb61cb3ba3c86d14b975eede03c47468afd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06547eadd25031613aec35b51496f8b19f4aa013a6c865a96974772b2fe44adf",
-      "plan.md": "99656213d19f9ae077509ca8c5d688e217d648b43d433a1afebe065b9f4ee754",
-      "tasks.md": "8319b3587ef7be06251ccd1ed59e85161de33b6d4c07b345ca2adea4e2d5b225",
-      "implementation-summary.md": "9eca88d71dcf3aab2f4909dc1d8bffae4acf442bbfbf02aa4a706025dd495dec"
+      "spec.md": "2db0450e6bf5c4ea50d83d1312255762ee97b62a6842bacc637916ab407847b5",
+      "plan.md": "226b6d5dd2c07ec2a6ceacfe6d264fe488ce3c3749ce2a56b826e4e271cdb37a",
+      "tasks.md": "39b166c2fda06321cb57e80c38a0d65269b88155b6852d64f10751df40d25dd0",
+      "implementation-summary.md": "a588b8b0f1d8b8b570cdf9642c0bd5a7c6d2b04ccb34530e0df102ab6e195613"
     },
     "last_active_child_id": null,
     "last_active_at": null

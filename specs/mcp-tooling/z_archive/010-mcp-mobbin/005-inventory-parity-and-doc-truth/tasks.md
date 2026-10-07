@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth"
+    packet_pointer: "mcp-tooling/z_archive/010-mcp-mobbin/005-inventory-parity-and-doc-truth"
     last_updated_at: "2026-07-16T18:00:00Z"
     last_updated_by: "claude"
     recent_action: "All 16 tasks complete with evidence"

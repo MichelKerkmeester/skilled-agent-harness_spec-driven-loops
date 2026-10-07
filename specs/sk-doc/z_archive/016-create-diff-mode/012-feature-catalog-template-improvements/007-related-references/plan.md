@@ -4,15 +4,14 @@ description: "Python script specification for adding prev/next neighbor links to
 importance_tier: "normal"
 contextType: "general"
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "related references plan"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Phase 007 — Related References, All Skills
 
 ---
 
+<!-- ANCHOR:architecture -->
 ## 1. SCRIPT SPECIFICATION: `add_related_references.py`
 
 ```python
@@ -65,9 +64,11 @@ def build_related_block(prev: Path | None, next: Path | None) -> str:
 
 # Full algorithm: iterate categories, sort files, link neighbors
 ```
+<!-- /ANCHOR:architecture -->
 
 ---
 
+<!-- ANCHOR:phases -->
 ## 2. EXECUTION ORDER
 
 ```
@@ -77,9 +78,11 @@ def build_related_block(prev: Path | None, next: Path | None) -> str:
 4. Run verification commands below
 5. git add + commit
 ```
+<!-- /ANCHOR:phases -->
 
 ---
 
+<!-- ANCHOR:testing -->
 ## 3. VERIFICATION
 
 ```bash
@@ -105,6 +108,7 @@ for f in missing: print(f'  {f}')
 "
 # Expected: 0 (or only singleton categories)
 ```
+<!-- /ANCHOR:testing -->
 
 ---
 

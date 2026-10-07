@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/040-create-repo-rules/009-hub-routing-guardrails"
+    packet_pointer: "sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails"
     last_updated_at: "2026-08-31T14:06:07Z"
     last_updated_by: "claude"
     recent_action: "Shipped the playbook, the README rewrite and the conformance fix"

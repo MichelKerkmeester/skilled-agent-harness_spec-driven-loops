@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator"
     last_updated_at: "2026-08-16T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Conformed docs to updated strict validator"

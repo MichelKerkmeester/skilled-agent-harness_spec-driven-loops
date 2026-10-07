@@ -11,32 +11,27 @@
   },
   "derived": {
     "trigger_phrases": [
-      "spec",
-      "kit",
-      "test",
-      "suite",
-      "044",
-      "speckit",
-      "implementation",
-      "plan",
-      "tasks",
-      "decision",
-      "record",
-      "decision record"
+      "speckit test suite spec",
+      "speckit test suite plan",
+      "speckit test suite tasks",
+      "decision record",
+      "speckit test suite decision record",
+      "speckit test suite implementation summary",
+      "speckit test suite handover"
     ],
     "key_topics": [
-      "spec",
-      "kit",
+      "speckit",
       "test",
       "suite",
-      "speckit",
-      "implementation",
+      "spec",
       "plan",
       "tasks",
       "decision",
       "record",
-      "memory",
-      "mcp"
+      "implementation",
+      "summary",
+      "handover",
+      "kit"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -203,7 +198,7 @@
     ],
     "causal_summary": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
     "created_at": "2026-04-12T09:02:53.528Z",
-    "last_save_at": "2026-08-30T15:39:37.173Z",
+    "last_save_at": "2026-10-07T20:12:17.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +209,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9b6b8e78bd4853c6df304dfb1335ce1c816511dfc884ceb956ce35be7c76ea4d",
+    "source_fingerprint": "sha256:d42de50c40767fa3c0cb654b4a2f3bcdad57dc85e7bcae1768c1e14aea3c6070",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ce2687f9f2e9e60494fa5670c579b1162dadfcda48a30099cd8780d4c1296aa",
-      "plan.md": "6647a0283b28432b636ec81760cc12b4b9a7249b3ddf4f9af387ff77ec48b0aa",
-      "tasks.md": "9d1d1f47761f964eb4d522c8d4b968a7252ba57cfb2ab5d9b431f78108d0c00d",
-      "decision-record.md": "078d64c318c679f988a32c593f2834c02ecbd768e8917fcbecc6b6ac6400b22a",
-      "implementation-summary.md": "20369a1a24341578d47684943697ffb5be8fd30a24a52451865d19aac2745965",
-      "handover.md": "6db5f14fb11b1d277c9f5c37abf012a3917993f7c1bd0150dbe454cf7d6fd6cb"
+      "spec.md": "212c5d65baec283685e92cc4d827ed65264da6a688e876208db8d7aaf0c802a4",
+      "plan.md": "6cdab58c5194e599d5b8d8ef808c13144284ac2458771db956d645c5a53ac4db",
+      "tasks.md": "e29bdc6b4ceb971e92faf22cc10d24d23f4a9fba9b657f16704d35642d41d5d3",
+      "decision-record.md": "64765ec46d3ef4b79d5a6f055a30668c2c93f3b521419913cb213e1465b4fcc2",
+      "implementation-summary.md": "1e2e41d12989e200469efd2ebc3600cdd949d16c813ca5e38c824c51cc532b3d",
+      "handover.md": "8559e240f29843aa8e605553e0bcd2f205e1a86d6c129f9dd69a9ecb7fa9036d"
     },
     "last_active_child_id": null,
     "last_active_at": null

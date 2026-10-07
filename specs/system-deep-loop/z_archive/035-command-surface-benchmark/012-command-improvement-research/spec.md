@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/012-command-improvement-research"
     last_updated_at: "2026-07-16T08:42:19Z"
     last_updated_by: "claude"
     recent_action: "Synthesized 2-lineage fan-out into research/research.md"

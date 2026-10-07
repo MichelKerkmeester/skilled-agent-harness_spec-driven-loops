@@ -37,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-scaffold-never-touched.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
         "source": "derived"
       },
       {
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Plan Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "12 leaf children under `.opencode/specs/system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/` (`001-anti-convergence-floor` through `012-push-wave-fanout`) each have a `plan.md` and `tasks.md` whose BODY content, not just frontmatter, is still unmodified scaffold-template placeholder prose (literal text like `[Component 1]: [Purpose]` and unchecked items literally reading `[Implement core feature 1]`)",
     "created_at": "2026-07-01T19:38:04.140Z",
-    "last_save_at": "2026-08-30T15:39:25.316Z",
+    "last_save_at": "2026-10-07T18:15:03.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3a65c99cbedab20d129f87fdbde1f423fd54f8372996465086d32113257b9b9",
+    "source_fingerprint": "sha256:ef91ff2dd2c025bcdd35f8520569e7d10844b445a68100408a91faf7fe3b6ce6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83104b9670a8b9823eadeb723c845ec40babd55363033a3701e35d621b7a5e55",
-      "plan.md": "eb53c0e7b7b37ca021ee47087738b012ef8edbb0acf7bf47f9b1a213892e58ee",
-      "tasks.md": "7cf1f1648e63ce720b53129484cc521b3c6eebb093cf94a2fbbc29cb21f8fb84",
-      "implementation-summary.md": "3634c2ec908cfaf0b6dfcb58e025e4549167634a63b39f055869b7617a5df204"
+      "spec.md": "bbca02af079eac478601ba70e1edfa63a84e5024365d633ff238f618a7d74eff",
+      "plan.md": "60ddef994d9354e716a7c89170ddf75c4f9b134ebfbcab656806361a4987ee60",
+      "tasks.md": "052bc183536abbbe426db3b76f6df84fd3b09a5c45d9354f4b0ae6a787a4f0c5",
+      "implementation-summary.md": "a6e029c1a312194b0936e4058ef9e027f5055f93d9e24ea3c94b3b3f8f544344"
     },
     "last_active_child_id": null,
     "last_active_at": null

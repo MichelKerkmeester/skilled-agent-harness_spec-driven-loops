@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/041-quality-control-assessment",
+  "specFolder": "sk-doc/z_archive/041-quality-control-assessment",
   "description": "Assess whether the sk-create-quality-control mode is routed to, used, duplicated elsewhere, and worth its size.",
   "keywords": [
     "assess",

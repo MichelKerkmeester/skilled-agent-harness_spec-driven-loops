@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/011-skill-advisor-cli/003-runtime-integration"
+    packet_pointer: "system-skill-advisor/z_archive/011-skill-advisor-cli/003-runtime-integration"
     last_updated_at: "2026-06-06T15:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase scaffolded in planned state"

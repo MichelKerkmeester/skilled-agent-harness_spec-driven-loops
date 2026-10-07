@@ -11,38 +11,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "lib",
-      "consolidation",
-      "shared",
-      "module",
-      "unification",
-      "spec",
-      "051",
-      "implementation",
-      "plan",
-      "decision",
-      "record",
-      "decision record"
+      "shared module lib consolidation",
+      "system spec kit lib unification",
+      "lib consolidation migration plan",
+      "shared module extraction plan",
+      "lib consolidation task list",
+      "shared module migration tasks",
+      "lib consolidation decision record",
+      "shared library architecture decision",
+      "lib consolidation implementation record",
+      "shared module unification summary"
     ],
     "key_topics": [
-      "lib",
-      "consolidation",
       "shared",
       "module",
-      "unification",
+      "lib",
+      "consolidation",
+      "system",
       "spec",
-      "implementation",
+      "kit",
+      "unification",
+      "migration",
       "plan",
-      "decision",
-      "record",
-      "system-spec-kit",
-      "javascript"
+      "extraction",
+      "task"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/README.md",
@@ -59,6 +58,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -146,6 +151,36 @@
         "source": "derived"
       },
       {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -156,62 +191,28 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Document Status",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Last Updated",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Shared Library Location",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Summary Consolidated",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues:",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-08-30T15:39:37.236Z",
+    "last_save_at": "2026-10-07T20:10:15.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0808012032589597a030f4c5dde74033a7193d7345a0348fa38ed59315b24244",
+    "source_fingerprint": "sha256:374a9af04e8079d93d0dbbe5e5db63b14907f6b64bd61e461078c8b2f5ffdbc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c154d98a0d84bc08fccefff50b237fa151eaabd0a3310d7433640e0b97158b17",
-      "plan.md": "0401deec93b42b7dcbed2961161f2ee4d43f7979624d7d6ac9a41bfce804c3bd",
-      "decision-record.md": "40881e1940e63f523e1e9be0e2d44aaa534fae34cbdb3760522e41af4cebe21b",
-      "implementation-summary.md": "f0c295fd84a39c371cff5e95425fb0992767ef96ab84a104d22acf2aef702d5b"
+      "spec.md": "c8b32b53adba2f8490a645a522b200984637a0a363c5e16336ca6433249d055f",
+      "plan.md": "bf6112753cd97f0c9010cb6486709b409eacba417ffe6d8c781717c9a5e1c79b",
+      "tasks.md": "5e0a66587839e2e7ccfc7730cdac2966fba46aa519cf722257790fa7b93f7e1f",
+      "decision-record.md": "a161f1d634cc1c9a29d7806bee4c982909aa34be7dceb14547140f6ca3238674",
+      "implementation-summary.md": "9f6c7ee77478d14514681eddff2b84f6b4ddf7410e3be39a60c8a14cb08649fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

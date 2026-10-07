@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The eight routing ideas each type \"what happens next\" differently, and two of them collide directly: Idea 3 (typed no-destination) and Idea 6 (minimal typed contract) both propose an outcome type, and Idea 6's sketch flattens composition and control flow into a single six-value enum `single|orderedBundle|surfaceBundle|clarify|defer|reject`",
     "created_at": "2026-07-18T13:13:17.009Z",
-    "last_save_at": "2026-08-30T15:39:14.965Z",
+    "last_save_at": "2026-10-07T18:13:20.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5a3823e13d7eddb594e432cb668686527a11cc831592daf3884beec8ad842fd",
+    "source_fingerprint": "sha256:7acaa0283b797d8815b72034305394590e07694795a3c2d6bf2eaab82a855fed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e27b6d10f654b63b4d063010ac977db6e43b61d16d0327890f3cc43a724cba8b",
-      "plan.md": "6bf7251b57e3558611428e377289b7c8115b049b738d8233f4ed168d571ec8df",
-      "tasks.md": "c0d467772fb8a9bd1aff53b8d0e20280b75cbd165950d623ea965b48220d8c36",
-      "implementation-summary.md": "61736390609c26a4a714fffc175e92e20c03e332971e2618673557dd95f5f8ad"
+      "spec.md": "975fb9d994957f033e90ea1d0378db4084bd837e8d591310061099f2ff9812c1",
+      "plan.md": "1f20a45d4c6da2860cca8d38697f882e890997484defe883a52a2334a0ddacab",
+      "tasks.md": "28d8792bdfc8703251f162fa09ad519e49bb42911cf0c7d5dcf66ecdc14aaf93",
+      "implementation-summary.md": "bc151f65c496f9e3155d7e013a571e5a2184734fadda25a04d94ff3dca51f135"
     },
     "last_active_child_id": null,
     "last_active_at": null

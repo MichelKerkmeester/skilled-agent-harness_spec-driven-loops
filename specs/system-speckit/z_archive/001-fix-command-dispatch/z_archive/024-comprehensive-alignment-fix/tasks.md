@@ -17,7 +17,6 @@ Actionable tasks for each checklist item. Complete in order within each phase.
 
 ---
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: P0 Critical
 
@@ -55,9 +54,8 @@ Actionable tasks for each checklist item. Complete in order within each phase.
 
 ---
 
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: P1 High Priority
 
 ### P1.1 - Bash Version Compatibility

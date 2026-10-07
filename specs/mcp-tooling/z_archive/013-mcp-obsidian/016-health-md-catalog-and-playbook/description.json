@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+  "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/016-health-md-catalog-and-playbook",
   "description": "The mode's health-md playbook scenario (OBS-014) and feature-catalog card were authored before the deep research and carry the same defects: the",
   "keywords": [
     "mode",

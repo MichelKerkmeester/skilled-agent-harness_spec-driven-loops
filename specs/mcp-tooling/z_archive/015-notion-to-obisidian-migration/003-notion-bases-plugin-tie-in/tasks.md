@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
+    packet_pointer: "mcp-tooling/z_archive/015-notion-to-obisidian-migration/003-notion-bases-plugin-tie-in"
     last_updated_at: "2026-08-22T08:00:00Z"
     last_updated_by: "claude"
     recent_action: "Reopened: de-hedged notion-bases refs, added local-rest-api folder + router intent"

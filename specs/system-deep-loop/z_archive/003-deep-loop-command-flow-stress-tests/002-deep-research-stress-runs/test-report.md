@@ -1,3 +1,13 @@
+---
+title: "Test Report: @deep-research Command-Flow Stress (062/002)"
+description: "Six command-flow stress scenarios for the deep-research command and agent: PASS 6 of 6 on the first round, 48 of 48 signals scored, no partial and no failure."
+trigger_phrases:
+  - "deep research command flow stress"
+  - "deep research stress test report"
+  - "cp signal contracts"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Test Report: @deep-research Command-Flow Stress (062/002)
 
 **Final Composite:** PASS 6 / PARTIAL 0 / FAIL 0 (R1, single round)

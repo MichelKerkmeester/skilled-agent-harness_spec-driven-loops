@@ -19,9 +19,10 @@
       "blast radius uplift",
       "skill advisor affordance",
       "memory trust display",
-      "resource map",
-      "006-graph-impact-and-affordance-uplift resource map",
-      "path catalog 006-graph-impact-and-affordance-uplift"
+      "graph impact and affordance uplift plan",
+      "external project adoption plan",
+      "code graph phase runner plan",
+      "graph impact and affordance uplift tasks"
     ],
     "key_topics": [
       "graph",
@@ -41,10 +42,9 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "resource-map.md",
-      "handlers/index.ts",
-      "formatters/search-results.ts",
-      "lib/response/profile-formatters.ts"
+      "plan.md",
+      "tasks.md",
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -54,27 +54,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
         "source": "derived"
       },
       {
@@ -111,6 +105,30 @@
         "name": "Skill Advisor",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Governance",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -152,17 +170,21 @@
     ],
     "causal_summary": "Public's Code Graph, Memory causal graph, and Skill Advisor systems each carry known gaps that the 007-external-project deep-research effort surfaced concretely (pt-01 + pt-02 syntheses)",
     "created_at": "2026-04-25T10:47:55.572Z",
-    "last_save_at": "2026-08-30T15:39:32.869Z",
+    "last_save_at": "2026-10-07T20:43:48.097Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:9aa5c083d11554e22da0421e5d932ec26366adf05afe58d53defe928511368c1",
+    "source_fingerprint": "sha256:e800d8ce33d8eead0e91ac5234e294d0142b9c2cb65d981003b91ff1f390ad8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ae9d9a794d6c1f69ac49e6047af4342d5da9413e1dd8a1ddd51421d0a1fb8a3",
+      "plan.md": "a136ec1cc34fc9569896f67182a3093ef3d7128a6907090805b2fb9340b451fe",
+      "tasks.md": "fd97a8d529d29879336b8ebfbc99fdd8069b9ab1fd880790a2a91a7a07afdf60",
       "resource-map.md": "7ce1ca7b6343fade1c65c2d5a3576f6252c00e7a560fb242bcb34fc4e8013a2e"
     },
     "last_active_child_id": null,

@@ -71,10 +71,11 @@ This phase packages the roadmap's collaboration surfaces as code and documentati
 - Staged rollout plan with kill switches and rollback drills
 - Operator runbooks for collaboration enablement and incident handling
 
+<!-- /ANCHOR:metadata -->
+
 ---
 
 <!-- ANCHOR:problem -->
-<!-- /ANCHOR:metadata -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -165,7 +166,7 @@ Deliver shared memory as an opt-in, policy-guarded capability that operators can
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -184,7 +185,7 @@ Deliver shared memory as an opt-in, policy-guarded capability that operators can
 - **NFR-O61**: Operators can inspect membership, conflict, and rollback state.
 - **NFR-O62**: Rollout decisions are documented and reversible.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->

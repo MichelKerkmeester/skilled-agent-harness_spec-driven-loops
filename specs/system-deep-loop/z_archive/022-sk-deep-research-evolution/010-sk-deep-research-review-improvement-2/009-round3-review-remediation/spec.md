@@ -2,7 +2,7 @@
 title: "Feature [system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/009-round3-review-remediation/spec]"
 description: "Remediate 54 findings (37 P1, 17 P2) from the 20-iteration Copilot GPT-5.4 Round 3 deep review covering workflow logic, security hardening, traceability alignment, and maintainability cleanup."
 trigger_phrases:
-  - "042.009"
+  - "round 3 review remediation spec"
   - "round 3 remediation"
   - "copilot review fixes"
 importance_tier: "important"
@@ -17,12 +17,17 @@ _memory:
     key_files: ["spec.md"]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Round 3 Review Remediation
 
+<!-- ANCHOR:problem -->
 ## Problem
 
 A 20-iteration Copilot GPT-5.4 deep review (iterations 31-50, session `rvw-2026-04-12T16-00-00Z`) found 54 unique findings (0 P0, 37 P1, 17 P2) across the 042 bundle after two prior fix rounds. The final iteration rendered a FAIL verdict due to 5 unresolved P1 maintainability issues and broader traceability drift.
 
+<!-- /ANCHOR:problem -->
+
+<!-- ANCHOR:scope -->
 ## Scope
 
 Fix all 54 findings across 4 dimensions:
@@ -37,6 +42,9 @@ Fix all 54 findings across 4 dimensions:
 - Phase 4b (prompt-pack, meta-learning) remains deferred
 - Wave mode production-scale validation
 
+<!-- /ANCHOR:scope -->
+
+<!-- ANCHOR:requirements -->
 ## Requirements
 
 | ID | Description | Priority |
@@ -47,8 +55,13 @@ Fix all 54 findings across 4 dimensions:
 | REQ-004 | All 10 maintainability P1 findings resolved, 7 P2 addressed | P1 |
 | REQ-005 | No new P0 or P1 regressions introduced | P0 |
 
+<!-- /ANCHOR:requirements -->
+
+<!-- ANCHOR:success-criteria -->
 ## Verification
 
 - Post-fix `tsc --noEmit` on MCP server passes
 - Post-fix vitest suite passes (0 failures)
 - Grep verification: no stale `enterprise`, `sign-off`, `legalStop`, `HYDRA` references in active docs
+
+<!-- /ANCHOR:success-criteria -->

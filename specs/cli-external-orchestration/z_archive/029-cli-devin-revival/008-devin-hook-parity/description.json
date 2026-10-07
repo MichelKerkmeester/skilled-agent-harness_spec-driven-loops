@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
+  "specFolder": "cli-external-orchestration/z_archive/029-cli-devin-revival/008-devin-hook-parity",
   "description": "This repo enforces its scope-lock and quality discipline through 7 shared runtime-neutral guard cores, each with existing Claude and OpenCode",
   "keywords": [
     "repo",

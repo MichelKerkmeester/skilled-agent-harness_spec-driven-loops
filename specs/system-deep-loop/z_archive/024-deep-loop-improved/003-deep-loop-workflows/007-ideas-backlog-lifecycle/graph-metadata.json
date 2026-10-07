@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle record",
     "created_at": "2026-06-28T14:02:11Z",
-    "last_save_at": "2026-08-30T15:39:24.951Z",
+    "last_save_at": "2026-10-07T18:15:00.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d28b7d05b5595fa6c0fe8fb92c9bb4a4ee2c1d1ec0dc58fe23fbda6013a68469",
+    "source_fingerprint": "sha256:3522abffd5a54e10828db6b7e62b1266704e0e615668c529a688c026f8b829b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef5f05c9d02dc3df155cf8992f74fe2ad43bc70094ade02f1c615f9980c3fca0",
-      "plan.md": "e24ab91bd4fdd8a29281030b9693531fac2cdb4b6b2ff26380068f74a7cd01a4",
-      "tasks.md": "6867891507857ac6e47dd23a53637ed478dbad63951ba1d2f8ddf43be8827c29",
-      "implementation-summary.md": "04758411094ebfda4d9a45e6ea1036af32b01c17129a7c1f461a7640ed4b0acf"
+      "spec.md": "8073f3a4194402086159c780c474c26629938695d7541575db6ff09e4361f020",
+      "plan.md": "44dbe939300571aef6d19b5942adad50fb90123c9963038fde91c5bd1cabbdcd",
+      "tasks.md": "bfdb9d3f8f230461549400f9de18836b37ebc1f91e159613db8c48c7c2bbbec5",
+      "implementation-summary.md": "d8950110ad952be7d99657c94826284dcac96aaa1a94236cc102a8d2f02a41d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

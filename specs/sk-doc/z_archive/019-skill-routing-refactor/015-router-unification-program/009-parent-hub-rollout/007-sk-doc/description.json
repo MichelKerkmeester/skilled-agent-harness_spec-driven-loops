@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
   "description": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the",
   "keywords": [
     "compile",

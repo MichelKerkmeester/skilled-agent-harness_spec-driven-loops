@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/028-cli-hub-rename/004-verify-closeout"
+    packet_pointer: "cli-external-orchestration/z_archive/028-cli-hub-rename/004-verify-closeout"
     last_updated_at: "2026-07-13T06:08:29Z"
     last_updated_by: "markdown-agent"
     recent_action: "Consolidated passing and blocked verification evidence"

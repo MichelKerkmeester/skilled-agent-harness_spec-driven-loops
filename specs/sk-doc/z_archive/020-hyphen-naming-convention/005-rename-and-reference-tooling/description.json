@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/005-rename-and-reference-tooling",
   "description": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger,",
   "keywords": [
     "tooling",

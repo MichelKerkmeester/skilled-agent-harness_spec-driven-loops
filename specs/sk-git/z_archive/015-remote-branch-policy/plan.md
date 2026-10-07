@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-git/015-remote-branch-policy"
+    packet_pointer: "sk-git/z_archive/015-remote-branch-policy"
     last_updated_at: "2026-07-17T16:01:41Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored 5-phase plan"

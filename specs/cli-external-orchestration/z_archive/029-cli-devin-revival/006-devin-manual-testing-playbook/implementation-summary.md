@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
+    packet_pointer: "cli-external-orchestration/z_archive/029-cli-devin-revival/006-devin-manual-testing-playbook"
     last_updated_at: "2026-07-27T15:34:33Z"
     last_updated_by: "claude"
     recent_action: "Authored and executed 20 DV-NNN scenarios: 19 PASS, 1 SKIP."

@@ -1,3 +1,10 @@
+---
+title: "Playbook Execution Report — Cross-CLI Smart-Routing Audit (Packet 069/005)"
+trigger_phrases:
+  - "playbook cross cli execution report"
+  - "cross cli smart routing audit"
+  - "playbook execution verdict matrix"
+---
 # Playbook Execution Report — Cross-CLI Smart-Routing Audit (Packet 069/005)
 
 ## VERDICT

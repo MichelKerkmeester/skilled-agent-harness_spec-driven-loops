@@ -7,7 +7,6 @@ trigger_phrases:
   - "integration"
   - "patterns"
   - "research"
-  - "implementation summary"
   - "080"
 importance_tier: "normal"
 contextType: "implementation"

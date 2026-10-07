@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation"
+    packet_pointer: "mcp-tooling/z_archive/013-mcp-obsidian/014-health-md-reference-remediation"
     last_updated_at: "2026-08-03T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 14 tasks"

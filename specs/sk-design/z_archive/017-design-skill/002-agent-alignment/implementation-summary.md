@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/017-design-skill/002-agent-alignment"
+    packet_pointer: "sk-design/z_archive/017-design-skill/002-agent-alignment"
     last_updated_at: "2026-08-28T12:28:51Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Rewrote the design agent across its runtime copies"

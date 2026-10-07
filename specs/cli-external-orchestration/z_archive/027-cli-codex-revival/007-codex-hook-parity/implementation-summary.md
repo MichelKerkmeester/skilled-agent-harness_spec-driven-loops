@@ -6,7 +6,7 @@ importance_tier: important
 contextType: implementation
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity"
+    packet_pointer: "cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity"
     last_updated_at: "2026-07-14T03:36:41Z"
     last_updated_by: "claude-code"
     recent_action: "Landed Stop-stdout fix to v4; deferred installer re-point to primary reconcile"

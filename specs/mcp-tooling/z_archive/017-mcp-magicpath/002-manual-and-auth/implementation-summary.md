@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/002-manual-and-auth"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/002-manual-and-auth"
     last_updated_at: "2026-08-29T14:01:22Z"
     last_updated_by: "session"
     recent_action: "Registered the 14-tool surface; proved it on a fresh server"

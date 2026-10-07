@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/007-hub-root/006-styles",
-  "spec_folder": "sk-design/014-template-conformance/007-hub-root/006-styles",
-  "parent_id": "sk-design/014-template-conformance/007-hub-root",
+  "packet_id": "sk-design/z_archive/014-template-conformance/007-hub-root/006-styles",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/007-hub-root/006-styles",
+  "parent_id": "sk-design/z_archive/014-template-conformance/007-hub-root",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,8 +14,7 @@
       "sk-design hub styles top-level conformance",
       "template conformance audit",
       "plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "sk-design",
@@ -27,9 +26,9 @@
       "audit",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "opencode"
+      "opencode",
+      "skills",
+      "shape"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +186,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/styles/ (top-level shape only)` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules (no authored styles/ template; this is a 1,304-dir/7,812-file bespoke data library, audited at top-level shape only)`",
     "created_at": "2026-07-27T14:59:55.205Z",
-    "last_save_at": "2026-08-30T15:39:13.372Z",
+    "last_save_at": "2026-10-07T18:12:31.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c96201255f6356cc70d5540860812632b6a7f82c1764f897036aa319542d430",
+    "source_fingerprint": "sha256:7b9aebdb4629d7f5b0df8e8172c906eaaeabd736a0a7ab729139b95ecc4c1ca8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "295d74919986130889af2dd0f45408d31508bdf3fb13a68d39f40afa5099605b",
-      "plan.md": "58b20410a9f73c418f3c01364b1f1d26f9bb3ebb33cf56385808f24e97e9e52d",
-      "tasks.md": "9391972f0e83d7901c16844da61ac9de7c5654e6093a8f06250284c58d3bbd66",
-      "implementation-summary.md": "b12ce8eef0a9df22ac5621b9954b3c48e2441b233655960d0abb19b8599fdc3a"
+      "spec.md": "6d118ba1884525f379462fb1bb67548f1613008afa6b854ee8eafe1703fe0c94",
+      "plan.md": "16aba81c298655b4a4d9c1486c3d8744eab90e1f06664664d03ae264ec090186",
+      "tasks.md": "be953172acc6943263362d37ed6e555245fe38b51d36cc984b964f80ac4ddc25",
+      "implementation-summary.md": "556744bac4816f7effff44814504135ebd482bbc53e0fa854cc086f741481e0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

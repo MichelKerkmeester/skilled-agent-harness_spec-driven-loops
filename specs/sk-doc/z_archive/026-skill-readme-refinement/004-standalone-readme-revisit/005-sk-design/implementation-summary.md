@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design"
     last_updated_at: "2026-08-04T13:15:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Rewrote sk-design README, bumped version to 1.7.0.0, added changelog entry, gates green"

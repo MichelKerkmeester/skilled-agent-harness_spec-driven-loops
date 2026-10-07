@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly.",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-08-30T15:39:16.398Z",
+    "last_save_at": "2026-10-07T18:13:09.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:81792369df17aee2823dcad2a76bc728aa1682d264c03ed91097f5ac986204ee",
+    "source_fingerprint": "sha256:44d80f58f64880f07cc38ba59defa12f868b9c7c918890f6f4276d1361510776",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "99f70d9cab8a27ddb2cdfc84e11f7d212b3a6ec453dcae3949257707ce1122f7",
-      "plan.md": "23f78cdb14b36e503f7f09c5a0d96d748ecb9555c5fa42535ff5cd59f05f2b82",
-      "tasks.md": "f423b2b1fe12a5f1fac04f6ac9f3393d2a2e983e8958afb2508efa004f745efb"
+      "spec.md": "68e60fa33ac099b9b5d212b27acca6647ad6adddf83d5e402f70b59428c1e237",
+      "plan.md": "f27bf3f5c7b862ab622e16434a25dda84334b48fe661e334a5840a222ee5fcec",
+      "tasks.md": "6188173c3f9c356e528dd00a1eac6a31181a79c2e13be7c4101926336963a05a"
     },
     "last_active_child_id": null,
     "last_active_at": null

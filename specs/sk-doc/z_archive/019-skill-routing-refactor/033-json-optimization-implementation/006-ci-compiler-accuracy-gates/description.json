@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
   "description": "Add skill_graph_compiler.py --validate-only (full derived schema + key_files/source_docs path existence) and score-routing-corpus.py (pinned corpus",
   "keywords": [
     "validate-only",

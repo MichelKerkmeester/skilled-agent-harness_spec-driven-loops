@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
-  "spec_folder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
-  "parent_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The cli-claude-code README is a tabular reference card with no problem-first entry point, and it carries a stale fact: it lists 11 delegatable agents (the OpenCode agent set) when the skill's own SKILL.md documents 9",
     "created_at": "2026-06-07T09:30:52Z",
-    "last_save_at": "2026-08-30T15:39:14.418Z",
+    "last_save_at": "2026-10-07T18:12:34.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50c6139c9097c8f5b8b3137b82ed925cef8cdf83f04a2e2bc1405a66b2c51d97",
+    "source_fingerprint": "sha256:6ec35114150a65d3be5bf93849eccac7ac5c308993214ab5f6455a625b7b9dc5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fd5264befd1ea14c188afeb47cb9c6df81a6a2d5e1f18dc04c06e838897a68e",
-      "plan.md": "0e92257dc3cf48c963c77a2a22aa7e1a80e6b74022ce5a512ed2d8b424d3a103",
-      "tasks.md": "330c966ba46fc75345fe9019040a660571b8c1471468153bb4053530102b2fc6",
-      "implementation-summary.md": "b8c9a7d0785a16e159096956b42a19594579f79da53f2081068e774346543a35"
+      "spec.md": "d7e68884c6981f1f4e68a0eba42e60c5c0ba4c56eab46857c4d1632c22ade909",
+      "plan.md": "6d5ff2202efc84066ca471100b6aee9604ed4a4f24abbe5a7ac9915799c1b0c8",
+      "tasks.md": "28a9b9153e4cbaa0ce6eaa68a27c40f1cf073b7b9dcd572d0f325afde5111531",
+      "implementation-summary.md": "d1afabb51d2a673c97be54ca442e78df938fd411ca3d729f643106fcd20174cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

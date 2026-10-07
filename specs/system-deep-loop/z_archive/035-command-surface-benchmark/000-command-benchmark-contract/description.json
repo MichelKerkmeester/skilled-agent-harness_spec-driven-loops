@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract",
+  "specFolder": "system-deep-loop/z_archive/035-command-surface-benchmark/000-command-benchmark-contract",
   "description": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries",
   "keywords": [
     "freezes",

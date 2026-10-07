@@ -2,15 +2,15 @@
 title: "Implementation Plan: ai-council Subagent-Only Conversion"
 description: "Convert ai-council.md from mode: all to mode: subagent, verify both known reachability paths (orchestrate planning dispatch, /deep:ai-council) still work, and sweep for any undiscovered direct-invocation caller before landing."
 trigger_phrases:
-  - "implementation"
-  - "plan"
+  - "ai-council subagent conversion plan"
+  - "ai council mode override plan"
   - "ai-council subagent only"
   - "ai council mode conversion"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/002-routing-dispatch-and-identity/008-ai-council-subagent-only"
     last_updated_at: "2026-07-01T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 3 phases complete; validate.sh --strict passing"

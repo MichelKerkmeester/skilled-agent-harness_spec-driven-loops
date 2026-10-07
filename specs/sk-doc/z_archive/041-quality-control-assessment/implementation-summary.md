@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "sk-doc"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/041-quality-control-assessment"
+    packet_pointer: "sk-doc/z_archive/041-quality-control-assessment"
     last_updated_at: "2026-08-31T20:05:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped the repair; all commands execute, all cross-references resolve, no gate regressed"

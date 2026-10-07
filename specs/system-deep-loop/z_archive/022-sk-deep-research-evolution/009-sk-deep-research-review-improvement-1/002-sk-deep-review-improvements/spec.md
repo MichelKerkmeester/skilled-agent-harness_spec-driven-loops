@@ -37,7 +37,7 @@ _memory:
 | **Created** | 2026-04-03 |
 | **Branch** | `040-sk-deep-research-review-improvement-1` |
 | **Parent Spec** | [../spec.md](../spec.md) |
-| **Parent Plan** | [../plan.md](../plan.md) |
+| **Parent Plan** | ../plan.md |
 | **Phase** | 2 of 2 |
 | **Predecessor** | [001-sk-deep-research-improvements/](../001-sk-deep-research-improvements/) |
 | **Successor** | None |
@@ -75,19 +75,19 @@ Make Phase 2 the durable review-mode contract by aligning docs, assets, workflow
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [../../../../skill/sk-deep-review/SKILL.md](../../../../skill/sk-deep-review/SKILL.md) | Modify | Freeze lifecycle, reducer, release-readiness, and runtime-parity guidance |
-| [../../../../skill/sk-deep-review/README.md](../../../../skill/sk-deep-review/README.md) | Modify | Publish canonical review packet names, lifecycle modes, and operator guidance |
-| [../../../../skill/sk-deep-review/references/state_format.md](../../../../skill/sk-deep-review/references/state_format.md) | Modify | Define review packet schemas, lineage fields, registry outputs, and report boundaries |
-| [../../../../skill/sk-deep-review/references/loop_protocol.md](../../../../skill/sk-deep-review/references/loop_protocol.md) | Modify | Document lifecycle branches, reducer sequencing, pause handling, and synthesis expectations |
-| [../../../../skill/sk-deep-review/references/convergence.md](../../../../skill/sk-deep-review/references/convergence.md) | Modify | Tie convergence output to release-readiness states |
-| [../../../../skill/sk-deep-review/references/quick_reference.md](../../../../skill/sk-deep-review/references/quick_reference.md) | Modify | Publish canonical state files, lifecycle modes, and readiness terminology |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md) | Modify | Freeze lifecycle, reducer, release-readiness, and runtime-parity guidance |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md) | Modify | Publish canonical review packet names, lifecycle modes, and operator guidance |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md) | Modify | Define review packet schemas, lineage fields, registry outputs, and report boundaries |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md) | Modify | Document lifecycle branches, reducer sequencing, pause handling, and synthesis expectations |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md) | Modify | Tie convergence output to release-readiness states |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md) | Modify | Publish canonical state files, lifecycle modes, and readiness terminology |
 | [../../../../skill/sk-deep-review/assets/deep_review_config.json](../../../../skill/sk-deep-review/assets/deep_review_config.json) | Modify | Add lineage, reducer, file-protection, and release-readiness metadata |
-| [../../../../skill/sk-deep-review/assets/deep_review_strategy.md](../../../../skill/sk-deep-review/assets/deep_review_strategy.md) | Modify | Mark reducer-owned sections and review boundaries |
-| [../../../../skill/sk-deep-review/assets/deep_review_dashboard.md](../../../../skill/sk-deep-review/assets/deep_review_dashboard.md) | Modify | Carry machine-owned metrics and readiness data |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md) | Modify | Mark reducer-owned sections and review boundaries |
+| [../../../../../../.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md) | Modify | Carry machine-owned metrics and readiness data |
 | [../../../../skill/sk-deep-review/assets/review_mode_contract.yaml](../../../../skill/sk-deep-review/assets/review_mode_contract.yaml) | Modify | Establish the canonical review-mode contract, reducer outputs, and output paths |
 | [../../../../command/spec_kit/assets/spec_kit_deep-review_auto.yaml](../../../../command/spec_kit/assets/spec_kit_deep-review_auto.yaml) | Modify | Carry migration logic, lifecycle branches, reducer refresh, and synthesis guidance |
 | [../../../../command/spec_kit/assets/spec_kit_deep-review_confirm.yaml](../../../../command/spec_kit/assets/spec_kit_deep-review_confirm.yaml) | Modify | Mirror the same contract for confirm mode |
-| [../../../../agent/deep-review.md](../../../../agent/deep-review.md), [../../../../../../.claude/agents/deep-review.md](../../../../../../.claude/agents/deep-review.md), [../../../../../../.gemini/agents/deep-review.md](../../../../../../.gemini/agents/deep-review.md), [../../../../../../.codex/agents/deep-review.toml](../../../../../../.codex/agents/deep-review.toml) | Modify | Keep all runtime mirrors aligned to the same review packet contract |
+| [../../../../../../.opencode/agents/deep-review.md](../../../../../../.opencode/agents/deep-review.md), [../../../../../../.claude/agents/deep-review.md](../../../../../../.claude/agents/deep-review.md), ../../../../../../.gemini/agents/deep-review.md, [../../../../../../.codex/agents/deep-review.toml](../../../../../../.codex/agents/deep-review.toml) | Modify | Keep all runtime mirrors aligned to the same review packet contract |
 | [../../../../skill/sk-deep-review/manual_testing_playbook/](../../../../skill/sk-deep-review/manual_testing_playbook/) | Modify | Remove stale review-mode `deep-research-*` references from operator scenarios |
 | [../../../../skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts](../../../../skill/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts) and [../../../../skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts](../../../../skill/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts) | Create | Lock parity, reducer, lifecycle, and severity contracts with executable checks |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` in this phase packet | Modify/Create | Restore Level 1 template compliance and capture verified completion evidence |
@@ -103,7 +103,7 @@ Make Phase 2 the durable review-mode contract by aligning docs, assets, workflow
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Freeze canonical review-mode artifact naming and migration behavior. | Review docs, assets, workflow YAML, runtime mirrors, and manual testing playbook surfaces use `deep-review-*` artifacts and `.deep-review-pause`, while legacy `deep-research-*` mentions remain only in the deliberate scratch migration path inside the two workflow assets. |
-| REQ-002 | Propagate lineage, lifecycle, reducer, and release-readiness semantics across all active review surfaces. | [../../../../skill/sk-deep-review/assets/review_mode_contract.yaml](../../../../skill/sk-deep-review/assets/review_mode_contract.yaml), the two workflow YAML assets, [../../../../skill/sk-deep-review/SKILL.md](../../../../skill/sk-deep-review/SKILL.md), [../../../../skill/sk-deep-review/README.md](../../../../skill/sk-deep-review/README.md), and all four runtime mirrors agree on `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`, reducer-owned findings registry behavior, and `completed-continue`. |
+| REQ-002 | Propagate lineage, lifecycle, reducer, and release-readiness semantics across all active review surfaces. | [../../../../skill/sk-deep-review/assets/review_mode_contract.yaml](../../../../skill/sk-deep-review/assets/review_mode_contract.yaml), the two workflow YAML assets, [../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/SKILL.md), [../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md](../../../../../../.skilled/skills/system-deep-loop/deep-review/README.md), and all four runtime mirrors agree on `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`, reducer-owned findings registry behavior, and `completed-continue`. |
 | REQ-003 | Close the phase packet with executable verification evidence. | Packet docs are Level 1 template compliant, every task is marked complete, [implementation-summary.md](./implementation-summary.md) records the verification commands and outcomes, and strict packet validation passes. |
 
 ### P1 - Required (complete OR user-approved deferral)

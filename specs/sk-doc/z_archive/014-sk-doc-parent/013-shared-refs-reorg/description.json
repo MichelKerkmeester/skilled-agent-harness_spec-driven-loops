@@ -1,6 +1,6 @@
 {
   "level": 1,
-  "specFolder": "sk-doc/014-sk-doc-parent/013-shared-refs-reorg",
+  "specFolder": "sk-doc/z_archive/014-sk-doc-parent/013-shared-refs-reorg",
   "description": "`.opencode/skills/sk-doc/shared/references/global/` adds a nesting level that carries no meaning beyond \"these are the generic, cross-packet",
   "keywords": [
     "opencode",

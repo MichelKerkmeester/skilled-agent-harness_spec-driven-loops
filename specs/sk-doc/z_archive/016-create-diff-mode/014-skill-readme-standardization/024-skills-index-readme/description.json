@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme",
+  "specFolder": "sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme",
   "description": "The skills index is a tabular reference card that has drifted: it counts 21 skill folders when there are 22, miscategorizes system-code-graph as a",
   "keywords": [
     "skills",

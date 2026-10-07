@@ -19,7 +19,9 @@
       "spec",
       "028",
       "implementation",
-      "plan"
+      "plan",
+      "memory alignment fix tasks",
+      "three layer defense tasks"
     ],
     "key_topics": [
       "memory",
@@ -29,18 +31,18 @@
       "spec",
       "implementation",
       "plan",
+      "tasks",
+      "defense",
       "saves",
       "directed",
-      "wrong",
-      "folders",
-      "due"
+      "wrong"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/commands/memory/save.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -56,9 +58,9 @@
         "source": "derived"
       },
       {
-        "name": "save.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -126,22 +128,36 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Memory saves were being directed to wrong spec folders due to:",
     "created_at": "2026-04-12T09:02:53.520Z",
-    "last_save_at": "2026-08-30T15:39:37.075Z",
+    "last_save_at": "2026-10-07T20:13:49.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:53cf92b27824069a56697087d44b142e4f4b6016692cd40b23b8994ef3f17a26",
+    "source_fingerprint": "sha256:4310af92e8dbdb554b8c578c663f5f0d568615db5a708fe6dcc4d0d6b063d176",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db5a8122661f6d946bf1339b94127732d4d9ab7a8eb277ac11672d2a277094b9",
-      "plan.md": "8234a057f409e08c213f401b6e5afce3be87d9dfe168b2f7ed7e4424c9ed85f8"
+      "spec.md": "b9259f0e9fc2886804ee6cca817061a21a9945d4bfca63a9a51bbf0bf47b7280",
+      "plan.md": "8234a057f409e08c213f401b6e5afce3be87d9dfe168b2f7ed7e4424c9ed85f8",
+      "tasks.md": "c5b6e352ffc8277c62082bdca121924b7c968eb63f3d367414fcbaded8ab13fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

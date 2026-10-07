@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/046-human-voice-standard-ownership"
+    packet_pointer: "sk-doc/z_archive/046-human-voice-standard-ownership"
     last_updated_at: "2026-09-01T04:40:00Z"
     last_updated_by: "claude"
     recent_action: "Moved the standard into its packet and repointed every live consumer"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
-  "spec_folder": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
+  "packet_id": "cli-external-orchestration/z_archive/034-opencode-go-flash-qwen-roster",
+  "spec_folder": "cli-external-orchestration/z_archive/034-opencode-go-flash-qwen-roster",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -21,8 +21,7 @@
       "plan",
       "tasks",
       "opencode-go roster",
-      "qwen3.8-max",
-      "implementation summary"
+      "qwen3.8-max"
     ],
     "key_topics": [
       "opencode-go",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "`qwen3.8-max` was absent from cli-pi's enforced deep-loop fan-out roster (`PISUPPORTEDMODELS` and its `fanout-run.cjs` mirror), so a fan-out dispatch of that model was rejected",
     "created_at": "2026-08-07T13:28:49.214Z",
-    "last_save_at": "2026-08-30T15:39:07.841Z",
+    "last_save_at": "2026-10-07T18:11:37.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18381681963c40b913e9a9e2a41d5d56852bd239dd39236c5f33d7d06d987d02",
+    "source_fingerprint": "sha256:bf17068e7a2bb0977c57446a8a5fe85c8d414bc3dd8fe907842affb3e142339e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc242cd5acd11574f986dd398ea04a4e1683690d17af62ff3b5f8bfa84e00773",
-      "plan.md": "7f57246c3d162dfda226000af8c8946cf697a9884f051335bf67009e77a3498a",
-      "tasks.md": "7168b185b53bf6e1429411c62d3f5ee7f0da7a503a354729a0100ff63d7ab0d3",
-      "implementation-summary.md": "51591eac9681d401d285bca9c34d75f69a9ea854f20f7f2145c4bad21fce0121"
+      "spec.md": "e172c1c5e826d8a97014704bb1fe5091f49af5ad31b74922ab26d66c40c6dc92",
+      "plan.md": "f9a488224f3d0c97e7dc4ec4b5e74544e3c247739ae941047c2287c3124e97a0",
+      "tasks.md": "3351aa033fe72efb95576f7b98b9706c3d14a8afd82216d99c87ad32b08dff31",
+      "implementation-summary.md": "5245dfc236799300be1b40052f9eb2f0375504ac2a1f566a37bf9a5d044c85fb"
     },
     "last_active_child_id": null,
     "last_active_at": null

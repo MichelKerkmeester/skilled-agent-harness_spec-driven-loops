@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/014-mcp-notion/001-deep-research"
+    packet_pointer: "mcp-tooling/z_archive/014-mcp-notion/001-deep-research"
     last_updated_at: "2026-08-21T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Completed 10-iter deep-research; synthesized research.md; verdict BUILD as a light workflow mode"

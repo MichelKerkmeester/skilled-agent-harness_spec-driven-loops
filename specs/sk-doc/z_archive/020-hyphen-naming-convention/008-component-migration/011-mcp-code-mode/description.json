@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
   "description": "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names.",
   "keywords": [
     "mcp-code-mode",

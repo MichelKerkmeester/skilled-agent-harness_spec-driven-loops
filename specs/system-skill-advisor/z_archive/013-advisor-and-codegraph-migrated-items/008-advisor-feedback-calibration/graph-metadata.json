@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor already accepts accepted/corrected/ignored outcome events through `advisorvalidate` (`schemas/advisor-tool-schemas.ts:240-250`), but nothing consumes them, so real routing feedback is discarded",
     "created_at": "2026-06-10T19:24:11Z",
-    "last_save_at": "2026-08-30T15:39:27.279Z",
+    "last_save_at": "2026-10-07T18:16:05.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f8468ecf5ab7a7b9d5807eae1feb910f5ae003922a63fde6ccdc49a002bfc86",
+    "source_fingerprint": "sha256:3bab533c7627b39493f099aafb430834725075a58a8127deb561f51dcea3607c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea4b31a3a25c06e15e6bbbdff690ad3d1400eb1564897e69adeadd9c9eda7ca8",
-      "plan.md": "2699072c4c15be0b546825bc6c289ffb08cbfd69b856860db0b29e910b36714d",
-      "tasks.md": "0744b5f9385b87ee607d145fc8101ae72954c090dd61e3e8a30d9050d852982c",
-      "implementation-summary.md": "ba0185c49b8d390ef9b836e660af9d3a4607648540bcb0fe317195a4ee3d675a"
+      "spec.md": "d91acd6a60b734eab08cbed1d8d5cbc1c2bb8eb46dd4a8790764046ad62b3b3d",
+      "plan.md": "fdd80851344d22517b3c4f2deaea2c1025c2004ec30443938faacd7b18c7d8ca",
+      "tasks.md": "ae033c972dd6bfec1eda0692bd05786979431753bec46f384d0934154794bb00",
+      "implementation-summary.md": "c853cccf72c84f7621627aa38be57fa9174608aeade55587d30b2d7c12631461"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-git/010-review-remediation-and-alignment"
+    packet_pointer: "sk-git/z_archive/010-review-remediation-and-alignment"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "All findings fixed + verified; packet complete"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/043-repo-rules-router-audit"
+    packet_pointer: "sk-doc/z_archive/043-repo-rules-router-audit"
     last_updated_at: "2026-08-31T20:10:00Z"
     last_updated_by: "stream-4"
     recent_action: "Measured Gate 5 payload, repaired 35 punctuation defects, generalised the load rule"

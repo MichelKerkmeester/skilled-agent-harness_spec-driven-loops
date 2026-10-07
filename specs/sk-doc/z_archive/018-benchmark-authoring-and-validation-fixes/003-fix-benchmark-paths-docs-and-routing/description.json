@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
+  "specFolder": "sk-doc/z_archive/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing",
   "description": "An independent two-model audit (GPT-5.6 SOL max + LUNA max) of `sk-doc/create-benchmark` confirmed the packet's benchmark-family coverage is",
   "keywords": [
     "independent",

@@ -256,7 +256,6 @@ The 8-feature vector captures all Stage 2 signals. A regularized linear model (L
 ---
 
 <!-- ANCHOR:nfr -->
-<!-- ANCHOR:requirements -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -278,7 +277,6 @@ The 8-feature vector captures all Stage 2 signals. A regularized linear model (L
 ---
 
 <!-- ANCHOR:edge-cases -->
-<!-- /ANCHOR:requirements -->
 ## L2: EDGE CASES
 
 ### Data Boundaries
@@ -342,8 +340,8 @@ LEVEL 2 SPEC — Phase 1 of 5 (Research-Based Refinement)
 - Shadow-first deployment strategy
 -->
 
-<!-- ANCHOR:questions -->
+<!-- ANCHOR:questions-2 -->
 ## 10. OPEN QUESTIONS
 
 None at this time.
-<!-- /ANCHOR:questions -->
+<!-- /ANCHOR:questions-2 -->

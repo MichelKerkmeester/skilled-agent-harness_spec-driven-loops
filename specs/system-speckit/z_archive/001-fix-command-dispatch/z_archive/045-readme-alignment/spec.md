@@ -2,12 +2,7 @@
 title: "Spec: README & Install [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/045-readme-alignment/spec]"
 description: "Fix documentation misalignments, incorrect counts, and inconsistencies discovered by 10 parallel Opus agents auditing README files and install guides across the skill system."
 trigger_phrases:
-  - "spec"
-  - "readme"
-  - "install"
-  - "guide"
-  - "alignment"
-  - "045"
+  - "readme alignment spec"
 importance_tier: "important"
 contextType: "planning"
 ---

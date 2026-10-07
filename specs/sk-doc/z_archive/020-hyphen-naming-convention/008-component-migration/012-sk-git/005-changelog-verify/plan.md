@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
+    packet_pointer: "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
     last_updated_at: "2026-07-14T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored the changelog verification plan and no-mutation evidence path"

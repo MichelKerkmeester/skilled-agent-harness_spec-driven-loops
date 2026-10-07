@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
     "created_at": "2026-07-13T13:09:09.451Z",
-    "last_save_at": "2026-08-30T15:39:14.836Z",
+    "last_save_at": "2026-10-07T18:13:17.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b69d670deae4087d5df882b70cafeb96b053f731e4f1c9cc46ec9d5c780bcac",
+    "source_fingerprint": "sha256:a1475307fd29e095bde3c2de3147401dd055ab3389607c78107f6f36c81a2d49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6197259629b9f6a2e194777e0f44d56f3425ada87d733ebded6441ca5199cb60",
-      "plan.md": "59da700d259c0e8d96b7d38e4caf8a60036640caa92e08508e26a8666b7831c4",
-      "tasks.md": "2f6ba8af43a483fbee24af86bcacdda033363b638a0bcf304ada7728a1052dc2",
-      "implementation-summary.md": "4a664dc4645d85efa4ba51cf579e6e335eb88ce543c7c791a90a734cf20d9e01"
+      "spec.md": "fa0ec4bfe0b23218bd98c7c745d773307bb85f973cf441a34337c9dddaae84c3",
+      "plan.md": "c8b851acd2288106d1d950601b9cc50b4e1a23649b3d2f816da929338a3a1d84",
+      "tasks.md": "5f423d00d4faad6df4c8e63efe1bdfd262970f7a56489b9a0b68eb193281c249",
+      "implementation-summary.md": "79767a21a4cfdbd2253fd92d22f4307a625aa88344a17973d1023ebb2fb8dfbc"
     },
     "last_active_child_id": null,
     "last_active_at": null

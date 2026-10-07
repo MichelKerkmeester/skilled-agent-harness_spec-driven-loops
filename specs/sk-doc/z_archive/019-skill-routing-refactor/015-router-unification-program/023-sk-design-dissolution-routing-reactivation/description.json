@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation",
   "description": "The sk-design hub was dissolved from the skill tree, leaving the compiled-routing engine encoding a stale 7-hub topology; migrate the engine to the 6",
   "keywords": [
     "sk-design",

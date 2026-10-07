@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The current loop is real and safe, but it is still narrow",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-08-30T15:39:22.500Z",
+    "last_save_at": "2026-10-07T18:14:19.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4602613cb6a73ae9b328cb82a2a8928323fee7abc8df1a8446dc9dc22240800",
+    "source_fingerprint": "sha256:f0a25a7c87921364d5a19c9d8c4a67cd634a1ec475bf864b32231bbac7d7ca03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa17a8475257462de45b0f9407c5bd6792637a366f613eca4da52ba930f6047f",
       "plan.md": "3c39ecc93940094d4f275a0c47b13b1b42d929045970796f51444c75dc0d2a37",
       "tasks.md": "6a853bfab37c0f91a8c2af58c616509da4bb90ce893de6fbb1c52c49b2664af5",
       "decision-record.md": "c182ce0d795f526d6b62f91c504d9a088caa0373412c6662b349fda1155a8c90",
-      "implementation-summary.md": "b77e37b505752b1ff8327e65f45618e3729b838e2d721d3e61757ca39e4a47df"
+      "implementation-summary.md": "f65c935f8a554f6bedfa66bdf37f0da07ab752eb8ded1022fc3d68f87e6871f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

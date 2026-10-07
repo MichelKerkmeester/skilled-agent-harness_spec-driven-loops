@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -161,7 +161,7 @@
     ],
     "causal_summary": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories, language-reference directories, Rust checklists, shared organization references, and benchmark labels",
     "created_at": "2026-07-14T15:17:07Z",
-    "last_save_at": "2026-08-30T15:39:16.251Z",
+    "last_save_at": "2026-10-07T18:13:28.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,12 +169,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:984d1a9d70dd86870d1efad71a10bc5716ee76fc4f84e31dcc9d81498476df3a",
+    "source_fingerprint": "sha256:c95e5c6149ad34450224db3eff49791426b4c84aadeb0a3cf8414ccd7c044b00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "37ffce1df15ac174f0c33d9ab538809370185cfd27b486c30c99323c1252957f",
-      "plan.md": "9561ca9287b076284f9cdcad7138c07a90d42d44ba9b336c920232fc5cd425b5",
-      "tasks.md": "da6f526bb9279020ce0c7e869bcafffe5f5ee439c680d4679fef360faf864979"
+      "spec.md": "981abf6c92fb174d316ff4d37e789f1f79ca18067195a99c30ec984af29d8b68",
+      "plan.md": "79aa4c55ac25d6e0ebb7fa3ad911a542bb12208c8b2ef799496b536f125aa154",
+      "tasks.md": "019f69145a290e8ebb766a498047ee1695bb911d651e4b867262ae159d53d040"
     },
     "last_active_child_id": null,
     "last_active_at": null

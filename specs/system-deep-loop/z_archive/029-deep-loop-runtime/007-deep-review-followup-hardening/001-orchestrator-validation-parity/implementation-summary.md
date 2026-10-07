@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity"
+    packet_pointer: "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity"
     last_updated_at: "2026-07-06T16:24:25.045Z"
     last_updated_by: "gpt-5.5-opencode"
     recent_action: "Implemented node-rule bridge follow-up"

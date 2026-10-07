@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/010-sk-design-styles-from-refero",
-  "spec_folder": "sk-design/010-sk-design-styles-from-refero",
+  "packet_id": "sk-design/z_archive/010-sk-design-styles-from-refero",
+  "spec_folder": "sk-design/z_archive/010-sk-design-styles-from-refero",
   "parent_id": null,
   "children_ids": [
-    "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
-    "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
-    "sk-design/010-sk-design-styles-from-refero/003-full-set"
+    "sk-design/z_archive/010-sk-design-styles-from-refero/001-extraction-harness",
+    "sk-design/z_archive/010-sk-design-styles-from-refero/002-pilot-batch",
+    "sk-design/z_archive/010-sk-design-styles-from-refero/003-full-set"
   ],
   "manual": {
     "depends_on": [],
@@ -86,16 +86,16 @@
     ],
     "causal_summary": "`sk-design` holds exactly one extracted design reference (`.opencode/skills/sk-design/styles/cursor/`), captured by hand from a styles.refero.design per-style page",
     "created_at": "2026-07-18T06:04:54.636Z",
-    "last_save_at": "2026-08-30T15:39:12.461Z",
+    "last_save_at": "2026-10-07T18:11:50.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:59482f449dd8354b4628d490df4da372094f0885bb42ddedea2a10ff4b17e218",
+    "source_fingerprint": "sha256:00af2648fd92287a838fca9199ec3e21fb44c46bba1a041ea0d1ac11f584fbc1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3944fcc674bb86f2bfab906a9145cf88f819394284da28b256ef0d2e1be307c5"
+      "spec.md": "d82d300fdc048c265c9675cb4ac554ca727767053b0e9b5d72204e67a30c18f8"
     },
     "last_active_child_id": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/013-commands",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-30T15:39:17.085Z",
+    "last_save_at": "2026-10-07T18:13:10.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c60254a24602f0b67cf8477d493f7c0ff36dc0aad54439e142b7ee722a110546",
+    "source_fingerprint": "sha256:f2c0fcd2356b5bf55bbbc0bdfdec4adaa430b526dff7c3e187ba039f80624e44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "336314bd8040affae7414ba6232c2c68627671dba5c2d13fcd60b1473f397e1c",
-      "plan.md": "eacd001ab7da8224be57f7e3f08ac2cce68cd92a888a94c24af5c3596b462cc3",
-      "tasks.md": "d05be0909dac9947a105346b133dd771d28a82be888394a71fc4f20778349cdc",
+      "spec.md": "5819d3d4765bfbf38a7036345a6f76c7aebd105bd23abbdd75304a5556a5bd82",
+      "plan.md": "f6706847cd9bbce378c5125fd78dfc760d5d798a1518a1a23e64ea8b3285a36a",
+      "tasks.md": "28378cdcb69920184d027d71fa701d920f61e61181cfc1b881780b2893b26bc2",
       "decision-record.md": "184ce59c512908e32d16ec85bef202270a7da278aa64329654553a09a5694df3"
     },
     "last_active_child_id": null,

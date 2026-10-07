@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet"
+    packet_pointer: "cli-external-orchestration/z_archive/030-cli-cursor-creation/003-cli-cursor-skill-packet"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
     recent_action: "Authored tasks.md for the planned cli-cursor skill-packet phase"

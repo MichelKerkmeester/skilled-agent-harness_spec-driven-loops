@@ -2,11 +2,8 @@
 title: "...2--system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification/plan]"
 description: "Current"
 trigger_phrases:
-  - "state"
-  - "simplification"
-  - "implementation"
-  - "plan"
-  - "001"
+  - "state simplification plan"
+  - "state simplification implementation"
 importance_tier: "important"
 contextType: "planning"
 ---

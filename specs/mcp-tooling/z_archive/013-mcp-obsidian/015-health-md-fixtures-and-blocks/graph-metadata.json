@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The deep research found the mode's example asset and quick-start blocks are not safe: the fixture (`healthmd-export.example.json`) was authored from starter guidance with fields that are not verified against the real `healthmd.healthdata` v7 export shape, and every render-block example uses the wrong `health-md` fence with invented keys",
     "created_at": "2026-08-03T14:17:59.804Z",
-    "last_save_at": "2026-08-30T15:39:10.181Z",
+    "last_save_at": "2026-10-07T18:11:39.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32fd40c33cadc8db5773531bd686775450177186a63bf3e8b0d22e5651de02ba",
+    "source_fingerprint": "sha256:1a8419aaf03b263f031b6d6e9594ab1b60931caedf6ad47731ed879705de27f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8729e5552e0f80c8813a40619f1b7de89f1edf55944f8b7a12aedcd954ace6d3",
-      "plan.md": "bb9d4f65be529b0546f75fdbbb1c6f7edd18c55851ca17cf2708b0186a24ba5c",
-      "tasks.md": "e5668d24a156ba143973787a5ba7efd1d55fd4f226e43d895a33a4c6de9f3844",
+      "spec.md": "15d192e7088ddc890afa9887e8906ce72fc89926eccdafef867d6d19bde8e74d",
+      "plan.md": "c33b4a8090b1bd196f6fa560d9f3ffef9d87f9b64d07352fd130c998045fc9a3",
+      "tasks.md": "fe3cd25e252bdc3bce0dc7aab236c1c3d808d891a87c00b949662dda3bd1d31c",
       "implementation-summary.md": "5d2ca0644240e4e8b1d44e02f086fb76292dc630a98728429f3394734a1c96c2"
     },
     "last_active_child_id": null,

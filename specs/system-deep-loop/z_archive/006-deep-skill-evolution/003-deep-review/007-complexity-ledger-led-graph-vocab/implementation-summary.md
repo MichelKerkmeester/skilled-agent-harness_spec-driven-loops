@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/007-complexity-ledger-led-graph-vocab` |
+| **Spec Folder** | 007-complexity-ledger-led-graph-vocab |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | ~1.5 hours |

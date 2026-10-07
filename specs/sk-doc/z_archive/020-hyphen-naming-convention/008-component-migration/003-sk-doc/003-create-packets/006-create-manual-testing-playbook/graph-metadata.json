@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers.",
     "created_at": "2026-07-14T15:22:37Z",
-    "last_save_at": "2026-08-30T15:39:16.441Z",
+    "last_save_at": "2026-10-07T18:12:56.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ed95ca7acde93280d7183cdc12d3335e843f17d8115adf20a6e78ee736733198",
+    "source_fingerprint": "sha256:e1a0cd1de1a7e7a03090bc6f1febb95d21a2fbccbed316f8f27c0303ad058fa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9c156aed0e03e2069fb31709902da8314a5fc1b2be6cb4380886121fdbc0562a",
-      "plan.md": "459130cf5a4c7298da4af861c758b188cffaa20df40b2f664d1fd98d265b5a1e",
-      "tasks.md": "e7dc3482d4fd72feb1767b9d22900341406f7cfb40f67aa36f9343e8072afb58"
+      "spec.md": "79eac582f44810d982624bdc774396d38457b77401a60c0fa335b2662dfd0fbe",
+      "plan.md": "42047316266e32096f04dde2a35eff277f90f7ddfc83ced9f22a2c3a11650a51",
+      "tasks.md": "47d2945af6aa2a64da4260886a614f303ac05d0d86b5cb188010ceca90d46f9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

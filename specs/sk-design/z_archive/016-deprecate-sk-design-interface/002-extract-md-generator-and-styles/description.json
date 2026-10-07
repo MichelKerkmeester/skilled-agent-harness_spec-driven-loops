@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
+  "specFolder": "sk-design/z_archive/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
   "description": "Phase 002 moves sk-design-md-generator (120 tracked) and styles (7,812 tracked) out of the doomed hub into a new top-level skill root via directory",
   "keywords": [
     "phase",

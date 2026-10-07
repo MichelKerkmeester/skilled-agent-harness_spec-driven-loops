@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".github/workflows/routing-registry-drift.yml",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py"
+      ".github/workflows/routing-registry-drift.yml"
     ],
     "entities": [
       {
@@ -71,12 +70,6 @@
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
-        "source": "derived"
-      },
-      {
-        "name": "skill_graph_compiler.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py",
         "source": "derived"
       },
       {
@@ -184,7 +177,7 @@
     ],
     "causal_summary": "Add skill_graph_compiler.py --validate-only (full derived schema + key_files/source_docs path existence) and score-routing-corpus.py (pinned corpus hash) to routing-registry-drift.yml so a malformed derived block or a routing-accuracy regression fails CI instead of only surfacing at an offline advisor rebuild.",
     "created_at": "2026-07-29T08:00:19.030Z",
-    "last_save_at": "2026-08-30T15:39:15.883Z",
+    "last_save_at": "2026-10-07T18:13:30.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +186,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8a62e4c64a785c81ab9d6c287edb2c706a7d8b3add93bcbb344d1a7e41af732",
+    "source_fingerprint": "sha256:1542dcae8664a06834e09329604a0b949db564d0f9669f698f6a66a821b40e0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33b27e5ee0744b2f9d8e8e7bb91a3c5814f3e852212d076424ca6b81af345a99",
-      "plan.md": "72ac0d79cf000d87fbb1ef81715955375d51998265657a371e35da597d5de693",
-      "tasks.md": "3729435477f6195ab93d185846eef76476b45e3bdf75b58769c9ace333edbb86",
-      "implementation-summary.md": "3e5488850726fd4d71d5656cfd4af49a884efcd9d79c75054ef66da1e1d25d1a"
+      "spec.md": "e74dea60313478fbc1180b4a29ba7e332a439965ceaf72ad842025524a113220",
+      "plan.md": "f2668b2e3a16759a3a943d2e07b0b9d15394806d40c6a93da56c9aad11a95760",
+      "tasks.md": "406a45e996c01cf11c3c09d1b44a6efa3275a967c4250554a7301afc3b5f9e45",
+      "implementation-summary.md": "b42c8e14e0fd5cc9ee0e8b7508420569a19c778bc1df8592ab9507cad91daf9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

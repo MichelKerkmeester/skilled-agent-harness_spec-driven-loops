@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/025-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation"
+    packet_pointer: "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/003-guard-and-enforcement/003-loop-guard-implementation"
     last_updated_at: "2026-07-01T21:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implementation, hermetic tests, and live re-verification complete"

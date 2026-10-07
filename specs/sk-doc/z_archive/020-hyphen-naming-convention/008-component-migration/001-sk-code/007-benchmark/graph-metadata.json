@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -174,7 +174,7 @@
     ],
     "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
     "created_at": "2026-07-14T15:17:11Z",
-    "last_save_at": "2026-08-30T15:39:16.284Z",
+    "last_save_at": "2026-10-07T18:13:30.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:45d94058ec0e539977fefaa7f93ae69e0d003bfb60724c0b459cd77384b91d09",
+    "source_fingerprint": "sha256:49870c5aaee3d96050e7c7d281e638ab988203bae81feef771812ff7ff75789c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b0e586e1bae2a2a8246f76778d4ad6caef38bfff510c51bb8fd6d0a19483344",
-      "plan.md": "21dc10748ef205645fbd016edc157bdccbcb33b8d62d4e0a775123bf0d54f687",
-      "tasks.md": "c2b8c76babee75b48e1b5a0723336176cfa1f3e88ab99388e9d32b729d99748c"
+      "spec.md": "289ded994da311bc2ad20466c4e7adc3a68d127577cc4d6574d2c50b844d45be",
+      "plan.md": "fd2f377677bc33ed53ce5c87e3371ebcefcee481128d8be6258a6027f56fa3e1",
+      "tasks.md": "91a3003112b5ce23ea788413c1546cb3546be170edec13788d9c5831080ece44"
     },
     "last_active_child_id": null,
     "last_active_at": null

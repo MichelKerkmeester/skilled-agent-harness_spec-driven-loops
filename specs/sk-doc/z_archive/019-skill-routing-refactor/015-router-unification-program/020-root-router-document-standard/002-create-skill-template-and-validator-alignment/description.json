@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard/002-create-skill-template-and-validator-alignment",
   "description": "The parent generator emits no second-stage router and its template still instructs authors to create `shared/references/smart-routing.md`",
   "keywords": [
     "parent",

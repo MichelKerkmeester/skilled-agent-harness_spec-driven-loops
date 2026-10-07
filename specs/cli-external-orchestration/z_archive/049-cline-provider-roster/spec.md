@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/049-cline-provider-roster"
+    packet_pointer: "cli-external-orchestration/z_archive/049-cline-provider-roster"
     last_updated_at: "2026-08-18T18:42:01Z"
     last_updated_by: "claude"
     recent_action: "All seven phases complete; phase 7 added the cline testing playbook scenario"

@@ -1,3 +1,14 @@
+---
+title: "SpecKit Reimagined Test Suite: Feature Summary"
+description: "Test coverage mapping for 33 features organized by functional category with current versus target test state analysis."
+trigger_phrases:
+  - "speckit test suite feature summary"
+  - "test coverage feature mapping"
+  - "current versus target test state"
+importance_tier: "normal"
+contextType: "planning"
+---
+
 # SpecKit Reimagined Test Suite: Feature Summary
 
 > **Test coverage for 33 features** organized by functional category with current vs. target test state analysis.

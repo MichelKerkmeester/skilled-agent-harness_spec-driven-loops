@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/070-swe-2-model-cutover"
+    packet_pointer: "cli-external-orchestration/z_archive/070-swe-2-model-cutover"
     last_updated_at: "2026-09-12T06:15:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Cutover shipped; swe-2-max dispatch-verified and the fan-out allowlist widened"

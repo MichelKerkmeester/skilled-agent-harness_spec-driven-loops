@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata"
+    packet_pointer: "sk-design/z_archive/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata"
     last_updated_at: "2026-08-19T05:51:14Z"
     last_updated_by: "spec-author"
     recent_action: "Fixed relocation path bugs, authored standalone metadata, proved 173/173 tests"

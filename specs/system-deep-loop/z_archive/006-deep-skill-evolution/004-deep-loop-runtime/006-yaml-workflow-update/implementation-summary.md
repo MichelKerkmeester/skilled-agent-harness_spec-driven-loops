@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update` |
+| **Spec Folder** | 006-yaml-workflow-update |
 | **Completed** | 2026-05-22 |
 | **Level** | 2 |
 | **Actual Effort** | Bundled with phases 002, 003, and 004 |

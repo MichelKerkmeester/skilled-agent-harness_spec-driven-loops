@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
-  "spec_folder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
-  "parent_id": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
+  "packet_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+  "spec_folder": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+  "parent_id": "sk-doc/z_archive/016-create-diff-mode/012-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,30 +13,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy"
+      "subheadings advisor codegraph spec",
+      "advisor catalog subheadings",
+      "code graph section subheadings",
+      "subheadings advisor codegraph plan",
+      "subheadings advisor codegraph tasks",
+      "advisor section subheadings task list"
     ],
     "key_topics": [
-      "implementation",
+      "subheadings",
+      "advisor",
+      "codegraph",
+      "spec",
+      "catalog",
+      "code",
+      "graph",
+      "section",
       "plan",
-      "technical",
-      "approach",
-      "architecture",
-      "decisions",
-      "testing",
-      "strategy",
-      "apply",
-      "sub-headings",
-      "long",
-      "works"
+      "tasks",
+      "task",
+      "list"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -49,6 +52,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -116,22 +125,60 @@
         "kind": "quoted",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done in a single AI pass per skill.",
     "created_at": "2026-07-09T10:02:46.140Z",
-    "last_save_at": "2026-09-11T04:36:15.425Z",
+    "last_save_at": "2026-10-07T20:38:25.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:52777b2c86df4872c0f2d7de40d7fc2e3dd2c9b04c555e712d18e7a5d61c8a2b",
+    "source_fingerprint": "sha256:0b80abcfb6e5116c037e4f39153bb98a3f60d0e4635498fff982a1026ff6d005",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "243216c225dcf683cd076f2435c473f5e0bb0253992e5eabfee765ea8d2ecf23",
-      "plan.md": "5e39512ed9979bcd5bdc4925387735b1a881804b0b6f9c3ac830bc2274131736"
+      "spec.md": "9287daf8d91bcce4a0bb68852234284ade7ae44844792afb5fee7d2c56b5896c",
+      "plan.md": "2d99ff95fd520fe11306aace6819e4e1295517abf430f222e4b0206fff41a118",
+      "tasks.md": "70d09fe1267707e3b47c68bdfab874f0471ca891d0165005443e1a64977434d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

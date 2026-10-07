@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/009-sk-design-claude-parity/014-review-remediation",
-  "spec_folder": "sk-design/009-sk-design-claude-parity/014-review-remediation",
-  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "packet_id": "sk-design/z_archive/009-sk-design-claude-parity/014-review-remediation",
+  "spec_folder": "sk-design/z_archive/009-sk-design-claude-parity/014-review-remediation",
+  "parent_id": "sk-design/z_archive/009-sk-design-claude-parity",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,9 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
         "source": "derived"
       },
       {
@@ -191,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Prompt Data Isolation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 10-iteration deep review of the sk-design Claude-parity packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`) returned verdict CONDITIONAL with 8 P1 and 3 P2 active findings, all concentrated in the `design-md-generator` backend: missing component facts in the WRITE prompt, unsanitized prompt-data and CSS-value injection surfaces, an output-path guard that doesn't enforce the documented spec-folder/sandbox boundary, a comma-splitting bug in transition-shorthand parsing, and a feature-catalog claim that doesn't match code behavior",
     "created_at": "2026-07-06T17:16:14.933Z",
-    "last_save_at": "2026-08-30T15:39:12.250Z",
+    "last_save_at": "2026-10-07T18:11:39.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06bd8501c4fc397b18c4ec4c4d537a76aa7904ba86937ac2de83a08f80400d6e",
+    "source_fingerprint": "sha256:8525fdb3978a22bbb1b778dd3de774328d1c5cb40d2415ad3eba82498d8fd048",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85545c47ad4033e966f42f7c01e6956aff60aad7c0449d3452b46bfe3ba9030b",
-      "plan.md": "4cac44d0bda4db258239e9a981aa76a4eb322258ecb9eb6de693176b93443123",
-      "tasks.md": "fc4902706d886e9ca7e44c14dbb70dc8338c4ec6e65dd863fb455f5e9660f75e",
-      "implementation-summary.md": "f3f5e4814e836cb77878691189a8d00e5617be9276101b6c74c4e8129d7b1db9"
+      "spec.md": "6d0f5cd579499880fc8daeba50151e5ae16a5c83acd8f6e18dca1ad299b2bc3f",
+      "plan.md": "b2b570a8c9c11364a04c7f1209da71a7df746adabeac63203dddad3457c74ba3",
+      "tasks.md": "b9b8ef7fa6af499841d06909b9e1a54c2a3859cf9b2f6ac674159fe65ce4cbe0",
+      "implementation-summary.md": "416f785621f1acdfe5abb40edc94d6e749ab9fe497a7fc35bc6e2b62f83cf1ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

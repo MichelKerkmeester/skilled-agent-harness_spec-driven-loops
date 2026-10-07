@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero"
+    packet_pointer: "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero"
     last_updated_at: "2026-08-04T14:09:00Z"
     last_updated_by: "spec-author"
     recent_action: "Recorded phase 014 completion state after all gates passed"

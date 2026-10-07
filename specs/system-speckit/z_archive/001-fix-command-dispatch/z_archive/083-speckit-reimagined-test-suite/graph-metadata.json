@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 082-speckit-reimagined implementation introduced 33 features with 107 implementation tasks",
     "created_at": "2026-04-12T09:02:53.555Z",
-    "last_save_at": "2026-08-30T15:39:37.585Z",
+    "last_save_at": "2026-10-07T20:38:38.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddc797e50d764bea01ee26ec62dba0b524e70ad238449a9724eed029f614ba7d",
+    "source_fingerprint": "sha256:826642edc206b86f095e9d7e9d233ff935fcbbc3abb5e04bb15e23f4b4c17bb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1d8086d14ae066fdc76b573eeb0b6fae575bd074a3d1e236259e978c370575f",
-      "plan.md": "02ca0bcbb600525754c87befee6c9d74aa65aa631ab1e15f0ffedc0bdee65ff7",
-      "tasks.md": "5e13580f739e7d742aff0dd17614056b6f9cf7cff845436f63cfe3a3b1d851f8",
+      "spec.md": "c51885414d7540fd89108d8a80b5283bf452a037918e53b8869f580327d9e2a1",
+      "plan.md": "3b965c25301e3f6a61fe5a92c42d8e1d0f048c28d65d013daa6a9edc993c3a14",
+      "tasks.md": "367722a6417bc45e0b188bc7dd3a8ae6c633bdf496dafbeb962c2f7f822c6ee4",
       "decision-record.md": "3ca0dca26e0b00b75ead35cf80b76cfcb71618c1dafa2f76aabd704a92f14310",
-      "implementation-summary.md": "f2baf82d7c8e914261398c799b05d7ecb59f45c2770c5522c39d035731a06d75"
+      "implementation-summary.md": "6a71b2923ee9484ac952466a3f942ca24019b8c21ae860e02eda1596754db3e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
+  "specFolder": "sk-design/z_archive/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start",
   "description": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode`",
   "keywords": [
     "larger",

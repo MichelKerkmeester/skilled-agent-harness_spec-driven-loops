@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The plugin could store and track goals, but automatic completion still needed a verifier that did not trust assistant self-report",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-09-07T16:17:24.404Z",
+    "last_save_at": "2026-10-07T18:15:03.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc69ea6eec455894eacaaf199939298eee8b13f1c1a8ec48ef57ab388c5f77f1",
+    "source_fingerprint": "sha256:f19220389b44b289638d38978e9c177d3f12c831e79a6d74db48781b12c312c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07a74c13d309fd567022e8dc78c0b5b3129f358686199af734dfb771305a45f0",
-      "plan.md": "afdbbfdd519f26273f97f32925b7a89817bd244a29cae28137597364290162f8",
-      "tasks.md": "50a4b053967f39568766d3c72d197c8b811bef26f0c8ffb629d0198d9bee9253",
-      "implementation-summary.md": "9094ebc0d8246092f115aa065867acef8ad71e4fb05f4f82abc7e19517dd5e68"
+      "spec.md": "040feab9fe704c2869828113b4174ee698a15ef845903dab2d1472e02fc86a88",
+      "plan.md": "2af63978ba5081aae3a0232e2d3007f5d26d931c41481102e2111dadff67adb4",
+      "tasks.md": "8c063c5350abd116bfb588467ac924a2ee72f65e2d813d62cb3ed1e3b84be9aa",
+      "implementation-summary.md": "0b07623f27fd1903a1fb4e9367be6cb0dbe400efeb8aff5a47429f3bf0f3d381"
     },
     "last_active_child_id": null,
     "last_active_at": null

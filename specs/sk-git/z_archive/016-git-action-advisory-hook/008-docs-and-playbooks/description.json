@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
+  "specFolder": "sk-git/z_archive/016-git-action-advisory-hook/008-docs-and-playbooks",
   "description": "Phase 007 landed four runtime adapters and style-aligned scripts, but the `scripts/lib/` and `scripts/hooks/` directories had no READMEs, and no",
   "keywords": [
     "phase",

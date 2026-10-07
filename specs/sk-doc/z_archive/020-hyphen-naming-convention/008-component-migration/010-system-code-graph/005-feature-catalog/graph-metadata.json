@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
     "created_at": "2026-07-14T15:18:16Z",
-    "last_save_at": "2026-08-30T15:39:16.884Z",
+    "last_save_at": "2026-10-07T18:13:18.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:baa01f2b9f8d3d7503603d8734fd1a3c517ab55e461c2f0023f21df31e0c5487",
+    "source_fingerprint": "sha256:b4d38954866f648a4209e33d6128e98b74b64e74256e4e84f003080a0325c6ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "041d64f5d8100f8fa445664990e8c36b10a6e745d710a93d817d6107f49e7431",
-      "plan.md": "2a8d0b229214006aa950bbd37498e9fddddb276a1e44d3f117779686ad3af595",
-      "tasks.md": "3260bace80564924a60a135c933dc453598d131d673a419ff8d20f2b6ff71827"
+      "spec.md": "9a551df9318061a82421c7e5abfee82a8d4a5a07990d152156aa5d3f270b1a0c",
+      "plan.md": "9b25860600cc611f16bd8159f86caa6f8a634b6eb17d69e7225b09410ff608d1",
+      "tasks.md": "2aad1972797483c183f5c332e6e6e91aa008214071726e8c67cb5ebef09d8617"
     },
     "last_active_child_id": null,
     "last_active_at": null

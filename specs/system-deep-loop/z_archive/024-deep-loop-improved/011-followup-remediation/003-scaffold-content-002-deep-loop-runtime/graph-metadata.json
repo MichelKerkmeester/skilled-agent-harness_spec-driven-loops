@@ -36,8 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,12 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-scaffold-never-touched.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
         "source": "derived"
       },
       {
@@ -183,11 +176,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Leaf Coverage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "All 18 leaf children under `.opencode/specs/system-deep-loop/024-deep-loop-improved/002-deep-loop-runtime/` (`001-atomic-state-serialize-diff` through `018-persisted-wait-crash-resume`) have a `plan.md` and `tasks.md` whose body content is still unmodified scaffold-template placeholder prose — literal text such as `[Component 1]: [Purpose]` (e.g",
     "created_at": "2026-07-01T19:38:04.138Z",
-    "last_save_at": "2026-08-30T15:39:25.307Z",
+    "last_save_at": "2026-10-07T18:15:09.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +195,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd2ac2bfd1d4e283d3a8ed3171c1232a405f4e56ce06a841f05bf37edf6d7bec",
+    "source_fingerprint": "sha256:77443b2fd2e3537be041e1f6be7bd796165fc526eb7b47753cca5b6cc432ca73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1db64f2391ae445b582f942a196393fa44ee3a24f809ac56281c3cd89118228",
-      "plan.md": "2ad479be74c605c5dc05b9d227d0dd6af6a31d337d283af83e061369d57311c2",
-      "tasks.md": "798d0aa99f518c1846bc7709686e58dfe511b738f898d703e20416f698949be8",
-      "implementation-summary.md": "48ee202e1b02225a514b697d33ff4228364099ccdede0781cb812740a5af9d6e"
+      "spec.md": "3823f5626fb443e3561d591ac8557192d28ba661a1e1f86833b61f9a7e6b280c",
+      "plan.md": "035b16398b0265f98772e94f130f5eac60482f1b8d391c817027335a1c185cc3",
+      "tasks.md": "bfabe6f508cbed3e3f2492bd988a693b56f8233501047cebce545a7c99f81cb5",
+      "implementation-summary.md": "88726dcbbbb13d46862069f7be2ce1578432dbea759e4a58164cfbde13f72d6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

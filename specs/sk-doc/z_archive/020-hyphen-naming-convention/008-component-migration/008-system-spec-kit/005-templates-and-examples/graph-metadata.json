@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1, level_2, level_3, level_3+, stress_test, and EXTENSION_GUIDE.md. This phase moves permitted template paths and updates generator, renderer, and documentation pointers while preserving tool-mandated manifest templates.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-08-30T15:39:16.768Z",
+    "last_save_at": "2026-10-07T18:13:28.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,12 +176,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ac198419d500ff8c251c4c699bce81baf16754a28dc38170e247ff3c751e3e2c",
+    "source_fingerprint": "sha256:dec911729d733b0da21652da76dea2d770ff0e0361b59a53cd8d2a8a5aa7a1af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20c3ed924a47eb1bfa2d3163b50bd2b7fe63e5a0b3d98fabbe9e989943277e59",
-      "plan.md": "68810aa5e3da5bc2f0c22dba351f8f00f8cbdf48a6db5d8ac80e01cc94e3b3b5",
-      "tasks.md": "27983260c24ee4a22bbf9b44d2af00f36ae151ff93c2c8d648a5aa8936ee60b3"
+      "spec.md": "dc3c2be02d40963ca87026b8e903d05d7488329f0e3aa887f42bfcd957e0ac3f",
+      "plan.md": "6696ff9610243e13038618f8dff4c7f5b9fa6c9bf5ada0c5fc7f1f1c70e625b1",
+      "tasks.md": "2ebf9fb1557edd48ee9ddee8b24123d150cb3ddbd945f0091a5d44247d4f42fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

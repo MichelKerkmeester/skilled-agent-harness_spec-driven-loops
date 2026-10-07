@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment"
+    packet_pointer: "system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment"
     last_updated_at: "2026-04-19T18:10:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Plan populated during implementation"

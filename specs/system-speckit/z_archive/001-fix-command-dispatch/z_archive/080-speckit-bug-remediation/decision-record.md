@@ -20,6 +20,7 @@ contextType: "planning"
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Phased Parallel Execution Strategy
 
 ### Context
@@ -43,8 +44,10 @@ Use **phased parallel execution** with bug severity grouping:
 - (-) Requires careful file assignment to avoid conflicts
 - (-) More complex orchestration
 
+<!-- /ANCHOR:adr-001 -->
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: ReDoS Fix Strategy
 
 ### Context
@@ -70,8 +73,10 @@ Multiple regex patterns in parsing modules exhibit catastrophic backtracking:
 ### Rationale
 YAML structure is line-oriented by design, so line-by-line parsing is natural. Trigger patterns need to stay as regex for performance, but bounded greedy eliminates backtracking.
 
+<!-- /ANCHOR:adr-002 -->
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Tier Weight Consolidation
 
 ### Context
@@ -95,8 +100,10 @@ All other modules should import `get_tier_value()` from importance-tiers.js.
 - (+) Easier maintenance
 - (-) Slight behavior change for folder-scoring (needs verification)
 
+<!-- /ANCHOR:adr-003 -->
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## ADR-004: Checkpoint Restore Safety
 
 ### Context
@@ -128,8 +135,10 @@ try {
 3. Simpler code, less error-prone
 4. Standard SQLite pattern
 
+<!-- /ANCHOR:adr-004 -->
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## ADR-005: LRUCache Method Addition
 
 ### Context
@@ -152,8 +161,10 @@ try {
 3. Custom LRUCache is already working well
 4. Methods are simple to implement
 
+<!-- /ANCHOR:adr-005 -->
 ---
 
+<!-- ANCHOR:adr-006 -->
 ## ADR-006: FSRS Integration Fix
 
 ### Context
@@ -175,8 +186,10 @@ const retrievability = scheduler.calculate_retrievability(
 2. tier-classifier has outdated call
 3. This enables the cognitive upgrade to actually work
 
+<!-- /ANCHOR:adr-006 -->
 ---
 
+<!-- ANCHOR:adr-007 -->
 ## ADR-007: Threshold Differentiation
 
 ### Context
@@ -197,6 +210,7 @@ Two threshold bugs create confusing behavior:
 2. LOW_MATCH at 0.50 gives more room for MEDIUM_MATCH (0.70-0.90)
 3. DORMANT at 0.02 means "nearly forgotten" vs COLD "fading"
 
+<!-- /ANCHOR:adr-007 -->
 ---
 
 ## Summary

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed audit, baseline, and 14-fix map"

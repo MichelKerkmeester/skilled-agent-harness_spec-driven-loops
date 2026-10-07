@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The packet was migrated from `skilled-agent-orchestration/123-agent-loops-improved` to `system-deep-loop/024-deep-loop-improved` (with an intermediate/parallel name `156-agent-loops-improved` also in circulation per triggerphrases and the native lock file)",
     "created_at": "2026-07-01T07:22:02.812Z",
-    "last_save_at": "2026-08-30T15:39:25.214Z",
+    "last_save_at": "2026-10-07T18:15:02.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:baae8a24db3ace4be26f34100504df426b465d8386afb892a9ab0424e9b15f94",
+    "source_fingerprint": "sha256:fdd9e405c76453da8383570ca17dd755a49acde36a0b734383d0a43f37621979",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26ce29e181ef93ad99e27cbf5bac4098a838ae26418412d9cb248e7fab6bc732",
-      "plan.md": "3ee129ba771db034b6d3541b370f65ba8e9c28f19d271b038f192951bd882430",
-      "tasks.md": "5e7ebdcce448ea57d63584469652773811ac6ef471391b78fba2966ba228838e",
-      "implementation-summary.md": "cceb02327e18c03230198d1cf5391bd527a712c18506dbda6e64bbc18cff5a61"
+      "spec.md": "3f22abec78ae5d5d64434ff7f60966623e705e81b970cc78a4be1e8b4059605f",
+      "plan.md": "470d00e65769ca7d01fa533d6b78e25009771d38bc877a1f830bc91e19410ef2",
+      "tasks.md": "9ef3e6699e41ff964db562ac6981937104500cf3ab0b780d731bdeb51d378744",
+      "implementation-summary.md": "2830ced40a99323ca44a58db4bb3c10cc915ef8e55ede4808a4dc09ef7f5a509"
     },
     "last_active_child_id": null,
     "last_active_at": null

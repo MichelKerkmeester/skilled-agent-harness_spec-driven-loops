@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
       ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
@@ -92,12 +91,6 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
     "created_at": "2026-07-27T06:48:18.460Z",
-    "last_save_at": "2026-08-30T15:39:07.738Z",
+    "last_save_at": "2026-10-07T18:11:25.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d104b4f6aa1368f588f955d8419736fb7067d0be260d68af309271e206d8287",
+    "source_fingerprint": "sha256:1eea3853653f8c552a0ef38626c4a0f53d4008152b85edf503ef69d0d485557d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "52360b4141d9453b3a52b1b5bbc10ec74a69afe854697eaf1b6fc1f38130faf8",
-      "plan.md": "4f283dbe95f1977b715f99a1c12f4b26259678feb4e8525a40c2dfbc0987654f",
-      "tasks.md": "31308eb2092f217ffd0eca9c788d296f341d7e1e75ef33bf805e174d0802247f",
-      "implementation-summary.md": "c2662df69232535857ef0ed86f3dce207fe94d4bfc882e90caf16ab4d54d0b88"
+      "spec.md": "3f9aa1fda02944d11d324d6555e759417e669fd7173e215b6762b3ad2d2ff80a",
+      "plan.md": "510f27533d7d3dc71b9a00115d7026ebee058365be3dbb580712853b87b4924f",
+      "tasks.md": "1c021468ce4c27426af33c1b608637c2a0210fef7ff0b188f9f8854083e51170",
+      "implementation-summary.md": "f29549e0260a6749036e07f1de2288e92dff05719bd52810ed8383894ca6d4dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

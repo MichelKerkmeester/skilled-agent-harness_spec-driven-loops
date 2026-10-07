@@ -22,6 +22,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:handover-summary -->
 ## Session Summary
 
 This session significantly expanded the test coverage for the Dynamic Complexity-Based Template Scaling system, growing from 94 tests to 171 tests (82% increase) with 100% coverage achieved. All identified testing gaps have been addressed.
@@ -51,6 +52,8 @@ This session significantly expanded the test coverage for the Dynamic Complexity
    - Feature requirements at each level
    - Gate expression building and parsing
    - Suggest adjustment logic
+
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
@@ -128,6 +131,7 @@ SUMMARY
 
 ---
 
+<!-- ANCHOR:context-transfer -->
 ## Key Decisions/Context
 
 ### Technical Details (From Original Implementation)
@@ -150,8 +154,11 @@ SUMMARY
 | 80 | Level 3+ (lower) | Verified |
 | 100 | Level 3+ | Verified |
 
+<!-- /ANCHOR:context-transfer -->
+
 ---
 
+<!-- ANCHOR:next-session -->
 ## Potential Next Steps (Future Work)
 
 The following items were identified as future improvements but are NOT part of the current implementation:
@@ -162,8 +169,11 @@ The following items were identified as future improvements but are NOT part of t
 4. **User testing** - Test complexity detection with real spec folder creation
 5. **Retrospective validation** - Validate detection accuracy against historical specs 056-068
 
+<!-- /ANCHOR:next-session -->
+
 ---
 
+<!-- ANCHOR:validation-checklist -->
 ## Continuation Instructions
 
 ### Pre-Continuation Checklist
@@ -186,8 +196,11 @@ If continuing this work, verify:
 | `spec.md` | Feature specification |
 | `checklist.md` | Validation checklist |
 
+<!-- /ANCHOR:validation-checklist -->
+
 ---
 
+<!-- ANCHOR:session-notes -->
 ## Resume Command
 
 To continue work on this spec folder in a new session:
@@ -206,6 +219,8 @@ Next: Future work (if needed): Add COMPLEXITY_GATE markers to actual templates, 
 
 Status: COMPLETE - All tests passing, no immediate action required unless extending functionality
 ```
+
+<!-- /ANCHOR:session-notes -->
 
 ---
 

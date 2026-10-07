@@ -1,3 +1,13 @@
+---
+title: "Design Unknown Resolutions"
+description: "Resolutions for the contract-compiler design unknowns: prompt-injection seam, checksum ownership, and CLI parity."
+trigger_phrases:
+  - "design unknown resolutions"
+  - "prompt injection seam design"
+  - "contract compiler unknowns"
+importance_tier: "normal"
+contextType: "planning"
+---
 # Design Unknown Resolutions
 
 ## a) RESOLVED - OpenCode prompt-injection insertion point

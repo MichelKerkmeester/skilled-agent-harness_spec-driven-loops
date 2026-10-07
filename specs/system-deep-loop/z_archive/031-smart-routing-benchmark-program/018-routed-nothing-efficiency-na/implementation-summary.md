@@ -5,7 +5,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na"
     last_updated_at: "2026-07-11T23:57:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "scoreD3 salvage removed + re-baselined; fitted 0/33 changed, holdout honest"
@@ -19,10 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "routed nothing efficiency na implementation summary"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: D3 efficiency N/A for routed-nothing positive scenarios

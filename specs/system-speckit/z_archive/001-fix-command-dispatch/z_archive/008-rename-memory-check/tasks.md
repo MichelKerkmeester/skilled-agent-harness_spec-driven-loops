@@ -14,7 +14,6 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Rename Memory Command (Two-Phase Rename)
 
-<!-- ANCHOR:notation -->
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: `/memory` → `/memory:check` (COMPLETED)
 
@@ -50,9 +49,8 @@ contextType: "implementation"
 
 ---
 
-<!-- /ANCHOR:notation -->
-<!-- ANCHOR:phase-2 -->
 <!-- /ANCHOR:phase-1 -->
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: `/memory:check` → `/memory:search` (COMPLETED)
 
 ### Task Breakdown

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "007 deferred-decisions.md documented 5 Tier D items (F4, F6, F35, F36, F37) with rationale",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:26.960Z",
+    "last_save_at": "2026-10-07T18:15:52.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c33799d6a3e1f5c2911055d0a873b9f256b7d4b317fa991784367930a9a3639c",
+    "source_fingerprint": "sha256:f309f38df33081df9adae3f38dce8408df06b0c2d7d5cf4180912495763dbc50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d23e39004a7f2c33c10f1a3f17ad76f99618ef00eb1041086ae217983a64867",
-      "plan.md": "bdc69ed9f7ed09a85626cded46eee2edbc7a424f3ced579731b369d977fa56d9",
-      "tasks.md": "2f52b5a51c151728be7f3054e7a78a559194dc70e590ddb55f811935b631cadc",
-      "implementation-summary.md": "c1057e01d497396c5dc155dcf4df1097c69bf7f03b294aa497d0da62e91b0cca"
+      "spec.md": "bd0f42b863c0ae7bca4d255fa882efdaa580318793aa39c1a9cd82e0e2dce5fd",
+      "plan.md": "f9ba5eda053f5b47e5c754e05dabdbbf03c49fffe8ab9f8f242e06e40440b375",
+      "tasks.md": "16ecb9425a37d09b11e02c68e3f3a9c966dcf0f0d90a4b30b138cdf8a58d30a0",
+      "implementation-summary.md": "2901008d124b641e2c783b234240e1d5380a3dfb9263c05f18fcc59953ab2fab"
     },
     "last_active_child_id": null,
     "last_active_at": null

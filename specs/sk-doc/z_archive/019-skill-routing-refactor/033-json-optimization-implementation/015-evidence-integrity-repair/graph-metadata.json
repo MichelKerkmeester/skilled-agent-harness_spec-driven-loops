@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
-  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -177,7 +177,7 @@
     ],
     "causal_summary": "Rewrite the rubber-stamped rollout checklist with per-item evidence, re-open the three items that certify a regression as absent, reconcile the command-metadata phase's four contradictory status fields, and re-run the strict validation the program claimed as blocked.",
     "created_at": "2026-07-30T08:10:27.417Z",
-    "last_save_at": "2026-08-30T15:39:15.964Z",
+    "last_save_at": "2026-10-07T18:13:33.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,13 +186,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e3cb36989a77a1310af7a02c674e200ff9f24dcc9966e88ee66f32f6d4a38f1",
+    "source_fingerprint": "sha256:c9a7de813f1d8c3119c99512041d858f72b0b877e842bfca795d57079c635554",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8277f10b5137b8e7fdfe9e43da0c4efc10c1cecece98583c5bda5d8e0f09cdd2",
-      "plan.md": "ad02cf04885041accb1867d63ef83b0c55678ca8afb32926047b7a23231efdea",
-      "tasks.md": "46c462ca37806503c748745e45bc8a8928fc7eb0653fe51256fd9bb3bda25a0e",
-      "implementation-summary.md": "58fc27dbdd693e8d043de6050081e21f07d43c729e1d3e473987e2fc4e22bd28"
+      "spec.md": "41016c905853f0cd61a57defc9bdb043124161fb4879708108cc995e83089ddb",
+      "plan.md": "62357d6a6029a6c7e93d38b73442a769a3d5f7244019cf38ab54cb907ada01b0",
+      "tasks.md": "0e9ef0a2262ae6b110170805c63ebdf4ffba24fa1c9980d2cf591b5adfb802b2",
+      "implementation-summary.md": "4bccd24fe4dddf0116a8a62857f72492c45b38b5b790de1ff4a0e6ff0d61710c"
     },
     "last_active_child_id": null,
     "last_active_at": null

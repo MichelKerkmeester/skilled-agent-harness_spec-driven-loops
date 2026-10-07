@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout"
     last_updated_at: "2026-07-28T08:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Closed the packet after audits, dual-model review and full gate reproduction"

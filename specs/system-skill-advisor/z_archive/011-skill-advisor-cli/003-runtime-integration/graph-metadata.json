@@ -48,7 +48,6 @@
       ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
       ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
       ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".claude/settings.local.json",
       ".codex/hooks.json",
       ".codex/config.toml",
       ".claude/mcp.json"
@@ -94,12 +93,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget — the one-shot native bridge (824.8ms) stays banned",
     "created_at": "2026-06-06T14:45:18Z",
-    "last_save_at": "2026-08-30T15:39:27.190Z",
+    "last_save_at": "2026-10-07T18:15:50.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c243fc569be934911d9cd4c0febe6faf22593ed03febfc74cb50ec2eec2a7bfa",
+    "source_fingerprint": "sha256:8aa5c99ebf3615dc4c9f4fc215f655f066cf66a403824ccab0a61a1b001b49f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47a3dbf281ee080fb497fce53a4230f2a84ae54d323c6f0d1b32a331e5e3768f",
-      "plan.md": "54dbbd4f023afd1799652ed6f01eea0c9760607b2b15703f8b1887779dee9831",
-      "tasks.md": "a8c257823a37da6ba40cc5c529d6b3e96afb1e7e089b6a8d39185b0b7131bcb8",
-      "implementation-summary.md": "d68dd013f6849ec0f0084d60ee4435b6d68718dc2eb1dae05eaa79ecf43a0e66"
+      "spec.md": "05e7d415258c973e73c9611c5f429f7c134c087454b219d42c6d91bdc36f3504",
+      "plan.md": "4ff7b901ef84c181dc67045cad018dbe13549b109af47edbdb21b56cd2674f21",
+      "tasks.md": "32b144c4f0a97bd4078ae3af4cc63dbc3d9dae7372696f6012835e862e9612ae",
+      "implementation-summary.md": "0554d6143079ce7a6f413aa2ca78a2d9b428c030cfa1b7e5cf92deb553d4bc03"
     },
     "last_active_child_id": null,
     "last_active_at": null

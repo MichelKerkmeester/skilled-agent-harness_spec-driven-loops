@@ -27,6 +27,7 @@ _memory:
       - "Default model after github-copilot removal? -> opencode-go/deepseek-v4-pro --variant high"
       - "Smart fallback when default isn't logged in? -> Pre-flight detects + ASKS user; never silent substitution"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

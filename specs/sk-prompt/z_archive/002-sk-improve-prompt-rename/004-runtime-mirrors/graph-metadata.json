@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID",
     "created_at": "2026-05-06T10:22:41Z",
-    "last_save_at": "2026-09-07T16:17:10.990Z",
+    "last_save_at": "2026-10-07T18:13:55.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28bfa2a53cdb564c7120ac8085c2d6184ea56b7d1e4a93e0271c0e223318c415",
+    "source_fingerprint": "sha256:5c36b69e6c5d9d92d8b77184822a8616073a34ce54416971e9add061df48c2ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "467622a63821e2121d796d6c5c4b969bc3e4e7be531a3857df0b6d6f6a92f16a",
-      "plan.md": "b24d8e8aeca177115b9552031369f1e23e9ebca320a2053ae417d8edb8fee43b",
-      "tasks.md": "559b0297f0a4e7859e74e6a6a93fb94e0189ebcfa1c84ceb1012590ed92ddf6e",
-      "implementation-summary.md": "ba24527d44d8bf58237a8934257cf3409dc7e06b894885c5e23bbbaafd21a660"
+      "spec.md": "a5117af187fd564153a4ddf35eacd8f00fd0d1673e8e938acba6ed71c1167c12",
+      "plan.md": "a6b9805aee3fd28a1b5d6001eb59de31039ac2e90f71e7aecc206acd0a6f2ed6",
+      "tasks.md": "a482d53e6e37a7c25483d01887a23573a01c48549d6befc4c4fcf54bdfd48e27",
+      "implementation-summary.md": "43e7bc6b4d0dc55dd415fbe778df4c3c9318e50cba8fb54a3e1f591a1d061ae9"
     },
     "last_active_child_id": null,
     "last_active_at": null

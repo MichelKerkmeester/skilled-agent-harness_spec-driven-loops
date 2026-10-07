@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After 060/002, sk-improve-agent has CRITIC PASS in the agent body (4 runtime mirrors), score-candidate baseline+delta wiring, scan-integration `.gemini/agents` fix, and YAML emissions for `legalstopevaluated`/`benchmarkcompleted`/`blockedstop`",
     "created_at": "2026-05-02T14:00:00Z",
-    "last_save_at": "2026-08-30T15:39:22.649Z",
+    "last_save_at": "2026-10-07T21:49:53.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,16 +209,16 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:271660b1e3381fa1d46098a3caa6756efca382308502b1d5c825e652a7f69a70",
+    "source_fingerprint": "sha256:c11d5b201e9926c76e5e31ac1237189bb069d0e964eee33c908413a8c9638731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34ef4ad27e9d9f6a621711952e5e3816866a6133cd459159a81bd10b309c277d",
-      "plan.md": "3366c47babeb6b6e719ab357363b28fb1d920c6d9e4d3ed05e4f802514b23ec9",
-      "tasks.md": "b6c5e63eccb23e55f77f6c8de57914de8c09a270236fea902cc3718a4e5dfbd3",
-      "decision-record.md": "66e6fbff6b504daedfd2e4f5605d95428819747948b7b1723e3f536ffc0eac12",
-      "implementation-summary.md": "8a988271bdacecf3c22bc4d33f99c5adc99acbb38293babf84913244bffb59f7",
-      "handover.md": "453aa0fe0b8446478c076cd3a9e060dfcb43a371173b2c96707187cda7fa33b6",
-      "resource-map.md": "c9f25cfc028e982a6a873fcb1a0b64775a35b0f9072604c612d8b4e260f43514"
+      "plan.md": "15d24f3dd9c532d85054a5592d4cd87302e5b59c6776cbfaebc0da2d84d46c2f",
+      "tasks.md": "9b008150dbfeb4a81ac5ea3c6d005ca7bafc3e1231a3fdebf753b75bfd53e479",
+      "decision-record.md": "91678535c295ae1e5cd5aab57c1cae60eda49f76fe1cc03f416cb894de890e5e",
+      "implementation-summary.md": "5f6dd27827b24bc844aa289c2c1f73ac224a7d9906e1f6e4d50ee6fea124dd88",
+      "handover.md": "10f903f631207d59b9354f93f14d69da1f2b146b14f4c150bfc3805a3d039e19",
+      "resource-map.md": "53d0563aeff35911dcf62391a575d6b1a2eb34688fd8965b39c304a62d36efc6"
     },
     "last_active_child_id": null,
     "last_active_at": null

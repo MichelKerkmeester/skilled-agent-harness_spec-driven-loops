@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/014-template-conformance/003-design-motion/003-assets",
-  "spec_folder": "sk-design/014-template-conformance/003-design-motion/003-assets",
-  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "packet_id": "sk-design/z_archive/014-template-conformance/003-design-motion/003-assets",
+  "spec_folder": "sk-design/z_archive/014-template-conformance/003-design-motion/003-assets",
+  "parent_id": "sk-design/z_archive/014-template-conformance/003-design-motion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,15 +14,9 @@
       "design-motion assets conformance",
       "motion assets template audit",
       "motion fill-in cards conformance",
-      "implementation plan",
-      "technical approach",
-      "architecture decisions",
-      "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
-      "implementation summary"
+      "assets plan",
+      "assets tasks",
+      "assets implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -33,10 +27,10 @@
       "audit",
       "fill-in",
       "cards",
-      "implementation",
       "plan",
-      "technical",
-      "approach"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +188,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files — `animate-presence-checklist.md`, `motion-pattern-cards.md`, `motion-performance-failure-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.315Z",
-    "last_save_at": "2026-09-11T04:35:42.003Z",
+    "last_save_at": "2026-10-07T19:23:36.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ab1e9aacae55b54899c832b0057524d7141c079ccecb88d63a09154d3e049f2",
+    "source_fingerprint": "sha256:33f7cb8301a70a76d2e646e5f6c5c93fd68eeea5acde74ba273f44055fd06cdc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dbffca594c6485fb2805495ac072ea0732af649509321bc6440c130926a3121e",
-      "plan.md": "00941370f80ac42816e1e8d9846e26b9321e6e78c75c9eda44390342aa8cdbdf",
-      "tasks.md": "0278a91411ebf6d53877e9f7939d74d1e7ca9697d652a158b73482e9bca2fde1",
-      "implementation-summary.md": "991497329c0faffa10c471c67e4110d3f89ee3183874c98883396983021c34cb"
+      "spec.md": "cae4951e27c4fa99f24b413c1a01a53aff17e65789f0858b879e0e90d895a78a",
+      "plan.md": "30fe6450bb200a776fcce8deb8158e43553a0d13f6d5b7eb3577485c12cfb2a4",
+      "tasks.md": "9bbb075277e4a0aad2f186d5bce6ac8af545e529cd8cfd6727c7c925f993b794",
+      "implementation-summary.md": "056e2b345866331ea4cb58579cee9d133f2ac2d46a859ae40d9ed79c785a7bde"
     },
     "last_active_child_id": null,
     "last_active_at": null

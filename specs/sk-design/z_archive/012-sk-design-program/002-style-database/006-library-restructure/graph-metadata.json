@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/012-sk-design-program/002-style-database/006-library-restructure",
-  "spec_folder": "sk-design/012-sk-design-program/002-style-database/006-library-restructure",
-  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "packet_id": "sk-design/z_archive/012-sk-design-program/002-style-database/006-library-restructure",
+  "spec_folder": "sk-design/z_archive/012-sk-design-program/002-style-database/006-library-restructure",
+  "parent_id": "sk-design/z_archive/012-sk-design-program/002-style-database",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The `.opencode/skills/sk-design/styles/` root mixes three unrelated lifecycles under one flat, underscore-prefixed layout: 1,290 committed style bundles (7,740 files across six-file units), importable engine and database source, extraction tooling, two committed manifests, and documentation — a confirmed 7,800 tracked files with 60 non-bundle backend files",
     "created_at": "2026-07-21T11:27:45.852Z",
-    "last_save_at": "2026-09-11T16:41:54.310Z",
+    "last_save_at": "2026-10-07T18:12:05.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0be14bc545993ad8dc7e6ab828c162b92fcc0408518fb72d55b77ea29cfbe9f3",
+    "source_fingerprint": "sha256:e65e4d27cc68690f16e213dbdfb2b6025e64f261d931b5257a4a62a7b709de2e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a10e4813034c3a871b692f72f108a9cf9337464b1b5b31ab20f1a3d45f1c8702",
-      "plan.md": "9f6ccf084ab3a69eebf8f8835b157619cc06a5de41f2c6bd6cfd5e23d314b04d",
-      "tasks.md": "6749561d2d354c5de76e6b81809f0ff4a0d439d2f80b4741fa5f04d9ab0ec7c3",
-      "implementation-summary.md": "10bd14a67567a09da2ca38fbd883e6d277c1069df1dabcdac9922f432238047a"
+      "spec.md": "9f8c9dc488063408e37520198a48e784f289212b6ae95bef2b0faf4672cdcfaa",
+      "plan.md": "e3ce4f78728700e2d76265ec18d2de9d3f07183d857cb8fa5cf0d4039f262e7c",
+      "tasks.md": "bde2ffb8363e2c61ec18d4b391fc082ddcb30b7b12e03af136edc9a3f6279107",
+      "implementation-summary.md": "7b4bb0849c6291aae1f35df836c293adaca3688fe68255f1b83a95a22476adb1"
     },
     "last_active_child_id": null,
     "last_active_at": null

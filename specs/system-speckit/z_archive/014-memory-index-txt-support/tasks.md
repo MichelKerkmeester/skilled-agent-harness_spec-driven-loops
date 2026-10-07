@@ -3,9 +3,9 @@ title: "Tasks: Memory Index Txt Support [system-spec-kit/z_archive/014-memory-in
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "014-memory-index-txt-support"
-  - "tasks"
-  - "archive"
-  - "validation"
+  - "memory index txt support tasks"
+  - "memory index txt support archive"
+  - "memory index txt support validation"
 importance_tier: "normal"
 contextType: "general"
 ---

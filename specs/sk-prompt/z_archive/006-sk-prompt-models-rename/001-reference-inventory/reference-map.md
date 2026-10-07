@@ -1,3 +1,12 @@
+---
+title: "Reference Map — sk-prompt-small-model → sk-prompt-models"
+description: "Inventory deliverable for the sk-prompt-small-model to sk-prompt-models rename: totals, classification policy, and the replace and exclusion sets."
+trigger_phrases:
+  - "sk prompt models rename reference map"
+  - "sk prompt small model reference inventory"
+importance_tier: "normal"
+contextType: "research"
+---
 # Reference Map — sk-prompt-small-model → sk-prompt-models
 
 Inventory deliverable for the rename. Counts captured 2026-06-28.

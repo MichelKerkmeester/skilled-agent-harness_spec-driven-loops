@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "in-progress"
 _memory:
   continuity:
-    packet_pointer: "sk-git/009-skill-scoped-worktree-naming"
+    packet_pointer: "sk-git/z_archive/009-skill-scoped-worktree-naming"
     last_updated_at: "2026-07-15T04:22:47Z"
     last_updated_by: "claude"
     recent_action: "Reconciled spec to shipped Phases 1-4"

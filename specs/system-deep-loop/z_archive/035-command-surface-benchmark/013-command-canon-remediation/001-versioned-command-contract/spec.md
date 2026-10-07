@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
+    packet_pointer: "system-deep-loop/z_archive/035-command-surface-benchmark/013-command-canon-remediation/001-versioned-command-contract"
     last_updated_at: "2026-07-16T08:31:59Z"
     last_updated_by: "claude"
     recent_action: "Resolved 014 dependency; contract fields delivered"

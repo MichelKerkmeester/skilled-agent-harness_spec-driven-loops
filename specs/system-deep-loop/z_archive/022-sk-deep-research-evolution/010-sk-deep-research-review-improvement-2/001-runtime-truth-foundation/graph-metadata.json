@@ -17,12 +17,12 @@
       "runtime improvement",
       "claim verification ledger",
       "coordination board",
-      "implementation plan",
       "runtime truth",
       "042.001",
       "tasks",
       "legal stop",
-      "continuedfromrun"
+      "continuedfromrun",
+      "decision record"
     ],
     "key_topics": [
       "deep",
@@ -35,8 +35,8 @@
       "ledger",
       "coordination",
       "board",
-      "implementation",
-      "plan"
+      "truth",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The current deep-loop stack is functional, but it still treats \"converged\" as a mostly inferred state instead of a strongly explained runtime truth",
     "created_at": "2026-04-12T09:02:50.192Z",
-    "last_save_at": "2026-09-07T16:17:19.373Z",
+    "last_save_at": "2026-10-07T18:14:50.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25bdb7aff461804fcc7a2b09101d42e3e9b436a00e30ad2a6db5aafaec641cdd",
+    "source_fingerprint": "sha256:7a902a8a9a8e894f2cb1a3717e680eef150d1e1b3f5f03f1be97157e45af4b03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c8fbf594bced352b95c048302fb1319aceca762719d5beab46ffe209d7d1d29",
-      "plan.md": "215b130cf4177e5614724b3cb141056a1982a49003eaa54431671403400b17c1",
+      "plan.md": "d1c78cccb7090413f1a68e2d3c6f080c80b1cd572b4d5a759ac78c65c26d3452",
       "tasks.md": "2ea9936e3dec07e914e5fda062d66ddab27e411e5b8b1a4d6d847e0d7c84d018",
       "decision-record.md": "b25085a5199c7abf5536967931378ad9cce076c840c1f7fd4946ec05119995d6",
-      "implementation-summary.md": "bab18fead5db80ae549ce2a65e32274a5779441610940a5034c4f1b9916e9437"
+      "implementation-summary.md": "c5adb37da3be943e20940d13d1ef6d8ff522f97e93398d305eeb579551725d0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/026-cli-external-parent/004-onboard-cli-opencode",
+  "specFolder": "cli-external-orchestration/z_archive/026-cli-external-parent/004-onboard-cli-opencode",
   "description": "Phase 003 created the parent-hub skeleton, but the `cli-opencode/` packet has no relocated implementation yet",
   "keywords": [
     "phase",

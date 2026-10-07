@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original 070-sk-deep-rename precedent",
     "created_at": "2026-05-06T13:38:43.676Z",
-    "last_save_at": "2026-08-30T15:39:24.183Z",
+    "last_save_at": "2026-10-07T18:15:11.854Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:3c25ba6de81675807dec510ca50a7301b285be72ac1eb7d8bccd8d64e5567530",
+    "source_fingerprint": "sha256:ec7d7ea488b92029551fb8668591c155d8ece4bac17533e0a7f332ebc3b737f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23e2a8e76eee1c89c959af62475b282469568525481abd42d13261472efc8aee",
       "plan.md": "42caa1db771ee7f07f1ae93d5ec7bab5e662dfc2378a7c09dd5092810e61ed03",
       "tasks.md": "4fc2fbb7e67e34865bcd6f41740a9b3a31b75e68cf5acca9d53324dad616bcc9",
-      "implementation-summary.md": "841eceb6b4de1a49dc80c75c4848c87169317736f2f4adcc950b188c0a0a9809",
+      "implementation-summary.md": "b333abfc244a400bd0619973b4c249df2c71140a2e5fe6293deae2829f50e428",
       "resource-map.md": "5b3322f507d8eb1754f83119a0da4a459e213919216323ab22f49f4ba647ee01"
     },
     "last_active_child_id": null,

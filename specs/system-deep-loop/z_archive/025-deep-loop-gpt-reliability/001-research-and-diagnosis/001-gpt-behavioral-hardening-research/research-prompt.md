@@ -1,3 +1,13 @@
+---
+title: "Research Prompt: GPT Behavioral Hardening Follow-Up Research"
+description: "Goal prompt seeding the deep-research run into why GPT-backed OpenCode deep-loop symptoms persisted after the routing, dispatch and identity phases."
+trigger_phrases:
+  - "gpt behavioral hardening research prompt"
+  - "gpt deep loop follow-up research"
+  - "gpt behavioral hardening charter"
+importance_tier: "critical"
+contextType: "research"
+---
 # GOAL PROMPT — GPT Behavioral Hardening: Follow-Up Research (Phase 007)
 
 > Seeds a `/deep:research:auto` run in this spec folder. Target spec folder: `.opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/007-gpt-behavioral-hardening-research`

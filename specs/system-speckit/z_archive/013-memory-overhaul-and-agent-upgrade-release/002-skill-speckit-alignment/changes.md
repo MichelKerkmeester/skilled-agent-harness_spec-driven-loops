@@ -1,3 +1,13 @@
+---
+title: "Changes — Task 02: SKILL.md & References Audit"
+description: "Skill documentation alignment edit list for task 02 of the memory overhaul and agent upgrade release packet."
+trigger_phrases:
+  - "skill speckit alignment changes"
+  - "skill reference edit list"
+importance_tier: "normal"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 # Changes — Task 02: SKILL.md & References Audit
 
 <!-- SPECKIT_LEVEL: 3 -->

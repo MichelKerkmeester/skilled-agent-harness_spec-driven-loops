@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
+  "specFolder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
   "description": "The mcp-tooling hub owns routing metadata and shared navigation for three independent packets, but its root-level path ownership is not explicitly",
   "keywords": [
     "mcp-tooling",

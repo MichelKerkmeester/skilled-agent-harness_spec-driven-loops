@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/065-retire-gemini-devin-route",
+  "specFolder": "cli-external-orchestration/z_archive/065-retire-gemini-devin-route",
   "description": "Devin bills Gemini 3.8 Flash High at twice the 3.7 rate",
   "keywords": [
     "devin",

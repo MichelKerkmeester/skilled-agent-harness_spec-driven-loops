@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire",
-  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire",
-  "parent_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "packet_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/002-register-and-wire",
+  "spec_folder": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference/002-register-and-wire",
+  "parent_id": "cli-external-orchestration/z_archive/032-per-mode-provider-model-reference",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A new reference file is invisible to the advisor until the manifest registers it, and undiscoverable to a reader until the mode's docs link it",
     "created_at": "2026-07-29T08:35:29Z",
-    "last_save_at": "2026-08-30T15:39:07.808Z",
+    "last_save_at": "2026-10-07T18:11:29.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa789c517e5f81c26ddc11809b6278928043b1e7303170be38463ca3881c046f",
+    "source_fingerprint": "sha256:2f85ab971da1bcbdd09baaa50a1acbcfbccda8d80f79b14180a6035c9a615d91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9c2e1bc9933b24844960838e711e5f884204ef2d31684568938a9c7e40d53691",
-      "plan.md": "93ea03214181d53e1ef541ca49b075dcc88cbaba046d61d0553a8d378c394227",
-      "tasks.md": "65de29c7d00d57ccf4de81d0398510056068322c550814ca7eee5a807a764b53",
-      "implementation-summary.md": "d2a636c99baa008cf20f44cdea73c30912f8a10b287ad35e07f482ab5fbc6969"
+      "spec.md": "4ff4ddf6b05db7598fab61bfaea2afd70e3a9627dda7a5be1aaf080ba74d90a3",
+      "plan.md": "07f9ca61983bfc799883df927c356aab42945e0db884ee0a3488ae02322e9ae2",
+      "tasks.md": "32c8b6826ea909acbc3a1077a8f8054263a8269987104d6e5d4af8bbb5a6eda4",
+      "implementation-summary.md": "2c1469b4723f0dd04837990c92e81a063f9c7cbf98153ae91a0d449cd83a4638"
     },
     "last_active_child_id": null,
     "last_active_at": null

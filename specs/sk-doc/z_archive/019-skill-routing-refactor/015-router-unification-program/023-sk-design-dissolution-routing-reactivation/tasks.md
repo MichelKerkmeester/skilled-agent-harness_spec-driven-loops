@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation"
     last_updated_at: "2026-08-22T08:56:00Z"
     last_updated_by: "claude-code"
     recent_action: "P1-P4 tasks complete with evidence"

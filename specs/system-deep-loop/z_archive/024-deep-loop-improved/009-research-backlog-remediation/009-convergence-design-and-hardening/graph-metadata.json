@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Two distinct, lower-severity items from `research/researcharchive/20260701T071133Z-gen1/research.md` §4.3-4.4:",
     "created_at": "2026-07-01T07:27:21.117Z",
-    "last_save_at": "2026-08-30T15:39:25.248Z",
+    "last_save_at": "2026-10-07T21:19:57.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afd4590d38308cf8228daf0dd16383f54f0c45edd7f7e3da08d8fb3c9e895830",
+    "source_fingerprint": "sha256:6a918d9478670817b1a9930f177f3c88c9bc8c619594a6dd0adb25901ac09b99",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8308c511b76421132257b8a1d6a3f7d3b957cbf5bd3139ccfda94f6507a063df",
-      "plan.md": "7308b928a5f3e27bf87154c9441db335016899427b7b2590e243662ebebb333c",
-      "tasks.md": "d9d47d78dffbe86be13ae66eb72aa0548c6bf667486b002454113f0da2a417c3",
-      "decision-record.md": "a55bca6c257132fe69020186de3abb1a8d83d0aac04c616e51721ce6954dc9e2",
-      "implementation-summary.md": "b4f4437c6706164a5c67cd732a16132e8e6e9ee5888fcecd412d66857e7b1502"
+      "spec.md": "e9fb575add0d65775f771854dcad7723a788629a2e8da6b5bab902aa1f88d67e",
+      "plan.md": "a717f2acb19ddb240d1397084ebf7dc717a4bb02df47987956aecbfef6344c78",
+      "tasks.md": "b99459bb23d7c2e3da52f69ee0132ba5aa5a248e7c36f3e9a5a6a628e57c9a4b",
+      "decision-record.md": "388c84e830e86ba0546477d8575662655714de871f114c5fb984665441a188cb",
+      "implementation-summary.md": "cb79a79a42d80571fb874a183f65109185424516aae56e7a3d58bfc1f5f7db9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

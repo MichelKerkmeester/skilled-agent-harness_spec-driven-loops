@@ -6,7 +6,6 @@ trigger_phrases:
   - "summary"
   - "post"
   - "speckit"
-  - "implementation summary"
   - "076"
 importance_tier: "normal"
 contextType: "implementation"

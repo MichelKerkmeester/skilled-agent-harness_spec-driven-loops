@@ -2,12 +2,7 @@
 title: "Spec Kit Test Suite [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/spec]"
 description: "The Spec Kit Memory MCP and related tools lacked comprehensive testing"
 trigger_phrases:
-  - "spec"
-  - "kit"
-  - "test"
-  - "suite"
-  - "044"
-  - "speckit"
+  - "speckit test suite spec"
 importance_tier: "important"
 contextType: "planning"
 ---

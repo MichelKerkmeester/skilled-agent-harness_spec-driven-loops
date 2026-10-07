@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-08-30T15:39:16.467Z",
+    "last_save_at": "2026-10-07T18:13:25.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,12 +178,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:905fb1de870013a90f24d32c320f4d1f944a48b1e97fe955a0f78ce99afebc56",
+    "source_fingerprint": "sha256:e91fc98acd7283345c4f93d248a88fbc1e9dfeccddd8097590b29cc1d67a4056",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f81b2cbd8e7c3333143e9a9644ac79817c4e9fb38e9e596f9fb8ff718f721c67",
-      "plan.md": "559ae76168ceded16c8a6b0d6c72c7d74963f51872ae758e772963deddd27e77",
-      "tasks.md": "1aaf3b2fbe5038d388db613c0551061fa7a6434f5208e1a77ecd47d15490616e"
+      "spec.md": "4b9700d82861f1fb65311f034803ea2b4c389a43486d9f88e55946b0b2f29044",
+      "plan.md": "383cc34326b0f182c4b0f2acac670c1ef304a713f32c928a70c30af40c046f7d",
+      "tasks.md": "8055ebca21a95b47ae51e19d8998e16e47c58edd36c045720c5d2c73dabd3008"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting"
+    packet_pointer: "system-deep-loop/z_archive/031-smart-routing-benchmark-program/016-skill-benchmark-applicability-reporting"
     last_updated_at: "2026-07-11T14:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Tasks enumerated"
@@ -15,10 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 trigger_phrases:
-  - "task breakdown"
-  - "implementation tasks"
-  - "verification checklist"
-  - "task dependencies"
+  - "skill benchmark applicability reporting tasks"
 ---
 # Tasks: Lane C Skill-Benchmark Applicability Reporting
 

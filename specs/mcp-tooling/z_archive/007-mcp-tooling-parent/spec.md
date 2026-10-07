@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/007-mcp-tooling-parent"
+    packet_pointer: "mcp-tooling/z_archive/007-mcp-tooling-parent"
     last_updated_at: "2026-07-16T14:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase map refreshed: 008/009/010 Complete; 007 stays Deferred"

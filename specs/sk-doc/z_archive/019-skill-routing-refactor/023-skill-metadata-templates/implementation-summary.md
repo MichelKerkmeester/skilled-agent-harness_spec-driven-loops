@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates"
+    packet_pointer: "sk-doc/z_archive/019-skill-routing-refactor/023-skill-metadata-templates"
     last_updated_at: "2026-07-28T14:02:48Z"
     last_updated_by: "claude-code"
     recent_action: "Delivered the template assets and links"

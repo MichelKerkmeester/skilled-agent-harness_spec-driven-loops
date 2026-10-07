@@ -2,7 +2,6 @@
 title: "...-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/020-feature-flag-reference/implementation-summary]"
 description: "10 features audited: 10 MATCH, 0 PARTIAL, 0 MISMATCH"
 trigger_phrases:
-  - "implementation summary"
   - "feature flag reference"
   - "code audit"
 importance_tier: "normal"
@@ -54,6 +53,9 @@ All 10 feature flag reference sections were audited — search pipeline flags, s
 4. Debug/telemetry: section numbering normalized to standard 4-section layout, additional flags integrated as subsections within Section 2
 5. Runtime config contract and filter config contract: new entries verified as MATCH
 6. Audit phase mapping note: correctly excluded as meta note
+
+Per-feature findings are recorded in `spec.md` under the audit findings section.
+
 <!-- /ANCHOR:what-built -->
 
 ---

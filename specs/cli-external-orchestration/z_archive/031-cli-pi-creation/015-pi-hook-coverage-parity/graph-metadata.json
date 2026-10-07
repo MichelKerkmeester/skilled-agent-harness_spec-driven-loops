@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
-  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "packet_id": "cli-external-orchestration/z_archive/031-cli-pi-creation/015-pi-hook-coverage-parity",
+  "spec_folder": "cli-external-orchestration/z_archive/031-cli-pi-creation/015-pi-hook-coverage-parity",
+  "parent_id": "cli-external-orchestration/z_archive/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -47,9 +47,7 @@
       ".pi/extensions/session-compact-context.ts",
       ".devin/hooks.v1.json",
       ".cursor/hooks.json",
-      "mcp-server/hooks/devin/shared.ts",
       ".pi/extensions/README.md",
-      ".opencode/logs/cli-dispatch-audit.log",
       "hooks/devin/shared.ts",
       ".devin/hooks/README.md",
       ".cursor/hooks/README.md"
@@ -128,21 +126,15 @@
         "source": "derived"
       },
       {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": "mcp-server/hooks/devin/shared.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".pi/extensions/README.md",
         "source": "derived"
       },
       {
-        "name": "cli-dispatch-audit.log",
-        "kind": "file",
-        "path": ".opencode/logs/cli-dispatch-audit.log",
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "hooks/devin/shared.ts",
         "source": "derived"
       },
       {
@@ -198,11 +190,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 012 built 6 `.pi/extensions/.ts` files bridging the toolcall/toolresult/input-scoped guard cores (spec-gate, dispatch-preflight, dispatch-audit, post-edit-quality, mcp-route-guard)",
     "created_at": "2026-07-27T20:39:41.538Z",
-    "last_save_at": "2026-08-30T15:39:07.780Z",
+    "last_save_at": "2026-10-07T18:11:23.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40740837b16fc16911ef1e28aa90d94f68f3604b2b864516130c17d7d6abbc0a",
+    "source_fingerprint": "sha256:37e51c02f1dd2d72e63324eec63c227b8597f51712a5baddf4ecc023a6534c64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f24613ffa309faf086c36f9e5e1db98124dcc9ebf9a15205d646ebd92db682a8",
-      "plan.md": "6a9f7bb17040e10e7e9b550956155d4041104f3453dc15f3576d2a642174f7c6",
-      "tasks.md": "f5e5ae4990e29443773cbd7b5ae96122fd99e98289113bdec91114280779f901",
-      "implementation-summary.md": "4cc67bc3e9c15af73f00905b0dca203c62f3b5d3a2f0dbc40562d8915a058d9d"
+      "spec.md": "d040f55688f0e2091416fdae963d9337b08775fa9dea9abe9d7666979aae7f51",
+      "plan.md": "65af2713ece41933fd141089a1bc54f6eeaded752a523aecd37dc0473be7b8b8",
+      "tasks.md": "9e3e8566bf9fc606c8a00306066ec19c094e1d07c10b78daecd50be3e822aef1",
+      "implementation-summary.md": "9856c8f262f17d299538f7c5bd8c7bf68770d4d4f1f8647d8015c0345d2f20ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
-  "spec_folder": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
-  "parent_id": "sk-doc/028-sk-create-diagram",
+  "packet_id": "sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration",
+  "spec_folder": "sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration",
+  "parent_id": "sk-doc/z_archive/028-sk-create-diagram",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".pi/extensions/completion-evidence.ts",
-      ".pi/extensions/task-dispatch-guard.ts",
-      ".pi/prompts/create-diagram.md"
+      ".pi/extensions/task-dispatch-guard.ts"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "task-dispatch-guard.ts",
         "kind": "code",
         "path": ".pi/extensions/task-dispatch-guard.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create-diagram.md",
-        "kind": "doc",
-        "path": ".pi/prompts/create-diagram.md",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An earlier bulk-sync commit on this branch (`4d52fff993`) deleted the `.claude/commands` symlink and two Pi extension symlinks as part of a 902-file \"land accumulated cross-session WIP\" commit, blocking every `/create:` command for Claude Code and both affected Pi extensions",
     "created_at": "2026-08-13T17:00:20.000Z",
-    "last_save_at": "2026-09-11T16:42:10.932Z",
+    "last_save_at": "2026-10-07T18:14:11.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9f0a61953c683b9059850c50fa8d81ac14b4d94a998b1265f03eb41c2b2ed29",
+    "source_fingerprint": "sha256:efe82c74f09ee6e6f285b25df49dada665f6423c5bf22234c668c9e336ecf229",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c48fe76d68bbb0e9587796345575916099451bba056eae8d34113fd0a7526cfc",
-      "plan.md": "a8b8115b2f40ac63bf91994a7d2ed8da5ffd833188f5fa6b31ff5a4de7255d8a",
-      "tasks.md": "254e0e422270c0a7c6e73d190bc23625c2d7ab3190a5d57b24a5707eb5101484",
-      "implementation-summary.md": "2fcc1deecc12dda05ae41a22652a60f29bdb03624392a888bca0b2ee520e95a1"
+      "spec.md": "cde6b9a3e12a94b215f6baead68a142c33d02008aeaddf4ed4e64d1bfe2190b8",
+      "plan.md": "fe6f7cf8d014dabb850c8eb91a59892a9b718495a30d080451c8174a1a8e80e0",
+      "tasks.md": "b889e7dab2b9c97e7f3d0f77d874c50e75a304e3c1a7053f7ff9ce5d022458b8",
+      "implementation-summary.md": "cfbf79272964b6c3371ddfff0a81f6719d235c400399ea3fb19ec591cf281276"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-13T17:00:20.000Z"

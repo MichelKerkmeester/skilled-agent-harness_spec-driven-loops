@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
+  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/003-router-collision-fixes",
   "description": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality",
   "keywords": [
     "readme",

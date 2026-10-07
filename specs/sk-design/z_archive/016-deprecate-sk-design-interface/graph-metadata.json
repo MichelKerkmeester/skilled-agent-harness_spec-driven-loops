@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/016-deprecate-sk-design-interface",
-  "spec_folder": "sk-design/016-deprecate-sk-design-interface",
+  "packet_id": "sk-design/z_archive/016-deprecate-sk-design-interface",
+  "spec_folder": "sk-design/z_archive/016-deprecate-sk-design-interface",
   "parent_id": null,
   "children_ids": [
-    "sk-design/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
-    "sk-design/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
-    "sk-design/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
-    "sk-design/016-deprecate-sk-design-interface/004-fold-design-knowledge",
-    "sk-design/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
-    "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
-    "sk-design/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract"
+    "sk-design/z_archive/016-deprecate-sk-design-interface/001-inventory-and-dependency-map",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/002-extract-md-generator-and-styles",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/003-standalone-rewire-and-metadata",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/004-fold-design-knowledge",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/005-delete-hub-and-interface-commands",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
+    "sk-design/z_archive/016-deprecate-sk-design-interface/007-rename-design-reference-to-extract"
   ],
   "manual": {
     "depends_on": [],
@@ -110,16 +110,16 @@
     ],
     "causal_summary": "The `sk-design` parent hub currently routes exactly two workflow modes through `mode-registry.json`: `sk-design-interface` (invents new visual direction — palette, type, layout, motion, anti-slop critique; the design taste authority) and `sk-design-md-generator` (extracts a live website's real CSS into a v3 Style Reference `DESIGN.md`; the extraction fidelity engine)",
     "created_at": "2026-08-19T04:18:51.559Z",
-    "last_save_at": "2026-09-06T15:46:09.697Z",
+    "last_save_at": "2026-10-07T18:12:06.411Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b8c4cac3532ff64bed81b33559655b38b1d251587c1f2380b06fcfb8c0901743",
+    "source_fingerprint": "sha256:696fe45c54b9b2631d46ee3daf05a264fd1d9f36b0c9d6f7f9ea2d81d31710fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc677d6e2404ddfbabec4d20adea65f557210f739c23bcff45d2e5e6e8933b8e"
+      "spec.md": "9884a9d23d9fd5153919acc98de1baaf3a76a62c2d44245a477ac2155a3b2633"
     },
     "last_active_child_id": "sk-design/016-deprecate-sk-design-interface/006-reference-cleanup-and-reconcile",
     "last_active_at": "2026-08-19T07:14:54.600Z"

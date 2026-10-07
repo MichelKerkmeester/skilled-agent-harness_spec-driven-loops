@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
-  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
-  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "packet_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
+  "spec_folder": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
+  "parent_id": "sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/014-agents",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for orchestrate across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:46Z",
-    "last_save_at": "2026-08-30T15:39:17.169Z",
+    "last_save_at": "2026-10-07T18:13:12.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -166,12 +166,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:3200275440d7130d36aec465fe5228cc9724b3ae123113fd15d1510202ba66f9",
+    "source_fingerprint": "sha256:0efd4dae2e32b912e563eb25fea62e234628aa4a94813b0463bef015fbe7665c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d2754939df70cf465a40939f65fb13e3aec68d6d13e7130487abb97e984443b",
-      "plan.md": "9cae69f0c2285822a5103d20d18afb2a5387850eb770f95c74c75897ea2f8aed",
-      "tasks.md": "4558d139e3508f65841594cdfb0f35a118789a4f531c3814aaf49eeb6ff111ba"
+      "spec.md": "725bb613a06692e2d7f83a2665a92b81115c50950923dc6bb5c35d083ecacaa4",
+      "plan.md": "6e7a883bdc7db5e9547c4fce4841ae7ac553dd65f936884c4784628d825fbd49",
+      "tasks.md": "11af9ed8b1048f5d62ecc042961df3146668d5df3cc81f0f04f763fc260e77a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

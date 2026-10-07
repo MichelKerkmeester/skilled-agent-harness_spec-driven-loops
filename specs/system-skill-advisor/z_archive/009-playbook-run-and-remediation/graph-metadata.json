@@ -5,12 +5,6 @@
   "parent_id": "system-skill-advisor",
   "parent_id_review_required": true,
   "children_ids": [
-    "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build",
-    "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios",
-    "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
-    "system-skill-advisor/009-playbook-run-and-remediation/004-shell-python-daemon",
-    "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation",
-    "system-skill-advisor/009-playbook-run-and-remediation/006-p1-routing-tuning",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/002-mcp-native-scenarios",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
@@ -94,16 +88,16 @@
     ],
     "causal_summary": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manualtestingplaybook/`) spanning native MCP tools, CLI runtime hooks, compatibility shims, auto-update daemon state, auto-indexing, lifecycle routing, scorer fusion and Python compatibility",
     "created_at": "2026-05-26T20:09:07.489Z",
-    "last_save_at": "2026-08-30T15:39:26.991Z",
+    "last_save_at": "2026-10-07T18:15:29.436Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e4eb5c0848512cc3838ba1dd1572dcc97b1e15d4f297c7a3103b508c1276c4ac",
+    "source_fingerprint": "sha256:b54121ca71c25a7af26f8744d4db94071fa9327ce44a42b082dabcb4cb1d3a3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94f6c0ec79694cc0b3b5f619c46e3892979bc7b3bce376a0349c712b77c88482"
+      "spec.md": "4241baf0c01ad0134e10b726f91aba7b83d61d799f6d309ea29de3177c690727"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/006-p1-routing-tuning",
     "last_active_at": null

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/024-deep-loop-improved/001-reference-research"
+    packet_pointer: "system-deep-loop/z_archive/024-deep-loop-improved/001-reference-research"
     last_updated_at: "2026-07-02T00:00:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Authored real plan content from research.md evidence"

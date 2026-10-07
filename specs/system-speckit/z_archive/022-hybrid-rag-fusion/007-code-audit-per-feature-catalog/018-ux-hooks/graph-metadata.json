@@ -15,8 +15,7 @@
       "ux hooks",
       "feature verification",
       "audit plan",
-      "tasks",
-      "implementation summary"
+      "tasks"
     ],
     "key_topics": [
       "code",
@@ -26,11 +25,11 @@
       "verification",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
       "catalog",
       "evolved",
-      "significantly"
+      "significantly",
+      "specification",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,7 +187,7 @@
     ],
     "causal_summary": "The feature catalog for UX Hooks has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-08-30T15:39:38.425Z",
+    "last_save_at": "2026-10-07T20:25:16.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb4a623ebcbfa0c65ebdf4c295a0d8ac70b7ab28fe30ff98bda028b38e627a24",
+    "source_fingerprint": "sha256:ca13004d44fa4c1822c782451b0a3e902a35b50e8d9e6464aa7e9876fcc0cf8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "334eb95fad9ada0dab510675883f289001aec8f5aa57e5f992c1eac75ddf7768",
-      "plan.md": "5d324fb00d30bd6d49d4edc0f9019864f10a5b3deee1ee1fb0ccf109f2614d03",
+      "spec.md": "687e4d2f4e400dd66901d60a1dbf8b8ea5f255073ecc1f668a8fd2df4bb94f4b",
+      "plan.md": "8029a7c899a7ea30fd3bf89a7f986a130c047420d992c903db3e8a1c563359d9",
       "tasks.md": "a3aa5598778327d07ce050330da1b94e650ad075055210799a520d9705cd2eab",
-      "implementation-summary.md": "48b93c6639a91eff6a7e89109d12c50ab83cc79d1617bddbe08d7168d9a3ae15"
+      "implementation-summary.md": "b7345f1f0ffa598f2d8a5758781c86c8ffea0b0b42daf03a1b190fd919a68730"
     },
     "last_active_child_id": null,
     "last_active_at": null

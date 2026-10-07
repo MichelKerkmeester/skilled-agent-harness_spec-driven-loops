@@ -2,19 +2,15 @@
 title: "Decision [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/decision-record]"
 description: "Date: 2025-12-25"
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "system"
-  - "health"
-  - "audit"
   - "decision record"
-  - "032"
+  - "system health audit decision record"
 importance_tier: "important"
 contextType: "planning"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record - System Health Audit
 
+<!-- ANCHOR:adr-001 -->
 ## DR-001: Decay Formula Resolution
 
 **Date:** 2025-12-25  
@@ -36,9 +32,11 @@ contextType: "planning"
 
 ### Outcome
 Updated SKILL.md with correct formula and decay table.
+<!-- /ANCHOR:adr-001 -->
 
 ---
 
+<!-- ANCHOR:adr-002 -->
 ## DR-002: Promotion Tier Resolution
 
 **Date:** 2025-12-25  
@@ -60,9 +58,11 @@ Updated SKILL.md with correct formula and decay table.
 
 ### Outcome
 Updated confidence-tracker.js to promote to "critical" tier.
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
+<!-- ANCHOR:adr-003 -->
 ## DR-003: MCP Path Portability
 
 **Date:** 2025-12-25  
@@ -87,9 +87,11 @@ opencode.json had hardcoded absolute paths like `/Users/michelkerkmeester/...`
 
 ### Outcome
 Updated opencode.json with portable paths.
+<!-- /ANCHOR:adr-003 -->
 
 ---
 
+<!-- ANCHOR:adr-004 -->
 ## DR-004: Gate 4 Option Labels
 
 **Date:** 2025-12-25  
@@ -105,9 +107,11 @@ Updated opencode.json with portable paths.
 
 ### Outcome
 Updated SKILL.md to use A/B/C/D format.
+<!-- /ANCHOR:adr-004 -->
 
 ---
 
+<!-- ANCHOR:adr-005 -->
 ## DR-005: Spec Folder Location
 
 **Date:** 2025-12-25  
@@ -127,9 +131,11 @@ This work spans multiple systems (memory, SpecKit, framework). Where to document
 
 ### Outcome
 Created .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit/
+<!-- /ANCHOR:adr-005 -->
 
 ---
 
+<!-- ANCHOR:adr-006 -->
 ## DR-006: Implementation Approach
 
 **Date:** 2025-12-25  
@@ -144,3 +150,4 @@ Created .opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_arc
 
 ### Outcome
 All 34 issues fixed in ~15 minutes of parallel execution.
+<!-- /ANCHOR:adr-006 -->

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/002-parent-skill-readme-template",
   "description": "The fleet has parent hubs with READMEs of inconsistent shape",
   "keywords": [
     "fleet",

@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
     "created_at": "2026-07-01T17:42:33.780Z",
-    "last_save_at": "2026-08-30T15:39:25.499Z",
+    "last_save_at": "2026-10-07T18:15:16.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31f5cdc34d2dd9740b806ac9b19fc448764753a8210c02ca080bec5c62ca3304",
+    "source_fingerprint": "sha256:019cada000362a93b0c73ebfcb4ddb51712c32ab2faa63f4769de2652ab5f33e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5692ea190f85b2236d3fa1f88f932bc3d8e126456b3b620f8fa1e435b456f14",
-      "plan.md": "bfb7cbff01c4b81eae4516c9245f92bf4f325071fc0e435a2101c69a3fbcf4b0",
-      "tasks.md": "17ff391c7ae4d22b26a6f6967d27d897dfa2c61d8b3ee936c84c47fff14fd768",
-      "implementation-summary.md": "60e20144856debd7550569d17ca87fa2179ef16225c889e364ebc9f8104fa3b5"
+      "spec.md": "f74b1816e5f66a27d1711e1758e7a8536dcdd9e1f489001e85f95d075888034b",
+      "plan.md": "8798f4276b64f45a5402c95503365c8f9fd24e03d1f8b5cc92641df1f0bb86f0",
+      "tasks.md": "d93a0dff6bc8432b6bd6fa1fd49202656d3487ee1d038c6c729470ecd69c15cc",
+      "implementation-summary.md": "52fb1e29f81b996aab3a0005a6684e6d144754119314f8c588bed450e9070de8"
     },
     "last_active_child_id": null,
     "last_active_at": null

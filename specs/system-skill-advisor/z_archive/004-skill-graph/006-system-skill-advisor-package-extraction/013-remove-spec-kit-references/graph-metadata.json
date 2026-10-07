@@ -45,8 +45,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/scripts/observability/README.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "The advisor extraction moved skill-advisor ownership out of `system-spec-kit` into the sibling `system-skill-advisor` skill and standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-19T15:11:02.192Z",
-    "last_save_at": "2026-08-30T15:39:26.506Z",
+    "last_save_at": "2026-10-07T18:16:08.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e6f3f430ef06cd1c95c5607fa73aa6c6171cfdc0ec45f80fe2bec614cc0ebf9",
+    "source_fingerprint": "sha256:7101803ace2246d87fc08d74de7a7cec2986312a594d9da8e345945abb36170f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9512461eed7e59cea9445173929d7b2c42a1c0e488adebade8c9a33fa5ae0404",
-      "plan.md": "01a5ffcb277dd032bd5393eb351c385fd9f2fe5e2b52851e82d48cd4d8e31f48",
-      "tasks.md": "fdffdee6ab21d15d87d3d52e1001cd3716d29f5220dac98a3b6819958a543519",
-      "implementation-summary.md": "7a9e9cd9f8f67c835c1208aa705cefbb929e4c6600292db3f54b561b07d5dcb4"
+      "spec.md": "c7ca53ea7fa9fa85c40d300cd29c537322ad0c543d841908d91f5f6549baca60",
+      "plan.md": "7834e9f0855a7cf03abe7b0794f1dcc047ce4a5e19d3b8319ac10b9fd7b81208",
+      "tasks.md": "d5f25fb055655689a24756d801e5f2bce85f54a98c1bf37d75e9c93bd0b76e3a",
+      "implementation-summary.md": "99916436071429f2effdd709aa0fe8340e96b5da2c70bd8bd40e21da61d35138"
     },
     "last_active_child_id": null,
     "last_active_at": null

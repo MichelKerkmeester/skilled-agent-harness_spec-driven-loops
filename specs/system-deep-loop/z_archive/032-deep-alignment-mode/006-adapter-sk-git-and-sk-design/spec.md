@@ -12,7 +12,7 @@ contextType: "general"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design"
+    packet_pointer: "system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design"
     last_updated_at: "2026-07-11T14:51:52Z"
     last_updated_by: "claude"
     recent_action: "Built and dry-verified both adapters against live data"

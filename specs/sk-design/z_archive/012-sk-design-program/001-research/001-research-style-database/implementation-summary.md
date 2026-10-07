@@ -1,9 +1,11 @@
 ---
 title: "Implementation Summary: Deep research — style database architecture"
 description: "Converged recommendation for the sk-design style database, and handoff to phase 003-style-database."
+importance_tier: "important"
+contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-design/012-sk-design-program/001-research/001-research-style-database"
+    packet_pointer: "sk-design/z_archive/012-sk-design-program/001-research/001-research-style-database"
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "deep-research-orchestrator"
@@ -23,10 +25,7 @@ _memory:
       - "DB technology: SQLite + FTS5 + vector (not a graph engine)"
       - "Source of truth: flat style files stay authoritative; DB is a rebuildable, generation-stamped projection"
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "research style database implementation summary"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

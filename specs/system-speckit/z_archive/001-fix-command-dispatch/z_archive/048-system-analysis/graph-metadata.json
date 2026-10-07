@@ -11,32 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "048",
-      "speckit",
-      "memory",
-      "system",
-      "remediation",
-      "spec",
-      "implementation",
-      "plan",
-      "task",
-      "breakdown",
-      "tasks",
-      "decision"
+      "system analysis spec",
+      "system analysis plan",
+      "system analysis tasks",
+      "decision record",
+      "system analysis decision record",
+      "system analysis implementation summary"
     ],
     "key_topics": [
-      "speckit",
-      "memory",
       "system",
-      "remediation",
+      "analysis",
       "spec",
-      "implementation",
       "plan",
-      "task",
-      "breakdown",
       "tasks",
       "decision",
-      "comprehensive"
+      "record",
+      "implementation",
+      "summary",
+      "comprehensive",
+      "audit",
+      "speckit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +190,7 @@
     ],
     "causal_summary": "A comprehensive audit of the SpecKit and Memory systems identified 16 verified bugs, 10 alignment issues, and 9 improvement opportunities (35 total tasks). While the systems are...",
     "created_at": "2026-04-12T09:02:53.531Z",
-    "last_save_at": "2026-08-30T15:39:37.207Z",
+    "last_save_at": "2026-10-07T20:12:21.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62045695a892160634c812e4a76d2ba378d889ba4e5cf3bba28ffef95e83465f",
+    "source_fingerprint": "sha256:2b3c71e61780521cf4cc260c177277a4dba1140398d05c37caa70113dceaed93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "29cb444d09de5555aa7ca988be2400e866393aa25d0a58d48cb175ffb436f88c",
-      "plan.md": "88d09f03da1121fa93874b2c553d1c24731d8ff7c060abbe30e880b51a2434e6",
-      "tasks.md": "ecdd129bfa67a612c097c471265b0b23f62bebe567b687c5248330d14453e46f",
-      "decision-record.md": "45725e66d53277b025b7460a2debbfe4dc6d98504bf54d36ee4d4017fc78618b",
-      "implementation-summary.md": "44456e3ba0ef3826541451a160f4c23661529105ed0e3fdf148546c7224e05a7"
+      "spec.md": "d1dfb4e9efff6ac89063602fb44d42840882b3e0367b294f788b1206ed89557e",
+      "plan.md": "cb2682ff854ed16a05bc0687a232367a735ab456e47f2ac5ea4848346f34cc13",
+      "tasks.md": "1690d38dbe921088b0159782201a11117c993403af7c2421dd2fa0515f34eba9",
+      "decision-record.md": "e65adb848c3f03fb02200431eefee16a97abe1d976ac8efa622eff766a9139fb",
+      "implementation-summary.md": "10d861fd201e74086795fb201f0de63b89149fd2286b17747c54c35e70245ded"
     },
     "last_active_child_id": null,
     "last_active_at": null

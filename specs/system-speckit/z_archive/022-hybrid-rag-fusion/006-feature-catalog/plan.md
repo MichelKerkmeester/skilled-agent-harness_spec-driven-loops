@@ -213,7 +213,7 @@ Phase E (Current-State) ──► Phase H (Deep Research Remediation)
 
 ---
 
-<!-- ANCHOR:dependencies -->
+<!-- ANCHOR:dependencies-2 -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -234,7 +234,7 @@ Phase A (Spec Upgrade) ──► Phase B (30 Agents) ──► Phase C (Synthesi
 | H5-H8: P1 Required | H1-H4 | F |
 | D: Documentation | C | None |
 
-<!-- /ANCHOR:dependencies -->
+<!-- /ANCHOR:dependencies-2 -->
 ---
 
 <!-- ANCHOR:effort -->

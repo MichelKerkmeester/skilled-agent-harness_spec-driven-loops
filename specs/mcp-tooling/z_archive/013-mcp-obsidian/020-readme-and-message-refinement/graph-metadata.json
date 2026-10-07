@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement",
-  "spec_folder": "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement",
-  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "packet_id": "mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
+  "spec_folder": "mcp-tooling/z_archive/013-mcp-obsidian/020-readme-and-message-refinement",
+  "parent_id": "mcp-tooling/z_archive/013-mcp-obsidian",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The mcp-obsidian README and SKILL.md state the skill's reason for being as routing between two CLI profiles and the MCP",
     "created_at": "2026-08-04T05:41:57.238Z",
-    "last_save_at": "2026-09-10T20:43:48.720Z",
+    "last_save_at": "2026-10-07T18:11:39.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c49217aabec6f4be6394c2605276ffac98967fca2903f740b8611f7f66e0ac4",
+    "source_fingerprint": "sha256:eefcfd56981908f3ed918aebb967c5390dee98fb2bacdb898f7571d268f6ba1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "48a21b4286777a422314ccf083857fd951ba3267edea10eea08646f1816d47a4",
-      "plan.md": "5d11e1c77cb3b04cae3ab7030ef05a7b2fe6464a2cf334e0a415ed35c8de899b",
-      "tasks.md": "10ff18e2527088a8d9f36fb480bfd883737248a0dcc3678ba37d07d618bf9174",
-      "implementation-summary.md": "23bbac7d4ce9d2e7c61c0fe45be4cd87ca10b117364652090596f5b8ede0cd53"
+      "spec.md": "b8a6609a61aca2224a8db3daef9d109fd8845f1f9989479dc6fdb7ffc7296fdd",
+      "plan.md": "d6c43f104ebd24654a3528967d22c74157ab61cb2f7d987c930ce1bedc410436",
+      "tasks.md": "f2cc8a84d4767e65bb56f04b2116c5da86ea09e01bbafb382e5176a115aab393",
+      "implementation-summary.md": "91e4072d20be0da5f25e02d2dc3ad7e21115a5dc3a0c66c779498bfd2952d5f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

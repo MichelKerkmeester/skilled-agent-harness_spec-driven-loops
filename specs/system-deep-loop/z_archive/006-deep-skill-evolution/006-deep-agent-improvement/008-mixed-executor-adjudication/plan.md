@@ -2,7 +2,6 @@
 title: "Implementation Plan: 128 — Deep-Agent-Improvement Mixed-Executor + Adjudication Methodology"
 description: "Documentation and light code touch to bring arc 119 methodology patterns into DAI."
 trigger_phrases:
-  - "implementation plan"
   - "128 deep-agent-improvement"
   - "mixed-executor"
 importance_tier: "important"

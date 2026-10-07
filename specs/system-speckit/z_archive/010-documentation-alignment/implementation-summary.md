@@ -2,7 +2,6 @@
 title: "Implementation Summary [system-spec-kit/z_archive/010-documentation-alignment/implementation-summary]"
 description: "Archive repair summary for the Documentation Alignment for Spec 126 folder."
 trigger_phrases:
-  - "implementation summary"
   - "documentation alignment"
   - "archive"
 importance_tier: "normal"

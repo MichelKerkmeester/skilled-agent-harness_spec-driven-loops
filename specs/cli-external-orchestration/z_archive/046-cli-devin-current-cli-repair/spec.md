@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/046-cli-devin-current-cli-repair"
+    packet_pointer: "cli-external-orchestration/z_archive/046-cli-devin-current-cli-repair"
     last_updated_at: "2026-08-17T12:45:34Z"
     last_updated_by: "claude"
     recent_action: "Fix landed and verified end-to-end"

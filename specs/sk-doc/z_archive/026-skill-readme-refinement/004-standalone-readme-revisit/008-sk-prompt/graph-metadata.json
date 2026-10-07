@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
-  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
-  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "packet_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
+  "spec_folder": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
+  "parent_id": "sk-doc/z_archive/026-skill-readme-refinement/004-standalone-readme-revisit",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "phase 008 tasks",
       "sk prompt readme tasks",
       "prompt readme rewrite tasks",
-      "implementation summary",
-      "phase 008 summary"
+      "phase 008 summary",
+      "sk prompt readme summary"
     ],
     "key_topics": [
       "prompt",
@@ -34,9 +34,9 @@
       "spec",
       "plan",
       "tasks",
-      "implementation",
       "summary",
-      "mcp-obsidian"
+      "mcp-obsidian",
+      "pilot"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,30 +47,26 @@
       "implementation-summary.md",
       ".opencode/skills/sk-prompt/README.md",
       ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/spec.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -95,12 +91,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -198,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome before the tooling, obey the Human Voice Rules and pass the sk-doc README validator",
     "created_at": "2026-08-04T08:34:37.731Z",
-    "last_save_at": "2026-08-30T15:39:17.523Z",
+    "last_save_at": "2026-10-07T18:13:49.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a41d2e29e1fe36f2487b1ea6722b35f47b4d82de4e93d05fe449b355b6a5d1f",
+    "source_fingerprint": "sha256:09b305900117eb9d7cefbd54a2a30e0de0550b6e2fcb3f88466e8081f1a40d11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b695b9203ac9132a2a1c79e946fc66c150d26096a6b5e6fe5a1ef82a3f34d56b",
-      "plan.md": "f93feb0acce07da98041a667f08e3c58dec3cc13032cc5ab72c51735be853ae6",
-      "tasks.md": "7f29607dc535fed7518210d387feb32c617b56e06312b25a911d59fd7337f328",
-      "implementation-summary.md": "81b0e0a00ba8e2692f8fff05c16fd17f3e3dd0b5b6d25614a415e447094967c2"
+      "spec.md": "8e6f213821d738601a3d2965400a4eb78ec635157eb5a52e2efae546563bebe2",
+      "plan.md": "594f525a9c59bdff4ca24e83d6bfdd74b1e0dce46c1fb4694f129230a8ee003a",
+      "tasks.md": "155eb16348b7bd3a9cb1db2c44c8d934360f251638bee62dd88773edd2662194",
+      "implementation-summary.md": "2a97e52afb129d7c8c97b886886b52e4099155a239c14b1915cb2273e73c1655"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a post-audit flag graduation event affecting 22 flags",
     "created_at": "2026-04-12T09:02:50.306Z",
-    "last_save_at": "2026-08-30T15:39:39.260Z",
+    "last_save_at": "2026-10-07T20:38:23.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3b38a026c7a562c2ad0f4907849387b75792d79937c45cc2dd55cbfd5c24f78",
+    "source_fingerprint": "sha256:9583243cb28112e17dea874c5eb5f108e621308d11cbf66ce663a458f47c1638",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3c43ec7f883a48ed905a45034c28fb6715f8bd52921fecb5ffeee2feeb206b5",
-      "plan.md": "9492a25684c748fd43bd418ef1c7a0884e796fc82ded42f4c9f1d686c539dbd4",
+      "spec.md": "ca24eead38666daf0dc7075d2241e8a48e82ec4b2849f85de7a9805411de1245",
+      "plan.md": "9c9d9f3e0d42c3ad727778674a6d253aab90ac1bd05545bbfe9fdec8bd0fa3dc",
       "tasks.md": "8a80dfefeb8a02de6c55dc83848772b6fbd6094ea722143d94a64243def54f2a",
       "implementation-summary.md": "f63d243f9712464272b3c1c775b35a8fd0685b2989412d80a75c652c580bb86b"
     },

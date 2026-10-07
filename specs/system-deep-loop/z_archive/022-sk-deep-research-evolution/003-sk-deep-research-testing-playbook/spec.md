@@ -49,8 +49,8 @@ Implement the first `manual_testing_playbook/` package for `.opencode/skills/sk-
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -174,7 +174,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:requirements-2 -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -186,7 +186,7 @@ Define the exact Level 3 implementation scope for a greenfield `manual_testing_p
 ### Reliability
 - **NFR-R01**: Every scenario must include at least one live source anchor and one concrete expected signal so future maintainers can detect drift during manual reviews.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:requirements-2 -->
 ---
 
 <!-- ANCHOR:edge-cases -->
