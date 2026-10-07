@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`.github/workflows/advisory-checks.yml` runs `generate-trigger-index.mjs --check` with `continue-on-error`, so a stale index is reported and merged anyway",
     "created_at": "2026-10-07T09:58:45Z",
-    "last_save_at": "2026-10-07T16:44:54.141Z",
+    "last_save_at": "2026-10-07T23:47:57.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7033b6005e4dbc1634697c21e5d7d41ded97fac65cc73411534a3670a711e838",
+    "source_fingerprint": "sha256:7b2c894d0deb5662837d2dd85e69a06287bb703f83c0e3e38292b4ae1bf36902",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "527c5a6245ee5d88e4ed113286935e8ede5a03f5c118c900e8067138f8f011e2",
       "plan.md": "f036137f57883ce9739d44aeab36ee8af7726fbdc4d8c91d997432309592d2d4",
-      "tasks.md": "3441079218cdaad1819e4fc4e4b92257e5e91f0d60773da553bcf25badf020a9",
+      "tasks.md": "637804ccf42417bc1b57a67fc9985c3773a1473a06127c05b88338898e94f52b",
       "implementation-summary.md": "b35c490d532353adca302804a2c6f0c5a8da6b16de82e3eb9eb46e91993799f1"
     },
     "last_active_at": null

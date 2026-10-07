@@ -33,7 +33,16 @@ jobs:
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '20'
+          node-version: '22'
+
+      # The generator imports @spec-kit/shared through the workspace link, which
+      # only an install creates on a clean runner, and the shared package ships
+      # as TypeScript until it is built.
+      - name: Install the workspace and build its shared package
+        run: |
+          set -euo pipefail
+          npm --prefix .skilled/skills/system-spec-kit ci
+          ( cd .skilled/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
 
       - name: Regenerate the trigger index
         run: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
