@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/018-communication-rules-consolidation",
+  "spec_folder": "agents/018-communication-rules-consolidation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication rules consolidation",
+      "consolidate the communication repo rules move the writing",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
+    ],
+    "key_topics": [
+      "communication",
+      "rules",
+      "consolidation",
+      "consolidate",
+      "repo",
+      "move",
+      "writing",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/repo-rules/communication.md",
+      ".skilled/repo-rules/communication-prose.md",
+      ".skilled/repo-rules/communication-decisions.md",
+      ".skilled/repo-rules/communication-handoff.md",
+      ".skilled/repo-rules/answer-the-actual-request.md",
+      ".skilled/repo-rules/uncertainty-and-honesty.md",
+      "research/baseline-2026-10-07.txt",
+      "research/analysis-under-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-prose.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-prose.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-decisions.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "answer-the-actual-request.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/answer-the-actual-request.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-2026-10-07.txt",
+        "kind": "file",
+        "path": "research/baseline-2026-10-07.txt",
+        "source": "derived"
+      },
+      {
+        "name": "analysis-under-review.md",
+        "kind": "doc",
+        "path": "research/analysis-under-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Revise",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "\"Lead with the answer\" was stated in five places, and two of them disagreed (payload in the first line against outcome within two lines)",
+    "created_at": "2026-10-07T11:22:14Z",
+    "last_save_at": "2026-10-07T11:28:02.734Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:bc85b97b8faffc1db012d2c43f788ecd7941d0e53a8927771dc0d83024b7c447",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "986f66a932b1fc49fcad189c71a8c54bc9a3e9d9e778f84bef7e1127b66d666e",
+      "plan.md": "f8a47665de5f48823b48ee9eccc59512636b192e69618c40d9bafef134c1d9c7",
+      "tasks.md": "9484689bb0b530e2308c701106f59f8ddc9aa45e6afbc80bc9cec0485509b6b2",
+      "implementation-summary.md": "35e3b71c2b253ecbaa3af38650e1a8e64be9704cf9a218ec0d462cb2cebc41e1",
+      "research/research.md": "0c20580359414fc89ada625f6e194893dc3ee1663f396c2ec13e5ec2be4d4ccb"
+    },
+    "last_active_at": null
+  }
+}

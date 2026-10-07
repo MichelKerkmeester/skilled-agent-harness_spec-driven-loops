@@ -20,7 +20,7 @@ trigger_phrases:
   - "connective tissue"
 importance_tier: important
 contextType: reference
-version: 1.1.1.2
+version: 1.1.1.3
 ---
 
 # Rule: Communication prose
@@ -85,8 +85,19 @@ verbs with action words. For stacked noun phrases, say who does what, using the
 [HVR nominalization guidance](../skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md#nominalization-and-stacked-compression).
 Explain each ID, abbreviation or status code in plain words. Say what each bare count
 or label measures and what it means. Turn sentence fragments into complete sentences
-with a subject and verb. The failure this prevents: readers have to guess at the action,
+with a subject and verb, and join two of them with a full stop or a conjunction, never a
+semicolon. The failure this prevents: readers have to guess at the action,
 referent or result.
+
+**Name an identifier only where the reader acts on it.** A path, hash, flag or ID earns its
+place when the reader will run, open or check it. Elsewhere, say what the thing is in plain
+words.
+
+**One or two numbers to a sentence.** When the numbers are the point, give each its own
+sentence or bullet.
+
+The failure this prevents: a reply dense with names and figures the reader cannot use,
+which buries the few they need.
 
 ---
 
@@ -141,4 +152,5 @@ reply telegraphic, the reader rebuilds the argument the reply no longer states.
 - [ ] Where a sentence explains how something works, it names the moving part.
 - [ ] Plain words, with exact names kept only for the things that have them.
 - [ ] No em dash, no semicolon, no serial comma.
+- [ ] Every path, hash, flag or ID in the reply is one the reader will act on, and no sentence carries more than two numbers.
 - [ ] Nothing was compressed past the point where the reader has to re-expand it.

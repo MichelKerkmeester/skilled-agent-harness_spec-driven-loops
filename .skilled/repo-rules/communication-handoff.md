@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.2
+version: 1.6.0.3
 ---
 
 # Rule: Communication handoff
@@ -76,8 +76,9 @@ the turns since have superseded.
 **Position it last**, so a reader who stops halfway through a reply has still hit it.
 
 The close of the turn is a contract with two clauses. Completed work is shown, as the
-changed file, the passing check or the output. When a command ran, name the command and
-its exit status or result before any interpretation of it. What happens next is exactly one concrete action, in the form that lets the operator do
+changed file, the passing check or the output, after the outcome that
+[`communication.md`](communication.md) §5 puts first. When a command ran, name the command
+and its exit status or result beside the claim it supports, before your reading of it. What happens next is exactly one concrete action, in the form that lets the operator do
 it, or the one line that says nothing is.
 
 The failure this prevents: a close out the operator reads, agrees with and acts on
@@ -118,7 +119,7 @@ were supposed to notice.
 - The alternatives are nameable, not open-ended.
 - The answer changes what you do next. A question that changes nothing is a delay, per
   [`communication-decisions.md`](communication-decisions.md) §3.
-- You cannot resolve it from the request, the code, or a sensible default.
+- You cannot resolve it from the request, the code or a sensible default.
 
 **Otherwise put it in prose and keep going.** `AGENTS.md` §3 already refuses "should I
 continue?" for a step that is clear and in scope.
