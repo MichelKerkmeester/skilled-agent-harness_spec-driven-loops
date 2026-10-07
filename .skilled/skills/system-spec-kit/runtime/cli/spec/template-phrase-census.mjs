@@ -13,6 +13,8 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
+import { normalizeTriggerText } from '../retrieval/lib/normalize.mjs';
+
 const require = createRequire(import.meta.url);
 const yaml = require('js-yaml');
 
@@ -38,8 +40,13 @@ const DOCUMENT_KINDS = Object.freeze({
   'implementation-summary.md': 'implementationSummary',
 });
 const COUNT_KINDS = Object.freeze(Object.values(DOCUMENT_KINDS));
-const EXACT_BLOCK_KINDS = Object.freeze(['spec', 'acceptanceCriteria']);
-const INFORMATIONAL_KINDS = Object.freeze(['plan', 'tasks', 'implementationSummary']);
+const EXACT_BLOCK_KINDS = Object.freeze([
+  'spec',
+  'acceptanceCriteria',
+  'plan',
+  'tasks',
+  'implementationSummary',
+]);
 // Demo snapshots and review quarantine copies are not real packets; both tools leave them alone.
 const SKIPPED_DIRECTORY_NAMES = new Set(['scratch', 'containment']);
 
@@ -195,6 +202,80 @@ export function findExactTemplateBlocks(content, parsed, templateRows) {
 }
 
 /**
+ * Maps each trigger_phrases list row to its parsed phrase so the caller can
+ * rewrite or drop individual entries. A list that cannot be mapped one row per
+ * phrase returns null, which leaves non-block formats untouched.
+ * @param {ReturnType<typeof parseFrontmatter>} parsed Parsed frontmatter.
+ * @returns {Array<{ phrase: unknown, line: string, startOffset: number, contentEnd: number, deleteEnd: number, lineEnding: string }> | null} List entries.
+ */
+export function findTriggerPhraseEntries(parsed) {
+  if (!parsed.ok || !Array.isArray(parsed.data?.trigger_phrases)) return null;
+
+  const { records, openingIndex, closingIndex } = parsed;
+  const keyIndex = records.findIndex((record, index) => (
+    index > openingIndex
+    && index < closingIndex
+    && /^trigger_phrases\s*:\s*(?:#.*)?$/.test(record.line)
+  ));
+  if (keyIndex === -1) return null;
+
+  let listEnd = closingIndex;
+  for (let index = keyIndex + 1; index < closingIndex; index += 1) {
+    if (/^[A-Za-z_][A-Za-z0-9_-]*\s*:/.test(records[index].line)) {
+      listEnd = index;
+      break;
+    }
+  }
+
+  const rows = [];
+  for (let index = keyIndex + 1; index < listEnd; index += 1) {
+    if (/^\s+-\s+/.test(records[index].line)) rows.push(records[index]);
+  }
+
+  const phrases = parsed.data.trigger_phrases;
+  if (rows.length !== phrases.length) return null;
+
+  return rows.map((record, index) => ({
+    phrase: phrases[index],
+    line: record.line,
+    startOffset: record.start,
+    contentEnd: record.contentEnd,
+    deleteEnd: record.contentEnd + record.eol.length,
+    lineEnding: record.eol || '\n',
+  }));
+}
+
+/**
+ * Classifies a trigger_phrases list against one document kind's defaults.
+ * A carrier is partial when the list holds at least one default phrase and
+ * either carries a non-default entry or a proper subset of the default set.
+ * @param {ReturnType<typeof parseFrontmatter>} parsed Parsed frontmatter.
+ * @param {string[]} defaultPhrases Template phrases for the document kind.
+ * @returns {{ entries: Array<Record<string, unknown>>, defaultEntries: Array<Record<string, unknown>>, nonDefaultEntries: Array<Record<string, unknown>>, partial: boolean } | null} List classification, or null when no row list can be mapped.
+ */
+export function classifyTriggerPhraseCarrier(parsed, defaultPhrases) {
+  const entries = findTriggerPhraseEntries(parsed);
+  if (entries === null) return null;
+
+  const defaultKeys = new Set(defaultPhrases.map((phrase) => normalizeTriggerText(phrase)).filter(Boolean));
+  const classified = entries.map((entry) => {
+    const key = normalizeTriggerText(entry.phrase);
+    return { ...entry, key, isDefault: defaultKeys.has(key) };
+  });
+  const defaultEntries = classified.filter((entry) => entry.isDefault);
+  const nonDefaultEntries = classified.filter((entry) => !entry.isDefault);
+  const presentDefaultKeys = new Set(defaultEntries.map((entry) => entry.key));
+
+  return {
+    entries: classified,
+    defaultEntries,
+    nonDefaultEntries,
+    partial: defaultEntries.length > 0
+      && (nonDefaultEntries.length > 0 || presentDefaultKeys.size < defaultKeys.size),
+  };
+}
+
+/**
  * Lists the supported packet documents under a root without following symlinks.
  * @param {string} root Spec tree root.
  * @returns {string[]} Absolute document paths in stable order.
@@ -251,7 +332,7 @@ function emptyCounts() {
   return {
     documents: Object.fromEntries(COUNT_KINDS.map((kind) => [kind, 0])),
     templateBlocks: Object.fromEntries(EXACT_BLOCK_KINDS.map((kind) => [kind, 0])),
-    informationalDefaults: Object.fromEntries(INFORMATIONAL_KINDS.map((kind) => [kind, 0])),
+    partialCarriers: Object.fromEntries(COUNT_KINDS.map((kind) => [kind, 0])),
     malformedFrontmatter: 0,
   };
 }
@@ -259,12 +340,12 @@ function emptyCounts() {
 function addCounts(target, source) {
   for (const kind of COUNT_KINDS) target.documents[kind] += source.documents[kind];
   for (const kind of EXACT_BLOCK_KINDS) target.templateBlocks[kind] += source.templateBlocks[kind];
-  for (const kind of INFORMATIONAL_KINDS) target.informationalDefaults[kind] += source.informationalDefaults[kind];
+  for (const kind of COUNT_KINDS) target.partialCarriers[kind] += source.partialCarriers[kind];
   target.malformedFrontmatter += source.malformedFrontmatter;
 }
 
 /**
- * Counts exact template blocks and informational default phrase lists.
+ * Counts exact template blocks and partial phrase carriers across packet documents.
  * @param {string} root Spec tree root.
  * @param {ReturnType<typeof loadTemplateDefaults>} defaults Loaded template phrases.
  * @returns {object} Census report grouped by track and archive state.
@@ -304,13 +385,9 @@ export function runCensus(root, defaults = loadTemplateDefaults()) {
     if (EXACT_BLOCK_KINDS.includes(kind)) {
       if (findExactTemplateBlocks(content, frontmatter, defaults[kind].rows).length > 0) {
         bucket.templateBlocks[kind] += 1;
-      }
-    }
-
-    if (INFORMATIONAL_KINDS.includes(kind)) {
-      const phrases = frontmatter.data.trigger_phrases;
-      if (Array.isArray(phrases) && defaults[kind].phrases.every((phrase) => phrases.includes(phrase))) {
-        bucket.informationalDefaults[kind] += 1;
+      } else {
+        const carrier = classifyTriggerPhraseCarrier(frontmatter, defaults[kind].phrases);
+        if (carrier?.partial) bucket.partialCarriers[kind] += 1;
       }
     }
   }
@@ -337,14 +414,19 @@ function formatSummary(report) {
   for (const [track, states] of Object.entries(report.tracks)) {
     const live = states.live.templateBlocks;
     const archived = states.archived.templateBlocks;
-    lines.push(`${track}: live spec=${live.spec} acceptance-criteria=${live.acceptanceCriteria}; archived spec=${archived.spec} acceptance-criteria=${archived.acceptanceCriteria}`);
-    const informational = INFORMATIONAL_KINDS.map((kind) => (
-      `${kind}=${states.live.informationalDefaults[kind] + states.archived.informationalDefaults[kind]}`
-    )).join(' ');
-    lines.push(`  informational defaults: ${informational}`);
+    lines.push(
+      `${track}: live template blocks ${JSON.stringify(live)}; `
+      + `live partial carriers ${JSON.stringify(states.live.partialCarriers)}; `
+      + `archived template blocks ${JSON.stringify(archived)}; `
+      + `archived partial carriers ${JSON.stringify(states.archived.partialCarriers)}`,
+    );
   }
 
-  lines.push(`${SCRIPT}: exact blocks spec=${report.totals.templateBlocks.spec} acceptance-criteria=${report.totals.templateBlocks.acceptanceCriteria}; malformed frontmatter=${report.totals.malformedFrontmatter}`);
+  lines.push(
+    `${SCRIPT}: exact blocks ${JSON.stringify(report.totals.templateBlocks)}; `
+    + `partial carriers ${JSON.stringify(report.totals.partialCarriers)}; `
+    + `malformed frontmatter=${report.totals.malformedFrontmatter}`,
+  );
   return `${lines.join('\n')}\n`;
 }
 

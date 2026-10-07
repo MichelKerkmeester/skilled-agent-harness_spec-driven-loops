@@ -388,15 +388,18 @@ escape_template_value() {
     printf '%s' "$value"
 }
 
-# The core spec and acceptance-criteria templates ship placeholder phrases that
-# name no topic, so new packets may not be found by what they are about.
-# Replace only each template's exact trigger block with phrases about the packet.
+# The core templates ship placeholder phrases that name no topic, so new packets
+# may not be found by what they are about. Replace only each exact trigger block
+# with a phrase that includes the packet slug and document kind.
 replace_template_default_trigger_phrases() {
     local folder_path="$1"
     local packet_name="$2"
     local description="$3"
     local spec_file="$folder_path/spec.md"
     local acceptance_criteria_file="$folder_path/acceptance-criteria.md"
+    local plan_file="$folder_path/plan.md"
+    local tasks_file="$folder_path/tasks.md"
+    local implementation_summary_file="$folder_path/implementation-summary.md"
     local -a template_default_phrases=(
         "feature specification"
         "problem statement"
@@ -408,6 +411,33 @@ replace_template_default_trigger_phrases() {
         "closure gate"
         "ac traceability"
         "waiver adr"
+    )
+    local -a plan_template_default_phrases=(
+        "implementation plan"
+        "technical approach"
+        "architecture decisions"
+        "testing strategy"
+    )
+    local -a tasks_template_default_phrases=(
+        "task breakdown"
+        "implementation tasks"
+        "verification checklist"
+        "task dependencies"
+    )
+    local -a implementation_summary_template_default_phrases=(
+        "implementation summary"
+        "what shipped"
+        "validation evidence"
+        "continuation notes"
+    )
+
+    # A seeded phrase that ends on a function word reads as a fragment, so the
+    # shared stop list trims the trailing words. The cleanup tool carries the
+    # same list, and a test pins the two together.
+    local -a description_stop_words=(
+        a an the and or but nor of to in on at by for from with into onto via per
+        than that this these those which who whom whose what when where while if
+        then so as is are was were be been being it its not no also both each
     )
     local phrase
     local slug_phrase="${packet_name#[0-9][0-9][0-9]-}"
@@ -431,6 +461,28 @@ replace_template_default_trigger_phrases() {
                 | tr '[:upper:]' '[:lower:]' \
                 | tr -c 'a-z0-9' ' ' \
                 | awk '{ for (i = 1; i <= NF && i <= 8; i++) printf "%s%s", (i > 1 ? " " : ""), $i }')"
+            # Drop trailing function words so the seeded phrase reads as a topic.
+            local last_word
+            local stop_word
+            local last_word_is_stop
+            while [[ -n "$description_phrase" ]]; do
+                last_word="${description_phrase##* }"
+                last_word_is_stop=false
+                for stop_word in "${description_stop_words[@]}"; do
+                    if [[ "$last_word" == "$stop_word" ]]; then
+                        last_word_is_stop=true
+                        break
+                    fi
+                done
+                if [[ "$last_word_is_stop" != true ]]; then
+                    break
+                fi
+                if [[ "$description_phrase" == "$last_word" ]]; then
+                    description_phrase=""
+                else
+                    description_phrase="${description_phrase% *}"
+                fi
+            done
             if [[ -z "$description_phrase" || "$description_phrase" == "$slug_phrase" ]]; then
                 description_phrase=""
             fi
@@ -465,6 +517,69 @@ replace_template_default_trigger_phrases() {
                 my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
                 s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
             ' "$acceptance_criteria_file"
+        fi
+    fi
+
+    if [[ -f "$plan_file" ]]; then
+        local plan_has_default_block=true
+        for phrase in "${plan_template_default_phrases[@]}"; do
+            if ! grep -qF "  - \"$phrase\"" "$plan_file"; then
+                plan_has_default_block=false
+                break
+            fi
+        done
+
+        if [[ "$plan_has_default_block" == true ]]; then
+            local plan_template_default_block
+            printf -v plan_template_default_block '  - "%s"\n' "${plan_template_default_phrases[@]}"
+            local plan_replacement="  - \"${slug_phrase} plan\""
+
+            TRIGGER_DEFAULT_BLOCK="$plan_template_default_block" TRIGGER_REPLACEMENT="$plan_replacement" perl -0pi -e '
+                my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+                s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+            ' "$plan_file"
+        fi
+    fi
+
+    if [[ -f "$tasks_file" ]]; then
+        local tasks_has_default_block=true
+        for phrase in "${tasks_template_default_phrases[@]}"; do
+            if ! grep -qF "  - \"$phrase\"" "$tasks_file"; then
+                tasks_has_default_block=false
+                break
+            fi
+        done
+
+        if [[ "$tasks_has_default_block" == true ]]; then
+            local tasks_template_default_block
+            printf -v tasks_template_default_block '  - "%s"\n' "${tasks_template_default_phrases[@]}"
+            local tasks_replacement="  - \"${slug_phrase} tasks\""
+
+            TRIGGER_DEFAULT_BLOCK="$tasks_template_default_block" TRIGGER_REPLACEMENT="$tasks_replacement" perl -0pi -e '
+                my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+                s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+            ' "$tasks_file"
+        fi
+    fi
+
+    if [[ -f "$implementation_summary_file" ]]; then
+        local implementation_summary_has_default_block=true
+        for phrase in "${implementation_summary_template_default_phrases[@]}"; do
+            if ! grep -qF "  - \"$phrase\"" "$implementation_summary_file"; then
+                implementation_summary_has_default_block=false
+                break
+            fi
+        done
+
+        if [[ "$implementation_summary_has_default_block" == true ]]; then
+            local implementation_summary_template_default_block
+            printf -v implementation_summary_template_default_block '  - "%s"\n' "${implementation_summary_template_default_phrases[@]}"
+            local implementation_summary_replacement="  - \"${slug_phrase} implementation summary\""
+
+            TRIGGER_DEFAULT_BLOCK="$implementation_summary_template_default_block" TRIGGER_REPLACEMENT="$implementation_summary_replacement" perl -0pi -e '
+                my $block = qq{$ENV{TRIGGER_DEFAULT_BLOCK}};
+                s/\Q$block\E/$ENV{TRIGGER_REPLACEMENT}\n/;
+            ' "$implementation_summary_file"
         fi
     fi
 

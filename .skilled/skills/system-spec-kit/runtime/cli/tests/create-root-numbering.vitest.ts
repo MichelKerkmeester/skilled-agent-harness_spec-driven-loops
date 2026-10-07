@@ -10,8 +10,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   AC_TEMPLATE_DEFAULT_PHRASES,
+  IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES,
+  PLAN_TEMPLATE_DEFAULT_PHRASES,
+  TASKS_TEMPLATE_DEFAULT_PHRASES,
   TEMPLATE_DEFAULT_PHRASES,
 } from '../retrieval/lib/phrase-judge.mjs';
+import { DESCRIPTION_STOP_WORDS } from '../spec/template-phrase-cleanup.mjs';
 
 const CLI_DIR = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(CLI_DIR, '../..');
@@ -157,6 +161,39 @@ describe('create.sh seeds trigger phrases', () => {
     expect(acceptanceCriteria).toContain('  - "seeded phrases acceptance criteria"');
   });
 
+  it('seeds plan, tasks, and implementation-summary defaults with slug phrases', () => {
+    const folder = create([
+      '--level', '2',
+      '--short-name', 'seeded-phrases',
+      'Seed trigger phrases for new packets',
+    ]);
+    const seededDocuments = [
+      {
+        filename: 'plan.md',
+        phrase: 'seeded phrases plan',
+        defaults: PLAN_TEMPLATE_DEFAULT_PHRASES,
+      },
+      {
+        filename: 'tasks.md',
+        phrase: 'seeded phrases tasks',
+        defaults: TASKS_TEMPLATE_DEFAULT_PHRASES,
+      },
+      {
+        filename: 'implementation-summary.md',
+        phrase: 'seeded phrases implementation summary',
+        defaults: IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES,
+      },
+    ];
+
+    for (const { filename, phrase, defaults } of seededDocuments) {
+      const document = fs.readFileSync(path.join(workspace, 'specs', folder, filename), 'utf8');
+      expect(document).toContain(`  - "${phrase}"`);
+      for (const defaultPhrase of defaults) {
+        expect(document).not.toContain(`  - "${defaultPhrase}"`);
+      }
+    }
+  });
+
   it('turns punctuation in the description into word breaks', () => {
     const folder = create(['--short-name', 'punctuated-phrase', 'Fix the write-recipe step, once.']);
     const spec = fs.readFileSync(path.join(workspace, 'specs', folder, 'spec.md'), 'utf8');
@@ -164,7 +201,27 @@ describe('create.sh seeds trigger phrases', () => {
     expect(spec).toContain('  - "fix the write recipe step once"');
   });
 
-  it('keeps the core template phrases aligned with the judge and shell list', () => {
+  it('trims a description that ends on stop words before seeding it', () => {
+    const folder = create(['--short-name', 'stop-word-seed', 'Fix the parser so that']);
+    const spec = fs.readFileSync(path.join(workspace, 'specs', folder, 'spec.md'), 'utf8');
+
+    expect(spec).toContain('  - "fix the parser"');
+    expect(spec).not.toContain('  - "fix the parser so that"');
+  });
+
+  it('pins the description stop words in create.sh to the cleanup tool list', () => {
+    const createSource = fs.readFileSync(path.join(CLI_DIR, 'spec', 'create.sh'), 'utf8');
+    const shellList = createSource.match(
+      /local -a description_stop_words=\(\r?\n([\s\S]*?)\r?\n[ \t]*\)/,
+    );
+    if (!shellList) {
+      throw new Error('create.sh has no description stop-word list');
+    }
+    const shellWords = shellList[1].split(/\s+/).filter(Boolean);
+    expect(shellWords).toEqual([...DESCRIPTION_STOP_WORDS]);
+  });
+
+  it('pins the template default phrases to their judge sets and shell lists', () => {
     const templatePath = process.env.SPECKIT_TEST_CORE_SPEC_TEMPLATE_PATH
       ?? path.join(SKILL_ROOT, 'templates', 'core', 'spec.md.tmpl');
     const template = fs.readFileSync(templatePath, 'utf8');
@@ -223,6 +280,54 @@ describe('create.sh seeds trigger phrases', () => {
       ([, phrase]) => phrase,
     );
     expect(acTemplatePhrases).toEqual(acShellPhrases);
+
+    const additionalTemplatePins = [
+      {
+        templatePath: 'core/plan.md.tmpl',
+        shellListName: 'plan_template_default_phrases',
+        defaultPhrases: PLAN_TEMPLATE_DEFAULT_PHRASES,
+      },
+      {
+        templatePath: 'core/tasks.md.tmpl',
+        shellListName: 'tasks_template_default_phrases',
+        defaultPhrases: TASKS_TEMPLATE_DEFAULT_PHRASES,
+      },
+      {
+        templatePath: 'core/implementation-summary.md.tmpl',
+        shellListName: 'implementation_summary_template_default_phrases',
+        defaultPhrases: IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES,
+      },
+    ];
+
+    for (const pin of additionalTemplatePins) {
+      const template = fs.readFileSync(
+        path.join(SKILL_ROOT, 'templates', pin.templatePath),
+        'utf8',
+      );
+      const block = template.match(
+        /^trigger_phrases:\r?\n((?:[ \t]*-[ \t]*"[^"]*"[ \t]*\r?\n?)+)/m,
+      );
+      if (!block) {
+        throw new Error(`${pin.templatePath} has no quoted trigger_phrases block`);
+      }
+      const phrases = Array.from(
+        block[1].matchAll(/^[ \t]*-[ \t]*"([^"]*)"[ \t]*\r?$/gm),
+        ([, phrase]) => phrase,
+      );
+      expect(phrases).toEqual([...pin.defaultPhrases]);
+
+      const shellList = createSource.match(new RegExp(
+        `local -a ${pin.shellListName}=\\(\\r?\\n([\\s\\S]*?)\\r?\\n[ \\t]*\\)`,
+      ));
+      if (!shellList) {
+        throw new Error(`create.sh has no ${pin.shellListName} list`);
+      }
+      const shellPhrases = Array.from(
+        shellList[1].matchAll(/^[ \t]*"([^"]+)"[ \t]*\r?$/gm),
+        ([, phrase]) => phrase,
+      );
+      expect(phrases).toEqual(shellPhrases);
+    }
   });
 });
 

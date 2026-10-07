@@ -13,7 +13,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
+  classifyTriggerPhraseCarrier,
   findExactTemplateBlocks,
+  findTriggerPhraseEntries,
   isArchivedDocument,
   loadTemplateDefaults,
   parseFrontmatter,
@@ -30,22 +32,55 @@ const SCRIPT = 'template-phrase-cleanup';
 const TARGET_KINDS = Object.freeze({
   'spec.md': 'spec',
   'acceptance-criteria.md': 'acceptanceCriteria',
+  'plan.md': 'plan',
+  'tasks.md': 'tasks',
+  'implementation-summary.md': 'implementationSummary',
 });
+
+/**
+ * Trailing function words that make a seeded phrase read as a fragment. The
+ * shell seeder carries the same list, and a test pins the two together.
+ */
+export const DESCRIPTION_STOP_WORDS = Object.freeze([
+  'a', 'an', 'the', 'and', 'or', 'but', 'nor', 'of', 'to', 'in', 'on', 'at',
+  'by', 'for', 'from', 'with', 'into', 'onto', 'via', 'per', 'than', 'that',
+  'this', 'these', 'those', 'which', 'who', 'whom', 'whose', 'what', 'when',
+  'where', 'while', 'if', 'then', 'so', 'as', 'is', 'are', 'was', 'were',
+  'be', 'been', 'being', 'it', 'its', 'not', 'no', 'also', 'both', 'each',
+]);
+
+const DESCRIPTION_STOP_WORD_SET = new Set(DESCRIPTION_STOP_WORDS);
 
 // ───────────────────────────────────────────────────────────────────
 // 3. PHRASE HELPERS
 // ───────────────────────────────────────────────────────────────────
 
-function normalizedDescriptionPhrase(description) {
-  if (typeof description !== 'string') return '';
-  return description
+function normalizedWords(value) {
+  if (typeof value !== 'string') return [];
+  return value
     .toLowerCase()
     .replace(/[^a-z0-9]/g, ' ')
     .trim()
     .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 8)
-    .join(' ');
+    .filter(Boolean);
+}
+
+function trimTrailingStopWords(words) {
+  const trimmed = [...words];
+  while (trimmed.length > 0 && DESCRIPTION_STOP_WORD_SET.has(trimmed[trimmed.length - 1])) {
+    trimmed.pop();
+  }
+  return trimmed;
+}
+
+/**
+ * Keeps the first eight description words, then drops trailing function words
+ * so the seeded phrase reads as a topic rather than a sentence fragment.
+ * @param {unknown} description Raw packet description.
+ * @returns {string} Seeded description phrase, or the empty string when nothing remains.
+ */
+function normalizedDescriptionPhrase(description) {
+  return trimTrailingStopWords(normalizedWords(description).slice(0, 8)).join(' ');
 }
 
 function usableDescription(value) {
@@ -93,6 +128,9 @@ function seededPhrases(file, kind, description) {
     .replace(/-/g, ' ');
 
   if (kind === 'acceptanceCriteria') return [`${slug} acceptance criteria`];
+  if (kind === 'plan') return [`${slug} plan`];
+  if (kind === 'tasks') return [`${slug} tasks`];
+  if (kind === 'implementationSummary') return [`${slug} implementation summary`];
 
   const descriptionPhrase = normalizedDescriptionPhrase(description);
   const phrases = [slug];
@@ -142,6 +180,19 @@ function survivingPhraseKeys(content, ranges) {
   return keys;
 }
 
+function seededRowsFor(file, kind, description, template, surviving) {
+  const phrases = [];
+  for (const seed of seededPhrases(file, kind, description)) {
+    const key = normalizeTriggerText(seed);
+    // A surviving phrase outranks a seed: reseeding it would repeat an entry
+    // the list already carries once both sides are normalized.
+    if (!key || surviving.has(key)) continue;
+    phrases.push(seed);
+    surviving.add(key);
+  }
+  return formatPhraseRows(phrases, template.rows);
+}
+
 function sha256(content) {
   return crypto.createHash('sha256').update(content, 'utf8').digest('hex');
 }
@@ -153,6 +204,163 @@ function reportIssue(issues, file, root, reason) {
 // ───────────────────────────────────────────────────────────────────
 // 4. CLEANUP
 // ───────────────────────────────────────────────────────────────────
+
+/**
+ * Rewrites each trigger phrase that exists only because an earlier seed kept
+ * eight description words verbatim. A phrase that still ends on a stop word
+ * gets the same trim a fresh seed gets, and is dropped when the trim empties it
+ * or lands on a phrase the list already carries.
+ * @param {Array<{ phrase: unknown, line: string, startOffset: number, contentEnd: number, deleteEnd: number }>} entries Mapped trigger phrase rows.
+ * @returns {Array<{ startOffset: number, endOffset: number, replacement: string, oldLine: string, newLine: string }>} Entry edits in document order.
+ */
+function descriptionStopWordEdits(entries) {
+  const keys = new Set(entries.map((entry) => normalizeTriggerText(entry.phrase)).filter(Boolean));
+  const edits = [];
+
+  for (const entry of entries) {
+    const words = normalizedWords(entry.phrase);
+    if (words.length !== 8 || !DESCRIPTION_STOP_WORD_SET.has(words[words.length - 1])) continue;
+
+    const trimmed = trimTrailingStopWords(words).join(' ');
+    const key = normalizeTriggerText(trimmed);
+    if (trimmed === '' || keys.has(key)) {
+      edits.push({
+        startOffset: entry.startOffset,
+        endOffset: entry.deleteEnd,
+        replacement: '',
+        oldLine: entry.line,
+        newLine: '',
+      });
+      continue;
+    }
+
+    const replacement = formatPhraseRows([trimmed], [entry.line])[0];
+    keys.add(key);
+    edits.push({
+      startOffset: entry.startOffset,
+      endOffset: entry.contentEnd,
+      replacement,
+      oldLine: entry.line,
+      newLine: replacement,
+    });
+  }
+
+  return edits;
+}
+
+/**
+ * Plans the description stop-word trim for one spec list. Only spec.md carries
+ * a description-derived phrase, so other kinds keep their plan untouched.
+ * @param {string} content Markdown content.
+ * @returns {{ updated: string, oldBlocks: string[], newBlocks: string[] } | null} Planned change, or null when no entry needs the trim.
+ */
+function planDescriptionStopWordTrim(content) {
+  const frontmatter = parseFrontmatter(content);
+  if (!frontmatter.ok) return null;
+  const entries = findTriggerPhraseEntries(frontmatter);
+  if (entries === null) return null;
+
+  const edits = descriptionStopWordEdits(entries);
+  if (edits.length === 0) return null;
+
+  let updated = content;
+  for (const edit of [...edits].sort((left, right) => right.startOffset - left.startOffset)) {
+    updated = `${updated.slice(0, edit.startOffset)}${edit.replacement}${updated.slice(edit.endOffset)}`;
+  }
+
+  return {
+    updated,
+    oldBlocks: edits.map((edit) => edit.oldLine),
+    newBlocks: edits.map((edit) => edit.newLine),
+  };
+}
+
+/**
+ * Plans the phrase change for one document. The exact-block path keeps its
+ * existing behavior; otherwise a partially default list is cleaned in place.
+ * A spec list then gets the description stop-word trim over the phrase rows
+ * that remain.
+ * @param {string} file Absolute document path.
+ * @param {string} kind Document kind.
+ * @param {string} content Markdown content.
+ * @param {ReturnType<typeof parseFrontmatter>} frontmatter Parsed frontmatter.
+ * @param {{ rows: string[], phrases: string[] }} template Template defaults for the kind.
+ * @returns {{ updated: string, oldBlocks: string[], newBlocks: string[] } | null} Planned change, or null when the list needs none.
+ */
+function planDocumentChange(file, kind, content, frontmatter, template) {
+  const basePlan = planTemplatePhraseChange(file, kind, content, frontmatter, template);
+  if (kind !== 'spec') return basePlan;
+
+  const reseededContent = basePlan === null ? content : basePlan.updated;
+  const trimPlan = planDescriptionStopWordTrim(reseededContent);
+  if (trimPlan === null) return basePlan;
+  if (basePlan === null) return trimPlan;
+
+  return {
+    updated: trimPlan.updated,
+    oldBlocks: [...basePlan.oldBlocks, ...trimPlan.oldBlocks],
+    newBlocks: [...basePlan.newBlocks, ...trimPlan.newBlocks],
+  };
+}
+
+function planTemplatePhraseChange(file, kind, content, frontmatter, template) {
+  const ranges = findExactTemplateBlocks(content, frontmatter, template.rows);
+  if (ranges.length > 0) {
+    const description = packetDescription(file, kind, frontmatter);
+    const replacementRows = seededRowsFor(
+      file,
+      kind,
+      description,
+      template,
+      survivingPhraseKeys(content, ranges),
+    );
+    const updated = replaceRanges(content, ranges, replacementRows);
+    if (updated === content) return null;
+    return {
+      updated,
+      oldBlocks: ranges.map((range) => content.slice(range.startOffset, range.endOffset)),
+      newBlocks: ranges.map(() => replacementRows.join(ranges[0].lineEnding)),
+    };
+  }
+
+  const carrier = classifyTriggerPhraseCarrier(frontmatter, template.phrases);
+  if (!carrier || !carrier.partial) return null;
+
+  if (carrier.nonDefaultEntries.length > 0) {
+    // Defaults go; every other phrase keeps its place and no seed is appended.
+    const removalRanges = carrier.defaultEntries.map((entry) => ({
+      startOffset: entry.startOffset,
+      endOffset: entry.deleteEnd,
+      lineEnding: entry.lineEnding,
+    }));
+    const updated = replaceRanges(content, removalRanges, []);
+    if (updated === content) return null;
+    return {
+      updated,
+      oldBlocks: [carrier.defaultEntries.map((entry) => entry.line).join('\n')],
+      newBlocks: [''],
+    };
+  }
+
+  // Every phrase is a default but the full set is absent, so the list is
+  // reseeded the way a full block replacement would be.
+  const first = carrier.entries[0];
+  const last = carrier.entries[carrier.entries.length - 1];
+  const description = packetDescription(file, kind, frontmatter);
+  const replacementRows = seededRowsFor(file, kind, description, template, new Set());
+  const listRange = {
+    startOffset: first.startOffset,
+    endOffset: last.contentEnd,
+    lineEnding: first.lineEnding,
+  };
+  const updated = replaceRanges(content, [listRange], replacementRows);
+  if (updated === content) return null;
+  return {
+    updated,
+    oldBlocks: [content.slice(first.startOffset, last.contentEnd)],
+    newBlocks: [replacementRows.join(first.lineEnding)],
+  };
+}
 
 /**
  * Plans or applies exact default-block replacements under a spec tree.
@@ -191,32 +399,15 @@ export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
     }
 
     const template = defaults[kind];
-    const ranges = findExactTemplateBlocks(content, frontmatter, template.rows);
-    if (ranges.length === 0) continue;
-
-    const description = packetDescription(file, kind, frontmatter);
-    const surviving = survivingPhraseKeys(content, ranges);
-    const phrases = [];
-    for (const seed of seededPhrases(file, kind, description)) {
-      const key = normalizeTriggerText(seed);
-      // A surviving phrase outranks a seed: reseeding it would repeat an entry
-      // the list already carries once both sides are normalized.
-      if (!key || surviving.has(key)) continue;
-      phrases.push(seed);
-      surviving.add(key);
-    }
-    const replacementRows = formatPhraseRows(phrases, template.rows);
-    const updated = replaceRanges(content, ranges, replacementRows);
-    if (updated === content) continue;
+    const plan = planDocumentChange(file, kind, content, frontmatter, template);
+    if (plan === null) continue;
 
     changesFound += 1;
-    const oldBlocks = ranges.map((range) => content.slice(range.startOffset, range.endOffset));
-    const newBlocks = ranges.map(() => replacementRows.join(ranges[0].lineEnding));
     const change = {
       path: relativeDocumentPath(file, root),
       kind,
-      oldBlocks,
-      newBlocks,
+      oldBlocks: plan.oldBlocks,
+      newBlocks: plan.newBlocks,
     };
 
     if (!options.apply) {
@@ -226,7 +417,7 @@ export function runCleanup(root, options, defaults = loadTemplateDefaults()) {
 
     try {
       const beforeHash = sha256(content);
-      fs.writeFileSync(file, updated, 'utf8');
+      fs.writeFileSync(file, plan.updated, 'utf8');
       const afterHash = sha256(fs.readFileSync(file, 'utf8'));
       changes.push({ ...change, beforeHash, afterHash });
       changed += 1;

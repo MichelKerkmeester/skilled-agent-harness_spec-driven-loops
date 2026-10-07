@@ -37,6 +37,30 @@ export const AC_TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
   'waiver adr',
 ]));
 
+/** Default phrases from the implementation-plan template. */
+export const PLAN_TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
+  'implementation plan',
+  'technical approach',
+  'architecture decisions',
+  'testing strategy',
+]));
+
+/** Default phrases from the tasks template. */
+export const TASKS_TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
+  'task breakdown',
+  'implementation tasks',
+  'verification checklist',
+  'task dependencies',
+]));
+
+/** Default phrases from the implementation-summary template. */
+export const IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES = Object.freeze(new Set([
+  'implementation summary',
+  'what shipped',
+  'validation evidence',
+  'continuation notes',
+]));
+
 /**
  * The two phrases `ensureMinTriggerPhrases` falls back to when a document
  * yields nothing else. They are generic words too, but they are reported under
@@ -94,7 +118,13 @@ export function judgeTriggerPhrase(phrase, context = {}) {
     };
   }
 
-  if (TEMPLATE_DEFAULT_PHRASES.has(normalized) || AC_TEMPLATE_DEFAULT_PHRASES.has(normalized)) {
+  if (
+    TEMPLATE_DEFAULT_PHRASES.has(normalized)
+    || AC_TEMPLATE_DEFAULT_PHRASES.has(normalized)
+    || PLAN_TEMPLATE_DEFAULT_PHRASES.has(normalized)
+    || TASKS_TEMPLATE_DEFAULT_PHRASES.has(normalized)
+    || IMPLEMENTATION_SUMMARY_TEMPLATE_DEFAULT_PHRASES.has(normalized)
+  ) {
     return {
       negativeClass: 'template-default',
       reason: `"${normalized}" is one of a template's placeholder trigger phrases, which name no topic.`,

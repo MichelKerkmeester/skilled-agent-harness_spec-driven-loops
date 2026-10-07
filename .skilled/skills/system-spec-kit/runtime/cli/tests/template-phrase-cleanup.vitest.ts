@@ -135,16 +135,78 @@ describe('template phrase census and cleanup', () => {
     expect(result.status).toBe(0);
     const report = JSON.parse(result.stdout) as {
       tracks: Record<string, {
-        live: { templateBlocks: Record<string, number>; informationalDefaults: Record<string, number> };
+        live: { templateBlocks: Record<string, number> };
         archived: { templateBlocks: Record<string, number> };
       }>;
-      totals: { informationalDefaults: Record<string, number> };
+      totals: { templateBlocks: Record<string, number> };
     };
 
-    expect(report.tracks['track-a'].live.templateBlocks).toEqual({ spec: 1, acceptanceCriteria: 1 });
-    expect(report.tracks['track-a'].archived.templateBlocks).toEqual({ spec: 1, acceptanceCriteria: 1 });
-    expect(report.tracks['track-a'].live.informationalDefaults).toEqual({ plan: 1, tasks: 1, implementationSummary: 1 });
-    expect(report.totals.informationalDefaults.plan).toBe(1);
+    expect(report.tracks['track-a'].live.templateBlocks).toEqual({
+      spec: 1,
+      acceptanceCriteria: 1,
+      plan: 1,
+      tasks: 1,
+      implementationSummary: 1,
+    });
+    expect(report.tracks['track-a'].archived.templateBlocks).toEqual({
+      spec: 1,
+      acceptanceCriteria: 1,
+      plan: 0,
+      tasks: 0,
+      implementationSummary: 0,
+    });
+    expect(report.totals.templateBlocks).toEqual({
+      spec: 2,
+      acceptanceCriteria: 2,
+      plan: 1,
+      tasks: 1,
+      implementationSummary: 1,
+    });
+  });
+
+  it('counts partial carriers separately from exact template blocks', () => {
+    const specsRoot = createSpecsRoot();
+    writeDocument(specsRoot, 'track-a/001-mixed', 'spec.md', [
+      SPEC_ROWS[0],
+      '  - "author phrase"',
+      SPEC_ROWS[2],
+    ]);
+    writeDocument(specsRoot, 'track-a/001-mixed', 'plan.md', [PLAN_ROWS[0], PLAN_ROWS[1]]);
+    writeDocument(specsRoot, 'track-a/002-exact', 'spec.md', SPEC_ROWS);
+    writeDocument(specsRoot, 'track-a/z_archive/003-partial', 'spec.md', [SPEC_ROWS[1], SPEC_ROWS[3]]);
+
+    const result = runNode(CENSUS_SCRIPT, ['--root', specsRoot, '--json']);
+    expect(result.status).toBe(0);
+    const report = JSON.parse(result.stdout) as {
+      tracks: Record<string, {
+        live: { templateBlocks: Record<string, number>; partialCarriers: Record<string, number> };
+        archived: { templateBlocks: Record<string, number>; partialCarriers: Record<string, number> };
+      }>;
+      totals: { templateBlocks: Record<string, number>; partialCarriers: Record<string, number> };
+    };
+
+    expect(report.tracks['track-a'].live.templateBlocks.spec).toBe(1);
+    expect(report.tracks['track-a'].live.partialCarriers).toEqual({
+      spec: 1,
+      acceptanceCriteria: 0,
+      plan: 1,
+      tasks: 0,
+      implementationSummary: 0,
+    });
+    expect(report.tracks['track-a'].archived.partialCarriers).toEqual({
+      spec: 1,
+      acceptanceCriteria: 0,
+      plan: 0,
+      tasks: 0,
+      implementationSummary: 0,
+    });
+    expect(report.totals.partialCarriers).toEqual({
+      spec: 2,
+      acceptanceCriteria: 0,
+      plan: 1,
+      tasks: 0,
+      implementationSummary: 0,
+    });
   });
 
   it('ignores demo and quarantine snapshots under scratch and containment directories', () => {
@@ -219,7 +281,7 @@ describe('template phrase census and cleanup', () => {
 
     const expectedSpecBlock = replacementRows([
       'sample packet',
-      'this packet demonstrates a custom description seed with',
+      'this packet demonstrates a custom description seed',
     ]).join('\n');
     const expectedAcceptanceBlock = replacementRows([
       'sample packet acceptance criteria',
@@ -259,6 +321,174 @@ describe('template phrase census and cleanup', () => {
     expect(phrases).toHaveLength(1);
     expect(phrases[0]).toBe('sample packet acceptance criteria');
     expect(phrases[0].endsWith(' acceptance criteria')).toBe(true);
+  });
+
+  it('cleans exact and partial lists across plan, tasks, and implementation summaries', () => {
+    const specsRoot = createSpecsRoot();
+    const packetPath = 'track-a/001-sample-packet';
+    const documents = [
+      { filename: 'plan.md', rows: PLAN_ROWS, seed: 'sample packet plan' },
+      { filename: 'tasks.md', rows: TASK_ROWS, seed: 'sample packet tasks' },
+      {
+        filename: 'implementation-summary.md',
+        rows: SUMMARY_ROWS,
+        seed: 'sample packet implementation summary',
+      },
+    ];
+    const files = documents.map(({ filename, rows, seed }) => ({
+      file: writeDocument(specsRoot, packetPath, filename, rows, {
+        extraRows: ['  - "author phrase"'],
+      }),
+      seed,
+    }));
+    const partialPlanRows = [...PLAN_ROWS];
+    partialPlanRows[1] = '  - "modified technical approach"';
+    const partialPlanFile = writeDocument(
+      specsRoot,
+      'track-a/002-partial-plan',
+      'plan.md',
+      partialPlanRows,
+    );
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(1);
+    expect(applied.stdout).toContain('applied 4 file(s)');
+    expect(applied.stdout).toContain(`${packetPath}/plan.md: written`);
+    expect(applied.stdout).toContain(`${packetPath}/tasks.md: written`);
+    expect(applied.stdout).toContain(`${packetPath}/implementation-summary.md: written`);
+    expect(applied.stdout).toContain('track-a/002-partial-plan/plan.md: written');
+    for (const { file, seed } of files) {
+      expect(readTriggerPhrases(file)).toEqual([seed, 'author phrase']);
+    }
+    expect(readTriggerPhrases(partialPlanFile)).toEqual(['modified technical approach']);
+
+    const cleanedFiles = files.map(({ file }) => fs.readFileSync(file, 'utf8'));
+    const cleanedPartialPlan = fs.readFileSync(partialPlanFile, 'utf8');
+    const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(secondApply.status).toBe(0);
+    expect(secondApply.stdout).toContain('nothing to change');
+    expect(files.map(({ file }) => fs.readFileSync(file, 'utf8'))).toEqual(cleanedFiles);
+    expect(fs.readFileSync(partialPlanFile, 'utf8')).toBe(cleanedPartialPlan);
+  });
+
+  it('removes default phrases from a mixed list, keeps author phrases in order, and adds no seed', () => {
+    const specsRoot = createSpecsRoot();
+    const planFile = writeDocument(specsRoot, 'track-a/001-mixed-list', 'plan.md', [
+      PLAN_ROWS[0],
+      '  - "author layout note"',
+      PLAN_ROWS[2],
+      '  - "author review note"',
+      PLAN_ROWS[3],
+    ]);
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(1);
+    expect(applied.stdout).toContain('track-a/001-mixed-list/plan.md: written');
+    expect(readTriggerPhrases(planFile)).toEqual(['author layout note', 'author review note']);
+
+    const cleaned = fs.readFileSync(planFile, 'utf8');
+    const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(secondApply.status).toBe(0);
+    expect(secondApply.stdout).toContain('nothing to change');
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(cleaned);
+  });
+
+  it('reseeds a list that carries only some of a kind defaults', () => {
+    const specsRoot = createSpecsRoot();
+    const specFile = writeDocument(specsRoot, 'track-a/001-sample-packet', 'spec.md', [
+      SPEC_ROWS[0],
+      SPEC_ROWS[2],
+    ]);
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(1);
+    expect(readTriggerPhrases(specFile)).toEqual([
+      'sample packet',
+      'a short fixture description for the packet',
+    ]);
+
+    const cleaned = fs.readFileSync(specFile, 'utf8');
+    const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(secondApply.status).toBe(0);
+    expect(secondApply.stdout).toContain('nothing to change');
+    expect(fs.readFileSync(specFile, 'utf8')).toBe(cleaned);
+  });
+
+  it('reseeds a cut-off description phrase that ends on a stop word', () => {
+    const specsRoot = createSpecsRoot();
+    const specFile = writeDocument(specsRoot, 'track-a/001-sample-packet', 'spec.md', [
+      '  - "sample packet"',
+      '  - "this packet demonstrates a custom description seed with"',
+    ], {
+      description: 'This packet demonstrates a custom description seed with enough words to show truncation.',
+    });
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(1);
+    expect(readTriggerPhrases(specFile)).toEqual([
+      'sample packet',
+      'this packet demonstrates a custom description seed',
+    ]);
+
+    const cleaned = fs.readFileSync(specFile, 'utf8');
+    const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(secondApply.status).toBe(0);
+    expect(secondApply.stdout).toContain('nothing to change');
+    expect(fs.readFileSync(specFile, 'utf8')).toBe(cleaned);
+  });
+
+  it('drops a cut-off phrase when the trim empties it or repeats a phrase the list carries', () => {
+    const specsRoot = createSpecsRoot();
+    const specFile = writeDocument(specsRoot, 'track-a/001-sample-packet', 'spec.md', [
+      '  - "sample packet"',
+      '  - "a an the and or but nor of"',
+      '  - "two of the four rules that fire"',
+      '  - "two of the four rules that fire on"',
+    ]);
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(1);
+    expect(readTriggerPhrases(specFile)).toEqual([
+      'sample packet',
+      'two of the four rules that fire',
+    ]);
+
+    const cleaned = fs.readFileSync(specFile, 'utf8');
+    const secondApply = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(secondApply.status).toBe(0);
+    expect(secondApply.stdout).toContain('nothing to change');
+    expect(fs.readFileSync(specFile, 'utf8')).toBe(cleaned);
+  });
+
+  it('leaves cut-off phrases in other document kinds untouched', () => {
+    const specsRoot = createSpecsRoot();
+    const planFile = writeDocument(specsRoot, 'track-a/001-only-plan', 'plan.md', [
+      '  - "close all six deep review findings on the"',
+    ]);
+    const before = fs.readFileSync(planFile, 'utf8');
+
+    const dryRun = runNode(CLEANUP_SCRIPT, ['--root', specsRoot]);
+    expect(dryRun.status).toBe(0);
+    expect(dryRun.stdout).toContain('0 file(s) would change');
+    expect(fs.readFileSync(planFile, 'utf8')).toBe(before);
+  });
+
+  it('never removes phrases outside the default set and reruns cleanly', () => {
+    const specsRoot = createSpecsRoot();
+    const specFile = writeDocument(specsRoot, 'track-a/001-author-only', 'spec.md', [
+      '  - "custom alpha lane"',
+      '  - "custom beta lane"',
+    ]);
+    const before = fs.readFileSync(specFile, 'utf8');
+
+    const dryRun = runNode(CLEANUP_SCRIPT, ['--root', specsRoot]);
+    expect(dryRun.status).toBe(0);
+    expect(dryRun.stdout).toContain('0 file(s) would change');
+
+    const applied = runNode(CLEANUP_SCRIPT, ['--root', specsRoot, '--apply']);
+    expect(applied.status).toBe(0);
+    expect(applied.stdout).toContain('nothing to change');
+    expect(fs.readFileSync(specFile, 'utf8')).toBe(before);
   });
 
   it('does not reseed a slug phrase that already survives outside the template block', () => {
