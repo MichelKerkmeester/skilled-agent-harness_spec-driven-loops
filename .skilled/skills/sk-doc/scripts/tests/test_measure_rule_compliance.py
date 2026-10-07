@@ -155,6 +155,38 @@ def test_reply_rule_miss_is_scoped_to_the_compaction_window(tmp_path: Path) -> N
     assert (first["n"], first["k"]) == (2, 1)
 
 
+def test_compaction_ends_delivery_until_the_rule_arrives_again(tmp_path: Path) -> None:
+    repo = make_repo(tmp_path / "repo")
+    cwd = str(repo)
+    write_jsonl(tmp_path / "claude" / "s1.jsonl", [
+        tool(0, "Read", {"file_path": str(repo / ".skilled/repo-rules/communication.md")}, cwd),
+        reply(1, LONG),
+        boundary(2),
+        reply(3, LONG),
+        reply(4, LONG),
+    ])
+
+    table = analyze(repo, tmp_path / "claude")["claude"]["prohibitions"]["table"]
+
+    assert [table["by_delivery"][s]["n"] for s in ("after", "before", "never")] == [1, 2, 0]
+    assert table["decay_after_delivery"]["1-3"]["n"] == 1
+
+
+def test_injection_counts_only_when_it_carries_the_rule_text(tmp_path: Path) -> None:
+    cases = {
+        "title only": ("see\n# Rule: Scope discipline\n", 0),
+        "card": ("# Card: Scope discipline\n\n## The rule\n\nStay inside the frozen scope.\n", 1),
+        "rule": ("# Rule: Scope discipline\nStay inside the frozen scope.\n", 1),
+    }
+    for index, (text, expected) in enumerate(cases.values()):
+        repo = make_repo(tmp_path / f"repo{index}")
+        rule = repo / ".skilled" / "repo-rules" / "scope-discipline.md"
+        rule.write_text("---\ntitle: x\n---\n# Rule: Scope discipline\n\n## The rule\n\nStay inside the frozen scope.\n")
+        write_jsonl(tmp_path / f"claude{index}" / "s1.jsonl", [injection(0, text)])
+
+        assert analyze(repo, tmp_path / f"claude{index}")["claude"]["receipts"]["inject"] == expected
+
+
 def test_replies_split_by_the_rule_version_live_at_their_time(tmp_path: Path) -> None:
     repo = make_repo(tmp_path / "repo")
     git_env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@example.com",
@@ -208,7 +240,8 @@ def test_codex_session_produces_a_codex_row(tmp_path: Path) -> None:
     assert codex["receipts"]["shell"] == 1
     assert codex["compaction_windows"]["total"] == 2
     assert (codex["gate5_first_write_miss"]["n"], codex["gate5_first_write_miss"]["k"]) == (1, 1)
-    assert codex["prohibitions"]["table"]["by_delivery"]["after"]["n"] == 1
+    table = codex["prohibitions"]["table"]["by_delivery"]
+    assert (table["after"]["n"], table["before"]["n"]) == (0, 1)
 
 
 def test_exempt_paths_mirror_the_spec_gate(tmp_path: Path) -> None:

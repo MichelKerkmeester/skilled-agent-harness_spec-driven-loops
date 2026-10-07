@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6818,
-    "ok": 13493,
+    "missing-frontmatter": 6823,
+    "ok": 13498,
     "valid-empty-list": 3509
   },
-  "documentsScanned": 23874,
+  "documentsScanned": 23884,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
+  "manifestHash": "4518935e1aec3b44c10df194ebeb1d4a6d3d7484de1955c9f2444a29453585b3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -38,18 +38,18 @@
       "prose-sentence": 10,
       "single-token": 369,
       "stop-word-only": 9,
-      "template-default": 20
+      "template-default": 23
     },
     "phrases": {
       "editor-fallback": 1,
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 35741,
+      "ok": 35745,
       "prose-sentence": 19,
       "single-token": 164,
       "stop-word-only": 1,
-      "template-default": 17
+      "template-default": 19
     }
   },
   "rows": [
@@ -35534,6 +35534,36 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/analysis-under-review.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/claude-opus-5.5-xhigh.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/deepseek-v4.1-flash-max.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/gpt-6-luna-max-fast.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/swe-2-max.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -66730,6 +66760,10 @@
     },
     {
       "path": "specs/agents/017-thinking-discipline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/018-communication-rules-consolidation/scratch",
       "reason": "excluded directory"
     },
     {

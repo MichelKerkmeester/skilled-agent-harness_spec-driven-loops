@@ -358,7 +358,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 3. **Exceed TCB** -- Target 8-11 tool calls per iteration (max 12)
 4. **Ask the user** -- Autonomous execution; make best-judgment decisions
 5. **Skip convergence checks** -- Every iteration must be evaluated
-6. **Modify config after init** -- Config is read-only after initialization
+6. **Modify config after init** -- Research parameters are read-only after initialization; the terminal `step_update_config_status` flip to `status: complete` is the one permitted write
 7. **Overwrite prior findings** -- Append to research/research.md, never replace
 8. **Implement fixes during research** -- Report findings only; implementation is a separate follow-up step.
 9. **Simulate loop dispatch** -- Do not write custom shell loops, nested CLI loops, `/tmp` prompt dispatchers, or direct Task loops for `@deep-research`. Command-driven fan-out via `step_fanout_spawn` (`--executor`/`--executors`/`--concurrency` flags) IS SUPPORTED; ad-hoc shell fan-out and intra-lineage wave orchestration remain forbidden.

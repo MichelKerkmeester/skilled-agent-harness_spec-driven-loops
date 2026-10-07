@@ -1,0 +1,38 @@
+{
+  "specFolder": "agents/018-communication-rules-consolidation",
+  "description": "Consolidate the communication repo rules: move the writing registers into communication.md, one lead-with-the-answer section, fix the complex-request ",
+  "keywords": [
+    "consolidate",
+    "communication",
+    "repo",
+    "rules",
+    "move",
+    "writing",
+    "registers",
+    "one",
+    "lead-with-the-answer",
+    "section",
+    "complex-request",
+    "opening",
+    "house-style",
+    "breaches",
+    "changelog",
+    "habits",
+    "receipts",
+    "order",
+    "rewrite",
+    "procedure",
+    "reworded",
+    "semicolon",
+    "ban"
+  ],
+  "lastUpdated": "2026-10-07T11:22:14.335Z",
+  "specId": "018",
+  "folderSlug": "communication-rules-consolidation",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -292,7 +292,7 @@ Available Rules
   CLAUDE [Claude] always-on
 ```
 
-This means root `CLAUDE.md`/`AGENTS.md` context is already surfaced by Devin. It is discovery behavior to document, not a build gap.
+That listing predates `.devin/config.json`, which turns Devin's Claude import off. The command still names `CLAUDE`, but a session no longer loads it: it loads the checkout's own root `AGENTS.md`, cut at Devin's fixed 16,384-byte limit per rule file. `.devin/SYNC.md` §5 records why the import is off.
 
 #### Agent Roster Parity
 

@@ -15,6 +15,11 @@ split by whether their rule was delivered, by the rule's git blob version, and,
 for tables, by whether a table was asked for. Every rate carries its denominator
 and a Wilson 95% interval.
 
+A reply counts as "after" delivery only when its rule arrived earlier in the same
+compaction window, "before" when the rule arrived elsewhere in the session, and
+"never" otherwise. Injected text counts as delivery when it carries a rule's
+title, as the rule or as its card, and the first line of its rule section.
+
 Output is aggregates only. No prompt, reply, command or file path text is printed.
 
 Usage: measure-rule-compliance.py [claude-dir] [max-sessions] [since-YYYY-MM-DD]
@@ -69,6 +74,9 @@ FENCE = re.compile(r"```.*?```", re.S)
 INLINE = re.compile(r"`[^`\n]*`")
 OPENER = re.compile(r"^\s*(great question|let me |i'll now|i will now|sure[,!]|certainly[,!])", re.I)
 LABEL_FIRST_LINE = re.compile(r"^\s*(#{1,6}\s|\*\*?[A-Z][^*\n]{0,40}:\*?\*?\s*$|[A-Z][A-Za-z ]{0,30}:\s*$)")
+# build-rule-cards.cjs titles a card "# Card: <rule title without its Rule: prefix>".
+CARD_TITLE = re.compile(r"^#\s+(?:Rule:\s*)?")
+THE_RULE = re.compile(r"^##\s+The rule\s*$")
 
 
 def first_line(text: str) -> str:
@@ -184,29 +192,43 @@ class Repo:
         if not os.path.isdir(rules_dir):
             rules_dir = os.path.join(self.root, "repo-rules")
         self.rules_dir = rules_dir
-        self.headings: Dict[str, str] = {}
+        self.markers: Dict[str, Tuple[Tuple[str, ...], Optional[str]]] = {}
         paths = glob.glob(os.path.join(rules_dir, "*.md")) + [os.path.join(self.root, INDEX_RULE)]
         for path in paths:
-            heading = self._heading(path)
-            if heading:
-                self.headings[os.path.basename(path)] = heading
+            marker = self._marker(path)
+            if marker:
+                self.markers[os.path.basename(path)] = marker
         self._versions: Dict[str, List[Tuple[float, str]]] = {}
 
     @staticmethod
-    def _heading(path: str) -> Optional[str]:
+    def _marker(path: str) -> Optional[Tuple[Tuple[str, ...], Optional[str]]]:
+        """The title lines a rule arrives under, as itself or as its generated card,
+        and the first line of its rule section when it has one."""
         try:
             with open(path, errors="ignore") as handle:
-                for line in handle:
-                    if line.startswith("# "):
-                        return line.strip()
+                lines = handle.read().splitlines()
         except OSError:
             return None
-        return None
+        heading = next((line.strip() for line in lines if line.startswith("# ")), None)
+        if heading is None:
+            return None
+        title = CARD_TITLE.sub("", heading)
+        body = None
+        for index, line in enumerate(lines):
+            if THE_RULE.match(line):
+                body = next((rest.strip() for rest in lines[index + 1:] if rest.strip()), None)
+                break
+        return (heading, f"# Card: {title}"), body
 
     def injected_rules(self, text: str) -> List[str]:
-        """Rules whose own heading line appears in injected text: content, not a mention."""
+        """Rules whose title and opening rule line both appear in injected text.
+
+        A title alone is a mention or a cut-off copy. Requiring the rule's first
+        line as well credits only text that carried the rule itself.
+        """
         lines = {line.strip() for line in text.splitlines()}
-        return sorted(name for name, heading in self.headings.items() if heading in lines)
+        return sorted(name for name, (titles, body) in self.markers.items()
+                      if any(title in lines for title in titles) and (body is None or body in lines))
 
     def versions(self, rule: str) -> List[Tuple[float, str]]:
         """(commit time, short blob id) per commit that touched the rule, oldest first."""
@@ -440,6 +462,7 @@ class RuntimeStats:
         asked_table = False
         rules = sorted({rule for rule, _ in CHECKS.values()})
         since = {rule: None for rule in rules}
+        delivered: set = set()
         replies = []
         session_reply_first = []
 
@@ -466,6 +489,8 @@ class RuntimeStats:
                 window_rules = set()
                 window_has_reply = False
                 window_count += 1
+                # Compaction drops the rule text, so the next window starts undelivered.
+                since = {rule: None for rule in rules}
             elif kind == "receipt":
                 _, _, rule, channel = event
                 self.receipts[channel] += 1
@@ -479,6 +504,7 @@ class RuntimeStats:
                 seen_rules.add(rule)
                 if rule in since:
                     since[rule] = 0
+                    delivered.add(rule)
             elif kind == "write":
                 _, _, target, cwd = event
                 if is_exempt_target(target, self.repo.root, cwd):
@@ -519,12 +545,11 @@ class RuntimeStats:
             self.reply_first[kind_key][0] += 1
             self.reply_first[kind_key][1] += missed
 
-        ever = {rule: any(snap[rule] is not None for _, snap, _, _ in replies) for rule in rules}
         for text, snap, ts, asked in replies:
             prose = prose_only(text)
             for name, (rule, test) in CHECKS.items():
                 hit = bool(test(text, prose))
-                state = "after" if snap[rule] is not None else ("before" if ever[rule] else "never")
+                state = "after" if snap[rule] is not None else ("before" if rule in delivered else "never")
                 self.checks[name][state][0] += 1
                 self.checks[name][state][1] += hit
                 if snap[rule] is not None:

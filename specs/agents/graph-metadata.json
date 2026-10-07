@@ -20,7 +20,8 @@
     "agents/014-agent-emphasis-register",
     "agents/015-global-claude-md-agents-symlink",
     "agents/016-repo-rule-advisor-surfacing",
-    "agents/017-thinking-discipline"
+    "agents/017-thinking-discipline",
+    "agents/018-communication-rules-consolidation"
   ],
   "manual": {
     "depends_on": [],

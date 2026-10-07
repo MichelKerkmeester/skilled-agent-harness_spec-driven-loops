@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bf1b276dc10dfac33903ff32abb8539262d8232a4b1896ea81940ddaa88836b3",
+  "corpusHash": "4d8726ea34b01475c41ac078f07d7f5e35f91bce2b9e2241f8526c9557028b98",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23874,
+  "includedPathCount": 23884,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8555,6 +8555,16 @@
     "specs/agents/017-thinking-discipline/research/reviews/gpt-6-luna-max-fast.md",
     "specs/agents/017-thinking-discipline/spec.md",
     "specs/agents/017-thinking-discipline/tasks.md",
+    "specs/agents/018-communication-rules-consolidation/implementation-summary.md",
+    "specs/agents/018-communication-rules-consolidation/plan.md",
+    "specs/agents/018-communication-rules-consolidation/research/analysis-under-review.md",
+    "specs/agents/018-communication-rules-consolidation/research/research.md",
+    "specs/agents/018-communication-rules-consolidation/research/reviews/claude-opus-5.5-xhigh.md",
+    "specs/agents/018-communication-rules-consolidation/research/reviews/deepseek-v4.1-flash-max.md",
+    "specs/agents/018-communication-rules-consolidation/research/reviews/gpt-6-luna-max-fast.md",
+    "specs/agents/018-communication-rules-consolidation/research/reviews/swe-2-max.md",
+    "specs/agents/018-communication-rules-consolidation/spec.md",
+    "specs/agents/018-communication-rules-consolidation/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -23904,7 +23914,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
+  "manifestHash": "4518935e1aec3b44c10df194ebeb1d4a6d3d7484de1955c9f2444a29453585b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24740,6 +24750,10 @@
     },
     {
       "path": "specs/agents/017-thinking-discipline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/018-communication-rules-consolidation/scratch",
       "reason": "excluded directory"
     },
     {

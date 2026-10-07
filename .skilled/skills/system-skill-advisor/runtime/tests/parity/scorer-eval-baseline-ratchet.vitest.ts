@@ -19,7 +19,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { AdvisorScoringOptions, AdvisorScoringResult } from '../../lib/scorer/types.js';
 
 // The release floors that live in the validate handler. The ratchet sits above
@@ -37,6 +37,7 @@ interface MetricCount {
 
 interface Baseline {
   readonly schemaVersion: number;
+  readonly capturedAt: string;
   readonly corpusSha256: string;
   readonly holdoutSha256: string;
   readonly ambiguitySha256: string;
@@ -175,6 +176,12 @@ describe('scorer eval baseline ratchet (accuracy non-regression gate)', () => {
 
     BASELINE = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as Baseline;
 
+    // The derived lane discounts each skill by its age at scoring time. Score at
+    // the instant the capture script used, midnight UTC of the capture day, so a
+    // later calendar day cannot move a metric that no change touched.
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(`${BASELINE.capturedAt}T00:00:00Z`));
+
     const corpus = readJsonl<LabeledRow>(CORPUS_PATH);
     let fullCorrect = 0;
     let unknown = 0;
@@ -214,6 +221,10 @@ describe('scorer eval baseline ratchet (accuracy non-regression gate)', () => {
       holdoutTotal: holdout.length,
     };
   }, 120_000);
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
 
   it('the baseline is well-formed', () => {
     expect(BASELINE.schemaVersion).toBe(1);

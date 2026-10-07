@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.2
+version: 1.6.0.4
 ---
 
 # Rule: Communication handoff
@@ -76,8 +76,9 @@ the turns since have superseded.
 **Position it last**, so a reader who stops halfway through a reply has still hit it.
 
 The close of the turn is a contract with two clauses. Completed work is shown, as the
-changed file, the passing check or the output. When a command ran, name the command and
-its exit status or result before any interpretation of it. What happens next is exactly one concrete action, in the form that lets the operator do
+changed file, the passing check or the output, after the outcome that
+[`communication.md`](communication.md) §5 puts first. When a command ran, name the command
+and its exit status or result beside the claim it supports, before your reading of it. What happens next is exactly one concrete action, in the form that lets the operator do
 it, or the one line that says nothing is.
 
 The failure this prevents: a close out the operator reads, agrees with and acts on
@@ -118,7 +119,7 @@ were supposed to notice.
 - The alternatives are nameable, not open-ended.
 - The answer changes what you do next. A question that changes nothing is a delay, per
   [`communication-decisions.md`](communication-decisions.md) §3.
-- You cannot resolve it from the request, the code, or a sensible default.
+- You cannot resolve it from the request, the code or a sensible default.
 
 **Otherwise put it in prose and keep going.** `AGENTS.md` §3 already refuses "should I
 continue?" for a step that is clear and in scope.
@@ -140,7 +141,7 @@ rather than assuming one.
 | Claude Code | `AskUserQuestion` | Named in this repository |
 | Pi | The `@juicesharp/rpiv-ask-user-question` extension, typed options rather than free text | Recorded as installed in `.pi/PLUGINS.md` |
 | OpenCode | A built-in equivalent | Operator-reported, name not recorded here |
-| Codex | Likely a built-in equivalent | Unverified, check before relying on it |
+| Codex | `request_user_input`, only on a turn whose tool list names it. Plan mode has it, Default mode only behind a feature that ships off, and `codex exec` never | Read from the Codex 0.160.1 binary's own instructions |
 | Anything else | No native surface assumed | Use the fallback below |
 
 **A runtime with no such surface is not exempt.** It falls back to a numbered list of named

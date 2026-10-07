@@ -57,6 +57,23 @@ delete process.env.SPECKIT_ADVISOR_LANE_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
 
+// The derived lane discounts each skill by its age at scoring time, so scores
+// drift with the calendar. Scoring at one fixed instant, midnight UTC of the
+// capture day, lets the ratchet replay this baseline exactly on any later day.
+const CAPTURED_AT = new Date().toISOString().slice(0, 10);
+const SCORING_INSTANT = Date.parse(`${CAPTURED_AT}T00:00:00Z`);
+const RealDate = Date;
+globalThis.Date = class extends RealDate {
+  constructor(...args) {
+    if (args.length === 0) super(SCORING_INSTANT);
+    else super(...args);
+  }
+
+  static now() {
+    return SCORING_INSTANT;
+  }
+};
+
 const { scoreAdvisorPrompt } = await import(join(DIST, 'lib/scorer/fusion.js'));
 const { mergedSkillForAlias, skillMatchesAlias } = await import(join(DIST, 'lib/scorer/aliases.js'));
 const { findAdvisorWorkspaceRoot } = await import(join(DIST, 'lib/utils/workspace-root.js'));
@@ -145,7 +162,7 @@ const headSha = (() => {
 
 const baseline = {
   schemaVersion: 1,
-  capturedAt: new Date().toISOString().slice(0, 10),
+  capturedAt: CAPTURED_AT,
   capturedAtSha: headSha,
   corpusSha256: sha256File(CORPUS_JSONL),
   holdoutSha256: sha256File(HOLDOUT_JSONL),

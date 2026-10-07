@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6dec31b7308443e03a3b1b00648625a81835e1ea0d780448828eb254708e8b19",
+  "manifestHash": "4518935e1aec3b44c10df194ebeb1d4a6d3d7484de1955c9f2444a29453585b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11396,6 +11396,9 @@
     ],
     "architecture decision gate": [
       "architecture decision gate"
+    ],
+    "architecture decisions": [
+      "architecture decisions"
     ],
     "architecture diagram": [
       "architecture diagram"
@@ -24394,6 +24397,9 @@
     "communication clarity goal": [
       "communication clarity goal"
     ],
+    "communication clause ledger": [
+      "communication clause ledger"
+    ],
     "communication documentation review": [
       "communication documentation review"
     ],
@@ -24480,6 +24486,12 @@
     ],
     "communication rule upgrade tasks": [
       "communication rule upgrade tasks"
+    ],
+    "communication rules consolidation": [
+      "communication rules consolidation"
+    ],
+    "communication rules review synthesis": [
+      "communication rules review synthesis"
     ],
     "communication skill removal": [
       "communication skill removal"
@@ -25486,6 +25498,9 @@
     "consolidate socket server copies": [
       "consolidate socket-server copies"
     ],
+    "consolidate the communication repo rules move the writing": [
+      "consolidate the communication repo rules move the writing"
+    ],
     "consolidated interview": [
       "consolidated interview"
     ],
@@ -26121,6 +26136,9 @@
     ],
     "contiguous prefix stop consolidation": [
       "contiguous prefix stop consolidation"
+    ],
+    "continuation notes": [
+      "continuation notes"
     ],
     "continue post review closeout": [
       "continue post-review closeout"

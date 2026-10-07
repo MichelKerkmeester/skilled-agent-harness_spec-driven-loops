@@ -31,9 +31,17 @@ export default defineConfig({
     reporters: ['default', 'hanging-process'],
     testTimeout: TEST_TIMEOUT_MS,
     teardownTimeout: TEARDOWN_TIMEOUT_MS,
-    alias: {
-      '@lib': path.resolve(import.meta.dirname, 'lib'),
-      '@spec-kit/shared': path.resolve(import.meta.dirname, '..', 'shared'),
-    },
+    alias: [
+      { find: '@lib', replacement: path.resolve(import.meta.dirname, 'lib') },
+      { find: '@spec-kit/shared', replacement: path.resolve(import.meta.dirname, '..', 'shared') },
+      // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+      // their relative imports are written against the link's base; this alias
+      // resolves those same specifiers from the real tree, mirroring the
+      // hooks config.
+      {
+        find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+        replacement: `${path.resolve(import.meta.dirname, '..', '..', '..')}/`,
+      },
+    ],
   },
 });
