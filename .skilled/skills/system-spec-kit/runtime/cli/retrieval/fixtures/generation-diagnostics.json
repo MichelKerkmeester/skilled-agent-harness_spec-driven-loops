@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6825,
-    "ok": 13437,
-    "valid-empty-list": 3516
+    "ok": 13446,
+    "valid-empty-list": 3512
   },
-  "documentsScanned": 23832,
+  "documentsScanned": 23837,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "409c15490eaa570451955c56a64e9239fbdedd44faf33faf118cfaeeeea270c5",
+  "manifestHash": "fee916326f4564616216b943d0aabd58e4d50ca25c043c630021c1873c9554f9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -38,18 +38,18 @@
       "prose-sentence": 10,
       "single-token": 373,
       "stop-word-only": 9,
-      "template-default": 56
+      "template-default": 20
     },
     "phrases": {
       "editor-fallback": 2,
       "folder-token-fallback": 34,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 34608,
+      "ok": 35642,
       "prose-sentence": 19,
       "single-token": 165,
       "stop-word-only": 1,
-      "template-default": 7
+      "template-default": 17
     }
   },
   "rows": [
@@ -58018,34 +58018,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 24,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 23,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/handover.md",
       "rawKey": "trigger_phrases",
@@ -71453,6 +71425,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/scratch",
       "reason": "excluded directory"
     },
     {

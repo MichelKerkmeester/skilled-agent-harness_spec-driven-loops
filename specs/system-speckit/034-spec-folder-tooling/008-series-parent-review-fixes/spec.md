@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 11 |
+| **Phase** | 8 of 12 |
 | **Predecessor** | 007-series-parent-review-and-hardening-research |
 | **Successor** | 009-gate-3-menu-series-parent |
 | **Handoff Criteria** | Every review finding in `../007-series-parent-review-and-hardening-research/review/review-report.md` section 3 is fixed or waived with a reason |

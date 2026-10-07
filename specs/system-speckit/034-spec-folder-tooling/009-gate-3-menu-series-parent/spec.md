@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 11 |
+| **Phase** | 9 of 12 |
 | **Predecessor** | 008-series-parent-review-fixes |
 | **Successor** | 010-trigger-index-ci-rebuild |
 | **Handoff Criteria** | Every runtime copy of the Gate 3 menu names the series parent under option C and gates option B on new or unrelated work, and both affected test suites pass |

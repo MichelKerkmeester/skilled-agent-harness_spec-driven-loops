@@ -116,11 +116,12 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 4 | `004-track-aware-archive/` | Archive and restore a packet inside its own track | Complete |
 | 5 | `005-phase-aware-archive/` | Archive and restore a phase inside its parent | Complete |
 | 6 | `006-series-parent-rule-and-sibling-listing/` | Name the series parent and list recent packets before a new one | Complete |
-| 7 | 007-series-parent-review-and-hardening-research/ | [Phase 7 scope] | Pending |
-| 8 | 008-series-parent-review-fixes/ | [Phase 8 scope] | Pending |
-| 9 | 009-gate-3-menu-series-parent/ | [Phase 9 scope] | Pending |
-| 10 | 010-trigger-index-ci-rebuild/ | [Phase 10 scope] | Pending |
-| 11 | 011-template-phrase-census-and-cleanup/ | [Phase 11 scope] | Pending |
+| 7 | `007-series-parent-review-and-hardening-research/` | Review Phase 6 and research how to harden it | Complete |
+| 8 | `008-series-parent-review-fixes/` | Fix the Phase 7 review findings | Complete |
+| 9 | `009-gate-3-menu-series-parent/` | Name the series parent in the Gate 3 menu | Complete |
+| 10 | `010-trigger-index-ci-rebuild/` | Rebuild the trigger index in CI after a push | In Progress |
+| 11 | `011-template-phrase-census-and-cleanup/` | Report and clean the spec and acceptance criteria template phrases | Complete |
+| 12 | `012-template-phrase-cleanup-round-two/` | Clean the remaining templates' phrases, partial lists and cut-off phrases | Complete |
 
 ### Phase Transition Rules
 
@@ -138,11 +139,12 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | `003-track-root-children` | `004-track-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `004-track-aware-archive` | `005-phase-aware-archive` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `005-phase-aware-archive` | `006-series-parent-rule-and-sibling-listing` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
-| 006-series-parent-rule-and-sibling-listing | 007-series-parent-review-and-hardening-research | [Criteria TBD] | [Verification TBD] |
-| 007-series-parent-review-and-hardening-research | 008-series-parent-review-fixes | [Criteria TBD] | [Verification TBD] |
-| 008-series-parent-review-fixes | 009-gate-3-menu-series-parent | [Criteria TBD] | [Verification TBD] |
-| 009-gate-3-menu-series-parent | 010-trigger-index-ci-rebuild | [Criteria TBD] | [Verification TBD] |
-| 010-trigger-index-ci-rebuild | 011-template-phrase-census-and-cleanup | [Criteria TBD] | [Verification TBD] |
+| `006-series-parent-rule-and-sibling-listing` | `007-series-parent-review-and-hardening-research` | Phase 6 is committed, so the review has a fixed target | `validate.sh --strict` passes on each child |
+| `007-series-parent-review-and-hardening-research` | `008-series-parent-review-fixes` | The review report lists the findings to fix | `validate.sh --strict` passes on each child |
+| `008-series-parent-review-fixes` | `009-gate-3-menu-series-parent` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `009-gate-3-menu-series-parent` | `010-trigger-index-ci-rebuild` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `010-trigger-index-ci-rebuild` | `011-template-phrase-census-and-cleanup` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `011-template-phrase-census-and-cleanup` | `012-template-phrase-cleanup-round-two` | Phase 11's tools and phrase lists exist to extend | `validate.sh --strict` passes on each child |
 <!-- /ANCHOR:phase-map -->
 
 ---

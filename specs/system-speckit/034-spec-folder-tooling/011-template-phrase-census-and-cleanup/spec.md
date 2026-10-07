@@ -25,9 +25,9 @@ contextType: "implementation"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 12 |
 | **Predecessor** | 010-trigger-index-ci-rebuild |
-| **Successor** | None |
+| **Successor** | 012-template-phrase-cleanup-round-two |
 | **Handoff Criteria** | The report lists every carrier, the cleanup's dry run names every file it would change, and the operator has decided on `--apply` |
 <!-- /ANCHOR:metadata -->
 

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Anyone following the series parent recipe gets three placeholder children that the next steps collide with",
     "created_at": "2026-10-07T09:58:43Z",
-    "last_save_at": "2026-10-07T15:57:33.498Z",
+    "last_save_at": "2026-10-07T16:44:54.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:970bc770162ed4ebfd77a6a24da674dfb90a87b6e772d4bf5e492aa5428bfb52",
+    "source_fingerprint": "sha256:5727de47b7b8786f2945f9f0ea0e7fec455ee593651655a940b10fb4aa8d6feb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb83757c0f8efd820fced4821ccfd34923947903a8c1aa9cb47d1c07054f6211",
+      "spec.md": "abdafb7e25d340a8ce07e1bfc34995b57ba34c08638444e95ff18ffe6daceb4c",
       "plan.md": "5a5762e9c579cda92b1ac170ce4d0e51d8227bd6c5b3c3b73f786754cd136c22",
       "tasks.md": "a041c158120596b41300bccaf60da5e26dcf6818fe857bf2700bd1cb69971a8a",
       "implementation-summary.md": "e07742ce285779b1a3ff52a81a3583d012b6e3d6affbba7372b6ded6af7ca4ed"

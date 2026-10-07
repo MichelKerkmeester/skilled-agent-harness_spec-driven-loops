@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 6 was built by DeepSeek workers and checked by one orchestrator, so it has had one review lens",
     "created_at": "2026-10-07T05:07:13Z",
-    "last_save_at": "2026-10-07T07:56:20.972Z",
+    "last_save_at": "2026-10-07T16:44:56.111Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e061217c373f6e79c46300332f1e3164486f49ade60be612d48e88fddf6ccdf3",
+    "source_fingerprint": "sha256:9c180979dc1c13c9ec77dbcae9bbbe0eadd28509b65d9c3ee2e892c727f1809b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "35e027ff2035b8a7a8b906b570b83524005b531ab9a87ae9c487c25f6a88c2a7",
+      "spec.md": "5f83c5505e60c3739f5e47af83f8f7d7d8e16d2f40aec504765cb4712fa3c44f",
       "plan.md": "51471b36cf7a16973c83de4edff21977c59a07ec631dfac18254afacd5f21191",
       "tasks.md": "8908712db9f2e48be07f507869bcdb8630960cdad0f1c12ad30abe18db851234",
       "implementation-summary.md": "06280b09060f534e2128d8edd77df76e04f260fa29465f477030f2f4574b8392",

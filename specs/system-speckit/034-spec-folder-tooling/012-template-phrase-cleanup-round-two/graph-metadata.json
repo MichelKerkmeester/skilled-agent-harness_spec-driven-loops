@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup",
-  "spec_folder": "system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup",
+  "packet_id": "system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two",
+  "spec_folder": "system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two",
   "parent_id": "system-speckit/034-spec-folder-tooling",
   "children_ids": [],
   "manual": {
@@ -11,27 +11,27 @@
   },
   "derived": {
     "trigger_phrases": [
-      "template phrase census and cleanup",
-      "phase 11 template phrase census and cleanup",
-      "acceptance criteria template default",
-      "template phrase census and cleanup plan",
-      "template phrase census and cleanup tasks",
-      "template phrase census and cleanup acceptance criteria",
-      "template phrase census and cleanup implementation summary"
+      "template phrase cleanup round two",
+      "phase 12 template phrase cleanup round two",
+      "partial template phrase blocks",
+      "template phrase cleanup round two plan",
+      "template phrase cleanup round two tasks",
+      "template phrase cleanup round two acceptance criteria",
+      "template phrase cleanup round two implementation summary"
     ],
     "key_topics": [
       "template",
       "phrase",
-      "census",
       "cleanup",
+      "round",
+      "two",
       "phase",
-      "acceptance",
-      "criteria",
-      "default",
+      "partial",
+      "blocks",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,12 +43,11 @@
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/template-phrase-cleanup.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
-      "templates/addons/acceptance-criteria.md.tmpl",
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     ],
     "entities": [
@@ -95,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "template-phrase-census.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
-        "source": "derived"
-      },
-      {
         "name": "template-phrase-cleanup.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-cleanup.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "template-phrase-census.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-census.mjs",
         "source": "derived"
       },
       {
@@ -122,12 +121,6 @@
         "name": "trigger-index.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance-criteria.md.tmpl",
-        "kind": "file",
-        "path": "templates/addons/acceptance-criteria.md.tmpl",
         "source": "derived"
       },
       {
@@ -185,7 +178,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview The",
+        "name": "Overview Every",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A packet that keeps a template's default trigger phrases is indexed under words that describe the template, not the work",
-    "created_at": "2026-10-07T09:58:46Z",
-    "last_save_at": "2026-10-07T16:44:54.509Z",
+    "causal_summary": "45 live files keep two or three template defaults beside an author phrase, because Phase 11 replaced only the exact four-line block",
+    "created_at": "2026-10-07T14:47:32Z",
+    "last_save_at": "2026-10-07T16:47:54.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:352188bceebfebfd28773ff13049d66abea41ce419a25eb93d712c2c80571160",
+    "source_fingerprint": "sha256:ec0aff9b667754de4c1e7d5055f275083624fc2e0bb82de9617f0b0de6332f76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5565d95f7a13a949100c8abc73994eca4ae38a72fe9aa0cb98e5a307afc939a1",
-      "plan.md": "e50994c97f2480b5a90aa15d6e799b55f7596e50773d88798b52b961f55f21aa",
-      "tasks.md": "63135921306694f4cde131ad3182847166cb06c88980f13f4cbf397616798e33",
-      "implementation-summary.md": "d3fb0bc638c3450b999f8a4ec838fa735db7363324893d74c932bacbe7b02915"
+      "spec.md": "59535326b219a9cea1f214a7d94a865c01953993bbec6aa3061a5160b61c4e90",
+      "plan.md": "bed73587c7e54ff687a3cd5a19ec217c4a7c11b0abba838632e8d1c173f2efa3",
+      "tasks.md": "bd7b6fc811c59832fac6f5518690cb9fc24a0736913c89fe1e85412ec7c12a9e",
+      "implementation-summary.md": "d89e607a3baf0e89c0ca962ae19bace49d63d80e5fae73fa65995704eae8bc88"
     },
     "last_active_at": null
   }

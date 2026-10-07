@@ -27,9 +27,9 @@ contextType: "general"
 | **Created** | 2026-10-06 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 12 |
 | **Predecessor** | 005-phase-aware-archive |
-| **Successor** | None |
+| **Successor** | 007-series-parent-review-and-hardening-research |
 | **Handoff Criteria** | The rule docs agree with each other, `create.sh` lists recent sibling packets and seeds real trigger phrases, and the affected test files pass |
 <!-- /ANCHOR:metadata -->
 

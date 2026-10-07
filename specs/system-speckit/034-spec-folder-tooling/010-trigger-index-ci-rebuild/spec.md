@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 11 |
+| **Phase** | 10 of 12 |
 | **Predecessor** | 009-gate-3-menu-series-parent |
 | **Successor** | 011-template-phrase-census-and-cleanup |
 | **Handoff Criteria** | A push that leaves the index stale is followed by a CI commit that makes `--check` pass |

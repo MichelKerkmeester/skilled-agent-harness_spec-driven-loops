@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4637f5be28d604018bc3bf707b0535ae96140a7a343d238baa3c636d6f53644b",
+  "corpusHash": "f37f26e40ec66e39b024801a18a2bafdc40712e7c78b4fd01b91651579753ccc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23832,
+  "includedPathCount": 23837,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23455,6 +23455,11 @@
     "specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup/plan.md",
     "specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup/tasks.md",
+    "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/acceptance-criteria.md",
+    "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/implementation-summary.md",
+    "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/plan.md",
+    "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/spec.md",
+    "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/tasks.md",
     "specs/system-speckit/034-spec-folder-tooling/spec.md",
     "specs/system-speckit/034-spec-folder-tooling/timeline.md",
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
@@ -23862,7 +23867,7 @@
     "specs/system-speckit/050-open-knowledge-format-adoption/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "409c15490eaa570451955c56a64e9239fbdedd44faf33faf118cfaeeeea270c5",
+  "manifestHash": "fee916326f4564616216b943d0aabd58e4d50ca25c043c630021c1873c9554f9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29330,6 +29335,10 @@
     },
     {
       "path": "specs/system-speckit/034-spec-folder-tooling/011-template-phrase-census-and-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-spec-folder-tooling/012-template-phrase-cleanup-round-two/scratch",
       "reason": "excluded directory"
     },
     {

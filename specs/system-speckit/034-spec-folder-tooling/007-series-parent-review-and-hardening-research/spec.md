@@ -25,9 +25,9 @@ contextType: "research"
 | **Created** | 2026-10-07 |
 | **Branch** | `worktrees/091-consolidate-small-packets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 of 12 |
 | **Predecessor** | 006-series-parent-rule-and-sibling-listing |
-| **Successor** | None |
+| **Successor** | 008-series-parent-review-fixes |
 | **Handoff Criteria** | A review report with a verdict and a research report with ranked hardening and UX recommendations, both cited to file and line |
 <!-- /ANCHOR:metadata -->
 
