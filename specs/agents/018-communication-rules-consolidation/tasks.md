@@ -65,6 +65,19 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Follow-ups
+
+- [x] T014 Credit an injected rule only when its title, as the rule or its card, and its first rule line arrive, and end delivery at compaction (`measure-rule-compliance.py`)
+- [x] T015 Tests for both, each failing on the old script; the Codex row test now expects a post-compaction reply as "before" (`test_measure_rule_compliance.py`)
+- [x] T016 Base a long-stretch estimate on a named earlier run or mark it an assumption (`communication-decisions.md` §4 and self-check)
+- [x] T017 Record Codex's `request_user_input` and where it is available (`communication-handoff.md` §5)
+- [x] T018 Replace the stale claim that Devin surfaces root `CLAUDE.md` (`cli-devin/SKILL.md`) and regenerate the Hermes skill copies
+- [ ] T019 Re-measure compliance once more sessions run under the new rule versions
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

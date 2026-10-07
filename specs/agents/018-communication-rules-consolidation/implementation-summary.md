@@ -65,6 +65,18 @@ The first analysis blamed delivery and proposed a reply card. Four reviewers, th
 | `.skilled/repo-rules/answer-the-actual-request.md` | Modified | House-style fixes |
 | `.skilled/repo-rules/uncertainty-and-honesty.md` | Modified | Registers moved out, house-style fixes |
 | `REPO RULES.md` | Modified | Router and index rows matched |
+
+### Follow-ups
+
+The measurement script now credits an injected rule only when the rule's own text arrives, and a card counts as well as the full rule. A compaction ends delivery until the rule arrives again, so a reply in a later window no longer counts as "after". Time estimates must rest on a named earlier run or say they are an assumption. The question-tool table names Codex's `request_user_input`, read from the Codex 0.160.1 binary. The cli-devin skill no longer claims Devin loads root `CLAUDE.md`.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-create-repo-rule/scripts/measure-rule-compliance.py` | Modified | Content-based injection credit, delivery ends at compaction |
+| `sk-doc/scripts/tests/test_measure_rule_compliance.py` | Modified | Two new tests, one updated |
+| `.skilled/repo-rules/communication-decisions.md` | Modified | Grounded time estimates |
+| `.skilled/repo-rules/communication-handoff.md` | Modified | Codex question tool |
+| `cli-devin/SKILL.md` and `.hermes/skills/` | Modified | Current rule loading, Hermes copies regenerated |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -72,7 +84,7 @@ The first analysis blamed delivery and proposed a reply card. Four reviewers, th
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each rule was revised in place under the sk-create-repo-rule revise workflow, with its version bumped. The guards, the voice scan and the measurement tests ran afterwards. Nothing is committed.
+Each rule was revised in place under the sk-create-repo-rule revise workflow, with its version bumped. The guards, the voice scan and the measurement tests ran afterwards. The consolidation and the follow-ups are committed separately.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -97,7 +109,8 @@ Each rule was revised in place under the sk-create-repo-rule revise workflow, wi
 | `check-repo-rules.cjs` | PASS 11/11 |
 | `check-rule-copies.js` | OK, prefix unchanged |
 | `hvr_scan.py` on six rules | 0 hard blockers, apart from 3 quoted banned words in communication.md |
-| Rule measurement tests | 18 passed |
+| Rule measurement tests | 18 passed, 20 after the follow-ups, and the 3 changed tests fail on the old script |
+| Hermes copies | `sync-skills-hermes.cjs --check` PASS, 70 in sync |
 <!-- /ANCHOR:verification -->
 
 ---

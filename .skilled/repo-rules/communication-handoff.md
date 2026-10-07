@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.3
+version: 1.6.0.4
 ---
 
 # Rule: Communication handoff
@@ -141,7 +141,7 @@ rather than assuming one.
 | Claude Code | `AskUserQuestion` | Named in this repository |
 | Pi | The `@juicesharp/rpiv-ask-user-question` extension, typed options rather than free text | Recorded as installed in `.pi/PLUGINS.md` |
 | OpenCode | A built-in equivalent | Operator-reported, name not recorded here |
-| Codex | Likely a built-in equivalent | Unverified, check before relying on it |
+| Codex | `request_user_input`, only on a turn whose tool list names it. Plan mode has it, Default mode only behind a feature that ships off, and `codex exec` never | Read from the Codex 0.160.1 binary's own instructions |
 | Anything else | No native surface assumed | Use the fallback below |
 
 **A runtime with no such surface is not exempt.** It falls back to a numbered list of named

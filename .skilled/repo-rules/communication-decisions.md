@@ -29,7 +29,7 @@ trigger_phrases:
   - "too many options"
 importance_tier: important
 contextType: reference
-version: 1.3.0.4
+version: 1.3.0.5
 ---
 
 # Rule: Communication decisions
@@ -113,7 +113,8 @@ Before a stretch of work the reader cannot see inside, post the intended path: a
 numbered list of what you will do, and what they should expect at each checkpoint.
 
 When the stretch is long, attach a concrete time estimate to that list. Minutes or
-hours, never vague.
+hours, never vague. Base it on how long a similar run took and name that run. With no
+such run, say the figure is an assumption.
 
 **Clipped means not narrating each step. It never means starting without saying where you
 are going.** [`communication.md`](communication.md) §1 holds the first and this section holds the second.
@@ -165,4 +166,4 @@ no such contract.
 - [ ] Before a long stretch, I said where I was going, and I revised it when it changed.
 - [ ] A synthesis I reported carries its findings, not just its path and its counts.
 - [ ] Before drafting I decided who reads this and what they hold, and the gap between that and what they need is what the reply supplies.
-- [ ] A long stretch carried a concrete time estimate, in minutes or hours, never a vague one.
+- [ ] A long stretch carried a concrete time estimate, in minutes or hours, based on a named earlier run or marked as an assumption.
